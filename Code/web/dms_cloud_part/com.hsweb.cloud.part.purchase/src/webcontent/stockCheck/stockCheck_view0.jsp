@@ -9,10 +9,10 @@
 -->
 <head>
 <title>盘点单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/stockCheck/stockCheck.js?v=1.1.1"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/stockCheck/stockCheck.js?v=1.1.7"></script>
 <style type="text/css">
 .title {
-	width: 60px;
+	width: 75px;
 	text-align: right;
 }
 
@@ -90,7 +90,7 @@
          allowResize="true"
          handlerSize="6"
          style="width:100%;height:100%;">
-        <div size="220" showCollapseButton="true">
+        <div size="240" showCollapseButton="true">
           <div title="盘点列表" class="nui-panel"
                  showFooter="true"
                  style="width:100%;height:100%;border: 0;">
@@ -123,7 +123,7 @@
             
 
              <div class="nui-fit">
-                  <fieldset id="fd1" style="width:95%;height:60px;">
+                  <fieldset id="fd1" style="width:99.5%;height:60px;">
                       <legend><span>盘点信息</span></legend>
                       <div class="fieldset-body">
                           <div id="basicInfoForm" class="form" contenteditable="false">

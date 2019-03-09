@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>综合开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=2.2.44"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=2.2.46"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -273,7 +273,7 @@
                 <td>
                     <div >
                         <span id="carSellInfoEl" >
-                            <a href="javascript:showSellPoint()" class="healthview" id="showSellEl" href="javascript:showSell()">销售机会(9)</a>&nbsp;
+                            <a href="javascript:showSellPoint()" class="healthview" id="showSellEl" href="javascript:showSell()">销售机会(0)</a>&nbsp;
                         </span>
                     </div>
                 </td>

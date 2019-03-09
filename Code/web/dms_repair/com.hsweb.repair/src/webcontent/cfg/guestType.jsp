@@ -9,7 +9,7 @@
 -->
 <head>
 <title>客户级别</title>
-<script src="<%=webPath + contextPath%>/repair/cfg/js/guestType.js?v=1.0.2"></script>
+<script src="<%=webPath + contextPath%>/repair/cfg/js/guestType.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -154,7 +154,7 @@
                             </td>
                         </tr>
                         <tr class="htr">
-                            <td class="tbtext">消费1元兑换:</td>
+                            <td class="tbtext">消费100元兑换:</td>
                             <td >
                                 <input name="integralAdd" class="nui-spinner" width="180px" format="0" 
                                        id="integralAdd" maxValue="127" showButton="false"/>积分
@@ -170,7 +170,7 @@
                             </td>
                         </tr>
                         <tr class="htr">
-                            <td class="tbtext">抵扣1元消费:</td>
+                            <td class="tbtext">抵扣100元消费:</td>
                             <td >
                                 <input name="integralReduce" class="nui-spinner" width="180px" format="0" 
                                     id="integralReduce" maxValue="127" showButton="false"/>积分

@@ -12,7 +12,7 @@
 <head>
 <title>商机添加</title>
 <script
-	src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/businessOpportunityEdit.js?v=1.1.7"></script>
+	src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/businessOpportunityEdit.js?v=1.2.2"></script>
 </head>
 <body>
 		     <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
@@ -72,7 +72,7 @@
 					</td>
 					<td class="form_label" align="right">商机所有者:</td>
 					<td colspan="1">
-					 <input class="nui-combobox" id="chanceManId" name="chanceManId" value="" textField="empName" valueField="empId" onvaluechanged="onMTAdvisorIdChange" required="true"/>
+					 <input class="nui-combobox" id="chanceManId" name="chanceManId" value="" textField="empName" valueField="empId" onvaluechanged="onMTAdvisorIdChange(this.text)" required="true"/>
                      <input class="nui-textbox" id="chanceMan" name="chanceMan" visible="false" />
 					</td>
 				</tr>

@@ -137,6 +137,7 @@
 	                  <div field="serviceCode" name="serviceCode" width="170" headerAlign="center" allowsort="true" header="工单号" summaryType="count"></div>
 	                  <div field="billTypeId" name="billTypeId" width="80" headerAlign="center" allowsort="true"  header="工单类型"></div>
 	                  <div field="serviceTypeName" name="serviceTypeName" width="120" headerAlign="center" allowsort="true" header="业务类型"></div>
+	                  <div field="guestFullName" name="guestFullName" width="110" headerAlign="center" allowsort="true" header="客户名称"></div>
 	                  <div field="mtAdvisor" name="mtAdvisor" width="110" headerAlign="center" allowsort="true" header="服务顾问"></div>
 	                   <div field="outDate" name="outDate" width="120" headerAlign="center" allowsort="true" dateFormat="yyyy-MM-dd HH:mm" header="结算日期"></div>
 	                 </div>
@@ -144,7 +145,7 @@
                   <div type="checkcolumn" name="checkcolumn" visible="false"></div>
                   <div header="客户车辆信息" headerAlign="center">
 	                  <div property="columns" > 
-	                 	  <div field="guestFullName" name="guestFullName" width="100" headerAlign="center"  allowsort="true" header="客户姓名" allowsort="ture"></div> 
+	                 	  <div field="guestFullName" name="guestFullName" width="100" headerAlign="center"  allowsort="true" header="客户名称" allowsort="ture"></div> 
 		                  <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌号" allowsort="true"></div>
 		                  <div field="carModel" name="carModel" width="120" headerAlign="center" allowsort="true" header="品牌/车型"></div>
 						  <div field="carVin" name="carVin" width="150" headerAlign="center" allowsort="true" header="车架号(VIN)"></div>

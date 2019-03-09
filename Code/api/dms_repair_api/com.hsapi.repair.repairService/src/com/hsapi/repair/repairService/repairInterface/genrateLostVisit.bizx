@@ -5,12 +5,23 @@
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="连接线" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">tday</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <location x="75" y="157"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link9</targetConnections>
+    <targetConnections>link10</targetConnections>
     <location x="765" y="160"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
@@ -279,6 +290,21 @@
     <location x="643" y="196"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign3" name="赋值3" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign3</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link4</targetConnections>
+    <location x="413" y="317"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign3label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
+    <location x="411" y="353"/>
+    <figSize height="17" width="32"/>
+    <node>assign3</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

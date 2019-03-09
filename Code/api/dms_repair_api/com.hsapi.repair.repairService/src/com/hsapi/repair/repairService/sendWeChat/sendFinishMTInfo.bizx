@@ -204,8 +204,8 @@
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">maintain/guestId</process:from>
-      <process:to type="query">p/guestId</process:to>
+      <process:from type="query" pattern="reference">maintain/contactorId</process:from>
+      <process:to type="query">p/conId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">

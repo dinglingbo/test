@@ -198,8 +198,8 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">maintain/carId</process:from>
-      <process:to type="query">p/carId</process:to>
+      <process:from type="query" pattern="reference">maintain/contactorId</process:from>
+      <process:to type="query">p/conId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">

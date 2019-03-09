@@ -85,6 +85,8 @@ function openCustomerWindow(carNo,callback) {
 
 var requiredField = {
 		carId : "车牌号",
+		guestName : "客户姓名",
+		guestMobile :"手机",
 		chanceType : "商机类型",
 		prdtName : "销售产品/项目",
 		status : "销售阶段",
@@ -165,32 +167,27 @@ function onClose(){
 	window.CloseOwnerWindow();	
 }
 
-function onOk() {
+function onOk(){
 	var data = basicInfoForm.getData();
 	for ( var key in requiredField) {
-		if (!data[key] || $.trim(data[key]).length == 0)
-		{
+		if (!data[key] || $.trim(data[key]).length == 0){
 			//当有效期没有输入月份时，判断单选框是否选择了
-			if( key == "periodValidity" && set.checked )
-			{
-				//跳过本次循环，执行下一次循环,把有效期赋值为-1
-				//input.setValue("-1");
-				falg = 1;
-				continue;
+			if( key == "status" && data[key]==0){
+	
 			}else{
-				showMsg(requiredField[key] + "不能为空!", "W");
-				return;
-			}
-			
-		}
+					showMsg(requiredField[key] + "不能为空!", "W");
+					return;
+				
+				}
 
+		}
 	}
 	saveData();
 }
 
 function onMTAdvisorIdChange(e){
-    var value = e.selected.empName;
-    nui.get("mtAdvisor").setValue(value);
+    var chanceMan = e;
+    nui.get("chanceMan").setValue(chanceMan);
 }
 
 function saveData() {

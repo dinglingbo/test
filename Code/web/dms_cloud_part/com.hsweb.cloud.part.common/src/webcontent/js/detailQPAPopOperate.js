@@ -268,9 +268,9 @@ function onCancel(e) {
     CloseWindow("cancel");
 }
 function calc(type){
-    var qty = nui.get("qty").getValue();
-    var price = nui.get("price").getValue();
-    var amt = nui.get("amt").getValue();
+    var qty = nui.get("qty").getValue().replace(/\s+/g, "");
+    var price = nui.get("price").getValue().replace(/\s+/g, "");
+    var amt = nui.get("amt").getValue().replace(/\s+/g, "");
     
     if(qty == null || qty == '') {
         nui.get("qty").setValue(0);
@@ -290,9 +290,9 @@ function calc(type){
         nui.get("amt").setValue(0);
     }
     
-    qty = nui.get("qty").getValue();
-    price = nui.get("price").getValue();
-    amt = nui.get("amt").getValue();
+    qty = nui.get("qty").getValue().replace(/\s+/g, "");
+    price = nui.get("price").getValue().replace(/\s+/g, "");
+    amt = nui.get("amt").getValue().replace(/\s+/g, "");
     
     if(type == 'qty'){
         nui.get("amt").setValue(qty * price);

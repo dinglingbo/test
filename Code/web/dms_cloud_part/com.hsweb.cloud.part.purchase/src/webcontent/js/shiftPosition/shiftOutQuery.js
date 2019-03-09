@@ -108,9 +108,9 @@ function getSearchParam(){
     {
         params.rtnableQty = 1;
     }
-    params.serviceId = comServiceId.getValue();
-	params.partCode = comPartCode.getValue();
-	params.partNameAndPY = comPartNameAndPY.getValue();
+    params.serviceId = comServiceId.getValue().replace(/\s+/g, "");
+	params.partCode = comPartCode.getValue().replace(/\s+/g, "");
+	params.partNameAndPY = comPartNameAndPY.getValue().replace(/\s+/g, "");
 	params.endDate = searchEndDate.getValue();
 	params.startDate = searchBeginDate.getFormValue();
     return params;
@@ -240,7 +240,7 @@ function onAdvancedSearchOk()
         var tmpList = searchData.serviceIdList.split("\n");
         for(i=0;i<tmpList.length;i++)
         {
-            tmpList[i] = "'"+tmpList[i]+"'";
+            tmpList[i] = "'"+tmpList[i].replace(/\s+/g, "")+"'";
         }
         searchData.serviceIdList = tmpList.join(",");
     }
@@ -250,13 +250,18 @@ function onAdvancedSearchOk()
         var tmpList = searchData.partCodeList.split("\n");
         for(i=0;i<tmpList.length;i++)
         {
-            tmpList[i] = "'"+tmpList[i]+"'";
+            tmpList[i] = "'"+tmpList[i].replace(/\s+/g, "")+"'";
         }
         searchData.partCodeList = tmpList.join(",");
     }
     if(searchData.rtnableQty == 0)
     {
         delete searchData.rtnableQty;
+    }
+    for(var key in searchData){
+    	if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
+    		searchData[key]=searchData[key].replace(/\s+/g, "");
+    	}
     }
     advancedSearchWin.hide();
     doSearch(searchData);

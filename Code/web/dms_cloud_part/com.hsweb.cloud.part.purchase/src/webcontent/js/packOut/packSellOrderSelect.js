@@ -132,7 +132,7 @@ function getBillSearchParam(){
 	var params = {};
     params.sAuditDate = sBillAuditDateEl.getValue();
     params.eAuditDate = addDate(eBillAuditDateEl.getValue(), 1);
-    params.serviceId = billServiceIdEl.getValue();
+    params.serviceId = billServiceIdEl.getValue().replace(/\s+/g, "");
     params.orderMan = billServiceManEl.getValue();
     params.guestId = billSearchGuestIdEl.getValue();
     return params;

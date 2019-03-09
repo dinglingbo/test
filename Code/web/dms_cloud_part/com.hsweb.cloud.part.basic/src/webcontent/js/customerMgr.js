@@ -99,9 +99,9 @@ function search()
 function getSearchParam()
 {
     var params = {
-        fullName:nui.get("fullName").getValue(),
-        mobile:nui.get("mobile").getValue(),
-        code:nui.get("code").getValue()
+        fullName:nui.get("fullName").getValue().replace(/\s+/g, ""),
+        mobile:nui.get("mobile").getValue().replace(/\s+/g, ""),
+        code:nui.get("code").getValue().replace(/\s+/g, "")
     };
 
     return params;
@@ -125,6 +125,11 @@ function advancedSearch()
 function onAdvancedSearchOk()
 {
     var searchData = advancedSearchForm.getData();
+    for(var key in searchData){
+    	if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
+    		searchData[key]=searchData[key].replace(/\s+/g, "");
+    	}
+    }
     advancedSearchFormData = searchData;
     advancedSearchWin.hide();
     doSearch(searchData);

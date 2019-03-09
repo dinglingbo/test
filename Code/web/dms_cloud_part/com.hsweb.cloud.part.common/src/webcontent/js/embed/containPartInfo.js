@@ -231,14 +231,14 @@ function getSearchParams()
 {
     var params = queryForm.getData();
     params.partCode = (nui.get("search-code").getValue()).replace(/\s+/g, "");
-    params.partName = nui.get("search-name").getValue();
-    params.applyCarModel = nui.get("search-applyCarModel").getValue();
-    params.namePy = nui.get("search-namePy").getValue();
-    params.partBrandId = nui.get("partBrandId").getValue();
-    params.partCodeList = nui.get("partCodeList").getValue();
+    params.partName = nui.get("search-name").getValue().replace(/\s+/g, "");
+    params.applyCarModel = nui.get("search-applyCarModel").getValue().replace(/\s+/g, "");
+    params.namePy = nui.get("search-namePy").getValue().replace(/\s+/g, "");
+    params.partBrandId = nui.get("partBrandId").getValue().replace(/\s+/g, "");
+    params.partCodeList = nui.get("partCodeList").getValue().replace(/\s+/g, "");
     params.isDisabled = 0;
 
-    var partCodeList = nui.get("partCodeList").getValue();
+    var partCodeList = nui.get("partCodeList").getValue().replace(/\s+/g, "");
     // 订单单号
     if (partCodeList) {
         var tmpList = partCodeList.split("\n");

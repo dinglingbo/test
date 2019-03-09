@@ -200,10 +200,10 @@ function selectSupplier(elId)
 function getBillSearchParam(){
 
 	var params = {};
-    params.sAuditDate = sBillAuditDateEl.getValue();
-    params.eAuditDate = addDate(eBillAuditDateEl.getValue(), 1);
-    params.serviceId = billServiceIdEl.getValue();
-    params.orderMan = billServiceManEl.getValue();
+    params.sAuditDate = sBillAuditDateEl.getFormValue();
+    params.eAuditDate = addDate(eBillAuditDateEl.getFormValue(), 1);
+    params.serviceId = billServiceIdEl.getValue().replace(/\s+/g, "");
+    params.orderMan = billServiceManEl.getValue().replace(/\s+/g, "");
     params.guestId = billSearchGuestIdEl.getValue();
     params.billStatusId = billStatusIdEl.getValue();
     return params;

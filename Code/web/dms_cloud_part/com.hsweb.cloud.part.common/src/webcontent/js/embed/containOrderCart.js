@@ -43,13 +43,13 @@ $(document).ready(function() {
         FStoreId = parent.getParentStoreId();
     }
 
-    $("#search_code").bind("keydown", function (e) {
+    $("#search-code").bind("keydown", function (e) {
         if (e.keyCode == 13) {
             onSearch();
         }
     });
 
-    $("#search_name").bind("keydown", function (e) {
+    $("#search-name").bind("keydown", function (e) {
         if (e.keyCode == 13) {
             onSearch();
         }
@@ -67,6 +67,9 @@ function reloadData()
 function getSearchParams()
 {
     var params = queryForm.getData();
+    for(var key in params){
+    	params[key]=params[key].replace(/\s+/g, "");
+    }
     return params;
 }
 function onSearch()

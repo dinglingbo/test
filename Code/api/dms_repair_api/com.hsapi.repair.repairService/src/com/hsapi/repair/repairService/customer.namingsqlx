@@ -40,6 +40,7 @@
 			c.chain_come_times chainComeTimes,
 			b.mobile mobile,
 			c.mt_advisor_name mtAdvisorName,
+			b.tgrade tgrade,
 			ifnull( DATEDIFF( now( ), c.last_leave_date ), 0 ) leaveDay
 		FROM
 			wb_common.com_guest b
@@ -154,7 +155,7 @@
 			a.car_no carNo,
 			b.id as guestId,
 			a.vin vin,
-			b.full_name guestFullName,
+			b.full_name fullName,
 			a.car_model_id carModelId,
 			a.car_model_id_ly carModelIdLy,
 			a.car_model carModel,

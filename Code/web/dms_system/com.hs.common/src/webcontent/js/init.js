@@ -163,6 +163,19 @@ function processServiceType(data){
     _initDmsCallback["initServiceType"] && _initDmsCallback["initServiceType"]() && (_initDmsCallback["initServiceType"] = null);
 }
 
+//客户级别
+function initGuestType(id, callback){
+    _initDmsCallback["initGuestType"] = callback;
+    if(checkObjExists(id, "initGuestType")){
+        var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.querySelectGuestType.biz.ext";
+        callAjax(url, {}, processAjax, processGuestType, null); 
+    }
+}
+function processGuestType(data){
+    _initDmsObj["initGuestType"].setData(data);
+    setDataToHash(data,"guestType","id");
+    _initDmsCallback["initGuestType"] && _initDmsCallback["initGuestType"]() && (_initDmsCallback["initGuestType"] = null);
+}
 
 //保险公司
 function initInsureComp(id,callback){ //险种：DDT20130703000028

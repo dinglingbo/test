@@ -18,7 +18,7 @@ $(document).ready(function(v) {
 
         if((keyCode==27))  {  //ESC
         	 //closeWindow("cal");
-        	Oncancel();
+        	//Oncancel();
         }
       };
       moreOrgGrid.on("drawcell", function (e) {

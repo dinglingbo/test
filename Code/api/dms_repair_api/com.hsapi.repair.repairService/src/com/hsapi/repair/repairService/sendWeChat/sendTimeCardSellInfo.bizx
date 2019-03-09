@@ -55,7 +55,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign14label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">3JNkQS2pn-sPIA2A8bj4Uc6pZe7uIuslkh8nzQpWveo</process:from>
+      <process:from type="literal" pattern="reference">YLU7NASpeSzkQH8XpAUwlXglKxAW27eLaD62f4C_3rg</process:from>
       <process:to type="query">templatedId</process:to>
     </process:copy>
     <process:copy>
@@ -71,19 +71,7 @@
       <process:to type="query">wcText</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">wcText +&quot;先生/女士，您购买的[&quot;</process:from>
-      <process:to type="query">wcText</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">stored/cardName</process:from>
-      <process:to type="query">cardName</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">wcText + cardName</process:from>
-      <process:to type="query">wcText</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">wcText + &quot;]已成功到账&quot;</process:from>
+      <process:from type="expression" pattern="reference">wcText +&quot;先生/女士，您购买的计次卡套餐已成功开通&quot;</process:from>
       <process:to type="query">wcText</process:to>
     </process:copy>
     <process:copy>
@@ -269,6 +257,7 @@
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign14</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
     <location x="507" y="285"/>
@@ -301,7 +290,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">永久有效</process:from>
+      <process:from type="literal" pattern="reference">永久有效</process:from>
       <process:to type="query">endDate</process:to>
     </process:copy>
   </nodes>

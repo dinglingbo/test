@@ -29,8 +29,13 @@ function setFeedbackData(row){
 	document.getElementById("recordMobile").innerHTML = row.recordMobile || "";
 	document.getElementById("orgname").innerHTML = row.orgname || "";
 	document.getElementById("questionSource").innerHTML = row.source || "";
-	document.getElementById("funcName").innerHTML = row.funcName || "";
-	document.getElementById("funcAction").innerHTML = row.funcAction || "";
+	if(currOrgId == 0){
+		document.getElementById("funcName").style.display = "";
+		document.getElementById("funcAction").style.display = "";
+		document.getElementById("funcName").innerHTML = row.funcName || "";
+		document.getElementById("funcAction").innerHTML = row.funcAction || "";
+	}
+	
 	var recordDate = format(row.recordDate, "yyyy-MM-dd HH:mm");
 	document.getElementById("recordDate").innerHTML = recordDate;
 	showTab(row.questionType,row.questionContent);//updaFree

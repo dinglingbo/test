@@ -124,7 +124,7 @@ function onOk()
     data.isSupplier = nui.get("isSupplier").getValue();
     data.isDisabled = nui.get("isDisabled").getValue();
     data.isInternal = nui.get("isInternal").getValue();
-    data.mobile=nui.get('mobile').getValue();
+    data.mobile=nui.get('mobile').getValue().replace(/\s+/g, "");
     
     
     if(data.isInternal == 1)

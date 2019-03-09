@@ -166,7 +166,7 @@ function onAdvancedSearchOk()
         var tmpList = searchData.enterIdList.split("\n");
         for(i=0;i<tmpList.length;i++)
         {
-            tmpList[i] = "'"+tmpList[i]+"'";
+            tmpList[i] = "'"+tmpList[i].replace(/\s+/g, "")+"'";
         }
         searchData.enterIdList = tmpList.join(",");
         //console.log(tmpList);
@@ -176,12 +176,18 @@ function onAdvancedSearchOk()
         var tmpList = searchData.partCodeList.split("\n");
         for(i=0;i<tmpList.length;i++)
         {
-            tmpList[i] = "'"+tmpList[i]+"'";
+            tmpList[i] = "'"+tmpList[i].replace(/\s+/g, "")+"'";
         }
         searchData.partCodeList = tmpList.join(",");
         //console.log(tmpList);
     }
     //  return;
+  //去除空格
+    for(var key in searchData){
+    	if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
+    		searchData[key]=searchData[key].replace(/\s+/g, "");
+    	}
+    }
     doSearch(searchData);
 }
 function onAdvancedSearchCancel(){

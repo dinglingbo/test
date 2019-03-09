@@ -533,7 +533,7 @@ function onAdvancedSearchOk()
         var tmpList = searchData.serviceIdList.split("\n");
         for(i=0;i<tmpList.length;i++)
         {
-            tmpList[i] = "'"+tmpList[i]+"'";
+            tmpList[i] = "'"+tmpList[i].replace(/\s+/g, "")+"'";
         }
         searchData.serviceIdList = tmpList.join(",");
     }
@@ -543,11 +543,16 @@ function onAdvancedSearchOk()
         var tmpList = searchData.partCodeList.split("\n");
         for(i=0;i<tmpList.length;i++)
         {
-            tmpList[i] = "'"+tmpList[i]+"'";
+            tmpList[i] = "'"+tmpList[i].replace(/\s+/g, "")+"'";
         }
         searchData.partCodeList = tmpList.join(",");
     }
     searchData.auditSign = gsparams.auditSign;
+    for(var key in searchData){
+    	if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
+    		searchData[key]=searchData[key].replace(/\s+/g, "");
+    	}
+    }
     advancedSearchFormData = advancedSearchForm.getData();
     advancedSearchWin.hide();
     doSearch(searchData);

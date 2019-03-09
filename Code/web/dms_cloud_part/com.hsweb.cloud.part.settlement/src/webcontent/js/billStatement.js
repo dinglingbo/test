@@ -90,7 +90,7 @@ $(document).ready(function(v)
             return;
         }
         var params = {};
-    	params.pny = e.data.key;
+    	params.pny = e.data.key.replace(/\s+/g, "");
 
         data.params = params;
         e.data =data;
@@ -454,9 +454,15 @@ function onAdvancedSearchOk()
         var tmpList = searchData.serviceIdList.split("\n");
         for(i=0;i<tmpList.length;i++)
         {
-            tmpList[i] = "'"+tmpList[i]+"'";
+            tmpList[i] = "'"+tmpList[i].replace(/\s+/g, "")+"'";
         }
         searchData.serviceIdList = tmpList.join(",");
+    }
+    
+    for(var key in searchData){
+    	if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
+    		searchData[key]=searchData[key].replace(/\s+/g, "");
+    	}
     }
     advancedSearchFormData = advancedSearchForm.getData();
     advancedSearchWin.hide();

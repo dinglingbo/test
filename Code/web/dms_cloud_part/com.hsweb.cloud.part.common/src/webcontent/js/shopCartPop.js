@@ -353,9 +353,9 @@ function onOk()
 
     var guestIdEl = nui.get("guestId");
     var main = {};
-    main.guestId = guestIdEl.getValue();
+    main.guestId = guestIdEl.getValue().replace(/\s+/g, "");
     main.guestName = guestIdEl.getText();
-    main.shortName = shortNameEl.getValue();
+    main.shortName = shortNameEl.getValue().replace(/\s+/g, "");
     main.storeId = FStoreId;
     if(type == "pchsCart"){
         main.shopType = 1;

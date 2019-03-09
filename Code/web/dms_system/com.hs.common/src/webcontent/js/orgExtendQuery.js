@@ -107,7 +107,7 @@ function search() {
 
 function getSearchParam() {
     var params = {};
-    params.name = nui.get("name").getValue();
+    params.name = nui.get("name").getValue().replace(/\s+/g, "");
    
 
     return params;

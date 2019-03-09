@@ -250,8 +250,8 @@ function reloadData()
 function getSearchParams()
 {
     var params = queryForm.getData();
-    var type = nui.get("search-type").getValue();
-    var typeValue = nui.get("carNo-search").getValue();
+    var type = nui.get("search-type").getValue().replace(/\s+/g, "");
+    var typeValue = nui.get("carNo-search").getValue().replace(/\s+/g, "");
     if(type==0){
     	params.code = typeValue;
     }else if(type==1){
@@ -304,9 +304,9 @@ function editPart(){
 	var index = mainTabs.activeIndex;
 	var row = {};
 	if(index==0){
-		row = partGrid.getSelected();
-	}else {
 		row = partLoalGrid.getSelected();
+	}else {
+		row = partGrid.getSelected();
 	}
     if(row && row.orgid == currOrgid)
     {

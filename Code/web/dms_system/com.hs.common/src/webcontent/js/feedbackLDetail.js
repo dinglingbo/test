@@ -115,7 +115,7 @@ function updFinish(){
 	updaFree.status = 2;
 	var finish = 1;
 	//获取回复的值
-	var settleContent = nui.get("settleContent").getValue() || "";
+	var settleContent = nui.get("settleContent").getValue().replace(/\s+/g, "") || "";
 	updaFree.settleContent = settleContent;
 	var json = nui.encode({
 		updaFree:updaFree,

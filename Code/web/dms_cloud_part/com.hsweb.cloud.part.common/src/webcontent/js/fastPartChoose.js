@@ -185,7 +185,7 @@ $(document).ready(function(v)
     $("#morePartCode").bind("keydown", function (e) {
 
         if (e.keyCode == 13) {
-            var value = morePartCodeEl.getValue();
+            var value = morePartCodeEl.getValue().replace(/\s+/g, "");
             value = value.replace(/\s+/g, "");
             if(value.length>=3){
                 morePartSearch();
@@ -197,9 +197,9 @@ $(document).ready(function(v)
     $("#morePartName").bind("keydown", function (e) {
 
         if (e.keyCode == 13) {
-            var value = morePartNameEl.getValue();
+            var value = morePartNameEl.getValue().replace(/\s+/g, "");
             value = value.replace(/\s+/g, "");
-            if(value.length>=3){
+            if(value.length>=2){
                 morePartSearch();
             }
         }
@@ -426,11 +426,11 @@ function setInitData(params, ck, cck){
 }
 function morePartSearch(){
     var params = {}; 
-    params.partCode = morePartCodeEl.getValue().replace(/\s+/g, "");;
-    params.partName = morePartNameEl.getValue().replace(/\s+/g, "");;
-    params.showStock = showStockEl.getValue().replace(/\s+/g, "");;
-    params.serviceId = moreServiceIdEl.getValue().replace(/\s+/g, "");;
-    params.partBrandId = nui.get('partBrandId').getValue().replace(/\s+/g, "");;
+    params.partCode = morePartCodeEl.getValue().replace(/\s+/g, "");
+    params.partName = morePartNameEl.getValue().replace(/\s+/g, "");
+    params.showStock = showStockEl.getValue().replace(/\s+/g, "");
+    params.serviceId = moreServiceIdEl.getValue().replace(/\s+/g, "");
+    params.partBrandId = nui.get('partBrandId').getValue().replace(/\s+/g, "");
     var sortTypeValue = sortTypeEl.getValue();
 
     if(!params.partCode && !params.partName && !params.serviceId && !params.partBrandId){
@@ -566,10 +566,10 @@ function onMoreTabChanged(e){
     var name = tab.name;
      
     var params = {}; 
-    params.partCode = morePartCodeEl.getValue().replace(/\s+/g, "");;
-    params.partName = morePartNameEl.getValue().replace(/\s+/g, "");;
-    params.showStock = showStockEl.getValue().replace(/\s+/g, "");;
-    params.serviceId = moreServiceIdEl.getValue().replace(/\s+/g, "");;
+    params.partCode = morePartCodeEl.getValue().replace(/\s+/g, "");
+    params.partName = morePartNameEl.getValue().replace(/\s+/g, "");
+    params.showStock = showStockEl.getValue().replace(/\s+/g, "");
+    params.serviceId = moreServiceIdEl.getValue().replace(/\s+/g, "");
     params.partBrandId = nui.get('partBrandId').getValue().replace(/\s+/g, "");
 
     if(name == "enterTab"){
@@ -741,9 +741,9 @@ function doAdd(){
     }
 }
 function calc(type){
-    var qty = nui.get("qty").getValue();
-    var price = nui.get("price").getValue();
-    var amt = nui.get("amt").getValue();
+    var qty = nui.get("qty").getValue().replace(/\s+/g, "");
+    var price = nui.get("price").getValue().replace(/\s+/g, "");
+    var amt = nui.get("amt").getValue().replace(/\s+/g, "");
     
     if(qty == null || qty == '') {
         nui.get("qty").setValue(0);
@@ -763,9 +763,9 @@ function calc(type){
         nui.get("amt").setValue(0);
     }
     
-    qty = nui.get("qty").getValue();
-    price = nui.get("price").getValue();
-    amt = nui.get("amt").getValue();
+    qty = nui.get("qty").getValue().replace(/\s+/g, "");
+    price = nui.get("price").getValue().replace(/\s+/g, "");
+    amt = nui.get("amt").getValue().replace(/\s+/g, "");
     
     if(type == 'qty'){
         nui.get("amt").setValue(qty * price);

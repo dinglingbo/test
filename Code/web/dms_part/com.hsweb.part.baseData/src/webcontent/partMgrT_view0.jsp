@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件管理</title>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/partMgr/partMgr.js?v=1.0.21"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/partMgr/partMgr.js?v=1.0.22"></script>
   <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -88,6 +88,76 @@
                    style="width:100%; height:100%;" 
                    plain="false" 
                    onactivechanged="">
+                
+                <div title="本地配件资料" name="local" id="local" >
+                    <div class="nui-fit">
+                        <div id="partLoalGrid" class="nui-datagrid" style="width:100%;height:100%;"
+                             frozenStartColumn="0"
+                             frozenEndColumn="7"
+                             borderStyle="border:0;"
+                             dataField="parts"
+                             url=""
+                             onrowdblclick="onPartGridRowDblClick"
+                             onrowclick="onPartGridRowClick"
+                             idField="id"
+                             totalField="page.count"
+                             selectOnLoad="true"
+                             allowCellWrap="true"
+                             pageSize="50"
+                             sortMode="client"
+                             showFilterRow="false" allowCellSelect="true" allowCellEdit="false">
+                            <div property="columns">
+                                <div header="基础信息" headerAlign="center">
+                                    <div property="columns">
+                                         <div type="indexcolumn">序号</div>
+                                        <div  field="name" name="name" width="100px" headerAlign="center" >名称</div>
+                                        <div  field="code" name="code" width="90px" headerAlign="center" >编码</div>
+               
+                                        <div  field="qualityTypeId" width="60px" headerAlign="center">品质</div>
+                                        <div  field="partBrandId" width="70px" headerAlign="center">品牌</div>
+                                        <div  field="unit" width="30px" headerAlign="center" >单位</div>
+                                    </div>
+                                </div>
+                                <div header="" headerAlign="center">
+                                    <div property="columns">
+                                        <div  field="spec" name="spec" width="60" headerAlign="center" >规格</div>
+
+                                        <div  field="model" width="100" headerAlign="center" >型号</div>
+
+                                        <div  field="applyCarModel" width="120" headerAlign="center" >品牌车型</div>
+                                        <div  field="carTypeIdF" width="80" headerAlign="center" >一级分类</div>
+                                        <div  field="carTypeIdS" width="80" headerAlign="center" >二级分类</div>
+                                        <div  field="carTypeIdT" width="95" headerAlign="center" >三级分类</div>
+                                    </div>
+                                </div>
+                                <div header="价格信息" headerAlign="center">
+                                    <div property="columns">
+                                        <div  datatype="float" field="retailPrice" width="60" headerAlign="center" align="right" >零售价</div>
+                                        <div  datatype="float" field="wholeSalePrice" width="60" headerAlign="center" align="right" >批发价</div>
+                                        <div  datatype="float" field="uniformSellPrice" width="70" headerAlign="center" align="right" >统一价格</div>
+                                    </div>
+                                </div>
+                                <div header="辅助信息" headerAlign="center">
+                                    <div property="columns">
+                                    	<div   field="fullName" name="fullName" width="180px" headerAlign="center" >全称</div>
+                                        <div  field="isDisabled" width="50px" headerAlign="center">状态</div>
+                                        <div  field="remark" width="60" headerAlign="center" >备注</div>
+                                        <div  field="queryCode" width="100" headerAlign="center" >助记码</div>
+
+                                        <div  field="namePy" width="255" headerAlign="center" >拼音</div>
+
+                                        <div  field="isUniform" width="80" headerAlign="center" header="是否统一售价" ></div>
+
+                                        <div  field="abcType" width="80" headerAlign="center" >ABC类型</div>
+                                        <div  field="produceFactory" width="80" headerAlign="center" >生产厂家</div>
+                                        <div  field="nameEn" width="120" headerAlign="center" >英文名称</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                
                 <div title="云配件资料" id="main" name="main" >
                     <div class="nui-fit">
                         <div id="partGrid" class="nui-datagrid" style="width:100%;height:100%;"
@@ -156,75 +226,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div title="本地配件资料" name="local" id="local" >
-                    <div class="nui-fit">
-                        <div id="partLoalGrid" class="nui-datagrid" style="width:100%;height:100%;"
-                             frozenStartColumn="0"
-                             frozenEndColumn="7"
-                             borderStyle="border:0;"
-                             dataField="parts"
-                             url=""
-                             onrowdblclick="onPartGridRowDblClick"
-                             onrowclick="onPartGridRowClick"
-                             idField="id"
-                             totalField="page.count"
-                             selectOnLoad="true"
-                             allowCellWrap="true"
-                             pageSize="50"
-                             sortMode="client"
-                             showFilterRow="false" allowCellSelect="true" allowCellEdit="false">
-                            <div property="columns">
-                                <div header="基础信息" headerAlign="center">
-                                    <div property="columns">
-                                         <div type="indexcolumn">序号</div>
-                                        <div  field="name" name="name" width="100px" headerAlign="center" >名称</div>
-                                        <div  field="code" name="code" width="90px" headerAlign="center" >编码</div>
-               
-                                        <div  field="qualityTypeId" width="60px" headerAlign="center">品质</div>
-                                        <div  field="partBrandId" width="70px" headerAlign="center">品牌</div>
-                                        <div  field="unit" width="30px" headerAlign="center" >单位</div>
-                                    </div>
-                                </div>
-                                <div header="" headerAlign="center">
-                                    <div property="columns">
-                                        <div  field="spec" name="spec" width="60" headerAlign="center" >规格</div>
-
-                                        <div  field="model" width="100" headerAlign="center" >型号</div>
-
-                                        <div  field="applyCarModel" width="120" headerAlign="center" >品牌车型</div>
-                                        <div  field="carTypeIdF" width="80" headerAlign="center" >一级分类</div>
-                                        <div  field="carTypeIdS" width="80" headerAlign="center" >二级分类</div>
-                                        <div  field="carTypeIdT" width="95" headerAlign="center" >三级分类</div>
-                                    </div>
-                                </div>
-                                <div header="价格信息" headerAlign="center">
-                                    <div property="columns">
-                                        <div  datatype="float" field="retailPrice" width="60" headerAlign="center" align="right" >零售价</div>
-                                        <div  datatype="float" field="wholeSalePrice" width="60" headerAlign="center" align="right" >批发价</div>
-                                        <div  datatype="float" field="uniformSellPrice" width="70" headerAlign="center" align="right" >统一价格</div>
-                                    </div>
-                                </div>
-                                <div header="辅助信息" headerAlign="center">
-                                    <div property="columns">
-                                    	<div   field="fullName" name="fullName" width="180px" headerAlign="center" >全称</div>
-                                        <div  field="isDisabled" width="50px" headerAlign="center">状态</div>
-                                        <div  field="remark" width="60" headerAlign="center" >备注</div>
-                                        <div  field="queryCode" width="100" headerAlign="center" >助记码</div>
-
-                                        <div  field="namePy" width="255" headerAlign="center" >拼音</div>
-
-                                        <div  field="isUniform" width="80" headerAlign="center" header="是否统一售价" ></div>
-
-                                        <div  field="abcType" width="80" headerAlign="center" >ABC类型</div>
-                                        <div  field="produceFactory" width="80" headerAlign="center" >生产厂家</div>
-                                        <div  field="nameEn" width="120" headerAlign="center" >英文名称</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>   
+                </div>  
               </div>
 
                 

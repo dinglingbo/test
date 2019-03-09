@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+	<!--客户生日  -->
+	<select id="getGuestbyBir" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.birthday,b.wechat_open_id wechatOpenId
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+    where datediff(DATE_ADD(birthday,INTERVAL ceil(TIMESTAMPDIFF(MONTH,NOW(),birthday)/12) YEAR),NOW()) &gt;= 0
+    and datediff(DATE_ADD(birthday,INTERVAL ceil(TIMESTAMPDIFF(MONTH,NOW(),birthday)/12) YEAR),NOW()) &lt;= #tday#
+    and b.orgid = #orgid#
+    </select>
+
+
+    	<!--驾照到期 -->
+	<select id="getGuestbyLicense" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
+        b.license_over_date licenseOverDate
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+    where TIMESTAMPDIFF(DAY, NOW(), b.license_over_date) &gt;= 0
+    and TIMESTAMPDIFF(DAY, NOW(), b.license_over_date) &lt;= #tday#
+    and b.orgid = #orgid#
+    </select>
+
+
+        	<!--车辆年检 -->
+	<select id="getGuestbyDue" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
+        a.annual_verification_due_date dueDate
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+    where TIMESTAMPDIFF(DAY, NOW(), a.annual_verification_due_date) &gt;= 0
+    and TIMESTAMPDIFF(DAY, NOW(), a.annual_verification_due_date)  &lt;= #tday#
+    and b.orgid = #orgid#
+    </select>
+
+
+            	<!--保养提醒 -->
+	<select id="getGuestbyCare" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
+        c.care_due_date careDueDate
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+    INNER JOIN rpb_car_extend c on c.car_id = a.id 
+    where TIMESTAMPDIFF(DAY, NOW(), c.care_due_date)  &gt;= 0
+    and TIMESTAMPDIFF(DAY, NOW(), c.care_due_date)   &lt;= #tday#
+    and b.orgid = #orgid#
+    </select>
+
+
+
+        	<!--交强险 -->
+	<select id="getGuestbyInsure" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
+        a.insure_due_date insureDueDate
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+    where TIMESTAMPDIFF(DAY, NOW(), a.insure_due_date) &gt;= 0
+    and TIMESTAMPDIFF(DAY, NOW(), a.insure_due_date)  &lt;= #tday#
+    and b.orgid = #orgid#
+    </select>
+
+
+        	<!--商业险 -->
+	<select id="getGuestbyAnnual" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
+        a.annual_inspection_date annualInspectionDate
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+    where TIMESTAMPDIFF(DAY, NOW(), a.annual_inspection_date) &gt;= 0
+    and TIMESTAMPDIFF(DAY, NOW(), a.annual_inspection_date)  &lt;= #tday#
+    and b.orgid = #orgid#
+    </select>
+
+
+            	<!--维修顾问 -->
+	<select id="getGuestbyMtAdvisor" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
+        c.mt_advisor_id mtAdvisorId ,c.mt_advisor_name mtAdvisorName
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+    INNER JOIN rpb_car_extend c on c.car_id = a.id 
+    where (c.mt_advisor_id in  ($mtAdvisorIds$))
+    and b.orgid = #orgid#
+    </select>
+
+
+                	<!--行驶里程 -->
+	<select id="getGuestbyKilo" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
+        c.last_come_kilometers lastComeKilometers
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+    INNER JOIN rpb_car_extend c on c.car_id = a.id 
+    where c.last_come_kilometers  &gt;= #startKilo#
+    and  c.last_come_kilometers  &lt;= #endKilo#
+    and b.orgid = #orgid#
+    </select>
+
+
+
+                	<!--消费次数-->
+	<select id="getGuestbyTime" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
+        c.chain_come_times chainComeTimes
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+    INNER JOIN rpb_car_extend c on c.car_id = a.id 
+    where c.chain_come_times  &gt;= #startTime#
+    and  c.chain_come_times  &lt;= #endTime#
+    and b.orgid = #orgid#
+    </select>
+
+    
+                	<!--消费金额-->
+	<select id="getGuestbyAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
+        c.chain_consume_amt chainConsumeAmt
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+    INNER JOIN rpb_car_extend c on c.car_id = a.id 
+    where c.chain_consume_amt  &gt;= #startAmt#
+    and  c.chain_consume_amt  &lt;= #endAmt#
+    and b.orgid = #orgid#
+    </select>
+
+
+                    	<!--离厂天数-->
+	<select id="getGuestbyLeave" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
+        TIMESTAMPDIFF(DAY,c.last_leave_date, NOW()) as leaveDay
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+    INNER JOIN rpb_car_extend c on c.car_id = a.id 
+    where TIMESTAMPDIFF(DAY,c.last_leave_date, NOW())  &gt;= #startDay#
+    and  TIMESTAMPDIFF(DAY,c.last_leave_date, NOW())  &lt;= #endDay#
+    and b.orgid = #orgid#
+    </select>
+
+</sqlMap>

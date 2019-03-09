@@ -14,7 +14,7 @@
         a.tenant_id tenantId,
         a.orgid,
         a.car_no carNo,
-        a.car_model carNodel,
+        a.car_model carModel,
         c.full_name name,
         c.mobile ,
         b.first_come_date firstComeDate,

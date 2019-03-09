@@ -1357,6 +1357,9 @@
             		<isNotEmpty prepend="and" property="guestId">
   							c.guest_id = #guestId#
             		</isNotEmpty>
+            		<isNotEmpty prepend="and" property="conId">
+  							c.id = #conId#
+            		</isNotEmpty>
 			</select>
 			
 			

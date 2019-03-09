@@ -5,9 +5,25 @@
     <size height="100" width="445"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
-    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="link10" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link10" name="link10" displayName="link10" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">ln</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link16" name="link16" displayName="连接线" isDefault="false" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">ln</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <location x="140" y="186"/>
     <size height="28" width="28"/>
@@ -403,6 +419,7 @@
     <targetConnections>link5</targetConnections>
     <targetConnections>link9</targetConnections>
     <targetConnections>link14</targetConnections>
+    <targetConnections>link16</targetConnections>
     <location x="353" y="350"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>

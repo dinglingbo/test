@@ -12,7 +12,7 @@
 <head>
     <title>用户反馈管理</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />	
-    <script src="<%=webPath + contextPath%>/common/js/feedbackLDetail.js?v=1.1.10" type="text/javascript"></script>       
+    <script src="<%=webPath + contextPath%>/common/js/feedbackLDetail.js?v=1.1.12" type="text/javascript"></script>       
 </head>
  <style type="text/css"> 
  
@@ -68,7 +68,7 @@
 		</table>
 	</div> 
 		<fieldset
-		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;">
+		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;width:50%;" >
 		<legend>用户信息</legend> 
 		<div id="dataform1" style="padding-top: 5px;" >
 			<table>
@@ -92,7 +92,7 @@
 	
      
     <fieldset
-		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;">
+		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;width:50%;" >
 		<legend>问题描述</legend> 
 		 <div class="addyytime" style="display:''" id="showHot" >
               <table style="width:100%;height:50px;">
@@ -107,9 +107,9 @@
               	<tr>
 	              	<td class="title required" width="100" height="28">
 				    	功能标题：
-						<span style="padding-top: 2px;padding-right: 150px;"  id="funcName" name="funcName"></span>
+						<span style="padding-top: 2px;padding-right: 150px;display:none"  id="funcName" name="funcName"></span>
 						功能路径：
-						<span style="padding-top: 2px;"  id="funcAction" name="funcAction"></span>
+						<span style="padding-top: 2px;display:none"  id="funcAction" name="funcAction"></span>
 	                </td>
               	</tr>
                 <tr>
@@ -121,7 +121,7 @@
         </div>
 	</fieldset>
 	 <fieldset
-		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;">
+		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;width:50%;">
 		<legend>反馈图片</legend> 
 		 <div style="padding-top: 2px;padding-left:30px; width:620px;height:250px">
 		 <img src="" width="620px" height="250px" text-align="center" id="imgShow" onclick="changeShow();"/>
@@ -132,7 +132,7 @@
 		
 	</div> -->
 	<fieldset
-		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;">
+		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;width:50%;">
 		<legend>处理情况</legend> 
 		<div id="dataform2" style="padding-top: 5px;" >
 			<table>

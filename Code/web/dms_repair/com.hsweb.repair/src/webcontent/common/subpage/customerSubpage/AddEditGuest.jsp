@@ -370,20 +370,20 @@
                            <td class="form_label">
                                 <label>客户级别：</label>
                             </td>
-                            <td>
+                            <td colspan="3">
                                 <input name="guestTypeId"
                                    id="guestTypeId"
-                                   class="nui-combobox width1"
+                                   class="nui-combobox "
                                    textField="name"
                                    valueField="id"
                                    emptyText="请选择..."
                                    url=""
                                    allowInput="true"
                                    showNullItem="false"
-                                   width="95%"
+                                   width="32%" 
                                    valueFromSelect="true"
                                    nullItemText="请选择..."/>
-                        </td>
+                        	</td>
                            <!--  <td class="form_label">
                                 <label>生日类型：</label>
                             </td>

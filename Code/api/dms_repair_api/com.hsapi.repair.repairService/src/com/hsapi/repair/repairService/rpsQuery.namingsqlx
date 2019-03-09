@@ -1265,6 +1265,7 @@
     	SELECT
 			a.id AS id,
 			a.orgid As orgid,
+			a.tenant_id As tenantId,
 			a.guest_id AS guestId,
 			a.car_id AS carId,
 			a.car_vin AS carVin,
@@ -1279,6 +1280,7 @@
 		  	INNER JOIN wb_common.com_company c on a.orgid = c.orgid
 			inner join rps_settlement d on (a.id =  d.service_id)
 		WHERE a.guest_id = #guestId#
+		and a.orgid = #orgid#
 		<isNotEmpty prepend="and" property="billTypeIds">  
                 (a.bill_type_id in ($billTypeIds$))
         </isNotEmpty>

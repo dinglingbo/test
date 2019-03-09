@@ -11,7 +11,7 @@
 -->
 <head>
 	<title>客户档案</title>
-	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.5.7"></script>
+	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.5.8"></script>
 	<style type="text/css">
 		table {
 			font-size: 12px;
@@ -45,6 +45,8 @@
 							<li iconCls="" onclick="quickSearch(4)" id="type4">本月所有来厂客户</li>
 						</ul>
 						<td>
+							<label>客户名称:</label>
+							<input class="nui-textbox" name="guestFullName" onenter="onSearch()" />
 							<label>车牌号:</label>
 							<input class="nui-textbox" name="carNo" onenter="onSearch()" />
 							<label>手机号码：</label>

@@ -608,6 +608,9 @@
             <isNotEmpty prepend="and" property="partCode">  
                 (a.part_code like '%$partCode$%')
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">  
+                (a.part_name like '%$partName$%')
+            </isNotEmpty>
             order by a.pick_date desc
         </dynamic>  
 	</select>

@@ -118,6 +118,9 @@
                 	<div field="billStatusId" width="90" name = "billStatusId" headerAlign="center" header="状态"></div>
                     <div allowSort="true" field="serviceId" width="160" summaryType="count" headerAlign="center" header="打包单号"></div>
                     <div allowSort="true" field="logisticsNo" width="160" summaryType="count" headerAlign="center" header="物流单号"></div>
+                    <div allowSort="true" field="logisticsName" width="160" summaryType="count" headerAlign="center" header="物流公司"></div>
+                    <div allowSort="true" field="destinationStation" width="80" summaryType="count" headerAlign="center" header="目的站"></div>
+                    <div allowSort="true" field="receiveMan" width="80" summaryType="count" headerAlign="center" header="收货人"></div>
                     <div field="guestName" name="guestName" width="120" headerAlign="center" header="客户"></div>
                     <div field="packMan" width="90" name = "packMan" headerAlign="center" header="发货员"></div>
                     <div allowSort="true" field="payType"  name="payType" width="90" headerAlign="center" header="付款方式"></div>

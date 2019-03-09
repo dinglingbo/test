@@ -128,7 +128,7 @@ function reloadData()
 function getSearchParams()
 {
     var params = {};
-    params.searchKey = nui.get("searchKey").getValue();
+    params.searchKey = nui.get("searchKey").getValue().replace(/\s+/g, "");
     return params;
 }
 function onSearch()
@@ -168,7 +168,7 @@ function onCancel(e) {
 
 function addPartName(){
 	
-	var namestd =nui.get('searchKey').getValue();
+	var namestd =nui.get('searchKey').getValue().replace(/\s+/g, "");
 	nui.open({
 		url : webPath+ partDomain+ "/commonPart/partNameAdd.jsp?token"+ token,
 		title : "新增配件名称",

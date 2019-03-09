@@ -345,7 +345,7 @@ function onAdvancedSearchOk()
     //供应商
     if(searchData.guestId)
     {
-        params.guestId = nui.get("guestId").getValue();
+        params.guestId = nui.get("guestId").getValue().replace(/\s+/g, "");
     }
     //订单单号
     if(searchData.serviceIdList)

@@ -98,12 +98,12 @@ function search()
 function getSearchParam()
 {
     var params = {};
-    params.code = nui.get("code").getValue();
-    params.name = nui.get("name").getValue();
-    params.mobile = nui.get("phone").getValue();
+    params.code = nui.get("code").getValue().replace(/\s+/g, "");
+    params.name = nui.get("name").getValue().replace(/\s+/g, "");
+    params.mobile = nui.get("phone").getValue().replace(/\s+/g, "");
     params.contactorTel = params.mobile;
-    params.guestType = nui.get("guestType").getValue();
-    var showDisabled = nui.get("showDisabled").getValue();
+    params.guestType = nui.get("guestType").getValue().replace(/\s+/g, "");
+    var showDisabled = nui.get("showDisabled").getValue().replace(/\s+/g, "");
     if(showDisabled == 0)
     {
         params.isDisabled = 0;
@@ -134,6 +134,12 @@ function onAdvancedSearchOk()
     if(searchData.showDisabled == 0)
     {
         searchData.isDisabled = 0;
+    }
+  //去除空格
+    for(var key in searchData){
+    	if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
+    		searchData[key]=searchData[key].replace(/\s+/g, "");
+    	}
     }
     doSearch(searchData);
 }

@@ -130,7 +130,7 @@ $(document).ready(function(v) {
             return;
         }
         var params = {};
-    	params.pny = e.data.key;
+    	params.pny = e.data.key.replace(/\s+/g, "");
     	params.isSupplier = 1;
 
         data.params = params;
@@ -776,7 +776,7 @@ function search() {
 function getSearchParam() {
 	var params = {};
 	params = gsparams;
-	params.guestId = nui.get("searchGuestId").getValue();
+	params.guestId = nui.get("searchGuestId").getValue().replace(/\s+/g, "");
 	return params;
 }
 function setBtnable(flag) {
@@ -877,7 +877,7 @@ function onAdvancedSearchOk() {
 	if (searchData.serviceIdList) {
 		var tmpList = searchData.serviceIdList.split("\n");
 		for (i = 0; i < tmpList.length; i++) {
-			tmpList[i] = "'" + tmpList[i] + "'";
+			tmpList[i] = "'" + tmpList[i].replace(/\s+/g, "") + "'";
 		}
 		searchData.serviceIdList = tmpList.join(",");
 	}
@@ -885,11 +885,18 @@ function onAdvancedSearchOk() {
 	if (searchData.partCodeList) {
 		var tmpList = searchData.partCodeList.split("\n");
 		for (i = 0; i < tmpList.length; i++) {
-			tmpList[i] = "'" + tmpList[i] + "'";
+			tmpList[i] = "'" + tmpList[i].replace(/\s+/g, "") + "'";
 		}
 		searchData.partCodeList = tmpList.join(",");
 	}
 	searchData.billStatusId = gsparams.billStatusId;
+
+	//去除空格
+	 for(var key in searchData){
+	    	if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
+	    		searchData[key]=searchData[key].replace(/\s+/g, "");
+	    	}
+	    }
 	advancedSearchFormData = advancedSearchForm.getData();
 	advancedSearchWin.hide();
 	doSearch(searchData);

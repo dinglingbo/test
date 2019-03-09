@@ -42,7 +42,7 @@
 			line-height: 38px;
 		}
     html, body{
-        margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
+        margin:0px;padding:0px;border:0px;width:100%;height:100%;
     }
     
     .addyytime a.ztedit{ height:18px; display:inline-block; background:url(../images/sjde.png) 40px -1px no-repeat; padding-right:22px; color:#888; text-decoration:none;}
@@ -56,7 +56,7 @@
  
    
  </style>
-<body>
+<body >
 	<div class="nui-toolbar" style="padding:2px;border-bottom:0;" >
 		<table id="form" style="width:100%;">
 			 <tr>
@@ -68,7 +68,7 @@
 		</table>
 	</div> 
 		<fieldset
-		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;width:50%;" >
+		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;" >
 		<legend>用户信息</legend> 
 		<div id="dataform1" style="padding-top: 5px;" >
 			<table>
@@ -92,7 +92,7 @@
 	
      
     <fieldset
-		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;width:50%;" >
+		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;" >
 		<legend>问题描述</legend> 
 		 <div class="addyytime" style="display:''" id="showHot" >
               <table style="width:100%;height:50px;">
@@ -121,7 +121,7 @@
         </div>
 	</fieldset>
 	 <fieldset
-		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;width:50%;">
+		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;">
 		<legend>反馈图片</legend> 
 		 <div style="padding-top: 2px;padding-left:30px; width:620px;height:250px">
 		 <img src="" width="620px" height="250px" text-align="center" id="imgShow" onclick="changeShow();"/>
@@ -132,7 +132,7 @@
 		
 	</div> -->
 	<fieldset
-		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;width:50%;">
+		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;">
 		<legend>处理情况</legend> 
 		<div id="dataform2" style="padding-top: 5px;" >
 			<table>

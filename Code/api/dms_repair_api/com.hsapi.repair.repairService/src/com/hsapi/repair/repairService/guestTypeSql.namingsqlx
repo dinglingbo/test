@@ -243,7 +243,7 @@ where c.orgid = #orgid#
     and a.car_brand_id = #cbrand#
 </isNotEmpty>
 <isNotEmpty prepend="" property="cmodel">  
-    and a.car_model_id in (#$cmodel$#)
+    and a.car_model_id REGEXP #cmodel#
 </isNotEmpty>
     </sql>
     <!-- 首修车辆  最近一个月的首次消费车辆-->

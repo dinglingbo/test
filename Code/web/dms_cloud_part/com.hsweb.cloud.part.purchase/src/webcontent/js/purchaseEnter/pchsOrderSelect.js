@@ -154,11 +154,11 @@ function setInitData(params){
 function getSearchParam(){
     var params = {};
 
-    params.serviceId = searchServiceId.getValue();
-    params.serviceMan = searchServiceMan.getValue();
+    params.serviceId = searchServiceId.getValue().replace(/\s+/g, "");
+    params.serviceMan = searchServiceMan.getValue().replace(/\s+/g, "");
     params.guestId = comSearchGuestId.getValue();
     
-    params.endDate = searchEndDate.getValue();
+    params.endDate = searchEndDate.getFormValue();
     params.startDate = searchBeginDate.getFormValue();
     params.billStatusId = billStatusIdEl.getValue();
     return params;
@@ -190,8 +190,8 @@ function doSearch(params)
         var p = {};
         p.sAuditDate = searchBeginDate.getFormValue();
         p.eAuditDate = addDate(searchEndDate.getValue(), 1);
-        p.serviceId = searchServiceId.getValue();
-        p.orderMan = searchServiceMan.getValue();
+        p.serviceId = searchServiceId.getValue().replace(/\s+/g, "");
+        p.orderMan = searchServiceMan.getValue().replace(/\s+/g, "");
         p.guestId = comSearchGuestId.getValue();
         p.orderTypeId = 2;
         p.isOut = 1;

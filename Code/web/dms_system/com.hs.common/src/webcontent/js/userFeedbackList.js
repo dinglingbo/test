@@ -49,8 +49,8 @@ $(document).ready(function(v) {
 
 function onSearch(){
 	var params = {};
-	params.orgname = nui.get("orgname").getValue();
-	params.recordMobile = nui.get("recordMobile").getValue();
+	params.orgname = nui.get("orgname").getValue().replace(/\s+/g, "");
+	params.recordMobile = nui.get("recordMobile").getValue().replace(/\s+/g, "");
 	var sta = nui.get("statusId").getValue();
 	if(sta==3){
 		params.statusList = 1;

@@ -95,7 +95,7 @@ $(document).ready(function(v)
             return;
         }
         var params = {};
-    	params.pny = e.data.key;
+    	params.pny = e.data.key.replace(/\s+/g, "");
     	params.isClient = 1;
 
         data.params = params;
@@ -219,7 +219,7 @@ $(document).ready(function(v)
     $("#morePartCode").bind("keydown", function (e) {
 
         if (e.keyCode == 13) {
-            var value = morePartCodeEl.getValue();
+            var value = morePartCodeEl.getValue().replace(/\s+/g, "");
             value = value.replace(/\s+/g, "");
             if(value.length>=3){
                 morePartSearch();
@@ -622,8 +622,8 @@ function showPartInfo(row, value, mainId){
 }
 function morePartSearch(){
     var params = {}; 
-    params.partCode = morePartCodeEl.getValue();
-    params.partName = morePartNameEl.getValue();
+    params.partCode = morePartCodeEl.getValue().replace(/\s+/g, "");
+    params.partName = morePartNameEl.getValue().replace(/\s+/g, "");
     params.showStock = showStockEl.getValue();
     params.sortField = "b.outable_qty";
     params.sortOrder = "asc";
@@ -960,7 +960,7 @@ function onAdvancedSearchOk()
         var tmpList = searchData.serviceIdList.split("\n");
         for(i=0;i<tmpList.length;i++)
         {
-            tmpList[i] = "'"+tmpList[i]+"'";
+            tmpList[i] = "'"+tmpList[i].replace(/\s+/g, "")+"'";
         }
         searchData.serviceIdList = tmpList.join(",");
     }
@@ -970,9 +970,15 @@ function onAdvancedSearchOk()
         var tmpList = searchData.partCodeList.split("\n");
         for(i=0;i<tmpList.length;i++)
         {
-            tmpList[i] = "'"+tmpList[i]+"'";
+            tmpList[i] = "'"+tmpList[i].replace(/\s+/g, "")+"'";
         }
         searchData.partCodeList = tmpList.join(",");
+    }
+  //去除空格
+    for(var key in searchData){
+    	if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
+    		searchData[key]=searchData[key].replace(/\s+/g, "");
+    	}
     }
     advancedSearchFormData = advancedSearchForm.getData();
     advancedSearchWin.hide();
@@ -1409,7 +1415,7 @@ function onCellEditEnter(e){
                     });
                 }else{
                     record.mainId = main.id;
-                    record.serviceId = nui.get("serviceId").getValue();
+                    record.serviceId = nui.get("serviceId").getValue().replace(/\s+/g, "");
                     showPartInfo(record,partCode,main.id);
                     /*var rs = addInsertRow(record.comPartCode,record);
                     if(!rs){

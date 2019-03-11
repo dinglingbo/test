@@ -640,6 +640,9 @@ function setInitData(params){
                         xyguest = data;
                         nui.get("contactorName").setText(contactor.name);
                         billForm.setData(data);
+                        if(data.isSettle == 1 || data.balaAuditSign == 1){
+                            nui.get("boxServiceTypeId").setEnabled(false);     
+                        }
 						changeBoxService(1);
                         var status = data.status||0;
                         var balaAuditSign = data.balaAuditSign||0;
@@ -786,6 +789,9 @@ function save(){
 function setFrom(data){
 	if(data.id){
         fserviceId = data.id;
+        if(data.isSettle == 1 || data.balaAuditSign == 1){
+            nui.get("boxServiceTypeId").setEnabled(false);
+        }
         //showMsg("保存成功!","S");
       //查询挂账
         if(data.guestId){
@@ -858,6 +864,7 @@ function setFrom(data){
                 var status = data.status||0;
                 var isSettle = data.isSettle||0;
                 doSetStyle(status, isSettle);
+                
                 nui.get("contactorName").setText(contactor.name);
                 //判断情况
                 if(itemF=="S" && partF=="S"){
@@ -2074,6 +2081,10 @@ function chooseItem(){
     if(!main.id || falg=="N"){
       falg="Y";
       openIF = 0;
+      if(!nui.get("boxServiceTypeId").value){
+	        showMsg("业务类型不能为空,不能添加项目!","W");
+	        return;
+	    }
 	  saveNoshowMsg(function(){
 		var param = {};
 	    param.carModelIdLy = main.carModelIdLy;

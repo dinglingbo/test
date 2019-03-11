@@ -18,7 +18,7 @@ $(document).ready(function(v) {
 
         if((keyCode==27))  {  //ESC
         	 //closeWindow("cal");
-        	Oncancel();
+        	//Oncancel();
         }
       };
       moreOrgGrid.on("drawcell", function (e) {
@@ -49,14 +49,14 @@ $(document).ready(function(v) {
 
 function onSearch(){
 	var params = {};
-	params.orgname = nui.get("orgname").getValue();
-	var sta = nui.get("statusId").getValue();
+	params.orgname = nui.get("orgname").getValue().replace(/\s+/g, "");
+	var sta = nui.get("statusId").getValue().replace(/\s+/g, "");
 	if(sta==3){
 		params.statusList = 1;
 	}else{
 		params.status = sta;
 	}
-	params.recordMobile = nui.get("recordMobile").getValue();
+	params.recordMobile = nui.get("recordMobile").getValue().replace(/\s+/g, "");
 	moreOrgGrid.load({
 		params:params,
 		token : token

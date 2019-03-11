@@ -279,7 +279,7 @@
                                         <input property="editor" class="nui-textbox" />
                                     </div>
                                     <div field="comPartName" headerAlign="center" header="配件名称">
-                                        <!-- <input property="editor" class="nui-textbox" data="codeList" valueField="code" textField="code"/> -->
+                                         <input property="editor" class="nui-textbox" />
                                     </div>
                                     <div field="comPartBrandId" width="80" headerAlign="center" header="品牌"></div>
                                     <div field="comApplyCarModel" width="100" headerAlign="center" header="品牌车型"></div>

@@ -12,7 +12,7 @@
         <head>
             <title>Title</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxDetail.js?v=1.301"></script>
+            <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxDetail.js?v=1.314"></script>
         </head>
         <style type="text/css">
             body {
@@ -359,8 +359,6 @@
 
                             <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
                                 <li iconCls="" onclick="onPrint(2)" id="type11">打印派工单</li>
-                                <li iconCls="" onclick="onPrint(3)" id="type11">打印结账单</li>
-                                <li iconCls="" onclick="onPrint(4)" id="type11">打印结账单(小票)</li>
                                 <li iconCls="" onclick="onPrint(5)" id="type11">打印领料单</li>
                                 <li iconCls="" onclick="bxOnPrint(1)" id="type11">打印报价单</li>
                                 <li iconCls="" onclick="bxOnPrint(3)" id="type11">打印施工单</li>
@@ -377,9 +375,9 @@
                                 <li iconCls="" onclick="addcard()" id="type11">储值卡充值</li>
                             </ul>
                             <a class="nui-button" plain="true" id="attach" onclick="attach()">
-                                <span class="fa fa-gift fa-lg"></span>&nbsp;附件登记</a>
+                                <span class="fa fa-edit fa-lg"></span>&nbsp;附件登记</a>
                             <a class="nui-button" plain="true" id="fault" onclick="fault()">
-                                <span class="fa fa-gift fa-lg"></span>&nbsp;故障现象</a>
+                                <span class="fa fa-user fa-lg"></span>&nbsp;故障现象</a>
                             <a class="nui-menubutton" plain="true" menu="#popupMenuMore" id="menuMore">
                                 <span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
 
@@ -435,13 +433,16 @@
                                 <input name="driveType" id="driveType" class="nui-combobox width1" property="editor" data="QD" emptytext="请选择驱动形式" allowInput="true"
                                     showNullItem="false" valueFromSelect="true" nullItemText="请选择..." width="100%" />
                             </td>
-                            <td class="title" style="width:100px">
+                            <td class="title"  style="width:100px">
                                 <label>车架号(VIN)：</label>
                             </td>
                             <td class="" colspan="1">
                                 <input class="nui-textbox" name="carVin" id="carVin" width="100%" />
                             </td>
-                            <td class="title" style="width:100px">
+                        </tr>
+
+                        <tr>
+                        	<td class="title" style="width:100px">
                                 <label>车牌号：</label>
                             </td>
                             <td class="" colspan="1">
@@ -455,12 +456,6 @@
                                     emptytext="请选择业务类型" allowInput="true" showNullItem="false" valueFromSelect="true" onvaluechanged="changeBoxService"
                                     nullItemText="请选择..." width="100%" />
                             </td>
-                            <td colspan="3">
-                                <label></label>
-                            </td>
-                        </tr>
-
-                        <tr>
                             <td class="title required">
                                 <label>服务顾问：</label>
                             </td>
@@ -482,8 +477,9 @@
                                 <input class="nui-textbox" name="guestMobile" id="guestMobile" enabled="false" width="100%" />
 
                             </td>
-
-                            <td class="title required">联系人名称：</td>
+                        </tr>
+                        <tr>
+                        	<td class="title required">联系人名称：</td>
 
                             <td class="">
                                 <input id="contactorName" name="contactorName" class="nui-buttonedit" emptyText="" onbuttonclick="chooseContactor()" placeholder="请选择联系人"
@@ -503,11 +499,11 @@
                             <td class="title" style="width:100px">
                                 <label>故障描述：</label>
                             </td>
-                            <td class="" colspan="2">
+                            <td class="" colspan="1">
                                 <input class="nui-textbox" name="faultPhen" id="faultPhen" enabled="false" width="100%" />
                             </td>
                             <td class="title">备注：</td>
-                            <td class="" colspan="2">
+                            <td class="" colspan="1">
                                 <input class="nui-textbox" name="remark" width="100%" />
                             </td>
                         </tr>

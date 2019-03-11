@@ -1280,6 +1280,7 @@
 		  	INNER JOIN wb_common.com_company c on a.orgid = c.orgid
 			inner join rps_settlement d on (a.id =  d.service_id)
 		WHERE a.guest_id = #guestId#
+		and a.orgid = #orgid#
 		<isNotEmpty prepend="and" property="billTypeIds">  
                 (a.bill_type_id in ($billTypeIds$))
         </isNotEmpty>
@@ -1473,7 +1474,7 @@
 		INNER JOIN wb_common.com_guest c on a.guest_id = c.id
 		inner join rpb_contactor d on (a.contactor_id = d.id and c.id = d.guest_id)
 		where a.is_settle = 0 and a.is_disabled = 0 
-		      and a.bill_type_id in (0,2,4)
+		      and a.bill_type_id in (0,2,4,6)
 		<dynamic>
 			<isNotEmpty prepend="and" property="rid">
                 (a.id = #rid#)

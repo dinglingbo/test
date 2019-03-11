@@ -608,6 +608,9 @@
             <isNotEmpty prepend="and" property="partCode">  
                 (a.part_code like '%$partCode$%')
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">  
+                (a.part_name like '%$partName$%')
+            </isNotEmpty>
             order by a.pick_date desc
         </dynamic>  
 	</select>
@@ -1215,34 +1218,34 @@
 	<!--首页提醒数量与车相关-->
 <select id="homePageQuantity" parameterClass="commonj.sdo.DataObject" resultClass="commonj.sdo.DataObject">
 	SELECT
-		count(
+		ifnull(count(
 			CASE
 			WHEN a.is_annual_remind = 1
 			AND a.annual_status = 0 THEN
 				1
 			END
-		) AS annualQuantity,
-		count(
+		),0) AS annualQuantity,
+		ifnull(count(
 			CASE
 			WHEN a.is_insure_remind = 1
 			AND a.insure_status = 0 THEN
 				1
 			END
-		) AS insureQuantity,
-		count(
+		),0) AS insureQuantity,
+		ifnull(count(
 			CASE
 			WHEN a.is_veri_remind = 1
 			AND a.veri_status = 0 THEN
 				1
 			END
-		) AS veriQuantity,
-		count(
+		),0) AS veriQuantity,
+		ifnull(count(
 			CASE
 			WHEN a.is_need_remind = 1
 			AND a.remind_status = 0 THEN
 				1
 			END
-		) AS needQuantity
+		),0) AS needQuantity
 	FROM
 		wb_repair.rpb_car_extend a
 	INNER JOIN wb_repair.rpb_car b ON a.car_id = b.id
@@ -1253,20 +1256,20 @@
 		<!--首页提醒数量与人相关-->
 		<select id="homePageQuantity1" parameterClass="commonj.sdo.DataObject" resultClass="commonj.sdo.DataObject">
 				SELECT
-					count(
+					ifnull(count(
 						CASE
 						WHEN a.is_bir_remind = 1
 						AND a.bir_status = 0 THEN
 							1
 						END
-					) AS birQuantity,
-					count(
+					),0) AS birQuantity,
+					ifnull(count(
 						CASE
 						WHEN a.is_license_remind = 1
 						AND a.license_status = 0 THEN
 							1
 						END
-					) AS licenseQuantity
+					),0) AS licenseQuantity
 					
 				FROM
 					wb_repair.rpb_contactor a
@@ -1278,20 +1281,20 @@
 					<!--工单回访  流失回访提醒数量-->
 		<select id="visitQuantity" parameterClass="commonj.sdo.DataObject" resultClass="commonj.sdo.DataObject">
 			SELECT
-					count(
+					ifnull(count(
 						CASE
 						WHEN e.type = 1
 						AND e.status = 0 THEN
 							1
 						END
-					) AS tianQuantity,
-					count(
+					),0) AS tianQuantity,
+					ifnull(count(
 						CASE
 						WHEN e.type = 2
 						AND e.status = 0 THEN
 							1
 						END
-					) AS loseQuantity
+					),0) AS loseQuantity
 					
 				FROM
 					wb_crm.crm_visit_data e
@@ -1305,20 +1308,20 @@
 	<!--首页提醒数量与消息表相关-->
 	<select id="homePageQuantity2" parameterClass="commonj.sdo.DataObject" resultClass="commonj.sdo.DataObject">
 				SELECT
-					count(
+					ifnull(count(
 						CASE
 						WHEN a.msg_type = 6
 						AND a.read_sign = 0 THEN
 							1
 						END
-					) AS appQuantity,
-					count(
+					),0) AS appQuantity,
+					ifnull(count(
 						CASE
 						WHEN a.msg_type = 18
 						AND a.read_sign = 0 THEN
 							1
 						END
-					) AS ebirQuantity
+					),0) AS ebirQuantity
 					
 				FROM
 					wb_common.com_message a
@@ -1328,7 +1331,7 @@
 			
 				<!--首页提醒数量 预约-->
 			<select id="homePageAppQuantity" parameterClass="commonj.sdo.DataObject" resultClass="commonj.sdo.DataObject">
-				SELECT count(*) as appQuantity from rps_prebook a
+				SELECT ifnull(count(*),0) as appQuantity from rps_prebook a
 				where to_days(a.predict_come_date) = to_days(now()) and a.orgid = #orgid#
 			
 			</select>
@@ -1353,6 +1356,9 @@
             		</isNotEmpty>
             		<isNotEmpty prepend="and" property="guestId">
   							c.guest_id = #guestId#
+            		</isNotEmpty>
+            		<isNotEmpty prepend="and" property="conId">
+  							c.id = #conId#
             		</isNotEmpty>
 			</select>
 			

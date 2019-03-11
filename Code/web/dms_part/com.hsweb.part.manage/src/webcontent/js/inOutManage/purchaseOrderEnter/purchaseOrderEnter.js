@@ -1031,6 +1031,24 @@ function onCellEditEnter(e){
 					rightGrid.beginEditCell(record, "comUnit");
 				}
 			}
+		}else if(column.field == "comPartName"){
+			if(!record.comPartName){
+				showMsg("请输入配件名称!","W");
+				var row = rightGrid.getSelected();
+				rightGrid.removeRow(row);
+				addNewRow(false);
+				return;
+			}else{
+				var rs = addInsertRowPartName(record.comPartName,record);
+				if(!rs){
+					var newRow = {comPartName: ""};
+					rightGrid.updateRow(record, newRow);
+					rightGrid.beginEditCell(record, "comPartName");
+					return;
+				}else{
+					rightGrid.beginEditCell(record, "comUnit");
+				}
+			}
 		}
 	}
 }
@@ -1323,6 +1341,69 @@ function getPartPrice(params){
 
 	return dInfo;
 }
+
+function addInsertRowPartName(value,row){
+	var data = basicInfoForm.getData();
+	for ( var key in requiredField) {
+		if (!data[key] || $.trim(data[key]).length == 0) {
+			showMsg(requiredField[key] + "不能为空!","W");
+			//如果检测到有必填字段未填写，切换到主表界面
+//			mainTabs.activeTab(billmainTab);
+
+			return;
+		}
+	}
+    var params = {partName:value};
+	var part = getPartInfo(params);
+	var storeId = FStoreId;
+
+	if(part){
+		params.partId = part.id;
+		params.storeId = storeId;
+		var dInfo = getPartPrice(params);
+		var price = dInfo.price;
+		var shelf = dInfo.shelf;
+					
+		var newRow = {
+			partId : part.id,
+			comPartCode : part.code,
+			comPartName : part.name,
+			comPartBrandId : part.partBrandId,
+			comApplyCarModel : part.applyCarModel,
+			comUnit : part.unit,
+			orderQty : 1,
+			orderPrice : price,
+			orderAmt : price,
+			storeId : storeId,
+			storeShelf : shelf,
+			comOemCode : part.oemCode,
+			comSpec : part.spec,
+			partCode : part.code,
+			partName : part.name,
+			fullName : part.fullName,
+			systemUnitId : part.unit,
+			enterUnitId : part.unit
+		};
+
+		if(row){
+			rightGrid.updateRow(row,newRow);
+		}else{
+			rightGrid.addRow(newRow);
+		}
+	
+		return true;
+	}else{
+		var newRow = {};
+		if(row){
+			rightGrid.updateRow(row,newRow);
+			rightGrid.beginEditCell(row, "comPartName");
+		}
+		return true;
+	}
+
+	return false;
+}
+
 function addInsertRow(value,row) {    
     /*var rows = checkAddNewRow();
     if(rows && rows.length > 0) {

@@ -303,7 +303,7 @@ function setData(data)
     {
         var value = applyCarModel.getText();
         nui.get("applyCarModel").setValue(value);
-        var partCode= nui.get('code').getValue();
+        var partCode= nui.get('code').getValue().replace(/\s+/g, "");
         var firstCode=partCode.charCodeAt(0);
         if(value=='奔驰'){
         	//判断首字母是否为英文

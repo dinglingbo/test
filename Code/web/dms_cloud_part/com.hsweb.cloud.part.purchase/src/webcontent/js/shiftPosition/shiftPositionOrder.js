@@ -582,7 +582,7 @@ function onAdvancedSearchOk()
         var tmpList = searchData.serviceIdList.split("\n");
         for(i=0;i<tmpList.length;i++)
         {
-            tmpList[i] = "'"+tmpList[i]+"'";
+            tmpList[i] = "'"+tmpList[i].replace(/\s+/g, "")+"'";
         }
         searchData.serviceIdList = tmpList.join(",");
     }
@@ -592,11 +592,16 @@ function onAdvancedSearchOk()
         var tmpList = searchData.partCodeList.split("\n");
         for(i=0;i<tmpList.length;i++)
         {
-            tmpList[i] = "'"+tmpList[i]+"'";
+            tmpList[i] = "'"+tmpList[i].replace(/\s+/g, "")+"'";
         }
         searchData.partCodeList = tmpList.join(",");
     }
     searchData.auditSign = gsparams.auditSign;
+    for(var key in searchData){
+    	if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
+    		searchData[key]=searchData[key].replace(/\s+/g, "");
+    	}
+    }
     advancedSearchFormData = advancedSearchForm.getData();
     advancedSearchWin.hide();
     doSearch(searchData);
@@ -1053,7 +1058,17 @@ function deletePart(){
     {
         delete editPartHash[part.detailId];
     }
-    rightGrid.removeRow(part,true);
+    var data = rightGrid.getData();
+    if(data && data.length==1){
+        var row = rightGrid.getSelected();
+        rightGrid.removeRow(row);
+        var newRow = {};
+        rightGrid.addRow(newRow);
+        rightGrid.beginEditCell(newRow, "comPartCode");
+    }else{
+        var row = rightGrid.getSelected();
+        rightGrid.removeRow(row);
+    };
 }
 function checkRightData()
 {

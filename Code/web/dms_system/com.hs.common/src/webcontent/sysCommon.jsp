@@ -48,7 +48,7 @@
     String currentLanguage = request.getLocale().getLanguage().toLowerCase();
 %>
 <!-- 汽配需要 -->
-<!--<meta http-equiv="refresh"content="13680"/>-->
+<!-- <meta http-equiv="refresh"content="13680"/> -->
 <script src="<%=contextPath%>/common/nui/nui.js?v=1.0.0" type="text/javascript"></script> 
 
 <script src="<%=contextPath%>/common/nui/locale/zh_CN.js" type="text/javascript"></script>
@@ -373,12 +373,12 @@
  			showMsg("登录超时，正在跳转！", "E");
              window.top.location.href = sysDomain + "/coframe/auth/login/login.jsp";			
  		}
-//	汽配
-//		 else{
-//			debugger;
-//			showMsg("登录超时，正在跳转！", "E");
+	// 汽配
+// 		 else{
+// 			debugger;
+// 			showMsg("登录超时，正在跳转！", "E");
 //           window.top.location.href = sysDomain + "/coframe/auth/loginCloud/login.jsp";			
-//		} 
+// 		} 
 		
  		
 	}
@@ -386,7 +386,7 @@
 </script>
 <script src="<%=webPath + contextPath%>/common/js/sysCommon.js?v=1.0.4" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/constantDef.js?v=1.1" type="text/javascript"></script>
-<script src="<%=webPath + contextPath%>/common/js/init.js?v=1.9.1" type="text/javascript"></script>
+<script src="<%=webPath + contextPath%>/common/js/init.js?v=1.9.2" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/jsCryptoJS.js?v=1.0" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/settleCenter.js?v=1.1" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/date.js?v=1.7" type="text/javascript"></script>

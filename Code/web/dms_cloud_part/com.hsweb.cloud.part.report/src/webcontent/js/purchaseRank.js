@@ -281,8 +281,8 @@ function clearGrid(grid){
 function getSearchParam() {
 	var params = {};
     params.partBrandId = partBrandIdEl.getValue();
-    params.partNameAndPY = partNameEl.getValue();
-    params.partCode = partCodeEl.getValue();
+    params.partNameAndPY = partNameEl.getValue().replace(/\s+/g, "");
+    params.partCode = partCodeEl.getValue().replace(/\s+/g, "");
     params.guestId = advanceGuestIdEl.getValue();
 	return params;
 }

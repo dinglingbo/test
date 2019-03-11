@@ -12,7 +12,7 @@
 <head>
     <title>用户反馈管理</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />	
-    <script src="<%=webPath + contextPath%>/common/js/feedbackList.js?v=1.0.14" type="text/javascript"></script>    
+    <script src="<%=webPath + contextPath%>/common/js/feedbackList.js?v=1.0.15" type="text/javascript"></script>    
     
 </head>
  <style type="text/css"> 

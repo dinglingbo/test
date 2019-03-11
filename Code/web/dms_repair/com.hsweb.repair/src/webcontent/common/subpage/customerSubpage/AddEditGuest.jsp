@@ -11,7 +11,7 @@
 -->
 <head>
     <title>新增客户档案</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.55"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.62"></script>
     <style type="text/css">
         table {
             font-size: 12px;
@@ -366,7 +366,25 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="form_label">
+                        
+                           <td class="form_label">
+                                <label>客户级别：</label>
+                            </td>
+                            <td colspan="3">
+                                <input name="guestTypeId"
+                                   id="guestTypeId"
+                                   class="nui-combobox "
+                                   textField="name"
+                                   valueField="id"
+                                   emptyText="请选择..."
+                                   url=""
+                                   allowInput="true"
+                                   showNullItem="false"
+                                   width="32%" 
+                                   valueFromSelect="true"
+                                   nullItemText="请选择..."/>
+                        	</td>
+                           <!--  <td class="form_label">
                                 <label>生日类型：</label>
                             </td>
                             <td>
@@ -378,7 +396,7 @@
                             </td>
                             <td>
                                 <input name="birthday" allowInput="false" class="nui-datepicker" width="100%" />
-                            </td>
+                            </td> -->
                         </tr>
                         <tr>
                             <td class="form_label">

@@ -13,9 +13,10 @@ pageEncoding="UTF-8" session="false" %>
     <title>客户群发</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-      <%@include file="/common/commonRepair.jsp"%>
+    <%@include file="/common/commonRepair.jsp"%>
     <script type="text/javascript" src="https://unpkg.com/echarts@3.5.3/dist/echarts.js"></script>
     <script src="<%= request.getContextPath() %>/common/nui/macarons.js" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/guestType.js?v=0.4.6" type="text/javascript"></script>
     <style type="text/css">
         html,
         body {
@@ -26,101 +27,12 @@ pageEncoding="UTF-8" session="false" %>
             height: 100%;
             overflow: hidden;
         }
-
-        .addyytime a.ztedit {
-            height: 18px;
-            display: inline-block;
-            background: url(../images/sjde.png) 40px -1px no-repeat;
-            padding-right: 22px;
-            color: #888;
-            text-decoration: none;
-        }
-
-        .addyytime a.hui {
-            padding-left: 10px;
-            padding-right: 10px;
-            height: 36px;
-            line-height: 36px;
-            border: 1px #a6e0f5 solid;
-            display: block;
-            float: left;
-            text-decoration: none;
-            text-align: center;
-            color: #00b4f6;
-            border-radius: 4px;
-            margin: 0 15px 15px 0;
-        }
-
-        .addyytime a.hui {
-            border: 1px #e6e6e6 solid;
-            color: #c8c8c8;
-            background: #e6e6e6;
-        }
-
-        .addyytime a.xz {
-            color: #fff !important;
-            background: #5ab1ef;
-        }
-
-        .addyytime a:link,
-        a:visited {
-            font-family: 微软雅黑, Arial, Helvetica, sans-serif;
-            font-size: 14px;
-            color: #555555;
-            text-decoration: none;
-        }
-
-        .addyytime a.hui:hover {
-            font-family: 微软雅黑, Arial, Helvetica, sans-serif;
-            font-size: 14px;
-            background-color: #dc69aa;
-            color: #FFF;
-            text-decoration: none;
-        }
-
-        .addyytime a .hui {
-            text-decoration: none;
-            transition: all .4s ease;
-        }
-
-        #selectGuestType a {
-            padding-left: 10px;
-            padding-right: 10px;
-            height: 36px;
-            line-height: 36px;
-            border: 1px #a6e0f5 solid;
-            display: block;
-            float: left;
-            text-decoration: none;
-            text-align: center;
-            color: #00b4f6;
-            border-radius: 4px;
-            margin: 0 15px 15px 0;
-            text-decoration: none;
-            transition: all .4s ease;
-        }
-
-        .tabletitle {
-            font-size: 18px;
-        }
-
-        .actionButton {
-            padding-left: 10px;
-            padding-right: 10px;
-            height: 36px;
-            line-height: 36px;
-            display: inline-block;
-            text-decoration: none;
-            text-align: center;
-            color: #FFF !important;
-            background-color: #1ab394;
-            border-radius: 4px;
-            margin: 0 15px 15px 0;
-        }
-
-        .actionButton:hover {
-            color: #ffb980 !important;
-        }
+        #wechatTag1{
+            color:#ccc;
+    }
+    #wechatTag{
+        color:#62b900;
+    }
     </style>
 </head>
 
@@ -135,62 +47,420 @@ pageEncoding="UTF-8" session="false" %>
             </div>
 
             <div id="t3" style="float:left;width: 60%; height: 100%;">
-                <div class="addyytime" style="margin-top:26px;">
-                    <table style="width:100%;height:100%;line-height: 30px;">
-                        <tr>
-                            <td><span class="tabletitle">已选客户类型：</span></td>
-                        </tr>
-                        <tr style="height:38px;">
-                            <td id="selectGuestType">
-                                <!-- <a href='javascript:;' typeId='0' style='border:0px;;color:#fff;margin-bottom:0px;background-color:#2ec7c9'>全
-                                    部</a> -->
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><span class="tabletitle">筛选客户标签：</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <!-- <a href='javascript:;' itemid='"+timeStr+"' class='hui'>"+timeStr+"</a> -->
-                                <a href='javascript:;' itemid='1' name='type' class='hui'>商业险到期客户</a>
-                                <a href='javascript:;' itemid='1' name='type' class='hui'>交强险到期客户</a>
-                                <a href='javascript:;' itemid='2' name='type' class='hui'>保养到期客户</a>
-                                <a href='javascript:;' itemid='3' name='type' class='hui'>年检到期客户</a>
-                                <a href='javascript:;' itemid='3' name='type' class='hui'>驾照年审到期客户</a>
-                                <a href='javascript:;' itemid='3' name='type' class='hui'>客户生日</a>
-                                <a href='javascript:;' itemid='3' name='type' class='hui'>员工生日</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="tabletitle">统计：</span>
-                            </td>
-                        </tr>
-                        <tr style="height:44px;">
-                            <td style="border-bottom:2px solid #CCC;position: relative;">
+                <div id="tabs1" class="nui-tabs" activeIndex="0" style="width:100%;height:100%;" plain="true"
+                onactivechanged=""
+                    tabPosition="top">
+                    <div title="客户类型" name="type">
+                            <div class="nui-toolbar" style="padding:2px;border-bottom: 0" id="form1">
+                                    <table style="width:100%;">
+                                        <tr>
+                                            <td colspan="2">
+                                                <label>客户类型：</label>
+                                                <input class="nui-combobox" name="type" id="type" style="width: 300px;"  required="false" multiSelect="false"
+                                                data="gType" textField="text" valueField="id" allowInput="true" valueFromSelect="true" />
+                                            </td>
+                                        </tr>
 
-                                <a href='javascript:;' itemid='1' name='act' class='actionButton' style="margin: 0;"><span
-                                        class="fa fa-circle-o-notch fa-lg"></span>&nbsp;统计</a>
-                                <span style="position: relative;bottom: -12px;margin-left:50px;">
-                                    <span>共选中客户:</span><span style="color:#1890ff;font-size:30px;">349</span>
-                                    <span>位</span>
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><span class="tabletitle">操作：</span></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <!-- <a href='javascript:;' itemid='"+timeStr+"' class='hui'>"+timeStr+"</a> -->
-                                <a href='javascript:;' itemid='1' name='act' class='actionButton'><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                                <a href='javascript:;' itemid='1' name='act' class='actionButton'><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                                <a href='javascript:;' itemid='2' name='act' class='actionButton'><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                                <a href='javascript:;' itemid='3' name='act' class='actionButton'><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
-                            </td>
-                        </tr>
-                    </table>
+                                        <tr>
+                                                <td>
+                                                    <label>车辆品牌：</label>
+                                                    <input id="cbrand" name="cbrand" class="nui-combobox" dataField="list" required="false"  onvaluechanged="onBrandChanged" 
+                                                    textField="nodeName" valueField="nodeId"   style="width:200px"
+                                                    allowInput="true" valueFromSelect="true" />
+                                                </td>
+                                                <td>
+                                                    <label>车辆车系：</label>
+                                                    <input id="cmodel" name="cmodel"class="nui-combobox" dataField="list"  multiSelect="true"
+                                                    textField="nodeName" valueField="nodeId"  allowInput="false"  
+                                                    showClose="true" oncloseclick="onCloseClick" style="width:200px"/>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                    <td>
+                                                        <label>客户等级：</label>
+                                                        <input class="nui-combobox" name="level" id="level" style="width: 200px;"  required="false" multiSelect="true"
+                                                        textField="name" valueField="id" allowInput="false" />
+                                                    </td>
+                                                    <td>
+                                                        <label>维修顾问：</label>
+                                                                <input class="nui-combobox" name="mta" id="mta" style="width: 200px;"  required="false" multiSelect="true"
+                                                                textField="empName" valueField="empId" allowInput="true" valueFromSelect="true" />
+                                
+                                                    </td>
+                                                </tr>
+ 
+                                                <tr>
+                                                        <td>
+                                                            <label>消费金额在</label>
+                                                            <input class="nui-textbox" name="startAmt" id="startAmt" style="width: 50px;" vtype="int" value=""/>
+                                                            <label>-</label>
+                                                            <input class="nui-textbox" name="endAmt" id="endAmt" style="width: 50px;" vtype="int" value=""/>
+                                                            <label>元之间</label>
+                                                        </td>
+                                                        <td>
+                                                            <label>消费次数在</label>
+                                                            <input class="nui-textbox" name="startTime" id="startTime" style="width: 50px;" vtype="int" value=""/>
+                                                            <label>-</label>
+                                                            <input class="nui-textbox" name="endTime" id="endTime" style="width: 50px;" vtype="int" value=""/>
+                                                            <label>次之间</label>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                            <td>
+                                                                <label>行驶里程在</label>
+                                                                <input class="nui-textbox" name="startKilo" id="startKilo" style="width: 50px;" vtype="int" value=""/>
+                                                                <label>-</label>
+                                                                <input class="nui-textbox" name="endKilo" id="endKilo" style="width: 50px;" vtype="int" value=""/>
+                                                                <label>公里之间</label>
+                                                            </td>
+                                                            <td>
+                                                                <label>离厂天数在</label>
+                                                                <input class="nui-textbox" name="startDay" id="startDay" style="width: 50px;" vtype="int" value=""/>
+                                                                <label>-</label>
+                                                                <input class="nui-textbox" name="endDay" id="endDay" style="width: 50px;" vtype="int" value=""/>
+                                                                <label>天之间</label>
+                                                            </td>
+                                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
+                                    <table style="width:100%;">
+                                        <tr>
+                                            <td>
+                                                    <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
+                                                        class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                                                        <span class="separator"></span>
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
+                                                        class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
+                                                <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a> -->
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+        
+                                <div class="nui-fit">
+                                    <div id="gridkhlx" class="nui-datagrid" style="width:100%;height:100%;" pageSize="50"
+                                        multiSelect="false" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
+                                        onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
+                                        <div property="columns">
+                                            <!-- <div type="checkcolumn"></div> -->
+                                            <div type="indexcolumn" headerAlign="center" header="序号"></div>
+                                            <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
+                                            <div field="mobile" name="" width="110" headerAlign="center" header="联系方式"></div>
+                                            <div field="carNo" name="" width="80" headerAlign="center" header="车牌号"></div>
+                                            <div field="carModel" name="" width="150" headerAlign="center" header="品牌车型"></div>
+                                            <div field="chainComeTimes" name="" width="70" headerAlign="center" header="消费次数" ></div>
+                                            <div field="chainConsumeAmt" name="" width="70" headerAlign="center" header="消费金额" ></div>
+                                            <div field="chainComeTimes" name="" width="70" headerAlign="center" header="来厂次数" ></div>
+                                            <div field="leaveDay" name="" width="70" headerAlign="center" header="离厂天数" ></div>
+                                            <div field="lastComeKilometers" name="" width="70" headerAlign="center" header="行驶里程" ></div>
+                                            <div field="tgrade" name="tgrade" width="70" headerAlign="center" header="客户等级" ></div>
+                                            <div field="mtAdvisorName" name="" width="70" headerAlign="center" header="维修顾问" ></div>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                    
+                    <div title="商业险到期" name="annual">
+                            <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
+                                    <table style="width:100%;">
+                                        <tr>
+                                            <td>
+                                                <label>商业险到期在</label>
+                                                <input class="nui-textbox" name="" id="annual" style="width: 50px;" vtype="int" value="30"/>
+                                                <label>天以内</label>
+                                                <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
+                                                        class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
+                                    <table style="width:100%;">
+                                        <tr>
+                                            <td>
+                                                <label>操作：</label>
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
+                                                        class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
+                                                <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a> -->
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+        
+                                <div class="nui-fit">
+                                    <div id="gridsyx" class="nui-datagrid" style="width:100%;height:100%;" pageSize="50"
+                                        multiSelect="false" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
+                                        onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
+                                        <div property="columns">
+                                            <!-- <div type="checkcolumn"></div> -->
+                                            <div type="indexcolumn" headerAlign="center" header="序号"></div>
+                                            <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
+                                            <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>
+                                            <div field="carNo" name="" width="70" headerAlign="center" header="车牌号"></div>
+                                            <div field="carModel" name="" width="100" headerAlign="center" header="品牌车型"></div>
+                                            <div field="annualInspectionDate" name="" width="70" headerAlign="center" header="商业险到期" dateFormat="yyyy-MM-dd"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                    <div title="交强险到期"name="insure" enabled="true">
+                            <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
+                                    <table style="width:100%;">
+                                        <tr>
+                                            <td>
+                                                <label>交强险到期在</label>
+                                                <input class="nui-textbox" name="" id="insure" style="width: 50px;" vtype="int" value="30"/>
+                                                <label>天以内</label>
+                                                <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
+                                                        class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
+                                    <table style="width:100%;">
+                                        <tr>
+                                            <td>
+                                                <label>操作：</label>
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
+                                                        class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
+                                                <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a> -->
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+        
+                                <div class="nui-fit">
+                                    <div id="gridjqx" class="nui-datagrid" style="width:100%;height:100%;" pageSize="50"
+                                        multiSelect="false" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
+                                        onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
+                                        <div property="columns">
+                                            <!-- <div type="checkcolumn"></div> -->
+                                            <div type="indexcolumn" headerAlign="center" header="序号"></div>
+                                            <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
+                                            <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>
+                                            <div field="carNo" name="" width="70" headerAlign="center" header="车牌号"></div>
+                                            <div field="carModel" name="" width="100" headerAlign="center" header="品牌车型"></div>
+                                            <div field="insureDueDate" name="" width="70" headerAlign="center" header="交强险到期" dateFormat="yyyy-MM-dd"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                    <div title="保养到期" name="care"enabled="true">
+                            <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
+                                    <table style="width:100%;">
+                                        <tr>
+                                            <td>
+                                                <label>保养到期在</label>
+                                                <input class="nui-textbox" name="" id="care" style="width: 50px;" vtype="int" value="30"/>
+                                                <label>天以内</label>
+                                                <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
+                                                        class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
+                                    <table style="width:100%;">
+                                        <tr>
+                                            <td>
+                                                <label>操作：</label>
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
+                                                        class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
+                                                <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a> -->
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+        
+                                <div class="nui-fit">
+                                    <div id="gridbydq" class="nui-datagrid" style="width:100%;height:100%;" pageSize="50"
+                                        multiSelect="false" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
+                                        onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
+                                        <div property="columns">
+                                            <!-- <div type="checkcolumn"></div> -->
+                                            <div type="indexcolumn" headerAlign="center" header="序号"></div>
+                                            <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
+                                            <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>
+                                            <div field="carNo" name="" width="70" headerAlign="center" header="车牌号"></div>
+                                            <div field="carModel" name="" width="100" headerAlign="center" header="品牌车型"></div>
+                                            <div field="careDueDate" name="" width="70" headerAlign="center" header="保养到期" dateFormat="yyyy-MM-dd"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                    <div title="车辆年检到期" name="due" enabled="true">
+                            <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
+                                    <table style="width:100%;">
+                                        <tr>
+                                            <td>
+                                                <label>车辆年检到期在</label>
+                                                <input class="nui-textbox" name="" id="due" style="width: 50px;" vtype="int" value="30"/>
+                                                <label>天以内</label>
+                                                <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
+                                                        class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
+                                    <table style="width:100%;">
+                                        <tr>
+                                            <td>
+                                                <label>操作：</label>
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
+                                                        class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
+                                                <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a> -->
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+        
+                                <div class="nui-fit">
+                                    <div id="gridclnj" class="nui-datagrid" style="width:100%;height:100%;" pageSize="50"
+                                        multiSelect="false" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
+                                        onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
+                                        <div property="columns">
+                                            <!-- <div type="checkcolumn"></div> -->
+                                            <div type="indexcolumn" headerAlign="center" header="序号"></div>
+                                            <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
+                                            <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>
+                                            <div field="carNo" name="" width="70" headerAlign="center" header="车牌号"></div>
+                                            <div field="carModel" name="" width="100" headerAlign="center" header="品牌车型"></div>
+                                            <div field="dueDate" name="" width="70" headerAlign="center" header="车辆年检到期" dateFormat="yyyy-MM-dd"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                    <div title="驾照年审到期" name="lic" enabled="true">
+                            <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
+                                    <table style="width:100%;">
+                                        <tr>
+                                            <td>
+                                                <label>驾照年审到期在</label>
+                                                <input class="nui-textbox" name="" id="license" style="width: 50px;" vtype="int" value="30"/>
+                                                <label>天以内</label>
+                                                <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
+                                                        class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
+                                    <table style="width:100%;">
+                                        <tr>
+                                            <td>
+                                                <label>操作：</label>
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
+                                                        class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
+                                                <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a> -->
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+        
+                                <div class="nui-fit">
+                                    <div id="gridjzns" class="nui-datagrid" style="width:100%;height:100%;" pageSize="50"
+                                        multiSelect="false" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
+                                        onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
+                                        <div property="columns">
+                                            <!-- <div type="checkcolumn"></div> -->
+                                            <div type="indexcolumn" headerAlign="center" header="序号"></div>
+                                            <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
+                                            <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>
+                                            <div field="carNo" name="" width="70" headerAlign="center" header="车牌号"></div>
+                                            <div field="carModel" name="" width="100" headerAlign="center" header="品牌车型"></div>
+                                            <div field="licenseOverDate" name="" width="70" headerAlign="center" header="驾照年审到期" dateFormat="yyyy-MM-dd"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                    <div title="客户生日" name="bir" enabled="true">
+                        <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
+                            <table style="width:100%;">
+                                <tr>
+                                    <td>
+                                        <label>客户生日在</label>
+                                        <input class="nui-textbox" name="" id="birday" style="width: 50px;" vtype="int" value="30"/>
+                                        <label>天以内</label>
+                                        <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
+                                                class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
+                            <table style="width:100%;">
+                                <tr>
+                                    <td>
+                                        <label>操作：</label>
+                                        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
+                                                class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
+                                        <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                                                class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
+                                        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+                                        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a> -->
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="nui-fit">
+                            <div id="gridkhsr" class="nui-datagrid" style="width:100%;height:100%;" pageSize="50"
+                                multiSelect="false" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
+                                onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
+                                <div property="columns">
+                                    <!-- <div type="checkcolumn"></div> -->
+                                    <div type="indexcolumn" headerAlign="center" header="序号"></div>
+                                    <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
+                                    <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>
+                                    <div field="carNo" name="" width="70" headerAlign="center" header="车牌号"></div>
+                                    <div field="carModel" name="" width="100" headerAlign="center" header="品牌车型"></div>
+                                    <div field="birthday" name="" width="70" headerAlign="center" header="生日" dateFormat="yyyy-MM-dd"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
+
+
             </div>
 
             <div style="clear: both"></div>
@@ -201,8 +471,8 @@ pageEncoding="UTF-8" session="false" %>
     <script type="text/javascript">
         nui.parse();
         var webBaseUrl = webPath + contextPath + "/";
-		var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/"; 
-        var turl =  baseUrl+"com.hsapi.crm.svr.guest.getGuestTypeNum.biz.ext";
+        var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
+        var turl = baseUrl + "com.hsapi.crm.svr.guest.getGuestTypeNum.biz.ext";
         var echartData = {};
 
         $("a[name=type]").click(function () {
@@ -214,6 +484,9 @@ pageEncoding="UTF-8" session="false" %>
         });
         getEchartDate();
 
+
+ 
+
         function getEchartDate() {
             nui.ajax({
                 url: turl,
@@ -224,11 +497,11 @@ pageEncoding="UTF-8" session="false" %>
                         if (res.carNum != []) {
                             echartData = res.carNum[0];
                             showMainA();
-                            var p = {
-                                name: '全 部', //初始化
-                                color:'#2ec7c9'
-                        }
-                        setGuestType(p);
+                            //     var p = {
+                            //         name: '全 部', //初始化
+                            //         color:'#2ec7c9'
+                            // }
+                            // setGuestType(p);
                         }
                     } else {
                         showMsg('接口执行错误！', 'E');
@@ -355,9 +628,9 @@ pageEncoding="UTF-8" session="false" %>
 
             myChart.on('click', function (param) {
                 console.log(param); //重要的参数都在这里！
-                setGuestType(param);
+                // setGuestType(param);
             });
- 
+
             var app = {};
             app.currentIndex = -1;
 
@@ -385,46 +658,46 @@ pageEncoding="UTF-8" session="false" %>
             }, 2000);
         }
 
-        function setGuestType(params) {
-            var typeId = null;
-            var value = 0;
-            switch (params.name) {
-                case '全 部':
-                    typeId = 0;
-                    value = echartData.allCarNum;
-                    break;
-                case '未分类':
-                    typeId = 1;
-                    value = echartData.notypeCarNum;
-                    break;
-                case '流失期':
-                    typeId = 2;
-                    value = echartData.loseCarNum;
-                    break;
-                case '睡眠期':
-                    typeId = 3;
-                    value = echartData.sleepCarNum;
-                    break;
-                case '稳定期':
-                    typeId = 4;
-                    value = echartData.stableCarNum;
-                    break;
-                case '活跃期':
-                    typeId = 5;
-                    value = echartData.activeCarNum;
-                    break;
-                default:
-                    typeId = 0;
-                    value = 0;
-                    break;
-            }
-            value = value || 0;
-            var html = "<a href='javascript:;' typeId='" + typeId +
-                "'style='border:0px;cursor:default;color:#fff;margin-bottom:0px;background-color:" + params.color +
-                "'class='guestTypeCla'>" + params.name + '(' + value + ')' + "</a>";
-            console.log(html);
-            $('#selectGuestType').html(html);
-        }
+        // function setGuestType(params) {
+        //     var typeId = null;
+        //     var value = 0;
+        //     switch (params.name) {
+        //         case '全 部':
+        //             typeId = 0;
+        //             value = echartData.allCarNum;
+        //             break;
+        //         case '未分类':
+        //             typeId = 1;
+        //             value = echartData.notypeCarNum;
+        //             break;
+        //         case '流失期':
+        //             typeId = 2;
+        //             value = echartData.loseCarNum;
+        //             break;
+        //         case '睡眠期':
+        //             typeId = 3;
+        //             value = echartData.sleepCarNum;
+        //             break;
+        //         case '稳定期':
+        //             typeId = 4;
+        //             value = echartData.stableCarNum;
+        //             break;
+        //         case '活跃期':
+        //             typeId = 5;
+        //             value = echartData.activeCarNum;
+        //             break;
+        //         default:
+        //             typeId = 0;
+        //             value = 0;
+        //             break;
+        //     }
+        //     value = value || 0;
+        //     var html = "<a href='javascript:;' typeId='" + typeId +
+        //         "'style='border:0px;cursor:default;color:#fff;margin-bottom:0px;background-color:" + params.color +
+        //         "'class='guestTypeCla'>" + params.name + '(' + value + ')' + "</a>";
+        //     console.log(html);
+        //     $('#selectGuestType').html(html);
+        // }
 
 
         var showTooltip = function showEchartTooltip(vla) {

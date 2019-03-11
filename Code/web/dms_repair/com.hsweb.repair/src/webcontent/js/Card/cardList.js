@@ -269,10 +269,10 @@ function setData(data)
 	assistant = 1;//判断是主页面还是open页面。用于双击触发事件
 }
 
-function setInitData(){
+/*function setInitData(){
 	setStely();
 	assistant=1;
-}
+}*/
 
 function CloseWindow(action) {
 	if (action == "close") {

@@ -92,7 +92,7 @@
       <process:to type="query">criteria/_expr[3]/_property</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">outDate</process:from>
+      <process:from type="literal" pattern="reference">enterDate</process:from>
       <process:to type="query">criteria/_orderby[1]/_property</process:to>
     </process:copy>
     <process:copy>

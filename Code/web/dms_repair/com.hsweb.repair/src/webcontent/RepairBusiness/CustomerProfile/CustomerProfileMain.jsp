@@ -44,15 +44,16 @@
 							<li iconCls="" onclick="quickSearch(3)" id="type3">本月新来厂客户</li>
 							<li iconCls="" onclick="quickSearch(4)" id="type4">本月所有来厂客户</li>
 						</ul>
+					</td>
 						<td>
 							<label>客户名称:</label>
-							<input class="nui-textbox" name="guestFullName" onenter="onSearch()" />
+							<input class="nui-textbox" name="guestFullName" onenter="onSearch()" style="width:100px" />
 							<label>车牌号:</label>
-							<input class="nui-textbox" name="carNo" onenter="onSearch()" />
+							<input class="nui-textbox" name="carNo" onenter="onSearch()" style="width:100px" />
 							<label>手机号码：</label>
-							<input class="nui-textbox" name="mobile" onenter="onSearch()" />
+							<input class="nui-textbox" name="mobile" onenter="onSearch()" style="width:100px" />
 							<label>车架号(VIN)：</label>
-							<input class="nui-textbox" name="carVin" onenter="onSearch()" style="width:200px"/>
+							<input class="nui-textbox" name="carVin" onenter="onSearch()" style="width:160px"/>
 							<a class="nui-button" iconCls="" plain="true" onclick="onSearch()">
 								<span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 <!-- 							<a class="nui-button" plain="true" onclick="advancedSearch()">

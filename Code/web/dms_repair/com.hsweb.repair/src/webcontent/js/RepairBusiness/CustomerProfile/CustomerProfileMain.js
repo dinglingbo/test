@@ -84,9 +84,9 @@ function onSearch()
 
     var params = getSearchParams();
     params.guestFullName=document.getElementsByName('guestFullName')[0].value;
-    params.carNo=document.getElementsByName('carNo')[0].value;
-    params.mobile=document.getElementsByName('mobile')[0].value;
-    params.vin=document.getElementsByName('carVin')[0].value;
+    params.carNo=document.getElementsByName('carNo')[0].value || null;
+    params.mobile=document.getElementsByName('mobile')[0].value || null;
+    params.vin=document.getElementsByName('carVin')[0].value || null;
     doSearch(params);
 }
 

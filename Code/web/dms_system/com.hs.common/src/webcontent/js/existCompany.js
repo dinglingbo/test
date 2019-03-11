@@ -40,7 +40,7 @@ function onSearch(){
 	var params = {};
 	params.empId = empId;
 	params.name = nui.get("name").getValue().replace(/\s+/g, "");
-	params.code = nui.get("code").getValue().replace(/\s+/g, "")s;
+	params.code = nui.get("code").getValue().replace(/\s+/g, "");
 	moreOrgGrid.load({
 		params:params,
 		token : token

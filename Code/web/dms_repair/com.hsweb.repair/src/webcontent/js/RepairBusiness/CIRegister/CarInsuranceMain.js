@@ -25,6 +25,8 @@ $(document).ready(function ()
             e.cellHtml = statusHash[e.value];
         }else if(e.field == "carNo"){
         	e.cellHtml ='<a href="##" onclick="showCarInfo('+e.record._uid+')">'+e.record.carNo+'</a>';
+        }else if(e.field == "serviceCode"){
+        	e.cellHtml ='<a href="##" onclick="view('+e.record._uid+')">'+e.record.serviceCode+'</a>';
         }
         else {
             onDrawCell(e);
@@ -75,8 +77,12 @@ function doSearch(params) {
 
 
 
-function view() {
-    var row = leftGrid.getSelected();
+function view(row_uid) {
+	if(!row_uid){
+		var row = leftGrid.getSelected();
+	}else{
+		var row = leftGrid.getRowByUID(row_uid);
+	}
     if(row){ 
         editInsuranceDetail(row);
     }else{

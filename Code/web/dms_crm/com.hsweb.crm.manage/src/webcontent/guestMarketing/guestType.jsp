@@ -16,7 +16,7 @@ pageEncoding="UTF-8" session="false" %>
     <%@include file="/common/commonRepair.jsp"%>
     <script type="text/javascript" src="https://unpkg.com/echarts@3.5.3/dist/echarts.js"></script>
     <script src="<%= request.getContextPath() %>/common/nui/macarons.js" type="text/javascript"></script>
-    <script src="<%=webPath + contextPath%>/manage/js/guestType.js?v=0.4.6" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/guestType.js?v=0.4.8" type="text/javascript"></script>
     <style type="text/css">
         html,
         body {

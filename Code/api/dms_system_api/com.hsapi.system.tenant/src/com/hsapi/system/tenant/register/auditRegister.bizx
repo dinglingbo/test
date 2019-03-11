@@ -181,6 +181,10 @@
       <process:to type="query">comd/isMaster</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">type</process:from>
+      <process:to type="query">comd/propertyName</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">tenantId</process:from>
       <process:to type="query">ten/tenantId</process:to>
     </process:copy>

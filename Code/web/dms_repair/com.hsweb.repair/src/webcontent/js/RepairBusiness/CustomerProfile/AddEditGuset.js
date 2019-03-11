@@ -827,7 +827,11 @@ function eaidCar(){
 	carview.show();
 	carInfoFrom.setData(row);
 	nui.get("carNo").disable();
-	nui.get("vin").disable();
+	if(!nui.get("vin").getValue()) {
+		nui.get("vin").enable();
+	}else {
+		nui.get("vin").disable();
+	}
 }
 
 function eaidContact(){

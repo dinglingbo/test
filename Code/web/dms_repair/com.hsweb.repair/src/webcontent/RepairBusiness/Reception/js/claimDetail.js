@@ -1343,7 +1343,9 @@ function saveNoshowMsg(callback){
 
 var requiredField = {
     carNo : "车牌号",
+    enterDate:"进厂时间",
     serviceTypeId : "业务类型",
+    insureComp:"保险公司",
     mtAdvisorId : "服务顾问",
     guestId : "客户",
     enterOilMass : "进厂油量",

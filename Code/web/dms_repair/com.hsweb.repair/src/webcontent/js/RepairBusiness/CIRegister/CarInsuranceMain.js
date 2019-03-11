@@ -4,7 +4,7 @@
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var leftGrid = null;
 var leftGridUrl = baseUrl+"com.hsapi.repair.repairService.insurance.queryRpsInsuranceMainList.biz.ext";
-
+var webBaseUrl = webPath + contextPath + "/";
 var statusHash = ["草稿","预结算","已结算"];
 
 var beginDateEl =null;
@@ -20,8 +20,13 @@ $(document).ready(function ()
     leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
     leftGrid.on("drawcell", function (e) {
+    	 var record = e.record;
         if (e.field == "status") {
             e.cellHtml = statusHash[e.value];
+        }else if(e.field == "carNo"){
+        	e.cellHtml ='<a href="##" onclick="showCarInfo('+e.record._uid+')">'+e.record.carNo+'</a>';
+        }else if(e.field == "serviceCode"){
+        	e.cellHtml ='<a href="##" onclick="view('+e.record._uid+')">'+e.record.serviceCode+'</a>';
         }
         else {
             onDrawCell(e);
@@ -72,8 +77,12 @@ function doSearch(params) {
 
 
 
-function view() {
-    var row = leftGrid.getSelected();
+function view(row_uid) {
+	if(!row_uid){
+		var row = leftGrid.getSelected();
+	}else{
+		var row = leftGrid.getRowByUID(row_uid);
+	}
     if(row){ 
         editInsuranceDetail(row);
     }else{
@@ -192,4 +201,32 @@ function quickSearch(type){
     menunamedate.setText(queryname);    
 
     doSearch();
+}
+
+function showCarInfo(row_uid){
+	var row = leftGrid.getRowByUID(row_uid);
+	if(row){
+		var params = {
+				carId : row.carId,
+				guestId : row.guestId
+		};
+		doShowCarInfo(params);
+	}
+}
+
+function doShowCarInfo(params) {
+    nui.open({
+        url: webBaseUrl + "com.hsweb.RepairBusiness.carDetails.flow?token="+token,
+        width: 800, height: 500,
+		allowResize: false,
+		showHeader: true,
+        onload: function () {
+			var iframe = this.getIFrameEl();
+			iframe.contentWindow.SetData(params);
+        },
+        ondestroy: function (action) {
+            if ("ok" == action) {
+            }
+        }
+    });
 }

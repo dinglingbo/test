@@ -208,20 +208,8 @@
                 <tr>
                     <td>&nbsp;客户地址</td>
                     <td id="guestAddr"></td>
-                    <td >&nbsp;底盘号 </td>
-                    <td colspan="3"></td>
-                </tr>
-                <tr>
                     <td>&nbsp;联系手机</td>
-                    <td id="guestMobile"></td>
-                    <td >&nbsp;发动机型号 </td>
-                    <td colspan="3" id="engineNo"></td>
-                </tr>
-                <tr>
-                    <td>&nbsp;传真/电话</td>
-                    <td></td>
-                    <td >&nbsp;公里数</td>
-                    <td colspan="3" id="enterKilometers"></td>
+                    <td id="guestMobile" colspan="3"></td>
                 </tr>
                 <tr>
                     
@@ -400,11 +388,12 @@
 						document.getElementById("hidden2").style.display =""
 					}else{
 						document.getElementById("spstorename").innerHTML = "结算单";
+						
 				 	document.getElementById("msg").innerHTML = '服务满意度调查：<input id="satisfaction" name="satisfaction" type="checkbox" value="非常满意" onclick="return false;"/>非常满意     '+
 				 						'<input id="satisfaction" name="satisfaction" type="checkbox" value="基本满意" onclick="return false;"/>基本满意     '+
 				 						'<input id="satisfaction" name="satisfaction" type="checkbox" value="一般" onclick="return false;"/>一般     '+
 				 						'<input id="satisfaction" name="satisfaction" type="checkbox" value="不满意" onclick="return false;"/>不满意     '+
-				 						'<div>            尊敬的客户：为了维护您的利益改进本公司的工作，如您对本公司服务有不满意之处，请您拨打华胜波箱中心投诉电话：123321234567</div>'
+				 						'<div>'+currRepairSettPrintContent+'</div>'
 					}
 				 }
 				 document.getElementById("currCompTel").innerHTML = "&nbsp;&nbsp;&nbsp;"+currCompTel;
@@ -416,7 +405,10 @@
 			 	 	   		 var list = text.list[0];
 			 	 	   		 var guestFullName = list.guestFullName || "";
 			 	 	   		 var boxModel = list.boxModel || "";
-			 	 	   		 var driveType = QD[list.driveType-1].text;
+			 	 	   		 var driveType = "";
+			 	 	   		 if(list.driveType){
+			 	 	   		 	driveType = QD[list.driveType-1].text;
+			 	 	   		 }
 			 	 	   		 var name = list.name || "";
 			 	 	   		 var boxNo = list.boxNo || "";
 			 	 	   		 var carBrandId = list.carBrandId || "";
@@ -437,8 +429,6 @@
 			 	 	   		 document.getElementById("carBrand").innerHTML = "&nbsp;&nbsp;&nbsp;"+carBrand;
 			 	 	   		 document.getElementById("guestAddr").innerHTML = "&nbsp;&nbsp;&nbsp;"+guestAddr;
 			 	 	   		 document.getElementById("guestMobile").innerHTML = "&nbsp;&nbsp;&nbsp;"+guestMobile;
-			 	 	   		 document.getElementById("engineNo").innerHTML = "&nbsp;&nbsp;&nbsp;"+engineNo;
-			 	 	   		 document.getElementById("enterKilometers").innerHTML = "&nbsp;&nbsp;&nbsp;"+enterKilometers || 0 + "KM";
 			 	 	   		 document.getElementById("enterDate").innerHTML = "&nbsp;&nbsp;&nbsp;"+document.getElementById("enterDate").innerHTML + format(enterDate, "yyyy-MM-dd HH:mm");
 			 	 	   		 document.getElementById("serviceCode").innerHTML = "&nbsp;&nbsp;&nbsp;"+serviceCode;
 			 	 	   		 document.getElementById("drawOutReport").innerHTML = "&nbsp;&nbsp;&nbsp;"+drawOutReport;

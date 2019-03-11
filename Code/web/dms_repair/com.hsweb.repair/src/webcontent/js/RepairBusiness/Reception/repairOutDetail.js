@@ -420,7 +420,7 @@ function setInitData(params){
                         //mainGrid.load({mainId:params.id});
                         
                         var billTypeId = data.billTypeId||0;
-                        if(billTypeId==0 || billTypeId==2 || billTypeId==4) {
+                        if(billTypeId==0 || billTypeId==2 || billTypeId==4 || billTypeId==6) {
 	                        var p1 = {
 	                            interType: "package",
 	                            data:{

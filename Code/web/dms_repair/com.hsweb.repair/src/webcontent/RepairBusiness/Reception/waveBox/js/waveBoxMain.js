@@ -142,7 +142,7 @@ $(document).ready(function ()
         	var value = value.replace(reg, "$1****$2");
         	//e.cellHtml = value;
         	if(e.value){
-        		if(record.openId>0){
+        		if(record.openId){
             		e.cellHtml = "<span id='wechatTag' class='fa fa-wechat fa-lg'></span>"+value;
             	}else{
             		e.cellHtml = "<span  id='wechatTag1' class='fa fa-wechat fa-lg'></span>"+value;

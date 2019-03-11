@@ -3,8 +3,10 @@
  */
 var gridUrl = apiPath + repairApi
 		+ "/com.hsapi.repair.baseData.crud.queryPackage.biz.ext";
-var typeGrid2Url = apiPath + sysApi +"/com.hsapi.system.product.items.getPrdtType.biz.ext";
-var packageGridUrl = apiPath + sysApi + "/com.hsapi.system.product.items.getPackage.biz.ext";
+//var typeGrid2Url = apiPath + sysApi +"/com.hsapi.system.product.items.getPrdtType.biz.ext";
+var typeGrid2Url = apiPath + repairApi +"/com.hsapi.repair.repairService.svr.getStandardPkg.biz.ext";
+var packageGridUrl = apiPath + repairApi +"/com.hsapi.repair.repairService.svr.getStandardPkgDetail.biz.ext";
+//var packageGridUrl = apiPath + sysApi + "/com.hsapi.system.product.items.getPackage.biz.ext";
 var packageDetailUrl = apiPath + sysApi +"/com.hsapi.system.product.items.getPkgDetail.biz.ext";
 var grid = null;
 var sti = "";
@@ -34,6 +36,7 @@ $(document).ready(function(v) {
 	packageGrid.setUrl(packageGridUrl);
 	typeGrid2 = nui.get("typeGrid2");
 	typeGrid2.setUrl(typeGrid2Url);
+	typeGrid2.load();
 	detailGrid_Form = document.getElementById("detailGrid_Form");
 	packageDetail = nui.get("packageDetail");
     
@@ -133,13 +136,11 @@ $(document).ready(function(v) {
 });
 
 function loadStdPKG(packageTypeId) {
-	var p = {};
-	p.carModelId = carModelIdLy;
-	p.name = nui.get('pkgName').getValue();
-	p.packageName = nui.get('pkgName').getValue();
-	p.packageTypeId = packageTypeId;
+	var params = {};
+	params.packageName = nui.get('pkgName').getValue();
+	params.id = packageTypeId;
 	packageGrid.load({
-		p:p,
+		params:params,
 		token:token
 	});
 }

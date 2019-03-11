@@ -38,6 +38,7 @@ a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}
                     <input class="nui-textbox" width="100" id="search-namePy" name="namePy"/>
                     <label style="font-family:Verdana;">规格：</label>
                     <input class="nui-textbox" width="100" id="search-spec" name="spec"/>
+                    </br>
                     <label style="font-family:Verdana;">品牌：</label>
                      <input id="partBrandId"
                            name="partBrandId"

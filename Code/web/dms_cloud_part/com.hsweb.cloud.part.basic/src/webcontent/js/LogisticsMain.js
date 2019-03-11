@@ -67,9 +67,9 @@ function loadDataGridData(params)
 function onSearch()
 {
     var params = {};
-    params.manager = nui.get("manager").getValue();
-    params.mobile = nui.get("mobile").getValue();
-    params.fullName = nui.get("fullName").getValue();
+    params.manager = nui.get("manager").getValue().replace(/\s+/g, "");
+    params.mobile = nui.get("mobile").getValue().replace(/\s+/g, "");
+    params.fullName = nui.get("fullName").getValue().replace(/\s+/g, "");
 
     loadDataGridData(params);
 }

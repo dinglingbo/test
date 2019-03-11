@@ -100,7 +100,7 @@ function search() {
 function getSearchParam() {
 	var params = {};
     var type = nui.get("search-type").getValue();
-    var typeValue = nui.get("carNo-search").getValue();
+    var typeValue = nui.get("carNo-search").getValue().replace(/\s+/g, "");
     if(type==0){
     	params.fullName = typeValue;
     }else if(type==1){
@@ -108,7 +108,7 @@ function getSearchParam() {
     }else if(type==2){
     	params.mobile = typeValue;
     }
-    params.supplierType= nui.get("supplierType").getValue()
+    params.supplierType= nui.get("supplierType").getValue().replace(/\s+/g, "");
 
 	return params;
 
@@ -128,6 +128,12 @@ function advancedSearch() {
 }
 function onAdvancedSearchOk() {
 	var searchData = advancedSearchForm.getData();
+	//去除空格
+	for(var key in searchData){
+    	if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
+    		searchData[key]=searchData[key].replace(/\s+/g, "");
+    	}
+    }
 	advancedSearchFormData = searchData;
 	advancedSearchWin.hide();
 	// console.log(searchData);

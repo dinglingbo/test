@@ -649,6 +649,7 @@
     <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="link16" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
       <targetNode>invokePojo5</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link19</targetConnections>
     <location x="1488" y="125"/>
@@ -2474,19 +2475,20 @@
     <location x="610" y="44"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess6label</nodeLabel>
-    <process:flow index="6" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.repair.repairService.sendWeChat.sendTimeCardCostInfo</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="pkgTemp" type="query" value="com.hsapi.repair.data.rps.RpsPackage" valueType="DataObject" pattern="reference">pkgTemp</process:inputVariable>
-        <process:inputVariable id="1" name="itemTemp" type="expression" value="com.hsapi.repair.data.rps.RpsItem" valueType="DataObject" pattern="reference"></process:inputVariable>
-        <process:inputVariable id="2" name="partTemp" type="expression" value="com.hsapi.repair.data.rps.RpsPart" valueType="DataObject" pattern="reference"></process:inputVariable>
+        <process:inputVariable id="1" name="itemTemp" type="expression" value="com.hsapi.repair.data.rps.RpsItem" valueType="DataObject" pattern="reference"/>
+        <process:inputVariable id="2" name="partTemp" type="expression" value="com.hsapi.repair.data.rps.RpsPart" valueType="DataObject" pattern="reference"/>
         <process:inputVariable id="3" name="maintain" type="query" value="com.hsapi.repair.data.rps.RpsMaintain" valueType="DataObject" pattern="reference">maintain</process:inputVariable>
         <process:inputVariable id="4" name="rpsCardTimes" type="query" value="com.hsapi.repair.data.rps.RpsCardTimes" valueType="DataObject" pattern="reference">rpsCardTimes</process:inputVariable>
         <process:inputVariable id="5" name="cardTimesDetailTemp" type="query" value="com.hsapi.repair.data.rps.RpsCardTimesDetail" valueType="DataObject" pattern="reference">cardTimesDetailTemp</process:inputVariable>
+        <process:inputVariable id="6" name="type" type="literal" value="String" valueType="Primitive" pattern="reference">1</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -2504,19 +2506,20 @@
     <location x="1422" y="176"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess7label</nodeLabel>
-    <process:flow index="6" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.repair.repairService.sendWeChat.sendTimeCardCostInfo</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="pkgTemp" type="expression" value="com.hsapi.repair.data.rps.RpsPackage" valueType="DataObject" pattern="reference"></process:inputVariable>
+        <process:inputVariable id="0" name="pkgTemp" type="expression" value="com.hsapi.repair.data.rps.RpsPackage" valueType="DataObject" pattern="reference"/>
         <process:inputVariable id="1" name="itemTemp" type="query" value="com.hsapi.repair.data.rps.RpsItem" valueType="DataObject" pattern="reference">itemTemp</process:inputVariable>
-        <process:inputVariable id="2" name="partTemp" type="expression" value="com.hsapi.repair.data.rps.RpsPart" valueType="DataObject" pattern="reference"></process:inputVariable>
+        <process:inputVariable id="2" name="partTemp" type="expression" value="com.hsapi.repair.data.rps.RpsPart" valueType="DataObject" pattern="reference"/>
         <process:inputVariable id="3" name="maintain" type="query" value="com.hsapi.repair.data.rps.RpsMaintain" valueType="DataObject" pattern="reference">maintain</process:inputVariable>
         <process:inputVariable id="4" name="rpsCardTimes" type="query" value="com.hsapi.repair.data.rps.RpsCardTimes" valueType="DataObject" pattern="reference">rpsCardTimes</process:inputVariable>
         <process:inputVariable id="5" name="cardTimesDetailTemp" type="query" value="com.hsapi.repair.data.rps.RpsCardTimesDetail" valueType="DataObject" pattern="reference">cardTimesDetailTemp</process:inputVariable>
+        <process:inputVariable id="6" name="type" type="literal" value="String" valueType="Primitive" pattern="reference">2</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -2534,19 +2537,20 @@
     <location x="2165" y="253"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess8label</nodeLabel>
-    <process:flow index="6" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.repair.repairService.sendWeChat.sendTimeCardCostInfo</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="pkgTemp" type="expression" value="com.hsapi.repair.data.rps.RpsPackage" valueType="DataObject" pattern="reference"></process:inputVariable>
-        <process:inputVariable id="1" name="itemTemp" type="expression" value="com.hsapi.repair.data.rps.RpsItem" valueType="DataObject" pattern="reference"></process:inputVariable>
+        <process:inputVariable id="0" name="pkgTemp" type="expression" value="com.hsapi.repair.data.rps.RpsPackage" valueType="DataObject" pattern="reference"/>
+        <process:inputVariable id="1" name="itemTemp" type="expression" value="com.hsapi.repair.data.rps.RpsItem" valueType="DataObject" pattern="reference"/>
         <process:inputVariable id="2" name="partTemp" type="query" value="com.hsapi.repair.data.rps.RpsPart" valueType="DataObject" pattern="reference">partTemp</process:inputVariable>
         <process:inputVariable id="3" name="maintain" type="query" value="com.hsapi.repair.data.rps.RpsMaintain" valueType="DataObject" pattern="reference">maintain</process:inputVariable>
         <process:inputVariable id="4" name="rpsCardTimes" type="query" value="com.hsapi.repair.data.rps.RpsCardTimes" valueType="DataObject" pattern="reference">rpsCardTimes</process:inputVariable>
         <process:inputVariable id="5" name="cardTimesDetailTemp" type="query" value="com.hsapi.repair.data.rps.RpsCardTimesDetail" valueType="DataObject" pattern="reference">cardTimesDetailTemp</process:inputVariable>
+        <process:inputVariable id="6" name="type" type="literal" value="String" valueType="Primitive" pattern="reference">3</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

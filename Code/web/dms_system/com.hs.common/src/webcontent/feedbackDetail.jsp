@@ -12,7 +12,7 @@
 <head>
     <title>用户反馈管理</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />	
-    <script src="<%=webPath + contextPath%>/common/js/feedbackLDetail.js?v=1.1.10" type="text/javascript"></script>       
+    <script src="<%=webPath + contextPath%>/common/js/feedbackLDetail.js?v=1.1.12" type="text/javascript"></script>       
 </head>
  <style type="text/css"> 
  
@@ -42,7 +42,7 @@
 			line-height: 38px;
 		}
     html, body{
-        margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
+        margin:0px;padding:0px;border:0px;width:100%;height:100%;
     }
     
     .addyytime a.ztedit{ height:18px; display:inline-block; background:url(../images/sjde.png) 40px -1px no-repeat; padding-right:22px; color:#888; text-decoration:none;}
@@ -56,7 +56,7 @@
  
    
  </style>
-<body>
+<body >
 	<div class="nui-toolbar" style="padding:2px;border-bottom:0;" >
 		<table id="form" style="width:100%;">
 			 <tr>
@@ -68,7 +68,7 @@
 		</table>
 	</div> 
 		<fieldset
-		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;">
+		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;" >
 		<legend>用户信息</legend> 
 		<div id="dataform1" style="padding-top: 5px;" >
 			<table>
@@ -92,7 +92,7 @@
 	
      
     <fieldset
-		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;">
+		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;" >
 		<legend>问题描述</legend> 
 		 <div class="addyytime" style="display:''" id="showHot" >
               <table style="width:100%;height:50px;">
@@ -107,9 +107,9 @@
               	<tr>
 	              	<td class="title required" width="100" height="28">
 				    	功能标题：
-						<span style="padding-top: 2px;padding-right: 150px;"  id="funcName" name="funcName"></span>
+						<span style="padding-top: 2px;padding-right: 150px;display:none"  id="funcName" name="funcName"></span>
 						功能路径：
-						<span style="padding-top: 2px;"  id="funcAction" name="funcAction"></span>
+						<span style="padding-top: 2px;display:none"  id="funcAction" name="funcAction"></span>
 	                </td>
               	</tr>
                 <tr>

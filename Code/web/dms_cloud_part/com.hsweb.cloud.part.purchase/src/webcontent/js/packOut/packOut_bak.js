@@ -99,7 +99,7 @@ $(document).ready(function(v)
             return;
         }
         var params = {};
-    	params.pny = e.data.key;
+    	params.pny = e.data.keye.replace(/\s+/g, "");
     	params.isSupplier = 1;
 
         data.params = params;
@@ -120,7 +120,7 @@ $(document).ready(function(v)
         }
         var params = {};
 
-    	params.pny = e.data.key;
+    	params.pny = e.data.key.replace(/\s+/g, "");
     	params.isSupplier = 1;
     	params.guestType='01020204',
     	params.isDisabled=0;
@@ -515,6 +515,11 @@ function onAdvancedSearchOk()
             tmpList[i] = "'"+tmpList[i]+"'";
         }
         searchData.serviceIdList = tmpList.join(",");
+    }
+    for(var key in searchData){
+    	if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
+    		searchData[key]=searchData[key].replace(/\s+/g, "");
+    	}
     }
     advancedSearchFormData = advancedSearchForm.getData();
     advancedSearchWin.hide();

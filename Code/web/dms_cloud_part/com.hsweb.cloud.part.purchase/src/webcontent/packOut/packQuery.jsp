@@ -9,7 +9,7 @@
 -->
 <head>
 <title>物流订单查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/packOut/packQuery.js?v=1.0.28"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/packOut/packQuery.js?v=1.0.29"></script>
    
 <style type="text/css">
 .title {
@@ -81,7 +81,8 @@
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <span class="separator"></span> 
 
-                <input id="serviceId" width="120px" emptyText="打包单号" class="nui-textbox"/>
+                <input id="serviceId" width="160px" emptyText="打包单号" class="nui-textbox"/>
+                <input id="billServiceId" width="160px" emptyText="销售单号" class="nui-textbox"/>
 				<input id="guestName" width="120px" emptyText="客户名称" class="nui-textbox"/>
 
 
@@ -116,7 +117,11 @@
                 <div property="columns">
                 	<div field="billStatusId" width="90" name = "billStatusId" headerAlign="center" header="状态"></div>
                     <div allowSort="true" field="serviceId" width="160" summaryType="count" headerAlign="center" header="打包单号"></div>
-                    <div field="guestName" name="guestName" width="220" headerAlign="center" header="客户"></div>
+                    <div allowSort="true" field="logisticsNo" width="160" summaryType="count" headerAlign="center" header="物流单号"></div>
+                    <div allowSort="true" field="logisticsName" width="160" summaryType="count" headerAlign="center" header="物流公司"></div>
+                    <div allowSort="true" field="destinationStation" width="80" summaryType="count" headerAlign="center" header="目的站"></div>
+                    <div allowSort="true" field="receiveMan" width="80" summaryType="count" headerAlign="center" header="收货人"></div>
+                    <div field="guestName" name="guestName" width="120" headerAlign="center" header="客户"></div>
                     <div field="packMan" width="90" name = "packMan" headerAlign="center" header="发货员"></div>
                     <div allowSort="true" field="payType"  name="payType" width="90" headerAlign="center" header="付款方式"></div>
                     <div allowSort="true" field="settleTypeId" name="settleTypeId" width="90" headerAlign="center" header="结算方式"></div>
@@ -138,8 +143,10 @@
                     <div allowSort="true" field="detailRemark" width="80" headerAlign="center" header="备注"></div>
                     <div field="creator" width="90" name="creator" headerAlign="center" header="创建人"></div>
                     <div allowSort="true" field="createDate" width="130" headerAlign="center" header="创建日期" dateFormat="yyyy-MM-dd HH:mm" ></div>
+                    <div allowSort="true" field="auditDate" width="130" headerAlign="center" header="发货日期" dateFormat="yyyy-MM-dd HH:mm" ></div>  
+                    <div allowSort="true" field="arriveDate" width="130" headerAlign="center" header="到货日期" dateFormat="yyyy-MM-dd HH:mm" ></div>   
                     <div field="operator" width="60"  name="operator" headerAlign="center" header="修改人"></div>
-                    <div allowSort="true" field="operateDate" width="130" headerAlign="center" header="修改日期" dateFormat="yyyy-MM-dd HH:mm" ></div>  
+                    <div allowSort="true" field="operateDate" width="130" headerAlign="center" header="修改日期" dateFormat="yyyy-MM-dd HH:mm" ></div> 
                 </div>
             </div>
         </div>

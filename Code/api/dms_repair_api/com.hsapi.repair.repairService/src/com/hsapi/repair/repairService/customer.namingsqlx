@@ -40,6 +40,7 @@
 			c.chain_come_times chainComeTimes,
 			b.mobile mobile,
 			c.mt_advisor_name mtAdvisorName,
+			b.tgrade tgrade,
 			ifnull( DATEDIFF( now( ), c.last_leave_date ), 0 ) leaveDay
 		FROM
 			wb_common.com_guest b
@@ -109,8 +110,8 @@
 			</isEqual>
 			  <!--本月新客户 --> 
             <isEqual property="thisMonthNew" compareValue="1"> 
-                and c.last_leave_date  &gt;= date_format(DATE_ADD(curdate(),interval -day(curdate())+1 day),'%Y-%m-%d %H:%i:%s')  
-                and c.last_leave_date  &lt; date_format(date_add(curdate()-day(curdate())+1,interval 1 month),'%Y-%m-%d %H:%i:%s')
+                and c.last_come_date  &gt;= date_format(DATE_ADD(curdate(),interval -day(curdate())+1 day),'%Y-%m-%d %H:%i:%s')  
+                and c.last_come_date  &lt; date_format(date_add(curdate()-day(curdate())+1,interval 1 month),'%Y-%m-%d %H:%i:%s')
                 and ifnull(c.chain_come_times,0) = 1
             </isEqual>
             <!--本月所有来厂客户 --> 
@@ -154,7 +155,7 @@
 			a.car_no carNo,
 			b.id as guestId,
 			a.vin vin,
-			b.full_name guestFullName,
+			b.full_name fullName,
 			a.car_model_id carModelId,
 			a.car_model_id_ly carModelIdLy,
 			a.car_model carModel,

@@ -167,8 +167,8 @@ function getSearchParam(){
         params.accountSign = null;
     }
 
-    params.serviceId = searchServiceId.getValue();
-    params.serviceMan = searchServiceMan.getValue();
+    params.serviceId = searchServiceId.getValue().replace(/\s+/g, "");
+    params.serviceMan = searchServiceMan.getValue().replace(/\s+/g, "");
     //params.guestId = comSearchGuestId.getValue();
     
     params.endDate = searchEndDate.getValue();
@@ -303,7 +303,7 @@ function onAdvancedSearchOk()
         var tmpList = searchData.serviceIdList.split("\n");
         for(i=0;i<tmpList.length;i++)
         {
-            tmpList[i] = "'"+tmpList[i]+"'";
+            tmpList[i] = "'"+tmpList[i].replace(/\s+/g, "")+"'";
         }
         searchData.serviceIdList = tmpList.join(",");
     }
@@ -312,7 +312,11 @@ function onAdvancedSearchOk()
             searchData.accountSign = null;
         }
     }
-
+    for(var key in searchData){
+    	if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
+    		searchData[key]=searchData[key].replace(/\s+/g, "");
+    	}
+    }
     advancedSearchWin.hide();
     doSearch(searchData);
 }

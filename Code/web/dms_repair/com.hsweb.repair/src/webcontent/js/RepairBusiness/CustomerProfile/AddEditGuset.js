@@ -10,6 +10,8 @@ var cardatagrid = null;
 var contactview = null;
 var contactdatagrid = null;
 var contactInfoForm = null;
+var guestTypeList = [];
+var guestTypeHash = {};
 var lyData = [];
 var sfData = [];
 var fullName = null;
@@ -49,6 +51,13 @@ $(document).ready(function()
         }
       };
       nui.get("wechatOpenId").disable();
+      
+      initGuestType("guestTypeId",function(data) {
+      	guestTypeList = nui.get("guestTypeId").getData();
+      	guestTypeList.forEach(function(v) {
+      		guestTypeHash[v.id] = v;
+          });
+      });
 });
 function init(callback)
 {
@@ -99,7 +108,6 @@ function init(callback)
         lyData  = nui.get("source").data;
         sfData = nui.get("identity").data;
     });
-    
     initProvince("provice");
 }
 var carList = [{}];
@@ -193,7 +201,7 @@ function onOk()
 {
     var guest = basicInfoForm.getData(true);
     guest.guestType = "01020103";
-  
+    guest.tgrade = guest.guestTypeId;
     for(key in basicRequiredField){
         //tmp = nui.get(key).getText();
         if(!nui.get(key).value){
@@ -319,7 +327,7 @@ function setData(data)
 	if(data.guest){
 		resultGuest.guestId=data.guest.guestId;
 		carNo =data.guest.carNo;
-	    guestFullName =data.guest.guestFullName;
+	    guestFullName =data.guest.guestFullName; 
 	}
 	var count = 0;
     init(function()
@@ -344,6 +352,13 @@ function setData(data)
                         carList = data.carList||[{}];
                         cardatagrid.setData(carList);
                         contactdatagrid.setData(contactList);
+                        var tgrade = data.guest.tgrade;
+                	    if(tgrade){
+                	    	var num = parseInt(tgrade);
+                	    	var tgradeName = guestTypeHash[num].name;
+                	    	nui.get("guestTypeId").setText(tgradeName);
+                	    	nui.get("guestTypeId").setValue(tgrade);
+                	    }
                     }
                     else{
                         showMsg("获取客户信息失败", "E");
@@ -812,7 +827,11 @@ function eaidCar(){
 	carview.show();
 	carInfoFrom.setData(row);
 	nui.get("carNo").disable();
-	nui.get("vin").disable();
+	if(!nui.get("vin").getValue()) {
+		nui.get("vin").enable();
+	}else {
+		nui.get("vin").disable();
+	}
 }
 
 function eaidContact(){

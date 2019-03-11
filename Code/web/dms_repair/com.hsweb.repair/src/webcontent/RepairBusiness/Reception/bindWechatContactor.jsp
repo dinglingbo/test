@@ -11,7 +11,7 @@
 -->
 <head>
     <title>选择联系人</title>
-     <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/bindWechatContactor.js?v=1.0.13"></script> 
+     <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/bindWechatContactor.js?v=1.0.14"></script> 
     <style type="text/css">
         table {
             font-size: 12px;

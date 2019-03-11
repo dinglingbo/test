@@ -231,7 +231,7 @@
 	    });
 	}
 	
-	var getPartByIdUrl = window._rootUrl
+	var getPartByIdUrl = apiPath + cloudPartApi+ "/"
 	+ "com.hsapi.cloud.part.baseDataCrud.crud.getPartById.biz.ext";
 	function getPartById(id, callback) {
 		var params = {};

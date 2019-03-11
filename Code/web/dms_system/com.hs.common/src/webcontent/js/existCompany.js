@@ -39,8 +39,8 @@ $(document).ready(function(v) {
 function onSearch(){
 	var params = {};
 	params.empId = empId;
-	params.name = nui.get("name").getValue();
-	params.code = nui.get("code").getValue();
+	params.name = nui.get("name").getValue().replace(/\s+/g, "");
+	params.code = nui.get("code").getValue().replace(/\s+/g, "")s;
 	moreOrgGrid.load({
 		params:params,
 		token : token

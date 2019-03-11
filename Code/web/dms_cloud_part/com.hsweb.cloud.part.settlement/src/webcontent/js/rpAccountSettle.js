@@ -212,7 +212,7 @@ function getItemType(callback) {
 function getSearchParam(){
     var params = {};
 
-    params.billServiceId = searchServiceId.getValue();
+    params.billServiceId = searchServiceId.getValue().replace(/\s+/g, "");
     //params.guestId = comSearchGuestId.getValue();
     
     params.sCreateDate = searchBeginDate.getFormValue();
@@ -375,7 +375,7 @@ function onAdvancedSearchOk()
         var tmpList = searchData.billServiceIdList.split("\n");
         for(i=0;i<tmpList.length;i++)
         {
-            tmpList[i] = "'"+tmpList[i]+"'";
+            tmpList[i] = "'"+tmpList[i].replace(/\s+/g, "")+"'";
         }
         searchData.billServiceIdList = tmpList.join(",");
     }
@@ -384,7 +384,11 @@ function onAdvancedSearchOk()
             searchData.balanceSign = null;
         }
     }
-
+    for(var key in searchData){
+    	if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
+    		searchData[key]=searchData[key].replace(/\s+/g, "");
+    	}
+    }
     advancedSearchWin.hide();
     doSearch(searchData);
 }
@@ -1402,7 +1406,7 @@ function settleOK(){
         account.guestId = firstRow.guestId;
         account.guestName = firstRow.guestName;
         account.itemQty = s;
-        account.remark = nui.get('rpTextRemark').getValue();
+        account.remark = nui.get('rpTextRemark').getValue().replace(/\s+/g, "");
 
         for(var i=0; i<s; i++){
             var row = rows[i];

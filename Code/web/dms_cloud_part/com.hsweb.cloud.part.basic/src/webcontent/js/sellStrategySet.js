@@ -26,6 +26,7 @@ $(document).ready(function(v)
         	mainTabs.updateTab(guestInfo, { visible: false });
         	nui.get('saveStraPart').setVisible(false);
         	nui.get('saveUnifyPart').setVisible(true);
+        	nui.get('deleteNode').disable();
         }
     });
     
@@ -173,11 +174,13 @@ function onStraGridClick(e){
     	mainTabs.updateTab(guestInfo, { visible: false });
     	nui.get('saveStraPart').setVisible(false);
     	nui.get('saveUnifyPart').setVisible(true);
+    	nui.get('deleteNode').disable();
     	
     }else{
 		mainTabs.updateTab(guestInfo, { visible: true });
 		nui.get('saveStraPart').setVisible(true);
     	nui.get('saveUnifyPart').setVisible(false);
+    	nui.get('deleteNode').enable();
     	
     }
     var tab = mainTabs.getActiveTab();
@@ -253,8 +256,8 @@ function onGuestSearch() {
     if(row && row.id){
         var params = {};
         params.strategyId = row.id;
-        params.namePy = nui.get("GuestNamePy").getValue();
-        params.fullName = nui.get("GuestFullName").getValue();
+        params.namePy = nui.get("GuestNamePy").getValue().replace(/\s+/g, "");
+        params.fullName = nui.get("GuestFullName").getValue().replace(/\s+/g, "");
         rightGuestGrid.load({params:params,token:token});
     }
 }
@@ -264,9 +267,9 @@ function onPartSearch() {
     if(row && row.id){
         var params = {};
         params.strategyId = row.id;
-        params.queryCode = nui.get("queryCode").getValue();
-        params.namePy = nui.get("namePy").getValue();
-        params.fullName = nui.get("fullName").getValue();
+        params.queryCode = nui.get("queryCode").getValue().replace(/\s+/g, "");
+        params.namePy = nui.get("namePy").getValue().replace(/\s+/g, "");
+        params.fullName = nui.get("fullName").getValue().replace(/\s+/g, "");
         rightPartGrid.load({params:params,token:token},function(){
 //        	var data=rightPartGrid.getData();
 //			var list=[];
@@ -288,9 +291,9 @@ function onPartSearch() {
 }
 function onUnifySearch() {
     var params = {};
-    params.queryCode = nui.get("queryCode").getValue();
-    params.namePy = nui.get("namePy").getValue();
-    params.fullName = nui.get("fullName").getValue();
+    params.queryCode = nui.get("queryCode").getValue().replace(/\s+/g, "");
+    params.namePy = nui.get("namePy").getValue().replace(/\s+/g, "");
+    params.fullName = nui.get("fullName").getValue().replace(/\s+/g, "");
     rightPartGrid.load({params:params,token:token});
  
 }
@@ -336,6 +339,43 @@ function onSaveNode(){
             console.log(jqXHR.responseText);
         }
     });
+}
+//删除策略价格节点
+var delNodeUrl=baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.deleteSellStratefy.biz.ext";
+function onDeleteNode(){
+	var data = straGrid.getSelected();
+	if(data._id==1) return;
+	var id=data.id;
+	nui.mask({
+        el : document.body,
+        cls : 'mini-mask-loading',
+        html : '删除中...'
+    });
+	
+	nui.ajax({
+        url : delNodeUrl,
+        type : "post",
+        data : JSON.stringify({
+            id : id,
+            token: token
+        }),
+        success : function(data) {
+            nui.unmask(document.body);
+            data = data || {};
+            if (data.errCode == "S") {
+                showMsg("删除成功!","S");
+                straGrid.reload();
+                
+            } else {
+                showMsg(data.errMsg || "删除失败!","E");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+	
 }
 var supplier = null;
 function selectSupplier(elId) {

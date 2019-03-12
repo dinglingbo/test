@@ -676,7 +676,7 @@ function onAdvancedAddOk(){
 
 
  function setHotWord(){
-	var hotUrl = apiPath + sysApi + "/com.hsapi.system.product.items.getHotWord.biz.ext";
+	var hotUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.svr.getHotWords.biz.ext";
 	nui.ajax({
 		url : hotUrl,
 		type : "post",
@@ -687,13 +687,13 @@ function onAdvancedAddOk(){
 			data = data || {};
 			if (data.errCode == "S") {
 				
-				var list = nui.clone(data.rs);
+				var list = nui.clone(data.result);
 				var temp = "";
 				for(var i=0;i<list.length;i++){
 					if(i<3){
-						var aEl = "<a href='##' id='"+list[i].id+"' value="+list[i].name+"  name='HotWord' class='hui backRed'>"+list[i].name+"</a>";
+						var aEl = "<a href='##' id='"+list[i].id+"' value="+list[i].partName+"  name='HotWord' class='hui backRed'>"+list[i].partName+"</a>";
 					}else{
-						var aEl = "<a href='##' id='"+list[i].id+"' value="+list[i].name+"  name='HotWord' class='hui'>"+list[i].name+"</a>";
+						var aEl = "<a href='##' id='"+list[i].id+"' value="+list[i].partName+"  name='HotWord' class='hui'>"+list[i].partName+"</a>";
 					}
 					temp +=aEl;
 				}

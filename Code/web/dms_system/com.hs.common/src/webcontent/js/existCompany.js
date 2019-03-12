@@ -101,7 +101,7 @@ function cancelOrg(){
             }
           });
 	}else{
-		nui.alert("请选择门店!");
+		 showMsg("请选择门店!","W");
 	}
 }
 

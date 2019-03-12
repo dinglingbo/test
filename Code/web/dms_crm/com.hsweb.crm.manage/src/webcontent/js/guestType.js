@@ -256,6 +256,7 @@ function search() {
                 }
                 if (params.cmodel) {
                     params.cbrand = "";
+                    params.cmodel = params.cmodel.replace(/\,/g,"|");
                 }
                 gridkhlx.load({
                     params: params, 

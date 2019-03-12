@@ -291,13 +291,13 @@ a {
 		<div class="title">注册</div>	
 		<label style="width:100%">
 			<p ><span id="errorP" style="font-size:15px;color:red"></span></p>
-			<input type="text" id="registercompname" name="registercompname" value="" placeholder="请输入公司名" maxlength="11" />
+			<input type="text" id="registercompname" name="registercompname" value="" placeholder="请输入公司名" maxlength="50" />
 		</label>
  		<label style="width:100%">
-			<input type="text" style="display:none"  id="registername" name="registername" value="" placeholder="请输入用户名" maxlength="20" />
+			<input type="text" style="display:none"  id="registername" name="registername" value="" placeholder="请输入用户名" maxlength="50" />
 		</label> 
 		<label style="width:100%">
-			<input type="text" class="number" id="phone" name="phone" value="" placeholder="手机号码" maxlength="11" />
+			<input type="text" class="number" id="phone" name="phone" value="" placeholder="手机号码" maxlength="50" />
 		</label>
 		
 		<label style="width:100%">

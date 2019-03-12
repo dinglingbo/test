@@ -103,7 +103,8 @@ pageEncoding="UTF-8" session="false" %>
     nui.parse();
     var webBaseUrl = webPath + contextPath + "/";
     var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/"; 
-    var visitModeCtrlUrl = baseUrl + "com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictid=DDT20130703000021&fromDb=true";
+    var visitModeCtrlUrl = apiPath + sysApi +
+            "/com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictid=DDT20130703000021&fromDb=true";
     var mainReasonUrl = baseUrl + "com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictid=DDT20130705000008&fromDb=true";
     var detailReasonUrl = baseUrl + "com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictid=DDT20130705000009&fromDb=true";
     visitMode_ctrl = nui.get("visitMode");

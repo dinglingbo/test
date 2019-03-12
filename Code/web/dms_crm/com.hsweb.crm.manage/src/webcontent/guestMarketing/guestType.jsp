@@ -16,7 +16,7 @@ pageEncoding="UTF-8" session="false" %>
     <%@include file="/common/commonRepair.jsp"%>
     <script type="text/javascript" src="https://unpkg.com/echarts@3.5.3/dist/echarts.js"></script>
     <script src="<%= request.getContextPath() %>/common/nui/macarons.js" type="text/javascript"></script>
-    <script src="<%=webPath + contextPath%>/manage/js/guestType.js?v=0.2.0" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/guestType.js?v=0.4.8" type="text/javascript"></script>
     <style type="text/css">
         html,
         body {
@@ -27,6 +27,12 @@ pageEncoding="UTF-8" session="false" %>
             height: 100%;
             overflow: hidden;
         }
+        #wechatTag1{
+            color:#ccc;
+    }
+    #wechatTag{
+        color:#62b900;
+    }
     </style>
 </head>
 
@@ -42,35 +48,98 @@ pageEncoding="UTF-8" session="false" %>
 
             <div id="t3" style="float:left;width: 60%; height: 100%;">
                 <div id="tabs1" class="nui-tabs" activeIndex="0" style="width:100%;height:100%;" plain="true"
-                onactivechanged="queryTab(e)"
-                    tabPosition="left">
+                onactivechanged=""
+                    tabPosition="top">
                     <div title="客户类型" name="type">
-                            <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
+                            <div class="nui-toolbar" style="padding:2px;border-bottom: 0" id="form1">
                                     <table style="width:100%;">
                                         <tr>
-                                            <td>
+                                            <td colspan="2">
                                                 <label>客户类型：</label>
-                                                <input class="nui-combobox" name="" id="type" style="width: 300px;"  required="true" multiSelect="false"
+                                                <input class="nui-combobox" name="type" id="type" style="width: 300px;"  required="false" multiSelect="false"
                                                 data="gType" textField="text" valueField="id" allowInput="true" valueFromSelect="true" />
-                                                <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
-                                                        class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                                             </td>
                                         </tr>
+
+                                        <tr>
+                                                <td>
+                                                    <label>车辆品牌：</label>
+                                                    <input id="cbrand" name="cbrand" class="nui-combobox" dataField="list" required="false"  onvaluechanged="onBrandChanged" 
+                                                    textField="nodeName" valueField="nodeId"   style="width:200px"
+                                                    allowInput="true" valueFromSelect="true" />
+                                                </td>
+                                                <td>
+                                                    <label>车辆车系：</label>
+                                                    <input id="cmodel" name="cmodel"class="nui-combobox" dataField="list"  multiSelect="true"
+                                                    textField="nodeName" valueField="nodeId"  allowInput="false"  
+                                                    showClose="true" oncloseclick="onCloseClick" style="width:200px"/>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                    <td>
+                                                        <label>客户等级：</label>
+                                                        <input class="nui-combobox" name="level" id="level" style="width: 200px;"  required="false" multiSelect="true"
+                                                        textField="name" valueField="id" allowInput="false" />
+                                                    </td>
+                                                    <td>
+                                                        <label>维修顾问：</label>
+                                                                <input class="nui-combobox" name="mta" id="mta" style="width: 200px;"  required="false" multiSelect="true"
+                                                                textField="empName" valueField="empId" allowInput="true" valueFromSelect="true" />
+                                
+                                                    </td>
+                                                </tr>
+ 
+                                                <tr>
+                                                        <td>
+                                                            <label>消费金额在</label>
+                                                            <input class="nui-textbox" name="startAmt" id="startAmt" style="width: 50px;" vtype="int" value=""/>
+                                                            <label>-</label>
+                                                            <input class="nui-textbox" name="endAmt" id="endAmt" style="width: 50px;" vtype="int" value=""/>
+                                                            <label>元之间</label>
+                                                        </td>
+                                                        <td>
+                                                            <label>消费次数在</label>
+                                                            <input class="nui-textbox" name="startTime" id="startTime" style="width: 50px;" vtype="int" value=""/>
+                                                            <label>-</label>
+                                                            <input class="nui-textbox" name="endTime" id="endTime" style="width: 50px;" vtype="int" value=""/>
+                                                            <label>次之间</label>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                            <td>
+                                                                <label>行驶里程在</label>
+                                                                <input class="nui-textbox" name="startKilo" id="startKilo" style="width: 50px;" vtype="int" value=""/>
+                                                                <label>-</label>
+                                                                <input class="nui-textbox" name="endKilo" id="endKilo" style="width: 50px;" vtype="int" value=""/>
+                                                                <label>公里之间</label>
+                                                            </td>
+                                                            <td>
+                                                                <label>离厂天数在</label>
+                                                                <input class="nui-textbox" name="startDay" id="startDay" style="width: 50px;" vtype="int" value=""/>
+                                                                <label>-</label>
+                                                                <input class="nui-textbox" name="endDay" id="endDay" style="width: 50px;" vtype="int" value=""/>
+                                                                <label>天之间</label>
+                                                            </td>
+                                                        </tr>
                                     </table>
                                 </div>
                                 <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
                                     <table style="width:100%;">
                                         <tr>
                                             <td>
-                                                <label>操作：</label>
+                                                    <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
+                                                        class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                                                        <span class="separator"></span>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
                                                         class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                                                <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
-                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a> -->
                                             </td>
                                         </tr>
                                     </table>
@@ -83,315 +152,22 @@ pageEncoding="UTF-8" session="false" %>
                                         <div property="columns">
                                             <!-- <div type="checkcolumn"></div> -->
                                             <div type="indexcolumn" headerAlign="center" header="序号"></div>
-                                            <div field="name" name="" width="70" headerAlign="center" header="客户名称"></div>
-                                            <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>
-                                            <div field="carNo" name="" width="60" headerAlign="center" header="车牌号"></div>
-                                            <div field="carModel" name="" width="120" headerAlign="center" header="品牌车型"></div>
-                                            <div field="chainComeTimes" name="" width="50" headerAlign="center" header="来厂次数" ></div>
-                                            <div field="lastComeDate" name="" width="70" headerAlign="center" header="最后来厂日期" dateFormat="yyyy-MM-dd"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                    </div>
-                    <div title="车辆品牌">
-                        2
-                    </div>
-                    <div title="客户等级" name="level"enabled="true">
-                            <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
-                                    <table style="width:100%;">
-                                        <tr>
-                                            <td>
-                                                <label>客户等级：</label>
-                                                <input class="nui-combobox" name="" id="level" style="width: 200px;"  required="true" multiSelect="true"
-                                                textField="empName" valueField="empId" allowInput="true" valueFromSelect="true" />
-                                                <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
-                                                        class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
-                                    <table style="width:100%;">
-                                        <tr>
-                                            <td>
-                                                <label>操作：</label>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
-                                                        class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
-                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
-                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
-                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-        
-                                <div class="nui-fit">
-                                    <div id="gridkhdj" class="nui-datagrid" style="width:100%;height:100%;" pageSize="50"
-                                        multiSelect="false" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
-                                        onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
-                                        <div property="columns">
-                                            <!-- <div type="checkcolumn"></div> -->
-                                            <div type="indexcolumn" headerAlign="center" header="序号"></div>
                                             <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
-                                            <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>
-                                            <div field="carNo" name="" width="70" headerAlign="center" header="车牌号"></div>
-                                            <div field="carModel" name="" width="100" headerAlign="center" header="品牌车型"></div>
-                                            <div field="guestLevel" name="" width="70" headerAlign="center" header="客户等级" ></div>
-                                        </div>
-                                    </div>
-                                </div>
-                    </div>
-                    <div title="离厂天数" name="leave"enabled="true">
-                            <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
-                                    <table style="width:100%;">
-                                        <tr>
-                                            <td>
-                                                <label>离厂天数在</label>
-                                                <input class="nui-textbox" name="" id="startDay" style="width: 50px;" vtype="int" value="0"/>
-                                                <label>-</label>
-                                                <input class="nui-textbox" name="" id="endDay" style="width: 50px;" vtype="int" value="30"/>
-                                                <label>天之间</label>
-                                                <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
-                                                        class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
-                                    <table style="width:100%;">
-                                        <tr>
-                                            <td>
-                                                <label>操作：</label>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
-                                                        class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
-                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
-                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
-                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-        
-                                <div class="nui-fit">
-                                    <div id="gridlcts" class="nui-datagrid" style="width:100%;height:100%;" pageSize="50"
-                                        multiSelect="false" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
-                                        onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
-                                        <div property="columns">
-                                            <!-- <div type="checkcolumn"></div> -->
-                                            <div type="indexcolumn" headerAlign="center" header="序号"></div>
-                                            <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
-                                            <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>
-                                            <div field="carNo" name="" width="70" headerAlign="center" header="车牌号"></div>
-                                            <div field="carModel" name="" width="100" headerAlign="center" header="品牌车型"></div>
-                                            <div field="leaveDay" name="" width="70" headerAlign="center" header="离厂天数" ></div>
-                                        </div>
-                                    </div>
-                                </div>
-                    </div>
-                    <div title="消费金额" name="amt"enabled="true">
-                            <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
-                                    <table style="width:100%;">
-                                        <tr>
-                                            <td>
-                                                <label>消费金额在</label>
-                                                <input class="nui-textbox" name="" id="startAmt" style="width: 50px;" vtype="int" value="1"/>
-                                                <label>-</label>
-                                                <input class="nui-textbox" name="" id="endAmt" style="width: 50px;" vtype="int" value="2000"/>
-                                                <label>元之间</label>
-                                                <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
-                                                        class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
-                                    <table style="width:100%;">
-                                        <tr>
-                                            <td>
-                                                <label>操作：</label>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
-                                                        class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
-                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
-                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
-                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-        
-                                <div class="nui-fit">
-                                    <div id="gridxfje" class="nui-datagrid" style="width:100%;height:100%;" pageSize="50"
-                                        multiSelect="false" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
-                                        onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
-                                        <div property="columns">
-                                            <!-- <div type="checkcolumn"></div> -->
-                                            <div type="indexcolumn" headerAlign="center" header="序号"></div>
-                                            <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
-                                            <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>
-                                            <div field="carNo" name="" width="70" headerAlign="center" header="车牌号"></div>
-                                            <div field="carModel" name="" width="100" headerAlign="center" header="品牌车型"></div>
-                                            <div field="chainConsumeAmt" name="" width="70" headerAlign="center" header="消费金额" ></div>
-                                        </div>
-                                    </div>
-                                </div>
-                    </div>
-                    <div title="消费次数" name="time"enabled="true">
-                            <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
-                                    <table style="width:100%;">
-                                        <tr>
-                                            <td>
-                                                <label>消费次数在</label>
-                                                <input class="nui-textbox" name="" id="startTime" style="width: 50px;" vtype="int" value="1"/>
-                                                <label>-</label>
-                                                <input class="nui-textbox" name="" id="endTime" style="width: 50px;" vtype="int" value="1"/>
-                                                <label>次之间</label>
-                                                <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
-                                                        class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
-                                    <table style="width:100%;">
-                                        <tr>
-                                            <td>
-                                                <label>操作：</label>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
-                                                        class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
-                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
-                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
-                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-        
-                                <div class="nui-fit">
-                                    <div id="gridxfcs" class="nui-datagrid" style="width:100%;height:100%;" pageSize="50"
-                                        multiSelect="false" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
-                                        onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
-                                        <div property="columns">
-                                            <!-- <div type="checkcolumn"></div> -->
-                                            <div type="indexcolumn" headerAlign="center" header="序号"></div>
-                                            <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
-                                            <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>
-                                            <div field="carNo" name="" width="70" headerAlign="center" header="车牌号"></div>
-                                            <div field="carModel" name="" width="100" headerAlign="center" header="品牌车型"></div>
+                                            <div field="mobile" name="" width="110" headerAlign="center" header="联系方式"></div>
+                                            <div field="carNo" name="" width="80" headerAlign="center" header="车牌号"></div>
+                                            <div field="carModel" name="" width="150" headerAlign="center" header="品牌车型"></div>
                                             <div field="chainComeTimes" name="" width="70" headerAlign="center" header="消费次数" ></div>
-                                        </div>
-                                    </div>
-                                </div>
-                    </div>
-                    <div title="行驶里程" name="kilo"enabled="true">
-                            <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
-                                    <table style="width:100%;">
-                                        <tr>
-                                            <td>
-                                                <label>行驶里程在</label>
-                                                <input class="nui-textbox" name="" id="startKilo" style="width: 50px;" vtype="int" value="1"/>
-                                                <label>-</label>
-                                                <input class="nui-textbox" name="" id="endKilo" style="width: 50px;" vtype="int" value="1000"/>
-                                                <label>公里之间</label>
-                                                <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
-                                                        class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
-                                    <table style="width:100%;">
-                                        <tr>
-                                            <td>
-                                                <label>操作：</label>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
-                                                        class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
-                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
-                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
-                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-        
-                                <div class="nui-fit">
-                                    <div id="gridxslc" class="nui-datagrid" style="width:100%;height:100%;" pageSize="50"
-                                        multiSelect="false" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
-                                        onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
-                                        <div property="columns">
-                                            <!-- <div type="checkcolumn"></div> -->
-                                            <div type="indexcolumn" headerAlign="center" header="序号"></div>
-                                            <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
-                                            <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>
-                                            <div field="carNo" name="" width="70" headerAlign="center" header="车牌号"></div>
-                                            <div field="carModel" name="" width="100" headerAlign="center" header="品牌车型"></div>
+                                            <div field="chainConsumeAmt" name="" width="70" headerAlign="center" header="消费金额" ></div>
+                                            <div field="chainComeTimes" name="" width="70" headerAlign="center" header="来厂次数" ></div>
+                                            <div field="leaveDay" name="" width="70" headerAlign="center" header="离厂天数" ></div>
                                             <div field="lastComeKilometers" name="" width="70" headerAlign="center" header="行驶里程" ></div>
-                                        </div>
-                                    </div>
-                                </div>
-                    </div>
-                    <div title="维修顾问" name="mta"enabled="true">
-                            <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
-                                    <table style="width:100%;">
-                                        <tr>
-                                            <td>
-                                                <label>维修顾问：</label>
-                                                <input class="nui-combobox" name="" id="mta" style="width: 200px;"  required="true" multiSelect="true"
-                                                textField="empName" valueField="empId" allowInput="true" valueFromSelect="true" />
-                                                <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
-                                                        class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
-                                    <table style="width:100%;">
-                                        <tr>
-                                            <td>
-                                                <label>操作：</label>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
-                                                        class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
-                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
-                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
-                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-        
-                                <div class="nui-fit">
-                                    <div id="gridwxgw" class="nui-datagrid" style="width:100%;height:100%;" pageSize="50"
-                                        multiSelect="false" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
-                                        onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
-                                        <div property="columns">
-                                            <!-- <div type="checkcolumn"></div> -->
-                                            <div type="indexcolumn" headerAlign="center" header="序号"></div>
-                                            <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
-                                            <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>
-                                            <div field="carNo" name="" width="70" headerAlign="center" header="车牌号"></div>
-                                            <div field="carModel" name="" width="100" headerAlign="center" header="品牌车型"></div>
+                                            <div field="tgrade" name="tgrade" width="70" headerAlign="center" header="客户等级" ></div>
                                             <div field="mtAdvisorName" name="" width="70" headerAlign="center" header="维修顾问" ></div>
                                         </div>
                                     </div>
                                 </div>
                     </div>
+                    
                     <div title="商业险到期" name="annual">
                             <div class="nui-toolbar" style="padding:2px;border-bottom: 0" >
                                     <table style="width:100%;">
@@ -413,12 +189,12 @@ pageEncoding="UTF-8" session="false" %>
                                                 <label>操作：</label>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
                                                         class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                                                <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
-                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a> -->
                                             </td>
                                         </tr>
                                     </table>
@@ -461,12 +237,12 @@ pageEncoding="UTF-8" session="false" %>
                                                 <label>操作：</label>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
                                                         class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                                                <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
-                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a> -->
                                             </td>
                                         </tr>
                                     </table>
@@ -509,12 +285,12 @@ pageEncoding="UTF-8" session="false" %>
                                                 <label>操作：</label>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
                                                         class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                                                <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
-                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a> -->
                                             </td>
                                         </tr>
                                     </table>
@@ -557,12 +333,12 @@ pageEncoding="UTF-8" session="false" %>
                                                 <label>操作：</label>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
                                                         class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                                                <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
-                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a> -->
                                             </td>
                                         </tr>
                                     </table>
@@ -605,12 +381,12 @@ pageEncoding="UTF-8" session="false" %>
                                                 <label>操作：</label>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
                                                         class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                                                <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
-                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a> -->
                                             </td>
                                         </tr>
                                     </table>
@@ -653,12 +429,12 @@ pageEncoding="UTF-8" session="false" %>
                                         <label>操作：</label>
                                         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
                                                 class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                                        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                                        <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
                                                 class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
                                         <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
                                                 class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
                                         <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
-                                                class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+                                                class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a> -->
                                     </td>
                                 </tr>
                             </table>
@@ -707,6 +483,9 @@ pageEncoding="UTF-8" session="false" %>
             }
         });
         getEchartDate();
+
+
+ 
 
         function getEchartDate() {
             nui.ajax({

@@ -134,6 +134,8 @@
             case "serviceCode":
                 e.cellHtml='<a href="##" onclick="edit()">'+e.value+'</a>';
                 break;
+                case "carNo":
+                e.cellHtml ='<a href="##" onclick="showCarInfo('+e.record._uid+')">'+e.record.carNo+'</a>';
             default:
                 break;
         }
@@ -325,6 +327,36 @@ function onenterGuestName(){
 function onenterCarNo(){
      onSearch();
 }
+
+function showCarInfo(row_uid){
+	var row = mainGrid.getRowByUID(row_uid);
+	if(row){
+		var params = {
+				carId : row.carId,
+				guestId : row.guestId
+		};
+		doShowCarInfo(params);
+	}
+}
+
+function doShowCarInfo(params) {
+    nui.open({
+        url: webBaseUrl + "com.hsweb.RepairBusiness.carDetails.flow?token="+token,
+        width: 800, height: 500,
+		allowResize: false,
+		showHeader: true,
+        onload: function () {
+			var iframe = this.getIFrameEl();
+			iframe.contentWindow.SetData(params);
+        },
+        ondestroy: function (action) {
+            if ("ok" == action) {
+            }
+        }
+    });
+}
+
+
 
 </script>
 

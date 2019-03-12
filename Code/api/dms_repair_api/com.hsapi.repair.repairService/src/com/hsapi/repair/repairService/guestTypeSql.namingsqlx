@@ -166,4 +166,131 @@
     and b.orgid = #orgid#
     </select>
 
+
+                    	<!--客户级别-->
+	<select id="getGuestbyLevel" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
+        d.tgrade,e.name levelName
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+		INNER JOIN rpb_car_extend c on c.car_id = a.id 
+		INNER JOIN wb_common.com_guest d on d.id = a.guest_id 
+		INNER JOIN rpb_guest_type  e on e.id = d.tgrade 
+        where (e.id in  ($levels$))
+        and b.orgid = #orgid#
+    </select>
+
+
+        	<!--车型 -->
+	<select id="getGuestbyModel" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	select 
+        a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId
+    from  rpb_car a
+    INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
+    where b.orgid = #orgid#
+    and a.car_brand_id in ($brandList$) or a.car_model_id in ($modelList$)
+    </select>
+
+    
+    <sql id="guest_column">
+ select 
+		a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+		c.id conId,c.orgid,c.name guestName,c.mobile,c.wechat_open_id wechatOpenId,
+		d.tgrade,b.mt_advisor_id mtAdvisorId ,b.mt_advisor_name mtAdvisorName,
+		b.last_come_kilometers lastComeKilometers,b.chain_come_times chainComeTimes,
+		b.chain_consume_amt chainConsumeAmt,TIMESTAMPDIFF(DAY,b.last_leave_date, NOW()) as leaveDay,
+		b.first_come_date firstComeDate,
+		b.last_come_date lastComeDate
+from  rpb_car a
+INNER JOIN rpb_car_extend b on b.car_id = a.id 
+INNER JOIN rpb_contactor c on a.guest_id = c.guest_id
+INNER JOIN wb_common.com_guest d on d.id = a.guest_id 
+where c.orgid = #orgid#
+<isNotEmpty prepend="" property="level">  
+    and (d.tgrade in ($level$))
+</isNotEmpty>
+<isNotEmpty prepend="" property="mta">  
+    and (b.mt_advisor_id in  ($mta$))
+</isNotEmpty>
+<isNotEmpty prepend="" property="startKilo">  
+    and b.last_come_kilometers  &gt;= #startKilo#
+</isNotEmpty>
+<isNotEmpty prepend="" property="endKilo">  
+    and b.last_come_kilometers  &lt;= #endKilo#
+</isNotEmpty>
+<isNotEmpty prepend="" property="startTime">  
+    and b.chain_come_times  &gt;= #startTime#
+</isNotEmpty>
+<isNotEmpty prepend="" property="endTime">  
+    and b.chain_come_times  &lt;= #endTime#
+</isNotEmpty>
+<isNotEmpty prepend="" property="startAmt">  
+    and b.chain_consume_amt  &gt;= #startAmt#
+</isNotEmpty> 
+<isNotEmpty prepend="" property="endAmt">  
+    and b.chain_consume_amt  &lt;= #endAmt#
+</isNotEmpty>
+<isNotEmpty prepend="" property="startDay">  
+    and TIMESTAMPDIFF(DAY,b.last_leave_date, NOW())  &gt;= #startDay#
+</isNotEmpty>                  
+<isNotEmpty prepend="" property="endDay">  
+    and TIMESTAMPDIFF(DAY,b.last_leave_date, NOW())  &lt;= #endDay#
+</isNotEmpty>                  
+<isNotEmpty prepend="" property="cbrand">  
+    and a.car_brand_id = #cbrand#
+</isNotEmpty>
+<isNotEmpty prepend="" property="cmodel">  
+    and a.car_model_id REGEXP #cmodel#
+</isNotEmpty>
+    </sql>
+    <!-- 首修车辆  最近一个月的首次消费车辆-->
+    <select id="getGuestTypeA" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+        <include refid="guest_column" />
+        AND B.CHAIN_COME_TIMES = 1
+        AND B.FIRST_COME_DATE  &gt;=  DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+    </select> 
+
+        <!-- 活跃期  来店2次（含）2次，且30天内消费过车辆-->
+    <select id="getGuestTypeB" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+        <include refid="guest_column" />
+        AND B.CHAIN_COME_TIMES &gt;= 2
+        AND B.LAST_COME_DATE  &gt;= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) 
+    </select> 
+
+        <!-- 稳定期  来店2次（含）2次，且31-90天内消费过车辆-->
+    <select id="getGuestTypeC" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+        <include refid="guest_column" /> 
+        AND B.CHAIN_COME_TIMES &gt;= 2
+        AND B.LAST_COME_DATE  &lt; DATE_SUB(CURDATE(), INTERVAL 30 DAY)
+        AND B.LAST_COME_DATE  &gt;= DATE_SUB(CURDATE(), INTERVAL 90 DAY)
+    </select> 
+
+        <!-- 睡眠期 离店天数在 91-180 天内-->
+    <select id="getGuestTypeD" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+        <include refid="guest_column" />
+        AND B.CHAIN_COME_TIMES &gt;  0
+        AND B.LAST_COME_DATE  &lt; DATE_SUB(CURDATE(), INTERVAL 90 DAY)
+        AND B.LAST_COME_DATE  &gt;=  DATE_SUB(CURDATE(), INTERVAL 180 DAY)
+    </select> 
+
+    <!-- 流失期  离店天数超 181 天以上-->
+    <select id="getGuestTypeE" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+        <include refid="guest_column"/>
+        AND B.CHAIN_COME_TIMES  &gt; 0
+        AND B.LAST_COME_DATE  &lt; DATE_SUB(CURDATE(), INTERVAL 180 DAY)
+    </select>
+    
+        <!-- 未分类-->
+    <select id="getGuestTypeF" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+        <include refid="guest_column"/>
+        AND B.CHAIN_COME_TIMES  &lt; 1
+    </select> 
+    
+    <!-- 所有-->
+    <select id="getGuestTypeG" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+        <include refid="guest_column"/>
+    </select>
 </sqlMap>

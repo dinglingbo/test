@@ -27,7 +27,7 @@ function setData(row) {
 
 
 function save() {
-    mainData.mobile = '15607733238';
+    //mainData.mobile = '15607733238';
         //验证
     	var message  = visitContent.getValue();
         if(message=="" || message==null){

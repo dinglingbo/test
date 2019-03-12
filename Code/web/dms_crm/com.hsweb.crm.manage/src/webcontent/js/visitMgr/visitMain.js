@@ -13,7 +13,7 @@ var memList = [];
 var visitManEl = null;
 var visitIdEl = null;
 var hash = {}; 
-
+var billTypeIdList = [{name:"综合"},{name:"检查"},{name:"洗美"},{name:"销售"},{name:"理赔"},{name:"退货"}];
 var statusHash = {
 	"0" : "报价",
 	"1" : "施工",
@@ -65,13 +65,16 @@ $(document).ready(function(){
     	});
     });
     gridCar.on("drawcell", function (e) { 
+        var uid = e.record._uid;
     	if (e.field == "status") {
     		e.cellHtml = statusHash[e.value];
     	}else if (e.field == "carBrandId") {
     		if (brandHash && brandHash[e.value]) {
     			e.cellHtml = brandHash[e.value].name;
     		}
-    	}else if (e.field == "serviceTypeId") {
+    	}else if (e.field == "billTypeId") {
+        	e.cellHtml = billTypeIdList[e.value].name; 
+        }else if (e.field == "serviceTypeId") {
     		if (servieTypeHash && servieTypeHash[e.value]) {
     			e.cellHtml = servieTypeHash[e.value].name;
     		}
@@ -81,9 +84,27 @@ $(document).ready(function(){
     		}else{
     			e.cellHtml = "未结算";
     		}
-    	}else if(e.field == "serviceCode"){
+    	}else if (e.field == "serviceTypeName") {
+            e.cellHtml = retSerTypeStyle(e.cellHtml);
+        }else if(e.field == "serviceCode"){
     		e.cellHtml ='<a href="##" onclick="openOrderDetail('+"'"+e.record.serviceId+"'"+')">'+e.record.serviceCode+'</a>';
-    	}
+    	}else if(e.field == "guestMobile"){
+            var value = e.value
+            value = "" + value;
+            var reg=/(\d{3})\d{4}(\d{4})/;
+            value = value.replace(reg, "$1****$2");
+            if(e.value){
+                if(e.record.wechatOpenId){
+                     e.cellHtml =  '<a href="javascript:bindWechat(\'' + uid + '\')" id="showA" ><span id="wechatTag" class="fa fa-wechat fa-lg"></span></a>&nbsp;'+value;
+                     /*e.cellHtml = "<span id='wechatTag' class='fa fa-wechat fa-lg'></span>"+value;*/
+                }else{
+                    e.cellHtml =  '<a href="javascript:bindWechat(\'' + uid + '\')" id="showA1" ><span id="wechatTag1" class="fa fa-wechat fa-lg"></span></a>&nbsp;'+value;
+                }
+            }else{
+                e.cellHtml="";
+            }
+            
+        }
     });
 
 });
@@ -185,6 +206,8 @@ function openOrderDetail(serviceId){
 		item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow";
 		item.iconCls = "fa fa-cog";
 		window.parent.activeTabAndInit(item,data);
+	}else{
+		showMsg("请选中一条数据","W");
 	}
 }
 
@@ -219,26 +242,26 @@ function sendInfo(){
 
 
 function sendWcText(){//发送微信消息
-    var row = gridCar.getSelected();
-    if (!row) {
-    showMsg("请选中一条数据","W");
-    return;
-    }
-    // var tit = "发送微信[" + row.guestName + '/' + row.mobile + '/' + row.carModel + ']';
-    var tit = "发送微信";
-    nui.open({
-        url: webPath + contextPath  + "/com.hsweb.crm.manage.sWcInfoRemind.flow?token="+token,
-        title: tit, width: 800, height: 350,
-        onload: function () {
-        var iframe = this.getIFrameEl();
-        iframe.contentWindow.setData(row);
-    },
-    ondestroy: function (action) {
-            //重新加载 
-            // query(tab);
-            change();
-        }
-    });
+    // var row = gridCar.getSelected();
+    // if (!row) {
+    // showMsg("请选中一条数据","W");
+    // return;
+    // }
+    // // var tit = "发送微信[" + row.guestName + '/' + row.mobile + '/' + row.carModel + ']';
+    // var tit = "发送微信";
+    // nui.open({
+    //     url: webPath + contextPath  + "/com.hsweb.crm.manage.sWcInfoRemind.flow?token="+token,
+    //     title: tit, width: 800, height: 350,
+    //     onload: function () {
+    //     var iframe = this.getIFrameEl();
+    //     iframe.contentWindow.setData(row);
+    // },
+    // ondestroy: function (action) {
+    //         //重新加载 
+    //         // query(tab);
+    //         change();
+    //     }
+    // });
 }
 
 

@@ -40,6 +40,7 @@
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="link25" isDefault="true" type="transition">
       <sourceNode>assign14</sourceNode>
       <targetNode>subprocess4</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
     <location x="468" y="241"/>
@@ -217,8 +218,8 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">maintain/contactorId</process:from>
-      <process:to type="query">p/conId</process:to>
+      <process:from type="query" pattern="reference">maintain/carId</process:from>
+      <process:to type="query">p/carId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -254,14 +255,13 @@
       <bendPoint heightToEnd="-143" heightToStart="-143" widthToEnd="-269" widthToStart="297"/>
       <sourceNode>assign4</sourceNode>
       <targetNode>end0</targetNode>
-      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link13" name="link13" displayName="连接线" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>assign5</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">type</process:leftOperand>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">pkgTemp</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -270,9 +270,9 @@
       <sourceNode>assign4</sourceNode>
       <targetNode>assign6</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">type</process:leftOperand>
-          <process:rightOperand type="literal">2</process:rightOperand>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">itemTemp</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -280,9 +280,9 @@
       <sourceNode>assign4</sourceNode>
       <targetNode>assign7</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">type</process:leftOperand>
-          <process:rightOperand type="literal">3</process:rightOperand>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">partTemp</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -400,7 +400,6 @@
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="maintain"/>
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsCardTimes" name="rpsCardTimes"/>
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsCardTimesDetail" name="cardTimesDetailTemp"/>
-    <process:input description="判断 工时 配件 套餐 " isArray="false" name="type" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

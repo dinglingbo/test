@@ -191,7 +191,9 @@
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="630" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-06-14 17:16:56" date="2018-06-14Z" description="" name="queryEmployee" version="7.0.0.0"/>
   <process:variables>

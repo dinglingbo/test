@@ -796,10 +796,6 @@
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">rpsPrebook/status</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">042101</process:from>
-      <process:to type="query">rpsPrebook/prebookSource</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
     <location x="259" y="527"/>

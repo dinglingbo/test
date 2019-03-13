@@ -1343,7 +1343,9 @@ function saveNoshowMsg(callback){
 
 var requiredField = {
     carNo : "车牌号",
+    enterDate:"进厂时间",
     serviceTypeId : "业务类型",
+    insureComp:"保险公司",
     mtAdvisorId : "服务顾问",
     guestId : "客户",
     enterOilMass : "进厂油量",
@@ -3275,7 +3277,7 @@ function onPrint(e){
             source : e,
             serviceId : main.id
 		};
-		if(e==3 || e==4){
+		if(e==3 || e==4 || e==9 || e==10){
 			if(main.isSettle||main.balaAuditSign){
 				doPrint(params);
 			}else{

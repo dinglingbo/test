@@ -10,7 +10,7 @@
   --%>
 <head>
 <title>套餐操作</title>
-<script src="<%=request.getContextPath()%>/repair/js/Card/packageList.js?v=1.3.22"></script>
+<script src="<%=request.getContextPath()%>/repair/js/Card/packageList.js?v=1.3.30"></script>
 
 </head>
 
@@ -40,11 +40,11 @@
 								</ul>
 							</div> -->
 						 
-					   <div id="typeGrid2" dataField="rs" class="nui-datagrid"
+					   <div id="typeGrid2" dataField="result" class="nui-datagrid"
 							showPager="false" showHGridLines="false" allowSortColumn="false"
 							style="width: 100%; height: 50%;float:left;" multiSelect="false" >
 							<div property="columns">
-								<div field="name" headerAlign="center" allowSort="true" allowSort="false"
+								<div field="pkgTypeName" headerAlign="center" allowSort="true" allowSort="false"
 									visible="true">标准套餐类型</div>
 						    </div> 
 				         </div>
@@ -105,7 +105,7 @@
 							</div>
 						   <div class="nui-datagrid" style="width:70%;height:100%;float:left;display:none;"
 							     id="packageGrid"
-								 dataField="rs"
+								 dataField="result"
 								 idField="id"
 								 showPager="true"
 								 totalField="page.count"
@@ -116,9 +116,9 @@
 								<div property="columns">
 									<div type="indexcolumn">序号</div>
 									  <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
-									  <div field="PackageName" width="180" headerAlign="center" allowSort="true" header="套餐名称"></div>
-									  <div field="PackageAmt" width="100" headerAlign="center" allowSort="true" header="套餐金额"></div>
-									  <div field="Package4SAmt" width="100" headerAlign="center" allowSort="true" header="市场金额"></div>
+									  <div field="pkgName" width="180" headerAlign="center" allowSort="true" header="套餐名称"></div>
+									  <div field="pkgAmt" width="100" headerAlign="center" allowSort="true" header="套餐金额"></div>
+									  <div field="pkgAmt" width="100" headerAlign="center" allowSort="true" header="市场金额"></div>
 							    </div>
 			                 </div>
 							
@@ -154,7 +154,7 @@
 				dataField="rs" showPager="false">
 				<div property="columns">
 					<div field="type" width="50" headerAlign="center" allowSort="true" header="类型"></div>
-					<div field="itemCode" visible="false" width="120" headerAlign="center" allowSort="true" header="项目/配件名称编码"></div>
+					<div field="id" visible="false" width="120" headerAlign="center" allowSort="true" header="项目/配件名称编码"></div>
 					<div field="itemName" width="150" headerAlign="center" allowSort="true" header="名称"></div>
 					<div field="itemKind" width="40" headerAlign="center" allowSort="true" header="工种"></div>
 					<div field="qty" width="60" headerAlign="center" allowSort="true" header="工时/数量"></div>

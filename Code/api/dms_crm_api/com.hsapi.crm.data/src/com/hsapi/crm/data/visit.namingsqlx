@@ -18,17 +18,15 @@
 			a.car_vin AS carVin,
 			a.car_id AS carId,
 			a.car_no AS carNo,
-			c.tel AS guestTel,
+			a.bill_type_id billTypeId,
 			c.mobile AS guestMobile,
-			c.full_name AS guestFullName,
-			c.short_name AS guestShortName,
+			c.name AS guestFullName,
 			c.birthday,
-			c.addr AS guestAddr,
+			c.wechat_open_id wechatOpenId,
 			a.mt_advisor AS mtAdvisor,
 			a.`status` AS `status`,
 			a.service_type_id AS serviceTypeId,
 			a.remark AS remark,
-			a.bill_type_id AS billTypeId,
 			a.modifier AS modifier,
 			a.modify_date AS modifyDate,
 			a.recorder AS recorder,
@@ -64,15 +62,16 @@
 			INNER JOIN wb_repair.rps_maintain a on e.service_id = a.id 
 			inner JOIN wb_repair.rpb_car b ON ( a.car_id = b.id )
 			inner join wb_repair.rpb_car_extend z on b.id = z.car_id
-		  INNER JOIN wb_common.com_guest c on a.guest_id = c.id
+		  	INNER JOIN wb_repair.rpb_contactor c on e.contactor_id = c.id
 		WHERE 1 = 1
 			 and e.orgid = #orgid#
 			 and type = #type#
+			 and e.status = 0
 			 <isNotEmpty prepend="and" property="id">  
                	e.id  =  #id#
             </isNotEmpty>
                <isNotEmpty prepend="and" property="carNo">  
-               	a.car_no =   #carNo#
+               	a.car_no   like  '%$carNo$%'
             </isNotEmpty>
            <isNotEmpty prepend="and" property="mobile">  
                	c.mobile =   #mobile#
@@ -84,7 +83,7 @@
                	e.leave_days  &lt;=   #leaveDays#
             </isNotEmpty>
               <isNotEmpty prepend="and" property="mtAdvisorId">  
-               	a.mt_advisor  =  #mtAdvisorId#
+               	e.mt_advisor_id  =  #mtAdvisorId#
             </isNotEmpty>
              <isNotEmpty prepend="and" property="sLeaveDays">  
                	e.leave_days &gt;  #sLeaveDays# 
@@ -95,29 +94,8 @@
         
         </select>
         
-          <select id="selectLoseGuest" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
-select 
- a.id,a.car_no carNo,a.orgid,a.guest_id guestId,a.car_model_id carModelId,a.car_brand_id carBrandId,a.car_model carModel,a.engine_no engineNo,a.vin carVin,
- b.chain_come_times chainComeTimes,b.last_leave_date lastLeaveDate,b.mt_advisor_id mtAdvisorId,b.mt_advisor_name mtAdvisorName,
- b.care_last_date careLastDate,b.care_due_date careDueDate,c.contactor,c.contactor_tel contactorTel,b.last_service_id lastServiceId,
- c.full_name fullName,to_days(now()) - to_days(b.last_leave_date)as leaveDays
-from rpb_car a
-INNER JOIN rpb_car_extend b on b.car_id = a.id
-INNER JOIN wb_common.com_guest c on a.guest_id = c.id
-where  a.orgid = #orgid#
-	        <isNotEmpty prepend="and" property="carNo">  
-	            (a.car_no like '%$carNo$%') 
-	        </isNotEmpty>
-
-			<isNotEmpty prepend="and" property="loseDay">  
-	            to_days(now()) - to_days(b.last_leave_date) = #loseDay#
-	        </isNotEmpty>
-    
-    		<isNotEmpty prepend="and" property="sloseDay">  
-	            to_days(now()) - to_days(b.last_leave_date) &gt;= #sloseDay#
-	        </isNotEmpty>
-	        <isNotEmpty prepend="and" property="eloseDay">  
-	            to_days(now()) - to_days(b.last_leave_date) &lt;= #eloseDay#
-	        </isNotEmpty>
-    </select>
+        <update id="updateCareCueDate" parameterClass="java.util.HashMap" >
+       		 UPDATE  rpb_car_extend  set care_due_date = #careDueDate#
+			where  car_id  = #carId#
+        </update>
 </sqlMap>

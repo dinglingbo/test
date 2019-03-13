@@ -212,15 +212,17 @@
 			a.contactor_id contactorId,
 			a.car_id carId,
 			a.car_no carNo,
-			a.car_vin carVin,
+			c.vin carVin,
 			a.mt_advisor_id mtAdvisorId,
 			a.mt_advisor mtAdvisor,
 			a.out_date outDate,
-			b.last_leave_date
-		from  wb_repair.rps_maintain a
-		INNER JOIN wb_repair.rpb_car_extend b on a.car_id = b.car_id
+			b.last_leave_date,
+			b.last_service_id  maintianId
+		from   wb_repair.rpb_car_extend b
+		INNER JOIN wb_repair.rpb_car c on c.id = car_id
+		INNER JOIN  wb_repair.rps_maintain a on a.id = b.last_service_id
 		where TIMESTAMPDIFF(DAY, b.last_leave_date, NOW()) = #tday#
-		and orgid=#orgid# 
+		and a.orgid=#orgid# 
 
 	</select>
 

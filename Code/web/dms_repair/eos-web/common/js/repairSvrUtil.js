@@ -455,7 +455,8 @@ function doSelectItem(dock, dodelck, docck, param, callback) {
 			var iframe = this.getIFrameEl();
 			var params = {
 				carModelIdLy : param.carModelIdLy,
-				serviceId: param.serviceId
+				serviceId: param.serviceId,
+				carNo:param.carNo
 			};
             iframe.contentWindow.setData(params);//显示该显示的功能
             iframe.contentWindow.setViewData(dock, dodelck, docck);
@@ -482,7 +483,8 @@ function doSelectPackage(dock, dodelck, docck, param, callback) {
 			var iframe = this.getIFrameEl();
 			var params = {
 				carModelIdLy : param.carModelIdLy,
-				serviceId: param.serviceId
+				serviceId: param.serviceId,
+				carNo:param.carNo
 			};
 
             iframe.contentWindow.setViewData(dock, dodelck, docck, params);
@@ -778,6 +780,17 @@ function doPrint(params){
 	}else if(source == 7){  //打印查车单
 		sourceUrl = webPath + contextPath + "/com.hsweb.print.checkCar.flow?token="+token;
 		p.name = "查车单";
+	}else if(source == 8){
+		sourceUrl = webPath + contextPath + "/com.hsweb.print.settlementPart.flow?token="+token;
+		p.name = "报价单";
+		p.currRepairEntrustPrintContent = currRepairEntrustPrintContent;
+	}else if(source == 9){
+		sourceUrl = webPath + contextPath + "/com.hsweb.print.settlementPart.flow?token="+token;
+		p.name = "结账单";
+		p.currRepairSettPrintContent = currRepairSettPrintContent;
+	}else if(source == 10){
+		sourceUrl = webPath + contextPath + "/com.hsweb.print.smallSettlementPart.flow?token="+token;
+		p.name = "结账单";
 	}
 	
 	nui.open({

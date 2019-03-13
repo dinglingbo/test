@@ -24,6 +24,12 @@ pageEncoding="UTF-8" session="false" %>
         overflow: hidden;
         font-family: "微软雅黑";
     }
+    #wechatTag1{
+            color:#ccc;
+    }
+    #wechatTag{
+        color:#62b900;
+    }
 </style> 
 </head>
 <body>
@@ -63,14 +69,15 @@ pageEncoding="UTF-8" session="false" %>
 
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div field="serviceCode" width="120" headerAlign="center" align="center">工单号</div>
+            <div field="serviceCode" width="145" headerAlign="center" align="center">工单号</div>
+            <div field="billTypeId" name="billTypeId" width="70" headerAlign="center"  align="center" allowsort="true"  header="工单类型"></div>
             <div field="carNo" width="75" headerAlign="center"align="center">车牌号</div>
             <div field="carModel" name="carModel" width="200px" headerAlign="center"  header="品牌车型"></div>
             <div field="carVin" name="carVin" width="130px" headerAlign="center" header="车架号(VIN)"></div>
             <div field="guestFullName" name="guestFullName" width="80px" headerAlign="center" header="客户姓名"></div>
-            <div field="guestMobile" name="guestMobile" width="100px" headerAlign="center" header="客户手机"></div>
+            <div field="guestMobile" name="guestMobile" width="110px" headerAlign="center" header="客户手机"></div>
             <div field="mtAdvisor" name="mtAdvisor" width="60px" headerAlign="center" header="服务顾问"></div>
-            <div field="serviceTypeName" name="serviceTypeName" width="100px" headerAlign="center" header="业务类型"></div>
+            <div field="serviceTypeName" name="serviceTypeName" width="155px" headerAlign="center" header="业务类型"></div>
             <!--<div field="isSettle" name="isSettle" width="60px" headerAlign="center" header="结算状态"></div> -->
             <div field="recordDate" name="recordDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="开单日期"></div>
             <!-- <div field="planFinishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="预计完工日期"></div> -->

@@ -350,14 +350,14 @@
                    <!--  <div style="float: right; color: #000; margin-right: 12px; line-height: 36px;">
                                                              
                     </div> -->
-                      套餐：<span id="prdt">0</span>&nbsp;&nbsp;&nbsp;&nbsp;工时：<span id="item">0</span>&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0</span>
+                      套餐：<span id="prdt">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;工时：<span id="item">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0.00</span>
             
                 </td>
                 <td height="36" colspan="1" style="border:0px" >
                     <!-- <div style="float: center; color: #000; margin-right: 12px; line-height: 36px;">
                         <span style="margin-left: 200px;">优惠金额：<span id="yh">0</span>元</span>
                     </div> -->
-                     <span style="margin-left: 0px;">优惠金额：<span id="yh">0</span>元</span>
+                     <span style="margin-left: 0px;">优惠金额：<span id="yh">0.00</span>元</span>
                 </td>
                 <td height="36" colspan="2" style="border:0px;font-family: Arial; font-size:16px;font-weight: bold;">
                     <div style="float: left; color: #000; margin-right: 12px; line-height: 36px;">
@@ -701,7 +701,7 @@
 					    			"<td align='center'>[amt]</td>"+ 
 					    			"<td align='center'>[rate]</td>"+
 					    			"<td align='center'>[subtotal]</td>";
-    				
+    				var index = "";
     				for(var i = 0 , l = data.length ; i < l ; i++){
     				    if(params.name != "结账单"){
     				        document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML) + parseFloat(data[i].discountAmt);
@@ -730,8 +730,13 @@
     						   document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
     					   }
     					}
+    					if(data[i].billItemId == 0){
+    					   index = data[i].orderIndex;
+    					}else{
+    					   index = "";
+    					}
 				    			tr.append(
-				    				tds.replace("[id]",data[i].orderIndex)
+				    				tds.replace("[id]",index)
 				    				.replace("[prdtName]",itemName)
 				    				.replace("[qty]",itemTime)
 				    				.replace("[unitPrice]",data[i].unitPrice)
@@ -756,10 +761,10 @@
         	if(params.name == "结账单"){
 				 $.post(params.baseUrl+"com.hsapi.repair.repairService.query.querySettleAmt.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){
     				    				if(text.errCode=="S"){ 
-	    				 		document.getElementById("yh").innerHTML = text.data.totalPrefAmt;
-	    				 		document.getElementById("cash1").innerHTML = text.data.balaAmt;			
+	    				 		document.getElementById("yh").innerHTML = text.data.totalPrefAmt.toFixed(2);
+	    				 		document.getElementById("cash1").innerHTML = text.data.balaAmt.toFixed(2);			
 	    						    		var money = transform(text.data.balaAmt+"");
-											document.getElementById("money").innerHTML = money;
+											document.getElementById("money").innerHTML = money.toFixed(2);
 	    					
 	    				}else{
 	    					nui.alert(text.errMsg,"提示");

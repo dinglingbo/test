@@ -86,8 +86,9 @@ pageEncoding="UTF-8" session="false" %>
 <script type="text/javascript">
     nui.parse();
     var webBaseUrl = webPath + contextPath + "/";
-    var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/"; 
-    var visitModeCtrlUrl = baseUrl + "com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictid=DDT20130703000021&fromDb=true";
+    var baseUrl = apiPath + crmApi + "/";
+    var visitModeCtrlUrl = apiPath + sysApi +
+            "/com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictid=DDT20130703000021&fromDb=true";
     var tabForm = null;
     var mainData = null;
 	var form = {};
@@ -138,6 +139,8 @@ pageEncoding="UTF-8" session="false" %>
                     var detailData = text.detailData;
                     showMsg("保存成功！","S");
                     CloseWindow("ok");
+                }else{
+                	showMsg("保存失败！","E");
                 }
 
             }

@@ -100,6 +100,23 @@ $(document).ready(function()
 		 }
 		 onSearch(); 
 	 });
+	
+	itemGrid.on("drawcell", function(e) {
+		switch (e.field) {
+		case "AStandTime":
+			e.cellHtml = 1;
+			break;
+		case "AStandSum":			
+					e.cellHtml =0;
+			break;
+		case "cardTimesOpt":
+			e.cellHtml = '<a class="optbtn" href=" " onclick="editSell()">跟进</ a>';
+			break;
+		default:
+			break;
+		}
+
+	});
 	tree1.on("nodedblclick",function(e)
 	{
 		var node = e.node;

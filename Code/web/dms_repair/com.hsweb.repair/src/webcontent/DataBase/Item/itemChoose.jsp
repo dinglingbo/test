@@ -12,7 +12,7 @@
 <head>
 <title>维修项目</title>
 
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/itemChoose.js?v=1.0.46" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/itemChoose.js?v=1.0.47" type="text/javascript"></script>
 <style type="text/css">
     html, body{
         margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
@@ -237,7 +237,7 @@
 						   	<div field="itemName" width="80" headerAlign="center" allowSort="true" header="项目名称"></div>
 						   	<div field="AStandTime" width="40" headerAlign="center" allowSort="true" header="工时"></div>
 						    <div field="AStandSum" width="40" headerAlign="center" allowSort="true" header="项目金额"></div>
-							<div field="Amt4S" width="40" headerAlign="center" allowSort="true" header="市场金额"></div>
+<!-- 							<div field="Amt4S" width="40" headerAlign="center" allowSort="true" header="市场金额"></div> -->
 							<div field="itemKind" width="40" headerAlign="center" visible="false" allowSort="true" header="工种"></div>
 					</div>
 				</div>           

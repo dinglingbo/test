@@ -37,7 +37,7 @@ $(document).ready(function(v) {
 	packageGrid.setUrl(packageGridUrl);
 	typeGrid2 = nui.get("typeGrid2");
 	typeGrid2.setUrl(typeGrid2Url);
-	typeGrid2.load();
+	typeGrid2.load({token:token});
 	detailGrid_Form = document.getElementById("detailGrid_Form");
 	packageDetail = nui.get("packageDetail");
     
@@ -152,7 +152,11 @@ function loadStdPKG(packageTypeId) {
 	var params = {};
 	params.packageName = nui.get('pkgName').getValue();
 	params.id = packageTypeId;
-	params.carNo = carNo;
+	if(carNo!=null){
+		//转码，维保大数据GET请求
+		params.carNo = encodeURI(carNo); 
+	}
+	
 	packageGrid.load({
 		params:params,
 		token:token

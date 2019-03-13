@@ -24,6 +24,7 @@ var treeHash={};
 var isChooseClose = 1;//默认选择后就关闭窗体
 var carModelIdLy = null;
 var serviceId = null;
+var carNo = null;
 var detailGrid_Form = null;
 var packageDetail = null;
 var ximeiUrl=0;
@@ -151,6 +152,7 @@ function loadStdPKG(packageTypeId) {
 	var params = {};
 	params.packageName = nui.get('pkgName').getValue();
 	params.id = packageTypeId;
+	params.carNo = carNo;
 	packageGrid.load({
 		params:params,
 		token:token
@@ -459,6 +461,7 @@ function setViewData(ck, delck, cck, params){
 		 });
 	}else{
 		serviceId = params.serviceId;
+		carNo = params.carNo;
 	}
 
 }

@@ -58,7 +58,12 @@
 			a.longitude longitude,
 			a.latitude latitude,
 			a.tel tel,
-			a.complain_tel complainTel
+			a.complain_tel complainTel,
+			a.province_id provinceId,
+			a.city_id cityId,
+			a.county_id countyId,
+			a.street_address streetAddress,
+			a.address address
 		FROM  wb_common.com_company a
 			where a.tenant_id = #tenantId#
 		<dynamic>

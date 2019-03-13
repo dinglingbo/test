@@ -618,7 +618,7 @@
     <targetConnections>link32</targetConnections>
     <targetConnections>link42</targetConnections>
     <targetConnections>link43</targetConnections>
-    <targetConnections>link45</targetConnections>
+    <targetConnections>link47</targetConnections>
     <location x="824" y="60"/>
     <size height="28" width="28"/>
     <nodeLabel>assign10label</nodeLabel>
@@ -821,7 +821,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link40</targetConnections>
-    <location x="746" y="188"/>
+    <location x="743" y="208"/>
     <size height="28" width="28"/>
     <nodeLabel>assign16label</nodeLabel>
     <process:copy>
@@ -842,7 +842,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign16label" name="label" nodeType="label">
-    <location x="741" y="224"/>
+    <location x="738" y="244"/>
     <figSize height="17" width="39"/>
     <node>assign16</node>
   </nodes>
@@ -877,11 +877,21 @@
   <nodes xsi:type="process:tAssign" description="" id="assign18" name="赋值18" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link45" name="link45" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign18</sourceNode>
-      <targetNode>assign10</targetNode>
+      <targetNode>transactioncommit1</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link47" name="link47" displayName="连接线" type="transition">
+      <sourceNode>assign18</sourceNode>
+      <targetNode>assign10</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">E</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link44</targetConnections>
-    <location x="665" y="64"/>
+    <location x="705" y="106"/>
     <size height="28" width="28"/>
     <nodeLabel>assign18label</nodeLabel>
     <process:copy>
@@ -910,7 +920,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign18label" name="label" nodeType="label">
-    <location x="660" y="100"/>
+    <location x="700" y="142"/>
     <figSize height="17" width="39"/>
     <node>assign18</node>
   </nodes>
@@ -920,7 +930,7 @@
       <targetNode>assign18</targetNode>
     </sourceConnections>
     <targetConnections>link39</targetConnections>
-    <location x="666" y="125"/>
+    <location x="705" y="155"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess4label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -938,9 +948,40 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess4label" name="label" nodeType="label">
-    <location x="578" y="160"/>
+    <location x="617" y="190"/>
     <figSize height="17" width="202"/>
     <node>subprocess4</node>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end2" name="结束2" displayName="结束" type="end">
+    <targetConnections>link46</targetConnections>
+    <location x="704" y="-3"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end2label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="java.util.HashMap" name="retData" type="query" valueType="Java">retData</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end2label" name="label" nodeType="label">
+    <location x="702" y="33"/>
+    <figSize height="17" width="32"/>
+    <node>end2</node>
+  </nodes>
+  <nodes xsi:type="process:tTransactionCommit" id="transactioncommit1" name="事务提交1" displayName="事务提交" type="transactioncommit">
+    <sourceConnections xsi:type="process:tLink" id="link46" name="link46" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>transactioncommit1</sourceNode>
+      <targetNode>end2</targetNode>
+    </sourceConnections>
+    <targetConnections>link45</targetConnections>
+    <location x="705" y="49"/>
+    <size height="28" width="28"/>
+    <nodeLabel>transactioncommit1label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="transactioncommit1label" name="label" nodeType="label">
+    <location x="691" y="85"/>
+    <figSize height="17" width="56"/>
+    <node>transactioncommit1</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

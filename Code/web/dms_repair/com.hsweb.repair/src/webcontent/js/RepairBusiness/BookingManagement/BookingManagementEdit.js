@@ -182,6 +182,7 @@ function onOk() {
 	}
 	basicInfoForm = new nui.Form("#basicInfoForm");	
     var main = basicInfoForm.getData();
+    main.prebookSource = "042101";
     if (!main || main == undefined) return;
 
     var time = $("a[name=date][class=xz]").attr("itemid")||"";
@@ -224,7 +225,7 @@ function onOk() {
         cls: 'mini-mask-loading',
         html: '保存中...'
     });
-
+    
     nui.ajax({
         url: baseUrl + "com.hsapi.repair.repairService.booking.updateBooking.biz.ext",
         type: 'post',

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="generateVisitDate.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="generateVisitData" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="0综合，1检查，2洗美，3销售，4理赔，" title="Administrator&#x9;19-3-6 下午2:40">
     <location x="18" y="315"/>
     <size height="100" width="190"/>
@@ -365,13 +365,11 @@
   <process:info author="Administrator" createTime="2019-01-26 08:41:04" date="2019-01-26Z" description="" name="generateVisitDate" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="billTypeId" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbScoutParam" name="list"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbScoutParam" name="f"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="billTypeId" primitiveType="String"/>
   </process:variables>
-  <process:inputs varArgs="false">
-    <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
-  </process:inputs>
+  <process:inputs varArgs="false"/>
   <process:outputs/>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

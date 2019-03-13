@@ -130,6 +130,18 @@
 						</tbody>
                     </table>
                 </div>
+                <div class="peijian">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" id="showPart" style="display:none">
+                        <thead>
+                            <tr>
+			                    <td  width="240" bgcolor="#f8f8f8"><b>配件</b></td>
+			                    <td width="80" align="center" bgcolor="#f8f8f8"><b>金额</b></td>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyId2">
+						</tbody>
+                    </table>
+                </div>
                 <!-- <div class="peijian">
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <thead>
@@ -298,6 +310,7 @@
 	                    showMsg("网络出错", "W");
 	                }
             	});
+            	var partShow = null;
             	//document.getElementById("name").innerHTML = "&nbsp;工时";
             	nui.ajax({
 	                url: params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext",
@@ -308,6 +321,7 @@
 	                success: function (text) {
 	                	var data = nui.decode(text.data);
 	                	var tBody = $("#tbodyId1");
+	                	var tBody2 = $("#tbodyId2");
 	    				var tds = '<td align="left">[name]</td>' +
 		    			"<td align='center'>[sal]</td>";
 	                   if(text.errCode == "S"){
@@ -316,15 +330,23 @@
 	                   			var tr = $("<tr></tr>");
 	                   			var itemName = data[i].prdtName || "";
 	                   			if(data[i].pid != 0 ){
-		    						itemName = "&nbsp;&nbsp;&nbsp;&nbsp;" + itemName;
 		    						document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML) + parseFloat(data[i].subtotal);
 		    					}else{
 		    						document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
 		    					}
+		    					
 				    			tr.append(
 				    				tds.replace("[name]",itemName)
 				    				.replace("[sal]",data[i].subtotal));
-				    			tBody.append(tr);
+				    			if(data[i].billItemId != 0){
+				    			   tBody2.append(tr);
+				    			   partShow = 1;
+				    			}else{
+				    			   tBody.append(tr);
+				    			}
+				    			if(partShow==1){
+    				               document.getElementById("showPart").style.display = "";
+    				             }
 				    			document.getElementById("money").innerHTML = parseFloat(document.getElementById("money").innerHTML) + parseFloat(data[i].subtotal);
 	                   		}
     				          document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML).toFixed(2);

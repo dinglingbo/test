@@ -1,0 +1,62 @@
+
+
+
+1、比对进销存明细pj_invocing与出入库表的明细记录数是否一致
+
+入库记录是否一致
+SELECT count(1) 
+from pj_invocing a
+where dc = 1
+
+SELECT count(1) 
+from pj_store_invocing
+where dc = 1
+
+SELECT count(1) 
+from pj_enter_detail_chk
+
+查询入库部分中，单号相同但是ID不同的数据（单号相同时ID应相同）
+SELECT * 
+from pj_invocing a
+inner join pj_enter_main_chk b
+on a.service_id = b.service_id
+where a.dc = 1 and a.bill_main_id != b.id
+
+
+
+出库记录是否一致
+SELECT count(1) 
+from pj_invocing a
+where dc = -1
+
+SELECT count(1) 
+from pj_store_invocing
+where dc = -1
+
+SELECT count(1) 
+from pj_out_detail_chk
+
+
+SELECT * 
+from pj_invocing a
+inner join pj_out_main_chk b
+on a.service_id = b.service_id
+where a.dc = -1 and a.bill_main_id != b.id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

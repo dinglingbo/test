@@ -436,7 +436,7 @@ function searchPrice(params){
                         var sellPrice = price[i].sellPrice;
                         
                         if(mPartId == partId){
-                        }else if(mCommonId == commonId){
+                        }else if(mCommonId == commonId && commonId != null && mCommonId !=undefined){
                             if(haveMain == 0) {
                                 if(i>0){
                                     partCode = '='+partCode;

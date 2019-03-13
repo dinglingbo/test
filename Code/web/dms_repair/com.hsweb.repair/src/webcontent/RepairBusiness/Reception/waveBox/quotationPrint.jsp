@@ -247,7 +247,7 @@
         <table width="100%" border="0"  cellpadding="0" cellspacing="0" class="ybk">
             <tr>
                 <td height="36" colspan="1" style="border:0px solid #DDD; " rowspan="1" colspan="1" >
-                      套餐：<span id="prdt">0</span>&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0</span>
+                      工时：<span id="item">0</span>&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0</span>
             
                 </td>
                 <td height="36" colspan="1" style="border:0px" >
@@ -459,9 +459,6 @@
 	    					if(data[i].billPackageId != 0){
 	    						prdtName = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+prdtName;
 	    						orderIndex = "";
-	    						
-	    					}else{
-	    						document.getElementById("prdt").innerHTML = parseFloat(document.getElementById("prdt").innerHTML) + parseFloat(data[i].subtotal);
 	    					}
 	    					if(data[i].billItemId == 0){
 	    						if(i != 0){
@@ -498,18 +495,32 @@
 					    				.replace("[subtotal]",data[i].subtotal));
 					    			tBody.append(tr); 
 	    					}
+	    					if(data[i].pid != 0 ){
+    						   document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML) + parseFloat(data[i].subtotal);
+    					    }else{
+    						   document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
+    					   }
 	    				}
 	    				 document.getElementById("prdt").innerHTML = parseFloat(document.getElementById("prdt").innerHTML).toFixed(2);
-	    				 var money = parseFloat(document.getElementById("prdt").innerHTML);
-	    				 document.getElementById("cash1").innerHTML = parseFloat(money).toFixed(2);
-	    				 money = transform(money+"");
-    		   			 document.getElementById("money").innerHTML = money;
+	    				 document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML).toFixed(2);
 		        	}else{
 	                  $("#showPkg").hide();
 	                  $("#space1").hide();
 	                }
 	          }
         	});
+        	$.ajaxSettings.async = false;
+        	$.post(baseUrl+"com.hsapi.repair.repairService.query.querySettleAmt.biz.ext?serviceId="+serviceId+"&token="+token,{},function(text){
+	    				if(text.errCode=="S"){ 
+	    				 		document.getElementById("yh").innerHTML = text.data.totalPrefAmt;
+	    				 		document.getElementById("cash1").innerHTML = text.data.balaAmt;	    		    				 			
+	    						    		var money = transform(text.data.balaAmt+"");
+											document.getElementById("money").innerHTML = money;
+	    					
+	    				}else{
+	    					showMsg(text.errMsg,"W");
+	    				}
+	            }); 
 			 }
     </script>
 </body>

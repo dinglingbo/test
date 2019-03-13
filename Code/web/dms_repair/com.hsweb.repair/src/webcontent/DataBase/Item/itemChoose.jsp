@@ -12,7 +12,7 @@
 <head>
 <title>维修项目</title>
 
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/itemChoose.js?v=1.0.41" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/itemChoose.js?v=1.0.44" type="text/javascript"></script>
 <style type="text/css">
     html, body{
         margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
@@ -79,10 +79,14 @@
 						<span>标准项目类型</span>
 					</div>
 					<div style="width: 100%; height: 50%;">
-						<ul id="tree" class="nui-tree" url="" style="width: 100%;height:100%;"
-							dataField="partTypes" showTreeIcon="true" textField="name" expandOnLoad=""
-							idField="id" ajaxData="setRoleId" parentField="parentId" resultAsTree="false">
-						</ul>
+					<!--	<ul id="tree" class="nui-tree" url="" style="width: 100%;height:100%;"
+							dataField="result" showTreeIcon="true" textField="name" 
+							idField="code" >
+						</ul>-->
+						       <ul id="tree" class="mini-tree" style="width: 100%;height:100%;"
+						        showTreeIcon="true" textField="name" idField="code" >        
+						    </ul>
+        
 				    </div>
 		   
                 </div>
@@ -223,18 +227,18 @@
                
 		        <div class="nui-datagrid" style="float:left;width: 70%; height: 100%;display:none"
 					 id="itemGrid"
-					 dataField="rs"
+					 dataField="result"
 					 showPager="true"
 					 pageSize="20"
 					 totalField="page.count"
 					 allowSortColumn="true">
 					<div property="columns">
 						<div type="indexcolumn" width="35">序号</div>
-						   	<div field="ItemName" width="80" headerAlign="center" allowSort="true" header="项目名称"></div>
+						   	<div field="itemName" width="80" headerAlign="center" allowSort="true" header="项目名称"></div>
 						   	<div field="AStandTime" width="40" headerAlign="center" allowSort="true" header="工时"></div>
 						    <div field="AStandSum" width="40" headerAlign="center" allowSort="true" header="项目金额"></div>
 							<div field="Amt4S" width="40" headerAlign="center" allowSort="true" header="市场金额"></div>
-							<div field="ItemKind" width="40" headerAlign="center" visible="false" allowSort="true" header="工种"></div>
+							<div field="itemKind" width="40" headerAlign="center" visible="false" allowSort="true" header="工种"></div>
 					</div>
 				</div>           
                 

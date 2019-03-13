@@ -77,7 +77,7 @@
 									<label>项目名称：</label>
 								</td>
 								<td  style="width:35%">
-									<input class="nui-textbox" name="name" width="100%"/>
+									<input class="nui-textbox" name="name" width="100%" maxlength="50"/>
 								</td>
 								<td class="form_label required">
 									<label>业务类型：</label>
@@ -112,7 +112,7 @@
 									<label>项目编码：</label>
 								</td>
 								<td colspan="1">
-									<input class="nui-textbox" name="code" width="100%"/>
+									<input class="nui-textbox" name="code" width="100%" maxlength="20"/>
 								</td>
 							
 							</tr>

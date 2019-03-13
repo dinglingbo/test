@@ -291,7 +291,7 @@
                 <tr>
                     <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;"></td>
                     <td height="28" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">项目名称</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">工时/数量</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">工时</td>
                     <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">单价</td>
                     <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">金额</td>
                     <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">优惠率</td>
@@ -307,6 +307,29 @@
                     <td ><hr style="border:0.5px solid #000"></td>
                 </tr>
                 <tbody id="tbodyId2">
+				</tbody>
+            </table>
+             <div style="height: 12px;display:none" id="space3"></div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1" id="showPart" style="display:none">
+                <tr>
+                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;"></td>
+                    <td height="28" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">配件名称</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">数量</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">单价</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">金额</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">优惠率</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">小计</td>
+                </tr>
+                <tr>
+                	<td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                </tr>
+                <tbody id="tbodyId3">
 				</tbody>
             </table>
          <!--  <div style="height: 12px;" id="space2"></div>  -->
@@ -693,7 +716,9 @@
 	        	    }
 	        	    if(data.length>0){
 	        	        var tBody = $("#tbodyId2");
+	        	        var tBody3 = $("#tbodyId3");
     				tBody.empty();
+    				tBody3.empty();
     				var tds = '<td align="center">[id]</td>' +
 					    			"<td>[prdtName]</td>"+
 					    			"<td align='center'>[qty]</td>"+
@@ -701,7 +726,8 @@
 					    			"<td align='center'>[amt]</td>"+ 
 					    			"<td align='center'>[rate]</td>"+
 					    			"<td align='center'>[subtotal]</td>";
-    				var index = "";
+    				var partShow = null;
+    				var num = 1;
     				for(var i = 0 , l = data.length ; i < l ; i++){
     				    if(params.name != "结账单"){
     				        document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML) + parseFloat(data[i].discountAmt);
@@ -724,17 +750,20 @@
     						itemTime = data[i].qty || "";
     						itemName = data[i].prdtName || "";
     						if(data[i].pid != 0 ){
-    						   itemName = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + itemName;
+    						   itemName = itemName;
     						   document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML) + parseFloat(data[i].subtotal);
     					    }else{
     						   document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
     					   }
     					}
-    					if(data[i].billItemId == 0){
-    					   index = data[i].orderIndex;
-    					}else{
-    					   index = "";
-    					}
+    					
+    					       var index = data[i].orderIndex;
+    					       
+    					       if(data[i].billItemId != 0){
+    					            index = num;
+    					            num = num + 1;
+    					       }
+    					
 				    			tr.append(
 				    				tds.replace("[id]",index)
 				    				.replace("[prdtName]",itemName)
@@ -743,8 +772,18 @@
 				    				.replace("[amt]",data[i].amt)
 				    				.replace("[rate]",rate)
 				    				.replace("[subtotal]",data[i].subtotal));
-				    			tBody.append(tr);
+				    			if(data[i].billItemId != 0){
+				    			   tBody3.append(tr);
+				    			   partShow = 1;
+				    			}else{
+				    			   tBody.append(tr);
+				    			}
+				    			
 				    	getSubtotal(params);		
+    				}
+    				if(partShow==1){
+    				    document.getElementById("showPart").style.display = "";
+    				    document.getElementById("space3").style.display = "";
     				}
     				  if(params.name != "结账单"){
     				      document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML).toFixed(2);

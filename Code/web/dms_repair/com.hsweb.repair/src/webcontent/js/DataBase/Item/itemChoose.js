@@ -543,7 +543,49 @@ function onOk()
 		}
 	}
 }
-var stdItemUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.crud.insStdItem.biz.ext";
+//新标准项目（维保大数据）--小熊
+var stdItemUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.crud.inStandardItem.biz.ext";
+function selectStdItem(row) {    
+   if(!row.id) return;
+   nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '处理中...'
+   });
+   
+   var item = row;
+   	var json = nui.encode({
+   		"item":item,
+   		"serviceId":serviceId,
+   		token:token
+   	});
+	nui.ajax({
+		url : stdItemUrl,
+		type : 'POST',
+		data : json,
+		cache : false,
+		contentType : 'text/json',
+		success : function(text) {
+			var returnJson = nui.decode(text);
+			if (returnJson.errCode == "S") {
+				nui.unmask(document.body);
+				var data = returnJson.data;
+				if(data){
+					data.check = 1;
+					tempGrid.addRow(data);
+				}
+				
+			} else {
+				showMsg(returnJson.errMsg||"添加项目失败!","E");
+				nui.unmask(document.body);
+		    }
+		}
+	 });
+
+}
+
+//旧标准项目--小莫
+/*var stdItemUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.crud.insStdItem.biz.ext";
 function selectStdItem(row) {    
    if(!row.ItemID) return;
    nui.mask({
@@ -583,7 +625,7 @@ function selectStdItem(row) {
 		}
 	 });
 
-}
+}*/
 function CloseWindow(action)
 {
 	if (window.CloseOwnerWindow)

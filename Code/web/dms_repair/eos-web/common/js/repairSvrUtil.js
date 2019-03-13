@@ -455,7 +455,8 @@ function doSelectItem(dock, dodelck, docck, param, callback) {
 			var iframe = this.getIFrameEl();
 			var params = {
 				carModelIdLy : param.carModelIdLy,
-				serviceId: param.serviceId
+				serviceId: param.serviceId,
+				carNo:param.carNo
 			};
             iframe.contentWindow.setData(params);//显示该显示的功能
             iframe.contentWindow.setViewData(dock, dodelck, docck);
@@ -482,7 +483,8 @@ function doSelectPackage(dock, dodelck, docck, param, callback) {
 			var iframe = this.getIFrameEl();
 			var params = {
 				carModelIdLy : param.carModelIdLy,
-				serviceId: param.serviceId
+				serviceId: param.serviceId,
+				carNo:param.carNo
 			};
 
             iframe.contentWindow.setViewData(dock, dodelck, docck, params);

@@ -110,7 +110,7 @@
                     <table width="100%" border="0" cellspacing="0" cellpadding="0" id="showPkg">
                         <thead>
                             <tr>
-			                    <td  width="240" bgcolor="#f8f8f8"><b>套餐项目(包含工时配件)</b></td>
+			                    <td  width="240" bgcolor="#f8f8f8"><b>套餐(包含工时配件)</b></td>
 			                    <td width="80" align="center" bgcolor="#f8f8f8"><b>金额</b></td>
                             </tr>
                         </thead>
@@ -122,7 +122,7 @@
                     <table width="100%" border="0" cellspacing="0" cellpadding="0" id="showItem">
                         <thead>
                             <tr>
-			                    <td  width="240" bgcolor="#f8f8f8"><b>工时项目</b></td>
+			                    <td  width="240" bgcolor="#f8f8f8"><b>项目</b></td>
 			                    <td width="80" align="center" bgcolor="#f8f8f8"><b>金额</b></td>
                             </tr>
                         </thead>
@@ -146,7 +146,7 @@
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     	<tr>
                     		<td>
-                    			套餐：<span id="prdt">0</span>&nbsp;&nbsp;&nbsp;&nbsp;工时：<span id="item">0</span>&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0</span>
+                    			套餐：<span id="prdt">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;工时：<span id="item">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0.00</span>
                     		</td>
                     	</tr>
                         <tr>

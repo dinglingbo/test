@@ -24,6 +24,7 @@ var treeHash={};
 var isChooseClose = 1;//默认选择后就关闭窗体
 var carModelIdLy = null;
 var serviceId = null;
+var carNo = null;
 var detailGrid_Form = null;
 var packageDetail = null;
 var ximeiUrl=0;
@@ -36,7 +37,7 @@ $(document).ready(function(v) {
 	packageGrid.setUrl(packageGridUrl);
 	typeGrid2 = nui.get("typeGrid2");
 	typeGrid2.setUrl(typeGrid2Url);
-	typeGrid2.load();
+	typeGrid2.load({token:token});
 	detailGrid_Form = document.getElementById("detailGrid_Form");
 	packageDetail = nui.get("packageDetail");
     
@@ -49,7 +50,19 @@ $(document).ready(function(v) {
         td.appendChild(detailGrid_Form);
         detailGrid_Form.style.display = "block";
         packageDetail.clearRows();
-        loadPackageDetailByPkgId(row.id,function(){});
+        for(var i =0;i<row.items.length;i++){
+        	row.items[i].type="项目";
+        	packageDetail.addRow(row.items[i]);
+        }
+        packageDetail.setData(row.items);
+        //转化字符串和json,替换名称
+        var partsStr = JSON.stringify(row.parts);
+        var data =JSON.parse(partsStr.replace(/partName/g,"itemName"));
+        for(var i =0;i<data.length;i++){
+        	data[i].type="配件";
+        	packageDetail.addRow(data[i]);
+        }
+        //loadPackageDetailByPkgId(row.id,function(){});
     });
 	grid.on("beforeload",function(e){
         e.data.token = token;
@@ -139,6 +152,11 @@ function loadStdPKG(packageTypeId) {
 	var params = {};
 	params.packageName = nui.get('pkgName').getValue();
 	params.id = packageTypeId;
+	if(carNo!=null){
+		//转码，维保大数据GET请求
+		params.carNo = encodeURI(carNo); 
+	}
+	
 	packageGrid.load({
 		params:params,
 		token:token
@@ -217,7 +235,55 @@ function edit() {
 		}
 	}
 }
-var stdPkgUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.crud.insStdPackage.biz.ext";
+//新标准套餐（维保大数据）
+var stdPkgUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.crud.inStandardPkg.biz.ext";
+function selectStdPkg(row) {    
+   if(!row.id) return;
+   nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '处理中...'
+   });
+   
+   var pkg = row;
+   pkg.serviceId=serviceId;
+	var json = nui.encode({
+		"pkg":pkg,
+		token:token
+	});
+   var p1 = {
+           interType: "package",
+           data:{
+               serviceId: serviceId||0
+           }
+       };
+	var p2 = {};
+	var p3 = {};
+	nui.ajax({
+		url : stdPkgUrl,
+		type : 'POST',
+		data : json,
+		cache : false,
+		contentType : 'text/json',
+		success : function(text) {
+			var returnJson = nui.decode(text);
+			if (returnJson.errCode == "S") {
+				nui.unmask(document.body);
+				var data = returnJson.data;
+				if(data){
+					data.check = 1;
+					tempGrid.addRow(data);
+				}
+				
+			} else {
+				showMsg(returnJson.errMsg||"添加套餐失败!","E");
+				nui.unmask(document.body);
+		    }
+		}
+	 });
+}
+//原标准套餐
+/*var stdPkgUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.crud.insStdPackage.biz.ext";
 function selectStdPkg(row) {    
    if(!row.id) return;
    nui.mask({
@@ -265,7 +331,7 @@ function selectStdPkg(row) {
 		}
 	 });
 
-}
+}*/
 
 function CloseWindow(action) {
 	if (window.CloseOwnerWindow)
@@ -399,6 +465,7 @@ function setViewData(ck, delck, cck, params){
 		 });
 	}else{
 		serviceId = params.serviceId;
+		carNo = params.carNo;
 	}
 
 }

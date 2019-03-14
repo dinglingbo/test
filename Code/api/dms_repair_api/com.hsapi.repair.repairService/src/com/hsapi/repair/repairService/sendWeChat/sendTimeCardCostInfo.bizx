@@ -260,8 +260,8 @@
       <sourceNode>assign4</sourceNode>
       <targetNode>assign5</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
-          <process:leftOperand type="query">pkgTemp</process:leftOperand>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">type</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -270,9 +270,9 @@
       <sourceNode>assign4</sourceNode>
       <targetNode>assign6</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
-          <process:leftOperand type="query">itemTemp</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">type</process:leftOperand>
+          <process:rightOperand type="literal">2</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -280,9 +280,9 @@
       <sourceNode>assign4</sourceNode>
       <targetNode>assign7</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
-          <process:leftOperand type="query">partTemp</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">type</process:leftOperand>
+          <process:rightOperand type="literal">3</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -400,6 +400,7 @@
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="maintain"/>
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsCardTimes" name="rpsCardTimes"/>
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsCardTimesDetail" name="cardTimesDetailTemp"/>
+    <process:input description="" isArray="false" name="type" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

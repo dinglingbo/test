@@ -3,9 +3,9 @@
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
-      <targetNode>assign0</targetNode>
+      <targetNode>subprocess1</targetNode>
     </sourceConnections>
-    <location x="100" y="150"/>
+    <location x="45" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
@@ -22,7 +22,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="102" y="186"/>
+    <location x="47" y="186"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -69,12 +69,16 @@
       <targetNode>invokePojo1</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <targetConnections>link1</targetConnections>
+    <targetConnections>link8</targetConnections>
     <location x="183" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">http://mbd.dev.harsons.cn/hscp/part/crud/hotspot</process:from>
+      <process:from type="literal" pattern="reference">part/crud/hotspot</process:from>
+      <process:to type="query">url</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">maintenanceUrl+url</process:from>
       <process:to type="query">httpStr</process:to>
     </process:copy>
   </nodes>
@@ -184,6 +188,31 @@
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="getMaintenance" displayName="getMaintenance" collapsed="false" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess1</sourceNode>
+      <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <location x="105" y="150"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess1label</nodeLabel>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.getMaintenance</process:partner>
+      <process:inputVariables/>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="maintenanceUrl" type="query" value="String" valueType="Primitive">maintenanceUrl</process:outputVariable>
+        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">value</process:outputVariable>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
+    <location x="71" y="185"/>
+    <figSize height="17" width="94"/>
+    <node>subprocess1</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-03-11 11:15:27" date="2019-03-11Z" description="" name="getStandardPkg" version="7.0.0.0"/>
@@ -192,6 +221,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="retData" primitiveType="String"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="returnResult"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params2"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="maintenanceUrl" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="url" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>

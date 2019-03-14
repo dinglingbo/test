@@ -28,7 +28,7 @@ pageEncoding="UTF-8" session="false" %>
 <body>
 
     <div class="nui-fit" id="form1">
-           <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+           <div class="nui-toolbar" style="padding:0px;">
                <table style="width:80%;">
                    <tr>
                        <td style="width:80%;">
@@ -102,11 +102,12 @@ pageEncoding="UTF-8" session="false" %>
 <script type="text/javascript">
     nui.parse();
     var webBaseUrl = webPath + contextPath + "/";
-    var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/"; 
+    var baseUrl = apiPath + sysApi + "/"; 
     var visitModeCtrlUrl = apiPath + sysApi +
             "/com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictid=DDT20130703000021&fromDb=true";
     var mainReasonUrl = baseUrl + "com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictid=DDT20130705000008&fromDb=true";
     var detailReasonUrl = baseUrl + "com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictid=DDT20130705000009&fromDb=true";
+    var saveUrl = apiPath + crmApi + "/com.hsapi.crm.svr.visit.savevisitDetail.biz.ext";
     visitMode_ctrl = nui.get("visitMode");
     visitMode_ctrl.setUrl(visitModeCtrlUrl);
     var visitManEl = nui.get("visitMan");
@@ -156,7 +157,7 @@ function save(){
             nowMtComp:data.nowMtComp
         };
     nui.ajax({
-        url:baseUrl + "com.hsapi.crm.svr.visit.savevisitDetail.biz.ext",
+        url:saveUrl,
         type:"post",
         data:{
             params:record

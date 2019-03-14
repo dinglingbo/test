@@ -1,8 +1,10 @@
 var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
 var rightGridUrl = baseUrl+"com.hsapi.repair.baseData.item.queryRepairItemList.biz.ext";
 var treeUrl = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryDictTypeTree.biz.ext";
-var itemGridUrl = apiPath + sysApi + "/com.hsapi.system.product.items.getItem.biz.ext";
-
+//var itemGridUrl = apiPath + sysApi + "/com.hsapi.system.product.items.getItem.biz.ext";
+var itemGridUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.svr.getStandardItemList.biz.ext";
+//var hotUrl = apiPath + sysApi + "/com.hsapi.system.product.items.getHotWord.biz.ext";
+var hotUrl = apiPath + repairApi +"/com.hsapi.repair.repairService.svr.getStandardItem.biz.ext";
 var tree1 = null;
 var rightGrid = null;
 var typeHash = {};
@@ -29,10 +31,17 @@ var carBrandIdEl;
 var carSeriesId;
 var carModelIdEl;
 var carModelIdHash = {};
+
+var dataTree = [];
+
+
+
 $(document).ready(function()
 {	
 	queryForm = new nui.Form("#queryForm");
 	tree1 = nui.get("tree1");
+    tree = nui.get("tree");
+    loadTree();//加载标准项目
 	itemGrid = nui.get("itemGrid");
 	itemGrid.setUrl(itemGridUrl);
 	advancedAddWin = nui.get("advancedAddWin");
@@ -91,6 +100,23 @@ $(document).ready(function()
 		 }
 		 onSearch(); 
 	 });
+	
+	itemGrid.on("drawcell", function(e) {
+		switch (e.field) {
+		case "AStandTime":
+			e.cellHtml = 1;
+			break;
+		case "AStandSum":			
+					e.cellHtml =0;
+			break;
+		case "cardTimesOpt":
+			e.cellHtml = '<a class="optbtn" href=" " onclick="editSell()">跟进</ a>';
+			break;
+		default:
+			break;
+		}
+
+	});
 	tree1.on("nodedblclick",function(e)
 	{
 		var node = e.node;
@@ -200,9 +226,8 @@ $(document).ready(function()
     	//showHot.style.display="none";
     });
 	
-	//var hotUrl = apiPath + sysApi + "/com.hsapi.system.product.items.getHotWord.biz.ext";
-	var hotUrl = apiPath + partApi +"/com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
-    tree = nui.get("tree");
+
+
     tree.on("load",function(e)
     {
         var list = tree.getList();
@@ -211,7 +236,7 @@ $(document).ready(function()
             treeHash[v.id] = v;
         });
     });
-    tree.setUrl(hotUrl);
+
     tree.on("preload",function(e){
     	tree.setData([]);
     	var data = e.result.rs||[];
@@ -535,7 +560,49 @@ function onOk()
 		}
 	}
 }
-var stdItemUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.crud.insStdItem.biz.ext";
+//新标准项目（维保大数据）--小熊
+var stdItemUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.crud.inStandardItem.biz.ext";
+function selectStdItem(row) {    
+   if(!row.id) return;
+   nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '处理中...'
+   });
+   
+   var item = row;
+   	var json = nui.encode({
+   		"item":item,
+   		"serviceId":serviceId,
+   		token:token
+   	});
+	nui.ajax({
+		url : stdItemUrl,
+		type : 'POST',
+		data : json,
+		cache : false,
+		contentType : 'text/json',
+		success : function(text) {
+			var returnJson = nui.decode(text);
+			if (returnJson.errCode == "S") {
+				nui.unmask(document.body);
+				var data = returnJson.data;
+				if(data){
+					data.check = 1;
+					tempGrid.addRow(data);
+				}
+				
+			} else {
+				showMsg(returnJson.errMsg||"添加项目失败!","E");
+				nui.unmask(document.body);
+		    }
+		}
+	 });
+
+}
+
+//旧标准项目--小莫
+/*var stdItemUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.crud.insStdItem.biz.ext";
 function selectStdItem(row) {    
    if(!row.ItemID) return;
    nui.mask({
@@ -575,7 +642,7 @@ function selectStdItem(row) {
 		}
 	 });
 
-}
+}*/
 function CloseWindow(action)
 {
 	if (window.CloseOwnerWindow)
@@ -738,4 +805,24 @@ function selectclick() {
     	}
         
     });
+}
+
+function loadTree(){
+//  tree.setUrl(hotUrl);
+	nui.ajax({
+		url : hotUrl,
+		type : 'POST',
+		data : "",
+		cache : false,
+		contentType : 'text/json',
+		success : function(text) {
+			if(text.errCode=="S"){
+				var data =JSON.parse(text.zhuanResult.replace(/childNodes/g,"children"));
+				tree.loadData(data.tree||[]);
+			}else{
+				showMsg(text.errMsg||"未获取标准工时！","W");
+			}
+		}
+	 });
+    
 }

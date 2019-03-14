@@ -69,7 +69,7 @@
                     <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
                     <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                 </ul> -->
-                     工单类型:<input class="nui-combobox" id="billTypeId" emptyText="综合开单" name="billTypeId" data="[{billTypeId:999,text:'全部工单'},{billTypeId:0,text:'综合开单'},{billTypeId:2,text:'洗美开单'},{billTypeId:4,text:'理赔开单'}]"
+                     工单类型:<input class="nui-combobox" id="billTypeId" emptyText="综合开单" name="billTypeId" data="[{billTypeId:999,text:'全部工单'},{billTypeId:0,text:'综合开单'},{billTypeId:2,text:'洗美开单'},{billTypeId:4,text:'理赔开单'},{billTypeId:6,text:'波箱开单'}]"
                           width="100px"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="999"/>
                           <span class="separator"></span>
                     <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>

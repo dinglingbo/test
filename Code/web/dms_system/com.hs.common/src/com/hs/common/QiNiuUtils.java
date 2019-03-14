@@ -94,6 +94,17 @@ public class QiNiuUtils {
 
 	}
 	
+	@Bizlet("获取维保大数据路径")
+	public static String getMaintenance() {
+		String envType = Env.getContributionConfig("com.vplus.login",
+				"cfg", "MAINTENANCE", "serverType");
+		String maintenance = Env.getContributionConfig("com.vplus.login",
+				"cfg", "MAINTENANCE", envType);
+
+		return maintenance;
+
+	}
+	
 	@Bizlet("获取图片上传路径")
 	public static String getCompanyLogoUrl() {
 		String envType = Env.getContributionConfig("com.vplus.login",

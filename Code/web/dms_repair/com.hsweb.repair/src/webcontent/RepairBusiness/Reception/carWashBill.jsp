@@ -10,7 +10,7 @@
 -->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.5.86"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.5.87"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -259,10 +259,14 @@ html, body{
 
                 <a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
 
-                <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
+               <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
+                    <li iconCls="" onclick="onPrint(1)" id="type11">打印报价单</li>
+                    <li iconCls="" onclick="onPrint(8)" id="type11">打印报价单(项目配件分开)</li>
                     <li iconCls="" onclick="onPrint(2)" id="type11">打印派工单</li>
                     <li iconCls="" onclick="onPrint(3)" id="type11">打印结账单</li>
+                    <li iconCls="" onclick="onPrint(9)" id="type11">打印结账单(项目配件分开)</li>
                     <li iconCls="" onclick="onPrint(4)" id="type11">打印结账单(小票)</li>
+                     <li iconCls="" onclick="onPrint(10)" id="type11">打印结账单(小票,项目配件分开)</li>
                     <li iconCls="" onclick="onPrint(5)" id="type11">打印领料单</li>
                 </ul>
 
@@ -308,6 +312,7 @@ html, body{
         <input class="nui-hidden" name="status"/>
         <input class="nui-hidden" name="isSettle" id="isSettle"/>
         <input class="nui-hidden" name="carModelIdLy"/>
+        <input class="nui-hidden" name="balaAuditSign"/>
         <table   style="width: 100%;border-spacing: 0px 5px;"> 
             <tr>   
                 <td class="title required">车&nbsp;牌&nbsp;&nbsp;号：</td> 

@@ -17,7 +17,13 @@
   border: 2px dashed #06c;
   position: absolute;
 }
-
+.car{
+	background:#ffffff;
+}
+.part-span{
+   font-size:13px;
+   color:#2779aa;
+}
 
 </style>
 
@@ -53,9 +59,9 @@
                 <!--分组-->
                 <%@include file="/epc/vin/vinQuery_SubGroup.jsp" %>
                 <!--零件-->
-                <%@include file="/epc/vin/vinQuery_Parts.jsp" %>
+<%--                 <%@include file="/epc/vin/vinQuery_Parts.jsp" %> --%>
 <!--                 零件2 -->
-<%--                 <%@include file="/epc/vin/vinQuery_Parts2.jsp" %> --%>
+                <%@include file="/epc/vin/vinQuery_Parts2.jsp" %>
             </div>
         </div>
     </div>

@@ -102,7 +102,8 @@
                     <!--分组-->
                     <%@include file="/epc/vin/vinQuery_SubGroup.jsp" %>
                     <!--零件-->
-                    <%@include file="/epc/vin/vinQuery_Parts.jsp" %>
+                    <%@include file="/epc/vin/vinQuery_Parts2.jsp" %>
+     
                 </div>
             </div>
         </div>

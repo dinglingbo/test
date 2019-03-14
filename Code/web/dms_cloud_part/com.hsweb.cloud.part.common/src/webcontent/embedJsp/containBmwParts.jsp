@@ -8,7 +8,7 @@
 -->
 <head>
 <title>宝马配件查询</title>
-<script src="<%=webPath + contextPath%>/common/js/embed/containBmwParts.js?v=1.0.8"></script>
+<script src="<%=webPath + contextPath%>/common/js/embed/containBmwParts.js?v=1.0.14"></script>
 <style type="text/css">
     .table-label {
         text-align: right;

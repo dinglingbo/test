@@ -93,7 +93,7 @@ pageEncoding="UTF-8" session="false" %>
                 </td>
                 <td >回访时间：</td>
                 <td >
-                    <input id="visitDate" name="visitDate" class="nui-datepicker textboxWidth">
+                    <input id="visitDate" name="visitDate" class="nui-datepicker textboxWidth" showTime="true" format="yyyy-MM-dd HH:mm">
                 </td>
             </tr>
 
@@ -119,9 +119,12 @@ pageEncoding="UTF-8" session="false" %>
     var tabForm = new nui.Form("#form1");
     var form = {};
     var mainData = null;
+    nui.get("visitDate").setValue(new Date());
 
 
     initMember("visitMan",function(){
+        visitManEl.setValue(currUserId);
+        visitManEl.setText(currUserName);
     }); 
 
 function visitManChanged(e){

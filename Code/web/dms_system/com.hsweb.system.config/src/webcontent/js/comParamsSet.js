@@ -25,7 +25,7 @@ $(document).ready(function(v) {
     repairBillQrSettleFlag = nui.get("repairBillQrSettleFlag");
     repairBillCmodelFlag = nui.get("repairBillCmodelFlag");
     repairBillCmodelFlagT = nui.get("repairBillCmodelFlagT");
-    //repairBillMobileFlag = nui.get("repairBillMobileFlag");
+    repairBillMobileFlag = nui.get("repairBillMobileFlag");
     editParice = nui.get("editParice");
     repairPchsRtnFlag = nui.get("repairPchsRtnFlag");
     //rate = nui.get("rate");
@@ -41,7 +41,7 @@ $(document).ready(function(v) {
     repairBillQrSettleFlag.setData(radioList);
     repairBillCmodelFlag.setData(radioList);
     repairBillCmodelFlagT.setData(radioList);
-    //repairBillMobileFlag.setData(radioList);
+    repairBillMobileFlag.setData(radioList);
     openToArchives.setData(typeList);
     openToGuestQrcode.setData(typeList);
     

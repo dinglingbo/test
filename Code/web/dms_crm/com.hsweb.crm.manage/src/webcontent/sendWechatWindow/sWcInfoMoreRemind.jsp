@@ -10,7 +10,7 @@
 -->
 
 <head>
-    <title>车辆年检-发送微信消息</title>
+    <title>保养提醒-发送微信消息-群发</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
 
@@ -45,17 +45,25 @@
                     <input class="nui-hidden" name="wechatOpenId" id="wechatOpenId" />
                     <table class="tmargin" style="table-layout: fixed;width:100%">
                         <tr class="htr">
-                            <td style="width:100px;" class="tbtext"><label>车牌号：</label></td>
+                            <td style="width:100px;" class="tbtext"><label>车架号：</label></td>
                             <td style="width:150px;">
-                                <input id="keyword1" name="keyword1" class="nui-textbox textboxWidth" style="width: 100%;"
-                                    required="true">
+                                <input id="carVin" name="carVin" class="nui-textbox textboxWidth" style="width: 100%;"
+                                    required="true" enabled="false">
                             </td>
                         </tr>
                         <tr class="htr">
-                            <td class="tbtext"><label>到期时间：</label></td>
+                            <td class="tbtext"><label>上次进站里程：</label></td>
                             <td>
-                                <input id="keyword2" name="keyword2" class="nui-datepicker textboxWidth" style="width: 100%;"
-                                    required="true" format="yyyy-MM-dd HH:mm">
+                                <input id="lastComeKilometers" name="lastComeKilometers" class="nui-textbox textboxWidth"
+                                    style="width: 100%;" required="true" enabled="false">
+                            </td>
+                        </tr>
+                        <tr class="htr">
+                        <tr class="htr">
+                            <td class="tbtext"><label>上次进站时间：</label></td>
+                            <td>
+                                <input id="lastComeDate" name="lastComeDate" class="nui-datepicker textboxWidth" style="width: 100%;"
+                                    required="true" format="yyyy-MM-dd HH:mm" enabled="false">
                             </td>
                         </tr>
                         <tr class="htr">
@@ -74,9 +82,12 @@
                                     emptyText="请输入尾行内容" required="true">
                             </td>
                         </tr>
+                        <tr class="htr">
+                            <td class="" colspan="4"><label style="color: red;margin-left:30px;">注：使用【车主姓名】代替车主姓名</label></td>
+                        </tr>
                     </table>
                     <div>
-                        <a class="nui-button" onclick="view()" id="save" plain="false" style="margin-left: 20px;margin-top: 20px;">
+                        <a class="nui-button" onclick="view()" id="save" plain="false" style="margin-left: 20px;margin-top: 10px;">
                             <span class="fa fa-refresh fa-lg"></span>&nbsp;生成预览</a>
                     </div>
                 </div>
@@ -100,10 +111,10 @@
 
     <script type="text/javascript">
         nui.parse();
-        var turl = apiPath + wechatApi + '/com.hsapi.wechat.autoServiceBackstage.weChatInterface.sendToolWeChatTemplateMessage.biz.ext'
+        var turl = apiPath + repairApi + '/com.hsapi.repair.repairService.sendWeChat.sendQFRending.biz.ext';
         var saveUrl = apiPath + repairApi +"/com.hsapi.repair.repairService.crud.saveRemindRecord.biz.ext";
         var form = new nui.Form("#form1");
-        var mainData = {};
+        var mainData = [];
 
         nui.get("carVin").focus();
         document.onkeyup=function(event){
@@ -116,15 +127,14 @@
         };
 
 
-        function setData(row) {
-            var firstText = '您好：尊敬的'+row.name+'先生/女士，您的车辆年检时间将到期';
-            var endText ='请及时办理。';
+        function setData(rows) {
+            var row = rows[0];
+            var firstText = '您好：尊敬的【车主姓名】先生/女士，根据您上次的进站记录，提醒您近期进站为您的爱车做个“体检”，使用微信保养预约功能，可大大缩减您的等待时间，祝您驾驶愉快！';
+            var endText ='感谢您的支持，点击详情查看具体信息。';
             row.firstContent = firstText;
             row.endContent = endText;
-            row.keyword1 = row.carNo;
-            row.keyword2 = row.annualVerificationDueDate;
             form.setData(row);
-            mainData= row;
+            mainDatas= rows;
         }
 
         function send(params) {
@@ -137,14 +147,16 @@
 
         function getViewText() {
             var data = form.getData(true);
-            var firstContent = data.firstContent.toString();
-            var keyword1 = data.keyword1.toString();
-            var keyword2 = data.keyword2.toString();
+            var firstContent = data.firstContent.toString().replace(/【车主姓名】/g,mainDatas[0].guestName);
+            var carVin = data.carVin.toString();
+            var lastComeKilometers = data.lastComeKilometers.toString();
+            var lastComeDate = data.lastComeDate.toString();
             var endContent = data.endContent.toString();
 
             var viewText= firstContent + '<br>' +
-                '车牌号：' + keyword1 + '<br>' +
-                '到期时间：' + keyword2 + '<br>' +
+                '车架号：' + carVin + '<br>' +
+                '上次进站里程：' + lastComeKilometers + '公里' + '<br>' +
+                '上次进站时间：' + lastComeDate + '<br>' +
                 endContent;
                 return viewText;
         }
@@ -168,28 +180,29 @@
 
         function sendWeChat() {
             var data = form.getData(true);
-            var p={
-                first:data.firstContent,
-                keyword1:data.keyword1,
-                keyword2:data.keyword2,
-                remark:data.endContent
-            };
-            var params ={
-                openid:data.wechatOpenId,
-                templateId:'oBMHtz2FOq5gbdBLTrELvVC9QrB6J8rrmOyU81Bg844',//模板id  车辆年检
-                url:'',//消息的yurl 可为空
-                paraMap:p,
-                token:token
+            var dataList = [];
+            for (var i = 0; i < mainDatas.length; i++) {
+                var temp = {};
+                temp.first = data.firstContent.toString().replace(/【车主姓名】/g,mainDatas[i].guestName);
+                temp.keyword1 =  mainDatas[i].carVin;
+                temp.keyword2 =  mainDatas[i].lastComeKilometers+"公里";
+                temp.keyword3 =  (mainDatas[i].lastComeDate == null?'':nui.formatDate (new Date(mainDatas[i].lastComeDate),'yyyy-MM-dd HH:mm'));
+                temp.remark =  data.endContent.toString().replace(/【车主姓名】/g,mainDatas[i].guestName);
+                temp.url =  '';
+                temp.openId = mainDatas[i].wechatOpenId;
+                temp.templateId = 'J503rlGOPzZgfUJ5mpGdP5cqL57sWZN_wlxYhbib234';
+                dataList.push(temp);
             }
             nui.ajax({
                 url:turl,
                 type:"post",
-                data:params,
+                data:{
+                    dataList:dataList
+                },
                 success:function (res) {
-                    saveRecord(mainData);
+                    // saveRecord(mainData);
                 }
             })
-            
         }
 
 

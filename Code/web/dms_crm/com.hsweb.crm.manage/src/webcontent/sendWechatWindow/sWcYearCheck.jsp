@@ -117,12 +117,12 @@
 
 
         function setData(row) {
-            var firstText = '您好：尊敬的'+row.guestName+'先生/女士，您的驾驶证即将到期';
+            var firstText = '您好：尊敬的'+row.name+'先生/女士，您的车辆年检时间将到期';
             var endText ='请及时办理。';
             row.firstContent = firstText;
             row.endContent = endText;
             row.keyword1 = row.carNo;
-            row.keyword2 = row.licenseOverDate;
+            row.keyword2 = row.annualVerificationDueDate;
             form.setData(row);
             mainData= row;
         }

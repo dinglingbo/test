@@ -96,8 +96,11 @@ pageEncoding="UTF-8" session="false" %>
     var visitIdEl = nui.get("visitId");
     var visitMode_ctrl = nui.get("visitMode");
     visitMode_ctrl.setUrl(visitModeCtrlUrl);
+    nui.get("visitDate").setValue(new Date());
 
     initMember("visitMan",function(){
+        nui.get("visitMan").setValue(currUserId);
+        nui.get("visitMan").setText(currUserName);
     }); 
 
     function visitManChanged(e){
@@ -112,6 +115,11 @@ pageEncoding="UTF-8" session="false" %>
     }
 
     function save(){
+        nui.mask({
+            el: document.body,
+            cls: 'mini-mask-loading',
+            html: '正在保存...'
+        });
         var data = tabForm.getData();
         var record = {
             visitMode:data.visitMode,
@@ -130,11 +138,12 @@ pageEncoding="UTF-8" session="false" %>
         };
         nui.ajax({
             url:baseUrl + "com.hsapi.crm.svr.visit.savevisitDetail.biz.ext",
-            type:"post",
+            type:"post", 
             data:{
                 params:record
             },
             success:function(text){
+                nui.unmask();
                 if(text.errCode == "S"){
                     var detailData = text.detailData;
                     showMsg("保存成功！","S");

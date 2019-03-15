@@ -16,7 +16,7 @@ pageEncoding="UTF-8" session="false" %>
     <%@include file="/common/commonRepair.jsp"%>
     <script type="text/javascript" src="https://unpkg.com/echarts@3.5.3/dist/echarts.js"></script>
     <script src="<%= request.getContextPath() %>/common/nui/macarons.js" type="text/javascript"></script>
-    <script src="<%=webPath + contextPath%>/manage/js/guestType.js?v=0.4.8" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/guestType.js?v=0.5.2" type="text/javascript"></script>
     <style type="text/css">
         html,
         body {
@@ -47,7 +47,7 @@ pageEncoding="UTF-8" session="false" %>
             </div>
 
             <div id="t3" style="float:left;width: 60%; height: 100%;">
-                <div id="tabs1" class="nui-tabs" activeIndex="0" style="width:100%;height:100%;" plain="true"
+                <div id="tabs1" class="nui-tabs" activeIndex="3" style="width:100%;height:100%;" plain="true"
                 onactivechanged=""
                     tabPosition="top">
                     <div title="客户类型" name="type">
@@ -132,13 +132,13 @@ pageEncoding="UTF-8" session="false" %>
                                                     <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
                                                         class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                                                         <span class="separator"></span>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(1)"><span
                                                         class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                                                <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
-                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                 <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(2)"><span
+                                                        class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a> -->
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(3)"><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                <!--<a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
                                                         class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a> -->
                                             </td>
                                         </tr>
@@ -187,9 +187,9 @@ pageEncoding="UTF-8" session="false" %>
                                         <tr>
                                             <td>
                                                 <label>操作：</label>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(1)"><span
                                                         class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                                                <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                                                <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(2)"><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
@@ -235,9 +235,9 @@ pageEncoding="UTF-8" session="false" %>
                                         <tr>
                                             <td>
                                                 <label>操作：</label>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(1)"><span
                                                         class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                                                <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                                                <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(2)"><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
@@ -283,11 +283,11 @@ pageEncoding="UTF-8" session="false" %>
                                         <tr>
                                             <td>
                                                 <label>操作：</label>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(1)"><span
                                                         class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                                                <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(2)"><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
                                                         class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a> -->
@@ -331,9 +331,9 @@ pageEncoding="UTF-8" session="false" %>
                                         <tr>
                                             <td>
                                                 <label>操作：</label>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(1)"><span
                                                         class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                                                <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                                                <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(2)"><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
@@ -379,9 +379,9 @@ pageEncoding="UTF-8" session="false" %>
                                         <tr>
                                             <td>
                                                 <label>操作：</label>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(1)"><span
                                                         class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                                                <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                                                <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(2)"><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
@@ -427,11 +427,11 @@ pageEncoding="UTF-8" session="false" %>
                                 <tr>
                                     <td>
                                         <label>操作：</label>
-                                        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
+                                        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(1)"><span
                                                 class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                                        <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                                        <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(2)"><span
                                                 class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                                        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcPic()"><span
                                                 class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
                                         <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
                                                 class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a> -->
@@ -471,8 +471,7 @@ pageEncoding="UTF-8" session="false" %>
     <script type="text/javascript">
         nui.parse();
         var webBaseUrl = webPath + contextPath + "/";
-        var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
-        var turl = baseUrl + "com.hsapi.crm.svr.guest.getGuestTypeNum.biz.ext";
+        var turl = apiPath + crmApi + "/com.hsapi.crm.svr.guest.getGuestTypeNum.biz.ext";
         var echartData = {};
 
         $("a[name=type]").click(function () {
@@ -489,9 +488,11 @@ pageEncoding="UTF-8" session="false" %>
 
         function getEchartDate() {
             nui.ajax({
-                url: turl,
+                url: turl, 
                 type: "post",
-                data: {},
+                data: {
+                token:token
+                },
                 success: function (res) {
                     if (res.errCode == 'S') {
                         if (res.carNum != []) {

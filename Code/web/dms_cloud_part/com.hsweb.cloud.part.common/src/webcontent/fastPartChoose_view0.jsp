@@ -9,7 +9,7 @@
 -->
 <head>
 <title>快速录入</title>
-<script src="<%=webPath + contextPath%>/common/js/fastPartChoose.js?v=1.0.79"></script>
+<script src="<%=webPath + contextPath%>/common/js/fastPartChoose.js?v=1.0.107"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -85,12 +85,14 @@ body .mini-grid-row-selected{
                                     dataField="parts"
                                     sortMode="client"
                                     onrowdblclick=""
+                                    onshowrowdetail="onShowRowDetail"
                                     totalField="page.count"
                                     allowCellSelect="true"
                                     editNextOnEnterKey="true"
                                     url="">
                                     <div property="columns">
                                         <div type="indexcolumn">序号</div>
+                                        <div type="expandcolumn" width="50" >替换件</div>
                                         <div field="code" name="code" width="100" headerAlign="center" header="配件编码"></div>
                                         <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
                                         <div field="name" name="name" width="100" headerAlign="center" header="配件名称"></div>
@@ -116,6 +118,7 @@ body .mini-grid-row-selected{
                                     sizeList=[20,50,100,200]
                                     dataField="partlist"
                                     url=""
+                                    onshowrowdetail="onShowRowDetail2"
                                     showModified="false"
                                     sortMode="client"
                                     ondrawcell=""
@@ -125,6 +128,7 @@ body .mini-grid-row-selected{
                                     allowCellSelect="true" allowCellEdit="false">
                                 <div property="columns">
                                     <div type="indexcolumn">序号</div>
+                                    <div type="expandcolumn" width="50" >替换件</div>
                                     <div field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
                                     <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
                                     <div field="partName" partName="name" width="100" headerAlign="center" header="配件名称"></div>
@@ -278,6 +282,64 @@ body .mini-grid-row-selected{
 
     </div>
     
+</div>
+
+<!-- 配件选择 -->
+<div id="editFormDetail" style="display:none;padding:5px;position:relative;">
+
+   <div id="innerPartGrid"
+       dataField="parts"
+       allowCellWrap = true
+       class="nui-datagrid"
+       style="width: 100%; height: 100px;"
+       showPager="false"
+       allowSortColumn="true">
+      <div property="columns">
+            <div type="indexcolumn">序号</div>
+            <div field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
+            <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
+            <div field="partName" name="partName" width="100" headerAlign="center" header="配件名称"></div>
+            <div field="partBrandId" name="partBrandId" width="80" headerAlign="center" header="品牌"></div>
+            <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="品牌车型"></div>
+            <div allowSort="true" datatype="float" name="outableQty" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
+            <!-- <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div> -->
+            <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
+            <div allowSort="true" datatype="float" field="costPrice" summaryType="sum" width="60" headerAlign="center" header="成本单价"></div>
+            <!-- <div allowSort="true" datatype="float" field="onRoadQty" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div> -->
+            <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div> 
+      </div>
+   </div>
+</div>
+
+<!-- 批次选择 -->
+<div id="editFormDetail2" style="display:none;padding:5px;position:relative;">
+
+   <div id="innerPartGrid2"
+       dataField="partlist"
+       allowCellWrap = true
+       class="nui-datagrid"
+       style="width: 100%; height: 100px;"
+       showPager="false"
+       allowSortColumn="true">
+      <div property="columns">
+            <div field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
+            <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
+            <div field="partName" partName="name" width="100" headerAlign="center" header="配件名称"></div>
+            <div allowSort="true" datatype="float" width="60" field="stockQty" name="stockQty" headerAlign="center" header="库存数量"></div>
+            <div allowSort="true" datatype="float" width="60" field="preOutQty" headerAlign="center" header="待出库数量"></div>
+            <div field="enterPrice" width="55px" headerAlign="center" allowSort="true" header="库存单价"></div>
+            <div field="billTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="票据类型"></div>
+            <div field="storeId" width="60" headerAlign="center" allowSort="true" header="仓库"></div>
+            <div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true" header="仓位"></div>
+            <div field="partBrandId" name="partBrandId" width="80" headerAlign="center" header="品牌"></div>
+            <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="品牌车型"></div>
+            <div field="enterUnitId" width="30" headerAlign="center" header="单位"></div>
+            <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="120px" header="入库日期" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
+            <div field="guestName" width="150px" headerAlign="center" allowSort="true" header="供应商"></div>  
+            <div field="enterCode" align="left" width="100px" headerAlign="center" allowSort="true" header="入库单号"></div>
+            <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div> 
+      </div>
+   </div>
 </div>
 
 </body>

@@ -59,7 +59,6 @@
                 <div field="storeName" headerAlign="center" align="left">微信门店</div>
                 <div field="textTitle" headerAlign="center" align="center">标题</div>
                 <div field="imageTextType" headerAlign="center" align="center" renderer="onImageTextType" width="65">类型</div>
-                <div field="imageTextStatus" headerAlign="center" align="center" renderer="onImageTextStatus" width="65">状态</div>
                 <div field="creator" headerAlign="center" align="center" width="70">创建人</div>
                 <div field="createDate" headerAlign="center" align="center" width="140" dateFormat="yyyy-MM-dd HH:mm:ss">创建时间</div>
                 <div field="modifier" headerAlign="center" align="center" width="70">更改人</div>
@@ -72,44 +71,51 @@
     <script type="text/javascript">
         nui.parse();
         var pathapi = apiPath + wechatApi;
+        var gridUrl =pathapi + "/com.hsapi.wechat.autoServiceBackstage.weChatImageTextMessage.queryImageTextMessageMain.biz.ext"
+        var pushUrl =pathapi + "/com.hsapi.wechat.autoServiceBackstage.weChatImageTextMessage.pushUserImageTextMessage.biz.ext"
         var pathweb = webPath + wechatDomain;
         var imageTextData = nui.get("imageTextData");
+        var mainDatas = [];
 
         $(function () {
-            imageTextData.setUrl(pathapi +
-                "/com.hsapi.wechat.autoServiceBackstage.weChatImageTextMessage.queryImageTextMessageMain.biz.ext"
-            );
+            imageTextData.setUrl(gridUrl);
             imageTextData.load({
-                token: token
+                map:{
+                    orgid:currOrgId
+                },
+                token:token
             });
         });
+
+        function setData(list) {
+            mainDatas = list;
+        }
 
         //推送用户
         function pushUserList() {
             var row = imageTextData.getSelected();
-            console.log(row);
+            // console.log(row);
+            var opArr = [];
+            for (var  i = 0; i < mainDatas.length; i++) {
+                var temp = {
+                    userOpid:mainDatas[i].wechatOpenId
+                };
+                opArr.push(temp);
+            }
+            var params={
+                imageTextId:row.imageTextId,
+                openIdList:opArr,
+                orgid:currOrgId
+            };
             if (row) {
-                nui.open({
-                    url: pathweb + "/autoServiceSys/weChatMessage/pushUserList.jsp",
-                    title: "推送用户",
-                    width: 710,
-                    height: 420,
-                    onload: function () { //弹出页面加载完成
-                        var iframe = this.getIFrameEl();
-                        var data = {
-                            imageTextData: row
-                        };
-                        iframe.contentWindow.setFormData(data);
-                    },
-                    ondestroy: function (action) { //弹出页面关闭前
-                        if (action == 'saveSuccess') {
-                            nui.alert("推送成功", "系统提示");
-                            imageTextData.reload();
-                        } else if (action == "saveFail") {
-                            nui.alert("推送失败", "系统提示");
-                        }
+                nui.ajax({
+                    url:pushUrl,
+                    type:'post',
+                    data:params,
+                    success:function(res){
+
                     }
-                });
+                })
             }
         }
 
@@ -188,7 +194,10 @@
         function search() {
             var formData = new nui.Form("#form1").getData();
             imageTextData.load({
-                map: formData,
+                map: {
+                    imageTextTitle:formData.imageTextTitle,
+                    orgid:currOrgId
+                },
                 token: token
             });
         }
@@ -199,10 +208,6 @@
             form.reset();
         }
 
-        //消息状态
-        function onImageTextStatus(e) {
-            return e.value == 0 ? "未推送" : "已推送";
-        }
     </script>
 </body>
 

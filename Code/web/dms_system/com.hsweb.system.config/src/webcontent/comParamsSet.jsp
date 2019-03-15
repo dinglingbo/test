@@ -9,7 +9,7 @@
 -->
 <head>
   <title>工单设置</title>
-  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.0.7"></script>
+  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.0.8"></script>
   <style type="text/css">
 
     .title {
@@ -105,15 +105,15 @@
                         textField="text" valueField="id" ></div>
                 </td>      
             </tr>
-            <!--<tr>
-                <td class="tbtext">是否隐藏手机号：</td>
+            <tr>
+                <td class="tbtext">工单打印是否显示手机号：</td>
                 <td class="tbCtrl" >
                     <div id="repairBillMobileFlag" name="repairBillMobileFlag" 
                         class="nui-radiobuttonlist" value="" repeatItems="2" 
                         repeatDirection="" repeatLayout="table" 
                         textField="text" valueField="id" ></div>
                 </td>      
-            </tr>-->
+            </tr>
             <tr>
                 <td class="tbtext">哪些类别项目开单不能改价：</td>
                 <td class="tbCtrl" >

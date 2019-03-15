@@ -116,9 +116,10 @@ function getComParamsList(){
             data = data || {};
             billParams = data.billParams;
 			if (billParams) {
-                
                 basicInfoForm.setData(billParams);
-                
+                if(!billParams.repairBillMobileFlag){
+                	repairBillMobileFlag.setValue("0");
+                }
 			} 
 		},
 		error : function(jqXHR, textStatus, errorThrown) {

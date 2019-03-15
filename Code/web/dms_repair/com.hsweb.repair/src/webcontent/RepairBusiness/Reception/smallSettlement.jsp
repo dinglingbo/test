@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
 	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -197,7 +197,9 @@
             if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
             else window.close();
         }
-    	function SetData(params){
+    	function SetData(param){
+    	    var params = param;
+    	    var currRepairBillMobileFlag = params.currRepairBillMobileFlag;
     	    token1 =  params.token;
             webUrl = params.webUrl;
     		nui.ajax({
@@ -231,6 +233,7 @@
             });
             var guestName = document.getElementById("guestId").innerHTML;
             var guestId = guestName.replace(/[^0-9]/ig, "");
+            $.ajaxSettings.async = false;
             nui.ajax({
                 url: params.baseUrl+"com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext",
                 type : "post",
@@ -246,6 +249,10 @@
                    		var mobile = guest.mobile || "";
                    		phones = mobile;
                    		document.getElementById("guestId").innerHTML =  guestName.replace(/[0-9]/ig,"") + fullName;
+                   		if(currRepairBillMobileFlag==1){
+	        	        document.getElementById("guestId").innerHTML = document.getElementById("guestId").innerHTML + 
+	        	        "<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ phones;
+	        	    }
                    		//document.getElementById("mobile").innerHTML = document.getElementById("mobile").innerHTML+ mobile;
                    }
                 },
@@ -253,8 +260,9 @@
                     console.log(jqXHR.responseText);
                     showMsg("网络出错", "W");
                 }
-            });
+            }); 
             	//document.getElementById("name").innerHTML = "&nbsp;套餐";
+            	$.ajaxSettings.async = false;
             	nui.ajax({
 	                url: params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext",
 	                type : "post",
@@ -299,6 +307,7 @@
 	                }
             	});
             	//document.getElementById("name").innerHTML = "&nbsp;工时";
+            	$.ajaxSettings.async = false;
             	nui.ajax({
 	                url: params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext",
 	                type : "post",

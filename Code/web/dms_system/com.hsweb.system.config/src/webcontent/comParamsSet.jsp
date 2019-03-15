@@ -9,7 +9,7 @@
 -->
 <head>
   <title>工单设置</title>
-  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.0.8"></script>
+  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.0.10"></script>
   <style type="text/css">
 
     .title {
@@ -109,7 +109,7 @@
                 <td class="tbtext">工单打印是否显示手机号：</td>
                 <td class="tbCtrl" >
                     <div id="repairBillMobileFlag" name="repairBillMobileFlag" 
-                        class="nui-radiobuttonlist" value="" repeatItems="2" 
+                        class="nui-radiobuttonlist" value="0" repeatItems="2" 
                         repeatDirection="" repeatLayout="table" 
                         textField="text" valueField="id" ></div>
                 </td>      

@@ -175,7 +175,7 @@ function onIDCardsValidation(e)
 function onMobileValidation(e)
 {
     if (e.isValid) {
-        var pattern = /^1(3|5|6|7|8|9)\d{9}$/;;
+        var pattern = /^1(3|4|5|6|7|8|9)\d{9}$/;;
         if (e.value.length != 11 || pattern.test(e.value) == false) {
             e.errorText = "必须输入正确的手机号码";
             e.isValid = false;

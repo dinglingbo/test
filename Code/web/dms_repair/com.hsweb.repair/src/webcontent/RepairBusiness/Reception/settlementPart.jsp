@@ -803,7 +803,7 @@
 	    				 		document.getElementById("yh").innerHTML = text.data.totalPrefAmt.toFixed(2);
 	    				 		document.getElementById("cash1").innerHTML = text.data.balaAmt.toFixed(2);			
 	    						    		var money = transform(text.data.balaAmt+"");
-											document.getElementById("money").innerHTML = money.toFixed(2);
+											document.getElementById("money").innerHTML = money;
 	    					
 	    				}else{
 	    					nui.alert(text.errMsg,"提示");

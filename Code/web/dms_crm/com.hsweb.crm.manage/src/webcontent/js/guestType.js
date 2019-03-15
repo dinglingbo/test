@@ -340,7 +340,18 @@ function sendInfo(e) {
             sendWcText(dataArr,sendWcUrl);
         }
     }else if (e == 3) {// 3发送微信图文
-        sendWcPic(gridList);
+        var dataArr = [];
+        for(var i=0;i<gridList.length;i++){
+            if(gridList[i].wechatOpenId){
+                dataArr.push(gridList[i]);
+            }
+        }
+        if(dataArr.lenght <1){
+            showMsg("没有可发送微信的客户","W");
+            return;
+        }else{
+            sendWcPic(dataArr);
+        }
     }else if (e == 4) {// 4发送微信卡券
         // sendWcPic(gridList);
     }
@@ -357,7 +368,7 @@ function sendWcPic(list) {
         title: "发送微信图文", width: 800, height: 350,
         onload: function () {
         var iframe = this.getIFrameEl();
-        // iframe.contentWindow.setData(list);
+        iframe.contentWindow.setData(list);
     },
     ondestroy: function (action) {
             //重新加载

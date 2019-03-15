@@ -1299,7 +1299,7 @@ function addBill(){
         } 
     }
 
-    var guestId = guestIdEl.getValue().replace(/\s+/g, "");
+    var guestId = guestIdEl.getValue();
     if(!guestId){
         showMsg("请选择往来单位!","W");
         return;

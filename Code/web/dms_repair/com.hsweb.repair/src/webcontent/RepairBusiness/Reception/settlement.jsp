@@ -447,6 +447,7 @@
 
         
         function SetData(params){
+            var currRepairBillMobileFlag = params.currRepairBillMobileFlag || ""; 
             var imgUrl = params.currCompLogoPath || "";
             if(imgUrl && imgUrl != ""){
                $('#showImg').show();
@@ -529,6 +530,7 @@
 	        		  enterDate='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
 	        		}
 	        		var guestFullName = list.guestFullName || "";
+	        		var guestMobile = list.guestMobile || "";
 	        		var enterOilMass = list.enterOilMass || "0";
 	        		var name = "0";
 	        		//查找油量http://127.0.0.1:8080/default/
@@ -559,7 +561,7 @@
 	        		var guestAddr = list.guestAddr || "";
 	        		if(params.type){
 	        			guestFullName = list.guestName || "";
-	        			//guestMobile = list.guestTel || "";
+	        			guestMobile = list.guestTel || "";
 	        			//contactMobile = list.contactorTel || "";
 	        			carNo = list.carNo || "";
 	        			//contactName = list.contactorName || "";
@@ -570,6 +572,7 @@
 	        		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
 	        		document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;
 	        		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
+	        		
 	        		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
 	        		document.getElementById("enterOilMass").innerHTML = document.getElementById("enterOilMass").innerHTML + name;
 	        		document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + mtAdvisor;
@@ -579,6 +582,10 @@
 	        		document.getElementById("solveMethod").innerHTML = document.getElementById("solveMethod").innerHTML + solveMethod; 
 	        		//document.getElementById("guestAddr").innerHTML = document.getElementById("guestAddr").innerHTML + guestAddr;
 	        		//document.getElementById("name").innerHTML = document.getElementById("name").innerHTML + mtAdvisor; 
+	        	    if(currRepairBillMobileFlag==1){
+	        	        document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + 
+	        	        "<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ guestMobile;
+	        	    }
 	        	}
         	});
         	if(params.type){
@@ -764,7 +771,7 @@
 	    				 		document.getElementById("yh").innerHTML = text.data.totalPrefAmt.toFixed(2);
 	    				 		document.getElementById("cash1").innerHTML = text.data.balaAmt.toFixed(2);			
 	    						    		var money = transform(text.data.balaAmt+"");
-											document.getElementById("money").innerHTML = money.toFixed(2);
+											document.getElementById("money").innerHTML = money;
 	    					
 	    				}else{
 	    					nui.alert(text.errMsg,"提示");

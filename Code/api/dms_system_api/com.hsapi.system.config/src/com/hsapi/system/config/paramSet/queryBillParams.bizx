@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryBillParams.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="1001  结算单打印内容&#xD;&#xA;1002  委托单打印内容&#xD;&#xA;1003  结算单打印抬头显示&#xD;&#xA;1004&#xD;&#xA;1005  综合服务单流程控制&#xD;&#xA;1006  完工、结算配件必须出库&#xD;&#xA;1007  小票、结算单显示结算二维码&#xD;&#xA;1008  微信车主端服务详细直接结算&#xD;&#xA;1009  车型可自由填写&#xD;&#xA;1010  工单打印是否显示手机号&#xD;&#xA;1011  哪些类别工时开单不能改价&#xD;&#xA;1012  税率比例&#xD;&#xA;1013  工单服务性质对健康档案不开放&#xD;&#xA;1014  工单服务性质对车主微信端不开放&#xD;&#xA;1015  是否启用技师等级分配提成&#xD;&#xA;1016  拿些类型工单需要配件审核&#xD;&#xA;1017  采购退货供应商一致才可退货" title="Administrator&#x9;19-3-15 下午1:20">
+    <location x="-210" y="218"/>
+    <size height="368" width="241"/>
+  </nodes>
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="工单设置默认设置：&quot;1003，1005,1006,1007,1008,1009,1010,1011,1012,1013,1014&quot;;&#xD;&#xA;如果设置的内容有调整需要修改&#xD;&#xA;&#xD;&#xA;1001结算单打印&#xD;&#xA;1002委托单打印" title="Administrator&#x9;18-7-10 上午11:33">
     <location x="-225" y="-45"/>
     <size height="129" width="541"/>
@@ -44,7 +48,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">1001,1002,1003,1004,1006,1007,1008,1009,1011,1014,1017,1016,1018</process:from>
+      <process:from type="literal" pattern="reference">1001,1002,1003,1004,1006,1007,1008,1009,1010,1011,1014,1017,1016,1018</process:from>
       <process:to type="query">params/keyidIds</process:to>
     </process:copy>
   </nodes>
@@ -403,6 +407,7 @@
     <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign5</sourceNode>
       <targetNode>assign11</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
     <location x="524" y="160"/>
@@ -692,7 +697,7 @@
       <targetNode>assign11</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

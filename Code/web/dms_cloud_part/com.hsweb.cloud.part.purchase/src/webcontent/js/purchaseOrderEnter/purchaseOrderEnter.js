@@ -6,6 +6,8 @@ var leftGridUrl = baseUrl
 		+ "com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderMainList.biz.ext";
 var rightGridUrl = baseUrl
 		+ "com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
+//替换件
+var partCommonUrl = cloudPartApiUrl + "com.hsapi.cloud.part.invoicing.query.queryQuickPartCommonWithStock.biz.ext";
 var advancedSearchWin = null;
 var advancedMorePartWin = null;
 var advancedAddWin = null;
@@ -44,6 +46,9 @@ var StratePrice=[];
 var StrateHash={
 	sellUnitPrice : {name :"统一售价"}
 };
+var innerPartGrid=null;
+var editFormDetail=null;
+
 // 单据状态
 var AuditSignList = [ {
 	customid : '0',
@@ -80,6 +85,11 @@ $(document).ready(function(v) {
 	//fastPartEntryEl = nui.get("fastPartEntry");
     guestIdEl=nui.get('guestId');
     guestIdEl.setUrl(getGuestInfo);
+    
+    innerPartGrid = nui.get("innerPartGrid");
+    innerPartGrid.setUrl(partCommonUrl);
+    editFormDetail = document.getElementById("editFormDetail");
+    
     getSellStrategy();
 	guestIdEl.on("beforeload",function(e){
       
@@ -221,19 +231,25 @@ $(document).ready(function(v) {
 			addMorePart();
 		} 
 
+
 		if((keyCode==13))  {  //新建
-            if(partShow == 1) {
+            if(partShow == 1 ) {
             	if(partIn!=false){
-            		var row = morePartGrid.getSelected();
-    				if(row){
-    					addSelectPart();
-    				}
-    				
+            		var row2=innerPartGrid.getSelected();
+            		if(row2){
+            			addSelectPart();
+            		}else{
+            			var row = morePartGrid.getSelected();
+        				if(row){
+        					addSelectPart();
+        				}
+            		}
+            			
             	}
             	partIn=true;
 			}
         } 
-
+		
         if((keyCode==27))  {  //ESC
             if(partShow == 1){
                 onPartClose();
@@ -1346,7 +1362,8 @@ function getPartInfo(params){
 			var partlist = data.parts;
 			if(partlist && partlist.length>0){
 				//如果只返回一条数据，直接添加；否则切换到配件选择界面按输入的条件输出
-				if(partlist.length==1){
+				//如果有替换件(不直接添加)
+				if(partlist.length==1 && partlist[0].commonId==0){
 					part = partlist[0];
 					
 				}else{
@@ -2140,50 +2157,101 @@ function onPrint(){
 //
 //}
 function addSelectPart(){
-	var row = morePartGrid.getSelected();
-	if(row){
-		var params = {partCode:row.code};
-		params.partId = row.id;
-		params.storeId = FStoreId;
-		var dInfo = getPartPrice(params);
-		var price = dInfo.price;
-		var shelf = dInfo.shelf;
-		getStratePrice(row.id);			
-		var newRow = {
-			partId : row.id,
-			comPartCode : row.code,
-			comPartName : row.name,
-			comPartBrandId : row.partBrandId,
-			comApplyCarModel : row.applyCarModel,
-			comUnit : row.unit,
-			orderQty : 1,
-			orderPrice : price,
-			orderAmt : price,
-			storeId : FStoreId,
-			comOemCode : row.oemCode,
-			comSpec : row.spec,
-			partCode : row.code,
-			partName : row.name,
-			fullName : row.fullName,
-			systemUnitId : row.unit,
-			enterUnitId : row.unit
-		};
+	//有选择替换件信息\
+	var innerRow={};
+	innerRow =innerPartGrid.getSelected();
+	if(innerRow){
+		var row =innerRow;
+		if(row){
+			var params = {partCode:row.partCode};
+			params.partId = row.partId;
+			params.storeId = FStoreId;
+			var dInfo = getPartPrice(params);
+			var price = dInfo.price;
+			var shelf = dInfo.shelf;
+			getStratePrice(row.partId);				
+			var newRow = {
+				partId : row.partId,
+				comPartCode : row.partCode,
+				comPartName : row.partName,
+				comPartBrandId : row.partBrandId,
+				comApplyCarModel : row.applyCarModel,
+				comUnit : row.unit,
+				orderQty : 1,
+				orderPrice : price,
+				orderAmt : price,
+				storeId : FStoreId,
+				comOemCode : row.oemCode,
+				comSpec : row.spec,
+				partCode : row.partCode,
+				partName : row.partName,
+				fullName : row.fullName,
+				systemUnitId : row.unit,
+				enterUnitId : row.unit
+			};
 
-		advancedMorePartWin.hide();
-		morePartGrid.setData([]);
-		partShow = 0;
+			advancedMorePartWin.hide();
+			morePartGrid.setData([]);
+			partShow = 0;
 
-		if(rightGrid.getSelected()){
-			rightGrid.updateRow(rightGrid.getSelected(),newRow);
+			if(rightGrid.getSelected()){
+				rightGrid.updateRow(rightGrid.getSelected(),newRow);
+			}else{
+				rightGrid.addRow(newRow);
+			}
+			rightGrid.beginEditCell(rightGrid.getSelected(), "orderQty");
+
+			
 		}else{
-			rightGrid.addRow(newRow);
+			showMsg("请选择配件!","W");
+			return;
 		}
-		rightGrid.beginEditCell(rightGrid.getSelected(), "orderQty");
-
-		
-	}else{
-		showMsg("请选择配件!","W");
-		return;
+	}else{	
+		var row = morePartGrid.getSelected();
+		if(row){
+			var params = {partCode:row.code};
+			params.partId = row.id;
+			params.storeId = FStoreId;
+			var dInfo = getPartPrice(params);
+			var price = dInfo.price;
+			var shelf = dInfo.shelf;
+			getStratePrice(row.id);				
+			var newRow = {
+				partId : row.id,
+				comPartCode : row.code,
+				comPartName : row.name,
+				comPartBrandId : row.partBrandId,
+				comApplyCarModel : row.applyCarModel,
+				comUnit : row.unit,
+				orderQty : 1,
+				orderPrice : price,
+				orderAmt : price,
+				storeId : FStoreId,
+				comOemCode : row.oemCode,
+				comSpec : row.spec,
+				partCode : row.code,
+				partName : row.name,
+				fullName : row.fullName,
+				systemUnitId : row.unit,
+				enterUnitId : row.unit
+			};
+	
+			advancedMorePartWin.hide();
+			morePartGrid.setData([]);
+			partShow = 0;
+	
+			if(rightGrid.getSelected()){
+				rightGrid.updateRow(rightGrid.getSelected(),newRow);
+			}else{
+				rightGrid.addRow(newRow);
+			}
+			rightGrid.beginEditCell(rightGrid.getSelected(), "orderQty");
+	
+			
+		}else{
+			showMsg("请选择配件!","W");
+			return;
+		}
 	}
 }
 function onPartClose(){
@@ -2660,4 +2728,24 @@ function getSellDetail(params)
             console.log(jqXHR.responseText);
         }
     });
+}
+
+//显示替换件
+function onShowRowDetail(e) {
+    var row = e.record;
+    
+    //将editForm元素，加入行详细单元格内
+
+	var td = morePartGrid.getRowDetailCellEl(row);
+
+    td.appendChild(editFormDetail);
+    editFormDetail.style.display = "";
+    innerPartGrid.setData([]);
+    var partId = row.id;
+    innerPartGrid.load({
+    	partId:partId,
+		type :"LOCAL",
+    	token:token
+	});
+    
 }

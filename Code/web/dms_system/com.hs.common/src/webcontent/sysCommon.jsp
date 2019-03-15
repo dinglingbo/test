@@ -111,6 +111,7 @@
 	String repairEntrustPrintContent = "";
 	String repairPchsRtnFlag = "1";
 	String repairDefaultStore = "";
+	String repairBillMobileFlag = "0";
 	String isCanSettle = "";
 	String orgs = "";
 	String orgJsonStr = "";
@@ -221,6 +222,9 @@
 	                if(billParams.get("swithBatchFlag") != null){
 	                	swithBatchFlag = billParams.get("swithBatchFlag").toString();
 	                }
+	                if(billParams.get("repairBillMobileFlag") != null){
+	                	repairBillMobileFlag = billParams.get("repairBillMobileFlag").toString();
+	                }
                 }
               
                 
@@ -275,6 +279,7 @@
 	var currRepairEntrustPrintContent = "<%=repairEntrustPrintContent %>";
 	var currRepairPchsRtnFlag = "<%=repairPchsRtnFlag %>";
 	var currRepairDefaultStore = "<%=repairDefaultStore %>";
+	var currRepairBillMobileFlag = "<%=repairBillMobileFlag %>";
 	var currIsCanSettle = "<%=isCanSettle %>";
 	var currIsCanBelowCost ="<%=isCanBelowCost %>";
 	var currSwithBatchFlag ="<%=swithBatchFlag %>";

@@ -1030,7 +1030,8 @@
 				b.car_model_id as carModelId,
 				b.car_brand_id as carBrandId,
 				a.remind_status remindStatus,
-				e.wechat_open_id wechatOpenId
+				e.wechat_open_id wechatOpenId,
+				d.id
 			FROM
 				rpb_car_extend a
 			INNER JOIN rpb_car b ON a.car_id = b.id
@@ -1371,4 +1372,37 @@
 					rps_stored_record AS a
 					WHERE a.is_settle = 1 and a.guest_id = #guestId# and a.orgid = #orgid#
 			</select>
+			
+			
+										<!---->
+			<select id="getGuestCar" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+			
+				SELECT
+				a.orgid,a.car_no carNo,a.id carId,
+				a.annual_verification_due_date annualVerificationDueDate,
+				a.annual_inspection_date annualInspectionDate,
+				a.insure_due_date insureDueDate,
+				b.care_due_date careDueDate
+				from 
+				wb_repair.rpb_car a 
+				inner JOIN wb_repair.rpb_car_extend b on b.car_id = a.id
+				where  a.id=#carId#
+			</select>
+													<!---->
+			<select id="getGuestCon" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+			
+					SELECT
+					a.orgid,
+					a.tenant_id tenantId,
+					a.name,
+					a.mobile,
+					a.guest_id guestId,
+					a.birthday,
+					a.license_no licenseNo,
+					a.license_record_date  licenseRecordDate,
+					a.license_over_date  licenseOverDate
+					FROM rpb_contactor a
+					where guest_id = #guestId#
+			</select>
+			
 </sqlMap>

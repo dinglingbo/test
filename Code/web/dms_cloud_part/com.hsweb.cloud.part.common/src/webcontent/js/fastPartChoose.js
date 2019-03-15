@@ -1,6 +1,7 @@
 var partInfoUrl = cloudPartApiUrl + "com.hsapi.cloud.part.invoicing.paramcrud.queryBillPartChoose.biz.ext";
 var enterUrl = cloudPartApiUrl + "com.hsapi.cloud.part.invoicing.stockcal.queryOutableEnterGridWithPage.biz.ext";
 var priceGridUrl = cloudPartApiUrl+"com.hsapi.cloud.part.invoicing.pricemanage.getPartPriceInfo.biz.ext";
+var partCommonUrl = cloudPartApiUrl + "com.hsapi.cloud.part.invoicing.query.queryQuickPartCommonWithStock.biz.ext";
 
 var morePartTabs = null;
 var enterTab = null;
@@ -25,7 +26,12 @@ var optTabs = null;
 var priceGrid = null;
 var mainTabs = null;
 var gpartId = 0;
-
+//配件选择替换件
+var editFormDetail = null;
+var innerPartGrid = null;
+//批次选择替换件
+var editFormDetail2 = null;
+var innerPartGrid2 = null;
 $(document).ready(function(v)
 {
     morePartGrid = nui.get("morePartGrid");
@@ -47,11 +53,105 @@ $(document).ready(function(v)
     partInfoTab = morePartTabs.getTab("partInfoTab");
     priceGrid = nui.get("priceGrid");
     priceGrid.setUrl(priceGridUrl);
-
+    
+    innerPartGrid = nui.get("innerPartGrid");
+    innerPartGrid.setUrl(partCommonUrl);
+    editFormDetail = document.getElementById("editFormDetail");
+    
+    innerPartGrid2 = nui.get("innerPartGrid2");
+    innerPartGrid2.setUrl(enterUrl);
+    editFormDetail2 = document.getElementById("editFormDetail2");
+    
     optTabs.on("activechanged",function(e){
         showTabInfo();
     });
+    
+    innerPartGrid.on("drawcell", function (e) {
+        var grid = e.sender;
+        var record = e.record;
+        var uid = record._uid;
+        var rowIndex = e.rowIndex;
+        
+        switch (e.field) {
+            case "storeId":
+                if(storeHash && storeHash[e.value])
+                {
+                    e.cellHtml = storeHash[e.value].name;
+                }
+                break;
+            case "partBrandId":
+            	if(brandHash[e.value])
+                {
+//                    e.cellHtml = partBrandIdHash[e.value].name||"";
+                	if(brandHash[e.value].imageUrl){
+                		
+                		e.cellHtml = "<img src='"+ brandHash[e.value].imageUrl+ "'alt='配件图片' height='25px' weight=' '/><br> "+brandHash[e.value].name||"";
+                	}else{
+                		e.cellHtml =brandHash[e.value].name||"";
+                	}
+                }
+                else{
+                    e.cellHtml = "";
+                }
+                break;
+            default:
+                break;
+        }
+    });
+    
+    innerPartGrid2.on("drawcell", function (e) {
+        var grid = e.sender;
+        var record = e.record;
+        var uid = record._uid;
+        var rowIndex = e.rowIndex;
+        
+        switch (e.field) {
+            case "storeId":
+                if(storeHash && storeHash[e.value])
+                {
+                    e.cellHtml = storeHash[e.value].name;
+                }
+                break;
+            case "partBrandId":
+            	if(brandHash[e.value])
+                {
+//                    e.cellHtml = partBrandIdHash[e.value].name||"";
+                	if(brandHash[e.value].imageUrl){
+                		
+                		e.cellHtml = "<img src='"+ brandHash[e.value].imageUrl+ "'alt='配件图片' height='25px' weight=' '/><br> "+brandHash[e.value].name||"";
+                	}else{
+                		e.cellHtml =brandHash[e.value].name||"";
+                	}
+                }
+                else{
+                    e.cellHtml = "";
+                }
+                break;
+            default:
+                break;
+        }
+    });
+    
+    innerPartGrid.on("rowdblclick", function(e) {
+        var row = innerPartGrid.getSelected();
+        var rowc = nui.clone(row);
+        if(!rowc) return;
 
+        addSelectInnerPart();
+
+        nui.get("storeShelf").focus();
+    });
+    
+    innerPartGrid2.on("rowdblclick", function(e) {
+        var row = innerPartGrid2.getSelected();
+        var rowc = nui.clone(row);
+        if(!rowc) return;
+
+        addSelectInnerPart();
+
+        nui.get("storeShelf").focus();
+    });
+    
     priceGrid.on("CellCommitEdit",function(e) {
         var editor = e.editor;
         var record = e.record;
@@ -82,6 +182,8 @@ $(document).ready(function(v)
 
         nui.get("storeShelf").focus();
     });
+
+    
     morePartGrid.on("drawcell",function(e){
         switch (e.field)
         {
@@ -491,6 +593,75 @@ function morePartSearch(){
     
 }
 
+function addSelectInnerPart(){
+    var tab = morePartTabs.getActiveTab();
+    var record = null;
+    var column = null;
+    var rowc = null;
+    var params = {};
+    if(tab.name == "enterTab"){
+        record = innerPartGrid2.getSelected();
+        rowc = nui.clone(record);
+        if(record){
+            column = innerPartGrid2.getColumn("stockQty");
+            advancedAddWin.show();
+            nui.get("storeId").setValue(record.storeId);
+            nui.get("storeShelf").setValue(record.storeShelf);
+            nui.get("qty").setValue(1);
+            nui.get("storeShelf").focus();
+
+            params.partId = record.partId;
+            params.guestId = guestId;
+            var price = getPartPrice(params);
+            if(price == 0){
+                price = record.enterPrice||0;
+            }
+            nui.get("price").setValue(price);
+            nui.get("amt").setValue(price);
+
+            nui.get("storeId").enabled = false;
+
+            rowc.isMarkBatch = 1;
+            rowc.batchSourceId = record.id;
+
+            resultData = rowc;
+            //advancedAddWin.showAtEl(enterGrid._getCellEl(record,column), {xAlign:"outright",yAlign:"bottom"});
+        }
+    }else if(tab.name == "partInfoTab"){
+        record = innerPartGrid.getSelected();
+        rowc = nui.clone(record);
+        if(record){
+            column = innerPartGrid.getColumn("outableQty");
+            advancedAddWin.show();
+            nui.get("storeId").setValue(FStoreId);
+            nui.get("storeShelf").setValue(record.storeShelf);
+            nui.get("qty").setValue(1);
+            nui.get("storeShelf").focus();
+            nui.get("storeId").enabled = true;
+            
+            record.id=record.partId
+            params.partId = record.id;
+            params.guestId = guestId;
+            var price = getPartPrice(params);
+            if(price == 0){
+                price = record.costPrice||0;
+            }
+            nui.get("price").setValue(price);
+            nui.get("amt").setValue(price);
+
+            rowc.isMarkBatch = 0;
+            rowc.id=record.partId;
+            rowc.comPartCode=record.partCode;
+            rowc.comPartName= record.partName;
+            rowc.code = record.partCode;
+            rowc.name = record.partName;
+            resultData = rowc;
+            //advancedAddWin.showAtEl(morePartGrid._getCellEl(record,column), {xAlign:"outright",yAlign:"bottom"});
+        }
+    }
+}
+
+
 function addSelectPart(){
     var tab = morePartTabs.getActiveTab();
     var record = null;
@@ -874,6 +1045,8 @@ function savePrice(){
         });
     }
 }
+
+
 function showBottomTabInfo(partId){
 	var tab = mainTabs.getActiveTab();
 	var name = tab.name;
@@ -914,4 +1087,46 @@ function showBottomTabInfo(partId){
         default:
             break;
     }
+}
+
+
+//配件选择显示替换件
+function onShowRowDetail(e) {
+    var row = e.record;
+    
+    //将editForm元素，加入行详细单元格内
+
+	var td = morePartGrid.getRowDetailCellEl(row);
+
+    td.appendChild(editFormDetail);
+    editFormDetail.style.display = "";
+    innerPartGrid.setData([]);
+    var partId = row.id;
+    innerPartGrid.load({
+    	partId:partId,
+		type :"LOCAL",
+    	token:token
+	});
+    
+}
+
+//批次选择显示替换件
+function onShowRowDetail2(e) {
+    var row = e.record;
+    
+    //将editForm元素，加入行详细单元格内
+
+	var td = enterGrid.getRowDetailCellEl(row);
+
+    td.appendChild(editFormDetail2);
+    editFormDetail2.style.display = "";
+    innerPartGrid.setData([]);
+    var commonId = row.commonId;
+    var params={};
+    params.commonId =commonId;
+    innerPartGrid2.load({
+    	params:params,
+    	token:token
+	});
+    
 }

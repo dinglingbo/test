@@ -8,7 +8,7 @@
 -->
 <head>
 <title>宝马配件查询</title>
-<script src="<%=webPath + contextPath%>/common/js/embed/containBmwParts.js?v=1.0.8"></script>
+<script src="<%=webPath + contextPath%>/common/js/embed/containBmwParts.js?v=1.0.23"></script>
 <style type="text/css">
     .table-label {
         text-align: right;
@@ -46,7 +46,7 @@
             pageSize="20"
             sizeList=[20,50,100,200]
             sortMode="client"
-            ondrawcell=""
+            ondrawcell="onBmwDrawCell"
             onrowdblclick=""
             idField="id"
             totalField="page.count"

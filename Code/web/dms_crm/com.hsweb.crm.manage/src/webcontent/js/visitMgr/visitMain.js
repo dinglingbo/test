@@ -13,7 +13,8 @@ var memList = [];
 var visitManEl = null;
 var visitIdEl = null;
 var hash = {}; 
-var billTypeIdList = [{name:"综合"},{name:"检查"},{name:"洗美"},{name:"销售"},{name:"理赔"},{name:"退货"}];
+var billTypeIdList = [{name:"综合开单"},{name:"检查开单"},{name:"洗美开单"},{name:"销售开单"},{name:"理赔开单"},{name:"退货开单"}];
+var dataTypeIdList = [{},{name:"第一次回访"},{name:"第二次回访"},{name:"第三次回访"}]; 
 var statusHash = {
 	"0" : "报价",
 	"1" : "施工",
@@ -74,6 +75,8 @@ $(document).ready(function(){
     		}
     	}else if (e.field == "billTypeId") {
         	e.cellHtml = billTypeIdList[e.value].name; 
+        }else if (e.field == "dataType") {
+        	e.cellHtml = dataTypeIdList[e.value].name; 
         }else if (e.field == "serviceTypeId") {
     		if (servieTypeHash && servieTypeHash[e.value]) {
     			e.cellHtml = servieTypeHash[e.value].name;

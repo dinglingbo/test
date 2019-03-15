@@ -40,3 +40,36 @@ function setGridData(data, json){
     tmpData.push(data);
     dgGrid.setData(tmpData);
 }
+
+function onBmwDrawCell(e){
+	var record = e.record;
+	switch (e.field) {
+	   case "stockQtySy01Bj" :
+		   if(e.value>=1){
+			   e.cellHtml="<span style='color:green;' class='fa fa-circle fa-lg'></span>";
+		   }
+		   break;
+	   case  "stockQtySy02Sh" :
+		   if(e.value>=1){
+			   e.cellHtml="<span style='color:green;' class='fa fa-circle fa-lg'></span>";
+		   }
+		   break;
+	   case  "stockQtySy03Gz"  :
+		   if(e.value>=1){
+			   e.cellHtml="<span style='color:green;' class='fa fa-circle fa-lg'></span>";
+		   }
+		   break;
+	   case  "stockQtySy06Cd"  :
+		   if(e.value>=1){
+			   e.cellHtml="<span style='color:green;' class='fa fa-circle fa-lg'></span>";
+		   }
+		   break;
+	   case "stockQtySy07Sy" :
+		   if(e.value>=1){
+			   e.cellHtml="<span style='color:green;' class='fa fa-circle fa-lg'></span>";
+		   }
+		   break;
+	   default:
+		   break;
+	}
+}

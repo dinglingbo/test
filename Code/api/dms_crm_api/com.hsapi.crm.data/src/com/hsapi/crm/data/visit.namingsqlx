@@ -48,10 +48,10 @@
 			a.part_amt AS partAmt,
 			a.out_date as outDate,
 			e.visit_times visitTimes,
-			e.leave_days leaveDays,
+			TIMESTAMPDIFF(DAY ,a.out_date  ,NOW())  as leaveDays,
 			e.status visitStatus,
 			e.id,
-			e.data_type visitType,
+			e.data_type dataType,
 			z.last_leave_date lastLeaveDate,
 			z.last_care_due_date lastCareDueDate,
 			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 

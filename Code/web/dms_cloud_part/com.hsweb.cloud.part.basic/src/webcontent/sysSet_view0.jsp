@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>参数设置</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/basic/js/sysSet.js?v=2.0.4"></script>
+    <script src="<%=webPath + contextPath%>/basic/js/sysSet.js?v=2.0.19"></script>
     <style type="text/css">
     body {
         margin: 0;

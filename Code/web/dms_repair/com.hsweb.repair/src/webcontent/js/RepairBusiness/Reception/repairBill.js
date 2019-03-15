@@ -2726,6 +2726,7 @@ function chooseItem(){
 		  var param = {};
 	      param.carModelIdLy = main.carModelIdLy;
 	      param.serviceId = main.id;
+	      param.carNo = main.carNo;
 	      doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
     	     main = billForm.getData();
 		     var p1 = { }
@@ -2745,6 +2746,7 @@ function chooseItem(){
     	var param = {};
         param.carModelIdLy = main.carModelIdLy;
         param.serviceId = main.id;
+        param.carNo = main.carNo;
     	doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
     		    main = billForm.getData();
     	        var p1 = { }
@@ -2806,6 +2808,7 @@ function choosePackage(){
 		var param = {};
 	    param.carModelIdLy = main.carModelIdLy;
 	    param.serviceId = main.id;
+	    param.carNo = main.carNo;
 	    doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, param, function(text){
 	        main = billForm.getData();
 	        var p1 = { 
@@ -2825,6 +2828,7 @@ function choosePackage(){
     	var param = {};
         param.carModelIdLy = main.carModelIdLy;
         param.serviceId = main.id;
+        param.carNo = main.carNo;
         doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, param, function(text){
             main = billForm.getData();
             var p1 = { 
@@ -3115,7 +3119,7 @@ function onPrint(e){
             serviceId : main.id,
             isSettle : main.isSettle
 		};
-		if(e==3 || e==4){
+		if(e==3 || e==4 || e==9 || e==10){
 			if(main.isSettle||main.balaAuditSign){
 				doPrint(params);
 			}else{

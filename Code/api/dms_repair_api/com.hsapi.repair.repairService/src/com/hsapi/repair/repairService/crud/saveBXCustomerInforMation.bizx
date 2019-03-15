@@ -252,7 +252,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
-      <process:from type="expression" pattern="reference">&quot;暂无车牌&quot; + guestId</process:from>
+      <process:from type="expression" pattern="reference">&quot;波箱无牌&quot; + guestId</process:from>
       <process:to type="query">car/carNo</process:to>
     </process:copy>
     <process:copy>

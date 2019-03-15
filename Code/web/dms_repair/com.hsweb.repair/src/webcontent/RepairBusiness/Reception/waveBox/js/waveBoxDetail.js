@@ -1,12 +1,12 @@
 var webBaseUrl = webPath + contextPath + "/";   
  var baseUrl = apiPath + repairApi + "/";       
  var mainGrid = null;  
- var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainListBX.biz.ext";
+ var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
  var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
  var partGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
  var cardTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesByGuestIdNopage.biz.ext";
  var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestIdNoPage.biz.ext";
- var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactListBX.biz.ext"; 
+ var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext"; 
  var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryAccount.biz.ext";
  var itemRpbGridUrl = baseUrl +"com.hsapi.repair.baseData.item.queryRepairItemList.biz.ext";
  var itemGrid = null;
@@ -104,7 +104,7 @@ $(document).ready(function ()
         var params = {};
         var value = e.data.key;
         value = value.replace(/\s+/g, "");
-        if(value.length<3){
+        if(value.length<2){
             e.cancel = true;
             return;
         }else{
@@ -1097,7 +1097,6 @@ function unfinish(){
             showMsg("工单未完工,不能返单!","W");
             return;
         }
-        
         nui.mask({
             el: document.body,
             cls: 'mini-mask-loading',
@@ -1617,13 +1616,15 @@ function addGuest(){
          },
          ondestroy: function (action)
          {
-            var iframe = this.getIFrameEl();
-            var data = iframe.contentWindow.getData();
-            var params = {};
-            if(data){
-                params.carId = data;
-                getGuestMsg(params);
-            }
+        	if($("#servieIdEl").html() == ""){
+        		var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+                var params = {};
+                if(data){
+                    params.carId = data;
+                    getGuestMsg(params);
+                }
+        	}
          }
      });
 }
@@ -2921,7 +2922,6 @@ function onPay(data){
                 doSetStyle(status, isSettle);
                 showMsg("结算成功!","S");
             }else if(action == "onok"){
-            	nui.get("isSettle").setValue(1);
                 var status = data.status||2;
                 var balaAuditSign = data.balaAuditSign||1;
                 doSetStyle(status, balaAuditSign);
@@ -3654,8 +3654,7 @@ function doSearchItem()
 {
 	 var p = {};
     p.isDisabled = 0;
-    //查询洗美业务类型工时
-    p.serviceTypeIds = "6";   
+    p.type = "041303";   
 	var json={
 			params: p,
 			token:token
@@ -3910,9 +3909,9 @@ function attach(){
 
  function fault(){
  	nui.get("msg").setValue("1");
-	var formData = billForm.getData();
-	if(!formData.id){
-		if(!formData.guestId){
+ 	var data = billForm.getData(true);
+	if(!data.id){
+		if(!data.guestId){
 			nui.get("msg").setValue("");
 			showMsg("客户ID不能为空!","W");
 			return;
@@ -3929,7 +3928,7 @@ function attach(){
 					allowResize: false,
 			        showHeader: true,
 	                onload: function() {
-	                	 var serviceId = formData.id;
+	                	 var serviceId = data.id;
 	                    var iframe = this.getIFrameEl();
 	                    iframe.contentWindow.SetData(serviceId);
 	                },
@@ -3939,6 +3938,7 @@ function attach(){
 							var data = iframe.contentWindow.getFailt();
 							data = nui.clone(data); //必须。克隆数据。
 							nui.get("faultPhen").setValue(data);
+							save();
 	                	}
 	                }
 	    });

@@ -24,6 +24,7 @@ var treeHash={};
 var isChooseClose = 1;//默认选择后就关闭窗体
 var carModelIdLy = null;
 var serviceId = null;
+var carNo = null;
 var detailGrid_Form = null;
 var packageDetail = null;
 var ximeiUrl=0;
@@ -36,7 +37,7 @@ $(document).ready(function(v) {
 	packageGrid.setUrl(packageGridUrl);
 	typeGrid2 = nui.get("typeGrid2");
 	typeGrid2.setUrl(typeGrid2Url);
-	typeGrid2.load();
+	typeGrid2.load({token:token});
 	detailGrid_Form = document.getElementById("detailGrid_Form");
 	packageDetail = nui.get("packageDetail");
     
@@ -151,6 +152,11 @@ function loadStdPKG(packageTypeId) {
 	var params = {};
 	params.packageName = nui.get('pkgName').getValue();
 	params.id = packageTypeId;
+	if(carNo!=null){
+		//转码，维保大数据GET请求
+		params.carNo = encodeURI(carNo); 
+	}
+	
 	packageGrid.load({
 		params:params,
 		token:token
@@ -459,6 +465,7 @@ function setViewData(ck, delck, cck, params){
 		 });
 	}else{
 		serviceId = params.serviceId;
+		carNo = params.carNo;
 	}
 
 }

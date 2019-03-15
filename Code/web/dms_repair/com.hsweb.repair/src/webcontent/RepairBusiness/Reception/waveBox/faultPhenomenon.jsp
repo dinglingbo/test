@@ -21,114 +21,186 @@
         .wordCount .wordwrap{ position:absolute; right: 6px; bottom: 6px;}
 
         .wordCount .word{ color: red; padding: 0 4px;;}
-
+		.tdWidth{width:10%}
 </style>
 <body>
 <input class="nui-hidden" name="id" id="id"/>
 <input class="nui-hidden" name="serviceId" id="serviceId"/>
-<fieldset id="fd1" style="width:100%;">
-    <legend><span>锁挡：</span></legend>
+<br/>
+<fieldset id="fd1" style="width:99%;">
+    <legend><span></span></legend>
+    <div  class="nui-checkbox" type="" id="lockGearStatus" name="lockGearStatus">变速箱亮故障灯锁档</div>
+</fieldset>
+<fieldset id="fd2" style="width:99%;">
+    <legend><span>变速箱打滑：</span></legend>
     <div class="fieldset-body">
         <table class="form-table" style="width:100%">
             <tr>
-            	<td>
-                    <label class="label1"><input type="radio" name="lockGearStatus" value="1"/>只有一个挡在工作</label>
+            	<td class="tdWidth">
+                    <label class="label2"><input type="radio" name="skiddingStatus" value="1"/>一档升二档</label>
                 </td>
-                <td>
-                    <label class="label1"><input type="radio" name="lockGearStatus" value="2"/>亮故障灯</label>
+                <td class="tdWidth">
+                    <label class="label2"><input type="radio" name="skiddingStatus" value="2"/>二档升三档</label>
                 </td>
-                <td>
-                    <label class="label1"><input type="radio" name="lockGearStatus" value="3"/>跑步起来</label>
+                <td class="tdWidth">
+                    <label class="label2"><input type="radio" name="skiddingStatus" value="3"/>三档升四档</label>
+                </td>
+                <td class="tdWidth">
+                    <label class="label2"><input type="radio" name="skiddingStatus" value="4"/>四档升五档</label>
+                </td>
+                <td class="tdWidth">
+                    <label class="label2"><input type="radio" name="skiddingStatus" value="5"/>五档升六档</label>
+                </td>
+                <td class="tdWidth">
+                    <label class="label2"><input type="radio" name="skiddingStatus" value="6"/>六档升七档</label>
+                </td>
+                 <td class="tdWidth">
+                    <label class="label2"><input type="radio" name="skiddingStatus" value="7"/>七档升八档</label>
                 </td>
             </tr>
         </table>
     </div>
 </fieldset>
-<fieldset id="fd2" style="width:100%;">
-    <legend><span>波箱异响：</span></legend>
+<fieldset id="fd3" style="width:99%;">
+    <legend><span>变速箱挂档冲击：</span></legend>
     <div class="fieldset-body">
         <table class="form-table" style="width:100%">
             <tr>
-            	<td>
-                    <label class="label2"><input type="radio" name="abnormalSoundStatus" value="1"/>行车异响</label>
+            	<td class="tdWidth">
+                    <label class="label3"><input type="radio" name="attackStatus" value="1"/>从P-D冲击</label>
                 </td>
-                <td>
-                    <label class="label2"><input type="radio" name="abnormalSoundStatus" value="2"/>挂挡异响</label>
+                <td class="tdWidth">
+                    <label class="label3"><input type="radio" name="attackStatus" value="2"/>从P-R冲击</label>
                 </td>
-                <td>
-                    <label class="label2"><input type="radio" name="abnormalSoundStatus" value="3"/>停车异响</label>
+                <td class="tdWidth">
+                    <label class="label3"><input type="radio" name="attackStatus" value="3"/>从D-R冲击</label>
+                </td>
+                <td class="tdWidth">
+                    <label class="label3"><input type="radio" name="attackStatus" value="4"/>从R-D冲击</label>
+                </td>
+                <td class="tdWidth">
+                    <label class="label3"><input type="radio" name="attackStatus" value="5"/>从N-D冲击</label>
+                </td>
+                <td class="tdWidth">
+                    <label class="label3"><input type="radio" name="attackStatus" value="6"/>从N-R冲击</label>
+                </td>
+                <td class="tdWidth"></td>
+            </tr>
+        </table>
+    </div>
+</fieldset>
+<fieldset id="fd4" style="width:99%;">
+    <legend><span>变速箱升档冲击：</span></legend>
+    <div class="fieldset-body">
+        <table class="form-table" style="width:100%">
+            <tr>
+            	<td class="tdWidth">
+                    <label class="label4"><input type="radio" name="shiftUpStatus" value="1"/>一档升二档</label>
+                </td>
+                <td class="tdWidth">
+                    <label class="label4"><input type="radio" name="shiftUpStatus" value="2"/>二档升三档</label>
+                </td>
+                <td class="tdWidth">
+                    <label class="label4"><input type="radio" name="shiftUpStatus" value="3"/>三档升四档</label>
+                </td>
+                <td class="tdWidth">
+                    <label class="label4"><input type="radio" name="shiftUpStatus" value="4"/>四档升五档</label>
+                </td>
+                <td class="tdWidth">
+                    <label class="label4"><input type="radio" name="shiftUpStatus" value="5"/>五档升六档</label>
+                </td>
+                <td class="tdWidth">
+                    <label class="label4"><input type="radio" name="shiftUpStatus" value="6"/>六档升七档</label>
+                </td>
+                 <td class="tdWidth">
+                    <label class="label4"><input type="radio" name="shiftUpStatus" value="7"/>七档升八档</label>
                 </td>
             </tr>
         </table>
     </div>
 </fieldset>
-<fieldset id="fd3" style="width:100%;">
-    <legend><span>波箱打滑：</span></legend>
+<fieldset id="fd5" style="width:99%;">
+    <div  class="nui-checkbox" type="" id="gearMoveStatus" name="gearMoveStatus">变速箱D/R不走车</div>
+    <div  class="nui-checkbox" type="" id="startShakingStatus" name="startShakingStatus"  style="margin-left:50px;">变速箱起步或40-60码时抖动</div>
+</fieldset>
+<fieldset id="fd6" style="width:99%;">
+    <legend><span>变速箱漏油：</span></legend>
     <div class="fieldset-body">
         <table class="form-table" style="width:100%">
             <tr>
-            	<td>
-                    <label class="label3"><input type="radio" name="skiddingStatus" value="1"/>1换2</label>
+            	<td class="tdWidth">
+                    <label class="label5"><input type="radio" name="holeOilStatus" value="1"/>前油封漏油</label>
                 </td>
-                <td>
-                    <label class="label3"><input type="radio" name="skiddingStatus" value="2"/>2换3</label>
+                <td class="tdWidth">
+                    <label class="label5"><input type="radio" name="holeOilStatus" value="2"/>后油封漏油</label>
                 </td>
-                <td>
-                    <label class="label3"><input type="radio" name="skiddingStatus" value="3"/>3换4</label>
+                <td class="tdWidth">
+                    <label class="label5"><input type="radio" name="holeOilStatus" value="3"/>油底壳漏油</label>
                 </td>
-                <td>
-                    <label class="label3"><input type="radio" name="skiddingStatus" value="4"/>4换5</label>
+                <td class="tdWidth">
+                    <label class="label5"><input type="radio" name="holeOilStatus" value="4"/>前壳与中壳之间漏</label>
                 </td>
-                <td>
-                    <label class="label3"><input type="radio" name="skiddingStatus" value="5"/>5换6</label>
+                <td class="tdWidth">
+                    <label class="label5"><input type="radio" name="holeOilStatus" value="5"/>尾盖漏油</label>
                 </td>
-                <td>
-                    <label class="label3"><input type="radio" name="skiddingStatus" value="6"/>6换7</label>
-                </td>
+                <td class="tdWidth"></td>
+                <td class="tdWidth"></td>
             </tr>
         </table>
     </div>
 </fieldset>
-<fieldset id="fd4" style="width:100%;">
-    <legend><span>波箱冲击：</span></legend>
+<fieldset id="fd7" style="width:99%;">
+    <legend><span>变速箱异响：</span></legend>
     <div class="fieldset-body">
         <table class="form-table" style="width:100%">
             <tr>
-            	<td>
-                    <label class="label4"><input type="radio" name="attackStatus" value="1"/>换挡冲击</label>
+            	<td class="tdWidth">
+                    <label class="label6"><input type="radio" name="abnormalSoundStatus" value="1"/>油泵摩损</label>
                 </td>
-                <td>
-                    <label class="label4"><input type="radio" name="attackStatus" value="2"/>挂挡冲击</label>
+                <td class="tdWidth">
+                    <label class="label6"><input type="radio" name="abnormalSoundStatus" value="2"/>变扭器变型</label>
                 </td>
-                <td>
-                    <label class="label4"><input type="radio" name="attackStatus" value="3"/>降档冲击</label>
+                <td class="tdWidth">
+                    <label class="label6"><input type="radio" name="abnormalSoundStatus" value="3"/>油格堵塞</label>
                 </td>
-                <td>
-                    <label class="label4"><input type="radio" name="attackStatus" value="4"/>停车冲击</label>
+                <td class="tdWidth">
+                    <label class="label6"><input type="radio" name="abnormalSoundStatus" value="4"/>行星齿轮摩损</label>
                 </td>
+                <td class="tdWidth">
+                    <label class="label6"><input type="radio" name="abnormalSoundStatus" value="5"/>轴承摩损</label>
+                </td>
+                <td class="tdWidth">
+                    <label class="label6"><input type="radio" name="abnormalSoundStatus" value="6"/>差速器异响</label>
+                </td>
+                <td class="tdWidth"></td>
             </tr>
         </table>
     </div>
 </fieldset>
-<fieldset id="fd5" style="width:100%;">
-    <legend><span>漏油位置：</span></legend>
-   <!--  <input class="nui-textarea"  style="width:100%" onvaluechanged="changeOilMsg"/> -->
-  <div class="wordCount" id="wordCount" style="width:100%;">
-	<textarea style="resize:none;border-style:none;background:#f8f8f8" oninput="OnInput(event)" id="holeOilDesc" name="holeOilDesc"></textarea>
-</div>
+<fieldset id="fd8" style="width:99%;">
+    <legend><span>分动箱异响：</span></legend>
+    <div class="fieldset-body">
+        <table class="form-table" style="width:100%">
+            <tr>
+            	<td class="tdWidth">
+                    <label class="label7"><input type="radio" name="transferCaseSoundStatus" value="1"/>轴承摩损</label>
+                </td>
+                <td class="tdWidth">
+                    <label class="label7"><input type="radio" name="transferCaseSoundStatus" value="2"/>链条拉长变形</label>
+                </td>
+                <td class="tdWidth"></td><td class="tdWidth"></td><td class="tdWidth"></td><td class="tdWidth"></td><td class="tdWidth"></td>
+            </tr>
+        </table>
+    </div>
 </fieldset>
-<fieldset id="fd6" style="width:100%;">
-    <div  class="nui-checkbox" type="" onvaluechanged="gearMoveStatus" id="gearMoveStatus" name="gearMoveStatus">挂挡不能行走</div>
+<fieldset id="fd9" style="width:99%;">
+    <legend><span>分动箱抖动：</span></legend>
+    <div  class="nui-checkbox" type="" id="transferCaseJitterStatus" name="transferCaseJitterStatus">摩擦片打滑</div>
 </fieldset>
-<fieldset id="fd7" style="width:100%;">
+<fieldset id="fd7" style="width:99%;">
     <legend><span>故障描述：</span></legend>
 	    <div style="width:100%;height:100px" >
-	    	<span id="span1"></span>
-	    	<span id="span2"></span>
-	    	<span id="span3"></span>
-	    	<span id="span4"></span>
-	    	<span id="span5"></span>
-	    	<span id="span6"></span>
+	    	<input class="nui-textarea" style="width:100%;height:100px" id="faultDesc" name="faultDesc"/>
 	    </div>
 </fieldset>
 <div align="right" style="margin-top:20px; ">
@@ -143,87 +215,37 @@
 	<script type="text/javascript">
     	nui.parse();
     	var baseUrl = apiPath + repairApi + "/";
-    	var lockGearStatus = null;
-    	var abnormalSoundStatus = null;
-    	var skiddingStatus = null;
-    	var attackStatus = null;
-     $(function()
-		{	
-			lockGearStatus = [{id:1,text:"锁挡只有一个在工作;"},{id:2,text:"锁挡亮故障灯;"},{id:3,text:"锁挡跑不起来;"}];
-			abnormalSoundStatus =  [{id:1,text:"波箱行车异响;"},{id:2,text:"波箱挂挡异响;"},{id:3,text:"波箱停车异响;"}];
-			skiddingStatus =  [{id:1,text:"波箱打滑1换2;"},{id:2,text:"波箱打滑2换3;"},{id:3,text:"波箱打滑3换4;"},{id:4,text:"波箱打滑4换5;"},{id:5,text:"波箱打滑5换6;"},{id:6,text:"波箱打滑6换7;"}];
-			attackStatus =  [{id:1,text:"波箱换挡冲击;"},{id:2,text:"波箱挂挡冲击;"},{id:3,text:"波箱降档冲击;"},{id:4,text:"波箱停车冲击;"}];
-			$('.label1').click(function(e){
-				/* var text=$(this).text();
-				alert(text); */
-				for(var i = 0,l = lockGearStatus.length ; i < l ;i++){
-					if( $('input[name="lockGearStatus"]:checked').val() - 1 == i){
-						document.getElementById("span1").innerHTML = lockGearStatus[i].text;
-						break;
-					}
-				}
-			});
-			
-			$('.label2').click(function(e){
-				for(var i = 0,l = abnormalSoundStatus.length ; i < l ;i++){
-					if( $('input[name="abnormalSoundStatus"]:checked').val() - 1 == i){
-						document.getElementById("span2").innerHTML = abnormalSoundStatus[i].text;
-						break;
-					}
-				}
-			});
-			
-			$('.label3').click(function(e){
-				for(var i = 0,l = skiddingStatus.length ; i < l ;i++){
-					if( $('input[name="skiddingStatus"]:checked').val() - 1 == i){
-						document.getElementById("span3").innerHTML = skiddingStatus[i].text;
-						break;
-					}
-				}
-			});
-			
-			$('.label4').click(function(e){
-				for(var i = 0,l = attackStatus.length ; i < l ;i++){
-					if( $('input[name="attackStatus"]:checked').val() - 1 == i){
-						document.getElementById("span4").innerHTML = attackStatus[i].text;
-						break;
-					}
-				}
-			});
-			
-		}); 
 		
-		function OnInput(event){
-			document.getElementById("span5").innerHTML =$("#holeOilDesc").val()+";";
+		function getFailt(){
+			var faultDesc = nui.get("faultDesc").value || "";
+			return faultDesc; 
 		}
 		
-		function gearMoveStatus(e){
-			var checked = this.getChecked();
-			if(checked){
-				document.getElementById("span6").innerHTML = "挂挡不能行走;";
-			}else{
-				document.getElementById("span6").innerHTML = "";
-			}
-		}
-		
-		function MemSelectOk(){//确定
-		    var value1 = $('input:radio[name="lockGearStatus"]:checked').val();
-		    var value2 = $('input:radio[name="abnormalSoundStatus"]:checked').val();
-		    var value3 = $('input:radio[name="skiddingStatus"]:checked').val();
-		    var value4 = $('input:radio[name="attackStatus"]:checked').val();
-		    var holeOilDesc = document.getElementById("holeOilDesc").value;
-		    var gearMoveStatus = nui.get("gearMoveStatus").checked?0:1;
-		    var faultDesc = $("#span1")[0].innerHTML + $("#span2")[0].innerHTML + $("#span3")[0].innerHTML + 
-		    					$("#span4")[0].innerHTML + $("#span5")[0].innerHTML + $("#span6")[0].innerHTML;
+		function MemSelectOk(){//确定 
+		    var lockGearStatus = nui.get("lockGearStatus").checked?1:0;
+		    var skiddingStatus = $('input:radio[name="skiddingStatus"]:checked').val();
+		    var attackStatus = $('input:radio[name="attackStatus"]:checked').val();
+		    var shiftUpStatus = $('input:radio[name="shiftUpStatus"]:checked').val();
+		    var gearMoveStatus =  nui.get("gearMoveStatus").checked?1:0;
+		    var startShakingStatus =  nui.get("startShakingStatus").checked?1:0;
+		    var holeOilStatus = $('input:radio[name="holeOilStatus"]:checked').val();
+		    var abnormalSoundStatus = $('input:radio[name="abnormalSoundStatus"]:checked').val();
+		    var transferCaseJitterStatus = nui.get("transferCaseJitterStatus").checked?1:0;
+		    var transferCaseSoundStatus = $('input:radio[name="transferCaseSoundStatus"]:checked').val();
+		    var faultDesc = nui.get("faultDesc").value;
 		    var fault = {
 		    	id : nui.get("id").value,
-		    	lockGearStatus : value1,
-		    	abnormalSoundStatus : value2,
-		    	skiddingStatus : value3,
-		    	attackStatus : value4,
-		    	holeOilDesc : holeOilDesc,
+		    	lockGearStatus : lockGearStatus,
+		    	skiddingStatus : skiddingStatus,
+		    	attackStatus : attackStatus,
+		    	shiftUpStatus : shiftUpStatus,
 		    	gearMoveStatus : gearMoveStatus,
+		    	startShakingStatus : startShakingStatus,
+		    	holeOilStatus : holeOilStatus,
+		    	abnormalSoundStatus : abnormalSoundStatus,
+		    	transferCaseJitterStatus : transferCaseJitterStatus,
 		    	faultDesc : faultDesc,
+		    	transferCaseSoundStatus : transferCaseSoundStatus,
 		    	serviceId : nui.get("serviceId").value
 		    };
 			//保存
@@ -243,12 +265,6 @@
                     	}
                     }
             });
-		}
-		
-		function getFailt(){
-			var faultDesc = $("#span1")[0].innerHTML + $("#span2")[0].innerHTML + $("#span3")[0].innerHTML + 
-		    					$("#span4")[0].innerHTML + $("#span5")[0].innerHTML + $("#span6")[0].innerHTML;
-		    return faultDesc;
 		}
 		
 		function SetData(data){
@@ -274,40 +290,40 @@
                     		if(msg.length){
                     			msg = msg[0];
                     			nui.get("id").setValue(msg.id);
-                    			var value1 = msg.lockGearStatus || 0;
-	                    		var value2 = msg.abnormalSoundStatus || 0;
-	                    		var value3 = msg.skiddingStatus || 0;
-	                    		var value4 = msg.attackStatus || 0;
-	                    		var holeOilDesc = msg.holeOilDesc;
-	                    		var gearMoveStatus = msg.gearMoveStatus;
-			  	  				var faultDesc = msg.faultDesc;
-			  	  				$("input[name=lockGearStatus][value='"+value1+ "']").attr("checked",'checked');
-			  	  				$("input[name=abnormalSoundStatus][value='"+value2+ "']").attr("checked",'checked');
-			  	  				$("input[name=skiddingStatus][value='"+value3+ "']").attr("checked",'checked');
-			  	  				$("input[name=attackStatus][value='"+value4+ "']").attr("checked",'checked');
-			  	  				document.getElementById("holeOilDesc").value = holeOilDesc;
-			  	  				if(!gearMoveStatus){
+							    var lockGearStatus = msg.lockGearStatus || 0;
+							    var skiddingStatus = msg.skiddingStatus || 0;
+							    var attackStatus = msg.attackStatus || 0;
+							    var shiftUpStatus = msg.shiftUpStatus || 0;
+							    var gearMoveStatus =  msg.gearMoveStatus || 0;
+							    var startShakingStatus =  msg.startShakingStatus || 0;
+							    var holeOilStatus = msg.holeOilStatus || 0;
+							    var abnormalSoundStatus = msg.abnormalSoundStatus || 0;
+							    var transferCaseJitterStatus = msg.transferCaseJitterStatus || 0;
+							    var transferCaseSoundStatus = msg.transferCaseSoundStatus || 0;
+							    var faultDesc = msg.faultDesc || "";
+			  	  				$("input[name=skiddingStatus][value='"+skiddingStatus+ "']").attr("checked",'checked');
+			  	  				$("input[name=attackStatus][value='"+attackStatus+ "']").attr("checked",'checked');
+			  	  				$("input[name=shiftUpStatus][value='"+shiftUpStatus+ "']").attr("checked",'checked');
+			  	  				$("input[name=holeOilStatus][value='"+holeOilStatus+ "']").attr("checked",'checked');
+			  	  				$("input[name=abnormalSoundStatus][value='"+abnormalSoundStatus+ "']").attr("checked",'checked');
+			  	  				$("input[name=transferCaseSoundStatus][value='"+transferCaseSoundStatus+ "']").attr("checked",'checked');
+			  	  				if(lockGearStatus){
+			  	  					var lockGearStatus = nui.get("lockGearStatus");
+			  	  					lockGearStatus.setChecked(!lockGearStatus.getChecked());
+			  	  				}
+			  	  				if(gearMoveStatus){
 			  	  					var gearMoveStatus = nui.get("gearMoveStatus");
 			  	  					gearMoveStatus.setChecked(!gearMoveStatus.getChecked());
 			  	  				}
-			  	  				var arr = ["span1","span2","span3","span4"];
-			  	  				var brr = [value1,value2,value3,value4];
-			  	  				var params = [];
-			  	  				params.add(lockGearStatus);//0
-			  	  				params.add(abnormalSoundStatus);//1
-			  	  				params.add(skiddingStatus);//2
-			  	  				params.add(attackStatus);//3
-			  	  				for(var i = 0 , l = brr.length ; i < l ; i++){
-			  	  					if(brr[i] != 0){
-			  	  						document.getElementById(""+arr[i]+"").innerHTML = params[i][brr[i]-1].text;
-			  	  					}
+			  	  				if(startShakingStatus){
+			  	  					var startShakingStatus = nui.get("startShakingStatus");
+			  	  					startShakingStatus.setChecked(!startShakingStatus.getChecked());
 			  	  				}
-			  	  				if(holeOilDesc){
-			  	  					document.getElementById("span5").innerHTML = holeOilDesc;
+			  	  				if(transferCaseJitterStatus){
+			  	  					var transferCaseJitterStatus = nui.get("transferCaseJitterStatus");
+			  	  					transferCaseJitterStatus.setChecked(!transferCaseJitterStatus.getChecked());
 			  	  				}
-			  	  				if(!gearMoveStatus){
-			  	  					document.getElementById("span6").innerHTML = "挂挡不能行走;";
-			  	  				}
+			  	  				nui.get("faultDesc").setValue(faultDesc);
                     		}
                     	}
                     }

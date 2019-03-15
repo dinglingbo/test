@@ -15,7 +15,7 @@ var cbrand = null; //车辆品牌
 var cmodel = null; //车辆车系
 
 var tabs = null;
-var levelList = [];
+var levelList = []; 
 var levelHash = [];
 
 var gType = [{ id: 1, text: "首修客户 (最近一个月的首次消费车辆)" },
@@ -276,7 +276,7 @@ function search() {
 
 function sendInfoWin(list){
     if (list.length < 1) {
-        showMsg("客户列表为0","E");
+        showMsg("客户列表为空","E");
         return;
     }
     nui.open({
@@ -294,46 +294,95 @@ function sendInfoWin(list){
 }
 
 
-function sendInfo(params) {
-        var tab = tabs.getActiveTab();
+function sendInfo(e) {
+    var tab = tabs.getActiveTab();
+    var gridList = [];
+    var sendWcUrl = {};
     switch (tab.name) {
         case "bir":
-            var gridList = gridkhsr.getData();
-            sendInfoWin(gridList);
+             gridList = gridkhsr.getData();
             break;
         case "lic":
-        var gridList = gridjzns.getData();
-        sendInfoWin(gridList);
-            
+            gridList = gridjzns.getData();
             break;
         case "due":
-        var gridList = gridclnj.getData();
-        sendInfoWin(gridList);
-           
+            gridList = gridclnj.getData();
             break;
         case "care":
-        var gridList = gridbydq.getData();
-        sendInfoWin(gridList);
-           
-        
+            gridList = gridbydq.getData();
+            sendWcUrl = 'manage/sendWechatWindow/sWcInfoMoreRemind.jsp';
             break;
         case "insure":
-        var gridList = gridjqx.getData();
-        sendInfoWin(gridList);
-          
+            gridList = gridjqx.getData();
             break;
         case "annual":
-        var gridList = gridsyx.getData();
-        sendInfoWin(gridList);
-         
+            gridList = gridsyx.getData();
             break;
         case "type":
-        var gridList = gridkhlx.getData();
-        sendInfoWin(gridList);
-           
+            gridList = gridkhlx.getData();
             break;
-           
         default:
             break;
     }
+    if (e == 1) {// 1发送短信
+        sendInfoWin(gridList);
+    }else if (e == 2) {// 2发送微信
+        var dataArr = [];
+        for(var i=0;i<gridList.length;i++){
+            if(gridList[i].wechatOpenId){
+                dataArr.push(gridList[i]);
+            }
+        }
+        if(dataArr.lenght <1){
+            showMsg("没有可发送微信的客户","W");
+            return;
+        }else{
+            sendWcText(dataArr,sendWcUrl);
+        }
+    }else if (e == 3) {// 3发送微信图文
+        sendWcPic(gridList);
+    }else if (e == 4) {// 4发送微信卡券
+        // sendWcPic(gridList);
+    }
+}
+
+
+function sendWcPic(list) {
+    if (list.length < 1) {
+        showMsg("客户列表为空","E");
+        return;
+    }
+    nui.open({                        
+        url: webPath + contextPath  + "/com.hsweb.crm.manage.sendPicInfo.flow?token="+token,
+        title: "发送微信图文", width: 800, height: 350,
+        onload: function () {
+        var iframe = this.getIFrameEl();
+        // iframe.contentWindow.setData(list);
+    },
+    ondestroy: function (action) {
+            //重新加载
+            //query(tab);
+        }
+    });
+}
+
+
+function sendWcText(list,sendWcUrl){//发送微信消息
+    if (list.length < 1) {
+        showMsg("客户列表为空","E");
+        return;
+    }
+    // var tit = "发送微信[" + row.guestName + '/' + row.mobile + '/' + row.carModel + ']';
+    var tit = "发送微信";
+    nui.open({
+        url: webPath + contextPath  + "/"+sendWcUrl+"?token="+token,
+        title: tit, width: 800, height: 350,
+        onload: function () {
+        var iframe = this.getIFrameEl();
+        iframe.contentWindow.setData(list);
+    },
+    ondestroy: function (action) {
+      
+        }
+    });
 }

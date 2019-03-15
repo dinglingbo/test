@@ -13,7 +13,7 @@ pageEncoding="UTF-8" session="false" %>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitLoseMain.js?v=1.0.2" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitLoseMain.js?v=1.1.0" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0; 
@@ -53,9 +53,9 @@ pageEncoding="UTF-8" session="false" %>
         <span class="separator"></span>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="SetData()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" visible="false" onclick="sendWcText()"><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" visible="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" visible="false" onclick=""><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="WindowrepairHistory()"><span class="fa fa-wrench fa-lg"></span>&nbsp;维修历史</a>
         <!-- <a class="nui-button" plain="true" iconcls="" plain="false" onclick="openOrderDetail()" ><span class="fa fa-search fa-lg"></span>&nbsp;查询工单详情</a> -->
     </div>
@@ -69,20 +69,21 @@ pageEncoding="UTF-8" session="false" %>
 
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div field="serviceCode" width="145" headerAlign="center" align="center">工单号</div>
+            <div field="serviceCode" width="160" headerAlign="center" align="center">工单号</div>
             <div field="billTypeId" name="billTypeId" width="70" headerAlign="center"  align="center" allowsort="true"  header="工单类型"></div>
             <div field="carNo" width="75" headerAlign="center"align="center">车牌号</div>
             <div field="carModel" name="carModel" width="200px" headerAlign="center"  header="品牌车型"></div>
             <div field="carVin" name="carVin" width="130px" headerAlign="center" header="车架号(VIN)"></div>
             <div field="guestFullName" name="guestFullName" width="80px" headerAlign="center" header="客户姓名"></div>
             <div field="guestMobile" name="guestMobile" width="110px" headerAlign="center" header="客户手机"></div>
-            <div field="mtAdvisor" name="mtAdvisor" width="60px" headerAlign="center" header="服务顾问"></div>
             <div field="serviceTypeName" name="serviceTypeName" width="155px" headerAlign="center" header="业务类型"></div>
             <!--<div field="isSettle" name="isSettle" width="60px" headerAlign="center" header="结算状态"></div> -->
-            <div field="recordDate" name="recordDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="开单日期"></div>
+            <div field="enterDate" name="recordDate" width="120px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="进厂日期"></div>
+            <div field="outDate" name="recordDate" width="120px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="离厂日期"></div>
             <!-- <div field="planFinishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="预计完工日期"></div> -->
             <!-- <div field="mtAdvisor" width="70" headerAlign="center" align="center">维修顾问</div> -->
             <div field="leaveDays" width="70" headerAlign="center" align="center">离厂天数</div>
+            <div field="mtAdvisor" name="mtAdvisor" width="60px" headerAlign="center" header="服务顾问"></div>
         </div>
     </div> 
 </div> 

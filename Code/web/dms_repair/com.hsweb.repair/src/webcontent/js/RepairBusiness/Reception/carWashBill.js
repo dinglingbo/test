@@ -2584,7 +2584,7 @@ function onPrint(e){
             serviceId : main.id,
             isSettle : main.isSettle
 		};
-		if(e==3 || e==4){
+		if(e==3 || e==4 || e==9 || e==10){
 			if(main.isSettle||main.balaAuditSign){
 				doPrint(params);
 			}else{
@@ -3180,12 +3180,19 @@ function onPay(data){
                 doSetStyle(status, isSettle);
                 showMsg("结算成功!","S");
             }else if(action == "onok"){
-            	nui.get("isSettle").setValue(1);
+            	/*nui.get("isSettle").setValue(1);
                 var status = data.status||2;
                 var balaAuditSign = data.balaAuditSign||1;
                 doSetStyle(status, balaAuditSign);
                 var main = billForm.getData();
                 main.balaAuditSign = 1;
+                showMsg("转预结算成功!","S");*/
+                var status = data.status||2;
+                var balaAuditSign = data.balaAuditSign||1;
+                doSetStyle(status, balaAuditSign);
+                var main = billForm.getData();
+                main.balaAuditSign = 1;
+                billForm.setData(main);
                 showMsg("转预结算成功!","S");
             }else{
                 if(data.errCode){

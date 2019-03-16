@@ -189,7 +189,7 @@
                 temp.keyword3 =  (mainDatas[i].lastComeDate == null?'':nui.formatDate (new Date(mainDatas[i].lastComeDate),'yyyy-MM-dd HH:mm'));
                 temp.remark =  data.endContent.toString().replace(/【车主姓名】/g,mainDatas[i].guestName);
                 temp.url =  '';
-                temp.openId = mainDatas[i].wechatOpenId;
+                temp.openid = mainDatas[i].wechatOpenId;
                 temp.templateId = 'J503rlGOPzZgfUJ5mpGdP5cqL57sWZN_wlxYhbib234';
                 dataList.push(temp);
             }

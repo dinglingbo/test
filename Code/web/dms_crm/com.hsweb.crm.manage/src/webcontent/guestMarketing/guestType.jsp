@@ -471,8 +471,7 @@ pageEncoding="UTF-8" session="false" %>
     <script type="text/javascript">
         nui.parse();
         var webBaseUrl = webPath + contextPath + "/";
-        var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
-        var turl = baseUrl + "com.hsapi.crm.svr.guest.getGuestTypeNum.biz.ext";
+        var turl = apiPath + crmApi + "/com.hsapi.crm.svr.guest.getGuestTypeNum.biz.ext";
         var echartData = {};
 
         $("a[name=type]").click(function () {
@@ -489,9 +488,11 @@ pageEncoding="UTF-8" session="false" %>
 
         function getEchartDate() {
             nui.ajax({
-                url: turl,
+                url: turl, 
                 type: "post",
-                data: {},
+                data: {
+                token:token
+                },
                 success: function (res) {
                     if (res.errCode == 'S') {
                         if (res.carNum != []) {

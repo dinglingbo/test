@@ -141,6 +141,15 @@
                 border: 1px #000 solid;
                 margin: 4px 5px 0 0;
             }
+      .parent{
+
+		margin: 0 auto;
+		width: 100%;
+		height: 80px;
+		text-align: center;
+		line-height: 80px;
+		
+		}
     </style>
 <body ><!-- oncontextmenu = "return false" -->
 <div class="boxbg" style="display:none"></div>
@@ -201,114 +210,35 @@
 	     
         <div style="margin: 0 10px;" class="printny">
         <div class="company-info">
-            <table  width="100%" border="0" cellspacing="0" cellpadding="0">
+        	<div class="parent">
+        		<p><font size="6" ><b>支&nbsp;&nbsp;款&nbsp;&nbsp;证&nbsp;&nbsp;明&nbsp;&nbsp;单</b></font></p>
+        	</div>
+            <table  width="100%" >
 	            <tbody>
 	                <tr>
-	                	<td rowspan="2" style="width: 133px;">
-	                     	<img alt="" src="" id="showImg" height="60px" style="display:none">
-	                    </td>
-	                    <td style="width:55%">
-	                        <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><span id="comp"></span></div>
-	                    </td>
-	                    <td rowspan="2" style="">
-	                        <div style="font-size: 20px; font-family: 华文中宋;padding-top: 5px;"><b><span id="spstorename"></span></b></div>
-	                        <div style="padding-top: 2px; font-size: 13px;font-family: Arial;">
+	                    <td  style="padding-left: 70%">
+	                        <div style=" font-size: 13px;font-family: Arial;">
 	                          №:<span id="serviceCode"></span>  
 	                        </div>
 	                    </td>
 	                </tr>
 	                <tr>
-	                	<td >
-	                	<div style="font-size: 8px;padding-left: 10px; "><span id="slogan1"></span></div>
-	                	<div style="font-size: 8px;padding-left: 10px; "><span id="slogan2"></span></div>
-	                	</td>
+	                    <td  style="padding-left: 70%">
+	                        <div style="font-size: 13px;font-family: Arial;">
+	                         	 日期:<span id="payDate"></span>  
+	                        </div>
+	                    </td>
 	                </tr>
 	            </tbody>
 	        </table>
 	        
         </div>
         
-        <!-- <div style="border-bottom: 1px #333 solid; height: 2px; margin-bottom: 10px;">&nbsp;</div> -->
-        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-             <tr>
-                <td style="font-size:8px;" >地址：<span id="guestAddr"></span></td>
-                <td style="font-size:8px;"  id="openBank" style="">开户银行：</td>
-                <td style="font-size:8px;">打印时间：<span id="date"></span></td>
-            </tr> 
-            <tr>
-                <td style="font-size:8px;">电话：<span id="phone"></span></td>
-                <td style="font-size:8px;" id="bankNo" >银行账号：</td>
-             	<td style="font-size:8px;" id="enterDate" >进厂时间：</td>
-            </tr>
-        </table>
 
-        <div style="padding-top: 10px;">
-            <table  width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk">
-                <tr>
-                    <td height="24" width="33%" id="guestFullName">&nbsp;客户名称：</td>
-                    <td width="33%" id="mtAdvisor">&nbsp;服务顾问：</td>
-                    <td >&nbsp;进厂里程：<span id="enterKilometers"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;油量：<span id="enterOilMass"></span></td>
-                </tr>
-                <tr>
-                    <td height="24" id="carNo">&nbsp;车牌号：</td>
-                    <td id="carModel">&nbsp;品牌车型： </td>
-                    <td id="carVin">&nbsp;车架号(VIN)：</td>
-                </tr>
-                <tr>
-                    
-                    
-                </tr>
-            </table>
-        </div>
+
+
         <div style="height: 12px;"></div>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1" id="showPkg">
-                <tr>
-                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;"></td>
-                    <td height="28" align="center" bgcolor="#f8f8f8"style="font-family: 华文中宋; font-size:16px;font-weight: bold;">套餐项目(含工时配件)</td>
-                    
-                    
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">数量</td>
-                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">单价</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">金额</td>
-                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">优惠率</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">小计</td>
-                    
-                </tr>
-                <tr>
-                	<td ><hr style="border:0.5px solid #000"></td>
-                    <td ><hr style="border:0.5px solid #000"></td>
-                    <td ><hr style="border:0.5px solid #000"></td>
-                    <td ><hr style="border:0.5px solid #000"></td>
-                    <td ><hr style="border:0.5px solid #000"></td>
-                    <td ><hr style="border:0.5px solid #000"></td>
-                    <td ><hr style="border:0.5px solid #000"></td>
-                </tr>
-                <tbody id="tbodyId">
-				</tbody>
-            </table>
-        <div style="height: 12px;" id="space1"></div>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1" id="showItem">
-                <tr>
-                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;"></td>
-                    <td height="28" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">项目名称</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">工时</td>
-                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">单价</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">金额</td>
-                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">优惠率</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">小计</td>
-                </tr>
-                <tr>
-                	<td ><hr style="border:0.5px solid #000"></td>
-                    <td ><hr style="border:0.5px solid #000"></td>
-                    <td ><hr style="border:0.5px solid #000"></td>
-                    <td ><hr style="border:0.5px solid #000"></td>
-                    <td ><hr style="border:0.5px solid #000"></td>
-                    <td ><hr style="border:0.5px solid #000"></td>
-                    <td ><hr style="border:0.5px solid #000"></td>
-                </tr>
-                <tbody id="tbodyId2">
-				</tbody>
-            </table>
+
              <div style="height: 12px;display:none" id="space3"></div>
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1" id="showPart" style="display:none">
                 <tr>
@@ -332,41 +262,9 @@
                 <tbody id="tbodyId3">
 				</tbody>
             </table>
-         <!--  <div style="height: 12px;" id="space2"></div>  -->
-                    <!-- <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk1">
-                <tr>
-                    <td width="40" align="center" bgcolor="#f8f8f8"><b></b></td>
-                    <td height="28" align="center" bgcolor="#f8f8f8"><b>配件项目</b></td>
-                    <td width="70" align="center" bgcolor="#f8f8f8"><b>单价</b></td>
-                    <td width="60" align="center" bgcolor="#f8f8f8"><b>数量</b></td>
-                    <td width="70" align="center" bgcolor="#f8f8f8"><b>优惠率</b></td>
-                    <td width="80" align="center" bgcolor="#f8f8f8"><b>金额</b></td>
-                </tr>
-                <tbody id="tbodyId3">
-				</tbody>
-            </table>
-            <div style="height: 12px;"></div> -->
+
             
-        <!-- <div style="color:#000;height:42px; margin-top:-8px;">
-             <span style="font-size: 16px; float:right; font-weight: bold;">价格合计：&yen;<span id="cash"></span>元</span>
-                      套餐：<span id="prdt">0</span>&nbsp;&nbsp;&nbsp;&nbsp;工时：<span id="item">0</span>&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0</span>
-            
-            <span style="margin-left: 200px;">优惠金额：<span id="yh">0</span>元</span>
-            
-            <span style="margin-left: 400px;">
-                <b style="font-size: 16px;">小计</b>：
-                <font style="font-size: 15px; font-weight: bold;">
-                    <span id="cash1"></span>
-                </font>元&nbsp;&nbsp;&nbsp;
-            </span>
-            
-            <span style="margin-right: 100px;">
-               <b style="font-size: 16px;">大写</b>：
-               <font style="font-size: 15px; font-weight: bold;">
-                  <span id="money"></span>
-               </font>
-            </span>
-        </div> -->
+
         <table width="100%" border="0"  cellpadding="0" cellspacing="0" class="ybk">
             <tr>
                 <td height="36" colspan="1" style="border:0px solid #DDD; " rowspan="1" colspan="1" >
@@ -466,8 +364,10 @@
         	}
         }
         
+        
+
+        
         function SetData(params){
-            var currRepairBillMobileFlag = params.currRepairBillMobileFlag || ""; 
             var imgUrl = params.currCompLogoPath || "";
             if(imgUrl && imgUrl != ""){
                $('#showImg').show();
@@ -550,7 +450,6 @@
 	        		  enterDate='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
 	        		}
 	        		var guestFullName = list.guestFullName || "";
-	        		var guestMobile = list.guestMobile || "";
 	        		var enterOilMass = list.enterOilMass || "0";
 	        		var name = "0";
 	        		//查找油量http://127.0.0.1:8080/default/
@@ -581,7 +480,7 @@
 	        		var guestAddr = list.guestAddr || "";
 	        		if(params.type){
 	        			guestFullName = list.guestName || "";
-	        			guestMobile = list.guestTel || "";
+	        			//guestMobile = list.guestTel || "";
 	        			//contactMobile = list.contactorTel || "";
 	        			carNo = list.carNo || "";
 	        			//contactName = list.contactorName || "";
@@ -601,10 +500,6 @@
 	        		document.getElementById("solveMethod").innerHTML = document.getElementById("solveMethod").innerHTML + solveMethod; 
 	        		//document.getElementById("guestAddr").innerHTML = document.getElementById("guestAddr").innerHTML + guestAddr;
 	        		//document.getElementById("name").innerHTML = document.getElementById("name").innerHTML + mtAdvisor; 
-	        	    if(currRepairBillMobileFlag==1){
-	        	        document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + 
-	        	        "<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ guestMobile;
-	        	    }
 	        	}
         	});
         	if(params.type){
@@ -806,7 +701,7 @@
 	    				 		document.getElementById("yh").innerHTML = text.data.totalPrefAmt.toFixed(2);
 	    				 		document.getElementById("cash1").innerHTML = text.data.balaAmt.toFixed(2);			
 	    						    		var money = transform(text.data.balaAmt+"");
-											document.getElementById("money").innerHTML = money;
+											document.getElementById("money").innerHTML = money.toFixed(2);
 	    					
 	    				}else{
 	    					nui.alert(text.errMsg,"提示");

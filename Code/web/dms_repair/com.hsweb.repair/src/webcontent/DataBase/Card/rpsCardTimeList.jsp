@@ -67,7 +67,7 @@
                             sortMode="client"
 					       >
 					  <div property="columns">
-						<!-- <div type="indexcolumn"></div>-->
+						 <div type="indexcolumn" width="50px">序号</div>
 						<div type="checkcolumn" ></div>  
 						
 						<div field="fullName" name="fullName" headerAlign="center" allowSort="true"

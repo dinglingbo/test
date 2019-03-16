@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购订单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrder/purchaseOrder.js?v=2.8.90"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrder/purchaseOrder.js?v=2.9.0"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -200,14 +200,14 @@ body .mini-grid-row-selected{
                selectOnLoad="true"
                showPager="false"
                dataField=""
-               frozenStartColumn="0"
-               frozenEndColumn="1"
                onrowdblclick="addSelectPart"
+               onshowrowdetail="onShowRowDetail"
                allowCellSelect="true"
                editNextOnEnterKey="true"
                url="">
               <div property="columns">
                 <div type="indexcolumn">序号</div>
+                <div type="expandcolumn" width="50" >替换件</div>
                 <div field="code" name="code" width="100" headerAlign="center" header="配件编码"></div>
                 <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
                 <div field="name" name="name" width="100" headerAlign="center" header="配件名称"></div>
@@ -334,4 +334,32 @@ body .mini-grid-row-selected{
           </div>
     </div>
 </body>
+
+<!-- 替换件 -->
+<div id="editFormDetail" style="display:none;padding:5px;position:relative;">
+
+   <div id="innerPartGrid"
+       dataField="parts"
+       allowCellWrap = true
+       class="nui-datagrid"
+        onrowdblclick="addSelectPart"
+       style="width: 100%; height: 100px;"
+       showPager="false"
+       allowSortColumn="true">
+      <div property="columns">
+            <div type="indexcolumn">序号</div>
+            <div field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
+            <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
+            <div field="partName" name="partName" width="100" headerAlign="center" header="配件名称"></div>
+            <div field="partBrandId" name="partBrandId" width="80" headerAlign="center" header="品牌"></div>
+            <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="品牌车型"></div>
+            <div allowSort="true" datatype="float" name="outableQty" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
+            <!-- <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div> -->
+            <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
+            <div allowSort="true" datatype="float" field="costPrice" summaryType="sum" width="60" headerAlign="center" header="成本单价"></div>
+            <!-- <div allowSort="true" datatype="float" field="onRoadQty" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div> -->
+            <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div> 
+      </div>
+   </div>
+</div>
 </html>

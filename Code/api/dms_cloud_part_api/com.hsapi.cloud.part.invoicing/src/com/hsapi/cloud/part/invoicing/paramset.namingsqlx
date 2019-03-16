@@ -392,6 +392,7 @@
 				 a.spec spec,
 				 a.is_disabled isDisabled,
 				 a.apply_car_model as applyCarModel,
+				 a.common_id as commonId,
 			     IFNULL(b.stock_qty,0) as stockQty,
 			     b.cost_price as costPrice,
                  IFNULL(b.outable_qty,0)as outableQty,

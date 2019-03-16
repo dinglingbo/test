@@ -344,21 +344,18 @@
                </font>
             </span>
         </div> -->
-        <table width="100%" border="0"  cellpadding="0" cellspacing="0" class="ybk">
+        <div style="height: 12px;" id="space2"></div>
+        <table width="100%" border="0"  cellpadding="0" cellspacing="0"  class="ybk1">
             <tr>
                 <td height="36" colspan="1" style="border:0px solid #DDD; " rowspan="1" colspan="1" >
                    <!--  <div style="float: right; color: #000; margin-right: 12px; line-height: 36px;">
                                                              
                     </div> -->
                       套餐：<span id="prdt">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;工时：<span id="item">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0.00</span>
-            
+              <span style="margin-left: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;优惠金额：<span id="yh">0.00</span>元</span>
                 </td>
-                <td height="36" colspan="1" style="border:0px" >
-                    <!-- <div style="float: center; color: #000; margin-right: 12px; line-height: 36px;">
-                        <span style="margin-left: 200px;">优惠金额：<span id="yh">0</span>元</span>
-                    </div> -->
-                     <span style="margin-left: 0px;">优惠金额：<span id="yh">0.00</span>元</span>
-                </td>
+             </tr>
+             <tr>    
                 <td height="36" colspan="2" style="border:0px;font-family: Arial; font-size:16px;font-weight: bold;">
                     <div style="float: left; color: #000; margin-right: 12px; line-height: 36px;">
                         <span style="margin-right: 15px;">
@@ -371,10 +368,9 @@
                         </font>
                     </div>
                 </td>
-                
             </tr>
         </table> 
-
+        <div style="height: 12px;" id="space3"></div>
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk">
                 <tr>
                     <td height="100" valign="top" style="padding: 8px;" id="drawOutReport" colspan="3">
@@ -760,7 +756,8 @@
     				    document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML).toFixed(2);
 	    				document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML).toFixed(2);
 	        	    }else{
-                        $("#showItem").hide();	        	      
+                        $("#showItem").hide();	
+                        $("#space2").hide();        	      
 	        	    }
 	        	}
         	});

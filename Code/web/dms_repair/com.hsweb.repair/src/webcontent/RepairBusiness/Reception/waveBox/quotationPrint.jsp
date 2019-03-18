@@ -408,6 +408,7 @@
 				 document.getElementById("currCompAddress").innerHTML = "&nbsp;&nbsp;&nbsp;"+currCompAddress;
 				 document.getElementById("currBankName").innerHTML = "&nbsp;&nbsp;&nbsp;"+currBankName;
 				 document.getElementById("currBankAccountNumber").innerHTML = "&nbsp;&nbsp;&nbsp;"+currBankAccountNumber;
+				 $.ajaxSettings.async = false;
 			 	 $.post(baseUrl+mainUrl+serviceId+"&token="+token,{},function(text){
 			 	 	   if(text.list.length > 0){
 			 	 	   		 var list = text.list[0];
@@ -511,8 +512,8 @@
 		        	}
 	          }
         	});
+        	$.ajaxSettings.async = false;
 	        	if(type != 5 && type != 6){
-	        	 	$.ajaxSettings.async = false;
 		        	$.post(baseUrl+"com.hsapi.repair.repairService.query.querySettleAmt.biz.ext?serviceId="+serviceId+"&token="+token,{},function(text){
 			    				if(text.errCode=="S"){ 
 			    				 		document.getElementById("yh").innerHTML = text.data.totalPrefAmt;

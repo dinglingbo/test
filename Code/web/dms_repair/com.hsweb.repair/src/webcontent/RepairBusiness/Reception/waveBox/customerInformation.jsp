@@ -270,6 +270,16 @@
 						if (form.id) {//保存了一遍
 							arr[i].guestId = form.id;
 						}
+						if(contact[i].childNodes[5].innerText == contactInfoForm.getData().id){
+							arr[i] = {
+								name: contactInfoForm.getData().name,
+								mobile: contactInfoForm.getData().mobile,
+								identity: contactInfoForm.getData().identity,
+								sex: contactInfoForm.getData().sex,
+								source: contactInfoForm.getData().source,
+								id: contactInfoForm.getData().id,
+							};
+						}
 					}
 					if (index == 0) {//当没有点击+增加联系人信息时contact为空
 						var data = contactInfoForm.getData();

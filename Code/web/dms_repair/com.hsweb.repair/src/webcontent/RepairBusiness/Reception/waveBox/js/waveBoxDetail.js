@@ -798,6 +798,67 @@ function sureMT(){
     }
 }
 
+function finish(){
+    var data = billForm.getData(true);
+    var serviceId = data.id || 0;
+    var carModel = data.carModel;
+    if(!data.id){
+        showMsg("请先保存工单!","W");
+        return;
+    }else{
+        if(data.status == 2){
+            showMsg("工单已完工!","W");
+            return;
+        }
+        if(data.status == 0){
+            showMsg("工单未施工!","W"); 
+            return;
+        }
+        var params = {
+            serviceId:data.id||0
+        };
+        doFinishWork(params, function(data){
+            data = data||{};
+            if(data.action){
+                var action = data.action||"";
+                if(action == 'ok'){
+                    billForm.setData([]);
+                    data.carModel = carModel;
+                    billForm.setData(data);
+                    var status = data.status||0;
+                    var isSettle = data.isSettle||0;
+                    doSetStyle(status, isSettle);
+                    var p1 = {
+                            interType: "package",
+                            data:{
+                                serviceId: serviceId
+                            }
+                        };
+                        var p2 = {
+                            interType: "item",
+                            data:{
+                                serviceId: serviceId
+                            }
+                        };
+                        var p3 = {
+                            interType: "part",
+                            data:{
+                                serviceId: serviceId
+                            }
+                        };
+                        loadDetail(p1, p2, p3,status);
+                        showMsg("完工成功!","S");
+                }else{
+                    if(data.errCode){
+                        showMsg("完工失败!","E");
+                        return;
+                    }
+                }
+            }
+        });
+    }
+}
+
 function save(){
 	itemF = "S";
     partF = "S";
@@ -2888,82 +2949,66 @@ function showHealth(){
 }
 //var doFinishF = 1;
 function pay(){
+	
 	var data = billForm.getData();
     if(!data.id){
         showMsg("请先保存工单!","W");
         return;
     }else{
-    	if(data.isSettle == 1||data.balaAuditSign == 1){
-          	 showMsg("工单已结算!","W");
-               return;
-          }
-        if(data.status != 2 ){
-        	 nui.mask({
-        	        el: document.body,
-        	        cls: 'mini-mask-loading',
-        	        html: '数据加载中...'
-        	 });
-            //showMsg("工单未完工,不能结算!","W");
-            //return;
-        	var params = {
-        	        data:{
-        	            id:data.id||0,
-        	            "drawOutReport":""
-        	        }
-        	    };
-        	    svrRepairAudit(params, function(data1){
-        	        data1 = data1||{};
-        	        var errCode = data1.errCode||"";
-        	        var errMsg = data1.errMsg||"操作失败,请重新操作";
-        	        if(errCode == 'S'){
-        	        	//成功之后，重新设置表单值*******************
-                        var olddata = billForm.getData();
-                        olddata.status = 2;
-                        billForm.setData([]);
-                        billForm.setData(olddata);
-                        changeBoxService(1);
-                        nui.get("contactorName").setText(olddata.contactorName);
-                        var status = 2;
-                        var isSettle = olddata.isSettle||0;
-                        doSetStyle(status, isSettle);
-                        //重新加载界面
-                        var p1 = {
-                        }
-                        var p2 = {
-                            interType: "item",
-                            data:{
-                                serviceId: data.id||0
-                            }
-                        }
-                        var p3 = {
-                            interType: "part",
-                            data:{
-                                serviceId: data.id||0
-                            }
-                        }
-                        loadDetail(p1, p2, p3,status);
-                        nui.unmask(document.body);
-                        if(nui.get("boxServiceTypeId").value != 2){
-                        	onPay(data);
-                        }else{
-                        	warehousing();
-                        }
-        	        }else{
-        	        	nui.unmask(document.body)
-        	        	showMsg(errMsg,"E");
-        	        }
-        	    }, function(){
-        	    });
-        }else {
-        	 if(nui.get("boxServiceTypeId").value != 2){
-                	onPay(data);
-             }else{
-             	warehousing();
-             }
-        }  
+        if(data.status != 2){
+            showMsg("工单未完工,不能结算!","W");
+            return;
+        }
+        if(data.isSettle == 1){
+        	 showMsg("工单已结算!","W");
+             return;
+        }
+        if(data.balaAuditSign == 1){
+       	 showMsg("工单已转预结算!","W");
+            return;
+       }
+        var sellData = sellForm.getData();
+        ycAmt = parseFloat(tcAmt)+parseFloat(gsAmt);
+        sellData.ycAmt = ycAmt;
+        sellData.mtAmt = sellData.totalSubtotal;
+        var params = {
+            serviceId:data.id||0,
+            guestId:data.guestId||0,
+            carNo:data.carNo||0,
+            guestName:$("#guestNameEl").text(),
+            data:sellData
+        };
+        doBillPay(params, function(data){
+            data = data||{};
+            if(data.action){
+                var action = data.action||"";
+                if(action == "ok"){
+                    var status = data.status||2;
+                    var isSettle = data.isSettle||1;
+                    doSetStyle(status, isSettle);
+                    var main = billForm.getData();
+                    main.isSettle = 1;
+                    billForm.setData(main);
+                    showMsg("结算成功!","S");
+                }else if(action == "onok"){
+                    var status = data.status||2;
+                    var balaAuditSign = data.balaAuditSign||1;
+                    doSetStyle(status, balaAuditSign);
+                    var main = billForm.getData();
+                    main.balaAuditSign = 1;
+                    billForm.setData(main);
+                    showMsg("转预结算成功!","S");
+                }else{
+                    if(data.errCode){
+                        showMsg("结算失败!","E");
+                        return;
+                    }
+                }
+            }
+        });
     }
 }
-function onPay(data){
+/*function onPay(data){
 	var sellData = sellForm.getData();
     ycAmt = parseFloat(tcAmt)+parseFloat(gsAmt);
     sellData.ycAmt = ycAmt;
@@ -3000,7 +3045,7 @@ function onPay(data){
             }
         }
     });
-}
+}*/
 
 function newCheckMain() {  
     var data = billForm.getData();

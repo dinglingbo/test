@@ -40,6 +40,7 @@
             
             table.ybk td {
                 border: 1px solid #000;
+                height : 33px;
             }
 
 	        .print_btn {
@@ -154,7 +155,7 @@
 	                     	<img alt="" src="/default/repair/common/log.bmp">
 	                    </td>
 	                    <td style="width:55%">
-	                        <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><span id="comp"></span></div>
+	                        <div style="font-size: 11px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><span id="comp"></span></div>
 	                    </td>
 	                    <td rowspan="2" style="">
 	                        <div style="font-size: 20px; font-family: 华文中宋;padding-top: 5px;"><b><span id="spstorename">报价单</span></b></div>
@@ -173,17 +174,16 @@
 	        </table>
 	        
         </div>
-        
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
              <tr>
                 <td style="font-size:8px;" >地址：<span id="currCompAddress"></span></td>
-                <td style="font-size:8px;"  style="">开户银行：<span id="currBankName"></span></td>
+                <td style="font-size:8px;"   style="">开户银行：<span id="currBankName"></span></td>
                 <td style="font-size:8px;">打印时间：<span id="date"></span></td>
             </tr> 
             <tr>
                 <td style="font-size:8px;">电话：<span id="currCompTel"></span></td>
                 <td style="font-size:8px;">银行账号：<span id="currBankAccountNumber"></span></td>
-             	<td style="font-size:8px;" id="enterDate" >进厂时间：</td>
+             	<td style="font-size:8px;" id="" >进厂时间：<span id="enterDate"></span></td>
             </tr>
         </table>
 
@@ -206,7 +206,7 @@
                     <td id="carBrand"></td>
                 </tr>
                 <tr>
-                    <td>&nbsp;客户地址</td>
+                    <td id="guestAddr1">&nbsp;客户地址</td>
                     <td id="guestAddr"></td>
                     <td>&nbsp;联系手机</td>
                     <td id="guestMobile" colspan="3"></td>
@@ -218,31 +218,33 @@
             </table>
         </div>
         <div style="height: 12px;"></div>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1" id="showPkg">
+        	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk" id="showItem">
+                <tr style="height:30px">
+                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">序号</td>
+                    <td height="28" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">项目名称</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">工时</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">单价</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">金额</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">优惠率</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">小计</td>
+                </tr>
+                <tbody id="tbodyId">
+				</tbody>
+            </table>
+            <div style="height: 12px;" id="space3"></div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk" id="showPart" >
                 <tr>
-                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;"></td>
-                    <td height="28" align="center" bgcolor="#f8f8f8"style="font-family: 华文中宋; font-size:16px;font-weight: bold;">套餐项目(含工时配件)</td>
-                    
-                    
+                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">序号</td>
+                    <td height="28" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">配件名称</td>
                     <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">数量</td>
                     <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">单价</td>
                     <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">金额</td>
                     <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">优惠率</td>
                     <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">小计</td>
-                    
                 </tr>
-                <tr>
-                	<td ><hr style="border:0.5px solid #000"></td>
-                    <td ><hr style="border:0.5px solid #000"></td>
-                    <td ><hr style="border:0.5px solid #000"></td>
-                    <td ><hr style="border:0.5px solid #000"></td>
-                    <td ><hr style="border:0.5px solid #000"></td>
-                    <td ><hr style="border:0.5px solid #000"></td>
-                    <td ><hr style="border:0.5px solid #000"></td>
-                </tr>
-                <tbody id="tbodyId">
+                <tbody id="tbodyId2">
 				</tbody>
-            </table> 
+            </table>
        
         <table width="100%" border="0"  cellpadding="0" cellspacing="0" class="ybk">
             <tr>
@@ -342,7 +344,7 @@
     </div>
     <script type="text/javascript">
 			 nui.parse();
-			 var mainUrl = "com.hsapi.repair.repairService.svr.qyeryMaintainListBX.biz.ext?";
+			 var mainUrl = "com.hsapi.repair.repairService.svr.qyeryMaintainListBX.biz.ext?params/rid=";
 			 var baseUrl = apiPath + repairApi + "/"; 
 			 var QD = [{id:1,text:"FWD"},{id:2,text:"RWD"},{id:3,text:"4WD"}];
 			 $(document).ready(function (){
@@ -386,61 +388,70 @@
 						document.getElementById("spstorename").innerHTML = "波箱厂内翻新单";
 						document.getElementById("msg").innerHTML = "";
 						document.getElementById("hidden2").style.display =""
-					}else{
+					}else if(type != 5){
 						document.getElementById("spstorename").innerHTML = "结算单";
 						
-				 	document.getElementById("msg").innerHTML = '服务满意度调查：<input id="satisfaction" name="satisfaction" type="checkbox" value="非常满意" onclick="return false;"/>非常满意     '+
-				 						'<input id="satisfaction" name="satisfaction" type="checkbox" value="基本满意" onclick="return false;"/>基本满意     '+
-				 						'<input id="satisfaction" name="satisfaction" type="checkbox" value="一般" onclick="return false;"/>一般     '+
-				 						'<input id="satisfaction" name="satisfaction" type="checkbox" value="不满意" onclick="return false;"/>不满意     '+
+				 	document.getElementById("msg").innerHTML = '服务满意度调查：☐   非常满意     '+
+				 						'☐   基本满意     '+
+				 						'☐   一般     '+
+				 						'☐   不满意     '+
 				 						'<div>'+currRepairSettPrintContent+'</div>'
 					}
+				 }
+				 if(type == 5 || type == 6){//报销单   5报价单   6结算单 
+				 	document.getElementById("guestAddr").style.display = "none"
+				 	document.getElementById("guestAddr1").style.display = "none"
+				 	$("#guestMobile").attr("colSpan",16);
+				 	mainUrl = "com.hsapi.repair.repairService.svr.billqyeryMaintainList.biz.ext?rid=";
 				 }
 				 document.getElementById("currCompTel").innerHTML = "&nbsp;&nbsp;&nbsp;"+currCompTel;
 				 document.getElementById("currCompAddress").innerHTML = "&nbsp;&nbsp;&nbsp;"+currCompAddress;
 				 document.getElementById("currBankName").innerHTML = "&nbsp;&nbsp;&nbsp;"+currBankName;
 				 document.getElementById("currBankAccountNumber").innerHTML = "&nbsp;&nbsp;&nbsp;"+currBankAccountNumber;
-			 	 $.post(baseUrl+mainUrl+"params/rid="+serviceId+"&token="+token,{},function(text){
+			 	 $.post(baseUrl+mainUrl+serviceId+"&token="+token,{},function(text){
 			 	 	   if(text.list.length > 0){
 			 	 	   		 var list = text.list[0];
-			 	 	   		 var guestFullName = list.guestFullName || "";
-			 	 	   		 var boxModel = list.boxModel || "";
+			 	 	   		 var guestFullName = list.guestFullName || list.guestName || "" ;
+			 	 	   		 var boxModel = list.boxModel || list.engineModel || "";
 			 	 	   		 var driveType = "";
 			 	 	   		 if(list.driveType){
 			 	 	   		 	driveType = QD[list.driveType-1].text;
 			 	 	   		 }
-			 	 	   		 var name = list.name || "";
-			 	 	   		 var boxNo = list.boxNo || "";
+			 	 	   		 var name = list.name || list.contactorName ||"";
+			 	 	   		 var boxNo = list.boxNo|| list.engineNo || "";
 			 	 	   		 var carBrandId = list.carBrandId || "";
 			 	 	   		 nui.get("carBrandId").setValue(carBrandId);
 			 	 	   		 var  carBrand = nui.get("carBrandId").text || "";
 			 	 	   		 var guestAddr = list.guestAddr || "";
-			 	 	   		 var guestMobile = list.guestMobile || "";
-			 	 	   		 var engineNo =list.engineNo || "";
-			 	 	   		 var enterKilometers = list.enterKilometers || "";
+			 	 	   		 var guestMobile = list.guestMobile || list.guestTel ||"";
 			 	 	   		 var enterDate = list.enterDate || "";
 			 	 	   		 var serviceCode = list.serviceCode || "";
 			 	 	   		 var drawOutReport = list.drawOutReport || "";
-			 	 	   		 document.getElementById("guestFullName").innerHTML = "&nbsp;&nbsp;&nbsp;"+guestFullName;
-			 	 	   		 document.getElementById("boxModel").innerHTML = "&nbsp;&nbsp;&nbsp;"+boxModel;
-			 	 	   		 document.getElementById("driveType").innerHTML = "&nbsp;&nbsp;&nbsp;"+driveType;
-			 	 	   		 document.getElementById("name").innerHTML = "&nbsp;&nbsp;&nbsp;"+name;
-			 	 	   		 document.getElementById("boxNo").innerHTML = "&nbsp;&nbsp;&nbsp;"+boxNo;
-			 	 	   		 document.getElementById("carBrand").innerHTML = "&nbsp;&nbsp;&nbsp;"+carBrand;
-			 	 	   		 document.getElementById("guestAddr").innerHTML = "&nbsp;&nbsp;&nbsp;"+guestAddr;
-			 	 	   		 document.getElementById("guestMobile").innerHTML = "&nbsp;&nbsp;&nbsp;"+guestMobile;
-			 	 	   		 document.getElementById("enterDate").innerHTML = "&nbsp;&nbsp;&nbsp;"+document.getElementById("enterDate").innerHTML + format(enterDate, "yyyy-MM-dd HH:mm");
-			 	 	   		 document.getElementById("serviceCode").innerHTML = "&nbsp;&nbsp;&nbsp;"+serviceCode;
-			 	 	   		 document.getElementById("drawOutReport").innerHTML = "&nbsp;&nbsp;&nbsp;"+drawOutReport;
+			 	 	   		 document.getElementById("guestFullName").innerHTML = "&nbsp;"+guestFullName;
+			 	 	   		 document.getElementById("boxModel").innerHTML = "&nbsp;"+boxModel;
+			 	 	   		 document.getElementById("driveType").innerHTML = "&nbsp;"+driveType;
+			 	 	   		 document.getElementById("name").innerHTML = "&nbsp;"+name;
+			 	 	   		 document.getElementById("boxNo").innerHTML = "&nbsp;"+boxNo;
+			 	 	   		 document.getElementById("carBrand").innerHTML = "&nbsp;"+carBrand;
+			 	 	   		 document.getElementById("guestAddr").innerHTML = "&nbsp;"+guestAddr;
+			 	 	   		 document.getElementById("guestMobile").innerHTML = "&nbsp;"+guestMobile;
+			 	 	   		 document.getElementById("enterDate").innerHTML =document.getElementById("enterDate").innerHTML + format(enterDate, "yyyy-MM-dd HH:mm");
+			 	 	   		 document.getElementById("serviceCode").innerHTML = "&nbsp;"+serviceCode;
+			 	 	   		 document.getElementById("drawOutReport").innerHTML = "&nbsp;"+drawOutReport;
 			 	 	   }
 			 	 });
 			 	 var url_one = "com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext?serviceId=";
+			 	 if(type == 5 || type == 6){//报销单 5报价单   6结算单
+				 	url_one = "com.hsapi.repair.baseData.query.searchExpenseItemBill.biz.ext?serviceId=";
+				 }
 			 	 $.post(baseUrl+url_one+serviceId+"&token="+token,{},function(text){//套餐
 	        	if(text.errCode == "S"){
-	    			 var data = text.data;
+	    			 var data = text.data || text.itemBill;
 	        	    if(data.length>0){
 		        		var tBody = $("#tbodyId");
+		        		var tBody2 = $("#tbodyId2");
 	    				tBody.empty();
+	    				tBody2.empty();
 	    				var tds = '<td align="center">[orderIndex]</td>' +
 						    			"<td>[prdtName]</td>"+
 						    			"<td align='center'>[qty]</td>"+
@@ -450,33 +461,19 @@
 						    			"<td align='center'>[subtotal]</td>";
 	    				
 	    				var j = 0;
+	    				var num1 = 0;
+	    				var num2 = 0;
 	    				var discountAmt = 0;
 	    				for(var i = 0 , l = data.length ; i < l ; i++){
-	    					var prdtName = data[i].prdtName;
-	    					var orderIndex = data[i].orderIndex;
+	    					var prdtName = data[i].prdtName || data[i].itemName || "";
 	    					var rate = data[i].rate;
 	    					rate = rate + "%";
-	    					if(data[i].billPackageId != 0){
-	    						prdtName = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+prdtName;
-	    						orderIndex = "";
-	    					}
 	    					if(data[i].billItemId == 0){
-	    						if(i != 0){
-	    							var tr = $("<tr class='ybk2'></tr>");
-		    						tr.append(
-					    				tds.replace("[orderIndex]","<hr style= 'border:1px dashed #000' />")
-					    				.replace("[prdtName]","<hr style= 'border:1px dashed #000' />")
-					    				.replace("[qty]","<hr style= 'border:1px dashed #000' />")
-					    				.replace("[uintPrice]","<hr style= 'border:1px dashed #000' />")
-					    				.replace("[amt]","<hr style= 'border:1px dashed #000' />")
-					    				.replace("[rate]","<hr style= 'border:1px dashed #000' />")
-					    				.replace("[subtotal]","<hr style= 'border:1px dashed #000' />"));
-		    						tBody.append(tr);
-	    						}
-	    						var tr = $("<tr style = 'height : 2px'></tr>");
+	    						num1 ++;
+	    						var tr = $("<tr ></tr>");
 					    			tr.append(
-					    				tds.replace("[orderIndex]",orderIndex)
-					    				.replace("[prdtName]",prdtName)
+					    				tds.replace("[orderIndex]",num1)
+					    				.replace("[prdtName]","&nbsp;"+prdtName)
 					    				.replace("[qty]",data[i].qty || 1)
 					    				.replace("[uintPrice]",data[i].amt)
 					    				.replace("[amt]",data[i].amt)
@@ -484,16 +481,17 @@
 					    				.replace("[subtotal]",data[i].subtotal));
 					    			tBody.append(tr); 
 	    					}else{
+	    						num2 ++;
 	    						var tr = $("<tr></tr>");
 					    			tr.append(
-					    				tds.replace("[orderIndex]",orderIndex)
-					    				.replace("[prdtName]",prdtName)
+					    				tds.replace("[orderIndex]",num2)
+					    				.replace("[prdtName]","&nbsp;"+prdtName)
 					    				.replace("[qty]",data[i].qty || 1)
 					    				.replace("[uintPrice]",data[i].amt)
 					    				.replace("[amt]",data[i].amt)
 					    				.replace("[rate]",rate)
 					    				.replace("[subtotal]",data[i].subtotal));
-					    			tBody.append(tr); 
+					    			tBody2.append(tr); 
 	    					}
 	    					if(data[i].pid != 0 ){
     						   document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML) + parseFloat(data[i].subtotal);
@@ -501,26 +499,32 @@
     						   document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
     					   }
 	    				}
-	    				 document.getElementById("prdt").innerHTML = parseFloat(document.getElementById("prdt").innerHTML).toFixed(2);
+	    				 document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML).toFixed(2);
 	    				 document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML).toFixed(2);
-		        	}else{
-	                  $("#showPkg").hide();
-	                  $("#space1").hide();
-	                }
+	    				 if(type == 5 || type == 6){
+	    				 	document.getElementById("yh").innerHTML = 0;
+			        		var money = parseFloat(document.getElementById("part").innerHTML) + parseFloat(document.getElementById("item").innerHTML);
+			        		document.getElementById("cash1").innerHTML = money;	  
+			        		money = transform(money+"");
+							document.getElementById("money").innerHTML = money;
+	    				 }
+		        	}
 	          }
         	});
-        	$.ajaxSettings.async = false;
-        	$.post(baseUrl+"com.hsapi.repair.repairService.query.querySettleAmt.biz.ext?serviceId="+serviceId+"&token="+token,{},function(text){
-	    				if(text.errCode=="S"){ 
-	    				 		document.getElementById("yh").innerHTML = text.data.totalPrefAmt;
-	    				 		document.getElementById("cash1").innerHTML = text.data.balaAmt;	    		    				 			
-	    						    		var money = transform(text.data.balaAmt+"");
-											document.getElementById("money").innerHTML = money;
-	    					
-	    				}else{
-	    					showMsg(text.errMsg,"W");
-	    				}
-	            }); 
+	        	if(type != 5 && type != 6){
+	        	 	$.ajaxSettings.async = false;
+		        	$.post(baseUrl+"com.hsapi.repair.repairService.query.querySettleAmt.biz.ext?serviceId="+serviceId+"&token="+token,{},function(text){
+			    				if(text.errCode=="S"){ 
+			    				 		document.getElementById("yh").innerHTML = text.data.totalPrefAmt;
+			    				 		document.getElementById("cash1").innerHTML = text.data.balaAmt;	    		    				 			
+			    						    		var money = transform(text.data.balaAmt+"");
+													document.getElementById("money").innerHTML = money;
+			    					
+			    				}else{
+			    					showMsg(text.errMsg,"W");
+			    				}
+			            }); 
+	        	}
 			 }
     </script>
 </body>

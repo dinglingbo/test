@@ -146,26 +146,23 @@
         <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
     </div>
         <div style="padding-top:10px ;" align="center">
-            <h1>华胜自动变速箱维修系统</h1>
+            <h1 id="currRepairSettorderPrintShow"></h1>
             <h2>费&nbsp;&nbsp;用&nbsp;&nbsp;报&nbsp;&nbsp;销&nbsp;&nbsp;单</h2>
         </div>
         <div style="margin: 0 10px;" class="printny">
         <div class="company-info">
             <table  width="100%" border="0" cellspacing="0" cellpadding="0">
 	            <tbody>
-	                <tr>
-                        <td style="width:50%"></td>
-	                    <td style="width: auto">
-	                        <!-- <div style="padding-top: 2px; font-size: 13px;font-family: Arial;">
-	                          №:<span id="serviceCode"></span>  
-	                        </div> -->
-	                    </td>
-	                </tr>
+	            	<tr>
+	            		<td colspan="2" align="right">
+	            			№:<span id="rpAccountId"></span>
+	            		</td>
+	            	</tr>
 	                <tr>
 	                	<td >
                                 部门：<span id=""></span>  
                         </td>
-                        <td style="width: auto">
+                        <td style="width: auto;" align="right">
                                 日期：<span id="date"></span>  
 	                	</td>
 	                </tr>
@@ -177,22 +174,19 @@
         <div style="padding-top: 10px;">
             <table  width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk">
                 <tr>
-                    <td style="width: 50%" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">
+                    <td align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;width: 25%">
                         摘要
                     </td>
-                    <td align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">
+                    <td align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;width: 16%">
                         收支类别
                     </td>
-                    <td align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">
+                    <td align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;width: 16%">
                         数量
                     </td>
-                    <td align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">
-                        单位
-                    </td>   
-                    <td align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">
+                    <td align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;width: 16%">
                         单价
                     </td>
-                    <td align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">
+                    <td align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;width: 16% ">
                         金额
                     </td>
                 </tr>
@@ -209,7 +203,7 @@
                                 &nbsp;&nbsp;小写金额：
                         </font>
                     </td>
-                    <td colspan="2" align="left">
+                    <td align="left">
                         <font style="font-size: 16px; font-weight: bold;">
                             &nbsp;&nbsp;<span id="cash">0</span>元
                         </font>
@@ -219,43 +213,39 @@
                     <td>
                             &nbsp;&nbsp;收款人：<span></span>
                     </td>
-                    <td align="center" style="width:10%">
+                    <td align="right" style="width:10%">
                             &nbsp;&nbsp;制单：
                     </td>
-                    <td colspan="4">
+                    <td colspan="3">
 
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="6" align="center">
-                        <span style="padding-left: 1%">
-                            &nbsp;&nbsp;审批人：
-                        </span>
-                        <span style="padding-left: 17%">
-                            审核人：
-                        </span>
-                        <span style="padding-left: 17%">
-                            证明人：
-                        </span>
-                        <span style="padding-left: 17%">
-                            经手人：
-                        </span>
+                    <td>
+                    	&nbsp;&nbsp;审批人：
+                    </td>
+                    <td>
+                    	&nbsp;&nbsp;审核人：
+                    </td>
+                    <td>
+                    	&nbsp;&nbsp;证明人：
+                    </td>
+                    <td colspan="2">
+                    	&nbsp;&nbsp;经手人：
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="6" align="center">
-                        <span style="padding-left: 1%">
-                            &nbsp;&nbsp;董事长：
-                        </span>
-                        <span style="padding-left: 13%">
-                            财务经理：
-                        </span>
-                        <span style="padding-left: 13%">
-                            财务主管：
-                        </span>
-                        <span style="padding-left: 13%">
-                            支出人（收纳）：
-                        </span>
+                    <td>
+                    	&nbsp;&nbsp;董事长：
+                    </td>
+                    <td>
+                    	&nbsp;&nbsp;财务经理：
+                    </td>
+                    <td>
+                    	&nbsp;&nbsp;财务主管：
+                    </td>
+                    <td colspan="2">
+                    	&nbsp;&nbsp;支出人（收纳）：
                     </td>
                 </tr>
             </table>
@@ -278,13 +268,16 @@
                 arr = data;
                 var tBody = $("#tbodyId");
                 tBody.empty();
+                document.getElementById("currRepairSettorderPrintShow").innerHTML = currRepairSettorderPrintShow;
                 var tds = '<td align="center">[remark]</td>' +
 						    			"<td align='center'>[billTypeId]</td>"+
 						    			"<td align='center'>[number]</td>"+ 
-						    			"<td align='center'>[unit]</td>"+ 
 						    			"<td align='center'>[charOffAmt]</td>"+
                                         "<td align='center'>[charOffAmt1]</td>";
                 for(var i = 0 , l = arr.length ; i < l ; i++){
+                	if( i == 0){
+                		document.getElementById("rpAccountId").innerHTML = arr[i].rpAccountId;
+                	}
                     var tr = $("<tr></tr>");
                     var name = null;
                     for(var j = 0 ; j < IClist.length ; j++){
@@ -295,12 +288,11 @@
                     }
                     document.getElementById("cash").innerHTML = parseFloat(document.getElementById("cash").innerHTML) + parseFloat(arr[i].charOffAmt);
                     tr.append(
-                                tds.replace("[remark]",arr[i].remark)
-                                .replace("[billTypeId]",name)
+                                tds.replace("[remark]",arr[i].remark || "")
+                                .replace("[billTypeId]",name || "")
                                 .replace("[number]",1)
-                                .replace("[unit]","")
-                                .replace("[charOffAmt]",arr[i].charOffAmt)
-                                .replace("[charOffAmt1]",data[i].charOffAmt));
+                                .replace("[charOffAmt]",arr[i].charOffAmt || "")
+                                .replace("[charOffAmt1]",data[i].charOffAmt || ""));
                             tBody.append(tr); 
                 }
 

@@ -85,6 +85,7 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="remark" name="remark" width="180"  headeralign="center" allowsort="true">付款备注</div>
                 <div field="auditDate" name="auditDate" width="150" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" allowsort="true" >付款日期</div>
                 <div field="fullName" name="fullName" width="150"  headeralign="center" allowsort="true" >结算单位全称</div>
+                <div field="rpAccountId" name="fullName" width="170"  headeralign="center" allowsort="true" >付款单号</div>
                 <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
             </div>
         </div>

@@ -13,7 +13,7 @@ var serviceTypeIdEl = null;
 var servieTypeHash = {};
 var cType = 0;
 var form=null;
-var billTypeHash=[{name:"综合"},{name:"检查"},{name:"洗美"},{name:"销售"},{name:"理赔"},{name:"退货"},,{name:"波箱"}];
+var billTypeHash=[{name:"综合"},{name:"检查"},{name:"洗美"},{name:"销售"},{name:"理赔"},{name:"退货"},{name:"波箱"}];
 var orgidsEl = null;
 $(document).ready(function ()
 {
@@ -188,6 +188,8 @@ function updateGridColoumn(e){
     }else if(e == 2){
     	mainGrid.updateColumn(column,{header:"品牌车型"});
     }else if(e == 3){
+    	mainGrid.updateColumn(column,{header:"业务类型"});
+    }else if(e == 4){
     	mainGrid.updateColumn(column,{header:"工单类型"});
     }
 }

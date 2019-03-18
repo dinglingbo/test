@@ -16,7 +16,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="String" name="provinceIdprovince" type="query" valueType="Primitive">provinceIdprovince</process:return>
+      <process:return id="0" language="String" name="province" type="query" valueType="Primitive">province</process:return>
       <process:return id="1" language="String" name="city" type="query" valueType="Primitive">city</process:return>
       <process:return id="2" language="String" name="county" type="query" valueType="Primitive">county</process:return>
       <process:return id="3" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
@@ -249,7 +249,7 @@
     <process:input description="区" isArray="false" name="countyId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="false" name="provinceIdprovince" primitiveType="String"/>
+    <process:output description="" isArray="false" name="province" primitiveType="String"/>
     <process:output description="" isArray="false" name="city" primitiveType="String"/>
     <process:output description="" isArray="false" name="county" primitiveType="String"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

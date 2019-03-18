@@ -652,7 +652,14 @@ function setInitData(params){
                         	var isSettle = data.isSettle||0;
                         	doSetStyle(status, isSettle);                       	
                         }
-
+                        
+                        if(data.isOutBill){
+                        	nui.get("ExpenseAccount").setVisible(false);
+                        	nui.get("ExpenseAccount1").setVisible(true);
+                        }else{
+                        	nui.get("ExpenseAccount").setVisible(true);
+                        	nui.get("ExpenseAccount1").setVisible(false);
+                        }
 
                         var p1 = {
                         }
@@ -732,6 +739,8 @@ function add(){
     /* $("#showCarInfoEl").html(""); */
     $("#guestNameEl").html("");
     $("#guestTelEl").html("");
+    nui.get("ExpenseAccount").setVisible(true);
+    nui.get("ExpenseAccount1").setVisible(false);
     $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
     var tabList = document.querySelectorAll('.xz');
 	var natureId = null;
@@ -744,6 +753,51 @@ function add(){
 	document.getElementById("showA").style.display='none';
 	advancedCardTimesWin.hide();
 }
+
+function sureMT(){
+    var data = billForm.getData();
+    var carModel = data.carModel;
+    if(!data.id){
+        showMsg("请先保存工单!","W");
+        return;
+    }else{
+        if(data.status != 0){
+            showMsg("工单已施工!","W");
+            return;
+        }
+        var params = {
+            data:{
+                id:data.id||0
+            }
+        };
+        nui.mask({
+            el: document.body,
+            cls: 'mini-mask-loading',
+            html: '处理中...'
+        });
+        svrSureMT(params, function(data){
+            data = data||{};
+            var errCode = data.errCode||"";
+            var errMsg = data.errMsg||"";
+            if(errCode == 'S'){
+                var main = data.maintain||{};
+                main.carModel = carModel;
+                billForm.setData([]);
+                billForm.setData(main);
+                var status = main.status||0;
+                var isSettle = main.isSettle||0;
+                doSetStyle(status, isSettle);
+                showMsg("转施工成功!","S");
+            }else{
+                showMsg(errMsg||"转施工失败!","E");
+                nui.unmask(document.body);
+            }
+        }, function(){
+            nui.unmask(document.body);
+        });
+    }
+}
+
 function save(){
 	itemF = "S";
     partF = "S";
@@ -762,6 +816,10 @@ function save(){
     }
     if(!data.boxServiceTypeId){
     	showMsg("业务类型不能为空","W");
+    	return;
+    }
+    if(!data.carNo){
+        showMsg("车牌号不能为空","W");
     	return;
     }
     nui.mask({
@@ -1044,36 +1102,36 @@ svrSaveMaintain(params, function(text){
     	 oldData.id = fserviceId;
      	 billForm.setData(oldData);
      	 changeBoxService(1);
-         var params1 = {
-                 data:{
-                     id:main.id||0
-                 }
-             };
-    	//保存成功之后，执行确定维修接口，执行一次
-        if(!status){
-        	svrSureMT(params1, function(data){
-                data = data||{};
-                var errCode = data.errCode||"";
-                var errMsg = data.errMsg||"";
-                if(errCode == 'S'){
-                	var maintain = data.maintain;
-                	//保存项目
-                	//saveItem();
-                	//unmaskcall && unmaskcall();
-                    callback && callback(maintain);
-                }else{
-                	unmaskcall && unmaskcall();
-                	showMsg("数据操作有误，请重新操作!","E");
-                }
-            }, function(){
-                //nui.unmask(document.body);
-            });
-        }else{
+        //  var params1 = {
+        //          data:{
+        //              id:main.id||0
+        //          }
+        //      };
+    	// //保存成功之后，执行确定维修接口，执行一次
+        // if(!status){
+        // 	svrSureMT(params1, function(data){
+        //         data = data||{};
+        //         var errCode = data.errCode||"";
+        //         var errMsg = data.errMsg||"";
+        //         if(errCode == 'S'){
+        //         	var maintain = data.maintain;
+        //         	//保存项目
+        //         	//saveItem();
+        //         	//unmaskcall && unmaskcall();
+        //             callback && callback(maintain);
+        //         }else{
+        //         	unmaskcall && unmaskcall();
+        //         	showMsg("数据操作有误，请重新操作!","E");
+        //         }
+        //     }, function(){
+        //         //nui.unmask(document.body);
+        //     });
+        // }else{
         	//保存项目
         	//saveItem();
         	//unmaskcall && unmaskcall();
             callback && callback(main);
-        }
+        // }
     } else {
         unmaskcall && unmaskcall();
         showMsg(data.errMsg || "保存单据失败","E");
@@ -2080,12 +2138,16 @@ function chooseItem(){
     }
     var data = billForm.getData();
     if(!main.id || falg=="N"){
-      falg="Y";
-      openIF = 0;
-      if(!nui.get("boxServiceTypeId").value){
-	        showMsg("业务类型不能为空,不能添加项目!","W");
-	        return;
-	    }
+        falg="Y";
+        openIF = 0;
+        if(!nui.get("boxServiceTypeId").value){
+                showMsg("业务类型不能为空,不能添加项目!","W");
+                return;
+        }
+        if(!data.carNo){
+            showMsg("车牌号不能为空","W");
+            return;
+        }
 	  saveNoshowMsg(function(){
 		var param = {};
 	    param.carModelIdLy = main.carModelIdLy;
@@ -2808,12 +2870,14 @@ function addExpenseAccount(){
 		var item={};
 		item.id = "123321";
 	    item.text = "报销单详情";
-		item.url =webBaseUrl+  "com.hsweb.print.ExpenseAccount.flow?sourceServiceId="+data.id;
+		item.url =webBaseUrl+  "com.hsweb.bx.BXExpenseAccount.flow?sourceServiceId="+data.id;
 		item.iconCls = "fa fa-file-text";
-		window.parent.activeTabAndInit(item,data);
 		data.guestTel = $("#guestTelEl").text();
 		data.guestName = $("#guestNameEl").text();
 		data.contactorTel = data.guestMobile;
+		data.serviceCode = $("#servieIdEl").html();
+		window.parent.activeTabAndInit(item,data);
+		
 	}else{
 		showMsg("请先保存后再进行操作!","W");
 	}
@@ -3047,6 +3111,10 @@ function SaveCheckMain() {
     var data = billForm.getData();
     if(!data.id){
         showMsg("请先保存工单!","W");
+        return;
+    }
+    if(!data.carNo){
+        showMsg("车牌号不能为空","W");
         return;
     }
     if(isRecord == "0"){
@@ -3744,6 +3812,10 @@ function selectclick() {
         	showMsg("请选择客户后再进行添加项目","W");
         	return;
         }
+        if(!main.carNo){
+            showMsg("车牌号不能为空","W");
+            return;
+        }
         var isSettle = main.isSettle||0;
         var status = main.status||0;
         if(status == 2){
@@ -3972,6 +4044,10 @@ function warehousing(){
 		    	        html: '数据加载中...'
 		    	   });
 					if(data.status != 2 ){
+                        if(!data.carNo){
+                            showMsg("车牌号不能为空","W");
+                            return;
+                        }
 			        	 saveMaintain(function(data){
 				                saveItem(function(){
 				                	setFrom(data);

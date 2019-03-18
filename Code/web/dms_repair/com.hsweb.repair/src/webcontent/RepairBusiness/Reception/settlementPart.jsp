@@ -367,23 +367,20 @@
                </font>
             </span>
         </div> -->
-        <table width="100%" border="0"  cellpadding="0" cellspacing="0" class="ybk">
+        <div style="height: 12px;" id="space2"></div>
+        <table width="100%" border="0"  cellpadding="0" cellspacing="0"  class="ybk1">
             <tr>
-                <td height="36" colspan="1" style="border:0px solid #DDD; " rowspan="1" colspan="1" >
+                <td height="36" colspan="1" style="border:0px solid #DDD;padding: 8px; " rowspan="1" colspan="1" >
                    <!--  <div style="float: right; color: #000; margin-right: 12px; line-height: 36px;">
                                                              
                     </div> -->
                       套餐：<span id="prdt">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;工时：<span id="item">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0.00</span>
-            
+            <span style="margin-left: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;优惠金额：<span id="yh">0.00</span>元</span>
                 </td>
-                <td height="36" colspan="1" style="border:0px" >
-                    <!-- <div style="float: center; color: #000; margin-right: 12px; line-height: 36px;">
-                        <span style="margin-left: 200px;">优惠金额：<span id="yh">0</span>元</span>
-                    </div> -->
-                     <span style="margin-left: 0px;">优惠金额：<span id="yh">0.00</span>元</span>
-                </td>
+                </tr>
+                <tr>
                 <td height="36" colspan="2" style="border:0px;font-family: Arial; font-size:16px;font-weight: bold;">
-                    <div style="float: left; color: #000; margin-right: 12px; line-height: 36px;">
+                    <div style="float: right; color: #000; margin-right: 12px; line-height: 36px;">
                         <span style="margin-right: 15px;">
                             <font style="font-size: 16px; font-weight: bold;">
                                 结算金额：<span id="cash1"></span>元
@@ -394,10 +391,9 @@
                         </font>
                     </div>
                 </td>
-                
             </tr>
         </table> 
-
+        <div style="height: 12px;" id="space3"></div>
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk">
                 <tr>
                     <td height="100" valign="top" style="padding: 8px;" id="drawOutReport" colspan="3">
@@ -418,7 +414,7 @@
                 <tr>
                    <td height="30" style="padding: 8px;" colspan="3">
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style = "margin-left: 0px;" id = "show"></span><br>
-                      <span style = "margin-left: 10px;" id="makeMan">制单：</span><span style = "margin-left: 100px;">服务顾问签名：</span><span style = "margin-left: 110px;">客户签名：</span>
+                      <span style = "margin-left: 0px;" id="makeMan">制单：</span><span style = "margin-left: 100px;">服务顾问签名：</span><span style = "margin-left: 110px;">客户签名：</span>
                   </td>
                  
             </tr>
@@ -466,10 +462,8 @@
         	}
         }
         
-        
-
-        
         function SetData(params){
+            var currRepairBillMobileFlag = params.currRepairBillMobileFlag || ""; 
             var imgUrl = params.currCompLogoPath || "";
             if(imgUrl && imgUrl != ""){
                $('#showImg').show();
@@ -552,6 +546,7 @@
 	        		  enterDate='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
 	        		}
 	        		var guestFullName = list.guestFullName || "";
+	        		var guestMobile = list.guestMobile || "";
 	        		var enterOilMass = list.enterOilMass || "0";
 	        		var name = "0";
 	        		//查找油量http://127.0.0.1:8080/default/
@@ -582,7 +577,7 @@
 	        		var guestAddr = list.guestAddr || "";
 	        		if(params.type){
 	        			guestFullName = list.guestName || "";
-	        			//guestMobile = list.guestTel || "";
+	        			guestMobile = list.guestTel || "";
 	        			//contactMobile = list.contactorTel || "";
 	        			carNo = list.carNo || "";
 	        			//contactName = list.contactorName || "";
@@ -602,6 +597,10 @@
 	        		document.getElementById("solveMethod").innerHTML = document.getElementById("solveMethod").innerHTML + solveMethod; 
 	        		//document.getElementById("guestAddr").innerHTML = document.getElementById("guestAddr").innerHTML + guestAddr;
 	        		//document.getElementById("name").innerHTML = document.getElementById("name").innerHTML + mtAdvisor; 
+	        	    if(currRepairBillMobileFlag==1){
+	        	        document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + 
+	        	        "<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ guestMobile;
+	        	    }
 	        	}
         	});
         	if(params.type){
@@ -792,7 +791,8 @@
     				    document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML).toFixed(2);
 	    				document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML).toFixed(2);
 	        	    }else{
-                        $("#showItem").hide();	        	      
+                        $("#showItem").hide();	
+                        $("#space2").hide();        	      
 	        	    }
 	        	}
         	});

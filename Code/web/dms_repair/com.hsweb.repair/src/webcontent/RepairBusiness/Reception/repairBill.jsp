@@ -246,7 +246,7 @@
         <table border="0" align="center" cellpadding="0" cellspacing="0" >
             <tr>
                 <td>
-                    <div >
+                    <div>
                         <span id="carHealthEl" >
                             <a href="javascript:showHealth()" class="healthview" >车况:100</a>&nbsp;
                         </span>

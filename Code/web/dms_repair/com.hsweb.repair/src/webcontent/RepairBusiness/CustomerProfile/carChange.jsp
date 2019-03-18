@@ -11,7 +11,7 @@
 -->
 <head>
 <title>车牌车主变更</title>
-<script src="<%= request.getContextPath() %>/repair/js/RepairBusiness/CustomerProfile/carChange.js?v=1.0.8"></script>
+<script src="<%= request.getContextPath() %>/repair/js/RepairBusiness/CustomerProfile/carChange.js?v=1.0.9"></script>
 <style type="text/css">
 
 .dtable{
@@ -68,7 +68,7 @@
 								</td>
 								<td colspan="1">
 									<input class="nui-combobox"
-										data="[{value:'0',text:'变更车牌',},{value:'1',text:'变更车主'}]"
+										data="[{value:'0',text:'变更车牌',},{value:'1',text:'变更车主'},{value:'2',text:'变更车架号(VIN)'}]"
 										textField="text" valueField="value" name="changeType"
 										value="0" onvalidation="updateType()" id="changeType" width="200px" />
 								</td>

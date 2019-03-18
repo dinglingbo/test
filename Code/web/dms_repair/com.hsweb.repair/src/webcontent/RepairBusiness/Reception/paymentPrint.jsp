@@ -150,24 +150,24 @@
                 <tbody>
                     <tr>
                         <td class="color999" width="76" height="46">单据编号：</td>
-                        <td><input type="text" id="txtno" class="peijianss" value="" /></td>
+                        <td><input type="text" id="serviceCode1" class="peijianss" value="" /></td>
                     </tr>
                     <tr>
-                        <td class="color999" height="46">门店名称：</td>
-                        <td><input type="text" id="txtstorename" class="peijianss" value="" /></td>
+                        <td class="color999" height="46">结算日期：</td>
+                        <td><input id="payDate1" type="datetime-local" value=""/></td>
                     </tr>
                     <tr>
-                        <td class="color999" height="46">地址：</td>
-                        <td><input type="text" id="txtaddress" class="peijianss" value="" /></td>
+                        <td class="color999" height="46">即付：</td>
+                        <td><input type="text" id="guestName1" class="peijianss" value="" /></td>
                     </tr>
-                    <tr>
-                        <td class="color999" height="46">电话：</td>
-                        <td><input type="text" id="txtphoneno" class="peijianss" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td class="color999" height="46">打印时间：</td>
-                        <td><input id="meeting" type="datetime-local" value=""/></td>
-                    </tr>
+                     <tr>
+                        <td class="color999" height="46">业务单号：</td>
+                        <td><input type="text" id="businessNumber1" class="peijianss" value="" /></td>
+                    </tr> 
+                     <tr>
+                        <td class="color999" height="46">金额：</td>
+                        <td><input type="text" id="netInAmt1" class="peijianss" value="" /></td>
+                    </tr> 
                 </tbody>
             </table>
 
@@ -215,7 +215,7 @@
 	                <tr>
 	                    <td  style="padding-left: 70%">
 	                        <div style="font-size: 13px;font-family: Arial;">
-	                         	 日期:<span id="payDate"></span>  
+	                         	 结算日期:<span id="payDate"></span>  
 	                        </div>
 	                    </td>
 	                </tr>
@@ -255,22 +255,22 @@
 
             <div class="content">
             	<p><b>
-            	<div style="margin-left: 50px;margin-right: 50px;margin-top: 15px;">即付<div style="border-bottom: 1px solid black;margin-left: 30px;"><span  id="companyName"></span></div></div>
+            	<div style="margin-left: 50px;margin-top: 25px;">即付:<div style="border-bottom: 1px solid black;margin-left: 35px;margin-top: -22px;"><span  id="guestName"></span></div></div>
             	
-            	<div style="margin-left: 30px;margin-right: 50px;border-bottom: 1px solid black;"><div style="margin-left: 200px;margin-top: 10px;">业务单号:<span id="companyName"></span></div></div>
+            	<div style="margin-left: 30px;margin-right: 50px;border-bottom: 1px solid black;"><div style="margin-left: 200px;margin-top: 10px;">业务单号:<span id="businessNumber"></span></div></div>
             	<div style="margin-left: 50px;margin-top: 15px;float:left;">人民币（大写）:</div>
-            	<div style="margin-top: 15px;border-bottom: 1px solid black;float:left;width: 60%"><span id="companyName"></span></div>
+            	<div style="margin-top: 15px;border-bottom: 1px solid black;float:left;width: 40%"><span id="money"></span></div>
             	<div style="margin-top: 15px;float:left">￥:</div>
-            	<div style="margin-top: 15px;border-bottom: 1px solid black;float:left;width: 20%"><span id="companyName"></span></div>
+            	<div style="margin-top: 15px;border-bottom: 1px solid black;float:left;width: 20%"><span id="netInAmt"></span></div>
             	</b></p>
 				</br>
 				<div>
 	            	<div style="margin-left: 50px;margin-top: 20px;float:left;width: 50%">
-	            	支付方式:    <input type="checkbox" name="category" value="今日话题" />现金  
-	            			<input type="checkbox" name="category" value="视觉焦点" />刷卡
-	   						<input type="checkbox" name="category" value="财经" />汇款    
-	   					    <input type="checkbox" name="category" value="汽车" />支票  
-	    					<input type="checkbox" name="category" value="科技" />转账    
+	            	支付方式:    <input type="checkbox"   />现金  
+	            			<input type="checkbox"   />刷卡
+	   						<input type="checkbox"   />汇款    
+	   					    <input type="checkbox"   />支票  
+	    					<input type="checkbox"  checked ='checked'  />转账    
 	    			</div>		
 	    			<div style="margin-right: 100px;margin-top: 20px;float:left">支款单位（盖章）：<span id="companyName"></span></div>
     			</div>
@@ -300,7 +300,7 @@
 							支款人:
 	                	</td>
 	                	<td >
-							经手人:<span id="companyName"></span>
+							经手人:<span id="makeMan"></span>
 	                	</td>
 	                </tr>
 	            </tbody>
@@ -310,25 +310,83 @@
 
     </div>
 	<script type="text/javascript">
+	
+			$(document).ready(function (){
+			
+				$("#print").click(function () {
+		            $(".print_btn").hide();
+		            $(".print_hide").hide();
+		            
+		            window.print();
+		        }); 
+		      
+	       document.onkeyup = function(event) {
+		        var e = event || window.event;
+		        var keyCode = e.keyCode || e.which;// 38向上 40向下
+		        if ((keyCode == 27)) { // ESC
+		            CloseWindow('cancle');
+		        }
+		     }  
+
+        });
+		function SetData(params){
+			var frmBill = {};
+			$.post(params.p.frmApiUrl+"com.hsapi.frm.frmService.finance.queryRPAccountDetail.biz.ext?params/billServiceId="+params.billServiceId||""+"&token="+params.p.token,{},function(text){
+    		    if(text.list){
+    		      frmBill = text.list;
+    		      document.getElementById("serviceCode").innerHTML = frmBill[0].rpAccountId||"";
+    		      	var payDate = frmBill[0].auditDate;
+    		      	payDate = payDate.replace(/-/g,"/");
+	        		payDate = new Date(payDate);
+	        		payDate = format(payDate, "yyyy-MM-dd HH:mm");
+	        		document.getElementById("payDate").innerHTML = payDate;
+	        		document.getElementById("guestName").innerHTML = params.guestData[0].guestName||"";
+	        		document.getElementById("businessNumber").innerHTML = params.businessNumber||"";
+	        		
+	        		var money = transform(params.netInAmt+"");
+					document.getElementById("money").innerHTML = money;
+					document.getElementById("netInAmt").innerHTML = params.netInAmt||"";
+					document.getElementById("makeMan").innerHTML=params.p.currUserName||"";
+					document.getElementById("companyName").innerHTML=params.p.comp||"";
+    		    }
+	         });
+			
+		}
+		
 		function box_setup_open() {
 	        $(".boxbg").show();
 	        $(".popbox").show();
-	        document.getElementById("txtno").value = document.getElementById("serviceCode").innerHTML;
-    		document.getElementById("txtstorename").value = document.getElementById("comp").innerHTML;
-    		//document.getElementById("txtaddress").value = document.getElementById("guestAddr").innerHTML;
-    		//document.getElementById("txtphoneno").value = document.getElementById("phone").innerHTML;
-    		if(document.getElementById("date").innerHTML.length > 16){
-    			var value = document.getElementById("date").innerHTML.substring(0, document.getElementById("date").innerHTML.length-3);
-    			document.getElementById("meeting").value = value.replace(" ","T");
+	        document.getElementById("serviceCode1").value = document.getElementById("serviceCode").innerHTML;
+    		document.getElementById("payDate1").value = document.getElementById("payDate").innerHTML;
+    		document.getElementById("guestName1").value = document.getElementById("guestName").innerHTML;
+    		document.getElementById("businessNumber1").value = document.getElementById("businessNumber").innerHTML;
+    		document.getElementById("netInAmt1").value = document.getElementById("netInAmt").innerHTML;
+    		if(document.getElementById("payDate").innerHTML.length > 16){
+    			var value = document.getElementById("payDate").innerHTML.substring(0, document.getElementById("payDate").innerHTML.length-3);
+    			document.getElementById("payDate1").value = value.replace(" ","T");
     		}else{
-    			document.getElementById("meeting").value = document.getElementById("date").innerHTML.replace(" ","T");
+    			document.getElementById("payDate1").value = document.getElementById("payDate").innerHTML.replace(" ","T");
     		}
     	}
     	function CloseWindow(action) {
             if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
             else window.close();
         }
-    	
+
+    	 function save(){
+			box_setup_close();
+    		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode1").value;
+    		document.getElementById("netInAmt").innerHTML = document.getElementById("netInAmt1").value;
+    		document.getElementById("guestName").innerHTML = document.getElementById("guestName1").value;
+    		document.getElementById("businessNumber").innerHTML = document.getElementById("businessNumber1").value;
+			document.getElementById("payDate").innerHTML =  document.getElementById("payDate1").value.replace("T"," ");
+			var money = transform(document.getElementById("netInAmt1").value+"");
+			document.getElementById("money").innerHTML = money;
+    	}
+    	function box_setup_close(){
+    		$(".boxbg").hide();
+        	$(".popbox").hide();
+    	}
     	
     </script>
 </body>

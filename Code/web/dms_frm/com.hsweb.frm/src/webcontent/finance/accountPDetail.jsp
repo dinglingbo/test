@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>付款明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%=webPath + contextPath%>/frm/js/finance/accountPDetail.js?v=1.2.0"></script>
+    <script src="<%=webPath + contextPath%>/frm/js/finance/accountPDetail.js?v=1.2.2"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -62,6 +62,7 @@ pageEncoding="UTF-8" session="false" %>
         <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
         <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+        <a class="nui-button" iconCls="" plain="true" onclick="print()"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
     </div>
     <div class="nui-fit">
         <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" 
@@ -69,6 +70,7 @@ pageEncoding="UTF-8" session="false" %>
              pageSize="500" sizeList="[500,1000,2000]" showSummaryRow="true" allowResize="true" multiSelect="true" >
             <div property="columns">   
                 <div type="indexcolumn"  headeralign="center" width="30">序号</div>
+                <div type="checkcolumn" field="check" width="20"></div>
                 <div field="settAccountId" name="code" width="60" summaryType="count"  headeralign="center" visible="false" allowsort="true" >账户编码</div>
                 <div field="settAccountId" name="name" width="100"  headeralign="center" visible="false" allowsort="true"  >账户名称</div>
                 <div field="billServiceId" name="billServiceId" width="170"  headeralign="center" summaryType="count" allowsort="true" >业务单号</div>

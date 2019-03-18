@@ -22,15 +22,17 @@
         body .mini-grid-row-selected{
             background:#89c3d6 !important; 
         }
+        
     </style>
 <head>
 <title>车型查询</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>
+    <%@include file="/common/commonCloudPart.jsp"%>
     <link href="<%=contextPath%>/epc/brand/css/cloud.css?v=1.0" rel="stylesheet" type="text/css" />
     <script src="<%=contextPath%>/epc/common/llqCommon.js?v=1.0.1" type="text/javascript"></script>
     <script src="<%=contextPath%>/epc/brand/js/brandQuery.js?v=1.0" type="text/javascript"></script>
-    <script src="<%=contextPath%>/epc/brand/js/brandInfos.js?v=1.2" type="text/javascript"></script>
+    <script src="<%=contextPath%>/epc/brand/js/brandInfos.js?v=1.27" type="text/javascript"></script>
 </head>
 <body>
     <div class="nui-fit"> 

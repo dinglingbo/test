@@ -15,6 +15,7 @@ var cityEl = null;
 var countyEl = null;
 var streetAddressEl = null;
 var addressEl = null;
+var compInfo =null;
 
 $(document).ready(function(v) {
 	comForm = new nui.Form("#comForm");
@@ -24,6 +25,17 @@ $(document).ready(function(v) {
 	countyEl = nui.get("countyId");
 	streetAddressEl = nui.get("streetAddress");
 	addressEl = nui.get("address");
+	
+	getProvinceAndCity(function(data)
+    {
+        var province = data.province;
+        var city = data.city;
+        cityList = city;
+//        tree.loadList(province.concat(city),"code","parentid");
+        provinceEl = nui.get("provinceId");
+        provinceEl.setData(province);
+        cityEl.setData(cityList);
+    });
 
 	getRegion(null,function(data) {
 		provinceHash = data.rs || [];
@@ -38,6 +50,9 @@ function setInitData(el, value){
 	getRegion(value,function(data) {
 		hash = data.rs || [];
 		el.setData(hash);
+		if(!countyEl.value){
+			countyEl.setValue(compInfo.countyId);
+		}
 	});
 }
 function onProvinceChange(e){
@@ -85,7 +100,7 @@ function quickComp(comp){
 			token: token
 		},
 		success : function(data) {
-			var compInfo = data.comp;
+		    compInfo = data.comp;
 			if(compInfo){
 				comForm.setData(compInfo);
 				setInitData(provinceEl, null);

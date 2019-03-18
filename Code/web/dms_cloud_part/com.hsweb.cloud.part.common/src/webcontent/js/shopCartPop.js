@@ -353,7 +353,7 @@ function onOk()
 
     var guestIdEl = nui.get("guestId");
     var main = {};
-    main.guestId = guestIdEl.getValue().replace(/\s+/g, "");
+    main.guestId = guestIdEl.getValue();
     main.guestName = guestIdEl.getText();
     main.shortName = shortNameEl.getValue().replace(/\s+/g, "");
     main.storeId = FStoreId;

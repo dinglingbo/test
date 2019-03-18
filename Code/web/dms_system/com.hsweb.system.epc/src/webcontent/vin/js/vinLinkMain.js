@@ -244,3 +244,26 @@ function generateSellOrder(){
         return;
     }
 }
+
+function copyEmbed() {
+    var clipboard = new ClipboardJS('#copyBtn',{
+        text: function (trigger) {
+//            var value = document.getElementById('bar').value;\
+        	var data=cartGrid.getData();
+        	var value='';
+        	for(var i=0;i<data.length;i++){
+        		value+=data[i].pid+'\r\n';
+        	}
+            return value;
+        }
+    });
+    clipboard.on('success',function (e) {
+        showMsg("复制成功","S");
+        e.clearSelection();
+        clipboard.destroy();
+    });
+    clipboard.on('error',function (e) {
+    	showMsg("复制失败,请重新复制","W");
+        clipboard.destroy();
+    });
+}

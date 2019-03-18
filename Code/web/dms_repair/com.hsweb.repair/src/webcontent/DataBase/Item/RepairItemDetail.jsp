@@ -163,7 +163,7 @@
 							</tr>
 							<tr>
 							    <td align="right">
-								<label>使用次数：</label>
+								<label>使用热度：</label>
 								</td>
 								<td colspan="3">
 									<input class="nui-spinner"
@@ -174,7 +174,7 @@
 											value="0" maxValue="1000000000"
 											changeOnMousewheel="true" showButton="false"
 											width="20%"  selectOnFocus="true"/>
-								    <label id="isCalTimes">是否禁用计数：</label>
+								    <label id="isCalTimes">是否禁用热度：</label>
 								   <input name="isCalTimes" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>
 								   <label id="isShareTd">是否共享：</label> 
 								   <input id="isShare" name="isShare" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>

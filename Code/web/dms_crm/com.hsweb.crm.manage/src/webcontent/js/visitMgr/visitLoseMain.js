@@ -25,7 +25,7 @@ $(document).ready(function(){
 	
 	gridCar = nui.get("gridCar");
 	gridCar.setUrl(gridCarUrl);
-	quickSearch(1);
+	quickSearch(2);
 
 	gridCar.on("rowdblclick",function(e){
 		var record = e.record;

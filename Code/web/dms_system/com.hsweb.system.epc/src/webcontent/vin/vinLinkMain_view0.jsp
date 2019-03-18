@@ -12,7 +12,7 @@
     <title>车架号/品牌车型/零件号</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>
-    <script src="<%=contextPath%>/epc/vin/js/vinLinkMain.js?v=1.4" type="text/javascript"></script>
+    <script src="<%=contextPath%>/epc/vin/js/vinLinkMain.js?v=1.14" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -87,7 +87,7 @@
 
 
 
-    <div id="win" class="nui-window" title="购物车(临时存放信息)" style="width:550px;height:300px;" 
+    <div id="win" class="nui-window" title="购物车(临时存放信息)" style="width:570px;height:300px;" 
         showMaxButton="true" showCollapseButton="true" showShadow="true"
         showToolbar="true" showFooter="true" showModal="false" allowResize="true" allowDrag="true"
         >
@@ -103,7 +103,9 @@
                             <span class="separator"></span>
                             <a class="nui-button" iconCls="" visible="true" id="pchsOrderBtn" plain="true" onclick="generatePchsOrder()">生成采购订单</a>
                             <a class="nui-button" iconCls="" visible="true" id="sellOrderBtn" plain="true" onclick="generateSellOrder()">生成销售订单</a>
-                            
+                            <a class="nui-button" visible="true" plain="true"onclick="copyEmbed()" id="copyBtn" data-clipboard-action="copy">一键复制</a>							
+                            <input id="bar" value="Mussum ipsum cacilds..." style="display:none">
+                     
                         </td>
                     </tr>
                 </table>

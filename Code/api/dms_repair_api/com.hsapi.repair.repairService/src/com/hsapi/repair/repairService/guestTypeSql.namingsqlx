@@ -53,7 +53,9 @@
 	select 
         a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
         b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
-        c.care_due_date careDueDate
+        c.care_due_date careDueDate,c.last_come_kilometers lastComeKilometers,
+        c.last_come_date lastComeDate
+        
     from  rpb_car a
     INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
     INNER JOIN rpb_car_extend c on c.car_id = a.id 

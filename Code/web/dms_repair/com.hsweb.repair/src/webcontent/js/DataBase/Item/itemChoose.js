@@ -100,6 +100,23 @@ $(document).ready(function()
 		 }
 		 onSearch(); 
 	 });
+	
+	itemGrid.on("drawcell", function(e) {
+		switch (e.field) {
+		case "AStandTime":
+			e.cellHtml = 1;
+			break;
+		case "AStandSum":			
+					e.cellHtml =0;
+			break;
+		case "cardTimesOpt":
+			e.cellHtml = '<a class="optbtn" href=" " onclick="editSell()">跟进</ a>';
+			break;
+		default:
+			break;
+		}
+
+	});
 	tree1.on("nodedblclick",function(e)
 	{
 		var node = e.node;
@@ -244,7 +261,8 @@ $(document).ready(function()
             return;
         }
         var params = {
-             itemType:node.oldId
+             itemType:node.oldId,
+             id : node.code
         };
         doSearchItem(params);
 
@@ -300,9 +318,11 @@ function doSearchItem(params)
     if(WechatShow!=1){
     	params.carModelId = carModelIdLy;
     }
+	//转码，维保大数据GET请求
+	params.itemName = encodeURI(params.itemName); 
     itemGrid.load({
     	token:token,
-        p:params
+    	params:params
     });
 }
 function onClear(){

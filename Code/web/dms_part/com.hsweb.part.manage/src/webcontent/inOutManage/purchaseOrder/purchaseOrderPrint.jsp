@@ -483,7 +483,8 @@ hr {
 							'<td align="center">[remark]</td>';
 						for(var i = 0; i < data.length; i++ ){ 
 							var tr=$("<tr></tr>");
-							tr.append(
+							if(brandHash[data[i].comPartBrandId]){
+								tr.append(
 								tds.replace("[index]",i+1 ||"")
 									.replace("[comPartCode]",data[i].comPartCode ||"")
 									.replace("[comOemCode]",data[i].comOemCode ||"")
@@ -498,6 +499,23 @@ hr {
 									.replace("[storehouse]",data[i].storeId?storeHash[data[i].storeId].name :"")
 									.replace("[storeShelf]",data[i].storeShelf ||"")
 									.replace("[remark]",data[i].remark ||""));
+							}else{
+								tr.append(
+								tds.replace("[index]",i+1 ||"")
+									.replace("[comPartCode]",data[i].comPartCode ||"")
+									.replace("[comOemCode]",data[i].comOemCode ||"")
+									.replace("[comPartName]",data[i].comPartName ||"")
+									.replace("[comPartBrindId]",data[i].comPartBrandId || "")
+									.replace("[comApplyCarModel]",data[i].comApplyCarModel ||"")
+									.replace("[comSpec]",data[i].comSpec ||"")
+									.replace("[comUnit]",data[i].comUnit ||"")
+									.replace("[orderQty]",data[i].orderQty ||0)
+									.replace("[orderPrice]",data[i].orderPrice ||0)
+									.replace("[orderAmt]",data[i].orderAmt ||0)
+									.replace("[storehouse]",data[i].storeId?storeHash[data[i].storeId].name :"")
+									.replace("[storeShelf]",data[i].storeShelf ||"")
+									.replace("[remark]",data[i].remark ||""));
+							}
 							tBody.append(tr);
 							sumOrderQty +=parseFloat(data[i].orderQty);
 							sumOrderAmt +=parseFloat(data[i].orderAmt);

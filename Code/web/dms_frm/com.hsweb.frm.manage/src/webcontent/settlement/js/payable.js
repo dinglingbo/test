@@ -301,6 +301,7 @@ function settleOK() {
 								data = data || {};
 								if (data.errCode == "S") {
 									CloseWindow("saveSuccess");
+									print();
 				
 								} else {
 									showMsg(data.errMsg || "结算失败!", "W");
@@ -391,4 +392,52 @@ function noPay(){
 			 }
 		});
 
+}
+
+//打印函数
+function print(){
+	  nui.confirm("需要打印凭证吗？", "友情提示",function(action){
+		       if(action == "ok"){
+		    	   
+		     }else {
+					return;
+			 }
+		 }); 
+	var sourceUrl = webPath + contextPath + "/com.hsweb.print.paymentPrint.flow?token="+token;
+	var printName = currRepairSettorderPrintShow||currOrgName;
+	var p = {
+		comp : printName,
+		partApiUrl:apiPath + partApi + "/",
+		baseUrl: apiPath + repairApi + "/",
+		sysUrl: apiPath + sysApi + "/",
+		webUrl:webPath + contextPath + "/",
+        bankName: currBankName,
+        bankAccountNumber: currBankAccountNumber,
+        currCompAddress: currCompAddress,
+        currCompTel: currCompTel,
+        currSlogan1: currSlogan1,
+        currSlogan2: currSlogan2,
+        currUserName : currUserName,
+        currCompLogoPath: currCompLogoPath,
+		token : token
+	};
+	params = {
+		guestData:guestData,
+		row :row,
+		p:p
+	};
+
+
+	nui.open({
+        url: sourceUrl,
+        title: p.name + "打印",
+		width: "100%",
+		height: "100%",
+        onload: function () {
+            var iframe = this.getIFrameEl();
+           iframe.contentWindow.SetData(params);
+        },
+        ondestroy: function (action){
+        }
+    });
 }

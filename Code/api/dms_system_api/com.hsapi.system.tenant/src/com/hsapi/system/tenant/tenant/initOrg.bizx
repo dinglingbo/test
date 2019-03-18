@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="initOrg.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="新增机构后，角色共用，所以不需要添加角色及角色对应的资源；&#xD;&#xA;只需要添加org_organization,往来单位，仓库,结算账户" title="Administrator&#x9;18-6-14 上午10:51">
-    <location x="50" y="15"/>
-    <size height="127" width="406"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="新增机构后，角色共用，所以不需要添加角色及角色对应的资源；&#xD;&#xA;只需要添加org_organization,往来单位，仓库,结算账户&#xD;&#xA;&#xD;&#xA;根据isMaster生成分店的一些基本参数数据&#xD;&#xA;工单参数，&#xD;&#xA;业务分类，客户来源租户统一&#xD;&#xA;客户标签添加orgid = 0 和租户统一&#xD;&#xA;回访设置&#xD;&#xA;检查类型，查车模板租户统一&#xD;&#xA;提配设置&#xD;&#xA;通用提成&#xD;&#xA;工作组，技师等级租户统一" title="Administrator&#x9;18-6-14 上午10:51">
+    <location x="37" y="-75"/>
+    <size height="241" width="406"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link33" name="link33" displayName="link57" isDefault="true" type="transition">

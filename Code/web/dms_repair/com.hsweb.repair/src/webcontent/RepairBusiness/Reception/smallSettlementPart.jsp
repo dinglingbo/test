@@ -210,6 +210,7 @@
             else window.close();
         }
     	function SetData(params){
+    	    var currRepairBillMobileFlag = params.currRepairBillMobileFlag;
     	    token1 =  params.token;
             webUrl = params.webUrl;
     		nui.ajax({
@@ -243,6 +244,7 @@
             });
             var guestName = document.getElementById("guestId").innerHTML;
             var guestId = guestName.replace(/[^0-9]/ig, "");
+            $.ajaxSettings.async = false;
             nui.ajax({
                 url: params.baseUrl+"com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext",
                 type : "post",
@@ -258,6 +260,10 @@
                    		var mobile = guest.mobile || "";
                    		phones = mobile;
                    		document.getElementById("guestId").innerHTML =  guestName.replace(/[0-9]/ig,"") + fullName;
+                   		if(currRepairBillMobileFlag==1){
+	        	            document.getElementById("guestId").innerHTML = document.getElementById("guestId").innerHTML + 
+	        	            "<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ phones;
+	        	        }
                    		//document.getElementById("mobile").innerHTML = document.getElementById("mobile").innerHTML+ mobile;
                    }
                 },
@@ -267,6 +273,7 @@
                 }
             });
             	//document.getElementById("name").innerHTML = "&nbsp;套餐";
+            	$.ajaxSettings.async = false;
             	nui.ajax({
 	                url: params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext",
 	                type : "post",
@@ -312,6 +319,7 @@
             	});
             	var partShow = null;
             	//document.getElementById("name").innerHTML = "&nbsp;工时";
+            	$.ajaxSettings.async = false;
             	nui.ajax({
 	                url: params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext",
 	                type : "post",

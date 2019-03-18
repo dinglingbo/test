@@ -755,6 +755,7 @@ function doPrint(params){
         currSlogan1: currSlogan1,
         currSlogan2: currSlogan2,
         currCompLogoPath: currCompLogoPath,
+        currRepairBillMobileFlag:currRepairBillMobileFlag,
 		token : token 
 	};
 	if(source == 1){  //打印报价单

@@ -25,9 +25,9 @@
                             <a class="nui-button" onclick="Oncancel()" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</a>
                            
                         </td>
-                        <td align="right">
+                       <!--  <td align="right">
                         	 <a class="nui-button" onclick="updatePassWord()" plain="true"  style="width: 100px;align: right;"><span class="fa fa-pencil-square-o fa-lg"></span>&nbsp;修改密码</a>
-                        </td>
+                        </td> -->
                     </tr>
                 </table>
             </div>

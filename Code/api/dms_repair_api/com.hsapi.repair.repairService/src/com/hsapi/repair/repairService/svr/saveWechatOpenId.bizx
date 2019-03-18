@@ -113,10 +113,6 @@
       <process:to type="query">httpStr</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">691c9b16-43be-44e4-ba28-e13781b82a5a</process:from>
-      <process:to type="query">token</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">token</process:from>
       <process:to type="query">params/token</process:to>
     </process:copy>
@@ -135,10 +131,6 @@
     <process:copy>
       <process:from type="literal" pattern="reference">绑定失败</process:from>
       <process:to type="query">errMsg</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">http://qxy60.hszb.harsons.cn/wechatApi/com.hsapi.wechat.autoServiceBackstage.weChatInterface.addBoundUser.biz.ext</process:from>
-      <process:to type="query">httpStr</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">

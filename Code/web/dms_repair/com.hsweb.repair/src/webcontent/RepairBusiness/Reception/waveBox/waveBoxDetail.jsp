@@ -12,7 +12,7 @@
         <head>
             <title>Title</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxDetail.js?v=1.314"></script>
+            <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxDetail.js?v=1.321"></script>
         </head>
         <style type="text/css">
             body {
@@ -349,6 +349,7 @@
                             <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn">
                                 <span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                             <span class="separator"></span>
+                            <a class="nui-button" iconCls="" plain="true" onclick="sureMT()" id="addBtn"><span class="fa fa-car fa-lg"></span>&nbsp;施工</a>
                             <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="js">
                                 <span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
                             <a class="nui-button" iconCls="" plain="true" onclick="warehousing()" id="warehousing" visible="false">&nbsp;成品入库</a>
@@ -384,6 +385,8 @@
                             <ul id="popupMenuMore" class="nui-menu" style="display:none;">
                                 <li iconCls="" onclick="unfinish()" id="addBtn">返单</li>
                                 <li iconCls="" onclick="updateBillExpense()" id="billExpense">费用登记</li>
+                                <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount">新增报销单</li>
+                    			<li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount1">修改报销单</li>
                             </ul>
                         </td>
                     </tr>
@@ -442,11 +445,11 @@
                         </tr>
 
                         <tr>
-                        	<td class="title" style="width:100px">
+                        	<td class="title required" style="width:100px">
                                 <label>车牌号：</label>
                             </td>
                             <td class="" colspan="1">
-                                <input class="nui-textbox" name="carNo" id="carNo" width="100%" enabled="false"/>
+                                <input class="nui-textbox" name="carNo" id="carNo" width="100%" />
                             </td>
                             <td class="title required" style="width:100px">
                                 <label>业务类型：</label>
@@ -493,7 +496,7 @@
                             </td>
                             <td class="title">进厂时间：</td>
                             <td class="">
-                                <input id="enterDate" name="enterDate" allowInput="false" format="yyyy-MM-dd HH:mm" class="nui-datepicker" enabled="false"
+                                <input id="enterDate" name="enterDate" allowInput="false" format="yyyy-MM-dd HH:mm" class="nui-datepicker"
                                     width="100%" />
                             </td>
                             <td class="title" style="width:100px">

@@ -478,8 +478,8 @@ public class HttpUtils {
 			HttpURLConnection connection = (HttpURLConnection) url
 					.openConnection();
 			connection.setRequestMethod(method);
-			connection.setConnectTimeout(8000);
-			connection.setReadTimeout(8000);
+			connection.setConnectTimeout(20000);
+			connection.setReadTimeout(20000);
 
 			if (params != null && params.size() > 0) {
 				for (Entry<String, String> e : params.entrySet()) {

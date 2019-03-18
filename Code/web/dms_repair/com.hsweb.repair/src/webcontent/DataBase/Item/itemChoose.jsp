@@ -231,7 +231,7 @@
 					 id="itemGrid"
 					 dataField="result"
 					 showPager="true"
-					 pageSize="20"
+					 pageSize="500"
 					 totalField="page.count"
 					 allowSortColumn="true">
 					<div property="columns">

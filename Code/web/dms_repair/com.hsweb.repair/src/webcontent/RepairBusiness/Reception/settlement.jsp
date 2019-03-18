@@ -347,7 +347,7 @@
         <div style="height: 12px;" id="space2"></div>
         <table width="100%" border="0"  cellpadding="0" cellspacing="0"  class="ybk1">
             <tr>
-                <td height="36" colspan="1" style="border:0px solid #DDD; " rowspan="1" colspan="1" >
+                <td height="36" colspan="1" style="border:0px solid #DDD;padding: 8px;" rowspan="1" colspan="1" >
                    <!--  <div style="float: right; color: #000; margin-right: 12px; line-height: 36px;">
                                                              
                     </div> -->
@@ -357,14 +357,14 @@
              </tr>
              <tr>    
                 <td height="36" colspan="2" style="border:0px;font-family: Arial; font-size:16px;font-weight: bold;">
-                    <div style="float: left; color: #000; margin-right: 12px; line-height: 36px;">
+                    <div style="float: right; color: #000; margin-right: 12px; line-height: 36px;">
                         <span style="margin-right: 15px;">
                             <font style="font-size: 16px; font-weight: bold;">
                                 结算金额：<span id="cash1"></span>元
                             </font>
                         </span>
                         <font style="font-size: 16px; font-weight: bold;">
-                            大写：<span id="money"></span>
+                            大写：<span id="money" style="margin-right: 0px;"></span>
                         </font>
                     </div>
                 </td>
@@ -391,7 +391,7 @@
                 <tr>
                    <td height="30" style="padding: 8px;" colspan="3">
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style = "margin-left: 0px;" id = "show"></span><br>
-                      <span style = "margin-left: 10px;" id="makeMan">制单：</span><span style = "margin-left: 100px;">服务顾问签名：</span><span style = "margin-left: 110px;">客户签名：</span>
+                      <span style = "margin-left: 0px;" id="makeMan">制单：</span><span style = "margin-left: 100px;">服务顾问签名：</span><span style = "margin-left: 110px;">客户签名：</span>
                   </td>
                  
             </tr>

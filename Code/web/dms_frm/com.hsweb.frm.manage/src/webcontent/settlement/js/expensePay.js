@@ -474,8 +474,20 @@ function onAccountValueChanged(e){
 function doPrint(){//打印费用报销单
     var webBaseUrl = webPath + contextPath + "/";   
     var arr = mainGrid.getSelecteds();
+    var brr = new Array;
     if(arr.length){
         if(arr[0].auditSign){
+        	if(arr.length != 1){
+        		for(var i = 0 , l = arr.length ; i < l ; i ++){
+        			for(var j = 0 ; j < brr.length ; j ++){
+        				if(arr[i].guestName != brr[j]){
+        					showMsg("请选择相同的往来单位名称数据进行打印","W");
+        					return;
+        				}
+        			}
+    				brr[brr.length] = arr[i].guestName;
+        		}
+        	}
             nui.open({
                 url: webBaseUrl + "com.hsweb.frm.manage.expenseAccount.flow",
                 title: "打印",
@@ -488,6 +500,8 @@ function doPrint(){//打印费用报销单
                 ondestroy: function (action){
                 }
             });
+        }else{
+        	showMsg("数据未审核","W");
         }
     }else{
         showMsg("请选中要打印的数据","W");

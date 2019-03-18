@@ -346,7 +346,7 @@
 
 				function searchMsg(data) {
 					nui.ajax({
-						url: Url + "com.hsapi.repair.repairService.svr.getGuestCarContactInfoById.biz.ext",
+						url: baseUrl+ "com.hsapi.repair.repairService.svr.getGuestCarContactInfoById.biz.ext",
 						type: "post",
 						cache: false,
 						async: false,

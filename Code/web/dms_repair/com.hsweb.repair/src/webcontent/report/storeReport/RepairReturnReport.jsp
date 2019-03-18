@@ -137,6 +137,7 @@
                 <div allowSort="false" field="carTypeIdS" width="100" headerAlign="center" header="配件分类二级"></div>
                 <div allowSort="false" field="carTypeIdT" width="100" headerAlign="center" header="配件分类三级"></div>
                 <div allowSort="false" field="spec" width="100" headerAlign="center" header="规格"></div>
+            	<div summaryType="sum" allowSort="true" field="outQty" width="60" headerAlign="center" header="数量" dataType="float" align="left"></div>
             </div>
         </div>
         

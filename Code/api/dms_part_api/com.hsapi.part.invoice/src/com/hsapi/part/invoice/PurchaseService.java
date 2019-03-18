@@ -277,17 +277,17 @@ public class PurchaseService {
 	}
 	
 	@Bizlet("查询SRM品牌")
-	public static String queryPartBrand(String access_token) {
+	public static String queryPartBrand() {
 		String envType = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", "serverType");
 		String apiurl = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", envType);
-		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
+		String urlParam = apiurl+"jpWeb/f/api/LaneElectricity/getLabelList";
 				//apiurl + "srm/router/rest?token="+access_token;
 //		String urlParam = "http://srm.hszb.harsons.cn/srm/router/rest?token="+access_token;
 		Map main = new HashMap();   
-		main.put("method", "base.brand.listAll");
-		main.put("type", 1);  
+		main.put("page", 1);
+		main.put("rows", 1000); 
 		
 		JSONObject jsonObj = JSONObject.fromObject(main);
 		String json = jsonObj.toString();
@@ -318,18 +318,17 @@ public class PurchaseService {
 	}
 	
 	@Bizlet("查询SRM厂牌")
-	public static String queryCarplate(String access_token) {
+	public static String queryCarplate() {
 		String envType = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", "serverType");
 		String apiurl = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", envType);
-		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
+		String urlParam = apiurl+"jpWeb/f/api/LaneElectricity/getVenderList?";
 				//apiurl + "srm/router/rest?token="+access_token;
 //		String urlParam = "http://srm.hszb.harsons.cn/srm/router/rest?token="+access_token;
 		Map main = new HashMap();   
-		main.put("method", "base.lable.listAll");
-		main.put("parent_id", 0);  
-		main.put("type", 1);  
+		main.put("page", 1);
+		main.put("rows", 1000);  
 		
 		JSONObject jsonObj = JSONObject.fromObject(main);
 		String json = jsonObj.toString();
@@ -339,18 +338,15 @@ public class PurchaseService {
 	}
 	
 	@Bizlet("查询SRM车身分类")
-	public static String queryPartType(String access_token, String parentId) {
+	public static String queryPartType() {
 		String envType = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", "serverType");
 		String apiurl = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", envType);
-		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
+		String urlParam = apiurl+"jpWeb/f/api/LaneElectricity/classeList";
 				//apiurl + "srm/router/rest?token="+access_token;
 //		String urlParam = "http://srm.hszb.harsons.cn/srm/router/rest?token="+access_token;
 		Map main = new HashMap();   
-		main.put("method", "base.category.listAll");
-		main.put("parent_id", parentId);  
-		main.put("type", 1);  
 		
 		JSONObject jsonObj = JSONObject.fromObject(main);
 		String json = jsonObj.toString();

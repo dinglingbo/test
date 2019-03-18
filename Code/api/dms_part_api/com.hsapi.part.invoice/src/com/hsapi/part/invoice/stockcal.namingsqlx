@@ -81,7 +81,7 @@
         		B.PART_CODE as partCode, B.PART_NAME as partName, b.outable_qty * b.enter_price as stockAmt,
 				B.FULL_NAME as fullName, B.ENTER_UNIT_ID as enterUnitId, B.SYSTEM_UNIT_ID as systemUnitId,
 				B.ENTER_PRICE as enterPrice, a.bill_type_id as billTypeId, B.ENTER_DATE as enterDate,
-				B.GUEST_ID as guestId,j.full_name as guestName,
+				B.GUEST_ID as guestId,j.full_name as guestName, b.sell_price as suggSellPrice,
 				B.REMARK as remark, F.CODE AS code, F.NAME as name, F.OEM_CODE as oemCode,
 				F.PART_BRAND_ID as partBrandId, F.APPLY_CAR_MODEL as applyCarModel,
 				F.SPEC as spec, F.DIRECTION as direction, a.audit_date as auditDate, 

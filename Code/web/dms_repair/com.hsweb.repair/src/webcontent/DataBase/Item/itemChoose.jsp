@@ -12,7 +12,7 @@
 <head>
 <title>维修项目</title>
 
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/itemChoose.js?v=1.0.47" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/itemChoose.js?v=1.0.48" type="text/javascript"></script>
 <style type="text/css">
     html, body{
         margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
@@ -178,6 +178,8 @@
 										nullItemText="请选择..."/> -->
 								<label style="font-family: Verdana;font-size: 12px;">项目名称：</label>
 								<input class="nui-textbox" width="80px" id="search-name" name="name" onenter="onSearch()" />
+								<label style="font-family: Verdana;font-size: 12px;">项目拼音：</label>
+								<input class="nui-textbox" width="80px" id="search-namePy" name="namePy" onenter="onSearch()" />
 								<label style="font-family: Verdana;font-size: 12px;" id="itemCodeLabel">项目编码：</label>
 								<input class="nui-textbox" width="60px" id="search-code" name="code" onenter="onSearch()"/>
 								<a class="nui-button" plain="true" iconCls="" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>

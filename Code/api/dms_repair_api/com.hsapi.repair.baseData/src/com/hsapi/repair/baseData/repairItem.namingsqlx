@@ -43,6 +43,9 @@
             <isNotEmpty prepend="and" property="name">  
                 (a.name like '%$name$%')
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="namePy">  
+                (a.py_name like '%$namePy$%')
+            </isNotEmpty>
         </dynamic>
 	</select>
 </sqlMap>

@@ -261,7 +261,8 @@ $(document).ready(function()
             return;
         }
         var params = {
-             itemType:node.oldId
+             itemType:node.oldId,
+             id : node.code
         };
         doSearchItem(params);
 
@@ -317,9 +318,11 @@ function doSearchItem(params)
     if(WechatShow!=1){
     	params.carModelId = carModelIdLy;
     }
+	//转码，维保大数据GET请求
+	params.itemName = encodeURI(params.itemName); 
     itemGrid.load({
     	token:token,
-        p:params
+    	params:params
     });
 }
 function onClear(){

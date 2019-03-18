@@ -106,7 +106,7 @@
                 </td>      
             </tr>
             <tr>
-                <td class="tbtext">工单打印是否显示手机号：</td>
+                <td class="tbtext">工单打印是否显示客户手机号：</td>
                 <td class="tbCtrl" >
                     <div id="repairBillMobileFlag" name="repairBillMobileFlag" 
                         class="nui-radiobuttonlist" value="0" repeatItems="2" 

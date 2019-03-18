@@ -38,11 +38,11 @@ $(document).ready(function(v)
     partGrid.on("selectionchanged", function () {
         var row = partGrid.getSelected();
         var code = row.code;
-        rightGrid.load({
+        /*rightGrid.load({
         	code: code,
         	protoken: protoken,
         	token: token
-        });
+        });*/
     });
     partGrid.on("drawcell",function(e)
     {

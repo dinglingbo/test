@@ -166,7 +166,7 @@ public class MenuUtil {
 		try {
 			IMUODataContext muo = DataContextManager.current().getMUODataContext();
 			if(muo == null) {
-				check = true;
+				check = false;
 				return check;
 			} 
 	        String sysDomain = Env.getContributionConfig("system", "url", "webDomain", "SYS");

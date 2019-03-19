@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="tgetMenuDatagetext/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <%@include file="/common/sysCommon.jsp" %>
-    <title>车道商户版</title>
+    <title >车道商户版</title>
       
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/common/nui/boot.js" type="text/javascript"></script>
@@ -142,7 +142,7 @@
 </div>
 <div id="toolData" class="sidebar" >
 	<div id="tu" style="overflow-y:auto;overflow-x:auto; width:800px; height:50px;">
-    	<a><img class="icon" src="<%=webPath + contextPath%>/coframe/auth/images/icon.jpg" /></a>
+    	<a><img class="icon" id="icon" src="<%=webPath + contextPath%>/coframe/auth/images/icon.jpg" /></a>
     </div>
     <div id="mainMenu" style="overflow:auto; width:800px;">
     	
@@ -151,7 +151,7 @@
 
 <div class="container">
     <div class="navbar">
-        <div class="navbar-brand">车道商户版管理系统</div>
+        <div class="navbar-brand" id="systemName">车道商户版管理系统</div>
         <ul class="nav navbar-nav navbar-right">
             <!-- <li><a href="#"><i class="fa fa-paper-plane"></i> 代办事项</a></li>
             <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li> -->
@@ -247,6 +247,13 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
     });
     
 }); */
+
+	if(currSystemImg!=null||currSystemImg!=""){
+		$("#icon").attr("src",currSystemImg||webPath + contextPath + "/common/images/logo.jpg");
+	}
+	if(currSystemName!=null||currSystemName!=""){
+		$('#systemName').html(currSystemName);
+	}
     function OrgShow(){
     	searchOrg();
         advancedOrgWin.show();

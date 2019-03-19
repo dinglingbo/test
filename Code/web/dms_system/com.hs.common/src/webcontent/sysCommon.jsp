@@ -9,7 +9,7 @@
 <%@ taglib uri="http://eos.primeton.com/tags/eos" prefix="e"%>
 
 <%
-	//应用地址
+	//应用地址 
 	String contextPath=request.getContextPath();
 	//api地址
 	String apiPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort(); 

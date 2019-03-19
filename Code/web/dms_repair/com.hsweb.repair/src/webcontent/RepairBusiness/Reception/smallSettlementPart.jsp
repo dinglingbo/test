@@ -83,7 +83,7 @@
         <a  style="background:#999999" iconCls="" onclick="sendInfo()">发送微信</a>
 </div>
 <div style="height:5px"></div>
-<table width="380" border="0" align="center" cellpadding="0" cellspacing="0">
+<table width="430" border="0" align="center" cellpadding="0" cellspacing="0">
         <tr>
             <td align="center">
                 <div style="font-family: '宋体'; font-size: 30px;">结账单</div>
@@ -159,6 +159,7 @@
                     	<tr>
                     		<td>
                     			套餐：<span id="prdt">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;工时：<span id="item">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0.00</span>
+                    		     &nbsp;&nbsp;&nbsp;&nbsp;其他费用：<span id="expense">0.00</span>
                     		</td>
                     	</tr>
                         <tr>
@@ -369,6 +370,34 @@
 	                    showMsg("网络出错", "W");
 	                }
             	});
+            	 $.ajaxSettings.async = false;
+        	 $.post(params.baseUrl+"com.hsapi.repair.repairService.query.querySettleAmt.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){
+				   if(text.errCode=="S"){ 
+ 		    		    var money = text.data.balaAmt;
+					    document.getElementById("money").innerHTML = money;
+	
+    				}else{
+    					nui.alert(text.errMsg,"提示");
+    				}
+	            });
+            	//其他费用com.hsapi.repair.repairService.svr.getRpsExpense.biz.ext
+    		 $.ajaxSettings.async = false;
+    		 var httpstr = params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsExpense.biz.ext?serviceId="+params.serviceId+"&dc=1"+"&token="+params.token;
+    		 $.post(httpstr,{},function(text){
+    			   if(text.errCode=="S"){
+    		            data = text.data;
+    		            if(data.length>0){
+    		             var expAmt = 0;
+    		             for(var i = 0;i<data.length;i++){
+    		                 expAmt = expAmt + data[i].amt;
+    		             }
+    		             if(expAmt>0){
+    		                expAmt = expAmt.toFixed(2);
+    		                document.getElementById("expense").innerHTML = expAmt;
+    		             }
+    		            }
+    		       }
+	         });
             	//document.getElementById("name").innerHTML = "&nbsp;配件";
             	/* nui.ajax({
 	                url: params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext",

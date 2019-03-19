@@ -140,7 +140,6 @@
     </style>
 <body ><!-- oncontextmenu = "return false" -->
 <div class="boxbg" style="display:none"></div>
-<input  class="nui-combobox" name="carBrandId" id="carBrandId"  valueField="id" textField="name"width="100%" visible="false"/>
     <div class="print_btn">
         <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
         <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
@@ -176,14 +175,14 @@
         </div>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
              <tr>
-                <td style="font-size:8px;" >地址：<span id="currCompAddress"></span></td>
-                <td style="font-size:8px;"   style="">开户银行：<span id="currBankName"></span></td>
-                <td style="font-size:8px;">打印时间：<span id="date"></span></td>
+                <td style="font-size:8px;" width="40%">地址：<span id="currCompAddress"></span></td>
+                <td style="font-size:8px;"   width="33%">开户银行：<span id="currBankName"></span></td>
+                <td style="font-size:8px;padding-right:1%" width="33%" align="right">打印时间：<span id="date"></span></td>
             </tr> 
             <tr>
                 <td style="font-size:8px;">电话：<span id="currCompTel"></span></td>
                 <td style="font-size:8px;">银行账号：<span id="currBankAccountNumber"></span></td>
-             	<td style="font-size:8px;" id="" >进厂时间：<span id="enterDate"></span></td>
+             	<td style="font-size:8px;padding-right:1%" align="right" >进厂时间：<span id="enterDate"></span></td>
             </tr>
         </table>
 
@@ -191,25 +190,25 @@
             <table  width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk">
                 <tr>
                     <td width="14%" >&nbsp;客户名称</td>
-                    <td id="guestFullName"></td>
+                    <td id="guestFullName" width="25%"></td>
                     <td width="14%">&nbsp;变速箱型号</td>
                     <td id="boxModel"></td>
-                    <td width="14%">&nbsp;驱动形式</td>
-                    <td id="driveType"></td>
+                    <td width="14%">&nbsp;车型</td>
+                    <td id="carModel"></td>
                 </tr>
                 <tr>
                     <td>&nbsp;联系人</td>
                     <td id="name"></td>
-                    <td id="">&nbsp;变速箱号 </td>
-                    <td id="boxNo"></td>
-                    <td >&nbsp;波箱厂牌</td>
-                    <td id="carBrand"></td>
+                    <td id="">&nbsp;底盘号</td>
+                    <td id="carVin" colspan="3"></td>
                 </tr>
                 <tr>
                     <td id="guestAddr1">&nbsp;客户地址</td>
                     <td id="guestAddr"></td>
                     <td>&nbsp;联系手机</td>
-                    <td id="guestMobile" colspan="3"></td>
+                    <td id="guestMobile" ></td>
+                    <td>&nbsp;车牌号</td>
+                    <td id="carNo" ></td>
                 </tr>
                 <tr>
                     
@@ -271,16 +270,16 @@
             </tr>
         </table> 
 		<div style="display:none" id="hidden1" >
-			<span>出厂报告</span>
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk">
-                <tr>
-                   <td height="30" style="padding: 8px;" colspan="4" id="drawOutReport">
-                   		
-                  </td>
-            </tr>
+				<tr>
+					<td>
+							&nbsp;&nbsp;出厂报告：<div style="width:150px;height:100px; " id="drawOutReport">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+					</td>
+				</tr>
         </table>
 		</div>
-        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk">
+		<div style="padding-top:10px"></div>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk" >
                 <tr>
                    <td height="30" style="padding: 8px;" colspan="4">
                    		<span style="padding: 8px;font-size: 16px;" id="msg">尊敬的客户：以上报价在实际施工过程中可能有小幅变动，最终价格以实际结算单为准！</span>
@@ -344,15 +343,11 @@
     </div>
     <script type="text/javascript">
 			 nui.parse();
-			 var mainUrl = "com.hsapi.repair.repairService.svr.qyeryMaintainListBX.biz.ext?params/rid=";
+			 var mainUrl = "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid=";
 			 var baseUrl = apiPath + repairApi + "/"; 
-			 var QD = [{id:1,text:"FWD"},{id:2,text:"RWD"},{id:3,text:"4WD"}];
 			 $(document).ready(function (){
 			 	var date = new Date();
 			 	document.getElementById("date").innerHTML = format(date, "yyyy-MM-dd HH:mm");
-			 	initCarBrand("carBrandId",function(){
-				 
-	 			});
 	 			$("#print").click(function () {
 		            $(".print_btn").hide();
 		            $(".print_hide").hide();
@@ -398,46 +393,53 @@
 				 						'<div>'+currRepairSettPrintContent+'</div>'
 					}
 				 }
+				 if(!type || type != 5){
+				 	document.getElementById("hidden1").style.display = "";
+				 }
 				 if(type == 5 || type == 6){//报销单   5报价单   6结算单 
-				 	document.getElementById("guestAddr").style.display = "none"
-				 	document.getElementById("guestAddr1").style.display = "none"
-				 	$("#guestMobile").attr("colSpan",16);
 				 	mainUrl = "com.hsapi.repair.repairService.svr.billqyeryMaintainList.biz.ext?rid=";
 				 }
 				 document.getElementById("currCompTel").innerHTML = "&nbsp;&nbsp;&nbsp;"+currCompTel;
 				 document.getElementById("currCompAddress").innerHTML = "&nbsp;&nbsp;&nbsp;"+currCompAddress;
 				 document.getElementById("currBankName").innerHTML = "&nbsp;&nbsp;&nbsp;"+currBankName;
 				 document.getElementById("currBankAccountNumber").innerHTML = "&nbsp;&nbsp;&nbsp;"+currBankAccountNumber;
+				 $.ajaxSettings.async = false;
 			 	 $.post(baseUrl+mainUrl+serviceId+"&token="+token,{},function(text){
 			 	 	   if(text.list.length > 0){
 			 	 	   		 var list = text.list[0];
 			 	 	   		 var guestFullName = list.guestFullName || list.guestName || "" ;
 			 	 	   		 var boxModel = list.boxModel || list.engineModel || "";
-			 	 	   		 var driveType = "";
-			 	 	   		 if(list.driveType){
-			 	 	   		 	driveType = QD[list.driveType-1].text;
-			 	 	   		 }
+			 	 	   		 var carNo = list.carNo || "";
 			 	 	   		 var name = list.name || list.contactorName ||"";
-			 	 	   		 var boxNo = list.boxNo|| list.engineNo || "";
-			 	 	   		 var carBrandId = list.carBrandId || "";
-			 	 	   		 nui.get("carBrandId").setValue(carBrandId);
-			 	 	   		 var  carBrand = nui.get("carBrandId").text || "";
+			 	 	   		 var carVin = list.carVin|| list.carVin || "";
 			 	 	   		 var guestAddr = list.guestAddr || "";
 			 	 	   		 var guestMobile = list.guestMobile || list.guestTel ||"";
 			 	 	   		 var enterDate = list.enterDate || "";
 			 	 	   		 var serviceCode = list.serviceCode || "";
 			 	 	   		 var drawOutReport = list.drawOutReport || "";
+			 	 	   		 var carModel = list.carModel || "";
 			 	 	   		 document.getElementById("guestFullName").innerHTML = "&nbsp;"+guestFullName;
+			 	 	   		 document.getElementById("carNo").innerHTML = "&nbsp;"+carNo;
 			 	 	   		 document.getElementById("boxModel").innerHTML = "&nbsp;"+boxModel;
-			 	 	   		 document.getElementById("driveType").innerHTML = "&nbsp;"+driveType;
+			 	 	   		 document.getElementById("carModel").innerHTML = "&nbsp;"+carModel;
 			 	 	   		 document.getElementById("name").innerHTML = "&nbsp;"+name;
-			 	 	   		 document.getElementById("boxNo").innerHTML = "&nbsp;"+boxNo;
-			 	 	   		 document.getElementById("carBrand").innerHTML = "&nbsp;"+carBrand;
+			 	 	   		 document.getElementById("carVin").innerHTML = "&nbsp;"+carVin;
 			 	 	   		 document.getElementById("guestAddr").innerHTML = "&nbsp;"+guestAddr;
 			 	 	   		 document.getElementById("guestMobile").innerHTML = "&nbsp;"+guestMobile;
 			 	 	   		 document.getElementById("enterDate").innerHTML =document.getElementById("enterDate").innerHTML + format(enterDate, "yyyy-MM-dd HH:mm");
 			 	 	   		 document.getElementById("serviceCode").innerHTML = "&nbsp;"+serviceCode;
-			 	 	   		 document.getElementById("drawOutReport").innerHTML = "&nbsp;"+drawOutReport;
+			 	 	   		 document.getElementById("drawOutReport").innerHTML = document.getElementById("drawOutReport").innerHTML+drawOutReport;
+			 	 	   		 if(type == 5 || type == 6){
+			 	 	   		 		$.post(baseUrl+"com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid="+list.sourceServiceId+"&token="+token,{},function(text){
+			 	 	   		 			if(text.list.length > 0){
+			 	 	   		 				var list = text.list[0];
+			 	 	   		 				var guestAddr = list.guestAddr || "";
+			 	 	   		 				var carModel = list.carModel || "";
+			 	 	   		 				document.getElementById("guestAddr").innerHTML = "&nbsp;"+guestAddr;
+			 	 	   		 				document.getElementById("carModel").innerHTML = "&nbsp;"+carModel;
+			 	 	   		 			}
+			 	 	   		 		});
+			 	 	   		 }
 			 	 	   }
 			 	 });
 			 	 var url_one = "com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext?serviceId=";
@@ -473,24 +475,24 @@
 	    						var tr = $("<tr ></tr>");
 					    			tr.append(
 					    				tds.replace("[orderIndex]",num1)
-					    				.replace("[prdtName]","&nbsp;"+prdtName)
-					    				.replace("[qty]",data[i].qty || 1)
-					    				.replace("[uintPrice]",data[i].amt)
-					    				.replace("[amt]",data[i].amt)
-					    				.replace("[rate]",rate)
-					    				.replace("[subtotal]",data[i].subtotal));
+					    				.replace("[prdtName]","&nbsp;"+prdtName || "")
+					    				.replace("[qty]",data[i].qty|| data[i].itemTime || 1)
+					    				.replace("[uintPrice]",data[i].unitPrice || "")
+					    				.replace("[amt]",data[i].amt || "")
+					    				.replace("[rate]",rate || "")
+					    				.replace("[subtotal]",data[i].subtotal || ""));
 					    			tBody.append(tr); 
 	    					}else{
 	    						num2 ++;
 	    						var tr = $("<tr></tr>");
 					    			tr.append(
 					    				tds.replace("[orderIndex]",num2)
-					    				.replace("[prdtName]","&nbsp;"+prdtName)
+					    				.replace("[prdtName]","&nbsp;"+prdtName || "")
 					    				.replace("[qty]",data[i].qty || 1)
-					    				.replace("[uintPrice]",data[i].amt)
-					    				.replace("[amt]",data[i].amt)
-					    				.replace("[rate]",rate)
-					    				.replace("[subtotal]",data[i].subtotal));
+					    				.replace("[uintPrice]",data[i].amt || "")
+					    				.replace("[amt]",data[i].amt || "")
+					    				.replace("[rate]",rate || "")
+					    				.replace("[subtotal]",data[i].subtotal || ""));
 					    			tBody2.append(tr); 
 	    					}
 	    					if(data[i].pid != 0 ){
@@ -504,19 +506,19 @@
 	    				 if(type == 5 || type == 6){
 	    				 	document.getElementById("yh").innerHTML = 0;
 			        		var money = parseFloat(document.getElementById("part").innerHTML) + parseFloat(document.getElementById("item").innerHTML);
-			        		document.getElementById("cash1").innerHTML = money;	  
+			        		document.getElementById("cash1").innerHTML = money || "";	  
 			        		money = transform(money+"");
 							document.getElementById("money").innerHTML = money;
 	    				 }
 		        	}
 	          }
         	});
+        	$.ajaxSettings.async = false;
 	        	if(type != 5 && type != 6){
-	        	 	$.ajaxSettings.async = false;
 		        	$.post(baseUrl+"com.hsapi.repair.repairService.query.querySettleAmt.biz.ext?serviceId="+serviceId+"&token="+token,{},function(text){
 			    				if(text.errCode=="S"){ 
-			    				 		document.getElementById("yh").innerHTML = text.data.totalPrefAmt;
-			    				 		document.getElementById("cash1").innerHTML = text.data.balaAmt;	    		    				 			
+			    				 		document.getElementById("yh").innerHTML = text.data.totalPrefAmt || 0;;
+			    				 		document.getElementById("cash1").innerHTML = text.data.balaAmt || 0;	    		    				 			
 			    						    		var money = transform(text.data.balaAmt+"");
 													document.getElementById("money").innerHTML = money;
 			    					

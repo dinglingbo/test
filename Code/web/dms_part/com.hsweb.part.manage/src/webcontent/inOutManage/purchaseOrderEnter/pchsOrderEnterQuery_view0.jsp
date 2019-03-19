@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购入库查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderEnter/pchsOrderEnterQuery.js?v=1.0.9"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderEnter/pchsOrderEnterQuery.js?v=1.0.10"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -76,6 +76,18 @@
                 <span class="separator"></span>
 
                 <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->
+                <input id="storeId"
+                           name="storeId"
+                           width="60px"
+                           class="nui-combobox"
+                           textField="name"
+                           valueField="id"
+                           emptyText="仓库"
+                           url=""
+                           valueFromSelect="true"
+                           allowInput="true"
+                           showNullItem="false"
+                           nullItemText="请选择..."/>
                 <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                 
@@ -105,7 +117,7 @@
             <div header="入库信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="serviceId" width="180" summaryType="count" headerAlign="center" header="入库单号"></div>
-                    <div field="guestFullName" name="guestFullName" width="250" headerAlign="center" header="供应商"></div>
+                    <div field="guestFullName" name="guestFullName" width="180" headerAlign="center" header="供应商"></div>
                     <div field="orderMan" name="orderMan" width="60" headerAlign="center" header="采购员"></div>
                     <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
                     <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
@@ -133,6 +145,7 @@
             </div>
             <div header="其他" headerAlign="center">
                 <div property="columns">
+                	<div allowSort="true" datatype="float" field="suggSellPrice" width="60" headerAlign="center" header="建议售价"></div>
                 	<div field="auditor" width="60" headerAlign="center" header="审核人"></div>
                     <div allowSort="true" width="140"field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>

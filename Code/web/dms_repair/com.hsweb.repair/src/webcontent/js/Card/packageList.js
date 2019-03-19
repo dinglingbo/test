@@ -56,12 +56,15 @@ $(document).ready(function(v) {
         }
         packageDetail.setData(row.items);
         //转化字符串和json,替换名称
-        var partsStr = JSON.stringify(row.parts);
-        var data =JSON.parse(partsStr.replace(/partName/g,"itemName"));
-        for(var i =0;i<data.length;i++){
-        	data[i].type="配件";
-        	packageDetail.addRow(data[i]);
+        if(row.parts!=null){
+            var partsStr = JSON.stringify(row.parts);
+            var data =JSON.parse(partsStr.replace(/partName/g,"itemName"));
+            for(var i =0;i<data.length;i++){
+            	data[i].type="配件";
+            	packageDetail.addRow(data[i]);
+            }
         }
+
         //loadPackageDetailByPkgId(row.id,function(){});
     });
 	grid.on("beforeload",function(e){

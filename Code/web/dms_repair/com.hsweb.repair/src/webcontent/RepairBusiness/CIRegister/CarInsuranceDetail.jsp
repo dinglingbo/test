@@ -320,7 +320,9 @@ pageEncoding="UTF-8" session="false"%>
         <div field="rtnGuestRate" name="rtnGuestRate" headeralign="center" align="center" visible="true" width="100" header="客户返点(%)" summaryType="sum">
             <input property="editor" class="nui-textbox" vtype="float" >
         </div>
-
+       <div field="rtnGuestRate" name="rtnGuestRate" headeralign="center" align="center" visible="true" width="100" header="备注">
+            <input property="editor" class="nui-textbox" vtype="float" >
+        </div>
     </div>
 </div>
 </div>

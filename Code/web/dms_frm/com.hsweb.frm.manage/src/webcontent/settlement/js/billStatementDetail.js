@@ -778,9 +778,9 @@ function setGuestInfo(params)
                     el.setValue(value);
                     el.setText(text);
 
-                    var row = leftGrid.getSelected();
+                    /*var row = leftGrid.getSelected();
                     var newRow = {guestName: text};
-                    leftGrid.updateRow(row,newRow);
+                    leftGrid.updateRow(row,newRow);*/
 
                 }
                 else
@@ -789,9 +789,9 @@ function setGuestInfo(params)
                     el.setValue(null);
                     el.setText(null);
 
-                    var row = leftGrid.getSelected();
+                   /* var row = leftGrid.getSelected();
                     var newRow = {guestName: null};
-                    leftGrid.updateRow(row,newRow);
+                    leftGrid.updateRow(row,newRow);*/
                 }
             }
             else
@@ -800,9 +800,9 @@ function setGuestInfo(params)
                 el.setValue(null);
                 el.setText(null);
 
-                var row = leftGrid.getSelected();
+                /*var row = leftGrid.getSelected();
                 var newRow = {guestName: null};
-                leftGrid.updateRow(row,newRow);
+                leftGrid.updateRow(row,newRow);*/
             }
 
 

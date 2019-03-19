@@ -12,6 +12,7 @@ var amountEl = null;
 var onetInAmt = 0;
 var netInAmt = 0;
 var webBaseUrl = webPath + contextPath + "/";
+var partBaseUrl = apiPath + partApi + "/";
 var baseUrl = apiPath + repairApi + "/";
 var expenseUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.svr.getRpsExpense.biz.ext';
 $(document).ready(function(v) {
@@ -317,4 +318,94 @@ function checkGrid(){
 	}
 
 	return rs;
+}
+
+var getGuestInfo = partBaseUrl+"com.hsapi.part.baseDataCrud.crud.querySupplierList.biz.ext";
+function setGuestInfo(params)
+{
+    nui.ajax({
+        url:getGuestInfo,
+        data: {params: params, token: token},
+        type:"post",
+        success:function(text)
+        {
+            if(text)
+            {
+                var supplier = text.suppliers;
+                if(supplier && supplier.length>0) {
+                    var data = supplier[0];
+                    var value = data.id;
+                    var text = data.fullName;
+                    var el = nui.get('guestId');
+                    el.setValue(value);
+                    el.setText(text);
+                }
+                else
+                {
+                    var el = nui.get('guestId');
+                    el.setValue(null);
+                    el.setText(null);
+                }
+            }
+            else
+            {
+                var el = nui.get('guestId');
+                el.setValue(null);
+                el.setText(null);
+            }
+
+
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+
+
+function onGuestValueChanged(e)
+{
+    //供应商中直接输入名称加载供应商信息
+    var params = {};
+    params.pny = e.value;
+    setGuestInfo(params);
+}
+var supplier = null;    
+function selectSupplier(elId)
+{
+	 /*nui.get("serviceId").setValue("新对账单");
+     nui.get("createDate").setValue(new Date());
+     nui.get("stateMan").setValue(currUserName);*/
+    supplier = null;
+    nui.open({
+        // targetWindow: window,
+        url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        title: "往来单位", width: 980, height: 560,
+        allowDrag:true,
+        allowResize:true,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            var params = {
+            };
+            iframe.contentWindow.setGuestData(params);
+        },
+        ondestroy: function (action)
+        {
+            if(action == 'ok')
+            {
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+               
+                supplier = data.supplier;
+                var value = supplier.id;
+                var text = supplier.fullName;
+                var billTypeIdV = supplier.billTypeId;
+                var settTypeIdV = supplier.settTypeId;
+                var el = nui.get(elId);
+                el.setValue(value);
+                el.setText(text);
+            }
+        }
+    });
 }

@@ -79,8 +79,6 @@ a.optbtn {
                                  placeholder="请选择往来单位"
                                  selectOnFocus="true" />
 							</div>
-							
-                                 
 							<div field="amt" width="60" headerAlign="center" header="收入金额">
 								<input property="editor" vtype="float" class="nui-textbox"  />
 							</div>
@@ -111,6 +109,17 @@ a.optbtn {
 							</div>
 							<div field="amt" width="60" summaryType="sum" headerAlign="center" header="支出金额">
 								<input property="editor" vtype="float" class="nui-textbox"/>
+							</div>
+							<div field="guestId" type="comboboxcolumn" width="100" headerAlign="center" header="往来单位">
+					              <input id="guestId"
+                                 name="guestId"
+                                 class="nui-buttonedit"
+                                 emptyText="请选择往来单位..."
+                                 onvaluechanged="onGuestValueChanged"
+                                 onbuttonclick="selectSupplier('guestId')"
+                                 width="100%"
+                                 placeholder="请选择往来单位"
+                                 selectOnFocus="true" />
 							</div>
 							<div field="remark" width="80" headerAlign="center" header="备注">
 								<input property="editor" class="nui-textbox"/>

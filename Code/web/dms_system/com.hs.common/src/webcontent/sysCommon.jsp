@@ -85,6 +85,7 @@
 	HttpSession session = request.getSession(false);
     String orgId="";
     String orgName="";
+    String loginName = "";
     String userId="";
 	String userName="";
     String userRealName="";
@@ -136,6 +137,9 @@
 				         
                 if(attr.get("token") != null){
                 	token = attr.get("token").toString();
+                }
+                if(attr.get("loginName") != null){
+                	loginName = attr.get("loginName").toString();
                 }
                 if(attr.get("noOrgId") != null){
                 	noOrgId = attr.get("noOrgId").toString();
@@ -255,6 +259,7 @@
 	var currOrgId = "<%=orgId %>";
 	var currOrgid = "<%=orgId %>";
     var currOrgName = "<%=orgName %>";
+    var currLoginName = "<%=loginName %>";
     var currUserId = "<%=userId %>";
 	var currUserName = "<%=userName %>";
     var currUserRealName = "<%=userRealName %>";

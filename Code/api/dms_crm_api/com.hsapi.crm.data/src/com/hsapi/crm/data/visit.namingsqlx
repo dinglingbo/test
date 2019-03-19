@@ -50,8 +50,10 @@
 			e.visit_times visitTimes,
 			TIMESTAMPDIFF(DAY ,a.out_date  ,NOW())  as leaveDays,
 			e.status visitStatus,
+			e.contactor_id contactorId,
 			e.id,
 			e.data_type dataType,
+			d.tgrade,
 			z.last_leave_date lastLeaveDate,
 			z.last_care_due_date lastCareDueDate,
 			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
@@ -63,6 +65,7 @@
 			inner JOIN wb_repair.rpb_car b ON ( a.car_id = b.id )
 			inner join wb_repair.rpb_car_extend z on b.id = z.car_id
 		  	INNER JOIN wb_repair.rpb_contactor c on e.contactor_id = c.id
+		  	INNER JOIN wb_common.com_guest d on d.id = e.guest_id
 		WHERE 1 = 1
 			 and e.orgid = #orgid#
 			 and type = #type#
@@ -91,7 +94,9 @@
             <isNotEmpty prepend="and" property="eLeaveDays">  
                	e.leave_days  &lt;=  #eLeaveDays# 
             </isNotEmpty>
-        
+        	<isNotEmpty prepend="and" property="level">  
+    			(d.tgrade in ($level$))
+			</isNotEmpty>
         </select>
         
         <update id="updateCareCueDate" parameterClass="java.util.HashMap" >

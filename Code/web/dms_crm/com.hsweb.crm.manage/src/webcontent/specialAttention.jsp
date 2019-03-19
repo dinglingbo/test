@@ -23,6 +23,28 @@
                 <table style="width:100%;">
                     <tr>
                         <td style="width:100%;">
+                            <label style="font-family:Verdana;">快速查询：</label>
+                            <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+                            <ul id="popupMenuDate" class="nui-menu" style="display:none;">
+                                <li iconCls="" onclick="quickSearch(0,'syx')" id="type0">本日</li>
+                                <li iconCls="" onclick="quickSearch(1,'syx')" id="type1">昨日</li>
+                                <li class="separator"></li>
+                                <li iconCls="" onclick="quickSearch(2,'syx')" id="type2">本周</li>
+                                <li iconCls="" onclick="quickSearch(3,'syx')" id="type3">上周</li>
+                                <li class="separator"></li>
+                                <li iconCls="" onclick="quickSearch(4,'syx')" id="type4">本月</li>
+                                <li iconCls="" onclick="quickSearch(5,'syx')" id="type5">上月</li>
+                                <li class="separator"></li>
+                                <li iconCls="" onclick="quickSearch(10,'syx')" id="type10">本年</li>
+                                <li iconCls="" onclick="quickSearch(11,'syx')" id="type11">上年</li>
+                            </ul>
+                            到期日期:
+                            <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd" style="width:100px" />
+                            至
+                            <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" />
+                            <a class="nui-button" iconcls="" name="" plain="true" onclick="change(1)"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                            <li class="separator"></li>
+
                             <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
                             <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
                                     class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
@@ -58,6 +80,27 @@
                 <table style="width:100%;">
                     <tr>
                         <td style="width:100%;">
+                            <label style="font-family:Verdana;">快速查询：</label>
+                            <a class="nui-menubutton " menu="#popupMenuDate2" id="menunamedate2">本日</a>
+                            <ul id="popupMenuDate2" class="nui-menu" style="display:none;">
+                                <li iconCls="" onclick="quickSearch(0,'jqx')" id="type0">本日</li>
+                                <li iconCls="" onclick="quickSearch(1,'jqx')" id="type1">昨日</li>
+                                <li class="separator"></li>
+                                <li iconCls="" onclick="quickSearch(2,'jqx')" id="type2">本周</li>
+                                <li iconCls="" onclick="quickSearch(3,'jqx')" id="type3">上周</li>
+                                <li class="separator"></li>
+                                <li iconCls="" onclick="quickSearch(4,'jqx')" id="type4">本月</li>
+                                <li iconCls="" onclick="quickSearch(5,'jqx')" id="type5">上月</li>
+                                <li class="separator"></li>
+                                <li iconCls="" onclick="quickSearch(10,'jqx')" id="type10">本年</li>
+                                <li iconCls="" onclick="quickSearch(11,'jqx')" id="type11">上年</li>
+                            </ul>
+                            到期日期:
+                            <input class="nui-datepicker" id="startDate2" name="startDate2" dateFormat="yyyy-MM-dd" style="width:100px" />
+                            至
+                            <input class="nui-datepicker" id="endDate2" name="endDate2" dateFormat="yyyy-MM-dd" style="width:100px" />
+                            <a class="nui-button" iconcls="" name="" plain="true" onclick="change(1)"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                            <li class="separator"></li>
                             <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
                             <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
                                     class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
@@ -94,6 +137,28 @@
                 <table style="width:100%;">
                     <tr>
                         <td style="width:100%;">
+                            <label style="font-family:Verdana;">快速查询：</label>
+                            <a class="nui-menubutton " menu="#popupMenuDate3" id="menunamedate3">本日</a>
+                            <ul id="popupMenuDate3" class="nui-menu" style="display:none;">
+                                <li iconCls="" onclick="quickSearch(0,'jzns')" id="type0">本日</li>
+                                <li iconCls="" onclick="quickSearch(1,'jzns')" id="type1">昨日</li>
+                                <li class="separator"></li>
+                                <li iconCls="" onclick="quickSearch(2,'jzns')" id="type2">本周</li>
+                                <li iconCls="" onclick="quickSearch(3,'jzns')" id="type3">上周</li>
+                                <li class="separator"></li>
+                                <li iconCls="" onclick="quickSearch(4,'jzns')" id="type4">本月</li>
+                                <li iconCls="" onclick="quickSearch(5,'jzns')" id="type5">上月</li>
+                                <li class="separator"></li>
+                                <li iconCls="" onclick="quickSearch(10,'jzns')" id="type10">本年</li>
+                                <li iconCls="" onclick="quickSearch(11,'jzns')" id="type11">上年</li>
+                            </ul>
+                            到期日期:
+                            <input class="nui-datepicker" id="startDate3" name="startDate3" dateFormat="yyyy-MM-dd" style="width:100px" />
+                            至
+                            <input class="nui-datepicker" id="endDate3" name="endDate3" dateFormat="yyyy-MM-dd" style="width:100px" />
+                            <a class="nui-button" iconcls="" name="" plain="true" onclick="change(1)"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                            <li class="separator"></li>
+
                             <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
                             <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
                                     class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
@@ -130,6 +195,27 @@
                 <table style="width:100%;">
                     <tr>
                         <td style="width:100%;">
+                            <label style="font-family:Verdana;">快速查询：</label>
+                            <a class="nui-menubutton " menu="#popupMenuDate4" id="menunamedate4">本日</a>
+                            <ul id="popupMenuDate4" class="nui-menu" style="display:none;">
+                                <li iconCls="" onclick="quickSearch(0,'clnj')" id="type0">本日</li>
+                                <li iconCls="" onclick="quickSearch(1,'clnj')" id="type1">昨日</li>
+                                <li class="separator"></li>
+                                <li iconCls="" onclick="quickSearch(2,'clnj')" id="type2">本周</li>
+                                <li iconCls="" onclick="quickSearch(3,'clnj')" id="type3">上周</li>
+                                <li class="separator"></li>
+                                <li iconCls="" onclick="quickSearch(4,'clnj')" id="type4">本月</li>
+                                <li iconCls="" onclick="quickSearch(5,'clnj')" id="type5">上月</li>
+                                <li class="separator"></li>
+                                <li iconCls="" onclick="quickSearch(10,'clnj')" id="type10">本年</li>
+                                <li iconCls="" onclick="quickSearch(11,'clnj')" id="type11">上年</li>
+                            </ul>
+                            到期日期:
+                            <input class="nui-datepicker" id="startDate4" name="startDate2" dateFormat="yyyy-MM-dd" style="width:100px" />
+                            至
+                            <input class="nui-datepicker" id="endDate4" name="endDate2" dateFormat="yyyy-MM-dd" style="width:100px" />
+                            <a class="nui-button" iconcls="" name="" plain="true" onclick="change(1)"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                            <li class="separator"></li>
                             <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
                             <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
                                     class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
@@ -166,6 +252,27 @@
                 <table style="width:100%;">
                     <tr>
                         <td style="width:100%;">
+                            <label style="font-family:Verdana;">快速查询：</label>
+                            <a class="nui-menubutton " menu="#popupMenuDate5" id="menunamedate5">本日</a>
+                            <ul id="popupMenuDate5" class="nui-menu" style="display:none;">
+                                <li iconCls="" onclick="quickSearch(0,'khsr')" id="type0">本日</li>
+                                <li iconCls="" onclick="quickSearch(1,'khsr')" id="type1">昨日</li>
+                                <li class="separator"></li>
+                                <li iconCls="" onclick="quickSearch(2,'khsr')" id="type2">本周</li>
+                                <li iconCls="" onclick="quickSearch(3,'khsr')" id="type3">上周</li>
+                                <li class="separator"></li>
+                                <li iconCls="" onclick="quickSearch(4,'khsr')" id="type4">本月</li>
+                                <li iconCls="" onclick="quickSearch(5,'khsr')" id="type5">上月</li>
+                                <li class="separator"></li>
+                                <li iconCls="" onclick="quickSearch(10,'khsr')" id="type10">本年</li>
+                                <li iconCls="" onclick="quickSearch(11,'khsr')" id="type11">上年</li>
+                            </ul>
+                            到期日期:
+                            <input class="nui-datepicker" id="startDate5" name="startDate5" dateFormat="yyyy-MM-dd" style="width:100px" />
+                            至
+                            <input class="nui-datepicker" id="endDate5" name="endDate5" dateFormat="yyyy-MM-dd" style="width:100px" />
+                            <a class="nui-button" iconcls="" name="" plain="true" onclick="change(1)"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                            <li class="separator"></li>
                             <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
                             <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
                                     class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>

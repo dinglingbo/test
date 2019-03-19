@@ -61,6 +61,8 @@ $(document).ready(function(v) {
         queryGuestCarData(p,function(data){
             setGridGuestCarData(data);
         });
+        
+        setInitShareUrl();
     },1000);
 
    //grid2 = nui.get("grid2");
@@ -455,3 +457,37 @@ function bookingMgr(){
 
 }
 
+var shareUrlGridUrl = apiPath + sysApi + "/com.hsapi.system.config.paramSet.queryTenantShareUrl.biz.ext";
+function setInitShareUrl(){
+	var param = {tenantId:currTenantId};
+	nui.ajax({
+		url : shareUrlGridUrl,
+		type : "post",
+		data : JSON.stringify({
+			param : param,
+			token: token
+		}),
+		success : function(data) {
+			nui.unmask(document.body);
+			data = data || {};
+			var list = data.list;
+			if (list && list.length>0) {
+				$(".newul").empty();
+				for(var i=0; i<list.length; i++){
+					var r = list[i];
+					var name = r.name;
+					var url = r.shareUrl;//<li><a href="http://www.baidu.com">华胜企业体系</a></li>
+					$(".newul").append('<li ><a href='+url+' target="_Blank">'+name+'</a></li>');
+				}
+
+
+			} else {
+				
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+}

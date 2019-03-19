@@ -810,7 +810,7 @@ function doPrint(params){
 function doBillExpenseDetail(params,callback){
 	nui.open({
         url: webPath + contextPath +"/com.hsweb.RepairBusiness.billExpenseDetail.flow?token="+token,
-        title: "费用登记", width: "50%", height: "60%", 
+        title: "费用登记", width: "60%", height: "60%", 
         onload: function () {
             var iframe = this.getIFrameEl();
             iframe.contentWindow.setData(params);

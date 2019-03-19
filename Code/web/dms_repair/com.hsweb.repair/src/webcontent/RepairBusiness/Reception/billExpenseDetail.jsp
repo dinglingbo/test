@@ -58,6 +58,10 @@ a.optbtn {
 				dataField="" style="width: 100%; height:100%;"
 				allowCellSelect="true" allowCellEdit="true"
 				showPager="false"showModified="false" allowSortColumn="true"
+				oncelleditenter="onGuestValueChanged"
+				selectOnLoad="true"
+                onselectionchanged=""
+                editNextOnEnterKey="true"
 				>
 				<div property="columns">
 					<div type="indexcolumn" headerAlign="center" name="index" visible="true" width="15">序号</div>
@@ -70,6 +74,11 @@ a.optbtn {
 							</div>
 							<div field="amt" width="60" headerAlign="center" header="收入金额">
 								<input property="editor" vtype="float" class="nui-textbox"  />
+							</div>
+							<div field="guestName"  width="120" headerAlign="center" header="往来单位">
+					              <input property="editor" class="nui-textbox" id="guestId"/>
+							</div>
+							<div field="guestId"  width="120" headerAlign="center" header="往来单位id" visible="false">
 							</div>
 							<div field="remark" width="80" headerAlign="center" header="备注">
 								<input property="editor" class="nui-textbox"/>
@@ -86,6 +95,10 @@ a.optbtn {
 				dataField="" style="width: 100%; height:100%;"
 				allowCellSelect="true" allowCellEdit="true"
 				showPager="false"showModified="false" allowSortColumn="true"
+				oncelleditenter="onGuestValueChanged1"
+				selectOnLoad="true"
+                onselectionchanged=""
+                editNextOnEnterKey="true"
 				>
 				<div property="columns">
 					<div type="indexcolumn" headerAlign="center" name="index" visible="true" width="15">序号</div>
@@ -99,6 +112,11 @@ a.optbtn {
 							<div field="amt" width="60" summaryType="sum" headerAlign="center" header="支出金额">
 								<input property="editor" vtype="float" class="nui-textbox"/>
 							</div>
+							<div field="guestName"  width="120" headerAlign="center" header="往来单位">
+					             <input property="editor" class="nui-textbox" id="guestId1" />
+							</div>
+							<div field="guestId"  width="120" headerAlign="center" header="往来单位id" visible="false">
+							</div> 
 							<div field="remark" width="80" headerAlign="center" header="备注">
 								<input property="editor" class="nui-textbox"/>
 							</div>

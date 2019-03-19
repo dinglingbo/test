@@ -26,7 +26,7 @@
    			url = "org.gocom.components.coframe.rights.user.cipher.update_password.flow"; 
    		}
    }else{
-   		url = "org.gocom.components.coframe.rights.user.cipher.update_password.flow";
+   		url =  "org.gocom.components.coframe.rights.user.cipher.update_password.flow";
    }
  %>
 </head>
@@ -92,18 +92,22 @@
      	if(result != null){
      		retValue = (String)result;
      		if(retValue.equals("true")){
+     		       //setSuccess();
      			out.println("setSuccess()");
      		}else if(retValue.equals("false")){
+     		      //setError();
 				out.println("setError()");  
      		}
      	}
      %>
 	function setError(){
-    	window.alert("原密码填写错误！");
+    	//window.alert("原密码填写错误！");
+    	showMsg("原密码填写错误!","W");
     }    
     function setSuccess(){
-    	window.alert("密码修改成功！");
+    //	window.alert("密码修改成功！");
     	//CloseWindow("SaveSuccess");
+    	showMsg("密码修改成功!","S");
     }
     function cancel(){
       CloseWindow("cancel");

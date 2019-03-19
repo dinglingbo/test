@@ -477,10 +477,10 @@
 					    				tds.replace("[orderIndex]",num1)
 					    				.replace("[prdtName]","&nbsp;"+prdtName || "")
 					    				.replace("[qty]",data[i].qty|| data[i].itemTime || 1)
-					    				.replace("[uintPrice]",data[i].unitPrice || "")
-					    				.replace("[amt]",data[i].amt || "")
-					    				.replace("[rate]",rate || "")
-					    				.replace("[subtotal]",data[i].subtotal || ""));
+					    				.replace("[uintPrice]",data[i].unitPrice || 0)
+					    				.replace("[amt]",data[i].amt || 0)
+					    				.replace("[rate]",rate || 0)
+					    				.replace("[subtotal]",data[i].subtotal || 0));
 					    			tBody.append(tr); 
 	    					}else{
 	    						num2 ++;
@@ -489,10 +489,10 @@
 					    				tds.replace("[orderIndex]",num2)
 					    				.replace("[prdtName]","&nbsp;"+prdtName || "")
 					    				.replace("[qty]",data[i].qty || 1)
-					    				.replace("[uintPrice]",data[i].amt || "")
-					    				.replace("[amt]",data[i].amt || "")
-					    				.replace("[rate]",rate || "")
-					    				.replace("[subtotal]",data[i].subtotal || ""));
+					    				.replace("[uintPrice]", data[i].unitPrice || 0)
+					    				.replace("[amt]",data[i].amt  || 0)
+					    				.replace("[rate]",rate || 0)
+					    				.replace("[subtotal]",data[i].subtotal || 0));
 					    			tBody2.append(tr); 
 	    					}
 	    					if(data[i].pid != 0 ){

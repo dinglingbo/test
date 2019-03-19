@@ -365,13 +365,26 @@ function setGuestInfo(params)
 
 function onGuestValueChanged(e)
 {
+	var record = e.record;
     //供应商中直接输入名称加载供应商信息
     var params = {};
-    params.pny = e.value;
-    setGuestInfo(params);
+    params.guestName = record.guestName;
+    params.expense = 1;
+    record.type = 1;
+    selectSupplier(params,record);
+}
+function onGuestValueChanged1(e)
+{
+	var record = e.record;
+    //供应商中直接输入名称加载供应商信息
+    var params = {};
+    params.guestName = record.guestName;
+    params.expense = 1;
+    record.type = 2;
+    selectSupplier(params,record);
 }
 var supplier = null;    
-function selectSupplier(elId)
+function selectSupplier(params,row)
 {
 	 /*nui.get("serviceId").setValue("新对账单");
      nui.get("createDate").setValue(new Date());
@@ -386,8 +399,6 @@ function selectSupplier(elId)
         onload: function ()
         {
             var iframe = this.getIFrameEl();
-            var params = {
-            };
             iframe.contentWindow.setGuestData(params);
         },
         ondestroy: function (action)
@@ -400,11 +411,14 @@ function selectSupplier(elId)
                 supplier = data.supplier;
                 var value = supplier.id;
                 var text = supplier.fullName;
-                var billTypeIdV = supplier.billTypeId;
-                var settTypeIdV = supplier.settTypeId;
-                var el = nui.get(elId);
-                el.setValue(value);
-                el.setText(text);
+                row.guestName = text;
+                row.guestId = value;
+                if(row.type == 1){
+                	receiveGrid.updateRow(row);
+                }
+                if(row.type == 2){
+                	payGrid.updateRow(row);
+                }
             }
         }
     });

@@ -218,6 +218,14 @@
       <process:to type="query">m:userObject/attributes/orgJsonStr</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">billParams/systemImg</process:from>
+      <process:to type="query">m:userObject/attributes/systemImg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billParams/systemName</process:from>
+      <process:to type="query">m:userObject/attributes/systemName</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject</process:from>
       <process:to type="query">userObject</process:to>
     </process:copy>

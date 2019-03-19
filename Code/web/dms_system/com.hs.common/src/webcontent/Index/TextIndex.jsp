@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
   <title>首页</title> 
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.6.00"></script>
+    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.6.01"></script>
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
   <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css" rel="stylesheet" type="text/css" />
@@ -295,8 +295,8 @@ pageEncoding="UTF-8" session="false" %>
             <div class="nui-fit">
                 <div class="nui-fit">
                     <div  style="padding:10px 10px 10px 10px;">
-                     <ul id="newul" > 
-                        <li><a target="_blank" href="https://baike.baidu.com/item/%E4%B8%8A%E6%B5%B7%E4%BD%B3%E9%85%8D%E7%94%B5%E5%AD%90%E5%95%86%E5%8A%A1%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/18239743">
+                     <ul id="newul" class="newul"> 
+                        <!-- <li><a target="_blank" href="https://baike.baidu.com/item/%E4%B8%8A%E6%B5%B7%E4%BD%B3%E9%85%8D%E7%94%B5%E5%AD%90%E5%95%86%E5%8A%A1%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/18239743">
                             <i class="fa fa-hand-o-right fa-fw"></i>
                             	 马牌CT1167促销，300送30
                         	</a>
@@ -312,7 +312,7 @@ pageEncoding="UTF-8" session="false" %>
                        </li>
                        <li >
                        		<a target="_blank" href="https://baike.baidu.com/item/%E4%B8%8A%E6%B5%B7%E4%BD%B3%E9%85%8D%E7%94%B5%E5%AD%90%E5%95%86%E5%8A%A1%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/18239743"><i class="fa fa-hand-o-right fa-fw"></i>隆丰滞销处理（不享受客户年度合同返利）</a>
-                       </li>
+                       </li> -->
 
                     </ul>
 

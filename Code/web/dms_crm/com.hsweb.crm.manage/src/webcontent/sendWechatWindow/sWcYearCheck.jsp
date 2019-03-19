@@ -105,7 +105,7 @@
         var form = new nui.Form("#form1");
         var mainData = {};
 
-        nui.get("carVin").focus();
+        nui.get("keyword1").focus();
         document.onkeyup=function(event){
         var e=event||window.event;
         var keyCode=e.keyCode||e.which;//38向上 40向下
@@ -214,10 +214,11 @@ function saveRecord(data) {
         },
         success:function(res){
             if(res.errCode == 'S'){
-                // showMsg("保存成功！","S");
+                showMsg("发送成功！","S");
             }else{
-                // showMsg("保存失败！","E");
+                showMsg("发送失败！","E");
             }
+            onClose();
         },
         error: function (jqXHR) {
             showMsg(jqXHR.responseText);

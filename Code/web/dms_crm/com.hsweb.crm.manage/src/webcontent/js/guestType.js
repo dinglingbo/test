@@ -307,6 +307,7 @@ function sendInfo(e) {
             break;
         case "due":
             gridList = gridclnj.getData();
+            sendWcUrl = 'manage/sendWechatWindow/sWcInfoMoreYearCheck.jsp';
             break;
         case "care":
             gridList = gridbydq.getData();
@@ -333,8 +334,8 @@ function sendInfo(e) {
                 dataArr.push(gridList[i]);
             }
         }
-        if(dataArr.lenght <1){
-            showMsg("没有可发送微信的客户","W");
+        if(dataArr.lenght <2){
+            showMsg("筛选至少包含一位已绑定微信号的客户","W");
             return;
         }else{
             sendWcText(dataArr,sendWcUrl);
@@ -346,10 +347,10 @@ function sendInfo(e) {
                 dataArr.push(gridList[i]);
             }
         }
-        if(dataArr.lenght <1){
-            showMsg("没有可发送微信的客户","W");
+        if(dataArr.lenght <2){
+            showMsg("筛选至少包含两位已绑定微信号的客户","W");
             return;
-        }else{
+        }else {
             sendWcPic(dataArr);
         }
     }else if (e == 4) {// 4发送微信卡券
@@ -360,7 +361,7 @@ function sendInfo(e) {
 
 function sendWcPic(list) {
     if (list.length < 1) {
-        showMsg("客户列表为空","E");
+        showMsg("有可发送微信的客户","E");
         return;
     }
     nui.open({                        
@@ -380,7 +381,7 @@ function sendWcPic(list) {
 
 function sendWcText(list,sendWcUrl){//发送微信消息
     if (list.length < 1) {
-        showMsg("客户列表为空","E");
+        showMsg("有可发送微信的客户","E");
         return;
     }
     // var tit = "发送微信[" + row.guestName + '/' + row.mobile + '/' + row.carModel + ']';

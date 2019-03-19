@@ -192,6 +192,7 @@
                    <div header="其他" headerAlign="center">
 	                  <div property="columns" >
 	                  	  <div field="enterKilometers" name="enterKilometers" width="80" headerAlign="center" header="进厂里程"></div>
+	                  	   <div field="remark" name="enterKilometers" width="150" headerAlign="center" header="备注"></div>
 		                  <div field="enterDate" name="enterDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="进厂时间"></div>
 		                  <div field="checkDate" name="checkDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="完工时间"></div>
 		                 

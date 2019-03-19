@@ -10,7 +10,7 @@
   --%>
 <head>
 <title>套餐操作</title>
-<script src="<%=request.getContextPath()%>/repair/js/Card/packageList.js?v=1.3.30"></script>
+<script src="<%=request.getContextPath()%>/repair/js/Card/packageList.js?v=1.3.31"></script>
 
 </head>
 
@@ -109,7 +109,8 @@
 								 idField="id"
 								 showPager="true"
 								 totalField="page.count"
-								 pageSize="20"
+								 sizeList=[50,100,200]
+								 pageSize="50"
 								 allowSortColumn="true"
 								 sortMode="client"
 								 >

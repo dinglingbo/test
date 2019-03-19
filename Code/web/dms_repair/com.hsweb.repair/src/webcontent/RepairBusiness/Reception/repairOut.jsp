@@ -117,6 +117,7 @@ a#car{
         <div field="guestFullName" name="guestFullName" width="80" headerAlign="center" align="center">客户姓名</div>
 <!--         <div field="guestMobile" name="guestMobile" width="40" headerAlign="center" align="center">手机号码</div> -->
         <div field="carNo" name="carNo" width="80" headerAlign="center" align="center">车牌号</div>
+        <div field="boxModel" name="boxModel" width="80" headerAlign="center" align="center">波箱型号</div>
         <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" align="center">服务顾问</div>
         <div field="carModel" name="carModel" width="100" headerAlign="center" align="center">品牌车型</div>
         <div field="billTypeId" name="billTypeId" width="80" headerAlign="center" align="center">工单类型</div>

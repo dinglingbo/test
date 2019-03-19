@@ -171,8 +171,15 @@ function setGuestData(data){
             supplierType = data.supplierType;
         }
 
+        if(data.expense && data.expense == 1){
+        	nameEl.setValue(data.guestName);
+        	if(data.guestName){
+        		onSearch();
+        	}
+        	
+        }
     }
-
+     
     //onSearch();
 }
 function onSearch(){

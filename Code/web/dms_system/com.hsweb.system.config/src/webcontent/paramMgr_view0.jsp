@@ -42,8 +42,8 @@
 			</div> 
 			<div title="技师等级" name="x_makeAnAppointmentLocation" url="" >
 			</div> 
-<!-- 			<div title="其他" name="other" url="" > -->
-<!-- 			</div> -->
+ 			<div title="其他" name="other" url="" > 
+ 			</div> 
 		</div>	
 	</div>
 </body>

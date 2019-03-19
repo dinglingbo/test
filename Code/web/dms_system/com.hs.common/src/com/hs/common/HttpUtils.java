@@ -505,8 +505,8 @@ public class HttpUtils {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("getHttpToString URL：" + urlPath);
-		System.out.println("getHttpToString Result：" + result);
+/*		System.out.println("getHttpToString URL：" + urlPath);
+		System.out.println("getHttpToString Result：" + result);*/
 		return result;
 	}
 

@@ -46,7 +46,7 @@
                     <table class="tmargin" style="table-layout: fixed;width:100%">
                         <tr class="htr">
                             <td class="tbtext"><label>交强险到期时间：</label></td>
-                            <td>
+                            <td style="width:150px;">
                                 <input id="keyword1" name="keyword1" class="nui-datepicker textboxWidth" style="width: 100%;"
                                     required="true" format="yyyy-MM-dd HH:mm">
                             </td>
@@ -56,6 +56,13 @@
                             <td>
                                 <input id="keyword2" name="keyword2" class="nui-datepicker textboxWidth" style="width: 100%;"
                                     required="true" format="yyyy-MM-dd HH:mm">
+                            </td>
+                        </tr>
+                        <tr class="htr">
+                            <td class="tbtext"><label>首行内容：</label></td>
+                            <td colspan="3">
+                                <input id="firstContent" name="firstContent" class="nui-textarea textboxWidth" style="width: 80%;height:60px;"
+                                    emptyText="请输入首行内容" required="true">
                             </td>
                         </tr>
 
@@ -98,7 +105,7 @@
         var form = new nui.Form("#form1");
         var mainData = {};
 
-        nui.get("carVin").focus();
+        nui.get("keyword1").focus();
         document.onkeyup=function(event){
         var e=event||window.event;
         var keyCode=e.keyCode||e.which;//38向上 40向下
@@ -114,8 +121,8 @@
             var endText ='请及时续保，若保险时间提醒有误，可重新设置保险时间。如有疑问可致电'+currCompTel;
             row.firstContent = firstText;
             row.endContent = endText;
-            row.keyword1 = row.carNo;
-            row.keyword2 = row.licenseOverDate;
+            row.keyword1 = row.insureDueDate;
+            row.keyword2 = row.annualInspectionDate;
             form.setData(row);
             mainData= row;
         }
@@ -136,8 +143,8 @@
             var endContent = data.endContent.toString();
 
             var viewText= firstContent + '<br>' +
-                '车牌号：' + keyword1 + '<br>' +
-                '到期时间：' + keyword2 + '<br>' +
+                '交强险到期时间：' + keyword1 + '<br>' +
+                '商业险到期时间：' + keyword2 + '<br>' +
                 endContent;
                 return viewText;
         }
@@ -169,7 +176,7 @@
             };
             var params ={
                 openid:data.wechatOpenId,
-                templateId:'g61R_Wd_6nsNtHVhFayiIDuOvGyxpPN4OYpocMih7DE',//模板id  驾驶证到期
+                templateId:'LNDuderGsWD9igtiShaDP1yd7i1t7NiRD2D3D_TXgMk',//模板id  保险到期
                 url:'',//消息的yurl 可为空
                 paraMap:p,
                 token:token
@@ -207,10 +214,12 @@ function saveRecord(data) {
         },
         success:function(res){
             if(res.errCode == 'S'){
-                // showMsg("保存成功！","S");
+                 showMsg("发送成功！","S");
+                 
             }else{
-                // showMsg("保存失败！","E");
+                 showMsg("发送失败！","E");
             }
+            onClose() ;
         },
         error: function (jqXHR) {
             showMsg(jqXHR.responseText);

@@ -10,7 +10,7 @@
 -->
 
 <head>
-    <title>车辆年检-发送微信消息</title>
+    <title>车辆年检-发送微信消息-群发</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
 
@@ -44,6 +44,7 @@
                     <input class="nui-hidden" name="id" id="id" />
                     <input class="nui-hidden" name="wechatOpenId" id="wechatOpenId" />
                     <table class="tmargin" style="table-layout: fixed;width:100%">
+          
                         <tr class="htr">
                             <td style="width:100px;" class="tbtext"><label>车牌号：</label></td>
                             <td style="width:150px;">
@@ -74,9 +75,12 @@
                                     emptyText="请输入尾行内容" required="true">
                             </td>
                         </tr>
+                        <tr class="htr">
+                            <td class="" colspan="4"><label style="color: red;margin-left:30px;">注：使用【车主姓名】代替车主姓名</label></td>
+                        </tr>
                     </table>
                     <div>
-                        <a class="nui-button" onclick="view()" id="save" plain="false" style="margin-left: 20px;margin-top: 20px;">
+                        <a class="nui-button" onclick="view()" id="save" plain="false" style="margin-left: 20px;margin-top: 10px;">
                             <span class="fa fa-refresh fa-lg"></span>&nbsp;生成预览</a>
                     </div>
                 </div>
@@ -100,10 +104,10 @@
 
     <script type="text/javascript">
         nui.parse();
-        var turl = apiPath + wechatApi + '/com.hsapi.wechat.autoServiceBackstage.weChatInterface.sendToolWeChatTemplateMessage.biz.ext'
+        var turl = apiPath + wechatApi + '/com.hsapi.wechat.autoServiceBackstage.weChatInterface.queryBeatchWeChatTemplateMessage.biz.ext';
         var saveUrl = apiPath + repairApi +"/com.hsapi.repair.repairService.crud.saveRemindRecord.biz.ext";
         var form = new nui.Form("#form1");
-        var mainData = {};
+        var mainData = [];
 
         nui.get("keyword1").focus();
         document.onkeyup=function(event){
@@ -116,15 +120,16 @@
         };
 
 
-        function setData(row) {
-            var firstText = '您好：尊敬的'+row.name+'先生/女士，您的车辆年检时间将到期';
+        function setData(rows) {
+            var row = rows[0];
+            var firstText = '您好：尊敬的【车主姓名】先生/女士，您的车辆年检时间将到期';
             var endText ='请及时办理。';
             row.firstContent = firstText;
             row.endContent = endText;
             row.keyword1 = row.carNo;
-            row.keyword2 = row.annualVerificationDueDate;
+            row.keyword2 = row.dueDate;
             form.setData(row);
-            mainData= row;
+            mainDatas= rows;
         }
 
         function send(params) {
@@ -137,14 +142,14 @@
 
         function getViewText() {
             var data = form.getData(true);
-            var firstContent = data.firstContent.toString();
-            var keyword1 = data.keyword1.toString();
-            var keyword2 = data.keyword2.toString();
+            var firstContent = data.firstContent.toString().replace(/【车主姓名】/g,mainDatas[0].guestName);
+            var carNo = data.keyword1;
+            var dueDate = data.keyword2;
             var endContent = data.endContent.toString();
 
             var viewText= firstContent + '<br>' +
-                '车牌号：' + keyword1 + '<br>' +
-                '到期时间：' + keyword2 + '<br>' +
+                '车牌号：' + carNo + '<br>' +
+                '到期时间：' + dueDate + '<br>' +
                 endContent;
                 return viewText;
         }
@@ -168,28 +173,30 @@
 
         function sendWeChat() {
             var data = form.getData(true);
-            var p={
-                first:data.firstContent,
-                keyword1:data.keyword1,
-                keyword2:data.keyword2,
-                remark:data.endContent
-            };
-            var params ={
-                openid:data.wechatOpenId,
-                templateId:'oBMHtz2FOq5gbdBLTrELvVC9QrB6J8rrmOyU81Bg844',//模板id  车辆年检
-                url:'',//消息的yurl 可为空
-                paraMap:p,
-                token:token
+            var dataList = [];
+            for (var i = 0; i < mainDatas.length; i++) {
+                var temp = {};
+                temp.first = data.firstContent.toString().replace(/【车主姓名】/g,mainDatas[i].guestName);
+                temp.keyword1 =  mainDatas[i].carVin;
+                temp.keyword2 =  mainDatas[i].lastComeKilometers+"公里";
+                temp.keyword3 =  (mainDatas[i].lastComeDate == null?'':nui.formatDate (new Date(mainDatas[i].lastComeDate),'yyyy-MM-dd HH:mm'));
+                temp.remark =  data.endContent.toString().replace(/【车主姓名】/g,mainDatas[i].guestName);
+                temp.openid = mainDatas[i].wechatOpenId;
+                dataList.push(temp);
             }
             nui.ajax({
                 url:turl,
                 type:"post",
-                data:params,
+                data:{
+                    paraMapList:dataList,
+                    templateId:'J503rlGOPzZgfUJ5mpGdP5cqL57sWZN_wlxYhbib234',
+                    url:'',
+                    token:token
+                },
                 success:function (res) {
-                    saveRecord(mainData);
+                    // saveRecord(mainData);
                 }
             })
-            
         }
 
 
@@ -214,11 +221,10 @@ function saveRecord(data) {
         },
         success:function(res){
             if(res.errCode == 'S'){
-                showMsg("发送成功！","S");
+                // showMsg("保存成功！","S");
             }else{
-                showMsg("发送失败！","E");
+                // showMsg("保存失败！","E");
             }
-            onClose();
         },
         error: function (jqXHR) {
             showMsg(jqXHR.responseText);

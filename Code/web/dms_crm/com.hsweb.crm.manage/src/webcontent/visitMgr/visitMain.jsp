@@ -12,13 +12,13 @@ pageEncoding="UTF-8" session="false" %>
     <title>工单回访</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%=webPath + contextPath%>/manage/js/visitMgr/visitMain.js?v=1.2.1" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/visitMgr/visitMain.js?v=1.2.3" type="text/javascript"></script>
     
     <style type="text/css">
     body { 
         margin: 0; 
         padding: 0;
-        border: 0;
+        border: 0; 
         width: 100%;
         height: 100%; 
         overflow: hidden;
@@ -39,8 +39,9 @@ pageEncoding="UTF-8" session="false" %>
         <label style="font-family:Verdana;">快速查询：</label>
         <a href="##" iconCls="" plain="true" onclick="quickSearch(1)">我接待的车辆</a>
         <a href="##" iconCls="" plain="true" onclick="quickSearch(2)">所有维修车辆</a>
-        <label style="font-family:Verdana;">车牌号：</label>
-        <input class="nui-textbox" name="tcarNo" id="tcarNo" style="width:90px;">
+        <input class="nui-textbox" name="tcarNo" id="tcarNo" style="width:90px;" emptyText="车牌号">
+        <input class="nui-combobox" name="level" id="level" style="width: 125px;"  required="false" multiSelect="true"
+        textField="name" valueField="id" allowInput="false"  emptyText="客户等级"/>
         <a class="nui-button" plain="true" onclick="quickSearch(3)" iconcls="" plain="false"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         <span class="separator"></span>
         <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="visit()"><span class="fa fa-clock-o fa-lg"></span>&nbsp;回访</a>
@@ -49,8 +50,9 @@ pageEncoding="UTF-8" session="false" %>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="SetData()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
         <a class="nui-button" plain="true" iconCls="" plain="false"visible="false" onclick="sendWcText()"><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false"visible="false" onclick="sendWechatPicInfo()"><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false"visible="false" onclick=""><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWechatPicInfo()"><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sellPoint()"><span class="fa fa-gift fa-lg"></span>&nbsp;销售机会</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="WindowrepairHistory()"><span class="fa fa-wrench fa-lg"></span>&nbsp;维修历史</a>
         <!-- <a class="nui-button" plain="true" iconcls="" plain="false" onclick="openOrderDetail()" ><span class="fa fa-search fa-lg"></span>&nbsp;查询工单详情</a> -->
     </div>
@@ -71,6 +73,7 @@ pageEncoding="UTF-8" session="false" %>
             <div field="carVin" name="carVin" width="130px" headerAlign="center" header="车架号(VIN)"></div>
             <div field="guestFullName" name="guestFullName" width="80px" headerAlign="center" header="客户姓名"></div>
             <div field="guestMobile" name="guestMobile" width="110px" headerAlign="center" header="客户手机"></div>
+            <div field="tgrade" name="tgrade" width="90px" headerAlign="center" header="客户等级"></div>
             <div field="serviceTypeName" name="serviceTypeName" width="155px" headerAlign="center" header="业务类型"></div>
             <!--<div field="isSettle" name="isSettle" width="60px" headerAlign="center" header="结算状态"></div> -->
             <div field="enterDate" name="recordDate" width="120px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="进厂时间"></div>

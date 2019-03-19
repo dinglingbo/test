@@ -111,7 +111,8 @@
 
     <script type="text/javascript">
         nui.parse();
-        var turl = apiPath + repairApi + '/com.hsapi.repair.repairService.sendWeChat.sendQFRending.biz.ext';
+        // var turl = apiPath + repairApi + '/com.hsapi.repair.repairService.sendWeChat.sendQFRending.biz.ext';
+        var turl = apiPath + wechatApi + '/com.hsapi.wechat.autoServiceBackstage.weChatInterface.queryBeatchWeChatTemplateMessage.biz.ext';
         var saveUrl = apiPath + repairApi +"/com.hsapi.repair.repairService.crud.saveRemindRecord.biz.ext";
         var form = new nui.Form("#form1");
         var mainData = [];
@@ -188,16 +189,17 @@
                 temp.keyword2 =  mainDatas[i].lastComeKilometers+"公里";
                 temp.keyword3 =  (mainDatas[i].lastComeDate == null?'':nui.formatDate (new Date(mainDatas[i].lastComeDate),'yyyy-MM-dd HH:mm'));
                 temp.remark =  data.endContent.toString().replace(/【车主姓名】/g,mainDatas[i].guestName);
-                temp.url =  '';
                 temp.openid = mainDatas[i].wechatOpenId;
-                temp.templateId = 'J503rlGOPzZgfUJ5mpGdP5cqL57sWZN_wlxYhbib234';
                 dataList.push(temp);
             }
             nui.ajax({
                 url:turl,
                 type:"post",
                 data:{
-                    dataList:dataList
+                    paraMapList:dataList,
+                    templateId:'J503rlGOPzZgfUJ5mpGdP5cqL57sWZN_wlxYhbib234',
+                    url:'',
+                    token:token
                 },
                 success:function (res) {
                     // saveRecord(mainData);

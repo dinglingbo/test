@@ -129,6 +129,7 @@
             </div>
             <div header="其他" headerAlign="center">
                 <div property="columns">
+                    <div allowSort="true" datatype="float" field="sellPrice" width="70" headerAlign="center" header="建议售价"></div>
                     <div allowSort="true" datatype="float" field="orderQty" visible="false" summaryType="sum" width="70" headerAlign="center" header="开单数量"></div>
                     <div allowSort="true" datatype="float" field="onRoadQty" visible="false" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>
                     <div allowSort="true" field="lastEnterDate" headerAlign="center" header="最近入库日期"  width="120" dateFormat="yyyy-MM-dd HH:mm"></div>

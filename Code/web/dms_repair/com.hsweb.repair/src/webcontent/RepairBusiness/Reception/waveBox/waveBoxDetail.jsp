@@ -12,7 +12,7 @@
         <head>
             <title>Title</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxDetail.js?v=1.321"></script>
+            <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxDetail.js?v=1.322"></script>
         </head>
         <style type="text/css">
             body {
@@ -350,9 +350,9 @@
                                 <span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                             <span class="separator"></span>
                             <a class="nui-button" iconCls="" plain="true" onclick="sureMT()" id="addBtn"><span class="fa fa-car fa-lg"></span>&nbsp;施工</a>
-                            <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="js">
-                                <span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
-                            <a class="nui-button" iconCls="" plain="true" onclick="warehousing()" id="warehousing" visible="false">&nbsp;成品入库</a>
+                            <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;完工</a>
+                            <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="js"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
+                            <a class="nui-button" iconCls="" plain="true" onclick="warehousing()" id="warehousing"  visible="false">&nbsp;成品入库</a>
                             <span class="separator"></span>
 
                             <a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint">

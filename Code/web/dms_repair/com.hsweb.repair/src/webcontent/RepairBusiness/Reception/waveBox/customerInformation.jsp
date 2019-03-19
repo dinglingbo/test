@@ -60,19 +60,27 @@
 							<td>
 								<input class="nui-textbox" id="mobile" name="mobile1" width="100%" emptyText="请输入手机号查询" />
 							</td>
+							<td  align="right"style="width:100px">
+                                <label>车型：</label>
+                            </td>
+                            <td class="" colspan="1">
+                            	<input class="nui-hidden" name="carModel" id="carModel" />
+                                <input class="nui-combobox" name="carBrandId" id="carBrandId" valueField="id" textField="name"
+                                    width="100%"  onvaluechanged="getModel"/>
+                            </td>
 						</tr>
 						<tr>
 							<td class="form_label">
 								<label>性别：</label>
 							</td>
-							<td>
+							<td colspan="2">
 								<input class="nui-combobox" data="[{value:'0',text:'男',},{value:'1',text:'女'},]" textField="text" valueField="value" name="sex"
 								 value="0" width="100%" />
 							</td>
-							<td class="form_label ">
+							<td class="form_label " >
 								<label>车牌号：</label>
 							</td>
-							<td>
+							<td colspan="2">
 								<input class="nui-textbox" id="carNo" name="carNo" width="100%" />
 							</td>
 						</tr>
@@ -80,14 +88,14 @@
 							<td class="form_label">
 								<label>生日类型：</label>
 							</td>
-							<td>
+							<td colspan="2">
 								<input class="nui-combobox" data="[{value:'0',text:'农历',},{value:'1',text:'阳历'},]" textField="text" valueField="value" name="birthdayType"
 								 value="0" width="100%" />
 							</td>
-							<td class="form_label ">
+							<td class="form_label " >
 								<label>生日日期：</label>
 							</td>
-							<td>
+							<td colspan="2">
 								<input name="birthday" allowInput="false" class="nui-datepicker" width="100%" />
 							</td>
 						</tr>
@@ -95,7 +103,7 @@
 							<td class="form_label">
 								<label>地址：</label>
 							</td>
-							<td colspan="3">
+							<td colspan="5">
 								<input name="provinceId" id="provice" valueField="code" textField="name" emptyText="省" url="" onValuechanged="initCityByParent('cityId', e.value || -1)"
 								 class="nui-combobox" width="32%" />
 
@@ -111,7 +119,7 @@
 							<td class="form_label">
 								<label>备注：</label>
 							</td>
-							<td colspan="3">
+							<td colspan="5">
 								<input class="nui-textbox" name="remark" width="100%" />
 							</td>
 						</tr>
@@ -199,6 +207,9 @@
 				initProvince("provice");
 				provice.doValueChanged();
 				cityId.doValueChanged();
+				initCarBrand("carBrandId",function(){
+				 
+	 			});
 				initDicts({
 					source: GUEST_SOURCE,//客户来源
 					identity: IDENTITY //客户身份
@@ -302,7 +313,9 @@
 
 					var car = {
 						carNo: form.carNo,
-						id: nui.get("carId").value || null
+						id: nui.get("carId").value || null,
+						carBrandId :nui.get("carBrandId").value,
+						carModel:nui.get("carModel").value
 					}
 					nui.ajax({
 						url: baseUrl + "com.hsapi.repair.repairService.crud.saveBXCustomerInforMation.biz.ext",
@@ -323,6 +336,8 @@
 								if (car) {
 									nui.get("carNo").setValue(car.carNo);
 									nui.get("carId").setValue(car.id);
+									nui.get("carBrandId").setValue(car.carBrandId);
+									nui.get("carModel").setVale(car.carModel);
 								}
 								var rpb = text.rpb;
 								$(".sjd").empty();
@@ -371,6 +386,8 @@
 								var car = dataAll.carList[0];
 								nui.get("carNo").setValue(car.carNo);
 								nui.get("carId").setValue(car.id);
+								nui.get("carBrandId").setValue(car.carBrandId);
+								nui.get("carModel").setValue(car.carModel);
 								if (dataAll.contactList.length > 0) {
 									var rpb = dataAll.contactList;
 									for (var i = 0, l = rpb.length; i < l; i++) {
@@ -395,7 +412,12 @@
 						}
 					});
 				}
-
+				
+				function getModel(e){
+					var carModel = nui.get("carBrandId").text;
+					nui.get("carModel").setValue(carModel);
+				}
+				
 				function getData(){
 					var carId = nui.get("carId").value;				
 					return carId;	

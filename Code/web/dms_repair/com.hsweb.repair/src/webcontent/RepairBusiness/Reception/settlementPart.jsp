@@ -438,6 +438,10 @@
 		var url_three = null;
 		var data = [];
 		var phones = "";
+		var itemAmt = 0;
+		var itemSubtotal = 0;
+		var partAmt = 0;
+		var partSubtotal = 0;
 		//尊敬的客户:以上报价在实际施工过程中可能略有小幅变动，最终价格以实际结算单为准
 		$(document).ready(function (){
 			
@@ -770,11 +774,15 @@
     					
     					       var index = data[i].orderIndex;
     					       
-    					       if(data[i].billItemId != 0){
-    					            index = num;
-    					            num = num + 1;
+    					       if(data[i].billItemId == 0){
+					              itemAmt = itemAmt + data[i].amt;
+					              itemSubtotal = itemSubtotal + data[i].subtotal;
+    					       }else{
+    					          index = num;
+    					          num = num + 1;
+    					          partAmt = partAmt + data[i].amt;
+    					          partSubtotal = partSubtotal + data[i].subtotal;
     					       }
-    					
 				    			tr.append(
 				    				tds.replace("[id]",index)
 				    				.replace("[prdtName]",itemName)
@@ -792,16 +800,41 @@
 				    			
 				    	getSubtotal(params);		
     				}
-    				if(partShow==1){
+    				  if(partShow==1){
     				    document.getElementById("showPart").style.display = "";
     				    document.getElementById("space3").style.display = "";
-    				}
+    				  }
     				  if(params.name != "结账单"){
     				      document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML).toFixed(2);
     				   }
     				   
-    				    document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML).toFixed(2);
-	    				document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML).toFixed(2);
+    				  document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML).toFixed(2);
+	    			  document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML).toFixed(2);
+	    			  if(itemAmt>0){
+	        	           var ramt = itemAmt - itemSubtotal;
+	        	           var rate = 0;
+	        	           if(ramt>0){
+	        	             rate  = ramt/itemAmt;
+	        	             rate = rate * 100;
+	        	             rate = rate.toFixed(2);
+	        	             document.getElementById("itemRate").innerHTML =  rate;
+	        	           }
+	        	           ramt = ramt.toFixed(2);
+	        	           document.getElementById("itemAmt").innerHTML = ramt;
+	        	           
+	        	        }
+	        	        if(partAmt>0){
+	        	           var ramt = partAmt - partSubtotal;
+	        	           var rate = 0;
+	        	           if(ramt>0){
+	        	             rate  = ramt/partAmt;
+	        	             rate = rate * 100;
+	        	             rate = rate.toFixed(2);
+	        	             document.getElementById("partRate").innerHTML =  rate;
+	        	           }
+	        	           ramt = ramt.toFixed(2);
+	        	           document.getElementById("partAmt").innerHTML = ramt;
+	        	        }
 	        	    }else{
                         $("#showItem").hide();	
                         $("#space2").hide();        	      
@@ -822,6 +855,24 @@
 	    				}
     	            });  
     		}
+    		//其他费用com.hsapi.repair.repairService.svr.getRpsExpense.biz.ext
+    		 $.ajaxSettings.async = false;
+    		 var httpstr = params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsExpense.biz.ext?serviceId="+params.serviceId+"&dc=1"+"&token="+params.token;
+    		 $.post(httpstr,{},function(text){
+    			   if(text.errCode=="S"){
+    		            data = text.data;
+    		            if(data.length>0){
+    		             var expAmt = 0;
+    		             for(var i = 0;i<data.length;i++){
+    		                 expAmt = expAmt + data[i].amt;
+    		             }
+    		             if(expAmt>0){
+    		                expAmt = expAmt.toFixed(2);
+    		                document.getElementById("expense").innerHTML = expAmt;
+    		             }
+    		            }
+    		       }
+	         });
         	/* if(params.type){
         		url_three = "com.hsapi.repair.repairService.svr.billgetRpsMainPart.biz.ext?serviceId=";
         	}else{

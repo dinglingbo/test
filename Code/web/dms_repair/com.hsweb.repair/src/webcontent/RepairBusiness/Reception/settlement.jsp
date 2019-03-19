@@ -264,7 +264,8 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1" id="showPkg">
                 <tr>
                     <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;"></td>
-                    <td height="28" align="center" bgcolor="#f8f8f8"style="font-family: 华文中宋; font-size:16px;font-weight: bold;">套餐项目(含工时配件)</td>
+                    <td height="28" align="center" bgcolor="#f8f8f8"style="font-family: 华文中宋; font-size:16px;font-weight: bold;">
+项目(含工时配件)</td>
                     
                     
                     <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">数量</td>

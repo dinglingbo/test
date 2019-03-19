@@ -370,29 +370,41 @@
         <div style="height: 12px;" id="space2"></div>
         <table width="100%" border="0"  cellpadding="0" cellspacing="0"  class="ybk1">
             <tr>
-                <td height="36" colspan="1" style="border:0px solid #DDD;padding: 8px; " rowspan="1" colspan="1" >
+                <td height="36" colspan="1" style="border:0px solid #DDD;padding: 8px;" rowspan="1" colspan="1" >
                    <!--  <div style="float: right; color: #000; margin-right: 12px; line-height: 36px;">
                                                              
                     </div> -->
-                      套餐：<span id="prdt">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;工时：<span id="item">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0.00</span>
-            <span style="margin-left: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;优惠金额：<span id="yh">0.00</span>元</span>
+                       套餐：<span id="prdt">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;工时：<span id="item">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0.00</span>
+               &nbsp;&nbsp;&nbsp;&nbsp;其他费用：<span id="expense">0.00</span>
                 </td>
-                </tr>
-                <tr>
+             </tr>
+             <tr>
+                <td height="36" colspan="1" style="border:0px solid #DDD;padding: 8px;" rowspan="1" colspan="1" >
+                  
+                      <span> 项目优惠率：<span id="itemRate">0.00</span>%</span>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;项目优惠金额：<span id="itemAmt">0.00</span>元</span>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp; 配件优惠率：<span id="partRate">0.00</span>%</span>
+                     <span>&nbsp;&nbsp;&nbsp;&nbsp;配件优惠金额：<span id="partAmt">0.00</span>元</span>
+                       
+                </td>
+             </tr>
+             <tr>    
                 <td height="36" colspan="2" style="border:0px;font-family: Arial; font-size:16px;font-weight: bold;">
                     <div style="float: right; color: #000; margin-right: 12px; line-height: 36px;">
                         <span style="margin-right: 15px;">
                             <font style="font-size: 16px; font-weight: bold;">
+                                 优惠金额：<span id="yh">0.00</span>元</span>
+              
                                 结算金额：<span id="cash1"></span>元
                             </font>
                         </span>
                         <font style="font-size: 16px; font-weight: bold;">
-                            大写：<span id="money"></span>
+                            &nbsp;&nbsp;&nbsp;大写：<span id="money" style="margin-right: 0px;"></span>
                         </font>
                     </div>
                 </td>
             </tr>
-        </table> 
+        </table>  
         <div style="height: 12px;" id="space3"></div>
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk">
                 <tr>

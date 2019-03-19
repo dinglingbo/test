@@ -74,7 +74,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">part/crud/hotspot</process:from>
+      <process:from type="literal" pattern="reference">part/parts/hotspot</process:from>
       <process:to type="query">url</process:to>
     </process:copy>
     <process:copy>
@@ -204,7 +204,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="maintenanceUrl" type="query" value="String" valueType="Primitive">maintenanceUrl</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">value</process:outputVariable>
-        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

@@ -496,11 +496,11 @@ public class HttpUtils {
 				result = new String(readStream(inputStream).toByteArray(),
 						"UTF-8");
 			} else {
-				System.out.println("getResponseCode："
-						+ connection.getResponseCode());
+/*				System.out.println("getResponseCode："
+						+ connection.getResponseCode());*/
 			}
 
-			System.out.println("length：" + result.length());
+			/*System.out.println("length：" + result.length());*/
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

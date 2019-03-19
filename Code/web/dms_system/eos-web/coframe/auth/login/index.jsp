@@ -181,7 +181,7 @@
                    <!--  <li id="orgName" ><a href="#">所属：</a></li> -->
                      <li><a href="javascript:myMessage();"><i class="fa fa-comments-o"></i> 我的消息</a></li>
                      <li><a href="javascript:updateEmployee();"><i class="fa fa-pencil-square-o"></i> 个人设置</a></li> 
-                    <!--  <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li> -->
+                     <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li>
                     <!-- <li><a href="#"><i class="fa fa-eye "></i> 用户信息</a></li> -->
                     <li><a href="<%=request.getContextPath()%>/coframe/auth/login/logout.jsp"><i class="fa fa-user"></i> 退出登录</a></li>
                 </ul>
@@ -378,7 +378,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
         nui.open({
             url: defDomin + "/coframe/rights/user/update_password.jsp",
             title:"修改密码",
-            width: "370px",
+            width: "390px",
             height: "200px"
         });
     }

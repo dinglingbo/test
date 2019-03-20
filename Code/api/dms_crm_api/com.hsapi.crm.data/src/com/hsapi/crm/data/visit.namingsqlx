@@ -99,8 +99,62 @@
 			</isNotEmpty>
         </select>
         
+        <!-- 更新 下次保养日期 -->
         <update id="updateCareCueDate" parameterClass="java.util.HashMap" >
-       		 UPDATE  rpb_car_extend  set care_due_date = #careDueDate#
-			where  car_id  = #carId#
+            UPDATE  rpb_car_extend  set care_due_date = #careDueDate#
+            where  car_id  = #carId#
         </update>
+        <!-- 更新 商业险日期 -->
+        <update id="updateSYXDate" parameterClass="java.util.HashMap" >
+            UPDATE  rpb_car set annual_inspection_date = #annualInspectionDate#
+            where  id  = #carId#
+        </update>
+        <!-- 更新 交强险日期 -->
+        <update id="updateJQXDate" parameterClass="java.util.HashMap" >
+            UPDATE  rpb_car set insure_due_date = #insureDueDate#
+            where  id  = #carId#
+        </update>
+        <!-- 更新 车辆年审日期 -->
+        <update id="updateCLNJDate" parameterClass="java.util.HashMap" >
+            UPDATE  rpb_car set annual_verification_due_date = #dueDate#
+            where  id  = #carId#
+        </update>
+                <!-- 更新 驾照日期 -->
+        <update id="updateJZNSDate" parameterClass="java.util.HashMap" >
+            UPDATE  rpb_contactor set license_over_date = #licenseOverDate#
+            where  id  = #conId#
+        </update>
+                <!-- 更新 生日 -->
+        <update id="updateKHDRDate" parameterClass="java.util.HashMap" >
+            UPDATE  rpb_contactor set birthday = #birthday#
+            where  id  = #conId#
+        </update>
+        
+	<select id="queryVisitHistory" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		select 
+			a.id,a.orgid,a.main_id mainId,a.service_type serviceType,a.service_id serviceId,
+			a.guest_id guestId,a.car_no carNo,a.car_id carId,a.visit_mode visitMode,a.care_due_date careDueDate,
+			a.visit_content visitContent,a.visit_id visitId,a.visit_man visitMan,a.visit_date visitDate
+		from crm_visit_record a 
+		where a.orgid = #orgid#
+		<isNotEmpty prepend="and" property="carId">  
+		   	a.car_id =   #carId#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="guestId">  
+		   	a.guest_id =   #guestId#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="visitMode">  
+		   	a.visit_mode =   #visitMode#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="serviceType">  
+		   	a.service_type =   #serviceType#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="startDate">  
+		   	a.visit_date &gt;=  #startDate# 
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="endDate">  
+		   a.visit_date  &lt;=  #endDate# 
+		</isNotEmpty>
+	  order by  a.visit_date desc
+	  </select>
 </sqlMap>

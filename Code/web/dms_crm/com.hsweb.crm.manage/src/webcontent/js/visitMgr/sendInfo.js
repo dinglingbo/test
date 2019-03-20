@@ -62,12 +62,12 @@ function save() {
 				var returnJson = nui.decode(text);
 				if (returnJson.errCode == "S") {
 				    nui.unmask(document.body);
-                    showMsg(returnJson.errMsg || "发送成功", "S");
+                    //showMsg(returnJson.errMsg || "发送成功", "S");
                     saveRecord(mainData);
 					CloseWindow("ok");
 				} else {
 					nui.unmask(document.body);
-					showMsg(returnJson.errMsg || "发送失败","E");
+					//showMsg(returnJson.errMsg || "发送失败","E");
 					
 				}
 			}
@@ -87,7 +87,7 @@ function saveRecord(data) {
         carNo: data.carNo || '',
         visitMode:'011402',//短信
         visitContent:message||'',
-    }
+    };
     nui.ajax({
         url:saveUrl,
         type:'post',
@@ -96,9 +96,9 @@ function saveRecord(data) {
         },
         success:function(res){
             if(res.errCode == 'S'){
-                // showMsg("保存成功！","S");
+                 showMsg("发送成功！","S");
             }else{
-                // showMsg("保存失败！","E");
+                 showMsg("发送失败！","E");
             }
         },
         error: function (jqXHR) {

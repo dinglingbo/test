@@ -1116,8 +1116,9 @@
 				a.annual_status as annualStatus,
 				a.insure_status as insureStatus,
 				a.veri_status as veriStatus,
-				c.full_name name,
+				c.name name,
 				c.mobile ,
+				c.wechat_open_id wechatOpenId,
 				b.id as carId,
 				b.orgid as orgid,
 				b.car_no as carNo,
@@ -1137,7 +1138,7 @@
 			FROM
 				wb_repair.rpb_car_extend a
 			INNER JOIN wb_repair.rpb_car b ON a.car_id = b.id
-			INNER JOIN wb_common.com_guest c ON b.guest_id = c.id
+			INNER JOIN wb_repair.rpb_contactor c ON b.guest_id = c.guest_id
 		
 			WHERE 
 				b.orgid=#orgid#	
@@ -1156,6 +1157,14 @@
             <isNotEmpty prepend="and" property="annualStatus">
   				a.annual_status = #annualStatus#
             </isNotEmpty>
+              <isEqual  prepend="" property="dateType"   compareValue="syx">
+		        <isNotEmpty prepend="and" property="startDate">
+	  				b.annual_inspection_date &gt;= #startDate#
+	            </isNotEmpty>
+	             <isNotEmpty prepend="and" property="endDate">
+	  				b.annual_inspection_date &lt;= #endDate#
+	            </isNotEmpty>
+	     	</isEqual>
              <!-- 交强险是否需要提醒-->
             <isNotEmpty prepend="and" property="isInsureRemind">
   				a.is_insure_remind = #isInsureRemind#
@@ -1164,6 +1173,14 @@
             <isNotEmpty prepend="and" property="insureStatus">
   				a.insure_status = #insureStatus#
             </isNotEmpty>
+         <isEqual  prepend="" property="dateType"   compareValue="jqx">
+		        <isNotEmpty prepend="and" property="startDate">
+	  				b.insure_due_date &gt;= #startDate#
+	            </isNotEmpty>
+	             <isNotEmpty prepend="and" property="endDate">
+	  				b.insure_due_date &lt;= #endDate#
+	            </isNotEmpty>
+	     </isEqual>
              <!-- 车辆年检是否需要提醒-->
             <isNotEmpty prepend="and" property="isVeriRemind">
   				a.is_veri_remind = #isVeriRemind#
@@ -1172,7 +1189,14 @@
             <isNotEmpty prepend="and" property="veriStatus">
   				a.veri_status = #veriStatus#
             </isNotEmpty> 
- 
+         <isEqual  prepend="" property="dateType"   compareValue="clnj">
+		        <isNotEmpty prepend="and" property="startDate">
+	  				b.annual_verification_due_date &gt;= #startDate#
+	            </isNotEmpty>
+	             <isNotEmpty prepend="and" property="endDate">
+	  				b.annual_verification_due_date &lt;= #endDate#
+	            </isNotEmpty>
+	     </isEqual>
 	</select>
 	
 			<select id="queryRemindS" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
@@ -1186,6 +1210,7 @@
 				a.license_over_date as licenseOverDate,
 				a.license_status as licenseStatus,
 				a.bir_status as birStatus,
+				a.wechat_open_id wechatOpenId,
 				b.car_no carNo,
 				b.vin carVin,
 				b.id carId,
@@ -1193,8 +1218,8 @@
 				c.last_come_date lastComeDate
 			FROM
 				wb_repair.rpb_contactor a
-		LEFT JOIN wb_repair.rpb_car b on b.guest_id = a.guest_id
-		LEFT JOIN wb_repair.rpb_car_extend c on c.car_id = b.id
+		INNER JOIN wb_repair.rpb_car b on b.guest_id = a.guest_id
+		INNER JOIN wb_repair.rpb_car_extend c on c.car_id = b.id
 			WHERE 
 				a.orgid=#orgid#	
           
@@ -1206,6 +1231,14 @@
             <isNotEmpty prepend="and" property="birStatus">
   				a.bir_status = #birStatus#
             </isNotEmpty>
+           <isEqual  prepend="" property="dateType"   compareValue="khsr">
+		        <isNotEmpty prepend="and" property="startDate">
+	  				a.birthday &gt;= #startDate#
+	            </isNotEmpty>
+	             <isNotEmpty prepend="and" property="endDate">
+	  				a.birthday &lt;= #endDate#
+	            </isNotEmpty>
+	     </isEqual>
              <!-- 驾照是否需要提醒-->
             <isNotEmpty prepend="and" property="isLicenseRemind">
   				a.is_license_remind = #isLicenseRemind#
@@ -1214,7 +1247,14 @@
             <isNotEmpty prepend="and" property="licenseStatus">
   				a.license_status = #licenseStatus#
             </isNotEmpty>
- 
+          <isEqual  prepend="" property="dateType"   compareValue="jzns">
+		        <isNotEmpty prepend="and" property="startDate">
+	  				a.license_over_date &gt; #startDate#
+	            </isNotEmpty>
+	             <isNotEmpty prepend="and" property="endDate">
+	  				a.license_over_date &lt; #endDate#
+	            </isNotEmpty>
+	     </isEqual>
 	</select>
 	<!--首页提醒数量与车相关-->
 <select id="homePageQuantity" parameterClass="commonj.sdo.DataObject" resultClass="commonj.sdo.DataObject">
@@ -1251,7 +1291,7 @@
 		wb_repair.rpb_car_extend a
 	INNER JOIN wb_repair.rpb_car b ON a.car_id = b.id
 	WHERE
-		b.orgid = #orgid#;
+		b.orgid = #orgid#
 		</select>
 		
 		<!--首页提醒数量与人相关-->
@@ -1275,7 +1315,7 @@
 				FROM
 					wb_repair.rpb_contactor a
 				WHERE
-					a.orgid = #orgid#;
+					a.orgid = #orgid#
 			</select>
 			
 			

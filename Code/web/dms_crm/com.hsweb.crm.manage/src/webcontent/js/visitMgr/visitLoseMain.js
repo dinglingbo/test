@@ -9,16 +9,16 @@ var gridCar = null;
 var tcarNo_ctrl = null;
 var slost_ctrl = null;
 var elost_ctrl = null;
-var loseParam_ctrl = null;
 var form = null;
+var levelList = []; 
+var levelHash = [];
 var billTypeIdList = [{name:"综合"},{name:"检查"},{name:"洗美"},{name:"销售"},{name:"理赔"},{name:"退货"}];
 $(document).ready(function(){
 	form = new nui.Form("#toolbar1");   
 	tcarNo_ctrl = nui.get("tcarNo");
 	slost_ctrl = nui.get("slost");
 	elost_ctrl = nui.get("elost");
-	loseParam_ctrl = nui.get("loseParam");
-	setLoseParams();
+
 
 
 
@@ -43,12 +43,22 @@ $(document).ready(function(){
 
     };
 
+
+    initGuestType("level", function (data) {
+        levelList = nui.get("level").getData();
+        levelList.forEach(function(v) {
+	        levelHash[v.id] = v;
+	    });//客户级别 
+    });
+
     gridCar.on("drawcell", function (e) { 
         var uid = e.record._uid;
     	if(e.field == "serviceCode"){
     		e.cellHtml ='<a href="##" onclick="openOrderDetail('+"'"+e.record.serviceId+"'"+')">'+e.record.serviceCode+'</a>';
     	}else if (e.field == "serviceTypeName") {
             e.cellHtml = retSerTypeStyle(e.cellHtml);
+        }else if (e.field == "tgrade") {
+            e.cellHtml = (levelHash[e.value] == undefined ? "" : levelHash[e.value].name);
         }else if (e.field == "billTypeId") {
         	e.cellHtml = billTypeIdList[e.value].name; 
         }else if(e.field == "guestMobile"){
@@ -110,7 +120,8 @@ function quickSearch(e){
 		p = {
 			carNo:tcarNo_ctrl.value,
 			sLeaveDays:slost_ctrl.value,
-			eLeaveDays:elost_ctrl.value,
+            eLeaveDays: elost_ctrl.value,
+            level:nui.get("level").value
 		};
 	}
 	if(e == 1){//今日计划跟进客户
@@ -187,29 +198,6 @@ function WindowrepairHistory(){
 	}
 }
 
-function setLoseParams(){
-	nui.ajax({
-		url:apiPath + crmApi +"/com.hsapi.crm.svr.visit.queryRemindParams.biz.ext",
-		type:"post",
-		async: false,
-		data:{
-			token:token
-		},
-		success:function(text){
-			if(text.errCode == "S"){
-				var tdata = text.data;
-				if(tdata.length == 1){
-					loseParam_ctrl.setValue(tdata[0].param9);
-				}else if(tdata.length > 1 ){
-					showMsg("未设置流失客户相关参数！","W");
-				}else{}
-			}
-
-		}
-	});
-}
-
-
 function openOrderDetail(serviceId){
 	var row = gridCar.getSelected();
 	var data = {};
@@ -278,4 +266,25 @@ function sendWcText(){//发送微信消息
     //         change();
     //     }
     // });
+}
+
+
+function sellPoint() {//销售机会
+    var row = gridCar.getSelected();
+	if(row){
+		nui.open({
+			url: webPath + contextPath + "/manage/visitMgr/cellPoint.jsp?token="+ token,
+			title: "销售机会", 
+			width: 700, height: 300,
+			onload: function () {
+				var iframe = this.getIFrameEl(); 
+				iframe.contentWindow.setData(row);
+			},
+			ondestroy: function (action) {
+				// gridCar.reload();
+			}
+		});
+	}else{
+		showMsg("请选中一条数据","W");
+	}
 }

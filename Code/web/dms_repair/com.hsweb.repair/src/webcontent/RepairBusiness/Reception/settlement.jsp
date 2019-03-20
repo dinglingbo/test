@@ -150,7 +150,7 @@
             <table  width="92%" border="0" align="center" cellpadding="0" cellspacing="0">
                 <tbody>
                     <tr>
-                        <td class="color999" width="76" height="46">单据编号：</td>
+                        <td class="color999" width="90" height="46">单据编号：</td>
                         <td><input type="text" id="txtno" class="peijianss" value="" /></td>
                     </tr>
                     <tr>
@@ -164,6 +164,10 @@
                     <tr>
                         <td class="color999" height="46">电话：</td>
                         <td><input type="text" id="txtphoneno" class="peijianss" value="" /></td>
+                    </tr>
+                     <tr>
+                        <td class="color999" height="46">进厂时间：</td>
+                        <td><input id="updateEnterDate" type="datetime-local" value=""/></td>
                     </tr>
                     <tr>
                         <td class="color999" height="46">打印时间：</td>
@@ -264,7 +268,8 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1" id="showPkg">
                 <tr>
                     <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;"></td>
-                    <td height="28" align="center" bgcolor="#f8f8f8"style="font-family: 华文中宋; font-size:16px;font-weight: bold;">套餐项目(含工时配件)</td>
+                    <td height="28" align="center" bgcolor="#f8f8f8"style="font-family: 华文中宋; font-size:16px;font-weight: bold;">
+项目(含工时配件)</td>
                     
                     
                     <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">数量</td>
@@ -351,8 +356,18 @@
                    <!--  <div style="float: right; color: #000; margin-right: 12px; line-height: 36px;">
                                                              
                     </div> -->
-                      套餐：<span id="prdt">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;工时：<span id="item">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0.00</span>
-              <span style="margin-left: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;优惠金额：<span id="yh">0.00</span>元</span>
+                       套餐：<span id="prdt">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;工时：<span id="item">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0.00</span>
+               &nbsp;&nbsp;&nbsp;&nbsp;其他费用：<span id="expense">0.00</span>
+                </td>
+             </tr>
+             <tr>
+                <td height="36" colspan="1" style="border:0px solid #DDD;padding: 8px;" rowspan="1" colspan="1" >
+                  
+                      <span> 项目优惠率：<span id="itemRate">0.00</span>%</span>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;项目优惠金额：<span id="itemAmt">0.00</span>元</span>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp; 配件优惠率：<span id="partRate">0.00</span>%</span>
+                     <span>&nbsp;&nbsp;&nbsp;&nbsp;配件优惠金额：<span id="partAmt">0.00</span>元</span>
+                       
                 </td>
              </tr>
              <tr>    
@@ -360,11 +375,13 @@
                     <div style="float: right; color: #000; margin-right: 12px; line-height: 36px;">
                         <span style="margin-right: 15px;">
                             <font style="font-size: 16px; font-weight: bold;">
+                                 优惠金额：<span id="yh">0.00</span>元</span>
+              
                                 结算金额：<span id="cash1"></span>元
                             </font>
                         </span>
                         <font style="font-size: 16px; font-weight: bold;">
-                            大写：<span id="money" style="margin-right: 0px;"></span>
+                            &nbsp;&nbsp;&nbsp;大写：<span id="money" style="margin-right: 0px;"></span>
                         </font>
                     </div>
                 </td>
@@ -403,6 +420,11 @@
 		var url_three = null;
 		var data = [];
 		var phones = "";
+		var itemAmt = 0;
+		var itemSubtotal = 0;
+		var partAmt = 0;
+		var partSubtotal = 0;
+		var enterDate = null;
 		//尊敬的客户:以上报价在实际施工过程中可能略有小幅变动，最终价格以实际结算单为准
 		$(document).ready(function (){
 			
@@ -509,7 +531,7 @@
 	        		phones = list.contactMobile || "";
 	        		var carNo = list.carNo || "";
 	        		var carVin = list.carVin || "";
-	        		var enterDate = list.enterDate || "";
+	        		enterDate = list.enterDate || "";
 	        		
 	        		var drawOutReport = list.drawOutReport || "";
 	        		if(drawOutReport != ""){
@@ -633,6 +655,7 @@
 	    						document.getElementById("prdt").innerHTML = parseFloat(document.getElementById("prdt").innerHTML) + parseFloat(data[i].subtotal);
 	    					}
 	    					if(data[i].billPackageId == 0){
+	    					    
 	    						if(i != 0){
 	    							var tr = $("<tr class='ybk2'></tr>");
 		    						tr.append(
@@ -735,8 +758,12 @@
     					}
     					if(data[i].billItemId == 0){
     					   index = data[i].orderIndex;
+    					   itemAmt = itemAmt + data[i].amt;
+    					   itemSubtotal = itemSubtotal + data[i].subtotal;
     					}else{
     					   index = "";
+    					   partAmt = partAmt + data[i].amt;
+    					   partSubtotal = partSubtotal + data[i].subtotal;
     					}
 				    			tr.append(
 				    				tds.replace("[id]",index)
@@ -755,6 +782,31 @@
     				   
     				    document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML).toFixed(2);
 	    				document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML).toFixed(2);
+	        	        if(itemAmt>0){
+	        	           var ramt = itemAmt - itemSubtotal;
+	        	           var rate = 0;
+	        	           if(ramt>0){
+	        	             rate  = ramt/itemAmt;
+	        	             rate = rate * 100;
+	        	             rate = rate.toFixed(2);
+	        	             document.getElementById("itemRate").innerHTML =  rate;
+	        	           }
+	        	           ramt = ramt.toFixed(2);
+	        	           document.getElementById("itemAmt").innerHTML = ramt;
+	        	           
+	        	        }
+	        	        if(partAmt>0){
+	        	           var ramt = partAmt - partSubtotal;
+	        	           var rate = 0;
+	        	           if(ramt>0){
+	        	             rate  = ramt/partAmt;
+	        	             rate = rate * 100;
+	        	             rate = rate.toFixed(2);
+	        	             document.getElementById("partRate").innerHTML =  rate;
+	        	           }
+	        	           ramt = ramt.toFixed(2);
+	        	           document.getElementById("partAmt").innerHTML = ramt;
+	        	        }
 	        	    }else{
                         $("#showItem").hide();	
                         $("#space2").hide();        	      
@@ -775,6 +827,24 @@
 	    				}
     	            });  
     		}
+    		//其他费用com.hsapi.repair.repairService.svr.getRpsExpense.biz.ext
+    		 $.ajaxSettings.async = false;
+    		 var httpstr = params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsExpense.biz.ext?serviceId="+params.serviceId+"&dc=1"+"&token="+params.token;
+    		 $.post(httpstr,{},function(text){
+    			   if(text.errCode=="S"){
+    		            data = text.data;
+    		            if(data.length>0){
+    		             var expAmt = 0;
+    		             for(var i = 0;i<data.length;i++){
+    		                 expAmt = expAmt + data[i].amt;
+    		             }
+    		             if(expAmt>0){
+    		                expAmt = expAmt.toFixed(2);
+    		                document.getElementById("expense").innerHTML = expAmt;
+    		             }
+    		            }
+    		       }
+	         });
         	/* if(params.type){
         		url_three = "com.hsapi.repair.repairService.svr.billgetRpsMainPart.biz.ext?serviceId=";
         	}else{
@@ -823,6 +893,12 @@
     			document.getElementById("meeting").value = value.replace(" ","T");
     		}else{
     			document.getElementById("meeting").value = document.getElementById("date").innerHTML.replace(" ","T");
+    		}
+    		if(enterDate > 16){
+    			var value = enterDate.substring(0, enterDate-3);
+    			document.getElementById("updateEnterDate").value = value.replace(" ","T");
+    		}else{
+    			document.getElementById("updateEnterDate").value = enterDate.replace(" ","T");
     		}
     	}
     	

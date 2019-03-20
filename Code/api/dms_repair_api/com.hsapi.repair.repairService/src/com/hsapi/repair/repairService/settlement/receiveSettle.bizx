@@ -130,7 +130,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link61</targetConnections>
+    <targetConnections>link104</targetConnections>
     <location x="1192" y="205"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
@@ -778,7 +778,7 @@
     </sourceConnections>
     <targetConnections>link75</targetConnections>
     <targetConnections>link77</targetConnections>
-    <location x="964" y="206"/>
+    <location x="885" y="206"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -792,7 +792,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="945" y="242"/>
+    <location x="866" y="242"/>
     <figSize height="17" width="61"/>
     <node>invokePojo0</node>
   </nodes>
@@ -1075,7 +1075,7 @@
       <targetNode>assign24</targetNode>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
-    <location x="1046" y="205"/>
+    <location x="959" y="205"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -1089,7 +1089,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="1027" y="241"/>
+    <location x="940" y="241"/>
     <figSize height="17" width="61"/>
     <node>invokePojo3</node>
   </nodes>
@@ -1635,10 +1635,10 @@
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess6" name="更新客户消费信息" displayName="updateRpbGuestConsumeAmt" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link61" name="link61" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess6</sourceNode>
-      <targetNode>assign1</targetNode>
+      <targetNode>subprocess11</targetNode>
     </sourceConnections>
     <targetConnections>link22</targetConnections>
-    <location x="1125" y="206"/>
+    <location x="1038" y="206"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess6label</nodeLabel>
     <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
@@ -1654,7 +1654,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess6label" name="label" nodeType="label">
-    <location x="1090" y="241"/>
+    <location x="1003" y="241"/>
     <figSize height="17" width="97"/>
     <node>subprocess6</node>
   </nodes>
@@ -1666,7 +1666,7 @@
     <targetConnections>link62</targetConnections>
     <targetConnections>link65</targetConnections>
     <targetConnections>link74</targetConnections>
-    <location x="1109" y="375"/>
+    <location x="955" y="375"/>
     <size height="28" width="28"/>
     <nodeLabel>assign24label</nodeLabel>
     <process:copy>
@@ -1679,7 +1679,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign24label" name="label" nodeType="label">
-    <location x="1104" y="411"/>
+    <location x="950" y="411"/>
     <figSize height="17" width="39"/>
     <node>assign24</node>
   </nodes>
@@ -1700,7 +1700,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link67</targetConnections>
-    <location x="789" y="206"/>
+    <location x="726" y="206"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess7label</nodeLabel>
     <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
@@ -1717,7 +1717,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess7label" name="label" nodeType="label">
-    <location x="773" y="241"/>
+    <location x="710" y="241"/>
     <figSize height="17" width="58"/>
     <node>subprocess7</node>
   </nodes>
@@ -1836,7 +1836,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link64</targetConnections>
-    <location x="885" y="206"/>
+    <location x="806" y="206"/>
     <size height="28" width="28"/>
     <nodeLabel>assign30label</nodeLabel>
     <process:copy>
@@ -1877,7 +1877,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign30label" name="label" nodeType="label">
-    <location x="880" y="242"/>
+    <location x="801" y="242"/>
     <figSize height="17" width="39"/>
     <node>assign30</node>
   </nodes>
@@ -1898,7 +1898,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link76</targetConnections>
-    <location x="886" y="135"/>
+    <location x="807" y="135"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess8label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
@@ -1914,7 +1914,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess8label" name="label" nodeType="label">
-    <location x="849" y="170"/>
+    <location x="770" y="170"/>
     <figSize height="17" width="101"/>
     <node>subprocess8</node>
   </nodes>
@@ -2499,8 +2499,8 @@
         <process:inputVariable id="1" name="costAmt" type="query" value="String" valueType="Primitive" pattern="reference">payAmt</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -2508,6 +2508,31 @@
     <location x="2077" y="241"/>
     <figSize height="17" width="73"/>
     <node>subprocess10</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess11" name="updateRpbCarLeaveInfo" displayName="updateRpbCarLeaveInfo" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link104" name="link104" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess11</sourceNode>
+      <targetNode>assign1</targetNode>
+    </sourceConnections>
+    <targetConnections>link61</targetConnections>
+    <location x="1136" y="206"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess11label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.updateRpbCarLeaveInfo</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="carId" type="query" value="Int" valueType="Primitive" pattern="reference">maintain/carId</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess11label" name="label" nodeType="label">
+    <location x="1078" y="241"/>
+    <figSize height="17" width="142"/>
+    <node>subprocess11</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

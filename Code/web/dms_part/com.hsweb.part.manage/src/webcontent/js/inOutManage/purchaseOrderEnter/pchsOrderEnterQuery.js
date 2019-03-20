@@ -86,7 +86,7 @@ $(document).ready(function(v)
     getStorehouse(function(data)
     {
         var storehouse = data.storehouse||[];
-     //   nui.get("storeId").setData(storehouse);
+        nui.get("storeId").setData(storehouse);
         storehouse.forEach(function(v)
         {
             if(v && v.id)
@@ -132,6 +132,7 @@ function getSearchParam(){
     }*/
     params.serviceId = comServiceId.getValue();
 	params.partCode = comPartCode.getValue();
+	params.storeId = nui.get("storeId").getValue();
 	params.partNameAndPY = comPartNameAndPY.getValue();
 	if(typeof comSearchGuestId.getValue() !== 'number'){
     	params.guestId=null;

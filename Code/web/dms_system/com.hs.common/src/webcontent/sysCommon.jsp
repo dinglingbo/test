@@ -9,7 +9,7 @@
 <%@ taglib uri="http://eos.primeton.com/tags/eos" prefix="e"%>
 
 <%
-	//应用地址
+	//应用地址 
 	String contextPath=request.getContextPath();
 	//api地址
 	String apiPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort(); 
@@ -85,6 +85,7 @@
 	HttpSession session = request.getSession(false);
     String orgId="";
     String orgName="";
+    String loginName = "";
     String userId="";
 	String userName="";
     String userRealName="";
@@ -114,6 +115,8 @@
 	String repairBillMobileFlag = "0";
 	String isCanSettle = "";
 	String orgs = "";
+	String systemImg = "";
+	String systemName = "";
 	String orgJsonStr = "";
 	String isCanBelowCost="";
 	String swithBatchFlag ="";
@@ -136,6 +139,9 @@
 				         
                 if(attr.get("token") != null){
                 	token = attr.get("token").toString();
+                }
+                if(attr.get("loginName") != null){
+                	loginName = attr.get("loginName").toString();
                 }
                 if(attr.get("noOrgId") != null){
                 	noOrgId = attr.get("noOrgId").toString();
@@ -184,6 +190,12 @@
                 }
                 if(attr.get("orgs") != null){
                 	orgs = attr.get("orgs").toString();
+                }
+                if(attr.get("systemImg") != null){
+                	systemImg = attr.get("systemImg").toString();
+                }
+                if(attr.get("systemName") != null){
+                	systemName = attr.get("systemName").toString();
                 }
                 if(attr.get("orgJsonStr") != null){
                 	orgJsonStr = attr.get("orgJsonStr").toString();
@@ -255,6 +267,7 @@
 	var currOrgId = "<%=orgId %>";
 	var currOrgid = "<%=orgId %>";
     var currOrgName = "<%=orgName %>";
+    var currLoginName = "<%=loginName %>";
     var currUserId = "<%=userId %>";
 	var currUserName = "<%=userName %>";
     var currUserRealName = "<%=userRealName %>";
@@ -284,6 +297,8 @@
 	var currIsCanBelowCost ="<%=isCanBelowCost %>";
 	var currSwithBatchFlag ="<%=swithBatchFlag %>";
 	var currOrgs = "<%=orgs %>";
+	var currSystemImg = "<%=systemImg %>";
+	var currSystemName = "<%=systemName %>";
 	//currOrgs = currOrgs.replace(/\*/g,"");
 	var currOrgJsonStr = "<%=orgJsonStr %>";
 	currOrgJsonStr = currOrgJsonStr.replace(/'/g,'"');

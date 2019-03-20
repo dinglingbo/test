@@ -146,6 +146,7 @@
             <div field="sellUnitPrice" name="sellUnitPrice" width="60"  headerAlign="center" align="center" header="销售单价" datatype="float" visible="false" >
                 <input property="editor" class="nui-textbox" vtype="float"/> 
             </div> 
+            <div field="suggSellPrice" width="60px" headerAlign="center" allowSort="true" align="center" header="建议售价"></div>
             <div field="billTypeId" width="60px" headerAlign="center" align="center" allowSort="true" header="票据类型"></div>
             <div field="storeId" width="60" headerAlign="center" align="center"  allowSort="true" header="仓库"></div>
             <div field="storeShelf" align="left" width="60px" headerAlign="center" align="center" allowSort="true" header="仓位"></div>

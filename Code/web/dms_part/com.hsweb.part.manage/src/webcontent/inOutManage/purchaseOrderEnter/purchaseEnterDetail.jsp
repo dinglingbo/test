@@ -298,14 +298,17 @@
                                       <input property="editor" vtype="float" class="nui-textbox"/>
                                     </div>
                                     <div field="remark" width="100" headerAlign="center" allowSort="false">
-                        备注<input property="editor" class="nui-textbox"/>
-                        </div>
+			                        	备注<input property="editor" class="nui-textbox"/>
+			                        </div>
+                                    <div field="sellPrice" numberFormat="0.0000" width="60" headerAlign="center" header="建议售价">
+                                      <input property="editor" vtype="float" class="nui-textbox"/>
+                                    </div>
                                 </div>
                             </div>
                             <div header="辅助信息" headerAlign="center">
                                 <div property="columns">
                                     <div type="comboboxcolumn" field="storeId" width="60" headerAlign="center" allowSort="false">
-                        仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" data="storehouse"
+                        仓库<input  property="editor" enabled="true" id="storehouse" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" data="storehouse"
                                       url=""
                                      onvaluechanged="" emptyText=""  vtype="required"
                                       /> 

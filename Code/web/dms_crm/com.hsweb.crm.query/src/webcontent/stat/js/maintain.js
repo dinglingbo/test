@@ -129,7 +129,7 @@ function quickSearch(type) {
 
 function updateStatus() {
     var rows = employeeBirthday.getSelecteds();
-    if (rows) {
+    if (rows.length > 0) {
         for (var  i = 0; i < rows.length; i++) {
             var  row = rows[i];
             if (row.readSign == 1) {

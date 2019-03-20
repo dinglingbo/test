@@ -191,6 +191,7 @@ $(document).ready(function(v) {
 			storehouse = data.storehouse || [];
 			if(storehouse && storehouse.length>0){
 				FStoreId = storehouse[0].id;
+				nui.get('storehouse').setData(storehouse);
 			}else{
 				isNeedSet = true;
 			}

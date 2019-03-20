@@ -214,10 +214,11 @@ function saveRecord(data) {
         },
         success:function(res){
             if(res.errCode == 'S'){
-                // showMsg("保存成功！","S");
+                showMsg("发送成功！","S");
             }else{
-                // showMsg("保存失败！","E");
+                 showMsg("发送失败！","E");
             }
+            onClose();
         },
         error: function (jqXHR) {
             showMsg(jqXHR.responseText);

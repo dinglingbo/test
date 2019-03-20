@@ -25,6 +25,8 @@ var brandHash = [];
 var brandList = [];
 var servieTypeHash = [];
 var servieTypeList = [];
+var levelList = []; 
+var levelHash = [];
 
 $(document).ready(function(){
 	visitManEl = nui.get("visitMan");
@@ -64,6 +66,14 @@ $(document).ready(function(){
     		servieTypeHash[v.id]= v;
     	});
     });
+
+    initGuestType("level", function (data) {
+        levelList = nui.get("level").getData();
+        levelList.forEach(function(v) {
+	        levelHash[v.id] = v;
+	    });//客户级别 
+    });
+
     gridCar.on("drawcell", function (e) { 
         var uid = e.record._uid;
     	if (e.field == "status") {
@@ -78,6 +88,8 @@ $(document).ready(function(){
             if (e.value) {
                 e.cellHtml = dataTypeIdList[e.value].name; 
             }
+        }else if (e.field == "tgrade") {
+            e.cellHtml = (levelHash[e.value] == undefined ? "" : levelHash[e.value].name);
         }else if (e.field == "serviceTypeId") {
     		if (servieTypeHash && servieTypeHash[e.value]) {
     			e.cellHtml = servieTypeHash[e.value].name;
@@ -151,7 +163,8 @@ function quickSearch(e){
 	}
 	if(e == 3){
 		p = {
-			carNo:tcarNo_ctrl.value
+            carNo: tcarNo_ctrl.value,
+            level:nui.get("level").value
 		};
 	}
 	p.type = 1;//客户回访
@@ -284,6 +297,28 @@ function sendWechatPicInfo(){//微信图文 回访
 		// 		gridCar.reload();
 		// 	}
 		// });
+	}else{
+		showMsg("请选中一条数据","W");
+	}
+}
+
+
+
+function sellPoint() {//销售机会
+    var row = gridCar.getSelected();
+	if(row){
+		nui.open({
+			url: webPath + contextPath + "/manage/visitMgr/cellPoint.jsp?token="+ token,
+			title: "销售机会", 
+			width: 700, height: 300,
+			onload: function () {
+				var iframe = this.getIFrameEl(); 
+				iframe.contentWindow.setData(row);
+			},
+			ondestroy: function (action) {
+				// gridCar.reload();
+			}
+		});
 	}else{
 		showMsg("请选中一条数据","W");
 	}

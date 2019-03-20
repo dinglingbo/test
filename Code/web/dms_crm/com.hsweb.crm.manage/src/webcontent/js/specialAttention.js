@@ -16,7 +16,7 @@ $(document).ready(function (v) {
     compulsoryInsurance = nui.get("compulsoryInsurance");
     drivingLicense = nui.get("drivingLicense");
     car = nui.get("car");
-    guestBirthday = nui.get("guestBirthday");
+    guestBirthday = nui.get("guestBirthday"); 
 
     business.setUrl(querybusinessUrl);
     compulsoryInsurance.setUrl(querybusinessUrl);
@@ -29,7 +29,7 @@ $(document).ready(function (v) {
             if (e.value == 0) {
                 e.cellHtml = "未关怀";
             } else {
-                e.cellHtml = "已关怀";
+                e.cellHtml = "已关怀"; 
             }
         }
     });
@@ -98,7 +98,10 @@ function query(tab) {
         if (tab.title == "商业险到期提醒") {
             params = {
                 isAnnualRemind: 1,
-                annualStatus: 0
+                annualStatus: 0,
+                startDate:nui.get('startDate').getFormValue(),
+                endDate: nui.get('endDate').getFormValue(),
+                dateType:'syx'
             };
             business.load({
                 params: params,
@@ -107,7 +110,10 @@ function query(tab) {
         } else if (tab.title == "交强险到期提醒") {
             params = {
                 isInsureRemind: 1,
-                insureStatus: 0
+                insureStatus: 0,
+                startDate:nui.get('startDate2').getFormValue(),
+                endDate: nui.get('endDate2').getFormValue(),
+                dateType:'jqx'
             };
             compulsoryInsurance.load({
                 params: params,
@@ -117,7 +123,10 @@ function query(tab) {
         } else if (tab.title == "驾照年审提醒") {
             params = {
                 isLicenseRemind: 1,
-                licenseStatus: 0
+                licenseStatus: 0,
+                startDate:nui.get('startDate3').getFormValue(),
+                endDate: nui.get('endDate3').getFormValue(),
+                dateType:'jzns'
             };
             drivingLicense.load({
                 params: params,
@@ -127,7 +136,10 @@ function query(tab) {
         } else if (tab.title == "车辆年检提醒") {
             params = {
                 isVeriRemind: 1,
-                veriStatus: 0
+                veriStatus: 0,
+                startDate:nui.get('startDate4').getFormValue(),
+                endDate: nui.get('endDate4').getFormValue(),
+                dateType:'clnj'
             };
             car.load({
                 params: params,
@@ -137,7 +149,10 @@ function query(tab) {
         } else if (tab.title == "客户生日提醒") {
             params = {
                 isBirRemind: 1,
-                birStatus: 0
+                birStatus: 0,
+                startDate:nui.get('startDate5').getFormValue(),
+                endDate: nui.get('endDate5').getFormValue(),
+                dateType:'khsr'
             };
             guestBirthday.load({
                 params: params,
@@ -231,13 +246,13 @@ function getRow() {
         sRow = business.getSelected();
         if (sRow != null) {
             sRow.serviceType = 6;
-            sRow.sendWcUrl = "";
+            sRow.sendWcUrl = "manage/sendWechatWindow/sWcInfoInsurces.jsp";
         }
     } else if (tab.title == "交强险到期提醒") {
         sRow = compulsoryInsurance.getSelected();
         if (sRow != null) {
             sRow.serviceType = 7;
-            sRow.sendWcUrl = "";
+            sRow.sendWcUrl = "manage/sendWechatWindow/sWcInfoInsurces.jsp";
         }
     } else if (tab.title == "驾照年审提醒") {
         sRow = drivingLicense.getSelected();
@@ -260,4 +275,129 @@ function getRow() {
     }
     return sRow||0;
 }
+
+
+function quickSearch(type,gridType) {
+    var params = {};
+    var queryname = "本日";
+    switch (type) {
+        case 0:
+            params.today = 1;
+            params.startDate = getNowStartDate();
+            params.endDate = addDate(getNowEndDate(), 1);
+            queryname = "本日";
+            break;
+        case 1:
+            params.yesterday = 1;
+            params.startDate = getPrevStartDate();
+            params.endDate = addDate(getPrevEndDate(), 1);
+            queryname = "昨日";
+            break;
+        case 2:
+            params.thisWeek = 1;
+            params.startDate = getWeekStartDate();
+            params.endDate = addDate(getWeekEndDate(), 1);
+            queryname = "本周";
+            break;
+        case 3:
+            params.lastWeek = 1;
+            params.startDate = getLastWeekStartDate();
+            params.endDate = addDate(getLastWeekEndDate(), 1);
+            queryname = "上周";
+            break;
+        case 4:
+            params.thisMonth = 1;
+            params.startDate = getMonthStartDate();
+            params.endDate = addDate(getMonthEndDate(), 1);
+            queryname = "本月";
+            break;
+        case 5:
+            params.lastMonth = 1;
+            params.startDate = getLastMonthStartDate();
+            params.endDate = addDate(getLastMonthEndDate(), 1);
+            queryname = "上月";
+            break;
+
+        case 10:
+            params.thisYear = 1;
+            params.startDate = getYearStartDate();
+            params.endDate = getYearEndDate();
+            queryname = "本年";
+            break;
+        case 11:
+            params.lastYear = 1;
+            params.startDate = getPrevYearStartDate();
+            params.endDate = getPrevYearEndDate();
+            queryname = "上年";
+            break;
+        default:
+            break;
+    }
+    switch (gridType) {
+        case 'syx'://商业险
+            var menunamedate = nui.get("menunamedate");
+            var startDateEl = nui.get("startDate");
+            var endDateEl = nui.get("endDate");
+            startDateEl.setValue(params.startDate);
+            endDateEl.setValue(addDate(params.endDate, -1));
+            menunamedate.setText(queryname);
+            params.isAnnualRemind = 1;
+            params.annualStatus = 0;
+            params.dateType = gridType;
+            business.load({params:params});
+            break;
+            case 'jqx'://交强险
+            var menunamedate2 = nui.get("menunamedate2");
+            var startDateEl2 = nui.get("startDate2");
+            var endDateEl2 = nui.get("endDate2");
+            startDateEl2.setValue(params.startDate);
+            endDateEl2.setValue(addDate(params.endDate, -1));
+            menunamedate2.setText(queryname);
+            params.isInsureRemind = 1;
+            params.insureStatus = 0;
+            params.dateType = gridType;
+            compulsoryInsurance.load({params:params});
+            break;
+            case 'jzns'://驾照年审
+            var menunamedate3 = nui.get("menunamedate3");
+            var startDateEl3 = nui.get("startDate3");
+            var endDateEl3 = nui.get("endDate3");
+            startDateEl3.setValue(params.startDate);
+            endDateEl3.setValue(addDate(params.endDate, -1));
+            menunamedate3.setText(queryname);
+            params.isLicenseRemind = 1;
+            params.licenseStatus = 0;
+            params.dateType = gridType;
+            drivingLicense.load({params:params});
+            break;
+            case 'clnj'://车辆年检 
+            var menunamedate4 = nui.get("menunamedate4");
+            var startDateEl4 = nui.get("startDate4");
+            var endDateEl4 = nui.get("endDate4");
+            startDateEl4.setValue(params.startDate);
+            endDateEl4.setValue(addDate(params.endDate, -1));
+            menunamedate4.setText(queryname);
+            params.isVeriRemind = 1;
+            params.veriStatus = 0;
+            params.dateType = gridType;
+            car.load({params:params});
+            break;
+            case 'khsr'://客户生日
+            var menunamedate5 = nui.get("menunamedate5");
+            var startDateEl5 = nui.get("startDate5");
+            var endDateEl5 = nui.get("endDate5");
+            startDateEl5.setValue(params.startDate);
+            endDateEl5.setValue(addDate(params.endDate, -1));
+            menunamedate5.setText(queryname);
+            params.isBirRemind = 1;
+            params.birStatus = 0;
+            params.dateType = gridType;
+            guestBirthday.load({params:params});
+            break;
+        default:
+            break;
+    }
+
+}
+
 

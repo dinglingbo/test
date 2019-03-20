@@ -45,7 +45,7 @@
                     <span class="separator"></span>
                     <a class="nui-button" onclick="add()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                     <a class="nui-button" onclick="edit()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;编辑</a>
-                    <a class="nui-button" onclick="pushUserList()" plain="true"><span class="fa fa-toggle-right fa-lg"></span>&nbsp;推送</a>
+                    <a class="nui-button" onclick="" plain="true"><span class="fa fa-toggle-right fa-lg"></span>&nbsp;推送</a>
                 </td>
             </tr>
         </table>

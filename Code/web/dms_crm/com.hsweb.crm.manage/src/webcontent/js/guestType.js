@@ -15,7 +15,7 @@ var cbrand = null; //车辆品牌
 var cmodel = null; //车辆车系
 
 var tabs = null;
-var levelList = []; 
+var levelList = [];  
 var levelHash = [];
 
 var gType = [{ id: 1, text: "首修客户 (最近一个月的首次消费车辆)" },
@@ -315,9 +315,11 @@ function sendInfo(e) {
             break;
         case "insure":
             gridList = gridjqx.getData();
+            sendWcUrl = 'manage/sendWechatWindow/sWcInfoMoreInsurance.jsp';
             break;
         case "annual":
             gridList = gridsyx.getData();
+            sendWcUrl = 'manage/sendWechatWindow/sWcInfoMoreInsurance.jsp';
             break;
         case "type":
             gridList = gridkhlx.getData();
@@ -353,8 +355,19 @@ function sendInfo(e) {
         }else {
             sendWcPic(dataArr);
         }
-    }else if (e == 4) {// 4发送微信卡券
-        // sendWcPic(gridList);
+    } else if (e == 4) {// 4发送微信卡券
+        var dataArr = [];
+        for(var i=0;i<gridList.length;i++){
+            if(gridList[i].wechatOpenId){
+                dataArr.push(gridList[i]);
+            }
+        }
+        if(dataArr.lenght <2){
+            showMsg("筛选至少包含一位已绑定微信号的客户","W");
+            return;
+        }else{
+            sendWcCoupon(gridList);
+        }
     }
 }
 
@@ -395,6 +408,27 @@ function sendWcText(list,sendWcUrl){//发送微信消息
     },
     ondestroy: function (action) {
       
+        }
+    });
+}
+
+
+
+function sendWcCoupon(list) {
+    if (list.length < 1) {
+        showMsg("有可发送微信的客户","E");
+        return;
+    }
+    nui.open({                        
+        url: webPath + contextPath  + "/manage/sendWechatWindow/sWcInfoCoupon.jsp?token="+token,
+        title: "发送微信图文", width: 800, height: 350,
+        onload: function () {
+        var iframe = this.getIFrameEl();
+        iframe.contentWindow.setData(list);
+    },
+    ondestroy: function (action) {
+            //重新加载
+            //query(tab);
         }
     });
 }

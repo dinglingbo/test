@@ -1,8 +1,6 @@
-<%@page import="org.apache.commons.lang.StringUtils"%>
-<%@page import="com.eos.access.http.security.config.HttpSecurityConfig"%>
-<%@page pageEncoding="UTF-8"%>
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<%@page import="com.primeton.cap.AppUserManager"%>
 <html>
 <!-- 
   - Author(s): shitf
@@ -10,25 +8,8 @@
   - Description:
 -->
 <head>
-<%@include file="/coframe/tools/skins/common.jsp"%>
 <title>修改密码</title>
-<%
-   String url = null;
-   HttpSecurityConfig securityConfig = new HttpSecurityConfig();
-   boolean isOpenSecurity = securityConfig.isOpenSecurity();
-   if(isOpenSecurity){
-   		boolean isAllInHttps = securityConfig.isAllInHttps();
-   		if(!isAllInHttps){
-   			String ip = securityConfig.getHost();
-   			String https_port = securityConfig.getHttps_port();
-   			url = "https://" + ip + ":" + https_port + request.getContextPath() + "/coframe/rights/user/org.gocom.components.coframe.rights.user.cipher.update_password.flow";
-   		}else{
-   			url = "org.gocom.components.coframe.rights.user.cipher.update_password.flow"; 
-   		}
-   }else{
-   		url =  "org.gocom.components.coframe.rights.user.cipher.update_password.flow";
-   }
- %>
+<%@include file="/coframe/tools/skins/common.jsp"%>
 </head>
 <body>
 <div style="padding-top:5px;">
@@ -43,14 +24,12 @@
                 </table>
             </div>
 		   
-	<form method="post" id = "form1"	name="UpdateForm" action="<%=url%>"  onsubmit="return checkFormSelf(this);">
-		<input id="operatorId" class="nui-hidden" name="user/operatorId" />
-		<input id="userId" class="nui-hidden" name="user/userId" value="<%=AppUserManager.getCurrentUserId() %>"/>
-		<table class="nui-form-table" style="width:100%;">
+	<form method="post" id = "form1"	name="UpdateForm"   onsubmit="return checkFormSelf(this);">
+		 <table class="nui-form-table" style="width:100%;">
 	      <tr>
 	        <th class="nui-form-label" style="width:110px;"><label for="user.userId$text">当前用户：</label></th>
 	        <td>
-	          <input id="currentUser" class="nui-textbox nui-form-input" value="<%=AppUserManager.getCurrentUserId() %>" enabled="false" />
+	          <input id="currentUser" class="nui-textbox nui-form-input"  enabled="false" />
 	        </td>
 	      </tr>
 	      <tr class="odd">
@@ -78,28 +57,53 @@
 
 <script type="text/javascript">    
     nui.parse();
+    
+    nui.get("currentUser").setValue(currLoginName);
+    var form = new nui.Form("#form1");
 
     function save () {
-      var form = document.getElementById("form1");
-      form.submit();
+      if(!checkFormSelf()) {
+      	return;
+      }
+      //var form = document.getElementById("form1");
+      //form.submit();
+      updatePassword();
     }
+    
+    var passwordUrl=apiPath + sysApi + "/com.hsapi.system.auth.LoginManager.updatePassword.biz.ext";
+	function updatePassword(){
+    	nui.mask({
+	        el : document.body,
+	        cls : 'mini-mask-loading',
+	        html : '保存中...'
+	    });
+        nui.ajax({
+            url: passwordUrl,
+            type: 'post',
+            data: nui.encode({
+            	oldPassword: nui.get('password').getValue(),
+            	password: nui.get('pwd2').getValue(),
+            	loginName: nui.get('currentUser').getValue(),
+            	token: token
+            }),
+            cache: false,
+            success: function (data) {
+                if (data.errCode == "S"){
+                	nui.unmask(document.body);
+                	showMsg("修改成功!","S");
+                	grid.reload();
+                }else {
+                    nui.unmask(document.body);
+                    showMsg(data.errMsg,"W");
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.responseText);
+            }
+		});
+    
+	}
 
-     
-
-    <%
-    	Object result = request.getAttribute("retValue");
-    	String retValue = "";
-     	if(result != null){
-     		retValue = (String)result;
-     		if(retValue.equals("true")){
-     		       //setSuccess();
-     			out.println("setSuccess()");
-     		}else if(retValue.equals("false")){
-     		      //setError();
-				out.println("setError()");  
-     		}
-     	}
-     %>
 	function setError(){
     	//window.alert("原密码填写错误！");
     	showMsg("原密码填写错误!","W");

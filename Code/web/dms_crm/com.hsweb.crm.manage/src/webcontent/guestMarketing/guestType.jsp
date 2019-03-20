@@ -47,7 +47,7 @@ pageEncoding="UTF-8" session="false" %>
             </div>
 
             <div id="t3" style="float:left;width: 60%; height: 100%;">
-                <div id="tabs1" class="nui-tabs" activeIndex="4" style="width:100%;height:100%;" plain="true"
+                <div id="tabs1" class="nui-tabs" activeIndex="0" style="width:100%;height:100%;" plain="true"
                 onactivechanged=""
                     tabPosition="top">
                     <div title="客户类型" name="type">
@@ -191,9 +191,9 @@ pageEncoding="UTF-8" session="false" %>
                                                         class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(2)"><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(3)"><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(4)"><span
                                                         class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
                                             </td>
                                         </tr>
@@ -239,9 +239,9 @@ pageEncoding="UTF-8" session="false" %>
                                                         class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(2)"><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(3)"><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(4)"><span
                                                         class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
                                             </td>
                                         </tr>
@@ -287,10 +287,10 @@ pageEncoding="UTF-8" session="false" %>
                                                         class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(2)"><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                                                <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(3)"><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
-                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a> -->
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(4)"><span
+                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
                                             </td>
                                         </tr>
                                     </table>
@@ -335,9 +335,9 @@ pageEncoding="UTF-8" session="false" %>
                                                         class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
                                                  <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(2)"><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(3)"><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(4)"><span
                                                         class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a> 
                                             </td>
                                         </tr>
@@ -383,9 +383,9 @@ pageEncoding="UTF-8" session="false" %>
                                                         class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(2)"><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(3)"><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(4)"><span
                                                         class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
                                             </td>
                                         </tr>
@@ -431,9 +431,9 @@ pageEncoding="UTF-8" session="false" %>
                                                 class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
                                         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(2)"><span
                                                 class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                                        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcPic()"><span
+                                        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(3)"><span
                                                 class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                                        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
+                                        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(4)"><span
                                                 class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
                                     </td>
                                 </tr>

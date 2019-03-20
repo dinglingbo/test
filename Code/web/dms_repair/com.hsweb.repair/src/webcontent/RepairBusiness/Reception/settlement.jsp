@@ -150,7 +150,7 @@
             <table  width="92%" border="0" align="center" cellpadding="0" cellspacing="0">
                 <tbody>
                     <tr>
-                        <td class="color999" width="76" height="46">单据编号：</td>
+                        <td class="color999" width="90" height="46">单据编号：</td>
                         <td><input type="text" id="txtno" class="peijianss" value="" /></td>
                     </tr>
                     <tr>
@@ -164,6 +164,10 @@
                     <tr>
                         <td class="color999" height="46">电话：</td>
                         <td><input type="text" id="txtphoneno" class="peijianss" value="" /></td>
+                    </tr>
+                     <tr>
+                        <td class="color999" height="46">进厂时间：</td>
+                        <td><input id="updateEnterDate" type="datetime-local" value=""/></td>
                     </tr>
                     <tr>
                         <td class="color999" height="46">打印时间：</td>
@@ -420,6 +424,7 @@
 		var itemSubtotal = 0;
 		var partAmt = 0;
 		var partSubtotal = 0;
+		var enterDate = null;
 		//尊敬的客户:以上报价在实际施工过程中可能略有小幅变动，最终价格以实际结算单为准
 		$(document).ready(function (){
 			
@@ -526,7 +531,7 @@
 	        		phones = list.contactMobile || "";
 	        		var carNo = list.carNo || "";
 	        		var carVin = list.carVin || "";
-	        		var enterDate = list.enterDate || "";
+	        		enterDate = list.enterDate || "";
 	        		
 	        		var drawOutReport = list.drawOutReport || "";
 	        		if(drawOutReport != ""){
@@ -888,6 +893,12 @@
     			document.getElementById("meeting").value = value.replace(" ","T");
     		}else{
     			document.getElementById("meeting").value = document.getElementById("date").innerHTML.replace(" ","T");
+    		}
+    		if(enterDate > 16){
+    			var value = enterDate.substring(0, enterDate-3);
+    			document.getElementById("updateEnterDate").value = value.replace(" ","T");
+    		}else{
+    			document.getElementById("updateEnterDate").value = enterDate.replace(" ","T");
     		}
     	}
     	

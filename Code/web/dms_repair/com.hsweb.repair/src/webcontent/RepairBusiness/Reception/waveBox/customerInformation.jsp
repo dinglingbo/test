@@ -413,6 +413,10 @@
 					});
 				}
 				
+				function onCancel(){
+					window.CloseOwnerWindow("");
+				}
+				
 				function getModel(e){
 					var carModel = nui.get("carBrandId").text;
 					nui.get("carModel").setValue(carModel);

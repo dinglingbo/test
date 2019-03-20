@@ -109,6 +109,7 @@
 			a.record_date as recordDate,
 			a.modifier as modifier,
 			a.modify_date as modifyDate,
+			a.background_color as backgroundColor,
 			a.is_can_below_cost as isCanBelowCost,
 			b.`code` as compCode,
 			b.`name` as compName,

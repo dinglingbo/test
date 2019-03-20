@@ -56,8 +56,8 @@ function save() {
 			url : sendUrl,
 			type : 'POST',
 			data : json,
-			cache : false,
-			contentType : 'text/json',
+//			cache : false,
+//			contentType : 'text/json',
 			success : function(text) {
 				var returnJson = nui.decode(text);
 				if (returnJson.errCode == "S") {

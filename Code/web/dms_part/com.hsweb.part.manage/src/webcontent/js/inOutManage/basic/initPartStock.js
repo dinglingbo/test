@@ -796,3 +796,20 @@ function importPart(){
         }
     });
 }
+
+function onExport(){
+	setInitExportData(null, null);
+}
+function setInitExportData(main, detail){
+    var tableExportContent = $("#tableExportContent");
+    tableExportContent.empty();
+    
+
+    method5('tableExcel',"期初库存导入",'tableExportA');
+}
+
+
+
+
+
+

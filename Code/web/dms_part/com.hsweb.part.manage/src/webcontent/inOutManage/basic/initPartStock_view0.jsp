@@ -8,7 +8,7 @@
 -->
 <head>
 <title>期初库存</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/initPartStock.js?v=2.0.10"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/initPartStock.js?v=2.0.11"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -119,7 +119,8 @@
                         <td style="white-space:nowrap;">
                             <a class="nui-button" plain="true" iconCls="" onclick="addPart()" id="addPartBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;添加</a>
                             <a class="nui-button" plain="true" iconCls="" onclick="deletePart()" id="deletePartBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
-                            <a class="nui-button" plain="true" iconCls="" onclick="importPart()" id="importPartBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
+                            <a class="nui-button" plain="true" iconCls="" onclick="importPart()" id="importPartBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a> 
+	                		<a class="nui-button" plain="true" onclick="onExport()"><span class="fa fa-arrow-down fa-lg"></span>下载模板</a>
                         </td>
                     </tr>
                 </table>
@@ -205,6 +206,25 @@
      
     
 </div>
+
+<div id="exportDiv" style="display:none">  
+    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
+        <tr>  
+            <td colspan="1" align="center">品牌</td>
+            <td colspan="1" align="center">配件编码</td>
+            <td colspan="1" align="center">数量</td>
+            <td colspan="1" align="center">单价</td>
+            <td colspan="1" align="center">是否含税</td>
+            <td colspan="1" align="center">税率</td>
+            <td colspan="1" align="center">建议售价</td>
+            <td colspan="1" align="center">仓位</td>
+            <td colspan="1" align="center">备注</td>
+        </tr>
+        <tbody id="tableExportContent">
+        </tbody>
+    </table>  
+    <a href="" id="tableExportA"></a>
+</div>  
 
 </body>
 </html>

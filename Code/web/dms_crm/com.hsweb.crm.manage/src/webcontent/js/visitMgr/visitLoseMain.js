@@ -55,6 +55,8 @@ $(document).ready(function(){
         var uid = e.record._uid;
     	if(e.field == "serviceCode"){
     		e.cellHtml ='<a href="##" onclick="openOrderDetail('+"'"+e.record.serviceId+"'"+')">'+e.record.serviceCode+'</a>';
+    	}else if(e.field == "carNo"){
+    		e.cellHtml ='<a href="##" onclick="WindowrepairHistory('+"'"+e.record.carNo+"'"+')">'+e.record.carNo+'</a>';
     	}else if (e.field == "serviceTypeName") {
             e.cellHtml = retSerTypeStyle(e.cellHtml);
         }else if (e.field == "tgrade") {

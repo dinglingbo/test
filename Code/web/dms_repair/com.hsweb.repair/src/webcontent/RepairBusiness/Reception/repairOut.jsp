@@ -145,7 +145,9 @@ a#car{
     
 //     beginDateEl = nui.get("date1");
 //     endDateEl = nui.get("date2");
-
+	if(currCompType != "GEARBOX"){
+		mainGrid.hideColumn("boxModel");
+	}
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();
         servieTypeList.forEach(function(v) {

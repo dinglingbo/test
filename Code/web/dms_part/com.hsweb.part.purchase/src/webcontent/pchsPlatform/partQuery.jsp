@@ -11,7 +11,7 @@
 <title>配件查询</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script
-	src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.21"></script>
+	src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.28"></script>
 <style type="text/css">
 		.table-label {
 			text-align: right;
@@ -95,7 +95,7 @@
 	                     dataField="data"
 	                     url=""
 	                     idField="id"
-	                     totalField="page.totalPage"
+	                     totalField="page.count"
 	                     onselectionchanged="onGridSelectionChanged()"
 	                     selectOnLoad="true"
 	                     pageSize="50"
@@ -109,9 +109,9 @@
 		          	 		<div type="indexcolumn">序号</div>
 		          	 		<div allowSort="true" field="goodsCode" width="50" headerAlign="center" allowSort="true">配件内码</div>
 		          	 		<div allowSort="true" field="partsCode" width="100" headerAlign="center" allowSort="true">配件编码</div>
-		          	 		<div allowSort="true" field="goodsNamec" width="300" headerAlign="center" allowSort="true">全称</div>
+		          	 		<div allowSort="true" field="goodsName" width="300" headerAlign="center" allowSort="true">全称</div>
 		          	 		<div allowSort="true" field="brandName" width="100" headerAlign="center" allowSort="true">品牌</div>
-		          	 		<div allowSort="true" field="countQty" width="100" headerAlign="center" allowSort="true">库存量</div>
+		          	 		<div allowSort="true" field="countQty" visible="false" width="100" headerAlign="center" allowSort="true">库存量</div>
 		          	 	</div>
 		          </div>
          	</div>
@@ -133,7 +133,7 @@
 	                     dataField="data"
 	                     url=""
 	                     idField="id"
-	                     totalField="page.totalPage"
+	                     totalField="page.count"
 	                     selectOnLoad="true"
 	                     pageSize="50"
 	                     pageIndexField="currpage"
@@ -144,12 +144,13 @@
 				      <div property="columns">
 				      	   <div headerAlign="center" type="indexcolumn" width="30">序号</div>
 				           <div field="goodsCode" name="goodsCode" width="80" visible="true" headerAlign="center" header="内码"></div>
-					       <div field="partsCode" headerAlign="partsCode" visible="false" width="80"header="编码"></div>
+					       <div field="partsCode" headerAlign="partsCode" visible="true" width="80"header="编码"></div>
 					       <div field="full_name" id="full_name" visible="false" width="260" headerAlign="center" header="全称"></div>
-					       <div field="qualityName" name="qualityName" visible="false" width="60" headerAlign="center" header="品质"></div>
-					       <div field="brandName" name="brandName" visible="false" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="品牌"></div>
+					       <div field="brandCode" name="brandCode" visible="true" headerAlign="center" header="品牌编码"></div>
+					       <div field="brandName" name="brandName" visible="true"  headerAlign="center" header="品牌"></div>
 					       <div field="carName"  width="60" visible="false" headerAlign="center" header="厂牌"></div>
-						   <div field="guestName" width="150" headerAlign="center" allowSort="true" header="配件商"></div>
+				           <div field="storeCode"  width="60" visible="false" headerAlign="center" header="配件商编码"></div>
+						   <div field="storeName" width="150" headerAlign="center" allowSort="true" header="配件商"></div>
 					       <div field="qty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center"header="库存" ></div>
 						   <div field="price" width="60" headerAlign="center" allowSort="true" header="销售价"></div>
 					   	   <div field="warehouseName" id="warehouseName" width="140" headerAlign="center" header="仓库"></div>

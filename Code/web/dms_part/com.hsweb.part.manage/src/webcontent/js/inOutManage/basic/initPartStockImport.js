@@ -106,6 +106,7 @@ function sure() {
 				storeId : nstoreId||"",
 				enterQty : (data[i].数量||"").replace(/\s+/g, ""),
 				enterPrice : (data[i].单价||"").replace(/\s+/g, ""),
+				sellPrice: (data[i].建议售价||"").replace(/\s+/g, ""),
 				taxSign : taxSign||0,
 				taxRate : (data[i].税率||"0.07").replace(/\s+/g, ""),
 				storeShelf : (data[i].仓位||"").replace(/\s+/g, ""),

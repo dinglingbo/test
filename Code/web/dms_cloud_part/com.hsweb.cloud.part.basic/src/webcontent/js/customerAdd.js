@@ -20,7 +20,7 @@ var nrow = null;
 var gusetPropertyList=[];
 var gusetPropertyHash={};
 var gusetPropertyEl=null;
-var dictDefs ={"gusetProperty":"10261"};
+var dictDefs ={"gusetProperty":"10042"};
 function initForm(){
     mainForm = new nui.Form("#mainForm");
     otherForm = new nui.Form("#otherForm");

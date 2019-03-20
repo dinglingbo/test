@@ -10,7 +10,7 @@ var billTypeIdHash={};
 var settleTypeIdHash={};
 var guestData=null;
 var partData=null;
-var categoryF=null;
+var classesId=null;
 var tree = null;
 var brandId =null;
 var carId=null;
@@ -33,8 +33,8 @@ $(document).ready(function() {
     	signBtn.setVisible(false);
     }
     tree = nui.get("tree1");
-    tree.setUrl(treeUrl);
-    initQuery();
+//    tree.setUrl(treeUrl);
+//    initQuery();
     document.onkeyup = function(event) {
 		var e = event || window.event;
 		var keyCode = e.keyCode || e.which;// 38向上 40向下
@@ -45,7 +45,7 @@ $(document).ready(function() {
 		}
 	}
        
-//    protoken = getProToken();
+    protoken = getProToken();
     
     partDetailGrid.on("drawcell", function (e) {
         var grid = e.sender;
@@ -65,10 +65,10 @@ $(document).ready(function() {
     
 });
 
-function initQuery(){
-	tree.load({token:token});
-    queryPartBrand();
-}
+//function initQuery(){
+//	tree.load({token:token});
+//    queryPartBrand();
+//}
 function platformSignIn(){
 	window.open("http://192.168.111.58:8080/srm/supplier/cusRegister.html?id="+currOrgId);  
 //	window.open("http://srm.hszb.harsons.cn/srm/supplier/cusRegister.html?id="+currOrgId);     
@@ -131,8 +131,8 @@ function addOrEditPart(row)
 //            params.applyCarModelList=null;
             if(row)
             {
-                params.comPartCode= row.code;
-                params.name=row.name;
+                params.comPartCode= row.partsCode;
+                params.name=row.partsName;
             }
             iframe.contentWindow.setData(params);
         },
@@ -161,24 +161,23 @@ function verifyGuestForCar(){
         html : '加载中...'
     });
 	var jsonData = partDetailGrid.getSelected();
-	if(!jsonData.guestId){
+	if(!jsonData.storeCode){
 		parent.parent.showMsg("请选择有往来单位的配件！","W");
+		nui.unmask(document.body);
 		return;
 	}
 	nui.ajax({
         url : guestUrl,
         type : "post",
         data : {
-        	guestId	 :jsonData.guestId,
-    		guestName : jsonData.guestName,
-    		partId :jsonData.partId,
-    		partCode :jsonData.code,
-    		brandId : jsonData.brandId,
+        	guestId	 :jsonData.storeCode,
+    		guestName : jsonData.storeName,
+    		partId :jsonData.goodsCode,
+    		partCode :jsonData.partsCode,
+    		brandId : jsonData.brandCode,
     		brandName :jsonData.brandName,
-    		qualityId :jsonData.qualityId,
-    		qualityName: jsonData.qualityName,
-    		partName :jsonData.name,
-    		protoken: protoken,
+    		partName :jsonData.partsName,
+    		protoken :protoken,
     		token:token
         },
         success : function(data) {
@@ -210,7 +209,8 @@ function verifyGuestForOrder(){
         html : '加载中...'
     });
 	var jsonData = partDetailGrid.getSelected();
-	if(!jsonData.guestId){
+	if(!jsonData.storeCode){
+		nui.unmask(document.body);
 		parent.parent.showMsg("请选择有往来单位的配件！","W");
 		return;
 	}
@@ -218,16 +218,14 @@ function verifyGuestForOrder(){
         url : guestUrl,
         type : "post",
         data : {
-        	guestId	 :jsonData.guestId,
-    		guestName : jsonData.guestName,
-    		partId :jsonData.partId,
-    		partCode :jsonData.code,
-    		brandId : jsonData.brandId,
+        	guestId	 :jsonData.storeCode,
+    		guestName : jsonData.storeName,
+    		partId :jsonData.goodsCode,
+    		partCode :jsonData.partsCode,
+    		brandId : jsonData.brandCode,
     		brandName :jsonData.brandName,
-    		qualityId :jsonData.qualityId,
-    		qualityName: jsonData.qualityName,
-    		partName :jsonData.name,
-    		protoken: protoken,
+    		partName :jsonData.partsName,
+    		protoken :protoken,
     		token:token
         },
         success : function(data) {
@@ -340,46 +338,44 @@ function openGeneratePop(partList, type, title){
     });
 }
 
-//function getProToken(){
-//	var systoken = "";
-//    nui.ajax({
-//        url : webPath + contextPath + "/com.hs.common.sysService.srmAuthPro.biz.ext",
-//        type : "post",
-//        async: true,
-//        data : {
-//        },
-//        success : function(data) {
-//            var errCode = data.errCode;
-//            if(errCode == "S"){
-//            	systoken = data.systoken;
-//            	protoken = systoken;
-//            	
-//            	queryCarplate();
-//            	queryPartBrand();
-//
-//            	//tree.load({
-//            	//	parentId :0,
-//            	//	protoken:protoken
-//            	//});
-//            	
-//            	var url = baseUrl+"com.hsapi.part.invoice.partInterface.queryPartType.biz.ext?token="+token+"&protoken="+protoken;
-//            	tree.load(url);
-//            	
-//            }else {
-//            	systoken = "";
-//            }
-//            
-//        },
-//        error : function(jqXHR, textStatus, errorThrown) {
-//            // nui.alert(jqXHR.responseText);
-//            console.log(jqXHR.responseText);
-//        }
-//    });
-//    
-//    
-//	
-//    return systoken;
-//}
+function getProToken(){
+	var systoken = "";
+    nui.ajax({
+        url : webPath + contextPath + "/com.hs.common.sysService.srmAuth.biz.ext",
+        type : "post",
+        async: true,
+        data : {
+        },
+        success : function(data) {
+            var errCode = data.errCode;
+            if(errCode == "S"){
+            	systoken = data.systoken;
+            	protoken = systoken;
+            	
+            	queryPartBrand();
+
+//            	tree.load({
+//            		protoken:protoken
+//            	});
+            	
+            	var url = treeUrl+"?token="+token+"&protoken="+protoken;
+            	tree.load(url);
+            	
+            }else {
+            	systoken = "";
+            }
+            
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+    
+    
+	
+    return systoken;
+}
 
 
 function onSearch (){
@@ -395,6 +391,8 @@ function onSearch (){
 		brandCode :brandCode ||"",
 		partsCode :partCode || "",
 		partsName :partName ||"",
+		classesId:classesId || "",
+		protoken:protoken,
 		token:token
 	});
 }
@@ -406,6 +404,7 @@ function onGridSelectionChanged(){
 	 var  goodsCode = data.goodsCode;
 	 partDetailGrid.load({
 		goodsCode:goodsCode,
+		protoken:protoken,
     	token:token
 	 })
 }
@@ -419,16 +418,16 @@ function onNodeDblClick(e)
 {
     var currTree = e.sender;
     var currNode = e.node;
-    var level = currTree.getLevel(currNode);
-    var list = [];
-    var tmpNode = currNode;
-    do{
-        list[level] = tmpNode.id;
-        tmpNode = currTree.getParentNode(tmpNode);
-        level = currTree.getLevel(tmpNode);
-    }while(tmpNode&&tmpNode.id);
+//    var level = currTree.getLevel(currNode);
+//    var list = [];
+//    var tmpNode = currNode;
+//    do{
+//        list[level] = tmpNode.id;
+//        tmpNode = currTree.getParentNode(tmpNode);
+//        level = currTree.getLevel(tmpNode);
+//    }while(tmpNode&&tmpNode.id);
 
-   categoryF = list[0]||"";
+    classesId = currNode.id||"";
 //    var categoryS = list[1]||"";
 //    var categoryT = list[2]||"";
 

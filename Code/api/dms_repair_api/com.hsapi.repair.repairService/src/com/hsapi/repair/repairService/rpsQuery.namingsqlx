@@ -1860,7 +1860,8 @@
        	a.out_date outDate,
        	a.mt_advisor mtAdvisor,
        	b.amt amt,
-       	b.remark remark
+       	b.remark remark,
+       	b.guest_name guestName
        	    from rps_maintain a
        	    INNER JOIN rps_expense b ON (a.id = b.service_id )
 			INNER JOIN rpb_car c ON (a.car_id = c.id)

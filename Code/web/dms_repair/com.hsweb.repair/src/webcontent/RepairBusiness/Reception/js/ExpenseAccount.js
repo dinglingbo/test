@@ -744,11 +744,12 @@ function save(){
         },
         success: function(text) {
         	nui.unmask(document.body);
-        	if(text.errMsg){
-        		showMsg(text.errMsg,"W");
-        	}else{
+        	if(text.errCode=="S"){
         		nui.get("rid").setValue(text.mainId);
             	showGridMsg(text.mainId);
+            	showMsg(text.errMsg,"S");
+        	}else{
+        		showMsg(text.errMsg,"W");
             }
         	}
     });
@@ -759,27 +760,41 @@ function onPrint(e){
 	var params = {
             serviceId : main.id,
             comp : currRepairSettorderPrintShow || currOrgName,
-            baseUrl : baseUrl,
             type : 1,
+            partApiUrl:apiPath + partApi + "/",
+    		baseUrl: apiPath + repairApi + "/",
+    		sysUrl: apiPath + sysApi + "/",
+    		webUrl:webPath + contextPath + "/",
             bankName: currBankName,
             bankAccountNumber: currBankAccountNumber,
             currCompAddress: currCompAddress,
             currUserName :currUserName,
             currCompTel: currCompTel,
-            currCompLogoPath : currCompLogoPath,
             currSlogan1: currSlogan1,
             currSlogan2: currSlogan2,
+            currCompLogoPath: currCompLogoPath,
+            currRepairBillMobileFlag:currRepairBillMobileFlag,
+            currRepairSettPrintContent:currRepairSettPrintContent,
+            currRepairEntrustPrintContent:currRepairEntrustPrintContent,
+            sourceServiceId:main.sourceServiceId,
     		token : token
         };
-	if(e==1){
+	if(e==1 || e==3){
 		params.printName = "报价单";
 	}
-	if(e==2){
+	if(e==2 || e==4){
 		params.printName = "结账单";
+	}
+	var url = null;
+	if(e==1 || e==2){
+		url = webBaseUrl +"com.hsweb.print.settlement.flow";
+	}
+	if(e==3 || e==4){
+		url = webBaseUrl +"com.hsweb.print.settlementPart.flow";
 	}
 	if(main.id){
 		nui.open({
-	        url: webBaseUrl +"com.hsweb.print.settlement.flow",
+	        url: url,
 	        width: "100%",
 	        height: "100%",
 	        showMaxButton: false,
@@ -791,23 +806,7 @@ function onPrint(e){
 	        },
 	    });
 	}else{
-		if(main.isSettle){//已结算
-			params.serviceId = main.sourceServiceId;
-			nui.open({
-		        url: webBaseUrl +"com.hsweb.print.settlement.flow",
-		        width: "100%",
-		        height: "100%",
-		        showMaxButton: false,
-		        allowResize: false,
-		        showHeader: true,
-		        onload: function() {
-		            var iframe = this.getIFrameEl();
-		            iframe.contentWindow.SetData(params);
-		        },
-		    });
-		}else{
-			showMsg("请先保存数据","W");
-		}
+		 showMsg("请先保存数据","W");
 	}
 }
 

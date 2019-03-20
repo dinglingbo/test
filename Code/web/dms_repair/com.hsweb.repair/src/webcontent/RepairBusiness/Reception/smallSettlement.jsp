@@ -14,7 +14,7 @@
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"  type="text/javascript"></script>  
-    
+    <link href="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/mian.css" rel="stylesheet" type="text/css" /> 
 </head>
     <style>
         body, p, div, td, html {
@@ -24,7 +24,7 @@
         }
 
         .print_btn {
-            width: 800px;
+            width: 1000px;
             margin: 0 auto;
             text-align: center;
         }
@@ -76,8 +76,29 @@
         }
     </style>
 <body>
+
+
+<div class="boxbg" id ="show" style="display:none"></div>
+ <div class="popbox" id ="show1" style="height:220px; width:480px; margin:-210px 0 0 -240px; display:none">
+        <h2><a class="close2" href="javascript:box_setup_close()" title="关闭">&nbsp;</a>修改</h2>
+        <div style="padding-top:15px; margin:0 15px;">
+            <table  width="92%" border="0" align="center" cellpadding="0" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td class="color999" height="46">结算时间：</td>
+                        <td><input id="updOutDate" type="datetime-local" value=""/></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="boxbtn"><ul><a href="javascript:box_setup_close()" class="qc">取消</a><a href="javascript:save()" id="btn_save">保存</a></ul></div>
+</div>
+
+
 <div class="print_btn">
         <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
+        <a href="javascript:box_setup_open()">修改</a>
         <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
         <a  style="background:#999999" iconCls="" onclick="sendInfo()">发送短信</a>
         <a  style="background:#999999" iconCls="" onclick="sendInfo()">发送微信</a>
@@ -102,7 +123,7 @@
                             <td height="20" id="carNo">车牌号：</td>
                         </tr>
                         <tr>
-                            <td height="20" id="outDate">结算时间：</td>
+                            <td height="20" >结算时间：<span id="outDate"></span></td>
                         </tr>
                     </table>
                 </div>
@@ -224,7 +245,7 @@
                    		document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML+ mtAdvisor;
                    		document.getElementById("guestId").innerHTML = document.getElementById("guestId").innerHTML+ guestId;
                    		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML+ carNo;
-                   		document.getElementById("outDate").innerHTML = document.getElementById("outDate").innerHTML+ outDate; 
+                   		document.getElementById("outDate").innerHTML = outDate; 
                    }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -408,6 +429,39 @@
 	                }
             	}); */
     	}
+    
+    
+    
+       function box_setup_open() {
+	        /* $(".boxbg").show();
+	        $(".popbox").show(); */
+	        document.getElementById("show").style.display = "";
+	        document.getElementById("show1").style.display="";
+			var updOutDate = document.getElementById("outDate").value;
+			if(updOutDate!=null && updOutDate!=""){
+			   if(updOutDate > 16){
+    			var value = enterDate.substring(0, updOutDate-3);
+    			  document.getElementById("updOutDate").value = value.replace(" ","T");
+    		   }else{
+    			  document.getElementById("updOutDate").value = updOutDate.replace(" ","T");
+    		   }
+			}
+			
+    	}
+    	
+    	function save(){
+			box_setup_close();
+		    document.getElementById("outDate").innerHTML = document.getElementById("updOutDate").value.replace("T"," ");
+       	}
+    	
+    	function box_setup_close(){
+    		/* $(".boxbg").hide();
+        	$(".popbox").hide(); */
+        	document.getElementById("show").style.display = 'none';
+	        document.getElementById("show1").style.display='none';
+    	} 
+    
+   
     	
    var token1 =null; 
    var webUrl =null;

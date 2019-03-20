@@ -120,7 +120,18 @@ public class Utils {
 			return new HashMap<String, Object>();
 		}
 	}
-
+	
+	@Bizlet("")
+	public static HashMap<String, Object> str3Map(String param,String index) {
+		JSONObject obj=JSONObject.parseObject(param);
+		String obj2 = (obj.getJSONObject(index)).toJSONString();
+		try {		
+			HashMap<String, Object> p = JSONObject.parseObject(obj2,HashMap.class);
+			return p;
+		} catch (Exception e) {
+			return new HashMap<String, Object>();
+		}
+	}
 	/**
 	 * Json转对象
 	 * 

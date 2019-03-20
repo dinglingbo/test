@@ -198,4 +198,13 @@
 		and a.party_id = #roleId#
 	</delete>
 	
+	<!--获取员工对应的仓库-->
+    <select id="queryMemStore" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT b.id as id, b.orgid as orgid, b.name as name
+		from com_store_member a
+		inner join com_store b
+		on a.store_id = b.id
+		where a.emp_id = #empId# and b.is_disabled = 0
+    </select>
+	
 </sqlMap>

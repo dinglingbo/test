@@ -181,7 +181,9 @@
       <process:partner type="literal">com.hsapi.part.invoice.PurchaseService.queryCarplate</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
-    <process:inputVariables/>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="access_token" type="query" value="java.lang.String" valueType="Java" pattern="reference">protoken</process:inputVariable>
+    </process:inputVariables>
     <process:outputVariables>
       <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java">msg</process:outputVariable>
     </process:outputVariables>
@@ -214,7 +216,9 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="msg" primitiveType="String"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="result"/>
   </process:variables>
-  <process:inputs varArgs="false"/>
+  <process:inputs varArgs="false">
+    <process:input description="" isArray="false" name="protoken" primitiveType="String"/>
+  </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>

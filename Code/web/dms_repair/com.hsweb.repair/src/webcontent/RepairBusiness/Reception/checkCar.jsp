@@ -514,7 +514,7 @@
 		document.getElementById("guestAddr").innerHTML = currCompAddress;
 		document.getElementById("phone").innerHTML = currCompTel;
         $.ajaxSettings.async = false;//设置为同步执行
-        $.post(params.baseUrl+"com.hsapi.repair.repairService.repairInterface.queryCheckMainbyServiceId.biz.ext?id="+params.serviceId+"&token="+params.token,{},function(text){
+        $.post(params.baseUrl+"com.hsapi.repair.repairService.repairInterface.queryCheckMainbyServiceId.biz.ext?params/id="+params.mainId+"&token="+params.token,{},function(text){
         	if(text.errCode == "S"){
         		var maintain = text.list[0];
         		var car = text.car;

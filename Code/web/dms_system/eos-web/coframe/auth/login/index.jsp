@@ -16,8 +16,8 @@
     <script src="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menu/menu.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menupop.js" type="text/javascript"></script>
     <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/tabs.css" rel="stylesheet" type="text/css" />
-    <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/frame.css?v=1.0.11" rel="stylesheet" type="text/css" />
-    <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/index.css?v=1.0.9" rel="stylesheet" type="text/css" />
+    <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/frame.css?v=1.0.13" rel="stylesheet" type="text/css" />
+    <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/index.css?v=1.0.11" rel="stylesheet" type="text/css" />
     <link href="<%=webPath + contextPath%>/common/nui/themes/cupertino/skin.css" rel="stylesheet"	type="text/css" />
     <link href="<%=request.getContextPath()%>/common/nui/res/third-party/scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
     <link href="<%=request.getContextPath()%>/coframe/auth/login/feedback/feedback.css" rel="stylesheet" type="text/css" />
@@ -134,7 +134,7 @@
 </div>
 <div id="toolData" class="sidebar" >
 	<div id="tu" style="overflow-y:auto;overflow-x:auto; width:800px; height:50px;">
-    	<a><img class="icon" id="icon" src="<%=webPath + contextPath%>/coframe/auth/images/icon.jpg" /></a>
+    	<a><img class="icon" id="icon" src="<%=webPath + contextPath%>/coframe/auth/images/icon.jpg" style="background-color: #fff;"/></a>
     </div>
     <div id="mainMenu" style="overflow:auto; width:800px;">
     	
@@ -179,13 +179,14 @@
                     <li><a href="<%=request.getContextPath()%>/coframe/auth/login/logout.jsp"><i class="fa fa-user"></i> 退出登录</a></li>
                 </ul>
             </li>
-            <li class="dropdown">
-                <a class="dropdown-toggle userinfo" style="padding-top: 18px;">
-                    <span >换肤</span><i class="fa fa-angle-down"></i>
+            <li class="dropdown" width="10px">
+                <a class="dropdown-toggle" style="padding-top: 18px;" >
+                    <span >换肤</span><i class="fa fa-angle-down" ></i>
                 </a>
-                <ul class="dropdown-menu pull-right">
-                     <li><a href="javascript:updateSkin('#368bf4');">经典蓝</a></li>
-                     <li><a href="javascript:updateSkin('#f36205');">宜修橙</a></li> 
+                <ul class="dropdown-menu pull-right" >
+                     <li ><a href="javascript:updateSkin('#368bf4');" >经典蓝</a></li>
+                     <li ><a href="javascript:updateSkin('#285e9f');" >深湛蓝</a></li>
+                     <li><a href="javascript:updateSkin('#f36205');">秋日橙</a></li> 
                      <li><a href="javascript:updateSkin('#c1c1c1');">极简灰</a></li>
                      <li><a href="javascript:updateSkin('#42485b');">炫酷黑</a></li>
                 </ul>
@@ -810,12 +811,13 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
         showMsgBox_index(message, "W");
     };
     
+    var saveUrl = baseUrl + "com.hsapi.system.tenant.employee.saveEmployee.biz.ext";
     function updateSkinColor(emp,color){
 		emp.backgroundColor = color;
 	    nui.mask({
 	        el : document.body,
 	        cls : 'mini-mask-loading',
-	        html : '保存中...'
+	        html : '换肤中...'
 	    });
 	    nui.ajax({
 	        url:saveUrl,

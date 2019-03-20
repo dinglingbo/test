@@ -115,7 +115,7 @@
     	SELECT a.bill_main_id as billMainId, b.orgid as orgid,a.bill_service_id as billServiceId, a.bill_type_id as billTypeId,
 			       a.bill_type_code as billTypeCode, a.char_off_amt as charOffAmt,b.rp_account_id as rpAccountId,b.guest_id as guestId,
 			       d.full_name as fullName, d.short_name as shortName, b.auditor as auditor, b.audit_date as auditDate,
-			       e.is_primary_business as isPrimaryBusiness, b.rp_dc as rpDc, f.car_no as carNo,f.remark as remark
+			       e.is_primary_business as isPrimaryBusiness, b.rp_dc as rpDc, f.car_no as carNo,b.remark as remark
 			from fis_rp_account_detail a
 			inner join fis_rp_account b
 			on a.main_id = b.id

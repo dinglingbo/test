@@ -58,4 +58,36 @@
 			INNER JOIN wb_crm.crm_3dc_scout_detail c on (c.service_id = a.service_id)
 		where a.service_id = #serviceId#
 	</select>
+	
+	
+	        <!-- 更新 下次保养日期 -->
+        <update id="updateCareCueDate" parameterClass="java.util.HashMap" >
+            UPDATE  rpb_car_extend  set care_due_date = #careDueDate#
+            where  car_id  = #carId#
+        </update>
+        <!-- 更新 商业险日期 -->
+        <update id="updateSYXDate" parameterClass="java.util.HashMap" >
+            UPDATE  rpb_car set annual_inspection_date = #annualInspectionDate#
+            where  id  = #carId#
+        </update>
+        <!-- 更新 交强险日期 -->
+        <update id="updateJQXDate" parameterClass="java.util.HashMap" >
+            UPDATE  rpb_car set insure_due_date = #insureDueDate#
+            where  id  = #carId#
+        </update>
+        <!-- 更新 车辆年审日期 -->
+        <update id="updateCLNJDate" parameterClass="java.util.HashMap" >
+            UPDATE  rpb_car set annual_verification_due_date = #dueDate#
+            where  id  = #carId#
+        </update>
+                <!-- 更新 驾照日期 -->
+        <update id="updateJZNSDate" parameterClass="java.util.HashMap" >
+            UPDATE  rpb_contactor set license_over_date = #licenseOverDate#
+            where  id  = #conId#
+        </update>
+                <!-- 更新 生日 -->
+        <update id="updateKHDRDate" parameterClass="java.util.HashMap" >
+            UPDATE  rpb_contactor set birthday = #birthday#
+            where  id  = #conId#
+        </update>
 </sqlMap>

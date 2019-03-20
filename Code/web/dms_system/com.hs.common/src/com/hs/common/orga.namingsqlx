@@ -124,7 +124,9 @@
     <!-- 同步注册电商 -->
     <update id="updateConCompany" parameterClass="java.util.HashMap" >
 		update wb_common.com_company 
-			set srm_user_id = #srmUserId#,srm_user_pd = #srmUserPd#	
+			set srm_user_id = #srmUserId#,srm_user_pd = #srmUserPd#	,
+			srm_company_id = #srmCompanyId#,srm_modify_date=#srmModifierDate#,
+			srm_modifier = #srmModifier#
 		where orgid = #orgid#
 	</update>
     

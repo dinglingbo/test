@@ -15,12 +15,12 @@ var tree = null;
 var brandId =null;
 var carId=null;
 var protoken = "";
-var treeUrl = baseUrl+"com.hsapi.part.invoice.partInterface.queryPartType.biz.ext?token="+token;
+var treeUrl = baseUrl+"com.hsapi.part.invoice.partInterfaceDs.queryPartType.biz.ext";
 var dictDefs ={"billTypeIdE":"DDT20130703000008", "settleTypeIdE":"DDT20130703000035",};
-var getDetailPartUrl =baseUrl+"com.hsapi.part.invoice.partInterface.queryDetailStock.biz.ext";
-var partGridUrl=baseUrl+"com.hsapi.part.invoice.partInterface.queryJoinStock.biz.ext";
-var CarplateUrl= baseUrl+"com.hsapi.part.invoice.partInterface.queryCarplate.biz.ext";
-var partBrandUrl=baseUrl+"com.hsapi.part.invoice.partInterface.queryPartBrand.biz.ext";
+var getDetailPartUrl =baseUrl+"com.hsapi.part.invoice.partInterfaceDs.queryDetailStock.biz.ext";
+var partGridUrl=baseUrl+"com.hsapi.part.invoice.partInterfaceDs.queryJoinStock.biz.ext";
+//var CarplateUrl= baseUrl+"com.hsapi.part.invoice.partInterface.queryCarplate.biz.ext";
+var partBrandUrl=baseUrl+"com.hsapi.part.invoice.partInterfaceDs.queryPartBrand.biz.ext";
 var signBtn=null;
 $(document).ready(function() {
     protokenEl=nui.get('protoken');
@@ -33,7 +33,8 @@ $(document).ready(function() {
     	signBtn.setVisible(false);
     }
     tree = nui.get("tree1");
-    //tree.setUrl(treeUrl);
+    tree.setUrl(treeUrl);
+    initQuery();
     document.onkeyup = function(event) {
 		var e = event || window.event;
 		var keyCode = e.keyCode || e.which;// 38向上 40向下
@@ -44,7 +45,7 @@ $(document).ready(function() {
 		}
 	}
        
-    protoken = getProToken();
+//    protoken = getProToken();
     
     partDetailGrid.on("drawcell", function (e) {
         var grid = e.sender;
@@ -63,6 +64,11 @@ $(document).ready(function() {
     });
     
 });
+
+function initQuery(){
+	tree.load({token:token});
+    queryPartBrand();
+}
 function platformSignIn(){
 	window.open("http://192.168.111.58:8080/srm/supplier/cusRegister.html?id="+currOrgId);  
 //	window.open("http://srm.hszb.harsons.cn/srm/supplier/cusRegister.html?id="+currOrgId);     
@@ -334,61 +340,61 @@ function openGeneratePop(partList, type, title){
     });
 }
 
-function getProToken(){
-	var systoken = "";
-    nui.ajax({
-        url : webPath + contextPath + "/com.hs.common.sysService.srmAuthPro.biz.ext",
-        type : "post",
-        async: true,
-        data : {
-        },
-        success : function(data) {
-            var errCode = data.errCode;
-            if(errCode == "S"){
-            	systoken = data.systoken;
-            	protoken = systoken;
-            	
-            	queryCarplate();
-            	queryPartBrand();
-
-            	//tree.load({
-            	//	parentId :0,
-            	//	protoken:protoken
-            	//});
-            	
-            	var url = baseUrl+"com.hsapi.part.invoice.partInterface.queryPartType.biz.ext?token="+token+"&protoken="+protoken;
-            	tree.load(url);
-            	
-            }else {
-            	systoken = "";
-            }
-            
-        },
-        error : function(jqXHR, textStatus, errorThrown) {
-            // nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
-    });
-    
-    
-	
-    return systoken;
-}
+//function getProToken(){
+//	var systoken = "";
+//    nui.ajax({
+//        url : webPath + contextPath + "/com.hs.common.sysService.srmAuthPro.biz.ext",
+//        type : "post",
+//        async: true,
+//        data : {
+//        },
+//        success : function(data) {
+//            var errCode = data.errCode;
+//            if(errCode == "S"){
+//            	systoken = data.systoken;
+//            	protoken = systoken;
+//            	
+//            	queryCarplate();
+//            	queryPartBrand();
+//
+//            	//tree.load({
+//            	//	parentId :0,
+//            	//	protoken:protoken
+//            	//});
+//            	
+//            	var url = baseUrl+"com.hsapi.part.invoice.partInterface.queryPartType.biz.ext?token="+token+"&protoken="+protoken;
+//            	tree.load(url);
+//            	
+//            }else {
+//            	systoken = "";
+//            }
+//            
+//        },
+//        error : function(jqXHR, textStatus, errorThrown) {
+//            // nui.alert(jqXHR.responseText);
+//            console.log(jqXHR.responseText);
+//        }
+//    });
+//    
+//    
+//	
+//    return systoken;
+//}
 
 
 function onSearch (){
 
-	var key =nui.get('key').value;
-	if(!key){
-		parent.parent.showMsg("请填写关键词！","W");
-	}
-
+	var partCode =nui.get('partCode').value;
+	var brandCode =nui.get('partBrandId').value;
+	var partName =nui.get('partName').value;
+//	if(!key){
+//		parent.parent.showMsg("请填写关键词！","W");
+//	}
+	
 	partGrid.load({
-		protoken :protoken,
-		categoryF :categoryF ||"",
-		carId :carId || "",
-		brandId :brandId ||"",
-		key  :key,
+		brandCode :brandCode ||"",
+		partsCode :partCode || "",
+		partsName :partName ||"",
 		token:token
 	});
 }
@@ -397,11 +403,10 @@ function onSearch (){
 
 function onGridSelectionChanged(){
 	 var data = partGrid.getSelected();
-	 var  partId = data.partId;
+	 var  goodsCode = data.goodsCode;
 	 partDetailGrid.load({
-		sort :"partId",
-    	key:partId,
-    	protoken:protoken
+		goodsCode:goodsCode,
+    	token:token
 	 })
 }
 
@@ -431,47 +436,47 @@ function onNodeDblClick(e)
 }
 var partTypeHash = null;
 
+//
+//function reloadData()
+//{
+//    if(partGrid)
+//    {
+//        partGrid.reload();
+//    }
+//    var tab = mainTabs.getActiveTab();
+//    if(tab.name == "main"){
+//        if(partGrid)
+//        {
+//            partGrid.reload();
+//        }
+//    }else if(tab.name == "local"){
+//        if(partLoalGrid)
+//        {
+//            partLoalGrid.reload();
+//        } 
+//    }
+//}
 
-function reloadData()
-{
-    if(partGrid)
-    {
-        partGrid.reload();
-    }
-    var tab = mainTabs.getActiveTab();
-    if(tab.name == "main"){
-        if(partGrid)
-        {
-            partGrid.reload();
-        }
-    }else if(tab.name == "local"){
-        if(partLoalGrid)
-        {
-            partLoalGrid.reload();
-        } 
-    }
-}
-
-function queryCarplate(){
-	nui.ajax({
-        url : CarplateUrl,
-        type : "post",
-        data : {protoken:protoken,token:token},
-        success : function(data) {
-            nui.unmask(document.body);
-            var list = data.data || {};
-            if (data.errCode == "S") {
-            	nui.get('Carplate').setData(list);
-                carId=nui.get("Carplate").value;
-            }
-               
-        },
-        error : function(jqXHR, textStatus, errorThrown) {
-            // nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
-    });
-}
+//function queryCarplate(){
+//	nui.ajax({
+//        url : CarplateUrl,
+//        type : "post",
+//        data : {protoken:protoken,token:token},
+//        success : function(data) {
+//            nui.unmask(document.body);
+//            var list = data.data || {};
+//            if (data.errCode == "S") {
+//            	nui.get('Carplate').setData(list);
+//                carId=nui.get("Carplate").value;
+//            }
+//               
+//        },
+//        error : function(jqXHR, textStatus, errorThrown) {
+//            // nui.alert(jqXHR.responseText);
+//            console.log(jqXHR.responseText);
+//        }
+//    });
+//}
 
 function queryPartBrand(){
 	nui.ajax({

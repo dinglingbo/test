@@ -46,11 +46,10 @@ import commonj.sdo.DataObject;
  */
 @Bizlet("")
 public class PurchaseService {
-	@Bizlet("提交SRM采购订单")
-	public static String pushPchsOrderToSRM(String companyId, String address, int isInsurance,
-			int isDeposit, int isScene, int isTax, String payType, String receiver,
-			String remark, String mobile, String userName, String warehouseto, 
-			String guestId, int mainId, String access_token) {
+	@Bizlet("提交电商采购订单")
+	public static String pushPchsOrderToSRM(String address, String mobile,
+			 String receiver, String account,String storeCode,
+			 String remark,  int mainId, String access_token) {
 		String envType = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", "serverType");
 		String apiurl = Env.getContributionConfig("com.vplus.login",
@@ -65,25 +64,19 @@ public class PurchaseService {
 		if(remark == null) {
 			remark = "";
 		}
+		if(storeCode == null ){
+			storeCode = "";
+		}
 		Map main = new HashMap();   
-		main.put("ProcurementType", 2); //订单是否过账订单中心  1是，2否 必传
+		main.put("token", access_token);
 		main.put("address", address); //收货地址
-		main.put("company_id", companyId); //	公司组织ID
-		main.put("enquiry_code", "");  //询价单号
-		main.put("isInsurance", isInsurance);  //是否含轮胎险
-		main.put("is_deposit", isDeposit);  //是否有定金
-		main.put("is_scene", isScene);  //车辆是否在场
-		main.put("is_tax", isTax);  //是否含税
-		main.put("material_type", 1);  //订单类型 1临时采购 2计划采购 必传
-		main.put("method", "pur.order.addOrder");
+		main.put("orderCode", ""); //订单单号(为空为新增)
 		main.put("mobile", mobile);
-		main.put("order_type", 1);  //采购类型  1临时采购 2计划采购 必传
-		main.put("pay_type", payType);  //	结算方式  JS05 月结 JS01 现金结算 必传
-		main.put("receiver", receiver);
+		main.put("receiver", receiver);  //收货人
+		main.put("account", account);  //车道在电商注册的账号
 		main.put("remark", remark);
+		main.put("storeCode", storeCode);
 		main.put("status", 3); //固定值 3 （提交订单） 必传
-		main.put("user_name", userName);  //操作人
-		main.put("warehouseto", warehouseto);  //	采购方 往来单位ID  	对应 guestID 必传
 		
 		/*
 		 *  amout  金额                                                必传
@@ -116,7 +109,6 @@ public class PurchaseService {
     		m.put("amout",detailList.get(i).get("orderAmt"));
     		m.put("brand_id",detailList.get(i).get("srmBrandId"));
     		m.put("code",detailList.get(i).get("partCode"));
-    		m.put("guest_id",guestId);
     		m.put("isMatchPrice",1);
     		m.put("isPlatOuter",0);
     		m.put("material_name",detailList.get(i).get("partName"));
@@ -128,7 +120,6 @@ public class PurchaseService {
     		m.put("unit",detailList.get(i).get("enterUnitId"));
 			m.put("isMatchPrice", 1);
 			m.put("isPlatOuter", 0);
-			m.put("guest_id", guestId);
     		mater.add(m);
 		}
     	
@@ -144,51 +135,67 @@ public class PurchaseService {
 				
 	}
 	
-	@Bizlet("查询SRM配件列表，带库存数量      根据SKU查询库存明细")
-	public static String querySRMSKUList(String access_token,String brandId,String carId,
-			String categoryF, String categoryS, String categoryT, int count,
-			int currpage, String key, String sortOrder) {
+	@Bizlet("更新电商订单状态")
+	public static String upadateOrderStatus(String access_token,String orderCode,int orderStatus,String remark) {
 		String envType = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", "serverType");
 		String apiurl = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", envType);
 //		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
 				//apiurl + "srm/router/rest?token="+access_token;
-		String urlParam = "http://srm.hszb.harsons.cn/srm/router/rest?token="+access_token;
-		if(key == null || key.equals("")) {
-			return "{\"status\":\"-1\", \"resultMsg\":\"请输入查询条件!\"}";
-		}
+		String urlParam = apiurl + "jpWeb/f/api/LaneElectricity/updateOrderStatus";
+
+		Map main = new HashMap();   
+		main.put("token", access_token); //电商编码
+		main.put("orderCode",orderCode);
+		main.put("orderStatus", orderStatus);
+		main.put("orderStatus", orderStatus);
+		JSONObject jsonObj = JSONObject.fromObject(main);
+		String json = jsonObj.toString();
+		
+		String msg = sendPostByJson(urlParam, json);
+		return msg;	
+				
+	}
+	
+	@Bizlet("查询电商配件列表，带库存数量      根据SKU查询库存明细")
+	public static String querySRMSKUList(String access_token,String classesId,String brandCode,String carCode,
+			String partsCode, String partsName, int count,int currpage) {
+		String envType = Env.getContributionConfig("com.vplus.login",
+				"cfg", "SRMAPI", "serverType");
+		String apiurl = Env.getContributionConfig("com.vplus.login",
+				"cfg", "SRMAPI", envType);
+//		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
+				//apiurl + "srm/router/rest?token="+access_token;
+		String urlParam = apiurl+"jpWeb/f/api/LaneElectricityGoods/getGoodsListByParams";
+		
 		if(count==0) {
 			count = 20;
 		}
 		if(currpage == 0) {
 			currpage = 1;
 		}
-		if(sortOrder == null || sortOrder.equals("")) {
-			sortOrder = "desc";
-		}
+		
 		Map main = new HashMap();   
-		main.put("type", 1); //固定值 1
-		main.put("method", "base.partQuery.partSkuList");
-		if(brandId != null && !brandId.equals("")) {
-			main.put("brandId", brandId); //品牌ID
+		if(brandCode != null && !brandCode.equals("")) {
+			main.put("venderCode", brandCode); //品牌ID
 		}
-		if(carId != null && !carId.equals("")) {
-			main.put("carId", carId);  //厂牌ID
+		if(carCode != null && !carCode.equals("")) {
+			main.put("carCode", carCode);  //厂牌ID
 		}
-		if(categoryF != null && !categoryF.equals("")) {
-			main.put("categoryF_id", categoryF);  //车身分类一级ID
+		if(partsCode != null && !partsCode.equals("")) {
+			main.put("partsCode", partsCode);  //配件编码
 		}
-		if(categoryS != null && !categoryS.equals("")) {
-			main.put("categoryS_id", categoryS);  //车身分类二级ID
+		if(partsName != null && !partsName.equals("")) {
+			main.put("partsName", partsName);  //配件名称
 		}
-		if(categoryT != null && !categoryT.equals("")) {
-			main.put("categoryT_id", categoryT);  //车身分类三级ID
+		
+		if(classesId != null && !classesId.equals("")) {
+			main.put("classesId", classesId);  //分类ID
 		}
 		main.put("count", count);  //	每页显示条数
 		main.put("currpage", currpage);  //当前 页码
-		main.put("key", key);
-		main.put("sortOrder", sortOrder);  // ‘asc’ 升序 'desc' 降序
+		main.put("token", access_token); 
 		
 		JSONObject jsonObj = JSONObject.fromObject(main);
 		String json = jsonObj.toString();
@@ -198,21 +205,30 @@ public class PurchaseService {
 				
 	}
 	
-	@Bizlet("根据配件编码查询SRM库存")
-	public static String querySRMStockByCode(String access_token,String code) {
+	@Bizlet("根据电商编码查询电商库存明细")
+	public static String querySRMStockByCode(String access_token,String code,int count,int currpage) {
 		String envType = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", "serverType");
 		String apiurl = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", envType);
 //		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
 				//apiurl + "srm/router/rest?token="+access_token;
-		String urlParam = "http://srm.hszb.harsons.cn/srm/router/rest?token="+access_token;
+		String urlParam = apiurl + "jpWeb/f/api/LaneElectricityGoods/goodsDetail";
+
+		if(count==0) {
+			count = 20;
+		}
+		if(currpage == 0) {
+			currpage = 1;
+		}
 		if(code == null || code.equals("")) {
 			return "{\"status\":\"-1\", \"resultMsg\":\"请输入查询条件!\"}";
 		}
 		Map main = new HashMap();   
-		main.put("partCode", code); //固定值 1
-		main.put("method", "base.partQuery.getInvList");
+		main.put("token", access_token);
+		main.put("goodsCode", code); //电商编码
+		main.put("count",count);
+		main.put("currpage", currpage);
 		JSONObject jsonObj = JSONObject.fromObject(main);
 		String json = jsonObj.toString();
 		
@@ -261,6 +277,7 @@ public class PurchaseService {
 		if(isSRM != null && !isSRM.equals("")) {
 			main.put("isSRM", isSRM);  //车身分类三级ID
 		}
+		main.put("token", access_token);
 		main.put("guestId", guestId);
 		main.put("isMaterial", 1);
 		main.put("count", count);  //	每页显示条数
@@ -276,8 +293,8 @@ public class PurchaseService {
 		return msg;	
 	}
 	
-	@Bizlet("查询SRM品牌")
-	public static String queryPartBrand() {
+	@Bizlet("查询电商品牌")
+	public static String queryPartBrand(String access_token) {
 		String envType = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", "serverType");
 		String apiurl = Env.getContributionConfig("com.vplus.login",
@@ -285,7 +302,8 @@ public class PurchaseService {
 		String urlParam = apiurl+"jpWeb/f/api/LaneElectricity/getLabelList";
 				//apiurl + "srm/router/rest?token="+access_token;
 //		String urlParam = "http://srm.hszb.harsons.cn/srm/router/rest?token="+access_token;
-		Map main = new HashMap();   
+		Map main = new HashMap(); 
+		main.put("token", access_token); 
 		main.put("page", 1);
 		main.put("rows", 1000); 
 		
@@ -318,7 +336,7 @@ public class PurchaseService {
 	}
 	
 	@Bizlet("查询SRM厂牌")
-	public static String queryCarplate() {
+	public static String queryCarplate(String access_token) {
 		String envType = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", "serverType");
 		String apiurl = Env.getContributionConfig("com.vplus.login",
@@ -327,6 +345,7 @@ public class PurchaseService {
 				//apiurl + "srm/router/rest?token="+access_token;
 //		String urlParam = "http://srm.hszb.harsons.cn/srm/router/rest?token="+access_token;
 		Map main = new HashMap();   
+		main.put("token", access_token);
 		main.put("page", 1);
 		main.put("rows", 1000);  
 		
@@ -338,7 +357,7 @@ public class PurchaseService {
 	}
 	
 	@Bizlet("查询SRM车身分类")
-	public static String queryPartType() {
+	public static String queryPartType(String access_token) {
 		String envType = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", "serverType");
 		String apiurl = Env.getContributionConfig("com.vplus.login",
@@ -347,7 +366,7 @@ public class PurchaseService {
 				//apiurl + "srm/router/rest?token="+access_token;
 //		String urlParam = "http://srm.hszb.harsons.cn/srm/router/rest?token="+access_token;
 		Map main = new HashMap();   
-		
+		main.put("token", access_token);
 		JSONObject jsonObj = JSONObject.fromObject(main);
 		String json = jsonObj.toString();
 		
@@ -360,12 +379,14 @@ public class PurchaseService {
 				"cfg", "SRMAPI", "serverType");
 		String apiurl = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", envType);
-		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
+		String urlParam =apiurl+ "jpWeb/f/api/LaneElectricity/getSupplierList";
 				//apiurl + "srm/router/rest?token="+access_token;
 //		String urlParam = "http://srm.hszb.harsons.cn/srm/router/rest?token="+access_token;
-		Map main = new HashMap();   
-		main.put("method", "base.supplier.getGuestByCompanyName");
-		main.put("id", guestId);
+		Map main = new HashMap();  
+		main.put("token", access_token);
+		main.put("storeCode", guestId); //电商供应商编码
+		main.put("page", 1);
+		main.put("rows", 10000);
 		//main.put("name", count);  
 		
 		JSONObject jsonObj = JSONObject.fromObject(main);
@@ -375,7 +396,7 @@ public class PurchaseService {
 		return msg;		
 	}
 	
-	private static DataObject setGuestInfo(String access_token, String guestId, String guestName, int orgid, String userName) throws Throwable {
+	private static DataObject setGuestInfo(String access_token,String guestId, String guestName, int orgid, String userName) throws Throwable {
 		//根据srm_guest_id查询往来单位信息
 		DataObject criteria = com.eos.foundation.data.DataObjectUtil
 				.createDataObject("com.primeton.das.criteria.criteriaType");
@@ -395,25 +416,28 @@ public class PurchaseService {
         	if(result.length <= 0) {
         		//如果不存在，后台自动新增，然后返回新增后的结果
         		//com.hsapi.part.baseDataCrud.crud.saveSupplier  supplier  orgid  userName
-        		String retMsg = getGuestById(access_token, guestId);
+        		String retMsg = getGuestById(access_token,guestId);
         		Gson gson = new Gson();
                 Map<String, Object> resultMap = new HashMap<String, Object>();
                 resultMap = gson.fromJson(retMsg, resultMap.getClass());
-                String status = (String) resultMap.get("status");
+                String status =  resultMap.get("code")+"";
                 HashMap map = null;
-                if(status.equals("0")) {
-                	Map data = (Map) resultMap.get("data");
+                Map dataMap = (Map) resultMap.get("data");
+                List<Object> list= (ArrayList) dataMap.get("rows");
+                
+                if(status.equals("0.0")&& list.size()!=0) {
+       
                 	List<Object> params = new ArrayList<Object>();
             		DataObject guest = DataObjectUtil
     						.createDataObject("com.hsapi.part.data.com.ComGuest");
             		guest.set("orgid", orgid);
             		guest.set("is_supplier", 1);
-            		guest.set("fullName", data.get("guestName"));
-            		guest.set("shortName", data.get("guestName"));
-            		guest.set("contactor", data.get("salesMan"));
-            		guest.set("contactorTel", data.get("salesManTel"));
-            		guest.set("tel", data.get("salesManTel"));
-            		guest.set("mobile", data.get("salesManTel"));
+//            		guest.set("fullName", data.get("guestName"));
+//            		guest.set("shortName", data.get("guestName"));
+//            		guest.set("contactor", data.get("salesMan"));
+//            		guest.set("contactorTel", data.get("salesManTel"));
+//            		guest.set("tel", data.get("salesManTel"));
+//            		guest.set("mobile", data.get("salesManTel"));
             		guest.set("srmGuestId", guestId);
         			params.add(guest);
         			params.add(orgid);
@@ -461,7 +485,7 @@ public class PurchaseService {
 		    
 	}
 	
-	private static DataObject setPartInfo(String access_token, String partId, String partCode, String partName, 
+	private static DataObject setPartInfo(String access_token,String partId, String partCode, String partName, 
 			int orgid, String userName, String brandId, String brandName, String qualityId, String qualityName) throws Throwable {
 		//根据srm_brand_id   srm_quality_id  srm_part_id 查询配件基础资料信息
 		DataObject criteria = com.eos.foundation.data.DataObjectUtil
@@ -527,7 +551,7 @@ public class PurchaseService {
 		不能返回的，后台自动新增，后台新增不能获取到必填写值的，前端弹出新增
 	 * */
 	@Bizlet("")
-	public static Map queryGuestAndSKU(String access_token, String guestId,
+	public static Map queryGuestAndSKU( String access_token,String guestId,
 			String guestName, String partId, String partCode, String partName, String brandId,
 			String brandName, String qualityId, String qualityName, int orgid, String userName) throws Throwable {
 		if(guestId == null || guestId.equals("")) {
@@ -536,9 +560,10 @@ public class PurchaseService {
 			mp.put("resultMsg", "请传递guestId!");
 			return mp;
 		}
+
 		
-		DataObject guest = setGuestInfo(access_token, guestId, guestName, orgid, userName);
-		DataObject part = setPartInfo(access_token, partId, partCode, partName, orgid, userName, brandId, 
+		DataObject guest = setGuestInfo( access_token,guestId, guestName, orgid, userName);
+		DataObject part = setPartInfo( access_token, partId, partCode, partName, orgid, userName, brandId, 
 				brandName, qualityId, qualityName);
 		HashMap map = new HashMap();
 		map.put("guest", guest);

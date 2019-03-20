@@ -121,20 +121,8 @@
       <process:to type="query">url</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
-      <process:to type="query">param/method</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">loginName</process:from>
+      <process:from type="query" pattern="reference">m:userObject/attributes/srmUserId</process:from>
       <process:to type="query">param/account</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">pw</process:from>
-      <process:to type="query">param/password</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">param/system</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">E</process:from>
@@ -178,7 +166,7 @@
       <targetNode>assign2</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -233,7 +221,7 @@
       <targetNode>end0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -278,7 +266,6 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="SRM用户名" isArray="false" name="loginName" primitiveType="String"/>
-    <process:input description="SRM密码" isArray="false" name="pw" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

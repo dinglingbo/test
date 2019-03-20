@@ -9,7 +9,7 @@
 
 <head>
 	<title>应收账款管理</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.7.6"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.7.8"></script>
 	    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 	<style type="text/css">
@@ -142,9 +142,8 @@
 						<span class="separator"></span> -->
 						<a class="nui-button" iconCls="" visible="false" plain="true" onclick="doBalance()">
 							<span class="fa fa-check fa-lg"></span>&nbsp;确认对账</a>
-						<!-- 							<a class="nui-button"
-						iconCls="" plain="true" onclick="doPay()"><span
-							class="fa fa-check fa-lg"></span>&nbsp;结算</a> -->
+						<a class="nui-button" iconCls="" plain="true" onclick="doAudit()"><span
+							class="fa fa-check fa-lg"></span>&nbsp;审核</a>
 						<a class="nui-button" iconCls="" plain="true" onclick="doSettle()">
 							<span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
 						<a class="nui-button" iconCls="" plain="true" onclick="openOrderDetail()">
@@ -164,7 +163,7 @@
 				<div title="应收结算" name="rRightTab">
 					<div class="nui-fit">
 						<div id="rRightGrid" class="nui-datagrid" style="width: 100%; height: 100%;" showPager="true" dataField="detailList" idField="detailId"
-						 ondrawcell="onDrawCell" sortMode="client" allowCellSelect="true" allowCellEdit="true" url="" multiSelect="false" showModified="false"
+						 ondrawcell="onDrawCell" sortMode="client" allowCellSelect="true" allowCellEdit="true" url="" multiSelect="true" showModified="false"
 						 pageSize="500" sizeList="[500,1000,2000]" onshowrowdetail="onShowRowDetail" oncellclick="onRGridbeforeselect" onheadercellclick="onRGridheadercellclick"
 						 oncellcommitedit="onCellCommitEdit" showSummaryRow="true">
 							<div property="columns">
@@ -185,6 +184,7 @@
 								</div>
 								<div allowSort="true" field="createDate" headerAlign="center" header="转单日期" dateFormat="yyyy-MM-dd HH:mm"></div>
 								<div allowSort="true" field="settleStatus" name="settleStatus" width="60" headerAlign="center" header="结算状态"></div>
+								<div allowSort="true" field="auditSign" name="auditSign" width="60" headerAlign="center" header="审核状态"></div>
 								<div allowSort="true" field="charOffAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" summaryType="sum" header="已结金额"></div>
 								<!-- <div field="balanceSign" type="checkboxcolumn" trueValue="1" falseValue="0" width="60" headerAlign="center" header="是否对账"></div>
                         <div field="balancer" width="60" headerAlign="center" header="对账人"></div>

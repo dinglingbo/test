@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tPageFlow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="login.flowx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0" state="stateless">
+<process:tPageFlow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="easy" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0" state="stateless">
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tActionLink" description="" id="link0" name="link0" lineType="reference" isDefault="true" type="action" actionName="action0" dataConvertClass="">
       <sourceNode>start0</sourceNode>
@@ -18,7 +18,7 @@
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
-  <nodes xsi:type="process:tEnd" description="" id="end0" name="登录界面" displayName="结束" type="end" contextPath="" method="forward" uri="/coframe/auth/login/login.jsp" variableUri="false">
+  <nodes xsi:type="process:tEnd" description="" id="end0" name="登录界面" displayName="结束" type="end" contextPath="" method="forward" uri="/coframe/auth/easy/login.jsp" variableUri="false">
     <targetConnections>link4</targetConnections>
     <targetConnections>link8</targetConnections>
     <targetConnections>link13</targetConnections>
@@ -107,7 +107,7 @@
         <process:inputVariable id="0" name="loginName" type="query" value="String" valueType="Primitive" pattern="reference">userId</process:inputVariable>
         <process:inputVariable id="1" name="posiId" type="expression" value="Long" valueType="Primitive" pattern="reference">null</process:inputVariable>
         <process:inputVariable id="2" name="roleName" type="expression" value="String" valueType="Primitive" pattern="reference">null</process:inputVariable>
-        <process:inputVariable id="3" name="company" type="expression" value="String" valueType="Primitive" pattern="reference">null</process:inputVariable>
+        <process:inputVariable id="3" name="company" type="literal" value="String" valueType="Primitive" pattern="reference">easy</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
@@ -121,7 +121,7 @@
     <figSize height="17" width="91"/>
     <node>subprocess1</node>
   </nodes>
-  <nodes xsi:type="process:tView" description="" id="view0" name="视图" displayName="redirect.jsp" type="view" contextPath="" method="forward" uri="/coframe/auth/login/redirect.jsp">
+  <nodes xsi:type="process:tView" description="" id="view0" name="视图" displayName="redirect.jsp" type="view" contextPath="" method="forward" uri="/coframe/auth/easy/redirect.jsp">
     <sourceConnections xsi:type="process:tActionLink" description="" id="link2" name="link2" lineType="reference" isDefault="true" type="action" actionName="action1" dataConvertClass="">
       <sourceNode>view0</sourceNode>
       <targetNode>end1</targetNode>

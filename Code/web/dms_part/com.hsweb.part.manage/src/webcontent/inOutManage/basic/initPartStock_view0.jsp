@@ -164,8 +164,11 @@
                                   <input property="editor" vtype="float" class="nui-textbox"/>
                                 </div>
                                 <div field="remark" width="80" headerAlign="center" allowSort="true">
-                    备注<input property="editor" class="nui-textbox"/>
-                    </div>
+                    				备注<input property="editor" class="nui-textbox"/>
+                    			</div>
+                                <div field="sellPrice" numberFormat="0.0000" width="50" headerAlign="center" header="建议售价">
+                                  <input property="editor" vtype="float" class="nui-textbox"/>
+                                </div>
                             </div>
                         </div>
                         <div header="辅助信息" headerAlign="center">

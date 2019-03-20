@@ -52,8 +52,7 @@ public class LogicFlowFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse rep = (HttpServletResponse) response;
 		String url = req.getRequestURL().toString();
-		System.out.println("访问：" + url);
-
+		
 		/**
 		 * 如果根本不是逻辑流，就不要处理
 		 */
@@ -86,15 +85,15 @@ public class LogicFlowFilter implements Filter {
 					(HttpServletRequest) req);
 		}
 		if(url.indexOf(".flow") > 0) {
-			//boolean check = MenuUtil.checkActionAuth(requestWrapper);
-			//if(!check) {
-			//	String contextPath = StringUtil.htmlFilter(req.getContextPath());
-			//	url=contextPath + "/coframe/auth/noAuth.jsp";
-			//	RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-			//	dispatcher.forward(requestWrapper, response);
-				//request.getRequestDispatcher("/coframe/auth/noAuth.jsp").forward(request, response);
-			//	return;
-			//}
+			boolean check = MenuUtil.checkActionAuth(requestWrapper);
+			if(!check) {
+				//String contextPath = StringUtil.htmlFilter(req.getContextPath());
+				//url=contextPath + "/coframe/auth/noAuth.jsp";
+				//RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+				//dispatcher.forward(requestWrapper, response);
+				request.getRequestDispatcher("/coframe/auth/noAuth.jsp").forward(request, response);
+				return;
+			}
 		}
 		// 检查是否客户端发送的请求
 		boolean b = isClientRequest(requestWrapper);

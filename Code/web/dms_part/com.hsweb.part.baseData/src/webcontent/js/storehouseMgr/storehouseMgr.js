@@ -156,7 +156,8 @@ function onNodeselect(e)
     if(node && node.id)
     {
         rightGrid.load({
-            storeId:node.id
+            storeId:node.id,
+            fromDb: true
         });
         
         memGrid.load({

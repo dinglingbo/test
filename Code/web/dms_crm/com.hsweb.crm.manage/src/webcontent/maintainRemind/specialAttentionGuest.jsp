@@ -55,9 +55,6 @@
                                 <li class="separator"></li>
                                 <li iconCls="" onclick="quickSearch(4,'bytx')" id="type4">本月</li>
                                 <li iconCls="" onclick="quickSearch(5,'bytx')" id="type5">上月</li>
-                                <li class="separator"></li>
-                                <li iconCls="" onclick="quickSearch(10,'bytx')" id="type10">本年</li>
-                                <li iconCls="" onclick="quickSearch(11,'bytx')" id="type11">上年</li>
                             </ul>
                             到期日期:
                             <input class="nui-datepicker" id="startDate0" name="startDate0" dateFormat="yyyy-MM-dd" style="width:100px" />
@@ -115,9 +112,6 @@
                                 <li class="separator"></li>
                                 <li iconCls="" onclick="quickSearch(4,'syx')" id="type4">本月</li>
                                 <li iconCls="" onclick="quickSearch(5,'syx')" id="type5">上月</li>
-                                <li class="separator"></li>
-                                <li iconCls="" onclick="quickSearch(10,'syx')" id="type10">本年</li>
-                                <li iconCls="" onclick="quickSearch(11,'syx')" id="type11">上年</li>
                             </ul>
                             到期日期:
                             <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd" style="width:100px" />
@@ -174,9 +168,6 @@
                                 <li class="separator"></li>
                                 <li iconCls="" onclick="quickSearch(4,'jqx')" id="type4">本月</li>
                                 <li iconCls="" onclick="quickSearch(5,'jqx')" id="type5">上月</li>
-                                <li class="separator"></li>
-                                <li iconCls="" onclick="quickSearch(10,'jqx')" id="type10">本年</li>
-                                <li iconCls="" onclick="quickSearch(11,'jqx')" id="type11">上年</li>
                             </ul>
                             到期日期:
                             <input class="nui-datepicker" id="startDate2" name="startDate2" dateFormat="yyyy-MM-dd" style="width:100px" />
@@ -234,9 +225,6 @@
                                 <li class="separator"></li>
                                 <li iconCls="" onclick="quickSearch(4,'jzns')" id="type4">本月</li>
                                 <li iconCls="" onclick="quickSearch(5,'jzns')" id="type5">上月</li>
-                                <li class="separator"></li>
-                                <li iconCls="" onclick="quickSearch(10,'jzns')" id="type10">本年</li>
-                                <li iconCls="" onclick="quickSearch(11,'jzns')" id="type11">上年</li>
                             </ul>
                             到期日期:
                             <input class="nui-datepicker" id="startDate3" name="startDate3" dateFormat="yyyy-MM-dd" style="width:100px" />
@@ -294,9 +282,6 @@
                                 <li class="separator"></li>
                                 <li iconCls="" onclick="quickSearch(4,'clnj')" id="type4">本月</li>
                                 <li iconCls="" onclick="quickSearch(5,'clnj')" id="type5">上月</li>
-                                <li class="separator"></li>
-                                <li iconCls="" onclick="quickSearch(10,'clnj')" id="type10">本年</li>
-                                <li iconCls="" onclick="quickSearch(11,'clnj')" id="type11">上年</li>
                             </ul>
                             到期日期:
                             <input class="nui-datepicker" id="startDate4" name="startDate2" dateFormat="yyyy-MM-dd" style="width:100px" />

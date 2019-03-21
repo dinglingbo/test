@@ -12,7 +12,9 @@ pageEncoding="UTF-8" session="false" %>
     <title>工单回访</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%=webPath + contextPath%>/manage/js/visitMgr/visitMain.js?v=1.2.3" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/visitMgr/visitMain.js?v=1.32" type="text/javascript"></script>
+    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     
     <style type="text/css">
     body { 
@@ -80,7 +82,7 @@ pageEncoding="UTF-8" session="false" %>
             <div field="outDate" name="recordDate" width="120px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="离厂时间"></div>
             <!-- <div field="planFinishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="预计完工日期"></div> -->
             <!-- <div field="mtAdvisor" width="70" headerAlign="center" align="center">维修顾问</div> -->
-            <div field="dataType" width="80" headerAlign="center" align="center">回访类型</div>
+            <div field="dataType" name="dataType"width="80" headerAlign="center" align="center">回访类型</div>
             <div field="leaveDays" width="60" headerAlign="center" align="center">离厂天数</div>
             <div field="mtAdvisor" name="mtAdvisor" width="60px" headerAlign="center" header="服务顾问"></div>
             </div>

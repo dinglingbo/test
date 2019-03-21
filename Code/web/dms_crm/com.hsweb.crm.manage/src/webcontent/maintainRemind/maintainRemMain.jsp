@@ -13,7 +13,9 @@ pageEncoding="UTF-8" session="false" %>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%= request.getContextPath() %>/manage/js/maintainRemMain/maintainRemMain.js?v=1.0.72" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/manage/js/maintainRemMain/maintainRemMain.js?v=1.0.73" type="text/javascript"></script>
+    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0; 
@@ -66,9 +68,9 @@ pageEncoding="UTF-8" session="false" %>
             <div type="indexcolumn" width="30">序号</div>
 <!--             <div field="serviceCode" width="120" headerAlign="center" align="center">工单号</div> -->
             <div field="carNo" width="70" headerAlign="center"align="center">车牌号</div>
-            <div field="carModel" width="130" headerAlign="center"align="center">品牌车型</div>
+            <div field="carModel" name="carModel" width="130" headerAlign="center"align="center">品牌车型</div>
             <div field="careDueDate" dateFormat="yyyy-MM-dd HH:mm" width="130" headerAlign="center" align="center">保养到期时间</div>
-            <div field="guestName" width="100" headerAlign="center"align="center">客户名称</div>
+            <div field="guestName" name="guestName"width="100" headerAlign="center"align="center">客户名称</div>
             <div field="mobile" width="120" headerAlign="center"align="center">联系电话</div>
             <div field="leaveDays" width="70" headerAlign="center"align="center">离厂天数</div>
             <div field="careLastDate" dateFormat="yyyy-MM-dd HH:mm" width="130" headerAlign="center"align="center">最后提醒时间</div>
@@ -76,7 +78,7 @@ pageEncoding="UTF-8" session="false" %>
             <div field="lastComeDate" dateFormat="yyyy-MM-dd HH:mm" width="130" headerAlign="center"align="center">最后进厂时间</div>
             <div field="firstComeDate" dateFormat="yyyy-MM-dd HH:mm" width="130" headerAlign="center"align="center">首次来厂时间</div>
             <div field="lastLeaveDate" dateFormat="yyyy-MM-dd HH:mm" width="130" headerAlign="center"align="center">最后离厂时间</div>
-            <div field="preAdvisorName" width="70" headerAlign="center" align="center">营销员</div>
+            <div field="preAdvisorName" name="preAdvisorName"width="70" headerAlign="center" align="center">营销员</div>
             <div field="carBrandId" visible="false" width="70" headerAlign="center" align="center">品牌</div>
             <div field="carBrandId" visible="false" width="70" headerAlign="center" align="center">品牌车型</div>
         </div>

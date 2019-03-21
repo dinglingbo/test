@@ -48,7 +48,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">1001,1002,1003,1004,1006,1007,1008,1009,1010,1011,1014,1017,1016,1018,1020,1021</process:from>
+      <process:from type="literal" pattern="reference">1001,1002,1003,1004,1006,1007,1008,1009,1010,1011,1014,1017,1016,1018,1020,1021,1022</process:from>
       <process:to type="query">params/keyidIds</process:to>
     </process:copy>
   </nodes>
@@ -280,15 +280,25 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link44" name="1022" displayName="连接线" type="transition">
+      <sourceNode>loopstart0</sourceNode>
+      <targetNode>assign21</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">paramObj/keyidId</process:leftOperand>
+          <process:rightOperand type="literal">1022</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link2</targetConnections>
-    <location x="406" y="336"/>
+    <location x="406" y="358"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
     <process:condition/>
     <process:iterate iterable="paramsList" iterableElement="paramObj"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
-    <location x="406" y="368"/>
+    <location x="406" y="390"/>
     <figSize height="17" width="25"/>
     <node>loopstart0</node>
   </nodes>
@@ -298,18 +308,18 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link27</targetConnections>
-    <location x="922" y="336"/>
+    <location x="922" y="358"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
-    <location x="910" y="368"/>
+    <location x="910" y="390"/>
     <figSize height="17" width="49"/>
     <node>loopend0</node>
   </nodes>
   <nodes xsi:type="model:GroupNode" id="group0" name="group" grouped="true" gstart="loopstart0" gend="loopend0">
     <location x="406" y="6"/>
-    <size height="700" width="541"/>
+    <size height="745" width="541"/>
     <chidren>loopend0</chidren>
     <chidren>loopstart0</chidren>
     <chidren>assign1</chidren>
@@ -332,6 +342,8 @@
     <chidren>assign18</chidren>
     <chidren>assign19</chidren>
     <chidren>assign20</chidren>
+    <chidren>assign21</chidren>
+    <chidren>assign22</chidren>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="连接线" isDefault="true" type="transition">
@@ -590,6 +602,7 @@
     <targetConnections>link39</targetConnections>
     <targetConnections>link41</targetConnections>
     <targetConnections>link43</targetConnections>
+    <targetConnections>link46</targetConnections>
     <location x="806" y="262"/>
     <size height="28" width="28"/>
     <nodeLabel>assign11label</nodeLabel>
@@ -813,6 +826,44 @@
     <location x="506" y="666"/>
     <figSize height="17" width="39"/>
     <node>assign20</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign21" name="repairStoreControlFlag" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link45" name="link45" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign21</sourceNode>
+      <targetNode>assign22</targetNode>
+    </sourceConnections>
+    <targetConnections>link44</targetConnections>
+    <location x="512" y="696"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign21label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">paramObj/keyidValue</process:from>
+      <process:to type="query">keyValue</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">keyValue</process:from>
+      <process:to type="query">billParams/repairStoreControlFlag</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign21label" name="label" nodeType="label">
+    <location x="459" y="732"/>
+    <figSize height="17" width="134"/>
+    <node>assign21</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign22" name="赋值22" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link46" name="link46" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign22</sourceNode>
+      <targetNode>assign11</targetNode>
+    </sourceConnections>
+    <targetConnections>link45</targetConnections>
+    <location x="735" y="696"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign22label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign22label" name="label" nodeType="label">
+    <location x="730" y="732"/>
+    <figSize height="17" width="39"/>
+    <node>assign22</node>
   </nodes>
   <topRuler>
     <guides position="311" horizontal="true"/>

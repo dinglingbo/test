@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%=webPath + contextPath%>/basic/js/customerAdd.js?v=1.0.70"></script>
+<script src="<%=webPath + contextPath%>/basic/js/customerAdd.js?v=1.0.73"></script>
 <script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
 <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
 <script src="<%= request.getContextPath() %>/common/qiniu/qiniu1.0.14.js" type="text/javascript"></script>
@@ -127,7 +127,7 @@
                       	      <td  colspan="" class="tabwidth" >
 				                <div class="page-header" id="btn-uploader">
 					                	<div class="div1" id="faker" >
-								            <img id="xmTanImg" style="width: 80px;height: 80px" src="/default/common/images/upload.png"/>
+								            <img id="xmTanImg" style="width: 80px;height: 80px" src="<%=contextPath%>/common/images/upload.png"/>
 								        </div>
 							        </div>
 							        <input  class="nui-textbox" id="licenseUrl" name="licenseUrl"  style="display:none" >
@@ -140,7 +140,7 @@
                               <td  colspan="" class="tabwidth" >
 				                <div class="page-header" id="idno-uploader">
 					                	<div class="div1" id="up" >
-								            <img id="idNoImg" style="width: 80px;height: 80px" src="/default/common/images/upload.png"/>
+								            <img id="idNoImg" style="width: 80px;height: 80px" src="<%=contextPath%>/common/images/upload.png"/>
 								        </div>
 							        </div>
 							        <input  class="nui-textbox" id="idCardUrl" name="idCardUrl"  style="display:none" >

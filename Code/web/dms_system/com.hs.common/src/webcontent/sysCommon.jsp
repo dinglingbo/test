@@ -113,10 +113,12 @@
 	String repairPchsRtnFlag = "1";
 	String repairDefaultStore = "";
 	String repairBillMobileFlag = "0";
+	String repairStoreControlFlag = "0";
 	String isCanSettle = "";
 	String orgs = "";
 	String systemImg = "";
 	String systemName = "";
+	String source = "";
 	String orgJsonStr = "";
 	String isCanBelowCost="";
 	String swithBatchFlag ="";
@@ -197,6 +199,9 @@
                 if(attr.get("systemName") != null){
                 	systemName = attr.get("systemName").toString();
                 }
+                if(attr.get("source") != null){
+                	source = attr.get("source").toString();
+                }
                 if(attr.get("orgJsonStr") != null){
                 	orgJsonStr = attr.get("orgJsonStr").toString();
                 }
@@ -236,6 +241,9 @@
 	                }
 	                if(billParams.get("repairBillMobileFlag") != null){
 	                	repairBillMobileFlag = billParams.get("repairBillMobileFlag").toString();
+	                }
+	                if(billParams.get("repairStoreControlFlag") != null){
+	                	repairStoreControlFlag = billParams.get("repairStoreControlFlag").toString();
 	                }
                 }
               
@@ -293,12 +301,14 @@
 	var currRepairPchsRtnFlag = "<%=repairPchsRtnFlag %>";
 	var currRepairDefaultStore = "<%=repairDefaultStore %>";
 	var currRepairBillMobileFlag = "<%=repairBillMobileFlag %>";
+	var currRepairStoreControlFlag = "<%=repairStoreControlFlag %>";
 	var currIsCanSettle = "<%=isCanSettle %>";
 	var currIsCanBelowCost ="<%=isCanBelowCost %>";
 	var currSwithBatchFlag ="<%=swithBatchFlag %>";
 	var currOrgs = "<%=orgs %>";
 	var currSystemImg = "<%=systemImg %>";
 	var currSystemName = "<%=systemName %>";
+	var currSource = "<%=source %>";
 	//currOrgs = currOrgs.replace(/\*/g,"");
 	var currOrgJsonStr = "<%=orgJsonStr %>";
 	currOrgJsonStr = currOrgJsonStr.replace(/'/g,'"');
@@ -388,10 +398,14 @@
 			window.parent.backToLogin();
 		}
 		//汽修 
-		else{
-			debugger;
- 			showMsg("登录超时，正在跳转！", "E");
-             window.top.location.href = sysDomain + "/coframe/auth/login/login.jsp";			
+		else{   
+		   showMsg("登录超时，正在跳转！", "E");
+		   if(currSource=="easy"){
+		 		window.top.location.href = sysDomain + "/coframe/auth/easy/login.jsp";
+			}else{
+			   window.top.location.href = sysDomain + "/coframe/auth/login/login.jsp";
+			}
+		
  		}
 	// 汽配
 // 		 else{

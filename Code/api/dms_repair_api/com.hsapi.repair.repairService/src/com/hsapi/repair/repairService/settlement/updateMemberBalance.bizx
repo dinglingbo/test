@@ -40,18 +40,8 @@
       <sourceNode>assign0</sourceNode>
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link3" name="link3" displayName="连接线" type="transition">
-      <sourceNode>assign0</sourceNode>
-      <targetNode>assign1</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="LE">
-          <process:leftOperand type="query">cardPayAmt</process:leftOperand>
-          <process:rightOperand type="literal">0</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="210" y="150"/>
+    <location x="181" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
@@ -68,7 +58,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="212" y="186"/>
+    <location x="183" y="186"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
@@ -87,8 +77,18 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link3" name="link3" displayName="连接线" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>assign13</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">d</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link1</targetConnections>
-    <location x="300" y="150"/>
+    <location x="225" y="149"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -104,7 +104,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="274" y="186"/>
+    <location x="199" y="185"/>
     <figSize height="17" width="75"/>
     <node>invokePojo0</node>
   </nodes>
@@ -113,7 +113,6 @@
       <sourceNode>assign1</sourceNode>
       <targetNode>end3</targetNode>
     </sourceConnections>
-    <targetConnections>link3</targetConnections>
     <targetConnections>link5</targetConnections>
     <location x="211" y="240"/>
     <size height="28" width="28"/>
@@ -1018,6 +1017,7 @@
       <targetNode>assign2</targetNode>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
+    <targetConnections>link43</targetConnections>
     <location x="375" y="149"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo10label</nodeLabel>
@@ -1171,6 +1171,25 @@
     <location x="1696" y="132"/>
     <figSize height="17" width="50"/>
     <node>invokePojo13</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign13" name="赋值13" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link43" name="link43" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign13</sourceNode>
+      <targetNode>invokePojo10</targetNode>
+    </sourceConnections>
+    <targetConnections>link3</targetConnections>
+    <location x="298" y="112"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign13label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">d</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign13label" name="label" nodeType="label">
+    <location x="293" y="148"/>
+    <figSize height="17" width="39"/>
+    <node>assign13</node>
   </nodes>
   <topRuler>
     <guides position="1297" horizontal="true"/>

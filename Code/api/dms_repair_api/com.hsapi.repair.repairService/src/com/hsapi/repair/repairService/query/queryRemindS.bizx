@@ -45,7 +45,7 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" collapsed="false" type="end">
     <targetConnections>link2</targetConnections>
-    <location x="420" y="170"/>
+    <location x="525" y="170"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
@@ -54,7 +54,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="418" y="206"/>
+    <location x="523" y="206"/>
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>

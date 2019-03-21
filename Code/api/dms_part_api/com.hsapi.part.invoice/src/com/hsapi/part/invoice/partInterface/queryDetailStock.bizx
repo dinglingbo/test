@@ -276,11 +276,10 @@
     <location x="145" y="321"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hs.common.sysService.srmAuth</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="loginName" type="literal" value="String" valueType="Primitive" pattern="reference">hstest</process:inputVariable>
-        <process:inputVariable id="1" name="pw" type="literal" value="String" valueType="Primitive" pattern="reference">hstest</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

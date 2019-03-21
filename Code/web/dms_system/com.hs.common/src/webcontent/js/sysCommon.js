@@ -200,6 +200,99 @@ function selectCarModel(callBack) {
 	});
 }
 
-//车型解析
+//车牌验证
+function isVehicleNumber(vehicleNumber) {
+    var result = false;
+	if(currIsCanfreeCarnovin==1){
+		return true; //有自由输入权限
+	}
+      //var express = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/;
+    	var express = /(^[\u4E00-\u9FA5]{1}[A-Z_0-9]{1}[A-Z_0-9]{4}[A-Z_0-9_挂学警港澳领]{1}$)|(^WJ[A-Z_0-9_\u4e00-\u9fa5]{1}[A-Z_0-9]{5}$)|(^WJ[A-Z_0-9]{2}[A-Z_0-9_\u4e00-\u9fa5]{1}[A-Z_0-9]{4}$)|(^[A-Z]{2}[0-9]{5}$)|(^[\u4E00-\u9FA5]{1}[A-Z]{1}[A-Z_0-9]{5}[A-Z_0-9_警领]{1}$)/;
+      result = express.test(vehicleNumber);
+    return result;
+}
 
+function validation(vin){
+	vin = CtoH(vin)//全角转半角
+	vin = vin.toUpperCase();//小写转大写
+	var data = {};
+	if(currIsCanfreeCarnovin==1){
+		data.isNo= true;
+		data.vin = vin
+		return data; //有自由输入权限
+	}
+	if (vin.length > 0 && vin.length == 12){
+		data.isNo= true;
+		data.vin = vin
+		return data; //12位车架号不验证规则；
+	} 
+    if (vin.length > 0 && vin.length != 17){
+		data.isNo= false;
+		data.vin = vin
+		return data; 
+    } 
+    var vinVal = vin.toUpperCase();
+    var charToNum = {'A':1,'B':2,'C':3,'D':4,'E':5,'F':6,'G':7,'H':8,'J':1,'K':2,'L':3,'M':4,'N':5,'P':7,'R':9,'S':2,'T':3,'U':4,'V':5,'W':6,'X':7,'Y':8,'Z':9};
+    var obj = 0;
+    var arr = new Array();
+    for (var i = 0 ; i < vinVal.length; i++) {
+      var temp = vinVal.charAt(i);
+
+      if(charToNum[temp]) {
+        arr[i] = charToNum[temp];
+      }else{
+        arr[i] = Number(temp);
+      }
+      if(i==8){
+        arr[i] = vinVal.charAt(i);
+      }
+    }
+
+    var a1 = 8;
+    for (var i = 0; i < 7; i++) {
+      obj += Number(arr[i]) * a1;
+      a1--;
+    }
+
+    obj += Number(arr[7])*10;
+
+    var a2 = 9;
+    for (var i = 9; i < 17; i++) {
+      obj += Number(arr[i]) * a2;
+      a2--;
+    }
+
+    var result = Number(obj)%11;
+    if(parseInt(result) === 10){
+      result = 'X';
+    }
+
+    if(result == arr[8]){
+		data.isNo= true;
+		data.vin = vin
+		return data; 
+    }else{
+		data.isNo= false;
+		data.vin = vin
+		return data; 
+    } 
+}
+
+//JS把全角转为半角的函数  
+function CtoH(str)  
+{  
+    var result="";  
+    for (var i = 0; i < str.length; i++){  
+        if (str.charCodeAt(i)==12288){  
+            result+= String.fromCharCode(str.charCodeAt(i)-12256);  
+            continue;  
+        }  
+        if (str.charCodeAt(i)>65280 && str.charCodeAt(i)<65375){  
+            result+= String.fromCharCode(str.charCodeAt(i)-65248);  
+        }else{  
+            result+= String.fromCharCode(str.charCodeAt(i));  
+        }  
+    }  
+    return result;  
+}   
 

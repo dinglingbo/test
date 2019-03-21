@@ -157,6 +157,24 @@ function getStorehouse(callback) {
 	});
 }
 
+var getMemStorehouseUrl = apiPath + partApi + "/com.hsapi.system.tenant.employee.queryMemStore.biz.ext";
+function getMemStorehouse(callback) {
+nui.ajax({
+	url : getMemStorehouseUrl,
+	data : {token: token},
+	type : "post",
+	success : function(data) {
+		if (data && data.storehouse) {
+			callback && callback(data);
+		}
+	},
+	error : function(jqXHR, textStatus, errorThrown) {
+		//  nui.alert(jqXHR.responseText);
+		console.log(jqXHR.responseText);
+	}
+});
+}
+
 var getAllPartTypeUrl=window._rootUrl
 + "com.hsapi.system.dict.dictMgr.queryPartType.biz.ext";
 function getAllPartType(callback)

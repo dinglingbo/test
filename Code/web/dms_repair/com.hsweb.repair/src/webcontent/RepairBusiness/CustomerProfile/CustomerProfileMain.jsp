@@ -40,7 +40,6 @@
 							<li iconCls="" onclick="quickSearch(6)" id="type6">所有客户</li>
 							<!-- <li iconCls="" onclick="quickSearch(0)" id="type0">本日所有开单客户</li> -->
 							<li iconCls="" onclick="quickSearch(0)" id="type0">本日所有来厂客户</li>
-							<li iconCls="" onclick="quickSearch(0)" id="type0">本日所有来厂客户</li>
 							<li iconCls="" onclick="quickSearch(1)" id="type1">昨日所有来厂客户</li>
 							<li iconCls="" onclick="quickSearch(2)" id="type2">本日新来厂客户</li>
 							<li iconCls="" onclick="quickSearch(3)" id="type3">本月新来厂客户</li>

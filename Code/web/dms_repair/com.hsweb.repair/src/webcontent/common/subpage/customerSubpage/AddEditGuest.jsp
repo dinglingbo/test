@@ -166,7 +166,7 @@
                         <input class="nui-textbox" name="remark" width="100%" />
                     </td>
                 </tr>
-            </table>
+            </table> 
         </div>
     </div>
     <div title="车辆信息" class="nui-window" id="carview" style="width: 100%">

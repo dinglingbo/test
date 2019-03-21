@@ -3,9 +3,11 @@
  */
 baseUrl = apiPath + sysApi + "/";
 var gridUrl = baseUrl + "com.hsapi.system.tenant.employee.queryEmployee.biz.ext";
+var companyUrl = baseUrl+"com.hsapi.system.basic.organization.getCompanyAll.biz.ext";
 var grid;
 var btnisDimission;
 var btnisOpenAccount;
+var orgidsEl = null;
 nui.parse();
 
 
@@ -26,7 +28,13 @@ $(document).ready(function(v) {
 	grid.setUrl(gridUrl);
 	
 	
-
+	
+    if(currIsMaster==0){
+    	orgidsEl.hide();
+    }else{
+    	getCompany();
+    }
+    
     var request = {
         "params":{
         	
@@ -54,7 +62,31 @@ $(document).ready(function(v) {
     }
 });
 
-
+function getCompany(){
+	var params = {};
+	nui.ajax({
+        url: companyUrl,
+        type: 'post',
+        async:false,
+        data: nui.encode({
+        	params: params,
+            token: token
+        }),
+        cache: false,
+        success: function (data) {
+            if (data.errCode == "S"){
+            	orgidsEl = nui.get("orgids");
+                orgidsEl.setData(data.companyList);
+            }else {
+            	orgidsEl = nui.get("orgids");
+                orgidsEl.setData([]);
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
+	});
+}
 
 function onDrawCell(e)  {
     switch (e.field)  {
@@ -83,16 +115,20 @@ function search() {
     doSearch(param);
 }
 
-function getSearchParam() {
+function getSearchParam(){
     var params = {};
     params.empName = nui.get("name").getValue().replace(/\s+/g, "");
     params.empTel = nui.get("mobile").getValue().replace(/\s+/g, "");
-    if(currIsMaster == "1"){
-    	params.tenantId = currTenantId;
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+        if(currIsMaster == "1"){
+        	params.tenantId = currTenantId;
+        }else{
+        	params.orgid = currOrgId;
+        }
     }else{
-    	params.orgid = currOrgId;
+    	params.orgid=orgidsElValue;
     }
-
     return params;
 }
 

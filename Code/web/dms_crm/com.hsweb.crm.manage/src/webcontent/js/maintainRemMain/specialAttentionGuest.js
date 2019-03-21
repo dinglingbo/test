@@ -93,7 +93,7 @@ $(document).ready(function (v) {
                 e.cellHtml = '电销客户';
             }
         }else if(e.field == "carNo"){
-    		e.cellHtml ='<a href="##" onclick="WindowrepairHistory('+"'"+e.record.carNo+"'"+')">'+e.record.carNo+'</a>';
+    		e.cellHtml ='<a href="##" onclick="WindowrepairHistory()">'+e.record.carNo+'</a>';
     	}
     });
     business.on("drawcell", function (e) {
@@ -105,7 +105,9 @@ $(document).ready(function (v) {
             } else {
                 e.cellHtml = '电销客户';
             }
-        }
+        }else if(e.field == "carNo"){
+    		e.cellHtml ='<a href="##" onclick="WindowrepairHistory()">'+e.record.carNo+'</a>';
+    	}
     });
     compulsoryInsurance.on("drawcell", function (e) {
         if (e.field == "mobile") {
@@ -116,7 +118,9 @@ $(document).ready(function (v) {
             } else {
                 e.cellHtml = '电销客户';
             }
-        }
+        }else if(e.field == "carNo"){
+    		e.cellHtml ='<a href="##" onclick="WindowrepairHistory()">'+e.record.carNo+'</a>';
+    	}
     });
     drivingLicense.on("drawcell", function (e) {
         if (e.field == "mobile") {
@@ -127,7 +131,9 @@ $(document).ready(function (v) {
             } else {
                 e.cellHtml = '电销客户';
             }
-        }
+        }else if(e.field == "carNo"){
+    		e.cellHtml ='<a href="##" onclick="WindowrepairHistory()">'+e.record.carNo+'</a>';
+    	}
     });
     car.on("drawcell", function (e) {
         if (e.field == "mobile") {
@@ -138,7 +144,9 @@ $(document).ready(function (v) {
             } else {
                 e.cellHtml = '电销客户';
             }
-        }
+        }else if(e.field == "carNo"){
+    		e.cellHtml ='<a href="##" onclick="WindowrepairHistory()">'+e.record.carNo+'</a>';
+    	}
     });
     guestBirthday.on("drawcell", function (e) {
         if (e.field == "mobile") {
@@ -149,7 +157,9 @@ $(document).ready(function (v) {
             } else {
                 e.cellHtml = '电销客户';
             }
-        }
+        }else if(e.field == "carNo"){
+    		e.cellHtml ='<a href="##" onclick="WindowrepairHistory()">'+e.record.carNo+'</a>';
+    	}
     });
     visitHis.on("drawcell", function (e) {
         if (e.field == "serviceType") {
@@ -453,7 +463,8 @@ function getRow() {
     }
     sRow.title = tab.title;
     sRow.name = sRow.guestName;//发送微信界面用到
-    sRow.guestId = sRow.conId;//电话回访界面用到
+    sRow.trueGuestId = sRow.guestId;//真正的guestId
+    sRow.guestId = sRow.conId;//电话回访界面用到 联系表id
     sRow.annualVerificationDueDate = sRow.dueDate;//车辆年检发送微信界面用到
 
     return sRow||0;
@@ -633,7 +644,7 @@ function WindowrepairHistory(){
 	var params = {
 		carId : row.carId,
 		carNo : row.carNo,
-		guestId : row.guestId
+		guestId : row.trueGuestId
 	};
 		doShowCarInfo(params);
 }

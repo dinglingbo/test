@@ -27,7 +27,7 @@ pageEncoding="UTF-8" session="false" %>
         width: 100%;
     }
     .tbText{
-        /* float: right; */
+        text-align: right;
     }
 </style> 
 </head>
@@ -49,15 +49,15 @@ pageEncoding="UTF-8" session="false" %>
        <input class="nui-hidden" name="carId" id="carId"/>
        <input class="nui-hidden" name="carNo" id="carNo"/>
        <input class="nui-hidden" name="guestId" id="guestId"/>
-       <table class="tmargin" style="table-layout: fixed;width:100%">
+       <table class="tmargin" style="width:100%">
         <tr class="htr">
-            <td  style="width: 70px;" class="tbText">回访方式：</td>
+            <td  style="width: 90px;" class="tbText">回访方式：</td>
             <td style="width: 100px;">
                 <input id="visitMode" name="visitMode" class="nui-combobox textboxWidth" dataField="data" valueField="customid" textField="name" value='011401' enabled="false">
             </td>
             <td style="width: 90px;" class="tbText">下次保养日期：</td>
             <td style="width: 135px;">
-                <input id="careDueDate" name="careDueDate" class=" nui-datepicker textboxWidth" >
+                <input id="careDueDate" name="careDueDate" class=" nui-datepicker textboxWidth" format="yyyy-MM-dd HH:mm" timeFormat="HH:mm" showTime="true">
             </td>
             <td style="width: 70px;" class="tbText">保养周期：</td>
             <td style="width: 100px;">
@@ -72,13 +72,23 @@ pageEncoding="UTF-8" session="false" %>
             </td>
         </tr> 
         <tr class="htr">
+            <td class="tbText">是否继续回访：</td>
+            <td >
+                    <input id="isContinueVisit" name="isContinueVisit" class="nui-combobox textboxWidth"valueField="id" textField="text" data="[{id:0,text:'是'},{id:1,text:'否'}]">
+            </td>
+            <td class="tbText">下次回访时间：</td>
+            <td >
+                <input id="nextVisitDate" name="nextVisitDate" class="nui-datepicker textboxWidth" format="yyyy-MM-dd HH:mm" timeFormat="HH:mm" showTime="true">
+            </td>
+        </tr>
+        <tr class="htr">
             <td class="tbText">回访员：</td>
             <td >
                 <input id="visitMan" name="visitMan" class="nui-combobox textboxWidth" allowInput="true" textField="empName" valueField="empName" emptyText="请选择..."nullItemText="请选择..." onvaluechanged="visitManChanged">
             </td>
             <td class="tbText">回访时间：</td>
             <td >
-                <input id="visitDate" name="visitDate" class="nui-datepicker textboxWidth">
+                <input id="visitDate" name="visitDate" class="nui-datepicker textboxWidth" format="yyyy-MM-dd HH:mm" timeFormat="HH:mm" showTime="true">
             </td>
         </tr>
     </table>
@@ -120,7 +130,10 @@ pageEncoding="UTF-8" session="false" %>
             cls: 'mini-mask-loading',
             html: '正在保存...'
         });
-        var data = tabForm.getData();
+        var data = tabForm.getData(true);
+        if(data.visitStatus == 1){
+            data.visitStatus = '';
+        }
         var record = {
             visitMode:data.visitMode,
             visitId:data.visitId,
@@ -131,10 +144,12 @@ pageEncoding="UTF-8" session="false" %>
             careDayCycle:data.careDayCycle,
             carId:mainData.carId,
             carNo:mainData.carNo,
-            guestId:mainData.guestId,
+            guestId:mainData.contactorId,
             serviceId:mainData.serviceId,
             serviceType:'3',
-            mainId:mainData.id
+            mainId:mainData.id,
+            nextVisitDate:data.nextVisitDate,
+            isContinueVisit:data.isContinueVisit 
         };
         nui.ajax({
             url:baseUrl + "com.hsapi.crm.svr.visit.savevisitDetail.biz.ext",

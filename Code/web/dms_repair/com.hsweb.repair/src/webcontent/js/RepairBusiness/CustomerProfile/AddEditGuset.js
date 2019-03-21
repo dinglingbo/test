@@ -2,7 +2,7 @@ var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
 var contactInfoForm = null;
 var carInfoFrom = null;
 var basicInfoForm = null;
-var provice;
+var provice; 
 var cityId;
 var data;
 var carview = null;

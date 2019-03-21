@@ -14,7 +14,7 @@ var getRpsPartUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart
 
 var beginDateEl = null;
 var endDateEl = null;
-var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"车架号(VIN)"},{id:"2",name:"联系人名称"},{id:"3",name:"手机号"}];
+var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"车架号(VIN)"},{id:"2",name:"客户名称"},{id:"3",name:"手机号"}];
 var prebookStatusHash = [{ name: '草稿', id: '0' }, { name: '施工中', id: '1' }, {name: '完工' , id: '2' }];
 var headerHash = [{ name: '未结算', id: '0' }, { name: '预结算', id: '1' }, {name: '未结算' , id: '2' }, {name: '未结算' , id: '3' }];
 var brandList = [];

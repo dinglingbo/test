@@ -15,6 +15,9 @@ var carBrandHash = [];
 var carSeriesHash = [];
 var mtAdvisorHash = [];
 var carModelIdHash = {};
+var guestTypeList = [];
+var guestTypeHash = {};
+var carModelHash = {};
 var xs = 0;
 
 $(document).ready(function(v){
@@ -47,7 +50,12 @@ $(document).ready(function(v){
         	advancedSearchWin.hide();
         }
       };
-
+      initGuestType("guestTypeId",function(data) {
+        	guestTypeList = nui.get("guestTypeId").getData();
+        	guestTypeList.forEach(function(v) {
+        		guestTypeHash[v.id] = v;
+            });
+     });
 });
 function init(){
 
@@ -161,7 +169,7 @@ function advancedSearch()
 }
 function onAdvancedSearchOk()
 {
-    var searchData = advancedSearchForm.getData();
+    var searchData = advancedSearchForm.getData(true);
     advancedSearchFormData = {};
     for(var key in searchData)
     {
@@ -553,4 +561,8 @@ function carChange(){
         showMsg("请选中一条数据", "W");
     }
 
+}
+
+function cancelData(){
+	advancedSearchForm.setData([]);
 }

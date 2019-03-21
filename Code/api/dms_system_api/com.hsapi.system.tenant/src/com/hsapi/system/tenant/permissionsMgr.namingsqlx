@@ -120,6 +120,9 @@
 			on a.orgid = b.orgid
 
 		where 1 = 1
+		      <isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
 		      <isNotEmpty prepend="and" property="tenantId">  
                     a.tenant_id = #tenantId#
               </isNotEmpty>

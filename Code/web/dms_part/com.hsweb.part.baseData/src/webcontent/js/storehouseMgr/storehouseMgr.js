@@ -4,8 +4,10 @@
 var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var tree = null;
 var rightGrid = null;
+var memGrid = null;
 var treeUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.getStorehouse.biz.ext";
 var rightGridUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.getSorehouseLocation.biz.ext";
+var storeMemUrl = apiPath + sysApi + "/com.hsapi.system.tenant.employee.queryStoreMember.biz.ext";
 $(document).ready(function(v)
 {
 	tree = nui.get("tree1");
@@ -14,7 +16,7 @@ $(document).ready(function(v)
 //        e.data.token = token;
 //    });
     
-    tree.load({token:token});
+    tree.load({fromDb:true,token:token});
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
     rightGrid.on("beforeload",function(e){
@@ -27,6 +29,13 @@ $(document).ready(function(v)
     		onRowClick({});
     	}
         
+    });
+    
+    memGrid = nui.get("memGrid");
+    memGrid.setUrl(storeMemUrl);
+    
+    memGrid.on("beforeload",function(e){
+        e.data.token = token;
     });
     
 });
@@ -147,6 +156,11 @@ function onNodeselect(e)
     if(node && node.id)
     {
         rightGrid.load({
+            storeId:node.id,
+            fromDb: true
+        });
+        
+        memGrid.load({
             storeId:node.id
         });
     }
@@ -175,8 +189,10 @@ function disableLocation(){
         }
     ];
     nui.mask({
-        html:'保存中...'
-    });
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '保存中...'
+	});
     nui.ajax({
         url:saveUrl,
         type:"post",
@@ -199,6 +215,7 @@ function disableLocation(){
         },
         error:function(jqXHR, textStatus, errorThrown){
             //  nui.alert(jqXHR.responseText);
+        	nui.unmask();
             console.log(jqXHR.responseText);
         }
     });
@@ -216,8 +233,10 @@ function enableLocation(){
         }
     ];
     nui.mask({
-        html:'保存中...'
-    });
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '保存中...'
+	});
     nui.ajax({
         url:saveUrl,
         type:"post",
@@ -240,6 +259,7 @@ function enableLocation(){
         },
         error:function(jqXHR, textStatus, errorThrown){
             //  nui.alert(jqXHR.responseText);
+        	nui.unmask();
             console.log(jqXHR.responseText);
         }
     });
@@ -261,8 +281,10 @@ function savePosition()
     }
   //  console.log(locations);
     nui.mask({
-        html:'保存中...'
-    });
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '保存中...'
+	});
     nui.ajax({
         url:saveUrl,
         type:"post",
@@ -286,6 +308,7 @@ function savePosition()
         error:function(jqXHR, textStatus, errorThrown){
             //  nui.alert(jqXHR.responseText);
             showMsg("网络出错","W");
+            nui.unmask();
             console.log(jqXHR.responseText);
         }
     });
@@ -293,3 +316,136 @@ function savePosition()
 function reloadGrid(){
     rightGrid.reload();
 }
+
+function addStoreMem()
+{
+    var node = tree.getSelectedNode();
+    var id = "";
+    if(node){
+        id = node.id;
+    }
+    else{
+        showMsg("请选择一个仓库","W");
+        return;
+    }
+    var storehouseList = tree.getList()||[];
+    nui.open({
+        url: webPath+contextPath+"/com.hs.common.employeeChoose.flow?token=" + token,
+        title: "员工选择",
+        width: 600, height: 300,
+        allowDrag:true,
+        allowResize:false,
+        onload: function ()
+        {
+        },
+        ondestroy: function (action)
+        {
+        	if(action == "ok")
+            {
+        		var iframe = this.getIFrameEl();
+				var data = iframe.contentWindow.getRetData();
+				saveStoreMember(data, node.id);
+            }
+        }
+    });
+}
+
+var saveUrl = apiPath + sysApi + "/com.hsapi.system.tenant.employee.saveStoreMember.biz.ext";
+function saveStoreMember(memList, storeId){
+    if(!memList)
+    {
+        return;
+    }
+    var data = [];
+    for(var i=0; i<memList.length; i++) {
+    	memList[i].storeId = storeId;
+    	var mem = {
+    		empId : memList[i].empid,
+    		empName: memList[i].name,
+    		storeId : storeId
+    	}
+    	data.push(mem);
+    }
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '保存中...'
+	});
+    nui.ajax({
+        url:saveUrl,
+        type:"post",
+        data:JSON.stringify({
+        	memList:data,
+            token:token
+        }),
+        success:function(data)
+        {
+            nui.unmask();
+            data = data||{};
+            if(data.errCode == "S")
+            {
+                showMsg("添加成功","S");
+                memGrid.reload();
+            }
+            else{
+                showMsg("添加失败","W");
+            }
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+            //  nui.alert(jqXHR.responseText);
+        	nui.unmask();
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+
+var delUrl = apiPath + sysApi + "/com.hsapi.system.tenant.employee.deleteStoreMember.biz.ext";
+function delStoreMem(){
+	var rows = memGrid.getSelecteds();
+    if(!rows)
+    {
+        return;
+    }
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '删除中...'
+	});
+    nui.ajax({
+        url:delUrl,
+        type:"post",
+        data:JSON.stringify({
+        	memList:rows,
+            token:token
+        }),
+        success:function(data)
+        {
+            nui.unmask();
+            data = data||{};
+            if(data.errCode == "S")
+            {
+                showMsg("删除成功","S");
+                memGrid.removeRows(rows);
+            }
+            else{
+                showMsg("删除失败","W");
+            }
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+            //  nui.alert(jqXHR.responseText);
+        	nui.unmask();
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+

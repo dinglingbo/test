@@ -71,6 +71,10 @@ var settleStatusHash = {
 	"1" : "部分收款",
 	"2" : "已收款"
 };
+var auditSignHash = {
+		"0" : "未审核",
+		"1" : "已审核"
+	};
 var headerHash = [{ name: '未收款', id: '0' }, { name: '部分收款', id: '1' }, { name: '已收款', id: '2' }];
 var balanceList = [ {
 	id : 0,
@@ -527,6 +531,11 @@ function onDrawCell(e) {
 			e.cellHtml = settleStatusHash[e.value];
 		}
 		break;
+	case "auditSign":
+		if (auditSignHash && auditSignHash[e.value]) {
+			e.cellHtml = auditSignHash[e.value];
+		}
+		break;		
 	case "nowAmt":
 		e.cellStyle = 'background-color:#90EE90';
 		break;
@@ -1050,14 +1059,17 @@ function doSettle() {
 	}
 
 	var rows = rightGrid.getSelecteds();
-	if(rows[0].settleStatus==2){
-		showMsg("此单已结算", "W");
-		return;
+	for(var i =0;i<rows.length;i++){
+		if(rows[i].settleStatus==2){
+			showMsg(rows[i].billServiceId+"已结算", "W");
+			return;
+		}
+		if(rows[i].auditSign==0){
+			showMsg("请先审核单据："+rows[i].billServiceId, "W");
+			return;
+		}
 	}
-	if(rows[0].nowAmt>rows[0].noCharOffAmt){
-		showMsg("结算金额不能大于应结金额", "W");
-		return;
-	}
+
 	var s = rows.length;
 	if (s > 0) {
 /*		if (name == "pRightTab") {
@@ -1699,4 +1711,47 @@ function openOrderDetail(){
 		return;
 	}
 
+}
+var doAuditUrl = baseUrl+"com.hsapi.frm.frmService.rpsettle.rpAccountSettleAudit.biz.ext";
+function doAudit(){
+	var rows = rRightGrid.getSelecteds();
+	for(var i =0;i<rows.length;i++){
+		if(rows[i].auditSign==1){
+			showMsg(rows[i].billServiceId+"已审核", "W");
+			return;
+		}
+/*		if(rows[i].nowAmt>rows[0].noCharOffAmt){
+			showMsg("结算金额不能大于应结金额", "W");
+			return;
+		}*/
+	}
+	
+	nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : '数据处理中...'
+	});
+
+	nui.ajax({
+		url : doAuditUrl,
+		type : "post",
+		data : JSON.stringify({
+
+			accountDetailList : rows
+		}),
+		success : function(data) {
+			nui.unmask(document.body);
+			data = data || {};
+			if (data.errCode == "S") {
+				showMsg("审核成功!", "S");
+				onSearch();
+
+			} else {
+				showMsg(data.errMsg || "审核失败!", "w");
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+		}
+	});
 }

@@ -42,10 +42,15 @@ function onProvinceSelected(cityId) {
 }
 var getStorehouseUrl = window._rootPartUrl
 		+ "com.hsapi.part.baseDataCrud.crud.getStorehouse.biz.ext";
+var getMemStorehouseUrl = apiPath + sysApi + "/com.hsapi.system.tenant.employee.queryMemStore.biz.ext";
 function getStorehouse(callback) {
+	var url = getStorehouseUrl;
+	if(currRepairStoreControlFlag == "1") {
+		url = getMemStorehouseUrl;
+	}
 	doPost({
-		url : getStorehouseUrl,
-		data : {},
+		url : url,
+		data : {token: token},
 		success : function(data) {
 			callback && callback(data);
 		},

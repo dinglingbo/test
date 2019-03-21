@@ -123,10 +123,12 @@
 	    	success: function (text) {
 	    		if(text.errCode == 'S'){
 		    		nui.unmask();
-					nui.alert("权限设置成功");
+		    		showMsg("权限设置成功","S");
+					//nui.alert("权限设置成功");
 	    		}else{
 	    			nui.unmask();
-					nui.alert(text.errMsg||"权限设置失败");
+	    			showMsg(text.errMsg||"权限设置失败","E");
+					//nui.alert(text.errMsg||"权限设置失败");
 	    		}
             },
             error: function () {

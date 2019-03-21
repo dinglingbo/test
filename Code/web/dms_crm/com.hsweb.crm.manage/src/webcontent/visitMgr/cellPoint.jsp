@@ -28,6 +28,7 @@ pageEncoding="UTF-8" session="false" %>
 </head>
 
 <body>
+<input class="nui-combobox" name="chanceType" id="chanceType" valueField="customid" textField="name"  visible="false" />
     	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
                 <table style="width:100%;">
                     <tr>
@@ -56,10 +57,42 @@ pageEncoding="UTF-8" session="false" %>
 
     <script type="text/javascript">
         nui.parse();
+        var hash = new Array("尚未联系", "有兴趣", "意向明确", "成交" ,"输单");
         var carSellPointGrid = nui.get("carSellPointGrid");
         var sellUrl = apiPath + crmApi + "/com.hsapi.crm.basic.crmBasic.querySellList.biz.ext";
         carSellPointGrid.setUrl(sellUrl);
         var mainData = null;
+        var sfData = [];
+
+ initDicts({
+    	chanceType:SELL_TYPE//商机
+    },function(data){
+    	sfData = nui.get("chanceType").data;
+    });
+
+  carSellPointGrid.on("drawcell", function(e) {
+		switch (e.field) {
+		case "status":
+			e.cellHtml = hash[e.value];
+			break;
+		case "chanceType":
+			for(var i=0;i<sfData.length;i++){
+				if(e.value==sfData[i].customid){
+					e.cellHtml =sfData[i].name;
+					}
+				}
+			break;
+		case "cardTimesOpt":
+			e.cellHtml = '<a class="optbtn" href="javascript:void()" onclick="editSell()">跟进</a>';
+			break;
+		default:
+			break;
+		}
+
+	});
+
+
+
 
         function search(guestId) {
             var params = {
@@ -77,6 +110,36 @@ pageEncoding="UTF-8" session="false" %>
                 search(mainData.guestId);
             }
         }
+
+
+function editSell() {
+		var row = carSellPointGrid.getSelected();
+		if (row) {
+			nui.open({
+				url : webPath + contextPath
+				+ "/com.hsweb.part.manage.businessOpportunityEdit.flow?token="
+				+ token,
+				title : "更新商机",
+				width : 550,
+				height : 410,
+				onload : function() {
+					var iframe = this.getIFrameEl();
+					var data = row;
+					data.type = 'editT';
+					// 直接从页面获取，不用去后台获取
+					iframe.contentWindow.setData(data);
+				},
+				ondestroy : function(action) {
+					if (action == "saveSuccess") {
+						carSellPointGrid.reload();
+					}
+				}
+			});
+		} else {
+			showMsg("请选中一条记录!", "W");
+		}
+	}
+
 
         function addSell() {
 	
@@ -98,7 +161,7 @@ pageEncoding="UTF-8" session="false" %>
 		},
 		ondestroy : function(action) {
 			if (action == "saveSuccess") {
-				grid.reload();
+				carSellPointGrid.reload();
 			}
 		}
 	});

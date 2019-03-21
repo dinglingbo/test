@@ -350,7 +350,7 @@ function sellPoint() {//销售机会
 		nui.open({
 			url: webPath + contextPath + "/manage/visitMgr/cellPoint.jsp?token="+ token,
 			title: "销售机会", 
-			width: 700, height: 300,
+			width: 800, height: 300,
 			onload: function () {
 				var iframe = this.getIFrameEl(); 
 				iframe.contentWindow.setData(row);

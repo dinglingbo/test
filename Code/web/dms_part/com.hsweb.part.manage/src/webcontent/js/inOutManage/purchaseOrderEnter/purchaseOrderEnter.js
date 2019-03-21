@@ -191,7 +191,7 @@ $(document).ready(function(v) {
 			storehouse = data.storehouse || [];
 			if(storehouse && storehouse.length>0){
 				FStoreId = storehouse[0].id;
-				//nui.get('storehouse').setData(storehouse);
+				nui.get('storehouse').setData(storehouse);
 				nui.get("storeIdE").setData(storehouse);
 		        if(currRepairStoreControlFlag == "1") {
 		        	nui.get("storeIdE").setValue(FStoreId);
@@ -2129,7 +2129,9 @@ function OnrpMainGridCellBeginEdit(e){
 			nui.get('storeShelf').setData(storeShelfList);
 
 		});
-        }
+    }else if(field == "storeId") {
+    	
+    }
 }
 function addMorePart(){
 	var row = leftGrid.getSelected();

@@ -8,7 +8,7 @@
 -->
 <head>
 <title>业务单选择</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/orderBillChoose.js?v=1.0.4"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/orderBillChoose.js?v=1.0.5"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -54,6 +54,19 @@
                          emptyText="请选择往来单位..." visible="false"
                          onbuttonclick="selectSupplier('searchBillGuestId')" selectOnFocus="true" />
                   <input id="billServiceId" width="120px" emptyText="业务单号" class="nui-textbox"/>
+                  
+                  <input id="storeId"
+                           name="storeId"
+                           class="nui-combobox"
+                           textField="name"
+                           valueField="id"
+                           emptyText="仓库"
+                           url="" width="80"
+                           valueFromSelect="true"
+                           allowInput="false"
+                           showNullItem="false"
+                           nullItemText="请选择..."/>
+                  
                   <input id="billServiceMan" width="60px" emptyText="业务员" class="nui-hidden"/>
                   <!-- <input id="searchGuestId" class="nui-buttonedit"
                          emptyText="请选择往来单位..."

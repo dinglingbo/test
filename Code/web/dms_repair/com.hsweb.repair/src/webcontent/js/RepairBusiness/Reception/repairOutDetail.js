@@ -73,7 +73,7 @@ $(document).ready(function(){
       });
     });
     
-	getStorehouse(function(data) {
+    getAllStorehouse(function(data) {
 		storehouse = data.storehouse || [];
 		if (storehouse && storehouse.length > 0) {
 			FStoreId = storehouse[0].id;
@@ -1507,3 +1507,23 @@ function  savepartOutRtn(data,childdata){
         	}
         });
     }
+    
+    
+    
+    
+var getStorehouseUrl = apiPath + partApi 
++ "/com.hsapi.part.baseDataCrud.crud.getStorehouse.biz.ext";
+function getAllStorehouse(callback) {
+	doPost({
+		url : getStorehouseUrl,
+		data : {token: token},
+		success : function(data) {
+			callback && callback(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+			callback && callback({});
+		}
+	});
+}

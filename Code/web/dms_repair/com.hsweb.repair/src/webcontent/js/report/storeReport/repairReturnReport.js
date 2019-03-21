@@ -59,6 +59,15 @@ $(document).ready(function(v)
 				storeHash[v.id] = v;
 			});
 		}
+		if(currRepairStoreControlFlag == "1") {
+        	if(storehouse && storehouse.length>0) {
+        		nui.get("storeId").setValue(storehouse[0].id);
+        	}
+        }else {
+        	nui.get("storeId").setAllowInput(true);
+        }
+		
+		quickSearch(4);
 	});
 
 	
@@ -142,7 +151,7 @@ $(document).ready(function(v)
         }
     });
 	
-    quickSearch(4);
+    
 
 	getAllPartType(function(data){
 		partTypeList=data.partTypes;

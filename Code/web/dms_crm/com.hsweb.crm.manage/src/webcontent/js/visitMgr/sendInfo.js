@@ -15,7 +15,7 @@ $(document).ready(function (){
     var keyCode=e.keyCode||e.which;//38向上 40向下
 
     if((keyCode==27)) { //ESC
-        onClose();
+        onClose(); 
     }
  };
 
@@ -58,6 +58,7 @@ function save() {
 			data : json,
 //			cache : false,
 //			contentType : 'text/json',
+            async:false,
 			success : function(text) {
 				var returnJson = nui.decode(text);
 				if (returnJson.errCode == "S") {
@@ -70,7 +71,10 @@ function save() {
 					//showMsg(returnJson.errMsg || "发送失败","E");
 					
 				}
-			}
+           },
+           error: function (result) { 
+               console.log(result);
+           }
 		});
 }
 

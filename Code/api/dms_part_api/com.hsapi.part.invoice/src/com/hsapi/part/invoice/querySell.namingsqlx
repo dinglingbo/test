@@ -140,7 +140,7 @@
 				FROM
 				Wb_PART.pj_sell_order_main A
 				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
-				LEFT JOIN Wb_PART.PJ_PCHS_ORDER_DETAIL C ON A.ID = C.MAIN_ID
+				LEFT JOIN Wb_PART.PJ_sell_ORDER_DETAIL C ON A.ID = C.MAIN_ID
 				LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
                 where 1=1
             <dynamic>
@@ -257,7 +257,7 @@
 				FROM
 				Wb_PART.pj_sell_order_main_chk A
 				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
-				LEFT JOIN Wb_PART.PJ_PCHS_ORDER_DETAIL C ON A.ID = C.MAIN_ID
+				LEFT JOIN Wb_PART.PJ_sell_ORDER_DETAIL C ON A.ID = C.MAIN_ID
 				LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
                 where 1=1
             <dynamic>
@@ -1189,7 +1189,7 @@
 				FROM
 				Wb_PART.pj_sell_order_main A
 				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
-				LEFT JOIN Wb_PART.PJ_PCHS_ORDER_DETAIL C ON A.ID = C.MAIN_ID
+				LEFT JOIN Wb_PART.PJ_sell_ORDER_DETAIL C ON A.ID = C.MAIN_ID
 				LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
                 where 1=1
             <dynamic>
@@ -1327,7 +1327,7 @@
 				FROM
 				Wb_PART.pj_sell_order_main_chk A
 				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
-				LEFT JOIN Wb_PART.PJ_PCHS_ORDER_DETAIL_chk C ON A.ID = C.MAIN_ID
+				LEFT JOIN Wb_PART.PJ_sell_ORDER_DETAIL_chk C ON A.ID = C.MAIN_ID
 				LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
                 where 1=1
             <dynamic>
@@ -1379,6 +1379,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partId">  
                     (C.PART_ID = #partId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="storeId">  
+                    (C.store_ID = #storeId#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (A.guest_id = #guestId#)

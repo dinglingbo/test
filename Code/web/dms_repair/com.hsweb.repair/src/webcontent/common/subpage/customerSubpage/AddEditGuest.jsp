@@ -239,7 +239,7 @@
                         <label>年审到期：</label>
                     </td>
                     <td>
-                        <input name="annualVerificationDueDate" format="yyyy-MM-dd" allowInput="false" class="nui-datepicker" width="100%" />
+                        <input name="annualVerificationDueDate" format="yyyy-MM-dd" allowInput="true" class="nui-datepicker" width="100%" />
                     </td>
                 </tr>
 
@@ -254,7 +254,7 @@
                         <label>商业险到期：</label>
                     </td>
                     <td>
-                        <input name="annualInspectionDate" format="yyyy-MM-dd" allowInput="false" class="nui-datepicker" width="100%" />
+                        <input name="annualInspectionDate" format="yyyy-MM-dd" allowInput="true" class="nui-datepicker" width="100%" />
                     </td>
                 </tr>
                 <tr>
@@ -277,7 +277,7 @@
                         <label>交强险到期：</label>
                     </td>
                     <td>
-                        <input name="insureDueDate" allowInput="false" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
+                        <input name="insureDueDate" allowInput="true" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
                     </td>
                 </tr>
                  <tr>
@@ -291,25 +291,46 @@
                 </tr>
                 <tr>
                     <td class="form_label">
+                        <label>当前里程：</label>
+                    </td>
+                    <td>
+                        <input name="lastComeKilometers" class="nui-textbox" width="100%" />
+                    </td>
+                    <td class="form_label">
+                        <label>下次保养里程：</label>
+                    </td>
+                    <td>
+                        <input name="careDueMileage" class="nui-textbox" width="100%"/>
+                    </td>
+                </tr>
+                <tr>
+                     <td class="form_label"> 
+                        <label>下次保养时间：</label>
+                    </td>
+                    <td>
+                        <input name="careDueDate" allowInput="true" format="yyyy-MM-dd" timeFormat="H:mm:ss" class="nui-datepicker" width="100%"  
+                          showTime="false" />
+                    </td>
+                    <td class="form_label">
                         <label>生产日期：</label>
                     </td>
                     <td>
-                        <input name="produceDate" allowInput="false" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
+                        <input name="produceDate" allowInput="true" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
                     </td>
+                   
+                </tr>
+                <tr>
                     <td class="form_label"> 
                         <label>上牌日期：</label>
                     </td>
                     <td>
-                        <input name="firstRegDate" allowInput="false" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
+                        <input name="firstRegDate" allowInput="true" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
                     </td>
-                </tr>
-                <tr>
-
                     <td class="form_label">
                         <label>发证日期：</label>
                     </td>
                     <td>
-                        <input id="issuingDate" name="issuingDate" format="yyyy-MM-dd" allowInput="false" class="nui-datepicker" width="100%" />
+                        <input id="issuingDate" name="issuingDate" format="yyyy-MM-dd" allowInput="true" class="nui-datepicker" width="100%" />
                     </td>
 
                     <!--   <td class="form_label" >
@@ -507,6 +528,15 @@
                                     <div field="issuingDate" allowSort="true" dateFormat="yyyy-MM-dd" align="left" headerAlign="center" width="">
                                         发证日期
                                     </div>
+                                    <div field="lastComeKilometers" allowSort="true" visible="false" dateFormat="yyyy-MM-dd" align="left" headerAlign="center" width="">
+                                        当前里程
+                                    </div>
+                                    <div field="careDueDate" allowSort="true" visible="false" dateFormat="yyyy-MM-dd" align="left" headerAlign="center" width="">
+                                        下次保养里程
+                                    </div>
+                                    <div field="careDueDate" allowSort="true" visible="false" dateFormat="yyyy-MM-dd" align="left" headerAlign="center" width="">
+                                        下次保养时间
+                                    </div>             
                                 </div>
                             </div>
                         </div>

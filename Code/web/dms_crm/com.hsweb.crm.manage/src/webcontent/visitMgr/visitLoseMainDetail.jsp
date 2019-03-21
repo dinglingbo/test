@@ -148,7 +148,7 @@ function save(){
             careDayCycle:data.careDayCycle,
             carId:mainData.carId,
             carNo:mainData.carNo,
-            guestId:mainData.guestId,
+            guestId:mainData.contactorId,
             serviceId:mainData.serviceId,
             serviceType:'4',
             mainId:mainData.id,

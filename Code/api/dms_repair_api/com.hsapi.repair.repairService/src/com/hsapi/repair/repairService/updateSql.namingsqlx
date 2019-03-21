@@ -249,4 +249,9 @@
 					</isEqual>
 					where car_id = #carId#
 		</update>
+		
+					<update id="updateCrmVisitData" parameterClass="com.hsapi.repair.data.crm.CrmVisitRecord">
+					UPDATE wb_crm.crm_visit_data set  `status` =1
+					where id =#mainId#
+		</update>
 </sqlMap>

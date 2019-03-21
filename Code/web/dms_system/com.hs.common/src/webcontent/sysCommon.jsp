@@ -30,7 +30,7 @@
     String partApi = Env.getContributionConfig("system", "url", "apiDomain", "PART");
     String repairApi = Env.getContributionConfig("system", "url", "apiDomain", "REPAIR");
     String cloudPartApi = Env.getContributionConfig("system", "url", "apiDomain", "CLOUDPART");
-    String crmApi = Env.getContributionConfig("system", "url", "apiDomain", "FRM");
+    String crmApi = Env.getContributionConfig("system", "url", "apiDomain", "CRM");
     String frmApi = Env.getContributionConfig("system", "url", "apiDomain", "FRM");
     String wechatApi = Env.getContributionConfig("system", "url", "apiDomain", "WECHAT");
 	

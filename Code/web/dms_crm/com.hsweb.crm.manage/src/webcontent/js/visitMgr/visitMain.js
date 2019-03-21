@@ -3,8 +3,9 @@
 */
 var webBaseUrl = webPath + contextPath + "/";
 var gridCarUrl = apiPath + crmApi+"/com.hsapi.crm.svr.visit.queryCrmVisitMainList.biz.ext";
-
+var hisUrl = apiPath + crmApi+ "/com.hsapi.crm.svr.visit.queryCrmVisitRecordSql.biz.ext";
 var gridCar = null;
+var visitHis = null;
 var mainId_ctrl = null;
 var visitMode_ctrl = null;
 var tcarNo_ctrl = null;
@@ -12,11 +13,12 @@ var memList = [];
 var visitManEl = null;
 var visitIdEl = null;
 var hash = {}; 
-var billTypeIdList = [{id:0,name:"综合开单"},{id:1,name:"检查开单"},{id:2,name:"洗美开单"},{id:3,name:"销售开单"},{id:4,name:"理赔开单"},{id:5,name:"退货开单"},{id:6,name:"波箱开单"}];
-var dataTypeIdList = [{id:1,name:"第一次回访"},{id:2,name:"第二次回访"},{id:3,name:"第三次回访"}]; 
+var billTypeIdList = [{ id: 0, name: "综合开单" }, { id: 1, name: "检查开单" }, { id: 2, name: "洗美开单" }, { id: 3, name: "销售开单" }, { id: 4, name: "理赔开单" }, { id: 5, name: "退货开单" }, { id: 6, name: "波箱开单" }];
+var serviceTypeList = [{},{ id: 1, text: '电销' }, { id: 2, text: '预约' }, { id: 3, text: '客户回访' }, { id: 4, text: '流失回访' }, { id: 5, text: '保养提醒' }, { id: 6, text: '商业险到期' }, { id: 7, text: '交强险到期' }, { id: 8, text: '驾照年审' }, { id: 9, text: '车辆年检' }, { id: 1, text: '生日' }];
+var dataTypeIdList = [{},{id:1,name:"第一次回访"},{id:2,name:"第二次回访"},{id:3,name:"第三次回访"}]; 
 var statusHash = {
 	"0" : "报价",
-	"1" : "施工",
+	"1" : "施工", 
 	"2" : "完工",
 	"3" : "待结算",
 	"4" : "已结算"
@@ -33,6 +35,8 @@ $(document).ready(function(){
 	visitIdEl = nui.get("visitId"); 
 	tcarNo_ctrl = nui.get("tcarNo");
 
+    visitHis = nui.get("visitHis");
+    visitHis.setUrl(hisUrl);
 	gridCar = nui.get("gridCar");
 	gridCar.setUrl(gridCarUrl);
 	quickSearch(2);
@@ -41,7 +45,19 @@ $(document).ready(function(){
 		var record = e.record;
 		SetData();
 	});
-	
+    
+    gridCar.on("select", function (e) {
+        loadVisitHis(e.record.contactorId);
+        if (e.record.wechatOpenId) {
+            nui.get("wcBtn1").enable();
+            nui.get("wcBtn2").enable();
+            nui.get("wcBtn3").enable();
+        } else {
+            nui.get("wcBtn1").disable();
+            nui.get("wcBtn2").disable();
+            nui.get("wcBtn3").disable(); 
+        }
+    }); 
 	document.onkeyup = function(event) {
 		var e = event || window.event;
         var keyCode = e.keyCode || e.which;// 38向上 40向下
@@ -72,6 +88,13 @@ $(document).ready(function(){
         levelList.forEach(function(v) {
 	        levelHash[v.id] = v;
 	    });//客户级别 
+    });
+
+    initDicts({
+        visitMode: "DDT20130703000021",//跟踪方式
+        // visitStatus: "DDT20130703000081",//跟踪状态
+        //query_visitStatus: "DDT20130703000081",//跟踪状态
+        //artType: "DDT20130725000001"//话术类型        
     });
 
     gridCar.on("drawcell", function (e) { 
@@ -122,6 +145,14 @@ $(document).ready(function(){
                 e.cellHtml="";
             }
             
+        }
+    });
+
+    visitHis.on("drawcell", function (e) {
+        if (e.field == "serviceType") {
+            e.cellHtml = serviceTypeList[e.value].text;
+        } else if(e.field == "visitMode"){//跟踪方式
+            e.cellHtml = setColVal('visitMode', 'customid', 'name', e.value);
         }
     });
     
@@ -176,6 +207,14 @@ $(document).ready(function(){
     
 });
 
+function loadVisitHis(guestId) {
+    var params = {
+        guestId:guestId,
+        token:token
+    };
+    visitHis.load({ params:params });
+}
+
 function mtAdvisorChanged(e){
 	var sel = e.selected;
 	mtAdvisorIdEl.setValue(sel.empId);
@@ -215,7 +254,8 @@ function quickSearch(e){
 	if(e == 3){
 		p = {
             carNo: tcarNo_ctrl.value,
-            level:nui.get("level").value
+            level: nui.get("level").value,
+            mobile:nui.get("mobile").value
 		};
 	}
 	p.type = 1;//客户回访
@@ -293,6 +333,7 @@ function sendInfo(){
     }
     row.mobile = row.guestMobile;
     row.serviceType = 3;//客户回访
+    row.guestId = row.contactorId;//(回访历史表 guestId 存联系人id)
 	nui.open({
 		url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
 		title: "发送短信", width: 655, height: 280,
@@ -301,8 +342,8 @@ function sendInfo(){
 			iframe.contentWindow.setData(row);
 		},
 		ondestroy: function (action) {
-            //重新加载
-            //query(tab);
+            // 重新加载
+            gridCar.reload();
         }
     });
 
@@ -326,7 +367,7 @@ function sendWcText(){//发送微信消息
     // },
     // ondestroy: function (action) {
     //         //重新加载 
-    //         // query(tab);
+    //         // gridCar.reload();
     //         change();
     //     }
     // });

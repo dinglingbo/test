@@ -371,7 +371,7 @@
         <div class="nui-fit">
             <div id="visitHis" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
                 multiSelect="false" pageSize="20" showPageInfo="true" selectOnLoad="true"  onDrawCell="" onselectionchanged=""
-                allowSortColumn="false" totalField='page.count'>
+                allowSortColumn="false" totalField='page.count' allowCellWrap="true">
                 <div property="columns">
                     <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
                     <div field="serviceType" headerAlign="center" allowSort="true" width="100px">回访类型</div>

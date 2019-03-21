@@ -213,4 +213,71 @@
 			 </isNotNull>
     </select>
     
+    <select id="queryPartQuality" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject"> 
+		 SELECT
+			a.id as id,
+			a.parent_id as parentId,
+			a.`code` as code,
+			a.`name` as name,
+			a.first_code_ch as firstCodeCn,
+			a.manufacture as manufacture,
+			a.image_url as imageUrl,
+			a.remark as remark,
+			a.old_id as oldId
+		FROM
+			com_part_brand AS a
+		where a.parent_id = 0 and a.is_disabled = 0
+    </select>
+    
+    <select id="queryPartBrand" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject"> 
+		 SELECT
+			a.id as id,
+			a.parent_id as parentId,
+			a.`code` as code,
+			a.`name` as name,
+			a.first_code_ch as firstCodeCn,
+			a.manufacture as manufacture,
+			a.image_url as imageUrl,
+			a.remark as remark,
+			a.old_id as oldId
+		FROM
+			com_part_brand AS a
+		where a.parent_id != 0 and a.is_disabled = 0
+    </select>
+    
+    <select id="queryQualityBrand" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject"> 
+		 SELECT
+			a.id as id,
+			a.parent_id as parentId,
+			a.`code` as code,
+			a.`name` as name,
+			a.first_code_ch as firstCodeCn,
+			a.manufacture as manufacture,
+			a.image_url as imageUrl,
+			a.remark as remark,
+			a.old_id as oldId
+		FROM
+			com_part_brand AS a
+		where a.parent_id = #parentId#  and a.is_disabled = 0
+    </select>
+    
+    <select id="queryCarBrand" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject"> 
+		 SELECT
+			a.id as id,
+			a.car_brand_en as carBrandEn,
+			a.car_brand_zh as carBrandZh,
+			a.sort_num as sortNum,
+			a.first_code as firstCode,
+			a.ch_code as chCode,
+			a.py_firstcode as pyFirstCode,
+			a.parent_id as parentId,
+			a.level_id as levelId,
+			a.is_host as isHost,
+			a.is_disabled as isDisabled,
+			a.remark as remark
+		FROM
+			com_car_brand AS a
+		where a.is_disabled = 0
+    </select>
+    
 </sqlMap>

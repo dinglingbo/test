@@ -627,6 +627,11 @@ function addCarList(){
 	var insContactList=[];
 	var updContactList = [];
 	var car = carInfoFrom.getData(true);
+	var carExtend = {};
+	carExtend.lastComeKilometers = car.lastComeKilometers;
+	carExtend.careDueMileage = car.careDueMileage;
+	carExtend.careDueDate = car.careDueDate;
+	car.carExtend = carExtend;
     //判断VIN
     var data = {};
     data = validation(car.vin);
@@ -706,7 +711,10 @@ function addCarList(){
 				insureDueDate:car.insureDueDate,
 				produceDate:car.produceDate,	
 				firstRegDate:car.firstRegDate,
-				issuingDate:car.issuingDate
+				issuingDate:car.issuingDate,
+				lastComeKilometers:car.lastComeKilometers,
+				careDueMileage:car.careDueMileage,
+				careDueDate:car.careDueDate
 			};
                 var cargrid = cardatagrid.getData(true);
                 for(var i = 0 ;i<cargrid.length;i++){

@@ -29,7 +29,7 @@
          borderStyle="border:0;"
          dataField="pjEnterMainList"
          url=""
-         ondrawcell=""
+         ondrawcell="onDrawCell"
          onrowdblclick="onRowDblClick"
          idField="id"
          totalField="page.count"
@@ -44,14 +44,13 @@
                     <div field="serviceId" width="100" headerAlign="center">入库单号</div>
                     <div type="comboboxcolumn" field="storeId" width="60" headerAlign="center" allowSort="true">
         默认仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" 
-                      url="com.hsapi.cloud.part.baseDataCrud.crud.getStorehouse.biz.ext"
+                      url=""
                       onvaluechanged="" emptyText=""  vtype="required"
                       /> 
                     </div>
                     <div field="auditSign" width="50" headerAlign="center" renderer="onRenderer">是否审核</div>
                     <div field="orderMan" width="50" headerAlign="center">业务员</div>
                     <div field="remark" width="120" headerAlign="center" allowSort="true">备注</div>
-                    <div field="enterAmt" width="80" headerAlign="center" allowSort="true">总金额</div>
                     <div field="creator" width="80" headerAlign="center" allowSort="true">制单人</div>
                     <div field="createDate" dateFormat="yyyy-MM-dd HH:mm" width="120px" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true">
                     制单日期

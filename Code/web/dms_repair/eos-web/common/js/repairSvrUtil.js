@@ -400,7 +400,7 @@ function doSelectCustomer(callback) {
 function doShowCarInfo(params) {
     nui.open({
         url: webBaseUrl + "com.hsweb.RepairBusiness.carDetails.flow?token="+token,
-        width: 800, height: 500,
+        width: 1000, height: 600,
 		allowResize: false,
 		showHeader: true,
         onload: function () {

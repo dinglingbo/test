@@ -9,7 +9,7 @@
 -->
 <head>
   <title>工单设置</title>
-  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.0.10"></script>
+  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.0.11"></script>
   <style type="text/css">
 
     .title {
@@ -214,6 +214,15 @@
 					<div id="repairDefaultStore" name="repairDefaultStore" 
 						class="nui-combobox" textField="name" valueField="id" valuechanged="aa" ></div>
                 </td>
+            </tr>
+            <tr>
+                <td class="tbtext">是否开启仓库权限控制：</td>
+                <td class="tbCtrl" >
+                    <div id="repairStoreControlFlag" name="repairStoreControlFlag" 
+                        class="nui-radiobuttonlist" value="" repeatItems="2" 
+                        repeatDirection="" repeatLayout="table" 
+                        textField="text" valueField="id" ></div>
+                </td>      
             </tr>
             <tr>
                 <td class="tbtext"></td>

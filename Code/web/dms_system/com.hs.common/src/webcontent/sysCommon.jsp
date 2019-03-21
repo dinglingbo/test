@@ -30,7 +30,7 @@
     String partApi = Env.getContributionConfig("system", "url", "apiDomain", "PART");
     String repairApi = Env.getContributionConfig("system", "url", "apiDomain", "REPAIR");
     String cloudPartApi = Env.getContributionConfig("system", "url", "apiDomain", "CLOUDPART");
-    String crmApi = Env.getContributionConfig("system", "url", "apiDomain", "CRM");
+    String crmApi = Env.getContributionConfig("system", "url", "apiDomain", "FRM");
     String frmApi = Env.getContributionConfig("system", "url", "apiDomain", "FRM");
     String wechatApi = Env.getContributionConfig("system", "url", "apiDomain", "WECHAT");
 	
@@ -113,10 +113,13 @@
 	String repairPchsRtnFlag = "1";
 	String repairDefaultStore = "";
 	String repairBillMobileFlag = "0";
+	String repairStoreControlFlag = "0";
 	String isCanSettle = "";
+	String isCanfreeCarnovin = "";
 	String orgs = "";
 	String systemImg = "";
 	String systemName = "";
+	String source = "";
 	String orgJsonStr = "";
 	String isCanBelowCost="";
 	String swithBatchFlag ="";
@@ -185,6 +188,9 @@
                 if(attr.get("isCanSettle") != null){
                 	isCanSettle = attr.get("isCanSettle").toString();
                 }
+                if(attr.get("isCanfreeCarnovin") != null){
+                	isCanfreeCarnovin = attr.get("isCanfreeCarnovin").toString();
+                }
                 if(attr.get("isCanBelowCost") != null){
                 	isCanBelowCost = attr.get("isCanBelowCost").toString();
                 }
@@ -196,6 +202,9 @@
                 }
                 if(attr.get("systemName") != null){
                 	systemName = attr.get("systemName").toString();
+                }
+                if(attr.get("source") != null){
+                	source = attr.get("source").toString();
                 }
                 if(attr.get("orgJsonStr") != null){
                 	orgJsonStr = attr.get("orgJsonStr").toString();
@@ -236,6 +245,9 @@
 	                }
 	                if(billParams.get("repairBillMobileFlag") != null){
 	                	repairBillMobileFlag = billParams.get("repairBillMobileFlag").toString();
+	                }
+	                if(billParams.get("repairStoreControlFlag") != null){
+	                	repairStoreControlFlag = billParams.get("repairStoreControlFlag").toString();
 	                }
                 }
               
@@ -293,12 +305,15 @@
 	var currRepairPchsRtnFlag = "<%=repairPchsRtnFlag %>";
 	var currRepairDefaultStore = "<%=repairDefaultStore %>";
 	var currRepairBillMobileFlag = "<%=repairBillMobileFlag %>";
+	var currRepairStoreControlFlag = "<%=repairStoreControlFlag %>";
 	var currIsCanSettle = "<%=isCanSettle %>";
+	var currIsCanfreeCarnovin = "<%=isCanfreeCarnovin %>";
 	var currIsCanBelowCost ="<%=isCanBelowCost %>";
 	var currSwithBatchFlag ="<%=swithBatchFlag %>";
 	var currOrgs = "<%=orgs %>";
 	var currSystemImg = "<%=systemImg %>";
 	var currSystemName = "<%=systemName %>";
+	var currSource = "<%=source %>";
 	//currOrgs = currOrgs.replace(/\*/g,"");
 	var currOrgJsonStr = "<%=orgJsonStr %>";
 	currOrgJsonStr = currOrgJsonStr.replace(/'/g,'"');
@@ -388,10 +403,14 @@
 			window.parent.backToLogin();
 		}
 		//汽修 
-		else{
-			debugger;
- 			showMsg("登录超时，正在跳转！", "E");
-             window.top.location.href = sysDomain + "/coframe/auth/login/login.jsp";			
+		else{   
+		   showMsg("登录超时，正在跳转！", "E");
+		   if(currSource=="easy"){
+		 		window.top.location.href = sysDomain + "/coframe/auth/easy/login.jsp";
+			}else{
+			   window.top.location.href = sysDomain + "/coframe/auth/login/login.jsp";
+			}
+		
  		}
 	// 汽配
 // 		 else{
@@ -404,7 +423,7 @@
 	}
 
 </script>
-<script src="<%=webPath + contextPath%>/common/js/sysCommon.js?v=1.0.4" type="text/javascript"></script>
+<script src="<%=webPath + contextPath%>/common/js/sysCommon.js?v=1.0.9" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/constantDef.js?v=1.1" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/init.js?v=1.9.2" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/jsCryptoJS.js?v=1.0" type="text/javascript"></script>

@@ -48,7 +48,7 @@
                             <td style="width:100px;" class="tbtext"><label>车架号：</label></td>
                             <td style="width:150px;">
                                 <input id="carVin" name="carVin" class="nui-textbox textboxWidth" style="width: 100%;"
-                                    required="true">
+                                    required="false">
                             </td>
                         </tr>
                         <tr class="htr">
@@ -227,10 +227,11 @@ function saveRecord(data) {
         },
         success:function(res){
             if(res.errCode == 'S'){
-                // showMsg("保存成功！","S");
+                showMsg("发送成功！","S");
             }else{
-                // showMsg("保存失败！","E");
+                showMsg("发送失败！","E");
             }
+            onClose() 
         },
         error: function (jqXHR) {
             showMsg(jqXHR.responseText);

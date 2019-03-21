@@ -2,6 +2,7 @@ var baseUrl = apiPath + sysApi + "/";
 var basicInfoForm = null;
 $(document).ready(function() {
 	
+	 
 	 basicInfoForm = new nui.Form("#basicInfoForm");
 	 getComParamsList();
 	

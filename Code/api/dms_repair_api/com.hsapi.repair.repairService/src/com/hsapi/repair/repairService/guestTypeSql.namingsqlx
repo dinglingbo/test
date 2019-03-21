@@ -311,7 +311,8 @@ where c.orgid = #orgid#
             b.last_come_kilometers lastComeKilometers,
             b.last_come_date lastComeDate,
             a.annual_inspection_comp_name annualInspectionCompName,
-            a.insure_comp_name insureCompName
+            a.insure_comp_name insureCompName,
+            c.guest_id guestId
         from  rpb_car a
         INNER JOIN rpb_car_extend b on b.car_id = a.id 
         INNER JOIN rpb_contactor c on a.guest_id = c.guest_id
@@ -389,7 +390,8 @@ where c.orgid = #orgid#
             '' as lastComeKilometers,
             '' as lastComeDate,
             '' as annualInspectionCompName,
-            '' as insureCompName
+            '' as insureCompName,
+            a.guest_id guestId
         from wb_crm.crm_guest  a
         where  a.orgid = #orgid#
         <!-- 商业险-->

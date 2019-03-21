@@ -9,7 +9,9 @@
 -->
 <head>
     <title>客户服务-点评管理</title>
-    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/billCommmentQty.js?v=1.0.14"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/billCommmentQty.js?v=1.0.15"></script>
+    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
     .title {
       width: 60px;
@@ -103,12 +105,12 @@
             <div property="columns">
             	<div allowSort="true" field="serviceCode" width="130" headerAlign="center" header="业务单号"></div>
             	<div allowSort="true" field="carNo" width="100" headerAlign="center" header="车牌号"></div>
-   				<div allowSort="true" field="carModel" width="250" headerAlign="center" header="品牌车型"></div>
+   				<div allowSort="true" field="carModel"  name="carModel"width="250" headerAlign="center" header="品牌车型"></div>
                 <div allowSort="true" field="chainComeTimes" width="80" headerAlign="center" header="来厂次数"></div>
-                <div allowSort="true" field="recorder" width="60" headerAlign="center"  header="点评人"></div>
+                <div allowSort="true" field="recorder"  name="recorder"width="60" headerAlign="center"  header="点评人"></div>
                 <div allowSort="true" field="recordDate" width="130" headerAlign="center"dateFormat="yyyy-MM-dd HH:mm"  header="点评时间"></div>
                 <div allowSort="true" field="modifyDate" width="130" headerAlign="center"dateFormat="yyyy-MM-dd HH:mm" header="更新时间"></div>
-                <div allowSort="true" field="serviceTypeId" width="60" headerAlign="center" header="维修类型"></div>
+                <div allowSort="true" field="serviceTypeId"  name="serviceTypeId"width="60" headerAlign="center" header="维修类型"></div>
             </div>
         </div> 
         
@@ -121,9 +123,9 @@
                 <div allowSort="true"  field="environmental"  width="80" headerAlign="center" header="环境舒适" align="left"></div>
                 <div allowSort="true"  field="sumPoint"  width="60" headerAlign="center" header="总分"  align="left"></div>
                 <div allowSort="true"  field="avgPoint"  width="60" headerAlign="center" header="平均分"  align="left"></div>
-                <div allowSort="true"  field="isNextCome"  width="100" headerAlign="center" header="是否推荐给朋友"  align="left"></div>
+                <div allowSort="true"  field="isNextCome" name="isNextCome" width="100" headerAlign="center" header="是否推荐给朋友"  align="left"></div>
                 <div allowSort="true"  field="suggestion"  width="60" headerAlign="center" header="客户建议"  align="left"></div>
-                <div allowSort="true"  field="mtAdvisor"  width="60" headerAlign="center" header="服务顾问"  align="left"></div>
+                <div allowSort="true"  field="mtAdvisor" name="mtAdvisor" width="60" headerAlign="center" header="服务顾问"  align="left"></div>
             </div>
         </div>
    

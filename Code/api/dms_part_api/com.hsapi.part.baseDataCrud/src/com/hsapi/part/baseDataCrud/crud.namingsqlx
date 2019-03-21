@@ -756,4 +756,20 @@
         </dynamic>
     </select> 
     
+    <!--用于界面显示仓库-->
+    <select id="queryStore" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id as id,
+			a.orgid as orgid,
+			a.`name` as name
+		FROM
+		com_store a
+		WHERE a.is_disabled = 0
+			<dynamic>
+	            <isNotEmpty prepend="and" property="orgid">
+	            	(a.orgid = #orgid#)
+	            </isNotEmpty>
+	        </dynamic>
+    </select> 
+    
 </sqlMap>

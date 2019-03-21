@@ -88,6 +88,7 @@
 			a.is_allow_remind as isAllowRemind,
 			a.is_show_own_bill as isShowOwnBill,
 			a.is_can_settle as isCanSettle,
+			a.is_canfree_carnovin as isCanfreeCarnovin,
 			a.member_group_id as memberGroupId,
 			a.member_level_id as memberLevelId,
 			a.integral_discount_max as integralDiscountMax,
@@ -200,5 +201,14 @@
 		
 		and a.party_id = #roleId#
 	</delete>
+	
+	<!--获取员工对应的仓库-->
+    <select id="queryMemStore" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT b.id as id, b.orgid as orgid, b.name as name
+		from com_store_member a
+		inner join com_store b
+		on a.store_id = b.id
+		where a.emp_id = #empId# and b.is_disabled = 0
+    </select>
 	
 </sqlMap>

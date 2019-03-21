@@ -12,7 +12,7 @@
 <head>
   <title>维修出库</title>  
   	    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
-    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
+    	<script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
   <style type="text/css">
   .title {
     width: 60px;
@@ -117,7 +117,7 @@ a#car{
         <div field="guestFullName" name="guestFullName" width="80" headerAlign="center" align="center">客户姓名</div>
 <!--         <div field="guestMobile" name="guestMobile" width="40" headerAlign="center" align="center">手机号码</div> -->
         <div field="carNo" name="carNo" width="80" headerAlign="center" align="center">车牌号</div>
-        <div field="boxModel" name="boxModel" width="80" headerAlign="center" align="center">波箱型号</div>
+        <div field="boxModel" name="boxModel" width="80" headerAlign="center" align="center" visible="false">波箱型号</div>
         <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" align="center">服务顾问</div>
         <div field="carModel" name="carModel" width="100" headerAlign="center" align="center">品牌车型</div>
         <div field="billTypeId" name="billTypeId" width="80" headerAlign="center" align="center">工单类型</div>
@@ -145,8 +145,8 @@ a#car{
     
 //     beginDateEl = nui.get("date1");
 //     endDateEl = nui.get("date2");
-	if(currCompType != "GEARBOX"){
-		mainGrid.hideColumn("boxModel");
+	if(currCompType == "GEARBOX"){
+		mainGrid.showColumn("boxModel");
 	}
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();

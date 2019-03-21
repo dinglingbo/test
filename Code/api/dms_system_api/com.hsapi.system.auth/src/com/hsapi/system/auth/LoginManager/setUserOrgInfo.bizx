@@ -40,6 +40,7 @@
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>invokePojo0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
     <location x="605" y="180"/>
@@ -226,6 +227,10 @@
       <process:to type="query">m:userObject/attributes/systemName</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">company</process:from>
+      <process:to type="query">m:userObject/attributes/source</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject</process:from>
       <process:to type="query">userObject</process:to>
     </process:copy>
@@ -236,6 +241,10 @@
     <process:copy>
       <process:from type="expression" pattern="reference">&quot;user_&quot; + loginName</process:from>
       <process:to type="query">userKey</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">member/isCanfreeCarnovin</process:from>
+      <process:to type="query">m:userObject/attributes/isCanfreeCarnovin</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -649,6 +658,7 @@
     <process:input description="" isArray="false" name="loginName" primitiveType="String"/>
     <process:input description="当前岗位" isArray="false" name="posiId" primitiveType="Long"/>
     <process:input description="" isArray="false" name="roleName" primitiveType="String"/>
+    <process:input description="登录公司" isArray="false" name="company" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

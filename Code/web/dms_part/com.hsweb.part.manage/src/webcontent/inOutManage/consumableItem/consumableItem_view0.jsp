@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>耗材出库</title>
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=2.0.5"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=2.0.6"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -53,11 +53,22 @@ pageEncoding="UTF-8" session="false"%>
 			                <input style=""class="nui-datepicker" id="eEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                             <input class="nui-textbox" width="100px" id="morePartCode" name="morePartCode" selectOnFocus="true" enabled="true" emptyText="编码"/>
                             <input class="nui-textbox" width="100px" id="morePartName" emptyText="名称"  selectOnFocus="true" name="morePartName"/>
-                            <input class="nui-textbox" width="100px" id="storeShelf" emptyText="仓位"  selectOnFocus="true" name="storeShelf"/>
+                            <input id="storeId"
+	                           name="storeId"
+	                           class="nui-combobox"
+	                           textField="name"
+	                           valueField="id"
+	                           emptyText="仓库"
+	                           url="" width="80"
+	                           valueFromSelect="true"
+	                           allowInput="false"
+	                           showNullItem="false"
+	                           nullItemText="请选择..."/>
+                            <input class="nui-textbox" width="80px" id="storeShelf" emptyText="仓位"  selectOnFocus="true" name="storeShelf"/>
                             <input id="partBrandId"
                             name="partBrandId"
                             class="nui-combobox"
-                            width="100px"
+                            width="80px"
                             textField="name"
                             valueField="id"
                             valueFromSelect="true"

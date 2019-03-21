@@ -70,6 +70,15 @@ $(document).ready(function(v)
 				storeHash[v.id] = v;
 			});
 		}
+		if(currRepairStoreControlFlag == "1") {
+        	if(storehouse && storehouse.length>0) {
+        		nui.get("storeId").setValue(storehouse[0].id);
+        	}
+        }else {
+        	nui.get("storeId").setAllowInput(true);
+        }
+		
+		quickSearch(4);
 	});
 	
 	initServiceType("serviceTypeId",function(data) {
@@ -174,10 +183,6 @@ $(document).ready(function(v)
         	return value;
         }
     });
-	
-	
-	
-    quickSearch(4);
 
 	getAllPartType(function(data){
 		partTypeList=data.partTypes;
@@ -291,6 +296,7 @@ function doSearch(params)
   //params.returnSign = 0; //出库
 //	params.isSettle=1; //已结算
 //	params.status=2; //状态已完工
+	params.storeId = nui.get("storeId").value;
 	if(!setReturnSign.checked){	
 		params.returnSign = 0;
 	}

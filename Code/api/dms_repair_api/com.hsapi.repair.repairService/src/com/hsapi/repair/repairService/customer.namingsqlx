@@ -83,6 +83,49 @@
                 (b.full_name like '%$guestFullName$%')
             </isNotEmpty>
             
+            <isNotEmpty prepend="and" property="guestTypeId">  
+                (b.tgrade in #guestTypeId#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="chainConsumeAmtStar">  
+                (c.chain_consume_amt &gt;= #chainConsumeAmtStar# )
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="chainConsumeAmtEnd">  
+                (c.chain_consume_amt &lt;= #chainConsumeAmtEnd# )
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="chainConsumeAmtStar">  
+                (c.chain_come_times &gt;= #chainComeTimesStar# )
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="chainConsumeAmtEnd">  
+                (c.chain_come_times &lt;= #chainComeTimesEnd# )
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="annualVerificationDueDateStar">  
+                (a.annual_verification_due_date &gt;= #annualVerificationDueDateStar# )
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="annualVerificationDueDateEnd">  
+                (a.annual_verification_due_date &lt;= #annualVerificationDueDateEnd# )
+            </isNotEmpty>
+             
+            <isNotEmpty prepend="and" property="annualInspectionDate">  
+                (a.annual_inspection_date &lt; #annualInspectionDate#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="annualInspectionDateStar">  
+                (a.annual_inspection_date &gt;= #annualInspectionDateStar# )
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="annualInspectionDateEnd">  
+                (a.annual_inspection_date &lt;= #annualInspectionDateEnd# )
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="insureDueDateStar">  
+                (a.insure_due_date &gt;= #insureDueDateStar# )
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="insureDueDateEnd">  
+                (a.insure_due_date &lt;= #insureDueDateEnd# )
+            </isNotEmpty>
+            
              <isNotEmpty prepend="and" property="type">  
              	<!-- 
              		0全部、1活跃期（ 近三个月内有消费）、2稳定期（ 近三个月无消费、近6个月有消费）、

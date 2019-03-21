@@ -38,6 +38,8 @@
 						<a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">所有客户</a>
 						<ul id="popupMenuStatus" class="nui-menu" style="display:none;">
 							<li iconCls="" onclick="quickSearch(6)" id="type6">所有客户</li>
+							<li iconCls="" onclick="quickSearch(0)" id="type0">本日所有开单客户</li>
+							<li iconCls="" onclick="quickSearch(0)" id="type0">本日所有来厂客户</li>
 							<li iconCls="" onclick="quickSearch(0)" id="type0">本日所有来厂客户</li>
 							<li iconCls="" onclick="quickSearch(1)" id="type1">昨日所有来厂客户</li>
 							<li iconCls="" onclick="quickSearch(2)" id="type2">本日新来厂客户</li>
@@ -54,8 +56,8 @@
 							
 							<a class="nui-button" iconCls="" plain="true" onclick="onSearch()">
 								<span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-<!-- 							<a class="nui-button" plain="true" onclick="advancedSearch()">
-								<span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> -->
+							<a class="nui-button" plain="true" onclick="advancedSearch()">
+								<span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> 
 						</td>
 						<td>
 							<a class="nui-button" iconCls="" onclick="add()" plain="true">
@@ -128,11 +130,12 @@
 	</div>
 
 
-	<div id="advancedSearchWin" class="nui-window" title="高级查询" style="width: 420px; height: 310px;" showModal="true" allowResize="false"
+	<div id="advancedSearchWin" class="nui-window" title="高级查询" style="width: 430px; height: 460px;" showModal="true" allowResize="false"
 	 allowDrag="false">
 		<div id="advancedSearchForm" class="form">
 			<table style="width: 100%;">
 				<tr>
+				
 					<td class="title">
 						<label>最后来厂 从:</label>
 					</td>
@@ -194,6 +197,98 @@
 				</tr>
 				<tr>
 					<td class="title">
+						<label>交强险到期:</label>
+					</td>
+					<td colspan="">
+						<input name="insureDueDateStar" width="100%" class="nui-datepicker" />
+					</td>
+					<td class="">
+						<label>至:</label>
+					</td>
+					<td>
+						<input name="insureDueDateEnd" class="nui-datepicker" format="yyyy-MM-dd" timeFormat="H:mm:ss" showTime="false" showOkButton="false"
+						 width="100%" showClearButton="false" />
+					</td>
+				</tr>
+				<tr>
+					<td class="title">
+						<label>商业险到期:</label>
+					</td>
+					<td colspan="">
+						<input name="annualVerificationDueDateStar" width="100%" class="nui-datepicker" />
+					</td>
+					<td class="">
+						<label>至:</label>
+					</td>
+					<td>
+						<input name="annualVerificationDueDateEnd" class="nui-datepicker" format="yyyy-MM-dd" timeFormat="H:mm:ss" showTime="false" showOkButton="false"
+						 width="100%" showClearButton="false" />
+					</td>
+				</tr>
+				<tr>
+					<td class="title">
+						<label>年审到期:</label>
+					</td>
+					<td colspan="">
+						<input name="annualVerificationDueDateStar" width="100%" class="nui-datepicker" />
+					</td>
+					<td class="">
+						<label>至:</label>
+					</td>
+					<td>
+						<input name="annualVerificationDueDateEnd" class="nui-datepicker" format="yyyy-MM-dd" timeFormat="H:mm:ss" showTime="false" showOkButton="false"
+						 width="100%" showClearButton="false" />
+					</td>
+				</tr>
+				<tr>
+					<td class="title">
+						<label>消费金额在:</label>
+					</td>
+					<td>
+						<input class="nui-textbox" name="chainConsumeAmtStar" id="startAmt" style="width: 100%;" vtype="int" value=""/>
+					</td>
+					<td class="">
+						<label>到:</label>
+					</td>
+					<td>
+						 <input class="nui-textbox" name="chainConsumeAmtEnd" id="endAmt" style="width: 100%;" vtype="int" value=""/>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="title">
+						<label>消费次数在:</label>
+					</td>
+					<td>
+						<input class="nui-textbox" name="chainComeTimesStar" id="startAmt" style="width: 100%;" vtype="int" value=""/>
+					</td>
+					<td class="">
+						<label>到:</label>
+					</td>
+					<td>
+						 <input class="nui-textbox" name="chainComeTimesEnd" id="endAmt" style="width: 100%;" vtype="int" value=""/>
+					</td>
+				</tr>
+				 <tr>
+					<!-- <td class="title">
+						<label>客户类型:</label>
+					</td>
+					 <td colspan="1">
+						 <input class="nui-combobox" name="type" id="type" style="width: 100%;"  required="false" multiSelect="false"
+                        data="gType" textField="text" valueField="id" allowInput="true" valueFromSelect="true" />
+					</td> 
+					-->
+					<td class="title">
+						<label>客户等级:</label>
+					</td>
+					<td colspan="3">
+						 <input class="nui-combobox" name="guestTypeId" id="guestTypeId" style="width: 100%;"  required="false" multiSelect="true"
+                        textField="name" valueField="id" allowInput="false" />
+					</td>
+				</tr> 
+				
+				<tr>
+					<td class="title">
 						<label>客户名称:</label>
 					</td>
 					<td colspan="3">
@@ -201,7 +296,7 @@
 						 width="100%" allowInput="false" selectOnFocus="true" />
 					</td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<td class="title">
 						<label>品牌:</label>
 					</td>
@@ -209,34 +304,38 @@
 						<input class="nui-combobox" name="carBrandId" width="100%" id="carBrandId" valueField="id" onvaluechanged="onCarBrandChange"
 						 textField="nameCn" />
 					</td>
-					<td class="" width="30">
+					<td class="" width="50">
 						<label>品牌车型:</label>
 					</td>
 					<td colspan="1">
 						<input class="nui-combobox" name="carModelId" width="100%" id="carModelId" valueField="carModelId" textField="carModel"
 						/>
 					</td>
+				</tr> -->
+				<tr>
+					<td class="title">
+						<label>品牌:</label>
+					</td>
+					<td colspan="3">
+						<input class="nui-combobox" name="carBrandId" width="100%" id="carBrandId" valueField="id" onvaluechanged="onCarBrandChange"
+						 textField="nameCn" />
+					</td>
 				</tr>
 				<tr>
 					<td class="title">
-						<label>手机号码:</label>
+						<label>品牌车型:</label>
 					</td>
 					<td colspan="3">
-						<input class="nui-textbox" name="mobile" id="tel" width="100%" />
+						<input class="nui-combobox" name="carModelId" width="100%" id="carModelId" valueField="carModelId" textField="carModel"
+						/>
 					</td>
 				</tr>
-				<tr>
-					<td class="title">
-						<label>车架号(VIN):</label>
-					</td>
-					<td colspan="3">
-						<input class="nui-textbox" name="vin" width="100%" />
-					</td>
-				</tr>
+				
 			</table>
 			<div style="text-align: center; padding: 10px;">
 				<a class="nui-button" onclick="onAdvancedSearchOk" style="width: 60px; margin-right: 20px;">确定</a>
-				<a class="nui-button" onclick="onAdvancedSearchCancel" style="width: 60px;">取消</a>
+				<a class="nui-button" onclick="onAdvancedSearchCancel" style="width: 60px;margin-right: 20px;">取消</a>
+				<a class="nui-button" onclick="cancelData" style="width: 60px;">清除</a>
 			</div>
 		</div>
 	</div>

@@ -12,7 +12,7 @@
 <head> 
     <title>添加员工</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/js/employeeEdit.js?v=1.1.7" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/common/js/employeeEdit.js?v=1.1.8" type="text/javascript"></script>
     <style type="text/css">
 </style>
 </head>
@@ -99,9 +99,16 @@
                 </td>
                
              </tr>
+             <tr>
+                <td align="right">允许车牌号车架号自由输入：</td>
+                <td>
+               		 <input class="nui-combobox"  required="false" id="isCanfreeCarnovin" name="isCanfreeCarnovin" textField="name"  value="0" valueField="id" />
+                </td>
+               
+             </tr>
             
         </table>
-    </fieldset>
+    </fieldset>y
     <fieldset id="fd1" style="width:600px;">
         <legend><span>其它信息</span></legend>
         <table>

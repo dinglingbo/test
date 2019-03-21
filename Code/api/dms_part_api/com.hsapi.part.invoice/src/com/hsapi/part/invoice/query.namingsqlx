@@ -406,6 +406,7 @@
             <isNotEmpty prepend="and" property="startDate">(A.AUDIT_DATE &gt;= #startDate#)</isNotEmpty>
             <isNotEmpty prepend="and" property="endDate">(A.AUDIT_DATE &lt; #endDate#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partId">(b.PART_ID = #partId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="storeId">(b.store_ID = #storeId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="guestId">(A.guest_id = #guestId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="orderMan">(A.order_man like '%$orderMan$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>

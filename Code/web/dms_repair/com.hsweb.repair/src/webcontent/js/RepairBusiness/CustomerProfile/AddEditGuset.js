@@ -376,46 +376,53 @@ function setData(data)
 function onParseUnderpanNo()
 {
     var vin = nui.get("vin").getValue();
-    if(!vin)
-    {
-        return;
-    }
-    nui.mask({
-        el: document.body,
-        cls: 'mini-mask-loading',
-        html: '车型解析中...'
-    });
-    getCarVinModel(vin,function(data)
-    {
-        data = data||{};
-        if(data.errCode == "S")
+    //判断VIN
+    var data = {};
+    data = validation(vin);
+    if(data.isNo){
+    	vin = data.vin//返回转化好的vin
+    	nui.get("vin").setValue(vin);
+        nui.mask({
+            el: document.body,
+            cls: 'mini-mask-loading',
+            html: '车型解析中...'
+        });
+        getCarVinModel(vin,function(data)
         {
-            //var list = data.rs||[];
-            var carVinModel = data.data.SuitCar||[];//list[0];
-            var carModelId = data.data.carModelId;
-            carVinModel = carVinModel[0]||{};
-            carVinModel.vin = vin;
-         //   nui.get("carBrandId").setValue(carVinModel.carBrandId);
-         //   nui.get("carModelId").setValue(carVinModel.carModelId);
-         //   nui.get("carModelId").setText(carVinModel.carModelName);
-            var carModelInfo = "品牌:"+carVinModel.carBrandName+"\n";
-            carModelInfo += "车型:"+carVinModel.carModelName+"\n";
-            carModelInfo += "车系:"+carVinModel.carLineName+"\n";
-            var name1 = carVinModel.grandParentName||"";
-            name1 = name1?(name1+" "):"";
-            var name2 = carVinModel.parentName || "";
-            name2 = name2?(name2+" "):"";
-            var name3 = carVinModel.name||"";
-            nui.get("carModel").setValue(name1 + name2 + name3);
-            nui.get("carBrandId").setValue("");
-            nui.get("carModelId").setValue(carVinModel.id);
-            nui.get("carModelIdLy").setValue(carModelId);
-            nui.unmask(document.body);
-        }else{
-        	nui.unmask(document.body);
-        	showMsg("车型解析失败，请手工维护车型信息！","W");
-        }
-    });
+            data = data||{};
+            if(data.errCode == "S")
+            {
+                //var list = data.rs||[];
+                var carVinModel = data.data.SuitCar||[];//list[0];
+                var carModelId = data.data.carModelId;
+                carVinModel = carVinModel[0]||{};
+                carVinModel.vin = vin;
+             //   nui.get("carBrandId").setValue(carVinModel.carBrandId);
+             //   nui.get("carModelId").setValue(carVinModel.carModelId);
+             //   nui.get("carModelId").setText(carVinModel.carModelName);
+                var carModelInfo = "品牌:"+carVinModel.carBrandName+"\n";
+                carModelInfo += "车型:"+carVinModel.carModelName+"\n";
+                carModelInfo += "车系:"+carVinModel.carLineName+"\n";
+                var name1 = carVinModel.grandParentName||"";
+                name1 = name1?(name1+" "):"";
+                var name2 = carVinModel.parentName || "";
+                name2 = name2?(name2+" "):"";
+                var name3 = carVinModel.name||"";
+                nui.get("carModel").setValue(name1 + name2 + name3);
+                nui.get("carBrandId").setValue("");
+                nui.get("carModelId").setValue(carVinModel.id);
+                nui.get("carModelIdLy").setValue(carModelId);
+                nui.unmask(document.body);
+            }else{
+            	nui.unmask(document.body);
+            	showMsg("车型解析失败，请手工维护车型信息！","W");
+            }
+        });
+    }else{
+    	showMsg("VIN不规范，请确认！","W");
+    	return;
+    }
+
 }
 
 //手机号处理
@@ -620,8 +627,20 @@ function addCarList(){
 	var insContactList=[];
 	var updContactList = [];
 	var car = carInfoFrom.getData(true);
-	if(car.carNo==""){
-		showMsg("车牌号不能为空!","W");
+    //判断VIN
+    var data = {};
+    data = validation(car.vin);
+    if(data.isNo){
+    	car.vin = data.vin//返回转化好的vin
+    	nui.get("vin").setValue(car.vin);
+    }else{
+    	showMsg("VIN不规范，请确认！","W");
+    	return;
+    }
+    	//判断车牌号
+	var falge = isVehicleNumber(car.carNo);
+	if(!falge){
+		showMsg("请输入正确的车牌号","W");
 		return;
 	}else{
 
@@ -889,22 +908,21 @@ function onClose(e){
 }
 
 function onCarNoChanged(e){
-	var falge = isVehicleNumber(e.value);
+/*	var falge = isVehicleNumber(e.value);
 	if(!falge){
-		nui.get("#carNo").setValue("");
 		showMsg("请输入正确的车牌号","W");
 		return;
-	}
+	}*/
 }
 
-function isVehicleNumber(vehicleNumber) {
+/*function isVehicleNumber(vehicleNumber) {
     var result = false;
     if (vehicleNumber.length == 7){
       var express = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/;
       result = express.test(vehicleNumber);
     }
     return result;
-}
+}*/
 
 
 //判断对象是否为{}

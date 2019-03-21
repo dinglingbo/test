@@ -56,6 +56,8 @@ $(document).ready(function(v)
 //    advancedSearchForm = new nui.Form("#advancedSearchWin");
     //console.log("xxx");
     
+    
+    
     rightGrid.on("rowdblclick", function(e) {
 		var row = rightGrid.getSelected();
 		var rowc = nui.clone(row);
@@ -153,7 +155,14 @@ $(document).ready(function(v)
     getStorehouse(function(data)
     {
         var storehouse = data.storehouse||[];
-     //   nui.get("storeId").setData(storehouse);
+        nui.get("storeId").setData(storehouse);
+        if(currRepairStoreControlFlag == "1") {
+        	if(storehouse && storehouse.length>0) {
+        		nui.get("storeId").setValue(storehouse[0].id);
+        	}
+        }else {
+        	nui.get("storeId").setAllowInput(true);
+        }
         storehouse.forEach(function(v)
         {
             if(v && v.id)
@@ -351,6 +360,7 @@ function doSearch(params)
 {
 	params.sortField = "audit_date";
     params.sortOrder = "desc";
+    params.storeId = nui.get("storeId").value;
     params.orderTypeId = 1;
 //    params.isFinished = 0;
     rightGrid.load({

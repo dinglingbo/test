@@ -24,6 +24,8 @@
 					<input class="nui-textbox" id="name" name="meberName" onenter="search()"/>
 					<label style="font-family:Verdana;">电话：</label>
 					<input class="nui-textbox" id="mobile" name="mobile" onenter="search()" />
+					<input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="选择公司" url=""  allowInput="true" showNullItem="false" width="160" valueFromSelect="true" onvaluechanged="search()"/>
 					<a class="nui-button"  iconCls="" onclick="search()" plain="true"><span class="fa fa-search"></span>&nbsp;查询</a>
 				</td>
 			</tr>

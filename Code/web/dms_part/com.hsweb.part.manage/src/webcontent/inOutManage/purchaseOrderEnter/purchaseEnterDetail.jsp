@@ -38,6 +38,18 @@
                     <!-- <li class="separator"></li>
                     <li iconCls="" onclick="quickSearch(17)" id="type17">全部</li> -->
                 </ul>
+                
+                <input id="storeIdE"
+                           name="storeIdE"
+                           class="nui-combobox"
+                           textField="name"
+                           valueField="id"
+                           emptyText="仓库"
+                           url="" width="80"
+                           valueFromSelect="true"
+                           allowInput="false"
+                           showNullItem="false"
+                           nullItemText="请选择..."/>
 
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择供应商..." visible="false"
@@ -256,8 +268,6 @@
                          dataField="pjPchsOrderDetailList"
                          idField="id"
                          showSummaryRow="true"
-                         frozenStartColumn="0"
-                         frozenEndColumn="10"
                          ondrawcell="onRightGridDraw"
                          allowCellSelect="true"
                          allowCellEdit="true"
@@ -308,10 +318,10 @@
                             <div header="辅助信息" headerAlign="center">
                                 <div property="columns">
                                     <div type="comboboxcolumn" field="storeId" width="60" headerAlign="center" allowSort="false">
-                        仓库<input  property="editor" enabled="true" id="storehouse" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" data="storehouse"
-                                      url=""
-                                     onvaluechanged="" emptyText=""  vtype="required"
-                                      /> 
+		                        仓库<input  property="editor" enabled="true"  id="storehouse" name="storehouse" dataField="storehouse" allowInput="false" class="nui-combobox" valueField="id" textField="name" data="storehouse"
+		                                      url=""
+		                                      onvaluechanged="" emptyText=""  vtype="required"
+		                                      /> 
                         </div>  
                         <div field="storeShelf" width="60" headerAlign="center" allowSort="false">
                              仓位<input id="storeShelf" name="storeShelf"  property="editor" class="nui-combobox" textField="name" valueField="name" dataField="storeShelfList" data="storeShelfList" onvaluechanged="" allowInput="true"/>

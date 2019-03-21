@@ -118,8 +118,8 @@
 									<div type="indexcolumn">序号</div>
 									  <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
 									  <div field="pkgName" width="180" headerAlign="center" allowSort="true" header="套餐名称"></div>
+									  <div field="pkg4sAmt" width="100" headerAlign="center" allowSort="true" header="4S店金额"></div>
 									  <div field="pkgAmt" width="100" headerAlign="center" allowSort="true" header="套餐金额"></div>
-									  <div field="pkgAmt" width="100" headerAlign="center" allowSort="true" header="市场金额"></div>
 							    </div>
 			                 </div>
 							

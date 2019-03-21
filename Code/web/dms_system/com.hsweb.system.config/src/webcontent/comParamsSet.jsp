@@ -148,13 +148,13 @@
                            style="height:100px;width:300px">
                 </td>
             </tr>
-            <tr>
+            <!-- <tr>
                 <td class="tbtext">报价单是否打印客户电话：</td>
                 <td class="tbCtrl" >
                     <input id="repairEntrustPrintContent2" name="repairEntrustPrintContent2" class="nui-textarea" 
                            style="height:100px;width:300px">
                 </td>
-            </tr>
+            </tr> -->
             <tr>
                 <td class="tbtext">开通维修电子档案：</td>
                 <td class="tbCtrl" >

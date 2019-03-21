@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购入库查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderEnter/pchsOrderEnterQuery.js?v=1.0.10"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderEnter/pchsOrderEnterQuery.js?v=1.0.11"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -78,14 +78,14 @@
                 <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->
                 <input id="storeId"
                            name="storeId"
-                           width="60px"
+                           width="80px"
                            class="nui-combobox"
                            textField="name"
                            valueField="id"
                            emptyText="仓库"
                            url=""
                            valueFromSelect="true"
-                           allowInput="true"
+                           allowInput="false"
                            showNullItem="false"
                            nullItemText="请选择..."/>
                 <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"

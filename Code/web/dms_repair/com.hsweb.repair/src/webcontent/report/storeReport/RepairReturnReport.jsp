@@ -9,7 +9,7 @@
 -->
 <head>
     <title>维修归库明细</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairReturnReport.js?v=1.0.37"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairReturnReport.js?v=1.1.1"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -59,7 +59,7 @@
 	                emptyText="仓库"
 	                url=""
 	                dataField="storehouse"
-	                allowInput="true"
+	                allowInput="false"
 	                showNullItem="false"
 	                nullItemText="仓库"
 	                onvaluechanged="onSearch"

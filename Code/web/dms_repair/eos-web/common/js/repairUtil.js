@@ -24,22 +24,8 @@ function doPost(opt) {
 		error : error
 	});
 }
-var provinceHash = {};
-var provinceList = [];
-var cityHash = {};
-var cityList = [];
-var provinceEl = null;
-var cityEl = null;
-function onProvinceSelected(cityId) { 
-	if (provinceEl) {
-		cityEl = nui.get(cityId);
-		var id = provinceEl.getValue();
-		var currCityList = cityList.filter(function(v) {
-			return v.provinceId == id;
-		});
-		cityEl.setData(currCityList);
-	}
-}
+
+
 var getStorehouseUrl = window._rootPartUrl
 		+ "com.hsapi.part.baseDataCrud.crud.getStorehouse.biz.ext";
 var getMemStorehouseUrl = apiPath + sysApi + "/com.hsapi.system.tenant.employee.queryMemStore.biz.ext";
@@ -60,6 +46,23 @@ function getStorehouse(callback) {
 			callback && callback({});
 		}
 	});
+}
+
+var provinceHash = {};
+var provinceList = [];
+var cityHash = {};
+var cityList = [];
+var provinceEl = null;
+var cityEl = null;
+function onProvinceSelected(cityId) { 
+	if (provinceEl) {
+		cityEl = nui.get(cityId);
+		var id = provinceEl.getValue();
+		var currCityList = cityList.filter(function(v) {
+			return v.provinceId == id;
+		});
+		cityEl.setData(currCityList);
+	}
 }
 
 var getDatadictionariesUrl = window._rootUrl

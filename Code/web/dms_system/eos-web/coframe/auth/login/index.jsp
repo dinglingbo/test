@@ -831,10 +831,10 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
 	            nui.unmask();
 	            data = data||{};
 	            if (data.errCode == 'S') {
-	                showMsg(data.errMsg,"S");
+	                //showMsg(data.errMsg,"S");
 					skin();
 	            }else{
-	                showMsg(data.errMsg,"W");
+	                //showMsg(data.errMsg,"W");
 	                //basicInfoForm.setData([]); 
 	            }
 	        },

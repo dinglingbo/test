@@ -23,6 +23,44 @@ $(document).ready(function(v)
       });
     })
     
+    var filter = new HeaderFilter(rightGrid, {
+        columns: [
+            { name: 'recorder' },
+            { name: 'carModel' },
+            { name: 'serviceTypeId' },
+            { name: 'isNextCome' },
+            { name: 'mtAdvisor' }
+        ],
+        callback: function (column, filtered) {
+        },
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+        		case "serviceTypeId" :
+        			var arr = [];
+        			for (var i in servieTypeList) {
+        			    var o = {};
+        			    o.name = servieTypeList[i].name;
+        			    o.id = servieTypeList[i].id;
+        			    arr.push(o);
+        			}
+        			value = arr;
+        			break;			
+        		case "isNextCome" :
+        			var arr = [];
+        			for (var i in nextComeHash) {
+        			    var o = {};
+        			    o.name = nextComeHash[i].name;
+        			    o.id = nextComeHash[i].id;
+        			    arr.push(o);
+        			}
+        			value = arr;
+        			break;		
+        	}
+        	return value;
+        }
+    });
+    
 	rightGrid.on("drawcell",function(e){
 		switch (e.field) {
 			case "serviceTypeId" :

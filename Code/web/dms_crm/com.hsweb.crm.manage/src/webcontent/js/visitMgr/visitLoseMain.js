@@ -12,7 +12,7 @@ var elost_ctrl = null;
 var form = null;
 var levelList = []; 
 var levelHash = [];
-var billTypeIdList = [{name:"综合"},{name:"检查"},{name:"洗美"},{name:"销售"},{name:"理赔"},{name:"退货"}];
+var billTypeIdList = [{id:0,name:"综合"},{id:1,name:"检查"},{id:2,name:"洗美"},{id:3,name:"销售"},{id:4,name:"理赔"},{id:5,name:"退货"},{id:6,name:"波箱"}];
 $(document).ready(function(){
 	form = new nui.Form("#toolbar1");   
 	tcarNo_ctrl = nui.get("tcarNo");
@@ -81,7 +81,45 @@ $(document).ready(function(){
             
         }
     });
-
+    
+    var filter = new HeaderFilter(gridCar, {
+        columns: [
+            { name: 'billTypeId' },
+            { name: 'carModel' },
+            { name: 'guestFullName' },
+            { name: 'tgrade' },
+            { name: 'mtAdvisor' }
+        ],
+        callback: function (column, filtered) {
+        },
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+        		case "billTypeId" :
+        			var arr = [];
+        			for (var i in billTypeIdList) {
+        			    var o = {};
+        			    o.name = billTypeIdList[i].name;
+        			    o.id = billTypeIdList[i].id;
+        			    arr.push(o);
+        			}
+        			value = arr;
+        			break;			
+        		case "tgrade" :
+        			var arr = [];
+        			for (var i in levelHash) {
+        			    var o = {};
+        			    o.name = levelHash[i].name;
+        			    o.id = levelHash[i].id;
+        			    arr.push(o);
+        			}
+        			value = arr;
+        			break;	
+        	}
+        	return value;
+        }
+    });
+    
 });
 
 function mtAdvisorChanged(e){

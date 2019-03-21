@@ -12,7 +12,7 @@ var memList = [];
 var visitManEl = null;
 var visitIdEl = null;
 var hash = {}; 
-var billTypeIdList = [{name:"综合开单"},{name:"检查开单"},{name:"洗美开单"},{name:"销售开单"},{name:"理赔开单"},{name:"退货开单"}];
+var billTypeIdList = [{id:0,name:"综合开单"},{id:1,name:"检查开单"},{id:2,name:"洗美开单"},{id:3,name:"销售开单"},{id:4,name:"理赔开单"},{id:5,name:"退货开单"},{id:6,name:"波箱开单"}];
 var dataTypeIdList = [{id:1,name:"第一次回访"},{id:2,name:"第二次回访"},{id:3,name:"第三次回访"}]; 
 var statusHash = {
 	"0" : "报价",
@@ -124,7 +124,56 @@ $(document).ready(function(){
             
         }
     });
-
+    
+    var filter = new HeaderFilter(gridCar, {
+        columns: [
+            { name: 'billTypeId' },
+            { name: 'carModel' },
+            { name: 'guestFullName' },
+            { name: 'tgrade' },
+            { name: 'dataType' },
+            { name: 'mtAdvisor' }
+        ],
+        callback: function (column, filtered) {
+        },
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+        		case "billTypeId" :
+        			var arr = [];
+        			for (var i in billTypeIdList) {
+        			    var o = {};
+        			    o.name = billTypeIdList[i].name;
+        			    o.id = billTypeIdList[i].id;
+        			    arr.push(o);
+        			}
+        			value = arr;
+        			break;			
+        		case "dataType" :
+        			var arr = [];
+        			for (var i in dataTypeIdList) {
+        			    var o = {};
+        			    o.name = dataTypeIdList[i].name;
+        			    o.id = dataTypeIdList[i].id;
+        			    arr.push(o);
+        			}
+        			value = arr;
+        			break;		
+        		case "tgrade" :
+        			var arr = [];
+        			for (var i in levelHash) {
+        			    var o = {};
+        			    o.name = levelHash[i].name;
+        			    o.id = levelHash[i].id;
+        			    arr.push(o);
+        			}
+        			value = arr;
+        			break;	
+        	}
+        	return value;
+        }
+    });
+    
 });
 
 function mtAdvisorChanged(e){

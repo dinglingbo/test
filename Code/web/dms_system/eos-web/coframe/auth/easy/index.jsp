@@ -184,11 +184,11 @@
                     <span >换肤</span><i class="fa fa-angle-down" ></i>
                 </a>
                 <ul class="dropdown-menu pull-right" >
-                     <li ><a href="javascript:updateSkin('#368bf4');" >经典蓝</a></li>
-                     <li ><a href="javascript:updateSkin('#285e9f');" >深湛蓝</a></li>
-                     <li><a href="javascript:updateSkin('#f36205');">秋日橙</a></li> 
-                     <li><a href="javascript:updateSkin('#c1c1c1');">极简灰</a></li>
-                     <li><a href="javascript:updateSkin('#42485b');">炫酷黑</a></li>
+                     <li ><a href="javascript:updateSkin('#368bf4');" ><div style="width:10px;height:15px;background-color: #368bf4;float:left;"></div>经典蓝</a></li>
+                     <li ><a href="javascript:updateSkin('#285e9f');" ><div style="width:10px;height:15px;background-color: #285e9f;float:left;"></div>深湛蓝</a></li>
+                     <li><a href="javascript:updateSkin('#f36205');"><div style="width:10px;height:15px;background-color: #f36205;float:left;"></div>秋日橙</a></li> 
+                     <li><a href="javascript:updateSkin('#c1c1c1');"><div style="width:10px;height:15px;background-color: #c1c1c1;float:left;"></div>极简灰</a></li>
+                     <li><a href="javascript:updateSkin('#42485b');"><div style="width:10px;height:15px;background-color: #42485b;float:left;"></div>炫酷黑</a></li>
                 </ul>
             </li>
             <li class="dropdown">

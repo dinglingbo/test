@@ -61,7 +61,7 @@
                 <td  colspan="5" class="tabwidth" >
                 <div class="page-header" id="btn-uploader">
 	                	<div class="div1" id="faker" onchange="xmTanUploadImg(this)">
-				            <img id="xmTanImg" style="width: 100px;height: 100px" onchange="xmTanUploadImg(this)" src="/default/common/images/logo.jpg"/>
+				            <img id="xmTanImg" style="width: 100px;height: 100px" onchange="xmTanUploadImg(this)" src="<%=webPath + contextPath%>/common/images/logo.jpg"/>
 				            <div id="xmTanDiv"></div>
 				        </div>
 			        </div>

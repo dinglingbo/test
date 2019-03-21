@@ -394,6 +394,56 @@ function auditRepair(){
 	}
 	
 }
+
+function auditGearBox(){
+	var s=dgGrid.getSelected ();
+	if(s){
+		  nui.confirm("是否确定认证为变速箱专修商？", "友情提示",function(action){
+		       if(action == "ok"){
+		    	   nui.mask({
+		               el : document.body,
+		               cls : 'mini-mask-loading',
+		               html : '认证中...'
+		           });
+
+		           nui.ajax({
+		               url : auditUrl,
+		               type : "post",
+		               data : JSON.stringify({
+		                   reg: s,
+		                   type :'GEARBOX',
+		                   token:token
+		               }),
+		               success : function(data) {
+		                   nui.unmask(document.body);
+		                   data = data || {};
+		                   if (data.errCode == "S") {
+		                	   showMsg("认证成功!","S");
+		                	   dgGrid.reload();
+		                      /* nui.alert("认证成功!","",function(e){
+		                           dgGrid.reload();
+		                       });*/
+		                   } else {
+		                	   showMsg(data.errMsg || "认证失败！","E");
+		                       //nui.alert(data.errMsg || "认证失败！");
+		                   }
+		               },
+		               error : function(jqXHR, textStatus, errorThrown) {
+		                   // nui.alert(jqXHR.responseText);
+		                   console.log(jqXHR.responseText);
+		               }
+		           });
+
+		     }else {
+					return;
+			 }
+			 });     
+	}else{
+		showMsg("请选中一条数据!","W");
+		// nui.alert("请选中一条数据！！");
+	}
+	
+}
 /*
  *设置时间菜单
  **/

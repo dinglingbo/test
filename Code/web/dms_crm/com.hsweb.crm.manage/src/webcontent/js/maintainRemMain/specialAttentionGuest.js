@@ -1,3 +1,4 @@
+var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var queryRemindSUrl = baseUrl + "com.hsapi.repair.repairService.query.queryRemindByDate.biz.ext";
 var hisUrl = apiPath + crmApi+ "/com.hsapi.crm.svr.visit.queryCrmVisitRecordSql.biz.ext";
@@ -91,7 +92,9 @@ $(document).ready(function (v) {
             } else {
                 e.cellHtml = '电销客户';
             }
-        }
+        }else if(e.field == "carNo"){
+    		e.cellHtml ='<a href="##" onclick="WindowrepairHistory('+"'"+e.record.carNo+"'"+')">'+e.record.carNo+'</a>';
+    	}
     });
     business.on("drawcell", function (e) {
         if (e.field == "mobile") {
@@ -621,4 +624,16 @@ function gridReload(e) {
     } else if(e == 10){
         guestBirthday.reload();
     }
+}
+
+
+
+function WindowrepairHistory(){
+	var row = getRow();
+	var params = {
+		carId : row.carId,
+		carNo : row.carNo,
+		guestId : row.guestId
+	};
+		doShowCarInfo(params);
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="initOrgRolePermissions.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="初始子公司&#xD;&#xA;1、根据com_company新增组织机构org_organization&#xD;&#xA;2、当天添加人新增到org_emporg且配置管理员角色(查询模版角色)&#xD;&#xA;3、添加当前用户到cap_partyauth（添加管理员角色）&#xD;&#xA;4、角色权限，资源cap_resauth&#xD;&#xA;5、初始往来单位com_guest&#xD;&#xA;6、初始仓库com_store&#xD;&#xA;7、不用添加员工信息和用户信息（需要切换到新增的机构添加员工）&#xD;&#xA;&#xD;&#xA;目前汽修只取管理员角色 15  对应的角色资源  com_cap_resauth&#xD;&#xA;com_tenant_menu -1&#xD;&#xA;&#xD;&#xA;目前汽配只取管理员角色 24  对应的角色资源  com_cap_resauth&#xD;&#xA;com_tenant_menu -2&#xD;&#xA;&#xD;&#xA;20190106：注册审批通过时，要生成两条数据到com_guest，一个代表往来单位，一个代表散客（用于新增车辆但是没有提供客户信息），新增联系人信息&#xD;&#xA;&#xD;&#xA;初始用户角色缓存，初始角色资源缓存" title="Administrator&#x9;18-6-14 上午10:51">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="初始子公司&#xD;&#xA;1、根据com_company新增组织机构org_organization&#xD;&#xA;2、当天添加人新增到org_emporg且配置管理员角色(查询模版角色)&#xD;&#xA;3、添加当前用户到cap_partyauth（添加管理员角色）&#xD;&#xA;4、角色权限，资源cap_resauth&#xD;&#xA;5、初始往来单位com_guest&#xD;&#xA;6、初始仓库com_store&#xD;&#xA;7、不用添加员工信息和用户信息（需要切换到新增的机构添加员工）&#xD;&#xA;&#xD;&#xA;目前汽修只取管理员角色 15  对应的角色资源  com_cap_resauth&#xD;&#xA;com_tenant_menu -1&#xD;&#xA;&#xD;&#xA;目前汽配只取管理员角色 24  对应的角色资源  com_cap_resauth&#xD;&#xA;com_tenant_menu -2&#xD;&#xA;波箱 66 com_tenant_menu -3&#xD;&#xA;&#xD;&#xA;20190106：注册审批通过时，要生成两条数据到com_guest，一个代表往来单位，一个代表散客（用于新增车辆但是没有提供客户信息），新增联系人信息&#xD;&#xA;&#xD;&#xA;初始用户角色缓存，初始角色资源缓存" title="Administrator&#x9;18-6-14 上午10:51">
     <location x="56" y="-231"/>
     <size height="367" width="480"/>
   </nodes>
@@ -52,6 +52,16 @@
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query">type</process:leftOperand>
           <process:rightOperand type="literal">REPAIR</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link33" name="link33" displayName="连接线" type="transition">
+      <sourceNode>assign3</sourceNode>
+      <targetNode>assign14</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">type</process:leftOperand>
+          <process:rightOperand type="literal">GEARBOX</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -149,6 +159,7 @@
     <targetConnections>link0</targetConnections>
     <targetConnections>link15</targetConnections>
     <targetConnections>link16</targetConnections>
+    <targetConnections>link34</targetConnections>
     <location x="348" y="217"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
@@ -712,6 +723,7 @@
     <chidren>group2</chidren>
     <chidren>assign2</chidren>
     <chidren>assign10</chidren>
+    <chidren>assign15</chidren>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link70" name="link70" displayName="连接线" isDefault="true" type="transition">
@@ -727,6 +739,7 @@
     <targetConnections>link68</targetConnections>
     <targetConnections>link79</targetConnections>
     <targetConnections>link18</targetConnections>
+    <targetConnections>link38</targetConnections>
     <location x="764" y="217"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
@@ -786,6 +799,16 @@
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query">roleTemp/roleId</process:leftOperand>
           <process:rightOperand type="literal">24</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link37" name="link37" displayName="连接线" type="transition">
+      <sourceNode>invokePojo1</sourceNode>
+      <targetNode>assign15</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">roleTemp/roleId</process:leftOperand>
+          <process:rightOperand type="literal">300</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -1000,6 +1023,7 @@
     <sourceConnections xsi:type="process:tLink" id="link80" name="link80" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo29</sourceNode>
       <targetNode>assign12</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link91" name="link91" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo29</sourceNode>
@@ -1125,7 +1149,7 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
     <targetConnections>link13</targetConnections>
-    <location x="346" y="487"/>
+    <location x="345" y="495"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
@@ -1134,7 +1158,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="344" y="523"/>
+    <location x="343" y="531"/>
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>
@@ -1635,6 +1659,45 @@
     <location x="2627" y="254"/>
     <figSize height="17" width="39"/>
     <node>assign13</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign14" name="赋值14" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link34" name="link34" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign14</sourceNode>
+      <targetNode>invokePojo2</targetNode>
+    </sourceConnections>
+    <targetConnections>link33</targetConnections>
+    <location x="31" y="300"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign14label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">-3</process:from>
+      <process:to type="query">inx</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign14label" name="label" nodeType="label">
+    <location x="26" y="336"/>
+    <figSize height="17" width="39"/>
+    <node>assign14</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign15" name="赋值15" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link38" name="link38" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign15</sourceNode>
+      <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link37</targetConnections>
+    <location x="645" y="300"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign15label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">roleId</process:from>
+      <process:to type="query">mainRoleId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign15label" name="label" nodeType="label">
+    <location x="640" y="336"/>
+    <figSize height="17" width="39"/>
+    <node>assign15</node>
   </nodes>
   <topRuler>
     <guides position="2448" horizontal="true"/>

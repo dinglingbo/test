@@ -61,7 +61,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link14" name="link14" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="tokn异常" id="link14" name="tokn异常" displayName="连接线" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>assign3</targetNode>
       <process:transitionCondition>
@@ -262,7 +262,7 @@
     <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign3" name="赋值4" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" description="" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link15" name="t=0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>assign5</targetNode>
       <process:transitionCondition>

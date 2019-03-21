@@ -426,18 +426,18 @@ public class PurchaseService {
                 List<Object> list= (ArrayList) dataMap.get("rows");
                 
                 if(status.equals("0.0")&& list.size()!=0) {
-       
+                	Map data =(Map)list.get(0);
                 	List<Object> params = new ArrayList<Object>();
             		DataObject guest = DataObjectUtil
     						.createDataObject("com.hsapi.part.data.com.ComGuest");
             		guest.set("orgid", orgid);
-            		guest.set("is_supplier", 1);
-//            		guest.set("fullName", data.get("guestName"));
-//            		guest.set("shortName", data.get("guestName"));
-//            		guest.set("contactor", data.get("salesMan"));
-//            		guest.set("contactorTel", data.get("salesManTel"));
-//            		guest.set("tel", data.get("salesManTel"));
-//            		guest.set("mobile", data.get("salesManTel"));
+            		guest.set("isSupplier", 1);
+            		guest.set("fullName", data.get("companyName"));
+            		guest.set("shortName", data.get("companyName"));
+            		guest.set("contactor", data.get("salesMan"));
+            		guest.set("contactorTel", data.get("salesManTel"));
+            		guest.set("tel", data.get("salesManTel"));
+            		guest.set("mobile", data.get("salesManTel"));
             		guest.set("srmGuestId", guestId);
         			params.add(guest);
         			params.add(orgid);
@@ -493,10 +493,10 @@ public class PurchaseService {
     	criteria.set("_entity", "com.hsapi.part.data.com.ComAttribute");
     	criteria.set("_expr[1]/srmBrandId", brandId);
     	criteria.set("_expr[1]/_op", "=");
-    	criteria.set("_expr[2]/srmQualityId", qualityId);
+//    	criteria.set("_expr[2]/srmQualityId", qualityId);
+//    	criteria.set("_expr[2]/_op", "=");
+    	criteria.set("_expr[2]/code", partCode);
     	criteria.set("_expr[2]/_op", "=");
-    	criteria.set("_expr[3]/code", partCode);
-    	criteria.set("_expr[3]/_op", "=");
     	DataObject[] result = com.eos.foundation.database.DatabaseUtil
     	.queryEntitiesByCriteriaEntity("common", criteria);
     	

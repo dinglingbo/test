@@ -140,9 +140,14 @@ function getProvinceAndCity(callback) {
 }
 var getStorehouseUrl = window._rootUrl
 	+ "com.hsapi.part.baseDataCrud.crud.getStorehouse.biz.ext";
+var getMemStorehouseUrl = apiPath + sysApi + "/com.hsapi.system.tenant.employee.queryMemStore.biz.ext";
 function getStorehouse(callback) {
+	var url = getStorehouseUrl;
+	if(currRepairStoreControlFlag == "1") {
+		url = getMemStorehouseUrl;
+	}
 	nui.ajax({
-		url : getStorehouseUrl,
+		url : url,
 		data : {token: token},
 		type : "post",
 		success : function(data) {

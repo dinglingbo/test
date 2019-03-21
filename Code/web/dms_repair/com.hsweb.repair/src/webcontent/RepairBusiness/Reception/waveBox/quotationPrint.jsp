@@ -150,11 +150,11 @@
             <table  width="100%" border="0" cellspacing="0" cellpadding="0">
 	            <tbody>
 	                <tr>
-	                	<td rowspan="2" style="width: 133px;">
-	                     	<img alt="" src="/default/repair/common/log.bmp">
+	                	<td rowspan="2" style="width: 133px;" >
+	                     	<img alt="" src="" id="showImg" height="60px" style="display:none">
 	                    </td>
-	                    <td style="width:55%">
-	                        <div style="font-size: 11px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><span id="comp"></span></div>
+	                    <td style="width:55%" >
+	                        <div style="font-size: 11px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><b><span id="comp"></span></b></div>
 	                    </td>
 	                    <td rowspan="2" style="">
 	                        <div style="font-size: 20px; font-family: 华文中宋;padding-top: 5px;"><b><span id="spstorename">报价单</span></b></div>
@@ -273,7 +273,7 @@
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk">
 				<tr>
 					<td>
-							&nbsp;&nbsp;出厂报告：<div style="width:150px;height:100px; " id="drawOutReport">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+							<div style="width:100%;height:100%;min-height:80px;" id="drawOutReport"></div>
 					</td>
 				</tr>
         </table>
@@ -368,11 +368,8 @@
 	            else window.close();
        		 }
         	
-        	function checkBoxChange(e){
-        		console.log(e);
-        	}
-        	
 			 function SetData(serviceId,type){
+			 	document.getElementById("comp").innerHTML = currRepairSettorderPrintShow
 			    var imgUrl = currCompLogoPath || "";
                 if(imgUrl && imgUrl != ""){
                     $('#showImg').show();
@@ -428,7 +425,7 @@
 			 	 	   		 document.getElementById("guestMobile").innerHTML = "&nbsp;"+guestMobile;
 			 	 	   		 document.getElementById("enterDate").innerHTML =document.getElementById("enterDate").innerHTML + format(enterDate, "yyyy-MM-dd HH:mm");
 			 	 	   		 document.getElementById("serviceCode").innerHTML = "&nbsp;"+serviceCode;
-			 	 	   		 document.getElementById("drawOutReport").innerHTML = document.getElementById("drawOutReport").innerHTML+drawOutReport;
+			 	 	   		 document.getElementById("drawOutReport").innerHTML ="&nbsp;&nbsp;出厂报告："+ document.getElementById("drawOutReport").innerHTML+drawOutReport;
 			 	 	   		 if(type == 5 || type == 6){
 			 	 	   		 		$.post(baseUrl+"com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid="+list.sourceServiceId+"&token="+token,{},function(text){
 			 	 	   		 			if(text.list.length > 0){

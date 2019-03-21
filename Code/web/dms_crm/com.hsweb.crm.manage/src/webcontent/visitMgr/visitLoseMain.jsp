@@ -13,7 +13,9 @@ pageEncoding="UTF-8" session="false" %>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitLoseMain.js?v=1.1.0" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitLoseMain.js?v=1.1.2" type="text/javascript"></script>
+    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0; 

@@ -7,7 +7,7 @@
 <link
 	href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.1"
 	rel="stylesheet" type="text/css" />
-<script src="<%= request.getContextPath() %>/tenant/js/review_register.js?v=1.9.11"
+<script src="<%= request.getContextPath() %>/tenant/js/review_register.js?v=1.9.19"
 	type="text/javascript"></script>
 </head>
 <body>
@@ -47,6 +47,7 @@
 <!-- 					<a class="nui-button"  plain="true"	 id="sh" enabled="true"  onclick="audit"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a> -->
 					<a class="nui-button"  plain="true"	 id="sh" enabled="true"  onclick="auditPart"><span class="fa fa-check fa-lg"></span>&nbsp;认证为汽配商</a>
 					<a class="nui-button"  plain="true"	 id="sh" enabled="true"  onclick="auditRepair"><span class="fa fa-check fa-lg"></span>&nbsp;认证为汽修商</a>
+					<a class="nui-button"  plain="true"	 id="sh" enabled="true"  onclick="auditGearBox"><span class="fa fa-check fa-lg"></span>&nbsp;认证为变速箱专修商</a>
 					<a class="nui-button"  plain="true"	 id="jy" name="jy" enabled="true"  onclick="stopUse"><span class="fa fa-ban fa-lg"></span>&nbsp;禁用</a>
 					<a class="nui-button"  plain="true" visible="false"	 id="qy" name="qy" enabled="true"  onclick="stopUse"><span class="fa fa-check-circle fa-lg"></span>&nbsp;启用</a>
 			 	</td>

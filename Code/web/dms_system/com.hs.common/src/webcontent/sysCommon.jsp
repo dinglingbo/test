@@ -30,7 +30,7 @@
     String partApi = Env.getContributionConfig("system", "url", "apiDomain", "PART");
     String repairApi = Env.getContributionConfig("system", "url", "apiDomain", "REPAIR");
     String cloudPartApi = Env.getContributionConfig("system", "url", "apiDomain", "CLOUDPART");
-    String crmApi = Env.getContributionConfig("system", "url", "apiDomain", "CRM");
+    String crmApi = Env.getContributionConfig("system", "url", "apiDomain", "FRM");
     String frmApi = Env.getContributionConfig("system", "url", "apiDomain", "FRM");
     String wechatApi = Env.getContributionConfig("system", "url", "apiDomain", "WECHAT");
 	
@@ -115,6 +115,7 @@
 	String repairBillMobileFlag = "0";
 	String repairStoreControlFlag = "0";
 	String isCanSettle = "";
+	String isCanfreeCarnovin = "";
 	String orgs = "";
 	String systemImg = "";
 	String systemName = "";
@@ -186,6 +187,9 @@
                 }
                 if(attr.get("isCanSettle") != null){
                 	isCanSettle = attr.get("isCanSettle").toString();
+                }
+                if(attr.get("isCanfreeCarnovin") != null){
+                	isCanfreeCarnovin = attr.get("isCanfreeCarnovin").toString();
                 }
                 if(attr.get("isCanBelowCost") != null){
                 	isCanBelowCost = attr.get("isCanBelowCost").toString();
@@ -303,6 +307,7 @@
 	var currRepairBillMobileFlag = "<%=repairBillMobileFlag %>";
 	var currRepairStoreControlFlag = "<%=repairStoreControlFlag %>";
 	var currIsCanSettle = "<%=isCanSettle %>";
+	var currIsCanfreeCarnovin = "<%=isCanfreeCarnovin %>";
 	var currIsCanBelowCost ="<%=isCanBelowCost %>";
 	var currSwithBatchFlag ="<%=swithBatchFlag %>";
 	var currOrgs = "<%=orgs %>";
@@ -418,7 +423,7 @@
 	}
 
 </script>
-<script src="<%=webPath + contextPath%>/common/js/sysCommon.js?v=1.0.4" type="text/javascript"></script>
+<script src="<%=webPath + contextPath%>/common/js/sysCommon.js?v=1.0.9" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/constantDef.js?v=1.1" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/init.js?v=1.9.2" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/jsCryptoJS.js?v=1.0" type="text/javascript"></script>

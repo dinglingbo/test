@@ -129,8 +129,8 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="data" type="query" value="commonj.sdo.DataObject[]" valueType="Java">storehouse</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="2" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="2" name="errCode" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

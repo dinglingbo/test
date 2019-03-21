@@ -4,26 +4,6 @@
     <location x="30" y="-15"/>
     <size height="166" width="455"/>
   </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="link6" isDefault="true" type="transition">
-      <sourceNode>assign1</sourceNode>
-      <targetNode>assign4</targetNode>
-      <process:transitionCondition/>
-    </sourceConnections>
-    <targetConnections>link10</targetConnections>
-    <location x="128" y="245"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign1label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">auditSign</process:from>
-      <process:to type="query">params/auditSign</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="126" y="281"/>
-    <figSize height="17" width="32"/>
-    <node>assign1</node>
-  </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="link0" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -111,24 +91,10 @@
       <targetNode>assign4</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link10" name="link10" displayName="link5" type="transition">
-      <sourceNode>assign2</sourceNode>
-      <targetNode>assign1</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NULLOREMPTY">
-          <process:leftOperand type="query">params/auditSign</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <targetConnections>link17</targetConnections>
     <location x="128" y="170"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
-      <process:to type="query">auditSign</process:to>
-    </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>
       <process:to type="query">errCode</process:to>
@@ -180,7 +146,6 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
-    <targetConnections>link15</targetConnections>
     <location x="210" y="170"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>

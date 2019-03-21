@@ -179,10 +179,10 @@ function changedTel(e) {
 
 function loadVisitHis(guestId) {
     var params = {
-        token: token,
-        guestId:guestId
-    }
-    visitHis.load({ params: params });
+        guestId:guestId,
+        token:token
+    };
+    visitHis.load({ params:params });
 }
 
 function isButtonEnable(openId,tab) {

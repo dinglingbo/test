@@ -166,6 +166,8 @@
                 e.cellHtml = setColVal('visitStatus', 'customid', 'name', e.value);
             }else if(field == "serviceType"){//业务类型
                 e.cellHtml = setColVal('serviceType', 'id', 'text', e.value);
+            }else if(field == "mobile"){//手机
+                e.cellHtml = changedTel(e);
             }else if(field == "visitId"){//营销员
                 if(memHash[e.value]){
                     e.cellHtml = memHash[e.value].empName || "";
@@ -179,6 +181,21 @@
             }
         });
 
+
+			function changedTel(e) {
+			    var uid = e.record._uid;
+			    var value = e.value
+			    var res = {};
+			    value = "" + value;
+			    var reg=/(\d{3})\d{4}(\d{4})/;
+			    value = value.replace(reg, "$1****$2");
+			    if(e.value){
+			            res =  value;
+			    }else{
+			        res="";
+			    }
+			    return res;
+			}
 
         function quickSearch(type) {
             var params = {};

@@ -21,7 +21,7 @@
 <style>
 	        table, td {
 	            font-family: Tahoma,Geneva,sans-serif;
-	            font-size: 16px;
+	            font-size: 13px;
 	            color: #000;
 	        }
 
@@ -76,7 +76,7 @@
             height: 40px;
             border: 1px #b4b4b4 solid;
             float: left;
-            font-size: 16px;
+            font-size: 13px;
             font-family: "微软雅黑";
         }
 
@@ -229,20 +229,19 @@
 	                </tr>
 	            </tbody>
 	        </table>
-	        
         </div>
         
         <!-- <div style="border-bottom: 1px #333 solid; height: 2px; margin-bottom: 10px;">&nbsp;</div> -->
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
              <tr>
                 <td style="font-size:8px;" >地址：<span id="guestAddr"></span></td>
-                <td style="font-size:8px;"  id="openBank" style="">开户银行：</td>
+                <td style="font-size:8px;">开户银行：<span id="openBank"></span></td>
                 <td style="font-size:8px;">打印时间：<span id="date"></span></td>
             </tr> 
             <tr>
                 <td style="font-size:8px;">电话：<span id="phone"></span></td>
-                <td style="font-size:8px;" id="bankNo" >银行账号：</td>
-             	<td style="font-size:8px;" id="enterDate" >进厂时间：</td>
+                <td style="font-size:8px;" >银行账号：<span id="bankNo"></span></td>
+             	<td style="font-size:8px;">进厂时间：<span id="enterDate"></span></td>
             </tr>
         </table>
 
@@ -260,23 +259,20 @@
                 </tr>
                 <tr>
                     
-                    
                 </tr>
             </table>
         </div>
         <div style="height: 12px;"></div>
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1" id="showPkg">
                 <tr>
-                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;"></td>
-                    <td height="28" align="center" bgcolor="#f8f8f8"style="font-family: 华文中宋; font-size:16px;font-weight: bold;">
-项目(含工时配件)</td>
-                    
-                    
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">数量</td>
-                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">单价</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">金额</td>
-                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">优惠率</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">小计</td>
+                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;"></td>
+                    <td height="28" align="center" bgcolor="#f8f8f8"style="font-family: 华文中宋; font-size:13px;font-weight: bold;">
+套餐项目(含工时配件)</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">数量</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">单价</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">金额</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">优惠率</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">小计</td>
                     
                 </tr>
                 <tr>
@@ -294,13 +290,13 @@
         <div style="height: 12px;" id="space1"></div>
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1" id="showItem">
                 <tr>
-                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;"></td>
-                    <td height="28" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">项目名称</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">工时/数量</td>
-                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">单价</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">金额</td>
-                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">优惠率</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">小计</td>
+                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;"></td>
+                    <td height="28" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">项目名称</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">工时/数量</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">单价</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">金额</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">优惠率</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">小计</td>
                 </tr>
                 <tr>
                 	<td ><hr style="border:0.5px solid #000"></td>
@@ -374,14 +370,14 @@
                 <td height="36" colspan="2" style="border:0px;font-family: Arial; font-size:16px;font-weight: bold;">
                     <div style="float: right; color: #000; margin-right: 12px; line-height: 36px;">
                         <span style="margin-right: 15px;">
-                            <font style="font-size: 16px; font-weight: bold;">
-                                 优惠金额：<span id="yh">0.00</span>元</span>
+                            <font style="font-size: 13px; font-weight: bold;">
+                                 优惠金额：<span id="yh">0.00</span>元
               
-                                结算金额：<span id="cash1"></span>元
+                &nbsp;&nbsp;&nbsp;结算金额：<span id="cash1"></span>元
                             </font>
                         </span>
-                        <font style="font-size: 16px; font-weight: bold;">
-                            &nbsp;&nbsp;&nbsp;大写：<span id="money" style="margin-right: 0px;"></span>
+                        <font style="font-size: 13px; font-weight: bold;">
+                                                            大写：<span id="money" style="margin-right: 0px;"></span>
                         </font>
                     </div>
                 </td>
@@ -451,8 +447,13 @@
         //com.hsapi.repair.repairService.svr.billqyeryMaintainList
         function getSubtotal(p){//更新套餐工时配件合计金额
             var params = p;
-        	if( params.name != "结账单"){
+        	if(params.name != "结账单"){
+        	    
         	   var money = parseFloat(document.getElementById("prdt").innerHTML) + parseFloat(document.getElementById("item").innerHTML) + parseFloat(document.getElementById("part").innerHTML);
+        	   var expenseAmt = parseFloat(document.getElementById("expense").innerHTML);
+        	   if(params.type && params.type==1){
+    		       money = parseFloat(money) + parseFloat(expenseAmt);      
+    		    }
         	  // document.getElementById("cash").innerHTML = money;
         	   document.getElementById("cash1").innerHTML = money;
         	   money = transform(money+"");
@@ -460,10 +461,7 @@
     		   document.getElementById("cash1").innerHTML = parseFloat(document.getElementById("cash1").innerHTML).toFixed(2);
         	}
         }
-        
-        
-
-        
+                
         function SetData(params){
             var currRepairBillMobileFlag = params.currRepairBillMobileFlag || ""; 
             var imgUrl = params.currCompLogoPath || "";
@@ -502,8 +500,8 @@
 	        document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm");
 	        //document.getElementById("pdate").innerHTML = document.getElementById("pdate").innerHTML + format(date, "yyyy-MM-dd HH:mm");
 	        
-	        document.getElementById("openBank").innerHTML = document.getElementById("openBank").innerHTML + params.bankName;
-	        document.getElementById("bankNo").innerHTML = document.getElementById("bankNo").innerHTML + params.bankAccountNumber;
+	        document.getElementById("openBank").innerHTML = params.bankName;
+	        document.getElementById("bankNo").innerHTML = params.bankAccountNumber;
 	        
 	        document.getElementById("guestAddr").innerHTML = params.currCompAddress;
     		document.getElementById("phone").innerHTML = params.currCompTel;
@@ -588,7 +586,7 @@
 	        		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML + serviceCode;
 	        		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
 	        		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
-	        		document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;
+	        		document.getElementById("enterDate").innerHTML = enterDate;
 	        		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
 	        		
 	        		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
@@ -830,6 +828,9 @@
     		//其他费用com.hsapi.repair.repairService.svr.getRpsExpense.biz.ext
     		 $.ajaxSettings.async = false;
     		 var httpstr = params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsExpense.biz.ext?serviceId="+params.serviceId+"&dc=1"+"&token="+params.token;
+    		 if(params.type && params.type==1){
+    		   	 httpstr = params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsExpense.biz.ext?serviceId="+params.sourceServiceId+"&dc=1"+"&token="+params.token;
+    		 }
     		 $.post(httpstr,{},function(text){
     			   if(text.errCode=="S"){
     		            data = text.data;
@@ -841,6 +842,9 @@
     		             if(expAmt>0){
     		                expAmt = expAmt.toFixed(2);
     		                document.getElementById("expense").innerHTML = expAmt;
+    		                if(params.type && params.type==1){
+    		                   getSubtotal(params);
+    		                }
     		             }
     		            }
     		       }
@@ -886,8 +890,8 @@
 	        $(".popbox").show();
 	        document.getElementById("txtno").value = document.getElementById("serviceCode").innerHTML;
     		document.getElementById("txtstorename").value = document.getElementById("comp").innerHTML;
-    		//document.getElementById("txtaddress").value = document.getElementById("guestAddr").innerHTML;
-    		//document.getElementById("txtphoneno").value = document.getElementById("phone").innerHTML;
+    		document.getElementById("txtaddress").value = document.getElementById("guestAddr").innerHTML;
+    		document.getElementById("txtphoneno").value = document.getElementById("phone").innerHTML;
     		if(document.getElementById("date").innerHTML.length > 16){
     			var value = document.getElementById("date").innerHTML.substring(0, document.getElementById("date").innerHTML.length-3);
     			document.getElementById("meeting").value = value.replace(" ","T");
@@ -906,9 +910,16 @@
 			box_setup_close();
     		document.getElementById("serviceCode").innerHTML = document.getElementById("txtno").value;
     		document.getElementById("comp").innerHTML = document.getElementById("txtstorename").value;
-    		document.getElementById("guestAddr").innerHTML = document.getElementById("txtaddress").value;
-    		document.getElementById("phone").innerHTML = document.getElementById("txtphoneno").value;
+    		var txtaddress = document.getElementById("txtaddress").value;
+    		if(txtaddress != null && txtaddress != ""){
+    		    document.getElementById("guestAddr").innerHTML = txtaddress;
+    		}
+    		var txtphoneno = document.getElementById("txtphoneno").value;
+    		if(txtphoneno != null && txtphoneno != ""){
+    		    document.getElementById("phone").innerHTML = txtphoneno;
+    		}
 			document.getElementById("date").innerHTML =  document.getElementById("meeting").value.replace("T"," ");
+            document.getElementById("enterDate").innerHTML = document.getElementById("updateEnterDate").value.replace("T"," ");
     	}
     	
     	function box_setup_close(){

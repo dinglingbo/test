@@ -8,7 +8,7 @@ var gridCar = null;
 var mainId_ctrl = null;
 var visitMode_ctrl = null;
 var tcarNo_ctrl = null;
-var memList = [];
+var memList = []; 
 var visitManEl = null;
 var visitIdEl = null;
 var hash = {}; 
@@ -104,6 +104,8 @@ $(document).ready(function(){
             e.cellHtml = retSerTypeStyle(e.cellHtml);
         }else if(e.field == "serviceCode"){
     		e.cellHtml ='<a href="##" onclick="openOrderDetail('+"'"+e.record.serviceId+"'"+')">'+e.record.serviceCode+'</a>';
+    	}else if(e.field == "carNo"){
+    		e.cellHtml ='<a href="##" onclick="WindowrepairHistory('+"'"+e.record.carNo+"'"+')">'+e.record.carNo+'</a>';
     	}else if(e.field == "guestMobile"){
             var value = e.value
             value = "" + value;

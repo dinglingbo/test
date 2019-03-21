@@ -15,6 +15,7 @@ import java.util.Set;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSONObject;
 
@@ -22,6 +23,7 @@ import org.apache.commons.collections.CollectionUtils;
 
 import com.eos.data.datacontext.DataContextManager;
 import com.eos.data.datacontext.IMUODataContext;
+import com.eos.data.datacontext.IUserObject;
 import com.eos.data.datacontext.UserObject;
 import com.eos.system.annotation.Bizlet;
 
@@ -164,11 +166,27 @@ public class MenuUtil {
 		HttpServletRequest req = (HttpServletRequest) request;
 		String actionUrl = req.getRequestURL().toString();
 		try {
-			IMUODataContext muo = DataContextManager.current().getMUODataContext();
+			/*IMUODataContext muo = DataContextManager.current().getMUODataContext();
 			if(muo == null) {
 				check = false;
 				return check;
-			} 
+			}*/ 
+			HttpSession session = req.getSession(false);
+			IUserObject u = null;
+			if (session == null || session.getAttribute("userObject") == null) {
+				check = false;
+				return check;
+			}else{
+				u = (IUserObject) session.getAttribute("userObject");	
+				if (u != null) {
+					
+				}else {
+					check = false;
+					return check;
+				}
+			}
+			
+			
 	        String sysDomain = Env.getContributionConfig("system", "url", "webDomain", "SYS");
 	        String webPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();  
 	    	
@@ -196,8 +214,8 @@ public class MenuUtil {
 		    		return true;
 				}
 			}
-	        Map<String, Object> attrMap = muo.getUserObject().getAttributes();
-	        String userId = (String) attrMap.get("loginName");
+	        //Map<String, Object> attrMap = muo.getUserObject().getAttributes();
+	        String userId = (String) u.get("loginName");
 			//查询用户对应的角色
 			DataObject[] roleArr = ResauthUtils.getUserRoles(userId);
 			DataObject[] menuArr = ResauthUtils.getMenu();	

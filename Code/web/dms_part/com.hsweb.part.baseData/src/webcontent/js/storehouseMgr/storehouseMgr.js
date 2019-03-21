@@ -16,7 +16,7 @@ $(document).ready(function(v)
 //        e.data.token = token;
 //    });
     
-    tree.load({token:token});
+    tree.load({fromDb:true,token:token});
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
     rightGrid.on("beforeload",function(e){

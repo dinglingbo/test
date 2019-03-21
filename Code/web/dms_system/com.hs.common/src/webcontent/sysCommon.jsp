@@ -113,6 +113,7 @@
 	String repairPchsRtnFlag = "1";
 	String repairDefaultStore = "";
 	String repairBillMobileFlag = "0";
+	String repairStoreControlFlag = "0";
 	String isCanSettle = "";
 	String orgs = "";
 	String systemImg = "";
@@ -241,6 +242,9 @@
 	                if(billParams.get("repairBillMobileFlag") != null){
 	                	repairBillMobileFlag = billParams.get("repairBillMobileFlag").toString();
 	                }
+	                if(billParams.get("repairStoreControlFlag") != null){
+	                	repairStoreControlFlag = billParams.get("repairStoreControlFlag").toString();
+	                }
                 }
               
                 
@@ -297,6 +301,7 @@
 	var currRepairPchsRtnFlag = "<%=repairPchsRtnFlag %>";
 	var currRepairDefaultStore = "<%=repairDefaultStore %>";
 	var currRepairBillMobileFlag = "<%=repairBillMobileFlag %>";
+	var currRepairStoreControlFlag = "<%=repairStoreControlFlag %>";
 	var currIsCanSettle = "<%=isCanSettle %>";
 	var currIsCanBelowCost ="<%=isCanBelowCost %>";
 	var currSwithBatchFlag ="<%=swithBatchFlag %>";

@@ -129,14 +129,14 @@ pageEncoding="UTF-8" session="false" %>
                         <td class="form_label">
                             <label>初次领证时间：</label>
                         </td>
-                        <td>
-                            <input name="licenseRecordDate" allowInput="false" class="nui-datepicker" format="yyyy-MM-dd" width="100%" />
+                        <td>             
+                            <input name="licenseRecordDate" allowInput="true" class="nui-datepicker" format="yyyy-MM-dd" width="100%" />
                         </td>
                         <td class="form_label">
                             <label>驾照到期日期：</label>
                         </td>
                         <td>
-                            <input name="licenseOverDate" allowInput="false" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
+                            <input name="licenseOverDate" allowInput="true" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
                         </td>
                     </tr>
                     <tr>
@@ -150,7 +150,7 @@ pageEncoding="UTF-8" session="false" %>
                             <label>生日：</label>
                         </td>
                         <td>
-                            <input name="birthday" allowInput="false" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
+                            <input name="birthday" allowInput="true" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
                         </td>
                     </tr>
                      <tr>
@@ -182,7 +182,7 @@ pageEncoding="UTF-8" session="false" %>
     <script type="text/javascript">
         nui.parse();
         var baseUrl = apiPath + repairApi + "/";
-        var contactorUrl = baseUrl + "com.hsapi.repair.repairService.svr.getContactListByGuestId.biz.ext";
+        var contactorUrl = baseUrl + "com.hsapi.repair.repairService.crud.getContactorById.biz.ext";
         // var saveUrl = baseUrl + "com.hsapi.repair.repairService.threeDC.saveContactor.biz.ext";
         var saveUrl = baseUrl + "com.hsapi.repair.repairService.threeDC.saveContactData.biz.ext";
 
@@ -213,18 +213,14 @@ pageEncoding="UTF-8" session="false" %>
 
 
 function loadForm(id) {
-    var params={
-        tid:id
-    };
+
     nui.ajax({
         url:contactorUrl,
         type:'post',
-        data:{params:params},
+        data:{id:id},
         success:function(res){
-            if(res.errCode == 'S'){
-                if(res.contactList.length > 0){
-                    contactInfoForm.setData(res.contactList[0]);
-                }
+            if(res.con != '' &&res.con != null && res.con != {}){
+                    contactInfoForm.setData(res.con);
             }else{
                 showMsg('数据加载失败','E');
             }

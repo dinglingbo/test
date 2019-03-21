@@ -79,26 +79,23 @@ pageEncoding="UTF-8" session="false" %>
                                     <label>车牌号：</label>
                                 </td>
                                 <td colspan="3">
-                                    <input class="nui-textbox" name="carNo" id="carNo" onvaluechanged="onCarNoChanged"/>
+                                    <input class="nui-textbox" name="carNo" id="carNo" onvaluechanged="" enabled="false"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="form_label">
                                     <label>车架号(VIN)：</label>
                                 </td>
-                                <td colspan="2">
-                                    <input class="nui-textbox" id="vin" name="vin" width="100%" />
+                                <td colspan="3">
+                                    <input class="nui-textbox" id="vin" name="vin" width="100%" enabled="false"/>
                                 </td>
-                                <td>
-                                    <a class="nui-button" onclick="onParseUnderpanNo()">解析车型</a>
-                                    <a class="nui-button" onclick="getCarModel(setCarModel)">选择车型</a>
-                                </td>
+                              
                             </tr>
                             <tr>
                                 <td class="form_label">
                                     <label>车型信息：</label>
                                 </td>
-                                <td colspan="3">
+                                <td colspan="3">                                       
                                     <textarea class="nui-textarea" id="carModel" name="carModelFullName" width="100%"></textarea>
                                 </td>
                             </tr>
@@ -123,7 +120,7 @@ pageEncoding="UTF-8" session="false" %>
                                     <label>年审到期：</label>
                                 </td>
                                 <td>
-                                    <input name="annualVerificationDueDate" format="yyyy-MM-dd" allowInput="false" class="nui-datepicker" width="100%" />
+                                    <input name="annualVerificationDueDate" format="yyyy-MM-dd" allowInput="true" class="nui-datepicker" width="100%" />
                                 </td>
                             </tr>
             
@@ -138,7 +135,7 @@ pageEncoding="UTF-8" session="false" %>
                                     <label>商业险到期：</label>
                                 </td>
                                 <td>
-                                    <input name="annualInspectionDate" format="yyyy-MM-dd" allowInput="false" class="nui-datepicker" width="100%" />
+                                    <input name="annualInspectionDate" format="yyyy-MM-dd" allowInput="true" class="nui-datepicker" width="100%" />
                                 </td>
                             </tr>
                             <tr>
@@ -146,7 +143,7 @@ pageEncoding="UTF-8" session="false" %>
                                     <label>商业险投保公司：</label>
                                 </td>
                                 <td colspan="3">
-                                    <input class="nui-combobox" name="annualInspectionCompCode" id="annualInspectionCompCode" valueField="id" textField="fullName" width="100%" onvaluechanged="onannualInsureChange"
+                                    <input class="nui-combobox" name="annualInspectionCompCode" id="annualInspectionCompCode" valueField="id" textField="fullName" width="100%" onvaluechanged=""
                                     />
                                 </td>
                             </tr>
@@ -161,7 +158,7 @@ pageEncoding="UTF-8" session="false" %>
                                     <label>交强险到期：</label>
                                 </td>
                                 <td>
-                                    <input name="insureDueDate" allowInput="false" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
+                                    <input name="insureDueDate" allowInput="true" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
                                 </td>
                             </tr>
                              <tr>
@@ -169,38 +166,53 @@ pageEncoding="UTF-8" session="false" %>
                                     <label>交强险投保公司：</label>
                                 </td>
                                 <td colspan="3">
-                                    <input class="nui-combobox" name="insureCompCode" id="insureCompCode" valueField="id" textField="fullName" width="100%" onvaluechanged="onInsureChange"
+                                    <input class="nui-combobox" name="insureCompCode" id="insureCompCode" valueField="id" textField="fullName" width="100%" onvaluechanged=""
                                     />
                                 </td>
                             </tr>
                             <tr>
                                 <td class="form_label">
-                                    <label>生产日期：</label>
+                                    <label>当前里程：</label>
                                 </td>
                                 <td>
-                                    <input name="produceDate" allowInput="false" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
+                                    <input  id="lastComeKilometers"  name="lastComeKilometers" class="nui-textbox" width="100%" />
                                 </td>
-                                <td class="form_label"> 
-                                    <label>上牌日期：</label>
+                                <td class="form_label">
+                                    <label>下次保养里程：</label>
                                 </td>
                                 <td>
-                                    <input  id="firstRegDate" name="firstRegDate"  allowInput="false" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
+                                    <input  id="careDueMileage"name="careDueMileage" class="nui-textbox" width="100%"/>
                                 </td>
                             </tr>
                             <tr>
-            
+                                    <td class="form_label"> 
+                                            <label>下次保养日期：</label>
+                                        </td>
+                                        <td>
+                                            <input id="careDueDate" name="careDueDate" allowInput="true" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
+                                        </td>
+                                <td class="form_label">
+                                    <label>生产日期：</label>
+                                </td>
+                                <td>
+                                    <input name="produceDate" allowInput="true" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
+                                </td>
+                        
+                            </tr>
+                            <tr>
+                                    <td class="form_label"> 
+                                            <label>上牌日期：</label>
+                                        </td>
+                                        <td>
+                                            <input  id="firstRegDate" name="firstRegDate"  allowInput="true" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
+                                        </td>
                                 <td class="form_label">
                                     <label>发证日期：</label>
                                 </td>
                                 <td>
-                                    <input id="issuingDate" name="issuingDate" format="yyyy-MM-dd" allowInput="false" class="nui-datepicker" width="100%" />
+                                    <input id="issuingDate" name="issuingDate" format="yyyy-MM-dd" allowInput="true" class="nui-datepicker" width="100%" />
                                 </td>
-                                <td class="form_label"> 
-                                        <label>下次保养日期：</label>
-                                    </td>
-                                    <td>
-                                        <input id="careDueDate" name="careDueDate" allowInput="false" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
-                                    </td>
+                           
             
                                 <!--   <td class="form_label" >
                                     <label>公司内部车：</label>
@@ -265,6 +277,8 @@ function loadForm(carId) {
         success:function(res){
             if(res.carExtend != '' &&res.carExtend != null &&res.carExtend != {} ){
                     nui.get("careDueDate").setValue(res.carExtend.careDueDate);
+                    nui.get("lastComeKilometers").setValue(res.carExtend.lastComeKilometers);
+                    nui.get("careDueMileage").setValue(res.carExtend.careDueMileage);
             }
 
         }
@@ -283,7 +297,9 @@ function save(){
     else {
     var ex ={
         carId:carForm.id,
-        careDueDate:carForm.careDueDate
+        careDueDate:carForm.careDueDate,
+        lastComeKilometers:carForm.lastComeKilometers,
+        careDueMileage:carForm.careDueMileage
     };
         
     // nui.mask({
@@ -312,9 +328,6 @@ function save(){
     }
 
 }
-
-
-    
 
         function onCancel() {
             CloseWindow("cancel");

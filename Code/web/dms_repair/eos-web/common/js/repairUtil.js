@@ -61,6 +61,7 @@ function getStorehouse(callback) {
 		}
 	});
 }
+
 var getDatadictionariesUrl = window._rootUrl
 		+ "com.hsapi.repair.common.common.getDatadictionaries.biz.ext";
 function getDatadictionaries(parentId, callback) {

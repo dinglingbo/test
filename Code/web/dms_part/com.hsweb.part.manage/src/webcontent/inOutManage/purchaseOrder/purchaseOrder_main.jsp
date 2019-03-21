@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购订单查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderMain.js?v=1.0.74"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderMain.js?v=1.1.1"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -90,6 +90,17 @@
                 <span class="separator"></span>
 
                 <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->
+                <input id="storeId"
+                           name="storeId"
+                           class="nui-combobox"
+                           textField="name"
+                           valueField="id"
+                           emptyText="仓库"
+                           url="" width="80"
+                           valueFromSelect="true"
+                           allowInput="false"
+                           showNullItem="false"
+                           nullItemText="请选择..."/>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <span class="separator"></span>
 <!--                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> -->

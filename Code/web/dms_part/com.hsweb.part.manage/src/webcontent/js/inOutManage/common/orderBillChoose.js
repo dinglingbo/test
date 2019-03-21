@@ -74,13 +74,21 @@ $(document).ready(function(v)
     getStorehouse(function(data)
     {
         storehouse = data.storehouse||[];
+        nui.get("storeId").setData(storehouse);
+        if(currRepairStoreControlFlag == "1") {
+        	if(storehouse && storehouse.length>0) {
+        		nui.get("storeId").setValue(storehouse[0].id);
+        	}
+        }else {
+        	nui.get("storeId").setAllowInput(true);
+        }
         storehouse.forEach(function(v)
+        {
+            if(v && v.id)
             {
-                if(v && v.id)
-                {
-                    storehouseHash[v.id] = v;
-                }
-            });
+                storehouseHash[v.id] = v;
+            }
+        });
     });
 
     getAllPartBrand(function(data) {
@@ -193,6 +201,7 @@ function doNotStatement(params){
     params.orderTypeId = orderTypeId;
     params.auditSign = 1;
     params.isDiffOrder = 0;
+    params.storeId = nui.get("storeId").value;
     notStatementGrid.load({
         params:params,
         token: token

@@ -350,7 +350,7 @@ function addStoreMem()
     });
 }
 
-var saveUrl = apiPath + sysApi + "/com.hsapi.system.tenant.employee.saveStoreMember.biz.ext";
+var saveStoreMemUrl = apiPath + sysApi + "/com.hsapi.system.tenant.employee.saveStoreMember.biz.ext";
 function saveStoreMember(memList, storeId){
     if(!memList)
     {
@@ -372,7 +372,7 @@ function saveStoreMember(memList, storeId){
         html: '保存中...'
 	});
     nui.ajax({
-        url:saveUrl,
+        url:saveStoreMemUrl,
         type:"post",
         data:JSON.stringify({
         	memList:data,

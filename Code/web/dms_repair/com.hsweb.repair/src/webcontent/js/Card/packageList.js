@@ -50,11 +50,13 @@ $(document).ready(function(v) {
         td.appendChild(detailGrid_Form);
         detailGrid_Form.style.display = "block";
         packageDetail.clearRows();
-        for(var i =0;i<row.items.length;i++){
-        	row.items[i].type="项目";
-        	packageDetail.addRow(row.items[i]);
+        if(row.items!=null){
+            for(var i =0;i<row.items.length;i++){
+            	row.items[i].type="项目";
+            	packageDetail.addRow(row.items[i]);
+            }
+            packageDetail.setData(row.items);
         }
-        packageDetail.setData(row.items);
         //转化字符串和json,替换名称
         if(row.parts!=null){
             var partsStr = JSON.stringify(row.parts);

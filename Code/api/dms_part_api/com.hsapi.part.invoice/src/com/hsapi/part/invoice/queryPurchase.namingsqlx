@@ -920,6 +920,7 @@
         <result column="storeShelf" javaType="string" property="storeShelf"/>
         <result column="originId" javaType="int" property="originId"/>
         <result column="originGuestId" javaType="int" property="originGuestId"/>
+        <result column="sellPrice" javaType="double" property="sellPrice"/>
         <result column="comPartCode" javaType="string" property="comPartCode"/>
         <result column="comPartName" javaType="string" property="comPartName"/>
         <result column="comFullName" javaType="string" property="comFullName"/>

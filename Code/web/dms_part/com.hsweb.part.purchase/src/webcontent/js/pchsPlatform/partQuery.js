@@ -153,7 +153,7 @@ function addOrEditPart(row)
     });
 
 }
-var guestUrl=baseUrl+"com.hsapi.part.invoice.partInterface.queryGuestAndSKU.biz.ext";
+var guestUrl=baseUrl+"com.hsapi.part.invoice.partInterfaceDs.queryGuestAndSKU.biz.ext";
 function verifyGuestForCar(){
 	nui.mask({
         el : document.body,

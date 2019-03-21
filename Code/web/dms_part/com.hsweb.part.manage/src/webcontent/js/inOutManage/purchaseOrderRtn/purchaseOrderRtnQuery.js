@@ -86,7 +86,14 @@ $(document).ready(function(v)
     getStorehouse(function(data)
     {
         var storehouse = data.storehouse||[];
-     //   nui.get("storeId").setData(storehouse);
+        nui.get("storeId").setData(storehouse);
+        if(currRepairStoreControlFlag == "1") {
+        	if(storehouse && storehouse.length>0) {
+        		nui.get("storeId").setValue(storehouse[0].id);
+        	}
+        }else {
+        	nui.get("storeId").setAllowInput(true);
+        }
         storehouse.forEach(function(v)
         {
             if(v && v.id)
@@ -214,6 +221,7 @@ function doSearch(params)
     params.isOut = 1;
 	params.sortField = "audit_date";
 	params.sortOrder = "desc";
+	params.storeId = nui.get("storeId").value;
 	
 	var orgidsElValue = orgidsEl.getValue();
     if(orgidsElValue==null||orgidsElValue==""){

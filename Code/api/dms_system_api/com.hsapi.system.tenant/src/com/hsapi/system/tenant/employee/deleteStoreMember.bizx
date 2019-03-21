@@ -129,7 +129,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -180,6 +180,10 @@
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
       <process:from type="query" pattern="reference">temp/empId</process:from>
+      <process:to type="query">empId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">empId</process:from>
       <process:to type="query">params/empId</process:to>
     </process:copy>
   </nodes>
@@ -193,6 +197,7 @@
   <process:info author="Administrator" createTime="2019-03-20 21:07:47" date="2019-03-20Z" description="" name="deleteStoreMember" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.ComStoreMember" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="empId" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="true" modelType="com.hsapi.system.data.sys.ComStoreMember" name="memList"/>

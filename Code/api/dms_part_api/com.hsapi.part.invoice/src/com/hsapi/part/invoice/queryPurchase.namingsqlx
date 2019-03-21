@@ -216,6 +216,9 @@
                 <isNotEmpty prepend="and" property="partId">  
                     (C.PART_ID = #partId#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="storeId">  
+                    (C.store_ID = #storeId#)
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (A.guest_id = #guestId#)
                 </isNotEmpty>
@@ -344,6 +347,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partId">  
                     (C.PART_ID = #partId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="storeId">  
+                    (C.store_ID = #storeId#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (A.guest_id = #guestId#)
@@ -1471,6 +1477,9 @@
                 <isNotEmpty prepend="and" property="partId">  
                     (C.PART_ID = #partId#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="storeId">  
+                    (C.store_ID = #storeId#)
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (A.guest_id = #guestId#)
                 </isNotEmpty>
@@ -1612,6 +1621,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partId">  
                     (C.PART_ID = #partId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="storeId">  
+                    (C.store_ID = #storeId#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (A.guest_id = #guestId#)

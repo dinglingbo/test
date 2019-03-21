@@ -145,6 +145,8 @@
 				      	   <div headerAlign="center" type="indexcolumn" width="30">序号</div>
 				           <div field="goodsCode" name="goodsCode" width="80" visible="true" headerAlign="center" header="内码"></div>
 					       <div field="partsCode" headerAlign="partsCode" visible="true" width="80"header="编码"></div>
+					       <div field="oemCode" headerAlign="oemCode" visible="true" width="80"header="原厂编码"></div>
+					       <div field="unit" headerAlign="oemCode" visible="true" width="80"header="单位"></div>
 					       <div field="full_name" id="full_name" visible="false" width="260" headerAlign="center" header="全称"></div>
 					       <div field="brandCode" name="brandCode" visible="true" headerAlign="center" header="品牌编码"></div>
 					       <div field="brandName" name="brandName" visible="true"  headerAlign="center" header="品牌"></div>
@@ -153,7 +155,7 @@
 						   <div field="storeName" width="150" headerAlign="center" allowSort="true" header="配件商"></div>
 					       <div field="qty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center"header="库存" ></div>
 						   <div field="price" width="60" headerAlign="center" allowSort="true" header="销售价"></div>
-					   	   <div field="warehouseName" id="warehouseName" width="140" headerAlign="center" header="仓库"></div>
+					   	   <div field="wareHouseName" id="wareHouseName" width="140" headerAlign="center" header="仓库"></div>
 						   <div field="rangeName" width="80" headerAlign="center" allowSort="true" header="仓库所在地"></div>
 						   <div field="action" width="180" headerAlign="center" allowSort="true" header="操作"></div>
 				      </div>

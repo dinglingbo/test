@@ -78,6 +78,13 @@ $(document).ready(function(v)
         }
 
         storeIdEl.setData(storehouse);
+        
+        
+        if(currRepairStoreControlFlag == "1") {
+        	
+        }else {
+        	nui.get("storeId").setAllowInput(true);
+        }
     });
 
     getAllPartBrand(function(data) {
@@ -793,6 +800,7 @@ function add()
 
                     basicInfoForm.reset();
                     rightGrid.clearRows();
+                    storeIdEl.setValue(FStoreId);
                     
                     var newRow = { serviceId: '新盘点单', orderMan:currUserName, createDate: (new Date()), auditSign: 0};
 //                    leftGrid.addRow(newRow, 0);
@@ -837,6 +845,7 @@ function add()
         
 //        nui.get("serviceId").setValue("新盘点单");
         $('#bServiceId').text("盘点单号: 新盘点单");
+        storeIdEl.setValue(FStoreId);
         nui.get("createDate").setValue(new Date());
         
         if(!orderMan || orderMan==""){

@@ -9,7 +9,8 @@ var guestBirthday = null; //客户生日
 var serviceType = null; //6商业险到期   7; //交强险到期   8; //驾照到期   9; //车检到期   10; //客户生日  
 var params = {};
 var tabs = {};
-
+var statusList = [{id:0,name:"未关怀"},{id:1,name:"已关怀"}];
+var birthdayTypeList = [{id:0,name:"农历"},{id:1,name:"阴历"}];
 $(document).ready(function (v) {
     tabs = nui.get("tabs");
     business = nui.get("business");
@@ -23,7 +24,145 @@ $(document).ready(function (v) {
     drivingLicense.setUrl(queryRemindSUrl);
     car.setUrl(querybusinessUrl);
     guestBirthday.setUrl(queryRemindSUrl);
-
+    
+    var filter = new HeaderFilter(business, {
+        columns: [
+            { name: 'carModel' },
+            { name: 'annualInspectionCompName' },
+            { name: 'annualStatus' }
+        ],
+        callback: function (column, filtered) {
+        },
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+        		case "annualStatus" :
+        			var arr = [];
+        			for (var i in statusList) {
+        			    var o = {};
+        			    o.name = statusList[i].name;
+        			    o.id = statusList[i].id;
+        			    arr.push(o);
+        			}
+        			value = arr;
+        			break;			
+        	}
+        	return value;
+        }
+    });
+    
+    var filter = new HeaderFilter(compulsoryInsurance, {
+        columns: [
+            { name: 'carModel' },
+            { name: 'insureCompName' },
+            { name: 'insureStatus' }
+        ],
+        callback: function (column, filtered) {
+        },
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+        		case "insureStatus" :
+        			var arr = [];
+        			for (var i in statusList) {
+        			    var o = {};
+        			    o.name = statusList[i].name;
+        			    o.id = statusList[i].id;
+        			    arr.push(o);
+        			}
+        			value = arr;
+        			break;			
+        	}
+        	return value;
+        }
+    });
+    
+    var filter = new HeaderFilter(drivingLicense, {
+        columns: [
+            { name: 'guestName' },
+            { name: 'licenseStatus' }
+        ],
+        callback: function (column, filtered) {
+        },
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+        		case "licenseStatus" :
+        			var arr = [];
+        			for (var i in statusList) {
+        			    var o = {};
+        			    o.name = statusList[i].name;
+        			    o.id = statusList[i].id;
+        			    arr.push(o);
+        			}
+        			value = arr;
+        			break;			
+        	}
+        	return value;
+        }
+    });
+    
+    var filter = new HeaderFilter(car, {
+        columns: [
+            { name: 'veriStatus' },
+            { name: 'carModel' }
+        ],
+        callback: function (column, filtered) {
+        },
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+        		case "veriStatus" :
+        			var arr = [];
+        			for (var i in statusList) {
+        			    var o = {};
+        			    o.name = statusList[i].name;
+        			    o.id = statusList[i].id;
+        			    arr.push(o);
+        			}
+        			value = arr;
+        			break;			
+        	}
+        	return value;
+        }
+    });
+    
+    var filter = new HeaderFilter(guestBirthday, {
+        columns: [
+            { name: 'guestName' },
+            { name: 'birthdayType' },
+            { name: 'birStatus' }
+        ],
+        callback: function (column, filtered) {
+        },
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+        		case "birStatus" :
+        			var arr = [];
+        			for (var i in statusList) {
+        			    var o = {};
+        			    o.name = statusList[i].name;
+        			    o.id = statusList[i].id;
+        			    arr.push(o);
+        			}
+        			value = arr;
+        			break;	
+        		case "birthdayType" :
+        			var arr = [];
+        			for (var i in birthdayTypeList) {
+        			    var o = {};
+        			    o.name = birthdayTypeList[i].name;
+        			    o.id = birthdayTypeList[i].id;
+        			    arr.push(o);
+        			}
+        			value = arr;
+        			break;	
+        	}
+        	return value;
+        }
+    });
+    
     business.on("drawcell", function (e) {
         if (e.field == "annualStatus") {
             if (e.value == 0) {

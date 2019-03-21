@@ -98,9 +98,10 @@
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>subprocess2</targetNode>
       <process:transitionCondition>
-        <process:complexCondition>
-          <process:code>1==2</process:code>
-        </process:complexCondition>
+        <process:simpleCondition operator="OBJEQ">
+          <process:leftOperand type="query">type</process:leftOperand>
+          <process:rightOperand type="literal">REPAIR</process:rightOperand>
+        </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
@@ -1126,8 +1127,8 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">code</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">msg</process:outputVariable>
-        <process:outputVariable id="2" name="account" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="3" name="password" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="account" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="3" name="password" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

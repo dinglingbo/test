@@ -57,6 +57,19 @@ $(document).ready(function(){
 
     };
     onSearch();
+    
+    var filter = new HeaderFilter(gridCar, {
+        columns: [
+            { name: 'carModel' },
+            { name: 'guestName' },
+            { name: 'preAdvisorName' }
+        ],
+        callback: function (column, filtered) {
+        },
+        tranCallBack: function (field) {
+        	
+        }
+    });
 });
 
 function remind() {

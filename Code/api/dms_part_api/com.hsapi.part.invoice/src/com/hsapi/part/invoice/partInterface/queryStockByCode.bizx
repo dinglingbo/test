@@ -139,16 +139,6 @@
     <node>assign6</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值6" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" description="" id="link35" name="link35" displayName="link21" isDefault="false" type="transition">
-      <sourceNode>assign7</sourceNode>
-      <targetNode>subprocess2</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NULLOREMPTY">
-          <process:leftOperand type="query">systoken</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign7</sourceNode>
       <targetNode>assign9</targetNode>
@@ -156,6 +146,16 @@
         <process:complexCondition>
           <process:code>1==1</process:code>
         </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link2" name="link2" displayName="连接线" type="transition">
+      <sourceNode>assign7</sourceNode>
+      <targetNode>subprocess0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">protoken</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link18</targetConnections>
@@ -232,10 +232,9 @@
     <node>assign5</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link22" name="link22" displayName="link30" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
-      <targetNode>subprocess2</targetNode>
-      <process:transitionCondition/>
+      <targetNode>subprocess0</targetNode>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
     <location x="253" y="420"/>
@@ -250,33 +249,6 @@
     <location x="247" y="456"/>
     <figSize height="20" width="40"/>
     <node>assign8</node>
-  </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="srmAuth" displayName="srmAuth" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link31" name="link31" displayName="link22" isDefault="true" type="transition">
-      <sourceNode>subprocess2</sourceNode>
-      <targetNode>assign9</targetNode>
-    </sourceConnections>
-    <targetConnections>link35</targetConnections>
-    <targetConnections>link22</targetConnections>
-    <location x="125" y="301"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess2label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hs.common.sysService.srmAuth</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="loginName" type="literal" value="String" valueType="Primitive" pattern="reference">hstest</process:inputVariable>
-        <process:inputVariable id="1" name="pw" type="literal" value="String" valueType="Primitive" pattern="reference">hstest</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="systoken" type="query" value="String" valueType="Primitive">systoken</process:outputVariable>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="107" y="336"/>
-    <figSize height="20" width="63"/>
-    <node>subprocess2</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="querySRMStockByCode" displayName="" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
@@ -321,7 +293,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <targetConnections>link31</targetConnections>
+    <targetConnections>link6</targetConnections>
     <location x="252" y="217"/>
     <size height="28" width="28"/>
     <nodeLabel>assign9label</nodeLabel>
@@ -366,6 +338,32 @@
     <location x="959" y="380"/>
     <figSize height="20" width="40"/>
     <node>end1</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="srmAuth1" displayName="srmAuth" collapsed="false" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>assign9</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <targetConnections>link7</targetConnections>
+    <location x="125" y="311"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess0label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hs.common.sysService.srmAuth</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="loginName" type="query" value="String" valueType="Primitive" pattern="reference">hstest</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="1" name="systoken" type="query" value="String" valueType="Primitive">systoken</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
+    <location x="102" y="346"/>
+    <figSize height="20" width="72"/>
+    <node>subprocess0</node>
   </nodes>
   <topRuler>
     <guides position="480" horizontal="true"/>

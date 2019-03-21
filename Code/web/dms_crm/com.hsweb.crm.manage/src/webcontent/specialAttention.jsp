@@ -12,8 +12,10 @@
 
 <head>
     <title>特别关怀</title>
-    <script src="<%=request.getContextPath()%>/manage/js/specialAttention.js?v=1.1.98">
+    <script src="<%=request.getContextPath()%>/manage/js/specialAttention.js?v=1.2.2">
     </script>
+    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 </head>
 
 <body style="margin:0;width: 100%; height:100%;overflow-x:hidden">
@@ -65,9 +67,9 @@
                         <div field="carId" headerAlign="center" allowSort="true" visible="false">carId</div>
                         <div field="guestId" headerAlign="center" allowSort="true" visible="false">guestId</div>
                         <div field="carNo" headerAlign="center" allowSort="true" width="100px">车牌号</div>
-                        <div field="carModel" headerAlign="center" allowSort="true" width="100px">品牌车型</div>
-                        <div field="annualInspectionCompName" headerAlign="center" allowSort="true" width="100px">保险公司</div>
-                        <div field="annualStatus" headerAlign="center" allowSort="true" width="60px">状态</div>
+                        <div field="carModel"name="carModel" headerAlign="center" allowSort="true" width="100px">品牌车型</div>
+                        <div field="annualInspectionCompName" name="annualInspectionCompName"headerAlign="center" allowSort="true" width="100px">保险公司</div>
+                        <div field="annualStatus" name="annualStatus"headerAlign="center" allowSort="true" width="60px">状态</div>
                         <div field="annualInspectionDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true"
                             width="50px">
                             商业险到期日期</div>
@@ -122,9 +124,9 @@
                         <div field="carId" headerAlign="center" allowSort="true" visible="false">carId</div>
                         <div field="guestId" headerAlign="center" allowSort="true" visible="false">guestId</div>
                         <div field="carNo" headerAlign="center" allowSort="true" width="100px">车牌号</div>
-                        <div field="carModel" headerAlign="center" allowSort="true" width="100px">品牌车型</div>
-                        <div field="insureCompName" headerAlign="center" allowSort="true" width="100px">保险公司</div>
-                        <div field="insureStatus" headerAlign="center" allowSort="true" width="60px">状态</div>
+                        <div field="carModel"  name="carModel"headerAlign="center" allowSort="true" width="100px">品牌车型</div>
+                        <div field="insureCompName"  name="insureCompName"headerAlign="center" allowSort="true" width="100px">保险公司</div>
+                        <div field="insureStatus"  name="insureStatus"headerAlign="center" allowSort="true" width="60px">状态</div>
                         <div field="insureDueDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true"
                             width="50px">
                             交强险到期日期</div>
@@ -180,9 +182,9 @@
                         <div field="guestId" headerAlign="center" allowSort="true" visible="false">guestId</div>
                         <div field="orgid" headerAlign="center" allowSort="true" visible="false">orgid</div>
                         <div field="carId" headerAlign="center" allowSort="true" visible="false">carId</div>
-                        <div field="guestName" headerAlign="center" allowSort="true" width="100px">客户姓名</div>
+                        <div field="guestName" name="guestName"headerAlign="center" allowSort="true" width="100px">客户姓名</div>
                         <div field="mobile" headerAlign="center" allowSort="true" width="60px">电话</div>
-                        <div field="licenseStatus" headerAlign="center" allowSort="true" width="60px">状态</div>
+                        <div field="licenseStatus"  name="licenseStatus"headerAlign="center" allowSort="true" width="60px">状态</div>
                         <div field="licenseOverDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true"
                             width="50px">
                             驾照年审日期</div>
@@ -237,8 +239,8 @@
                         <div field="carId" headerAlign="center" allowSort="true" visible="false">carId</div>
                         <div field="guestId" headerAlign="center" allowSort="true" visible="false">guestId</div>
                         <div field="carNo" headerAlign="center" allowSort="true" width="100px">车牌号</div>
-                        <div field="carModel" headerAlign="center" allowSort="true" width="100px">品牌车型</div>
-                        <div field="veriStatus" headerAlign="center" allowSort="true" width="60px">状态</div>
+                        <div field="carModel" name="carModel"headerAlign="center" allowSort="true" width="100px">品牌车型</div>
+                        <div field="veriStatus" name="veriStatus"headerAlign="center" allowSort="true" width="60px">状态</div>
                         <div field="annualVerificationDueDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm"
                             allowSort="true" width="50px">
                             车辆年检到期日期</div>
@@ -293,10 +295,10 @@
                         <div type="checkcolumn" class="mini-radiobutton" header="选择"></div>
                         <div field="guestId" headerAlign="center" allowSort="true" visible="false">guestId</div>
                         <div field="carId" headerAlign="center" allowSort="true" visible="false">orgid</div>
-                        <div field="guestName" headerAlign="center" allowSort="true" width="100px">客户姓名</div>
+                        <div field="guestName"  name="guestName"headerAlign="center" allowSort="true" width="100px">客户姓名</div>
                         <div field="mobile" headerAlign="center" allowSort="true" width="60px">电话</div>
-                        <div field="birthdayType" headerAlign="center" allowSort="true" width="100px">生日类型</div>
-                        <div field="birStatus" headerAlign="center" allowSort="true" width="60px">状态</div>
+                        <div field="birthdayType"  name="birthdayType"headerAlign="center" allowSort="true" width="100px">生日类型</div>
+                        <div field="birStatus"  name="birStatus"headerAlign="center" allowSort="true" width="60px">状态</div>
                         <div field="birthday" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" width="50px">生日</div>
                     </div>
                 </div>

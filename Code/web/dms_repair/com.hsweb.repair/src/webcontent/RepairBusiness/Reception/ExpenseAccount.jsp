@@ -103,7 +103,9 @@
                  <a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
                 <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
                     <li iconCls="" onclick="onPrint(1)" id="type11">打印报价单</li>
+                    <li iconCls="" onclick="onPrint(3)" id="type11">打印报价单(项目配件分开)</li>
                     <li iconCls="" onclick="onPrint(2)" id="type11">打印结账单</li>
+                    <li iconCls="" onclick="onPrint(4)" id="type11">打印结账单(项目配件分开)</li>
                 </ul>
             </td>
         </tr>
@@ -131,6 +133,7 @@
         <input class="nui-hidden" name="guestDesc"/>
         <input class="nui-hidden" name="faultPhen"/>
         <input class="nui-hidden" name="solveMethod"/>
+        <input class="nui-hidden" name="enterOilMass"/>
         <input id="enterDate" name="enterDate" class="nui-datepicker"visible="false"nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
         <table  style=" left:0;right:0;margin: 0 auto;width:100%"> 
             <tr>   

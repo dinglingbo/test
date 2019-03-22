@@ -18,7 +18,7 @@
 </head>
 <body>
 	
-     <iframe id="ifr" src="https://deves.g-parts.cn/jpWeb/f/loginNp?account=<%=loginName %>&system=3" onload="changeFrameHeight()" width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
+     <iframe id="ifr" src="https://deves.g-parts.cn/jpWeb/f/loginNp?account=<%=loginName %>&system=3" onload="" width="100%" height="100%" frameborder="0" scrolling="auto"></iframe>
 
 
 	<script type="text/javascript">

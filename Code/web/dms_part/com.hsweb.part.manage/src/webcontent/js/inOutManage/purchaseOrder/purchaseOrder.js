@@ -2318,7 +2318,7 @@ function setInitData(params){
 	}
 }
 
-var pushOrderUrl=baseUrl+"com.hsapi.part.invoice.ordersettle.pushSupplierOrder.biz.ext";
+var pushOrderUrl=baseUrl+"com.hsapi.part.invoice.partInterfaceDs.pushSupplierOrder.biz.ext";
 function pushSupplierOrder(){
 	var payType = '';
 	var data = basicInfoForm.getData();
@@ -2333,17 +2333,12 @@ function pushSupplierOrder(){
         url : pushOrderUrl,
         type : "post",
         data : JSON.stringify({
-        	payType : payType,
-        	address:"",
-        	isInsurance:0,
-        	isDeposit:0,
-        	isScene:0,
-        	isTax:1,
+        	address:currCompAddress,
         	receiver:mem,
+        	account:currSrmUserId,
         	remark:data.remark,
-        	mobile:"",
-        	userName:mem,
-        	guestId:data.srmGuestId,
+        	mobile:currEmpTel,
+        	storeCode:data.srmGuestId,
         	mainId:data.id
         }),
         success : function(data) {

@@ -1409,11 +1409,11 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">operateDate</process:from>
-      <process:to type="query">rpbCarExtend/record_date</process:to>
+      <process:to type="query">rpbCarExtend/recordDate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">operateDate</process:from>
-      <process:to type="query">rpbCarExtend/modify_date</process:to>
+      <process:to type="query">rpbCarExtend/modifyDate</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign23label" name="label" nodeType="label">

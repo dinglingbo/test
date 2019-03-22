@@ -45,7 +45,7 @@
 	<!--商业险到期  （暂时没用到）-->
 	<select id="getAnnualInspection" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT a.last_orgid as orgid, b.guest_id as guestId, a.car_id as carId, b.car_no as carNo, b.vin as carVin, 
-		       b.mt_advisor_id as mtAdvisorId, b.mt_advisor_name as mtAdvisorName, DATE_FORMAT(b.annual_inspection_date,'%Y-%m-%d') as dueDate
+		       a.mt_advisor_id as mtAdvisorId, a.mt_advisor_name as mtAdvisorName, DATE_FORMAT(b.annual_inspection_date,'%Y-%m-%d') as dueDate
 		from rpb_car_extend a
 		inner join rpb_car b
 		on a.car_id = b.id

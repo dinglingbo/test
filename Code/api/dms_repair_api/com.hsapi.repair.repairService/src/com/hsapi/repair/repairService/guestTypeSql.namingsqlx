@@ -11,7 +11,8 @@
 	<select id="getGuestbyBir" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 	select 
         a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
-        b.id conId,b.orgid,b.name guestName,b.mobile,b.birthday,b.wechat_open_id wechatOpenId
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.birthday,b.wechat_open_id wechatOpenId,
+        b.wechat_service_id wechatServiceId
     from  rpb_car a
     INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
     where datediff(DATE_ADD(birthday,INTERVAL ceil(TIMESTAMPDIFF(MONTH,NOW(),birthday)/12) YEAR),NOW()) &gt;= 0
@@ -25,7 +26,8 @@
 	select 
         a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
         b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
-        b.license_over_date licenseOverDate
+        b.license_over_date licenseOverDate,
+        b.wechat_service_id wechatServiceId
     from  rpb_car a
     INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
     where TIMESTAMPDIFF(DAY, NOW(), b.license_over_date) &gt;= 0
@@ -39,7 +41,8 @@
 	select 
         a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
         b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
-        a.annual_verification_due_date dueDate
+        a.annual_verification_due_date dueDate,
+        b.wechat_service_id wechatServiceId
     from  rpb_car a
     INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
     where TIMESTAMPDIFF(DAY, NOW(), a.annual_verification_due_date) &gt;= 0
@@ -54,7 +57,8 @@
         a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
         b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
         c.care_due_date careDueDate,c.last_come_kilometers lastComeKilometers,
-        c.last_come_date lastComeDate
+        c.last_come_date lastComeDate,
+        b.wechat_service_id wechatServiceId
         
     from  rpb_car a
     INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
@@ -71,7 +75,8 @@
 	select 
         a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
         b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
-        a.insure_due_date insureDueDate
+        a.insure_due_date insureDueDate,
+        b.wechat_service_id wechatServiceId
     from  rpb_car a
     INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
     where TIMESTAMPDIFF(DAY, NOW(), a.insure_due_date) &gt;= 0
@@ -85,7 +90,8 @@
 	select 
         a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
         b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
-        a.annual_inspection_date annualInspectionDate
+        a.annual_inspection_date annualInspectionDate,
+        b.wechat_service_id wechatServiceId
     from  rpb_car a
     INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
     where TIMESTAMPDIFF(DAY, NOW(), a.annual_inspection_date) &gt;= 0
@@ -99,7 +105,8 @@
 	select 
         a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
         b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
-        c.mt_advisor_id mtAdvisorId ,c.mt_advisor_name mtAdvisorName
+        c.mt_advisor_id mtAdvisorId ,c.mt_advisor_name mtAdvisorName,
+        b.wechat_service_id wechatServiceId
     from  rpb_car a
     INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
     INNER JOIN rpb_car_extend c on c.car_id = a.id 
@@ -113,7 +120,8 @@
 	select 
         a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
         b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
-        c.last_come_kilometers lastComeKilometers
+        c.last_come_kilometers lastComeKilometers,
+        b.wechat_service_id wechatServiceId
     from  rpb_car a
     INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
     INNER JOIN rpb_car_extend c on c.car_id = a.id 
@@ -129,7 +137,8 @@
 	select 
         a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
         b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
-        c.chain_come_times chainComeTimes
+        c.chain_come_times chainComeTimes,
+        b.wechat_service_id wechatServiceId
     from  rpb_car a
     INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
     INNER JOIN rpb_car_extend c on c.car_id = a.id 
@@ -144,7 +153,8 @@
 	select 
         a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
         b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
-        c.chain_consume_amt chainConsumeAmt
+        c.chain_consume_amt chainConsumeAmt,
+        b.wechat_service_id wechatServiceId
     from  rpb_car a
     INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
     INNER JOIN rpb_car_extend c on c.car_id = a.id 
@@ -159,7 +169,8 @@
 	select 
         a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
         b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
-        TIMESTAMPDIFF(DAY,c.last_leave_date, NOW()) as leaveDay
+        TIMESTAMPDIFF(DAY,c.last_leave_date, NOW()) as leaveDay,
+        b.wechat_service_id wechatServiceId
     from  rpb_car a
     INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
     INNER JOIN rpb_car_extend c on c.car_id = a.id 
@@ -174,7 +185,8 @@
 	select 
         a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
         b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
-        d.tgrade,e.name levelName
+        d.tgrade,e.name levelName,
+        b.wechat_service_id wechatServiceId
     from  rpb_car a
     INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
 		INNER JOIN rpb_car_extend c on c.car_id = a.id 
@@ -189,7 +201,8 @@
 	<select id="getGuestbyModel" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 	select 
         a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
-        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId
+        b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
+        b.wechat_service_id wechatServiceId
     from  rpb_car a
     INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
     where b.orgid = #orgid#
@@ -205,7 +218,8 @@
 		b.last_come_kilometers lastComeKilometers,b.chain_come_times chainComeTimes,
 		b.chain_consume_amt chainConsumeAmt,TIMESTAMPDIFF(DAY,b.last_leave_date, NOW()) as leaveDay,
 		b.first_come_date firstComeDate,
-		b.last_come_date lastComeDate
+		b.last_come_date lastComeDate,
+        c.wechat_service_id wechatServiceId
 from  rpb_car a
 INNER JOIN rpb_car_extend b on b.car_id = a.id 
 INNER JOIN rpb_contactor c on a.guest_id = c.guest_id
@@ -312,7 +326,8 @@ where c.orgid = #orgid#
             b.last_come_date lastComeDate,
             a.annual_inspection_comp_name annualInspectionCompName,
             a.insure_comp_name insureCompName,
-            c.guest_id guestId
+            c.guest_id guestId,
+            c.wechat_service_id wechatServiceId
         from  rpb_car a
         INNER JOIN rpb_car_extend b on b.car_id = a.id 
         INNER JOIN rpb_contactor c on a.guest_id = c.guest_id
@@ -391,7 +406,8 @@ where c.orgid = #orgid#
             '' as lastComeDate,
             '' as annualInspectionCompName,
             '' as insureCompName,
-            a.guest_id guestId
+            a.guest_id guestId,
+            '' as wechatServiceId
         from wb_crm.crm_guest  a
         where  a.orgid = #orgid#
         <!-- 商业险-->

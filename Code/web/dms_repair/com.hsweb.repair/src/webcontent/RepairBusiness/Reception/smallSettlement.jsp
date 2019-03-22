@@ -168,7 +168,11 @@
                     	<tr>
                     		<td>
                     			套餐：<span id="prdt">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;工时：<span id="item">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0.00</span>
-                    		     &nbsp;&nbsp;&nbsp;&nbsp;其他费用：<span id="expense">0.00</span>
+                    		</td>
+                    	</tr>
+                    	<tr>
+                    		<td>
+                    			其他费用：<span id="expense">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;其他优惠：<span id="expRateAmt">0.00</span>
                     		</td>
                     	</tr>
                         <tr>
@@ -398,6 +402,14 @@
     		            }
     		       }
 	         });
+	         $.ajaxSettings.async = false;
+	         $.post(params.baseUrl+"com.hsapi.repair.repairService.query.querySettleAmt.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){
+				    if(text.errCode=="S"){ 
+    				 	document.getElementById("expRateAmt").innerHTML = text.data.allowanceAmt.toFixed(2);			
+    				}else{
+    					nui.alert(text.errMsg,"提示");
+    				}
+    	       });
             	//document.getElementById("name").innerHTML = "&nbsp;配件";
             	/* nui.ajax({
 	                url: params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext",

@@ -72,7 +72,7 @@
                             <label>进厂油量：</label>
                         </td>
                         <td>
-                            <input name="enterOilMass"
+                           <!--  <input name="enterOilMass"
                                    id="enterOilMass"
                                    class="nui-combobox width1"
                                    textField="name"
@@ -83,13 +83,18 @@
                                    allowInput="true"
                                    showNullItem="false"
                                    valueFromSelect="true"
-                                   nullItemText="请选择..."/>
+                                   nullItemText="请选择..."/> -->
+                                   
+                          <input class="nui-combobox" id="enterOilMass" emptyText="请选择..." name="enterOilMass"
+                           data="[{enterOilMass:'F',text:'F'},{enterOilMass:'3/4',text:'3/4'},{enterOilMass:'1/2',text:'1/2'},{enterOilMass:'1/4',text:'1/4'},{enterOilMass:'N',text:'N'}]"
+                           width="100%"   textField="text" valueField="enterOilMass" value=""/>
+               
                         </td>
                         <td class="title required">
                               <label>进厂里程：</label>
                           </td>
                           <td >
-                               <input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="100000000"  width="30%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" />
+                               <input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"  width="30%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" />
                                <label class="title">(上次里程：<span id="lastComeKilometers">0</span>)</label>
                           </td>
                         

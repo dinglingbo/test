@@ -10,7 +10,7 @@
 -->
 
 <head>
-    <title>保险到期-发送微信消息-群发</title>
+    <title>驾照年审-发送微信消息-群发</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
 
@@ -45,24 +45,24 @@
                     <input class="nui-hidden" name="wechatOpenId" id="wechatOpenId" />
                     <table class="tmargin" style="table-layout: fixed;width:100%">
                         <tr class="htr">
-                            <td class="tbtext"><label>交强险到期时间：</label></td>
+                            <td style="width:100px;" class="tbtext"><label>车牌号：</label></td>
                             <td style="width:150px;">
-                                <input id="keyword1" name="keyword1" class="nui-datepicker textboxWidth" style="width: 100%;"
-                                    required="false" format="yyyy-MM-dd HH:mm">
+                                <input id="keyword1" name="keyword1" class="nui-textbox textboxWidth" style="width: 100%;"
+                                    required="true">
                             </td>
                         </tr>
                         <tr class="htr">
-                            <td class="tbtext"><label>商业险到期时间：</label></td>
+                            <td class="tbtext"><label>到期时间：</label></td>
                             <td>
                                 <input id="keyword2" name="keyword2" class="nui-datepicker textboxWidth" style="width: 100%;"
-                                    required="false" format="yyyy-MM-dd HH:mm">
+                                    required="true" format="yyyy-MM-dd HH:mm">
                             </td>
                         </tr>
                         <tr class="htr">
                             <td class="tbtext"><label>首行内容：</label></td>
                             <td colspan="3">
                                 <input id="firstContent" name="firstContent" class="nui-textarea textboxWidth" style="width: 80%;height:60px;"
-                                    emptyText="请输入首行内容" required="false">
+                                    emptyText="请输入首行内容" required="true">
                             </td>
                         </tr>
 
@@ -71,7 +71,7 @@
                             <td class="tbtext"><label>尾行内容：</label></td>
                             <td colspan="3">
                                 <input id="endContent" name="endContent" class="nui-textarea textboxWidth" style="width: 80%;height:60px;"
-                                    emptyText="请输入尾行内容" required="false">
+                                    emptyText="请输入尾行内容" required="true">
                             </td>
                         </tr>
                         <tr class="htr">
@@ -103,12 +103,13 @@
 
     <script type="text/javascript">
         nui.parse();
+        // var turl = apiPath + repairApi + '/com.hsapi.repair.repairService.sendWeChat.sendQFRending.biz.ext';
         var turl = apiPath + wechatApi + '/com.hsapi.wechat.autoServiceBackstage.weChatInterface.queryBeatchWeChatTemplateMessage.biz.ext';
         var saveUrl = apiPath + repairApi +"/com.hsapi.repair.repairService.crud.saveRemindRecord.biz.ext";
         var form = new nui.Form("#form1");
         var mainData = [];
 
-        nui.get("keyword1").focus();
+        nui.get("carVin").focus();
         document.onkeyup=function(event){
         var e=event||window.event;
         var keyCode=e.keyCode||e.which;//38向上 40向下
@@ -121,12 +122,12 @@
 
         function setData(rows) {
             var row = rows[0];
-            var firstText = '您好：尊敬的【车主姓名】先生/女士，您有汽车保险将要到期';
-            var endText ='请及时续保，若保险时间提醒有误，可重新设置保险时间。如有疑问可致电'+currCompTel;
+            var firstText = '您好：尊敬的【车主姓名】先生/女士，根据您上次的进站记录，提醒您近期进站为您的爱车做个“体检”，使用微信保养预约功能，可大大缩减您的等待时间，祝您驾驶愉快！';
+            var endText ='感谢您的支持，点击详情查看具体信息。';
             row.firstContent = firstText;
             row.endContent = endText;
-            row.keyword1 = row.insureDueDate;
-            row.keyword2 = row.annualInspectionDate;
+            row.keyword1 = row.carNo;
+            row.keyword2 = row.licenseOverDate;
             form.setData(row);
             mainDatas= rows;
         }
@@ -142,13 +143,13 @@
         function getViewText() {
             var data = form.getData(true);
             var firstContent = data.firstContent.toString().replace(/【车主姓名】/g,mainDatas[0].guestName);
-            var keyword1 = data.keyword1;
-            var keyword2 = data.keyword2;
-            var endContent = data.endContent.toString();
+            var keyword1 = data.keyword1.toString();
+            var keyword2 = data.keyword2.toString();
+            var endContent = data.endContent.toString().replace(/【车主姓名】/g,mainDatas[0].guestName);
 
             var viewText= firstContent + '<br>' +
-                '交强险到期时间：' + keyword1 + '<br>' +
-                '商业险到期时间：' + keyword2 + '<br>' +
+                '车牌号：' + keyword1 + '<br>' +
+                '到期时间：' + keyword2 + '<br>' +
                 endContent;
                 return viewText;
         }
@@ -176,8 +177,8 @@
             for (var i = 0; i < mainDatas.length; i++) {
                 var temp = {};
                 temp.first = data.firstContent.toString().replace(/【车主姓名】/g,mainDatas[i].guestName);
-                temp.keyword1 =  (mainDatas[i].insureDueDate == null?'':nui.formatDate (new Date(mainDatas[i].insureDueDate),'yyyy-MM-dd HH:mm'));
-                temp.keyword2 =  (mainDatas[i].annualInspectionDate == null?'':nui.formatDate (new Date(mainDatas[i].annualInspectionDate),'yyyy-MM-dd HH:mm'));
+                temp.keyword1 =  mainDatas[i].carNo;
+                temp.keyword2 =  (mainDatas[i].licenseOverDate == null?'':nui.formatDate (new Date(mainDatas[i].licenseOverDate),'yyyy-MM-dd HH:mm'));
                 temp.remark =  data.endContent.toString().replace(/【车主姓名】/g,mainDatas[i].guestName);
                 temp.openid = mainDatas[i].wechatOpenId;
                 dataList.push(temp);
@@ -192,7 +193,7 @@
                 type:"post",
                 data:{
                     paraMapList:dataList,
-                    templateId:'LNDuderGsWD9igtiShaDP1yd7i1t7NiRD2D3D_TXgMk',//模板id  保险到期
+                    templateId:'g61R_Wd_6nsNtHVhFayiIDuOvGyxpPN4OYpocMih7DE',//模板id  驾驶证到期
                     url:'',
                     token:token
                 },

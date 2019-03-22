@@ -155,15 +155,15 @@
                                         <tr>
                                             <td style="width:100px;" align="right">当前里程：</td>
                                             <td style="width:120px;">
-                                                <input class="nui-textbox" name="enterKilometers" width="100%" allowInput="false" />
+                                                <input class="nui-textbox" name="lastComeKilometers" width="100%" allowInput="false" />
                                             </td>
-                                            <td style="width:120px;" align="right">建议保养里程：</td>
+                                            <td style="width:120px;" align="right">下次保养里程：</td>
                                             <td style="width:120px;">
-                                                <input class="nui-textbox" name="" width="100%" allowInput="false" />
+                                                <input class="nui-textbox" name="careDueMileage" width="100%" allowInput="false" />
                                             </td>
-                                            <td style="width:100px;" align="right">建议保养时间：</td>
+                                            <td style="width:100px;" align="right">下次保养时间：</td>
                                             <td style="width:120px;">
-                                                <input class="nui-datepicker" name="" width="100%" allowInput="false" />
+                                                <input class="nui-datepicker" name="careDueDate" width="100%" allowInput="false" />
                                             </td>
                                         </tr>
                                     </table>
@@ -272,10 +272,12 @@
 	                <div field="guestMobile" name="guestMobile" width="80" headerAlign="center" header="客户手机"></div> -->
                                     <div field="contactName" name="contactName" width="70" headerAlign="center" header="联系人姓名"></div>
                                     <div field="contactMobile" name="contactMobile" width="80" headerAlign="center" header="联系人手机"></div>
+                                    <div field="enterDate"  width="160px" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="进店日期">
+									</div>
+                                    <div field="enterKilometers" name="enterKilometers" width="60" headerAlign="center" allowsort="true" header="进厂里程"></div>
                                     <div field="mtAdvisor" name="mtAdvisor" width="70" headerAlign="center" header="服务顾问"></div>
                                     <div field="serviceCode" name="serviceCode" width="150" headerAlign="center" header="工单号"></div>
                                     <div field="outDate" name="outDate" width="110" headerAlign="center" header="结算日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-                                    <div field="enterKilometers" name="enterKilometers" width="60" headerAlign="center" allowsort="true" header="进厂里程"></div>
                                     <div field="balaAmt" name="balaAmt" width="50" headerAlign="center" header="金额"></div>
                                 </div>
                             </div>
@@ -302,6 +304,10 @@
 										客户电话</div>
 									<div field="carNo" headerAlign="center" allowSort="true" width="80px">
 										车牌号</div>
+									<div field="enterDate"  width="160px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
+										进店日期</div>
+									<div field="distance" headerAlign="center" allowSort="true" width="60px">
+										里程数</div>
 									<div field="carVin" headerAlign="center" allowSort="true" width="120px">
 										车架号（VIN）</div>
 									<div field="itemAmt" headerAlign="center" allowSort="true" width="60px">
@@ -314,12 +320,8 @@
 										优惠金额</div>
 									<div field="banlansum" headerAlign="center" allowSort="true" width="60px">
 										结算金额</div>	
-									<div field="enterDate"  width="160px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
-										进店日期</div>
 									<div field="outDate"  width="160px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
 										结算日期</div>
-									<div field="distance" headerAlign="center" allowSort="true" width="60px">
-										里程数</div>
 									<div field="mtAdvisor" headerAlign="center" allowSort="true" width="60px">
 										维修顾问</div>
 									<div field="remark" renderer="onstatus" headerAlign="center" allowSort="true" width="120px">备注</div>

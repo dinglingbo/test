@@ -286,7 +286,8 @@
 		       c.name as contactName,
 			   c.mobile as contactMobile,
 			   d.full_name as guestFullName,
-			   d.mobile as guestMobile
+			   d.mobile as guestMobile,
+			   a.enter_date as enterDate
 		from rps_maintain a
 		inner join rps_settlement b
 		on a.id = b.service_id
@@ -1031,6 +1032,7 @@
 				b.car_brand_id as carBrandId,
 				a.remind_status remindStatus,
 				e.wechat_open_id wechatOpenId,
+				e.id conId,
 				d.id
 			FROM
 				rpb_car_extend a

@@ -662,6 +662,9 @@ function saveMaintain(callback,unmaskcall){
 	/*if(data.id) {
     	delete data.recordDate;
     }*/
+	if(data.recordDate){
+		data.recordDate = format(data.recordDate, 'yyyy-MM-dd HH:mm:ss');
+    }
     data.billTypeId = 5;
     data.serviceTypeId = 1 ;
     data.mtAdvisorId = currEmpId;
@@ -1362,6 +1365,9 @@ function saveBatch(){
     }else{
 		var maintain = billForm.getData(true);
 		//delete maintain.recordDate;
+		if(maintain.recordDate){
+			maintain.recordDate = format(maintain.recordDate, 'yyyy-MM-dd HH:mm:ss');
+	    }
 		total = null;
 		var sellPartAdd = [];
 		var sellPartUpdate = [];
@@ -1447,6 +1453,9 @@ function finish(){
         html: '审核中...'
     });
 	var maintain = billForm.getData(true);
+	if(maintain.recordDate){
+		maintain.recordDate = format(maintain.recordDate, 'yyyy-MM-dd HH:mm:ss');
+    }
 	total = null;
 	var sellPartAdd = [];
 	var sellPartUpdate = [];

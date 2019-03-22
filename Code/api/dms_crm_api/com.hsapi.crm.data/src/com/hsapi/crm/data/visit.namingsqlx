@@ -21,6 +21,7 @@
 			a.bill_type_id billTypeId,
 			c.mobile AS guestMobile,
 			c.name AS guestFullName,
+			c.wechat_service_id wechatServiceId,
 			c.birthday,
 			c.wechat_open_id wechatOpenId,
 			a.mt_advisor AS mtAdvisor,

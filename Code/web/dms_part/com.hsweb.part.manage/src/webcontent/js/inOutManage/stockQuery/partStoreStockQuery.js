@@ -60,6 +60,15 @@ $(document).ready(function(v)
                 storehouseHash[v.id] = v;
             }
         });
+        if(currRepairStoreControlFlag == "1") {
+        	if(storehouse && storehouse.length>0) {
+        		nui.get("storeId").setValue(storehouse[0].id);
+        	}
+        }else {
+        	nui.get("storeId").setAllowInput(true);
+        }
+        
+        onSearch();
     });
 
     comPartCode.focus();
@@ -93,7 +102,7 @@ $(document).ready(function(v)
             onSearch();
         }
     });
-    onSearch();
+    
 });
 function getSearchParam(){
     var params = {};

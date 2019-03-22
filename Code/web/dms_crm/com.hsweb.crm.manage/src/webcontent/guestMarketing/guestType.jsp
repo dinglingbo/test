@@ -138,8 +138,8 @@ pageEncoding="UTF-8" session="false" %>
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a> -->
                                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(3)"><span
                                                         class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                                                <!--<a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span
-                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a> -->
+                                                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(4)"><span
+                                                        class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
                                             </td>
                                         </tr>
                                     </table>
@@ -429,8 +429,8 @@ pageEncoding="UTF-8" session="false" %>
                                         <label>操作：</label>
                                         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(1)"><span
                                                 class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                                        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(2)"><span
-                                                class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
+                                        <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(2)"><span
+                                                class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a> -->
                                         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(3)"><span
                                                 class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
                                         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo(4)"><span

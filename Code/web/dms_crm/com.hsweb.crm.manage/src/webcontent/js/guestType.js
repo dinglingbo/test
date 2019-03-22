@@ -304,6 +304,7 @@ function sendInfo(e) {
             break;
         case "lic":
             gridList = gridjzns.getData();
+            sendWcUrl = 'manage/sendWechatWindow/sWcInfoMoreLicense.jsp';
             break;
         case "due":
             gridList = gridclnj.getData();
@@ -374,7 +375,7 @@ function sendInfo(e) {
 
 function sendWcPic(list) {
     if (list.length < 1) {
-        showMsg("有可发送微信的客户","E");
+        showMsg("没有可发送微信的客户","E");
         return;
     }
     nui.open({                        
@@ -394,7 +395,7 @@ function sendWcPic(list) {
 
 function sendWcText(list,sendWcUrl){//发送微信消息
     if (list.length < 1) {
-        showMsg("有可发送微信的客户","E");
+        showMsg("没有可发送微信的客户","E");
         return;
     }
     // var tit = "发送微信[" + row.guestName + '/' + row.mobile + '/' + row.carModel + ']';
@@ -416,15 +417,25 @@ function sendWcText(list,sendWcUrl){//发送微信消息
 
 function sendWcCoupon(list) {
     if (list.length < 1) {
-        showMsg("有可发送微信的客户","E");
+        showMsg("没有可发送微信的客户","E");
         return;
     }
+    var rows = [];
+    for (var  i = 0; i < list.length; i++) {
+        var data = {};
+        data.userNickname = list[i].guestName;
+        data.userMarke = list[i].wechatServiceId;
+        data.storeName = currOrgName;
+        data.userOpid = list[i].wechatOpenId;
+        rows.push(data);
+    }
+
     nui.open({                        
         url: webPath + contextPath  + "/manage/sendWechatWindow/sWcInfoCoupon.jsp?token="+token,
-        title: "发送微信图文", width: 800, height: 350,
+        title: "发送卡券", width: 800, height: 350,
         onload: function () {
         var iframe = this.getIFrameEl();
-        iframe.contentWindow.setData(list);
+        iframe.contentWindow.setData(rows);
     },
     ondestroy: function (action) {
             //重新加载

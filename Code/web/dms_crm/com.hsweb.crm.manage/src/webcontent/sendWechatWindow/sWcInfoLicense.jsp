@@ -206,6 +206,11 @@ function saveRecord(data) {
         visitMode:'011403',//微信
         visitContent:message||'',
     }
+    nui.mask({
+            el : document.body,
+            cls : 'mini-mask-loading',
+            html : '发送中...'
+        });
     nui.ajax({
         url:saveUrl,
         type:'post',
@@ -213,6 +218,7 @@ function saveRecord(data) {
             params:params
         },
         success:function(res){
+            nui.unmask(document.body);
             if(res.errCode == 'S'){
                 showMsg("发送成功！","S");
             }else{

@@ -80,6 +80,11 @@ function remind() {
 }
 
 
+
+function setInitData(params) {
+    onSearch();
+}
+
 function SetData(rowData) {
     rowData.serviceType = serviceType;
     mini.open({
@@ -168,12 +173,12 @@ function checkMtRecord() {
     }
     nui.open({
         url: webPath + repairDomain + "/manage/maintainRemind/checkMtRemind.jsp?token="+token,
-        title: "查看保养提醒", width: 700, height: 386,
+        title: "查看保养提醒", width: 900, height: 400,
         onload: function () {
             var iframe = this.getIFrameEl();
             var param = { 
-              guestId: row.guestId,
-              careType : 1
+                guestId: row.conId,
+                careType : 1
           };
           iframe.contentWindow.SetData(param);
       },

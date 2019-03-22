@@ -69,7 +69,7 @@
                                 <a id="wcBtn13" class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
                                     class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
                                     <a id="wcBtn14" class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                                    <a id="wcBtn15" class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+                                    <a id="wcBtn15" class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
                                     <a class="nui-button" plain="true" iconCls="" plain="false" onclick="updateDate()"><span class="fa fa-vcard-o fa-lg"></span>&nbsp;修改信息</a>
                         </td>
                     </tr>
@@ -125,7 +125,7 @@
                                 <a id="wcBtn23" class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
                                     class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
                                     <a id="wcBtn24"class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                                    <a id="wcBtn25"class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+                                    <a id="wcBtn25"class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
                                     <a class="nui-button" plain="true" iconCls="" plain="false" onclick="updateDate()"><span class="fa fa-vcard-o fa-lg"></span>&nbsp;修改信息</a>
                         </td>
                     </tr>
@@ -181,7 +181,7 @@
                                 <a id="wcBtn33"class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
                                     class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
                                     <a id="wcBtn34"class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                                    <a id="wcBtn35"class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+                                    <a id="wcBtn35"class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
                                     <a class="nui-button" plain="true" iconCls="" plain="false" onclick="updateDate()"><span class="fa fa-vcard-o fa-lg"></span>&nbsp;修改信息</a>
                         </td>
                     </tr>
@@ -238,7 +238,7 @@
                                 <a id="wcBtn43"class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
                                     class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
                                     <a id="wcBtn44"class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                                    <a id="wcBtn45"class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+                                    <a id="wcBtn45"class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
                                     <a class="nui-button" plain="true" iconCls="" plain="false" onclick="updateDate()"><span class="fa fa-vcard-o fa-lg"></span>&nbsp;修改信息</a>
                         </td>
                     </tr>
@@ -295,7 +295,7 @@
                                 <a id="wcBtn53"class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
                                     class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
                                     <a id="wcBtn54"class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                                    <a id="wcBtn55"class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+                                    <a id="wcBtn55"class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
                                     <a class="nui-button" plain="true" iconCls="" plain="false" onclick="updateDate()"><span class="fa fa-vcard-o fa-lg"></span>&nbsp;修改信息</a>
                         </td>
                     </tr>
@@ -339,7 +339,7 @@
                             <a id="wcBtn63"class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()" visible="false"><span
                                 class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
                                 <a id="wcBtn64"class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                                <a id="wcBtn65"class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+                                <a id="wcBtn65"class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick="updateDate()"><span class="fa fa-vcard-o fa-lg"></span>&nbsp;修改信息</a>
                         </td>
                     </tr>

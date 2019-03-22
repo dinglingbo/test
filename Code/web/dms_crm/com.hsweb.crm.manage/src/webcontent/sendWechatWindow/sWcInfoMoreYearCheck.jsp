@@ -184,6 +184,11 @@
                 temp.openid = mainDatas[i].wechatOpenId;
                 dataList.push(temp);
             }
+            nui.mask({
+            el : document.body,
+            cls : 'mini-mask-loading',
+            html : '发送中...'
+        });
             nui.ajax({
                 url:turl,
                 type:"post",
@@ -194,6 +199,7 @@
                     token:token
                 },
                 success:function (res) {
+                    nui.unmask(document.body);
                     // saveRecord(mainData);
                 }
             })

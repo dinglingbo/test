@@ -1,8 +1,6 @@
 /**
 * Created by Administrator on 2018年9月21日19:29:11
 */
-var baseUrl = apiPath + repairApi + "/";
-apiPath + sysApi + "/";
 var webBaseUrl = webPath + contextPath + "/";
 var resId = "";
 var treeNodes = {};
@@ -17,7 +15,8 @@ $(document).ready(function(v) {
 
 function readyList(resId){
 	var json = {
-			resId:resId
+		resId: resId,
+		token: token
 	}
 	nui.ajax({
 		url : apiPath + sysApi + "/com.hsapi.system.tenant.permissions.getSameLevelMenuData.biz.ext",
@@ -30,32 +29,35 @@ function readyList(resId){
 				treeNodes = text.treeNodes;
 			var str="";
 			var num=0;
-			for(var i = 0;i<returnJson.length;i++){
-				if(i%5==0&&i==0){
-					num++;
-					str = "<div  id='menu"+num+"' class='demo'  style=''>"
-					str = str+ "<div class='menu_pannel menu_pannel_bg'><a onclick=toOperating('"+returnJson[i].funccode +"')><i class='fa "+returnJson[i].iconCls+" fa-4x  fa-inverse'></i><p>"+returnJson[i].funcname+"</p> </a></div>"
-				}else if(i%5==0){
-					num++;
-					str = str+"</div>"
-					str = str+ "<div  id='menu"+num+"' class='demo'  style='margin-top:20px;'>"
-					str = str+ "<div class='menu_pannel menu_pannel_bg'><a onclick=toOperating('"+returnJson[i].funccode +"')><i class='fa "+returnJson[i].iconCls+" fa-4x  fa-inverse'></i><p>"+returnJson[i].funcname+"</p> </a></div>"
-				}else if(i==returnJson.length-1){
-					var j=i%5+1;
-					var ddiv ="";
-					for(var x = 0;x<=j;x++){
-						ddiv = ddiv+"<div></div>" 
+			if(returnJson && returnJson.length>0) {
+				for(var i = 0;i<returnJson.length;i++){
+					if(i%5==0&&i==0){
+						num++;
+						str = "<div  id='menu"+num+"' class='demo'  style=''>"
+						str = str+ "<div class='menu_pannel menu_pannel_bg'><a onclick=toOperating('"+returnJson[i].funccode +"')><i class='fa "+returnJson[i].iconCls+" fa-4x  fa-inverse'></i><p>"+returnJson[i].funcname+"</p> </a></div>"
+					}else if(i%5==0){
+						num++;
+						str = str+"</div>"
+						str = str+ "<div  id='menu"+num+"' class='demo'  style='margin-top:20px;'>"
+						str = str+ "<div class='menu_pannel menu_pannel_bg'><a onclick=toOperating('"+returnJson[i].funccode +"')><i class='fa "+returnJson[i].iconCls+" fa-4x  fa-inverse'></i><p>"+returnJson[i].funcname+"</p> </a></div>"
+					}else if(i==returnJson.length-1){
+						var j=i%5+1;
+						var ddiv ="";
+						for(var x = 0;x<=j;x++){
+							ddiv = ddiv+"<div></div>" 
+						}
+						str = str+ "<div class='menu_pannel menu_pannel_bg'><a onclick=toOperating('"+returnJson[i].funccode +"')><i class='fa "+returnJson[i].iconCls+" fa-4x  fa-inverse'></i><p>"+returnJson[i].funcname+"</p> </a></div>"
+						str = str+ddiv;
+						str = str+"</div>"
+					}else{
+						str = str+ "<div class='menu_pannel menu_pannel_bg'><a onclick=toOperating('"+returnJson[i].funccode +"')><i class='fa "+returnJson[i].iconCls+" fa-4x  fa-inverse'></i><p>"+returnJson[i].funcname+"</p> </a></div>"
 					}
-					str = str+ "<div class='menu_pannel menu_pannel_bg'><a onclick=toOperating('"+returnJson[i].funccode +"')><i class='fa "+returnJson[i].iconCls+" fa-4x  fa-inverse'></i><p>"+returnJson[i].funcname+"</p> </a></div>"
-					str = str+ddiv;
-					str = str+"</div>"
-				}else{
-					str = str+ "<div class='menu_pannel menu_pannel_bg'><a onclick=toOperating('"+returnJson[i].funccode +"')><i class='fa "+returnJson[i].iconCls+" fa-4x  fa-inverse'></i><p>"+returnJson[i].funcname+"</p> </a></div>"
 				}
+
+				 
 			}
-
-			 $("#tb").append(str);
-
+			
+			$("#tb").append(str);
 		}
 	});
 }

@@ -142,7 +142,7 @@ $(document).ready(function ()
     memCardGrid = nui.get("memCardGrid");
     memCardGrid.setUrl(memCardGridUrl);
 
-    insuranceComp = nui.get("insureComp");
+    insuranceComp = nui.get("insureCompName");
 	insuranceComp.setUrl(insuranceInfoUrl);
     pkgRateEl = nui.get("pkgRateEl");
     itemRateEl = nui.get("itemRateEl");
@@ -265,9 +265,9 @@ $(document).ready(function ()
             servieTypeHash[v.id] = v;
         });
     });
-    initDicts({
+   /* initDicts({
         enterOilMass: "DDT20130703000051"//进厂油量
-    },null);
+    },null);*/
     mtAdvisorIdEl.on("valueChanged",function(e){
         var text = mtAdvisorIdEl.getText();
         nui.get("mtAdvisor").setValue(text);
@@ -1345,7 +1345,7 @@ var requiredField = {
     carNo : "车牌号",
     enterDate:"进厂时间",
     serviceTypeId : "业务类型",
-    insureComp:"保险公司",
+    insureCompName:"保险公司",
     mtAdvisorId : "服务顾问",
     guestId : "客户",
     enterOilMass : "进厂油量",
@@ -1361,6 +1361,9 @@ function saveMaintain(callback,unmaskcall){
     }
     if (data.planFinishDate) {
 		data.planFinishDate = format(data.planFinishDate, 'yyyy-MM-dd HH:mm:ss');
+	}
+    if (data.enterDate) {
+		data.enterDate = format(data.enterDate, 'yyyy-MM-dd HH:mm:ss');
 	}
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {

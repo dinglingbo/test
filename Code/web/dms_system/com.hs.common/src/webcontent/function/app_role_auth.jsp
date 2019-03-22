@@ -104,15 +104,15 @@
 			success: function (text) {
 				nui.unmask();
 				if(text.errCode == 'S'){
-					showMsg("权限设置成功","S");
+					parent.showMsg("权限设置成功","S");
 				}else{
-					showMsg("权限设置失败","E");
+					parent.showMsg("权限设置失败","E");
 					//nui.alert("权限设置失败");
 				}
 			},
 			error: function () {
 				nui.unmask();
-				showMsg("权限设置失败","E");
+				parent.showMsg("权限设置失败","E");
 				//nui.alert("权限设置失败");
 			}
 		});

@@ -238,9 +238,9 @@ $(document).ready(function ()
             servieTypeHash[v.id] = v;
         });
     });
-    initDicts({
+    /*initDicts({
         enterOilMass: "DDT20130703000051"//进厂油量
-    },null);
+    },null);*/
     mtAdvisorIdEl.on("valueChanged",function(e){
         var text = mtAdvisorIdEl.getText();
         nui.get("mtAdvisor").setValue(text);
@@ -1072,7 +1072,8 @@ function save(){
 		showMsg("进厂里程不能小于上次里程","W");
 		return;
 	}
-	var data = billForm.getData();
+	var data = billForm.getData(true);
+	
 	if(data.status == 2){
 		showMsg("工单已完工","W");
         return;        
@@ -1342,8 +1343,11 @@ function saveMaintain(callback,unmaskcall){
     for(var v in desData){
         data[v] = desData[v];
     }
-    if (data.planFinishDate) {
+    if(data.planFinishDate) {
 		data.planFinishDate = format(data.planFinishDate, 'yyyy-MM-dd HH:mm:ss');
+	}
+    if(data.enterDate) {
+		data.enterDate = format(data.enterDate, 'yyyy-MM-dd HH:mm:ss');
 	}
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {

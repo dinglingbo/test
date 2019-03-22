@@ -133,7 +133,6 @@ function SetData(params) {
 	nui.get("carId").setValue(params.carId);
 	nui.get("guestId").setValue(params.guestId);
 	
-
 	nui.ajax({
         url: baseUrl+"com.hsapi.repair.repairService.report.queryCarByCarId.biz.ext",
         type : "post",
@@ -146,6 +145,11 @@ function SetData(params) {
             var list = nui.decode(text.rpbCar);
             form.setData(list);
             searchOld(list.carNo||"");
+            var carExtend = {};
+            carExtend.lastComeKilometers = list.lastComeKilometers;
+            carExtend.careDueMileage = list.careDueMileage;
+            carExtend.careDueDate = list.careDueDate;
+            nui.get("editForm2").setData(carExtend);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(jqXHR.responseText);

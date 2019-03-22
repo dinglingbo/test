@@ -390,22 +390,36 @@ function doSetMainInfo(car){
 function ValueChanged(e) {
     var sdata = e.selected;
     checkMainName.setValue(sdata.name);
-    mainGrid.setUrl(mainGridUrl);
-    mainGrid.load({mainId:sdata.id,token:token},function(data){
-    	var list =data.data;
-    	for(var i=0;i<list.length;i++){
-    		list[i].checkRemark=list[i].remark;
-    		list[i].remark=null;
-    	}
-    	mainGrid.clearRows();
-    	mainGrid.setData(list);
-    	if(list.length==0){
-    		showMsg("该检查模板无检查项目,请添加检查项目","W");
-    		nui.get('checkMainId').setValue("");
-    		nui.get('checkMainId').setText("");
-    		return;
-    	}
+    
+    nui.ajax({
+        url: mainGridUrl,
+        type:"post",
+        async: false,
+        data:{
+        	mainId:sdata.id,
+        	token:token
+        },
+        cache: false,
+        success: function (text) {
+            var list = text.list;
+            if(list && list.length>0){
+            	for(var i=0;i<list.length;i++){
+            		list[i].checkRemark=list[i].remark;
+            		list[i].remark=null;
+            	}
+            }
+        	mainGrid.clearRows();
+        	mainGrid.setData(list);
+        	if(list.length==0){
+        		showMsg("该检查模板无检查项目,请添加检查项目","W");
+        		nui.get('checkMainId').setValue("");
+        		nui.get('checkMainId').setText("");
+        		return;
+        	}
+        }
     });
+    
+   
 }
 
 function newCheckMainMore(){
@@ -870,6 +884,9 @@ function saveCheckMain(){//isCheckMain == "Y"
 		}
 	}
     var mdata = billForm.getData(true);
+    if(mdata.lastChekDate){
+    	mdata.lastChekDate = format(mdata.lastChekDate, 'yyyy-MM-dd HH:mm:ss');
+    }
     nui.mask({
     	el : document.body,
 		cls : 'mini-mask-loading',

@@ -459,12 +459,26 @@ function CloseWindow(action) {
 function onCancel(e) {
     CloseWindow("cancel");
 }
-
-var requiredField = {
+var requiredField2 = {
 	    code:"客户编码",
 	    gusetProperty :"客户属性",
 	    licenseUrl :"营业执照图片",
 	    licenseCode :"营业执照号",
+	    idCardUrl :"身份证图片",
+	    idCard :"身份证",
+	    shortName:"客户简称",
+	    fullName:"客户全称",
+	    billTypeId:"票据类型",
+	    settTypeId:"结算方式",
+	    manager:"联系人",
+	    mobile:"联系人手机",
+	    provinceId:"省份",
+	    cityId:"城市"
+	};
+
+var requiredField = {
+	    code:"客户编码",
+	    gusetProperty :"客户属性",
 	    idCardUrl :"身份证图片",
 	    idCard :"身份证",
 	    shortName:"客户简称",
@@ -509,13 +523,26 @@ function onOk()
     else{
         data.isInternalId = "";
     }
-    for(var key in requiredField)
-    {
-        if(!data[key] || data[key].trim().length==0)
-        {
-            parent.showMsg(requiredField[key]+"不能为空","W");
-            return;
-        }
+    var gusetProperty=nui.get("gusetProperty").getValue();
+    if(gusetProperty=='013903'){
+    	
+    	for(var key in requiredField)
+    	{
+    		if(!data[key] || data[key].trim().length==0)
+    		{
+    			parent.showMsg(requiredField[key]+"不能为空","W");
+    			return;
+    		}
+    	}
+    }else{
+    	for(var key in requiredField2)
+    	{
+    		if(!data[key] || data[key].trim().length==0)
+    		{
+    			parent.showMsg(requiredField2[key]+"不能为空","W");
+    			return;
+    		}
+    	}
     }
 /*    data.moblie=nui.get('mobile').getValue();
     var pattern = /^[1][3,4,5,7,8]\d{9}$/;

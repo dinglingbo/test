@@ -1110,6 +1110,7 @@ function getSellOrderBillNO(callback){
             data = data || {};
             if (data.errCode == "S") {
                 var main = data.main;
+                leftGrid.reload();
                 callback && callback(main)
             } else {
                 showMsg(data.errMsg || "请先保存单据添加配件","W");

@@ -116,6 +116,8 @@ function sure() {
 			newRow.annualInspectionNo = data[i].商业险单号||"";
 			newRow.annualInspectionDate = data[i].商业险到期||"";
 			newRow.insureDueDate = data[i].交强险到期||"";
+			newRow.careDueDate = data[i].保养到期||"";
+			
 			newRow.remark = data[i].备注||"";
 
 

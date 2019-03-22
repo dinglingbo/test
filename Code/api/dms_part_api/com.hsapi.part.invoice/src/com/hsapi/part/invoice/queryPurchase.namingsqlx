@@ -216,6 +216,9 @@
                 <isNotEmpty prepend="and" property="partId">  
                     (C.PART_ID = #partId#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="storeId">  
+                    (C.store_ID = #storeId#)
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (A.guest_id = #guestId#)
                 </isNotEmpty>
@@ -344,6 +347,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partId">  
                     (C.PART_ID = #partId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="storeId">  
+                    (C.store_ID = #storeId#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (A.guest_id = #guestId#)
@@ -914,6 +920,7 @@
         <result column="storeShelf" javaType="string" property="storeShelf"/>
         <result column="originId" javaType="int" property="originId"/>
         <result column="originGuestId" javaType="int" property="originGuestId"/>
+        <result column="sellPrice" javaType="double" property="sellPrice"/>
         <result column="comPartCode" javaType="string" property="comPartCode"/>
         <result column="comPartName" javaType="string" property="comPartName"/>
         <result column="comFullName" javaType="string" property="comFullName"/>
@@ -1471,6 +1478,9 @@
                 <isNotEmpty prepend="and" property="partId">  
                     (C.PART_ID = #partId#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="storeId">  
+                    (C.store_ID = #storeId#)
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (A.guest_id = #guestId#)
                 </isNotEmpty>
@@ -1612,6 +1622,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partId">  
                     (C.PART_ID = #partId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="storeId">  
+                    (C.store_ID = #storeId#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (A.guest_id = #guestId#)

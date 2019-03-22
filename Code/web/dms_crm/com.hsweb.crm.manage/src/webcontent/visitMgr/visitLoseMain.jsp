@@ -35,6 +35,9 @@ pageEncoding="UTF-8" session="false" %>
 </style> 
 </head>
 <body>
+        <div class="mini-splitter" vertical="true" style="width:100%;height:100%;">
+                <div size="70%" showCollapseButton="true">
+        <input name="visitMode" id="visitMode" class="nui-combobox "textField="name" valueField="customid" visible="false"/>
     <div class="nui-toolbar" id="toolbar1">
         <label style="font-family:Verdana;">快速查询：</label>
         <a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">今日计划跟进客户</a>
@@ -57,9 +60,9 @@ pageEncoding="UTF-8" session="false" %>
         <span class="separator"></span>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="SetData()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false" visible="false" onclick="sendWcText()"><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+        <a class="nui-button" id="wcBtn1"  plain="true" iconCls="" plain="false" visible="false" onclick="sendWcText()"><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
+        <a class="nui-button" id="wcBtn2"  plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+        <a class="nui-button" id="wcBtn3"  plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sellPoint()"><span class="fa fa-gift fa-lg"></span>&nbsp;销售机会</a>
         <!--<a class="nui-button" plain="true" iconCls="" plain="false" onclick="WindowrepairHistory()"><span class="fa fa-wrench fa-lg"></span>&nbsp;维修历史</a>-->
         <!-- <a class="nui-button" plain="true" iconcls="" plain="false" onclick="openOrderDetail()" ><span class="fa fa-search fa-lg"></span>&nbsp;查询工单详情</a> -->
@@ -93,7 +96,24 @@ pageEncoding="UTF-8" session="false" %>
         </div>
     </div> 
 </div> 
-
+</div> 
+<div >
+        <div class="nui-fit">
+            <div id="visitHis" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
+                multiSelect="false" pageSize="20" showPageInfo="true" selectOnLoad="true"  onDrawCell="" onselectionchanged=""
+                allowSortColumn="false" totalField='page.count'  allowCellWrap="true">
+                <div property="columns">
+                    <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
+                    <div field="serviceType" headerAlign="center" allowSort="true" width="100px">回访类型</div>
+                    <div field="visitMode" headerAlign="center" allowSort="true" width="100px">回访方式</div>
+                    <div field="visitContent" headerAlign="center" allowSort="true" width="200px">回访内容</div>
+                    <div field="visitMan" headerAlign="center" allowSort="true" width="100px">回访员</div>
+                    <div field="visitDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" width="100px">回访日期</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script type="text/javascript">
     nui.parse();
 </script>

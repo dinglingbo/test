@@ -192,9 +192,18 @@ $(document).ready(function(v) {
 			if(storehouse && storehouse.length>0){
 				FStoreId = storehouse[0].id;
 				nui.get('storehouse').setData(storehouse);
+				nui.get("storeIdE").setData(storehouse);
+		        if(currRepairStoreControlFlag == "1") {
+		        	nui.get("storeIdE").setValue(FStoreId);
+		        }else {
+		        	nui.get("storeIdE").setAllowInput(true);
+		        }
+		        
 			}else{
 				isNeedSet = true;
 			}
+			
+			
 	
 			getAllPartBrand(function(data) {
 				brandList = data.brand;
@@ -545,6 +554,7 @@ function setEditable(flag) {
 function doSearch(params) {
 	params.orderTypeId = 1;
 	params.isDiffOrder = 1;
+	params.storeId = nui.get("storeIdE").value;
 	leftGrid.load({
 		params : params,
 		token : token
@@ -2119,7 +2129,9 @@ function OnrpMainGridCellBeginEdit(e){
 			nui.get('storeShelf').setData(storeShelfList);
 
 		});
-        }
+    }else if(field == "storeId") {
+    	
+    }
 }
 function addMorePart(){
 	var row = leftGrid.getSelected();

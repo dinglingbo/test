@@ -47,7 +47,7 @@
                </ul>
                <span class="separator"></span>
 
-               	仓库: <input  property="editor" enabled="true"  id="storehouse" name="storehouse" dataField="storehouse" allowInput="true" class="nui-combobox" valueField="id" textField="name" data="storehouse">
+               	仓库: <input  property="editor" width="80" enabled="true"  id="storehouse" name="storehouse" dataField="storehouse" allowInput="true" class="nui-combobox" valueField="id" textField="name" data="storehouse">
 			创建日期 从:
                  <input class="nui-datepicker" id="startDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
   				至:

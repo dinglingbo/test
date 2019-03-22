@@ -179,8 +179,6 @@
                          dataField="pjPchsOrderDetailList"
                          idField="id"
                          showSummaryRow="true"
-                         frozenStartColumn="0"
-                         frozenEndColumn="11"
                          ondrawcell="onRightGridDraw"
                          allowCellSelect="true"
                          allowCellEdit="true"

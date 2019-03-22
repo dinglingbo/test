@@ -8,7 +8,7 @@
 -->
 <head>
 <title>盘点单</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockCheck/stockCheck.js?v=1.0.27"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockCheck/stockCheck.js?v=1.1.1"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -143,7 +143,7 @@
                                                emptyText="请选择..."
                                                url=""
                                                valuefromselect="true"
-                                               allowInput="true"
+                                               allowInput="false"
                                                selectOnFocus="true"
                                                showNullItem="false"
                                                width="100%"

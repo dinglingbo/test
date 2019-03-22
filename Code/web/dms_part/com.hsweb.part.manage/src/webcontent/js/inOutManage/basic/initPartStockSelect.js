@@ -7,6 +7,7 @@ var partGrid = null;
 var storehouse = null;
 var resultData = {};
 var callback = null;
+var storehouseHash = {};
 
 $(document).ready(function() {
     partGrid = nui.get("partGrid");
@@ -26,9 +27,31 @@ $(document).ready(function() {
     getStorehouse(function(data)
     {
         storehouse = data.storehouse||[];
+        storehouse.forEach(function(v)
+        {
+            if(v && v.id)
+            {
+                storehouseHash[v.id] = v;
+            }
+        });
     });
 
 });
+function onDrawCell(e)
+{
+    switch (e.field)
+    {
+        case "storeId":
+            if(storehouseHash && storehouseHash[e.value])
+            {
+                e.cellHtml = storehouseHash[e.value].name;
+            }
+            break;
+        	
+        default:
+            break;
+    }
+}
 var disableList = [{ id: 0, text: '未审核' }, { id: 1, text: '已审核'}];
 function onRenderer(e) {
     for (var i = 0, l = disableList.length; i < l; i++) {

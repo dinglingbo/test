@@ -280,6 +280,14 @@ $(document).ready(function(v) {
 	});
 	getStorehouse(function(data) {
 		storehouse = data.storehouse || [];
+		nui.get("storeId").setData(storehouse);
+        if(currRepairStoreControlFlag == "1") {
+        	if(storehouse && storehouse.length>0) {
+        		nui.get("storeId").setValue(storehouse[0].id);
+        	}
+        }else {
+        	nui.get("storeId").setAllowInput(true);
+        }
 		if (storehouse && storehouse.length > 0) {
 			FStoreId = storehouse[0].id;
 			storehouse.forEach(function(v) {
@@ -488,6 +496,7 @@ function setInitData(params, ck, cck) {
 
 	params.sortField = "B.ENTER_DATE";
 	params.sortOrder = "asc";
+	params.storeId = nui.get("storeId").value;
 	enterGrid.load({
 		params : params
 	}, function(e) {
@@ -504,6 +513,7 @@ function morePartSearch() {
 //	params.showStock = showStockEl.getValue();
 	params.serviceId = moreServiceIdEl.getValue();
 	params.partBrandId = nui.get('partBrandId').getValue();
+	params.storeId = nui.get("storeId").value;
 	var sortTypeValue = sortTypeEl.getValue();
   if(eEnterDateEl.getFormValue()){ 
     params.eEnterDate= addDate(eEnterDateEl.getFormValue(),1);

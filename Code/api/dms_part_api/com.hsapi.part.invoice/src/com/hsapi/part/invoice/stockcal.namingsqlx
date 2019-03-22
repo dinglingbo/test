@@ -116,6 +116,10 @@
 				AND B.STORE_ID = #storeId#
 			</isNotNull>
 			
+			<isNotEmpty prepend="and" property="storeIds">  
+                    (B.STORE_ID in ($storeIds$))
+            </isNotEmpty>
+			
 			<isNotNull prepend = "" property = "storeShelf">
 				<!--and b.store_shelf like '%$storeShelf$%'-->
 				and exists (select 1 from pj_part_store_stock c

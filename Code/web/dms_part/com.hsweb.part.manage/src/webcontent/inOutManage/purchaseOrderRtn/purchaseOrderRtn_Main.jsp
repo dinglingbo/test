@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购退货主界面</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtnMain.js?v=1.0.20"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtnMain.js?v=1.1.1"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -82,7 +82,17 @@
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择供应商..."
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
-    
+    			<input id="storeId"
+                           name="storeId"
+                           class="nui-combobox"
+                           textField="name"
+                           valueField="id"
+                           emptyText="仓库"
+                           url="" width="80"
+                           valueFromSelect="true"
+                           allowInput="false"
+                           showNullItem="false"
+                           nullItemText="请选择..."/>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <span class="separator"></span>
 <!--                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> -->

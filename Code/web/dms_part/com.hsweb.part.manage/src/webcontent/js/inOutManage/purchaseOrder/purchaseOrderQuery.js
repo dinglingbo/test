@@ -88,6 +88,13 @@ $(document).ready(function(v)
     {
         var storehouse = data.storehouse||[];
         nui.get("storeId").setData(storehouse);
+        if(currRepairStoreControlFlag == "1") {
+        	if(storehouse && storehouse.length>0) {
+        		nui.get("storeId").setValue(storehouse[0].id);
+        	}
+        }else {
+        	nui.get("storeId").setAllowInput(true);
+        }
         storehouse.forEach(function(v)
         {
             if(v && v.id)

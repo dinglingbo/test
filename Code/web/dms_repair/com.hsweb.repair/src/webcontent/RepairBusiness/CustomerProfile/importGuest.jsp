@@ -11,7 +11,7 @@
 <title>客户资料导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.1"></script>
-<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/importGuest.js?v=1.0.7"></script>
+<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/importGuest.js?v=1.0.8"></script>
 <style type="text/css">
 /*.a-upload {
     padding: 4px 10px;
@@ -125,6 +125,8 @@
                     商业险到期<input property="editor" class="nui-textbox"/></div>
                 <div field="交强险到期" width="120px" headerAlign="center" allowSort="true">
                     交强险到期<input property="editor" class="nui-textbox"/></div>
+                <div field="保养到期" width="120px" headerAlign="center" allowSort="true">
+                    保养到期<input property="editor" class="nui-textbox"/></div>
                 <div field="备注" width="120px" headerAlign="center" allowSort="true">
                     备注<input property="editor" class="nui-textbox"/></div>
 			</div>

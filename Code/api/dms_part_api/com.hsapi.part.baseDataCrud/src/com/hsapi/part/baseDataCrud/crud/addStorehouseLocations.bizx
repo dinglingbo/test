@@ -390,7 +390,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.com.ComStoreLocation" name="tmp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="storeId" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="storeId" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="true" modelType="com.hsapi.part.data.com.ComStoreLocation" name="storeLocations"/>

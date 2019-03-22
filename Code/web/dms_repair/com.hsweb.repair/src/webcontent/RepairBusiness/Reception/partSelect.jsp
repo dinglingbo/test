@@ -76,10 +76,21 @@
                 <input style="" class="nui-datepicker" id="sEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <label style="font-family:Verdana;" style="display:none;">至</label>
                 <input style=""class="nui-datepicker" id="eEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
-                <input class="nui-textbox" id="partCode" name="partCode" emptyText="按配件编码查询" width="100"  onenter="onSearch"/>
-                <input class="nui-textbox" id="partNameAndPY" name="partName" emptyText="按名称查询" width="100"  onenter="onSearch"/>
+                <input class="nui-textbox" id="partCode" name="partCode" emptyText="按配件编码查询" width="80"  onenter="onSearch"/>
+                <input class="nui-textbox" id="partNameAndPY" name="partName" emptyText="按名称查询" width="80"  onenter="onSearch"/>
                 <input class="nui-textbox" id="storeShelf" name="storeShelf" emptyText="按仓位查询" width="90"  onenter="onSearch"/>
 <!--                 <input class="nui-textbox" id="partNameAndPY" name="partNameAndPY" emptyText="输入查询条件" width="120"  onenter="onSearch"/> -->
+                 <input id="storeId"
+                           name="storeId"
+                           class="nui-combobox"
+                           textField="name"
+                           valueField="id"
+                           emptyText="仓库"
+                           url="" width="80"
+                           valueFromSelect="true"
+                           allowInput="false"
+                           showNullItem="false"
+                           nullItemText="请选择..."/>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch">
                   <span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 				<span class="separator"></span>
@@ -188,7 +199,7 @@
     var mRow;
     var srow;
     var pickType;
-	nui.get('remark').focus();
+	nui.get('partCode').focus();
 	$(document).ready(function(v){
 		sEnterDateEl = nui.get('sEnterDate');
 		eEnterDateEl = nui.get('eEnterDate');
@@ -243,6 +254,12 @@
         storehouse = data.storehouse || [];
         if (storehouse && storehouse.length > 0) {
             FStoreId = storehouse[0].id;
+            nui.get("storeId").setData(storehouse);
+            if(currRepairStoreControlFlag == "1") {
+            	nui.get("storeId").setValue(FStoreId);
+            }else {
+            	nui.get("storeId").setAllowInput(true);
+            }
             storehouse.forEach(function(v) {
                 storeHash[v.id] = v;
             });
@@ -304,6 +321,7 @@
         params.partName= nui.get("partNameAndPY").value;
         params.partCode = nui.get("partCode").value;
         params.storeShelf = nui.get("storeShelf").value;
+        params.storeId = nui.get("storeId").value;
         if(eEnterDateEl.getFormValue()){ 
     	    params.eEnterDate= addDate(eEnterDateEl.getFormValue(),1);
         }

@@ -47,7 +47,7 @@
 		SELECT b.srm_brand_id as srmBrandId, a.part_code as partCode, b.name as partName, 
 		       b.oem_code as oemCode, a.order_qty as orderQty, b.srm_quality_id as srmQualityId, 
 		       a.remark as remark, a.order_price as orderPrice, a.enter_unit_id as enterUnitId,
-		       a.order_amt as orderAmt
+		       a.order_amt as orderAmt,b.srm_part_id as srmPartId
 		from pj_pchs_order_detail_chk a
 		inner join wb_common.com_attribute b
 		on a.part_id = b.id

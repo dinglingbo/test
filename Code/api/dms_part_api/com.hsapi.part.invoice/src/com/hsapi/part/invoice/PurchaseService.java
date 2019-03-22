@@ -54,7 +54,7 @@ public class PurchaseService {
 				"cfg", "SRMAPI", "serverType");
 		String apiurl = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", envType);
-		String urlParam = apiurl + "srm/router/rest?token="+access_token;
+		String urlParam = apiurl + "jpWeb/f/api/LaneElectricity/AddPurchase";
 		if(mobile == null) {
 			mobile = "";
 		}
@@ -76,7 +76,6 @@ public class PurchaseService {
 		main.put("account", account);  //车道在电商注册的账号
 		main.put("remark", remark);
 		main.put("storeCode", storeCode);
-		main.put("status", 3); //固定值 3 （提交订单） 必传
 		
 		/*
 		 *  amout  金额                                                必传
@@ -107,25 +106,17 @@ public class PurchaseService {
     			detailRemark = "";
     		}
     		m.put("amout",detailList.get(i).get("orderAmt"));
-    		m.put("brand_id",detailList.get(i).get("srmBrandId"));
-    		m.put("code",detailList.get(i).get("partCode"));
+    		m.put("price",detailList.get(i).get("orderPrice"));
+    		m.put("goodsCode",detailList.get(i).get("srmPartId"));
     		m.put("isMatchPrice",1);
-    		m.put("isPlatOuter",0);
-    		m.put("material_name",detailList.get(i).get("partName"));
-    		m.put("oem_code",detailList.get(i).get("oemCode"));
     		m.put("qty",detailList.get(i).get("orderQty"));
-    		m.put("quality_id",detailList.get(i).get("srmQualityId"));
     		m.put("remark",detailRemark);
-    		m.put("sales_price",detailList.get(i).get("orderPrice"));
-    		m.put("unit",detailList.get(i).get("enterUnitId"));
-			m.put("isMatchPrice", 1);
-			m.put("isPlatOuter", 0);
     		mater.add(m);
 		}
     	
     	HashMap[] details = mater.toArray(new HashMap[mater.size()]);
 
-		main.put("mater", details);
+		main.put("detail", details);
 		
 		JSONObject jsonObj = JSONObject.fromObject(main);
 		String json = jsonObj.toString();

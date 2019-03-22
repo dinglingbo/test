@@ -26,9 +26,7 @@ $(document).ready(function(v) {
     btnisDimission = nui.get("btnisDimission");
     btnisOpenAccount = nui.get("btnisOpenAccount");
 	grid.setUrl(gridUrl);
-	
-	
-	
+	orgidsEl = nui.get("orgids");
     if(currIsMaster==0){
     	orgidsEl.hide();
     }else{

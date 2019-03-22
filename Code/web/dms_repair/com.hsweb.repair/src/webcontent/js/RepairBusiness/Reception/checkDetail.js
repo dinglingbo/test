@@ -870,6 +870,9 @@ function saveCheckMain(){//isCheckMain == "Y"
 		}
 	}
     var mdata = billForm.getData(true);
+    if(mdata.lastChekDate){
+    	mdata.lastChekDate = format(mdata.lastChekDate, 'yyyy-MM-dd HH:mm:ss');
+    }
     nui.mask({
     	el : document.body,
 		cls : 'mini-mask-loading',

@@ -286,7 +286,8 @@
 		       c.name as contactName,
 			   c.mobile as contactMobile,
 			   d.full_name as guestFullName,
-			   d.mobile as guestMobile
+			   d.mobile as guestMobile,
+			   a.enter_date as enterDate
 		from rps_maintain a
 		inner join rps_settlement b
 		on a.id = b.service_id

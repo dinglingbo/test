@@ -227,6 +227,7 @@
     <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>transactionrollback0</sourceNode>
       <targetNode>end0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link10</targetConnections>
     <targetConnections>link11</targetConnections>
@@ -413,6 +414,7 @@
     <targetConnections>link31</targetConnections>
     <targetConnections>link33</targetConnections>
     <targetConnections>link38</targetConnections>
+    <targetConnections>link63</targetConnections>
     <location x="1292" y="11"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend0label</nodeLabel>
@@ -627,6 +629,16 @@
       <sourceNode>assign10</sourceNode>
       <targetNode>invokePojo3</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link63" name="link63" displayName="连接线" type="transition">
+      <sourceNode>assign10</sourceNode>
+      <targetNode>loopend0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="LE">
+          <process:leftOperand type="query">cardPayAmt</process:leftOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link41</targetConnections>
     <location x="992" y="-35"/>
     <size height="28" width="28"/>
@@ -734,6 +746,7 @@
     <sourceConnections xsi:type="process:tLink" id="link29" name="link29" displayName="link12" isDefault="true" type="transition">
       <sourceNode>invokePojo4</sourceNode>
       <targetNode>assign11</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link27</targetConnections>
     <location x="1119" y="-35"/>

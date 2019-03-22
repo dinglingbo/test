@@ -219,163 +219,178 @@ var saveUrl = baseUrl+"com.hsapi.repair.repairService.crud.saveCustomerInfo.biz.
 function onOk()
 {
 	var carNo = nui.get("carNo").getValue();
+	var vin = nui.get("vin").getValue();
+    //判断VIN
+    var data = {};
+    data = validation(vin);
+    if(data.isNo){
+    	vin = data.vin//返回转化好的vin
+    	nui.get("vin").setValue(vin);
+    }else{
+    	showMsg("VIN不规范，请确认！","W");
+    	return;
+    }
+    	//判断车牌号
 	var falge = isVehicleNumber(carNo);
 	if(!falge){
 		showMsg("请输入正确的车牌号","W");
 		return;
-	}
-    var guest = basicInfoForm.getData();
-    var name = guest.fullName || "";
-    if(name=="散客"){
-    	showMsg("请修改客户名称!","W");
-    	return;
-    }
-    guest.guestType = "01020103";
-    carList[currCarIdx] = carInfoFrom.getData();
-    //carList[currCarIdx].carModel = nui.get("carModelId").getText();
-    var i,key,tmp;
-    contactList[currContactIdx] = contactInfoForm.getData();
-    
-    for(key in basicRequiredField){
-        //tmp = nui.get(key).getText();
-        if(!nui.get(key).value){
-            showMsg(basicRequiredField[key]+"不能为空", "W");
-            return;
-        }
-    }
-    
-    for(i=0;i<carList.length;i++)
-    {
-        tmp = carList[i];
-        for(key in carRequiredField)
-        {
-            if(typeof carRequiredField[key] == "string" && !tmp[key])
-            {
-                showMsg(carRequiredField[key]+"不能为空", "W");
-                setCarByIdx(i);
-                return;
-            }
-        }
-    }
-    
-    for(i=0;i<contactList.length;i++)
-    {
-        tmp = contactList[i];
-        for(key in contactRequiredField)
-        {
-            if(typeof contactRequiredField[key] == "string" && !tmp[key])
-            {
-                showMsg(contactRequiredField[key]+"不能为空", "W");
-                setContactByIdx(i);
-                return;
-            }
-        }
-    }
-    
-    if(!checkMobile(nui.get("mobile").value)){
-        return;
-    }
-    
-    if(!checkMobile(nui.get("mobile2").value)){
-        return;
-    }
-    
-    var insCarList = carList.filter(function(v)
-    {
-        return !v.id;
-    });
-    var updCarList = carList.filter(function(v)
-    {
-        if(v.id)
-        {
-            var oldJson =carHash[v.id];
-            var newJson = JSON.stringify(v);
-            return oldJson !== newJson;
-        }
-    });
-    var insContactList = contactList.filter(function(v)
-    {
-        return !v.id;
-    });
-    var updContactList = contactList.filter(function(v)
-    {
-        if(v.id)
-        {
-            var oldJson = contactHash[v.id];
-            var newJson = JSON.stringify(v);
-            return oldJson !== newJson;
-        }
-    });
+	}else{
+		 var guest = basicInfoForm.getData();
+		    var name = guest.fullName || "";
+		    if(name=="散客"){
+		    	showMsg("请修改客户名称!","W");
+		    	return;
+		    }
+		    guest.guestType = "01020103";
+		    carList[currCarIdx] = carInfoFrom.getData();
+		    //carList[currCarIdx].carModel = nui.get("carModelId").getText();
+		    var i,key,tmp;
+		    contactList[currContactIdx] = contactInfoForm.getData();
+		    
+		    for(key in basicRequiredField){
+		        //tmp = nui.get(key).getText();
+		        if(!nui.get(key).value){
+		            showMsg(basicRequiredField[key]+"不能为空", "W");
+		            return;
+		        }
+		    }
+		    
+		    for(i=0;i<carList.length;i++)
+		    {
+		        tmp = carList[i];
+		        for(key in carRequiredField)
+		        {
+		            if(typeof carRequiredField[key] == "string" && !tmp[key])
+		            {
+		                showMsg(carRequiredField[key]+"不能为空", "W");
+		                setCarByIdx(i);
+		                return;
+		            }
+		        }
+		    }
+		    
+		    for(i=0;i<contactList.length;i++)
+		    {
+		        tmp = contactList[i];
+		        for(key in contactRequiredField)
+		        {
+		            if(typeof contactRequiredField[key] == "string" && !tmp[key])
+		            {
+		                showMsg(contactRequiredField[key]+"不能为空", "W");
+		                setContactByIdx(i);
+		                return;
+		            }
+		        }
+		    }
+		    
+		    if(!checkMobile(nui.get("mobile").value)){
+		        return;
+		    }
+		    
+		    if(!checkMobile(nui.get("mobile2").value)){
+		        return;
+		    }
+		    
+		    var insCarList = carList.filter(function(v)
+		    {
+		        return !v.id;
+		    });
+		    var updCarList = carList.filter(function(v)
+		    {
+		        if(v.id)
+		        {
+		            var oldJson =carHash[v.id];
+		            var newJson = JSON.stringify(v);
+		            return oldJson !== newJson;
+		        }
+		    });
+		    var insContactList = contactList.filter(function(v)
+		    {
+		        return !v.id;
+		    });
+		    var updContactList = contactList.filter(function(v)
+		    {
+		        if(v.id)
+		        {
+		            var oldJson = contactHash[v.id];
+		            var newJson = JSON.stringify(v);
+		            return oldJson !== newJson;
+		        }
+		    });
 
-    nui.mask({
-		el : document.body,
-		cls : 'mini-mask-loading',
-		html : '保存中...'
-	});
-    
-    $("#btnGroup").hide();
-    doPost({
-        url : saveUrl,
-        data : {
-            guest:guest,
-            insCarList:insCarList,
-            updCarList:updCarList,
-            insContactList:insContactList,
-            updContactList:updContactList
-        },
-        success : function(data)
-        {
-        	nui.unmask(document.body);
-            data = data||{};
-            if(data.errCode == "S")
-            { 
-            	var retData = data.retData;
-            	if(prebookF == "prebookF"){
-            		prebookInfo.guestId = retData.guestId;
-            	    prebookInfo.carId = retData.carId;
-            	    prebookInfo.contactorId = retData.contactorId;
-            	    prebookInfo.contactorName = retData.contactName;
-            	    prebookInfo.contactorTel = retData.mobile;
-            	    prebookInfo.carNo = retData.carNo;
-      				nui.ajax({ 
-      				      url: baseUrl + "com.hsapi.repair.repairService.booking.setBookingGuestId.biz.ext",
-      				      type: 'post',
-      				      data:JSON.stringify({
-      				          rpsPrebook:prebookInfo ,
-      				          token: token
-      				      }),        
-      				      success: function(data) {
-      				          if (data.errCode == "S") {
-      				        	  PreBook = data.rpsPrebook;
-      				              window.CloseOwnerWindow("ok");
-      				          } else {
-      				              nui.unmask();
-      				              nui.alert(data.errMsg || "保存失败");
-      				          }
-      				      },
-      				      error: function(jqXHR, textStatus, errorThrown) {
-      				          nui.unmask();
-      				          console.log(jqXHR.responseText);
-      				          nui.alert("网络出错，保存失败");           
-      				      }
-      				    });
-                 }else{
-                	 showMsg("保存成功","S");
-                     resultData = data.retData;
-                     CloseWindow("ok");
-                 }          		
-            }
-            else{
-                showMsg(data.errMsg||"保存失败", "E");
-            }
-            $("#btnGroup").show();
-        },
-        error : function(jqXHR, textStatus, errorThrown) {
-        	nui.unmask(document.body);
-            showMsg("网络出错", "E");
-            $("#btnGroup").show();
-        }
-    });    
+		    nui.mask({
+				el : document.body,
+				cls : 'mini-mask-loading',
+				html : '保存中...'
+			});
+		    
+		    $("#btnGroup").hide();
+		    doPost({
+		        url : saveUrl,
+		        data : {
+		            guest:guest,
+		            insCarList:insCarList,
+		            updCarList:updCarList,
+		            insContactList:insContactList,
+		            updContactList:updContactList
+		        },
+		        success : function(data)
+		        {
+		        	nui.unmask(document.body);
+		            data = data||{};
+		            if(data.errCode == "S")
+		            { 
+		            	var retData = data.retData;
+		            	if(prebookF == "prebookF"){
+		            		prebookInfo.guestId = retData.guestId;
+		            	    prebookInfo.carId = retData.carId;
+		            	    prebookInfo.contactorId = retData.contactorId;
+		            	    prebookInfo.contactorName = retData.contactName;
+		            	    prebookInfo.contactorTel = retData.mobile;
+		            	    prebookInfo.carNo = retData.carNo;
+		      				nui.ajax({ 
+		      				      url: baseUrl + "com.hsapi.repair.repairService.booking.setBookingGuestId.biz.ext",
+		      				      type: 'post',
+		      				      data:JSON.stringify({
+		      				          rpsPrebook:prebookInfo ,
+		      				          token: token
+		      				      }),        
+		      				      success: function(data) {
+		      				          if (data.errCode == "S") {
+		      				        	  PreBook = data.rpsPrebook;
+		      				              window.CloseOwnerWindow("ok");
+		      				          } else {
+		      				              nui.unmask();
+		      				              nui.alert(data.errMsg || "保存失败");
+		      				          }
+		      				      },
+		      				      error: function(jqXHR, textStatus, errorThrown) {
+		      				          nui.unmask();
+		      				          console.log(jqXHR.responseText);
+		      				          nui.alert("网络出错，保存失败");           
+		      				      }
+		      				    });
+		                 }else{
+		                	 showMsg("保存成功","S");
+		                     resultData = data.retData;
+		                     CloseWindow("ok");
+		                 }          		
+		            }
+		            else{
+		                showMsg(data.errMsg||"保存失败", "E");
+		            }
+		            $("#btnGroup").show();
+		        },
+		        error : function(jqXHR, textStatus, errorThrown) {
+		        	nui.unmask(document.body);
+		            showMsg("网络出错", "E");
+		            $("#btnGroup").show();
+		        }
+		    });    
+	}
+
+   
 }
 function getSaveData(){
 	return resultData;
@@ -491,42 +506,49 @@ function setGuest(data,row){
 function onParseUnderpanNo()
 {
     var vin = nui.get("vin").getValue();
-    if(!vin)
-    {
-        return;
-    }
-    nui.mask({
-        el: document.body,
-        cls: 'mini-mask-loading',
-        html: '车型解析中...'
-    });
-    getCarVinModel(vin,function(data)
-    {
-        data = data||{};
-        if(data.errCode == "S")
+    //判断VIN
+    var data = {};
+    data = validation(vin);
+    nui.get("vin").setValue(data.vin);
+    if(data.isNo){
+        nui.mask({
+            el: document.body,
+            cls: 'mini-mask-loading',
+            html: '车型解析中...'
+        });
+        getCarVinModel(vin,function(data)
         {
-        	var carVinModel = data.data.SuitCar||[];//list[0];
-        	var carModelId = data.data.carModelId;
-            carVinModel = carVinModel[0]||{};
-            carVinModel.vin = vin;
-            var carModelInfo = "品牌:"+carVinModel.carBrandName+"\n";
-            carModelInfo += "车型:"+carVinModel.carModelName+"\n";
-            carModelInfo += "车系:"+carVinModel.carLineName+"\n";
-            var name1 = carVinModel.grandParentName||"";
-            name1 = name1?(name1+" "):"";
-            var name2 = carVinModel.parentName || "";
-            name2 = name2?(name2+" "):"";
-            var name3 = carVinModel.name||"";
-            nui.get("carModel").setValue(name1 + name2 + name3);
-            nui.get("carBrandId").setValue("");
-            nui.get("carModelId").setValue(carVinModel.id);
-            nui.get("carModelIdLy").setValue(carModelId);
-            nui.unmask(document.body);
-        }else{
-        	nui.unmask(document.body);
-        	showMsg("车型解析失败，请手工维护车型信息！","W");
-        }
-    });
+            data = data||{};
+            if(data.errCode == "S")
+            {
+            	var carVinModel = data.data.SuitCar||[];//list[0];
+            	var carModelId = data.data.carModelId;
+                carVinModel = carVinModel[0]||{};
+                carVinModel.vin = vin;
+                var carModelInfo = "品牌:"+carVinModel.carBrandName+"\n";
+                carModelInfo += "车型:"+carVinModel.carModelName+"\n";
+                carModelInfo += "车系:"+carVinModel.carLineName+"\n";
+                var name1 = carVinModel.grandParentName||"";
+                name1 = name1?(name1+" "):"";
+                var name2 = carVinModel.parentName || "";
+                name2 = name2?(name2+" "):"";
+                var name3 = carVinModel.name||"";
+                nui.get("carModel").setValue(name1 + name2 + name3);
+                nui.get("carBrandId").setValue("");
+                nui.get("carModelId").setValue(carVinModel.id);
+                nui.get("carModelIdLy").setValue(carModelId);
+                nui.unmask(document.body);
+            }else{
+            	nui.unmask(document.body);
+            	showMsg("车型解析失败，请手工维护车型信息！","W");
+            }
+        });
+    }else{
+    	showMsg("VIN不规范，请确认！","W");
+    	return;
+    }
+
+
 }
 
 //手机号处理
@@ -597,14 +619,14 @@ function setCarModel(data){
 	}
 }*/
 
-function isVehicleNumber(vehicleNumber) {
+/*function isVehicleNumber(vehicleNumber) {
     var result = false;
     if (vehicleNumber.length == 7){
       var express = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/;
       result = express.test(vehicleNumber);
     }
     return result;
-}
+}*/
 
 var queryGuestUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.svr.queryCustomerList.biz.ext";
 function onChanged(id){

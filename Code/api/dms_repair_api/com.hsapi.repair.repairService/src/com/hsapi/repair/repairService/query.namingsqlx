@@ -1032,6 +1032,7 @@
 				b.car_brand_id as carBrandId,
 				a.remind_status remindStatus,
 				e.wechat_open_id wechatOpenId,
+				e.id conId,
 				d.id
 			FROM
 				rpb_car_extend a

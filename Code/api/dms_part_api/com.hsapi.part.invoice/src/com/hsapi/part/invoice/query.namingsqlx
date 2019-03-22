@@ -808,6 +808,7 @@
             <isNotEmpty prepend="and" property="partId">(a.PART_ID = #partId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(b.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(b.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partNamePY">(b.name_py like '%$partNamePY$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partCode">(b.code like '%$partCode$%' or b.query_code like '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partBrandId">(b.part_brand_id = #partBrandId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(b.code in ($partCodeList$))</isNotEmpty>

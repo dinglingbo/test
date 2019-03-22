@@ -135,10 +135,6 @@
       <process:from type="query" pattern="reference">settlement/otherAmt</process:from>
       <process:to type="query">otherAmt</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">netInAmt+otherAmt</process:from>
-      <process:to type="query">netInAmt</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
     <location x="282" y="375"/>
@@ -629,7 +625,7 @@
     <figSize height="17" width="39"/>
     <node>assign30</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign4" name="赋值4" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link30" name="link30" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>assign30</targetNode>

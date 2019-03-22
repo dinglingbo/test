@@ -8,7 +8,7 @@
 -->
 <head>
 <title>安全库存设置</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockQuery/partStoreStockSet.js?v=1.0.14"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockQuery/partStoreStockSet.js?v=1.0.16"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -61,7 +61,7 @@
                            emptyText="仓库"
                            url=""
                            valueFromSelect="true"
-                           allowInput="true"
+                           allowInput="false"
                            showNullItem="false"
                            nullItemText="请选择..."/>
                 <input id="storeShelf" width="120px" emptyText="仓位" class="nui-textbox"/>

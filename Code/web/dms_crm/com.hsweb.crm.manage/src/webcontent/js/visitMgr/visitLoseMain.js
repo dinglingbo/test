@@ -344,6 +344,32 @@ function sendWcText(){//发送微信消息
 }
 
 
+function sendWcCoupon() {
+    var row = gridCar.getSelected();
+    row.userNickname = row.guestFullName;
+    row.userMarke = row.wechatServiceId;
+    row.storeName = currOrgName;
+    row.userOpid = row.wechatOpenId;
+    var list = [];
+    list.push(row);
+
+    nui.open({                        
+        url: webPath + contextPath  + "/manage/sendWechatWindow/sWcInfoCoupon.jsp?token="+token,
+        title: "发送卡券", width: 800, height: 350,
+        onload: function () {
+        var iframe = this.getIFrameEl();
+        iframe.contentWindow.setData(list);
+    },
+    ondestroy: function (action) {
+            //重新加载
+            //query(tab);
+        }
+    });
+}
+
+
+
+
 function sellPoint() {//销售机会
     var row = gridCar.getSelected();
 	if(row){

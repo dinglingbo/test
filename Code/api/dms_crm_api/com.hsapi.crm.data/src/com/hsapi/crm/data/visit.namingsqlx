@@ -54,9 +54,11 @@
 			e.contactor_id contactorId,
 			e.id,
 			e.data_type dataType,
+			e.next_visit_date nextVisitDate,
 			d.tgrade,
 			z.last_leave_date lastLeaveDate,
 			z.last_care_due_date lastCareDueDate,
+			z.care_due_date careDueDate,
 			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
 	       inner join wb_repair.rpb_business_type f on e.service_type_id = f.id
 	       where e.service_id = a.id) as serviceTypeName
@@ -138,6 +140,9 @@
 			a.visit_content visitContent,a.visit_id visitId,a.visit_man visitMan,a.visit_date visitDate
 		from crm_visit_record a 
 		where a.orgid = #orgid#
+		<isNotEmpty prepend="and" property="mainId">  
+		   	a.main_id =   #mainId#
+		</isNotEmpty>
 		<isNotEmpty prepend="and" property="carId">  
 		   	a.car_id =   #carId#
 		</isNotEmpty>

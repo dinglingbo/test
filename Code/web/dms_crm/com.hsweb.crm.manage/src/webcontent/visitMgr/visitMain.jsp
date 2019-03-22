@@ -61,6 +61,10 @@ pageEncoding="UTF-8" session="false" %>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sellPoint()"><span class="fa fa-gift fa-lg"></span>&nbsp;销售机会</a>
         <!--<a class="nui-button" plain="true" iconCls="" plain="false" onclick="WindowrepairHistory()"><span class="fa fa-wrench fa-lg"></span>&nbsp;维修历史</a>-->
         <!-- <a class="nui-button" plain="true" iconcls="" plain="false" onclick="openOrderDetail()" ><span class="fa fa-search fa-lg"></span>&nbsp;查询工单详情</a> -->
+        <span id="showMonile" style="display: none;">
+            <span class="separator"></span>
+            <span id="mobileText" style="color: red;font-weight:bold;display: inline-block;"></span>
+        </span>
     </div>
 
     <div class="nui-fit">
@@ -82,6 +86,7 @@ pageEncoding="UTF-8" session="false" %>
             <div field="tgrade" name="tgrade" width="90px" headerAlign="center" header="客户等级"></div>
             <div field="serviceTypeName" name="serviceTypeName" width="155px" headerAlign="center" header="业务类型"></div>
             <!--<div field="isSettle" name="isSettle" width="60px" headerAlign="center" header="结算状态"></div> -->
+            <div field="nextVisitDate" name="nextVisitDate" width="120px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="下次保养时间"></div>
             <div field="enterDate" name="recordDate" width="120px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="进厂时间"></div>
             <div field="outDate" name="recordDate" width="120px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="离厂时间"></div>
             <!-- <div field="planFinishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="预计完工日期"></div> -->

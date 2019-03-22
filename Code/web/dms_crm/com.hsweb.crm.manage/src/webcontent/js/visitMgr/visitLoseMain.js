@@ -14,7 +14,7 @@ var form = null;
 var levelList = []; 
 var levelHash = [];
 var billTypeIdList = [{ id: 0, name: "综合" }, { id: 1, name: "检查" }, { id: 2, name: "洗美" }, { id: 3, name: "销售" }, { id: 4, name: "理赔" }, { id: 5, name: "退货" }, { id: 6, name: "波箱" }];
-var serviceTypeList = [{},{ id: 1, text: '电销' }, { id: 2, text: '预约' }, { id: 3, text: '客户回访' }, { id: 4, text: '流失回访' }, { id: 5, text: '保养提醒' }, { id: 6, text: '商业险到期' }, { id: 7, text: '交强险到期' }, { id: 8, text: '驾照年审' }, { id: 9, text: '车辆年检' }, { id: 1, text: '生日' }];
+var serviceTypeList = [{},{ id: 1, text: '电销' }, { id: 2, text: '预约' }, { id: 3, text: '客户回访' }, { id: 4, text: '流失回访' }, { id: 5, text: '保养提醒' }, { id: 6, text: '商业险到期' }, { id: 7, text: '交强险到期' }, { id: 8, text: '驾照年审' }, { id: 9, text: '车辆年检' }, { id: 10, text: '生日' }];
 
 $(document).ready(function(){
 	form = new nui.Form("#toolbar1");   
@@ -43,6 +43,8 @@ $(document).ready(function(){
             nui.get("wcBtn2").disable();
             nui.get("wcBtn3").disable(); 
         }
+        $("#showMonile").show();
+        document.getElementById("mobileText").innerHTML = e.record.guestMobile;
     }); 
 	document.onkeyup = function(event) {
 		var e = event || window.event;
@@ -265,7 +267,8 @@ function WindowrepairHistory(){
 	var params = {
 		carId : row.carId,
 		carNo : row.carNo,
-		guestId : row.guestId
+        guestId: row.guestId,
+        contactorId:row.contactorId
 	};
 	if(row.id){
 		doShowCarInfo(params);

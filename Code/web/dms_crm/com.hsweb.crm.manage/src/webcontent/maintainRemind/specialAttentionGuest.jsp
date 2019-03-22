@@ -71,6 +71,10 @@
                                     <a id="wcBtn14" class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
                                     <a id="wcBtn15" class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
                                     <a class="nui-button" plain="true" iconCls="" plain="false" onclick="updateDate()"><span class="fa fa-vcard-o fa-lg"></span>&nbsp;修改信息</a>
+                                    <span id="showMonile0" style="display: none;">
+                                            <span class="separator"></span>
+                                            <span id="mobileText0" style="color: red;font-weight:bold;display: inline-block;"></span>
+                                        </span>
                         </td>
                     </tr>
                 </table>
@@ -127,6 +131,10 @@
                                     <a id="wcBtn24"class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
                                     <a id="wcBtn25"class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
                                     <a class="nui-button" plain="true" iconCls="" plain="false" onclick="updateDate()"><span class="fa fa-vcard-o fa-lg"></span>&nbsp;修改信息</a>
+                                    <span id="showMonile" style="display: none;">
+                                            <span class="separator"></span>
+                                            <span id="mobileText" style="color: red;font-weight:bold;display: inline-block;"></span>
+                                        </span>
                         </td>
                     </tr>
                 </table>
@@ -183,6 +191,10 @@
                                     <a id="wcBtn34"class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
                                     <a id="wcBtn35"class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
                                     <a class="nui-button" plain="true" iconCls="" plain="false" onclick="updateDate()"><span class="fa fa-vcard-o fa-lg"></span>&nbsp;修改信息</a>
+                                    <span id="showMonile2" style="display: none;">
+                                            <span class="separator"></span>
+                                            <span id="mobileText2" style="color: red;font-weight:bold;display: inline-block;"></span>
+                                        </span>
                         </td>
                     </tr>
                 </table>
@@ -240,6 +252,10 @@
                                     <a id="wcBtn44"class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
                                     <a id="wcBtn45"class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
                                     <a class="nui-button" plain="true" iconCls="" plain="false" onclick="updateDate()"><span class="fa fa-vcard-o fa-lg"></span>&nbsp;修改信息</a>
+                                    <span id="showMonile3" style="display: none;">
+                                            <span class="separator"></span>
+                                            <span id="mobileText3" style="color: red;font-weight:bold;display: inline-block;"></span>
+                                        </span>
                         </td>
                     </tr>
                 </table>
@@ -297,6 +313,10 @@
                                     <a id="wcBtn54"class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
                                     <a id="wcBtn55"class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
                                     <a class="nui-button" plain="true" iconCls="" plain="false" onclick="updateDate()"><span class="fa fa-vcard-o fa-lg"></span>&nbsp;修改信息</a>
+                                    <span id="showMonile4" style="display: none;">
+                                            <span class="separator"></span>
+                                            <span id="mobileText4" style="color: red;font-weight:bold;display: inline-block;"></span>
+                                        </span>
                         </td>
                     </tr>
                 </table>
@@ -341,6 +361,10 @@
                                 <a id="wcBtn64"class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
                                 <a id="wcBtn65"class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
                                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick="updateDate()"><span class="fa fa-vcard-o fa-lg"></span>&nbsp;修改信息</a>
+                                <span id="showMonile5" style="display: none;">
+                                        <span class="separator"></span>
+                                        <span id="mobileText5" style="color: red;font-weight:bold;display: inline-block;"></span>
+                                    </span>
                         </td>
                     </tr>
                 </table>

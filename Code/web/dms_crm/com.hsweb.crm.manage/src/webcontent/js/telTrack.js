@@ -1,19 +1,28 @@
 var baseUrl = apiPath + crmApi + "/"; 
 var getScoutGuestListUrl = baseUrl+"com.hsapi.crm.telsales.crmTelsales.getScoutGuestList.biz.ext";
+var hisUrl = apiPath + crmApi+ "/com.hsapi.crm.svr.visit.queryCrmVisitRecordSql.biz.ext";
 var queryForm;
 var dgGrid;
 var currGuest;
 var memList = [];
 var memHash={};  
 var carModelHash = [];
+var visitHis = null; //回访历史
+var serviceTypeList = [{},{ id: 1, text: '电销' }, { id: 2, text: '预约' }, { id: 3, text: '客户回访' }, { id: 4, text: '流失回访' }, { id: 5, text: '保养提醒' }, { id: 6, text: '商业险到期' }, { id: 7, text: '交强险到期' }, { id: 8, text: '驾照年审' }, { id: 9, text: '车辆年检' }, { id: 10, text: '生日' }];
 
 $(document).ready(function(v){
-    queryForm = new nui.Form("#queryForm");   
+    queryForm = new nui.Form("#queryForm"); 
+    visitHis = nui.get("visitHis"); 
+    visitHis.setUrl(hisUrl);
     dgGrid = nui.get("dgGrid");
     dgGrid.setUrl(getScoutGuestListUrl);
     dgGrid.on("beforeload",function(e){ 
         e.data.token = token;
     });
+    dgGrid.on("select", function (e) {
+        loadVisitHis(e.record.id);
+    }); 
+
     dgGrid.on("drawcell", function (e) { //表格绘制
      var field = e.field;
      if(field == "orgid"){ 
@@ -31,6 +40,14 @@ $(document).ready(function(v){
         }
     });
       
+    visitHis.on("drawcell", function (e) {
+        if (e.field == "serviceType") {
+            e.cellHtml = serviceTypeList[e.value].text;
+        } else if(e.field == "visitMode"){//跟踪方式
+            e.cellHtml = setColVal('visitMode', 'customid', 'name', e.value);
+        }
+    });
+
     var filter = new HeaderFilter(dgGrid, {
         columns: [
             { name: 'carModel' },
@@ -72,12 +89,21 @@ function init(){
     initCarBrand("carBrandId");//车辆品牌
     //initInsureComp("insureCompCode");//保险公司
     initDicts({
-        //scoutMode: "DDT20130703000021",//跟踪方式
+        visitMode: "DDT20130703000021",//跟踪方式
         //visitStatus: "DDT20130703000081",//跟踪状态
         query_visitStatus: "DDT20130703000081",//跟踪状态
-        //artType: "DDT20130725000001"//话术类型        
+        //artType: "DDT20130725000001"//话术类型    
     });
 
+}
+
+function loadVisitHis(id) {
+    var params = {
+        mainId: id,
+        serviceType:1,//电销回访
+        token:token
+    };
+    visitHis.load({ params:params });
 }
 
 function onCarBrandChange(e){     
@@ -211,6 +237,7 @@ function sendInfo(){
         return; 
     }
     row.mobile = row.tel;
+    row.guestId = '';
     row.serviceType = 1;//电销
     nui.open({
         url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
@@ -222,6 +249,7 @@ function sendInfo(){
         ondestroy: function (action) {
             //重新加载
             //query(tab);
+            visitHis.reload();
         }
     });
 
@@ -241,14 +269,14 @@ function telInfo(e){
     }
     nui.open({
         url: webPath + contextPath  + "/manage/telTrack_info.jsp?token="+token,
-        title: "电话跟踪", width: 770, height: 550,
+        title: "电话跟踪", width: 650, height:350,
         onload: function () {
             var iframe = this.getIFrameEl();
             iframe.contentWindow.setScoutForm(data);
         },
         ondestroy: function (action) {
             //重新加载
-            dgGrid.reload();
+            visitHis.reload();
         }
     });
 

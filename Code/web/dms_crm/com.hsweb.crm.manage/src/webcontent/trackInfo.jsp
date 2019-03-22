@@ -18,7 +18,7 @@ pageEncoding="UTF-8" session="false" %>
     <input name="scoutMode"id="scoutMode"class="nui-combobox" visible="false" textField="name"valueField="customid"/>
     <input name="scoutResult"id="scoutResult"class="nui-combobox" visible="false" textField="text"
     valueField="value" data="const_enabled_communicate"/>
-    <div class="nui-fit">   
+    <div class="nui-fit" >   
         <div id="dgScoutDetail" class="nui-datagrid"
         allowCellEdit="false" allowCellSelect="true"
         style="width:100%;height:100%;"

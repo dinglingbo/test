@@ -23,7 +23,10 @@ $(document).ready(function(){
 		var record = e.record;
 		SetData(record);
 	});
-	
+    gridCar.on("select", function (e) {
+        $("#showMonile").show();
+        document.getElementById("mobileText").innerHTML = e.record.mobile;
+    }); 
     gridCar.on("drawcell", function (e) { 
     	var uid = e.record._uid;
         if(e.field == "serviceCode"){

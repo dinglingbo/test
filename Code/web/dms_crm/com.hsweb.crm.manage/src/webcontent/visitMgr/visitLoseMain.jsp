@@ -66,6 +66,10 @@ pageEncoding="UTF-8" session="false" %>
         <a class="nui-button" plain="true" iconCls="" onclick="sellPoint()"><span class="fa fa-gift fa-lg"></span>&nbsp;销售机会</a>
         <!--<a class="nui-button" plain="true" iconCls="" onclick="WindowrepairHistory()"><span class="fa fa-wrench fa-lg"></span>&nbsp;维修历史</a>-->
         <!-- <a class="nui-button" plain="true" iconcls="" onclick="openOrderDetail()" ><span class="fa fa-search fa-lg"></span>&nbsp;查询工单详情</a> -->
+        <span id="showMonile" style="display: none;">
+                <span class="separator"></span>
+                <span id="mobileText" style="color: red;font-weight:bold;display: inline-block;"></span>
+            </span>
     </div>
 
     <div class="nui-fit">

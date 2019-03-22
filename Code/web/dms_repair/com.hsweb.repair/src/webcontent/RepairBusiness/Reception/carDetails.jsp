@@ -13,7 +13,7 @@
         <head>
             <title>车辆详情</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.13" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.14" type="text/javascript"></script>
         </head>
         <style type="text/css">
             body {
@@ -35,6 +35,7 @@
             <div class="nui-fit">
                 <input class="nui-hidden" id="carId" name="carId" />
                 <input class="nui-hidden" id="guestId" name="guestId" />
+                <input name="visitMode" id="visitMode" class="nui-combobox "textField="name" valueField="customid" visible="false"/>
                 <div id="editForm1" style="width:100%;height:100%;">
                     <div id="mainTabs" class="nui-tabs" name="mainTabs" activeIndex="0" style="width:100%; height:100%;" plain="false" onactivechanged="">
                         <div title="客户信息" id="main" name="main">
@@ -399,6 +400,22 @@
 					</div>
 
 				</div>
+                        </div>
+                        <div title="回访记录" id="visit" name="visit">
+                        <div class="nui-fit">
+                                <div id="visitHis" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
+                                    multiSelect="false" pageSize="20" showPageInfo="true" selectOnLoad="true"  onDrawCell="" onselectionchanged=""
+                                    allowSortColumn="false" totalField='page.count' allowCellWrap="true">
+                                    <div property="columns">
+                                        <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
+                                        <div field="serviceType" headerAlign="center" allowSort="true" width="100px">回访类型</div>
+                                        <div field="visitMode" headerAlign="center" allowSort="true" width="100px">回访方式</div>
+                                        <div field="visitContent" headerAlign="center" allowSort="true" width="200px">回访内容</div>
+                                        <div field="visitMan" headerAlign="center" allowSort="true" width="100px">回访员</div>
+                                        <div field="visitDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" width="100px">回访日期</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

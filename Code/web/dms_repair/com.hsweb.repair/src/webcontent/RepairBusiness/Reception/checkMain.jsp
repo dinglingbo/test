@@ -106,10 +106,11 @@
     <div field="carNo" name="carNo" width="40" headerAlign="center" align="center">车牌号</div>
     <div field="carModel" name="carModel" width="80" headerAlign="center" align="center">品牌车型</div>
     <div field="carVin" name="carVin" width="80px" headerAlign="center" align="center" header="">车架号(VIN)</div>
-    <div field="checkMan" name="checkMan" width="40" headerAlign="center" align="center">查车技师</div>
-    <div field="checkManId" name="checkManId" width="40" headerAlign="center" align="center" visible="false">查车技师Id</div>
-    <div field="checkPoint" name="checkPoint" width="40" headerAlign="center" align="center">本次检查得分</div>
-    <div field="recordDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm">查车时间</div>
+    <div field="checkMainName" name="checkMainName" width="80" headerAlign="center" align="center">检查模板</div>
+    <div field="checkMan" name="checkMan" width="80" headerAlign="center" align="center">查车技师</div>
+    <div field="checkManId" name="checkManId" width="60" headerAlign="center" align="center" visible="false">查车技师Id</div>
+    <div field="checkPoint" name="checkPoint" width="60" headerAlign="center" align="center">本次检查得分</div>
+    <div field="recordDate" name="recordDate" width="60" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm">查车时间</div>
 </div>
 </div>
 </div>

@@ -12,7 +12,7 @@
 <head> 
 <title>查车单模版管理</title>
 
-<script src="<%=webPath + contextPath%>/repair/cfg/js/checkModelMgr.js?v=1.0.8"></script>
+<script src="<%=webPath + contextPath%>/repair/cfg/js/checkModelMgr.js?v=1.0.9"></script>
 <link href="<%=webPath + contextPath %>/common/nui/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
 .title {
@@ -78,6 +78,10 @@
                         <div allowSort="true" field="isDisabled" headerAlign="center" header="状态">
                                 <input  property="editor" enabled="true" name="dataList" dataField="dataList" 
                                 class="nui-combobox" valueField="id" textField="name" data="dataList" /> 
+                        </div>
+                        <div allowSort="true" field="isShare" name="isShare" headerAlign="center" header="是否共享" visible="false">
+                                <input  property="editor" enabled="true" name="dataList" dataField="dataList" 
+                                class="nui-combobox" valueField="id" textField="name" data="stList" /> 
                         </div>
                         <div field="modifier" width="60" headerAlign="center" header="修改人"></div>
                         <div field="modifyDate" width="130" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="修改日期"></div>

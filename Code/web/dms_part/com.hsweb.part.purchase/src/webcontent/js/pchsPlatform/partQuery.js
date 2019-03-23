@@ -155,6 +155,12 @@ function addOrEditPart(row)
 }
 var guestUrl=baseUrl+"com.hsapi.part.invoice.partInterfaceDs.queryGuestAndSKU.biz.ext";
 function verifyGuestForCar(){
+	var useMoney=$('#money').text();
+	//电商额度为0
+	if(useMoney == '0'){
+		parent.parent.showMsg("电商额度为0,不能添加到采购车！","W");
+		return;
+	}
 	nui.mask({
         el : document.body,
         cls : 'mini-mask-loading',
@@ -203,6 +209,12 @@ function verifyGuestForCar(){
 }
 
 function verifyGuestForOrder(){
+	var useMoney=$('#money').text();
+	//电商额度为0
+	if(useMoney == '0'){
+		parent.parent.showMsg("电商额度为0,不能生成采购订单！","W");
+		return;
+	}
 	nui.mask({
         el : document.body,
         cls : 'mini-mask-loading',
@@ -381,24 +393,24 @@ function getProToken(){
 
 
 function onSearch (){
+	var params={};
+	params.partCode =nui.get('partCode').value.replace(/\s+/g, "");
+	params.brandCode =nui.get('partBrandId').value;
+	params.partName =nui.get('partName').value.replace(/\s+/g, "");
+	doSearch(params);
+}
 
-	var partCode =nui.get('partCode').value;
-	var brandCode =nui.get('partBrandId').value;
-	var partName =nui.get('partName').value;
-//	if(!key){
-//		parent.parent.showMsg("请填写关键词！","W");
-//	}
+function doSearch(params){
 	
 	partGrid.load({
-		brandCode :brandCode ||"",
-		partsCode :partCode || "",
-		partsName :partName ||"",
-		classesId:classesId || "",
+		brandCode : params.brandCode ||"",
+		partsCode : params.partCode || "",
+		partsName : params.partName ||"",
+		classesId : params.classesId || "",
 		protoken:protoken,
 		token:token
 	});
 }
-
 
 
 function onGridSelectionChanged(){
@@ -420,20 +432,14 @@ function onNodeDblClick(e)
 {
     var currTree = e.sender;
     var currNode = e.node;
-//    var level = currTree.getLevel(currNode);
-//    var list = [];
-//    var tmpNode = currNode;
-//    do{
-//        list[level] = tmpNode.id;
-//        tmpNode = currTree.getParentNode(tmpNode);
-//        level = currTree.getLevel(tmpNode);
-//    }while(tmpNode&&tmpNode.id);
-
     classesId = currNode.id||"";
-//    var categoryS = list[1]||"";
-//    var categoryT = list[2]||"";
+    var params={};
+    params.partCode =nui.get('partCode').value.replace(/\s+/g, "");
+	params.brandCode =nui.get('partBrandId').value;
+	params.partName =nui.get('partName').value.replace(/\s+/g, "");
+	params.classesId = classesId;
 
-    onSearch();
+    doSearch(params);
 }
 var partTypeHash = null;
 
@@ -511,7 +517,7 @@ function getDsUserMoney(){
         	if (data.errCode == "S") {
             	var data=data.data;
             	var useMoney =data.useMoney;
-            	$('#useMoney').text("电商额度:"+useMoney);
+            	$('#money').text(useMoney);
             }
                
         },

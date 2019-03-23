@@ -24,6 +24,10 @@ var eOutDateEl =null;
 var sReturnDateEl =null;
 var eReturnDateEl=null;
 var orgidsEl = null;
+
+var billTypeIdEl=null;
+var billTypeIdList=[{id:"0",name:"综合"},{id:"1",name:"检查"},{id:"2",name:"洗美"},{id:"3",name:"销售"},{id:"4",name:"理赔"},{id:"5",name:"退货"},{id:"6",name:"波箱"}];
+
 $(document).ready(function(v)
 {
     rightGrid = nui.get("rightGrid");
@@ -40,7 +44,9 @@ $(document).ready(function(v)
     }else{
     	orgidsEl.setValue(currOrgid);
     }
-
+    
+    billTypeIdEl=nui.get('billTypeId');
+    billTypeIdEl.setData(billTypeIdList);
     
 	getAllPartBrand(function(data) {
 		brandList = data.brand;
@@ -169,6 +175,7 @@ function getSearchParams(){
     params.storeId=nui.get("storeId").getValue();
     params.partTypeId=nui.get("partTypeId").value;
     params.sReturnDate=nui.get("sReturnDate").getFormValue();
+    params.billTypeId =nui.get("billTypeId").value;
     if(eReturnDateEl.getValue())  {
     	params.eReturnDate=addDate(eReturnDateEl.getValue(),1);
     }

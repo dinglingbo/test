@@ -48,18 +48,6 @@
       <process:from type="query" pattern="reference">params/guestId</process:from>
       <process:to type="query">cond/_expr[1]/guestId</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">params/tid</process:from>
-      <process:to type="query">cond/_expr[2]/id</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">cond/_expr[1]/_op</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">cond/_expr[2]/_op</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="189" y="186"/>

@@ -18,7 +18,7 @@
     		insure_due_date insureDueDate, annual_verification_due_date annualVerificationDueDate, 
     		longitude, latitude, driving_licence_due_date drivingLicenceDueDate, 
     		visit_man_id visitManId, visit_status visitStatus, prior_scout_date priorScoutDate, 
-    		next_scout_date nextScoutDate, is_continue_scout isContinueScout, 
+    		next_scout_date nextScoutDate, is_continue_scout isContinueScout, remark,
     		first_scout_date firstScoutDate, is_black isBlack, status, recorder, 
     		record_date recordDate, modifier, modify_date modifyDate,
     		id_card_number idCardNumber,car_model_text carModelText

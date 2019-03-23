@@ -340,6 +340,7 @@ where c.orgid = #orgid#
                 <isNotEmpty prepend="and" property="endDate">
                 a.annual_inspection_date &lt;= #endDate#
             </isNotEmpty>
+            
         </isEqual>
 
         <!-- 交强险 -->
@@ -448,6 +449,7 @@ where c.orgid = #orgid#
             <isNotEmpty prepend="and" property="endDate">
                 a.care_due_date &lt;= #endDate#
             </isNotEmpty>
+            order by careDueDate desc
         </isEqual>
 
                         <!-- 驾照年审 -->

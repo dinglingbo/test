@@ -9,7 +9,7 @@
 -->
 <head>
     <title>维修出库明细</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.1.1"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.1.4"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -103,6 +103,20 @@
        nullItemText="请选择..."
        onvaluechanged="onSearch"
        />
+<!--        0综合，1检查，2洗美，3销售，4理赔，5退货，6波箱 -->
+       <input class="nui-combobox" 
+          id="billTypeId" 
+          name="billTypeId"
+          textField="name"
+          valueField="id"
+          dataField="billTypeIdList"
+          emptyText="工单类型"
+          url=""
+          allowInput="true"
+          valueFromSelect="false"
+          width="100px"
+          onvaluechanged="onSearch"
+          >
       <input class="nui-textbox" width="80px" id="carNo" name="carNo" selectOnFocus="true" enabled="true" emptyText="车牌号"/>
   出库日期 从:
      <input class="nui-datepicker"width="100px" id="sPickDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />

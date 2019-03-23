@@ -37,7 +37,7 @@ pageEncoding="UTF-8" session="false" %>
             color: red;
         }
          a.optbtn {
-        width: 60px; 
+        width: 52px; 
         height: 20px; 
         border: 1px #d2d2d2 solid;
         background: #f2f6f9;
@@ -328,6 +328,7 @@ function save(){
     }
 
 }
+
 
         function onCancel() {
             CloseWindow("cancel");

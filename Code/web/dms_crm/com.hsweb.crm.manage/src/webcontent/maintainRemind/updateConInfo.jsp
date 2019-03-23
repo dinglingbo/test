@@ -38,12 +38,13 @@ pageEncoding="UTF-8" session="false" %>
         }
          a.optbtn {
         width: 60px; 
-        height: 20px; 
-        border: 1px #d2d2d2 solid;
+        height: 24px; 
+        border: 1px #aed0ea solid;
         background: #f2f6f9;
         text-align: center;
         display: inline-block;    
         /* line-height: 26px; */
+        position: absolute;
         margin: 0 4px;
         color: #000000;
         text-decoration: none;
@@ -159,7 +160,7 @@ pageEncoding="UTF-8" session="false" %>
                         </td>
                         <td nowrap="nowrap">
                            <input class="nui-textbox" name="wechatServiceId" width="80%" id="wechatServiceId" />
-                            <a class="optbtn" href="javascript:void()" onclick="wechatBin()">绑定</a>
+                            <a class="optbtn" href="javascript:void()" onclick="wechatBin()"><span style="line-height: 23px;">绑定</span></a>
                         </td>
                         <td class="form_label" colspan="1">
                            <label>微信ID：</label>
@@ -185,6 +186,7 @@ pageEncoding="UTF-8" session="false" %>
         var contactorUrl = baseUrl + "com.hsapi.repair.repairService.crud.getContactorById.biz.ext";
         // var saveUrl = baseUrl + "com.hsapi.repair.repairService.threeDC.saveContactor.biz.ext";
         var saveUrl = baseUrl + "com.hsapi.repair.repairService.threeDC.saveContactData.biz.ext";
+        var saveOpenIdUrl = baseUrl + "com.hsapi.repair.repairService.svr.saveWechatOpenId.biz.ext";
 
         var mainData = {};
         var contactInfoForm = new nui.Form("#contactInfoForm");
@@ -274,6 +276,62 @@ function addContactList(){
     });
     }
 
+}
+
+
+
+function wechatBin(){
+	var data = contactInfoForm.getData();
+	if(data.wechatOpenId){
+		showMsg("此联系人已绑定!","W");
+		return 0;
+	}
+	var wechatServiceId = nui.get("wechatServiceId").value;
+	if(!wechatServiceId){
+		 showMsg("请输入服务号!","W");
+		 return; 
+	 }
+	var wechatUser = {};
+	 wechatUser.userPhone = data.mobile;
+	 wechatUser.userMarke = wechatServiceId;
+	 wechatUser.contactorId = data.id;
+	 wechatUser.guestId = data.guestId;
+	 var json = nui.encode({
+		 carNo:"",
+		 wechatUser:wechatUser,
+		 token:token
+	  });
+	 nui.ajax({
+	 		url : saveOpenIdUrl,
+	 		type : 'POST',
+	 		data : json,
+	 		cache : false,
+	 		contentType : 'text/json',
+	 		success : function(text) {
+	 			if(text.errCode=="S"){
+	 				var params = {};
+	 				params.guestId = guestId;
+	 				contactorGrid.load({
+	 				     token:token,
+	 				     params:params
+	 				  },function(){
+	 					 var row = contactorGrid.findRow(function(row){
+	 						 if(!row.wechatOpenId){
+	 							 contactorGrid.beginEditRow(row);
+	 						 }
+	 						 
+	 				     });
+	 				 });
+	 			result.success = 1;
+	 			showMsg(text.errMsg || "绑定成功!","S");
+	 			return;
+	 			}else{
+	 				showMsg(text.errMsg,"E");
+	 				return;
+	 			}
+	 			
+	 		}
+	});
 }
 
 

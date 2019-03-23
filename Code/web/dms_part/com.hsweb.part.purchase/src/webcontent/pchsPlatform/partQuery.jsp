@@ -11,7 +11,7 @@
 <title>配件查询</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script
-	src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.33"></script>
+	src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.38"></script>
 <style type="text/css">
 		.table-label {
 			text-align: right;
@@ -62,7 +62,7 @@
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 <!--                     <a  class="nui-button" id="signBtn" onclick="platformSignIn" text="配件采购平台注册"  style="float:right; "></a> -->
                     <input class="nui-hidden" width="180" id="protoken" name="protoken"/>
-                    <span id="useMoney" align="right">平台额度</span>
+                    <span id="useMoney" align="right">平台额度:<span id="money"></span></span>
 <!-- 					<a class="nui-button" iconCls="" plain="true" onclick="getToken()"><span class=""></span>&nbsp;获取token</a> -->
                 </td>
             </tr>

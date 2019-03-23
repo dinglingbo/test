@@ -57,7 +57,7 @@ pageEncoding="UTF-8" session="false" %>
             </td>
             <td style="width: 90px;" class="tbText">下次保养日期：</td>
             <td style="width: 135px;">
-                <input id="careDueDate" name="careDueDate" class=" nui-datepicker textboxWidth" format="yyyy-MM-dd HH:mm" timeFormat="HH:mm" showTime="true">
+                <input id="careDueDate" name="careDueDate" class=" nui-datepicker textboxWidth" format="yyyy-MM-dd "  showTime="true">
             </td>
             <td style="width: 70px;" class="tbText">保养周期：</td>
             <td style="width: 100px;">

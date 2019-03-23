@@ -279,7 +279,7 @@ table {
                                     <label>是否禁用：</label>
                                 </td>
                                 <td>
-                                    <input type="checkbox" id="isDisabled" class="mini-checkbox"  onclick="changed()" >
+                                    <input type="checkbox" id="isDisabled" class="mini-checkbox"  trueValue="1" falseValue="0" >
                                 </td>
                               <!--   <td class="form_label" >
                                     <label>公司内部车：</label>

@@ -60,6 +60,7 @@
         <result column="guestShortName" javaType="string" property="guestShortName"/>
         <result column="srmGuestId" javaType="string" property="srmGuestId"/>
         <result column="versionNo" javaType="java.sql.Timestamp" property="versionNo"/>
+        <result column="orderCode" javaType="string" property="orderCode"/>
     </resultMap>
     <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
     <select id="queryPjPchsOrderMainList" parameterClass="java.util.HashMap" resultMap="pjPchsOrderMainList">
@@ -114,7 +115,8 @@
             M.guestFullName,
             M.guestShortName,
             M.srmGuestId,
-            M.versionNo
+            M.versionNo,
+            M.orderCode
         FROM (
             SELECT DISTINCT
                 A.ID as id,
@@ -166,7 +168,8 @@
                 B.SHORT_NAME AS guestShortName,
                 b.srm_guest_id as srmGuestId,
                 a.version_no as versionNo,
-                c.order_price as orderPrice
+                c.order_price as orderPrice,
+                A.order_code as orderCode
                 FROM
                 Wb_PART.PJ_PCHS_ORDER_MAIN A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
@@ -299,7 +302,8 @@
                 B.SHORT_NAME AS guestShortName,
                 b.srm_guest_id as srmGuestId,
                 a.version_no as versionNo,
-                c.order_price as orderPrice
+                c.order_price as orderPrice,
+                A.order_code as orderCode
                 FROM
                 Wb_PART.PJ_PCHS_ORDER_MAIN_CHK A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
@@ -1421,7 +1425,8 @@
                 a.is_diff_order as isDiffOrder,
                <!-- c.store_id as storeId,-->
                 c.order_price as orderPrice,
-                c.store_shelf as storeShelf
+                c.store_shelf as storeShelf,
+                a.order_code as orderCode
                 FROM
                 Wb_PART.PJ_PCHS_ORDER_MAIN A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
@@ -1566,7 +1571,8 @@
                 a.is_diff_order as isDiffOrder,
                <!-- c.store_id as storeId,-->
  				c.order_price as orderPrice,
- 				c.store_shelf as storeShelf
+ 				c.store_shelf as storeShelf,
+ 				a.order_code as orderCode
                 FROM
                 Wb_PART.PJ_PCHS_ORDER_MAIN_chk A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID

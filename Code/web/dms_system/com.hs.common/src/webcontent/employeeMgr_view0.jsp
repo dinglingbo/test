@@ -12,7 +12,7 @@
 <head>
     <title>员工管理</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />	
-    <script src="<%=webPath + contextPath%>/common/js/employeeQuery.js?v=2.1.8" type="text/javascript"></script>    
+    <script src="<%=webPath + contextPath%>/common/js/employeeQuery.js?v=2.1.10" type="text/javascript"></script>    
 </head>
 <body>
 	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">

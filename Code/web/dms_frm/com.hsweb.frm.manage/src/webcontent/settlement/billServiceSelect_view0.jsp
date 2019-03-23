@@ -8,7 +8,7 @@
 -->
 <head>
 <title>业务单选择</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/billServiceSelect.js?v=1.0.5"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/billServiceSelect.js?v=1.0.7"></script>
 <style type="text/css">
 .title {
   width: 60px;

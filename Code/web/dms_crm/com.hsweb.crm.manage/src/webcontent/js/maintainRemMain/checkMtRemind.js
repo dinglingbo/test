@@ -3,7 +3,7 @@ var visitModeList=null;
 var visitModeHash={};
 var mainGrid=null;
 var baseUrl=apiPath + repairApi+"/";
-var mainGridUrl= baseUrl +"com.hsapi.repair.baseData.query.queryCareRecord.biz.ext";
+var mainGridUrl= apiPath + crmApi+ "/com.hsapi.crm.svr.visit.queryCrmVisitRecordSql.biz.ext";
 $(document).ready(function(){
 	mainGrid=nui.get('mainGrid');
 	mainGrid.setUrl(mainGridUrl);
@@ -57,5 +57,5 @@ function SetData(params) {
 }
 
 function doSearch(params){
-	mainGrid.load({params: params ,token :token});
+	mainGrid.load({params: params,token :token});
 }

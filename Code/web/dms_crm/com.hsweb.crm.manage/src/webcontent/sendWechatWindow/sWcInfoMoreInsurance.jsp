@@ -177,11 +177,16 @@
                 var temp = {};
                 temp.first = data.firstContent.toString().replace(/【车主姓名】/g,mainDatas[i].guestName);
                 temp.keyword1 =  (mainDatas[i].insureDueDate == null?'':nui.formatDate (new Date(mainDatas[i].insureDueDate),'yyyy-MM-dd HH:mm'));
-                temp.keyword3 =  (mainDatas[i].annualInspectionDate == null?'':nui.formatDate (new Date(mainDatas[i].annualInspectionDate),'yyyy-MM-dd HH:mm'));
+                temp.keyword2 =  (mainDatas[i].annualInspectionDate == null?'':nui.formatDate (new Date(mainDatas[i].annualInspectionDate),'yyyy-MM-dd HH:mm'));
                 temp.remark =  data.endContent.toString().replace(/【车主姓名】/g,mainDatas[i].guestName);
                 temp.openid = mainDatas[i].wechatOpenId;
                 dataList.push(temp);
             }
+            nui.mask({
+            el : document.body,
+            cls : 'mini-mask-loading',
+            html : '发送中...'
+        });
             nui.ajax({
                 url:turl,
                 type:"post",
@@ -192,6 +197,7 @@
                     token:token
                 },
                 success:function (res) {
+                    nui.unmask(document.body);
                     // saveRecord(mainData);
                 }
             })

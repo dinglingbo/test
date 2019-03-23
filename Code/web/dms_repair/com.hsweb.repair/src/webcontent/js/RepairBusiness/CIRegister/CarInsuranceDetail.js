@@ -562,6 +562,10 @@ function saveData(e){
     	delete data.recordDate;
     }*/
 //    var data2 = getData2();
+    if(data.recordDate){
+    	data.recordDate = format(data.recordDate, 'yyyy-MM-dd HH:mm:ss');
+
+    }
     var gridData = detailGrid.getData();
 
     nui.ajax({

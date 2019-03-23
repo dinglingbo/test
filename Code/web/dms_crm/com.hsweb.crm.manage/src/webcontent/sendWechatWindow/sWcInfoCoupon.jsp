@@ -36,14 +36,13 @@
                         <td style="font-size: 9pt;display: flex;">
                             <label class="labeltext" >卡劵标题： </label>
                             <input id="couponTitle" name="couponTitle" class="nui-textbox inputLeft"  style="margin-right: 30px;"/>&nbsp;&nbsp;
-               
                             <a class="nui-button" onclick="search()" plain="true" ><span class="fa fa-search fa-lg"></span>&nbsp;查询</a> 
                             <a class="nui-button" onclick="reset()" plain="true" ><span class="fa fa-refresh fa-lg"></span>&nbsp;重置</a>
                             <span class="separator"></span>
                             <a class="nui-button" onclick="add()" plain="true" ><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                             <a class="nui-button" onclick="edit()" plain="true" ><span class="fa fa-edit fa-lg"></span>&nbsp;编辑</a>
                             <a class="nui-button" onclick="deleteCoupon()" plain="true" ><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
-                            <a class="nui-button" onclick="" plain="true"><span class="fa fa-toggle-right fa-lg"></span>&nbsp;推送</a>
+                            <a class="nui-button" onclick="pushCoupon()" plain="true"><span class="fa fa-toggle-right fa-lg"></span>&nbsp;推送</a>
                         </td>
                     </tr>
                 </table>
@@ -51,7 +50,7 @@
             
       <div class="nui-fit">
                 <div id="cardCouponData" class="nui-datagrid" style="height:100%;" allowResize="true"
-                    dataField="wxbCouponData" pageSize="12" showPageInfo="true" allowCellSelect="false" multiSelect="false">
+                    dataField="wxbCouponData" pageSize="12" showPageInfo="true" allowCellSelect="false" multiSelect="true">
                     <div property="columns">
                         <div type="checkcolumn" width="50" >选择</div>
                         <div field="couponTitle" headerAlign="center" align="center"  >卡劵标题</div>
@@ -69,10 +68,12 @@
 
     <script type="text/javascript">
         nui.parse();
+        var pushUrl = apiPath+wechatApi+ '/com.hsapi.wechat.autoServiceBackstage.weChatCardCoupon.pushCardCoupon.biz.ext'
   
         var pathapi=apiPath+wechatApi;
     	var pathweb=webPath+wechatDomain;
     	var cardCouponData = nui.get("cardCouponData");
+        var mainList = [];
     	
     	$(function(){
     		cardCouponData.setUrl(pathapi+"/com.hsapi.wechat.autoServiceBackstage.weChatCardCoupon.queryCardCoupon.biz.ext");
@@ -89,6 +90,10 @@
 			return e.value == 1 ?  "通用劵" : "专属劵" ;
 		}
 		
+      function setData(rows) {
+        mainList = rows;
+      }
+        
 		//新增
 		function add() {
 			nui.open({
@@ -186,6 +191,52 @@
     		var form = new nui.Form("#form1");
 			form.reset();
     	}
+
+        function pushCoupon() {
+            var rows = cardCouponData.getSelecteds();
+            if(rows.length < 1){
+                showMsg("请选择优惠券",'W');
+                return;
+            }
+            nui.mask({
+            el : document.body,
+            cls : 'mini-mask-loading',
+            html : '发送中...'
+        });
+            nui.ajax({
+                url:pushUrl,
+                type:"post",
+                data:{
+                    userDataArray:mainList,
+                    couponDataArray:rows
+                },
+                success:function(res){
+                    nui.unmask(document.body);
+                    if(res.errCode =='S'){
+                        showMsg("发送成功","S");
+                    }else{
+                        showMsg("发送失败","E");
+                    }
+                    onClose();
+                }
+            })
+        }
+
+        function onClose() {
+            window.CloseOwnerWindow();
+        }
+
+        function CloseWindow(action) {
+            if (action == "close") {
+
+            } else if (window.CloseOwnerWindow)
+                return window.CloseOwnerWindow(action);
+            else
+                return window.close();
+        }
+
+ 
+
     	
     </script>
 </body>

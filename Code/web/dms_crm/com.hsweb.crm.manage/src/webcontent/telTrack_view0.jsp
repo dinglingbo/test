@@ -16,7 +16,9 @@
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 </head>
 <body>
-
+        <input name="visitMode" id="visitMode" class="nui-combobox "textField="name" valueField="customid" visible="false"/>
+    <div class="mini-splitter" vertical="true" style="width:100%;height:100%;">
+        <div size="70%" showCollapseButton="true">
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;" id="queryForm">
     <table style="width:100%;">
         <tr>
@@ -167,5 +169,23 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div >
+        <div class="nui-fit">
+            <div id="visitHis" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
+                multiSelect="false" pageSize="20" showPageInfo="true" selectOnLoad="true"  onDrawCell="" onselectionchanged=""
+                allowSortColumn="false" totalField='page.count' allowCellWrap="true">
+                <div property="columns">
+                    <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
+                    <div field="serviceType" headerAlign="center" allowSort="true" width="100px">回访类型</div>
+                    <div field="visitMode" headerAlign="center" allowSort="true" width="100px">回访方式</div>
+                    <div field="visitContent" headerAlign="center" allowSort="true" width="200px">回访内容</div>
+                    <div field="visitMan" headerAlign="center" allowSort="true" width="100px">回访员</div>
+                    <div field="visitDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" width="100px">回访日期</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

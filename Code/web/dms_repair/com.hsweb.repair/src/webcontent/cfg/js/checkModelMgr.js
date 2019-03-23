@@ -16,6 +16,8 @@ var typeHash = {};
 var statusList = [{id:"2",name:"全部"},{id:"0",name:"启用"},{id:"1",name:"禁用"}];
 var statusHash = {"0":"启用","1":"禁用"};
 var dataList = [{id:"0",name:"启用"},{id:"1",name:"禁用"}];
+var stList = [{id:"0",name:"否"},{id:"1",name:"是"}];
+var stHash = {"0":"否","1":"是"};
 $(document).ready(function(v)
 {
 	leftGrid = nui.get("leftGrid");
@@ -39,6 +41,12 @@ $(document).ready(function(v)
                 if(statusHash && statusHash[e.value])
                 {
                     e.cellHtml = statusHash[e.value];
+                }
+                break;
+            case "isShare":
+                if(stHash && stHash[e.value])
+                {
+                    e.cellHtml = stHash[e.value];
                 }
                 break;
             default:
@@ -106,6 +114,7 @@ $(document).ready(function(v)
     
         contentGrid.load({
             checkId:checkId,
+            fromDb:true,
             token: token
         });
     });
@@ -126,6 +135,11 @@ $(document).ready(function(v)
         }
 
     }
+    
+    if(currIsMaster == "1") {
+    	leftGrid.showColumn("isShare");
+    }
+    
     onSearch();
 });
 function getSearchParam(){
@@ -148,6 +162,7 @@ function doSearch(params)
 {
     leftGrid.load({
         params:params,
+        fromDb:true,
         token:token
     });
 }
@@ -224,6 +239,7 @@ function checkLeftGrid(){
 function loadCheckDetail(mainId){
     rightGrid.load({
         mainId:mainId,
+        fromDb:true,
         token:token
     });
 }

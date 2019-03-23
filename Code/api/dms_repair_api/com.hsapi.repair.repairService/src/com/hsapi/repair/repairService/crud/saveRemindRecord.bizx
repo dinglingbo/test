@@ -202,18 +202,6 @@
     <location x="312" y="195"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">rpbCarExp/isNeedRemind</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
-      <process:to type="query">rpbCarExp/remindStatus</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">params/carId</process:from>
-      <process:to type="query">rpbCarExp/carId</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="310" y="231"/>
@@ -320,18 +308,6 @@
     <location x="390" y="195"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">params/carId</process:from>
-      <process:to type="query">rpbCarExp/carId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">rpbCarExp/isAnnualRemind</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
-      <process:to type="query">rpbCarExp/annualStatus</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
     <location x="388" y="231"/>
@@ -348,18 +324,6 @@
     <location x="525" y="195"/>
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">params/guestId</process:from>
-      <process:to type="query">rpbCon/id</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">rpbCon/isLicenseRemind</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
-      <process:to type="query">rpbCon/licenseStatus</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
     <location x="523" y="231"/>
@@ -375,18 +339,6 @@
     <location x="588" y="195"/>
     <size height="28" width="28"/>
     <nodeLabel>assign7label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">params/carId</process:from>
-      <process:to type="query">rpbCarExp/carId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">rpbCarExp/isVeriRemind</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
-      <process:to type="query">rpbCarExp/veriStatus</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
     <location x="586" y="231"/>
@@ -402,18 +354,6 @@
     <location x="456" y="195"/>
     <size height="28" width="28"/>
     <nodeLabel>assign8label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">params/carId</process:from>
-      <process:to type="query">rpbCarExp/carId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">rpbCarExp/isInsureRemind</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
-      <process:to type="query">rpbCarExp/insureStatus</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
     <location x="454" y="231"/>
@@ -429,18 +369,6 @@
     <location x="675" y="195"/>
     <size height="28" width="28"/>
     <nodeLabel>assign9label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">params/guestId</process:from>
-      <process:to type="query">rpbCon/id</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">rpbCon/isBirRemind</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
-      <process:to type="query">rpbCon/birStatus</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
     <location x="673" y="231"/>
@@ -533,8 +461,8 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-01-14 09:33:53" date="2019-01-14Z" description="" name="saveVisitRecord" version="7.0.0.0"/>
   <process:variables>
-    <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="rpbCarExp"/>
-    <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="rpbCon"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="rpbCarExp"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="rpbCon"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.crm.CrmVisitRecord" name="params"/>

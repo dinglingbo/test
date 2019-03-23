@@ -204,4 +204,53 @@
 			modify_date DESC
 	</select>
 	
+	
+	<!--查车模板缓存数据-->
+	<select id="queryOrgCheckMain" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT id, tenant_id as tenantId, orgid as orgid, name as name, 
+		       is_disabled as isDisabled, is_share as isShare
+		from rpb_check_main
+		where is_disabled = 0 and (orgid = #orgid# or (tenant_id = #tenantId# and is_share = 1) )
+	</select>
+	
+	<select id="queryCheckDetailById" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id as id,
+			a.tenant_id as tenantId,
+			a.orgid as orgid,
+			a.main_id as mainId,
+			a.check_code as checkCode,
+			a.check_name as checkName,
+			a.check_type as checkType,
+			a.item_name_id as itemNameId,
+			a.item_name as itemName,
+			a.part_name_id as partNameId,
+			a.part_name as partName,
+			a.order_index as orderIndex,
+			a.is_disabled as isDisabled,
+			a.remark as remark,
+			a.recorder as recorder,
+			a.record_date as recordDate,
+			a.modifier as modifier,
+			a.modify_date as modifyDate
+		FROM
+			rpb_check_detail AS a
+		where 1 = 1 and a.main_id = #mainId# and a.is_disabled = 0
+			order by a.order_index asc 
+
+	</select>
+	
+	<select id="queryCheckDetailContentById" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id as id,
+			a.check_detail_id as checkDetailId,
+			a.content as content,
+			a.is_disabled as isDisalbed
+		FROM
+			rpb_check_item_content AS a
+		where a.check_detail_id = #checkDetailId#
+		      and a.is_disabled = 0
+
+	</select>
+	
 </sqlMap>

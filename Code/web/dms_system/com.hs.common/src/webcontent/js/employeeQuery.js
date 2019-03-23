@@ -27,9 +27,6 @@ $(document).ready(function(v) {
     btnisOpenAccount = nui.get("btnisOpenAccount");
 	grid.setUrl(gridUrl);
 	orgidsEl = nui.get("orgids");
-	
-	
-	
     if(currIsMaster==0){
     	orgidsEl.hide();
     }else{
@@ -76,8 +73,10 @@ function getCompany(){
         cache: false,
         success: function (data) {
             if (data.errCode == "S"){
+            	orgidsEl = nui.get("orgids");
                 orgidsEl.setData(data.companyList);
             }else {
+            	orgidsEl = nui.get("orgids");
                 orgidsEl.setData([]);
             }
         },

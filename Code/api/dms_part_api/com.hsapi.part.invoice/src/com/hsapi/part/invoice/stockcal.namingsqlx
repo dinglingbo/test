@@ -494,8 +494,34 @@
 		FROM pj_enter_detail_chk a 
 		inner  JOIN pj_enter_main_chk b 
 			ON a.main_id = b.id
+		left join (
+			SELECT a.source_id, a.sell_qty
+			from wb_part.pj_out_detail_chk a
+			inner join wb_part.pj_out_main_chk b
+			on a.main_id = b.id
+			where b.audit_sign = 0 
+			
+			<isNotNull prepend = "" property = "orgid">
+	  		
+	  		        AND b.orgid = #orgid# 
+					
+			 </isNotNull>
+			 
+			 <isNotNull prepend = "" property = "storeId">
+	  		
+	  		        AND a.store_id = #storeId# 
+					
+			 </isNotNull>
+			 
+			 <isNotNull prepend = "" property = "partId">
+	  		
+	  		        AND a.part_id = #partId# 
+					
+			 </isNotNull>
+		) c
+		on a.id = c.source_id
 		WHERE 1 = 1 AND b.audit_sign = 1 
-		      AND a.outable_qty > 0
+		      AND (a.outable_qty - ifnull(c.sell_qty,0)) > 0
 		
 		 	 <isNotNull prepend = "" property = "orgid">
 	  		

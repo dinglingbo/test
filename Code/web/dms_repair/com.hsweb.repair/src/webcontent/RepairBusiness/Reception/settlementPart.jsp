@@ -378,7 +378,7 @@
                                                              
                     </div> -->
                        套餐：<span id="prdt">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;工时：<span id="item">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0.00</span>
-               &nbsp;&nbsp;&nbsp;&nbsp;其他费用：<span id="expense">0.00</span>
+               &nbsp;&nbsp;&nbsp;&nbsp;其他费用：<span id="expense">0.00</span>&nbsp;&nbsp;&nbsp;&nbsp;其他优惠：<span id="expRateAmt">0.00</span>
                 </td>
              </tr>
              <tr>
@@ -439,7 +439,7 @@
 		var url_one = null;
 		var url_two = null;
 		var url_three = null;
-		var data = [];
+		//var data = [];
 		var phones = "";
 		var itemAmt = 0;
 		var itemSubtotal = 0;
@@ -573,14 +573,14 @@
 	        		var guestFullName = list.guestFullName || "";
 	        		var guestMobile = list.guestMobile || "";
 	        		var enterOilMass = list.enterOilMass || "0";
-	        		var name = "0";
+	        		/* var name = "0";
 	        		//查找油量http://127.0.0.1:8080/default/
 	        		for(var i = 0;i<data.length;i++){
 	        		        if(data[i].customid == enterOilMass){
 	        		           name = data[i].name;
 	        		           break;
 	        		        }
-	        		}
+	        		} */
 	        		var enterKilometers = list.enterKilometers || "0";
 	        		var mtAdvisor = list.mtAdvisor || "";
 	        		var planFinishDate = list.planFinishDate || "";
@@ -614,7 +614,7 @@
 	        		document.getElementById("enterDate").innerHTML = enterDate;
 	        		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
 	        		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
-	        		document.getElementById("enterOilMass").innerHTML = document.getElementById("enterOilMass").innerHTML + name;
+	        		document.getElementById("enterOilMass").innerHTML = document.getElementById("enterOilMass").innerHTML + enterOilMass;
 	        		document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + mtAdvisor;
 	        		document.getElementById("guestDesc").innerHTML = document.getElementById("guestDesc").innerHTML + guestDesc; 
 	        		document.getElementById("carModel").innerHTML = document.getElementById("carModel").innerHTML + carModel; 
@@ -853,11 +853,12 @@
         	$.ajaxSettings.async = false;
         	if(params.name == "结账单"){
 				 $.post(params.baseUrl+"com.hsapi.repair.repairService.query.querySettleAmt.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){
-    				    				if(text.errCode=="S"){ 
-	    				 		document.getElementById("yh").innerHTML = text.data.totalPrefAmt.toFixed(2);
-	    				 		document.getElementById("cash1").innerHTML = text.data.balaAmt.toFixed(2);			
-	    						    		var money = transform(text.data.balaAmt+"");
-											document.getElementById("money").innerHTML = money;
+    				    if(text.errCode=="S"){ 
+	    				 	document.getElementById("yh").innerHTML = text.data.totalPrefAmt.toFixed(2);
+	    				 	document.getElementById("cash1").innerHTML = text.data.balaAmt.toFixed(2);
+	    				 	document.getElementById("expRateAmt").innerHTML = text.data.allowanceAmt.toFixed(2);			
+	    					var money = transform(text.data.balaAmt+"");
+							document.getElementById("money").innerHTML = money;
 	    					
 	    				}else{
 	    					nui.alert(text.errMsg,"提示");

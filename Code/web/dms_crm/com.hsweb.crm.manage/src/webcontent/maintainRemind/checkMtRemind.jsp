@@ -13,7 +13,7 @@ pageEncoding="UTF-8" session="false" %>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="/default/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%=crmDomain%>/manage/js/maintainRemMain/checkMtRemind.js?v=1.0" type="text/javascript"></script> 
+    <script src="<%= request.getContextPath() %>/manage/js/maintainRemMain/checkMtRemind.js?v=1.1" type="text/javascript"></script> 
         <style type="text/css">
   	    body {
         margin: 0; 
@@ -36,8 +36,8 @@ pageEncoding="UTF-8" session="false" %>
             <div property="columns">
             		<div type="indexcolumn" width="30">序号</div>
                 	<div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌"></div>
-	                <div field="guestName" name="guestName" width="55" headerAlign="center" header="客户姓名"></div>
-	                <div field="mobile" name="mobile" width="100" headerAlign="center" header="客户手机"></div>
+	                <!-- <div field="guestName" name="guestName" width="55" headerAlign="center" header="客户姓名"></div>
+	                <div field="mobile" name="mobile" width="100" headerAlign="center" header="客户手机"></div> -->
                   	<div field="visitMan" name="visitMan" width="70" headerAlign="center" header="提醒人"></div>
 	                <div field="visitMode" name="visitMode" width="60" headerAlign="center" header="提醒方式"></div>
                     <div field="visitDate" name="visitDate" width="110" headerAlign="center" header="提醒日期" dateFormat="yyyy-MM-dd HH:mm"></div>

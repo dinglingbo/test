@@ -106,7 +106,7 @@
                   <div field="serviceCode" name="serviceCode" width="170px" headerAlign="center" header="工单号"></div>
                   <div field="carNo" name="carNo" width="80px" headerAlign="center" header="车牌号"></div>
                   <div field="insureClaimCompName" name="insureClaimCompName" width="110px" headerAlign="center"  header="保险公司"></div>
-                  <div field="recordDate" name="recordDate" width="120px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="进厂时间"></div>
+                  <div field="enterDate" name="enterDate" width="120px" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="进厂时间"></div>
                   <div field="serviceTypeName" name="serviceTypeName" width="160px" headerAlign="center" header="业务类型"></div>
                   <div field="carModel" name="carModel" width="100px" headerAlign="center"  header="品牌车型"></div>
                   <div field="carVin" name="carVin" width="140px" headerAlign="center" header="车架号(VIN)"></div>
@@ -114,7 +114,7 @@
                   <div field="contactMobile" name="contactMobile" width="100px" headerAlign="center" header="联系人手机"></div>
                   <div field="mtAdvisor" name="mtAdvisor" width="90px" headerAlign="center" header="服务顾问"></div>
                   <div field="balaAuditSign" name="balaAuditSign" width="90px" headerAlign="center" header="结算状态"></div>
-                  <div field="planFinishDate" name="planFinishDate" width="120px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="预计交车时间"></div>
+                  <div field="planFinishDate" name="planFinishDate" width="120px" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="预计交车时间"></div>
               </div>
           </div>
     </div>

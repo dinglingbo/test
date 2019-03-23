@@ -1041,7 +1041,7 @@
 			INNER JOIN rpb_contactor e on e.id = d.contactor_id
 			WHERE 1=1
 			<isNotEmpty prepend="and" property="orgid">
-  				 b.orgid = #orgid#
+  				 a.last_orgid = #orgid#
             </isNotEmpty>
             <isNotEmpty prepend="and" property="carNo">
   				b.car_no = #carNo#

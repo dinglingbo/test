@@ -566,16 +566,17 @@ function quickSearch(type,gridType) {
     }
     switch (gridType) {
         case 'bytx'://保养提醒
-        var menunamedate0 = nui.get("menunamedate0");
-        var startDateEl0 = nui.get("startDate0");
-        var endDateEl0 = nui.get("endDate0");
-        startDateEl0.setValue(params.startDate);
-        endDateEl0.setValue(addDate(params.endDate, -1));
-        menunamedate0.setText(queryname);
-        params.isNeedRemind = 1;
-        params.remindStatus = 0;
-        params.dateType = gridType;
-        business.load({params:params});
+            var menunamedate0 = nui.get("menunamedate0");
+            var startDateEl0 = nui.get("startDate0");
+            var endDateEl0 = nui.get("endDate0");
+            startDateEl0.setValue(params.startDate);
+            endDateEl0.setValue(addDate(params.endDate, -1));
+            menunamedate0.setText(queryname);
+            params.isNeedRemind = 1;
+            params.remindStatus = 0;
+            params.dateType = gridType;
+            params.endDate = addDate(params.endDate, -1);
+            reminding.load({params:params});
         break;
         case 'syx'://商业险
             var menunamedate = nui.get("menunamedate");
@@ -587,6 +588,7 @@ function quickSearch(type,gridType) {
             params.isAnnualRemind = 1;
             params.annualStatus = 0;
             params.dateType = gridType;
+            params.endDate = addDate(params.endDate, -1);
             business.load({params:params});
             break;
             case 'jqx'://交强险
@@ -599,6 +601,7 @@ function quickSearch(type,gridType) {
             params.isInsureRemind = 1;
             params.insureStatus = 0;
             params.dateType = gridType;
+            params.endDate = addDate(params.endDate, -1);
             compulsoryInsurance.load({params:params});
             break;
             case 'jzns'://驾照年审
@@ -611,6 +614,7 @@ function quickSearch(type,gridType) {
             params.isLicenseRemind = 1;
             params.licenseStatus = 0;
             params.dateType = gridType;
+            params.endDate = addDate(params.endDate, -1);
             drivingLicense.load({params:params});
             break;
             case 'clnj'://车辆年检 
@@ -622,6 +626,7 @@ function quickSearch(type,gridType) {
             menunamedate4.setText(queryname);
             params.isVeriRemind = 1;
             params.veriStatus = 0;
+            params.endDate = addDate(params.endDate, -1);
             params.dateType = gridType;
             car.load({params:params});
             break;
@@ -686,7 +691,8 @@ function WindowrepairHistory(){
 	var params = {
 		carId : row.carId,
 		carNo : row.carNo,
-		guestId : row.trueGuestId
+        guestId: row.trueGuestId,
+        contactorId:row.contactorId
 	};
 		doShowCarInfo(params);
 }

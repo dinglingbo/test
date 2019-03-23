@@ -1645,11 +1645,11 @@
       <process:partner type="literal">this.updateRpbGuestConsumeAmt</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="guestId" type="query" value="Int" valueType="Primitive" pattern="reference">maintain/guestId</process:inputVariable>
-        <process:inputVariable id="1" name="consumeAmt" type="query" value="Double" valueType="Primitive" pattern="reference">settlement/balaAmt</process:inputVariable>
+        <process:inputVariable id="1" name="consumeAmt" type="query" value="Double" valueType="Primitive" pattern="reference">netinAmt</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1666,6 +1666,7 @@
     <targetConnections>link62</targetConnections>
     <targetConnections>link65</targetConnections>
     <targetConnections>link74</targetConnections>
+    <targetConnections>link105</targetConnections>
     <location x="955" y="375"/>
     <size height="28" width="28"/>
     <nodeLabel>assign24label</nodeLabel>
@@ -2258,7 +2259,7 @@
     <figSize height="17" width="39"/>
     <node>assign35</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign36" name="赋值34" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign36" name="赋值34" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link88" name="link88" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign36</sourceNode>
       <targetNode>assign33</targetNode>
@@ -2514,17 +2515,31 @@
       <sourceNode>subprocess11</sourceNode>
       <targetNode>assign1</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link105" name="link105" displayName="连接线" type="transition">
+      <sourceNode>subprocess11</sourceNode>
+      <targetNode>assign24</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link61</targetConnections>
     <location x="1136" y="206"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess11label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.updateRpbCarLeaveInfo</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="carId" type="query" value="Int" valueType="Primitive" pattern="reference">maintain/carId</process:inputVariable>
+        <process:inputVariable id="1" name="isUpdateDate" type="literal" value="Boolean" valueType="Primitive" pattern="reference">true</process:inputVariable>
+        <process:inputVariable id="2" name="leaveDate" type="query" value="Date" valueType="Primitive" pattern="reference">d</process:inputVariable>
+        <process:inputVariable id="3" name="isUpdateAmt" type="literal" value="Boolean" valueType="Primitive" pattern="reference">true</process:inputVariable>
+        <process:inputVariable id="4" name="cousumeAmt" type="query" value="Double" valueType="Primitive" pattern="reference">netinAmt</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>

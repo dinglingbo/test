@@ -26,6 +26,7 @@ $(document).ready(function(v) {
     btnisDimission = nui.get("btnisDimission");
     btnisOpenAccount = nui.get("btnisOpenAccount");
 	grid.setUrl(gridUrl);
+	orgidsEl = nui.get("orgids");
 	
 	
 	
@@ -75,10 +76,8 @@ function getCompany(){
         cache: false,
         success: function (data) {
             if (data.errCode == "S"){
-            	orgidsEl = nui.get("orgids");
                 orgidsEl.setData(data.companyList);
             }else {
-            	orgidsEl = nui.get("orgids");
                 orgidsEl.setData([]);
             }
         },

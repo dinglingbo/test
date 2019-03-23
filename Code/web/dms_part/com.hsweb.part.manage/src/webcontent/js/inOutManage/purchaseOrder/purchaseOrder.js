@@ -1399,7 +1399,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 //								leftRow.billStatusId=2;
 								loadMainAndDetailInfo(leftRow);
 								$('#bServiceId').text("订单号："+leftRow.serviceId);
-								 pushSupplierOrder();
+								pushSupplierOrder();
 
 							}
 						} else {
@@ -1468,7 +1468,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 //								leftRow.billStatusId=2;
 								loadMainAndDetailInfo(leftRow);
 								$('#bServiceId').text("订单号："+leftRow.serviceId);
-								 pushSupplierOrder();
+								pushSupplierOrder();
 
 							}
 						} else {
@@ -1545,6 +1545,8 @@ function orderEnter(mainId) {
 							leftRow.guestFullName = guestFullName;
 						}
 						loadMainAndDetailInfo(leftRow);
+						//更新电商状态为已收货
+						updateOrderStatus("5");
 						nui.confirm("是否打印？", "友情提示", function(action) {
 							if(action== 'ok'){
 								onPrint();
@@ -2320,15 +2322,15 @@ function setInitData(params){
 
 var pushOrderUrl=baseUrl+"com.hsapi.part.invoice.partInterfaceDs.pushSupplierOrder.biz.ext";
 function pushSupplierOrder(){
-	var payType = '';
+//	var payType = '';
 	var data = basicInfoForm.getData();
 	var settleType = nui.get('settleTypeId').getText();
 	var mem = nui.get('orderMan').getText();
-	if(settleType=='现结'){
-		payType='JS01';
-	}else if(settleType=='月结'){
-		payType ='JS05';
-	}
+//	if(settleType=='现结'){
+//		payType='JS01';
+//	}else if(settleType=='月结'){
+//		payType ='JS05';
+//	}
 	nui.ajax({
         url : pushOrderUrl,
         type : "post",
@@ -2339,7 +2341,39 @@ function pushSupplierOrder(){
         	remark:data.remark,
         	mobile:currEmpTel,
         	storeCode:data.srmGuestId,
+        	orderCode : data.orderCode || "",
         	mainId:data.id
+        }),
+        success : function(data) {
+            nui.unmask(document.body);
+            data = data || {};
+            if (data.errCode == "S") {
+				console.log(data);
+				var data=data.data;
+				var orderCode =data.orderCode
+				nui.get('orderCode').setValue(orderCode);
+                
+            } else {
+            	console.log(data);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+
+var upadteStatusrUrl=baseUrl+"com.hsapi.part.invoice.partInterfaceDs.updateOrderStatus.biz.ext";
+function updateOrderStatus(orderStatus){
+	var data = basicInfoForm.getData();
+
+	nui.ajax({
+        url : upadteStatusrUrl,
+        type : "post",
+        data : JSON.stringify({
+        	orderStatus:orderStatus,
+        	orderCode : data.orderCode 
         }),
         success : function(data) {
             nui.unmask(document.body);

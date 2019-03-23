@@ -203,7 +203,7 @@ table {
                                     <label>年审到期：</label>
                                 </td>
                                 <td>
-                                    <input name="annualVerificationDueDate" allowInput="false" class="nui-datepicker" width="100%"/>
+                                    <input name="annualVerificationDueDate" allowInput="true" class="nui-datepicker" width="100%"/>
                                 </td>
                             </tr>
 
@@ -218,7 +218,7 @@ table {
                                     <label>商业险到期：</label>
                                 </td>
                                 <td>
-                                    <input name="annualInspectionDate" allowInput="false" class="nui-datepicker" width="100%"/>
+                                    <input name="annualInspectionDate" allowInput="true" class="nui-datepicker" width="100%"/>
                                 </td>
                             </tr>
 			                <tr>
@@ -241,7 +241,7 @@ table {
                                     <label>交强险到期：</label>
                                 </td>
                                 <td>
-                                    <input name="insureDueDate" allowInput="false" class="nui-datepicker" width="100%"/>
+                                    <input name="insureDueDate" allowInput="true" class="nui-datepicker" width="100%"/>
                                 </td>
                             </tr>
 			               <tr>
@@ -258,13 +258,13 @@ table {
                                     <label>生产日期：</label>
                                 </td>
                                 <td>
-                                    <input name="produceDate" allowInput="false" class="nui-datepicker" width="100%"/>
+                                    <input name="produceDate" allowInput="true" class="nui-datepicker" width="100%"/>
                                 </td>
                                 <td class="form_label">
                                     <label>上牌日期：</label>
                                 </td>
                                 <td>
-                                    <input name="firstRegDate" allowInput="false" class="nui-datepicker" width="100%"/>
+                                    <input name="firstRegDate" allowInput="true" class="nui-datepicker" width="100%"/>
                                 </td>
                             </tr>
                             <tr>
@@ -273,9 +273,14 @@ table {
                                     <label>发证日期：</label>
                                 </td>
                                 <td>
-                                    <input id="issuingDate" name="issuingDate" allowInput="false" class="nui-datepicker" width="100%"/>
+                                    <input id="issuingDate" name="issuingDate" allowInput="true" class="nui-datepicker" width="100%"/>
                                 </td>
-                                
+                                <td class="form_label">
+                                    <label>是否禁用：</label>
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="isDisabled" class="mini-checkbox"  onclick="changed()" >
+                                </td>
                               <!--   <td class="form_label" >
                                     <label>公司内部车：</label>
                                 </td>
@@ -286,6 +291,14 @@ table {
                                 </td> -->
                                 
                             </tr>
+                             <tr>
+				                <td class="form_label">
+				                    <label>备注：</label>
+				                </td>
+				                <td colspan="3">
+				                    <input class="nui-textbox" name="remark" width="100%" />
+				                </td>
+				            </tr>
                         </table>
                     </div>
                 </div>
@@ -354,13 +367,13 @@ table {
                         <label>初次领证时间：</label>
                     </td>
                     <td>
-                        <input name="licenseRecordDate" allowInput="false" class="nui-datepicker" width="100%" />
+                        <input name="licenseRecordDate" allowInput="true" class="nui-datepicker" width="100%" />
                     </td>
                     <td class="form_label">
                         <label>驾照到期日期：</label>
                     </td>
                     <td>
-                        <input name="licenseOverDate" allowInput="false" class="nui-datepicker" width="100%" />
+                        <input name="licenseOverDate" allowInput="true" class="nui-datepicker" width="100%" />
                     </td>
                 </tr>
                 <tr>
@@ -374,7 +387,7 @@ table {
                         <label>生日：</label>
                     </td>
                     <td>
-                        <input name="birthday" allowInput="false" class="nui-datepicker" width="100%" />
+                        <input name="birthday" allowInput="true" class="nui-datepicker" width="100%" />
                     </td>
                 </tr>
                 <tr>

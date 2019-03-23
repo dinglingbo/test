@@ -48,7 +48,7 @@ import commonj.sdo.DataObject;
 public class PurchaseService {
 	@Bizlet("提交电商采购订单")
 	public static String pushPchsOrderToSRM(String address, String mobile,
-			 String receiver, String account,String storeCode,
+			 String receiver, String account,String storeCode,String orderCode,
 			 String remark,  int mainId, String access_token) {
 		String envType = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", "serverType");
@@ -67,15 +67,20 @@ public class PurchaseService {
 		if(storeCode == null ){
 			storeCode = "";
 		}
+		if(orderCode == null){
+			orderCode = "";
+		}
+		String laneOrderCode = mainId+"";
 		Map main = new HashMap();   
 		main.put("token", access_token);
 		main.put("address", address); //收货地址
-		main.put("orderCode", ""); //订单单号(为空为新增)
+		main.put("orderCode",orderCode); //订单单号(为空为新增,有则修改)
 		main.put("mobile", mobile);
 		main.put("receiver", receiver);  //收货人
 		main.put("account", account);  //车道在电商注册的账号
 		main.put("remark", remark);
 		main.put("storeCode", storeCode);
+		main.put("laneOrderCode", laneOrderCode); //车道的订单主表id
 		
 		/*
 		 *  amout  金额                                                必传
@@ -127,7 +132,7 @@ public class PurchaseService {
 	}
 	
 	@Bizlet("更新电商订单状态")
-	public static String upadateOrderStatus(String access_token,String orderCode,int orderStatus,String remark) {
+	public static String upadateOrderStatus(String access_token,String orderCode,String orderStatus,String remark) {
 		String envType = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", "serverType");
 		String apiurl = Env.getContributionConfig("com.vplus.login",
@@ -140,13 +145,33 @@ public class PurchaseService {
 		main.put("token", access_token); //电商编码
 		main.put("orderCode",orderCode);
 		main.put("orderStatus", orderStatus);
-		main.put("orderStatus", orderStatus);
+		main.put("remark", remark);
 		JSONObject jsonObj = JSONObject.fromObject(main);
 		String json = jsonObj.toString();
 		
 		String msg = sendPostByJson(urlParam, json);
 		return msg;	
 				
+	}
+	
+	@Bizlet("获取电商额度")
+	public static String getDsUserMoney(String access_token,String account) {
+		String envType = Env.getContributionConfig("com.vplus.login",
+				"cfg", "SRMAPI", "serverType");
+		String apiurl = Env.getContributionConfig("com.vplus.login",
+				"cfg", "SRMAPI", envType);
+		String urlParam = apiurl + "/jpWeb/f/api/LaneElectricity/getUserMoney";
+				//apiurl + "srm/router/rest?token="+access_token;
+//		String urlParam = "http://srm.hszb.harsons.cn/srm/router/rest?token="+access_token;
+		Map main = new HashMap();   
+		main.put("token", access_token);
+		main.put("account", account);  
+		
+		JSONObject jsonObj = JSONObject.fromObject(main);
+		String json = jsonObj.toString();
+		
+		String msg = sendPostByJson(urlParam, json);
+		return msg;	
 	}
 	
 	@Bizlet("查询电商配件列表，带库存数量      根据SKU查询库存明细")
@@ -484,17 +509,17 @@ public class PurchaseService {
     	criteria.set("_entity", "com.hsapi.part.data.com.ComAttribute");
     	criteria.set("_expr[1]/srmBrandId", brandId);
     	criteria.set("_expr[1]/_op", "=");
-//    	criteria.set("_expr[2]/srmQualityId", qualityId);
-//    	criteria.set("_expr[2]/_op", "=");
-    	criteria.set("_expr[2]/code", partCode);
+    	criteria.set("_expr[2]/srmPartId", partId);
     	criteria.set("_expr[2]/_op", "=");
+    	criteria.set("_expr[3]/code", partCode);
+    	criteria.set("_expr[3]/_op", "=");
     	DataObject[] result = com.eos.foundation.database.DatabaseUtil
     	.queryEntitiesByCriteriaEntity("common", criteria);
     	
     	if(result.length <= 0) {
     		//如果不存在，后台自动新增，然后返回新增后的结果
     		//com.hsapi.part.invoice.orderSettle.queryPartByPartBrand
-    		if(brandName.equals("原厂品牌")) {
+    		if(brandName.equals("原厂")) {
     			brandName = "原厂";
     		}
     		HashMap params = new HashMap();

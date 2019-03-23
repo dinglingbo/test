@@ -11,7 +11,7 @@
 <title>配件查询</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script
-	src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.28"></script>
+	src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.38"></script>
 <style type="text/css">
 		.table-label {
 			text-align: right;
@@ -60,8 +60,9 @@
                     <span class="separator"></span>
                     
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                    <a  class="nui-button" id="signBtn" onclick="platformSignIn" text="配件采购平台注册"  style="float:right; "></a>
+<!--                     <a  class="nui-button" id="signBtn" onclick="platformSignIn" text="配件采购平台注册"  style="float:right; "></a> -->
                     <input class="nui-hidden" width="180" id="protoken" name="protoken"/>
+                    <span id="useMoney" align="right">平台额度:<span id="money"></span></span>
 <!-- 					<a class="nui-button" iconCls="" plain="true" onclick="getToken()"><span class=""></span>&nbsp;获取token</a> -->
                 </td>
             </tr>
@@ -98,7 +99,8 @@
 	                     totalField="page.count"
 	                     onselectionchanged="onGridSelectionChanged()"
 	                     selectOnLoad="true"
-	                     pageSize="50"
+	                     pageSize="500"
+	                     sizeList="[200,500,1000]"
 	                     pageIndexField="currpage"
 	                     pageSizeField="count"
 	                     sortMode="client"
@@ -145,18 +147,18 @@
 				      	   <div headerAlign="center" type="indexcolumn" width="30">序号</div>
 				           <div field="goodsCode" name="goodsCode" width="80" visible="true" headerAlign="center" header="内码"></div>
 					       <div field="partsCode" headerAlign="partsCode" visible="true" width="80"header="编码"></div>
+					       <div field="partsName" headerAlign="partsName" visible="true" width="80"header="配件名称"></div>
 					       <div field="oemCode" headerAlign="oemCode" visible="true" width="80"header="原厂编码"></div>
-					       <div field="unit" headerAlign="oemCode" visible="true" width="80"header="单位"></div>
+					       <div field="unit" headerAlign="oemCode" visible="true" width="40"header="单位"></div>
 					       <div field="full_name" id="full_name" visible="false" width="260" headerAlign="center" header="全称"></div>
-					       <div field="brandCode" name="brandCode" visible="true" headerAlign="center" header="品牌编码"></div>
-					       <div field="brandName" name="brandName" visible="true"  headerAlign="center" header="品牌"></div>
+					       <div field="brandCode" name="brandCode" visible="false" headerAlign="center" header="品牌编码"></div>
+					       <div field="brandName" name="brandName" visible="true"  width="40" headerAlign="center" header="品牌"></div>
 					       <div field="carName"  width="60" visible="false" headerAlign="center" header="厂牌"></div>
 				           <div field="storeCode"  width="60" visible="false" headerAlign="center" header="配件商编码"></div>
 						   <div field="storeName" width="150" headerAlign="center" allowSort="true" header="配件商"></div>
 					       <div field="qty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center"header="库存" ></div>
 						   <div field="price" width="60" headerAlign="center" allowSort="true" header="销售价"></div>
 					   	   <div field="wareHouseName" id="wareHouseName" width="140" headerAlign="center" header="仓库"></div>
-						   <div field="rangeName" width="80" headerAlign="center" allowSort="true" header="仓库所在地"></div>
 						   <div field="action" width="180" headerAlign="center" allowSort="true" header="操作"></div>
 				      </div>
 				 </div>

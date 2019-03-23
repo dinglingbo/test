@@ -26,6 +26,8 @@ var ePickDateEl=null;
 var servieTypeList = [];
 var servieTypeHash = {};
 var orgidsEl = null;
+var billTypeIdEl=null;
+var billTypeIdList=[{id:"0",name:"综合"},{id:"1",name:"检查"},{id:"2",name:"洗美"},{id:"3",name:"销售"},{id:"4",name:"理赔"},{id:"5",name:"退货"},{id:"6",name:"波箱"}];
 $(document).ready(function(v)
 {
     rightGrid = nui.get("rightGrid");
@@ -44,7 +46,8 @@ $(document).ready(function(v)
     	orgidsEl.setValue(currOrgid);
     }
 
-
+    billTypeIdEl=nui.get('billTypeId');
+    billTypeIdEl.setData(billTypeIdList);
 	document.onkeyup = function(event) {
 		var e = event || window.event;
 		var keyCode = e.keyCode || e.which;// 38向上 40向下
@@ -203,6 +206,7 @@ function getSearchParams(){
     params.sPickDate=nui.get("sPickDate").getFormValue();
     params.carNo = nui.get("carNo").getValue();
     params.serviceTypeId=nui.get("serviceTypeId").value;
+    params.billTypeId =nui.get("billTypeId").value;
     if(eOutDateEl.getValue()){ 	
     	params.ePickDate=addDate(eOutDateEl.getValue(),1);
     }

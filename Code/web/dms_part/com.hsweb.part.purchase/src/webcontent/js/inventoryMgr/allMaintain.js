@@ -34,10 +34,14 @@ var prdtTypeHash = {
 	    "2":"工时",
 	    "3":"配件"
 };
+var auditSignHash = {
+	    "0" : "未审核",
+	    "1" : "已审核"
+	};
 $(document).ready(function ()
 {
-    //beginDateEl = nui.get("sEnterDate");
-	//endDateEl = nui.get("eEnterDate");
+    beginDateEl = nui.get("sEnterDate");
+	endDateEl = nui.get("eEnterDate");
     mainGrid = nui.get("mainGrid");
     mainGrid.setUrl(mainGridUrl);
 
@@ -53,13 +57,16 @@ $(document).ready(function ()
     innerpackGrid.setUrl(getdRpsPackageUrl);
 
     //判断是否有兼职门店,是否显示门店选择框
-    orgidsEl = nui.get("orgids");
+/*    orgidsEl = nui.get("orgids");
     orgidsEl.setData(currOrgList);
     if(currOrgList.length==1){
     	orgidsEl.hide();
     }else{
     	orgidsEl.setValue(currOrgid);
-    }
+    }*/
+    //默认查今天
+    beginDateEl.setValue(getNowStartDate());
+    endDateEl.setValue(getNowEndDate());
     onSearch();   
 	  var filter = new HeaderFilter(mainGrid, {
 	        columns: [
@@ -108,6 +115,10 @@ $(document).ready(function ()
         }else if (e.field == "carBrandId") {
             if (brandHash && brandHash[e.value]) {
                 e.cellHtml = brandHash[e.value].name;
+            }
+        }else if (e.field == "auditSign") {
+            if (auditSignHash && auditSignHash[e.value]) {
+                e.cellHtml = auditSignHash[e.value];
             }
         }else if (e.field == "serviceTypeId") {
             if (servieTypeHash && servieTypeHash[e.value]) {
@@ -251,8 +262,8 @@ var statusHash = {
 
 function clear(){
     advancedSearchForm.setData([]); 
-    //beginDateEl.setValue(getMonthStartDate());
-   // endDateEl.setValue(addDate(getMonthEndDate(), 1));
+    beginDateEl.setValue(getMonthStartDate());
+   endDateEl.setValue(addDate(getMonthEndDate(), 1));
 }
 function onShowRowDetail(e) {
     var row = e.record;
@@ -351,8 +362,8 @@ function onShowRowDetail(e) {
     }
     
     doSearch(params);
-}
-*/
+}*/
+
 
 
 function onSearch()
@@ -370,19 +381,24 @@ function doSearch() {
 }
 function getSearchParam() {
     var params = {};
-    //params.sEnterDate = nui.get("sEnterDate").getValue();
-  //  params.eEnterDate = addDate(endDateEl.getValue(),1);  
+    params.sEnterDate = nui.get("sEnterDate").getValue();
+    params.eEnterDate = addDate(endDateEl.getValue(),1);  
     params.mtAuditorId = mtAdvisorIdEl.getValue();
-    var orgidsElValue = orgidsEl.getValue();
+/*    var orgidsElValue = orgidsEl.getValue();
     if(orgidsElValue==null||orgidsElValue==""){
     	 params.orgids =  currOrgs;
     }else{
     	params.orgid=orgidsElValue;
-    }
+    }*/
     if((nui.get("billTypeId").getValue())!=999){
     	params.billTypeId = nui.get("billTypeId").getValue();
     }
-    
+    if((nui.get("statusId").getValue())!=999){
+    	params.status = nui.get("statusId").getValue();
+    }
+    if((nui.get("auditSign").getValue())!=999){
+    	params.auditSign = nui.get("auditSign").getValue();
+    }  
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){

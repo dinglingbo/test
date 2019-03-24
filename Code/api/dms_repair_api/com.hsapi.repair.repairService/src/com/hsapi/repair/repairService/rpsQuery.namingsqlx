@@ -1142,6 +1142,7 @@
 			d.gross_profit_remark AS grossProfitRemark,
 			d.netin_amt AS netinAmt,
 			d.total_pref_rate AS totalPrefRate,
+			e.audit_sign as auditSign,
 			a.engine_model as engineModel,
 			a.engine_no as boxNo,
 			a.engine_model as boxModel,
@@ -1154,6 +1155,7 @@
 			inner JOIN rpb_car b ON ( a.car_id = b.id )
 		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
 			inner join rps_settlement d on (a.id =  d.service_id)
+			inner JOIN wb_frm.fis_rp_bill e ON ( a.id = e.bill_main_id )
 		WHERE 1 = 1
 			
       <dynamic>
@@ -1238,6 +1240,10 @@
               <!--是否出库-->
             <isNotEmpty prepend="and" property="isCheck">  
                 (a.is_check= #isCheck#)
+            </isNotEmpty>
+             <!--是否审核-->
+            <isNotEmpty prepend="and" property="auditSign">  
+                (e.audit_sign= #auditSign#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="serviceTypeIdList">  
                 exists(
@@ -1612,16 +1618,10 @@
 		      ifnull((SELECT sum(i.subtotal) from rps_part i where a.id = i.service_id),0) as partSubtotalNo,
 		      ifnull((SELECT sum(g.subtotal) from rps_package g where a.id = g.service_id),0)+
 		      ifnull((SELECT sum(h.subtotal) from rps_item h where a.id = h.service_id),0)+
-		      ifnull((SELECT sum(i.subtotal) from rps_part i where a.id = i.service_id),0) as totalNo ,
-		      
-
+		      ifnull((SELECT sum(i.subtotal) from rps_part i where a.id = i.service_id),0) as totalNo,
 			w.package_pref_amt AS packagePrefAmt,
-
 			w.item_pref_amt AS itemPrefAmt,
-
-
 			w.part_pref_amt AS partPrefAmt,
-
 			w.other_amt AS otherAmt,
 			w.package_subtotal+w.item_subtotal+w.part_subtotal+w.other_amt AS incomeTotal,
 			w.allowance_amt as allowanceAmt,
@@ -1634,10 +1634,8 @@
 			w.part_tax_cost AS partTaxCost,
 			w.tech_deduct_value AS techDeductValue,
 			w.sales_deduct_value AS salesDeductValue,
-			w.advisor_deduct_value AS advisorDeductValue,
-			
-			w.advisor_deduct_value+w.sales_deduct_value+w.tech_deduct_value+w.part_true_cost+w.other_cost_amt AS expenditureTotal,
-			
+			w.advisor_deduct_value AS advisorDeductValue,			
+			w.advisor_deduct_value+w.sales_deduct_value+w.tech_deduct_value+w.part_true_cost+w.other_cost_amt AS expenditureTotal,			
 			w.total_deduct_amt AS totalDeductAmt,
 			w.gross_profit AS grossProfit,
 			w.gross_profit_rate AS grossProfitRate,

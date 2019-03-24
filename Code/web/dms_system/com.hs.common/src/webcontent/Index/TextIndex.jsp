@@ -215,7 +215,7 @@ pageEncoding="UTF-8" session="false" %>
                                     <td class="tablenum"><span id="newCarQty"> 0</span></td>
                                     <td style="width:0.05%;"></td>
                                    <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>今日进厂：</td>
-                                   <td class="tablenum"><span id="recordBillQty">0</span></td>
+                                   <td class="tablenum"><a id="queryEmployeeBirthday" href="javascript:toMaintain(2)" style="color: #61acc9;"><span></span></a><a><span id="recordBillQty">0</span></td></a>
                                 </tr>
 
                                 <tr>

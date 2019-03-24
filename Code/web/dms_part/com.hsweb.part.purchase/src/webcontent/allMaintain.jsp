@@ -9,8 +9,8 @@
   - Description:
 -->
 <head>
-<title>未结算工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/allMaintain.js?v=1.0.0"></script>
+<title>全部工单明细表</title>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/allMaintain.js?v=1.0.3"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -53,32 +53,40 @@
         <table class="table" id="table1">
             <tr>
                 <td>
-<!--                 	<label style="font-family:Verdana;">快速查询：</label>
-                	 <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
-
-                <ul id="popupMenuDate" class="nui-menu" style="display:none;">
-                    <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
-                    <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
-                    <li class="separator"></li>
-                    <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
-                    <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
-                    <li class="separator"></li>
-                    <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
-                    <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
-                    <li class="separator"></li>
-                    <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
-                    <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
-                </ul> -->
+<!--     	<label style="font-family:Verdana;">快速查询：</label>
+    	<a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+    	<ul id="popupMenuDate" class="nui-menu" style="display:none;">
+            <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
+            <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
+            <li class="separator"></li>
+            <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
+            <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
+            <li class="separator"></li>
+            <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
+            <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
+            <li class="separator"></li>
+            <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
+            <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
+        </ul>
+        <span class="separator"></span> -->
+        <label style="font-family:Verdana;">进厂日期 从：</label>
+        <input class="nui-datepicker" id="sEnterDate" name="sEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd" onvaluechanged="onSearch()" showTime="false" showOkButton="false" showClearButton="false"/>
+        <label style="font-family:Verdana;">至</label>
+        <input class="nui-datepicker" id="eEnterDate" name="eEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd" onvaluechanged="onSearch()" showTime="false" showOkButton="false" showClearButton="false"/>
                      工单类型:<input class="nui-combobox" id="billTypeId" emptyText="综合开单" name="billTypeId" data="[{billTypeId:999,text:'全部工单'},{billTypeId:0,text:'综合开单'},{billTypeId:2,text:'洗美开单'},{billTypeId:4,text:'理赔开单'},{billTypeId:6,text:'波箱开单'}]"
                           width="100px"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="999"/>
-                          <span class="separator"></span>
+                          
+                    维修进程:<input class="nui-combobox" id="statusId" emptyText="综合开单" name="statusId" data="[{billTypeId:999,text:'全部进程'},{billTypeId:0,text:'报价'},{billTypeId:1,text:'施工'},{billTypeId:2,text:'完工'}]"
+                          width="100px"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="999"/>
                     <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
                     <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="carNoSearch"/>
+                    审核状态:<input class="nui-combobox" id="auditSign"  name="auditSign" data="[{billTypeId:999,text:'全部'},{billTypeId:0,text:'未审核'},{billTypeId:1,text:'已审核'}]"
+                          width="100px"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="999"/>
                     <span class="separator"></span>
                     服务顾问：<input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
                         emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="90" valueFromSelect="true"/>
-            <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
-                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
+<!--             <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/> -->
  
 <!--   进厂日期:
                     <input id="sEnterDate" name="sEnterDate" class="nui-datepicker"/>
@@ -101,7 +109,6 @@
     <div class="nui-fit">
           <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
                selectOnLoad="true"
-               showPager="true"
                pageSize="500"
                totalField="page.count"
                sizeList=[500,1000,2000]
@@ -112,6 +119,7 @@
                editNextOnEnterKey="true"
                allowCellWrap = "true"
                showSummaryRow = "true"
+               showPager = "false"
                sortMode="client"
                onshowrowdetail="onShowRowDetail"
                url="">
@@ -124,6 +132,7 @@
 	                  <div field="serviceCode" name="serviceCode" width="170" headerAlign="center" header="工单号" summaryType="sum" allowsort="true"></div>
 	                  <div field="status" name="status" width="70px" headerAlign="center" header="进程" allowsort="true"></div> 
 	                  <div field="serviceTypeName" name="serviceTypeName" width="120" headerAlign="center" header="业务类型" allowsort="true"></div>
+	                  <div field="auditSign" name="auditSign" width="120" headerAlign="center" header="审核状态" allowsort="true"></div>
 	                  <div field="mtAdvisor" name="mtAdvisor" width="100" headerAlign="center" header="服务顾问" allowsort="true"></div>
 	                 </div>
                   </div>

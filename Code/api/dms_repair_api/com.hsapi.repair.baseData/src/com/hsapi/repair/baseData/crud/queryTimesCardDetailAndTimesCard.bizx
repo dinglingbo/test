@@ -16,7 +16,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.repair.data.rpb.RpbCardTimesDetail[]" name="timesCardDetail" type="query" valueType="DataObject">timesCardDetail</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.rpbse.RpbCardTimesDetail[]" name="timesCardDetail" type="query" valueType="DataObject">timesCardDetail</process:return>
       <process:return id="1" language="com.hsapi.repair.data.rpbRead.RpbCardTimes" name="timesCard" type="query" valueType="DataObject">timesCard</process:return>
     </process:returns>
   </nodes>
@@ -67,7 +67,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbCardTimesDetail</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbCardTimesDetail</process:from>
       <process:to type="query">criteria/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -122,7 +122,7 @@
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">timesCard</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
@@ -140,7 +140,7 @@
     <process:input description="" isArray="false" name="id" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCardTimesDetail" name="timesCardDetail"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbCardTimesDetail" name="timesCardDetail"/>
     <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpbRead.RpbCardTimes" name="timesCard"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>

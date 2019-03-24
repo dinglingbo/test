@@ -254,7 +254,7 @@
   <process:info author="Administrator" createTime="2018-07-15 15:20:52" date="2018-07-15Z" description="" name="saveRemindParams" version="7.0.0.0"/>
   <process:variables/>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbRemindParam" name="params"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbRemindParam" name="params"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

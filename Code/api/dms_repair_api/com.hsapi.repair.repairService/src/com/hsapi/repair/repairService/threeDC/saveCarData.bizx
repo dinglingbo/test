@@ -98,7 +98,7 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign2" name="赋值2" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>assign3</targetNode>
@@ -113,7 +113,7 @@
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign3" name="赋值3" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>invokePojo1</targetNode>
@@ -163,7 +163,7 @@
     <figSize height="17" width="32"/>
     <node>invokePojo1</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign4" name="赋值4" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>assign0</targetNode>
@@ -183,8 +183,8 @@
   <process:info author="Administrator" createTime="2019-03-21 21:25:27" date="2019-03-21Z" description="" name="saveContactData" version="7.0.0.0"/>
   <process:variables/>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCar" name="carData"/>
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCarExtend" name="carExData"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCar" name="carData"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCarExtend" name="carExData"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

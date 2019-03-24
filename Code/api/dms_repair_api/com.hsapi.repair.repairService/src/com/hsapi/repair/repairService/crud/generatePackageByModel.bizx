@@ -67,7 +67,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbItemModel</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbItemModel</process:from>
       <process:to type="query">condItem/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -79,7 +79,7 @@
       <process:to type="query">condItem/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbPartModel</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbPartModel</process:from>
       <process:to type="query">condPart/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -873,13 +873,13 @@
   <process:info author="Administrator" createTime="2018-11-20 12:03:44" date="2018-11-20Z" description="" name="generatePackageByModel" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsPackage" name="pkg"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbItemModel" name="itemModel"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPartModel" name="partModel"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbItemModel" name="itemModel"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPartModel" name="partModel"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="condItem"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="condPart"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbItemModel" name="itemTemp"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbPartModel" name="partTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbItemModel" name="itemTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbPartModel" name="partTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsItem" name="itemList"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsPart" name="partList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsItem" name="rpsItem"/>
@@ -887,7 +887,7 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbPackageModel" name="pkgModel"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbPackageModel" name="pkgModel"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

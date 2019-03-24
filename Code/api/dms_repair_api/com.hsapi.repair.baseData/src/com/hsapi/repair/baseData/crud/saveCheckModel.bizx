@@ -406,8 +406,8 @@
         <process:inputVariable id="0" name="tenantId" type="query" value="String" valueType="Primitive" pattern="reference">m:userObject/attributes/tenantId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -420,12 +420,12 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-07-10 21:48:35" date="2018-07-10Z" description="" name="saveCheckModel" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCheckMain" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCheckMain" name="temp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="tenantId" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCheckMain" name="addList"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCheckMain" name="updateList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbCheckMain" name="addList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbCheckMain" name="updateList"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

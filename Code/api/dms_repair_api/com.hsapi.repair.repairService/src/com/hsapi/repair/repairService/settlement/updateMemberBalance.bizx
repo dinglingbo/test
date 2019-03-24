@@ -1214,7 +1214,7 @@
     <process:variable anyType="java.math.BigDecimal" description="" historyStateLocation="client" isArray="false" name="d1"/>
     <process:variable anyType="java.math.BigDecimal" description="" historyStateLocation="client" isArray="false" name="d2"/>
     <process:variable description="退款扣减金额" historyStateLocation="client" isArray="false" name="cutAmt" primitiveType="Double"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCardStored" name="rpbCard"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCardStored" name="rpbCard"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="maintain"/>
   </process:variables>
   <process:inputs varArgs="false">

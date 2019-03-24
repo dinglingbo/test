@@ -15,20 +15,20 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.repair.data.rpb.RpbContactor" name="contactor" type="query" valueType="DataObject">contactor</process:return>
-      <process:return id="1" language="com.hsapi.repair.data.rpb.RpbCar" name="car" type="query" valueType="DataObject">car</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.rpbse.RpbContactor" name="contactor" type="query" valueType="DataObject">contactor</process:return>
+      <process:return id="1" language="com.hsapi.repair.data.rpbse.RpbCar" name="car" type="query" valueType="DataObject">car</process:return>
       <process:return id="2" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="3" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="29" y="186"/>
-    <figSize height="20" width="31"/>
+    <location x="32" y="186"/>
+    <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="1079" y="186"/>
-    <figSize height="20" width="31"/>
+    <location x="1082" y="186"/>
+    <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
@@ -42,7 +42,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbContactor</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbContactor</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -63,8 +63,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="149" y="186"/>
-    <figSize height="20" width="31"/>
+    <location x="152" y="186"/>
+    <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="queryEntitiesByCriteriaEntity" displayName="queryEntitiesByCriteriaEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
@@ -100,8 +100,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="178" y="186"/>
-    <figSize height="20" width="207"/>
+    <location x="200" y="186"/>
+    <figSize height="17" width="162"/>
     <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
@@ -119,8 +119,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="358" y="111"/>
-    <figSize height="20" width="40"/>
+    <location x="362" y="111"/>
+    <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign2" name="赋值2" displayName="赋值" type="assign">
@@ -135,8 +135,8 @@
     <nodeLabel>assign2label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="457" y="111"/>
-    <figSize height="20" width="40"/>
+    <location x="461" y="111"/>
+    <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" collapsed="false" type="assign">
@@ -150,7 +150,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbContactor</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbContactor</process:from>
       <process:to type="query">cond2/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -163,8 +163,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="355" y="186"/>
-    <figSize height="20" width="40"/>
+    <location x="359" y="186"/>
+    <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="queryEntitiesByCriteriaEntity1" displayName="queryEntitiesByCriteriaEntity" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
@@ -205,8 +205,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="345" y="186"/>
-    <figSize height="20" width="216"/>
+    <location x="369" y="186"/>
+    <figSize height="17" width="169"/>
     <node>invokePojo0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
@@ -224,8 +224,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
-    <location x="504" y="186"/>
-    <figSize height="20" width="40"/>
+    <location x="508" y="186"/>
+    <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" type="assign">
@@ -244,7 +244,7 @@
       <process:to type="query">cars</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbCar</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbCar</process:from>
       <process:to type="query">cond3/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -265,8 +265,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="579" y="186"/>
-    <figSize height="20" width="40"/>
+    <location x="583" y="186"/>
+    <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="queryEntitiesByCriteriaEntity2" displayName="queryEntitiesByCriteriaEntity1" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
@@ -307,8 +307,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="590" y="186"/>
-    <figSize height="20" width="216"/>
+    <location x="614" y="186"/>
+    <figSize height="17" width="169"/>
     <node>invokePojo2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" type="assign">
@@ -326,11 +326,11 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
-    <location x="69" y="186"/>
-    <figSize height="20" width="40"/>
+    <location x="73" y="186"/>
+    <figSize height="17" width="32"/>
     <node>assign6</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign7" name="赋值7" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值7" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign7</sourceNode>
       <targetNode>subprocess0</targetNode>
@@ -341,8 +341,8 @@
     <nodeLabel>assign7label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
-    <location x="749" y="186"/>
-    <figSize height="20" width="40"/>
+    <location x="753" y="186"/>
+    <figSize height="17" width="32"/>
     <node>assign7</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" type="assign">
@@ -368,8 +368,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
-    <location x="793" y="276"/>
-    <figSize height="20" width="40"/>
+    <location x="797" y="276"/>
+    <figSize height="17" width="32"/>
     <node>assign8</node>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign10" name="赋值10" displayName="赋值" type="assign">
@@ -385,8 +385,8 @@
     <nodeLabel>assign10label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
-    <location x="995" y="186"/>
-    <figSize height="20" width="49"/>
+    <location x="1000" y="186"/>
+    <figSize height="17" width="39"/>
     <node>assign10</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="saveRpbCars" displayName="saveRpbCars" collapsed="false" type="subprocess">
@@ -406,21 +406,21 @@
       <process:partner type="literal">this.saveRpbCars</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="guest" type="query" value="com.hsapi.repair.data.common.ComGuest" valueType="DataObject" pattern="reference">guest</process:inputVariable>
-        <process:inputVariable id="1" name="insList" type="query" value="com.hsapi.repair.data.rpb.RpbCar[]" valueType="DataObject" pattern="reference">insCarList</process:inputVariable>
-        <process:inputVariable id="2" name="updList" type="query" value="com.hsapi.repair.data.rpb.RpbCar[]" valueType="DataObject" pattern="reference">updCarList</process:inputVariable>
+        <process:inputVariable id="1" name="insList" type="query" value="com.hsapi.repair.data.rpbse.RpbCar[]" valueType="DataObject" pattern="reference">insCarList</process:inputVariable>
+        <process:inputVariable id="2" name="updList" type="query" value="com.hsapi.repair.data.rpbse.RpbCar[]" valueType="DataObject" pattern="reference">updCarList</process:inputVariable>
         <process:inputVariable id="3" name="orgid" type="query" value="String" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
         <process:inputVariable id="4" name="userName" type="query" value="String" valueType="Primitive" pattern="reference">m:userObject/userName</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="insList" type="query" value="com.hsapi.repair.data.rpb.RpbCar[]" valueType="DataObject">insCarList</process:outputVariable>
+        <process:outputVariable id="0" name="insList" type="query" value="com.hsapi.repair.data.rpbse.RpbCar[]" valueType="DataObject">insCarList</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="788" y="185"/>
-    <figSize height="20" width="94"/>
+    <location x="797" y="185"/>
+    <figSize height="17" width="77"/>
     <node>subprocess0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign9" name="赋值9" displayName="赋值" type="assign">
@@ -438,8 +438,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
-    <location x="879" y="186"/>
-    <figSize height="20" width="40"/>
+    <location x="883" y="186"/>
+    <figSize height="17" width="32"/>
     <node>assign9</node>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign11" name="赋值11" displayName="赋值" type="assign">
@@ -453,8 +453,8 @@
     <nodeLabel>assign11label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
-    <location x="860" y="84"/>
-    <figSize height="20" width="49"/>
+    <location x="865" y="84"/>
+    <figSize height="17" width="39"/>
     <node>assign11</node>
   </nodes>
   <topRuler/>
@@ -462,21 +462,21 @@
   <process:info author="Administrator" createTime="2018-07-10 19:37:12" date="2018-07-10Z" description="" name="queryCheckModel" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbContactor" name="list"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbContactor" name="list"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond2"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbContactor" name="list2"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCar" name="cars"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCar" name="list3"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbContactor" name="list2"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCar" name="cars"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbCar" name="list3"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.common.ComGuest" name="guest"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond3"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCar" name="insCarList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbCar" name="insCarList"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbContactor" name="contactor"/>
-    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCar" name="car"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbContactor" name="contactor"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCar" name="car"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
   </process:outputs>

@@ -47,7 +47,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbItem</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbItem</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -301,8 +301,8 @@
   <process:info author="Administrator" createTime="2018-05-15 11:40:12" date="2018-05-15Z" description="" name="checkPartExists" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbItem" name="typeList"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbItem" name="type"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbItem" name="typeList"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbItem" name="type"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="eId" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">

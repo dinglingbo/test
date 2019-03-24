@@ -102,7 +102,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbPartModel</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbPartModel</process:from>
       <process:to type="query">cond2/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -145,7 +145,7 @@
       <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cond2</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
@@ -230,7 +230,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="itemModelId" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbItemModel" name="itemModel"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbItemModel" name="itemModel"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

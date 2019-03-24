@@ -454,7 +454,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="editType" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbItem" name="item"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbItem" name="item"/>
     <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
     <process:input description="" isArray="false" name="userName" primitiveType="String"/>
   </process:inputs>

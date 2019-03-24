@@ -15,7 +15,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.repair.data.rpb.RpbOutReport[]" name="outs" type="query" valueType="DataObject">outs</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.rpbse.RpbOutReport[]" name="outs" type="query" valueType="DataObject">outs</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -38,7 +38,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbOutReport</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbOutReport</process:from>
       <process:to type="query">criteria/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -92,7 +92,7 @@
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbOutReport" name="outs"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbOutReport" name="outs"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

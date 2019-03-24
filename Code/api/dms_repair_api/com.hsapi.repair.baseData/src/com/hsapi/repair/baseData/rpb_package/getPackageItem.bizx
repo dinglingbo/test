@@ -16,7 +16,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.repair.data.rpb.RpbPackageItem[]" name="data" type="query" valueType="DataObject">data</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.rpbse.RpbPackageItem[]" name="data" type="query" valueType="DataObject">data</process:return>
       <process:return id="1" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="2" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
     </process:returns>
@@ -49,7 +49,7 @@
       <process:to type="query">errMsg</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbPackageItem</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbPackageItem</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -129,7 +129,7 @@
     <process:input description="" isArray="false" name="packageId" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPackageItem" name="data"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPackageItem" name="data"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
   </process:outputs>

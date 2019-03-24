@@ -113,7 +113,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbPackageModel</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbPackageModel</process:from>
       <process:to type="query">condPkg/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -125,7 +125,7 @@
       <process:to type="query">condPkg/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbItemModel</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbItemModel</process:from>
       <process:to type="query">condItem/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -506,15 +506,15 @@
     <location x="643" y="150"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.generatePackageByModel</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="serviceId" type="query" value="Int" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
-        <process:inputVariable id="1" name="pkgModel" type="query" value="com.hsapi.repair.data.rpb.RpbPackageModel" valueType="DataObject" pattern="reference">pkgTemp</process:inputVariable>
+        <process:inputVariable id="1" name="pkgModel" type="query" value="com.hsapi.repair.data.rpbse.RpbPackageModel" valueType="DataObject" pattern="reference">pkgTemp</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -542,15 +542,15 @@
     <location x="956" y="150"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess3label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.generateItemByModel</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="serviceId" type="query" value="Int" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
-        <process:inputVariable id="1" name="itemModel" type="query" value="com.hsapi.repair.data.rpb.RpbItemModel" valueType="DataObject" pattern="reference">itemTemp</process:inputVariable>
+        <process:inputVariable id="1" name="itemModel" type="query" value="com.hsapi.repair.data.rpbse.RpbItemModel" valueType="DataObject" pattern="reference">itemTemp</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -698,10 +698,10 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="main"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="condPkg"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="condItem"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPackageModel" name="modelPkg"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbItemModel" name="modelItem"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbPackageModel" name="pkgTemp"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbItemModel" name="itemTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPackageModel" name="modelPkg"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbItemModel" name="modelItem"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbPackageModel" name="pkgTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbItemModel" name="itemTemp"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>

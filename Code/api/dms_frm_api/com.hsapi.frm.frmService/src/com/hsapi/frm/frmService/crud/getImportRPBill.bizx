@@ -986,7 +986,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign20label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbCar</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.frm.data.rpb.RpbCar</process:from>
       <process:to type="query">cond1/_entity</process:to>
     </process:copy>
     <process:copy>

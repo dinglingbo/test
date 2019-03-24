@@ -24,7 +24,7 @@
       <process:return id="0" language="String" name="errCodeVin" type="query" valueType="Primitive">errCodeVin</process:return>
       <process:return id="1" language="String" name="errCodeModel" type="query" valueType="Primitive">errCodeModel</process:return>
       <process:return id="2" language="String" name="errCodeModelLy" type="query" valueType="Primitive">errCodeModelLy</process:return>
-      <process:return id="3" language="com.hsapi.repair.data.rpb.RpbCar" name="car" type="query" valueType="DataObject">car</process:return>
+      <process:return id="3" language="com.hsapi.repair.data.rpbse.RpbCar" name="car" type="query" valueType="DataObject">car</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -390,7 +390,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="name3" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCar" name="car"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCar" name="car"/>
     <process:input description="" isArray="false" name="carNo" primitiveType="String"/>
     <process:input description="" isArray="false" name="carVin" primitiveType="String"/>
   </process:inputs>
@@ -398,7 +398,7 @@
     <process:output description="" isArray="false" name="errCodeVin" primitiveType="String"/>
     <process:output description="" isArray="false" name="errCodeModel" primitiveType="String"/>
     <process:output description="" isArray="false" name="errCodeModelLy" primitiveType="String"/>
-    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCar" name="car"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCar" name="car"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

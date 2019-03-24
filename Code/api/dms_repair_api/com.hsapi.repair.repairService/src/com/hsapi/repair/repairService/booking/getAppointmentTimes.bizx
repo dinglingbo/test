@@ -26,7 +26,7 @@
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
       <process:return id="0" language="Int" name="advanceTimes" type="query" valueType="Primitive">advanceTimes</process:return>
-      <process:return id="1" language="com.hsapi.repair.data.rpb.RpbAppointmentTimes[]" name="timeList" type="query" valueType="DataObject">timeList</process:return>
+      <process:return id="1" language="com.hsapi.repair.data.rpbse.RpbAppointmentTimes[]" name="timeList" type="query" valueType="DataObject">timeList</process:return>
       <process:return id="2" language="String" name="nowTimeStr" type="query" valueType="Primitive">nowTimeStr</process:return>
     </process:returns>
   </nodes>
@@ -45,7 +45,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbAppointmentParams</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbAppointmentParams</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -120,7 +120,7 @@
       <process:to type="query">advanceTimes</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbAppointmentTimes</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbAppointmentTimes</process:from>
       <process:to type="query">conds/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -266,8 +266,8 @@
   <process:info author="Administrator" createTime="2018-07-21 15:17:13" date="2018-07-21Z" description="" name="getAppointmentTimes" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbAppointmentParams" name="paramsList"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbAppointmentParams" name="params"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbAppointmentParams" name="paramsList"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbAppointmentParams" name="params"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="conds"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="mainId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="nowDate" primitiveType="Date"/>
@@ -277,7 +277,7 @@
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="advanceTimes" primitiveType="Int"/>
-    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbAppointmentTimes" name="timeList"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbAppointmentTimes" name="timeList"/>
     <process:output description="" isArray="false" name="nowTimeStr" primitiveType="String"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>

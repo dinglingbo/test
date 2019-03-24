@@ -57,7 +57,7 @@
 								<input class="nui-textbox" id="expense" visible="false"/>
 								
 								<input class="nui-hidden" name="criteria/_entity"
-									value="com.hsapi.repair.data.rpb.RpbCardStored">
+									value="com.hsapi.repair.data.rpbse.RpbCardStored">
 								<table id="table1">
 									<tr>
 										<td>套餐名称: <input class="nui-textbox" onenter="search()" 

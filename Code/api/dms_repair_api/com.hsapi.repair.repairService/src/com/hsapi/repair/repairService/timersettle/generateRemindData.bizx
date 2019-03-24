@@ -44,7 +44,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbRemindParam</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbRemindParam</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
   </nodes>
@@ -400,8 +400,8 @@
   <process:info author="Administrator" createTime="2018-10-18 17:11:58" date="2018-10-18Z" description="" name="generateRemindData" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbRemindParam" name="paramsList"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbRemindParam" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbRemindParam" name="paramsList"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbRemindParam" name="temp"/>
     <process:variable description="距离车辆下次保养日期前后多少天提醒" historyStateLocation="client" isArray="false" name="param1" primitiveType="Int"/>
     <process:variable description="车辆保养周期月提醒" historyStateLocation="client" isArray="false" name="param2" primitiveType="Int"/>
     <process:variable description="距离车辆商业险到期日期天提醒" historyStateLocation="client" isArray="false" name="param3" primitiveType="Int"/>

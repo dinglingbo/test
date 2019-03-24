@@ -90,7 +90,7 @@
       <process:inputVariable id="2" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">main</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
@@ -140,7 +140,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbContactor</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbContactor</process:from>
       <process:to type="query">cond1/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -148,7 +148,7 @@
       <process:to type="query">cond1/_expr[1]/id</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbCar</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbCar</process:from>
       <process:to type="query">cond2/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -187,7 +187,7 @@
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">guest</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
@@ -218,7 +218,7 @@
       <process:inputVariable id="2" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">contacter</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
@@ -249,7 +249,7 @@
       <process:inputVariable id="2" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">car</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
@@ -316,8 +316,8 @@
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
     <process:variable description="维修主表信息" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="main"/>
-    <process:variable description="送修人信息" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbContactor" name="contacter"/>
-    <process:variable description="车辆信息（数据实体中单独添加了保险公司名称）" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCar" name="car"/>
+    <process:variable description="送修人信息" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbContactor" name="contacter"/>
+    <process:variable description="车辆信息（数据实体中单独添加了保险公司名称）" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCar" name="car"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="guestId" primitiveType="Int"/>
     <process:variable description="送修人" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond1"/>
     <process:variable description="车辆" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond2"/>

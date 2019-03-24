@@ -9,6 +9,8 @@ var provice;
 var cityId;
 var data;
 var empty = 0;//是否清空
+var guestTypeList = [];
+var guestTypeHash = {};
 $(document).ready(function()
 {
 	if(currRepairBillCmodelFlag == "1"){
@@ -16,6 +18,7 @@ $(document).ready(function()
     }else{
         nui.get("carModel").enable();
     }
+	
     //init();
 });
 function init(callback)
@@ -62,6 +65,13 @@ function init(callback)
         hash.initDicts = true;
         checkComplete();
     });
+    
+    initGuestType("guestTypeId",function(data) {
+      	guestTypeList = nui.get("guestTypeId").getData();
+      	guestTypeList.forEach(function(v) {
+      		guestTypeHash[v.id] = v;
+          });
+      });
     
     initProvince("provice");
     nui.get("fullName").focus();
@@ -236,7 +246,8 @@ function onOk()
 		showMsg("请输入正确的车牌号","W");
 		return;
 	}else{
-		 var guest = basicInfoForm.getData();
+		    var guest = basicInfoForm.getData();
+		    guest.tgrade = guest.guestTypeId;
 		    var name = guest.fullName || "";
 		    if(name=="散客"){
 		    	showMsg("请修改客户名称!","W");
@@ -428,6 +439,13 @@ function setData(data)
                     if(data.guest && data.guest.id)
                     {
                         basicInfoForm.setData(data.guest);
+                        var tgrade = data.guest.tgrade;
+                	    if(tgrade){
+                	    	var num = parseInt(tgrade);
+                	    	var tgradeName = guestTypeHash[num].name;
+                	    	nui.get("guestTypeId").setText(tgradeName);
+                	    	nui.get("guestTypeId").setValue(tgrade);
+                	    }
                         contactList = data.contactList||[{}];
                         carList = data.carList||[{}];
                         var i;

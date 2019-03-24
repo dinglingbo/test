@@ -79,7 +79,7 @@ table {
                         </td>
                     </tr>
                     <tr>
-                        <td class="form_label">
+                      <!--   <td class="form_label">
                             <label>生日类型：</label>
                         </td>
                         <td>
@@ -92,7 +92,23 @@ table {
                         </td>
                         <td>
                             <input name="birthday" allowInput="false" class="nui-datepicker" width="100%"/>
-                        </td>
+                        </td> -->
+                        <td class="form_label">
+                                <label>客户级别：</label>
+                            </td>
+                            <td colspan="3">
+                                <input name="guestTypeId"
+                                   id="guestTypeId"
+                                   class="nui-combobox "
+                                   textField="name"
+                                   valueField="id"
+                                   emptyText="请选择..."
+                                   url=""
+                                   allowInput="true"
+                                   showNullItem="false"
+                                   width="40%" 
+                                   valueFromSelect="true"
+                                   nullItemText="请选择..."/>
                     </tr>
                     <tr>
                         <td class="form_label">
@@ -279,7 +295,7 @@ table {
                                     <label>是否禁用：</label>
                                 </td>
                                 <td>
-                                    <input type="checkbox" id="isDisabled" class="mini-checkbox"  trueValue="1" falseValue="0" >
+                                    <input type="checkbox" id="isDisabled" class="mini-checkbox" naem="isDisabled"  trueValue="1" falseValue="0" >
                                 </td>
                               <!--   <td class="form_label" >
                                     <label>公司内部车：</label>

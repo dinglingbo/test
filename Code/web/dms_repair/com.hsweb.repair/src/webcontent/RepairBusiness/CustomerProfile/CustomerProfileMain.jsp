@@ -11,7 +11,7 @@
 -->
 <head>
 	<title>客户档案</title>
-	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.5.8"></script>
+	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.5.11"></script>
 	<style type="text/css">
 		table {
 			font-size: 12px;

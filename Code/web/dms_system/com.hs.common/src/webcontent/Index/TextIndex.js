@@ -417,7 +417,7 @@ function toMaintain(e){
 	    item.text = "客户车辆";
 	    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.CustomerProfileMain.flow?token="+token;
 	    item.iconCls = "fa fa-file-text";
-	    var params = {id:"serviceBillQty"};
+	    var params = {id:"newCarQty"};
 	    window.parent.activeTabAndInit(item,params);
 	}else if(e==13){
 	    var item={};
@@ -425,7 +425,7 @@ function toMaintain(e){
 	    item.text = "预约管理";
 	    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.BookingManagementList.flow?token="+token;
 	    item.iconCls = "fa fa-file-text";
-	    var params = {id:"serviceBillQty"};
+	    var params = {id:"bookingBillQty"};
 	    window.parent.activeTabAndInit(item,params);
 	}else if(e==14){
 	    var item={};
@@ -433,7 +433,7 @@ function toMaintain(e){
 	    item.text = "仪表盘";
 	    item.url = webPath + contextPath + "/com.hsweb.repair.repoart.IncomeStatistics.flow?token="+token;
 	    item.iconCls = "fa fa-file-text";
-	    var params = {id:"serviceBillQty"};
+	    var params = {id:"receiveAmt"};
 	    window.parent.activeTabAndInit(item,params);
 	}else{
 	    var item={};

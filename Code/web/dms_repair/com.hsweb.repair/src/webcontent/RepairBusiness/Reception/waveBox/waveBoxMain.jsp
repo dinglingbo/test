@@ -11,7 +11,7 @@
 <head>
 <title>Title</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxMain.js?v=1.10"></script>
+    <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxMain.js?v=1.16"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 </head>
@@ -75,6 +75,7 @@
                     <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
                     <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onenterSearch(this.value)"/>
                     <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
+                    	showNullItem="true" nullItemText=""
                         emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="80" valueFromSelect="true" onenter="onenterMtAdvisor(this.value)"/>
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <span class="separator"></span>

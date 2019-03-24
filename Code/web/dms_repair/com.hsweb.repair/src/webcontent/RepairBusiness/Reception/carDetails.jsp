@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-	<%@include file="/common/common.jsp"%>
 <%@include file="/common/commonRepair.jsp"%>
     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
         <html>
@@ -13,7 +12,7 @@
         <head>
             <title>车辆详情</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.14" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.18" type="text/javascript"></script>
         </head>
         <style type="text/css">
             body {
@@ -24,7 +23,19 @@
                 height: 100%;
                 overflow: hidden;
             }
-
+        a.optbtn {
+            width: 44px;
+            /* height: 26px; */
+            border: 1px #d2d2d2 solid;
+            background: #f2f6f9;
+            text-align: center;
+            display: inline-block;
+            /* line-height: 26px; */
+            margin: 0 4px;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 5px;
+        }
             fieldset {
                 margin: 0 auto;
                 float: none;
@@ -418,6 +429,30 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div title="销售机会" id="sales" name="sales">
+                        		<input class="nui-combobox" name="chanceType" id="chanceType" valueField="customid" textField="name"  visible="false" />
+                                <a class="nui-button" iconCls="" plain="true" onclick="addSell()" id="auditBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增销售机会</a>                   
+					           <div id="carSellPointGrid" class="nui-datagrid" style="width:100%;height:95%;"
+					               selectOnLoad="true"
+					               showPager="true"
+					               dataField="list"
+					               idField="id"
+					               allowCellSelect="true"
+					               editNextOnEnterKey="true"
+					               url="">
+
+					              <div property="columns">
+					                  <div field="prdtName" name="prdtName" width="80" headerAlign="center" header="项目"></div>
+					                  <div field="prdtAmt" name="amt" width="40" headerAlign="center" header="金额"></div>
+					                  <div field="chanceType" name="type" width="60" headerAlign="center" header="机会类型"></div>
+					                  <div field="status" name="status" width="50" headerAlign="center" header="阶段"></div>
+					                  <div field="chanceMan" name="creator" width="80" headerAlign="center" header="商机所有者"></div>
+					                <div field="nextFollowDate" name="nextFollowDate" width="100" dateFormat="yyyy-MM-dd " headeralign="center" >下次跟进时间</div>
+					 				<div field="planFinishDate" name="planFinishDate" width="100" dateFormat="yyyy-MM-dd " headeralign="center" >预计成单时间</div>
+					                  <div field="cardTimesOpt" name="cardTimesOpt" width="80" headerAlign="center"  header="操作" align="center"></div>
+					              </div>
+					          </div>
                         </div>
                     </div>
                 </div>

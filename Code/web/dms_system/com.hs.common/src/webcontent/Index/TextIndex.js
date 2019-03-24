@@ -308,7 +308,7 @@ function setGridTodayData(data){
         receiveAmt = data.receiveAmt||0; 
         
         $("#newCarQty ").text(newCarQty);
-        $("#recordBillQty span").text(recordBillQty);
+        $("#recordBillQty").text(recordBillQty);
         $("#settleQty ").text(settleQty);
         $("#serviceBillQty ").text(serviceBillQty);
         $("#bookingBillQty ").text(bookingBillQty);
@@ -402,7 +402,7 @@ function toMaintain(e){
 	    item.url = webPath + contextPath + "/com.hsweb.part.purchase.allMaintain.flow?token="+token;
 	    item.iconCls = "fa fa-file-text";
 	    var params = {id:"settleQty"};
-	    window.parent.activeTab(item,params);
+	    window.parent.activeTabAndInit(item,params);
 	}else if(e==11){
 	    var item={};
 	    item.id = "allMaintain";
@@ -410,7 +410,7 @@ function toMaintain(e){
 	    item.url = webPath + contextPath + "/com.hsweb.part.purchase.allMaintain.flow?token="+token;
 	    item.iconCls = "fa fa-file-text";
 	    var params = {id:"serviceBillQty"};
-	    window.parent.activeTab(item,params);
+	    window.parent.activeTabAndInit(item,params);
 	}else{
 	    var item={};
 	    item.id = "te";

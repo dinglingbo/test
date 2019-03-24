@@ -9,19 +9,25 @@ var grid = null;
 var grid1 = null;
 var grid2 = null;
 var visitHis = null;//回访记录
+var carSellPointGrid = null;
 var baseUrl = apiPath + repairApi + "/";
 var mainGrid2 = null;
+var xyguest = {};
+var sfData = {};
 var prdtTypeHash = {
 	    "1":"套餐",
 	    "2":"项目",
 	    "3":"配件"
 };
+var sellHash = new Array("尚未联系", "有兴趣", "意向明确", "成交" ,"输单");
 var serviceTypeList = [{},{ id: 1, text: '电销' }, { id: 2, text: '预约' }, { id: 3, text: '客户回访' }, { id: 4, text: '流失回访' }, { id: 5, text: '保养提醒' }, { id: 6, text: '商业险到期' }, { id: 7, text: '交强险到期' }, { id: 8, text: '驾照年审' }, { id: 9, text: '车辆年检' }, { id: 10, text: '生日' }];
 var hisUrl = apiPath + crmApi+ "/com.hsapi.crm.svr.visit.queryCrmVisitRecordSql.biz.ext";//回访url
 var queryOldMaintain = baseUrl
 +"com.hsapi.repair.baseData.crud.queryOldMaintain.biz.ext";
 var queryOldItemPart = baseUrl
 +"com.hsapi.repair.baseData.crud.queryOldItemPart.biz.ext";
+var sellUrl = apiPath + crmApi
++ "/com.hsapi.crm.basic.crmBasic.querySellList.biz.ext";
 var grid3 = null;
 var grid4 = null;
 var servieTypeList = [];
@@ -35,7 +41,9 @@ $(document).ready(function () {
     mainGrid1 = nui.get("mainGrid1");
     form = new nui.Form("#editForm1");
     visitHis = nui.get("visitHis");
+    carSellPointGrid = nui.get("carSellPointGrid");
     visitHis.setUrl(hisUrl);
+    carSellPointGrid.setUrl(sellUrl);
     
     grid1 = nui.get("grid1");
     grid2 = nui.get("grid2");
@@ -60,7 +68,7 @@ $(document).ready(function () {
             onCancel();
         }
       };
-      
+ 	 
       var tip = new nui.ToolTip();
       tip.set({
           target: document,
@@ -80,7 +88,8 @@ $(document).ready(function () {
 
           }
       });
-      
+
+
       grid1.on("drawcell", function (e) {
           switch (e.field) {
               case "prdtType":
@@ -95,6 +104,25 @@ $(document).ready(function () {
                   break;
           }
       });
+      carSellPointGrid.on("drawcell", function(e) {
+  		switch (e.field) {
+  		case "status":
+  			e.cellHtml = sellHash[e.value];
+  			break;
+  		case "chanceType":
+  			for(var i=0;i<sfData.length;i++){
+  				if(e.value==sfData[i].customid){
+  					e.cellHtml =sfData[i].name;
+  					}
+  				}
+  			break;
+  		case "cardTimesOpt":
+  			e.cellHtml = '<a class="optbtn" href="javascript:void()" onclick="editSell()">跟进</a>';
+  			break;
+  		default:
+  			break;
+  		}
+      });
       visitHis.on("drawcell", function (e) {
         if (e.field == "serviceType") {
             e.cellHtml = serviceTypeList[e.value].text;
@@ -104,13 +132,16 @@ $(document).ready(function () {
     });
     initDicts({
         visitMode: "DDT20130703000021",//跟踪方式
+        chanceType:SELL_TYPE,//商机
           //carSpec:CAR_SPEC,//车辆规格
           //kiloType:KILO_TYPE,//里程类别
           //source:GUEST_SOURCE,//客户来源
           identity:IDENTITY //客户身份
       },function(){
     	  var identityList = nui.get("identity").getData();
+    	  sfData = nui.get("chanceType").getData();
       });
+    
 });
 
 //取消
@@ -132,7 +163,7 @@ function CloseWindow(action) {
 function SetData(params) {
 	nui.get("carId").setValue(params.carId);
 	nui.get("guestId").setValue(params.guestId);
-	
+	xyguest=params;
 	nui.ajax({
         url: baseUrl+"com.hsapi.repair.repairService.report.queryCarByCarId.biz.ext",
         type : "post",
@@ -186,10 +217,22 @@ function SetData(params) {
     // 回访记录根据联系人id查询
     if (params.contactorId) {
         var p = {
-            guestId:params.contactorId,
-            token:token
+            guestId:params.contactorId
         };
-        visitHis.load({ params:p });
+        visitHis.load({ 
+        	params:p,
+        	token:token
+        });
+    }
+    // 销售机会根据客户id查询
+    if (params.guestId) {
+        var p = {
+            guestId:params.guestId
+        };
+        carSellPointGrid.load({ 
+        	params:p,
+        	token:token
+        });
     }
 }
 
@@ -241,4 +284,59 @@ function selectionChanged() {
 			datagrid3.setData(text.oldItem);
 		}
 	});
+}
+
+function addSell() {
+	
+	nui.open({
+		url : webPath + contextPath
+				+ "/com.hsweb.part.manage.businessOpportunityEdit.flow?token="
+				+ token,
+		title : "添加商机",
+		width : 550,
+		height : 410,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			//工单页面添加商机信息直接带过去
+			var data = xyguest;
+			//新增页面商机的姓名字段是guestName
+			data.guestName = data.guestFullName;
+			data.type = "add";
+			iframe.contentWindow.setData(data);
+		},
+		ondestroy : function(action) {
+			if (action == "saveSuccess") {
+				grid.reload();
+			}
+		}
+	});
+}
+
+
+function editSell() {
+	var row = carSellPointGrid.getSelected();
+	if (row) {
+		nui.open({
+			url : webPath + contextPath
+			+ "/com.hsweb.part.manage.businessOpportunityEdit.flow?token="
+			+ token,
+			title : "更新商机",
+			width : 550,
+			height : 410,
+			onload : function() {
+				var iframe = this.getIFrameEl();
+				var data = row;
+				data.type = 'editT';
+				// 直接从页面获取，不用去后台获取
+				iframe.contentWindow.setData(data);
+			},
+			ondestroy : function(action) {
+				if (action == "saveSuccess") {
+					carSellPointGrid.reload();
+				}
+			}
+		});
+	} else {
+		showMsg("请选中一条记录!", "W");
+	}
 }

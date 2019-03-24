@@ -374,9 +374,11 @@ function onSearch()
 }
 function doSearch() {
     var gsparams = getSearchParam();
-    if((nui.get("seachType").getValue())==2){
-    	params.sEnterDate = null;
-    	params.eEnterDate = null;
+    if(nui.get("seachType").getValue()==2){
+    	gsparams.sEnterDate = null;
+    	gsparams.eEnterDate = null;
+    }else if(nui.get("seachType").getValue()==1){
+    	gsparams.isSettle=1;
     }else{
         var xcdate = getDays(gsparams.sEnterDate,gsparams.eEnterDate);
         if(xcdate>92){
@@ -521,13 +523,11 @@ function setInitData(params) {
     	nui.get("seachType").setValue(1);
     	nui.get("seachType").setText("结算车辆");
     	var gsparams = getSearchParam();
-    	gsparams.isSettle=1;
-        mainGrid.load({
-            token:token,
-            params: gsparams
-        });
+    	onSearch();
+
     } else if (params.id == 'serviceBillQty') {
     		nui.get("seachType").setValue(2);
     		nui.get("seachType").setText("在修车辆");
+    		onSearch();
     }
 }

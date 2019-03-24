@@ -23,7 +23,7 @@
 		<div id="queryform" class="nui-form" align="center">
 			<!-- 数据实体的名称 -->
 			<input class="nui-hidden" name="criteria/_entity"
-				value="com.hsapi.repair.data.rpb.RpbCardTimes">
+				value="com.hsapi.repair.data.rpbse.RpbCardTimes">
 			<!-- 排序字段 -->
              
 			<table style="width: 100%;" id="table1">

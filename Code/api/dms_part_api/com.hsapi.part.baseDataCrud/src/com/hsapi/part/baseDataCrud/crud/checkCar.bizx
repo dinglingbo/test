@@ -210,8 +210,8 @@
   <process:info author="Administrator" createTime="2018-05-15 11:40:12" date="2018-05-15Z" description="" name="checkPartExists" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCar" name="carList"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCar" name="car"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.rpb.RpbCar" name="carList"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.rpb.RpbCar" name="car"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="eId" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">

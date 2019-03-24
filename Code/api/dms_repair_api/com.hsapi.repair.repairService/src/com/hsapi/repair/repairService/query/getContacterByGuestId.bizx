@@ -49,7 +49,7 @@
       <process:to type="query">errMsg</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbContactor</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbContactor</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -143,7 +143,7 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-08-07 15:47:50" date="2018-08-07Z" description="" name="getContacterByGuestId" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbContactor" name="contacter"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbContactor" name="contacter"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
   </process:variables>
   <process:inputs varArgs="false">

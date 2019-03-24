@@ -112,7 +112,7 @@
       <process:to type="query">errMsg</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbItemModel</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbItemModel</process:from>
       <process:to type="query">cond1/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -128,7 +128,7 @@
       <process:to type="query">cond1/_expr[1]/_value</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbPartModel</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbPartModel</process:from>
       <process:to type="query">cond2/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -144,7 +144,7 @@
       <process:to type="query">cond2/_expr[1]/_value</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbPackageModel</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbPackageModel</process:from>
       <process:to type="query">condPkg/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -1053,31 +1053,31 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-11-20 16:29:00" date="2018-11-20Z" description="" name="queryBillModelDetailById" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="RpsPackage" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPackageModel" name="pkgList"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbPackageModel" name="pkgTemp"/>
+    <process:variable description="RpsPackage" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPackageModel" name="pkgList"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbPackageModel" name="pkgTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="condPkg"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond1"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond2"/>
-    <process:variable description="RpsItem" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbItemModel" name="itemList"/>
-    <process:variable description="RpsPart" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPartModel" name="partList"/>
-    <process:variable description="RpsItem" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbItemModel" name="itemTemp"/>
-    <process:variable description="RpsPart" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbPartModel" name="partTemp"/>
+    <process:variable description="RpsItem" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbItemModel" name="itemList"/>
+    <process:variable description="RpsPart" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPartModel" name="partList"/>
+    <process:variable description="RpsItem" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbItemModel" name="itemTemp"/>
+    <process:variable description="RpsPart" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbPartModel" name="partTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="packageId" primitiveType="Int"/>
-    <process:variable description="RpsItem" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbItemModel" name="itemOutList"/>
-    <process:variable description="RpsItem" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbItemModel" name="itemNList"/>
-    <process:variable description="RpsPart" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPartModel" name="partOutList"/>
-    <process:variable description="RpsPart" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPartModel" name="partNList"/>
+    <process:variable description="RpsItem" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbItemModel" name="itemOutList"/>
+    <process:variable description="RpsItem" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbItemModel" name="itemNList"/>
+    <process:variable description="RpsPart" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPartModel" name="partOutList"/>
+    <process:variable description="RpsPart" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPartModel" name="partNList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="pkgId" primitiveType="Int"/>
-    <process:variable description="RpsItem" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbItemModel" name="pkgItemList"/>
-    <process:variable description="RpsPart" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPartModel" name="pkgPartList"/>
-    <process:variable description="RpsItem" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbItemModel" name="titem"/>
-    <process:variable description="RpsPart" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPartModel" name="tpart"/>
-    <process:variable description="RpsItem" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbItemModel" name="itemTemp1"/>
-    <process:variable description="RpsPart" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbPartModel" name="partTemp1"/>
+    <process:variable description="RpsItem" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbItemModel" name="pkgItemList"/>
+    <process:variable description="RpsPart" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPartModel" name="pkgPartList"/>
+    <process:variable description="RpsItem" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbItemModel" name="titem"/>
+    <process:variable description="RpsPart" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPartModel" name="tpart"/>
+    <process:variable description="RpsItem" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbItemModel" name="itemTemp1"/>
+    <process:variable description="RpsPart" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbPartModel" name="partTemp1"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="itemId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="billItemId" primitiveType="Int"/>
-    <process:variable description="RpsPart" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPartModel" name="partList2"/>
-    <process:variable description="RpsPart" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPartModel" name="ppart"/>
+    <process:variable description="RpsPart" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPartModel" name="partList2"/>
+    <process:variable description="RpsPart" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPartModel" name="ppart"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="modelId" primitiveType="Int"/>

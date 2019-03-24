@@ -228,11 +228,11 @@
   <leftRuler/>
   <process:info author="chenziming" createTime="2018-03-15 15:36:50" date="2018-03-15Z" description="" name="saveTeamMembers" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbClassMember" name="member"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbClassMember" name="member"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbClassMember" name="members"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbClassMember" name="members"/>
     <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
     <process:input description="" isArray="false" name="userName" primitiveType="String"/>
   </process:inputs>

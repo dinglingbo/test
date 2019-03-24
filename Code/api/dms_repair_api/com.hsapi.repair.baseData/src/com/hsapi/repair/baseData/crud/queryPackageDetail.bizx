@@ -16,8 +16,8 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.repair.data.rpb.RpbItem[]" name="item" type="query" valueType="DataObject">item</process:return>
-      <process:return id="1" language="com.hsapi.repair.data.rpb.RpbPart[]" name="part" type="query" valueType="DataObject">part</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.rpbse.RpbItem[]" name="item" type="query" valueType="DataObject">item</process:return>
+      <process:return id="1" language="com.hsapi.repair.data.rpbse.RpbPart[]" name="part" type="query" valueType="DataObject">part</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -41,7 +41,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbPackageItem</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbPackageItem</process:from>
       <process:to type="query">criteria/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -57,7 +57,7 @@
       <process:to type="query">criteria/_expr[1]/_property</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbPackagePart</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbPackagePart</process:from>
       <process:to type="query">criteria1/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -138,11 +138,11 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="criteria1"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbPackage" name="package1"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbPackage" name="package1"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbItem" name="item"/>
-    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPart" name="part"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbItem" name="item"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPart" name="part"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

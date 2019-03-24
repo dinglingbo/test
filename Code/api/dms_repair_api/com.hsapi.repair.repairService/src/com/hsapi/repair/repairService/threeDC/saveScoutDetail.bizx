@@ -399,7 +399,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCar" name="car"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCar" name="car"/>
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.crm.Crm3dcScoutDetail" name="detail"/>
     <process:input description="" isArray="false" name="userName" primitiveType="String"/>
     <process:input description="" isArray="false" name="orgid" primitiveType="String"/>

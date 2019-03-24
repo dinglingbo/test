@@ -10,7 +10,7 @@
 -->
 <head>
 <title>全部工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/allMaintain.js?v=1.0.3"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/allMaintain.js?v=1.0.8"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -69,6 +69,8 @@
             <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
         </ul>
         <span class="separator"></span> -->
+                             查询类型:<input class="nui-combobox" id="seachType"  name="seachType" data="[{seachType:0,text:'今日进厂'},{billTypeId:1,text:'结算车次'},{billTypeId:2,text:'在修车辆'}]"
+                          width="100px"   textField="text" valueField="seachType" value="0"/>
         <label style="font-family:Verdana;">进厂日期 从：</label>
         <input class="nui-datepicker" id="sEnterDate" name="sEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd" onvaluechanged="onSearch()" showTime="false" showOkButton="false" showClearButton="false"/>
         <label style="font-family:Verdana;">至</label>

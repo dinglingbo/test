@@ -53,13 +53,13 @@
     <location x="332" y="150"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.getPackagePart</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="packageId" type="query" value="Int" valueType="Primitive" pattern="reference">packageId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="data" type="query" value="com.hsapi.repair.data.rpb.RpbPackagePart[]" valueType="DataObject">partList</process:outputVariable>
+        <process:outputVariable id="0" name="data" type="query" value="com.hsapi.repair.data.rpbse.RpbPackagePart[]" valueType="DataObject">partList</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
       </process:outputVariables>
@@ -89,13 +89,13 @@
     <location x="200" y="150"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.getPackageItem</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="packageId" type="query" value="Int" valueType="Primitive" pattern="reference">packageId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="data" type="query" value="com.hsapi.repair.data.rpb.RpbPackageItem[]" valueType="DataObject">itemList</process:outputVariable>
+        <process:outputVariable id="0" name="data" type="query" value="com.hsapi.repair.data.rpbse.RpbPackageItem[]" valueType="DataObject">itemList</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
       </process:outputVariables>
@@ -431,10 +431,10 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-08-30 12:19:26" date="2018-08-30Z" description="" name="getPackageDetail" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPackageItem" name="itemList"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPackagePart" name="partList"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbPackageItem" name="itemTemp"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbPackagePart" name="partTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPackageItem" name="itemList"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPackagePart" name="partList"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbPackageItem" name="itemTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbPackagePart" name="partTemp"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="temp"/>
   </process:variables>
   <process:inputs varArgs="false">

@@ -22,7 +22,7 @@
       <process:return id="1" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="2" language="com.hsapi.repair.data.rps.RpsCheckMain[]" name="list" type="query" valueType="DataObject">list</process:return>
       <process:return id="3" language="String" name="isRecord" type="query" valueType="Primitive">isRecord</process:return>
-      <process:return id="4" language="com.hsapi.repair.data.rpb.RpbCar" name="car" type="query" valueType="DataObject">car</process:return>
+      <process:return id="4" language="com.hsapi.repair.data.rpbse.RpbCar" name="car" type="query" valueType="DataObject">car</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -212,7 +212,7 @@
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">car</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
@@ -235,7 +235,7 @@
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsCheckMain" name="list"/>
     <process:output description="0表示没有记录 1表示有记录" isArray="false" name="isRecord" primitiveType="String"/>
-    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCar" name="car"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCar" name="car"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

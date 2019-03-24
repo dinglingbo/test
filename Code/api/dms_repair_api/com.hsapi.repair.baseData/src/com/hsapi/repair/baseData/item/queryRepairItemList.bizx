@@ -35,7 +35,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.repair.data.rpb.RpbItem[]" name="list" type="query" valueType="DataObject">list</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.rpbse.RpbItem[]" name="list" type="query" valueType="DataObject">list</process:return>
       <process:return id="1" language="com.eos.foundation.PageCond" name="page" type="query" valueType="DataObject">page</process:return>
     </process:returns>
   </nodes>
@@ -69,7 +69,7 @@
       <process:to type="query">params/tenantId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbItem</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbItem</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -275,7 +275,7 @@
     <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbItem" name="list"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbItem" name="list"/>
     <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>

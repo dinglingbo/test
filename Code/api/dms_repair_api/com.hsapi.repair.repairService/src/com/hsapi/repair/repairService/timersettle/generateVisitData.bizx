@@ -14,7 +14,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbScoutParam</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbScoutParam</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
   </nodes>
@@ -366,8 +366,8 @@
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="billTypeId" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbScoutParam" name="list"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbScoutParam" name="f"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbScoutParam" name="list"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbScoutParam" name="f"/>
   </process:variables>
   <process:inputs varArgs="false"/>
   <process:outputs/>

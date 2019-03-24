@@ -15,7 +15,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.repair.data.rpb.RpbClass" name="rpbclass" type="query" valueType="DataObject">rpbclass</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.rpbse.RpbClass" name="rpbclass" type="query" valueType="DataObject">rpbclass</process:return>
       <process:return id="1" language="Int" name="len" type="query" valueType="Primitive">len</process:return>
     </process:returns>
   </nodes>
@@ -40,7 +40,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbClass</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbClass</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -91,7 +91,7 @@
     <process:input description="" isArray="false" name="id" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbClass" name="rpbclass"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbClass" name="rpbclass"/>
     <process:output description="" isArray="false" name="len" primitiveType="Int"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>

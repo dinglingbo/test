@@ -325,13 +325,13 @@
     <location x="531" y="145"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="4" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.savePackagePartList</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="main" type="query" value="com.hsapi.repair.data.rpb.RpbPackage" valueType="DataObject" pattern="reference">main</process:inputVariable>
-        <process:inputVariable id="1" name="insList" type="query" value="com.hsapi.repair.data.rpb.RpbPackagePart[]" valueType="DataObject" pattern="reference">insParts</process:inputVariable>
-        <process:inputVariable id="2" name="updList" type="query" value="com.hsapi.repair.data.rpb.RpbPackagePart[]" valueType="DataObject" pattern="reference">updParts</process:inputVariable>
-        <process:inputVariable id="3" name="delList" type="query" value="com.hsapi.repair.data.rpb.RpbPackagePart[]" valueType="DataObject" pattern="reference">delParts</process:inputVariable>
+        <process:inputVariable id="0" name="main" type="query" value="com.hsapi.repair.data.rpbse.RpbPackage" valueType="DataObject" pattern="reference">main</process:inputVariable>
+        <process:inputVariable id="1" name="insList" type="query" value="com.hsapi.repair.data.rpbse.RpbPackagePart[]" valueType="DataObject" pattern="reference">insParts</process:inputVariable>
+        <process:inputVariable id="2" name="updList" type="query" value="com.hsapi.repair.data.rpbse.RpbPackagePart[]" valueType="DataObject" pattern="reference">updParts</process:inputVariable>
+        <process:inputVariable id="3" name="delList" type="query" value="com.hsapi.repair.data.rpbse.RpbPackagePart[]" valueType="DataObject" pattern="reference">delParts</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables/>
     </process:flow>
@@ -354,13 +354,13 @@
     <location x="660" y="145"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
-    <process:flow index="4" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.savePackageItemList</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="main" type="query" value="com.hsapi.repair.data.rpb.RpbPackage" valueType="DataObject" pattern="reference">main</process:inputVariable>
-        <process:inputVariable id="1" name="insList" type="query" value="com.hsapi.repair.data.rpb.RpbPackageItem[]" valueType="DataObject" pattern="reference">insItems</process:inputVariable>
-        <process:inputVariable id="2" name="updList" type="query" value="com.hsapi.repair.data.rpb.RpbPackageItem[]" valueType="DataObject" pattern="reference">updItems</process:inputVariable>
-        <process:inputVariable id="3" name="delList" type="query" value="com.hsapi.repair.data.rpb.RpbPackageItem[]" valueType="DataObject" pattern="reference">delItems</process:inputVariable>
+        <process:inputVariable id="0" name="main" type="query" value="com.hsapi.repair.data.rpbse.RpbPackage" valueType="DataObject" pattern="reference">main</process:inputVariable>
+        <process:inputVariable id="1" name="insList" type="query" value="com.hsapi.repair.data.rpbse.RpbPackageItem[]" valueType="DataObject" pattern="reference">insItems</process:inputVariable>
+        <process:inputVariable id="2" name="updList" type="query" value="com.hsapi.repair.data.rpbse.RpbPackageItem[]" valueType="DataObject" pattern="reference">updItems</process:inputVariable>
+        <process:inputVariable id="3" name="delList" type="query" value="com.hsapi.repair.data.rpbse.RpbPackageItem[]" valueType="DataObject" pattern="reference">delItems</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables/>
     </process:flow>
@@ -469,13 +469,13 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="tenantId" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbPackage" name="main"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPackageItem" name="insItems"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPackageItem" name="updItems"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPackageItem" name="delItems"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPackagePart" name="insParts"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPackagePart" name="updParts"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPackagePart" name="delParts"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbPackage" name="main"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPackageItem" name="insItems"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPackageItem" name="updItems"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPackageItem" name="delItems"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPackagePart" name="insParts"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPackagePart" name="updParts"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPackagePart" name="delParts"/>
     <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
     <process:input description="" isArray="false" name="userName" primitiveType="String"/>
   </process:inputs>

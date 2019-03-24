@@ -18,7 +18,7 @@
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-      <process:return id="2" language="com.hsapi.repair.data.rpb.RpbItemModel" name="data" type="query" valueType="DataObject">data</process:return>
+      <process:return id="2" language="com.hsapi.repair.data.rpbse.RpbItemModel" name="data" type="query" valueType="DataObject">data</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -399,7 +399,7 @@
     <figSize height="17" width="49"/>
     <node>transactionbegin0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign2" name="赋值3" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值3" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>transactionbegin0</targetNode>
@@ -568,7 +568,7 @@
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-      <process:return id="2" language="com.hsapi.repair.data.rpb.RpbItemModel" name="data" type="query" valueType="DataObject">data</process:return>
+      <process:return id="2" language="com.hsapi.repair.data.rpbse.RpbItemModel" name="data" type="query" valueType="DataObject">data</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
@@ -580,18 +580,18 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-11-27 14:53:57" date="2018-11-27Z" description="" name="insRpbItemModel" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbItem" name="item"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbItem" name="item"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="itemModelId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbItemModel" name="itemModel"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbItemModel" name="itemModel"/>
     <process:input description="" isArray="false" name="modelId" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
-    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbItemModel" name="data"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbItemModel" name="data"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

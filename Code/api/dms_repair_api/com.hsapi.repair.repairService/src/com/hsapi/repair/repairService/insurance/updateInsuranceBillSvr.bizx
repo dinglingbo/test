@@ -521,7 +521,7 @@
     <size height="24" width="24"/>
     <nodeLabel>loopend1label</nodeLabel>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign5" name="赋值5" displayName="赋值" grouped="true" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link37" name="link37" displayName="link15" isDefault="true" type="transition">
       <sourceNode>assign5</sourceNode>
       <targetNode>loopend1</targetNode>
@@ -1401,7 +1401,7 @@
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsDeductDetail" name="deductList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="i" primitiveType="Int"/>
     <process:variable anyType="java.util.HashMap" description="用于车辆保险信息赋值" historyStateLocation="client" isArray="false" name="params"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCar" name="rpbCar"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCar" name="rpbCar"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="serviceId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsDeductPrdtDetail" name="prdtDeductTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsDeductPrdtDetail" name="prdtDeductList"/>

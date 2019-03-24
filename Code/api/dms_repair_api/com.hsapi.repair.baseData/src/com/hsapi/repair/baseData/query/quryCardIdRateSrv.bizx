@@ -24,9 +24,9 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.repair.data.rpb.RpbBusinessType[]" name="typeList" type="query" valueType="DataObject">typeList</process:return>
-      <process:return id="1" language="com.hsapi.repair.data.rpb.RpbCardRate[]" name="list" type="query" valueType="DataObject">list</process:return>
-      <process:return id="2" language="com.hsapi.repair.data.rpb.RpbCardRate[]" name="resList" type="query" valueType="DataObject">resList</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.rpbse.RpbBusinessType[]" name="typeList" type="query" valueType="DataObject">typeList</process:return>
+      <process:return id="1" language="com.hsapi.repair.data.rpbse.RpbCardRate[]" name="list" type="query" valueType="DataObject">list</process:return>
+      <process:return id="2" language="com.hsapi.repair.data.rpbse.RpbCardRate[]" name="resList" type="query" valueType="DataObject">resList</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
@@ -70,13 +70,13 @@
     <location x="230" y="170"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.repair.common.common.getBusinessType</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">p</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="list" type="query" value="com.hsapi.repair.data.rpb.RpbBusinessType[]" valueType="DataObject">typeList</process:outputVariable>
+        <process:outputVariable id="0" name="list" type="query" value="com.hsapi.repair.data.rpbse.RpbBusinessType[]" valueType="DataObject">typeList</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -177,6 +177,7 @@
     <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>end0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
     <location x="641" y="170"/>
@@ -188,7 +189,7 @@
         <process:inputVariable id="0" name="cardId" type="query" value="Int" valueType="Primitive" pattern="reference">cardId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="list" type="query" value="com.hsapi.repair.data.rpb.RpbCardRate[]" valueType="DataObject">list</process:outputVariable>
+        <process:outputVariable id="0" name="list" type="query" value="com.hsapi.repair.data.rpbse.RpbCardRate[]" valueType="DataObject">list</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -203,16 +204,16 @@
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="p"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbBusinessType" name="temp"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCardRate" name="rd"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbBusinessDeduct" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCardRate" name="rd"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="cardId" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbBusinessType" name="typeList"/>
-    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCardRate" name="list"/>
-    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCardRate" name="resList"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbBusinessType" name="typeList"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbCardRate" name="list"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbCardRate" name="resList"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

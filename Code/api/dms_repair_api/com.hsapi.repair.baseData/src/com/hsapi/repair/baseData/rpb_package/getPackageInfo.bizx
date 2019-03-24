@@ -39,13 +39,13 @@
     <location x="195" y="150"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.getPackageItem</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="packageId" type="query" value="Int" valueType="Primitive" pattern="reference">packageId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="data" type="query" value="com.hsapi.repair.data.rpb.RpbPackageItem[]" valueType="DataObject">item</process:outputVariable>
+        <process:outputVariable id="0" name="data" type="query" value="com.hsapi.repair.data.rpbse.RpbPackageItem[]" valueType="DataObject">item</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
       </process:outputVariables>
@@ -65,13 +65,13 @@
     <location x="315" y="150"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.getPackagePart</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="packageId" type="query" value="Int" valueType="Primitive" pattern="reference">packageId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="data" type="query" value="com.hsapi.repair.data.rpb.RpbPackagePart[]" valueType="DataObject">part</process:outputVariable>
+        <process:outputVariable id="0" name="data" type="query" value="com.hsapi.repair.data.rpbse.RpbPackagePart[]" valueType="DataObject">part</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
       </process:outputVariables>
@@ -109,8 +109,8 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-08-09 15:43:40" date="2018-08-09Z" description="" name="getPackageInfo" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPackageItem" name="item"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPackagePart" name="part"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPackageItem" name="item"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPackagePart" name="part"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="packageId" primitiveType="Int"/>

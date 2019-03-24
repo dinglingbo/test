@@ -27,17 +27,17 @@
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
       <process:return id="0" language="com.hsapi.repair.data.rps.RpsMaintainBill[]" name="list" type="query" valueType="DataObject">list</process:return>
-      <process:return id="1" language="com.hsapi.repair.data.rpb.RpbCar" name="car" type="query" valueType="DataObject">car</process:return>
+      <process:return id="1" language="com.hsapi.repair.data.rpbse.RpbCar" name="car" type="query" valueType="DataObject">car</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="59" y="96"/>
-    <figSize height="20" width="31"/>
+    <location x="62" y="96"/>
+    <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="674" y="96"/>
-    <figSize height="20" width="31"/>
+    <location x="677" y="96"/>
+    <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
@@ -64,8 +64,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="224" y="96"/>
-    <figSize height="20" width="31"/>
+    <location x="227" y="96"/>
+    <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="运算逻辑" displayName=" Query according to  criteria Entity" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
@@ -101,8 +101,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="371" y="96"/>
-    <figSize height="20" width="61"/>
+    <location x="377" y="96"/>
+    <figSize height="17" width="49"/>
     <node>invokePojo0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" collapsed="false" type="assign">
@@ -128,8 +128,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="202" y="212"/>
-    <figSize height="20" width="40"/>
+    <location x="206" y="212"/>
+    <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
@@ -151,8 +151,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="489" y="96"/>
-    <figSize height="20" width="40"/>
+    <location x="493" y="96"/>
+    <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="expandEntity" displayName="expandEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
@@ -177,8 +177,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="548" y="96"/>
-    <figSize height="20" width="96"/>
+    <location x="559" y="96"/>
+    <figSize height="17" width="75"/>
     <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign3" name="赋值3" displayName="赋值" type="assign">
@@ -192,8 +192,8 @@
     <nodeLabel>assign3label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="516" y="194"/>
-    <figSize height="20" width="40"/>
+    <location x="520" y="194"/>
+    <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
   <topRuler/>
@@ -209,7 +209,7 @@
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsMaintainBill" name="list"/>
-    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCar" name="car"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCar" name="car"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

@@ -47,10 +47,16 @@
                 <input class="nui-hidden" id="carId" name="carId" />
                 <input class="nui-hidden" id="guestId" name="guestId" />
                 <input name="visitMode" id="visitMode" class="nui-combobox "textField="name" valueField="customid" visible="false"/>
+                <input class="nui-combobox" name="identity" id="identity" valueField="customid" textField="name" width="100%"  visible="false" />
+                 <input name="serviceTypeId"
+                id="serviceTypeId" visible="false"
+                class="nui-combobox"
+                textField="name"
+                valueField="id"/>
                 <div id="editForm1" style="width:100%;height:100%;">
                     <div id="mainTabs" class="nui-tabs" name="mainTabs" activeIndex="0" style="width:100%; height:100%;" plain="false" onactivechanged="">
                         <div title="客户信息" id="main" name="main">
-					<fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:30%;">
+					<fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:25%;">
                          <legend>客户信息</legend>
                              <div id="editForm4" style="padding:5px;">
                                 <table class="nui-form-table" style="width:99%">
@@ -159,7 +165,7 @@
                                 </div>
                             </fieldset>
 
-                            <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:20%;">
+                            <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:15%;">
                                 <legend>保养</legend>
                                 <div id="editForm2" style="padding:5px;">
 
@@ -181,7 +187,7 @@
                                     </table>
                                 </div>
                             </fieldset>
-                            <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:25%;">
+                            <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:20%;">
                                 <legend>保险</legend>
                                 <div id="editForm3" style="padding:5px;">
 
@@ -210,10 +216,32 @@
                                     </table>
                                 </div>
                             </fieldset>
-                <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:25%;">
+                 <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:25%;">
                          <legend>联系人信息</legend>
                              <div id="editForm5" style="padding:5px;">
-                                <table class="nui-form-table" style="width:99%">
+                             <div class="nui-fit">
+                            <div id="contactdatagrid" class="nui-datagrid"  showPager="false" sortMode="client" allowCellEdit="true" onrowdblclick="eaidContact()"
+                                allowCellSelect="true" multiSelect="true"  editNextOnEnterKey="true" onDrawCell="onDrawCell">
+                                <div property="columns">
+
+                                    <div field="id" class="nui-hidden" allowSort="true" align="left" headerAlign="center" width="" visible="false">
+                                        联系人ID
+                                    </div>
+                                    <div field="guestId" class="nui-hidden" allowSort="true" align="left" headerAlign="center" width="" visible="false">
+                                        客户ID
+                                    </div>
+                                    <div field="name" allowSort="true" align="left" summaryType="count" headerAlign="center" width="">姓名</div>
+                                    <div field="sex" allowSort="true" align="left" headerAlign="center" width="" dataType="int">
+                                        性别
+                                    </div>
+                                    <div field="mobile" allowSort="true" align="left" headerAlign="center" width="" dataType="int">
+                                        手机
+                                    </div>
+                                    <div field="identity" allowSort="true" align="left" headerAlign="center" width="">身份</div>
+                                </div>
+                            </div>
+                        </div>
+                                <!-- <table class="nui-form-table" style="width:99%">
                                     <tr>
                                         <td class="form_label required" align="right">
                                             <label>联系人名称：</label>
@@ -245,7 +273,7 @@
                                         </td>
                                     </tr>
                                     
-                                </table>
+                                </table> -->
                           </div>
                       </fieldset>
                    </div>
@@ -276,9 +304,14 @@
                             </div>
                         </div>
                         <div title="服务记录" id="main" name="main">
-                            <div id="mainGrid1" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" totalField="page.count"
-                                dataField="data" onrowdblclick="" allowCellSelect="true" url="">
+                            <div id="mainGrid1" class="nui-datagrid" style="width:100%;height:100%;" 
+                                  selectOnLoad="true" showPager="true" totalField="page.count"
+                                 dataField="data" onrowdblclick="" allowCellSelect="true" url=""
+                                onshowrowdetail="onShowRowDetail"
+                                >
                                 <div property="columns">
+                                    <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
+                                    <div field="id" name="id" width="60" headerAlign="center"  visible="false" header="工单ID"></div>
                                     <div field="carNo" name="carNo" width="60" headerAlign="center" header="车牌号"></div>
                                     <!--  <div field="guestFullName" name="guestFullName" width="55" headerAlign="center" header="客户姓名"></div>
 	                <div field="guestMobile" name="guestMobile" width="80" headerAlign="center" header="客户手机"></div> -->
@@ -457,6 +490,52 @@
                     </div>
                 </div>
             </div>
+  <div id="editFormDetail" style="display:none;padding:5px;position:relative;">
+     <div  id="innerpackGrid" class="nui-datagrid"
+	    style="width:100%;height:150px;"
+	    dataField="data"
+	    showPager="false"
+	    showModified="false"
+	    allowSortColumn="false" >
+      <div property="columns">
+    	   <div type="indexcolumn" headerAlign="center" name="index" visible="false">序号</div>
+           <div headerAlign="center" field="orderIndex" width="25" align="right" name="num">序号</div>
+           <div field="prdtName" headerAlign="center" allowSort="false" visible="true" width="100" header="套餐名称"></div>
+           <div field="type" headerAlign="center" allowSort="false" visible="true" width="60" header="项目类型" align="center"></div>    
+           <div field="serviceTypeId" headerAlign="center" name="pkgServiceTypeId" allowSort="false" visible="true" width="50" header="业务类型" align="center"> </div>
+           <div field="subtotal" headerAlign="center" name="pkgSubtotal" allowSort="false" visible="true" width="60" header="套餐金额" align="center" ></div>
+           <div field="rate" headerAlign="center" name="pkgRate" allowSort="false" visible="true" width="60" header="优惠率" align="center"></div>
+           <div field="amt" headerAlign="center" name="pkgAmt"  allowSort="false" visible="true" width="60" header="原价" align="center"></div>
+           <div field="workers" headerAlign="center"  allowSort="false" visible="true" width="60" header="施工员" align="center" name="workers"></div>
+           <div field="workerIds" headerAlign="center" allowSort="false" visible="false" width="80" header="施工员" align="center"></div>  
+           <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center" name="saleMan"></div>
+           <div field="saleManId" headerAlign="center" allowSort="false" visible="false" width="80" header="销售员" align="center"></div>
+     </div>
+   </div>
+   <div id="innerItemGrid"
+       borderStyle="border-bottom:0;"
+       class="nui-datagrid"
+       dataField="data"
+       style="width: 100%;height:150px;"
+       showPager="false"
+       allowSortColumn="true">
+      <div property="columns">
+           <div type="indexcolumn" headerAlign="center" name="index" visible="false">序号</div>
+           <div headerAlign="center" field="orderIndex" width="25" align="right" name="num">序号</div>
+           <div field="prdtName" headerAlign="center" allowSort="false" visible="true" width="100">项目名称</div>
+	       <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="100" align="center">业务类型 </div>
+	       <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" name="itemItemTime">工时/数量 </div>
+	       <div field="unitPrice" name="itemUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">单价 </div>
+	       <div field="rate" name="itemRate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" >优惠率</div>            
+	       <div field="subtotal"  name="itemSubtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">金额</div>          
+	       <div field="amt"  name="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">总金额 </div>           
+           <div field="workers" headerAlign="center" allowSort="false" visible="true" width="80" header="施工员" name="workers"  align="center"></div>
+	       <div field="workerIds" headerAlign="center"  allowSort="false" visible="false" width="80" header="施工员" align="center"></div>  
+	       <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center" name="saleMan"></div>
+	       <div field="saleManId" headerAlign="center"   allowSort="false" visible="false" width="80" header="销售员" align="center"></div> 
+      </div>
+   </div>
+</div>
             <script type="text/javascript">
                 nui.parse();
             </script>

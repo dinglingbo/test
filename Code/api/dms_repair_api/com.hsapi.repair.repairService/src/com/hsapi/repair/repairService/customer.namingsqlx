@@ -122,7 +122,15 @@
             <isNotEmpty prepend="and" property="insureDueDateStar">  
                 (a.insure_due_date &gt;= #insureDueDateStar# )
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="insureDueDateEnd">  
+            
+             <!--本日所有保险开单客户-->
+            <isNotEmpty prepend="and" property="insurance">  
+                exists(select 1 from wb_repair.rps_insurance_main d
+                     where b.id = d.guest_id and d.record_date &gt;= date_format(DATE_SUB(curdate(),INTERVAL 0 DAY),'%Y-%m-%d %H:%i:%s') )
+            </isNotEmpty>
+            
+            
+             <isNotEmpty prepend="and" property="insureDueDateEnd">  
                 (a.insure_due_date &lt;= #insureDueDateEnd# )
             </isNotEmpty>
             

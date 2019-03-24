@@ -12,7 +12,7 @@
 
 <head>
     <title>特别关怀</title>
-    <script src="<%=request.getContextPath()%>/manage/js/maintainRemMain/specialAttentionGuest.js?v=1.1.04">
+    <script src="<%=request.getContextPath()%>/manage/js/maintainRemMain/specialAttentionGuest.js?v=1.1.5">
     </script>
     <style>
           html,

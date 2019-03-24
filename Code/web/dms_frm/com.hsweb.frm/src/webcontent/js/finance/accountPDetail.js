@@ -58,6 +58,7 @@ $(document).ready(function(v) {
             { name: 'auditor' },
              {name:'shortName'},
              {name:'billServiceId'},
+             { name: 'billTypeId' },
              { name: 'carNo' }
         ],
         callback: function (column, filtered) {
@@ -65,6 +66,16 @@ $(document).ready(function(v) {
         tranCallBack: function (field) {
         	var value = null;
         	switch(field){
+    		case "billTypeId" :
+    			var arr = [];
+    			for (var i in enterTypeIdHash) {
+    			    var o = {};
+    			    o.name = enterTypeIdHash[i].name;
+    			    o.id = enterTypeIdHash[i].id;
+    			    arr.push(o);
+    			}
+    			value = arr;
+    			break;
 	    		default:
 	                break;
 	    	}
@@ -346,10 +357,12 @@ function print(){
 	var businessNumber = "";
 	var netInAmt =0;
 	for(var i = 0;i<rows.length;i++){
+		rows[i].guestName = rows[i].fullName;//打印界面用的是guestName
 		if(i==rows.length-1){
 			businessNumber = businessNumber+rows[i].billServiceId
 			netInAmt = parseFloat(netInAmt)+parseFloat(rows[i].charOffAmt);
-			netInAmt = netInAmt.toFixed(2)
+			netInAmt = netInAmt.toFixed(2);
+			
 		}else{
 			businessNumber = businessNumber+rows[i].billServiceId+","
 			netInAmt = parseFloat(netInAmt)+parseFloat(rows[i].charOffAmt);
@@ -357,9 +370,9 @@ function print(){
 		}
 		
 	}
-	var guestData = [{guestName:rows[0].fullName}]
+	//var guestData = [{guestName:rows[0].fullName}]
 	params = {
-		guestData:guestData,
+		guestData:rows,
 		businessNumber :businessNumber,
 		billServiceId : rows[0].billServiceId,
 		netInAmt:netInAmt,

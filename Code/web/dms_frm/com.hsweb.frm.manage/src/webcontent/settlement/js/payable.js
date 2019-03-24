@@ -401,7 +401,7 @@ function print(accountDetailList,netInAmt){
 		if(i==accountDetailList.length-1){
 			businessNumber = businessNumber+accountDetailList[i].billServiceId
 		}else{
-			businessNumber = businessNumber+accountDetailList[i].billServiceId+","
+			businessNumber = businessNumber+accountDetailList[i].billServiceId+",";
 		}
 		
 	}

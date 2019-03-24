@@ -143,6 +143,10 @@ function quickSearch(type)
             params.lastMonthLoss = 1;
             queryname = "所有";
             break;
+        case 7:
+            params.insurance = 1;
+            queryname = "本日所有保险开单客户";
+            break;
         default:
             break;
     }

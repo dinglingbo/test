@@ -327,7 +327,8 @@ where c.orgid = #orgid#
             a.annual_inspection_comp_name annualInspectionCompName,
             a.insure_comp_name insureCompName,
             c.guest_id guestId,
-            c.wechat_service_id wechatServiceId
+            c.wechat_service_id wechatServiceId,
+            '' as crmGuestId
         from  rpb_car a
         INNER JOIN rpb_car_extend b on b.car_id = a.id 
         INNER JOIN rpb_contactor c on a.guest_id = c.guest_id
@@ -340,6 +341,7 @@ where c.orgid = #orgid#
                 <isNotEmpty prepend="and" property="endDate">
                 a.annual_inspection_date &lt;= #endDate#
             </isNotEmpty>
+            
         </isEqual>
 
         <!-- 交强险 -->
@@ -407,7 +409,8 @@ where c.orgid = #orgid#
             '' as annualInspectionCompName,
             '' as insureCompName,
             a.guest_id guestId,
-            '' as wechatServiceId
+            '' as wechatServiceId,
+            a.id as crmGuestId
         from wb_crm.crm_guest  a
         where  a.orgid = #orgid#
         <!-- 商业险-->
@@ -418,6 +421,7 @@ where c.orgid = #orgid#
             <isNotEmpty prepend="and" property="endDate">
                 a.annual_inspection_date &lt;= #endDate#
             </isNotEmpty>
+            order by annualInspectionDate asc
         </isEqual>
 
         <!-- 交强险 -->
@@ -428,6 +432,7 @@ where c.orgid = #orgid#
             <isNotEmpty prepend="and" property="endDate">
                 a.insure_due_date &lt;= #endDate#
             </isNotEmpty>
+            order by insureDueDate asc
         </isEqual>
 
         <!-- 车辆年检 -->
@@ -438,6 +443,7 @@ where c.orgid = #orgid#
             <isNotEmpty prepend="and" property="endDate">
                 a.annual_verification_due_date &lt;= #endDate#
             </isNotEmpty>
+            order by dueDate asc
         </isEqual>
 
         <!-- 保养提醒 -->
@@ -448,6 +454,7 @@ where c.orgid = #orgid#
             <isNotEmpty prepend="and" property="endDate">
                 a.care_due_date &lt;= #endDate#
             </isNotEmpty>
+            order by careDueDate asc
         </isEqual>
 
                         <!-- 驾照年审 -->
@@ -457,12 +464,14 @@ where c.orgid = #orgid#
             </isNotEmpty>
             <isNotEmpty prepend="and" property="endDate">
                 a.driving_licence_due_date  &lt;= #endDate#
+                order by licenseOverDate asc
             </isNotEmpty>
         </isEqual>
 
                                 <!-- 客户生日 -->
         <isEqual  prepend="" property="dateType"   compareValue="khsr">
            and 1=2
+           order by birthday asc
         </isEqual>
     </select>
 

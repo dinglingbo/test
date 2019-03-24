@@ -378,6 +378,31 @@ function sendWcText(){//发送微信消息
 }
 
 
+
+function sendWcCoupon() {
+    var row = getRow();
+    row.userNickname = row.guestName;
+    row.userMarke = row.wechatServiceId;
+    row.storeName = currOrgName;
+    row.userOpid = row.wechatOpenId;
+    var list = [];
+    list.push(row);
+
+    nui.open({                        
+        url: webPath + contextPath  + "/manage/sendWechatWindow/sWcInfoCoupon.jsp?token="+token,
+        title: "发送卡券", width: 800, height: 350,
+        onload: function () {
+        var iframe = this.getIFrameEl();
+        iframe.contentWindow.setData(list);
+    },
+    ondestroy: function (action) {
+            //重新加载
+            //query(tab);
+        }
+    });
+}
+
+
 function getRow() {
     var sRow = {};
     var tab = tabs.getActiveTab();
@@ -483,6 +508,7 @@ function quickSearch(type,gridType) {
             params.isAnnualRemind = 1;
             params.annualStatus = 0;
             params.dateType = gridType;
+            params.endDate = addDate(params.endDate, -1);
             business.load({params:params});
             break;
             case 'jqx'://交强险
@@ -495,6 +521,7 @@ function quickSearch(type,gridType) {
             params.isInsureRemind = 1;
             params.insureStatus = 0;
             params.dateType = gridType;
+            params.endDate = addDate(params.endDate, -1);
             compulsoryInsurance.load({params:params});
             break;
             case 'jzns'://驾照年审
@@ -507,6 +534,7 @@ function quickSearch(type,gridType) {
             params.isLicenseRemind = 1;
             params.licenseStatus = 0;
             params.dateType = gridType;
+            params.endDate = addDate(params.endDate, -1);
             drivingLicense.load({params:params});
             break;
             case 'clnj'://车辆年检 
@@ -519,6 +547,7 @@ function quickSearch(type,gridType) {
             params.isVeriRemind = 1;
             params.veriStatus = 0;
             params.dateType = gridType;
+            params.endDate = addDate(params.endDate, -1);
             car.load({params:params});
             break;
             case 'khsr'://客户生日
@@ -531,6 +560,7 @@ function quickSearch(type,gridType) {
             params.isBirRemind = 1;
             params.birStatus = 0;
             params.dateType = gridType;
+            params.endDate = addDate(params.endDate, -1);
             guestBirthday.load({params:params});
             break;
         default:

@@ -28,10 +28,10 @@ $(document).ready(function() {
 	partGrid.setUrl(partGridUrl);
 	partDetailGrid = nui.get("partDetailGrid");
     partDetailGrid.setUrl(getDetailPartUrl);
-    signBtn=nui.get("signBtn");
-    if(currSrmUserId){
-    	signBtn.setVisible(false);
-    }
+//    signBtn=nui.get("signBtn");
+//    if(currSrmUserId){
+//    	signBtn.setVisible(false);
+//    }
     tree = nui.get("tree1");
 //    tree.setUrl(treeUrl);
 //    initQuery();
@@ -69,10 +69,10 @@ $(document).ready(function() {
 //	tree.load({token:token});
 //    queryPartBrand();
 //}
-function platformSignIn(){
-	window.open("http://192.168.111.58:8080/srm/supplier/cusRegister.html?id="+currOrgId);  
-//	window.open("http://srm.hszb.harsons.cn/srm/supplier/cusRegister.html?id="+currOrgId);     
-}
+//function platformSignIn(){
+//	window.open("http://192.168.111.58:8080/srm/supplier/cusRegister.html?id="+currOrgId);  
+////	window.open("http://srm.hszb.harsons.cn/srm/supplier/cusRegister.html?id="+currOrgId);     
+//}
 function setRoleId() {
 	return {"token":token,"protoken":protoken};
 }
@@ -155,6 +155,12 @@ function addOrEditPart(row)
 }
 var guestUrl=baseUrl+"com.hsapi.part.invoice.partInterfaceDs.queryGuestAndSKU.biz.ext";
 function verifyGuestForCar(){
+	var useMoney=$('#money').text();
+	//电商额度为0
+	if(useMoney == '0'){
+		parent.parent.showMsg("电商额度为0,不能添加到采购车！","W");
+		return;
+	}
 	nui.mask({
         el : document.body,
         cls : 'mini-mask-loading',
@@ -203,6 +209,12 @@ function verifyGuestForCar(){
 }
 
 function verifyGuestForOrder(){
+	var useMoney=$('#money').text();
+	//电商额度为0
+	if(useMoney == '0'){
+		parent.parent.showMsg("电商额度为0,不能生成采购订单！","W");
+		return;
+	}
 	nui.mask({
         el : document.body,
         cls : 'mini-mask-loading',
@@ -298,7 +310,7 @@ function addOrder(){
     row.orderQty=row.qty;
     row.orderPrice=row.price;
     row.guestId=guestData.id;
-    row.gusetName=guestData.fullName;
+    row.guestName=guestData.fullName;
     var rows=[];
     rows.push(row);
     if(rows && rows.length > 0){
@@ -351,7 +363,9 @@ function getProToken(){
             if(errCode == "S"){
             	systoken = data.systoken;
             	protoken = systoken;
-            	
+            	//获取额度
+            	getDsUserMoney();
+            	//品牌
             	queryPartBrand();
 
 //            	tree.load({
@@ -379,24 +393,24 @@ function getProToken(){
 
 
 function onSearch (){
+	var params={};
+	params.partCode =nui.get('partCode').value.replace(/\s+/g, "");
+	params.brandCode =nui.get('partBrandId').value;
+	params.partName =nui.get('partName').value.replace(/\s+/g, "");
+	doSearch(params);
+}
 
-	var partCode =nui.get('partCode').value;
-	var brandCode =nui.get('partBrandId').value;
-	var partName =nui.get('partName').value;
-//	if(!key){
-//		parent.parent.showMsg("请填写关键词！","W");
-//	}
+function doSearch(params){
 	
 	partGrid.load({
-		brandCode :brandCode ||"",
-		partsCode :partCode || "",
-		partsName :partName ||"",
-		classesId:classesId || "",
+		brandCode : params.brandCode ||"",
+		partsCode : params.partCode || "",
+		partsName : params.partName ||"",
+		classesId : params.classesId || "",
 		protoken:protoken,
 		token:token
 	});
 }
-
 
 
 function onGridSelectionChanged(){
@@ -418,20 +432,14 @@ function onNodeDblClick(e)
 {
     var currTree = e.sender;
     var currNode = e.node;
-//    var level = currTree.getLevel(currNode);
-//    var list = [];
-//    var tmpNode = currNode;
-//    do{
-//        list[level] = tmpNode.id;
-//        tmpNode = currTree.getParentNode(tmpNode);
-//        level = currTree.getLevel(tmpNode);
-//    }while(tmpNode&&tmpNode.id);
-
     classesId = currNode.id||"";
-//    var categoryS = list[1]||"";
-//    var categoryT = list[2]||"";
+    var params={};
+    params.partCode =nui.get('partCode').value.replace(/\s+/g, "");
+	params.brandCode =nui.get('partBrandId').value;
+	params.partName =nui.get('partName').value.replace(/\s+/g, "");
+	params.classesId = classesId;
 
-    onSearch();
+    doSearch(params);
 }
 var partTypeHash = null;
 
@@ -488,6 +496,28 @@ function queryPartBrand(){
         	if (data.errCode == "S") {
             	nui.get('partBrandId').setData(list);
                 brandId=nui.get("partBrandId").value;
+            }
+               
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+var getMoneryUrl=baseUrl+"com.hsapi.part.invoice.partInterfaceDs.getDsUserMoney.biz.ext"
+function getDsUserMoney(){
+	nui.ajax({
+        url : getMoneryUrl,
+        type : "post",
+        data : {protoken:protoken,token:token},
+        success : function(data) {
+            nui.unmask(document.body);
+            list = data.data || {};
+        	if (data.errCode == "S") {
+            	var data=data.data;
+            	var useMoney =data.useMoney;
+            	$('#money').text(useMoney);
             }
                
         },

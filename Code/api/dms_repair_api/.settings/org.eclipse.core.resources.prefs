@@ -9,6 +9,7 @@ encoding//com.hsapi.repair.baseData/eosdebug/com/hsapi/repair/baseData/item/save
 encoding//com.hsapi.repair.baseData/eosdebug/com/hsapi/repair/baseData/item/saveRpbItem.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.baseData/eosdebug/com/hsapi/repair/baseData/team/queryWorkTeam.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.baseData/eosdebug/com/hsapi/repair/baseData/team/saveTeam.bizx.eosdebug=UTF-8
+encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/booking/queryPreBookByGuest.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/UpdateMainStatusAndRpsPart.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/checkContactorExists.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/insRpsCardTimes.bizx.eosdebug=UTF-8

@@ -120,7 +120,8 @@
             {customid:"060702",name:"终止跟踪"},
             {customid:"060703",name:"重点跟踪"},
             {customid:"060704",name:"已来厂/已成交"}];
-        var visType = [{id:1,text:"电销回访"},{id:2,text:"预约回访"},{id:3,text:"客户回访"},{id:4,text:"流失回访"}];
+        var visType = [{ id: 1, text: '电销回访' }, { id: 2, text: '预约回访' }, { id: 3, text: '客户回访' }, { id: 4, text: '流失回访' }, { id: 5, text: '保养提醒' }, { id: 6, text: '商业险到期' }, { id: 7, text: '交强险到期' }, { id: 8, text: '驾照年审' }, { id: 9, text: '车辆年检' }, { id: 10, text: '生日' }];
+        
         nui.parse();
         var webBaseUrl = webPath + contextPath + "/";
         var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";

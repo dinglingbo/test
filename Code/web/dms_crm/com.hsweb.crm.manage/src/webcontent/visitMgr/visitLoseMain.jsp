@@ -58,14 +58,18 @@ pageEncoding="UTF-8" session="false" %>
         textField="name" valueField="id" allowInput="false" emptyText="客户等级" />
         <a class="nui-button" plain="true" onclick="quickSearch(0)" iconcls="" ><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         <span class="separator"></span>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="SetData()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-        <a class="nui-button" id="wcBtn1"  plain="true" iconCls="" plain="false" visible="false" onclick="sendWcText()"><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-        <a class="nui-button" id="wcBtn2"  plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-        <a class="nui-button" id="wcBtn3"  plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sellPoint()"><span class="fa fa-gift fa-lg"></span>&nbsp;销售机会</a>
-        <!--<a class="nui-button" plain="true" iconCls="" plain="false" onclick="WindowrepairHistory()"><span class="fa fa-wrench fa-lg"></span>&nbsp;维修历史</a>-->
-        <!-- <a class="nui-button" plain="true" iconcls="" plain="false" onclick="openOrderDetail()" ><span class="fa fa-search fa-lg"></span>&nbsp;查询工单详情</a> -->
+        <a class="nui-button" plain="true" iconCls="" onclick="SetData()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
+        <a class="nui-button" plain="true" iconCls="" onclick="sendInfo()"><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
+        <a class="nui-button" id="wcBtn1"  plain="true" iconCls="" visible="false" onclick="sendWcText()"><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
+        <a class="nui-button" id="wcBtn2"  plain="true" iconCls="" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+        <a class="nui-button" id="wcBtn3"  plain="true" iconCls="" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+        <a class="nui-button" plain="true" iconCls="" onclick="sellPoint()"><span class="fa fa-gift fa-lg"></span>&nbsp;销售机会</a>
+        <!--<a class="nui-button" plain="true" iconCls="" onclick="WindowrepairHistory()"><span class="fa fa-wrench fa-lg"></span>&nbsp;维修历史</a>-->
+        <!-- <a class="nui-button" plain="true" iconcls="" onclick="openOrderDetail()" ><span class="fa fa-search fa-lg"></span>&nbsp;查询工单详情</a> -->
+        <span id="showMonile" style="display: none;">
+                <span class="separator"></span>
+                <span id="mobileText" style="color: red;font-weight:bold;display: inline-block;"></span>
+            </span>
     </div>
 
     <div class="nui-fit">

@@ -11,7 +11,7 @@
 <head>
 <title>营业报表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/operatingStatementList.js?v=1.0.5"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/operatingStatementList.js?v=1.0.6"></script>
       <link href="<%=request.getContextPath()%>/repair/js/report/storeReport/reportIndex.css" rel="stylesheet" type="text/css" />
 
 </head>

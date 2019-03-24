@@ -8,11 +8,11 @@ var compulsoryInsurance = null; //交强险
 var drivingLicense = null; //驾照年审
 var car = null; //车辆年检提醒
 var guestBirthday = null; //客户生日
-var visitHis = null; //回放历史
+var visitHis = null; //回访历史
 var serviceType = null; //5保养提醒 //6商业险到期   7; //交强险到期   8; //驾照到期   9; //车检到期   10; //客户生日  
 var params = {};
 var tabs = {};
-var serviceTypeList = [{},{ id: 1, text: '电销' }, { id: 2, text: '预约' }, { id: 3, text: '客户回访' }, { id: 4, text: '流失回访' }, { id: 5, text: '保养提醒' }, { id: 6, text: '商业险到期' }, { id: 7, text: '交强险到期' }, { id: 8, text: '驾照年审' }, { id: 9, text: '车辆年检' }, { id: 1, text: '生日' }];
+var serviceTypeList = [{},{ id: 1, text: '电销' }, { id: 2, text: '预约' }, { id: 3, text: '客户回访' }, { id: 4, text: '流失回访' }, { id: 5, text: '保养提醒' }, { id: 6, text: '商业险到期' }, { id: 7, text: '交强险到期' }, { id: 8, text: '驾照年审' }, { id: 9, text: '车辆年检' }, { id: 10, text: '生日' }];
 
 $(document).ready(function (v) {
     tabs = nui.get("tabs");
@@ -60,27 +60,39 @@ $(document).ready(function (v) {
     reminding.on("select", function (e) {
         loadVisitHis(e.record.conId);
         isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
+        $("#showMonile0").show();
+        document.getElementById("mobileText0").innerHTML = e.record.mobile;
      
     }); 
     business.on("select", function (e) {
         loadVisitHis(e.record.conId);
         isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
+        $("#showMonile").show();
+        document.getElementById("mobileText").innerHTML = e.record.mobile;
     }); 
     compulsoryInsurance.on("select", function (e) {
         loadVisitHis(e.record.conId);
         isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
+        $("#showMonile2").show();
+        document.getElementById("mobileText2").innerHTML = e.record.mobile;
     }); 
     drivingLicense.on("select", function (e) {
         loadVisitHis(e.record.conId);
         isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
+        $("#showMonile3").show();
+        document.getElementById("mobileText3").innerHTML = e.record.mobile;
     }); 
     car.on("select", function (e) {
         loadVisitHis(e.record.conId);
         isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
+        $("#showMonile4").show();
+        document.getElementById("mobileText4").innerHTML = e.record.mobile;
     }); 
     guestBirthday.on("select", function (e) {
         loadVisitHis(e.record.conId);
         isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
+        $("#showMonile5").show();
+        document.getElementById("mobileText5").innerHTML = e.record.mobile;
     }); 
 
     reminding.on("drawcell", function (e) {
@@ -415,6 +427,30 @@ function sendWcText(){//发送微信消息
 }
 
 
+function sendWcCoupon() {
+    var row = getRow();
+    row.userNickname = row.guestName;
+    row.userMarke = row.wechatServiceId;
+    row.storeName = currOrgName;
+    row.userOpid = row.wechatOpenId;
+    var list = [];
+    list.push(row);
+
+    nui.open({                        
+        url: webPath + contextPath  + "/manage/sendWechatWindow/sWcInfoCoupon.jsp?token="+token,
+        title: "发送卡券", width: 800, height: 350,
+        onload: function () {
+        var iframe = this.getIFrameEl();
+        iframe.contentWindow.setData(list);
+    },
+    ondestroy: function (action) {
+            //重新加载
+            //query(tab);
+        }
+    });
+}
+
+
 function getRow() {
     var sRow = {};
     var tab = tabs.getActiveTab();
@@ -465,6 +501,7 @@ function getRow() {
     sRow.name = sRow.guestName;//发送微信界面用到
     sRow.trueGuestId = sRow.guestId;//真正的guestId
     sRow.guestId = sRow.conId;//电话回访界面用到 联系表id
+    sRow.contactorId = sRow.conId;//点击车牌号弹窗用到 联系表id
     sRow.annualVerificationDueDate = sRow.dueDate;//车辆年检发送微信界面用到
 
     return sRow||0;
@@ -529,16 +566,17 @@ function quickSearch(type,gridType) {
     }
     switch (gridType) {
         case 'bytx'://保养提醒
-        var menunamedate0 = nui.get("menunamedate0");
-        var startDateEl0 = nui.get("startDate0");
-        var endDateEl0 = nui.get("endDate0");
-        startDateEl0.setValue(params.startDate);
-        endDateEl0.setValue(addDate(params.endDate, -1));
-        menunamedate0.setText(queryname);
-        params.isNeedRemind = 1;
-        params.remindStatus = 0;
-        params.dateType = gridType;
-        business.load({params:params});
+            var menunamedate0 = nui.get("menunamedate0");
+            var startDateEl0 = nui.get("startDate0");
+            var endDateEl0 = nui.get("endDate0");
+            startDateEl0.setValue(params.startDate);
+            endDateEl0.setValue(addDate(params.endDate, -1));
+            menunamedate0.setText(queryname);
+            params.isNeedRemind = 1;
+            params.remindStatus = 0;
+            params.dateType = gridType;
+            params.endDate = addDate(params.endDate, -1);
+            reminding.load({params:params});
         break;
         case 'syx'://商业险
             var menunamedate = nui.get("menunamedate");
@@ -550,6 +588,7 @@ function quickSearch(type,gridType) {
             params.isAnnualRemind = 1;
             params.annualStatus = 0;
             params.dateType = gridType;
+            params.endDate = addDate(params.endDate, -1);
             business.load({params:params});
             break;
             case 'jqx'://交强险
@@ -562,6 +601,7 @@ function quickSearch(type,gridType) {
             params.isInsureRemind = 1;
             params.insureStatus = 0;
             params.dateType = gridType;
+            params.endDate = addDate(params.endDate, -1);
             compulsoryInsurance.load({params:params});
             break;
             case 'jzns'://驾照年审
@@ -574,6 +614,7 @@ function quickSearch(type,gridType) {
             params.isLicenseRemind = 1;
             params.licenseStatus = 0;
             params.dateType = gridType;
+            params.endDate = addDate(params.endDate, -1);
             drivingLicense.load({params:params});
             break;
             case 'clnj'://车辆年检 
@@ -585,6 +626,7 @@ function quickSearch(type,gridType) {
             menunamedate4.setText(queryname);
             params.isVeriRemind = 1;
             params.veriStatus = 0;
+            params.endDate = addDate(params.endDate, -1);
             params.dateType = gridType;
             car.load({params:params});
             break;
@@ -649,7 +691,8 @@ function WindowrepairHistory(){
 	var params = {
 		carId : row.carId,
 		carNo : row.carNo,
-		guestId : row.trueGuestId
+        guestId: row.trueGuestId,
+        contactorId:row.contactorId
 	};
 		doShowCarInfo(params);
 }

@@ -180,6 +180,7 @@ function saveRecord() {
             }else{
                 showMsg("保存失败！","E");
             }
+            onClose();
         },
             error: function (jqXHR, textStatus, errorThrown) {
               showMsg(jqXHR.responseText);

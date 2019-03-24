@@ -102,9 +102,8 @@ function deleteCartShop(){
                 nui.unmask(document.body);
                 data = data || {};
                 if (data.errCode == "S") {
-                    parent.parent.showMsg("删除成功!","",function(e){
-                        cartGrid.removeRows(rows,true);
-                    });
+                    parent.parent.showMsg("删除成功!","S");
+                    cartGrid.removeRows(rows,true);
                     
                 } else {
                     parent.parent.showMsg(data.errMsg || "删除失败!");

@@ -14,7 +14,7 @@ var visitManEl = null;
 var visitIdEl = null;
 var hash = {}; 
 var billTypeIdList = [{ id: 0, name: "综合开单" }, { id: 1, name: "检查开单" }, { id: 2, name: "洗美开单" }, { id: 3, name: "销售开单" }, { id: 4, name: "理赔开单" }, { id: 5, name: "退货开单" }, { id: 6, name: "波箱开单" }];
-var serviceTypeList = [{},{ id: 1, text: '电销' }, { id: 2, text: '预约' }, { id: 3, text: '客户回访' }, { id: 4, text: '流失回访' }, { id: 5, text: '保养提醒' }, { id: 6, text: '商业险到期' }, { id: 7, text: '交强险到期' }, { id: 8, text: '驾照年审' }, { id: 9, text: '车辆年检' }, { id: 1, text: '生日' }];
+var serviceTypeList = [{},{ id: 1, text: '电销' }, { id: 2, text: '预约' }, { id: 3, text: '客户回访' }, { id: 4, text: '流失回访' }, { id: 5, text: '保养提醒' }, { id: 6, text: '商业险到期' }, { id: 7, text: '交强险到期' }, { id: 8, text: '驾照年审' }, { id: 9, text: '车辆年检' }, { id: 10, text: '生日' }];
 var dataTypeIdList = [{},{id:1,name:"第一次回访"},{id:2,name:"第二次回访"},{id:3,name:"第三次回访"}]; 
 var statusHash = {
 	"0" : "报价",
@@ -57,6 +57,9 @@ $(document).ready(function(){
             nui.get("wcBtn2").disable();
             nui.get("wcBtn3").disable(); 
         }
+
+        $("#showMonile").show();
+        document.getElementById("mobileText").innerHTML = e.record.guestMobile;
     }); 
 	document.onkeyup = function(event) {
 		var e = event || window.event;
@@ -291,7 +294,8 @@ function WindowrepairHistory(){
 	var params = {
 		carId : row.carId,
 		carNo : row.carNo,
-		guestId : row.guestId
+        guestId: row.guestId,
+        contactorId:row.contactorId
 	};
 	if(row.id){
 		doShowCarInfo(params);
@@ -393,6 +397,30 @@ function sendWechatPicInfo(){//微信图文 回访
 		showMsg("请选中一条数据","W");
 	}
 }
+
+function sendWcCoupon() {
+    var row = gridCar.getSelected();
+    row.userNickname = row.guestFullName;
+    row.userMarke = row.wechatServiceId;
+    row.storeName = currOrgName;
+    row.userOpid = row.wechatOpenId;
+    var list = [];
+    list.push(row);
+
+    nui.open({                        
+        url: webPath + contextPath  + "/manage/sendWechatWindow/sWcInfoCoupon.jsp?token="+token,
+        title: "发送卡券", width: 800, height: 350,
+        onload: function () {
+        var iframe = this.getIFrameEl();
+        iframe.contentWindow.setData(list);
+    },
+    ondestroy: function (action) {
+            //重新加载
+            //query(tab);
+        }
+    });
+}
+
 
 
 

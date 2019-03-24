@@ -12,10 +12,11 @@
 <title>车架号查询</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>
+    <%@include file="/common/commonCloudPart.jsp"%>
     <link href="<%=contextPath%>/epc/brand/css/cloud.css?v=1.0" rel="stylesheet" type="text/css" />
     
     <script src="<%=contextPath%>/epc/common/llqCommon.js?v=1.1" type="text/javascript"></script>
-    <script src="<%=contextPath%>/epc/vin/js/vinQuery.js?v=1.5" type="text/javascript"></script>
+    <script src="<%=contextPath%>/epc/vin/js/vinQuery.js?v=1.10" type="text/javascript"></script>
     <style>
         .search-result-list-item-content-img{
             width: 180px;
@@ -30,6 +31,11 @@
         body .mini-grid-row-selected{
             background:#89c3d6 !important; 
         }
+        .part-span{
+		   font-size:13px;
+		   color:#2779aa;
+		}
+        
     </style>
 </head>
 <body>

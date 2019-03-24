@@ -327,6 +327,14 @@
         }
         params.sEnterDate = nui.get('sEnterDate').getFormValue();
         
+        //value = value.replace(/\s+/g, "");
+        //包含中文
+        var reg = /[\u4E00-\u9FA5\uF900-\uFA2D]/;
+        if(!reg.test(params.partName)){
+            params.namePy = params.partName;
+            params.partName = null;
+        }
+        
         if(type == "Id"){
             params.partId = par;
         }

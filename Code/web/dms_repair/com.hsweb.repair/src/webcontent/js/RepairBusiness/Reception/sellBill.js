@@ -677,6 +677,9 @@ function saveMaintain(callback,unmaskcall){
 	/*if(data.id) {
     	delete data.recordDate;
     }*/
+	if(data.recordDate){
+    	data.recordDate = format(data.recordDate, 'yyyy-MM-dd HH:mm:ss');
+    }
     data.billTypeId = 3;
     data.serviceTypeId = 1 ;
     data.mtAdvisorId = currEmpId;
@@ -1382,6 +1385,9 @@ function saveBatch(){
 	}else{		
 		var maintain = billForm.getData(true);
 	   /* delete maintain.recordDate;*/  
+		if(maintain.recordDate){
+			maintain.recordDate = format(maintain.recordDate, 'yyyy-MM-dd HH:mm:ss');
+	    }
 	    total = null;
 		//var addSellPart = nui.get("rpsPartGrid").getData();
 		//var sellPartAdd = rpsPartGrid.getChanges("added");
@@ -1469,6 +1475,9 @@ function finish(){
 	});
 	var maintain = billForm.getData(true);
     //delete maintain.recordDate;
+	if(maintain.recordDate){
+		maintain.recordDate = format(maintain.recordDate, 'yyyy-MM-dd HH:mm:ss');
+    }
 	total = null;
 	var sellPartAdd = [];
 	var sellPartUpdate = [];

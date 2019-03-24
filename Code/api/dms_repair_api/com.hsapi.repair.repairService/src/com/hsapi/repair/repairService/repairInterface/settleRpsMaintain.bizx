@@ -135,10 +135,6 @@
       <process:from type="query" pattern="reference">settlement/otherAmt</process:from>
       <process:to type="query">otherAmt</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">netInAmt+otherAmt</process:from>
-      <process:to type="query">netInAmt</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
     <location x="282" y="375"/>
@@ -503,23 +499,23 @@
       <targetNode>subprocess6</targetNode>
     </sourceConnections>
     <targetConnections>link11</targetConnections>
-    <location x="781" y="250"/>
+    <location x="825" y="251"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
     <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.repair.repairService.settlement.updateRpbGuestConsumeAmt</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="guestId" type="query" value="Int" valueType="Primitive" pattern="reference">maintain/guestId</process:inputVariable>
-        <process:inputVariable id="1" name="consumeAmt" type="query" value="Double" valueType="Primitive" pattern="reference">settlement/balaAmt</process:inputVariable>
+        <process:inputVariable id="1" name="consumeAmt" type="query" value="Double" valueType="Primitive" pattern="reference">netInAmt</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="746" y="285"/>
+    <location x="790" y="286"/>
     <figSize height="17" width="97"/>
     <node>subprocess2</node>
   </nodes>
@@ -531,6 +527,7 @@
     <targetConnections>link23</targetConnections>
     <targetConnections>link24</targetConnections>
     <targetConnections>link27</targetConnections>
+    <targetConnections>link3</targetConnections>
     <location x="521" y="195"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
@@ -629,7 +626,7 @@
     <figSize height="17" width="39"/>
     <node>assign30</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign4" name="赋值4" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link30" name="link30" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>assign30</targetNode>
@@ -881,23 +878,37 @@
       <sourceNode>subprocess6</sourceNode>
       <targetNode>transactioncommit0</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link3" name="link3" displayName="连接线" type="transition">
+      <sourceNode>subprocess6</sourceNode>
+      <targetNode>assign3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link22</targetConnections>
-    <location x="990" y="252"/>
+    <location x="945" y="251"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess6label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.repair.repairService.settlement.updateRpbCarLeaveInfo</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="carId" type="query" value="Int" valueType="Primitive" pattern="reference">maintain/carId</process:inputVariable>
+        <process:inputVariable id="1" name="isUpdateDate" type="literal" value="Boolean" valueType="Primitive" pattern="reference">true</process:inputVariable>
+        <process:inputVariable id="2" name="leaveDate" type="query" value="Date" valueType="Primitive" pattern="reference">d</process:inputVariable>
+        <process:inputVariable id="3" name="isUpdateAmt" type="literal" value="Boolean" valueType="Primitive" pattern="reference">true</process:inputVariable>
+        <process:inputVariable id="4" name="cousumeAmt" type="query" value="Double" valueType="Primitive" pattern="reference">netInAmt</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess6label" name="label" nodeType="label">
-    <location x="932" y="287"/>
+    <location x="887" y="286"/>
     <figSize height="17" width="142"/>
     <node>subprocess6</node>
   </nodes>

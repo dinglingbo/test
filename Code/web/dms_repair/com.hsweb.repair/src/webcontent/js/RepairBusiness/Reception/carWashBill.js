@@ -1167,6 +1167,9 @@ function saveMaintain(callback,unmaskcall){
     if (data.planFinishDate) {
 		data.planFinishDate = format(data.planFinishDate, 'yyyy-MM-dd HH:mm:ss');
 	}
+    if (data.enterDate) {
+		data.enterDate = format(data.enterDate, 'yyyy-MM-dd HH:mm:ss');
+	}
     /*if(data.id) {
     	delete data.enterDate;
     }*/

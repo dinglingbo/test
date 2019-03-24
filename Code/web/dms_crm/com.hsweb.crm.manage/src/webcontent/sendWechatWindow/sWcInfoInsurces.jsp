@@ -181,11 +181,18 @@
                 paraMap:p,
                 token:token
             }
+            nui.mask({
+            el : document.body,
+            cls : 'mini-mask-loading',
+            html : '发送中...'
+        });
+
             nui.ajax({
                 url:turl,
                 type:"post",
                 data:params,
                 success:function (res) {
+                    nui.unmask(document.body);
                     saveRecord(mainData);
                 }
             })

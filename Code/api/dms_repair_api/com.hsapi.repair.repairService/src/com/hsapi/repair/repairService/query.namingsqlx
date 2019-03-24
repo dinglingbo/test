@@ -740,6 +740,7 @@
 			SELECT sum(b.bala_amt) as balaAmt, sum(b.gross_profit) maoLi,
 			       sum(b.package_subtotal) as pkgAmt, sum(b.item_subtotal) as itemAmt,
 			       sum(b.card_times_amt) as cardAmt, 
+			       sum(b.netin_amt) as netinAmt,
 			       sum(package_pref_amt + item_pref_amt + part_pref_amt + allowance_amt) as prefAmt,
 			       sum(other_amt) as otherAmt, sum(other_cost_amt) as otherCostAmt
 			from rps_maintain a

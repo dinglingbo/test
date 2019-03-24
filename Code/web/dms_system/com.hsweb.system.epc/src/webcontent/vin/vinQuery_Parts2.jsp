@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-	
 
+<style>	
+.separator{
+   margin-left:0px;
+   margin-right:0px;
+}
+
+</style>
 <div  class="nui-splitter"  vertical="true" style="width:100%;height:100%;" allowResize="true" id="partPanel">
 <!-- 上 -->
 	<div size="50%" showCollapseButton="false" >
@@ -40,9 +46,10 @@
 			<div size="55%" showCollapseButton="false">
 			
 				<div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+				 	<div class="nui-fit">
 		            <div class="form" id="queryForm">
 		            	<h1 style="color:#222">购物车(临时存放信息)</h1>
-		                <table style="width:100%;">
+		                <table style="width:100%;height:40px"">
 		                    <tr>
 		                        <td style="white-space:nowrap;">
 		                            <a class="nui-button car" iconCls="" plain="true" onclick="deleteCartShop()" ><span class="part-span">删除</span></a>
@@ -52,12 +59,13 @@
 		                            <span class="separator"></span>
 		                            <a class="nui-button car" iconCls="" visible="true" id="pchsOrderBtn" plain="true" onclick="generatePchsOrder()"><span class="part-span">生成采购订单</span></a>
 		                            <a class="nui-button car" iconCls="" visible="true" id="sellOrderBtn" plain="true" onclick="generateSellOrder()"><span class="part-span">生成销售订单</span></a>
-		                             <br>
+		            
 		                            <a class="nui-button car" visible="true" plain="true"onclick="copyEmbed()" id="copyBtn" data-clipboard-action="copy"><span class="part-span">一键复制</span></a>							
 		                     
 		                        </td>
 		                    </tr>
 		                </table>
+		            </div>
 		            </div>
 		        </div>
 		

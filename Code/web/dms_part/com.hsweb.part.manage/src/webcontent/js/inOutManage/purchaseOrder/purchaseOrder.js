@@ -1841,10 +1841,16 @@ function OnrpMainGridCellBeginEdit(e){
     var editor = e.editor;
 
     var data = basicInfoForm.getData();
-
+    
     if(data.auditSign == 1){
         e.cancel = true;
 	}
+    //选择的供应商是电商平台的
+    if(data.srmGuestId){
+    	if(field =='orderQty' || field =='orderPrice' || field =='orderAmt'){		
+    		e.cancel = true;
+    	}
+    }
 	if(advancedMorePartWin.visible) {
 		e.cancel = true;
 		morePartGrid.focus();
@@ -2110,6 +2116,8 @@ function unAudit()
 				document.getElementById("basicInfoForm").disabled = false;
 				setBtnable(true);
 				setEditable(true);
+				//更新电商订单状态为取消
+				updateOrderStatus("6");
                 
             } else {
 				showMsg(data.errMsg || "审核失败!","E");

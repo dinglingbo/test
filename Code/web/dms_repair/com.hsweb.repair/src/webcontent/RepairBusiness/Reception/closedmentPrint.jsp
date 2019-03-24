@@ -9,7 +9,7 @@
   - Description:
 -->
 <head>
-<title>付款凭证</title>
+<title>收款凭证</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
 	<script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/jquery-1.8.3.min.js" type="text/javascript"></script>
@@ -157,7 +157,7 @@
                         <td><input id="payDate1" type="datetime-local" value=""/></td>
                     </tr>
                     <tr>
-                        <td class="color999" height="46">即付：</td>
+                        <td class="color999" height="46">即收：</td>
                         <td><input type="text" id="guestName1" class="peijianss" value="" /></td>
                     </tr>
                      <tr>
@@ -201,7 +201,7 @@
         <div style="margin: 0 10px;" class="printny">
         <div class="company-info">
         	<div class="parent">
-        		<p><font size="6" ><b>支&nbsp;&nbsp;款&nbsp;&nbsp;证&nbsp;&nbsp;明&nbsp;&nbsp;单</b></font></p>
+        		<p><font size="6" ><b>收&nbsp;&nbsp;款&nbsp;&nbsp;证&nbsp;&nbsp;明&nbsp;&nbsp;单</b></font></p>
         	</div>
             <table  width="100%" >
 	            <tbody>
@@ -255,7 +255,7 @@
 
             <div class="content">
             	<p><b>
-            	<div style="margin-left: 50px;margin-top: 25px;">即付:<div style="border-bottom: 1px solid black;margin-left: 35px;margin-top: -22px;"><span  id="guestName"></span></div></div>
+            	<div style="margin-left: 50px;margin-top: 25px;">即收:<div style="border-bottom: 1px solid black;margin-left: 35px;margin-top: -22px;"><span  id="guestName"></span></div></div>
             	
             	<div style="margin-left: 30px;margin-right: 50px;border-bottom: 1px solid black;"><div style="margin-left: 200px;margin-top: 10px;">业务单号:<span id="businessNumber"></span></div></div>
             	<div style="margin-left: 50px;margin-top: 15px;float:left;">人民币（大写）:</div>
@@ -272,7 +272,7 @@
 	   					    <input type="checkbox"   />支票  
 	    					<input type="checkbox"   />转账    
 	    			</div>		
-	    			<div style="margin-right: 100px;margin-top: 20px;float:left">支款单位（盖章）：<span id="companyName"></span></div>
+	    			<div style="margin-right: 100px;margin-top: 20px;float:left">收款单位（盖章）：<span id="companyName"></span></div>
     			</div>
             </div>
  			<table  width="100%" style="margin-top: 20px;padding-left: 100px;padding-right: 100px"   cellpadding="10">

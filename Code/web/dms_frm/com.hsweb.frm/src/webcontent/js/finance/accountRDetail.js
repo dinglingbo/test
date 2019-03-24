@@ -62,6 +62,7 @@ $(document).ready(function(v) {
             { name: 'auditor' },
              {name:'shortName'},
             { name: 'billServiceId' },
+            { name: 'billTypeId' },
             {name:'carNo'}
         ],
         callback: function (column, filtered) {
@@ -69,6 +70,16 @@ $(document).ready(function(v) {
         tranCallBack: function (field) {
         	var value = null;
         	switch(field){
+    		case "billTypeId" :
+    			var arr = [];
+    			for (var i in enterTypeIdHash) {
+    			    var o = {};
+    			    o.name = enterTypeIdHash[i].name;
+    			    o.id = enterTypeIdHash[i].id;
+    			    arr.push(o);
+    			}
+    			value = arr;
+    			break;
 	    		default:
 	                break;
 	    	}
@@ -331,4 +342,96 @@ function openOrderDetail(){
 		return;
 	}
 
+}
+function print(){
+	var msg = checkSettleRow();
+	if (msg) {
+		showMsg(msg, "W");
+		return;
+	}
+	var rows = mainGrid.getSelecteds();
+	var sourceUrl = webPath + contextPath + "/com.hsweb.print.closedmentPrint.flow?token="+token;
+	var printName = currOrgName;
+	var p = {
+		comp : printName,
+		partApiUrl:apiPath + partApi + "/",
+		frmApiUrl:apiPath + frmApi + "/",
+		baseUrl: apiPath + repairApi + "/",
+		sysUrl: apiPath + sysApi + "/",
+		webUrl:webPath + contextPath + "/",
+        bankName: currBankName,
+        bankAccountNumber: currBankAccountNumber,
+        currCompAddress: currCompAddress,
+        currCompTel: currCompTel,
+        currSlogan1: currSlogan1,
+        currSlogan2: currSlogan2,
+        currUserName : currUserName,
+        currCompLogoPath: currCompLogoPath,
+		token : token
+	};
+	var businessNumber = "";
+	var netInAmt =0;
+	for(var i = 0;i<rows.length;i++){
+		rows[i].guestName = rows[i].fullName;//打印界面用的是guestName
+		if(i==rows.length-1){
+			businessNumber = businessNumber+rows[i].billServiceId
+			netInAmt = parseFloat(netInAmt)+parseFloat(rows[i].charOffAmt);
+			netInAmt = netInAmt.toFixed(2);
+			
+		}else{
+			businessNumber = businessNumber+rows[i].billServiceId+","
+			netInAmt = parseFloat(netInAmt)+parseFloat(rows[i].charOffAmt);
+			netInAmt = netInAmt.toFixed(2)
+		}
+		
+	}
+	//var guestData = [{guestName:rows[0].fullName}]
+	params = {
+		guestData:rows,
+		businessNumber :businessNumber,
+		billServiceId : rows[0].billServiceId,
+		netInAmt:netInAmt,
+		p:p
+	};
+
+
+	nui.open({
+        url: sourceUrl,
+        title:"打印收款证明单",
+		width: "100%",
+		height: "100%",
+        onload: function () {
+            var iframe = this.getIFrameEl();
+           iframe.contentWindow.SetData(params);
+        },
+        ondestroy: function (action){
+        }
+    });
+}
+
+function checkSettleRow() {
+	var guestId = null;
+	var rows = mainGrid.getSelecteds();
+	var msg = "";
+	var s = rows.length;
+
+	if (s > 0) {
+		for (var i = 0; i < s; i++) {			
+			var row = rows[i];
+			if (i == 0) {
+				firstRow = row;
+				guestId = firstRow.guestId;
+			} else {
+				var rowGuestId = row.guestId;
+				if (guestId != rowGuestId) {
+					return "请选择相同结算单位的单据!";
+				}
+			}
+		}
+
+	} else {
+		msg = "请选择单据!";
+	}
+
+	return msg;
 }

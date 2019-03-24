@@ -344,6 +344,7 @@ function onSearch()
 			}
 			var params = {
 					name: nui.get("search-name").getValue(),
+					pyCode : nui.get("search-namePy").getValue(),
 					carModelId:carModelId
 				}
 		}else{

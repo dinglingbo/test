@@ -1496,7 +1496,7 @@ function onRGridbeforeselect(e) {
 			nowAmt : row.noCharOffAmt
 		};
 		if (row.nowAmt) {
-			newRow.nowAmt = "";
+			newRow.nowAmt = row.noCharOffAmt;
 		} else {
 			newRow.nowAmt = row.noCharOffAmt;
 		}
@@ -1510,7 +1510,7 @@ function onRGridheadercellclick(e) {
 		var billDc = row.billDc;
 		var newRow = {};
 		if (row.nowAmt) {
-			newRow.nowAmt = "";
+			newRow.nowAmt = row.noCharOffAmt;
 		} else {
 			newRow.nowAmt = row.noCharOffAmt;
 		}

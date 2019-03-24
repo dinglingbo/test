@@ -291,7 +291,7 @@
 						<label>客户名称:</label>
 					</td>
 					<td colspan="3">
-					    <input class="nui-textbox" name="guestName" id="guestName" style="width: 100%;"  value=""/>
+					    <input class="nui-textbox" name="guestFullName" id="guestFullName" style="width: 100%;"  value=""/>
 						<!-- <input name="guestId" id="guestId1" class="nui-buttonedit" emptyText="请选择客户..." onbuttonclick="selectCustomer('guestId1')"
 						 width="100%" allowInput="false" selectOnFocus="true" /> -->
 					</td>

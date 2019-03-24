@@ -348,7 +348,8 @@
 	                    <label>备注：</label>
 	                </td>
 	                <td colspan="3">
-	                    <input class="nui-textbox" name="remark" width="80%" />
+	                    <input class="nui-textbox" name="remark" width="85%" />
+	                    
 	                     <label>是否禁用：</label>
 	                     <input type="checkbox" id="isDisabled" class="mini-checkbox"  name="isDisabled"  trueValue="1" falseValue="0" >
 	                </td>

@@ -714,7 +714,10 @@ function addCarList(){
 				issuingDate:car.issuingDate,
 				lastComeKilometers:car.lastComeKilometers,
 				careDueMileage:car.careDueMileage,
-				careDueDate:car.careDueDate
+				careDueDate:car.careDueDate,
+				remark:car.remark,
+				isDisabled:car.is_disabled
+				
 			};
                 var cargrid = cardatagrid.getData(true);
                 for(var i = 0 ;i<cargrid.length;i++){

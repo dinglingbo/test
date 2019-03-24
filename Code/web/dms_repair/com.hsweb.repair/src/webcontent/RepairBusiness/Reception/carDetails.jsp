@@ -50,7 +50,7 @@
                 <div id="editForm1" style="width:100%;height:100%;">
                     <div id="mainTabs" class="nui-tabs" name="mainTabs" activeIndex="0" style="width:100%; height:100%;" plain="false" onactivechanged="">
                         <div title="客户信息" id="main" name="main">
-					<fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:40%;">
+					<fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:30%;">
                          <legend>客户信息</legend>
                              <div id="editForm4" style="padding:5px;">
                                 <table class="nui-form-table" style="width:99%">
@@ -84,7 +84,7 @@
                                             <input class="nui-textbox" id="shortName" name="shortName"  width="100%" />
                                         </td>
                                     </tr>
-                                    <tr>
+                                  <!--   <tr>
                                         <td class="form_label" align="right">
                                             <label>生日类型：</label>
                                         </td>
@@ -98,7 +98,7 @@
                                         <td>
                                             <input name="birthday" allowInput="false" class="nui-datepicker" width="100%" />
                                         </td>
-                                    </tr>
+                                    </tr> -->
                                     <tr>
                                         <td class="form_label" align="right">
                                             <label>备注：</label>

@@ -117,7 +117,9 @@ $(document).ready(function ()
                 e.cellHtml = brandHash[e.value].name;
             }
         }else if (e.field == "auditSign") {
-            if (auditSignHash && auditSignHash[e.value]) {
+        	if(e.value==null){
+        		e.cellHtml = "未审核";
+        	}else if (auditSignHash && auditSignHash[e.value]) {
                 e.cellHtml = auditSignHash[e.value];
             }
         }else if (e.field == "serviceTypeId") {
@@ -372,7 +374,16 @@ function onSearch()
 }
 function doSearch() {
     var gsparams = getSearchParam();
-
+    if((nui.get("seachType").getValue())==2){
+    	params.sEnterDate = null;
+    	params.eEnterDate = null;
+    }else{
+        var xcdate = getDays(gsparams.sEnterDate,gsparams.eEnterDate);
+        if(xcdate>92){
+        	showMsg("查询时间相差不能大于三个月！","W");
+        	return;
+        }
+    }
 
     mainGrid.load({
         token:token,
@@ -382,7 +393,8 @@ function doSearch() {
 function getSearchParam() {
     var params = {};
     params.sEnterDate = nui.get("sEnterDate").getValue();
-    params.eEnterDate = addDate(endDateEl.getValue(),1);  
+    params.eEnterDate = addDate(endDateEl.getValue(),1); 
+    
     params.mtAuditorId = mtAdvisorIdEl.getValue();
 /*    var orgidsElValue = orgidsEl.getValue();
     if(orgidsElValue==null||orgidsElValue==""){
@@ -494,4 +506,28 @@ function showCarInfo(row_uid){
 		};
 		doShowCarInfo(params);
 	}
+}
+
+function getDays(strDateStart,strDateEnd){
+		strDateStart = new Date(strDateStart);
+		strDateEnd = new Date(strDateEnd);
+		var iDays =(strDateEnd-strDateStart) / (1000 * 60 * 60 * 24);
+
+	   return iDays ;
+	}
+
+function setInitData(params) {
+    if (params.id == 'settleQty') {
+    	nui.get("seachType").setValue(1);
+    	nui.get("seachType").setText("结算车辆");
+    	var gsparams = getSearchParam();
+    	gsparams.isSettle=1;
+        mainGrid.load({
+            token:token,
+            params: gsparams
+        });
+    } else if (params.id == 'serviceBillQty') {
+    		nui.get("seachType").setValue(2);
+    		nui.get("seachType").setText("在修车辆");
+    }
 }

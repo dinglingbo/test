@@ -283,7 +283,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbPart</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbPart</process:from>
       <process:to type="query">cd/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -579,17 +579,17 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-10-10 09:57:57" date="2018-10-10Z" description="" name="saveRpbPart" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbPart" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbPart" name="temp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="modifyDate" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cd"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPart" name="addTempList"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPart" name="list"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPart" name="addTempList"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPart" name="list"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="tenantId" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPart" name="addList"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPart" name="updateList"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPart" name="deleteList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPart" name="addList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPart" name="updateList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPart" name="deleteList"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

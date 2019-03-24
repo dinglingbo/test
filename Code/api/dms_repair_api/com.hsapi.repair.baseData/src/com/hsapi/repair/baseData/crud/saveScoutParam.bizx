@@ -356,13 +356,13 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-07-13 16:44:44" date="2018-07-13Z" description="" name="saveStation" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbScoutParam" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbScoutParam" name="temp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="tenantId" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbScoutParam" name="addList"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbScoutParam" name="updateList"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbScoutParam" name="deleteList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbScoutParam" name="addList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbScoutParam" name="updateList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbScoutParam" name="deleteList"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

@@ -68,6 +68,10 @@
       <process:from type="literal" pattern="reference">S</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">d</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="24" y="133"/>
@@ -310,7 +314,7 @@
       <process:to type="query">temp/recorder</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">temp/recordDate</process:to>
     </process:copy>
     <process:copy>
@@ -318,7 +322,7 @@
       <process:to type="query">temp/modifier</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">temp/modifyDate</process:to>
     </process:copy>
   </nodes>
@@ -341,7 +345,7 @@
       <process:to type="query">temp/modifier</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">temp/modifyDate</process:to>
     </process:copy>
   </nodes>
@@ -403,8 +407,8 @@
         <process:inputVariable id="0" name="nameSqlId" type="literal" value="String" valueType="Primitive" pattern="reference">com.hsapi.system.data.dictMgr.getServiceType</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -417,14 +421,15 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-07-13 16:44:44" date="2018-07-13Z" description="" name="saveStation" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbBusinessType" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbBusinessDeduct" name="temp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="tenantId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="tmpInt" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbBusinessType" name="addList"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbBusinessType" name="updateList"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbBusinessType" name="deleteList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbBusinessDeduct" name="addList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbBusinessDeduct" name="updateList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbBusinessDeduct" name="deleteList"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

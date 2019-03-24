@@ -274,18 +274,19 @@
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign3</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
     <location x="285" y="240"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.repair.repairService.crud.getCarById</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="id" type="query" value="String" valueType="Primitive" pattern="reference">book/carId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="car" type="query" value="com.hsapi.repair.data.rpb.RpbCar" valueType="DataObject">car</process:outputVariable>
+        <process:outputVariable id="0" name="car" type="query" value="com.hsapi.repair.data.rpbse.RpbCar" valueType="DataObject">car</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -325,7 +326,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="data" type="query" value="commonj.sdo.DataObject" valueType="Java"></process:outputVariable>
+        <process:outputVariable id="2" name="data" type="query" value="commonj.sdo.DataObject" valueType="Java"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -439,7 +440,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsPrebook" name="book"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="maintain"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCar" name="car"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCar" name="car"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="id" primitiveType="String"/>

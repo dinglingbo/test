@@ -185,7 +185,7 @@
         <process:inputVariable id="1" name="serviceTypeId" type="query" value="Int" valueType="Primitive" pattern="reference">serviceTypeId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="data" type="query" value="com.hsapi.repair.data.rpb.RpbBusinessDeduct" valueType="DataObject">bDeduct</process:outputVariable>
+        <process:outputVariable id="0" name="data" type="query" value="com.hsapi.repair.data.rpbse.RpbBusinessDeduct" valueType="DataObject">bDeduct</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
       </process:outputVariables>
@@ -333,7 +333,7 @@
     <figSize height="17" width="62"/>
     <node>invokePojo0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign3" name="赋值3" displayName="赋值" grouped="true" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link10" name="link10" displayName="link11" isDefault="false" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>assign4</targetNode>
@@ -402,7 +402,7 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="p"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="true" name="partList"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="temp"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbBusinessDeduct" name="bDeduct"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbBusinessDeduct" name="bDeduct"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="serviceTypeId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="salesDeductValue" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsPart" name="updateTemp"/>

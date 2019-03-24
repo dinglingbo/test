@@ -20,7 +20,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.repair.data.rpb.RpbItem" name="data" type="query" valueType="DataObject">data</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.rpbse.RpbItem" name="data" type="query" valueType="DataObject">data</process:return>
       <process:return id="1" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="2" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
     </process:returns>
@@ -195,12 +195,12 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-08-31 14:39:35" date="2018-08-31Z" description="" name="getPackageDeduct" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbItem" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbItem" name="temp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="len" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="salesDeductValue" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="techDeductValue" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="advisorDeductValue" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbBusinessDeduct" name="bDeduct"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbBusinessDeduct" name="bDeduct"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="id" primitiveType="Int"/>
@@ -208,7 +208,7 @@
     <process:input description="" isArray="false" name="serviceTypeId" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbItem" name="data"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbItem" name="data"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
   </process:outputs>

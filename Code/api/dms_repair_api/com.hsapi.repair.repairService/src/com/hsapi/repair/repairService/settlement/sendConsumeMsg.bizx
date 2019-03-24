@@ -504,7 +504,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="msgt" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="messageo" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="msgto" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbContactor" name="contactor"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbContactor" name="contactor"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="card,times,all" isArray="false" name="type" primitiveType="String"/>

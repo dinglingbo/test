@@ -228,7 +228,7 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-11-28 10:09:31" date="2018-11-28Z" description="" name="updRpbPartModel" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbPartModel" name="rpbPartModel"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbPartModel" name="rpbPartModel"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="rate" primitiveType="Double"/>
   </process:variables>

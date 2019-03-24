@@ -97,7 +97,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbAppointmentParams</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbAppointmentParams</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -392,8 +392,8 @@
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="nowDate" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbAppointmentParams" name="paramsList"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbAppointmentParams" name="params"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbAppointmentParams" name="paramsList"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbAppointmentParams" name="params"/>
     <process:variable description="多少分钟内不能预约" historyStateLocation="client" isArray="false" name="advanceTimes" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="timeEnd" primitiveType="Time"/>
     <process:variable description="预约时间间隔" historyStateLocation="client" isArray="false" name="intervalTime" primitiveType="Int"/>

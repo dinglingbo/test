@@ -724,7 +724,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="fmonth" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="payTypeName" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="cardId" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCardStored" name="card"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCardStored" name="card"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="bCanModity" primitiveType="Int"/>
     <process:variable description="定义信息" historyStateLocation="client" isArray="false" name="bRechargeAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="bGiveAmt" primitiveType="Double"/>

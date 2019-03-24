@@ -16,7 +16,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.repair.data.rpb.RpbCarExtend" name="data" type="query" valueType="DataObject">data</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.rpbse.RpbCarExtend" name="data" type="query" valueType="DataObject">data</process:return>
       <process:return id="1" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="2" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
     </process:returns>
@@ -41,7 +41,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbCarExtend</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbCarExtend</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -116,14 +116,14 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-10-11 09:39:45" date="2018-10-11Z" description="" name="getRecentRepairByCar" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCarExtend" name="list"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbCarExtend" name="list"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="carId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCarExtend" name="data"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCarExtend" name="data"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
   </process:outputs>

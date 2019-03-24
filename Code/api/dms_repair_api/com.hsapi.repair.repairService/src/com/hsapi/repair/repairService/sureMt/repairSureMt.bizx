@@ -347,7 +347,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.genRepairRecord</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="car" type="query" value="com.hsapi.repair.data.rpb.RpbCarExtend" valueType="DataObject" pattern="reference">carExtend</process:inputVariable>
+        <process:inputVariable id="0" name="car" type="query" value="com.hsapi.repair.data.rpbse.RpbCarExtend" valueType="DataObject" pattern="reference">carExtend</process:inputVariable>
         <process:inputVariable id="1" name="maintain" type="query" value="com.hsapi.repair.data.rps.RpsMaintain" valueType="DataObject" pattern="reference">maintain</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables/>
@@ -465,7 +465,7 @@
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
         <process:outputVariable id="2" name="chainComeTimes" type="query" value="Int" valueType="Primitive">chainComeTimes</process:outputVariable>
-        <process:outputVariable id="3" name="carExtend" type="query" value="com.hsapi.repair.data.rpb.RpbCarExtend" valueType="DataObject">carExtend</process:outputVariable>
+        <process:outputVariable id="3" name="carExtend" type="query" value="com.hsapi.repair.data.rpbse.RpbCarExtend" valueType="DataObject">carExtend</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -536,13 +536,13 @@
   <process:info author="chenziming" createTime="2018-03-23 18:05:58" date="2018-03-23Z" description="" name="repairSureMt" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbContactor" name="contactor"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbContactor" name="contactor"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="countIn" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCar" name="car"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCar" name="car"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="userName" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="compComeTimes" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="chainComeTimes" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCarExtend" name="carExtend"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCarExtend" name="carExtend"/>
     <process:variable anyType="java.lang.Throwable" description="" historyStateLocation="client" isArray="false" name="exception"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsItem" name="rpsItem"/>

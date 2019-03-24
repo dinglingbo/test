@@ -16,7 +16,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.repair.data.rpb.RpbAppointmentTimes[]" name="times" type="query" valueType="DataObject">times</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.rpbse.RpbAppointmentTimes[]" name="times" type="query" valueType="DataObject">times</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -49,7 +49,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbAppointmentTimes</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbAppointmentTimes</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -92,7 +92,7 @@
     <figSize height="17" width="162"/>
     <node>invokePojo0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign1" name="赋值1" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>end0</targetNode>
@@ -117,7 +117,7 @@
     <process:input description="" isArray="false" name="mainId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbAppointmentTimes" name="times"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbAppointmentTimes" name="times"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

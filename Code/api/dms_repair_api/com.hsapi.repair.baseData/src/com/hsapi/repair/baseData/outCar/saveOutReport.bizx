@@ -268,7 +268,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="date" primitiveType="Date"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbOutReport" name="report"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbOutReport" name="report"/>
     <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
     <process:input description="" isArray="false" name="userName" primitiveType="String"/>
   </process:inputs>

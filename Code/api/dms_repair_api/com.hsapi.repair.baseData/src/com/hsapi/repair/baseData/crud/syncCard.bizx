@@ -927,17 +927,17 @@
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="a" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="b" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCardRate" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCardRate" name="temp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="editType" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="len" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="id" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCardStored" name="timesTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCardStored" name="timesTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCardStored" name="card"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCardRate" name="addList"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCardRate" name="updateList"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCardStored" name="card"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbCardRate" name="addList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbCardRate" name="updateList"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

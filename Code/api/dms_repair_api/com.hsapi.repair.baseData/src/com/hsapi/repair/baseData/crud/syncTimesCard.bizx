@@ -1023,20 +1023,20 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-07-30 09:31:08" date="2018-07-30Z" description="" name="addStore" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCardTimesDetail" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCardTimesDetail" name="temp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="oldAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="sellAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="len" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="id" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCardTimes" name="timesTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCardTimes" name="timesTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCardTimes" name="timesCard"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCardTimesDetail" name="timesCardDetail"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCardTimesDetail" name="pchsOrderDetailAdd"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCardTimesDetail" name="pchsOrderDetailUpdate"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCardTimesDetail" name="pchsOrderDetailDelete"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCardTimes" name="timesCard"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbCardTimesDetail" name="timesCardDetail"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbCardTimesDetail" name="pchsOrderDetailAdd"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbCardTimesDetail" name="pchsOrderDetailUpdate"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbCardTimesDetail" name="pchsOrderDetailDelete"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

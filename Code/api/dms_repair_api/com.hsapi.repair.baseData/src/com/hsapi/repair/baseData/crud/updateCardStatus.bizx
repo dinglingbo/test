@@ -233,10 +233,10 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-08-04 17:40:28" date="2018-08-04Z" description="" name="deleteCard" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCardStored" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbCardStored" name="temp"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCardStored" name="card"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbCardStored" name="card"/>
   </process:inputs>
   <process:outputs>
     <process:output description="成功" isArray="false" name="errCode" primitiveType="String"/>

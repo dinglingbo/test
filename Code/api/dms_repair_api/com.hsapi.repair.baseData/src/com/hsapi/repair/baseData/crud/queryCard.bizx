@@ -15,7 +15,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.repair.data.rpb.RpbCardStored[]" name="card" type="query" valueType="DataObject">card</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.rpbse.RpbCardStored[]" name="card" type="query" valueType="DataObject">card</process:return>
       <process:return id="1" language="Int" name="total" type="query" valueType="Primitive">page/count</process:return>
     </process:returns>
   </nodes>
@@ -88,7 +88,7 @@
       <process:to type="query">page/length</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbCardStored</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbCardStored</process:from>
       <process:to type="query">criteria/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -148,7 +148,7 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign2" name="赋值2" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>assign3</targetNode>
@@ -230,7 +230,7 @@
     <process:input description="" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="criteria"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCardStored" name="card"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbCardStored" name="card"/>
     <process:output description="" isArray="false" name="total" primitiveType="Int"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>

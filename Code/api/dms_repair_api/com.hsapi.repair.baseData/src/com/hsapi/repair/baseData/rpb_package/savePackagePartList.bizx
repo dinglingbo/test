@@ -299,7 +299,7 @@
   <leftRuler/>
   <process:info author="chenziming" createTime="2018-03-16 17:00:22" date="2018-03-16Z" description="" name="savePackagePartList" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbPackagePart" name="tmp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbPackagePart" name="tmp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="userName" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="packageId" primitiveType="Int"/>
@@ -310,10 +310,10 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="unitPrice" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbPackage" name="main"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPackagePart" name="insList"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPackagePart" name="updList"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPackagePart" name="delList"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbPackage" name="main"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPackagePart" name="insList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPackagePart" name="updList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbPackagePart" name="delList"/>
   </process:inputs>
   <process:outputs/>
   <process:extAttribute1>public</process:extAttribute1>

@@ -11,10 +11,10 @@ pageEncoding="UTF-8" session="false" %>
 <head>
   <title>首页</title> 
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.6.01"></script>
+    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.6.15"></script>
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
-  <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css" rel="stylesheet" type="text/css" />
+  <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css?v=1.0.8" rel="stylesheet" type="text/css" />
   <script type="text/javascript" src="<%=request.getContextPath()%>/common/nui/echarts.min.js"></script>
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <style type="text/css">          
@@ -212,27 +212,27 @@ pageEncoding="UTF-8" session="false" %>
                             <table id="table1" style="margin-left:0px;">
                                 <tr>  
                                     <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>首修车辆：</td>
-                                    <td class="tablenum"><span id="newCarQty"> 0</span></td>
+                                     <td class="tablenum"><a  id="newCarQty" href="javascript:toMaintain(12)" style="color: #61acc9;"><span></span></a></td>
                                     <td style="width:0.05%;"></td>
                                    <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>今日进厂：</td>
-                                   <td class="tablenum"><a id="queryEmployeeBirthday" href="javascript:toMaintain(2)" style="color: #61acc9;"><span></span></a><a><span id="recordBillQty">0</span></td></a>
+                                   <td class="tablenum"><a  id="recordBillQty" href="javascript:toMaintain(9)" style="color: #61acc9;"><span></span></a></td>
                                 </tr>
 
                                 <tr>
                                     <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>结算车次：</td>
-                                    <td class="tablenum"><span id="settleQty">0</span></td>
+                                    <td class="tablenum"><a  id="settleQty" href="javascript:toMaintain(10)" style="color: #61acc9;"><span></span></a></td>
                                    <td ></td>
                                    <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>在修车辆：</td>
-                                   <td class="tablenum"><span id="serviceBillQty">0</span></td>
+                                   <td class="tablenum"><a  id="serviceBillQty" href="javascript:toMaintain(11)" style="color: #61acc9;"><span></span></a></td>
                                </tr>
 
 
                                <tr>
                                 <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>预约车辆：</td>
-                                <td class="tablenum"><span id="bookingBillQty">0</span></td>
+                                <td class="tablenum"><a  id="bookingBillQty" href="javascript:toMaintain(13)" style="color: #61acc9;"><span></span></a></td>
                                 <td ></td>
                                 <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>营业额：</td>
-                                <td class="tablenum"><span id="receiveAmt">0</span></td>
+                                <td class="tablenum"><a  id="receiveAmt" href="javascript:toMaintain(14)" style="color: #61acc9;"><span></span></a></td>
                               </tr>
 
                           </table>

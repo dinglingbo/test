@@ -305,13 +305,14 @@ function setGridTodayData(data){
         settleQty = data.settleQty||0;
         serviceBillQty = data.serviceBillQty||0;
         bookingBillQty = data.bookingBillQty||0;
-        receiveAmt = data.receiveAmt||0;        
-        $("#newCarQty").text(newCarQty);
+        receiveAmt = data.netinAmt||0; 
+        
+        $("#newCarQty ").text(newCarQty);
         $("#recordBillQty").text(recordBillQty);
-        $("#settleQty").text(settleQty);
-        $("#serviceBillQty").text(serviceBillQty);
-        $("#bookingBillQty").text(bookingBillQty);
-        $("#receiveAmt").text(receiveAmt);
+        $("#settleQty ").text(settleQty);
+        $("#serviceBillQty ").text(serviceBillQty);
+        $("#bookingBillQty ").text(bookingBillQty);
+        $("#receiveAmt ").text(receiveAmt);
 	}
 
 }
@@ -386,6 +387,54 @@ function toMaintain(e){
 	    item.iconCls = "fa fa-file-text";
 	    var params = {id:e};
 	    window.parent.activeTab(item);
+	}else if(e==9){
+	    var item={};
+	    item.id = "allMaintain";
+	    item.text = "今日进厂";
+	    item.url = webPath + contextPath + "/com.hsweb.part.purchase.allMaintain.flow?token="+token;
+	    item.iconCls = "fa fa-file-text";
+	    var params = {id:e};
+	    window.parent.activeTab(item);
+	}else if(e==10){
+	    var item={};
+	    item.id = "allMaintain";
+	    item.text = "结算车辆";
+	    item.url = webPath + contextPath + "/com.hsweb.part.purchase.allMaintain.flow?token="+token;
+	    item.iconCls = "fa fa-file-text";
+	    var params = {id:"settleQty"};
+	    window.parent.activeTabAndInit(item,params);
+	}else if(e==11){
+	    var item={};
+	    item.id = "allMaintain";
+	    item.text = "在修车辆";
+	    item.url = webPath + contextPath + "/com.hsweb.part.purchase.allMaintain.flow?token="+token;
+	    item.iconCls = "fa fa-file-text";
+	    var params = {id:"serviceBillQty"};
+	    window.parent.activeTabAndInit(item,params);
+	}else if(e==12){
+	    var item={};
+	    item.id = "2101";
+	    item.text = "客户车辆";
+	    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.CustomerProfileMain.flow?token="+token;
+	    item.iconCls = "fa fa-file-text";
+	    var params = {id:"serviceBillQty"};
+	    window.parent.activeTabAndInit(item,params);
+	}else if(e==13){
+	    var item={};
+	    item.id = "2081";
+	    item.text = "预约管理";
+	    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.BookingManagementList.flow?token="+token;
+	    item.iconCls = "fa fa-file-text";
+	    var params = {id:"serviceBillQty"};
+	    window.parent.activeTabAndInit(item,params);
+	}else if(e==14){
+	    var item={};
+	    item.id = "dms_dashboard";
+	    item.text = "仪表盘";
+	    item.url = webPath + contextPath + "/com.hsweb.repair.repoart.IncomeStatistics.flow?token="+token;
+	    item.iconCls = "fa fa-file-text";
+	    var params = {id:"serviceBillQty"};
+	    window.parent.activeTabAndInit(item,params);
 	}else{
 	    var item={};
 	    item.id = "te";

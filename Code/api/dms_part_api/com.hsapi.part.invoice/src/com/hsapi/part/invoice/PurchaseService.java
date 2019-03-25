@@ -120,7 +120,7 @@ public class PurchaseService {
 		}
     	
     	HashMap[] details = mater.toArray(new HashMap[mater.size()]);
-
+  
 		main.put("detail", details);
 		
 		JSONObject jsonObj = JSONObject.fromObject(main);

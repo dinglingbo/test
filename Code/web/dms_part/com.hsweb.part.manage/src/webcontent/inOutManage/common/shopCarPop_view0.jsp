@@ -9,7 +9,7 @@
 <head>
 <title>添加采购车/销售车</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/shopCartPop.js?v=1.0.4"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/shopCartPop.js?v=1.0.11"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -148,10 +148,13 @@
     <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
          selectOnLoad="true" showPager="false" oncellcommitedit="onCellCommitEdit"
          dataField="" idField="id" allowCellSelect="true" allowCellEdit="true" ondrawcell="onMainGridDrawCell"
+         oncellbeginedit="OnrpMainGridCellBeginEdit"
          showModified="false" showColumnsMenu="true" editNextOnEnterKey="true" url="">
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <div field="operateBtn" width="30" headerAlign="center" align="center" header="删除"></div>
+            <div field="storeCode" name="storeCode" visible="false" header="电商供应商编码"></div>
+            <div field="goodsCode" name="goodsCode" visible="false" header="电商编码"></div>
             <div field="partId" name="partId" visible="false" header="配件ID"></div>
             <div field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
             <div field="partName" name="partName" visible="false" header="配件名称"></div>

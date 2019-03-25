@@ -69,7 +69,7 @@
             <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
         </ul>
         <span class="separator"></span> -->
-                             查询类型:<input class="nui-combobox" id="seachType"  name="seachType" data="[{seachType:0,text:'今日进厂'},{seachType:1,text:'结算车次'},{seachType:2,text:'在修车辆'}]"
+                             查询类型:<input class="nui-combobox" id="seachType"  name="seachType" data="[{seachType:0,text:'今日进厂'},{seachType:1,text:'今日结算车次'},{seachType:2,text:'今日在修车辆'}]"
                           width="100px"  onvaluechanged="onSearch()" textField="text" valueField="seachType" value="0"/>
         <label style="font-family:Verdana;">进厂日期 从：</label>
         <input class="nui-datepicker" id="sEnterDate" name="sEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd" onvaluechanged="onSearch()" showTime="false" showOkButton="false" showClearButton="false"/>
@@ -154,9 +154,9 @@
                
                   <div header="估算费用信息" headerAlign="center">
 	                  <div property="columns" >	                  
-		                  <div field="pkgSubtotalNo" name="status" width="90" headerAlign="center" summaryType="sum" header="套餐销售小计" allowsort="true" dataType="int"></div>
-		                  <div field="itemSubtotalNo" name="carNO" width="90" headerAlign="center" summaryType="sum" header="项目销售小计" allowsort="true" dataType="int"></div>
-		                  <div field="partSubtotalNo" name="carBrandId" width="90" headerAlign="center" summaryType="sum"  header="配件销售小计" allowsort="true" dataType="int"></div>
+		                  <div field="pkgSubtotal" name="status" width="90" headerAlign="center" summaryType="sum" header="套餐销售小计" allowsort="true" dataType="int"></div>
+		                  <div field="itemSubtotal" name="carNO" width="90" headerAlign="center" summaryType="sum" header="项目销售小计" allowsort="true" dataType="int"></div>
+		                  <div field="partSubtotal" name="carBrandId" width="90" headerAlign="center" summaryType="sum"  header="配件销售小计" allowsort="true" dataType="int"></div>
 		                  <div field="totalNo" name="carBrandId" width="70" headerAlign="center" summaryType="sum"  header="合计" allowsort="true" dataType="int"></div>
 	<!-- 	                  <div field="cardTimesAmt" name="cardTimesAmt" width="70" headerAlign="center" summaryType="sum"  header="预存抵扣" allowsort="true"></div>
 		                  <div field="totalPrefAmt" name="carVin" width="70" headerAlign="center" summaryType="sum"  header="优惠金额" allowsort="true"></div>

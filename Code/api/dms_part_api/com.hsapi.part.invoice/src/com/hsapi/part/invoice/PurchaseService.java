@@ -47,8 +47,9 @@ import commonj.sdo.DataObject;
 @Bizlet("")
 public class PurchaseService {
 	@Bizlet("提交电商采购订单")
-	public static String pushPchsOrderToSRM(String address, String mobile,
-			 String receiver, String account,String storeCode,String orderCode,
+	public static String pushPchsOrderToSRM(String province,String city,
+			 String area,String address, String mobile, String receiver,
+			 String account,String storeCode,String orderCode,
 			 String remark,  int mainId, String access_token) {
 		String envType = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", "serverType");
@@ -73,6 +74,9 @@ public class PurchaseService {
 		String laneOrderCode = mainId+"";
 		Map main = new HashMap();   
 		main.put("token", access_token);
+		main.put("province", province); //省
+		main.put("city", city); //市
+		main.put("area", area); //区
 		main.put("address", address); //收货地址
 		main.put("orderCode",orderCode); //订单单号(为空为新增,有则修改)
 		main.put("mobile", mobile);

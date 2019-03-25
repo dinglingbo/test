@@ -168,7 +168,7 @@ public class MenuUtil {
 		try {
 			/*IMUODataContext muo = DataContextManager.current().getMUODataContext();
 			if(muo == null) {
-				check = false;
+				check = false;+
 				return check;
 			}*/ 
 			HttpSession session = req.getSession(false);
@@ -197,12 +197,18 @@ public class MenuUtil {
 					DataObject appObj = appArr[k];
 					String parentId = appObj.getString("parentsid");
 		        	String linkAction = appObj.getString("funcaction");
-		        	if(parentId != null && parentId != "") {
+		        	/*System.out.println("==============="+linkAction);
+		        	if(menuId != null && parentId != "") {
+			        	if(parentId != null && parentId != "") {
+			        		linkAction = webPath + sysDomain + linkAction;
+			        	} else {
+			        		linkAction = webPath + linkAction;
+			        	}
+		        	}else {
 		        		linkAction = webPath + sysDomain + linkAction;
-		        	} else {
-		        		linkAction = webPath + linkAction;
 		        	}
-		        	if(actionUrl.equals(linkAction)) {
+		        	System.out.println("==============="+linkAction);*/
+		        	if(linkAction != null && actionUrl.indexOf(linkAction) > 0) {
 		        		isExists = true;
 		        		break;
 		        	}else {
@@ -253,12 +259,18 @@ public class MenuUtil {
 	        	DataObject d = c.get(i);
 	        	String parentId = d.getString("parentsid");
 	        	String linkAction = d.getString("funcaction");
-	        	if(parentId != null && parentId != "") {
+	        	/*if(parentId != null && parentId != "") {
 	        		linkAction = webPath + sysDomain + linkAction;
 	        	} else {
 	        		linkAction = webPath + linkAction;
 	        	}
 	        	if(actionUrl.equals(linkAction)) {
+	        		check = true;
+	        		break;
+	        	}else {
+	        		check = false;
+	        	}*/
+	        	if(linkAction != null && actionUrl.indexOf(linkAction) > 0) {
 	        		check = true;
 	        		break;
 	        	}else {

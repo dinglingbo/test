@@ -382,9 +382,13 @@ function SetData(params) {
     });
     // 回访记录根据联系人id查询
     if (params.contactorId) {
-        var p = {
-            guestId:params.contactorId
-        };
+    	 var p = {};
+     	if(params.carId){
+    		p.carId = params.carId;
+    	}else if(params.contactorId){
+    		p.guestId = params.contactorId;
+    	}
+
         visitHis.load({ 
         	params:p,
         	token:token

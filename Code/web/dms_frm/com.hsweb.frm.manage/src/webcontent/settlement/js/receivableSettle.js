@@ -285,6 +285,10 @@ function getSearchParam() {
 	if(settleStatus != 3) {
 		params.settleStatus = settleStatus;
 	}
+	var auditSign = nui.get("auditSign").getValue();
+	if(auditSign != 2) {
+		params.auditSign = auditSign;
+	}
 	
 	return params;
 }

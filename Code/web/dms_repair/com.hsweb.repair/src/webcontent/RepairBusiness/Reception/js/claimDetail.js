@@ -3299,8 +3299,10 @@ function onPrint(e){
 function showBillInfo(){
 	var main = billForm.getData();
 	var params = {
-        carId : main.carId,
-        guestId : main.guestId
+		carId : main.carId,
+		carNo : main.carNo,
+		guestId : main.guestId,
+		contactorId:main.contactorId
 	};
 	if(main.id){
 		doShowCarInfo(params);

@@ -81,13 +81,13 @@ pageEncoding="UTF-8" session="false" %>
                     <label>回访类型：</label>
                 </td>
                 <td>
-                    <input name="serviceType" class="nui-textbox" width="100%" enabled="false"/>
+                    <input name="serviceType" class="nui-combobox" data="serviceTypeList" textField="text" valueField="id" width="100%" enabled="false"/>
                 </td>
                 <td class="form_label">
                     <label>回访方式：</label>
                 </td>
                 <td>
-                    <input name="visitMode" class="nui-textbox" width="100%" enabled="false"/>
+                    <input id="visitMode" name="visitMode" class="nui-combobox "textField="name" valueField="customid"  width="100%" enabled="false"/>
                 </td>
             </tr>
             <tr>
@@ -105,12 +105,21 @@ pageEncoding="UTF-8" session="false" %>
         </table>
     </div>
     <script type="text/javascript">
+        var serviceTypeList = [{},{ id: 1, text: '电销' }, { id: 2, text: '预约' }, { id: 3, text: '客户回访' }, { id: 4, text: '流失回访' }, { id: 5, text: '保养提醒' }, { id: 6, text: '商业险到期' }, { id: 7, text: '交强险到期' }, { id: 8, text: '驾照年审' }, { id: 9, text: '车辆年检' }, { id: 10, text: '生日' }];
         nui.parse();
         var baseUrl = apiPath + repairApi + "/";
         var saveUrl = apiPath + crmApi + "/com.hsapi.crm.svr.visit.updateVisitRecord.biz.ext";
 
         var mainData = {};
         var carInfoFrom = new nui.Form("#carInfoFrom");
+
+
+        initDicts({
+        visitMode: "DDT20130703000021",//跟踪方式
+        // visitStatus: "DDT20130703000081",//跟踪状态
+        //query_visitStatus: "DDT20130703000081",//跟踪状态
+        //artType: "DDT20130725000001"//话术类型        
+    });
 
 
         nui.get("visitContent").focus();

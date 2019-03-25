@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
-Require-Bundle: com.hs.common,com.hsapi.system.common,com.eos.foundati
- on,com.hsapi.system.data
-Bundle-Vendor: lilium_ll
+Require-Bundle: com.hsapi.system.dict,com.hs.common,com.hsapi.system.c
+ ommon,com.eos.foundation,com.hsapi.system.data
 eos-webCtxPath: tenant
+Bundle-Vendor: lilium_ll
 Bundle-Version: 1.0.0
 Bundle-Name: com.primeton.tenant
 Bundle-Description: 

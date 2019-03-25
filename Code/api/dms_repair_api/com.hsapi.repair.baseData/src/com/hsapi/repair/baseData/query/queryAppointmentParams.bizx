@@ -20,8 +20,8 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.repair.data.rpb.RpbAppointmentParams" name="params" type="query" valueType="DataObject">params</process:return>
-      <process:return id="1" language="com.hsapi.repair.data.rpb.RpbAppointmentTimes[]" name="times" type="query" valueType="DataObject">times</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.rpbse.RpbAppointmentParams" name="params" type="query" valueType="DataObject">params</process:return>
+      <process:return id="1" language="com.hsapi.repair.data.rpbse.RpbAppointmentTimes[]" name="times" type="query" valueType="DataObject">times</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -89,7 +89,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbAppointmentParams</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbAppointmentParams</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -150,13 +150,13 @@
     <location x="534" y="234"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.queryAppointmentTimes</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="mainId" type="query" value="String" valueType="Primitive" pattern="reference">mainId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="times" type="query" value="com.hsapi.repair.data.rpb.RpbAppointmentTimes[]" valueType="DataObject">times</process:outputVariable>
+        <process:outputVariable id="0" name="times" type="query" value="com.hsapi.repair.data.rpbse.RpbAppointmentTimes[]" valueType="DataObject">times</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -249,18 +249,18 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-07-13 11:31:51" date="2018-07-13Z" description="" name="queryAppointmentParams" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbAppointmentParams" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbAppointmentParams" name="temp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="mainId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbAppointmentParams" name="list"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbAppointmentParams" name="list"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
     <process:input description="2主+时间" isArray="false" name="type" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbAppointmentParams" name="params"/>
-    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbAppointmentTimes" name="times"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbAppointmentParams" name="params"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbAppointmentTimes" name="times"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

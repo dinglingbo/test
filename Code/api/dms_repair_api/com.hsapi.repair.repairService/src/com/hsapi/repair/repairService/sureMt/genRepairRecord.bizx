@@ -606,10 +606,10 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="chain_status" primitiveType="Short"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="mtAdvisor" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="prevMtAdvisor" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCarExtend" name="carExtend"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCarExtend" name="carExtend"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCarExtend" name="car"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCarExtend" name="car"/>
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="maintain"/>
   </process:inputs>
   <process:outputs/>

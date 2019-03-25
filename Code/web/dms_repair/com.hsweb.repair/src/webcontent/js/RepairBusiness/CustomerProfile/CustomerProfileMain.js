@@ -57,6 +57,7 @@ $(document).ready(function(v){
             });
      });
 });
+
 function init(){
 
     var hash = {};
@@ -125,11 +126,11 @@ function quickSearch(type)
             break;
         case 2:
             params.todayNew = 1;
-            queryname = "本日新客户";
+            queryname = "本日新来厂客户";
             break;
         case 3:
             params.thisMonthNew = 1;
-            queryname = "本月新客户";
+            queryname = "本月新来厂客户";
             break;
         case 4:
             params.thisMonthEnter = 1;
@@ -142,6 +143,10 @@ function quickSearch(type)
         case 6:
             params.lastMonthLoss = 1;
             queryname = "所有";
+            break;
+        case 7:
+            params.insurance = 1;
+            queryname = "本日所有保险开单客户";
             break;
         default:
             break;
@@ -565,4 +570,11 @@ function carChange(){
 
 function cancelData(){
 	advancedSearchForm.setData([]);
+}
+
+function setInitData(params) {
+    if (params.id == 'newCarQty') {
+    	quickSearch(2);
+    	
+    }
 }

@@ -25,7 +25,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.repair.data.rpb.RpbGuestType[]" name="list" type="query" valueType="DataObject">list</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.rpbse.RpbGuestType[]" name="list" type="query" valueType="DataObject">list</process:return>
       <process:return id="1" language="Int" name="total" type="query" valueType="Primitive">page/count</process:return>
       <process:return id="2" language="com.eos.foundation.PageCond" name="page" type="query" valueType="DataObject">page</process:return>
     </process:returns>
@@ -51,7 +51,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbGuestType</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbGuestType</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -145,7 +145,7 @@
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbGuestType" name="list"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbGuestType" name="list"/>
     <process:output description="" isArray="false" name="total" primitiveType="Int"/>
     <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:outputs>

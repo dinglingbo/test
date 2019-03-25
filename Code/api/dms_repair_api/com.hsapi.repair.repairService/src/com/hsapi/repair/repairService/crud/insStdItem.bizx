@@ -201,7 +201,7 @@
       <targetNode>assign8</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -546,7 +546,7 @@
     <location x="195" y="7"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess3label</nodeLabel>
-    <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.repair.repairService.query.getCardDiscount</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="cardId" type="query" value="Int" valueType="Primitive" pattern="reference">value</process:inputVariable>
@@ -556,7 +556,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="cardRate" type="query" value="com.hsapi.repair.data.rpb.RpbCardRate" valueType="DataObject">cardRate</process:outputVariable>
+        <process:outputVariable id="2" name="cardRate" type="query" value="com.hsapi.repair.data.rpbse.RpbCardRate" valueType="DataObject">cardRate</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1091,9 +1091,9 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="discountAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="subtotal" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="amt" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCardRate" name="cardRate"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCardRate" name="cardRate"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="itemDiscountRate" primitiveType="Double"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbItem" name="rpbItem"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbItem" name="rpbItem"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsCardTimesDetail" name="rpsCard"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="itemId" primitiveType="Int"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="itemHash"/>

@@ -289,7 +289,10 @@ function onOk()
             				name : resultContact.guestFullName,
             				mobile : resultContact.mobile,
             				identity :resultContact.identity,
-            				source :resultContact.source
+            				source :resultContact.source,
+            				wechatServiceId:resultContact.wechatServiceId,
+            				wechatOpenId:resultContact.wechatOpenId
+            				
             			};
                     var contactid = contactdatagrid.getData(true);
                     for(var i = 0 ;i<contactid.length;i++){
@@ -714,7 +717,10 @@ function addCarList(){
 				issuingDate:car.issuingDate,
 				lastComeKilometers:car.lastComeKilometers,
 				careDueMileage:car.careDueMileage,
-				careDueDate:car.careDueDate
+				careDueDate:car.careDueDate,
+				remark:car.remark,
+				isDisabled:car.is_disabled
+				
 			};
                 var cargrid = cardatagrid.getData(true);
                 for(var i = 0 ;i<cargrid.length;i++){
@@ -873,7 +879,7 @@ function eaidContact(){
 	if(row.wechatOpenId && row.wechatOpenId!=null){
 		nui.get("wechatServiceId").disable();
 	}else{
-		nui.get("wechatServiceId").enable();
+		nui.get("wechatServiceId").enable(); 
 	}
 	nui.get("wechatOpenId").disable();
 }
@@ -958,6 +964,11 @@ function wechatBin(){
 	 wechatUser.userMarke = wechatServiceId;
 	 wechatUser.contactorId = data.id;
 	 wechatUser.guestId = data.guestId;
+	 nui.mask({
+	        el: document.body,
+	        cls: 'mini-mask-loading',
+	        html: '数据加载中...'
+	 });
 	 var json = nui.encode({
 		 carNo:"",
 		 wechatUser:wechatUser,
@@ -971,23 +982,25 @@ function wechatBin(){
 	 		contentType : 'text/json',
 	 		success : function(text) {
 	 			if(text.errCode=="S"){
-	 				var params = {};
-	 				params.guestId = guestId;
-	 				contactorGrid.load({
-	 				     token:token,
-	 				     params:params
-	 				  },function(){
-	 					 var row = contactorGrid.findRow(function(row){
-	 						 if(!row.wechatOpenId){
-	 							 contactorGrid.beginEditRow(row);
-	 						 }
-	 						 
-	 				     });
-	 				 });
-	 			result.success = 1;
+	 				//data.wechatServiceId = wechatServiceId;
+	 				var opid = text.re.opid;
+	 				/*data.wechatOpenId = wechatOpenId;
+	 				contactInfoForm.setData(data);*/
+	 				nui.get("wechatOpenId").setValue(opid);
+	 				var row = contactdatagrid.findRow(function(row){
+						 if(data.id==row.id){
+							 var newRow = row;
+							 newRow.wechatServiceId = wechatServiceId;
+							 newRow.wechatOpenId = opid; 
+							 contactdatagrid.updateRow(row, newRow);
+						 }
+						 
+				     });
+	 			nui.unmask();
 	 			showMsg(text.errMsg || "绑定成功!","S");
 	 			return;
 	 			}else{
+	 				nui.unmask();
 	 				showMsg(text.errMsg,"E");
 	 				return;
 	 			}

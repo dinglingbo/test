@@ -51,8 +51,8 @@
       <process:inputVariables>
         <process:inputVariable id="0" name="rpsPrebook" type="query" value="com.hsapi.repair.data.rps.RpsPrebook" valueType="DataObject" pattern="reference">rpsPrebook</process:inputVariable>
         <process:inputVariable id="1" name="action" type="query" value="String" valueType="Primitive" pattern="reference">action</process:inputVariable>
-        <process:inputVariable id="2" name="openid" type="expression" value="String" valueType="Primitive" pattern="reference"></process:inputVariable>
-        <process:inputVariable id="3" name="url" type="expression" value="String" valueType="Primitive" pattern="reference"></process:inputVariable>
+        <process:inputVariable id="2" name="openid" type="expression" value="String" valueType="Primitive" pattern="reference"/>
+        <process:inputVariable id="3" name="url" type="expression" value="String" valueType="Primitive" pattern="reference"/>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -269,7 +269,7 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-09-18 20:02:09" date="2018-09-18Z" description="" name="saveBookingMaintain" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCar" name="car"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCar" name="car"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="action" primitiveType="String"/>

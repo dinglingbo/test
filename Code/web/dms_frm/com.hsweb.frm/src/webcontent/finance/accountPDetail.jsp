@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>付款明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%=webPath + contextPath%>/frm/js/finance/accountPDetail.js?v=1.2.2"></script>
+    <script src="<%=webPath + contextPath%>/frm/js/finance/accountPDetail.js?v=1.2.5"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -74,7 +74,7 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="settAccountId" name="code" width="60" summaryType="count"  headeralign="center" visible="false" allowsort="true" >账户编码</div>
                 <div field="settAccountId" name="name" width="100"  headeralign="center" visible="false" allowsort="true"  >账户名称</div>
                 <div field="billServiceId" name="billServiceId" width="170"  headeralign="center" summaryType="count" allowsort="true" >业务单号</div>
-                <div field="billTypeId" name="name" width="100"  headeralign="center" allowsort="true" >收支类型</div>
+                <div field="billTypeId" name="billTypeId" width="100"  headeralign="center" allowsort="true" >收支类型</div>
                 <div field="isPrimaryBusiness" name="name" width="100"  headeralign="center" allowsort="true" >是否主营业务</div>
                 <div name="shortName" field="shortName"  width="100"  headeralign="center"  allowsort="true" >结算单位简称
 

@@ -248,6 +248,12 @@ function addNewRow(check){
         return;
     }
     
+    //电商平台的供应商，srmGuestId有值
+    var srmGuestId=data.srmGuestId;
+	if(srmGuestId){
+		return;
+	} 
+	
 	var rows = [];
 	if(check){
 		rows = rightGrid.findRows(function(row) {
@@ -363,7 +369,7 @@ function loadRightGridData(mainId, auditSign) {
 	if(data && data.length <= 0){
 		addNewRow(false);
 	}	
-		
+	
 
 	});
 
@@ -1201,7 +1207,13 @@ function deletePart() {
 			return;
 		}
 	}
-
+	
+	 //电商平台的供应商，srmGuestId有值
+    var srmGuestId=data.srmGuestId;
+	if(srmGuestId){
+		return;
+	} 
+	
 	var part = rightGrid.getSelected();
 	if (!part) {
 		return;
@@ -1293,7 +1305,9 @@ function audit(){
 	var flagSign = 0; 
 	var flagStr = "提交中...";
 	var flagRtn = "提交成功!";
-	auditOrder(flagSign, flagStr, flagRtn);
+	pushSupplierOrder(flagSign, flagStr, flagRtn);
+
+	
 }
 function auditToEnter(){
 	//如果是内部订单，直接入库时需要判断 bill_status_id = 2（待收货）
@@ -1333,6 +1347,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 		return;
 	}
 	
+	
 
 	// 审核时，数量，单价，金额，仓库不能为空,单价可以为0，只需要提示
 	var p = checkRightData();
@@ -1367,7 +1382,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 				var pchsOrderDetailDelete = rightGrid.getChanges("removed");
 				var pchsOrderDetailUpdate = getModifyData(detailData, pchsOrderDetailAdd, pchsOrderDetailDelete);
 				
-	
+				
 				nui.mask({
 					el : document.body,
 					cls : 'mini-mask-loading',
@@ -1399,7 +1414,6 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 //								leftRow.billStatusId=2;
 								loadMainAndDetailInfo(leftRow);
 								$('#bServiceId').text("订单号："+leftRow.serviceId);
-								pushSupplierOrder();
 
 							}
 						} else {
@@ -1430,12 +1444,13 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 				        rightGrid.addRow({});
 				        return;
 				    }
+				 
+				
 				var pchsOrderDetailAdd = rightGrid.getChanges("added");
 				var pchsOrderDetailUpdate = rightGrid.getChanges("modified");
 				var pchsOrderDetailDelete = rightGrid.getChanges("removed");
 				var pchsOrderDetailUpdate = getModifyData(detailData, pchsOrderDetailAdd, pchsOrderDetailDelete);
-	
-	
+				
 				nui.mask({
 					el : document.body,
 					cls : 'mini-mask-loading',
@@ -1468,7 +1483,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 //								leftRow.billStatusId=2;
 								loadMainAndDetailInfo(leftRow);
 								$('#bServiceId').text("订单号："+leftRow.serviceId);
-								pushSupplierOrder();
+								
 
 							}
 						} else {
@@ -1841,10 +1856,16 @@ function OnrpMainGridCellBeginEdit(e){
     var editor = e.editor;
 
     var data = basicInfoForm.getData();
-
+    
     if(data.auditSign == 1){
         e.cancel = true;
 	}
+    //选择的供应商是电商平台的
+    if(data.srmGuestId){
+    	if(field =='orderQty' || field =='orderPrice' || field =='orderAmt'){		
+    		e.cancel = true;
+    	}
+    }
 	if(advancedMorePartWin.visible) {
 		e.cancel = true;
 		morePartGrid.focus();
@@ -2110,6 +2131,8 @@ function unAudit()
 				document.getElementById("basicInfoForm").disabled = false;
 				setBtnable(true);
 				setEditable(true);
+				//更新电商订单状态为取消
+				updateOrderStatus("6");
                 
             } else {
 				showMsg(data.errMsg || "审核失败!","E");
@@ -2314,23 +2337,59 @@ function setInitData(params){
 			document.getElementById("fd1").disabled = true;
 			nui.get("guestId").disable();
 		}
+		if(params.srmGuestId){
+			nui.get("addPartBtn").disable();
+		}
 	}else{
 		formJson = nui.encode(basicInfoForm.getData());
 		add();	
 	}
 }
 
+//先生成电商订单,再提交车道订单
 var pushOrderUrl=baseUrl+"com.hsapi.part.invoice.partInterfaceDs.pushSupplierOrder.biz.ext";
-function pushSupplierOrder(){
+function pushSupplierOrder(flagSign, flagStr, flagRtn){
 //	var payType = '';
 	var data = basicInfoForm.getData();
 	var settleType = nui.get('settleTypeId').getText();
 	var mem = nui.get('orderMan').getText();
-//	if(settleType=='现结'){
-//		payType='JS01';
-//	}else if(settleType=='月结'){
-//		payType ='JS05';
-//	}
+	if(!data.srmGuestId){
+		return;
+	}
+	
+	for ( var key in requiredField) {
+		if (!data[key] || $.trim(data[key]).length == 0) {
+			showMsg(requiredField[key] + "不能为空!","W");
+
+//			mainTabs.activeTab(billmainTab);
+			return;
+		}
+	}
+
+	if (data) {
+		if (data.auditSign == 1) {
+			showMsg("此单已审核!","W");
+			return;
+		}
+	} else {
+		return;
+	}
+	
+	
+	// 审核时，数量，单价，金额，仓库不能为空,单价可以为0，只需要提示
+	var p = checkRightData();
+	if (p && p.qtyPartCode) {
+		var partCode = p.qtyPartCode;
+		showMsg("配件编码:"+partCode+"数量为0","W");
+		return;
+	}
+
+	var str = "提交";
+	if(flagSign == 1){
+		str = "入库";
+	}
+
+
 	nui.ajax({
         url : pushOrderUrl,
         type : "post",
@@ -2352,9 +2411,10 @@ function pushSupplierOrder(){
 				var data=data.data;
 				var orderCode =data.orderCode
 				nui.get('orderCode').setValue(orderCode);
+				auditOrder(flagSign, flagStr, flagRtn);
                 
             } else {
-            	console.log(data);
+            	showMsg(data.errMsg || "电商订单生成失败！","E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {

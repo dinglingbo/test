@@ -386,7 +386,7 @@
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.common.ComGuest" name="comguest"/>
     <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
     <process:input description="" isArray="false" name="userName" primitiveType="String"/>
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbGuestAgentExtend" name="rpbGuestAgentExtend"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbGuestAgentExtend" name="rpbGuestAgentExtend"/>
   </process:inputs>
   <process:outputs>
     <process:output description="S/E" isArray="false" name="errCode" primitiveType="String"/>

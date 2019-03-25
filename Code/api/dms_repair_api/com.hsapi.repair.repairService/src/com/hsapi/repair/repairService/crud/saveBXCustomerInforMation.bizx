@@ -23,8 +23,8 @@
       <process:return id="0" language="com.hsapi.repair.data.common.ComGuest" name="guest" type="query" valueType="DataObject">guest</process:return>
       <process:return id="1" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="2" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-      <process:return id="3" language="com.hsapi.repair.data.rpb.RpbContactor[]" name="rpb" type="query" valueType="DataObject">rpb</process:return>
-      <process:return id="4" language="com.hsapi.repair.data.rpb.RpbCar" name="car" type="query" valueType="DataObject">car</process:return>
+      <process:return id="3" language="com.hsapi.repair.data.rpbse.RpbContactor[]" name="rpb" type="query" valueType="DataObject">rpb</process:return>
+      <process:return id="4" language="com.hsapi.repair.data.rpbse.RpbCar" name="car" type="query" valueType="DataObject">car</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -327,20 +327,20 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-02-19 19:52:20" date="2019-02-19Z" description="保存修改联系人（波箱）" name="saveBXCustomerInforMation" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbContactor" name="p"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbContactor" name="p"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="guestId" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.common.ComGuest" name="guest"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbContactor" name="rpb"/>
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCar" name="car"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbContactor" name="rpb"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCar" name="car"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" modelType="com.hsapi.repair.data.common.ComGuest" name="guest"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
-    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbContactor" name="rpb"/>
-    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCar" name="car"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbContactor" name="rpb"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCar" name="car"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

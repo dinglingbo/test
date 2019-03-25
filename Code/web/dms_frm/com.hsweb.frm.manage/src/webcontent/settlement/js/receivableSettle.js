@@ -285,6 +285,10 @@ function getSearchParam() {
 	if(settleStatus != 3) {
 		params.settleStatus = settleStatus;
 	}
+	var auditSign = nui.get("auditSign").getValue();
+	if(auditSign != 2) {
+		params.auditSign = auditSign;
+	}
 	
 	return params;
 }
@@ -1496,7 +1500,7 @@ function onRGridbeforeselect(e) {
 			nowAmt : row.noCharOffAmt
 		};
 		if (row.nowAmt) {
-			newRow.nowAmt = "";
+			newRow.nowAmt = row.noCharOffAmt;
 		} else {
 			newRow.nowAmt = row.noCharOffAmt;
 		}
@@ -1510,7 +1514,7 @@ function onRGridheadercellclick(e) {
 		var billDc = row.billDc;
 		var newRow = {};
 		if (row.nowAmt) {
-			newRow.nowAmt = "";
+			newRow.nowAmt = row.noCharOffAmt;
 		} else {
 			newRow.nowAmt = row.noCharOffAmt;
 		}

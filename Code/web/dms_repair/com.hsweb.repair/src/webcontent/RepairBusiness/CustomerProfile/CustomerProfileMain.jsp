@@ -11,7 +11,7 @@
 -->
 <head>
 	<title>客户档案</title>
-	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.5.8"></script>
+	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.5.12"></script>
 	<style type="text/css">
 		table {
 			font-size: 12px;
@@ -38,7 +38,7 @@
 						<a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">所有客户</a>
 						<ul id="popupMenuStatus" class="nui-menu" style="display:none;">
 							<li iconCls="" onclick="quickSearch(6)" id="type6">所有客户</li>
-							<!-- <li iconCls="" onclick="quickSearch(0)" id="type0">本日所有开单客户</li> -->
+							<li iconCls="" onclick="quickSearch(7)" id="type0">本日所有保险开单客户</li> 
 							<li iconCls="" onclick="quickSearch(0)" id="type0">本日所有来厂客户</li>
 							<li iconCls="" onclick="quickSearch(1)" id="type1">昨日所有来厂客户</li>
 							<li iconCls="" onclick="quickSearch(2)" id="type2">本日新来厂客户</li>
@@ -291,8 +291,9 @@
 						<label>客户名称:</label>
 					</td>
 					<td colspan="3">
-						<input name="guestId" id="guestId1" class="nui-buttonedit" emptyText="请选择客户..." onbuttonclick="selectCustomer('guestId1')"
-						 width="100%" allowInput="false" selectOnFocus="true" />
+					    <input class="nui-textbox" name="guestFullName" id="guestFullName" style="width: 100%;"  value=""/>
+						<!-- <input name="guestId" id="guestId1" class="nui-buttonedit" emptyText="请选择客户..." onbuttonclick="selectCustomer('guestId1')"
+						 width="100%" allowInput="false" selectOnFocus="true" /> -->
 					</td>
 				</tr>
 				<!-- <tr>
@@ -316,8 +317,8 @@
 						<label>品牌:</label>
 					</td>
 					<td colspan="3">
-						<input class="nui-combobox" name="carBrandId" width="100%" id="carBrandId" valueField="id" onvaluechanged="onCarBrandChange"
-						 textField="nameCn" />
+						<input class="nui-combobox" name="carBrandId" width="100%" id="carBrandId" valueField="id" onvaluechanged="onCarBrandChange" 
+						 textField="nameCn"  allowInput="true" />
 					</td>
 				</tr>
 				<tr>
@@ -325,7 +326,7 @@
 						<label>品牌车型:</label>
 					</td>
 					<td colspan="3">
-						<input class="nui-combobox" name="carModelId" width="100%" id="carModelId" valueField="carModelId" textField="carModel"
+						<input class="nui-combobox" name="carModelId" width="100%" id="carModelId" valueField="carModelId" textField="carModel" allowInput="true"
 						/>
 					</td>
 				</tr>

@@ -11,12 +11,12 @@
   </nodes>
   <nodes xsi:type="process:tEnd" description="" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link26</targetConnections>
-    <location x="1080" y="150"/>
+    <location x="1230" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.repair.data.rpb.RpbContactor" name="contactor" type="query" valueType="DataObject">contactor</process:return>
-      <process:return id="1" language="com.hsapi.repair.data.rpb.RpbCar" name="car" type="query" valueType="DataObject">car</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.rpbse.RpbContactor" name="contactor" type="query" valueType="DataObject">contactor</process:return>
+      <process:return id="1" language="com.hsapi.repair.data.rpbse.RpbCar" name="car" type="query" valueType="DataObject">car</process:return>
       <process:return id="2" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="3" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
     </process:returns>
@@ -27,7 +27,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="1079" y="186"/>
+    <location x="1229" y="186"/>
     <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
@@ -42,7 +42,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbContactor</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbContactor</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -150,7 +150,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbContactor</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbContactor</process:from>
       <process:to type="query">cond2/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -212,7 +212,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
-      <targetNode>assign5</targetNode>
+      <targetNode>invokePojo3</targetNode>
     </sourceConnections>
     <targetConnections>link10</targetConnections>
     <location x="510" y="150"/>
@@ -221,6 +221,18 @@
     <process:copy>
       <process:from type="query" pattern="reference">list2[1]</process:from>
       <process:to type="query">contactor</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">insContactList[1]</process:from>
+      <process:to type="query">insContact</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">insContact/wechatOpenId</process:from>
+      <process:to type="query">contactor/wechatOpenId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">insContact/wechatServiceId</process:from>
+      <process:to type="query">contactor/wechatServiceId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
@@ -234,9 +246,9 @@
       <targetNode>invokePojo2</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <targetConnections>link11</targetConnections>
     <targetConnections>link7</targetConnections>
-    <location x="585" y="150"/>
+    <targetConnections>link3</targetConnections>
+    <location x="693" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
     <process:copy>
@@ -244,7 +256,7 @@
       <process:to type="query">cars</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbCar</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbCar</process:from>
       <process:to type="query">cond3/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -265,7 +277,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="579" y="186"/>
+    <location x="687" y="186"/>
     <figSize height="20" width="40"/>
     <node>assign5</node>
   </nodes>
@@ -291,7 +303,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
-    <location x="687" y="150"/>
+    <location x="810" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -307,7 +319,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="590" y="186"/>
+    <location x="713" y="186"/>
     <figSize height="20" width="216"/>
     <node>invokePojo2</node>
   </nodes>
@@ -330,18 +342,18 @@
     <figSize height="20" width="40"/>
     <node>assign6</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign7" name="赋值7" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值7" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign7</sourceNode>
       <targetNode>subprocess0</targetNode>
     </sourceConnections>
     <targetConnections>link14</targetConnections>
-    <location x="755" y="150"/>
+    <location x="888" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign7label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
-    <location x="749" y="186"/>
+    <location x="882" y="186"/>
     <figSize height="20" width="40"/>
     <node>assign7</node>
   </nodes>
@@ -351,7 +363,7 @@
       <targetNode>assign10</targetNode>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
-    <location x="799" y="240"/>
+    <location x="921" y="240"/>
     <size height="28" width="28"/>
     <nodeLabel>assign8label</nodeLabel>
     <process:copy>
@@ -368,7 +380,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
-    <location x="793" y="276"/>
+    <location x="915" y="276"/>
     <figSize height="20" width="40"/>
     <node>assign8</node>
   </nodes>
@@ -380,12 +392,12 @@
     <targetConnections>link15</targetConnections>
     <targetConnections>link21</targetConnections>
     <targetConnections>link23</targetConnections>
-    <location x="1005" y="150"/>
+    <location x="1148" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign10label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
-    <location x="995" y="186"/>
+    <location x="1138" y="186"/>
     <figSize height="20" width="49"/>
     <node>assign10</node>
   </nodes>
@@ -399,27 +411,27 @@
       <targetNode>assign11</targetNode>
     </sourceConnections>
     <targetConnections>link19</targetConnections>
-    <location x="822" y="150"/>
+    <location x="948" y="150"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.saveRpbCars</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="guest" type="query" value="com.hsapi.repair.data.common.ComGuest" valueType="DataObject" pattern="reference">guest</process:inputVariable>
-        <process:inputVariable id="1" name="insList" type="query" value="com.hsapi.repair.data.rpb.RpbCar[]" valueType="DataObject" pattern="reference">insCarList</process:inputVariable>
-        <process:inputVariable id="2" name="updList" type="query" value="com.hsapi.repair.data.rpb.RpbCar[]" valueType="DataObject" pattern="reference">updCarList</process:inputVariable>
+        <process:inputVariable id="1" name="insList" type="query" value="com.hsapi.repair.data.rpbse.RpbCar[]" valueType="DataObject" pattern="reference">insCarList</process:inputVariable>
+        <process:inputVariable id="2" name="updList" type="query" value="com.hsapi.repair.data.rpbse.RpbCar[]" valueType="DataObject" pattern="reference">updCarList</process:inputVariable>
         <process:inputVariable id="3" name="orgid" type="query" value="String" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
         <process:inputVariable id="4" name="userName" type="query" value="String" valueType="Primitive" pattern="reference">m:userObject/userName</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="insList" type="query" value="com.hsapi.repair.data.rpb.RpbCar[]" valueType="DataObject">insCarList</process:outputVariable>
+        <process:outputVariable id="0" name="insList" type="query" value="com.hsapi.repair.data.rpbse.RpbCar[]" valueType="DataObject">insCarList</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="788" y="185"/>
+    <location x="914" y="185"/>
     <figSize height="20" width="94"/>
     <node>subprocess0</node>
   </nodes>
@@ -429,7 +441,7 @@
       <targetNode>assign10</targetNode>
     </sourceConnections>
     <targetConnections>link24</targetConnections>
-    <location x="885" y="150"/>
+    <location x="1035" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign9label</nodeLabel>
     <process:copy>
@@ -438,45 +450,84 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
-    <location x="879" y="186"/>
+    <location x="1029" y="186"/>
     <figSize height="20" width="40"/>
     <node>assign9</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign11" name="赋值11" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign11" name="赋值11" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign11</sourceNode>
       <targetNode>assign10</targetNode>
     </sourceConnections>
     <targetConnections>link22</targetConnections>
-    <location x="870" y="48"/>
+    <targetConnections>link4</targetConnections>
+    <location x="974" y="57"/>
     <size height="28" width="28"/>
     <nodeLabel>assign11label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">更新失败</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
-    <location x="860" y="84"/>
+    <location x="964" y="93"/>
     <figSize height="20" width="49"/>
     <node>assign11</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="updateEntity" displayName="updateEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo3</sourceNode>
+      <targetNode>assign5</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" lineType="note" type="exception">
+      <sourceNode>invokePojo3</sourceNode>
+      <targetNode>assign11</targetNode>
+    </sourceConnections>
+    <targetConnections>link11</targetConnections>
+    <location x="600" y="150"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo3label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.updateEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">contactor</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
+    <location x="564" y="186"/>
+    <figSize height="20" width="94"/>
+    <node>invokePojo3</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-07-10 19:37:12" date="2018-07-10Z" description="" name="queryCheckModel" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbContactor" name="list"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbContactor" name="list"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond2"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbContactor" name="list2"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCar" name="cars"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCar" name="list3"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbContactor" name="list2"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCar" name="cars"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbCar" name="list3"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.common.ComGuest" name="guest"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond3"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbContactor" name="insContact"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCar" name="insCarList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbCar" name="insCarList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbContactor" name="insContactList"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbContactor" name="contactor"/>
-    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCar" name="car"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbContactor" name="contactor"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCar" name="car"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
   </process:outputs>

@@ -9,7 +9,7 @@
 
 <head>
 	<title>应收账款管理</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.7.8"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.7.10"></script>
 	    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 	<style type="text/css">
@@ -122,6 +122,10 @@
 						data="[{value:'0',text:'未收款',},{value:'1',text:'部分收款'},{value:'2',text:'已收款'},{value:'3',text:'全部'}]"
 						textField="text" valueField="value" name="settleStatus" id="settleStatus" width="90px"
 						value="0" onvalidation="onSearch()"  />
+						<input class="nui-combobox"
+						data="[{value:'0',text:'未审核',},{value:'1',text:'已审核'},{value:'2',text:'全部'}]"
+						textField="text" valueField="value" name="auditSign" id="auditSign" width="90px"
+						value="2" onvalidation="onSearch()"  />
 						<label style="font-family: Verdana;">转单日期 从：</label>
 						<input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false"
 						 showOkButton="false" showClearButton="false" />
@@ -169,23 +173,23 @@
 							<div property="columns">
 								<div type="indexcolumn">序号</div>
 								<div type="checkcolumn" field="check" width="20"></div> 
-								<!-- <div type="expandcolumn" width="20">#</div> -->
+								 <div type="expandcolumn" width="20">#</div>
 								<div allowSort="true" field="guestName" name="guestName" width="150" headerAlign="center" header="结算单位"></div>
 								<div allowSort="true" field="carNo" name="carNo" width="80" headerAlign="center" header="车牌号"></div>
 								<div allowSort="true" summaryType="count" field="billServiceId" name="billServiceId" width="130" summaryType="count" headerAlign="center" header="业务单号"></div>
 								<div allowSort="true" field="billTypeId" name="billTypeId" width="100" headerAlign="center" header="收支项目"></div>
 								<div allowSort="true" field="remark" name="remark" width="120" headerAlign="center" header="业务备注"></div>
-								<div allowSort="true" field="rpAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" summaryType="sum" header="应收金额"></div>
-								<div allowSort="true" field="nowAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="结算金额">
+								<div allowSort="true" field="rpAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" dataType="float" summaryType="sum" header="应收金额"></div>
+								<div allowSort="true" field="nowAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" dataType="float" header="结算金额">
 									<input property="editor" vtype="float" class="nui-textbox" />
 								</div>
-								<div allowSort="true" field="nowVoidAmt" visible="false" width="60" headerAlign="center" align="right" numberFormat="0.00" header="优惠金额">
+								<div allowSort="true" field="nowVoidAmt" visible="false" width="60" headerAlign="center" align="right" dataType="float" numberFormat="0.00" header="优惠金额">
 									<input property="editor" vtype="float" class="nui-textbox" />
 								</div>
 								<div allowSort="true" field="createDate" headerAlign="center" header="转单日期" dateFormat="yyyy-MM-dd HH:mm"></div>
 								<div allowSort="true" field="settleStatus" name="settleStatus" width="60" headerAlign="center" header="结算状态"></div>
 								<div allowSort="true" field="auditSign" name="auditSign" width="60" headerAlign="center" header="审核状态"></div>
-								<div allowSort="true" field="charOffAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" summaryType="sum" header="已结金额"></div>
+								<div allowSort="true" field="charOffAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" dataType="float" summaryType="sum" header="已结金额"></div>
 								<!-- <div field="balanceSign" type="checkboxcolumn" trueValue="1" falseValue="0" width="60" headerAlign="center" header="是否对账"></div>
                         <div field="balancer" width="60" headerAlign="center" header="对账人"></div>
                         <div allowSort="true" field="balanceDate" headerAlign="center" header="对账日期" dateFormat="yyyy-MM-dd HH:mm"></div> -->

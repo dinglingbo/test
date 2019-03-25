@@ -68,6 +68,10 @@
       <process:from type="literal" pattern="reference">S</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">d</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="122" y="133"/>
@@ -304,7 +308,7 @@
       <process:to type="query">temp/modifier</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">temp/modifyDate</process:to>
     </process:copy>
     <process:copy>
@@ -316,7 +320,7 @@
       <process:to type="query">temp/orgid</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">temp/recordDate</process:to>
     </process:copy>
     <process:copy>
@@ -343,7 +347,7 @@
       <process:to type="query">temp/modifier</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">temp/modifyDate</process:to>
     </process:copy>
   </nodes>
@@ -394,13 +398,14 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-07-13 16:44:44" date="2018-07-13Z" description="" name="saveStation" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbAppointmentStation" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbAppointmentStation" name="temp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="tenantId" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbAppointmentStation" name="addList"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbAppointmentStation" name="updateList"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbAppointmentStation" name="deleteList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbAppointmentStation" name="addList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbAppointmentStation" name="updateList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbAppointmentStation" name="deleteList"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

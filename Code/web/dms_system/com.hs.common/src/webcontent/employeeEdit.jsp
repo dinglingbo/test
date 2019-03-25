@@ -72,7 +72,7 @@
             </tr>
             <tr>
                 <td align="right"> <font color="red">身份证号码：</fpont></td>
-                <td ><input class="nui-textbox" width="200px" id="idcardno" name="idcardno" required="true" onvalidation="onIDCardsValidation" /></td>
+                <td ><input class="nui-textbox"  id="idcardno" name="idcardno" required="true" onvalidation="onIDCardsValidation" /></td>
                 <td align="right">微信/QQ号：<span></span></td>
                 <td colspan="2"><input class="nui-textbox" name="wechat" id="wechat" vtype="maxLength:50"/></td>
             </tr>
@@ -92,26 +92,30 @@
                 <td colspan="2"><input class="nui-textbox" name="urgencyPersonPhone" id="urgencyPersonPhone" onvalidation="onMobileValidation" /></td>
 
             </tr> 
+            <tr>
+                <td align="right">是否仓库人员：</td>
+                <td><div  class="nui-checkbox" id="isStockman" name="isStockman" value="0" trueValue="1" falseValue="0"></div>
+            </tr> 
+            
+        </table>
+    </fieldset>
+    <fieldset id="fd1" style="width:600px;">
+        <legend><span>其它信息</span></legend>
+        <table>
              <tr>
-                <td align="right">是否结算权限：</td>
+                <td align="right">工单是否允许直接结算：</td>
                 <td>
                		 <input class="nui-combobox"  required="false" id="isCanSettle" name="isCanSettle" textField="name"  value="0" valueField="id" />
                 </td>
                
              </tr>
              <tr>
-                <td align="right">允许车牌号车架号自由输入：</td>
+                <td align="right">车牌号车架号是否允许自由输入：</td>
                 <td>
                		 <input class="nui-combobox"  required="false" id="isCanfreeCarnovin" name="isCanfreeCarnovin" textField="name"  value="0" valueField="id" />
                 </td>
                
              </tr>
-            
-        </table>
-    </fieldset>y
-    <fieldset id="fd1" style="width:600px;">
-        <legend><span>其它信息</span></legend>
-        <table>
             <tr>
                 <td align="right">积分抵扣上限金额：<span></span></td>
                 <td><input class="nui-textbox" name="integralDiscountMax" id="integralDiscountMax" onvalidation="onRateValidation" value="0" required="true" vtype="range:0,1000000"/>元</td>

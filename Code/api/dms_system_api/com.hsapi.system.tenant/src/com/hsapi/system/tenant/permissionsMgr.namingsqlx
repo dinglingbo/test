@@ -85,6 +85,7 @@
 			a.is_dimission as isDimission,
 			a.is_open_account as isOpenAccount,
 			a.is_artificer as isArtificer,
+			a.is_stockman as isStockman,
 			a.is_allow_remind as isAllowRemind,
 			a.is_show_own_bill as isShowOwnBill,
 			a.is_can_settle as isCanSettle,
@@ -209,6 +210,19 @@
 		inner join com_store b
 		on a.store_id = b.id
 		where a.emp_id = #empId# and b.is_disabled = 0
+    </select>
+    
+    <!--查询公司领料人-->
+    <select id="queryStockman" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	
+    	SELECT
+			a.empid as empId,
+			a.`name` as empName
+		FROM
+			com_member AS a
+		WHERE
+			a.is_dimission = 0 AND a.is_stockman = 1 and a.orgid = #orgid#
+
     </select>
 	
 </sqlMap>

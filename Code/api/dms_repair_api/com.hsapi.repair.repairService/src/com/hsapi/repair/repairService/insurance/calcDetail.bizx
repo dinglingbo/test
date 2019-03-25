@@ -320,7 +320,7 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsInsuranceDetail" name="detail"/>
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbGuestAgentExtend" name="extendGuest"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbGuestAgentExtend" name="extendGuest"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

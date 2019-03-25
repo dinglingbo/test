@@ -17,7 +17,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.repair.data.rpb.RpbClass" name="team" type="query" valueType="DataObject">team</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.rpbse.RpbClass" name="team" type="query" valueType="DataObject">team</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
       <process:return id="2" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
     </process:returns>
@@ -256,12 +256,12 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="date" primitiveType="Date"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbClass" name="team"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbClass" name="team"/>
     <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
     <process:input description="" isArray="false" name="userName" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbClass" name="team"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbClass" name="team"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
     <process:output description="S/E" isArray="false" name="errCode" primitiveType="String"/>
   </process:outputs>

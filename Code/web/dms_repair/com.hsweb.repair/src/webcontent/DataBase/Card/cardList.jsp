@@ -17,7 +17,7 @@
 	<div id="queryform" class="nui-form">
 		<div class="nui-toolbar">
 			<input class="nui-hidden" name="criteria/_entity"
-				value="com.hsapi.repair.data.rpb.RpbCardStored">
+				value="com.hsapi.repair.data.rpbse.RpbCardStored">
 			<table id="table1">
 				<tr>
 					<td>储值卡名称: <input class="nui-textbox"

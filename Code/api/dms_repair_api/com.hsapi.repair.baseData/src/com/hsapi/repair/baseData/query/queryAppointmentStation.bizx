@@ -15,8 +15,8 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" name="stations" type="query">stations</process:return>
-      <process:return id="1" name="page" type="query">page</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.rpbse.RpbAppointmentStation[]" name="stations" type="query" valueType="DataObject">stations</process:return>
+      <process:return id="1" language="com.eos.foundation.PageCond" name="page" type="query" valueType="DataObject">page</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -40,7 +40,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbAppointmentStation</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbAppointmentStation</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -123,7 +123,7 @@
     <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbAppointmentStation" name="stations"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbAppointmentStation" name="stations"/>
     <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>

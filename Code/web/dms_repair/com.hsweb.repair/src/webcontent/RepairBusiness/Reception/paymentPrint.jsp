@@ -9,7 +9,7 @@
   - Description:
 -->
 <head>
-<title></title>
+<title>付款凭证</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
 	<script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/jquery-1.8.3.min.js" type="text/javascript"></script>
@@ -270,7 +270,7 @@
 	            			<input type="checkbox"   />刷卡
 	   						<input type="checkbox"   />汇款    
 	   					    <input type="checkbox"   />支票  
-	    					<input type="checkbox"  checked ='checked'  />转账    
+	    					<input type="checkbox"   />转账    
 	    			</div>		
 	    			<div style="margin-right: 100px;margin-top: 20px;float:left">支款单位（盖章）：<span id="companyName"></span></div>
     			</div>
@@ -340,7 +340,12 @@
 	        		payDate = new Date(payDate);
 	        		payDate = format(payDate, "yyyy-MM-dd HH:mm");
 	        		document.getElementById("payDate").innerHTML = payDate;
-	        		document.getElementById("guestName").innerHTML = params.guestData[0].guestName||"";
+	        		//所有车牌号
+	        		var carNoList = "";
+	        		for(var i =0;i<params.guestData.length;i++){
+	        			carNoList = (carNoList +params.guestData[i].carNo||"")+"&nbsp;&nbsp;";
+	        		}
+	        		document.getElementById("guestName").innerHTML = (params.guestData[0].guestName||"")+"&nbsp;&nbsp;&nbsp;"+carNoList;
 	        		document.getElementById("businessNumber").innerHTML = params.businessNumber||"";
 	        		
 	        		var money = transform(params.netInAmt+"");

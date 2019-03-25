@@ -3144,7 +3144,9 @@ function showBillInfo(){
 	var main = billForm.getData();
 	var params = {
 			carId : main.carId,
-			guestId : main.guestId
+			carNo : main.carNo,
+			guestId : main.guestId,
+			contactorId:main.contactorId
 	};
 	if(main.id){
 		doShowCarInfo(params);

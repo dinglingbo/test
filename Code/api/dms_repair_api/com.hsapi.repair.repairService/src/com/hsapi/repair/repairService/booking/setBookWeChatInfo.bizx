@@ -115,7 +115,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbContactor</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbContactor</process:from>
       <process:to type="query">conct/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -499,7 +499,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="token" primitiveType="String"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="bookingTemplateMesData"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="conct"/>
-    <process:variable anyType="commonj.sdo.DataObject" description="com.hsapi.repair.data.rpb.RpbContactor" historyStateLocation="client" isArray="true" name="conList"/>
+    <process:variable anyType="commonj.sdo.DataObject" description="com.hsapi.repair.data.rpbse.RpbContactor" historyStateLocation="client" isArray="true" name="conList"/>
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="con"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="strDate" primitiveType="String"/>
   </process:variables>

@@ -1219,8 +1219,8 @@
         <process:inputVariable id="0" name="cardTimes" type="query" value="com.hsapi.repair.data.rps.RpsCardTimes" valueType="DataObject" pattern="reference">cardTimes</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1249,7 +1249,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="fmonth" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="payTypeName" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="cardId" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCardStored" name="card"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbCardStored" name="card"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="bCanModity" primitiveType="Int"/>
     <process:variable description="定义信息" historyStateLocation="client" isArray="false" name="bRechargeAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="bGiveAmt" primitiveType="Double"/>

@@ -57,6 +57,7 @@ $(document).ready(function(v){
             });
      });
 });
+
 function init(){
 
     var hash = {};

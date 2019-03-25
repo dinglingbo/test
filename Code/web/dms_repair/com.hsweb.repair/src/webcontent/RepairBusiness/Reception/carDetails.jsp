@@ -142,6 +142,7 @@
                                                 <input class="nui-textbox" id="engineNo" name="engineNo" width="100%" allowInput="false" />
                                             </td>
                                         </tr>
+                                        
                                         <!--                     <tr>
                         <td style="width:80px;"align="right">车辆颜色：</td>
                         <td style="width:150px;">
@@ -161,6 +162,19 @@
                                                 />
                                             </td>
                                         </tr>
+                                        
+                                        <tr>
+							                <td class="form_label" align="right">
+							                    <label>备注：</label>
+							                </td>
+							                <td colspan="3">
+							                    <input class="nui-textbox" name="remark" width="80%" />
+							                    
+							                     <label>是否禁用：</label>
+							                     <input type="checkbox" id="isDisabled" class="mini-checkbox"  name="isDisabled"  trueValue="1" falseValue="0" >
+							                </td>
+							           </tr>
+                                        
                                     </table>
                                 </div>
                             </fieldset>
@@ -216,12 +230,11 @@
                                     </table>
                                 </div>
                             </fieldset>
-                 <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:25%;">
+                 <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;min-height: 25%;">
                          <legend>联系人信息</legend>
-                             <div id="editForm5" style="padding:5px;">
-                             <div class="nui-fit">
+                           <div class="nui-fit"> 
                             <div id="contactdatagrid" class="nui-datagrid"  showPager="false" sortMode="client" allowCellEdit="true" onrowdblclick="eaidContact()"
-                                allowCellSelect="true" multiSelect="true"  editNextOnEnterKey="true" onDrawCell="onDrawCell">
+                                allowCellSelect="true" multiSelect="true"  editNextOnEnterKey="true" onDrawCell="onDrawCell" height="100%">
                                 <div property="columns">
 
                                     <div field="id" class="nui-hidden" allowSort="true" align="left" headerAlign="center" width="" visible="false">
@@ -239,7 +252,7 @@
                                     </div>
                                     <div field="identity" allowSort="true" align="left" headerAlign="center" width="">身份</div>
                                 </div>
-                            </div>
+                            </div> 
                         </div>
                                 <!-- <table class="nui-form-table" style="width:99%">
                                     <tr>
@@ -274,7 +287,6 @@
                                     </tr>
                                     
                                 </table> -->
-                          </div>
                       </fieldset>
                    </div>
 

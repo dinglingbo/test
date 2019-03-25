@@ -377,6 +377,7 @@ function doSearch() {
     if(nui.get("seachType").getValue()==2){
     	gsparams.sEnterDate = null;
     	gsparams.eEnterDate = null;
+    	gsparams.isSettle=0;
     }else if(nui.get("seachType").getValue()==1){
     	gsparams.isSettle=1;
     }else{
@@ -504,7 +505,8 @@ function showCarInfo(row_uid){
 		var params = {
 				carId : row.carId,
 				carNo : row.carNo,
-				guestId : row.guestId
+				guestId : row.guestId,
+				contactorId:row.contactorId
 		};
 		doShowCarInfo(params);
 	}
@@ -522,7 +524,6 @@ function setInitData(params) {
     if (params.id == 'settleQty') {
     	nui.get("seachType").setValue(1);
     	nui.get("seachType").setText("结算车辆");
-    	var gsparams = getSearchParam();
     	onSearch();
 
     } else if (params.id == 'serviceBillQty') {

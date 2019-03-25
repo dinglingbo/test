@@ -486,7 +486,9 @@ function showCarInfo(row_uid){
 	if(row){
 		var params = {
 				carId : row.carId,
-				guestId : row.guestId
+				carNo : row.carNo,
+				guestId : row.guestId,
+				contactorId:row.contactorId
 		};
 		doShowCarInfo(params);
 	}
@@ -668,7 +670,9 @@ function showCarInfo(row_uid){
 	if(row){
 		var params = {
 				carId : row.carId,
-				guestId : row.guestId
+				carNo : row.carNo,
+				guestId : row.guestId,
+				contactorId:row.contactorId
 		};
 		doShowCarInfo(params);
 	}

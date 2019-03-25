@@ -59,8 +59,8 @@
     	SELECT DISTINCT a.menuid, a.menuname, a.menucode, a.imagepath, a.parentsid, b.funccode, 
 				 a.DISPLAYORDER,  b.funcaction, a.EXPANDPATH as expandpath, 
 				 a.APP_ID as appId, b.parainfo as params, b.FUNCTYPE as functype
-		from app_menu a
-		inner join com_app_function b
+		from com_app_function b
+		left join app_menu a
 		on a.funccode = b.FUNCCODE
     </select>
     <!--根据资源ID获取资源对应的资源详情，用于报表菜单结构输出-->

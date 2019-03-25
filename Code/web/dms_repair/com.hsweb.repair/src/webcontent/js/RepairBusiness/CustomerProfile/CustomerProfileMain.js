@@ -523,9 +523,10 @@ function showCarInfo(row_uid){
 	var row = grid.getRowByUID(row_uid);
 	if(row){
 		var params = {
-				carId : row.id,
+				carId : row.carId,
 				carNo : row.carNo,
-				guestId : row.guestId
+				guestId : row.guestId,
+				contactorId:row.contactorId
 		};
 		doShowCarInfo(params);
 	}

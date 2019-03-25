@@ -15,6 +15,7 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link68</targetConnections>
+    <targetConnections>link69</targetConnections>
     <location x="1710" y="149"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
@@ -1481,6 +1482,15 @@
       <sourceNode>subprocess5</sourceNode>
       <targetNode>subprocess6</targetNode>
       <process:transitionCondition/>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link69" name="link69" displayName="连接线" type="transition">
+      <sourceNode>subprocess5</sourceNode>
+      <targetNode>end0</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>1==1</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link58</targetConnections>
     <location x="1538" y="148"/>

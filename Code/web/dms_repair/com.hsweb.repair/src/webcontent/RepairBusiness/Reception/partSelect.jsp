@@ -234,6 +234,15 @@
         if(pickType == "ADD") {
         	mainGrid.showColumn("sellUnitPrice");
         }
+        
+        getStockman(function(text){
+        	var data = text.data||[];
+	    	if(data && data.length>0) {
+	    		nui.get("mtAdvisorId").setData(data);
+	    	}else {
+				showMsg("请在【员工管理】中设置仓库人员，用于领料人选择！","W");   	
+	    	}
+	    });
 		
     } 
 
@@ -247,9 +256,10 @@
 		});
 	});
     
-	initMember("mtAdvisorId",function(){
+	/* initMember("mtAdvisorId",function(){
 
-    });
+    }); */
+    
      getStorehouse(function(data) {
         storehouse = data.storehouse || [];
         if (storehouse && storehouse.length > 0) {

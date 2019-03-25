@@ -342,7 +342,12 @@
                 myChart.resize();
             };
         }
-
+		function setInitData(params) {
+		    if (params.id == 'receiveAmt') {
+		    	quickSearch(0);
+		    	
+		    }
+		}
         function showMainB(dim,tdata) {
 
 

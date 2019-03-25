@@ -99,7 +99,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">电商订单提交失败</process:from>
+      <process:from type="query" pattern="reference">result/msg</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -437,6 +437,7 @@
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>assign1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
     <location x="585" y="276"/>

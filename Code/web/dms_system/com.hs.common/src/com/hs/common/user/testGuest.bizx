@@ -10,7 +10,7 @@
       <targetNode>invokePojo0</targetNode>
       <process:transitionCondition>
         <process:complexCondition>
-          <process:code>1==1</process:code>
+          <process:code>1==3</process:code>
         </process:complexCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -23,6 +23,15 @@
         </process:complexCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link6" name="link6" displayName="连接线" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>invokePojo2</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>1==1</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <location x="100" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
@@ -31,12 +40,14 @@
     <targetConnections>link1</targetConnections>
     <targetConnections>link3</targetConnections>
     <targetConnections>link5</targetConnections>
+    <targetConnections>link7</targetConnections>
     <location x="400" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
       <process:return id="0" language="String" name="password" type="query" valueType="Primitive">password</process:return>
       <process:return id="1" language="String" name="c" type="query" valueType="Primitive">c</process:return>
+      <process:return id="2" language="commonj.sdo.DataObject[]" name="data" type="query" valueType="Java">data</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -130,6 +141,29 @@
     <figSize height="17" width="81"/>
     <node>invokePojo1</node>
   </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="getComAppFunction" displayName="getComAppFunction" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo2</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="256" y="326"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo2label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.ResauthUtils.getComAppFunction</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables/>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java">data</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
+    <location x="208" y="362"/>
+    <figSize height="17" width="119"/>
+    <node>invokePojo2</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-03-05 10:32:07" date="2019-03-05Z" description="" name="testGuest" version="7.0.0.0"/>
@@ -140,6 +174,7 @@
   <process:outputs>
     <process:output description="" isArray="false" name="password" primitiveType="String"/>
     <process:output description="" isArray="false" name="c" primitiveType="String"/>
+    <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="data"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

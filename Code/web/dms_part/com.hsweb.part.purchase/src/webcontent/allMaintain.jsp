@@ -10,7 +10,7 @@
 -->
 <head>
 <title>全部工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/allMaintain.js?v=1.0.9"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/allMaintain.js?v=1.1.2"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -69,8 +69,8 @@
             <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
         </ul>
         <span class="separator"></span> -->
-                             查询类型:<input class="nui-combobox" id="seachType"  name="seachType" data="[{seachType:0,text:'今日进厂'},{seachType:1,text:'结算车次'},{seachType:2,text:'在修车辆'}]"
-                          width="100px"   textField="text" valueField="seachType" value="0"/>
+                             查询类型:<input class="nui-combobox" id="seachType"  name="seachType" data="[{seachType:0,text:'今日进厂'},{seachType:1,text:'今日结算车次'},{seachType:2,text:'今日在修车辆'}]"
+                          width="100px"  onvaluechanged="onSearch()" textField="text" valueField="seachType" value="0"/>
         <label style="font-family:Verdana;">进厂日期 从：</label>
         <input class="nui-datepicker" id="sEnterDate" name="sEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd" onvaluechanged="onSearch()" showTime="false" showOkButton="false" showClearButton="false"/>
         <label style="font-family:Verdana;">至</label>
@@ -134,7 +134,7 @@
 	                  <div field="serviceCode" name="serviceCode" width="170" headerAlign="center" header="工单号" summaryType="sum" allowsort="true"></div>
 	                  <div field="status" name="status" width="70px" headerAlign="center" header="进程" allowsort="true"></div> 
 	                  <div field="serviceTypeName" name="serviceTypeName" width="120" headerAlign="center" header="业务类型" allowsort="true"></div>
-	                  <div field="auditSign" name="auditSign" width="120" headerAlign="center" header="审核状态" allowsort="true"></div>
+	                  <!-- <div field="auditSign" name="auditSign" width="120" headerAlign="center" header="审核状态" allowsort="true"></div> -->
 	                  <div field="mtAdvisor" name="mtAdvisor" width="100" headerAlign="center" header="服务顾问" allowsort="true"></div>
 	                 </div>
                   </div>
@@ -154,9 +154,9 @@
                
                   <div header="估算费用信息" headerAlign="center">
 	                  <div property="columns" >	                  
-		                  <div field="pkgSubtotalNo" name="status" width="90" headerAlign="center" summaryType="sum" header="套餐销售小计" allowsort="true" dataType="int"></div>
-		                  <div field="itemSubtotalNo" name="carNO" width="90" headerAlign="center" summaryType="sum" header="项目销售小计" allowsort="true" dataType="int"></div>
-		                  <div field="partSubtotalNo" name="carBrandId" width="90" headerAlign="center" summaryType="sum"  header="配件销售小计" allowsort="true" dataType="int"></div>
+		                  <div field="pkgSubtotal" name="status" width="90" headerAlign="center" summaryType="sum" header="套餐销售小计" allowsort="true" dataType="int"></div>
+		                  <div field="itemSubtotal" name="carNO" width="90" headerAlign="center" summaryType="sum" header="项目销售小计" allowsort="true" dataType="int"></div>
+		                  <div field="partSubtotal" name="carBrandId" width="90" headerAlign="center" summaryType="sum"  header="配件销售小计" allowsort="true" dataType="int"></div>
 		                  <div field="totalNo" name="carBrandId" width="70" headerAlign="center" summaryType="sum"  header="合计" allowsort="true" dataType="int"></div>
 	<!-- 	                  <div field="cardTimesAmt" name="cardTimesAmt" width="70" headerAlign="center" summaryType="sum"  header="预存抵扣" allowsort="true"></div>
 		                  <div field="totalPrefAmt" name="carVin" width="70" headerAlign="center" summaryType="sum"  header="优惠金额" allowsort="true"></div>
@@ -207,7 +207,7 @@
 		                  <div field="carVin" name="carVin" width="130" headerAlign="center" header="车架号(VIN)" allowsort="true"></div> -->
 		                  <div field="enterDate" name="enterDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="进厂日期" allowsort="true"></div>
 		                  <div field="checkDate" name="checkDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="完工日期" allowsort="true"></div>
-		                  <div field="recordDate" name="recordDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="结算日期" allowsort="true"></div>
+		                  <div field="settleDate" name="settleRecordDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="结算日期" allowsort="true"></div>
 		                  <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
 	                  </div>
                   </div>

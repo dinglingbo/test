@@ -644,5 +644,19 @@ function getYearMonthList(startDate, endDate){
 	return yearMonthList;
 }
 
-
+var getStockmanUrl = apiPath + sysApi + "/com.hsapi.system.tenant.employee.queryStockman.biz.ext";
+function getStockman(callback) {
+	doPost({
+		url : getStockmanUrl,
+		data : {token: token},
+		success : function(data) {
+			callback && callback(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+			callback && callback({});
+		}
+	});
+}
 

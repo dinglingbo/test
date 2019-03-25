@@ -474,7 +474,8 @@ function showCarInfo(row_uid){
 		var params = {
 				carId : row.carId,
 				carNo : row.carNo,
-				guestId : row.guestId
+				guestId : row.guestId,
+				contactorId:row.contactorId
 		};
 		doShowCarInfo(params);
 	}

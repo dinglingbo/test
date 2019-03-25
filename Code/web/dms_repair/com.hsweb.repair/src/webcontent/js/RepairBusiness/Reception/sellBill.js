@@ -1551,10 +1551,11 @@ function pay(){
         showMsg("工单已结算!","W");
         return;
     }
-	if(main.status != 2){
+	/*此判断放
+	 * if(main.status != 2){
 		 showMsg("工单未出库,不能结算!","W");
 	     return;
-	}
+	}*/
 	nui.open({
 		url:payUrl,
 		width:"100%",

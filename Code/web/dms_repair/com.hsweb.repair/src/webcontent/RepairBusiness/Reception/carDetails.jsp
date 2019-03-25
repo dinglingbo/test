@@ -12,7 +12,7 @@
         <head>
             <title>车辆详情</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.18" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.19" type="text/javascript"></script>
         </head>
         <style type="text/css">
             body {
@@ -466,6 +466,7 @@
                                     allowSortColumn="false" totalField='page.count' allowCellWrap="true">
                                     <div property="columns">
                                         <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
+                                        <div field="contactorName" headerAlign="center" allowSort="true" width="100px">回访客户</div>
                                         <div field="serviceType" headerAlign="center" allowSort="true" width="100px">回访类型</div>
                                         <div field="visitMode" headerAlign="center" allowSort="true" width="100px">回访方式</div>
                                         <div field="visitContent" headerAlign="center" allowSort="true" width="200px">回访内容</div>

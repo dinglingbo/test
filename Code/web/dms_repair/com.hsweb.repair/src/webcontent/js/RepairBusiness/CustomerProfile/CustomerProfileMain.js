@@ -126,11 +126,11 @@ function quickSearch(type)
             break;
         case 2:
             params.todayNew = 1;
-            queryname = "本日新客户";
+            queryname = "本日新来厂客户";
             break;
         case 3:
             params.thisMonthNew = 1;
-            queryname = "本月新客户";
+            queryname = "本月新来厂客户";
             break;
         case 4:
             params.thisMonthEnter = 1;
@@ -570,4 +570,11 @@ function carChange(){
 
 function cancelData(){
 	advancedSearchForm.setData([]);
+}
+
+function setInitData(params) {
+    if (params.id == 'newCarQty') {
+    	quickSearch(2);
+    	
+    }
 }

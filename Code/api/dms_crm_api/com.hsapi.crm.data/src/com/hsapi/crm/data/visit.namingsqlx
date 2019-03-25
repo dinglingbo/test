@@ -135,10 +135,11 @@
         
 	<select id="queryVisitHistory" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		select 
-			a.id,a.orgid,a.main_id mainId,a.service_type serviceType,a.service_id serviceId,
+			a.id,a.orgid,a.main_id mainId,a.service_type serviceType,a.service_id serviceId,b.name contactorName,
 			a.guest_id guestId,a.car_no carNo,a.car_id carId,a.visit_mode visitMode,a.care_due_date careDueDate,
 			a.visit_content visitContent,a.visit_id visitId,a.visit_man visitMan,a.visit_date visitDate
 		from crm_visit_record a 
+		INNER JOIN wb_repair.rpb_contactor b on a.guest_id = b.id
 		where a.orgid = #orgid#
 		<isNotEmpty prepend="and" property="mainId">  
 		   	a.main_id =   #mainId#

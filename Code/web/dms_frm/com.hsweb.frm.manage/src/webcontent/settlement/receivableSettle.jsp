@@ -9,7 +9,7 @@
 
 <head>
 	<title>应收账款管理</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.7.9"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.7.10"></script>
 	    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 	<style type="text/css">
@@ -122,6 +122,10 @@
 						data="[{value:'0',text:'未收款',},{value:'1',text:'部分收款'},{value:'2',text:'已收款'},{value:'3',text:'全部'}]"
 						textField="text" valueField="value" name="settleStatus" id="settleStatus" width="90px"
 						value="0" onvalidation="onSearch()"  />
+						<input class="nui-combobox"
+						data="[{value:'0',text:'未审核',},{value:'1',text:'已审核'},{value:'2',text:'全部'}]"
+						textField="text" valueField="value" name="auditSign" id="auditSign" width="90px"
+						value="2" onvalidation="onSearch()"  />
 						<label style="font-family: Verdana;">转单日期 从：</label>
 						<input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false"
 						 showOkButton="false" showClearButton="false" />

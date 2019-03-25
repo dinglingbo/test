@@ -11,7 +11,7 @@
 <title>配件查询</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script
-	src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.38"></script>
+	src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.30"></script>
 <style type="text/css">
 		.table-label {
 			text-align: right;

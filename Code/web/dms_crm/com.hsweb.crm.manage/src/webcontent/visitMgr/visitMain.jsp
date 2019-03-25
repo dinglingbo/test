@@ -99,20 +99,7 @@ pageEncoding="UTF-8" session="false" %>
     </div> 
 </div> 
     <div >
-            <div class="nui-fit">
-                <div id="visitHis" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
-                    multiSelect="false" pageSize="20" showPageInfo="true" selectOnLoad="true"  onDrawCell="" onselectionchanged=""
-                    allowSortColumn="false" totalField='page.count' allowCellWrap="true">
-                    <div property="columns">
-                        <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
-                        <div field="serviceType" headerAlign="center" allowSort="true" width="100px">回访类型</div>
-                        <div field="visitMode" headerAlign="center" allowSort="true" width="100px">回访方式</div>
-                        <div field="visitContent" headerAlign="center" allowSort="true" width="200px">回访内容</div>
-                        <div field="visitMan" headerAlign="center" allowSort="true" width="100px">回访员</div>
-                        <div field="visitDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" width="100px">回访日期</div>
-                    </div>
-                </div>
-            </div>
+            <%@include file="/manage/maintainRemind/visitHistoryList.jsp" %>
         </div>
     </div>
 

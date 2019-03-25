@@ -157,7 +157,8 @@ function save(){
             subReason:data.subReason,
             planComeDate:data.planComeDate,
             nextVisitDate:data.nextVisitDate,
-            nowMtComp:data.nowMtComp
+            nowMtComp:data.nowMtComp,
+            guestSource:0
         };
     nui.ajax({
         url:saveUrl,

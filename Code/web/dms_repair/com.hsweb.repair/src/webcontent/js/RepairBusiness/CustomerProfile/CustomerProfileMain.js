@@ -57,6 +57,7 @@ $(document).ready(function(v){
             });
      });
 });
+
 function init(){
 
     var hash = {};
@@ -523,10 +524,9 @@ function showCarInfo(row_uid){
 	var row = grid.getRowByUID(row_uid);
 	if(row){
 		var params = {
-				carId : row.carId,
+				carId : row.id,
 				carNo : row.carNo,
-				guestId : row.guestId,
-				contactorId:row.contactorId
+				guestId : row.guestId
 		};
 		doShowCarInfo(params);
 	}

@@ -1,7 +1,7 @@
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var queryRemindSUrl = baseUrl + "com.hsapi.repair.repairService.query.queryRemindByDate.biz.ext";
-var hisUrl = apiPath + crmApi+ "/com.hsapi.crm.svr.visit.queryCrmVisitRecordSql.biz.ext";
+
 var reminding = null; //保养提醒
 var business = null; //商业险
 var compulsoryInsurance = null; //交强险
@@ -12,13 +12,12 @@ var visitHis = null; //回访历史
 var serviceType = null; //5保养提醒 //6商业险到期   7; //交强险到期   8; //驾照到期   9; //车检到期   10; //客户生日  
 var params = {};
 var tabs = {};
-var serviceTypeList = [{},{ id: 1, text: '电销' }, { id: 2, text: '预约' }, { id: 3, text: '客户回访' }, { id: 4, text: '流失回访' }, { id: 5, text: '保养提醒' }, { id: 6, text: '商业险到期' }, { id: 7, text: '交强险到期' }, { id: 8, text: '驾照年审' }, { id: 9, text: '车辆年检' }, { id: 10, text: '生日' }];
 
 $(document).ready(function (v) {
     tabs = nui.get("tabs");
     reminding = nui.get("reminding");
     business = nui.get("business");
-    compulsoryInsurance = nui.get("compulsoryInsurance");
+    compulsoryInsurance = nui.get("compulsoryInsurance"); 
     drivingLicense = nui.get("drivingLicense");
     car = nui.get("car");
     guestBirthday = nui.get("guestBirthday"); 
@@ -58,38 +57,38 @@ $(document).ready(function (v) {
 
 
     reminding.on("select", function (e) {
-        loadVisitHis(e.record.conId);
+        visitHistoryList(e.record);
         isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
         $("#showMonile0").show();
         document.getElementById("mobileText0").innerHTML = e.record.mobile;
      
     }); 
     business.on("select", function (e) {
-        loadVisitHis(e.record.conId);
+        visitHistoryList(e.record);
         isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
         $("#showMonile").show();
         document.getElementById("mobileText").innerHTML = e.record.mobile;
     }); 
     compulsoryInsurance.on("select", function (e) {
-        loadVisitHis(e.record.conId);
+        visitHistoryList(e.record);
         isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
         $("#showMonile2").show();
         document.getElementById("mobileText2").innerHTML = e.record.mobile;
     }); 
     drivingLicense.on("select", function (e) {
-        loadVisitHis(e.record.conId);
+        visitHistoryList(e.record);
         isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
         $("#showMonile3").show();
         document.getElementById("mobileText3").innerHTML = e.record.mobile;
     }); 
     car.on("select", function (e) {
-        loadVisitHis(e.record.conId);
+        visitHistoryList(e.record);
         isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
         $("#showMonile4").show();
         document.getElementById("mobileText4").innerHTML = e.record.mobile;
     }); 
     guestBirthday.on("select", function (e) {
-        loadVisitHis(e.record.conId);
+        visitHistoryList(e.record);
         isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
         $("#showMonile5").show();
         document.getElementById("mobileText5").innerHTML = e.record.mobile;
@@ -99,7 +98,7 @@ $(document).ready(function (v) {
         if (e.field == "mobile") {
             e.cellHtml = changedTel(e);
         } else if (e.field == 'guestType') {
-            if (e.value == 'ZS') {
+            if (e.value == 0) {
                 e.cellHtml = '系统客户';
             } else {
                 e.cellHtml = '电销客户';
@@ -112,7 +111,7 @@ $(document).ready(function (v) {
         if (e.field == "mobile") {
             e.cellHtml = changedTel(e);
         } else if (e.field == 'guestType') {
-            if (e.value == 'ZS') {
+            if (e.value == 0) {
                 e.cellHtml = '系统客户';
             } else {
                 e.cellHtml = '电销客户';
@@ -125,7 +124,7 @@ $(document).ready(function (v) {
         if (e.field == "mobile") {
             e.cellHtml = changedTel(e);
         } else if (e.field == 'guestType') {
-            if (e.value == 'ZS') {
+            if (e.value == 0) {
                 e.cellHtml = '系统客户';
             } else {
                 e.cellHtml = '电销客户';
@@ -138,7 +137,7 @@ $(document).ready(function (v) {
         if (e.field == "mobile") {
             e.cellHtml = changedTel(e);
         } else if (e.field == 'guestType') {
-            if (e.value == 'ZS') {
+            if (e.value == 0) {
                 e.cellHtml = '系统客户';
             } else {
                 e.cellHtml = '电销客户';
@@ -151,7 +150,7 @@ $(document).ready(function (v) {
         if (e.field == "mobile") {
             e.cellHtml = changedTel(e);
         } else if (e.field == 'guestType') {
-            if (e.value == 'ZS') {
+            if (e.value == 0) {
                 e.cellHtml = '系统客户';
             } else {
                 e.cellHtml = '电销客户';
@@ -164,7 +163,7 @@ $(document).ready(function (v) {
         if (e.field == "mobile") {
             e.cellHtml = changedTel(e);
         } else if (e.field == 'guestType') {
-            if (e.value == 'ZS') {
+            if (e.value == 0) {
                 e.cellHtml = '系统客户';
             } else {
                 e.cellHtml = '电销客户';
@@ -202,13 +201,24 @@ function changedTel(e) {
     return res;
 }
 
-function loadVisitHis(guestId) {
-    var params = {
-        guestId:guestId,
-        token:token
-    };
-    visitHis.load({ params:params });
+function visitHistoryList(row) {
+    if (row.guestType == 0) {
+        var params = {
+            guestId: row.conId,
+            guestSource: 0,
+            token:token
+        };
+    }
+    if (row.guestType == 1) {
+        var params = {
+            mainId: row.crmGuestId,
+            guestSource: 1,
+            token:token
+        };
+    }
+    loadVisitHis(params);
 }
+
 
 function isButtonEnable(openId,tab) {
     if (openId) {
@@ -503,6 +513,7 @@ function getRow() {
     sRow.guestId = sRow.conId;//电话回访界面用到 联系表id
     sRow.contactorId = sRow.conId;//点击车牌号弹窗用到 联系表id
     sRow.annualVerificationDueDate = sRow.dueDate;//车辆年检发送微信界面用到
+    sRow.guestSource = sRow.guestType;//保存历史用到
 
     return sRow||0;
 }

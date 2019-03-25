@@ -141,8 +141,9 @@
             </div>
             <div class="nui-fit">
                 <div id="business" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" multiSelect="false"
-                    pageSize="20" showPageInfo="true"   selectOnLoad="true"   onDrawCell="" onselectionchanged="" allowSortColumn="false">
-                    <div property="columns" totalField='page.count'>
+                    pageSize="20" showPageInfo="true"   selectOnLoad="true"   onDrawCell="" onselectionchanged="" allowSortColumn="false"
+                    totalField='page.count'>
+                    <div property="columns" >
                         <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
                         <div type="checkcolumn" class="mini-radiobutton" header="选择"></div>
                         <div field="carId" headerAlign="center" allowSort="true" visible="false">carId</div>

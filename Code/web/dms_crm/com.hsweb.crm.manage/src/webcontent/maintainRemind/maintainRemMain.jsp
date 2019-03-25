@@ -13,7 +13,7 @@ pageEncoding="UTF-8" session="false" %>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%= request.getContextPath() %>/manage/js/maintainRemMain/maintainRemMain.js?v=1.0.80" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/manage/js/maintainRemMain/maintainRemMain.js?v=1.0.81" type="text/javascript"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -35,6 +35,10 @@ pageEncoding="UTF-8" session="false" %>
 </style> 
 </head>
 <body>
+
+        <div class="mini-splitter" vertical="true" style="width:100%;height:100%;">
+                <div size="70%" showCollapseButton="true">
+        
     <div class="nui-toolbar">
         <!--  <label style="font-family:Verdana;">快速查询：</label> -->
         <label style="font-family:Verdana;">车牌号：</label>
@@ -51,7 +55,7 @@ pageEncoding="UTF-8" session="false" %>
         <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-clock-o fa-lg"></span>&nbsp;提醒</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a> -->
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="addRow()"><span class="fa fa-wrench fa-lg"></span>&nbsp;预约登记</a>
-        <a class="nui-button" iconCls="" plain="true" onclick="checkMtRecord()"><span class="fa fa-history fa-lg"></span>&nbsp;跟踪记录</a>
+        <!-- <a class="nui-button" iconCls="" plain="true" onclick="checkMtRecord()"><span class="fa fa-history fa-lg"></span>&nbsp;跟踪记录</a> -->
         <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remindDetail()"><span class="fa fa-list fa-lg"></span>&nbsp;跟踪明细</a> -->
         <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="checkMtRecord()"><span class="fa fa-search fa-lg"></span>&nbsp;查看提醒历史</a> -->
         <!-- <a class="nui-button" plain="true" iconcls="" plain="false" onclick="openOrderDetail()" ><span class="fa fa-search fa-lg"></span>&nbsp;查询工单详情</a> -->
@@ -88,7 +92,11 @@ pageEncoding="UTF-8" session="false" %>
         </div>
     </div> 
 </div> 
-
+</div>
+<div >
+<%@include file="/manage/maintainRemind/visitHistoryList.jsp" %>
+</div>
+</div>
 <script type="text/javascript">
     nui.parse();
 </script>

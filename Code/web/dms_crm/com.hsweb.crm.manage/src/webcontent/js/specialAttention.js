@@ -356,6 +356,7 @@ function sendInfo(){
 
 function sendWcText(){//发送微信消息
     var row = getRow();
+    
     if (!row) {
     showMsg("请选中一条数据","W");
     return;
@@ -437,6 +438,7 @@ function getRow() {
             sRow.sendWcUrl = "";
         }
     }
+    sRow.guestSource = 0;
     return sRow||0;
 }
 

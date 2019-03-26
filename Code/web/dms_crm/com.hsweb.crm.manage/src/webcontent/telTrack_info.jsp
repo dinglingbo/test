@@ -166,7 +166,8 @@ function saveRecord() {
         visitMode:data.scoutMode||'',
         careDueDate:data.nextScoutDate||'',
         visitContent:data.scoutContent||'',
-        nextVisitDate:data.nextScoutDate||''
+        nextVisitDate:data.nextScoutDate||'',
+        guestSource:1
     }
     nui.ajax({
         url:baseUrl+ "com.hsapi.crm.svr.visit.saveVisitRecord.biz.ext",

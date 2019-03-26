@@ -19,13 +19,19 @@ $(document).ready(function(){
 	gridCar.setUrl(gridCarUrl);
 
 
-	gridCar.on("rowdblclick",function(e){
+	gridCar.on("rowdblclick",function(e){ 
 		var record = e.record;
 		SetData(record);
 	});
     gridCar.on("select", function (e) {
         $("#showMonile").show();
         document.getElementById("mobileText").innerHTML = e.record.mobile;
+        var params = {
+            guestId: e.record.conId,
+            guestSource: 0,
+            token:token
+        };
+        loadVisitHis(params);
     }); 
     gridCar.on("drawcell", function (e) { 
     	var uid = e.record._uid;
@@ -90,6 +96,8 @@ function setInitData(params) {
 
 function SetData(rowData) {
     rowData.serviceType = serviceType;
+    rowData.guestSource = 0;
+    rowData.guestId = rowData.conId;
     mini.open({
         url: webPath + contextPath + "/manage/maintainRemind/maintainRemMainDetail.jsp?token="+ token,
         title: "提醒信息", 
@@ -168,28 +176,28 @@ function addBooking() {
     });
 }
 
-function checkMtRecord() {
-    var row = gridCar.getSelected();
-    if (row == undefined) {
-        showMsg("请选中一条数据","W");
-        return;
-    }
-    nui.open({
-        url: webPath + repairDomain + "/manage/maintainRemind/checkMtRemind.jsp?token="+token,
-        title: "查看保养提醒", width: 900, height: 400,
-        onload: function () {
-            var iframe = this.getIFrameEl();
-            var param = { 
-                guestId: row.conId,
-                careType : 1
-          };
-          iframe.contentWindow.SetData(param);
-      },
-      ondestroy: function (action) {
-        	//重新加载
-        }
-    });
-}
+// function checkMtRecord() {
+//     var row = gridCar.getSelected();
+//     if (row == undefined) {
+//         showMsg("请选中一条数据","W");
+//         return;
+//     }
+//     nui.open({
+//         url: webPath + repairDomain + "/manage/maintainRemind/checkMtRemind.jsp?token="+token,
+//         title: "查看保养提醒", width: 900, height: 400,
+//         onload: function () {
+//             var iframe = this.getIFrameEl();
+//             var param = { 
+//                 guestId: row.conId,
+//                 careType : 1
+//           };
+//           iframe.contentWindow.SetData(param);
+//       },
+//       ondestroy: function (action) {
+//         	//重新加载
+//         }
+//     });
+// }
 
 function remindDetail() {
     var row = gridCar.getSelected();
@@ -236,6 +244,8 @@ function openOrderDetail(serviceId){
 function sendInfo(){
     var row = gridCar.getSelected();
     row.serviceType = serviceType;
+    row.guestId = row.conId;
+    row.guestSource = 0;
     if (row == undefined) {
         showMsg("请选中一条数据","W");
         return;
@@ -277,6 +287,8 @@ function addRow() {
 function sendWcText(){//发送微信消息
     var row = gridCar.getSelected();
     row.serviceType = serviceType;
+    row.guestId = row.conId;
+    row.guestSource = 0;
     if (row == undefined) {
     showMsg("请选中一条数据","W");
     return;

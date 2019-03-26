@@ -19,7 +19,7 @@ pageEncoding="UTF-8" session="false" %>
         padding: 0;
         border: 0;
         width: 100%;
-        height: 100%; 
+        height: 100%;  
         overflow: hidden;
         font-family: "微软雅黑";
     }
@@ -149,7 +149,8 @@ pageEncoding="UTF-8" session="false" %>
             serviceType:'3',
             mainId:mainData.id,
             nextVisitDate:data.nextVisitDate,
-            isContinueVisit:data.isContinueVisit 
+            isContinueVisit:data.isContinueVisit,
+            guestSource:0
         };
         nui.ajax({
             url:baseUrl + "com.hsapi.crm.svr.visit.savevisitDetail.biz.ext",

@@ -22,8 +22,8 @@ var jumpUrl = "";//跳转连接
 var xs = 0;
 var isDisabledHash=[{name:"启用"},{name:"禁用"}];
 $(document).ready(function(v){
-	nui.get("mergeBtn").hide();
-	nui.get("splitBtn").hide();
+	//nui.get("mergeBtn").hide();
+	//nui.get("splitBtn").hide();
     grid = nui.get("datagrid1");
     grid.setUrl(gridUrl);
     grid.on("drawcell",function(e){
@@ -365,7 +365,7 @@ function split() {
 	if(row){
 		nui.open({
 	        url: webPath + contextPath +"/repair/RepairBusiness/CustomerProfile/Split.jsp?token="+token,
-	        title: "资料拆分", width: 810, height: 430,
+	        title: "资料拆分", width: 610, height: 350,
 	        onload: function () {
 	            var iframe = this.getIFrameEl();
 	            iframe.contentWindow.setData(row);

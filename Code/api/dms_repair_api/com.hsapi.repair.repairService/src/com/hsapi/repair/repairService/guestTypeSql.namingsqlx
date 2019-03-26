@@ -338,8 +338,8 @@ and a.is_disabled=0
             datediff(DATE_ADD(birthday,INTERVAL ceil(TIMESTAMPDIFF(MONTH,NOW(),c.birthday)/12) YEAR),NOW()) birComeDay,
             b.last_come_kilometers lastComeKilometers,
             b.last_come_date lastComeDate,
-            a.annual_inspection_comp_name annualInspectionCompName,
-            a.insure_comp_name insureCompName,
+            a.annual_inspection_comp_code annualInspectionCompCode,
+            a.insure_comp_code insureCompCode,
             c.guest_id guestId,
             c.wechat_service_id wechatServiceId,
             '' as crmGuestId
@@ -421,8 +421,8 @@ and a.is_disabled=0
             '' as birComeDay,
             '' as lastComeKilometers,
             '' as lastComeDate,
-            '' as annualInspectionCompName,
-            '' as insureCompName,
+            a.insure_comp_code annualInspectionCompCode,
+            a.insure_comp_code insureCompCode,
             a.guest_id guestId,
             '' as wechatServiceId,
             a.id as crmGuestId

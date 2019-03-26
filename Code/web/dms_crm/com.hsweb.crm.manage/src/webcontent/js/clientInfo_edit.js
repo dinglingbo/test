@@ -6,6 +6,8 @@ var modifyDate;//修改日期
 var baseUrl = apiPath + crmApi + "/";
 var carModelInfo;
 var carModelHash = [];
+var saveUrl = baseUrl + "com.hsapi.crm.telsales.crmTelsales.saveGuest.biz.ext";
+var getUrl = baseUrl + "com.hsapi.crm.svr.guest.getCrmGuestById.biz.ext";
 var insuranceInfoUrl = apiPath + repairApi+ "/com.hsapi.repair.baseData.insurance.InsuranceQuery.biz.ext?params/orgid="+currOrgid+"&params/isDisabled=0";
 var insureCompCode = null;
 $(document).ready(function(v){
@@ -80,8 +82,10 @@ function guestNameChange(e){
 function setData(data){
     var tmpUser = modifier.getValue();
     var currDate = new Date();
-    form1.setData(data);
-    if(!data.id){
+    if (data.id) {
+        var dataDetail = getGuestInfo(data.id);
+        form1.setData(dataDetail);
+    }else{
         recorder.setValue(tmpUser);
         recordDate.setValue(currDate);
         nui.get("visitStatus").setValue(0);
@@ -90,6 +94,24 @@ function setData(data){
     modifier.setValue(tmpUser);
     modifyDate.setValue(currDate);
     nui.get("carBrandId").doValueChanged();
+}
+
+function getGuestInfo(id) {
+    var data = {};
+    nui.ajax({
+        url: getUrl,
+        type: "post",
+        data: { id: id },
+        async:false,
+        success: function (res) {
+            if (res.errCode == 'S') {
+                data = res.crmGuest;
+            } else {
+                showMsg("获取数据失败", 'E');
+            }
+        }
+    });
+    return data;
 }
 
 function CloseWindow(action)
@@ -109,7 +131,7 @@ function onOk(){
     //$("#save").hide();
     try {
         nui.ajax({
-            url: baseUrl + "com.hsapi.crm.telsales.crmTelsales.saveGuest.biz.ext",
+            url: saveUrl,
             type: 'post',
             data: nui.encode({
                 data: form1.getData(true),

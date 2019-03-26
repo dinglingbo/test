@@ -97,7 +97,7 @@
                                    url=""
                                    allowInput="true"
                                    showNullItem="false"
-                                   width="32%" 
+                                   width="42%" 
                                    valueFromSelect="true"
                                    nullItemText="请选择..."/>
                         	</td>
@@ -143,7 +143,7 @@
 
                             <td colspan="6" align="left">
                                 <a class="nui-button" onclick="onOk" style="width:120px;margin-right:20px;">
-                                    <span class="fa fa-save fa-lg"></span>&nbsp;保存客户信息</a>
+                                    <span class="fa fa-save fa-lg"></span>&nbsp;拆分资料</a>
                                 <!-- <a class="nui-button" onclick="onCancel" style="width:60px;"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a> -->
                             </td>
                         </tr>

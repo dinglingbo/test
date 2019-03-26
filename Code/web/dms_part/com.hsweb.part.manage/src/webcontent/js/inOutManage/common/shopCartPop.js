@@ -138,7 +138,13 @@ function initGridDataTwo(data){
             var unit = part.unit;
             var orderQty = part.orderQty||1;
             var orderPrice = part.orderPrice||0;
-            var row = {partId: partId, partCode: partCode, partName: partName, 
+            if(part.goodsCode){       	
+            	var goodsCode = part.goodsCode || "";
+            } 
+            if(part.storeCode){
+            	 var storeCode = part.storeCode|| "";
+            }
+            var row = {storeCode:storeCode, goodsCode : goodsCode,partId: partId, partCode: partCode, partName: partName, 
                        fullName: fullName, unit: unit, orderQty: orderQty, orderPrice: orderPrice};
             rows.push(row);
         }
@@ -298,12 +304,32 @@ function onCellCommitEdit(e) {
     var editor = e.editor;
     var record = e.record;
     var row = e.row;
-
+    var qty=row.orderQty
     editor.validate();
+    if(e.field =='orderQty'){
+    	//不是电商自营
+    	if(row.storeCode!='000000'){
+    		if(e.value > qty){
+    			parent.parent.showMsg("数量不能大于库存!","W");
+    	        e.cancel = true;
+    		}
+    	}
+    }
     if (editor.isValid() == false) {
     	parent.parent.showMsg("请输入数字!","W");
         e.cancel = true;
     }
+}
+function OnrpMainGridCellBeginEdit(e){
+	 var editor = e.editor;
+	 var record = e.record;
+	 var row = e.row;
+	 //有电商编码
+	 if(row.goodsCode){
+    	if(e.field == "orderPrice"){
+    		 e.cancel = true;
+    	}
+    }	
 }
 var generateOrderUrl = baseUrl
         + "com.hsapi.part.invoice.paramcrud.generateOrderByBatch.biz.ext";

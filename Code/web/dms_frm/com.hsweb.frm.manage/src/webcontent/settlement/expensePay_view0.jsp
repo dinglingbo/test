@@ -9,7 +9,7 @@
 --> 
 <head>
 <title>费用支出单</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/expensePay.js?v=2.0.8"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/expensePay.js?v=2.1.0"></script>
 		    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -85,7 +85,8 @@
                         <div type="indexcolumn" width="25">序号</div>
                         <div type="checkcolumn" field="check" width="25"></div>
                         <div field="guestId" width="50" headerAlign="center" visible="false"></div>
-                        <div field="billDc" width="50" headerAlign="center" visible="false"></div> 
+                        <div field="billDc" width="50" headerAlign="center" visible="false"></div>
+                        <div field="operateBtn" name="operateBtn" align="center" width="50" headerAlign="center" header="操作"></div>
                         <div field="guestName" name="guestName" summaryType="count" width="80" headerAlign="center" header="往来单位名称"></div>
                         <div field="balaAccountId" type="comboboxcolumn" width="100" headerAlign="center" header="结算账户">
                             <input  property="editor" enabled="true" id="balaAccountList" name="list" data="accountList" class="nui-combobox" valueField="id" textField="name" onvaluechanged="onAccountValueChanged" url="" emptyText=""  vtype="required"/> 

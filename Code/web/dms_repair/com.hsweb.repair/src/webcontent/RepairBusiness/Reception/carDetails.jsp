@@ -12,7 +12,7 @@
         <head>
             <title>车辆详情</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.19" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.21" type="text/javascript"></script>
         </head>
         <style type="text/css">
             body {
@@ -35,7 +35,7 @@
             color: #000000;
             text-decoration: none;
             border-radius: 5px;
-        }
+        } 
             fieldset {
                 margin: 0 auto;
                 float: none;
@@ -142,6 +142,7 @@
                                                 <input class="nui-textbox" id="engineNo" name="engineNo" width="100%" allowInput="false" />
                                             </td>
                                         </tr>
+                                        
                                         <!--                     <tr>
                         <td style="width:80px;"align="right">车辆颜色：</td>
                         <td style="width:150px;">
@@ -161,6 +162,19 @@
                                                 />
                                             </td>
                                         </tr>
+                                        
+                                        <tr>
+							                <td class="form_label" align="right">
+							                    <label>备注：</label>
+							                </td>
+							                <td colspan="3">
+							                    <input class="nui-textbox" name="remark" width="80%" />
+							                    
+							                     <label>是否禁用：</label>
+							                     <input type="checkbox" id="isDisabled" class="mini-checkbox"  name="isDisabled"  trueValue="1" falseValue="0" >
+							                </td>
+							           </tr>
+                                        
                                     </table>
                                 </div>
                             </fieldset>
@@ -216,12 +230,11 @@
                                     </table>
                                 </div>
                             </fieldset>
-                 <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:25%;">
+                 <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;min-height: 25%;">
                          <legend>联系人信息</legend>
-                             <div id="editForm5" style="padding:5px;">
-                             <div class="nui-fit">
+                           <div class="nui-fit"> 
                             <div id="contactdatagrid" class="nui-datagrid"  showPager="false" sortMode="client" allowCellEdit="true" onrowdblclick="eaidContact()"
-                                allowCellSelect="true" multiSelect="true"  editNextOnEnterKey="true" onDrawCell="onDrawCell">
+                                allowCellSelect="true" multiSelect="true"  editNextOnEnterKey="true" onDrawCell="onDrawCell" height="100%">
                                 <div property="columns">
 
                                     <div field="id" class="nui-hidden" allowSort="true" align="left" headerAlign="center" width="" visible="false">
@@ -239,7 +252,7 @@
                                     </div>
                                     <div field="identity" allowSort="true" align="left" headerAlign="center" width="">身份</div>
                                 </div>
-                            </div>
+                            </div> 
                         </div>
                                 <!-- <table class="nui-form-table" style="width:99%">
                                     <tr>
@@ -274,7 +287,6 @@
                                     </tr>
                                     
                                 </table> -->
-                          </div>
                       </fieldset>
                    </div>
 
@@ -447,23 +459,7 @@
 
 				</div>
                         </div>
-                        <div title="回访记录" id="visit" name="visit">
-                        <div class="nui-fit">
-                                <div id="visitHis" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
-                                    multiSelect="false" pageSize="20" showPageInfo="true" selectOnLoad="true"  onDrawCell="" onselectionchanged=""
-                                    allowSortColumn="false" totalField='page.count' allowCellWrap="true">
-                                    <div property="columns">
-                                        <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
-                                        <div field="contactorName" headerAlign="center" allowSort="true" width="100px">回访客户</div>
-                                        <div field="serviceType" headerAlign="center" allowSort="true" width="100px">回访类型</div>
-                                        <div field="visitMode" headerAlign="center" allowSort="true" width="100px">回访方式</div>
-                                        <div field="visitContent" headerAlign="center" allowSort="true" width="200px">回访内容</div>
-                                        <div field="visitMan" headerAlign="center" allowSort="true" width="100px">回访员</div>
-                                        <div field="visitDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" width="100px">回访日期</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                         <div title="销售机会" id="sales" name="sales">
                         		<input class="nui-combobox" name="chanceType" id="chanceType" valueField="customid" textField="name"  visible="false" />
                                 <a class="nui-button" iconCls="" plain="true" onclick="addSell()" id="auditBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增销售机会</a>                   
@@ -487,6 +483,9 @@
 					                  <div field="cardTimesOpt" name="cardTimesOpt" width="80" headerAlign="center"  header="操作" align="center"></div>
 					              </div>
 					          </div>
+                        </div>
+                        <div title="回访记录" id="visit" name="visit">
+                                <%@include file="/manage/maintainRemind/visitHistoryList.jsp" %>
                         </div>
                     </div>
                 </div>

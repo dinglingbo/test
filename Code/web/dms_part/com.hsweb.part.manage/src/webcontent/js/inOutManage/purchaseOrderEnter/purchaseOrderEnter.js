@@ -136,6 +136,7 @@ $(document).ready(function(v) {
             default:
                 break;
         }
+        
     });
 
     document.onkeyup=function(event){
@@ -1010,6 +1011,8 @@ function onRightGridDraw(e) {
 		break;
 	}
 }
+
+
 function onCellEditEnter(e){
 	var record = e.record;
 	var cell = rightGrid.getCurrentCell();//行，列
@@ -1121,7 +1124,17 @@ function onCellCommitEdit(e) {
             //rightGrid.beginEditRow(newRow);	
             rightGrid.beginEditCell(newRow, "operateBtn");*/
             //addNewKeyRow();
-
+			if(currCompType == "GEARBOX"){
+				var row = e.row;
+				var orderPrice = e.value || "";
+				var sellPrice = 0;
+				var newRow = {};
+				if(orderPrice){
+					sellPrice = orderPrice *1.35;
+				}
+				newRow.sellPrice = sellPrice;
+				rightGrid.updateRow(row,newRow);
+		}
 		} else if (e.field == "orderAmt") {
 			var orderQty = record.orderQty;
 			var orderAmt = e.value;
@@ -1310,7 +1323,13 @@ function addDetail(part) {
 						enterDetail.fullName = data.fullName;
 						enterDetail.systemUnitId = data.unit;
 						enterDetail.enterUnitId = data.unit;
-
+						var sellPrice = 0;
+						if(currCompType == "GEARBOX"){
+							if(data.price){
+								sellPrice = data.price *1.35;
+								enterDetail.sellPrice = sellPrice;
+							}
+						}
 						rightGrid.addRow(enterDetail);
 					}
 				}
@@ -1374,7 +1393,8 @@ function addInsertRowPartName(value,row){
 		var dInfo = getPartPrice(params);
 		var price = dInfo.price;
 		var shelf = dInfo.shelf;
-					
+		var sellPrice = 0;
+		
 		var newRow = {
 			partId : part.id,
 			comPartCode : part.code,
@@ -1395,7 +1415,12 @@ function addInsertRowPartName(value,row){
 			systemUnitId : part.unit,
 			enterUnitId : part.unit
 		};
-
+		if(currCompType == "GEARBOX"){
+			if(price){
+				sellPrice = price*1.35;
+				newRow.sellPrice = sellPrice;
+			}
+		}
 		if(row){
 			rightGrid.updateRow(row,newRow);
 		}else{
@@ -1442,7 +1467,7 @@ function addInsertRow(value,row) {
     var params = {partCode:value};
 	var part = getPartInfo(params);
 	var storeId = FStoreId;
-
+	var sellPrice = 0;
 	if(part){
 		params.partId = part.id;
 		params.storeId = storeId;
@@ -1470,7 +1495,12 @@ function addInsertRow(value,row) {
 			systemUnitId : part.unit,
 			enterUnitId : part.unit
 		};
-
+		if(currCompType == "GEARBOX"){
+			if(price){
+				sellPrice = price*1.35;
+				newRow.sellPrice = sellPrice;
+			}
+		}
 		if(row){
 			rightGrid.updateRow(row,newRow);
 			//rightGrid.beginEditCell(row, "comUnit");
@@ -2055,7 +2085,12 @@ function addSelectPart(){
 		var dInfo = getPartPrice(params);
 		var price = dInfo.price;
 		var shelf = dInfo.shelf;
-					
+		var sellPrice = 0;
+		if(currCompType == "GEARBOX"){
+			if(price){
+				sellPrice = price*1.35;
+			}
+		}
 		var newRow = {
 			partId : row.id,
 			comPartCode : row.code,
@@ -2067,6 +2102,7 @@ function addSelectPart(){
 			orderPrice : price,
 			orderAmt : price,
 			storeId : FStoreId,
+			sellPrice : sellPrice,
 			comOemCode : row.oemCode,
 			comSpec : row.spec,
 			partCode : row.code,

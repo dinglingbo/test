@@ -8,13 +8,12 @@ var datagrid3 = null;
 var grid = null;
 var grid1 = null;
 var grid2 = null;
-var visitHis = null;//回访记录
 var carSellPointGrid = null;
 var baseUrl = apiPath + repairApi + "/";
 var mainGrid2 = null;
 var xyguest = {};
 var sfData = {};
-var editFormDetail = null;
+var editFormDetail = null; 
 var innerItemGrid = null;
 var contactdatagrid = null;
 var prdtTypeHash = {
@@ -24,7 +23,6 @@ var prdtTypeHash = {
 };
 var sellHash = new Array("尚未联系", "有兴趣", "意向明确", "成交" ,"输单");
 var serviceTypeList = [{},{ id: 1, text: '电销' }, { id: 2, text: '预约' }, { id: 3, text: '客户回访' }, { id: 4, text: '流失回访' }, { id: 5, text: '保养提醒' }, { id: 6, text: '商业险到期' }, { id: 7, text: '交强险到期' }, { id: 8, text: '驾照年审' }, { id: 9, text: '车辆年检' }, { id: 10, text: '生日' }];
-var hisUrl = apiPath + crmApi+ "/com.hsapi.crm.svr.visit.queryCrmVisitRecordSql.biz.ext";//回访url
 var queryOldMaintain = baseUrl
 +"com.hsapi.repair.baseData.crud.queryOldMaintain.biz.ext";
 var queryOldItemPart = baseUrl
@@ -47,9 +45,7 @@ $(document).ready(function () {
 	datagrid1.setUrl(queryOldMaintain);
     mainGrid1 = nui.get("mainGrid1");
     form = new nui.Form("#editForm1");
-    visitHis = nui.get("visitHis");
     carSellPointGrid = nui.get("carSellPointGrid");
-    visitHis.setUrl(hisUrl);
     carSellPointGrid.setUrl(sellUrl);
     contactdatagrid = nui.get("contactdatagrid");
     editFormDetail = document.getElementById("editFormDetail");
@@ -136,13 +132,6 @@ $(document).ready(function () {
 		break;
 	}
   });
-  visitHis.on("drawcell", function (e) {
-    if (e.field == "serviceType") {
-        e.cellHtml = serviceTypeList[e.value].text;
-    } else if(e.field == "visitMode"){//跟踪方式
-        e.cellHtml = setColVal('visitMode', 'customid', 'name', e.value);
-    }
-});
  innerItemGrid.on("drawcell", function (e) {
   var grid = e.sender;
   var record = e.record;
@@ -244,7 +233,7 @@ $(document).ready(function () {
  });     
       
 initDicts({
-    visitMode: "DDT20130703000021",//跟踪方式
+    //visitMode: "DDT20130703000021",//跟踪方式
     chanceType:SELL_TYPE,//商机
       //carSpec:CAR_SPEC,//车辆规格
       //kiloType:KILO_TYPE,//里程类别
@@ -382,17 +371,15 @@ function SetData(params) {
     });
     // 回访记录根据联系人id查询
     if (params.contactorId) {
-    	 var p = {};
+        var p = {
+            guestSource: 1
+         };
      	if(params.carId){
     		p.carId = params.carId;
     	}else if(params.contactorId){
     		p.guestId = params.contactorId;
     	}
-
-        visitHis.load({ 
-        	params:p,
-        	token:token
-        });
+        loadVisitHis(params);
     }
     // 销售机会根据客户id查询
     if (params.guestId) {

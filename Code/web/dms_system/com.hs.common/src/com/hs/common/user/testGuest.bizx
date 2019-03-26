@@ -40,7 +40,7 @@
     <targetConnections>link1</targetConnections>
     <targetConnections>link3</targetConnections>
     <targetConnections>link5</targetConnections>
-    <targetConnections>link7</targetConnections>
+    <targetConnections>link8</targetConnections>
     <location x="400" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
@@ -48,6 +48,7 @@
       <process:return id="0" language="String" name="password" type="query" valueType="Primitive">password</process:return>
       <process:return id="1" language="String" name="c" type="query" valueType="Primitive">c</process:return>
       <process:return id="2" language="commonj.sdo.DataObject[]" name="data" type="query" valueType="Java">data</process:return>
+      <process:return id="3" language="Int" name="len" type="query" valueType="Primitive">len</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -144,7 +145,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="getComAppFunction" displayName="getComAppFunction" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
-      <targetNode>end0</targetNode>
+      <targetNode>assign0</targetNode>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
     <location x="256" y="326"/>
@@ -164,6 +165,25 @@
     <figSize height="17" width="119"/>
     <node>invokePojo2</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link7</targetConnections>
+    <location x="400" y="326"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign0label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">data.length</process:from>
+      <process:to type="query">len</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
+    <location x="402" y="362"/>
+    <figSize height="17" width="25"/>
+    <node>assign0</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-03-05 10:32:07" date="2019-03-05Z" description="" name="testGuest" version="7.0.0.0"/>
@@ -175,6 +195,7 @@
     <process:output description="" isArray="false" name="password" primitiveType="String"/>
     <process:output description="" isArray="false" name="c" primitiveType="String"/>
     <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="data"/>
+    <process:output description="" isArray="false" name="len" primitiveType="Int"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

@@ -12,7 +12,7 @@
 
 <head>
     <title>特别关怀</title>
-    <script src="<%=request.getContextPath()%>/manage/js/maintainRemMain/specialAttentionGuest.js?v=1.1.5">
+    <script src="<%=request.getContextPath()%>/manage/js/maintainRemMain/specialAttentionGuest.js?v=1.1.6">
     </script>
     <style>
           html,
@@ -34,7 +34,7 @@
     </style>
 </head>
 <body style="margin:0;width: 100%; height:100%;overflow-x:hidden">
-    <input name="visitMode" id="visitMode" class="nui-combobox "textField="name" valueField="customid" visible="false"/>
+
     <div class="mini-splitter" vertical="true" style="width:100%;height:100%;">
         <div size="70%" showCollapseButton="true">
 
@@ -393,20 +393,7 @@
     </div>
 </div>
         <div >
-        <div class="nui-fit">
-            <div id="visitHis" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
-                multiSelect="false" pageSize="20" showPageInfo="true" selectOnLoad="true"  onDrawCell="" onselectionchanged=""
-                allowSortColumn="false" totalField='page.count' allowCellWrap="true">
-                <div property="columns">
-                    <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
-                    <div field="serviceType" headerAlign="center" allowSort="true" width="100px">回访类型</div>
-                    <div field="visitMode" headerAlign="center" allowSort="true" width="100px">回访方式</div>
-                    <div field="visitContent" headerAlign="center" allowSort="true" width="200px">回访内容</div>
-                    <div field="visitMan" headerAlign="center" allowSort="true" width="100px">回访员</div>
-                    <div field="visitDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" width="100px">回访日期</div>
-                </div>
-            </div>
-        </div>
+        <%@include file="/manage/maintainRemind/visitHistoryList.jsp" %>
     </div>
 </div>
 </body>

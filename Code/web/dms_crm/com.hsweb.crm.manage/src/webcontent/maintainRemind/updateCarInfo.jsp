@@ -113,13 +113,13 @@ pageEncoding="UTF-8" session="false" %>
                                 <td class="form_label">
                                     <label>发动机号：</label>
                                 </td>
-                                <td>
+                                <td style="width:280px;">
                                     <input name="engineNo" class="nui-textbox" width="100%" />
                                 </td>
                                 <td class="form_label">
                                     <label>年审到期：</label>
                                 </td>
-                                <td>
+                                <td style="width:280px;">
                                     <input name="annualVerificationDueDate" format="yyyy-MM-dd" allowInput="true" class="nui-datepicker" width="100%" />
                                 </td>
                             </tr>
@@ -212,17 +212,20 @@ pageEncoding="UTF-8" session="false" %>
                                 <td>
                                     <input id="issuingDate" name="issuingDate" format="yyyy-MM-dd" allowInput="true" class="nui-datepicker" width="100%" />
                                 </td>
-                           
-            
-                                <!--   <td class="form_label" >
-                                    <label>公司内部车：</label>
+                            </tr>
+
+                            <tr>
+                                    <td class="form_label"> 
+                                            <label>备注：</label>
+                                        </td >
+                                        <td colspan="3">
+                                            <input  id="remark" name="remark" class="nui-textbox"  allowInput="true" style="width:510px;"/>
+                                        
+                              
+                                    <label style="margin-left: 20px;">是否启用：</label>
+                               
+                                        <input name="isDisabled" data="[{id:0,text:'启用'},{id:1,text:'禁用'}]" class="nui-combobox" style="width:70px;"/>
                                 </td>
-                                <td>
-                                    <input name="isCompanyInside"
-                                           data="[{id:1,text:'是'},{id:0,text:'否'}]"
-                                           class="nui-combobox" width="100%"/>
-                                </td> -->
-            
                             </tr>
                         </table>
                     </div>

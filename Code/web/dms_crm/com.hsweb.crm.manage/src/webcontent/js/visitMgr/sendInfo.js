@@ -90,7 +90,8 @@ function saveRecord(data) {
         carId:data.carId||'',
         carNo: data.carNo || '',
         visitMode:'011402',//短信
-        visitContent:message||'',
+        visitContent: message || '',
+        guestSource:mainData.guestSource
     };
     nui.ajax({
         url:saveUrl,

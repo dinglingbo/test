@@ -12,7 +12,7 @@
         <head>
             <title>车辆详情</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.19" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.21" type="text/javascript"></script>
         </head>
         <style type="text/css">
             body {
@@ -35,7 +35,7 @@
             color: #000000;
             text-decoration: none;
             border-radius: 5px;
-        }
+        } 
             fieldset {
                 margin: 0 auto;
                 float: none;
@@ -459,23 +459,7 @@
 
 				</div>
                         </div>
-                        <div title="回访记录" id="visit" name="visit">
-                        <div class="nui-fit">
-                                <div id="visitHis" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
-                                    multiSelect="false" pageSize="20" showPageInfo="true" selectOnLoad="true"  onDrawCell="" onselectionchanged=""
-                                    allowSortColumn="false" totalField='page.count' allowCellWrap="true">
-                                    <div property="columns">
-                                        <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
-                                        <div field="contactorName" headerAlign="center" allowSort="true" width="100px">回访客户</div>
-                                        <div field="serviceType" headerAlign="center" allowSort="true" width="100px">回访类型</div>
-                                        <div field="visitMode" headerAlign="center" allowSort="true" width="100px">回访方式</div>
-                                        <div field="visitContent" headerAlign="center" allowSort="true" width="200px">回访内容</div>
-                                        <div field="visitMan" headerAlign="center" allowSort="true" width="100px">回访员</div>
-                                        <div field="visitDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" width="100px">回访日期</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                         <div title="销售机会" id="sales" name="sales">
                         		<input class="nui-combobox" name="chanceType" id="chanceType" valueField="customid" textField="name"  visible="false" />
                                 <a class="nui-button" iconCls="" plain="true" onclick="addSell()" id="auditBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增销售机会</a>                   
@@ -499,6 +483,9 @@
 					                  <div field="cardTimesOpt" name="cardTimesOpt" width="80" headerAlign="center"  header="操作" align="center"></div>
 					              </div>
 					          </div>
+                        </div>
+                        <div title="回访记录" id="visit" name="visit">
+                                <%@include file="/manage/maintainRemind/visitHistoryList.jsp" %>
                         </div>
                     </div>
                 </div>

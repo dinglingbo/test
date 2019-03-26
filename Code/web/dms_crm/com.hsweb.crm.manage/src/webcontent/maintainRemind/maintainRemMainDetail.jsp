@@ -98,7 +98,8 @@ pageEncoding="UTF-8" session="false" %>
                 visitMode: data.visitMode,
                 visitContent: data.visitContent,
                 visitId: currUserId,
-                visitMan: currUserName
+                visitMan: currUserName,
+                guestSource:mainData.guestSource
             };
             
             nui.ajax({

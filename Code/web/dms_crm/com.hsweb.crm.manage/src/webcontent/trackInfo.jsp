@@ -47,15 +47,15 @@ pageEncoding="UTF-8" session="false" %>
         scoutMode: "DDT20130703000021"//跟踪方式
     });
 
-nui.get("dgScoutDetail").focus();
-document.onkeyup=function(event){
-var e=event||window.event;
-var keyCode=e.keyCode||e.which;//38向上 40向下
+    nui.get("dgScoutDetail").focus();
+    document.onkeyup=function(event){
+    var e=event||window.event;
+    var keyCode=e.keyCode||e.which;//38向上 40向下
 
-if((keyCode==27)) { //ESC
-onClose();
-}
-};
+    if((keyCode==27)) { //ESC
+    onClose();
+    }
+    };
 
     dgScoutDetail.on("drawcell", function (e) { //表格绘制
         var field = e.field;

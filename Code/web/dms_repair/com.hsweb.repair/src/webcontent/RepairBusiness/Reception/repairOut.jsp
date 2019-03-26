@@ -258,6 +258,7 @@ a#car{
             serviceCode :nui.get("serviceCode").value,
 //             sRecordDate:sdate,
 //             eRecordDate:edate,
+			isDisabled :0,
             status:1,
             serviceTypeId:nui.get("serviceTypeId").value,
 //             isSettle:isSettle.value,

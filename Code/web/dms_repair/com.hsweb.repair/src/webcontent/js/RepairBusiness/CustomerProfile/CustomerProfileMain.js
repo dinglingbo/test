@@ -18,8 +18,9 @@ var carModelIdHash = {};
 var guestTypeList = [];
 var guestTypeHash = {};
 var carModelHash = {};
+var jumpUrl = "";//跳转连接
 var xs = 0;
-
+var isDisabledHash=[{name:"启用"},{name:"禁用"}];
 $(document).ready(function(v){
 	//nui.get("mergeBtn").hide();
 	//nui.get("splitBtn").hide();
@@ -32,6 +33,8 @@ $(document).ready(function(v){
          var id = record.id;
          if(column.field == "carNo"){
          	e.cellHtml ='<a id="car" href="##" onclick="showCarInfo('+e.record._uid+')">'+e.record.carNo+'</a>';
+         }else if(column.field == "isDisabled"){
+         	e.cellHtml =isDisabledHash[e.value].name;
          }
     });
     queryForm = new nui.Form("#queryForm");
@@ -72,7 +75,10 @@ function init(){
             }
         }
         nui.unmask();
-        onSearch();
+        //如果是首页数据连接进来，不执行onSearch()
+        if(jumpUrl!="newCarQty"&&jumpUrl!="isDisabledCar"){
+            onSearch();
+        }
     };
     initCarBrand("carBrandId",function()
     {
@@ -86,12 +92,16 @@ function init(){
 function getSearchParams()
 {
     var params = queryForm.getData();
+    if((nui.get("isDisabled").getValue())!=999){
+    	params.isDisabled = nui.get("isDisabled").getValue();
+    }else{
+    	params.isDisabled = null;
+    }
     return params;
 }
 function onSearch()
 {
-
-    var params = getSearchParams();
+	var params = getSearchParams();
     params.guestFullName=document.getElementsByName('guestFullName')[0].value;
     params.carNo=document.getElementsByName('carNo')[0].value || null;
     params.mobile=document.getElementsByName('mobile')[0].value || null;
@@ -578,8 +588,20 @@ function cancelData(){
 }
 
 function setInitData(params) {
-    if (params.id == 'newCarQty') {
-    	quickSearch(2);
-    	
+	
+    if (params.id == 'newCarQty') {//首页首修车辆
+    	jumpUrl = "newCarQty";
+    	var p={};
+        p.todayNew = 1;
+        var menunamestatus = nui.get("menunamestatus");
+        menunamestatus.setText("本日新来厂客户");
+        doSearch(p);
+    }else if(params.id == 'isDisabledCar'){//客户报表 禁用车辆
+    	var p={};
+    	p.lastMonthLoss = 1;
+    	p.isDisabled = 1;
+        var menunamestatus = nui.get("menunamestatus");
+        menunamestatus.setText("所有客户");
+        doSearch(p);
     }
 }

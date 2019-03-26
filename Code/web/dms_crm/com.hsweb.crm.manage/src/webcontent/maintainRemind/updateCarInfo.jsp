@@ -219,12 +219,11 @@ pageEncoding="UTF-8" session="false" %>
                                             <label>备注：</label>
                                         </td >
                                         <td colspan="3">
-                                            <input  id="remark" name="remark" class="nui-textbox"  allowInput="true" style="width:510px;"/>
-                                        
-                              
-                                    <label style="margin-left: 20px;">是否启用：</label>
-                               
-                                        <input name="isDisabled" data="[{id:0,text:'启用'},{id:1,text:'禁用'}]" class="nui-combobox" style="width:70px;"/>
+                                            <input  id="remark" name="remark" class="nui-textbox"  allowInput="true" style="width:554px;"/>
+                                            <label style="margin-left: 20px;">是否禁用：</label>
+                                            <input type="checkbox" id="isDisabled" class="nui-checkbox"  name="isDisabled"  trueValue="1" falseValue="0" >
+                                            <!-- <label style="margin-left: 20px;">是否启用：</label>
+                                        <input name="isDisabled" data="[{id:0,text:'启用'},{id:1,text:'禁用'}]" class="nui-combobox" style="width:70px;"/> -->
                                 </td>
                             </tr>
                         </table>

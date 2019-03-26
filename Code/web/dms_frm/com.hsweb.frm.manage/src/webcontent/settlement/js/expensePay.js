@@ -65,7 +65,16 @@ $(document).ready(function(v)
             return true;
         });
     });
-
+    
+    mainGrid.on("drawcell",function(e){
+    	var field = e.field;
+    	if(field == "operateBtn"){
+    		e.cellHtml = //'<span class="fa fa-close fa-lg" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';
+    			'<span class="fa fa-plus" onClick="javascript:addGuest()" title="添加行">&nbsp;&nbsp;</span>' +
+                ' <span class="fa fa-close" onClick="javascript:deleteGuest()" title="删除行"></span>';
+    	}
+    });
+    
     doSearch();
 
 });
@@ -224,7 +233,10 @@ function addGuest(){
 }
 function deleteGuest(){
     var record = mainGrid.getSelected();
-    if(record.auditSign == 1) return;
+    if(record.auditSign == 1){
+    	showMsg("数据已审核不能删除","W");
+    	return;
+    }
     if(!record)
     {
         return;

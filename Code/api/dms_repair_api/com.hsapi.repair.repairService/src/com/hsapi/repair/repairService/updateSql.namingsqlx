@@ -231,20 +231,7 @@
 		where  id = #guestId#
 			
 		</update>
-		
-			<update id="updateConWechat" parameterClass="commonj.sdo.DataObject">
-	
-					UPDATE rpb_contactor
-					set wechat_open_id = #wechatOpenId#,
-					wechat_service_id =#wechatServiceId#,
-					recorder = #recorder#,
-					record_date = #recordDate#
-					where id = #id#
-		</update>
-		
-		
-		
-			<update id="updateCarExtend" parameterClass="com.hsapi.repair.data.crm.CrmVisitRecord">
+		<update id="updateCarExtend" parameterClass="com.hsapi.repair.data.crm.CrmVisitRecord">
 					UPDATE wb_repair.rpb_car_extend set 
 					<isEqual  prepend="" property="serviceType"   compareValue="5">
 					is_annual_remind = 0, remind_status = 1
@@ -261,8 +248,9 @@
 					where car_id = #carId#
 		</update>
 		
-					<update id="updateCrmVisitData" parameterClass="com.hsapi.repair.data.crm.CrmVisitRecord">
+		<update id="updateCrmVisitData" parameterClass="com.hsapi.repair.data.crm.CrmVisitRecord">
 					UPDATE wb_crm.crm_visit_data set  `status` =1
 					where id =#mainId#
 		</update>
+		
 </sqlMap>

@@ -1,11 +1,14 @@
 var basicInfoForm = null;
 var webBaseUrl = webPath + contextPath + "/";
+var provice; 
+var cityId;
 $(document).ready(function()
 {
 	
 	basicInfoForm = new nui.Form("#basicInfoForm");
-	//nui.get("name").focus();
-	
+	provice = nui.get("provice");
+    cityId = nui.get("cityId");
+	//nui.get("name").focus();	
 	nui.get("mobile").focus();
     document.onkeyup=function(event){
 		var e=event||window.event;
@@ -14,6 +17,7 @@ $(document).ready(function()
             onCancel();
         }
       };
+      initProvince("provice");  
 });
 
 var yes = null;
@@ -60,12 +64,16 @@ function onChangedMobile(id){
 							allowDrag : true,
 							allowResize : false,
 							onload : function() {
+								var car = {}
+								car.id = row.id;
+								car.carNo = row.carNo
 								var iframe = this.getIFrameEl();
-								var data = iframe.contentWindow.setData(list);
+								var data = iframe.contentWindow.setData(list,car);
 							},
 							ondestroy : function(action) {
 								if (action == "ok") {
 									yes = 1;
+									onCancel();
 								}else{
 									yes = 0;
 								}
@@ -80,6 +88,14 @@ function onChangedMobile(id){
 	  });
      }
    }
+}
+//取消
+function onCancel() {
+    CloseWindow("cancel");
+}
+function CloseWindow(action) {
+    if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+    else window.close();
 }
 var row = null;
 function setData(params){

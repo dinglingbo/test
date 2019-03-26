@@ -321,6 +321,7 @@
 	<select id="queryCardTimesList" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsCardTimesDetail">
     	SELECT
 			a.id as id,
+			b.car_id carId,
 			a.main_id as mainId,
 			a.detail_id as detailId,
 			a.card_id cardId,

@@ -43,7 +43,7 @@ $(document).ready(function(){
     
     gridCar.on("select", function (e) {
         var params = {
-            guestId: e.record.contactorIdd,
+            guestId: e.record.contactorId,
             guestSource: 0,
             token:token
         };

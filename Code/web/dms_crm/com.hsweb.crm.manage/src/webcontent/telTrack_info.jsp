@@ -36,15 +36,15 @@ pageEncoding="UTF-8" session="false" %>
     init();
  
 
-nui.get("saveScout").focus();
-document.onkeyup=function(event){
-var e=event||window.event;
-var keyCode=e.keyCode||e.which;//38向上 40向下
-
-if((keyCode==27)) { //ESC
-onClose();
-}
-};
+	nui.get("saveScout").focus();
+	document.onkeyup=function(event){
+	var e=event||window.event;
+	var keyCode=e.keyCode||e.which;//38向上 40向下
+	
+	if((keyCode==27)) { //ESC
+	onClose();
+	}
+	};
 
 
     dgScoutDetail.on("drawcell", function (e) { //表格绘制
@@ -86,6 +86,7 @@ function onCarBrandChange(e){
 function setScoutForm(record){
     $(".saveGroup").show();
     mainId = record.id;
+    record.scoutMode = '011401';
     form1.setData(record);
     var currGuest = record;
     //触发选择事件

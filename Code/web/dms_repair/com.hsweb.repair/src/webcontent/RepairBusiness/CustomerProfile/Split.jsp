@@ -56,14 +56,14 @@
                             </td>
                             <td>
                                 <input class="nui-hidden" name="id" id="guestId" />
-                                <input class="nui-textbox" id="fullName" name="fullName" width="200px" onvaluechanged="onChanged(this.id)" />
+                                <input class="nui-textbox" id="fullName" name="fullName" width="200px" onvaluechanged="onChangedMobile(this.id)"/>
                             </td>
                             <td class="form_label required">
                                 <label>手机号码：</label>
                             </td>
                             <td>
-                                <input class="nui-textbox" id="mobile" name="mobile" width="100%" onvaluechanged="onChanged(this.id)"
-                                  emptyText="请输入手机号查询" onenter="onChanged(this.id)"
+                                <input class="nui-textbox" id="mobile" name="mobile" width="100%" onvaluechanged="onChangedMobile(this.id)"
+                                  emptyText="请输入手机号查询" onenter="onChangedMobile(this.id)"
                                  />
                             </td>
                         </tr>
@@ -79,7 +79,7 @@
                                 <label>客户简称：</label>
                             </td>
                             <td>
-                                <input class="nui-textbox" id="shortName" name="shortName" onValuechanged="processMobile(this.value)" width="100%" />
+                                <input class="nui-textbox" id="shortName" name="shortName" onValuechanged=""  width="100%" />
                             </td>
                         </tr>
                         <tr>

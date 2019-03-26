@@ -351,19 +351,24 @@ function amalgamate() {
 }
 
 function split() {
-    nui.open({
-        url: webPath + contextPath +"/repair/RepairBusiness/CustomerProfile/Split.jsp?token="+token,
-        title: "资料拆分", width: 810, height: 430,
-        onload: function () {
-            var iframe = this.getIFrameEl();
-            var data = {pageType: "split"};
-//            iframe.contentWindow.setData(data);
-        },
+	var row = grid.getSelected();
+	if(row){
+		nui.open({
+	        url: webPath + contextPath +"/repair/RepairBusiness/CustomerProfile/Split.jsp?token="+token,
+	        title: "资料拆分", width: 810, height: 430,
+	        onload: function () {
+	            var iframe = this.getIFrameEl();
+	            iframe.contentWindow.setData(row);
+	        },
 
-        ondestroy: function (action) {
-            grid.reload();
-        }
-    });
+	        ondestroy: function (action) {
+	            grid.reload();
+	        }
+	    });
+	}else{
+		showMsg("请选择一条记录!","W");
+	}
+    
 }
 //显示车型的
 function onCarBrandChange(e){     

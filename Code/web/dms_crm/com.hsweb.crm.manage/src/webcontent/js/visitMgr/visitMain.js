@@ -3,9 +3,7 @@
 */
 var webBaseUrl = webPath + contextPath + "/";
 var gridCarUrl = apiPath + crmApi+"/com.hsapi.crm.svr.visit.queryCrmVisitMainList.biz.ext";
-var hisUrl = apiPath + crmApi+ "/com.hsapi.crm.svr.visit.queryCrmVisitRecordSql.biz.ext";
 var gridCar = null;
-var visitHis = null;
 var mainId_ctrl = null;
 var visitMode_ctrl = null;
 var tcarNo_ctrl = null;
@@ -14,7 +12,6 @@ var visitManEl = null;
 var visitIdEl = null;
 var hash = {}; 
 var billTypeIdList = [{ id: 0, name: "综合开单" }, { id: 1, name: "检查开单" }, { id: 2, name: "洗美开单" }, { id: 3, name: "销售开单" }, { id: 4, name: "理赔开单" }, { id: 5, name: "退货开单" }, { id: 6, name: "波箱开单" }];
-var serviceTypeList = [{},{ id: 1, text: '电销' }, { id: 2, text: '预约' }, { id: 3, text: '客户回访' }, { id: 4, text: '流失回访' }, { id: 5, text: '保养提醒' }, { id: 6, text: '商业险到期' }, { id: 7, text: '交强险到期' }, { id: 8, text: '驾照年审' }, { id: 9, text: '车辆年检' }, { id: 10, text: '生日' }];
 var dataTypeIdList = [{},{id:1,name:"第一次回访"},{id:2,name:"第二次回访"},{id:3,name:"第三次回访"}]; 
 var statusHash = {
 	"0" : "报价",
@@ -35,8 +32,6 @@ $(document).ready(function(){
 	visitIdEl = nui.get("visitId"); 
 	tcarNo_ctrl = nui.get("tcarNo");
 
-    visitHis = nui.get("visitHis");
-    visitHis.setUrl(hisUrl);
 	gridCar = nui.get("gridCar");
 	gridCar.setUrl(gridCarUrl);
 	quickSearch(2);
@@ -47,7 +42,13 @@ $(document).ready(function(){
 	});
     
     gridCar.on("select", function (e) {
-        loadVisitHis(e.record.contactorId);
+        var params = {
+            guestId: e.record.contactorIdd,
+            guestSource: 0,
+            token:token
+        };
+        loadVisitHis(params);
+
         if (e.record.wechatOpenId) {
             nui.get("wcBtn1").enable();
             nui.get("wcBtn2").enable();
@@ -91,13 +92,6 @@ $(document).ready(function(){
         levelList.forEach(function(v) {
 	        levelHash[v.id] = v;
 	    });//客户级别 
-    });
-
-    initDicts({
-        visitMode: "DDT20130703000021",//跟踪方式
-        // visitStatus: "DDT20130703000081",//跟踪状态
-        //query_visitStatus: "DDT20130703000081",//跟踪状态
-        //artType: "DDT20130725000001"//话术类型        
     });
 
     gridCar.on("drawcell", function (e) { 
@@ -151,13 +145,6 @@ $(document).ready(function(){
         }
     });
 
-    visitHis.on("drawcell", function (e) {
-        if (e.field == "serviceType") {
-            e.cellHtml = serviceTypeList[e.value].text;
-        } else if(e.field == "visitMode"){//跟踪方式
-            e.cellHtml = setColVal('visitMode', 'customid', 'name', e.value);
-        }
-    });
     
     var filter = new HeaderFilter(gridCar, {
         columns: [
@@ -210,13 +197,7 @@ $(document).ready(function(){
     
 });
 
-function loadVisitHis(guestId) {
-    var params = {
-        guestId:guestId,
-        token:token
-    };
-    visitHis.load({ params:params });
-}
+
 
 function mtAdvisorChanged(e){
 	var sel = e.selected;
@@ -338,6 +319,7 @@ function sendInfo(){
     row.mobile = row.guestMobile;
     row.serviceType = 3;//客户回访
     row.guestId = row.contactorId;//(回访历史表 guestId 存联系人id)
+    row.guestSource = 0;//系统客户
 	nui.open({
 		url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
 		title: "发送短信", width: 655, height: 280,

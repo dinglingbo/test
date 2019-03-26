@@ -192,7 +192,7 @@
 		var node = tree.getSelectedNode();
 		var json = nui.encode({menuid:node.id});
 		nui.confirm("该节点下的所有子节点都将被删除，确定？","删除确认",function(action){
-		    if(action!="ok") return;
+		    if(action!="ok") return;    
 	        $.ajax({
 	            url: "org.gocom.components.coframe.framework.MenuManager.deleteMenu.biz.ext",
 	            type: 'POST',
@@ -206,14 +206,23 @@
 	            	refreshTab(parentNode);
 	            },
 	            error: function () {
+	            	
 	            }
 	        });
+	        
+	        
         });
 	}
 	
 	function refreshMenuCache() {
 		nui.confirm("是否确定刷新菜单相关缓存数据？","温馨提示",function(action){
 		    if(action!="ok") return;
+		    
+		    nui.mask({
+		        el: document.body,
+		        cls: 'mini-mask-loading',
+		        html: '数据处理中...'
+		    });
 	        $.ajax({
 	            url: apiPath + sysDomain + "/com.hs.common.login.clearAndResetMenuCache.biz.ext",
 	            type: 'POST',
@@ -221,10 +230,12 @@
 	            cache: false,
 	            contentType:'text/json',
 	            success: function (text) {
+	            	nui.unmask();
 	            	var errCode = text.errCode;
 	            	console.log(errCode);
 	            },
 	            error: function () {
+	            	nui.unmask();
 	            }
 	        });
         });

@@ -135,13 +135,13 @@ function setData(params){
   },function(){
 	 var row = contactorGrid.findRow(function(row){
 		 if(row.wechatServiceId){
-			 var rowData = row;
-			 rowData.wechatServiceId = "已取消关注";
-			 contactorGrid.updateRow(row,rowData);
-		 }else{
 			 if(!row.wechatOpenId){
-				 contactorGrid.beginEditRow(row);
+				 var rowData = row;
+				 rowData.wechatServiceId = "已取消关注";
+				 contactorGrid.updateRow(row,rowData); 
 			 }
+		 }else{
+			 contactorGrid.beginEditRow(row);
 		 }
 		 
 		 

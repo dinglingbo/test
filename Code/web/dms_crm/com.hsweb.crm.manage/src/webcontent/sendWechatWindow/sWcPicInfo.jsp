@@ -40,12 +40,12 @@
                     <input id="imageTextTitle" name="imageTextTitle" class="nui-textbox inputLeft" style="margin-right: 30px;" />&nbsp;&nbsp;
 
                     <a class="nui-button" onclick="search()" plain="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                    <a class="nui-button" onclick="reset()" plain="true"><span class="fa fa-refresh fa-lg"></span>&nbsp;重置</a>
+                    <!-- <a class="nui-button" onclick="reset()" plain="true"><span class="fa fa-refresh fa-lg"></span>&nbsp;重置</a> -->
 
                     <span class="separator"></span>
-                    <a class="nui-button" onclick="add()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-                    <a class="nui-button" onclick="edit()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;编辑</a>
-                    <a class="nui-button" onclick="" plain="true"><span class="fa fa-toggle-right fa-lg"></span>&nbsp;推送</a>
+                    <!-- <a class="nui-button" onclick="add()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                    <a class="nui-button" onclick="edit()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;编辑</a> -->
+                    <a class="nui-button" onclick=" pushUserList()" plain="true"><span class="fa fa-toggle-right fa-lg"></span>&nbsp;推送</a>
                 </td>
             </tr>
         </table>
@@ -113,6 +113,11 @@
                     type:'post',
                     data:params,
                     success:function(res){
+                        if(res.errCode == 'S'){
+                            showMsg("图文消息发送成功",'S');
+                        }else{
+                            showMsg("图文消息发送失败",'E');
+                        }
 
                     }
                 })

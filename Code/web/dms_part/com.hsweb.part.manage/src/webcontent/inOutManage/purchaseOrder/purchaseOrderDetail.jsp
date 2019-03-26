@@ -170,7 +170,7 @@
                 </fieldset>
    
                   <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-                    <a class="nui-button" plain="true" iconCls="" onclick="addPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>
+                    <a class="nui-button" plain="true" iconCls="" id="addPartBtn" onclick="addPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>
                     </div>
                     <div class="nui-fit">
                     <div id="rightGrid" class="nui-datagrid" 

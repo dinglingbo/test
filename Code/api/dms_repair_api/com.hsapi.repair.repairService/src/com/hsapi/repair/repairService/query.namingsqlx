@@ -704,7 +704,7 @@
 			(SELECT count(1) as newCarQty from rps_guest_file where comp_come_times = 1 and orgid = #orgid# and record_date &gt;= #startDate# and record_date &lt; #endDate#) newCarQty,
 			(select count(1) as recordBillQty from rps_maintain where is_disabled = 0 and orgid = #orgid# and record_date &gt;= #startDate# and record_date &lt; #endDate# ) recordBillQty,
 			(select count(1) as settleQty from rps_maintain where is_settle = 1 and orgid = #orgid# and record_date &gt;= #startDate# and record_date &lt; #endDate#) settleQty,
-			(select count(1) as serviceBillQty from rps_maintain where is_settle = 0 and orgid = #orgid# and is_disabled = 0 ) serviceBillQty,
+			(select count(1) as serviceBillQty from rps_maintain where is_settle = 0 and orgid = #orgid# and is_disabled = 0 and bill_type_id in (0,2,4,6) ) serviceBillQty,
 			(SELECT count(1) as bookingBillQty from rps_prebook where orgid = #orgid# and record_date &gt;= #startDate# and record_date &lt; #endDate# and ifnull(status,0) != 2) bookingBillQty,
 			(
 			select sum(a.char_off_amt) as czAmt from wb_frm.fis_rp_account_detail a
@@ -1040,7 +1040,7 @@
 			INNER JOIN rpb_car b ON a.car_id = b.id
 			INNER JOIN rps_maintain d on a.last_service_id = d.id
 			INNER JOIN rpb_contactor e on e.id = d.contactor_id
-			WHERE 1=1
+			WHERE 1=1 and b.is_disabled=0
 			<isNotEmpty prepend="and" property="orgid">
   				 a.last_orgid = #orgid#
             </isNotEmpty>
@@ -1083,6 +1083,7 @@
 			INNER JOIN rpb_car c ON c.id = a.car_id
 			WHERE
 				1 = 1
+				and c.is_disabled=0
 			<isNotEmpty prepend="and" property="orgid">
   				 a.orgid = #orgid#
             </isNotEmpty>
@@ -1145,7 +1146,7 @@
 		
 			WHERE 
 				b.orgid=#orgid#	
-          
+          		and b.is_disabled=0
              <isNotEmpty prepend="and" property="carNo">
   				b.car_no = #carNo#
             </isNotEmpty>
@@ -1225,7 +1226,7 @@
 		INNER JOIN wb_repair.rpb_car_extend c on c.car_id = b.id
 			WHERE 
 				a.orgid=#orgid#	
-          
+          		and b.is_disabled=0
             <!-- 生日是否需要提醒-->
             <isNotEmpty prepend="and" property="isBirRemind">
   				a.is_bir_remind = #isBirRemind#
@@ -1295,6 +1296,7 @@
 	INNER JOIN wb_repair.rpb_car b ON a.car_id = b.id
 	WHERE
 		b.orgid = #orgid#
+		and b.is_disabled=0
 		</select>
 		
 		<!--首页提醒数量与人相关-->

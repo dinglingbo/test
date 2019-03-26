@@ -18,6 +18,7 @@
     where datediff(DATE_ADD(birthday,INTERVAL ceil(TIMESTAMPDIFF(MONTH,NOW(),birthday)/12) YEAR),NOW()) &gt;= 0
     and datediff(DATE_ADD(birthday,INTERVAL ceil(TIMESTAMPDIFF(MONTH,NOW(),birthday)/12) YEAR),NOW()) &lt;= #tday#
     and b.orgid = #orgid#
+    and a.is_disabled=0
     </select>
 
 
@@ -33,6 +34,7 @@
     where TIMESTAMPDIFF(DAY, NOW(), b.license_over_date) &gt;= 0
     and TIMESTAMPDIFF(DAY, NOW(), b.license_over_date) &lt;= #tday#
     and b.orgid = #orgid#
+    and a.is_disabled=0
     </select>
 
 
@@ -48,6 +50,7 @@
     where TIMESTAMPDIFF(DAY, NOW(), a.annual_verification_due_date) &gt;= 0
     and TIMESTAMPDIFF(DAY, NOW(), a.annual_verification_due_date)  &lt;= #tday#
     and b.orgid = #orgid#
+    and a.is_disabled=0
     </select>
 
 
@@ -66,6 +69,7 @@
     where TIMESTAMPDIFF(DAY, NOW(), c.care_due_date)  &gt;= 0
     and TIMESTAMPDIFF(DAY, NOW(), c.care_due_date)   &lt;= #tday#
     and b.orgid = #orgid#
+    and a.is_disabled=0
     </select>
 
 
@@ -82,6 +86,7 @@
     where TIMESTAMPDIFF(DAY, NOW(), a.insure_due_date) &gt;= 0
     and TIMESTAMPDIFF(DAY, NOW(), a.insure_due_date)  &lt;= #tday#
     and b.orgid = #orgid#
+    and a.is_disabled=0
     </select>
 
 
@@ -97,6 +102,7 @@
     where TIMESTAMPDIFF(DAY, NOW(), a.annual_inspection_date) &gt;= 0
     and TIMESTAMPDIFF(DAY, NOW(), a.annual_inspection_date)  &lt;= #tday#
     and b.orgid = #orgid#
+    and a.is_disabled=0
     </select>
 
 
@@ -112,6 +118,7 @@
     INNER JOIN rpb_car_extend c on c.car_id = a.id 
     where (c.mt_advisor_id in  ($mtAdvisorIds$))
     and b.orgid = #orgid#
+    and a.is_disabled=0
     </select>
 
 
@@ -128,6 +135,7 @@
     where c.last_come_kilometers  &gt;= #startKilo#
     and  c.last_come_kilometers  &lt;= #endKilo#
     and b.orgid = #orgid#
+    and a.is_disabled=0
     </select>
 
 
@@ -145,6 +153,7 @@
     where c.chain_come_times  &gt;= #startTime#
     and  c.chain_come_times  &lt;= #endTime#
     and b.orgid = #orgid#
+    and a.is_disabled=0
     </select>
 
     
@@ -161,6 +170,7 @@
     where c.chain_consume_amt  &gt;= #startAmt#
     and  c.chain_consume_amt  &lt;= #endAmt#
     and b.orgid = #orgid#
+    and a.is_disabled=0
     </select>
 
 
@@ -177,6 +187,7 @@
     where TIMESTAMPDIFF(DAY,c.last_leave_date, NOW())  &gt;= #startDay#
     and  TIMESTAMPDIFF(DAY,c.last_leave_date, NOW())  &lt;= #endDay#
     and b.orgid = #orgid#
+    and a.is_disabled=0
     </select>
 
 
@@ -194,6 +205,7 @@
 		INNER JOIN rpb_guest_type  e on e.id = d.tgrade 
         where (e.id in  ($levels$))
         and b.orgid = #orgid#
+        and a.is_disabled=0
     </select>
 
 
@@ -207,6 +219,7 @@
     INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
     where b.orgid = #orgid#
     and a.car_brand_id in ($brandList$) or a.car_model_id in ($modelList$)
+    and a.is_disabled=0
     </select>
 
     
@@ -225,6 +238,7 @@ INNER JOIN rpb_car_extend b on b.car_id = a.id
 INNER JOIN rpb_contactor c on a.guest_id = c.guest_id
 INNER JOIN wb_common.com_guest d on d.id = a.guest_id 
 where c.orgid = #orgid#
+and a.is_disabled=0
 <isNotEmpty prepend="" property="level">  
     and (d.tgrade in ($level$))
 </isNotEmpty>
@@ -320,7 +334,7 @@ where c.orgid = #orgid#
             c.id conId,c.orgid,c.name guestName,c.mobile,c.wechat_open_id wechatOpenId,
             c.birthday,c.license_over_date licenseOverDate,
             b.care_due_date careDueDate,
-            'ZS' as guestType,
+            0 as guestType,
             datediff(DATE_ADD(birthday,INTERVAL ceil(TIMESTAMPDIFF(MONTH,NOW(),c.birthday)/12) YEAR),NOW()) birComeDay,
             b.last_come_kilometers lastComeKilometers,
             b.last_come_date lastComeDate,
@@ -333,6 +347,7 @@ where c.orgid = #orgid#
         INNER JOIN rpb_car_extend b on b.car_id = a.id 
         INNER JOIN rpb_contactor c on a.guest_id = c.guest_id
         where  a.orgid = #orgid#
+        and a.is_disabled=0
         <!-- 商业险-->
         <isEqual  prepend="" property="dateType"   compareValue="syx">
             <isNotEmpty prepend="and" property="startDate">
@@ -402,7 +417,7 @@ where c.orgid = #orgid#
             ''as conId,a.orgid ,a.guest_name guestName,a.mobile,''as wechatOpenId,
             ''as birthday,a.driving_licence_due_date licenseOverDate,
             a.care_due_date careDueDate,
-            'DX' as guestType,
+            1 as guestType,
             '' as birComeDay,
             '' as lastComeKilometers,
             '' as lastComeDate,

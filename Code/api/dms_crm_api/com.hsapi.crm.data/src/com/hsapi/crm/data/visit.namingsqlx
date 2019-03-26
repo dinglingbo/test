@@ -70,6 +70,7 @@
 		  	INNER JOIN wb_repair.rpb_contactor c on e.contactor_id = c.id
 		  	INNER JOIN wb_common.com_guest d on d.id = e.guest_id
 		WHERE 1 = 1
+				and b.is_disabled=0
 			 and e.orgid = #orgid#
 			 and type = #type#
 			 and e.status = 0
@@ -133,18 +134,25 @@
             where  id  = #conId#
         </update>
         
+                <!-- 回访历史 -->
 	<select id="queryVisitHistory" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		select 
-			a.id,a.orgid,a.main_id mainId,a.service_type serviceType,a.service_id serviceId,
+			a.id,a.orgid,a.main_id mainId,a.service_type serviceType,a.guest_source guestSource,a.service_id serviceId,
 			a.guest_id guestId,a.car_no carNo,a.car_id carId,a.visit_mode visitMode,a.care_due_date careDueDate,
-			a.visit_content visitContent,a.visit_id visitId,a.visit_man visitMan,a.visit_date visitDate
+			a.visit_content visitContent,a.visit_id visitId,a.visit_man visitMan,a.visit_date visitDate,
+		 	case when a.guest_source = 0 then b.name else c.guest_name end as  contactorName
 		from crm_visit_record a 
+		LEFT JOIN wb_repair.rpb_contactor b on a.guest_id = b.id
+		LEFT JOIN crm_guest c on c.id = a.main_id
 		where a.orgid = #orgid#
 		<isNotEmpty prepend="and" property="mainId">  
 		   	a.main_id =   #mainId#
 		</isNotEmpty>
 		<isNotEmpty prepend="and" property="carId">  
 		   	a.car_id =   #carId#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="guestSource">  
+		   	a.guest_source =   #guestSource#
 		</isNotEmpty>
 		<isNotEmpty prepend="and" property="guestId">  
 		   	a.guest_id =   #guestId#

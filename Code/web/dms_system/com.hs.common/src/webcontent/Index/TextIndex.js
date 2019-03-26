@@ -390,7 +390,7 @@ function toMaintain(e){
 	}else if(e==9){
 	    var item={};
 	    item.id = "allMaintain";
-	    item.text = "今日进厂";
+	    item.text = "工单明细表";
 	    item.url = webPath + contextPath + "/com.hsweb.part.purchase.allMaintain.flow?token="+token;
 	    item.iconCls = "fa fa-file-text";
 	    var params = {id:e};
@@ -398,7 +398,7 @@ function toMaintain(e){
 	}else if(e==10){
 	    var item={};
 	    item.id = "allMaintain";
-	    item.text = "结算车辆";
+	    item.text = "工单明细表";
 	    item.url = webPath + contextPath + "/com.hsweb.part.purchase.allMaintain.flow?token="+token;
 	    item.iconCls = "fa fa-file-text";
 	    var params = {id:"settleQty"};
@@ -406,7 +406,7 @@ function toMaintain(e){
 	}else if(e==11){
 	    var item={};
 	    item.id = "allMaintain";
-	    item.text = "在修车辆";
+	    item.text = "工单明细表";
 	    item.url = webPath + contextPath + "/com.hsweb.part.purchase.allMaintain.flow?token="+token;
 	    item.iconCls = "fa fa-file-text";
 	    var params = {id:"serviceBillQty"};

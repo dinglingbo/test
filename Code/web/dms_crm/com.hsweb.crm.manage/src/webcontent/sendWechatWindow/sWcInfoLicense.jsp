@@ -205,6 +205,7 @@ function saveRecord(data) {
         carNo: data.carNo || '',
         visitMode:'011403',//微信
         visitContent:message||'',
+        guestSource:mainData.guestSource
     }
     nui.mask({
             el : document.body,

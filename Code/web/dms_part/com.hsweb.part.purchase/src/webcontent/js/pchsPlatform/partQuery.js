@@ -21,7 +21,11 @@ var getDetailPartUrl =baseUrl+"com.hsapi.part.invoice.partInterfaceDs.queryDetai
 var partGridUrl=baseUrl+"com.hsapi.part.invoice.partInterfaceDs.queryJoinStock.biz.ext";
 //var CarplateUrl= baseUrl+"com.hsapi.part.invoice.partInterface.queryCarplate.biz.ext";
 var partBrandUrl=baseUrl+"com.hsapi.part.invoice.partInterfaceDs.queryPartBrand.biz.ext";
-var signBtn=null;
+
+var provinceName =null;
+var cityName =null;
+var countyName = null;
+
 $(document).ready(function() {
     protokenEl=nui.get('protoken');
 	partGrid =nui.get('partGrid');
@@ -44,9 +48,10 @@ $(document).ready(function() {
 			onSearch();
 		}
 	}
-       
+    //获取电商token   
     protoken = getProToken();
-    
+    //获取当前公司的省市区
+    getArea();
     partDetailGrid.on("drawcell", function (e) {
         var grid = e.sender;
         var record = e.record;
@@ -95,8 +100,8 @@ function addOrderCar(guest, part)
     data.orderQty=data.qty;
     data.orderPrice=data.price;
     detail.push(data);
-   	
-	
+    
+   
 	var main={};
 	main.guestId=guest.id;
 	main.guestName=guest.fullName;
@@ -161,17 +166,29 @@ function verifyGuestForCar(){
 		parent.parent.showMsg("电商额度为0,不能添加到采购车！","W");
 		return;
 	}
-	nui.mask({
-        el : document.body,
-        cls : 'mini-mask-loading',
-        html : '加载中...'
-    });
+	
+	if(!provinceName || !cityName || !countyName || !currCompAddress){
+		parent.parent.showMsg("请在门店管理完善公司所在地及收货地址","W");
+		return;
+	}
+	
 	var jsonData = partDetailGrid.getSelected();
+	//电商额度不足
+	if(useMoney <jsonData.price){
+		parent.parent.showMsg("电商额度不足,不能添加到采购车！","W");
+		return;
+	}
 	if(!jsonData.storeCode){
 		parent.parent.showMsg("请选择有往来单位的配件！","W");
 		nui.unmask(document.body);
 		return;
 	}
+	
+	nui.mask({
+        el : document.body,
+        cls : 'mini-mask-loading',
+        html : '加载中...'
+    });
 	nui.ajax({
         url : guestUrl,
         type : "post",
@@ -213,6 +230,11 @@ function verifyGuestForOrder(){
 	//电商额度为0
 	if(useMoney == '0'){
 		parent.parent.showMsg("电商额度为0,不能生成采购订单！","W");
+		return;
+	}
+	
+	if(!provinceName || !cityName || !countyName ||! currCompAddress){
+		parent.parent.showMsg("请在门店管理完善公司所在地及收货地址","W");
 		return;
 	}
 	nui.mask({
@@ -520,6 +542,36 @@ function getDsUserMoney(){
             	$('#money').text(useMoney);
             }
                
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+
+//获取当前公司的省市区
+var getAreaUrl= baseUrl +"com.hsapi.part.common.svr.getArea.biz.ext";
+function getArea(){
+	nui.ajax({
+        url : getAreaUrl,
+        type : "post",
+        data : JSON.stringify({
+        	token :token, 
+        }),
+        success : function(data) {
+            nui.unmask(document.body);
+            data = data || {};
+            var list=data.data[0] || [];
+            if (data.errCode == "S") {
+				console.log(data);
+				provinceName =list.provinceName;
+				cityName = list.cityName;
+				countyName = list.countyName;
+                
+            } else {
+            	showMsg(data.errMsg || "获取失败","E");
+            }
         },
         error : function(jqXHR, textStatus, errorThrown) {
             // nui.alert(jqXHR.responseText);

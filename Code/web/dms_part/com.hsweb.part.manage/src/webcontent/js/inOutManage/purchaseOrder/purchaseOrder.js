@@ -61,6 +61,10 @@ var AuditSignHash = {
 	"3" : "已取消"
 };
 
+var provinceName =null;
+var cityName =null;
+var countyName = null;
+
 $(document).ready(function(v) {
 	nui.mask({
         el: document.body,
@@ -95,7 +99,7 @@ $(document).ready(function(v) {
 
 
 	advancedTipWin = nui.get("advancedTipWin");
-
+	getArea();
 
     $("#orderMan").bind("keydown", function (e) {
         if (e.keyCode == 13) {
@@ -1334,6 +1338,71 @@ function auditToEnter(){
 	
 
 }
+//不判断，直接提交
+function auditOrderDirect(flagSign, flagStr, flagRtn){
+	var str = "提交";
+	if(flagSign == 1){
+		str = "入库";
+	}
+	data = getMainData();
+	
+	//由于票据类型可能修改，所以除了新建和删除，其他都应该是修改
+	var detailData = rightGrid.getData();
+
+    if(detailData.length <=0) {
+        showMsg("订单明细为空，不能提交!","W");
+        rightGrid.addRow({});
+        return;
+    }
+	var pchsOrderDetailAdd = rightGrid.getChanges("added");
+	var pchsOrderDetailUpdate = rightGrid.getChanges("modified");
+	var pchsOrderDetailDelete = rightGrid.getChanges("removed");
+	var pchsOrderDetailUpdate = getModifyData(detailData, pchsOrderDetailAdd, pchsOrderDetailDelete);
+	
+	
+	nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : flagStr
+	});
+
+	nui.ajax({
+		url : auditUrl,
+		type : "post",
+		data : JSON.stringify({
+			pchsOrderMain : data,
+			pchsOrderDetailAdd : pchsOrderDetailAdd,
+			pchsOrderDetailUpdate : pchsOrderDetailUpdate,
+			pchsOrderDetailDelete : pchsOrderDetailDelete,
+			operateFlag : flagSign,
+			token: token
+		}),
+		success : function(data) {
+			nui.unmask(document.body);
+			data = data || {};
+			if (data.errCode == "S") {
+				showMsg(str+"成功!","S");
+				// onLeftGridRowDblClick({});
+				var pjPchsOrderMainList = data.pjPchsOrderMainList;
+				if (pjPchsOrderMainList && pjPchsOrderMainList.length > 0) {
+					var leftRow = pjPchsOrderMainList[0];
+
+					// 保存成功后重新加载数据
+//					leftRow.billStatusId=2;
+					loadMainAndDetailInfo(leftRow);
+					$('#bServiceId').text("订单号："+leftRow.serviceId);
+
+				}
+			} else {
+				showMsg(data.errMsg || (str+"失败!"),"E");
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+}
 var auditUrl = baseUrl
 		+ "com.hsapi.part.invoice.crud.auditPjPchsOrder.biz.ext";
 function auditOrder(flagSign, flagStr, flagRtn) {
@@ -2367,10 +2436,13 @@ function setInitData(params){
 			document.getElementById("fd1").disabled = true;
 			nui.get("guestId").disable();
 		}
+		//电商供应商
 		if(params.srmGuestId){
 			nui.get("addPartBtn").disable();
+			nui.get("guestId").disable();
 		}else{
 			nui.get("addPartBtn").enable();
+			nui.get("guestId").enable();
 		}
 	}else{
 		formJson = nui.encode(basicInfoForm.getData());
@@ -2421,6 +2493,10 @@ function pushSupplierOrder(flagSign, flagStr, flagRtn){
 		str = "入库";
 	}
 	
+	if(!provinceName || !cityName || !countyName || !currCompAddress){
+		showMsg("请在门店管理完善公司所在地及收货地址","W");
+		return;
+	}
 	if (p && p.pricePartCode) {
 		var partCode = p.pricePartCode;
 		nui.confirm("存在单价为0信息，是否继续?", "友情提示", function(action) {
@@ -2430,9 +2506,9 @@ function pushSupplierOrder(flagSign, flagStr, flagRtn){
 			        url : pushOrderUrl,
 			        type : "post",
 			        data : JSON.stringify({
-			        	provice: "",
-			        	city : "",
-			        	area : "",
+			        	provice: provinceName,
+			        	city : cityName,
+			        	area : countyName,
 			        	address:currCompAddress,
 			        	receiver:mem,
 			        	account:currSrmUserId,
@@ -2450,7 +2526,8 @@ function pushSupplierOrder(flagSign, flagStr, flagRtn){
 							var data=data.data;
 							var orderCode =data.orderCode
 							nui.get('orderCode').setValue(orderCode);
-							auditOrder(flagSign, flagStr, flagRtn);
+							//不判断，直接走提交接口
+							auditOrderDirect(flagSign, flagStr, flagRtn);
 			                
 			            } else {
 			            	showMsg(data.errMsg || "电商订单生成失败！","E");
@@ -2474,9 +2551,9 @@ function pushSupplierOrder(flagSign, flagStr, flagRtn){
 			        url : pushOrderUrl,
 			        type : "post",
 			        data : JSON.stringify({
-			        	provice: "",
-			        	city : "",
-			        	area : "",
+			        	provice: provinceName,
+			        	city : cityName,
+			        	area : countyName,
 			        	address:currCompAddress,
 			        	receiver:mem,
 			        	account:currSrmUserId,
@@ -2484,7 +2561,8 @@ function pushSupplierOrder(flagSign, flagStr, flagRtn){
 			        	mobile:currEmpTel,
 			        	storeCode:data.srmGuestId,
 			        	orderCode : data.orderCode || "",
-			        	mainId:data.id
+			        	mainId:data.id,
+			        	token :token
 			        }),
 			        success : function(data) {
 			            nui.unmask(document.body);
@@ -2494,7 +2572,8 @@ function pushSupplierOrder(flagSign, flagStr, flagRtn){
 							var data=data.data;
 							var orderCode =data.orderCode
 							nui.get('orderCode').setValue(orderCode);
-							auditOrder(flagSign, flagStr, flagRtn);
+							//不判断，直接走提交接口
+							auditOrderDirect(flagSign, flagStr, flagRtn);
 			                
 			            } else {
 			            	showMsg(data.errMsg || "电商订单生成失败！","E");
@@ -2523,7 +2602,8 @@ function updateOrderStatus(orderStatus,id){
         type : "post",
         data : JSON.stringify({
         	orderStatus:orderStatus,
-        	orderCode : data.orderCode 
+        	orderCode : data.orderCode ,
+        	token :token
         }),
         success : function(data) {
             nui.unmask(document.body);
@@ -2538,6 +2618,35 @@ function updateOrderStatus(orderStatus,id){
                 
             } else {
             	showMsg(data.errMsg || "电商订单状态更新失败！","E");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+//获取当前公司的省市区
+var getAreaUrl= baseUrl +"com.hsapi.part.common.svr.getArea.biz.ext";
+function getArea(){
+	nui.ajax({
+        url : getAreaUrl,
+        type : "post",
+        data : JSON.stringify({
+        	token :token, 
+        }),
+        success : function(data) {
+            nui.unmask(document.body);
+            data = data || {};
+            var list=data.data[0] || [];
+            if (data.errCode == "S") {
+				console.log(data);
+				provinceName =list.provinceName;
+				cityName = list.cityName;
+				countyName = list.countyName;
+                
+            } else {
+            	showMsg(data.errMsg || "获取失败","E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {

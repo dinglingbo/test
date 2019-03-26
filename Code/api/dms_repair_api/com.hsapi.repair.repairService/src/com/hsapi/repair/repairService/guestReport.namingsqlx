@@ -430,4 +430,19 @@
             AND  a.orgid in ($orgids$)		
         </isNotNull>
     </select>
+    
+        <!-- 禁用车辆-->
+    <select id="carIsDisabledTotal" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT 
+            count(*) AS isDisabledNum
+        FROM	wb_repair.rpb_car a 
+        LEFT JOIN wb_repair.rpb_car_extend b on b.car_id=a.id
+        WHERE a.is_disabled = 1
+        <isNotNull prepend = "" property = "orgid">
+            AND  a.orgid = #orgid# 			
+        </isNotNull>
+        <isNotNull prepend = "" property = "orgids">
+            AND  a.orgid in ($orgids$)		
+        </isNotNull>
+    </select>
 </sqlMap>

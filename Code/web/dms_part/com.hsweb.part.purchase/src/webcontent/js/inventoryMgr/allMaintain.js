@@ -378,10 +378,13 @@ function doSearch() {
     	gsparams.sEnterDate = null;
     	gsparams.eEnterDate = null;
     	gsparams.isSettle=0;
+    	gsparams.seachType=2;//用于判断是查什么
     }else if(nui.get("seachType").getValue()==1){
     	gsparams.isSettle=1;
+    	gsparams.seachType=1;//用于判断是查什么
     }else if(nui.get("seachType").getValue()==0){
     	gsparams.isSettle=0;
+    	gsparams.seachType=0;//用于判断是查什么
     }
     
     var xcdate = getDays(gsparams.sEnterDate,gsparams.eEnterDate);

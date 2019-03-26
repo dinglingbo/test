@@ -95,6 +95,10 @@
             <h3 class="incomeTitle">未来厂车辆</h3>
             <p id="pdata4" class="incomeStyle" style="margin-top: 20px;">0</p>
         </div>
+        <div class="column">
+            <h3 class="incomeTitle">禁用车辆</h3>
+            <p id="pdata5" class="incomeStyle" onclick="toGuestCar()" style="margin-top: 20px;">0</p>
+        </div>
 
     </div>
 
@@ -261,6 +265,7 @@
                     document.getElementById("pdata2").innerHTML= data.carList[0].num||0;
                     document.getElementById("pdata3").innerHTML= data.carList[0].hasComeNum||0;
                     document.getElementById("pdata4").innerHTML= data.carList[0].noComeNum||0;
+                    document.getElementById("pdata5").innerHTML= data.carIsDisabled[0].isDisabledNum||0;
                 }
             })
         }
@@ -333,6 +338,15 @@
                 params: params,
                 token: token
             });
+        }
+        function toGuestCar(){
+	        var item={};
+		    item.id = "2101";
+		    item.text = "客户车辆";
+		    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.CustomerProfileMain.flow?token="+token;
+		    item.iconCls = "fa fa-file-text";
+		    var params = {id:"isDisabledCar"};
+		    window.parent.activeTabAndInit(item,params);
         }
     </script>
 </body>

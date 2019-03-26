@@ -199,7 +199,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="form_label">
+                    <td class="form_label required">
                         <label>车架号(VIN)：</label>
                     </td>
                     <td colspan="2">

@@ -118,6 +118,16 @@
       <targetNode>end1</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link19" name="在Solr中没有查询到此电商商品列表！" displayName="连接线" type="transition">
+      <sourceNode>assign6</sourceNode>
+      <targetNode>assign8</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="OBJEQ">
+          <process:leftOperand type="query">errMsg</process:leftOperand>
+          <process:rightOperand type="literal">在Solr中没有查询到此电商商品列表！</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link5</targetConnections>
     <location x="945" y="297"/>
     <size height="28" width="28"/>
@@ -163,6 +173,7 @@
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" collapsed="false" type="end">
     <targetConnections>link3</targetConnections>
     <targetConnections>link6</targetConnections>
+    <targetConnections>link20</targetConnections>
     <location x="945" y="432"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
@@ -354,6 +365,25 @@
     <location x="177" y="425"/>
     <figSize height="20" width="63"/>
     <node>subprocess0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign8</sourceNode>
+      <targetNode>end1</targetNode>
+    </sourceConnections>
+    <targetConnections>link19</targetConnections>
+    <location x="1230" y="296"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign8label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">data</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
+    <location x="1224" y="332"/>
+    <figSize height="20" width="40"/>
+    <node>assign8</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

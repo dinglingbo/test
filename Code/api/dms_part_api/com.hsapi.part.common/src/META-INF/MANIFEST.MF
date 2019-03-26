@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Require-Bundle: com.hsapi.part.data,com.hs.common
-Bundle-Vendor: chenziming
+Require-Bundle: com.hs.common,com.eos.foundation,com.hsapi.part.data
 eos-webCtxPath: common1
+Bundle-Vendor: chenziming
 Bundle-Version: 1.0.0
 Bundle-Name: com.hsapi.part.common
 Bundle-Description: 公共的api

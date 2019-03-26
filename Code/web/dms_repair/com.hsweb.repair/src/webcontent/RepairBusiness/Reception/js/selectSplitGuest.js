@@ -40,6 +40,11 @@ var saveSplit = baseUrl + "com.hsapi.repair.repairService.crud.saveSplitCar.biz.
 function wechatBin(row_uid){
 	var row = guestGrid.getRowByUID(row_uid);
 	 if(row){
+	   nui.mask({
+	        el : document.body,
+		    cls : 'mini-mask-loading',
+		    html : '保存中...'
+	    });
 		var json = nui.encode({
 			 car:carData,
 			 guest:row,
@@ -53,6 +58,7 @@ function wechatBin(row_uid){
 		 		cache : false,
 		 		contentType : 'text/json',
 		 		success : function(text) {
+		 			nui.unmask(document.body);
 		 			if(text.errCode=="S"){
 		 			    CloseWindow('ok');
 		 			    showMsg(text.errMsg || "拆分成功!","S");

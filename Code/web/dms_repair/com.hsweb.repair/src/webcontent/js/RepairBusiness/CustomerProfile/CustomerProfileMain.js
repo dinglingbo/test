@@ -365,7 +365,7 @@ function split() {
 	if(row){
 		nui.open({
 	        url: webPath + contextPath +"/repair/RepairBusiness/CustomerProfile/Split.jsp?token="+token,
-	        title: "资料拆分", width: 810, height: 430,
+	        title: "资料拆分", width: 610, height: 350,
 	        onload: function () {
 	            var iframe = this.getIFrameEl();
 	            iframe.contentWindow.setData(row);

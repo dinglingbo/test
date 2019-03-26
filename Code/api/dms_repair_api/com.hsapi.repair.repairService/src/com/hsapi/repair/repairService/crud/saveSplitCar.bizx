@@ -161,6 +161,10 @@
       <process:to type="query">contactor/idAddress</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">guest/sex</process:from>
+      <process:to type="query">contactor/sex</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
       <process:to type="query">contactor/recorder</process:to>
     </process:copy>

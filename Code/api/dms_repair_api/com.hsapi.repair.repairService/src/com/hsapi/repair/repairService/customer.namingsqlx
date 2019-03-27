@@ -284,6 +284,9 @@
             <isNotEmpty prepend="and" property="carId">  
                 (a.id = #carId#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="isDisabled">  
+                (a.is_disabled = #isDisabled#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="orgId">  
                 (b.orgid = #orgId#)
             </isNotEmpty>

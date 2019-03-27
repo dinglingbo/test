@@ -75,7 +75,7 @@
       <process:to type="query">cond/_expr[3]/id</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">!=</process:from>
+      <process:from type="literal" pattern="reference">&lt;></process:from>
       <process:to type="query">cond/_expr[3]/_op</process:to>
     </process:copy>
     <process:copy>

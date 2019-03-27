@@ -32,9 +32,16 @@ $(document).ready(function(v){
          var column = e.column;
          var id = record.id;
          if(column.field == "carNo"){
-         	e.cellHtml ='<a id="car" href="##" onclick="showCarInfo('+e.record._uid+')">'+e.record.carNo+'</a>';
+        	 if(e.record.carNo==null){
+        		 e.cellHtml ='';
+        	 }else{
+        		 e.cellHtml ='<a id="car" href="##" onclick="showCarInfo('+e.record._uid+')">'+e.record.carNo+'</a>';
+        	 }
+         	
          }else if(column.field == "isDisabled"){
-         	e.cellHtml =isDisabledHash[e.value].name;
+        	 if (isDisabledHash && isDisabledHash[e.value]) {
+        		 e.cellHtml =isDisabledHash[e.value].name;
+        	 }
          }
     });
     queryForm = new nui.Form("#queryForm");

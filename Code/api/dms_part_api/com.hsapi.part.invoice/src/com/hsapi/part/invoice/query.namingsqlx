@@ -236,7 +236,7 @@
 			a.remark as mainRemark,
 			a.settle_type_id as settleTypeId,
 			b.id as detailId,
-			b.main_id as mainId,
+			a.code_id as mainId,
 			b.part_id as partId,
 			b.part_code as partCode,
 			b.part_name as partName,

@@ -92,6 +92,7 @@ pageEncoding="UTF-8" session="false" %>
             }
             var params = {
                 serviceType:mainData.serviceType,
+                mainId:mainData.mainId,
                 guestId: mainData.guestId,
                 carId: mainData.carId,
                 carNo:mainData.carNo||'',

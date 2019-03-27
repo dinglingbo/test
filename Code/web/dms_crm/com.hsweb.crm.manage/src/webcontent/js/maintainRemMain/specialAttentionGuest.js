@@ -47,7 +47,8 @@ $(document).ready(function (v) {
     nui.get('endDate2').setValue(thirdty); 
     nui.get('endDate3').setValue(thirdty);
     nui.get('endDate4').setValue(thirdty);
-
+    
+    initInsureComp("insureCompCode");//保险公司
     initDicts({
         visitMode: "DDT20130703000021",//跟踪方式
         // visitStatus: "DDT20130703000081",//跟踪状态
@@ -107,6 +108,7 @@ $(document).ready(function (v) {
     		e.cellHtml ='<a href="##" onclick="WindowrepairHistory()">'+e.record.carNo+'</a>';
     	}
     });
+
     business.on("drawcell", function (e) {
         if (e.field == "mobile") {
             e.cellHtml = changedTel(e);
@@ -118,7 +120,9 @@ $(document).ready(function (v) {
             }
         }else if(e.field == "carNo"){
     		e.cellHtml ='<a href="##" onclick="WindowrepairHistory()">'+e.record.carNo+'</a>';
-    	}
+        } else if (e.field == "annualInspectionCompCode") {
+            e.cellHtml = setColVal('insureCompCode', 'code', 'fullName', e.value);
+        }
     });
     compulsoryInsurance.on("drawcell", function (e) {
         if (e.field == "mobile") {
@@ -131,7 +135,9 @@ $(document).ready(function (v) {
             }
         }else if(e.field == "carNo"){
     		e.cellHtml ='<a href="##" onclick="WindowrepairHistory()">'+e.record.carNo+'</a>';
-    	}
+    	}else if (e.field == "insureCompCode") {
+            e.cellHtml = setColVal('insureCompCode', 'code', 'fullName', e.value);
+        }
     });
     drivingLicense.on("drawcell", function (e) {
         if (e.field == "mobile") {
@@ -394,6 +400,9 @@ function remind() {
 
 function sendInfo(){
     var row = getRow();
+    if (row.guestType == 1) {
+        row.id = row.crmGuestId;
+    }
     if (!row) {
         showMsg("请选中一条数据","W");
         return;
@@ -408,7 +417,7 @@ function sendInfo(){
     ondestroy: function (action) {
             //重新加载
             //query(tab);
-        change();
+        // change();
         }
     });
 }
@@ -431,7 +440,7 @@ function sendWcText(){//发送微信消息
     ondestroy: function (action) {
             //重新加载 
             // query(tab);
-            change();
+            // change();
         }
     });
 }
@@ -514,6 +523,7 @@ function getRow() {
     sRow.contactorId = sRow.conId;//点击车牌号弹窗用到 联系表id
     sRow.annualVerificationDueDate = sRow.dueDate;//车辆年检发送微信界面用到
     sRow.guestSource = sRow.guestType;//保存历史用到
+    sRow.mainId = sRow.crmGuestId ;//电销保存用到
 
     return sRow||0;
 }
@@ -656,16 +666,25 @@ function quickSearch(type,gridType) {
 
 function updateDate() {
     var row = getRow();
-    var hei = 500;
-    // if (row.serviceType != 10 && row.serviceType != 8) {
-    //     hei = 500;
-    // }
-
-    if(row){
+    if (row) {
         var tit = '修改信息';
+        var turl = {};
+        var hei = 500;
+        var wid = 800;
+        if (row.guestType == 0) {
+            turl = webPath + contextPath + '/' + row.updateUrl + "?token=" + token;
+            // if (row.serviceType != 10 && row.serviceType != 8) {
+            //     hei = 500;
+            // }
+        } else {
+            turl = webPath + contextPath + "/com.hsweb.crm.manage.clientInfo_edit.flow?token=" + token;
+            hei = 550;
+            wid = 520;
+            row.id = row.crmGuestId;
+        }
         nui.open({
-            url: webPath + contextPath +'/'+ row.updateUrl+"?token="+token,
-            title: tit, width: 800, height: hei,
+            url: turl,
+            title: tit, width: wid, height: hei,
             onload: function () {
                 var iframe = this.getIFrameEl();
                 iframe.contentWindow.setData(row);

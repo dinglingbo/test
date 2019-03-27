@@ -392,9 +392,10 @@ function toMaintain(e){
 	    item.id = "allMaintain";
 	    item.text = "工单明细表";
 	    item.url = webPath + contextPath + "/com.hsweb.part.purchase.allMaintain.flow?token="+token;
+	    var params = {id:"recordBillQty"};
 	    item.iconCls = "fa fa-file-text";
-	    var params = {id:e};
-	    window.parent.activeTab(item);
+	    var params = {id:"recordBillQty"};
+	    window.parent.activeTabAndInit(item,params);
 	}else if(e==10){
 	    var item={};
 	    item.id = "allMaintain";

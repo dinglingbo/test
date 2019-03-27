@@ -208,6 +208,15 @@ public class ResauthUtils {
 	}
 	
 	@Bizlet("根据资源ID获取资源对应的资源详情")
+	public static DataObject[] getFunctionInfo(String resId) throws Throwable {
+		HashMap pm = new HashMap();
+		pm.put("resId", resId);
+		
+		return getRedisCache("default", "com.hs.common.orga.queryAppFunctionInfo", 
+				pm, "资源function详情数据", "false", -1, false, null);
+	}
+	
+	@Bizlet("根据资源ID获取资源对应的资源详情")
 	public static DataObject[] getResInfo(String resId) throws Throwable {
 		HashMap pm = new HashMap();
 		pm.put("resId", resId);
@@ -222,6 +231,14 @@ public class ResauthUtils {
 		
 		return getRedisCache("default", "com.hs.common.orga.queryMenu", 
 				pm, "菜单数据", "false", -1, false, null);
+	}
+	
+	@Bizlet("获取资源数据表数据")
+	public static DataObject[] getAppFunction() throws Throwable {
+		HashMap pm = new HashMap();
+		
+		return getRedisCache("default", "com.hs.common.orga.queryAppFunction", 
+				pm, "资源数据表数据", "false", -1, false, null);
 	}
 	
 	@Bizlet("获取所有资源信息")

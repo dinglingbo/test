@@ -69,7 +69,7 @@
     <script type="text/javascript">
         nui.parse();
         var pushUrl = apiPath+wechatApi+ '/com.hsapi.wechat.autoServiceBackstage.weChatCardCoupon.pushCardCoupon.biz.ext'
-  
+        var saveUrl = apiPath + repairApi +"/com.hsapi.repair.repairService.crud.saveRemindRecordMore.biz.ext";
         var pathapi=apiPath+wechatApi;
     	var pathweb=webPath+wechatDomain;
     	var cardCouponData = nui.get("cardCouponData");
@@ -221,6 +221,49 @@
                 }
             })
         }
+
+
+//         function saveRecord() {
+//             var rows = cardCouponData.getSelecteds();
+
+//             var pArr = [];
+//             for (var i = 0; i < mainList.length; i++) {
+//                 var data = mainList[i];
+//                 var params ={
+//                     serviceType:data.serviceType,
+//                     mainId:data.id||'',
+//                     guestId:data.guestId||'',
+//                     carId:data.carId||'',
+//                     carNo: data.carNo || '',
+//                     visitMode:'011405',//微信卡券
+//                     visitContent:message||'',
+//                     guestSource:mainData.guestSource
+//                 }
+//                 pArr.push(params);
+//             }
+
+//             nui.ajax({
+//                 url:saveUrl,
+//                 type:'post',
+//                 data:{
+//                     params:pArr
+//                 },
+//                 success:function(res){
+//                     if(res.errCode == 'S'){
+//                             showMsg("发送成功！","S");
+                            
+//                     }else{
+//                             showMsg("发送失败！","E");
+//                     }
+//                     onClose() ;
+//                 },
+//                 error: function (jqXHR) {
+//                     showMsg(jqXHR.responseText);
+//                 }
+//             })
+   
+// }
+
 
         function onClose() {
             window.CloseOwnerWindow();

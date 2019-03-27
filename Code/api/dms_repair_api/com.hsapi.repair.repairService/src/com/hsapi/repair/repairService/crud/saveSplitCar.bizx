@@ -398,6 +398,10 @@
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>assign8</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link54" name="link54" displayName="连接线" lineType="note" type="exception">
+      <sourceNode>invokePojo3</sourceNode>
+      <targetNode>assign20</targetNode>
+    </sourceConnections>
     <targetConnections>link14</targetConnections>
     <location x="540" y="150"/>
     <size height="28" width="22"/>
@@ -1136,6 +1140,7 @@
     </sourceConnections>
     <targetConnections>link46</targetConnections>
     <targetConnections>link47</targetConnections>
+    <targetConnections>link54</targetConnections>
     <location x="398" y="261"/>
     <size height="28" width="28"/>
     <nodeLabel>assign20label</nodeLabel>

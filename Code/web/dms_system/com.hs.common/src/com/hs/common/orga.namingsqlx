@@ -35,16 +35,53 @@
     	SELECT res_id as resId from com_cap_resauth 
     	where party_id = #roleId#
     </select>
+    <!--纯资源详情数据，用于判断新建了资源，但是没有创建对应菜单的数据，例【工单明细表】存在于报表模块，不需要加到菜单，但是需要做权限控制-->
+    <select id="queryAppFunction" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.FUNCCODE as funcCode,
+			a.FUNCNAME as funcName,
+			a.FUNCDESC  as funcDesc,
+			a.FUNCACTION as funcaction,
+			a.PARAINFO  as parainfo,
+			a.ISCHECK as ischeck,
+			a.FUNCTYPE as funcType,
+			a.ISMENU as isMenu,
+			a.APP_ID as appId,
+			a.TENANT_ID as tenantId,
+			a.FUNCGROUPID as funcGroupId
+		FROM
+			com_app_function AS a
+    </select>
+    <!--根据资源ID获取资源对应的资源详情-->
+    <select id="queryFunctionInfo" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.FUNCCODE as funcCode,
+			a.FUNCNAME as funcName,
+			a.FUNCDESC  as funcDesc,
+			a.FUNCACTION as funcaction,
+			a.PARAINFO  as parainfo,
+			a.ISCHECK as ischeck,
+			a.FUNCTYPE as funcType,
+			a.ISMENU as isMenu,
+			a.APP_ID as appId,
+			a.TENANT_ID as tenantId,
+			a.FUNCGROUPID as funcGroupId
+		FROM
+			com_app_function AS a
+		where a.FUNCCODE = #resId#
+    </select>
+    
     <!--根据资源ID获取资源对应的资源详情-->
     <select id="queryResInfo" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT DISTINCT a.menuid, a.menuname, a.menucode, a.imagepath, a.parentsid, b.funccode, 
-				 a.DISPLAYORDER,  b.funcaction, a.EXPANDPATH as expandpath, 
+				 ifnull(a.DISPLAYORDER,0) as DISPLAYORDER,  b.funcaction, a.EXPANDPATH as expandpath, 
 				 a.APP_ID as appId, b.parainfo as params, b.FUNCTYPE as functype
-		from app_menu a
-		inner join com_app_function b
+		from com_app_function b
+		inner join app_menu a
 		on a.funccode = b.FUNCCODE
 		where b.FUNCCODE = #resId#
     </select>
+    
     <!--获取菜单结构-->
     <select id="queryMenu" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT m.menuid, m.menuname, m.menucode, m.imagepath, m.parentsid, m.funccode, 
@@ -60,7 +97,7 @@
 				 a.DISPLAYORDER,  b.funcaction, a.EXPANDPATH as expandpath, 
 				 a.APP_ID as appId, b.parainfo as params, b.FUNCTYPE as functype
 		from com_app_function b
-		left join app_menu a
+		inner join app_menu a
 		on a.funccode = b.FUNCCODE
     </select>
     <!--根据资源ID获取资源对应的资源详情，用于报表菜单结构输出-->
@@ -69,7 +106,7 @@
 			a.FUNCCODE as funccode,
 			a.FUNCNAME as funcname,
 			a.FUNCDESC as funcdesc,
-			a.FUNCACTION as funcactioin,
+			a.FUNCACTION as funcaction,
 			a.PARAINFO as parainfo,
 			a.ISCHECK as ischeck,
 			a.FUNCTYPE as functype,

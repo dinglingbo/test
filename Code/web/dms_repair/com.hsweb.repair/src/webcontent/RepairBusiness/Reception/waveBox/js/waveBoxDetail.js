@@ -104,6 +104,7 @@ $(document).ready(function ()
         var params = {};
         var value = e.data.key;
         value = value.replace(/\s+/g, "");
+        params.isDisabled = 0;
         if(value.length<2){
             e.cancel = true;
             return;

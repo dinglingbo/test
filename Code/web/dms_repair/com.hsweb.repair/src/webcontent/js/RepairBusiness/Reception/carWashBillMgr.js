@@ -272,7 +272,7 @@ $(document).ready(function ()
      };
      mainGrid.on("rowclick",function(e){
      	var record = e.record;
-     	if(record.status>0){
+     	if(record.status>1){
      		nui.get("deletBtn").setVisible(false);
      	}else{
      		nui.get("deletBtn").setVisible(true);
@@ -614,35 +614,45 @@ function del(){
         return;
     }
 
-    if(row.status != 0){
+    if(row.status > 1){
         showMsg("工单不能删除!","W");
         return;
     }
-    nui.mask({
-        el: document.body,
-        cls: 'mini-mask-loading',
-        html: '处理中...'
-    });
-    var params = {
-        data:{
-            id:row.id||0,
-            isDisabled:0
-        }
-    };
-    svrDelBill(params, function(data){
-        data = data||{};
-        var errCode = data.errCode||"";
-        var errMsg = data.errMsg||"";
-        if(errCode == 'S'){
-            mainGrid.removeRow(row);
-            showMsg("删除成功!","S");
-        }else{
-            showMsg(errMsg||"删除失败!","E");
-        }
-        nui.unmask(document.body);
-    }, function(){
-        nui.unmask(document.body);
-    });
+    
+    nui.confirm("是否确定删除此工单？", "友情提示",function(action){
+		 if(action == "ok"){
+			
+			nui.mask({
+		        el: document.body,
+		        cls: 'mini-mask-loading',
+		        html: '处理中...'
+		    });
+		    var params = {
+		        data:{
+		            id:row.id||0,
+		            isDisabled:0
+		        }
+		    };
+		    svrDelBill(params, function(data){
+		        data = data||{};
+		        var errCode = data.errCode||"";
+		        var errMsg = data.errMsg||"";
+		        if(errCode == 'S'){
+		            mainGrid.removeRow(row);
+		            showMsg("删除成功!","S");
+		        }else{
+		            showMsg(errMsg||"删除失败!","E");
+		        }
+		        nui.unmask(document.body);
+		    }, function(){
+		        nui.unmask(document.body);
+		    });
+			 
+		 }else {
+				return;
+		 }
+	}); 
+    
 }
 
 

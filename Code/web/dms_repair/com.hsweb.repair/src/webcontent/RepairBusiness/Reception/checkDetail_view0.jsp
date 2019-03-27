@@ -12,7 +12,7 @@
 <head> 
     <title>检查开单详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.1.1"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.2.0"></script>
     <style type="text/css">
     
     body { 
@@ -216,6 +216,8 @@
                 <td class="tbtext">车牌号：</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="carNo" id="carNo"enabled="false" style="width:100%"/>
+                    <input class="nui-textbox tabwidth" name="guestFullName" id="guestFullName"enabled="false" style="display:none" style="width:100%"/>
+                    <input class="nui-textbox tabwidth" name="guestMobile" id="guestMobile"enabled="false" style="display:none" style="width:100%"/>
                 </td>
                  <td class="tbtext" >品牌车型：</td>
                     <td class="tbCtrl" >

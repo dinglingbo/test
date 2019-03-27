@@ -378,15 +378,21 @@ function doSearch() {
     	gsparams.sEnterDate = null;
     	gsparams.eEnterDate = null;
     	gsparams.isSettle=0;
+    	gsparams.seachType=2;//用于判断是查什么
     }else if(nui.get("seachType").getValue()==1){
     	gsparams.isSettle=1;
-    }else{
-        var xcdate = getDays(gsparams.sEnterDate,gsparams.eEnterDate);
-        if(xcdate>92){
-        	showMsg("查询时间相差不能大于三个月！","W");
-        	return;
-        }
+    	gsparams.seachType=1;//用于判断是查什么
+    }else if(nui.get("seachType").getValue()==0){
+    	gsparams.isSettle=0;
+    	gsparams.seachType=0;//用于判断是查什么
     }
+    
+    var xcdate = getDays(gsparams.sEnterDate,gsparams.eEnterDate);
+    if(xcdate>92){
+       showMsg("查询时间相差不能大于三个月！","W");
+       return;
+     }
+    
 
     mainGrid.load({
         token:token,
@@ -530,5 +536,9 @@ function setInitData(params) {
     		nui.get("seachType").setValue(2);
     		nui.get("seachType").setText("在修车辆");
     		onSearch();
-    }
+    } else if (params.id == 'recordBillQty') {
+		nui.get("seachType").setValue(0);
+		nui.get("seachType").setText("今日进厂");
+		onSearch();
+}
 }

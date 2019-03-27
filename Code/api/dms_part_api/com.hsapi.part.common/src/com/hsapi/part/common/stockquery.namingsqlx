@@ -280,4 +280,20 @@
 		where a.is_disabled = 0
     </select>
     
+    <select id="queryArea" parameterClass="java.util.HashMap" resultClass="java.util.HashMap"> 
+		 SELECT
+			b.`name` AS provinceName,
+			c.`name` AS cityName,
+			d.`name` AS countyName
+		FROM
+			wb_common.com_company a
+		INNER JOIN(SELECT name,code FROM wb_common.com_area WHERE LEVEL =1) b
+		on a.province_id=b.`code`
+		INNER JOIN (SELECT name,code FROM wb_common.com_area WHERE LEVEL =2)c
+		on a.city_id=c.`code`
+		INNER JOIN (SELECT name,code FROM wb_common.com_area WHERE LEVEL =3)d
+		on a.county_id=d.`code`
+		WHERE orgid = #orgid#
+    </select>
+    
 </sqlMap>

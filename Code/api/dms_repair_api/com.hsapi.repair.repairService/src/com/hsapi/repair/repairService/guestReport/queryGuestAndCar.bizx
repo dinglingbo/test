@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryGuestAndCar" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="电销客户 明细" title="Administrator&#x9;19-2-14 下午3:48">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="电销客户 明细&#xD;&#xA;车辆：com.hsapi.repair.repairService.guestReport.carTotal&#xD;&#xA;禁用车辆：com.hsapi.repair.repairService.guestReport.carIsDisabledTotal" title="Administrator&#x9;19-2-14 下午3:48">
     <location x="31" y="16"/>
-    <size height="100" width="197"/>
+    <size height="100" width="525"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -23,6 +23,7 @@
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
       <process:return id="2" language="commonj.sdo.DataObject[]" name="guestList" type="query" valueType="Java">guestList</process:return>
       <process:return id="3" language="commonj.sdo.DataObject[]" name="carList" type="query" valueType="Java">carList</process:return>
+      <process:return id="4" language="commonj.sdo.DataObject[]" name="carIsDisabled" type="query" valueType="Java">carIsDisabled</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -58,7 +59,7 @@
       <sourceNode>assign1</sourceNode>
       <targetNode>end0</targetNode>
     </sourceConnections>
-    <targetConnections>link4</targetConnections>
+    <targetConnections>link9</targetConnections>
     <location x="532" y="163"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
@@ -80,6 +81,7 @@
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>invokePojo1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
     <location x="300" y="162"/>
@@ -106,10 +108,10 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="车辆" displayName="Query according to namedsql" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
-      <targetNode>assign1</targetNode>
+      <targetNode>invokePojo2</targetNode>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
-    <location x="435" y="162"/>
+    <location x="390" y="162"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -126,7 +128,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="434" y="198"/>
+    <location x="389" y="198"/>
     <figSize height="17" width="25"/>
     <node>invokePojo1</node>
   </nodes>
@@ -196,6 +198,33 @@
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="车辆1" displayName="车辆" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo2</sourceNode>
+      <targetNode>assign1</targetNode>
+    </sourceConnections>
+    <targetConnections>link4</targetConnections>
+    <location x="455" y="162"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo2label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.queryByNamedSql</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
+      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.repair.repairService.guestReport.carIsDisabledTotal</process:inputVariable>
+      <process:inputVariable id="2" name="parameterObject" type="query" value="java.lang.Object" valueType="Java" pattern="reference">params</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.Object[]" valueType="Java">carIsDisabled</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
+    <location x="450" y="198"/>
+    <figSize height="17" width="32"/>
+    <node>invokePojo2</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-02-14 09:40:59" date="2019-02-14Z" description="" name="queryComeGuest" version="7.0.0.0"/>
@@ -208,6 +237,7 @@
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
     <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="guestList"/>
     <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="carList"/>
+    <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="carIsDisabled"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

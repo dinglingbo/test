@@ -1123,6 +1123,7 @@
 			d.part_total_amt AS partAmt,
 			d.part_pref_amt AS partPrefAmt,
 			d.part_subtotal AS partSubtotal,
+            d.package_subtotal+d.item_subtotal +d.part_subtotal as total,
 			d.other_amt AS otherAmt,
 			d.package_subtotal+d.item_subtotal+d.part_subtotal+d.other_amt AS incomeTotal,
 			d.allowance_amt as allowanceAmt,
@@ -1145,8 +1146,6 @@
 			d.gross_profit_remark AS grossProfitRemark,
 			d.netin_amt AS netinAmt,
 			d.total_pref_rate AS totalPrefRate,
-			e.audit_sign as auditSign,
-			e.settle_date as settleDate,
 			a.engine_model as engineModel,
 			a.engine_no as boxNo,
 			a.engine_model as boxModel,
@@ -1159,8 +1158,7 @@
 			inner JOIN rpb_car b ON ( a.car_id = b.id )
 		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
 			inner join rps_settlement d on (a.id =  d.service_id)
-			inner JOIN wb_frm.fis_rp_bill e ON ( a.id = e.bill_main_id )
-		WHERE 1 = 1
+		WHERE 1 = 1 and a.is_settle = 1
 			
       <dynamic>
 			<isNotEmpty prepend="and" property="rid">
@@ -1475,7 +1473,7 @@
 			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
 	       inner join rpb_business_type f on e.service_type_id = f.id
 	       where e.service_id = a.id) as serviceTypeName,
-		      ifnull((SELECT sum(g.subtotal) from rps_package g where a.id = g.service_id),0) as pkgSubtotal,
+		      ifnull((SELECT sum(g.subtotal) from rps_package g where a.id = g.service_id),0) as packageSubtotal,
 		      ifnull((SELECT sum(h.subtotal) from rps_item h where a.id = h.service_id),0) as itemSubtotal,
 		      ifnull((SELECT sum(i.subtotal) from rps_part i where a.id = i.service_id),0) as partSubtotal,
 		      ifnull((SELECT sum(g.subtotal) from rps_package g where a.id = g.service_id),0)+

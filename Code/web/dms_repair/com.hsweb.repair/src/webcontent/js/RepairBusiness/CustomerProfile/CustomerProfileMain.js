@@ -597,6 +597,8 @@ function setInitData(params) {
         menunamestatus.setText("本日新来厂客户");
         doSearch(p);
     }else if(params.id == 'isDisabledCar'){//客户报表 禁用车辆
+    	jumpUrl = "isDisabledCar";
+    	nui.get("isDisabled").setValue(1);
     	var p={};
     	p.lastMonthLoss = 1;
     	p.isDisabled = 1;

@@ -68,7 +68,7 @@
                  	   <input class="nui-textbox" name="licenseNo" width="100%" />
                     </td>
                     <td class="form_label">
-                        <label>准备车型(A1)：</label>
+                        <label>准驾车型(A1)：</label>
                     </td>
                     <td>
                     	<input class="nui-textbox" name="licenseType" width="100%" />

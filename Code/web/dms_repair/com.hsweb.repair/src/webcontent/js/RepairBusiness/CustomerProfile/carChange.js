@@ -42,7 +42,6 @@ function updateType()
 			$('#xcarNo').attr("disabled",false);
 			nui.get("xcarNo").disable();
 			nui.get("xguestFullName").enable();
-			nui.get("xguestFullName").setText("请选择...");
 		}else if(nui.get('changeType').getValue() == "2"){
 			$('#xcarNo').attr("disabled",false);
 			nui.get("xcarNo").disable();

@@ -207,7 +207,9 @@ function isVehicleNumber(vehicleNumber) {
 	var data = {};
     var result = false;
 	if(currIsCanfreeCarnovin==1){
-		return true; //有自由输入权限
+		data.result = true;
+		data.vehicleNumber = vehicleNumber;
+		return data; //有自由输入权限
 	}
       //var express = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/;
     	var express = /(^[\u4E00-\u9FA5]{1}[A-Z_0-9]{1}[A-Z_0-9]{4}[A-Z_0-9_挂学警港澳领]{1}$)|(^WJ[A-Z_0-9_\u4e00-\u9fa5]{1}[A-Z_0-9]{5}$)|(^WJ[A-Z_0-9]{2}[A-Z_0-9_\u4e00-\u9fa5]{1}[A-Z_0-9]{4}$)|(^[A-Z]{2}[0-9]{5}$)|(^[\u4E00-\u9FA5]{1}[A-Z]{1}[A-Z_0-9]{5}[A-Z_0-9_警领]{1}$)/;

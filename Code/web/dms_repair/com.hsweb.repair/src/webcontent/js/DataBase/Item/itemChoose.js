@@ -336,6 +336,8 @@ function getSearchParams()
 function onSearch()
 {
 	if(itemGrid.visible) {
+		var pyCode = nui.get("search-namePy").getValue();
+		pyCode = pyCode.toUpperCase();//小写转大写
 		if(WechatShow){
 			var carModelId = nui.get("carModelId").value || "";
 			if(!carModelId){
@@ -344,12 +346,13 @@ function onSearch()
 			}
 			var params = {
 					name: nui.get("search-name").getValue(),
-					pyCode : nui.get("search-namePy").getValue(),
+					pyCode : pyCode,
 					carModelId:carModelId
 				}
 		}else{
 			var params = {
-					name: nui.get("search-name").getValue()
+					name: nui.get("search-name").getValue(),
+					pyCode : pyCode
 				}
 		}
 		doSearchItem(params);

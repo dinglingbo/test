@@ -34,21 +34,30 @@ function setData(data)
 function updateType()
 {
 		if (nui.get('changeType').getValue() == "0"){
+			reduction();
 			nui.get("xcarNo").enable();
 			nui.get("xguestFullName").disable();
 			nui.get("xguestFullName").setValue(guest.guestFullName);
 			nui.get("xguestFullName").setText(guest.guestFullName);
 		}else if(nui.get('changeType').getValue() == "1"){
+			reduction();
 			$('#xcarNo').attr("disabled",false);
 			nui.get("xcarNo").disable();
 			nui.get("xguestFullName").enable();
 		}else if(nui.get('changeType').getValue() == "2"){
+			reduction();
 			$('#xcarNo').attr("disabled",false);
 			nui.get("xcarNo").disable();
 			nui.get("xguestFullName").disable();
 			nui.get("xvin").enable();
 		}
 
+}
+//点击变更下拉是触发，还原数据
+function reduction(){
+	yCar.setData(guest);
+	xCar.setData(guest);
+	nui.get("xGuestId").setValue(guest.guestId);
 }
 
 var requiredField = {

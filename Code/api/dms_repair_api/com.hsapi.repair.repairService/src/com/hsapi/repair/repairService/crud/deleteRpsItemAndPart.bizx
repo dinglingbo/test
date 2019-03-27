@@ -446,10 +446,6 @@
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">item/billPackageId</process:from>
-      <process:to type="query">billPackageId</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">item/id</process:from>
       <process:to type="query">itemTemp/id</process:to>
     </process:copy>
@@ -972,7 +968,7 @@
     <node>assign15</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign16" name="赋值16" displayName="赋值" grouped="true" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link50" name="link50" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link50" name="link50" displayName="连接线" lineType="inheritance" isDefault="true" type="break">
       <sourceNode>assign16</sourceNode>
       <targetNode>loopend1</targetNode>
     </sourceConnections>
@@ -1045,7 +1041,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="cardDetailId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsCardTimesDetail" name="card"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="main"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="billPackageId" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="billItemId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsItem" name="itemTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="len" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cr"/>

@@ -554,7 +554,7 @@ function onShowRowDetail(e) {
 
 function add(){
     var item={};
-    item.id = "6200";
+    item.id = "16200";
     item.text = "月对账详情";
     item.url = webPath + contextPath + "/com.hsweb.frm.manage.billStatementDetail.flow?token="+token;
     item.iconCls = "fa fa-file-text";
@@ -568,7 +568,7 @@ function edit(){
     var row = rightGrid.getSelected();
     if(!row) return; 
     var item={};
-    item.id = "6200";
+    item.id = "16200";
     item.text = "月对账详情";
     item.url = webPath + contextPath + "/com.hsweb.frm.manage.billStatementDetail.flow?token="+token;
     item.iconCls = "fa fa-file-text";

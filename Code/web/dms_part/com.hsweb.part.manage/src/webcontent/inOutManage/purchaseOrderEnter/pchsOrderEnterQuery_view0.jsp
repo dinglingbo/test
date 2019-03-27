@@ -116,12 +116,12 @@
             <div width="40" type="indexcolumn">序号</div>
             <div header="入库信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="serviceId" width="180" summaryType="count" headerAlign="center" header="入库单号"></div>
+                    <div allowSort="true" field="manualCode" width="180" summaryType="count" headerAlign="center" header="入库单号"></div>
                     <div field="guestFullName" name="guestFullName" width="180" headerAlign="center" header="供应商"></div>
                     <div field="orderMan" name="orderMan" width="60" headerAlign="center" header="采购员"></div>
                     <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
                     <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
-                    <div allowSort="true" field="createDate"width="140" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div allowSort="true" field="enterDate"width="140" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div allowSort="true" field="storeId" width="90" headerAlign="center" header="仓库"></div>
                 </div>
             </div>

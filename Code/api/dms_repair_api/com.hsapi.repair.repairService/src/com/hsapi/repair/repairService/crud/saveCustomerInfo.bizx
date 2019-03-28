@@ -964,7 +964,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.queryContactorByGuestAndMobile</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">retData</process:inputVariable>
+        <process:inputVariable id="0" name="guest" type="query" value="com.hsapi.repair.data.common.ComGuest" valueType="DataObject" pattern="reference">guestData</process:inputVariable>
         <process:inputVariable id="1" name="insCarList" type="query" value="com.hsapi.repair.data.rpbse.RpbCar[]" valueType="DataObject" pattern="reference">insCarList</process:inputVariable>
         <process:inputVariable id="2" name="insContactList" type="query" value="com.hsapi.repair.data.rpbse.RpbContactor[]" valueType="DataObject" pattern="reference">insContactList</process:inputVariable>
       </process:inputVariables>

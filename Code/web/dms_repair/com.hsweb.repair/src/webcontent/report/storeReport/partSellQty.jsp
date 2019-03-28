@@ -9,7 +9,7 @@
 -->
 <head>
     <title>配件销售明细表查询</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/partSellQty.js?v=1.0.44"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/partSellQty.js?v=1.1.0"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -52,34 +52,9 @@
              	<input class="nui-textbox" width="100px" id="partCode" name="partCode" selectOnFocus="true" enabled="true" emptyText="配件编码"/>
                 <input class="nui-textbox" width="100px" id="partName" emptyText="配件名称"  selectOnFocus="true" name="partName"/>
                 <input class="nui-textbox" width="100px" id="carNo" emptyText="车牌号"  selectOnFocus="true" name="carNo"/>
-                <input class="nui-textbox" width="180px" id="serviceCode" emptyText="工单号"  selectOnFocus="true" name="serviceCode"/>
-                <input id="partBrandId"
-	                name="partBrandId"
-	                class="nui-combobox"
-	                width="100px"
-	                textField="name"
-	                valueField="id"
-	                valueFromSelect="true"
-	                emptyText="品牌"
-	                url=""
-	                allowInput="true"
-	                showNullItem="false"
-	                nullItemText="品牌"
-	                onvaluechanged="onSearch"
-	                />
+                <input class="nui-textbox" width="100px" id="serviceCode" emptyText="工单号"  selectOnFocus="true" name="serviceCode"/>
                 
-                <input class="nui-combobox" 
-                  id="partTypeId" 
-                  name="partTypeId"
-                  textField="name"
-                  valueField="id"
-                  dataField="partTypes"
-                  emptyText="配件分类"
-                  url=""
-                  allowInput="true"
-                  valueFromSelect="false"
-                  width="120px"
-                  onvaluechanged="onSearch"/>
+                
                 
 				<input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/> <br>
@@ -121,14 +96,7 @@
             <div property="columns">
                 <div allowSort="false" field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
                 <div allowSort="false" field="partName" name="partName" width="150" headerAlign="center" header="配件名称"></div>
-                <div allowSort="false" field="oemCode" width="100" headerAlign="center" header="OEM码"></div>
-   				<div allowSort="false" field="partBrandId"  width="100" headerAlign="center" header="品牌"></div>
-   				<div allowSort="false" field="applyCarModel" width="150" headerAlign="center" header="适用车型"></div>
                 <div allowSort="false" field="unit" width="50" headerAlign="center" header="单位"></div>
-                <div allowSort="false" field="carTypeIdF" width="100" headerAlign="center" header="配件分类一级"></div>
-                <div allowSort="false" field="carTypeIdS" width="100" headerAlign="center" header="配件分类二级"></div>
-                <div allowSort="false" field="carTypeIdT" width="100" headerAlign="center" header="配件分类三级"></div>
-                <div allowSort="false" field="spec" width="100" headerAlign="center" header="规格"></div>
             </div>
         </div>
          <div header="销售信息" headerAlign="center">
@@ -142,8 +110,7 @@
 
         <div header="其他" headerAlign="center">
             <div property="columns">
-            	<div allowSort="true" summaryType="sum"  allowSort="true" field="pickQty"  width="60"headerAlign="center" header="已领数量" dataType="float" align="left"></div>
-            	<div allowSort="true" summaryType="sum"  allowSort="true" field="outReturnQty"  width="60"headerAlign="center" header="退货数量" dataType="float" align="left"></div>
+            	<div allowSort="true" summaryType="sum"  allowSort="true" field="pickQty"  width="60"headerAlign="center" header="领料数量" dataType="float" align="left"></div>
             	<div allowSort="true" width="130"  dateFormat="yyyy-MM-dd HH:mm" field="enterDate" headerAlign="center" header="进厂日期" align="left"></div>
             	<div allowSort="true" width="130"  dateFormat="yyyy-MM-dd HH:mm" field="outDate" headerAlign="center" header="结算日期" align="left"></div>
                 <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>

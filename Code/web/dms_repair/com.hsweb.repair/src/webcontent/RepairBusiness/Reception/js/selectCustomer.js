@@ -36,6 +36,9 @@ $(document).ready(function()
             onCancel();
         }
       };
+      guestGrid.on("rowdblclick",function(e){
+    	  onOk();
+      })
 });
 
 //取消
@@ -60,43 +63,51 @@ function onOk()
 	if(guest){
 		if(guest.id = oldGuest.id){
 			showMsg("合并的客户相同，不用合并!","W");
+			return;
 		}
-		nui.mask({
-	        el : document.body,
-		    cls : 'mini-mask-loading',
-		    html : '保存中...'
-	    });
-		var remark = nui.get("remark").value;
-		nui.ajax({
-			url : saveSplit,
-			type : "post",
-			data : JSON.stringify({
-	        	guest:guest,
-	        	carList:rows,
-	        	oldGuest:oldGuest,
-	        	remark:remark,
-				token: token
-			}),
-	        success : function(data)
-		        {
-		        	nui.unmask(document.body);
-		            data = data||{};
-		            if(data.errCode == "S")
-		            {
-		                showMsg("合并成功","S");
-		                onCancel();
-		            }
-		            else{
-		                showMsg(data.errMsg||"合并失败","E");
-		            }
-		        },
-		        error : function(jqXHR, textStatus, errorThrown) {
-		            //  nui.alert(jqXHR.responseText);
-		        	nui.unmask(document.body);
-		            console.log(jqXHR.responseText);
-		            showMsg("网络出错","E");
-		        }
-		    });
+		var mobile = guest.mobile;
+		 nui.confirm("是否合并到手机号为"+mobile+"的客户下？", "友情提示",function(action){
+		       if(action == "ok"){
+				    nui.mask({
+				        el : document.body,
+					    cls : 'mini-mask-loading',
+					    html : '处理中...'
+				    });
+				    var remark = nui.get("remark").value;
+					nui.ajax({
+						url : saveSplit,
+						type : "post",
+						data : JSON.stringify({
+				        	guest:guest,
+				        	carList:rows,
+				        	oldGuest:oldGuest,
+				        	remark:remark,
+							token: token
+						}),
+				        success : function(data)
+					        {
+					        	nui.unmask(document.body);
+					            data = data||{};
+					            if(data.errCode == "S")
+					            {
+					                showMsg("合并成功","S");
+					                onCancel();
+					            }
+					            else{
+					                showMsg(data.errMsg||"合并失败","E");
+					            }
+					        },
+					        error : function(jqXHR, textStatus, errorThrown) {
+					            //  nui.alert(jqXHR.responseText);
+					        	nui.unmask(document.body);
+					            console.log(jqXHR.responseText);
+					            showMsg("网络出错","E");
+					        }
+					 });
+		     }else {
+					return;
+			 }
+		});	
 	}else{
 		showMsg("请选择要合并的客户!","W");
 	}

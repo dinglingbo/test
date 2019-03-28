@@ -221,7 +221,7 @@
       <process:to type="query">token</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">httpStr+realm+'/'+apiName</process:from>
+      <process:from type="expression" pattern="reference">realm+'/'+apiName</process:from>
       <process:to type="query">httpStr</process:to>
     </process:copy>
     <process:copy>
@@ -231,6 +231,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">repairOutHash</process:from>
       <process:to type="query">params/list</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">httpStr+realm+'/'+apiName</process:from>
+      <process:to type="query">httpStr</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">

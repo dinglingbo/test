@@ -71,6 +71,16 @@ public class LogicFlowFilter implements Filter {
 		}
 		// 检查是否为例外请求，如果是就不要处理
 		if (isExcludeUrls(url)) {
+			if(url.indexOf("com.hsapi.system.auth.login.login.flow") > 0) {
+				HttpSession session = req.getSession(false);
+				if (session == null) {
+					session = req.getSession(true);
+					System.out.println(req.getContextPath() + "登录创建Session："
+							+ session.getId());
+				} 
+				String webPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/";
+				session.setAttribute("webPath", webPath);
+			}
 			chain.doFilter(request, response);
 			return;
 		}

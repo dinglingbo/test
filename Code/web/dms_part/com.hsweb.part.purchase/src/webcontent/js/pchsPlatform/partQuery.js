@@ -324,6 +324,7 @@ function generateOrderByBatch(main,detail,type){
 }
 function addOrder(){
     var row = partDetailGrid.getSelected();
+    row.useMoney= $('#money').text();
     row.partId=partData.id;;
     row.partCode=partData.code;
     row.partName=partData.name;
@@ -437,9 +438,10 @@ function doSearch(params){
 
 function onGridSelectionChanged(){
 	 var data = partGrid.getSelected();
-	 var  goodsCode = data.goodsCode;
+	 var  partsCode = data.partsCode;
 	 partDetailGrid.load({
-		goodsCode:goodsCode,
+		goodsCode:"",
+		partsCode :partsCode,
 		protoken:protoken,
     	token:token
 	 })

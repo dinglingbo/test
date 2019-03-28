@@ -459,7 +459,7 @@
                 (a.id = #partId#)
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="partCode">  
-                (a.query_code like '%$partCode$' or a.code like '%$partCode$' or a.oem_code like '%$partCode$')
+                (a.code like '%$partCode$' or a.oem_code like '%$partCode$')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="partName">  
                 (a.full_name like '%$partName$%')

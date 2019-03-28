@@ -144,7 +144,12 @@ function initGridDataTwo(data){
             if(part.storeCode){
             	 var storeCode = part.storeCode|| "";
             }
-            var row = {storeCode:storeCode, goodsCode : goodsCode,partId: partId, partCode: partCode, partName: partName, 
+            
+            if(part.useMoney){
+           	 var useMoney = part.useMoney|| "";
+           }
+            var row = {storeCode:storeCode||"", goodsCode : goodsCode||"",useMoney : useMoney|| "",
+            			partId: partId, partCode: partCode, partName: partName, 
                        fullName: fullName, unit: unit, orderQty: orderQty, orderPrice: orderPrice};
             rows.push(row);
         }
@@ -305,8 +310,9 @@ function onCellCommitEdit(e) {
     var record = e.record;
     var row = e.row;
     var qty=row.orderQty
+    var guestName=guestIdEl.getText();
     editor.validate();
-    if(e.field =='orderQty'){
+    if(e.field =='orderQty' && guestName !='上海极配电子商务有限公司'){
     	//不是电商自营
     	if(row.storeCode!='000000'){
     		if(e.value > qty){
@@ -384,12 +390,32 @@ function onOk()
     	parent.parent.showMsg("请填写预计到货日期!","W");
         return;
     }
+    if(!data.billTypeId){
+    	parent.parent.showMsg("请选择票据类型!","W");
+        return;
+    }
+    if(!data.settleTypeId){
+    	parent.parent.showMsg("请选择结算方式!","W");
+        return;
+    }
     var detail = mainGrid.getData();
     if(detail.length <= 0){
     	parent.parent.showMsg("明细为空!","W");
         return;
     }
+    
+    var amount=null;
+    var mainGridRow=mainGrid.getData();
+    for(var i=0;i<mainGridRow.length;i++){
+    	amount+=mainGridRow[i].orderQty * mainGridRow[i].orderPrice;
+    }
 
+    if(mainGridRow[0].useMoney){
+    	if(mainGridRow[0].useMoney<amount){
+    		parent.parent.showMsg("平台额度小于订单总金额!","W");
+    		return;
+    	}
+    }
     var guestIdEl = nui.get("guestId");
     var main = {};
     main.guestId = guestIdEl.getValue();

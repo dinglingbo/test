@@ -1322,6 +1322,23 @@ function auditToEnter(){
 	var data = basicInfoForm.getData();
 	var isInner = data.isInner||0;
 	var billStatusId = data.billStatusId||0;
+	
+	if(data.auditSign!=1){
+		showMsg("请先提交再入库!","W");
+		return;
+	}
+	if(data.billStatusId==1){
+		showMsg("待收货状态才能入库!","W");
+		return;
+	}
+	if (data) {
+		if (data.auditSign == 1 && data.billStatusId == 4) {
+			showMsg("此单已入库!","W");
+			return;
+		}
+	} else {
+		return;
+	}
 	if(billStatusId == 0){
 		showMsg("请先提交再入库!","W");
 		return;
@@ -1329,7 +1346,13 @@ function auditToEnter(){
 		var id = data.id||0;
 		//电商供应商先生成电商单号，再提交订单
 		if(data.srmGuestId){
-			updateOrderStatus("5",id);
+			nui.confirm("是否确定入库?", "友情提示", function(action) {
+				if (action == "ok") {
+					updateOrderStatus("5",id);
+				}else{
+					return;
+				}
+			});
 		}else{			
 			orderEnter(id);	
 		}
@@ -1354,6 +1377,19 @@ function auditOrderDirect(flagSign, flagStr, flagRtn){
         rightGrid.addRow({});
         return;
     }
+
+	for(var i=0;i<detailData.length;i++){
+		var comPartCode=detailData[i].comPartCode;
+		if(!detailData[i].orderQty || detailData[i].orderQty==="0" || detailData[i].orderQty==null){
+			showMsg("配件编码为"+comPartCode+"的数量不能为0","W");
+			return ;
+		}
+		if(!detailData[i].storeId){
+			showMsg("配件编码为"+comPartCode+"的仓库不能为空","W");
+			return ;
+		}
+	}
+	
 	var pchsOrderDetailAdd = rightGrid.getChanges("added");
 	var pchsOrderDetailUpdate = rightGrid.getChanges("modified");
 	var pchsOrderDetailDelete = rightGrid.getChanges("removed");
@@ -1394,6 +1430,8 @@ function auditOrderDirect(flagSign, flagStr, flagRtn){
 
 				}
 			} else {
+				//车道订单提交失败了，把电商订单取消
+				updateOrderStatus("6");
 				showMsg(data.errMsg || (str+"失败!"),"E");
 			}
 		},
@@ -1425,7 +1463,18 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 		return;
 	}
 	
-	
+	var detailData = rightGrid.getData();
+	for(var i=0;i<detailData.length;i++){
+		var comPartCode=detailData[i].comPartCode;
+		if(!detailData[i].orderQty || detailData[i].orderQty==="0" || detailData[i].orderQty==null){
+			showMsg("配件编码为"+comPartCode+"的数量不能为0","W");
+			return ;
+		}
+		if(!detailData[i].storeId){
+			showMsg("配件编码为"+comPartCode+"的仓库不能为空","W");
+			return ;
+		}
+	}
 
 	// 审核时，数量，单价，金额，仓库不能为空,单价可以为0，只需要提示
 	var p = checkRightData();
@@ -1579,6 +1628,62 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 			}
 		});
 	}
+
+}
+//不判断，直接入库
+function orderEnterDirect(mainId){
+	nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : '入库中...'
+	});
+
+	nui.ajax({
+		url : enterUrl,
+		type : "post",
+		data : JSON.stringify({
+			orderMainId : mainId,
+			token: token
+		}),
+		success : function(data) {
+			nui.unmask(document.body);
+			data = data || {};
+			if (data.errCode == "S") {
+				showMsg("入库成功!","S");
+
+			var orderMainAudit = data.orderMainAudit;
+			if (orderMainAudit) { 
+				var leftRow = orderMainAudit;
+//				
+				// 入库成功后重新加载数据
+				leftRow.billStatusId=4;
+				
+				if(!leftRow.guestFullName){
+					var guestFullName = nui.get("guestId").getText();
+					leftRow.guestFullName = guestFullName;
+				}
+				loadMainAndDetailInfo(leftRow);
+
+				nui.confirm("是否打印？", "友情提示", function(action) {
+					if(action== 'ok'){
+						onPrint();
+					}else{
+						
+					}
+					
+				});
+//				$('#bServiceId').text("订单号："+leftRow.serviceId);
+			}
+
+			} else {
+				showMsg(data.errMsg || "入库失败!","E");
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
 
 }
 
@@ -2479,6 +2584,18 @@ function pushSupplierOrder(flagSign, flagStr, flagRtn){
 		return;
 	}
 	
+	var detailData = rightGrid.getData();
+	for(var i=0;i<detailData.length;i++){
+		var comPartCode=detailData[i].comPartCode;
+		if(!detailData[i].orderQty || detailData[i].orderQty==="0" || detailData[i].orderQty==null){
+			showMsg("配件编码为"+comPartCode+"的数量不能为0","W");
+			return ;
+		}
+		if(!detailData[i].storeId){
+			showMsg("配件编码为"+comPartCode+"的仓库不能为空","W");
+			return ;
+		}
+	}
 	
 	// 审核时，数量，单价，金额，仓库不能为空,单价可以为0，只需要提示
 	var p = checkRightData();
@@ -2611,13 +2728,40 @@ function updateOrderStatus(orderStatus,id){
             if (data.errCode == "S") {
 				console.log(data);
 				if(orderStatus == "5"){
-					orderEnter(id);	//电商先更改为收货状态,车道再入库
-				}else if(orderStatus == "6"){
+					//不判断，直接入库
+					orderEnterDirect(id);	//电商先更改为收货状态,车道再入库
+				}
+				//电商订单状态为2时
+				if(orderStatus == "6"){
+					unAuditTrue(); //电商先取消订单状态,车道再返单
+				}
+				//电商订单状态为4时
+				if(orderStatus == "9"){
 					unAuditTrue(); //电商先取消订单状态,车道再返单
 				}
                 
             } else {
-            	showMsg(data.errMsg || "电商订单状态更新失败！","E");
+            	var hash=data.data
+            	//车道返单时，电商订单状态为全部发货
+            	if(hash.orderStatus=="6" && hash.state =="4"){
+            		updateOrderStatus("9");
+            	}
+            	//车道返单时，电商订单状态为部分发货
+            	if(hash.orderStatus=="6" && hash.state =="3"){
+            		showMsg( "订单已部分发货,不能返单！","E");
+            	}
+            	//车道入库时，电商订单状态为部分发货
+            	if(hash.orderStatus=="5" && hash.state =="3"){
+            		showMsg( "订单只有部分发货,不入库！","E");
+            	}
+            	//电商已经确定收货，调接口成功，车道刚好入库失败,再继续入库时处理
+            	if(hash.orderStatus=="5" && hash.state =="5"){
+            		orderEnterDirect(id);
+            	}
+        
+            	else {           		
+            		showMsg(data.errMsg || "电商订单状态更新失败！","E");
+            	}
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {

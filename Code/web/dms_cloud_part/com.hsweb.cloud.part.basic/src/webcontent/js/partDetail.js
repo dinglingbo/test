@@ -195,7 +195,10 @@ function onOk()
         {
             data.queryCode+=matches[i];
         }
-        data.oemCode = data.code;
+        //没有OEM码。OEM码=配件编码，有则以输入为准
+        if(!data.oemCode ){    	
+        	data.oemCode = data.code;
+        }
     }
     if(oldData && oldData.isUniform == 0 && data.isUniform == 1)
     {

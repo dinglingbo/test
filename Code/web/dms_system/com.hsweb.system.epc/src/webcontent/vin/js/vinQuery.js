@@ -23,7 +23,6 @@ var gridCfgT = null;
 var stockGrid =null;
 var stockGridUrl= apiPath + cloudPartApi +"/" +"com.hsapi.cloud.part.invoicing.query.queryChainStockByPartId.biz.ext";
 var storehouseHash = {};
-
 var final_data_brand = [
     {text: "全部品牌", value: 17, brand: "all"}, 
     {text: "宝马", value: 7, brand: "bmw"}, 
@@ -34,6 +33,7 @@ var final_data_brand = [
     {text: "路虎", value: 8, brand: "land_rover"}, 
     {text: "玛莎拉蒂", value: 7, brand: "maserati"}
 ];
+var availableTags =[];
 
 $(document).ready(function(v){
     selectWin = nui.get("brandWin");
@@ -41,7 +41,7 @@ $(document).ready(function(v){
     gridConfig = nui.get("gridConfig");
     vinWin = nui.get("vinWin");
         
-    vin_input = nui.get("vin");
+    vin_input = $(" input[ name='vin' ] "); //改用 jQuery
     vinPartImg = $("#vin_part_img");
     gridCfg = nui.get("gridCfg");
 	gridMainGroup = nui.get("gridMainGroup");
@@ -62,6 +62,11 @@ $(document).ready(function(v){
     stockGrid = nui.get("stockGrid");
     stockGrid.setUrl(stockGridUrl);
     
+    availableTags=getAvailableTags();
+    vin_input.autocomplete({
+        source: availableTags,
+        max: 10
+      });
     getStorehouse(function(data)
     {
         var storehouse = data.storehouse||[];
@@ -191,7 +196,8 @@ function getMousePos(event) {
 *通过vin获取车辆信息
 */
 function queryVin(){	
-    vin = vin_input.getValue().replace(/\s+/g, "");
+    vin = vin_input.val().replace(/\s+/g, "");
+      
     brand = curr_check;
     if (checkVin()){
         var params = {
@@ -212,6 +218,24 @@ function queryVin(){
 *车辆信息数据处理
 */
 function setGridCfg(data, json){
+	//添加历史记录
+	vin=json.vin;
+	//缓存
+	var key=new Date().getTime();
+	localStorage.setItem(key, vin);
+	
+//	//去重添加
+//    if(availableTags.length>0){
+//    	
+//    	for(var i = 0; i < availableTags.length; i++){
+//    		if(vin.indexOf(availableTags[i]) == -1){
+//    			availableTags.push(vin);
+//    		}
+//    	}
+//    }else{
+//	    availableTags.push(vin);
+//    }
+//    
     data = json.mains;
     brand = json.brand;
     gridCfg.setData([]);
@@ -424,7 +448,8 @@ function checkVin(){
     if (vin && (vin.length == 17 || vin.length == vin_len)){
         return true;
     }else{
-        nui.alert("请输入" + vin_len + "位或17位VIN编码！");
+//    	parent.showMsg("请输入" + vin_len + "位或17位VIN编码！","W");
+    	parent.showMsg("请输入17位VIN编码！","W");
         return false;
     }
 }
@@ -589,7 +614,7 @@ function setVinLenght(obj){
     }
 
     var query_vin = nui.get("vin");
-    vin_input.setValue(null);
+    vin_input.val(null);
     query_vin.setEmptyText(("请输入" + obj + "后" + vin_len + "位VIN码").replace("全部品牌后", ""));
 }
 
@@ -602,7 +627,7 @@ function selectBrand4003(data, json){
     vinWin.show();
     vinForm.clear();
     var brandTmpl = '<div class="search-result-list-item" style="float:left;cursor:pointer;"'
-                  + ' onclick="vin_input.setValue(\'[vin]\'); queryVin(); closeSelectBrand(vinWin);">'
+                  + ' onclick="vin_input.val(\'[vin]\'); queryVin(); closeSelectBrand(vinWin);">'
                   + '    <div class="search-result-list-item-title">'
                   + '        VIN：[vin1]<span class="search-result-list-item-title-color">[vin2]</span>'
                   + '    </div>'
@@ -790,3 +815,29 @@ function searchStok()
         token:token
     });
 }
+
+//获取vin输入缓存并组合成数组
+function getAvailableTags(){
+	for(var i=0;i<localStorage.length;i++){
+		var key=localStorage.key(i);
+		var value=localStorage.getItem(key);
+		if(availableTags.length>0){
+			for(var i =0;i<availableTags.length;i++){
+				//判断是否重复
+				if(value.indexOf(availableTags[i]) == -1){
+					availableTags.push(value);
+				}				
+			}
+			
+		}else{
+			availableTags.push(value);
+		}
+	}
+	return availableTags;
+}
+
+
+
+
+
+

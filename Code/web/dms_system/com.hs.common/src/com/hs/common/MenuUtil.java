@@ -186,33 +186,28 @@ public class MenuUtil {
 				}
 			}
 			
-			
 	        String sysDomain = Env.getContributionConfig("system", "url", "webDomain", "SYS");
 	        String webPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();  
 	    	
-			DataObject[] appArr = ResauthUtils.getComAppFunction();
+			DataObject[] appArr = ResauthUtils.getAppFunction();
+			System.out.println("==============资源数据条数：" + appArr.length);
 			if(appArr.length > 0) {
 				boolean isExists = false;
 				for(int k=0; k<appArr.length; k++) {
 					DataObject appObj = appArr[k];
-					String parentId = appObj.getString("parentsid");
 		        	String linkAction = appObj.getString("funcaction");
-		        	/*System.out.println("==============="+linkAction);
-		        	if(menuId != null && parentId != "") {
-			        	if(parentId != null && parentId != "") {
-			        		linkAction = webPath + sysDomain + linkAction;
-			        	} else {
-			        		linkAction = webPath + linkAction;
-			        	}
-		        	}else {
-		        		linkAction = webPath + sysDomain + linkAction;
-		        	}
-		        	System.out.println("==============="+linkAction);*/
-		        	if(linkAction != null && actionUrl.indexOf(linkAction) > 0) {
-		        		isExists = true;
-		        		break;
-		        	}else {
+		        	String funcType = appObj.getString("funcType");
+		        	if(funcType.equalsIgnoreCase("app")) {
 		        		isExists = false;
+		        	} else {
+			        	if(linkAction != null && actionUrl.indexOf(linkAction) > 0 && actionUrl.indexOf(".flow") > 0) {
+			        		isExists = true;
+			        		System.out.println("==============需要判断==============="+linkAction);
+			        		System.out.println("==============需要判断==============="+actionUrl);
+			        		break;
+			        	}else {
+			        		isExists = false;
+			        	}
 		        	}
 				}
 				if(!isExists) {
@@ -220,6 +215,7 @@ public class MenuUtil {
 		    		return true;
 				}
 			}
+			System.out.println("==============需要判断===============");
 	        //Map<String, Object> attrMap = muo.getUserObject().getAttributes();
 	        String userId = (String) u.get("loginName");
 			//查询用户对应的角色
@@ -229,7 +225,7 @@ public class MenuUtil {
 	    		check = false;
 	    		return false;
 	    	}
-			List<DataObject> menuList = Arrays.asList(menuArr);
+			//List<DataObject> menuList = Arrays.asList(menuArr);
 			
 			List<DataObject> resList = new ArrayList<DataObject>();
 	    	//查询角色对应的资源
@@ -240,25 +236,26 @@ public class MenuUtil {
 				CollectionUtils.addAll(resList, resArr);
 			}
 			//取唯一资源ID
-			Set<DataObject> set = new HashSet<DataObject>();    //去重
-			set.addAll(resList); 
-			List<DataObject> resIdList = new ArrayList<DataObject>(set);
+			//Set<DataObject> set = new HashSet<DataObject>();    //去重
+			//set.addAll(resList); 
+			//List<DataObject> resIdList = new ArrayList<DataObject>(set);
 			//资源ID对应的详细资源信息
 			List<DataObject> resInfoList = new ArrayList<DataObject>();
-			for(int j=0; j<resIdList.size(); j++) {
-				DataObject resObj = resIdList.get(j);
+			for(int j=0; j<resList.size(); j++) {
+				DataObject resObj = resList.get(j);
 				String resId = resObj.getString("resId");
-				DataObject[] resInfo = ResauthUtils.getResInfo(resId);
+				DataObject[] resInfo = ResauthUtils.getFunctionInfo(resId);
 				CollectionUtils.addAll(resInfoList, resInfo);
 			}
-			Set<DataObject> setAll = new HashSet<DataObject>();    //去重
-			setAll.addAll(menuList);    
-			setAll.addAll(resInfoList);  
-	        List<DataObject> c = new ArrayList<DataObject>(setAll);
-	        for(int i = 0; i<c.size(); i++) {
-	        	DataObject d = c.get(i);
-	        	String parentId = d.getString("parentsid");
+			//Set<DataObject> setAll = new HashSet<DataObject>();    //去重
+			//setAll.addAll(menuList);    
+			//setAll.addAll(resInfoList);  
+	        //List<DataObject> c = new ArrayList<DataObject>(setAll);
+			int k = 0;
+	        for(int i = 0; i<resInfoList.size(); i++) {
+	        	DataObject d = resInfoList.get(i);
 	        	String linkAction = d.getString("funcaction");
+	        	k++;
 	        	/*if(parentId != null && parentId != "") {
 	        		linkAction = webPath + sysDomain + linkAction;
 	        	} else {
@@ -278,7 +275,6 @@ public class MenuUtil {
 	        	}
 	        	
 	        }
-
 	        return check;
 	    	
 		}catch (Throwable ex) {

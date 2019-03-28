@@ -74,7 +74,7 @@ function setInitData(params){
 function toOperating(funccodeStr){
 	for(var i =0;i<treeNodes.length;i++){
 		if(treeNodes[i].funccode==funccodeStr){
-			toOpen(treeNodes[i].funccode,treeNodes[i].funcname,treeNodes[i].funcactioin);
+			toOpen(treeNodes[i].funccode,treeNodes[i].funcname,treeNodes[i].funcaction);
 		}
 	}
 }

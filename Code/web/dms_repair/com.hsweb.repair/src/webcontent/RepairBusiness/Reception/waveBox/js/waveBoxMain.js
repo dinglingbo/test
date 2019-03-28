@@ -369,11 +369,12 @@ $(document)
 					};
 					mainGrid.on("rowclick", function(e) {
 						var record = e.record;
-						/*
-						 * if(record.status>0){
-						 * nui.get("deletBtn").setVisible(false); }else{
-						 * nui.get("deletBtn").setVisible(true); }
-						 */
+					    if(record.status>1){
+					    	nui.get("deletBtn").setVisible(false); 
+					    }else{
+					    	nui.get("deletBtn").setVisible(true); 
+					    }
+						 
 					});
 					/*
 					 * var statusList = "0,1,2,3"; var p =
@@ -718,56 +719,39 @@ function del() {
 		showMsg("工单不能删除!", "W");
 		return;
 	}
-	nui.mask({
-		el : document.body,
-		cls : 'mini-mask-loading',
-		html : '处理中...'
-	});
-	var index = 0;
-	nui.ajax({
-        url: baseUrl +"com.hsapi.repair.baseData.query.queryRpsPart.biz.ext",
-        type: "post",
-        cache: false,
-        async: false,
-        data: {
-        	serviceId : row.id
-        },
-        success: function(text) {
-            var data = text.data;
-            if(data.length > 0){
-            	for(var i = 0 , l = data.length ; i < l ; i++){
-            		if(data[i].pickQty > 0){
-            			index++;
-            			showMsg("该工单已领料不能删除","W");
-            			
-            		}
-            	}
-            }
-        }
-    });
-	if(index > 0){
-		nui.unmask(document.body);
-		return;
-	}
-	nui.ajax({
-        url: baseUrl +"com.hsapi.repair.repairService.crud.bxUpdateRpsDisabled.biz.ext",
-        type: "post",
-        cache: false,
-        async: false,
-        data: {
-        	id: row.id,
-        	isDisabled : 0
-        },
-        success: function(text) {
-        	if(text.errCode == "S"){
-        		showMsg("工单删除成功");
-        		onSearch();
-        	}else{
-        		shpwMsg(text.errMsg,"W")
-        	}
-        	nui.unmask(document.body);
-        }
-    });
+	
+	nui.confirm("是否确定删除此工单？", "友情提示",function(action){
+		 if(action == "ok"){
+			nui.mask({
+			        el: document.body,
+			        cls: 'mini-mask-loading',
+			        html: '处理中...'
+			});
+			var params = {
+		        data:{
+		            id:row.id||0,
+		            isDisabled:0
+		        }
+		    };
+		    svrDelBill(params, function(data){
+		        data = data||{};
+		        var errCode = data.errCode||"";
+		        var errMsg = data.errMsg||"";
+		        if(errCode == 'S'){
+		            mainGrid.removeRow(row);
+		            showMsg("删除成功!","S");
+		        }else{
+		            showMsg(errMsg||"删除失败!","E");
+		        }
+		        nui.unmask(document.body);
+		    }, function(){
+		        nui.unmask(document.body);
+		    });
+		 }else {
+				return;
+		 }
+	}); 
+	
 }
 
 function newCheckMainMore() {

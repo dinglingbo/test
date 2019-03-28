@@ -236,7 +236,7 @@
 			a.remark as mainRemark,
 			a.settle_type_id as settleTypeId,
 			b.id as detailId,
-			b.main_id as mainId,
+			a.code_id as mainId,
 			b.part_id as partId,
 			b.part_code as partCode,
 			b.part_name as partName,
@@ -802,7 +802,7 @@
             <isNotEmpty prepend="and" property="sLastOutDate">(A.last_out_date &gt;= #sLastOutDate#)</isNotEmpty>
             <isNotEmpty prepend="and" property="eLastOutDate">(A.last_out_date &lt; #eLastOutDate#)</isNotEmpty>
             <isNotEmpty prepend="and" property="storeId">(a.store_id = #storeId#)</isNotEmpty>
-            <isNotEmpty prepend="and" property="storeShelf">(a.shelf = #storeShelf#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="storeShelf">(a.shelf like '%$storeShelf$%')</isNotEmpty>
             <!--库存查询默认查询库存大于0 -->
             <isNotEmpty prepend="and" property="notShowAll">(a.stock_qty &gt; 0)</isNotEmpty>
              <!--库存查询默认查询库等于0 -->

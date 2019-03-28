@@ -52,7 +52,6 @@ public class LogicFlowFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse rep = (HttpServletResponse) response;
 		String url = req.getRequestURL().toString();
-		
 		/**
 		 * 如果根本不是逻辑流，就不要处理
 		 */
@@ -61,7 +60,6 @@ public class LogicFlowFilter implements Filter {
 			chain.doFilter(request, response);
 			return;
 		}
-
 		/**
 		 * 如果是返回登录提示，就不需要再处理
 		 */
@@ -71,13 +69,11 @@ public class LogicFlowFilter implements Filter {
 			chain.doFilter(request, response);
 			return;
 		}
-
 		// 检查是否为例外请求，如果是就不要处理
 		if (isExcludeUrls(url)) {
 			chain.doFilter(request, response);
 			return;
 		}
-
 		MyHttpServletRequestWrapper requestWrapper = null;
 		if (req instanceof HttpServletRequest) {
 

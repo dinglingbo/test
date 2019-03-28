@@ -155,6 +155,7 @@ $(document).ready(function ()
         var params = {};
         var value = e.data.key;
         value = value.replace(/\s+/g, "");
+        params.isDisabled = 0;
         if(value.length<3){
             e.cancel = true;
             return;
@@ -637,7 +638,7 @@ function doSetMainInfo(car){
     fguestId = car.guestId||0;
     fcarId = car.id||0;
 
-    doSearchCardTimes(fguestId);
+    doSearchCardTimes(fguestId,fcarId);
     doSearchMemCard(fguestId);
     doSearchSell(fguestId);
     $("#guestNameEl").html(car.guestFullName);
@@ -786,7 +787,7 @@ function setInitData(params){
                         fguestId = data.guestId||0;
                         fcarId = data.carId||0;
 
-                        doSearchCardTimes(fguestId);
+                        doSearchCardTimes(fguestId,fcarId);
                         doSearchMemCard(fguestId);
                         xyguest = data;
                         nui.get("contactorName").setText(contactor.name);
@@ -1717,7 +1718,7 @@ function showCardTimes(){
     carCheckInfo.hide();
     memCardGrid.clearRows();
 
-    doSearchCardTimes(fguestId);
+    doSearchCardTimes(fguestId,fcarId);
 }
 function showCard(){
     if(!fguestId || advancedMemCardWin.visible) {
@@ -1795,7 +1796,7 @@ function doSearchSell(guestId)
     window.open("http://www.baidu.com?backurl="+window.location.href); 
 }*/
 var showcF = 1;
-function doSearchCardTimes(guestId)
+function doSearchCardTimes(guestId,fcarId)
 {
     cardTimesGrid.clearRows();
     if(!guestId) return;
@@ -1806,6 +1807,7 @@ function doSearchCardTimes(guestId)
     p.status = 2; 
     p.type = 2;
     p.isRefund = 0;
+    p.carId = fcarId;
     cardTimesGrid.load({
     	token:token,
         p:p
@@ -4133,11 +4135,14 @@ function sureAdvancedGuest(){
 		add();
 	}
 	var carNo = nui.get("guestCarNo").getValue();
-	var result = isVehicleNumber(carNo);
-	if(!result){
+    //判断车牌号,返回是否正确，和转化后的车牌
+	var falge = isVehicleNumber(carNo);
+	nui.get("guestCarNo").setValue(falge.vehicleNumber);
+	if(!falge.result){
 		showMsg("请输入正确的车牌号","W");
 		return;
-	}
+	}else{
+		carNo = falge.vehicleNumber;
 	var name = "散客";
 	 var guest = { 
 			 fullName:name,
@@ -4200,16 +4205,17 @@ function sureAdvancedGuest(){
  		    }
  		}
  	 });
+	}
 }
 
-function isVehicleNumber(vehicleNumber) {
+/*function isVehicleNumber(vehicleNumber) {
     var result = false;
     if (vehicleNumber.length == 7){
       var express = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/;
       result = express.test(vehicleNumber);
     }
     return result;
-}
+}*/
 
 function addOrEdit(serviceId,billTypeId)
 {

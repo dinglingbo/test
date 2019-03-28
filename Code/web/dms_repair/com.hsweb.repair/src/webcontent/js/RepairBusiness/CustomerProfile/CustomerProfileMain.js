@@ -22,8 +22,8 @@ var jumpUrl = "";//跳转连接
 var xs = 0;
 var isDisabledHash=[{name:"启用"},{name:"禁用"}];
 $(document).ready(function(v){
-	nui.get("mergeBtn").hide();
-	nui.get("splitBtn").hide();
+	//nui.get("mergeBtn").hide();
+	//nui.get("splitBtn").hide();
     grid = nui.get("datagrid1");
     grid.setUrl(gridUrl);
     grid.on("drawcell",function(e){
@@ -32,9 +32,16 @@ $(document).ready(function(v){
          var column = e.column;
          var id = record.id;
          if(column.field == "carNo"){
-         	e.cellHtml ='<a id="car" href="##" onclick="showCarInfo('+e.record._uid+')">'+e.record.carNo+'</a>';
+        	 if(e.record.carNo==null){
+        		 e.cellHtml ='';
+        	 }else{
+        		 e.cellHtml ='<a id="car" href="##" onclick="showCarInfo('+e.record._uid+')">'+e.record.carNo+'</a>';
+        	 }
+         	
          }else if(column.field == "isDisabled"){
-         	e.cellHtml =isDisabledHash[e.value].name;
+        	 if (isDisabledHash && isDisabledHash[e.value]) {
+        		 e.cellHtml =isDisabledHash[e.value].name;
+        	 }
          }
     });
     queryForm = new nui.Form("#queryForm");
@@ -365,7 +372,7 @@ function split() {
 	if(row){
 		nui.open({
 	        url: webPath + contextPath +"/repair/RepairBusiness/CustomerProfile/Split.jsp?token="+token,
-	        title: "资料拆分", width: 810, height: 430,
+	        title: "资料拆分", width: 610, height: 350,
 	        onload: function () {
 	            var iframe = this.getIFrameEl();
 	            iframe.contentWindow.setData(row);
@@ -597,6 +604,8 @@ function setInitData(params) {
         menunamestatus.setText("本日新来厂客户");
         doSearch(p);
     }else if(params.id == 'isDisabledCar'){//客户报表 禁用车辆
+    	jumpUrl = "isDisabledCar";
+    	nui.get("isDisabled").setValue(1);
     	var p={};
     	p.lastMonthLoss = 1;
     	p.isDisabled = 1;

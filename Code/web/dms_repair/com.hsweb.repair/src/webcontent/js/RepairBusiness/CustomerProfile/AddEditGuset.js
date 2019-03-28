@@ -645,9 +645,11 @@ function addCarList(){
     	showMsg("VIN不规范，请确认！","W");
     	return;
     }
-    	//判断车牌号
+    //判断车牌号,返回是否正确，和转化后的车牌
 	var falge = isVehicleNumber(car.carNo);
-	if(!falge){
+	nui.get("carNo").setValue(falge.vehicleNumber);
+	car.carNo = falge.vehicleNumber;
+	if(!falge.result){
 		showMsg("请输入正确的车牌号","W");
 		return;
 	}else{

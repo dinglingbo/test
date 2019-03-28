@@ -161,6 +161,7 @@ $(document).ready(function ()
         var params = {};
         var value = e.data.key;
         value = value.replace(/\s+/g, "");
+        params.isDisabled = 0;
         if(value.length<3){
             e.cancel = true;
             return;
@@ -781,7 +782,7 @@ function doSetMainInfo(car){
     fguestId = car.guestId||0;
     fcarId = car.id||0;
 
-    doSearchCardTimes(fguestId);
+    doSearchCardTimes(fguestId,fcarId);
     doSearchMemCard(fguestId);
     doSearchSell(fguestId);
     
@@ -945,7 +946,7 @@ function setInitData(params){
                         fguestId = data.guestId||0;
                         fcarId = data.carId||0;
 
-                        doSearchCardTimes(fguestId);
+                        doSearchCardTimes(fguestId,fcarId);
                         doSearchMemCard(fguestId);
                         doSearchSell(fguestId);
                         
@@ -2011,7 +2012,7 @@ function showCardTimes(){
     advancedMemCardWin.hide();
     memCardGrid.clearRows();
 
-    doSearchCardTimes(fguestId);
+    doSearchCardTimes(fguestId,fcarId);
 }
 
 function showCard(){
@@ -2027,7 +2028,7 @@ function showCard(){
     cardTimesGrid.clearRows();
     doSearchMemCard(fguestId);
 }
-function doSearchCardTimes(guestId)
+function doSearchCardTimes(guestId,fcarId)
 {
     cardTimesGrid.clearRows();
     if(!guestId) return;
@@ -2038,6 +2039,7 @@ function doSearchCardTimes(guestId)
     p.notPast = 1; 
     p.status = 2; 
     p.isRefund = 0;
+    p.carId = fcarId;
     cardTimesGrid.load({
     	token:token,
         p:p

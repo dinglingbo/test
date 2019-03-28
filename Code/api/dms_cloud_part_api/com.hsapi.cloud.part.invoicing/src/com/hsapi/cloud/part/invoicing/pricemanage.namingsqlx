@@ -42,12 +42,12 @@
     </select>
     
     <select id="queryPartSellPriceHash" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-    	select a.id as partId, a.code as partCode, a.common_id as commonId, c.sell_price as sellPrice 
+    	select a.id as partId, a.code as partCode, a.common_id as commonId,a.part_brand_id as partBrandId, c.sell_price as sellPrice 
 		from wb_common.com_attribute a
 		inner join pj_part_stock b
 		on a.id = b.part_id
 		inner join pj_part_price c
-		on b.orgid = c.orgid and a.id = c.part_id
+		on b.orgid = c.orgid and a.id = c.part_id		
 		where 1 = 1 
 		<dynamic>
             <isNotEmpty prepend="and" property="orgid">(b.orgid = #orgid# and b.orgid = #orgid#)</isNotEmpty>

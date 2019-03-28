@@ -372,20 +372,27 @@ function onSearch()
 {
     doSearch();
 }
-function doSearch() {
+function doSearch(setInitData) {
     var gsparams = getSearchParam();
-    if(nui.get("seachType").getValue()==2){
-    	gsparams.sEnterDate = null;
-    	gsparams.eEnterDate = null;
-    	gsparams.isSettle=0;
-    	gsparams.seachType=2;//用于判断是查什么
-    }else if(nui.get("seachType").getValue()==1){
-    	gsparams.isSettle=1;
-    	gsparams.seachType=1;//用于判断是查什么
-    }else if(nui.get("seachType").getValue()==0){
-    	gsparams.isSettle=0;
-    	gsparams.seachType=0;//用于判断是查什么
+    if(setInitData=="setInitData"){//首页进来,或者选择查询类别，不受时间限制，都查今天的
+        beginDateEl.setValue(getNowStartDate());
+        endDateEl.setValue(getNowEndDate());
+    	gsparams.sEnterDate = getNowStartDate();
+    	gsparams.eEnterDate = getNowEndDate();
+        if(nui.get("seachType").getValue()==2){
+        	gsparams.sEnterDate = null;
+        	gsparams.eEnterDate = null;
+        	gsparams.isSettle=0;
+        	gsparams.seachType=2;//用于判断是查什么
+        }else if(nui.get("seachType").getValue()==1){
+        	gsparams.isSettle=1;
+        	gsparams.seachType=1;//用于判断是查什么
+        }else if(nui.get("seachType").getValue()==0){
+        	gsparams.isSettle=0;
+        	gsparams.seachType=0;//用于判断是查什么
+        }
     }
+
     
     var xcdate = getDays(gsparams.sEnterDate,gsparams.eEnterDate);
     if(xcdate>92){
@@ -530,15 +537,15 @@ function setInitData(params) {
     if (params.id == 'settleQty') {
     	nui.get("seachType").setValue(1);
     	nui.get("seachType").setText("结算车辆");
-    	onSearch();
+    	doSearch("setInitData");
 
     } else if (params.id == 'serviceBillQty') {
     		nui.get("seachType").setValue(2);
     		nui.get("seachType").setText("在修车辆");
-    		onSearch();
+    		doSearch("setInitData");
     } else if (params.id == 'recordBillQty') {
 		nui.get("seachType").setValue(0);
 		nui.get("seachType").setText("今日进厂");
-		onSearch();
+		doSearch("setInitData");
 }
 }

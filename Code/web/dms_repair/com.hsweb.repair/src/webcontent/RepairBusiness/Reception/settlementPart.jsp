@@ -853,10 +853,15 @@
         	$.ajaxSettings.async = false;
         	if(params.name == "结账单"){
 				 $.post(params.baseUrl+"com.hsapi.repair.repairService.query.querySettleAmt.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){
-    				    if(text.errCode=="S"){ 
-	    				 	document.getElementById("yh").innerHTML = text.data.totalPrefAmt.toFixed(2);
+    				    if(text.errCode=="S"){     				 	
 	    				 	document.getElementById("cash1").innerHTML = text.data.balaAmt.toFixed(2);
-	    				 	document.getElementById("expRateAmt").innerHTML = text.data.allowanceAmt.toFixed(2);			
+	    				 	if(text.data.allowanceAmt<0){
+	    				 		document.getElementById("expRateAmt").innerHTML = "0.00";
+	    				 		document.getElementById("yh").innerHTML = (text.data.totalPrefAmt-text.data.allowanceAmt).toFixed(2);
+	    				 	}else{
+	    				 		document.getElementById("expRateAmt").innerHTML = text.data.allowanceAmt.toFixed(2);
+	    				 		document.getElementById("yh").innerHTML = text.data.totalPrefAmt.toFixed(2);
+	    				 	} 			
 	    					var money = transform(text.data.balaAmt+"");
 							document.getElementById("money").innerHTML = money;
 	    					

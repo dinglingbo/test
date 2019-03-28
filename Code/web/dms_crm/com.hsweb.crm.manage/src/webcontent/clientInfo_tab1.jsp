@@ -90,8 +90,8 @@ pageEncoding="UTF-8" session="false" %>
                 <tr>
                     <td><span class="title title-width1">车型信息：</span></td>
                     <td colspan="3">
-                        <textarea id="carModelInfo" name="carModelInfo" class="mini-textarea width6" onValuechanged=""
-                            onKeyup="carModelInfo.doValueChanged()" style="height: 80px;" emptyText="">
+                        <textarea id="carModelText" name="carModelText" class="mini-textarea width6" onValuechanged=""
+                            onKeyup="carModelText.doValueChanged()" style="height: 80px;" emptyText="">
                     </textarea>
                     </td>
 

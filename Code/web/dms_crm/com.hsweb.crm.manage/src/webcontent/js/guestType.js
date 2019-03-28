@@ -300,36 +300,49 @@ function sendInfo(e) {
     var sendWcUrl = {};
     switch (tab.name) {
         case "bir":
-             gridList = gridkhsr.getData();
+             gridList = addServiceType(gridkhsr.getData(),10);
             break;
         case "lic":
-            gridList = gridjzns.getData();
+        	gridList = addServiceType(gridjzns.getData(),8);
             sendWcUrl = 'manage/sendWechatWindow/sWcInfoMoreLicense.jsp';
             break;
         case "due":
-            gridList = gridclnj.getData();
+        	gridList = addServiceType(gridclnj.getData(),9);
             sendWcUrl = 'manage/sendWechatWindow/sWcInfoMoreYearCheck.jsp';
             break;
         case "care":
-            gridList = gridbydq.getData();
+        	gridList = addServiceType(gridbydq.getData(),5);
             sendWcUrl = 'manage/sendWechatWindow/sWcInfoMoreRemind.jsp';
             break;
         case "insure":
-            gridList = gridjqx.getData();
+        	gridList = addServiceType(gridjqx.getData(),7);
             sendWcUrl = 'manage/sendWechatWindow/sWcInfoMoreInsurance.jsp';
             break;
         case "annual":
-            gridList = gridsyx.getData();
+        	gridList = addServiceType(gridsyx.getData(),6);
             sendWcUrl = 'manage/sendWechatWindow/sWcInfoMoreInsurance.jsp';
             break;
         case "type":
-            gridList = gridkhlx.getData();
+        	gridList = addServiceType(gridkhlx.getData(),11);//其他
             break;
         default:
             break;
     }
     if (e == 1) {// 1发送短信
-        sendInfoWin(gridList);
+
+        var dataArr = [];
+        for(var i=0;i<gridList.length;i++){
+            if(gridList[i].mobile){
+                dataArr.push(gridList[i]);
+            }
+        }
+        if(dataArr.length <1){
+            showMsg("筛选至少包含一位有手机联系方式的客户","W");
+            return;
+        }else{
+            sendInfoWin(dataArr);
+        }
+
     }else if (e == 2) {// 2发送微信
         var dataArr = [];
         for(var i=0;i<gridList.length;i++){
@@ -337,7 +350,7 @@ function sendInfo(e) {
                 dataArr.push(gridList[i]);
             }
         }
-        if(dataArr.lenght <2){
+        if(dataArr.length <1){
             showMsg("筛选至少包含一位已绑定微信号的客户","W");
             return;
         }else{
@@ -350,7 +363,7 @@ function sendInfo(e) {
                 dataArr.push(gridList[i]);
             }
         }
-        if(dataArr.lenght <2){
+        if(dataArr.length <2){ 
             showMsg("筛选至少包含两位已绑定微信号的客户","W");
             return;
         }else {
@@ -359,19 +372,23 @@ function sendInfo(e) {
     } else if (e == 4) {// 4发送微信卡券
         var dataArr = [];
         for(var i=0;i<gridList.length;i++){
-            if(gridList[i].wechatOpenId){
-                dataArr.push(gridList[i]);
+        	var data = gridList[i];
+            if(data.wechatOpenId){
+            	data.userNickname = data.guestName;
+            	data.userMarke = data.wechatServiceId;
+            	data.storeName = currOrgName;
+            	data.userOpid = data.wechatOpenId;
+                dataArr.push(data);
             }
         }
-        if(dataArr.lenght <2){
+        if(dataArr.length <2){
             showMsg("筛选至少包含一位已绑定微信号的客户","W");
             return;
         }else{
-            sendWcCoupon(gridList);
+            sendWcCoupon(dataArr);
         }
     }
 }
-
 
 function sendWcPic(list) {
     if (list.length < 1) {
@@ -416,30 +433,31 @@ function sendWcText(list,sendWcUrl){//发送微信消息
 
 
 function sendWcCoupon(list) {
-    if (list.length < 1) {
-        showMsg("没有可发送微信的客户","E");
-        return;
-    }
-    var rows = [];
-    for (var  i = 0; i < list.length; i++) {
-        var data = {};
-        data.userNickname = list[i].guestName;
-        data.userMarke = list[i].wechatServiceId;
-        data.storeName = currOrgName;
-        data.userOpid = list[i].wechatOpenId;
-        rows.push(data);
-    }
-
     nui.open({                        
         url: webPath + contextPath  + "/manage/sendWechatWindow/sWcInfoCoupon.jsp?token="+token,
         title: "发送卡券", width: 800, height: 350,
         onload: function () {
         var iframe = this.getIFrameEl();
-        iframe.contentWindow.setData(rows);
+        iframe.contentWindow.setData(list);
     },
     ondestroy: function (action) {
             //重新加载
             //query(tab);
         }
     });
+}
+
+function addServiceType(list,type){
+	if(list.length <1){
+		return;
+	}
+	var Arr = [];
+	for(var i =0;i<list.length;i++){
+		var  data = list[i];
+		data.serviceType = type;
+		data.guestId=data.conId;
+    	data.guestSource = 0;//系统客户
+		Arr.push(data);
+	}
+	return Arr;
 }

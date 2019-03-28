@@ -546,6 +546,7 @@
     <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopstart0</sourceNode>
       <targetNode>assign10</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link19</targetConnections>
     <location x="270" y="153"/>
@@ -594,6 +595,10 @@
     <size height="28" width="28"/>
     <nodeLabel>assign10label</nodeLabel>
     <process:copy>
+      <process:from type="query" pattern="reference">tempCar/id</process:from>
+      <process:to type="query">tempCar1/userCarId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">tempCar/carBrandId</process:from>
       <process:to type="query">tempCar1/carBrandId</process:to>
     </process:copy>
@@ -612,6 +617,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">tempCar/vin</process:from>
       <process:to type="query">tempCar1/carVin</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tempCar/carModelFullName</process:from>
+      <process:to type="query">tempCar1/carModelFullName</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">

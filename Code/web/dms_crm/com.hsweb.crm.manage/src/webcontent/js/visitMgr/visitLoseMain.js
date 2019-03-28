@@ -146,6 +146,9 @@ function mtAdvisorChanged(e){
 
 function SetData(){ 
 	var row = gridCar.getSelected();
+	row.guestId = row.contactorId;//(回访历史表 guestId 存联系人id)
+	row.serviceType = 4;//客户回访
+    row.guestSource = 0;//系统客户
 	if(row){
 		mini.open({
 			url: webPath + contextPath + "/manage/visitMgr/visitLoseMainDetail.jsp?token="+ token,
@@ -332,6 +335,9 @@ function sendWcCoupon() {
     row.userMarke = row.wechatServiceId;
     row.storeName = currOrgName;
     row.userOpid = row.wechatOpenId;
+	row.guestId = row.contactorId;//(回访历史表 guestId 存联系人id)
+	row.serviceType = 4;//客户回访
+    row.guestSource = 0;//系统客户
     var list = [];
     list.push(row);
 
@@ -345,6 +351,7 @@ function sendWcCoupon() {
     ondestroy: function (action) {
             //重新加载
             //query(tab);
+    	gridCar.reload();
         }
     });
 }

@@ -9,7 +9,7 @@
   - Description:
 -->
 <head>
-<title>资料合并</title>
+<title>客户选择</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     

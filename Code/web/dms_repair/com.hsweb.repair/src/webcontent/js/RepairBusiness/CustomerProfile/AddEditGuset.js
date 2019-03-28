@@ -320,6 +320,7 @@ function getSaveData(){
 	return resultData;
 }
 var queryUrl = baseUrl+"com.hsapi.repair.repairService.svr.getGuestCarContactInfoById.biz.ext";
+var oldGuest = null;
 function setData(data)
 {
 		if(isEmptyObject(data)){
@@ -328,6 +329,7 @@ function setData(data)
 	var carNo = null;
 	var guestFullName = null;
 	if(data.guest){
+		oldGuest = data.guest;
 		resultGuest.guestId=data.guest.guestId;
 		carNo =data.guest.carNo;
 	    guestFullName =data.guest.guestFullName; 
@@ -1010,5 +1012,48 @@ function wechatBin(){
 	 		}
 	});
 }
+
+function split() {
+	var rows = cardatagrid.getSelecteds();
+	if(rows.length){
+		nui.open({
+	        url: webPath + contextPath +"/repair/RepairBusiness/CustomerProfile/Split.jsp?token="+token,
+	        title: "资料拆分", width: 630, height: 300,
+	        onload: function () {
+	            var iframe = this.getIFrameEl();
+	            iframe.contentWindow.setData(rows,oldGuest);
+	        },
+
+	        ondestroy: function (action) {
+	            grid.reload();
+	        }
+	    });
+	}else{
+		showMsg("请选择车辆!","W");
+	}
+    
+}
+
+function mergeCar(){
+	var rows = cardatagrid.getSelecteds();
+	if(rows.length){
+		nui.open({
+	        url: webPath + contextPath +"/repair/RepairBusiness/CustomerProfile/selectCustomer.jsp?token="+token,
+	        title: "资料合并", width: 700, height: 400,
+	        onload: function () {
+	            var iframe = this.getIFrameEl();
+	            iframe.contentWindow.setData(rows,oldGuest);
+	        },
+
+	        ondestroy: function (action) {
+	            grid.reload();
+	        }
+	    });
+	}else{
+		showMsg("请选择车辆!","W");
+	}
+	
+}
+
 
 

@@ -11,7 +11,7 @@
 -->
 <head>
     <title>选择客户</title>
-     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/selectSplitGuest.js?v=1.0.0"></script> 
+     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/selectCustomer.js?v=1.0.0"></script> 
     <style type="text/css">
         table {
             font-size: 12px;
@@ -47,32 +47,50 @@
         <table style="width:100%;">
             <tr>
                 <td style="width:100%;">
+                    
+                    <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;" id="onOk"><span class="fa fa-save fa-lg"></span>&nbsp;确定</ a>
                     <a class="nui-button" onclick="CloseWindow('cancle')" plain="true" id="cancle" style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
                 </td>
             </tr>
         </table>
     </div>
+    	<div class="nui-toolbar" style="border-bottom: 0;">
+		<div class="nui-form" id="queryForm">
+			<table class="table">
+				<tr>
+					<td>
+					   <label style="font-family: Verdana;">快速查询：</label>
+						<input class="nui-textbox" name="guestFullName" emptyText="客户名称" onenter="onSearch()" style="width:150px" />					
+						<input class="nui-textbox" name="mobile" id="mobile"  onenter="onSearch()" emptyText="手机号码" style="width:150px" />
+						<a class="nui-button" iconCls="" plain="true" onclick="onSearch()">
+							<span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
      <div style="padding-bottom: 5px;padding-top: 5px">
-         <span>拆分原因:</span>  <input class="nui-textbox" name="remark" width="50%"  id="remark" />
-      </div>
+         <span>合并原因:</span>  <input class="nui-textbox" name="remark" width="45%"  id="remark" />
+     </div>
     <div class="nui-fit">
     <div  id="guestGrid" class="nui-datagrid"
 	    style="width:100%;height:100%;"
 	    dataField="list"
-	    showPager="false"
+	    showPager="true"
 	    showModified="false"
 	    allowSortColumn="false"
 	    allowCellWrap=true
 	    allowCellEdit="true"
+	    pageSize="20"
+        totalField="page.count"
 	     >
       <div property="columns">
+           <div width="30" type="indexcolumn">序号</div>
            <div field="id" headerAlign="center" allowSort="false" visible="false" width="100" header="id" align="center"></div>
     	   <div field="fullName" headerAlign="center" allowSort="false" visible="true" width="100" header="客户姓名" align="center"></div>
     	    <div field="mobile" headerAlign="center" allowSort="false" visible="true" width="120" header="客户手机" align="center"></div>
            <div field="sex" headerAlign="center" name="sex" allowSort="false" visible="true" width="50" header="性别" align="center" ></div>
            <div name="addr" field="addr"  headerAlign="center"  visible="true" width="200px" header="地址"></div>
-          
-           <div field="wechatOptBtn" name="itemOptBtn" width="100" headerAlign="center" header="操作" align="center" ></div>
      </div>
     </div>
    </div>

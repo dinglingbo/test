@@ -22,8 +22,8 @@ var jumpUrl = "";//跳转连接
 var xs = 0;
 var isDisabledHash=[{name:"启用"},{name:"禁用"}];
 $(document).ready(function(v){
-	//nui.get("mergeBtn").hide();
-	//nui.get("splitBtn").hide();
+	nui.get("mergeBtn").hide();
+	nui.get("splitBtn").hide();
     grid = nui.get("datagrid1");
     grid.setUrl(gridUrl);
     grid.on("drawcell",function(e){

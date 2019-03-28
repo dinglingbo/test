@@ -219,7 +219,7 @@
                <div field="billPackageId" width="120" headerAlign="center" allowSort="true" visible="false">员工帐号</div>  
                 <div field="packageName" headerAlign="center" allowSort="false"
                      visible="true" width="100" header="套餐名称">
-                     <input property="editor" vtype="float" class="nui-textbox"/>
+                     <input property="editor"  class="nui-textbox"/>
                 </div>
                 <div field="subtotal" headerAlign="center"
                      allowSort="false" visible="true" width="60" header="套餐金额" align="center">
@@ -259,7 +259,7 @@
             <div property="columns">
                 
                 <div field="itemName" name="itemName" headerAlign="center" allowSort="false" visible="true" width="100">项目名称
-                	<input property="editor" vtype="float" class="nui-textbox"/>
+                	<input property="editor"  class="nui-textbox"/>
                 </div>
                 <div field="itemTime" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">工时/数量
                     <input property="editor" vtype="float" class="nui-textbox"/>

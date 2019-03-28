@@ -335,9 +335,15 @@
       <sourceNode>subprocess0</sourceNode>
       <targetNode>assign9</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" id="link22" name="link22" displayName="连接线" lineType="note" isDefault="false" type="exception">
+    <sourceConnections xsi:type="process:tLink" description="" id="link18" name="link18" displayName="连接线" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>assign11</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link19</targetConnections>
     <location x="948" y="150"/>
@@ -388,9 +394,9 @@
       <sourceNode>assign11</sourceNode>
       <targetNode>assign10</targetNode>
     </sourceConnections>
-    <targetConnections>link22</targetConnections>
     <targetConnections>link4</targetConnections>
     <targetConnections>link9</targetConnections>
+    <targetConnections>link18</targetConnections>
     <location x="974" y="57"/>
     <size height="28" width="28"/>
     <nodeLabel>assign11label</nodeLabel>

@@ -218,11 +218,10 @@ function sendInfo(){
         showMsg("请选中一条数据","W");
         return; 
     }
-    if (!row.tel) {
-        showMsg("该数据没有客户手机号码，无法发送短信","W");
+    if (!row.mobile) {
+        showMsg("该客户没有手机号码，无法发送短信","W");
         return; 
     }
-    row.mobile = row.tel;
     row.guestId = '';
     row.serviceType = 1;//电销
     row.guestSource = 1;

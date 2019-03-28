@@ -73,9 +73,10 @@
         var pathapi = apiPath + wechatApi;
         var gridUrl =pathapi + "/com.hsapi.wechat.autoServiceBackstage.weChatImageTextMessage.queryImageTextMessageMain.biz.ext"
         var pushUrl =pathapi + "/com.hsapi.wechat.autoServiceBackstage.weChatImageTextMessage.pushUserImageTextMessage.biz.ext"
+        var saveUrl = apiPath + repairApi +"/com.hsapi.repair.repairService.crud.saveRemindRecordMore.biz.ext";
         var pathweb = webPath + wechatDomain;
         var imageTextData = nui.get("imageTextData");
-        var mainDatas = [];
+        var mainList = [];
 
         $(function () {
             imageTextData.setUrl(gridUrl);
@@ -88,7 +89,7 @@
         });
 
         function setData(list) {
-            mainDatas = list;
+            mainList = list;
         }
 
         //推送用户
@@ -96,9 +97,9 @@
             var row = imageTextData.getSelected();
             // console.log(row);
             var opArr = [];
-            for (var  i = 0; i < mainDatas.length; i++) {
+            for (var  i = 0; i < mainList.length; i++) {
                 var temp = {
-                    userOpid:mainDatas[i].wechatOpenId
+                    userOpid:mainList[i].wechatOpenId
                 };
                 opArr.push(temp);
             }
@@ -108,21 +109,86 @@
                 orgid:currOrgId
             };
             if (row) {
+                nui.mask({
+            el : document.body,
+            cls : 'mini-mask-loading',
+            html : '发送中...'
+        });
                 nui.ajax({
                     url:pushUrl,
                     type:'post',
                     data:params,
                     success:function(res){
+                        nui.unmask(document.body);
                         if(res.errCode == 'S'){
-                            showMsg("图文消息发送成功",'S');
+                            saveRecord();
+                            // showMsg("图文消息发送成功",'S');
                         }else{
-                            showMsg("图文消息发送失败",'E');
+                            // showMsg("图文消息发送失败",'E');
                         }
 
                     }
                 })
             }
         }
+
+
+        function saveRecord() {
+            var row = imageTextData.getSelected();
+            var contentText = row.textTitle;
+            var contentId = row.imageTextId;
+
+                    //拼接对象
+                    var pArr = [];
+                    for (var i = 0; i < mainList.length; i++) {
+                        var data = mainList[i];
+                        var params ={
+                            serviceType:data.serviceType,
+                            mainId:data.id||'',
+                            guestId:data.guestId||'',
+                            carId:data.carId||'',
+                            carNo: data.carNo || '',
+                            visitMode:'011404',//微信图文
+                            visitContent:contentText,
+                            guestSource:data.guestSource,
+                            contentId:contentId
+                        }
+                        pArr.push(params);
+
+                        if(i == mainList.length-1){
+                            var paramData=nui.encode({params:pArr});
+                            //开始
+                            nui.ajax({
+                                url:saveUrl,
+                                type:'post',
+                                async: false,
+                                data:paramData,
+                                success:function(res){
+                                    if(res.errCode == 'S'){
+                                            showMsg("发送成功！","S");
+                                            
+                                    }else{
+                                            showMsg("发送失败！","E");
+                                    }
+                                    onClose() ;
+                                },
+                                error: function (jqXHR) {
+                                    showMsg(jqXHR.responseText);
+                                }
+                            })
+                            //结束
+
+                        }
+
+                    }
+                    //结束拼接对象
+
+                }
+
+            
+
+            
+   
 
         //新增
         function add() {
@@ -212,6 +278,21 @@
             var form = new nui.Form("#form1");
             form.reset();
         }
+
+        
+        function onClose() {
+            window.CloseOwnerWindow();
+        }
+
+        function CloseWindow(action) {
+            if (action == "close") {
+
+            } else if (window.CloseOwnerWindow)
+                return window.CloseOwnerWindow(action);
+            else
+                return window.close();
+        }
+
 
     </script>
 </body>

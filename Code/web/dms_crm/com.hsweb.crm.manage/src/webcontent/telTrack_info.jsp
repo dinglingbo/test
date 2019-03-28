@@ -30,6 +30,7 @@ pageEncoding="UTF-8" session="false" %>
     nui.parse();
     var mainId = null;
     var baseUrl = apiPath + crmApi + "/"; 
+    var saveUrl= apiPath + repairApi + '/com.hsapi.repair.repairService.crud.saveRemindRecord.biz.ext';
     var dgScoutDetail  = nui.get("dgScoutDetail");
     var form1 = new nui.Form("#form1");
     var carModelHash = [];
@@ -112,8 +113,9 @@ function setScoutForm(record){
 
 //保存跟踪
 function saveScout(){
-  var url =baseUrl+ "com.hsapi.crm.telsales.crmTelsales.saveScout.biz.ext";
-  doSave(form1, url,saveRecord);
+	saveRecord() ;
+  //var url =baseUrl+ "com.hsapi.crm.telsales.crmTelsales.saveScout.biz.ext";
+  //doSave(form1, url,saveRecord);
 }
 
 
@@ -171,7 +173,7 @@ function saveRecord() {
         guestSource:1
     }
     nui.ajax({
-        url:baseUrl+ "com.hsapi.crm.svr.visit.saveVisitRecord.biz.ext",
+        url:saveUrl,
         type:'post',
         data:{
             params:params

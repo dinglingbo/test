@@ -9,7 +9,7 @@
       <sourceNode>start0</sourceNode>
       <targetNode>assign10</targetNode>
     </sourceConnections>
-    <location x="-296" y="146"/>
+    <location x="-361" y="146"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
@@ -24,7 +24,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="-294" y="182"/>
+    <location x="-359" y="182"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>

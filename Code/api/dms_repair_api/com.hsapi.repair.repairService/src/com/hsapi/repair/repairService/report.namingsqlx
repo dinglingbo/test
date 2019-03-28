@@ -1882,13 +1882,6 @@
 			b.car_no AS carNo,
 			a.part_code AS partCode,
 			a.part_name AS partName,
-			c.oem_code AS oemCode,
-			c.part_brand_id AS partBrandId,
-			c.apply_car_model AS applyCarModel,
-			c.car_type_id_f AS carTypeIdF,
-			c.car_type_id_s carTypeIdS,
-			c.car_type_id_t carTypeIdT,
-			c.spec AS spec,
 			a.qty as qty,
             a.unit_price as unitPrice,
 			a.unit as unit,
@@ -1904,8 +1897,7 @@
 		FROM
 			 wb_repair.rps_part a
 		INNER JOIN wb_repair.rps_maintain b ON a.service_id = b.id
-		INNER JOIN wb_common.com_attribute c ON c.id = a.part_id
-    INNER JOIN wb_common.com_guest d on b.guest_id =d.id
+    	INNER JOIN wb_common.com_guest d on b.guest_id =d.id
 		WHERE 1=1
 		
 		<dynamic>
@@ -1964,32 +1956,12 @@
                 (b.is_check= #isCheck#)
             </isNotEmpty>
             
-             <isNotEmpty prepend="and" property="partBrandId">  
-                (c.part_brand_id = #partBrandId#)
-            </isNotEmpty>
-            
-            <isNotEmpty prepend="and" property="partTypeId">  
-				(c.car_type_id_f = #partTypeId# or c.car_type_id_s = #partTypeId# or c.car_type_id_t = #partTypeId#)
-			</isNotEmpty>
-				
-            <isNotEmpty prepend="and" property="carTypeIdF">  
-               (c.car_type_id_f = #carTypeIdF#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="carTypeIdS">  
-                (c.car_type_id_s = #carTypeIdS#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="carTypeIdT">  
-                (c.car_type_id_t = #carTypeIdT#)
-            </isNotEmpty>
             <isNotEmpty prepend="and" property="partId">  
                 (a.PART_ID = #partId#)
             </isNotEmpty>
   
             <isNotEmpty prepend="and" property="partName">  
                 (a.part_name like '%$partName$%')
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="partNameAndPY">  
-                (c.FULL_NAME like '%$partNameAndPY$%' or d.name_py like '%$partNameAndPY$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="partCode">  
                 (a.part_code like '%$partCode$%')

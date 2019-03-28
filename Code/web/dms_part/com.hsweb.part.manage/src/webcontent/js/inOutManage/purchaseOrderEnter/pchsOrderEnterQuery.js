@@ -428,7 +428,7 @@ function onDrawCell(e)
 function onPrint(){
 	var data=rightGrid.getSelected();
 	var params={
-			id : data.mainId,
+			id : data.codeId,
 		auditSign:1,
 		guestId : data.guestId,
 		currUserName :currUserName,
@@ -439,7 +439,7 @@ function onPrint(){
 		currOrgName : currOrgName
 	};
 	var detailParams={
-			mainId :data.mainId
+			mainId :data.codeId
 	};
 	var openUrl = webPath + contextPath+"/manage/inOutManage/purchaseOrderEnter/purchaseOrderEnterPrint.jsp";
 

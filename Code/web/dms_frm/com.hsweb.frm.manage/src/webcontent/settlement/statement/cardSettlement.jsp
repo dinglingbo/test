@@ -11,7 +11,7 @@
 
 <head>
 	<title>计次卡/储值卡结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardSettlement.js?v=1.4.7"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardSettlement.js?v=1.6.0"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -331,6 +331,14 @@
 												</td>
 												<td>
 												</td>
+										</tr>
+										<tr>
+											<td>
+												<div id="edit">
+														充值金额：<input class="mini-spinner" id="editSellAmt" name="editSellAmt" changeOnMousewheel="false" showbutton="false" allowNull="false"  cardid="" minValue="0" maxValue="1000000" amount="" style="width: 100px; " onvaluechanged="onChangedEdit">
+														赠送金额：<input class="mini-spinner" id="editSetAmt" name="editSetAmt" changeOnMousewheel="false" showbutton="false"  allowNull="false"  cardid="" minValue="0" maxValue="1000000" amount="" style="width: 100px; " >
+												</div>
+											</td>
 										</tr>
 									</tbody>
 								</table>

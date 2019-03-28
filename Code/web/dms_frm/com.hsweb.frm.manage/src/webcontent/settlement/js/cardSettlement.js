@@ -11,10 +11,13 @@ var type = null;
 var typeList = {};
 var guestData = {};
 var deductible = 0;
+var canModify = 0;//是否允许修改金额
 var row = {};
+var printRow={};//打印的卡
 var searchKeyEl = null;
 var searchNameEl = null;
 $(document).ready(function (){
+	$('#edit').hide();
 	$("body").on("blur","input[name='amount']",function(){
 		onChanged();
 	});
@@ -124,10 +127,14 @@ function setGuest(item){
 
 function onChanged() {
 	var count = scount();
-	if(parseFloat(count) > netInAmt){
-		showMsg("收款大于应收金额，请重新填写","W");
-		return;
+	//是否允许自由填写金额
+	if(canModify!=1){
+		if(parseFloat(count) > netInAmt){
+			showMsg("收款大于应收金额，请重新填写","W");
+			return;
+		}
 	}
+
 
 }
 
@@ -201,7 +208,7 @@ function addCardList(){
 			card = data.card;
 				$("<option value=''>—请选择储值卡—</option>").appendTo("#cardList");
 				for(var i = 0;i<data.card.length;i++){
-						$("<option  value="+data.card[i].id+">"+data.card[i].name+"&nbsp;&nbsp;&nbsp;&nbsp;"+"充值："+data.card[i].rechargeAmt+"&nbsp;&nbsp;&nbsp;&nbsp;"+"赠送："+data.card[i].giveAmt+"</option>").appendTo("#cardList");
+						$("<option  value="+data.card[i].id+","+data.card[i].canModify+">"+data.card[i].name+"&nbsp;&nbsp;&nbsp;&nbsp;"+"充值："+data.card[i].rechargeAmt+"&nbsp;&nbsp;&nbsp;&nbsp;"+"赠送："+data.card[i].giveAmt+"</option>").appendTo("#cardList");
 					}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -217,6 +224,7 @@ function checkField(id){
 		 var myselect=document.getElementById("optaccount"+s1[1]);
 		 var index=myselect.selectedIndex;
 		 var c  =myselect.options[index].value;
+
 	    var json = {
 	    		accountId:c,
 	    		token:token
@@ -245,6 +253,9 @@ function checkField(id){
 					}
 					
 					var byId = s1[1]+data.list[0].customId;
+					if(canModify==1){
+						 amt = nui.get("editSellAmt").getValue();
+					}
 					document.getElementById(byId).value = amt;
 					checkF = 0;
 				}
@@ -271,10 +282,13 @@ function settleOK() {
 		showMsg("请选择客户！","W");
 		return;
 	}
-	if(count!=netInAmt){
-		showMsg("付款金额和应付金额不一致，请重新确认！","W");
-		return;
-	}	
+	if(canModify!=1){
+		if(count!=netInAmt){
+			showMsg("付款金额和应付金额不一致，请重新确认！","W");
+			return;
+		}
+	}
+	
 	var accountTypeList =[];
 	for(var i = 0;i<tableNum+1;i++){
 		var  Sel=document.getElementById("optaccount"+i);
@@ -316,7 +330,7 @@ function settleOK() {
 				carNo:guestData.carNo,
 		};
 		json={
-				payAmt:netInAmt,
+				payAmt:count,
 				remark:nui.get("txtreceiptcomment").getValue(),
 				payType:020104,
 				accountTypeList:accountTypeList,
@@ -325,23 +339,41 @@ function settleOK() {
 		}
 	}else if(cardType==2){
 		url =payurl;
-		card={
-				cardId:row.id,
-				cardName:row.name,
-				giveAmt	: row.giveAmt,
-				guestId:guestData.guestId,
-				guestName:guestData.guestFullName,	
-				rechargeAmt	: row.rechargeAmt,
-				totalAmt 	: row.totalAmt,
-				balaAmt		: row.totalAmt,
-				periodValidity : row.periodValidity,
-				sellAmt :row.rechargeAmt,
-				carId:guestData.carId,
-				carNo:guestData.carNo
-		};
-
+		
+		var editSetAmt = nui.get("editSetAmt").getValue();//修改的赠送金额
+		if(canModify==1){
+			card={
+					cardId:row.id,
+					cardName:row.name,
+					giveAmt	: editSetAmt,
+					guestId:guestData.guestId,
+					guestName:guestData.guestFullName,	
+					rechargeAmt	: count,
+					totalAmt 	: parseFloat(count)+parseFloat(editSetAmt),
+					balaAmt		: parseFloat(count)+parseFloat(editSetAmt),
+					periodValidity : row.periodValidity,
+					sellAmt :count,
+					carId:guestData.carId,
+					carNo:guestData.carNo
+			};
+		}else{
+			card={
+					cardId:row.id,
+					cardName:row.name,
+					giveAmt	: row.giveAmt,
+					guestId:guestData.guestId,
+					guestName:guestData.guestFullName,	
+					rechargeAmt	: count,
+					totalAmt 	: parseFloat(count)+parseFloat(row.giveAmt),
+					balaAmt		: parseFloat(count)+parseFloat(row.giveAmt),
+					periodValidity : row.periodValidity,
+					sellAmt :count,
+					carId:guestData.carId,
+					carNo:guestData.carNo
+			};
+		}
 		json={
-				payAmt:netInAmt,
+				payAmt:count,
 				remark:nui.get("txtreceiptcomment").getValue(),
 				payType:020104,
 				accountTypeList:accountTypeList,
@@ -366,6 +398,7 @@ function settleOK() {
 							if (data.errCode == "S") {
 								showMsg(data.errMsg||"收款成功！","S");
 								CloseWindow("ok");
+								printRow = card;
 								print();
 							} else {
 								showMsg(data.errMsg,"W");
@@ -406,9 +439,10 @@ function print(){
         currCompLogoPath: currCompLogoPath,
 		token : token
 	};
+	printRow.name = row.name;
 	params = {
 		guestData:guestData,
-		row :row,
+		row :printRow,
 		p:p
 	};
 	if(cardType==1){
@@ -516,6 +550,7 @@ function noPayOk(){
 				carNo:guestData.carNo
 		    };
 		//整理数据
+		printRow = cardTimes;
 		 payAmt = row.sellAmt;
 		 json = nui.encode({
 			    "cardTimes":cardTimes,
@@ -524,20 +559,39 @@ function noPayOk(){
 		  });
 	}else if(cardType==2){
 		noPayMeth = apiPath + repairApi + "/com.hsapi.repair.repairService.settlement.preSettleRecharge.biz.ext";
-		payAmt=row.rechargeAmt;
-		var stored={
-				cardId		: row.id,
-				cardName	: row.name,
-				giveAmt		: row.giveAmt,
-				guestId		: guestData.guestId,
-				guestName	: guestData.guestFullName,	
-				rechargeAmt	: row.rechargeAmt,
-				totalAmt 	: row.totalAmt,
-				periodValidity : row.periodValidity,
-				balaAmt : row.totalAmt,
-				carId:guestData.carId,
-				carNo:guestData.carNo
-		};
+		payAmt=scount();
+		var editSetAmt = nui.get("editSetAmt").getValue();//修改的赠送金额
+		if(canModify==1){
+			var stored={
+					cardId		: row.id,
+					cardName	: row.name,
+					giveAmt		: editSetAmt,
+					guestId		: guestData.guestId,
+					guestName	: guestData.guestFullName,	
+					rechargeAmt	: payAmt,
+					totalAmt 	: parseFloat(payAmt)+parseFloat(editSetAmt),
+					periodValidity : row.periodValidity,
+					balaAmt : parseFloat(payAmt)+parseFloat(editSetAmt),
+					carId:guestData.carId,
+					carNo:guestData.carNo
+			};
+		}else{
+			var stored={
+					cardId		: row.id,
+					cardName	: row.name,
+					giveAmt		: row.giveAmt,
+					guestId		: guestData.guestId,
+					guestName	: guestData.guestFullName,	
+					rechargeAmt	: payAmt,
+					totalAmt 	: parseFloat(payAmt)+parseFloat(row.giveAmt),
+					periodValidity : row.periodValidity,
+					balaAmt : parseFloat(payAmt)+parseFloat(row.giveAmt),
+					carId:guestData.carId,
+					carNo:guestData.carNo
+			};
+		}
+
+		printRow = stored;
 	    json = nui.encode({
 		    "stored":stored,
 		    remark:nui.get("txtreceiptcomment").getValue(),
@@ -595,8 +649,15 @@ function payCard(){
 	 var myselect=document.getElementById("cardList");
 	 var index=myselect.selectedIndex;
 	 var c  =myselect.options[index].value;
+	  canModify = c.split(",")[1];
+	  if(canModify==1){
+		  $('#edit').show();
+	  }else{
+		  $('#edit').hide();
+	  }
+	  var carId = c.split(",")[0];
 	for(var i = 0;i<card.length;i++){
-		if(c==card[i].id){
+		if(carId==card[i].id){
 			row = card[i];
 			if(cardType==1){
 				netInAmt = card[i].sellAmt;
@@ -656,4 +717,9 @@ function add(){
     searchKeyEl.focus();
     searchKeyEl.setValue("");//点增加给输入框个值，防止触发不了onchanged方法，不能放入客户
 
+}
+
+function onChangedEdit(){
+	checkF = 1;
+	checkField("optaccount0");
 }

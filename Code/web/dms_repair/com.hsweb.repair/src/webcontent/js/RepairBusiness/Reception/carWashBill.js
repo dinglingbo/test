@@ -373,12 +373,12 @@ $(document).ready(function ()
     memCardGrid.on("drawcell",function(e)
     {
         var row = e.row;
-        if(e.field == "balaAmt")
+/*        if(e.field == "balaAmt")
         {
             var totalAmt = row.totalAmt || 0;
             var useAmt = row.useAmt||0;
             e.cellHtml = totalAmt - useAmt;
-        }
+        }*/
         if(e.field == "periodValidity")
         {
             if(e.value == -1){

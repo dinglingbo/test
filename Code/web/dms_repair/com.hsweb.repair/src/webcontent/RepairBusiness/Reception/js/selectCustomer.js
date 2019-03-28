@@ -49,8 +49,8 @@ function CloseWindow(action) {
     if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
     else window.close();
 }
-var cars = null;
-var oldGuest = null;
+var cars = {};
+var oldGuest = {};
 function setData(rows,guest){
 	cars = rows;
 	oldGuest = guest;
@@ -61,7 +61,7 @@ function onOk()
 {
 	var guest = guestGrid.getSelected();
 	if(guest){
-		if(guest.id = oldGuest.id){
+		if(guest.id == oldGuest.id){
 			showMsg("合并的客户相同，不用合并!","W");
 			return;
 		}
@@ -79,7 +79,7 @@ function onOk()
 						type : "post",
 						data : JSON.stringify({
 				        	guest:guest,
-				        	carList:rows,
+				        	carList:cars,
 				        	oldGuest:oldGuest,
 				        	remark:remark,
 							token: token
@@ -91,7 +91,7 @@ function onOk()
 					            if(data.errCode == "S")
 					            {
 					                showMsg("合并成功","S");
-					                onCancel();
+					                CloseWindow("ok");
 					            }
 					            else{
 					                showMsg(data.errMsg||"合并失败","E");

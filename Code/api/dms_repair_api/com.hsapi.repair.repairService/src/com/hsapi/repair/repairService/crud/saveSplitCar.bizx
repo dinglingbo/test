@@ -751,9 +751,9 @@
       <sourceNode>assign5</sourceNode>
       <targetNode>assign6</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="LE">
+        <process:simpleCondition operator="ISNULL">
           <process:leftOperand type="query">guestId</process:leftOperand>
-          <process:rightOperand type="literal">0</process:rightOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -1207,7 +1207,7 @@
       <targetNode>invokePojo13</targetNode>
     </sourceConnections>
     <targetConnections>link31</targetConnections>
-    <location x="1508" y="134"/>
+    <location x="1510" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign26label</nodeLabel>
     <process:copy>
@@ -1260,7 +1260,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign26label" name="label" nodeType="label">
-    <location x="1498" y="170"/>
+    <location x="1500" y="186"/>
     <figSize height="20" width="49"/>
     <node>assign26</node>
   </nodes>
@@ -1278,7 +1278,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="query" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">carGuest</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>

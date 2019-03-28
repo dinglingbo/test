@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购入库查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderEnter/pchsOrderEnterQuery.js?v=1.0.12"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderEnter/pchsOrderEnterQuery.js?v=1.0.16"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -137,9 +137,9 @@
             </div>
             <div header="数量单价" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" datatype="float" summaryType="sum" field="orderQty" width="60" headerAlign="center" header="入库数量"></div>
-                    <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="入库单价"></div>
-                    <div allowSort="true" datatype="float" summaryType="sum" field="orderAmt" width="60" headerAlign="center" header="入库金额"></div>
+                    <div allowSort="true" datatype="float" summaryType="sum" field="enterQty" width="60" headerAlign="center" header="入库数量"></div>
+                    <div allowSort="true" datatype="float" field="enterPrice" width="60" headerAlign="center" header="入库单价"></div>
+                    <div allowSort="true" datatype="float" summaryType="sum" field="enterAmt" width="60" headerAlign="center" header="入库金额"></div>
                     <div allowSort="true" datatype="float" summaryType="sum" field="outableQty" width="60" headerAlign="center" header="剩余库存"></div>
                     <div allowSort="true" field="detailRemark" width="120" headerAlign="center" header="备注"></div>
                 </div>

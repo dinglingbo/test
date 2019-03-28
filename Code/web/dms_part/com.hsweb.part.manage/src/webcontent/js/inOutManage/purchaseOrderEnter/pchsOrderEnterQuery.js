@@ -366,7 +366,7 @@ function onDrawCell(e)
 {
     switch (e.field)
     {
-	    case "serviceId":
+	    case "manualCode":
 			e.cellHtml ='<a href="##" onclick="edit()">'+e.value+'</a>';
 			break;
 	    case "partBrandId":
@@ -428,7 +428,7 @@ function onDrawCell(e)
 function onPrint(){
 	var data=rightGrid.getSelected();
 	var params={
-			id : data.mainId,
+			id : data.codeId,
 		auditSign:1,
 		guestId : data.guestId,
 		currUserName :currUserName,
@@ -439,7 +439,7 @@ function onPrint(){
 		currOrgName : currOrgName
 	};
 	var detailParams={
-			mainId :data.mainId
+			mainId :data.codeId
 	};
 	var openUrl = webPath + contextPath+"/manage/inOutManage/purchaseOrderEnter/purchaseOrderEnterPrint.jsp";
 
@@ -459,7 +459,7 @@ function onPrint(){
 
 function edit(){
     var row = rightGrid.getSelected();
-    row.id=row.mainId;
+    row.id=row.codeId;
     row.auditSign=1;
     if(!row) return; 
     var item={};

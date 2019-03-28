@@ -51,7 +51,7 @@ $(document).ready(function(v) {
         {
             for(var j=0;j<outList.length;j++)
             {
-                if(manList[i].empName == outList[j].pickMan)
+                if(manList[i].pickMan == outList[j].pickMan)
                 {
                     for(var k=0; k<keyEnterList.length; k++){
                     	manList[i][keyEnterList[k]] = outList[j][keyEnterList[k]];
@@ -159,14 +159,15 @@ function initGridByName(columnList) {
 	var columnsObj = {};
 	var columnsList = [];
 	columnsList.push({type: "indexcolumn",width:"40", header: "序号" });
-	columnsList.push({field: "empName",width:"80", summaryType:"count", headerAlign: "center", allowSort: true, header: "领料人"});
+	columnsList.push({field: "pickMan",width:"80", summaryType:"count", headerAlign: "center", allowSort: true, header: "领料人"});
 	if(columnList && columnList.length > 0){
 		for (i = 0; i < columnList.length; i++) {
-			var partName = columnList[i];
+			var colObj = columnList[i];
+			var partName = colObj.partName;
 			var outQtyColumnName = partName+'_outQty';
 			var costAmtColumnName = partName+'_costAmt';
 			var sellAmtColumnName = partName+'_sellAmt';
-			var obj = {header:month,columns:[
+			var obj = {header:partName,columns:[
 			        	{field: outQtyColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "出库数量",dataType:"float"},
 			        	{field: costAmtColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "成本金额",dataType:"float"},
 			        	{field: sellAmtColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "销售金额",dataType:"float"}

@@ -572,7 +572,7 @@
                     if(errCode == "S"){
 						nui.unmask(document.body);
                         showMsg('领料成功!','S'); 
-                        CloseWindow("ok");
+                        //CloseWindow("ok");
                     }else{ 
                     	nui.unmask(document.body);
                         showMsg(errMsg,'E'); 

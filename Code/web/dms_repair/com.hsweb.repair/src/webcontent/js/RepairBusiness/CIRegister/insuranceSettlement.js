@@ -127,7 +127,7 @@ function onChanged() {
 	var count = scount();
 	 deductible = nui.get("deductible").getValue()||0;
 	var PrefAmt = nui.get("PrefAmt").getValue()||0;
-	if(PrefAmt>=0){
+	if(PrefAmt>-1){
 		var amount = parseFloat(netInAmt) - parseFloat(PrefAmt);
 		zongAmt = amount.toFixed(2);
 		document.getElementById('amount').innerHTML = amount.toFixed(2);

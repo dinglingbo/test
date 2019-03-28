@@ -34,16 +34,6 @@ $(document).ready(function(v)
     }else{
     	orgidsEl.setValue(currOrgid);
     }
-
-    
-	getAllPartBrand(function(data) {
-		brandList = data.brand;
-		nui.get('partBrandId').setData(brandList);
-		brandList.forEach(function(v) {
-			brandHash[v.id] = v;
-		});
-	});
-
 	
 	rightGrid.on("drawcell",function(e){
 		switch (e.field) {
@@ -53,32 +43,6 @@ $(document).ready(function(v)
 		case "outReturnSign":
 				e.cellHtml="已归库";
 			break;
-		case "partBrandId":
-			  if(brandHash[e.value])
-              {
-//                  e.cellHtml = brandHash[e.value].name||"";
-              	if(brandHash[e.value].imageUrl){
-              		
-              		e.cellHtml = "<img src='"+ brandHash[e.value].imageUrl+ "'alt='配件图片' height='25px' width=' '/><br> "+brandHash[e.value].name||"";
-              	}else{
-              		e.cellHtml = brandHash[e.value].name||"";
-              	}
-              }
-              else{
-                  e.cellHtml = "";
-              }
-			break;
-		 case "carTypeIdF":
-		 case "carTypeIdS":
-		 case "carTypeIdT":
-            if(partTypeHash[e.value])
-            {
-                e.cellHtml = partTypeHash[e.value].name||"";
-            }
-            else{
-                e.cellHtml = "";
-            }
-            break;
 		 case  "orgid":
 	        	for(var i=0;i<currOrgList.length;i++){
 	        		if(currOrgList[i].orgid==e.value){
@@ -121,19 +85,11 @@ $(document).ready(function(v)
 	
     quickSearch(4);
 
-	getAllPartType(function(data){
-		partTypeList=data.partTypes;
-		nui.get('partTypeId').setData(partTypeList);
-		partTypeList.forEach(function(v){
-			partTypeHash[v.id]=v;
-		});
-	});
 });
 function getSearchParams(){
     var params = {};
     params.partCode=nui.get("partCode").getValue();
     params.partName=nui.get("partName").getValue();
-    params.partBrandId=nui.get("partBrandId").getValue();
     params.serviceCode =nui.get('serviceCode').getValue();
     params.carNo =nui.get('carNo').getValue();
     params.sEnterDate =nui.get('sEnterDate').getFormValue();

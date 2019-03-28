@@ -9,6 +9,16 @@
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link12" name="link12" displayName="连接线" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="LE">
+          <process:leftOperand type="query">allowanceAmt</process:leftOperand>
+          <process:rightOperand type="literal">-1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <location x="-412" y="204"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
@@ -123,6 +133,7 @@
     <targetConnections>link11</targetConnections>
     <targetConnections>link15</targetConnections>
     <targetConnections>link31</targetConnections>
+    <targetConnections>link17</targetConnections>
     <location x="-107" y="374"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
@@ -980,6 +991,29 @@
     <location x="209" y="321"/>
     <figSize height="17" width="39"/>
     <node>assign20</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>end1</targetNode>
+    </sourceConnections>
+    <targetConnections>link12</targetConnections>
+    <location x="-359" y="284"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">优惠金额不能低于-1</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
+    <location x="-361" y="320"/>
+    <figSize height="17" width="32"/>
+    <node>assign1</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

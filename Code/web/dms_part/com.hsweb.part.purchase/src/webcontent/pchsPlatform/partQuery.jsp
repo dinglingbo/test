@@ -11,7 +11,7 @@
 <title>配件查询</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script
-	src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.30"></script>
+	src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.31"></script>
 <style type="text/css">
 		.table-label {
 			text-align: right;
@@ -109,7 +109,7 @@
 	                     showFilterRow="false" allowCellSelect="false" allowCellEdit="false">
 		          	 	<div property="columns">
 		          	 		<div type="indexcolumn">序号</div>
-		          	 		<div allowSort="true" field="goodsCode" width="50" headerAlign="center" allowSort="true">配件内码</div>
+		          	 		<div allowSort="true" field="goodsCode" width="50" headerAlign="center" allowSort="true">商品内码</div>
 		          	 		<div allowSort="true" field="partsCode" width="100" headerAlign="center" allowSort="true">配件编码</div>
 		          	 		<div allowSort="true" field="goodsName" width="300" headerAlign="center" allowSort="true">全称</div>
 		          	 		<div allowSort="true" field="brandName" width="100" headerAlign="center" allowSort="true">品牌</div>
@@ -145,7 +145,7 @@
 				       allowSortColumn="true">
 				      <div property="columns">
 				      	   <div headerAlign="center" type="indexcolumn" width="30">序号</div>
-				           <div field="goodsCode" name="goodsCode" width="80" visible="true" headerAlign="center" header="内码"></div>
+				           <div field="goodsCode" name="goodsCode" width="80" visible="true" headerAlign="center" header="商品内码"></div>
 					       <div field="partsCode" headerAlign="partsCode" visible="true" width="80"header="编码"></div>
 					       <div field="partsName" headerAlign="partsName" visible="true" width="80"header="配件名称"></div>
 					       <div field="oemCode" headerAlign="oemCode" visible="true" width="80"header="原厂编码"></div>

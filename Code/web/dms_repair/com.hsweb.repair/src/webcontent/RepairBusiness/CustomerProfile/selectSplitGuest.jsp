@@ -47,12 +47,14 @@
         <table style="width:100%;">
             <tr>
                 <td style="width:100%;">
-                    <a class="nui-button" onclick="save()" plain="true" style="width: 60px;" id="save" visible="false"><span class="fa fa-save fa-lg"></span>&nbsp;确定</ a>
                     <a class="nui-button" onclick="CloseWindow('cancle')" plain="true" id="cancle" style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
                 </td>
             </tr>
         </table>
     </div>
+     <div style="padding-bottom: 5px;padding-top: 5px">
+         <span>拆分原因:</span>  <input class="nui-textbox" name="remark" width="50%"  id="remark" />
+      </div>
     <div class="nui-fit">
     <div  id="guestGrid" class="nui-datagrid"
 	    style="width:100%;height:100%;"
@@ -61,6 +63,7 @@
 	    showModified="false"
 	    allowSortColumn="false"
 	    allowCellWrap=true
+	    allowCellEdit="true"
 	     >
       <div property="columns">
            <div field="id" headerAlign="center" allowSort="false" visible="false" width="100" header="id" align="center"></div>
@@ -68,6 +71,7 @@
     	    <div field="mobile" headerAlign="center" allowSort="false" visible="true" width="120" header="客户手机" align="center"></div>
            <div field="sex" headerAlign="center" name="sex" allowSort="false" visible="true" width="50" header="性别" align="center" ></div>
            <div name="addr" field="addr"  headerAlign="center"  visible="true" width="200px" header="地址"></div>
+          
            <div field="wechatOptBtn" name="itemOptBtn" width="100" headerAlign="center" header="操作" align="center" ></div>
      </div>
     </div>

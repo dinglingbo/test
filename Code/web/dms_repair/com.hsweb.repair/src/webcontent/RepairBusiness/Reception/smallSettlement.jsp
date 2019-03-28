@@ -404,8 +404,12 @@
 	         });
 	         $.ajaxSettings.async = false;
 	         $.post(params.baseUrl+"com.hsapi.repair.repairService.query.querySettleAmt.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){
-				    if(text.errCode=="S"){ 
-    				 	document.getElementById("expRateAmt").innerHTML = text.data.allowanceAmt.toFixed(2);			
+				    if(text.errCode=="S"){
+				    		if(text.data.allowanceAmt<0){
+	    				 		document.getElementById("expRateAmt").innerHTML = "0.00";
+	    				 	}else{
+	    				 		document.getElementById("expRateAmt").innerHTML = text.data.allowanceAmt.toFixed(2);
+	    				 	}  			
     				}else{
     					nui.alert(text.errMsg,"提示");
     				}

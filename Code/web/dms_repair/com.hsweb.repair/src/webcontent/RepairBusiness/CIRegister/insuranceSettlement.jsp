@@ -470,7 +470,7 @@
 
 											</td>
 											<td height="40" class="line24">
-												<input class="mini-spinner" id="PrefAmt" name="PrefAmt" changeOnMousewheel="false" showbutton="false" m="1" allowNull="false" minValue="0" maxValue="1000000" cardid="" amount="" style="width: 100px; float: left;" onvaluechanged="onChanged">
+												<input class="mini-spinner" id="PrefAmt" name="PrefAmt" changeOnMousewheel="false" showbutton="false" m="1" allowNull="false" minValue="-0.999999" maxValue="1000000" cardid="" amount="" style="width: 100px; float: left;" onvaluechanged="onChanged">
 											</td>
 										</tr>
 									</tbody>

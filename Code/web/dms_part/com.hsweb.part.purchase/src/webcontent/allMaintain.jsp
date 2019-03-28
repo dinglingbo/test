@@ -10,7 +10,7 @@
 -->
 <head>
 <title>全部工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/allMaintain.js?v=1.1.5"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/allMaintain.js?v=1.1.7"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -70,11 +70,11 @@
         </ul>
         <span class="separator"></span> -->
                              查询类型:<input class="nui-combobox" id="seachType"  name="seachType" data="[{seachType:0,text:'今日进厂'},{seachType:1,text:'今日结算车次'},{seachType:2,text:'今日在修车辆'}]"
-                          width="100px"  onvaluechanged="onSearch()" textField="text" valueField="seachType" value="0"/>
+                          width="100px"  onvaluechanged="doSearch('setInitData')" textField="text" valueField="seachType" value="0"/>
         <label style="font-family:Verdana;">进厂日期 从：</label>
-        <input class="nui-datepicker" id="sEnterDate" name="sEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd" onvaluechanged="onSearch()" showTime="false" showOkButton="false" showClearButton="false"/>
+        <input class="nui-datepicker" id="sEnterDate" name="sEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd"  showTime="false" showOkButton="false" showClearButton="false"/>
         <label style="font-family:Verdana;">至</label>
-        <input class="nui-datepicker" id="eEnterDate" name="eEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd" onvaluechanged="onSearch()" showTime="false" showOkButton="false" showClearButton="false"/>
+        <input class="nui-datepicker" id="eEnterDate" name="eEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd"  showTime="false" showOkButton="false" showClearButton="false"/>
                      工单类型:<input class="nui-combobox" id="billTypeId" emptyText="综合开单" name="billTypeId" data="[{billTypeId:999,text:'全部工单'},{billTypeId:0,text:'综合开单'},{billTypeId:2,text:'洗美开单'},{billTypeId:4,text:'理赔开单'},{billTypeId:6,text:'波箱开单'}]"
                           width="100px"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="999"/>
                           
@@ -84,7 +84,7 @@
                     <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="carNoSearch"/>
                     审核状态:<input class="nui-combobox" id="auditSign"  name="auditSign" data="[{billTypeId:999,text:'全部'},{billTypeId:0,text:'未审核'},{billTypeId:1,text:'已审核'}]"
                           width="100px"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="999"/>
-                    <span class="separator"></span>
+                    <br>
                     服务顾问：<input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
                         emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="90" valueFromSelect="true"/>
 <!--             <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"

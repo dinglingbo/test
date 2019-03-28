@@ -366,7 +366,7 @@ function onDrawCell(e)
 {
     switch (e.field)
     {
-	    case "serviceId":
+	    case "manualCode":
 			e.cellHtml ='<a href="##" onclick="edit()">'+e.value+'</a>';
 			break;
 	    case "partBrandId":
@@ -459,7 +459,7 @@ function onPrint(){
 
 function edit(){
     var row = rightGrid.getSelected();
-    row.id=row.mainId;
+    row.id=row.codeId;
     row.auditSign=1;
     if(!row) return; 
     var item={};

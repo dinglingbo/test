@@ -171,19 +171,29 @@
                                         <a class="nui-button" onclick="addCar()" id="addp">
                                             <span class="fa fa-plus fa-lg"></span>&nbsp;添加车辆 </a>
                                     </td>
-                                    <td >
-                                        <a class="nui-button" onclick="eaidCar()" id="addi">
+                                    <td style="width: 90px;text-align:left;">
+                                        <a class="nui-button" onclick="eaidCar()" id="addi" >
                                             <span class="fa fa-edit fa-lg"></span>&nbsp;修改车辆 </a>
                                     </td>
-
+                                    <td style="width: 90px;text-align:left;">
+                                        <a class="nui-button" onclick="mergeCar()" id="">
+                                            <span class="fa fa-edit fa-lg"></span>&nbsp;资料合并
+                                        </a>
+                                    </td>
+                                    <td style="text-align:left;">
+                                        <a class="nui-button" onclick="split()" id="split">
+                                            <span class="fa fa-edit fa-lg"></span>&nbsp;资料拆分
+                                        </a>
+                                    </td>
                                 </tr>
                             </table>
                         </div>
                         <div class="nui-fit">
                             <div id="cardatagrid" class="nui-datagrid" style="width: 100%;height:100%" showPager="false" sortMode="client" allowCellEdit="true" onrowdblclick="eaidCar()"
-                                allowCellSelect="true" multiSelect="true"  editNextOnEnterKey="true">
+                                allowCellSelect="true" multiSelect="true"  editNextOnEnterKey="true"
+                                >
                                 <div property="columns">
-
+                                    <div type="checkcolumn" width="50" class="mini-radiobutton" header="选择"></div>
                                     <div field="id" class="nui-hidden" allowSort="true" align="left" headerAlign="center" width="" visible="false">
                                         车辆ID
                                     </div>

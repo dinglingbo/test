@@ -26,14 +26,26 @@ $(document).ready(function (){
 	                 break;
 	        }
 	    });
-	  nui.get("cancle").focus();
-	  document.onkeyup = function(event) {
-	        var e = event || window.event;
-	        var keyCode = e.keyCode || e.which;// 38向上 40向下
-	        if ((keyCode == 27)) { // ESC
-	            CloseWindow('cancle');
-	        }
-	    } ;
+    //编辑开始前发生
+   /* guestGrid.on("cellbeginedit",function(e){
+    	var b = 0;
+    	switch (e.field)
+		{
+		   case "reason":
+			   e.cancel = false;
+			   break;
+		   default:
+			   break;
+		}
+     });*/
+   nui.get("cancle").focus();
+   document.onkeyup = function(event) {
+        var e = event || window.event;
+        var keyCode = e.keyCode || e.which;// 38向上 40向下
+        if ((keyCode == 27)) { // ESC
+            CloseWindow('cancle');
+        }
+    } ;
 });
 
 var saveSplit = baseUrl + "com.hsapi.repair.repairService.crud.saveSplitCar.biz.ext";
@@ -45,10 +57,12 @@ function wechatBin(row_uid){
 		    cls : 'mini-mask-loading',
 		    html : '保存中...'
 	    });
+	   var remark = nui.get("remark").value;
 		var json = nui.encode({
-			 car:carData,
+			 carList:carList,
 			 guest:row,
-			 action:"split",
+			 oldGuest:oldGuest,
+			 remark:remark,
 	 		 token:token
 	 	  });
 		 nui.ajax({
@@ -78,8 +92,10 @@ function CloseWindow(action) {
     if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
     else window.close();
 }
-var carData= null;
-function setData(params,car){
-	carData = car;
-	guestGrid.setData(params);
+var carList = {};
+var oldGuest = {};
+function setData(list,cars,guest){
+	carList = cars;
+	oldGuest = guest;
+	guestGrid.setData(list);
 }

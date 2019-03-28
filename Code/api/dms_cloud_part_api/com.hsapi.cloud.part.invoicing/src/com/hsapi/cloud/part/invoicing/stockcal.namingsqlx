@@ -121,7 +121,7 @@
 			
 			
 			<isNotNull prepend = "" property = "partCode">
-				AND (F.QUERY_CODE like '%$partCode$%'  or F.code like '%$partCode$' or F.oem_code like '%$partCode$')
+				AND ( F.code like '%$partCode$' or F.oem_code like '%$partCode$')
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "partName">
@@ -149,7 +149,7 @@
             </isNotEmpty>
 			
 			<isNotNull prepend = "" property = "partNameAndPY">
-				and (F.QUERY_CODE like '%$partNameAndPY$%' or F.NAME like '%$partNameAndPY$%' or F.FULL_NAME like '%$partNameAndPY$%' or F.NAME_PY like '%$partNameAndPY$%')
+				and ( F.NAME like '%$partNameAndPY$%' or F.FULL_NAME like '%$partNameAndPY$%' or F.NAME_PY like '%$partNameAndPY$%')
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "cartypeid">

@@ -116,7 +116,7 @@ public class PurchaseService {
     		}
     		m.put("amout",detailList.get(i).get("orderAmt"));
     		m.put("price",detailList.get(i).get("orderPrice"));
-    		m.put("goodsCode",detailList.get(i).get("srmPartId"));
+    		m.put("goodsCode",detailList.get(i).get("goodsCode"));
     		m.put("isMatchPrice",1);
     		m.put("qty",detailList.get(i).get("orderQty"));
     		m.put("remark",detailRemark);
@@ -226,7 +226,7 @@ public class PurchaseService {
 	}
 	
 	@Bizlet("根据电商编码查询电商库存明细")
-	public static String querySRMStockByCode(String access_token,String code,int count,int currpage) {
+	public static String querySRMStockByCode(String access_token,String code,String partsCode, int count,int currpage) {
 		String envType = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", "serverType");
 		String apiurl = Env.getContributionConfig("com.vplus.login",
@@ -241,12 +241,13 @@ public class PurchaseService {
 		if(currpage == 0) {
 			currpage = 1;
 		}
-		if(code == null || code.equals("")) {
+		if(partsCode == null || partsCode.equals("")) {
 			return "{\"status\":\"-1\", \"resultMsg\":\"请输入查询条件!\"}";
 		}
 		Map main = new HashMap();   
 		main.put("token", access_token);
 		main.put("goodsCode", code); //电商编码
+		main.put("partsCode", partsCode); //配件编码
 		main.put("count",count);
 		main.put("currpage", currpage);
 		JSONObject jsonObj = JSONObject.fromObject(main);

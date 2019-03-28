@@ -986,4 +986,81 @@
 			group by c.car_type_id_f
     </select>
     
+    <!--维修领料统计-->
+    <select id="queryRepairOut" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+	    	SELECT c.name as partName, a.pick_man as pickMan, sum(a.out_qty) as outQty, sum(a.true_cost) as costAmt,
+			       sum(a.sell_amt) as sellAmt
+			from wb_part.pj_repair_out a
+			inner join wb_repair.rps_maintain b
+			on a.service_id = b.id and a.service_code = b.service_code
+			inner join wb_common.com_attribute c
+			on a.part_id = c.id
+			where a.return_sign = 0
+			
+				 <isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
+                
+                <!--领料日期 -->
+                <isNotEmpty prepend="and" property="sPickDate">  
+                    (a.pick_date &gt;= #sPickDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="ePickDate">  
+                    (a.pick_date &lt; #ePickDate#)
+                </isNotEmpty>
+                
+                <!--出厂日期 -->
+                <isNotEmpty prepend="and" property="sOutDate">  
+                    (b.out_date &gt;= #sOutDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eOutDate">  
+                    (b.out_date &lt; #eOutDate#)
+                </isNotEmpty>
+			
+			
+			group by c.name, a.pick_man
+    	
+    	
+    </select>
+    
+    
+    <!--维修领料需要统计的配件名称-->
+    <select id="queryRepairOutPartName" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+	    	SELECT distinct c.name as partName
+			from wb_part.pj_repair_out a
+			inner join wb_repair.rps_maintain b
+			on a.service_id = b.id and a.service_code = b.service_code
+			inner join wb_common.com_attribute c
+			on a.part_id = c.id
+			where a.return_sign = 0
+			
+				 <isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
+                
+                <!--领料日期 -->
+                <isNotEmpty prepend="and" property="sPickDate">  
+                    (a.pick_date &gt;= #sPickDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="ePickDate">  
+                    (a.pick_date &lt; #ePickDate#)
+                </isNotEmpty>
+                
+                <!--出厂日期 -->
+                <isNotEmpty prepend="and" property="sOutDate">  
+                    (b.out_date &gt;= #sOutDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eOutDate">  
+                    (b.out_date &lt; #eOutDate#)
+                </isNotEmpty>
+    	
+    	
+    </select>
+    
+    
+    
+    
+    
 </sqlMap>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="preReceiveSettle" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="更新维修表状态为预结算  bala_audit_sign = 1&#xD;&#xA;103  综合维修收款&#xD;&#xA;104  储值卡充值款&#xD;&#xA;105  洗美套餐销售款&#xD;&#xA;106  洗美开单收款&#xD;&#xA;107  销售开单收款&#xD;&#xA;108  理赔开单收款&#xD;&#xA;&#xD;&#xA;0综合，1检查，2洗美，3销售，4理赔&#xD;&#xA;&#xD;&#xA;rps_expense 费用登记（判断 0综合，2洗美，4理赔 需要处理费用）&#xD;&#xA;&#xD;&#xA;com.hsapi.frm.frmService.rpsettle.rpSettle.biz.ext&#xD;&#xA;&#xD;&#xA;控制项目最高优惠，配件最高优惠，整单全免&#xD;&#xA;" title="Administrator&#x9;18-8-11 下午3:01">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="更新维修表状态为预结算  bala_audit_sign = 1&#xD;&#xA;103  综合维修收款&#xD;&#xA;104  储值卡充值款&#xD;&#xA;105  洗美套餐销售款&#xD;&#xA;106  洗美开单收款&#xD;&#xA;107  销售开单收款&#xD;&#xA;108  理赔开单收款&#xD;&#xA;119 波箱开单收款&#xD;&#xA;&#xD;&#xA;0综合，1检查，2洗美，3销售，4理赔&#xD;&#xA;&#xD;&#xA;rps_expense 费用登记（判断 0综合，2洗美，4理赔 需要处理费用）&#xD;&#xA;&#xD;&#xA;com.hsapi.frm.frmService.rpsettle.rpSettle.biz.ext&#xD;&#xA;&#xD;&#xA;控制项目最高优惠，配件最高优惠，整单全免&#xD;&#xA;" title="Administrator&#x9;18-8-11 下午3:01">
     <location x="-7" y="-210"/>
     <size height="298" width="601"/>
   </nodes>
@@ -8,16 +8,6 @@
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link35" name="link35" displayName="连接线" type="transition">
-      <sourceNode>start0</sourceNode>
-      <targetNode>assign24</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="LE">
-          <process:leftOperand type="query">allowanceAmt</process:leftOperand>
-          <process:rightOperand type="literal">-1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
     </sourceConnections>
     <location x="-412" y="204"/>
     <size height="28" width="28"/>
@@ -135,7 +125,6 @@
     <targetConnections>link31</targetConnections>
     <targetConnections>link32</targetConnections>
     <targetConnections>link34</targetConnections>
-    <targetConnections>link36</targetConnections>
     <location x="-107" y="374"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
@@ -273,6 +262,7 @@
     <targetConnections>link23</targetConnections>
     <targetConnections>link24</targetConnections>
     <targetConnections>link25</targetConnections>
+    <targetConnections>link36</targetConnections>
     <location x="450" y="206"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionbegin0label</nodeLabel>
@@ -995,6 +985,16 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link35" name="6" displayName="连接线" type="transition">
+      <sourceNode>assign10</sourceNode>
+      <targetNode>assign24</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">billTypeId</process:leftOperand>
+          <process:rightOperand type="literal">6</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link26</targetConnections>
     <location x="396" y="205"/>
     <size height="28" width="28"/>
@@ -1096,6 +1096,7 @@
     <sourceConnections xsi:type="process:tLink" id="link29" name="link29" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign19</sourceNode>
       <targetNode>assign5</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link30" name="预结算" displayName="连接线" type="transition">
       <sourceNode>assign19</sourceNode>
@@ -1263,23 +1264,19 @@
   <nodes xsi:type="process:tAssign" description="" id="assign24" name="赋值23" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link36" name="link36" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign24</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>transactionbegin0</targetNode>
     </sourceConnections>
     <targetConnections>link35</targetConnections>
-    <location x="-359" y="274"/>
+    <location x="517" y="301"/>
     <size height="28" width="28"/>
     <nodeLabel>assign24label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">E</process:from>
-      <process:to type="query">errCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">优惠金额不能低于-1</process:from>
-      <process:to type="query">errMsg</process:to>
+      <process:from type="literal" pattern="reference">119</process:from>
+      <process:to type="query">billTypeId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign24label" name="label" nodeType="label">
-    <location x="-364" y="310"/>
+    <location x="512" y="337"/>
     <figSize height="17" width="39"/>
     <node>assign24</node>
   </nodes>

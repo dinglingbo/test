@@ -10,46 +10,24 @@
       <targetNode>assign11</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link34" name="link34" displayName="连接线" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>assign12</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">rpsPrebook/prebookSource</process:leftOperand>
+          <process:rightOperand type="literal">042102</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link14</targetConnections>
-    <location x="268" y="382"/>
+    <location x="269" y="339"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">rpsPrebook/orgid</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userId</process:from>
-      <process:to type="query">rpsPrebook/recorderId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
-      <process:to type="query">rpsPrebook/recorder</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">currDate</process:from>
-      <process:to type="query">rpsPrebook/recordDate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
-      <process:to type="query">rpsPrebook/modifier</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">currDate</process:from>
-      <process:to type="query">rpsPrebook/modifyDate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">rpsPrebook/status</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">042101</process:from>
-      <process:to type="query">rpsPrebook/prebookSource</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="228" y="418"/>
-    <figSize height="17" width="109"/>
+    <location x="215" y="375"/>
+    <figSize height="20" width="136"/>
     <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="getPrimaryKey" displayName="getPrimaryKey" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
@@ -76,15 +54,25 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="848" y="527"/>
-    <figSize height="17" width="85"/>
+    <location x="836" y="527"/>
+    <figSize height="20" width="108"/>
     <node>invokePojo0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="link12" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
-      <targetNode>invokePojo1</targetNode>
+      <targetNode>assign15</targetNode>
       <process:transitionCondition/>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link40" name="link40" displayName="连接线" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>assign16</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">rpsPrebook/prebookSource</process:leftOperand>
+          <process:rightOperand type="literal">042102</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link23</targetConnections>
     <targetConnections>link27</targetConnections>
@@ -94,18 +82,10 @@
     <location x="735" y="254"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
-      <process:to type="query">rpsPrebook/modifier</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">currDate</process:from>
-      <process:to type="query">rpsPrebook/modifyDate</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="733" y="290"/>
-    <figSize height="17" width="32"/>
+    <location x="729" y="290"/>
+    <figSize height="20" width="40"/>
     <node>assign2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值1" displayName="赋值" collapsed="false" type="assign">
@@ -125,8 +105,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="874" y="418"/>
-    <figSize height="17" width="32"/>
+    <location x="870" y="418"/>
+    <figSize height="20" width="40"/>
     <node>assign3</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="updateEntity" displayName="updateEntity" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
@@ -139,7 +119,8 @@
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>assign3</targetNode>
     </sourceConnections>
-    <targetConnections>link0</targetConnections>
+    <targetConnections>link39</targetConnections>
+    <targetConnections>link41</targetConnections>
     <location x="878" y="254"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
@@ -154,8 +135,8 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="853" y="290"/>
-    <figSize height="17" width="73"/>
+    <location x="842" y="290"/>
+    <figSize height="20" width="94"/>
     <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" collapsed="false" type="end">
@@ -170,8 +151,8 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="1348" y="291"/>
-    <figSize height="17" width="32"/>
+    <location x="1344" y="291"/>
+    <figSize height="20" width="40"/>
     <node>end1</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="insertEntity" displayName="insertEntity" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
@@ -198,8 +179,8 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="993" y="527"/>
-    <figSize height="17" width="64"/>
+    <location x="984" y="527"/>
+    <figSize height="20" width="83"/>
     <node>invokePojo2</node>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
@@ -212,8 +193,8 @@
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" nodeType="label">
-    <location x="122" y="288"/>
-    <figSize height="17" width="25"/>
+    <location x="119" y="288"/>
+    <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" collapsed="false" type="assign">
@@ -247,8 +228,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="270" y="288"/>
-    <figSize height="17" width="25"/>
+    <location x="267" y="288"/>
+    <figSize height="20" width="31"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo4" name="getJVMDate" displayName="getJVMDate" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
@@ -270,8 +251,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo4label" name="label" nodeType="label">
-    <location x="166" y="288"/>
-    <figSize height="17" width="72"/>
+    <location x="157" y="288"/>
+    <figSize height="20" width="91"/>
     <node>invokePojo4</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="取预约单号状态" displayName="getRpsPrebook" type="subprocess">
@@ -332,8 +313,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="323" y="287"/>
-    <figSize height="17" width="85"/>
+    <location x="312" y="287"/>
+    <figSize height="20" width="106"/>
     <node>subprocess0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值" displayName="赋值" collapsed="false" type="assign">
@@ -363,8 +344,8 @@
     <nodeLabel>assign4label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
-    <location x="495" y="96"/>
-    <figSize height="17" width="25"/>
+    <location x="492" y="96"/>
+    <figSize height="20" width="31"/>
     <node>assign4</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值" displayName="赋值" collapsed="false" type="assign">
@@ -402,8 +383,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="497" y="472"/>
-    <figSize height="17" width="25"/>
+    <location x="494" y="472"/>
+    <figSize height="20" width="31"/>
     <node>assign5</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值" displayName="赋值" collapsed="false" type="assign">
@@ -445,8 +426,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
-    <location x="496" y="366"/>
-    <figSize height="17" width="25"/>
+    <location x="493" y="366"/>
+    <figSize height="20" width="31"/>
     <node>assign7</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign9" name="赋值4" displayName="赋值" type="assign">
@@ -470,8 +451,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
-    <location x="554" y="290"/>
-    <figSize height="17" width="32"/>
+    <location x="550" y="290"/>
+    <figSize height="20" width="40"/>
     <node>assign9</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值" displayName="赋值" collapsed="false" type="assign">
@@ -501,8 +482,8 @@
     <nodeLabel>assign6label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
-    <location x="497" y="216"/>
-    <figSize height="17" width="25"/>
+    <location x="494" y="216"/>
+    <figSize height="20" width="31"/>
     <node>assign6</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="getCompBillNO" displayName="getCompBillNO" collapsed="false" type="subprocess">
@@ -527,8 +508,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="417" y="526"/>
-    <figSize height="17" width="92"/>
+    <location x="406" y="526"/>
+    <figSize height="20" width="115"/>
     <node>subprocess1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值3" displayName="赋值" type="assign">
@@ -546,8 +527,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
-    <location x="688" y="528"/>
-    <figSize height="17" width="32"/>
+    <location x="684" y="528"/>
+    <figSize height="20" width="40"/>
     <node>assign8</node>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign10" name="赋值5" displayName="赋值" type="assign">
@@ -563,8 +544,8 @@
     <nodeLabel>assign10label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
-    <location x="1009" y="290"/>
-    <figSize height="17" width="32"/>
+    <location x="1005" y="290"/>
+    <figSize height="20" width="40"/>
     <node>assign10</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign23" name="赋值22" displayName="赋值" collapsed="false" type="assign">
@@ -610,8 +591,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign23label" name="label" nodeType="label">
-    <location x="1088" y="290"/>
-    <figSize height="17" width="39"/>
+    <location x="1083" y="290"/>
+    <figSize height="20" width="49"/>
     <node>assign23</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="map2Str" displayName="map2Str" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
@@ -635,8 +616,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="1140" y="290"/>
-    <figSize height="17" width="50"/>
+    <location x="1134" y="290"/>
+    <figSize height="20" width="63"/>
     <node>invokePojo3</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign22" name="赋值23" displayName="赋值" collapsed="false" type="assign">
@@ -710,8 +691,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign22label" name="label" nodeType="label">
-    <location x="1204" y="291"/>
-    <figSize height="17" width="39"/>
+    <location x="1199" y="291"/>
+    <figSize height="20" width="49"/>
     <node>assign22</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess5" name="推送消息" displayName="sendNoticeAlertToUser" collapsed="false" type="subprocess">
@@ -739,8 +720,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess5label" name="label" nodeType="label">
-    <location x="1262" y="290"/>
-    <figSize height="17" width="49"/>
+    <location x="1256" y="290"/>
+    <figSize height="20" width="61"/>
     <node>subprocess5</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
@@ -755,17 +736,17 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
-    <location x="626" y="290"/>
-    <figSize height="17" width="25"/>
+    <location x="623" y="290"/>
+    <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign11" name="新增赋值" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link35" name="link35" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign11</sourceNode>
-      <targetNode>subprocess1</targetNode>
+      <targetNode>assign14</targetNode>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
-    <location x="269" y="491"/>
+    <location x="268" y="413"/>
     <size height="28" width="28"/>
     <nodeLabel>assign11label</nodeLabel>
     <process:copy>
@@ -798,8 +779,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
-    <location x="259" y="527"/>
-    <figSize height="17" width="49"/>
+    <location x="252" y="449"/>
+    <figSize height="20" width="61"/>
     <node>assign11</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign13" name="赋值7" displayName="赋值" type="assign">
@@ -817,8 +798,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign13label" name="label" nodeType="label">
-    <location x="568" y="375"/>
-    <figSize height="17" width="32"/>
+    <location x="564" y="375"/>
+    <figSize height="20" width="40"/>
     <node>assign13</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="发送微信通知" displayName="setBookWeChatInfo" type="subprocess">
@@ -844,9 +825,106 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="988" y="417"/>
-    <figSize height="17" width="73"/>
+    <location x="979" y="417"/>
+    <figSize height="20" width="91"/>
     <node>subprocess2</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign12" name="赋值6" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link38" name="link38" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign12</sourceNode>
+      <targetNode>assign14</targetNode>
+    </sourceConnections>
+    <targetConnections>link34</targetConnections>
+    <location x="175" y="482"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign12label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">微信用户</process:from>
+      <process:to type="query">rpsPrebook/recorder</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">currDate</process:from>
+      <process:to type="query">rpsPrebook/recordDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">微信用户</process:from>
+      <process:to type="query">rpsPrebook/modifier</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">currDate</process:from>
+      <process:to type="query">rpsPrebook/modifyDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">rpsPrebook/status</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">
+    <location x="169" y="518"/>
+    <figSize height="20" width="40"/>
+    <node>assign12</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign14" name="赋值8" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign14</sourceNode>
+      <targetNode>subprocess1</targetNode>
+    </sourceConnections>
+    <targetConnections>link35</targetConnections>
+    <targetConnections>link38</targetConnections>
+    <location x="268" y="482"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign14label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign14label" name="label" nodeType="label">
+    <location x="262" y="518"/>
+    <figSize height="20" width="40"/>
+    <node>assign14</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign15" name="赋值9" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link39" name="link39" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign15</sourceNode>
+      <targetNode>invokePojo1</targetNode>
+    </sourceConnections>
+    <targetConnections>link0</targetConnections>
+    <location x="805" y="255"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign15label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">rpsPrebook/modifier</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">currDate</process:from>
+      <process:to type="query">rpsPrebook/modifyDate</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign15label" name="label" nodeType="label">
+    <location x="799" y="291"/>
+    <figSize height="20" width="40"/>
+    <node>assign15</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign16" name="赋值10" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link41" name="link41" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign16</sourceNode>
+      <targetNode>invokePojo1</targetNode>
+    </sourceConnections>
+    <targetConnections>link40</targetConnections>
+    <location x="805" y="180"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign16label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">微信用户</process:from>
+      <process:to type="query">rpsPrebook/modifier</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">currDate</process:from>
+      <process:to type="query">rpsPrebook/modifyDate</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign16label" name="label" nodeType="label">
+    <location x="795" y="216"/>
+    <figSize height="20" width="49"/>
+    <node>assign16</node>
   </nodes>
   <topRuler>
     <guides position="228" horizontal="true"/>

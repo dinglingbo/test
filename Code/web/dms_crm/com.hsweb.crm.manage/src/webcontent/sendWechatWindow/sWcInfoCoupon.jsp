@@ -193,6 +193,7 @@
     	}
 
         function pushCoupon() {
+            var isSuccess = 0;
             var rows = cardCouponData.getSelecteds();
             if(rows.length < 1){
                 showMsg("请选择优惠券",'W');
@@ -206,6 +207,7 @@
             nui.ajax({
                 url:pushUrl,
                 type:"post",
+                async: false,
                 data:{
                     userDataArray:mainList,
                     couponDataArray:rows
@@ -213,56 +215,86 @@
                 success:function(res){
                     nui.unmask(document.body);
                     if(res.errCode =='S'){
-                        showMsg("发送成功","S");
+                        // showMsg("发送成功","S");
+                        //isSuccess=1;
+                        saveRecord();
                     }else{
                         showMsg("发送失败","E");
                     }
                     onClose();
                 }
             })
+            /* if(isSuccess){
+                saveRecord();
+            } */
         }
 
 
-//         function saveRecord() {
-//             var rows = cardCouponData.getSelecteds();
+        function saveRecord() {
+            var rows = cardCouponData.getSelecteds();
+            var contentText = '';
+            var contentId = '';
+            for (var k = 0; k < rows.length; k++) {
+                var element = rows[k];
+                contentText += rows[k].couponTitle;
+                contentId += rows[k].couponId;
+                if(k != (rows.length-1)){
+                    contentText += ',';
+                    contentId +=  ',';
+                }
+                if( k == rows.length - 1 ){
+                    //拼接对象
+                    var pArr = [];
+                    for (var i = 0; i < mainList.length; i++) {
+                        var data = mainList[i];
+                        var params ={
+                            serviceType:data.serviceType,
+                            mainId:data.id||'',
+                            guestId:data.guestId||'',
+                            carId:data.carId||'',
+                            carNo: data.carNo || '',
+                            visitMode:'011405',//微信卡券
+                            visitContent:contentText,
+                            guestSource:data.guestSource,
+                            contentId:contentId
+                        }
+                        pArr.push(params);
 
-//             var pArr = [];
-//             for (var i = 0; i < mainList.length; i++) {
-//                 var data = mainList[i];
-//                 var params ={
-//                     serviceType:data.serviceType,
-//                     mainId:data.id||'',
-//                     guestId:data.guestId||'',
-//                     carId:data.carId||'',
-//                     carNo: data.carNo || '',
-//                     visitMode:'011405',//微信卡券
-//                     visitContent:message||'',
-//                     guestSource:mainData.guestSource
-//                 }
-//                 pArr.push(params);
-//             }
+                        if(i == mainList.length-1){
+                            var paramData=nui.encode({params:pArr});
+                            //开始
+                            nui.ajax({
+                                url:saveUrl,
+                                type:'post',
+                                data:paramData,
+                                success:function(res){
+                                    if(res.errCode == 'S'){
+                                            showMsg("发送成功！","S");
+                                            
+                                    }else{
+                                            showMsg("发送失败！","E");
+                                    }
+                                    onClose() ;
+                                },
+                                error: function (jqXHR) {
+                                    showMsg(jqXHR.responseText);
+                                }
+                            })
+                            //结束
 
-//             nui.ajax({
-//                 url:saveUrl,
-//                 type:'post',
-//                 data:{
-//                     params:pArr
-//                 },
-//                 success:function(res){
-//                     if(res.errCode == 'S'){
-//                             showMsg("发送成功！","S");
-                            
-//                     }else{
-//                             showMsg("发送失败！","E");
-//                     }
-//                     onClose() ;
-//                 },
-//                 error: function (jqXHR) {
-//                     showMsg(jqXHR.responseText);
-//                 }
-//             })
+                        }
+
+                    }
+                    //结束拼接对象
+
+                }
+            }
+
+            
+
+            
    
-// }
+}
 
 
         function onClose() {

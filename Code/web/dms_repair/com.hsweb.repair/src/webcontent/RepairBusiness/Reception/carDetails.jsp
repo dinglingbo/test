@@ -469,6 +469,7 @@
 					               dataField="list"
 					               idField="id"
 					               allowCellSelect="true"
+					               totalField="page.count"
 					               editNextOnEnterKey="true"
 					               url="">
 

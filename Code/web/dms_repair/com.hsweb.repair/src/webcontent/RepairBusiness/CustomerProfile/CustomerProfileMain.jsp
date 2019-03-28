@@ -11,7 +11,7 @@
 -->
 <head>
 	<title>客户档案</title>
-	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.5.12"></script>
+	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.5.23"></script>
 	<style type="text/css">
 		table {
 			font-size: 12px;
@@ -47,6 +47,8 @@
 						</ul>
 					</td>
 						<td>
+							<input class="nui-combobox" id="isDisabled"  name="isDisabled" data="[{isDisabled:999,text:'全部'},{isDisabled:0,text:'启用'},{isDisabled:1,text:'禁用'}]"
+                          width="100px"  onvaluechanged="onSearch" textField="text" valueField="isDisabled" value="999" style="width:60px"/>
 							
 							<input class="nui-textbox" name="carNo" onenter="onSearch()" emptyText="车牌号" style="width:100px" />						
 							<input class="nui-textbox" name="mobile" onenter="onSearch()" emptyText="手机号码" style="width:100px" />
@@ -95,6 +97,8 @@
 						 width="80px">商业险到期</div>
 						<div field="insureDueDate"  headerAlign="center" dateFormat="yyyy-MM-dd"  visible="true"
 						 width="80px">交强险到期</div>
+						 <div field="isDisabled"  headerAlign="center"   visible="true"
+						 width="60px">状态</div>
 					</div>
 				</div>
 				<div header="客户信息" headerAlign="center">

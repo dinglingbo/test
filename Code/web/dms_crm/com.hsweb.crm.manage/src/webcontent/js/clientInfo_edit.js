@@ -4,8 +4,10 @@ var recordDate;//建档日期
 var modifier;//修改人
 var modifyDate;//修改日期
 var baseUrl = apiPath + crmApi + "/";
-var carModelInfo;
+var carModelText;
 var carModelHash = [];
+var saveUrl = baseUrl + "com.hsapi.crm.telsales.crmTelsales.saveGuest.biz.ext";
+var getUrl = baseUrl + "com.hsapi.crm.svr.guest.getCrmGuestById.biz.ext";
 var insuranceInfoUrl = apiPath + repairApi+ "/com.hsapi.repair.baseData.insurance.InsuranceQuery.biz.ext?params/orgid="+currOrgid+"&params/isDisabled=0";
 var insureCompCode = null;
 $(document).ready(function(v){
@@ -17,7 +19,7 @@ $(document).ready(function(v){
     insureCompCode = nui.get("insureCompCode");
     insureCompCode.setUrl(insuranceInfoUrl);
     
-    carModelInfo = nui.get("carModelInfo");
+    carModelText = nui.get("carModelText");
     init();
     
     document.onkeyup = function(event) {
@@ -30,9 +32,9 @@ $(document).ready(function(v){
 		}
 	};
         if (currRepairBillCmodelFlag == "1") {
-        nui.get("carModelInfo").disable();
+        nui.get("carModelText").disable();
     } else {
-        nui.get("carModelInfo").enable();
+        nui.get("carModelText").enable();
     }
         
         var tip = new mini.ToolTip();
@@ -80,8 +82,10 @@ function guestNameChange(e){
 function setData(data){
     var tmpUser = modifier.getValue();
     var currDate = new Date();
-    form1.setData(data);
-    if(!data.id){
+    if (data.id) {
+        var dataDetail = getGuestInfo(data.id);
+        form1.setData(dataDetail);
+    }else{
         recorder.setValue(tmpUser);
         recordDate.setValue(currDate);
         nui.get("visitStatus").setValue(0);
@@ -90,6 +94,24 @@ function setData(data){
     modifier.setValue(tmpUser);
     modifyDate.setValue(currDate);
     nui.get("carBrandId").doValueChanged();
+}
+
+function getGuestInfo(id) {
+    var data = {};
+    nui.ajax({
+        url: getUrl,
+        type: "post",
+        data: { id: id },
+        async:false,
+        success: function (res) {
+            if (res.errCode == 'S') {
+                data = res.crmGuest;
+            } else {
+                showMsg("获取数据失败", 'E');
+            }
+        }
+    });
+    return data;
 }
 
 function CloseWindow(action)
@@ -109,7 +131,7 @@ function onOk(){
     //$("#save").hide();
     try {
         nui.ajax({
-            url: baseUrl + "com.hsapi.crm.telsales.crmTelsales.saveGuest.biz.ext",
+            url: saveUrl,
             type: 'post',
             data: nui.encode({
                 data: form1.getData(true),
@@ -150,15 +172,15 @@ function setCharCount(){
 //             var carVinModel = data.data.SuitCar || []; //list[0];
 //             carVinModel = carVinModel[0] || {};
 //             carVinModel.vin = vin;
-//             var carModelInfo = "品牌:" + carVinModel.carBrandName + "\n";
-//             carModelInfo += "车型:" + carVinModel.carModelName + "\n";
-//             carModelInfo += "车系:" + carVinModel.carLineName + "\n";
+//             var carModelText = "品牌:" + carVinModel.carBrandName + "\n";
+//             carModelText += "车型:" + carVinModel.carModelName + "\n";
+//             carModelText += "车系:" + carVinModel.carLineName + "\n";
 //             var name1 = carVinModel.grandParentName || "";
 //             name1 = name1 ? (name1 + " ") : "";
 //             var name2 = carVinModel.parentName || "";
 //             name2 = name2 ? (name2 + " ") : "";
 //             var name3 = carVinModel.name || "";
-//             nui.get("carModelInfo").setValue(name1 + name2 + name3);
+//             nui.get("carModelText").setValue(name1 + name2 + name3);
 //         }
 //     });
 //     }else{
@@ -193,15 +215,15 @@ function onParseUnderpanNo()
              //   nui.get("carBrandId").setValue(carVinModel.carBrandId);
              //   nui.get("carModelId").setValue(carVinModel.carModelId);
              //   nui.get("carModelId").setText(carVinModel.carModelName);
-                var carModelInfo = "品牌:"+carVinModel.carBrandName+"\n";
-                carModelInfo += "车型:"+carVinModel.carModelName+"\n";
-                carModelInfo += "车系:"+carVinModel.carLineName+"\n";
+                var carModelText = "品牌:"+carVinModel.carBrandName+"\n";
+                carModelText += "车型:"+carVinModel.carModelName+"\n";
+                carModelText += "车系:"+carVinModel.carLineName+"\n";
                 var name1 = carVinModel.grandParentName||"";
                 name1 = name1?(name1+" "):"";
                 var name2 = carVinModel.parentName || "";
                 name2 = name2?(name2+" "):"";
                 var name3 = carVinModel.name||"";
-                nui.get("carModelInfo").setValue(name1 + name2 + name3);
+                nui.get("carModelText").setValue(name1 + name2 + name3);
                 // nui.get("carBrandId").setValue("");
                 // nui.get("carModelId").setValue(carVinModel.id);
                 // nui.get("carModelIdLy").setValue(carModelId);
@@ -261,5 +283,5 @@ function getCarModel(callBack) {
 function setCarModel(data){
 	var d = data.carModel;
     nui.get("carModel").setValue(data.carModel);
-    nui.get("carModelInfo").setValue(data.carModel);
+    nui.get("carModelText").setValue(data.carModel);
 }

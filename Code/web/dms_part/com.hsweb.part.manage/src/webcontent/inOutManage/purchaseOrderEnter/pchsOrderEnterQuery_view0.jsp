@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购入库查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderEnter/pchsOrderEnterQuery.js?v=1.0.11"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderEnter/pchsOrderEnterQuery.js?v=1.0.12"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -116,12 +116,12 @@
             <div width="40" type="indexcolumn">序号</div>
             <div header="入库信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="serviceId" width="180" summaryType="count" headerAlign="center" header="入库单号"></div>
+                    <div allowSort="true" field="manualCode" width="180" summaryType="count" headerAlign="center" header="入库单号"></div>
                     <div field="guestFullName" name="guestFullName" width="180" headerAlign="center" header="供应商"></div>
                     <div field="orderMan" name="orderMan" width="60" headerAlign="center" header="采购员"></div>
                     <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
                     <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
-                    <div allowSort="true" field="createDate"width="140" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div allowSort="true" field="enterDate"width="140" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div allowSort="true" field="storeId" width="90" headerAlign="center" header="仓库"></div>
                 </div>
             </div>
@@ -140,6 +140,7 @@
                     <div allowSort="true" datatype="float" summaryType="sum" field="orderQty" width="60" headerAlign="center" header="入库数量"></div>
                     <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="入库单价"></div>
                     <div allowSort="true" datatype="float" summaryType="sum" field="orderAmt" width="60" headerAlign="center" header="入库金额"></div>
+                    <div allowSort="true" datatype="float" summaryType="sum" field="outableQty" width="60" headerAlign="center" header="剩余库存"></div>
                     <div allowSort="true" field="detailRemark" width="120" headerAlign="center" header="备注"></div>
                 </div>
             </div>

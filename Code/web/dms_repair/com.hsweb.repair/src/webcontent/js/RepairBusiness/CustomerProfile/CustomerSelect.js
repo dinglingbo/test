@@ -95,6 +95,7 @@ function doSearch(params)
         return;
     }
     delete params.value;
+    params.isDisabled = 0;
     grid.load({
     	token:token,
         params:params

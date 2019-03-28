@@ -163,7 +163,7 @@
        d.full_name as guestName, b.car_vin as carVin,  a. part_code as partCode,a.qty as qty,a.unit_price as unitPrice,a.amt as amt,a.rate as rate,a.discount_amt as discountAmt,
        a.subtotal as subtotal,a.sale_man as saleMan,  b.mt_advisor as mtAdvisor, e.part_true_cost AS partTrueCost,b.bill_type_id AS billTypeId,
        b.service_code as serviceCode, b.out_date as outDate,
-       b.enter_date as enterDate
+       b.enter_date as enterDate, a.pick_qty
 		from wb_repair.rps_part a
 		inner join wb_repair.rps_maintain b on a.service_id = b.id
 		inner join wb_repair.rpb_car c on b.car_id = c.id

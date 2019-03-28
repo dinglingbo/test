@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.3.28"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.3.29"></script>
 <style type="text/css">
 
 table {
@@ -179,7 +179,7 @@ table {
                                 </td>
                             </tr>
                             <tr>
-                                <td class="form_label ">
+                                <td class="form_label required">
                                     <label>车架号(VIN)：</label>
                                 </td>
                                 <td colspan="2">
@@ -372,7 +372,7 @@ table {
                  	   <input class="nui-textbox" name="licenseNo" width="100%" />
                     </td>
                     <td class="form_label">
-                        <label>准备车型(A1)：</label>
+                        <label>准驾车型(A1)：</label>
                     </td>
                     <td>
                     	<input class="nui-textbox" name="licenseType" width="100%" />

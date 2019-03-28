@@ -26,81 +26,76 @@ $(document).ready(function (){
 	                 break;
 	        }
 	    });
-	  nui.get("cancle").focus();
-	  document.onkeyup = function(event) {
-	        var e = event || window.event;
-	        var keyCode = e.keyCode || e.which;// 38向上 40向下
-	        if ((keyCode == 27)) { // ESC
-	            CloseWindow('cancle');
-	        }
-	    } ;
+    //编辑开始前发生
+   /* guestGrid.on("cellbeginedit",function(e){
+    	var b = 0;
+    	switch (e.field)
+		{
+		   case "reason":
+			   e.cancel = false;
+			   break;
+		   default:
+			   break;
+		}
+     });*/
+   nui.get("cancle").focus();
+   document.onkeyup = function(event) {
+        var e = event || window.event;
+        var keyCode = e.keyCode || e.which;// 38向上 40向下
+        if ((keyCode == 27)) { // ESC
+            CloseWindow('cancle');
+        }
+    } ;
 });
-var result=null;
- var saveOpenIdUrl = baseUrl + "com.hsapi.repair.repairService.svr.saveWechatOpenId.biz.ext";
+
+var saveSplit = baseUrl + "com.hsapi.repair.repairService.crud.saveSplitCar.biz.ext";
 function wechatBin(row_uid){
-	var row = contactorGrid.getRowByUID(row_uid);
+	var row = guestGrid.getRowByUID(row_uid);
 	 if(row){
-		 result=row;
-		 if(!carNo){
-			 showMsg("车牌号为空!","W");
-			 return 0;
-		 }else{
-			 var wechatUser = {};
-			 wechatUser.userPhone = row.mobile;
-			 wechatUser.userMarke = wechatServiceId;
-			 wechatUser.contactorId = row.id;
-			 wechatUser.guestId = guestId;
-			 var json = nui.encode({
-				 carNo:carNo,
-				 wechatUser:wechatUser,
-		 		 token:token
-		 	  });
-			 nui.ajax({
-			 		url : saveOpenIdUrl,
-			 		type : 'POST',
-			 		data : json,
-			 		cache : false,
-			 		contentType : 'text/json',
-			 		success : function(text) {
-			 			if(text.errCode=="S"){
-			 				var params = {};
-			 				params.guestId = guestId;
-			 				contactorGrid.load({
-			 				     token:token,
-			 				     params:params
-			 				  },function(){
-			 					 var row = contactorGrid.findRow(function(row){
-			 						 if(!row.wechatOpenId){
-			 							 contactorGrid.beginEditRow(row);
-			 						 }
-			 						 
-			 				     });
-			 				 });
-			 			result.success = 1;
-			 			showMsg(text.errMsg || "绑定成功!","S");
-			 			return;
-			 			}else{
-			 				showMsg(text.errMsg,"E");
-			 				return;
-			 			}
-			 			
-			 		}
-			});
-		 }
+	   nui.mask({
+	        el : document.body,
+		    cls : 'mini-mask-loading',
+		    html : '保存中...'
+	    });
+	   var remark = nui.get("remark").value;
+		var json = nui.encode({
+			 carList:carList,
+			 guest:row,
+			 oldGuest:oldGuest,
+			 remark:remark,
+	 		 token:token
+	 	  });
+		 nui.ajax({
+		 		url : saveSplit,
+		 		type : 'POST',
+		 		data : json,
+		 		cache : false,
+		 		contentType : 'text/json',
+		 		success : function(text) {
+		 			nui.unmask(document.body);
+		 			if(text.errCode=="S"){
+		 			    CloseWindow('ok');
+		 			    showMsg(text.errMsg || "拆分成功!","S");
+		 			    return;
+		 			}else{
+		 				showMsg(text.errMsg || "拆分失败!","E");
+		 				return;
+		 			}
+		 		}
+		});
 	}else{
-		showMsg("请选中一条记录!", "E");
+		showMsg("请选中一条记录!", "W");
 	}
 }
 
-function getData(){
-	return result;
-}
 function CloseWindow(action) {
     if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
     else window.close();
 }
-var carNo = null;
-var guestId = null;
-function setData(params){
-	guestGrid.setData(params);
+var carList = {};
+var oldGuest = {};
+function setData(list,cars,guest){
+	carList = cars;
+	oldGuest = guest;
+	guestGrid.setData(list);
 }

@@ -228,22 +228,24 @@
 			a.`code` as manualCode,
 			a.enter_date as enterDate,
 			a.order_man as orderMan,
+			a.order_man_id as orderManId,
+			a.create_date as createDate,
 			a.bill_type_id as billTypeId,
 			a.auditor as auditor,
 			a.audit_date as auditDate,
 			a.remark as mainRemark,
 			a.settle_type_id as settleTypeId,
 			b.id as detailId,
-			b.main_id as mainId,
+			a.code_id as mainId,
 			b.part_id as partId,
 			b.part_code as partCode,
 			b.part_name as partName,
 			b.full_name as fullName,
 			b.enter_unit_id as enterUnitId,
 			b.system_unit_id as systemUnitId,
-			b.enter_qty as enterQty,
-			b.enter_price as enterPrice,
-			b.enter_amt as enterAmt,
+			b.enter_qty as orderQty,
+			b.enter_price as orderPrice,
+			b.enter_amt as orderAmt,
 			b.outable_qty as outableQty,
 			b.pre_out_qty as preOutQty,
 			b.tax_sign as taxSign,
@@ -255,6 +257,7 @@
 			b.tax_diff as taxDiff,
 			b.rtn_price as rtnPrice,
 			b.rtn_amt as rtnAmt,
+			b.sell_price as suggSellPrice,
 			b.enter_date as detailEnterDate,
 			b.branch_stock_age as branchStockAge,
 			b.chain_stock_age as chainStockAge,
@@ -272,6 +275,7 @@
 			c.brand_code as comBrandCode,
 			c.oem_code as comOemCode,
 			c.quality_type_id as qualityTypeId,
+			c.apply_car_model as applyCarModel,
 			c.part_brand_id as partBrandId,
 			c.apply_car_model as applyCarModel,
 			c.apply_carbrand_id as applyCarbrandId,
@@ -798,7 +802,7 @@
             <isNotEmpty prepend="and" property="sLastOutDate">(A.last_out_date &gt;= #sLastOutDate#)</isNotEmpty>
             <isNotEmpty prepend="and" property="eLastOutDate">(A.last_out_date &lt; #eLastOutDate#)</isNotEmpty>
             <isNotEmpty prepend="and" property="storeId">(a.store_id = #storeId#)</isNotEmpty>
-            <isNotEmpty prepend="and" property="storeShelf">(a.shelf = #storeShelf#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="storeShelf">(a.shelf like '%$storeShelf$%')</isNotEmpty>
             <!--库存查询默认查询库存大于0 -->
             <isNotEmpty prepend="and" property="notShowAll">(a.stock_qty &gt; 0)</isNotEmpty>
              <!--库存查询默认查询库等于0 -->

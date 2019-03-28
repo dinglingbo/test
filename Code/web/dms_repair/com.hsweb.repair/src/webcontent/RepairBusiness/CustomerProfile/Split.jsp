@@ -44,7 +44,7 @@
 <body>
       <div class="nui-splitter" id="addEditCustomerPage" style="width:100%;height:100%;" vertical="true" borderStyle="border:0;"
         handlerSize="0" allowResize="false">
-        <div size="240" showCollapseButton="false" style="border:0;">
+        <div size="280" showCollapseButton="false" style="border:0;">
             <div class="nui-panel" showToolbar="false" title="客户信息" showFooter="false" borderStyle="border:0;" style="width:100%;height:100%;">
 
                 <div class="form" id="basicInfoForm">
@@ -97,7 +97,7 @@
                                    url=""
                                    allowInput="true"
                                    showNullItem="false"
-                                   width="32%" 
+                                   width="42%" 
                                    valueFromSelect="true"
                                    nullItemText="请选择..."/>
                         	</td>
@@ -139,11 +139,19 @@
                                 <input class="nui-textbox" name="remark" width="100%" />
                             </td>
                         </tr>
+                         <tr>
+                            <td class="form_label">
+                                <label>拆分原因：</label>
+                            </td>
+                            <td colspan="3">
+                                <input class="nui-textbox" name="reason" width="100%"  id="reason"/>
+                            </td>
+                        </tr>
                         <tr>
 
                             <td colspan="6" align="left">
                                 <a class="nui-button" onclick="onOk" style="width:120px;margin-right:20px;">
-                                    <span class="fa fa-save fa-lg"></span>&nbsp;保存客户信息</a>
+                                    <span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                                 <!-- <a class="nui-button" onclick="onCancel" style="width:60px;"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a> -->
                             </td>
                         </tr>

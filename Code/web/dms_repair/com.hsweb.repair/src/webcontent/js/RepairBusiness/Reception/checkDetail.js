@@ -8,7 +8,7 @@ var searchKeyEl = null;
 var servieIdEl = null;
 var searchNameEl = null;
 var billForm = null;
-
+var sellGuest =null;
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 var mainGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCheckModelDetail.biz.ext";
 var checkMainIdUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCheckModel.biz.ext";
@@ -46,6 +46,7 @@ $(document).ready(function ()
         var params = {};
         var value = e.data.key;
         value = value.replace(/\s+/g, "");
+        params.isDisabled = 0;
         if(value.length<3){
             e.cancel = true;
             return;
@@ -73,7 +74,6 @@ $(document).ready(function ()
             var reg = /[\u4E00-\u9FA5\uF900-\uFA2D]/;
             if(reg.test(value)){
                 params.chis = value;
-
                 data.params = params;
                 e.data =data;
                 return;
@@ -166,6 +166,7 @@ $(document).ready(function ()
 		         //searchNameEl.setEnabled(false);
 		
 		         doSetMainInfo(item);
+		         sellGuest = item;
            }
          }
      });
@@ -493,6 +494,7 @@ function isCheckMainY(){
         getGuestContactorCar(p, function(text){
             var errCode = text.errCode||"";
             var guest = text.guest||{};
+            sellGuest = guest;
             var contactor = text.contactor||{};
             var car = text.car||{};
             if(errCode == 'S'){
@@ -937,11 +939,41 @@ function finish(){
 		showMsg('请先保存查车开单!',"W");
 		return;
 	}
+	var grid_all = mainGrid.getData(); //保存
+	var sellList=[];
+	for(var i = 0;i<grid_all.length;i++){
+		if(grid_all[i].settleType==0){
+			var sell = {};
+			sell.carId = data.carId;
+			sell.carNo = data.carNo;
+			sell.guestId = data.guestId;
+			if(sellGuest.fullName){
+				sell.guestName = sellGuest.fullName
+			}else{
+				sell.guestName = sellGuest.guestFullName
+			}
+			if(sellGuest.mobile){
+				sell.guestMobile = sellGuest.mobile;
+			}else{
+				sell.guestMobile = sellGuest.guestMobile;
+			}
+			sell.status = 1;
+			sell.prdtName = grid_all[i].partName;
+			sell.chanceType = '043005';
+			sell.nextFollowDate = grid_all[i].careDueDate;
+			sell.chanceContent =grid_all[i].checkName;
+			sell.prdtName =grid_all[i].checkName;
+			sellList.push(sell);
+		}
+
+	}
+
 	 nui.mask({
 		 	el : document.body,
 			cls : 'mini-mask-loading',
 	        html:'处理中..'
 	    });
+
 	nui.ajax({
         url : baseUrl + "com.hsapi.repair.repairService.repairInterface.saveCheckMainA.biz.ext",
         type : "post",
@@ -958,6 +990,24 @@ function finish(){
                 billForm.setData(mainData);
                 $("#servieIdEl").html(mainData.serviceCode);
                 showMsg(data.errMsg ||"保存成功","S");
+        		nui.ajax({
+        	        url : apiPath + crmApi + "/com.hsapi.crm.basic.crmBasic.saveSellList.biz.ext",
+        	        type : "post",
+        	        data : {
+        	        	sell:sellList,
+        	            token : token
+        	        },
+        	        success : function(data) {
+        	        	nui.unmask();
+        	            if(data.errCode == "S"){
+        	                showMsg("已生成客户商机","S");
+        	            }else{
+        	                showMsg(data.errMsg,"E");
+        	            }
+        	        },
+        	        error : function(jqXHR, textStatus, errorThrown) {
+        	        }
+        	    });
             }else{
                 showMsg(data.errMsg,"E");
             }

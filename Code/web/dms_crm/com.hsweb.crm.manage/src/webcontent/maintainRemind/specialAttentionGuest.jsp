@@ -12,7 +12,7 @@
 
 <head>
     <title>特别关怀</title>
-    <script src="<%=request.getContextPath()%>/manage/js/maintainRemMain/specialAttentionGuest.js?v=1.1.6">
+    <script src="<%= request.getContextPath() %>/manage/js/maintainRemMain/specialAttentionGuest.js?v=1.1.7">
     </script>
     <style>
           html,
@@ -34,7 +34,8 @@
     </style>
 </head>
 <body style="margin:0;width: 100%; height:100%;overflow-x:hidden">
-
+    <input name="insureCompCode" id="insureCompCode" dataField="list"
+    class="nui-combobox " textField="fullName"  valueField="code" visible="false"/>
     <div class="mini-splitter" vertical="true" style="width:100%;height:100%;">
         <div size="70%" showCollapseButton="true">
 
@@ -91,7 +92,7 @@
                         <div field="carNo" headerAlign="center" allowSort="true" width="100px">车牌号</div>
                         <div field="guestName" headerAlign="center" allowSort="true" width="100px">客户名称</div>
                         <div field="mobile" headerAlign="center" allowSort="true" width="100px">联系方式</div>
-                        <div field="carModel" headerAlign="center" allowSort="true" width="100px">品牌车型</div>
+                        <div field="carModel" headerAlign="center" allowSort="true" width="200px">品牌车型</div>
                         <div field="guestType" headerAlign="center" allowSort="true" width="100px">客户类型</div>
                         <div field="careDueDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true"
                         width="100px">
@@ -151,9 +152,9 @@
                         <div field="carNo" headerAlign="center" allowSort="true" width="100px">车牌号</div>
                         <div field="guestName" headerAlign="center" allowSort="true" width="100px">客户名称</div>
                         <div field="mobile" headerAlign="center" allowSort="true" width="100px">联系方式</div>
-                        <div field="carModel" headerAlign="center" allowSort="true" width="100px">品牌车型</div>
+                        <div field="carModel" headerAlign="center" allowSort="true" width="200px">品牌车型</div>
                         <div field="guestType" headerAlign="center" allowSort="true" width="100px">客户类型</div>
-                        <div field="annualInspectionCompName" headerAlign="center" allowSort="true" width="100px">保险公司</div>
+                        <div field="annualInspectionCompCode" headerAlign="center" allowSort="true" width="100px">保险公司</div>
                         <div field="annualInspectionDate" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true"
                         width="100px">
                             商业险到期日期</div>
@@ -212,9 +213,9 @@
                         <div field="carNo" headerAlign="center" allowSort="true" width="100px">车牌号</div>
                         <div field="guestName" headerAlign="center" allowSort="true" width="100px">客户名称</div>
                         <div field="mobile" headerAlign="center" allowSort="true" width="100px">联系方式</div>
-                        <div field="carModel" headerAlign="center" allowSort="true" width="100px">品牌车型</div>
+                        <div field="carModel" headerAlign="center" allowSort="true" width="200px">品牌车型</div>
                         <div field="guestType" headerAlign="center" allowSort="true" width="100px">客户类型</div>
-                        <div field="insureCompName" headerAlign="center" allowSort="true" width="100px">保险公司</div>
+                        <div field="insureCompCode" headerAlign="center" allowSort="true" width="100px">保险公司</div>
                         <div field="insureDueDate" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true"
                         width="100px">
                             交强险到期日期</div>
@@ -274,7 +275,7 @@
                         <div field="carNo" headerAlign="center" allowSort="true" width="100px">车牌号</div>
                         <div field="guestName" headerAlign="center" allowSort="true" width="100px">客户名称</div>
                         <div field="mobile" headerAlign="center" allowSort="true" width="100px">联系方式</div>
-                        <div field="carModel" headerAlign="center" allowSort="true" width="100px">品牌车型</div>
+                        <div field="carModel" headerAlign="center" allowSort="true" width="200px">品牌车型</div>
                         <div field="guestType" headerAlign="center" allowSort="true" width="100px">客户类型</div>
                         <div field="licenseOverDate" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true"
                         width="100px">
@@ -334,7 +335,7 @@
                         <div field="carNo" headerAlign="center" allowSort="true" width="100px">车牌号</div>
                         <div field="guestName" headerAlign="center" allowSort="true" width="100px">客户名称</div>
                         <div field="mobile" headerAlign="center" allowSort="true" width="100px">联系方式</div>
-                        <div field="carModel" headerAlign="center" allowSort="true" width="100px">品牌车型</div>
+                        <div field="carModel" headerAlign="center" allowSort="true" width="200px">品牌车型</div>
                         <div field="guestType" headerAlign="center" allowSort="true" width="100px">客户类型</div>
                         <div field="dueDate" headerAlign="center" dateFormat="yyyy-MM-dd"
                             allowSort="true" width="100px">
@@ -382,7 +383,7 @@
                         <div field="carNo" headerAlign="center" allowSort="true" width="100px">车牌号</div>
                         <div field="guestName" headerAlign="center" allowSort="true" width="100px">客户名称</div>
                         <div field="mobile" headerAlign="center" allowSort="true" width="100px">联系方式</div>
-                        <div field="carModel" headerAlign="center" allowSort="true" width="100px">品牌车型</div>
+                        <div field="carModel" headerAlign="center" allowSort="true" width="200px">品牌车型</div>
                         <div field="guestType" headerAlign="center" allowSort="true" width="100px">客户类型</div>
                         <div field="birComeDay" headerAlign="center" allowSort="true" width="100px">距离天数</div>
                         <div field="birthday" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true" width="100px">生日</div>

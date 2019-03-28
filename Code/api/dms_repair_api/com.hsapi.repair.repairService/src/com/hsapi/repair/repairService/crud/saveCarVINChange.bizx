@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveCarVINChange" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="车牌号替换A001  换为  A002&#xD;&#xA;1、A002不存在，直接替换&#xD;&#xA;2、A002存在，先更新原A002为'A002改'，再替换" title="Administrator&#x9;18-10-15 下午7:37">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="变更VIN,新增记录，改变原有VIN，判断是否存在" title="Administrator&#x9;18-10-15 下午7:37">
     <location x="90" y="-75"/>
     <size height="100" width="406"/>
   </nodes>
@@ -55,7 +55,7 @@
       <targetNode>assign2</targetNode>
       <process:transitionCondition>
         <process:complexCondition>
-          <process:code>carId==0||carNo==null||carVin==null</process:code>
+          <process:code>carId==0||carNo==null</process:code>
         </process:complexCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -75,10 +75,6 @@
     <process:copy>
       <process:from type="query" pattern="reference">data/carNo</process:from>
       <process:to type="query">carNo</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">data/carVin</process:from>
-      <process:to type="query">carVin</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">data/newCarVin</process:from>

@@ -9,6 +9,16 @@
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link72" name="link72" displayName="连接线" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign29</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="LE">
+          <process:leftOperand type="query">allowanceAmt</process:leftOperand>
+          <process:rightOperand type="literal">-1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <location x="-262" y="205"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
@@ -276,6 +286,7 @@
     <targetConnections>link11</targetConnections>
     <targetConnections>link26</targetConnections>
     <targetConnections>link15</targetConnections>
+    <targetConnections>link73</targetConnections>
     <location x="43" y="375"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
@@ -1912,6 +1923,29 @@
     <location x="1347" y="170"/>
     <figSize height="17" width="109"/>
     <node>subprocess9</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign29" name="赋值28" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link73" name="link73" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign29</sourceNode>
+      <targetNode>end1</targetNode>
+    </sourceConnections>
+    <targetConnections>link72</targetConnections>
+    <location x="-209" y="304"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign29label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">优惠金额不能低于-1</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign29label" name="label" nodeType="label">
+    <location x="-214" y="340"/>
+    <figSize height="17" width="39"/>
+    <node>assign29</node>
   </nodes>
   <topRuler>
     <guides position="687" horizontal="true"/>

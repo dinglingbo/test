@@ -38,58 +38,8 @@
                 ondrawcell="" sortMode="client"
                 showSummaryRow="true"     allowCellWrap = true   
         parentField="parentId"> 
-        <div property="columns" width="10">
-            <div header="   ">
-              <div property="columns" width="10">
-                <div field="empName" allowSort="true" headerAlign="center"width="60"  >领料人</div>
-                </div>
-            </div>
-            <div header="2018">
-            <div property="columns" width="10">
-            <div header="1">
-            <div property="columns" width="10">
-              <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  dataType="float" >入库数量</div>
-              <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  dataType="float" >入库金额</div>
-              <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  dataType="float" >退货数量</div>
-              <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  dataType="float" >实际入库数量</div>
-              <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120" dataType="float"  >实际入库金</div>
-                </div></div>
-            <div header="2">
-            <div property="columns" width="10">
-              <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120" dataType="float" >入库数量</div>
-              <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  dataType="float" >入库金额</div>
-              <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  dataType="float" >退货数量</div>
-              <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120" dataType="float"  >实际入库数量</div>
-              <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120" dataType="float"  >实际入库金</div>
-                </div></div></div></div>
-              <div header="2018total">
-              <div property="columns" width="10">
-              <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  dataType="float" >入库数量</div>
-              <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  dataType="float" >入库金额</div>
-              <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120" dataType="float"  >退货数量</div>
-              <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120" dataType="float"  >实际入库数量</div>
-              <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  dataType="float" >实际入库金</div>
-              
-                
-            </div>
-            </div>
-            </div>
-        </div>
+
+
       </div>
   
     </div>

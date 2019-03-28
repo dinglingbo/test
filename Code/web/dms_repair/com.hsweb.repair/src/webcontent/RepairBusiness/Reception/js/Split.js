@@ -41,7 +41,7 @@ function onChangedMobile(id){
 		mobile = mobile.replace(/\s*/g,"");
 		var params = 
 	      {
-			"guestId":oldGuest.guestId,
+			"guestId":oldGuest.id,
 	        "mobile":mobile
 	      };
 		
@@ -76,7 +76,7 @@ function onChangedMobile(id){
 							},
 							ondestroy : function(action) {
 								if (action == "ok") {
-									onCancel();
+									CloseWindow("ok");
 								}
 							}
 						});
@@ -98,8 +98,8 @@ function CloseWindow(action) {
     if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
     else window.close();
 }
-var cars = null;
-var oldGuest = null;
+var cars = {};
+var oldGuest = {};
 function setData(rows,guest){
 	cars = rows;
 	oldGuest = guest;
@@ -127,7 +127,7 @@ function onOk()
 		type : "post",
 		data : JSON.stringify({
         	guest:guest,
-        	carList:rows,
+        	carList:cars,
         	oldGuest:oldGuest,
         	remark:remark,
 			token: token
@@ -139,7 +139,7 @@ function onOk()
 	            if(data.errCode == "S")
 	            {
 	                showMsg("拆分成功","S");
-	                onCancel();
+	                CloseWindow("ok");
 	            }
 	            else{
 	                showMsg(data.errMsg||"拆分失败","E");

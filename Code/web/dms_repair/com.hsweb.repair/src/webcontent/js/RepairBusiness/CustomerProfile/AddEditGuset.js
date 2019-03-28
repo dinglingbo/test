@@ -320,7 +320,7 @@ function getSaveData(){
 	return resultData;
 }
 var queryUrl = baseUrl+"com.hsapi.repair.repairService.svr.getGuestCarContactInfoById.biz.ext";
-var oldGuest = null;
+var oldGuest = {};
 function setData(data)
 {
 		if(isEmptyObject(data)){
@@ -329,7 +329,6 @@ function setData(data)
 	var carNo = null;
 	var guestFullName = null;
 	if(data.guest){
-		oldGuest = data.guest;
 		resultGuest.guestId=data.guest.guestId;
 		carNo =data.guest.carNo;
 	    guestFullName =data.guest.guestFullName; 
@@ -349,7 +348,8 @@ function setData(data)
                 {
                     data = data||{};
                     if(data.guest && data.guest.id)
-                    {
+                    {   
+                    	oldGuest = data.guest;
                         basicInfoForm.setData(data.guest);
                         initCityByParent('cityId', data.guest.provinceId || -1);
                         initCityByParent('areaId', data.guest.cityId || -1);
@@ -1023,9 +1023,11 @@ function split() {
 	            var iframe = this.getIFrameEl();
 	            iframe.contentWindow.setData(rows,oldGuest);
 	        },
-
 	        ondestroy: function (action) {
-	            grid.reload();
+	        	if(action=="ok"){
+	        		cardatagrid.removeRows(rows);
+	        	}
+	        	
 	        }
 	    });
 	}else{
@@ -1046,7 +1048,9 @@ function mergeCar(){
 	        },
 
 	        ondestroy: function (action) {
-	            grid.reload();
+	        	if(action=="ok"){
+	        		cardatagrid.removeRows(rows);
+	        	}
 	        }
 	    });
 	}else{

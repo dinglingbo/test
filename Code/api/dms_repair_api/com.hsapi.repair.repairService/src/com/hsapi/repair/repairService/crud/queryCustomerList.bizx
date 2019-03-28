@@ -77,6 +77,14 @@
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[4]/_op</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">modifyDate</process:from>
+      <process:to type="query">cond/_orderby[1]/_property</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">desc</process:from>
+      <process:to type="query">cond/_orderby[1]/_sort</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="253" y="186"/>

@@ -57,7 +57,7 @@ function wechatBin(row_uid){
 		    cls : 'mini-mask-loading',
 		    html : '保存中...'
 	    });
-	   var remark = nui.get("remark");
+	   var remark = nui.get("remark").value;
 		var json = nui.encode({
 			 carList:carList,
 			 guest:row,
@@ -92,8 +92,8 @@ function CloseWindow(action) {
     if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
     else window.close();
 }
-var carList = null;
-var oldGuest = null;
+var carList = {};
+var oldGuest = {};
 function setData(list,cars,guest){
 	carList = cars;
 	oldGuest = guest;

@@ -9,7 +9,7 @@
 <head>
 <title>添加采购车/销售车</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/shopCartPop.js?v=1.0.11"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/shopCartPop.js?v=1.0.20"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -153,6 +153,7 @@
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <div field="operateBtn" width="30" headerAlign="center" align="center" header="删除"></div>
+            <div field="useMoney" width="30" visible="false" headerAlign="center" align="center" header="平台金额"></div>
             <div field="storeCode" name="storeCode" visible="false" header="电商供应商编码"></div>
             <div field="goodsCode" name="goodsCode" visible="false" header="电商编码"></div>
             <div field="partId" name="partId" visible="false" header="配件ID"></div>

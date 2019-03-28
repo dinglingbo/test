@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
-Require-Bundle: com.hsapi.part.common,com.hsapi.part.data,com.eos.foun
- dation,com.hs.common
-Bundle-Vendor: Administrator
+Require-Bundle: com.hsapi.part.common,com.hs.common,com.hsapi.system.t
+ enant,com.eos.foundation,com.hsapi.part.data
 eos-webCtxPath: query
+Bundle-Vendor: Administrator
 Bundle-Version: 1.0.0
 Bundle-Name: com.hsapi.part.query
 Bundle-Description: 

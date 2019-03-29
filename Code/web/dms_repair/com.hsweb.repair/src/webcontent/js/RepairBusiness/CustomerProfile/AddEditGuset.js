@@ -50,14 +50,6 @@ $(document).ready(function()
             
         }
       };
-      nui.get("wechatOpenId").disable();
-      
-      initGuestType("guestTypeId",function(data) {
-      	guestTypeList = nui.get("guestTypeId").getData();
-      	guestTypeList.forEach(function(v) {
-      		guestTypeHash[v.id] = v;
-          });
-      });
 });
 function init(callback)
 {
@@ -109,6 +101,13 @@ function init(callback)
         sfData = nui.get("identity").data;
     });
     initProvince("provice");
+    nui.get("wechatOpenId").disable();
+    initGuestType("guestTypeId",function(data) {
+      	guestTypeList = nui.get("guestTypeId").getData();
+      	guestTypeList.forEach(function(v) {
+      		guestTypeHash[v.id] = v;
+          });
+      });
 }
 var carList = [{}];
 var carHash = {};

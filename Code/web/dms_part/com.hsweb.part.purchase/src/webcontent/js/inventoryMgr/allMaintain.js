@@ -378,7 +378,7 @@ function doSearch(setInitData) {
         beginDateEl.setValue(getNowStartDate());
         endDateEl.setValue(getNowEndDate());
     	gsparams.sEnterDate = getNowStartDate();
-    	gsparams.eEnterDate = getNowEndDate();
+    	gsparams.eEnterDate = addDate(getNowEndDate(), 1);
         if(nui.get("seachType").getValue()==2){
         	gsparams.sEnterDate = null;
         	gsparams.eEnterDate = null;
@@ -418,9 +418,11 @@ function getSearchParam() {
     }else{
     	params.orgid=orgidsElValue;
     }*/
-    if((nui.get("billTypeId").getValue())!=999){
-    	params.billTypeId = nui.get("billTypeId").getValue();
+    var billTypeIdList =  nui.get("billTypeIdList").getValue();
+    if(billTypeIdList!=""&&billTypeIdList!=null){
+    	params.billTypeIdList = billTypeIdList;
     }
+    	
     if((nui.get("statusId").getValue())!=999){
     	params.status = nui.get("statusId").getValue();
     }
@@ -473,7 +475,7 @@ function edit(){
     };
     window.parent.activeTabAndInit(item,params);
 }
-//根据开单界面传递的车牌号查询未结算的工单
+/*//根据开单界面传递的车牌号查询未结算的工单
 function setInitData(params){
     var carNo = params.carNo||"";
     var type = params.type||""
@@ -487,7 +489,7 @@ function setInitData(params){
             params: p
         });
     }
-}
+}*/
 
 function carNoSearch(){
 	onSearch();

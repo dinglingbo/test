@@ -572,6 +572,11 @@
                     if(errCode == "S"){
 						nui.unmask(document.body);
                         showMsg('领料成功!','S'); 
+                        if(settleType == "ADD") {
+                        	mainGrid.reload();
+                        }else {
+                        	CloseWindow("ok");
+                        }
                         //CloseWindow("ok");
                     }else{ 
                     	nui.unmask(document.body);

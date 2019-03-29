@@ -137,7 +137,7 @@
 	                  <div field="serviceCode" name="serviceCode" width="170" headerAlign="center" allowsort="true" header="工单号" summaryType="count"></div>
 	                  <div field="billTypeId" name="billTypeId" width="80" headerAlign="center" allowsort="true"  header="工单类型"></div>
 	                  <div field="serviceTypeName" name="serviceTypeName" width="120" headerAlign="center" allowsort="true" header="业务类型"></div>
-	                  <div field="guestFullName" name="guestFullName" width="110" headerAlign="center" allowsort="true" header="客户名称"></div>
+	                  <!-- <div field="guestFullName" name="guestFullName" width="110" headerAlign="center" allowsort="true" header="客户名称"></div> -->
 	                  <div field="mtAdvisor" name="mtAdvisor" width="110" headerAlign="center" allowsort="true" header="服务顾问"></div>
 	                   <div field="outDate" name="outDate" width="120" headerAlign="center" allowsort="true" dateFormat="yyyy-MM-dd HH:mm" header="结算日期"></div>
 	                 </div>

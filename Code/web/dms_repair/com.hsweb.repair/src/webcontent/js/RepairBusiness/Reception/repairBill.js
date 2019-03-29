@@ -553,7 +553,8 @@ function setGuest(item){
     var data = {
         carNo: carNo,
         isSettle: 0,
-        orgid: currOrgId
+        orgid: currOrgId,
+        isDisabled : 0
     };
     var params = {	
     	"params":data

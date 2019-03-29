@@ -159,7 +159,7 @@ pageEncoding="UTF-8" session="false" %>
                                             <div field="carModel" name="" width="150" headerAlign="center" header="品牌车型"></div>
                                             <div field="chainComeTimes" name="" width="70" headerAlign="center" header="消费次数" ></div>
                                             <div field="chainConsumeAmt" name="" width="70" headerAlign="center" header="消费金额" ></div>
-                                            <div field="chainComeTimes" name="" width="70" headerAlign="center" header="来厂次数" ></div>
+                                            <!--<div field="chainComeTimes" name="" width="70" headerAlign="center" header="来厂次数" ></div>-->
                                             <div field="leaveDay" name="" width="70" headerAlign="center" header="离厂天数" ></div>
                                             <div field="lastComeKilometers" name="" width="70" headerAlign="center" header="行驶里程" ></div>
                                             <div field="tgrade" name="tgrade" width="70" headerAlign="center" header="客户等级" ></div>

@@ -12,13 +12,15 @@
 	select 
         a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
         b.id conId,b.orgid,b.name guestName,b.mobile,b.birthday,b.wechat_open_id wechatOpenId,
-        b.wechat_service_id wechatServiceId
+        b.wechat_service_id wechatServiceId,
+        datediff(( DATE_FORMAT(b.birthday, '%m%d')+0),( DATE_FORMAT(curdate(), '%m%d')+0)) birComeDay
     from  rpb_car a
     INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
-    where datediff(DATE_ADD(birthday,INTERVAL ceil(TIMESTAMPDIFF(MONTH,NOW(),birthday)/12) YEAR),NOW()) &gt;= 0
-    and datediff(DATE_ADD(birthday,INTERVAL ceil(TIMESTAMPDIFF(MONTH,NOW(),birthday)/12) YEAR),NOW()) &lt;= #tday#
+    where  datediff(( DATE_FORMAT(b.birthday, '%m%d')+0),( DATE_FORMAT(curdate(), '%m%d')+0)) &gt;= 0
+    and  datediff(( DATE_FORMAT(b.birthday, '%m%d')+0),( DATE_FORMAT(curdate(), '%m%d')+0)) &lt;= #tday#
     and b.orgid = #orgid#
     and a.is_disabled=0
+    order by birComeDay asc
     </select>
 
 
@@ -35,6 +37,7 @@
     and TIMESTAMPDIFF(DAY, NOW(), b.license_over_date) &lt;= #tday#
     and b.orgid = #orgid#
     and a.is_disabled=0
+    order by licenseOverDate asc
     </select>
 
 
@@ -51,6 +54,7 @@
     and TIMESTAMPDIFF(DAY, NOW(), a.annual_verification_due_date)  &lt;= #tday#
     and b.orgid = #orgid#
     and a.is_disabled=0
+    order by dueDate asc
     </select>
 
 
@@ -70,6 +74,7 @@
     and TIMESTAMPDIFF(DAY, NOW(), c.care_due_date)   &lt;= #tday#
     and b.orgid = #orgid#
     and a.is_disabled=0
+    order by careDueDate asc
     </select>
 
 
@@ -87,6 +92,7 @@
     and TIMESTAMPDIFF(DAY, NOW(), a.insure_due_date)  &lt;= #tday#
     and b.orgid = #orgid#
     and a.is_disabled=0
+    order by insureDueDate asc
     </select>
 
 
@@ -103,6 +109,7 @@
     and TIMESTAMPDIFF(DAY, NOW(), a.annual_inspection_date)  &lt;= #tday#
     and b.orgid = #orgid#
     and a.is_disabled=0
+     order by annualInspectionDate asc
     </select>
 
 
@@ -281,6 +288,7 @@ and a.is_disabled=0
         <include refid="guest_column" />
         AND B.CHAIN_COME_TIMES = 1
         AND B.FIRST_COME_DATE  &gt;=  DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+         
     </select> 
 
         <!-- 活跃期  来店2次（含）2次，且30天内消费过车辆-->
@@ -322,6 +330,7 @@ and a.is_disabled=0
     <!-- 所有-->
     <select id="getGuestTypeG" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
         <include refid="guest_column"/>
+        order by chainComeTimes desc
     </select>
 
 
@@ -335,7 +344,7 @@ and a.is_disabled=0
             c.birthday,c.license_over_date licenseOverDate,
             b.care_due_date careDueDate,
             0 as guestType,
-            datediff(DATE_ADD(birthday,INTERVAL ceil(TIMESTAMPDIFF(MONTH,NOW(),c.birthday)/12) YEAR),NOW()) birComeDay,
+            datediff(( DATE_FORMAT(c.birthday, '%m%d')+0),( DATE_FORMAT(curdate(), '%m%d')+0)) birComeDay,
             b.last_come_kilometers lastComeKilometers,
             b.last_come_date lastComeDate,
             a.annual_inspection_comp_code annualInspectionCompCode,
@@ -403,8 +412,8 @@ and a.is_disabled=0
                         <!-- 客户生日 -->
         <isEqual  prepend="" property="dateType"   compareValue="khsr">
             <isNotEmpty prepend="and" property="bir">
-                datediff(DATE_ADD(birthday,INTERVAL ceil(TIMESTAMPDIFF(MONTH,NOW(),c.birthday)/12) YEAR),NOW()) &gt;= 0
-            and datediff(DATE_ADD(birthday,INTERVAL ceil(TIMESTAMPDIFF(MONTH,NOW(),c.birthday)/12) YEAR),NOW()) &lt;= #bir#
+                datediff(( DATE_FORMAT(c.birthday, '%m%d')+0),( DATE_FORMAT(curdate(), '%m%d')+0))  &gt;= 0
+            and datediff(( DATE_FORMAT(c.birthday, '%m%d')+0),( DATE_FORMAT(curdate(), '%m%d')+0))  &lt;= #bir#
             </isNotEmpty>
         </isEqual>
 

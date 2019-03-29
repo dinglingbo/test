@@ -217,7 +217,8 @@
                     if(res.errCode =='S'){
                         // showMsg("发送成功","S");
                         //isSuccess=1;
-                        saveRecord();
+                       saveRecord(); 
+           
                     }else{
                         showMsg("发送失败","E");
                     }
@@ -266,6 +267,7 @@
                             nui.ajax({
                                 url:saveUrl,
                                 type:'post',
+                                async: false,
                                 data:paramData,
                                 success:function(res){
                                     if(res.errCode == 'S'){

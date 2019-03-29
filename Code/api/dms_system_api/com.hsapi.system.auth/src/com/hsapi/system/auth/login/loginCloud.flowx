@@ -108,6 +108,7 @@
         <process:inputVariable id="1" name="posiId" type="expression" value="Long" valueType="Primitive" pattern="reference">null</process:inputVariable>
         <process:inputVariable id="2" name="roleName" type="expression" value="String" valueType="Primitive" pattern="reference">null</process:inputVariable>
         <process:inputVariable id="3" name="company" type="expression" value="String" valueType="Primitive" pattern="reference">null</process:inputVariable>
+        <process:inputVariable id="4" name="webPath" type="expression" value="String" valueType="Primitive" pattern="reference">sessionContext.getString(&quot;webPath&quot;)</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>

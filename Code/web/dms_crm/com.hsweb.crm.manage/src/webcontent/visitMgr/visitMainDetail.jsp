@@ -144,7 +144,7 @@ pageEncoding="UTF-8" session="false" %>
             careDayCycle:data.careDayCycle,
             carId:mainData.carId,
             carNo:mainData.carNo,
-            guestId:mainData.contactorId,
+            guestId:mainData.guestId,
             serviceId:mainData.serviceId,
             serviceType:'3',
             mainId:mainData.id,

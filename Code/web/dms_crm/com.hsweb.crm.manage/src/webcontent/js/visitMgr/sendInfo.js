@@ -96,6 +96,7 @@ function saveRecord(data) {
     nui.ajax({
         url:saveUrl,
         type:'post',
+        async:false,
         data:{
             params:params
         },

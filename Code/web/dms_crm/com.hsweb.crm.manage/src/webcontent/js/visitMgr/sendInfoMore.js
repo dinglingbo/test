@@ -3,8 +3,8 @@ var form1 = null;
 var mainDatas = [];
 var visitContent = null;
 var baseUrl = apiPath + sysApi + "/";
-var sendUrl = baseUrl+"com.hsapi.system.basic.smsPushMore.biz.ext";
-var saveUrl = apiPath + repairApi +"/com.hsapi.repair.repairService.crud.saveRemindRecord.biz.ext";
+var sendUrl = baseUrl+"com.hsapi.system.basic.smsPush.testPushMore.biz.ext";
+var saveUrl = apiPath + repairApi +"/com.hsapi.repair.repairService.crud.saveRemindRecordMore.biz.ext";
 $(document).ready(function (){
 	
   form1 = new nui.Form("#form1");
@@ -60,7 +60,7 @@ function save() {
 				if (returnJson.errCode == "S") {
 				    nui.unmask(document.body);
                     showMsg(returnJson.errMsg || "发送成功", "S");
-                    //saveRecord(mainData);
+                    saveRecord();
 					CloseWindow("ok");
 				} else {
 					nui.unmask(document.body);
@@ -73,29 +73,38 @@ function save() {
 
 
 
-function saveRecord(data) {
+function saveRecord() {
     //var data = form1.getData();
-    var message  = visitContent.getValue();
+    var message = visitContent.getValue();
+    var Arr = [];
+    for (var i = 0; i < mainDatas.length; i++) {
+        var data = mainDatas[i];
+        
+
     var params ={
-        serviceType:data.serviceType,
-        mainId:data.id||'',
-        guestId:data.guestId||'',
-        carId:data.carId||'',
-        carNo: data.carNo || '',
-        visitMode:'011402',//短信
-        visitContent:message||'',
+            serviceType:data.serviceType,
+            mainId:data.id||'',
+            guestId:data.guestId||'',
+            carId:data.carId||'',
+            carNo: data.carNo || '',
+            visitMode:'011402',//短信
+            visitContent: message || '',
+            guestSource:data.guestSource
+        };
+        Arr.push(params);
     }
     nui.ajax({
         url:saveUrl,
         type:'post',
+        async:false,
         data:{
-            params:params
+            params:Arr
         },
         success:function(res){
             if(res.errCode == 'S'){
-                // showMsg("保存成功！","S");
+                showMsg("发送成功！","S");
             }else{
-                // showMsg("保存失败！","E");
+                showMsg("发送失败！","E");
             }
         },
         error: function (jqXHR) {

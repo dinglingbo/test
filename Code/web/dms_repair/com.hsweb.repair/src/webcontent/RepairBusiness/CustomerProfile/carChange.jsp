@@ -93,7 +93,7 @@
 									<label>车牌号：</label>
 								</td>
 								<td colspan="1">
-									<input class="nui-textbox" name="carNo" id="carNo" width="140px"/>
+									<input class="nui-textbox" name="carNo" id="carNo" width="140px" />
 									<input name="id" class="nui-hidden"/>
 								</td>
 							</tr> 

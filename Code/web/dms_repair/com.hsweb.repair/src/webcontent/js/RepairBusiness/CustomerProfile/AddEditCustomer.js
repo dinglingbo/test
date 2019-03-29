@@ -230,7 +230,7 @@ function onOk()
 {
 	var carNo = nui.get("carNo").getValue();
 	var vin = nui.get("vin").getValue();
-    //判断VIN
+/*    //判断VIN
     var data = {};
     data = validation(vin);
     if(data.isNo){
@@ -239,14 +239,14 @@ function onOk()
     }else{
     	showMsg("VIN不规范，请确认！","W");
     	return;
-    }
+    }*/
     //判断车牌号,返回是否正确，和转化后的车牌
-	var falge = isVehicleNumber(carNo);
+/*	var falge = isVehicleNumber(carNo);
 	nui.get("carNo").setValue(falge.vehicleNumber);
 	if(!falge.result){
 		showMsg("请输入正确的车牌号","W");
 		return;
-	}else{
+	}*/
 		    var guest = basicInfoForm.getData();
 		    guest.tgrade = guest.guestTypeId;
 		    var name = guest.fullName || "";
@@ -330,6 +330,36 @@ function onOk()
 		            return oldJson !== newJson;
 		        }
 		    });
+		    //循环判断VIN,车牌号,并判断车辆数组有没有重复车牌
+		    for(var i = 0;i<insCarList.length;i++){
+		    	var num = 0;//两层循环，等于2就有重复
+		        //判断VIN
+		       var data = validation(insCarList[i].vin);
+		        if(data.isNo){
+		        	insCarList[i].vin = data.vin//返回转化好的vin
+		        }else{
+		        	showMsg("VIN不规范，请确认！","W");
+		        	return;
+		        }
+		      //判断车牌号,返回是否正确，和转化后的车牌
+		        	var falge = isVehicleNumber(insCarList[i].carNo);
+		        	insCarList[i].carNo = falge.vehicleNumber//返回转化好的车牌
+		        	if(!falge.result){
+		        		showMsg("请输入正确的车牌号","W");
+		        		return;
+		        	}
+		        //循环判断车牌是否重复
+		    	for(var j = 0;j<insCarList.length;j++){
+		    		if(insCarList[i].carNo==insCarList[j].carNo){
+		    			num = num+1;
+		    			if(num==2){
+			    			showMsg(insCarList[i].carNo+"在本次添加的车辆列表里存在重复","W");
+			    			return;
+		    			}
+
+		    		}
+		    	}
+		    }
 
 		    nui.mask({
 				el : document.body,
@@ -400,7 +430,6 @@ function onOk()
 		            $("#btnGroup").show();
 		        }
 		    });    
-	}
 
    
 }

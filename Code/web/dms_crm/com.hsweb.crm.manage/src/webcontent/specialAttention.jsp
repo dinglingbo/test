@@ -12,15 +12,34 @@
 
 <head>
     <title>特别关怀</title>
-    <script src="<%=request.getContextPath()%>/manage/js/specialAttention.js?v=1.2.2">
+    <script src="<%=request.getContextPath()%>/manage/js/specialAttention.js?v=1.2.5">
     </script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
+        <style>
+          html,
+        body {
+            margin: 0px;
+            padding: 0px;
+            border: 0px;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        #wechatTag1{
+            color:#ccc;
+    }
+    #wechatTag{
+        color:#62b900;
+    }
+    
+    </style>
 </head>
-
 <body style="margin:0;width: 100%; height:100%;overflow-x:hidden">
+    <input name="insureCompCode" id="insureCompCode" dataField="list"
+    class="nui-combobox " textField="fullName"  valueField="code" visible="false"/>
     <div id="tabs" class="nui-tabs" width="100%" height="100%" onactivechanged="change(e)" activeIndex="0">
-        <div title="商业险到期提醒">
+        <div title="商业险到期提醒" name="syx">
             <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
                 <table style="width:100%;">
                     <tr>
@@ -48,19 +67,23 @@
                             <li class="separator"></li>
 
                             <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
-                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
+                            <a class="nui-button" id="wcBtn11" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
                                     class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                            <a class="nui-button"id="wcBtn12" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
                                     class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+                            <a class="nui-button"id="wcBtn13" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+                            <a class="nui-button" id="wcBtn14"plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+                                                                <span id="showMonile" style="display: none;">
+                                            <span class="separator"></span>
+                                            <span id="mobileText" style="color: red;font-weight:bold;display: inline-block;"></span>
+                                        </span>
                         </td>
                     </tr>
                 </table>
             </div>
             <div class="nui-fit">
                 <div id="business" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" multiSelect="false"
-                    pageSize="20" showPageInfo="true"   selectOnLoad="true"   onDrawCell="onDrawCell" onselectionchanged="" 
+                    pageSize="20" showPageInfo="true"   selectOnLoad="true"   onDrawCell=""onselectionchanged="" 
                     allowSortColumn="false" totalField="page.count">
                     <div property="columns">
                         <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
@@ -68,17 +91,19 @@
                         <div field="carId" headerAlign="center" allowSort="true" visible="false">carId</div>
                         <div field="guestId" headerAlign="center" allowSort="true" visible="false">guestId</div>
                         <div field="carNo" headerAlign="center" allowSort="true" width="100px">车牌号</div>
-                        <div field="carModel"name="carModel" headerAlign="center" allowSort="true" width="100px">品牌车型</div>
-                        <div field="annualInspectionCompName" name="annualInspectionCompName"headerAlign="center" allowSort="true" width="100px">保险公司</div>
-                        <div field="annualStatus" name="annualStatus"headerAlign="center" allowSort="true" width="60px">状态</div>
-                        <div field="annualInspectionDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true"
-                            width="50px">
+                        <div field="name" headerAlign="center" allowSort="true" width="100px">客户名称</div>
+                        <div field="mobile" headerAlign="center" allowSort="true" width="100px">联系方式</div>
+                        <div field="carModel" headerAlign="center" allowSort="true" width="200px">品牌车型</div>
+  
+                        <div field="annualInspectionCompCode" headerAlign="center" allowSort="true" width="100px">保险公司</div>
+                        <div field="annualInspectionDate" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true"
+                        width="100px">
                             商业险到期日期</div>
                     </div>
                 </div>
             </div>
         </div>
-        <div title="交强险到期提醒">
+        <div title="交强险到期提醒" name="jqx">
             <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
                 <table style="width:100%;">
                     <tr>
@@ -105,19 +130,23 @@
                             <a class="nui-button" iconcls="" name="" plain="true" onclick="change(1)"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                             <li class="separator"></li>
                             <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
-                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
+                            <a class="nui-button"id="wcBtn21" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
                                     class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                            <a class="nui-button" id="wcBtn22"plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
                                     class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+                            <a class="nui-button"id="wcBtn23" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+                            <a class="nui-button"id="wcBtn24" plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+                                                                <span id="showMonile2" style="display: none;">
+                                            <span class="separator"></span>
+                                            <span id="mobileText2" style="color: red;font-weight:bold;display: inline-block;"></span>
+                                        </span>
                         </td>
                     </tr>
                 </table>
             </div>
             <div class="nui-fit">
                 <div id="compulsoryInsurance" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
-                    multiSelect="false" pageSize="20" showPageInfo="true" selectOnLoad="true" onDrawCell="onDrawCell" onselectionchanged=""
+                    multiSelect="false" pageSize="20" showPageInfo="true" selectOnLoad="true" onDrawCell=""onselectionchanged=""
                     allowSortColumn="false" totalField="page.count">
                     <div property="columns">
                         <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
@@ -125,17 +154,19 @@
                         <div field="carId" headerAlign="center" allowSort="true" visible="false">carId</div>
                         <div field="guestId" headerAlign="center" allowSort="true" visible="false">guestId</div>
                         <div field="carNo" headerAlign="center" allowSort="true" width="100px">车牌号</div>
-                        <div field="carModel"  name="carModel"headerAlign="center" allowSort="true" width="100px">品牌车型</div>
-                        <div field="insureCompName"  name="insureCompName"headerAlign="center" allowSort="true" width="100px">保险公司</div>
-                        <div field="insureStatus"  name="insureStatus"headerAlign="center" allowSort="true" width="60px">状态</div>
-                        <div field="insureDueDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true"
-                            width="50px">
+                        <div field="name" headerAlign="center" allowSort="true" width="100px">客户名称</div>
+                        <div field="mobile" headerAlign="center" allowSort="true" width="100px">联系方式</div>
+                        <div field="carModel" headerAlign="center" allowSort="true" width="200px">品牌车型</div>
+  
+                        <div field="insureCompCode" headerAlign="center" allowSort="true" width="100px">保险公司</div>
+                        <div field="insureDueDate" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true"
+                        width="100px">
                             交强险到期日期</div>
                     </div>
                 </div>
             </div>
         </div>
-        <div title="驾照年审提醒">
+        <div title="驾照年审提醒" name="jzns">
             <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
                 <table style="width:100%;">
                     <tr>
@@ -163,19 +194,23 @@
                             <li class="separator"></li>
 
                             <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
-                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
+                            <a class="nui-button" id="wcBtn31"plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
                                     class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                            <a class="nui-button"id="wcBtn32" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
                                     class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+                            <a class="nui-button" id="wcBtn33"plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+                            <a class="nui-button" id="wcBtn34"plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+                                                                <span id="showMonile3" style="display: none;">
+                                            <span class="separator"></span>
+                                            <span id="mobileText3" style="color: red;font-weight:bold;display: inline-block;"></span>
+                                        </span>
                         </td>
                     </tr>
                 </table>
             </div>
             <div class="nui-fit">
                 <div id="drivingLicense" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
-                    multiSelect="false" pageSize="20" showPageInfo="true"   selectOnLoad="true"   onDrawCell="onDrawCell" onselectionchanged=""
+                    multiSelect="false" pageSize="20" showPageInfo="true"   selectOnLoad="true"   onDrawCell=""onselectionchanged=""
                     allowSortColumn="false" totalField="page.count">
                     <div property="columns">
                         <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
@@ -183,17 +218,19 @@
                         <div field="guestId" headerAlign="center" allowSort="true" visible="false">guestId</div>
                         <div field="orgid" headerAlign="center" allowSort="true" visible="false">orgid</div>
                         <div field="carId" headerAlign="center" allowSort="true" visible="false">carId</div>
-                        <div field="guestName" name="guestName"headerAlign="center" allowSort="true" width="100px">客户姓名</div>
-                        <div field="mobile" headerAlign="center" allowSort="true" width="60px">电话</div>
-                        <div field="licenseStatus"  name="licenseStatus"headerAlign="center" allowSort="true" width="60px">状态</div>
-                        <div field="licenseOverDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true"
-                            width="50px">
+                        <div field="carNo" headerAlign="center" allowSort="true" width="100px">车牌号</div>
+                        <div field="guestName" headerAlign="center" allowSort="true" width="100px">客户名称</div>
+                        <div field="mobile" headerAlign="center" allowSort="true" width="100px">联系方式</div>
+                        <div field="carModel" headerAlign="center" allowSort="true" width="200px">品牌车型</div>
+  
+                        <div field="licenseOverDate" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true"
+                        width="100px">
                             驾照年审日期</div>
                     </div>
                 </div>
             </div>
         </div>
-        <div title="车辆年检提醒">
+        <div title="车辆年检提醒" name="clnj">
             <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
                 <table style="width:100%;">
                     <tr>
@@ -220,19 +257,23 @@
                             <a class="nui-button" iconcls="" name="" plain="true" onclick="change(1)"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                             <li class="separator"></li>
                             <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
-                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
+                            <a class="nui-button" id="wcBtn41"plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
                                     class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                            <a class="nui-button" id="wcBtn42"plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
                                     class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+                            <a class="nui-button"id="wcBtn43" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+                            <a class="nui-button" id="wcBtn44"plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+                                                                <span id="showMonile4" style="display: none;">
+                                            <span class="separator"></span>
+                                            <span id="mobileText4" style="color: red;font-weight:bold;display: inline-block;"></span>
+                                        </span>
                         </td>
                     </tr>
                 </table>
             </div>
             <div class="nui-fit">
                 <div id="car" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" pageSize="20"
-                    multiSelect="false" showPageInfo="true" selectOnLoad="true" onDrawCell="onDrawCell" onselectionchanged=""
+                    multiSelect="false" showPageInfo="true" selectOnLoad="true" onDrawCell=""onselectionchanged=""
                     allowSortColumn="false" totalField="page.count">
                     <div property="columns">
                         <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
@@ -240,67 +281,59 @@
                         <div field="carId" headerAlign="center" allowSort="true" visible="false">carId</div>
                         <div field="guestId" headerAlign="center" allowSort="true" visible="false">guestId</div>
                         <div field="carNo" headerAlign="center" allowSort="true" width="100px">车牌号</div>
-                        <div field="carModel" name="carModel"headerAlign="center" allowSort="true" width="100px">品牌车型</div>
-                        <div field="veriStatus" name="veriStatus"headerAlign="center" allowSort="true" width="60px">状态</div>
-                        <div field="annualVerificationDueDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm"
-                            allowSort="true" width="50px">
+                        <div field="name" headerAlign="center" allowSort="true" width="100px">客户名称</div>
+                        <div field="mobile" headerAlign="center" allowSort="true" width="100px">联系方式</div>
+                        <div field="carModel" headerAlign="center" allowSort="true" width="200px">品牌车型</div>
+  
+                        <div field="annualVerificationDueDate" headerAlign="center" dateFormat="yyyy-MM-dd"
+                            allowSort="true" width="100px">
                             车辆年检到期日期</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div title="客户生日提醒">
+        <div title="客户生日提醒" name="khsr">
             <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
                 <table style="width:100%;">
                     <tr>
                         <td style="width:100%;">
-                            <label style="font-family:Verdana;">快速查询：</label>
-                            <a class="nui-menubutton " menu="#popupMenuDate5" id="menunamedate5">本日</a>
-                            <ul id="popupMenuDate5" class="nui-menu" style="display:none;">
-                                <li iconCls="" onclick="quickSearch(0,'khsr')" id="type0">本日</li>
-                                <li iconCls="" onclick="quickSearch(1,'khsr')" id="type1">昨日</li>
-                                <li class="separator"></li>
-                                <li iconCls="" onclick="quickSearch(2,'khsr')" id="type2">本周</li>
-                                <li iconCls="" onclick="quickSearch(3,'khsr')" id="type3">上周</li>
-                                <li class="separator"></li>
-                                <li iconCls="" onclick="quickSearch(4,'khsr')" id="type4">本月</li>
-                                <li iconCls="" onclick="quickSearch(5,'khsr')" id="type5">上月</li>
-                                <li class="separator"></li>
-                                <li iconCls="" onclick="quickSearch(10,'khsr')" id="type10">本年</li>
-                                <li iconCls="" onclick="quickSearch(11,'khsr')" id="type11">上年</li>
-                            </ul>
-                            到期日期:
-                            <input class="nui-datepicker" id="startDate5" name="startDate5" dateFormat="yyyy-MM-dd" style="width:100px" />
-                            至
-                            <input class="nui-datepicker" id="endDate5" name="endDate5" dateFormat="yyyy-MM-dd" style="width:100px" />
+                  			<!--<label>客户生日在</label>
+                            <input class="nui-textbox" name="bir" id="bir" style="width: 80px;" vtype="int" value="30"/>
+                            <label>天以内</label>-->
                             <a class="nui-button" iconcls="" name="" plain="true" onclick="change(1)"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                             <li class="separator"></li>
                             <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
-                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
+                            <a class="nui-button" id="wcBtn51"plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
                                     class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
+                            <a class="nui-button"id="wcBtn52" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
                                     class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+                            <a class="nui-button" id="wcBtn53"plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+                            <a class="nui-button"id="wcBtn54" plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+                                                                <span id="showMonile5" style="display: none;">
+                                            <span class="separator"></span>
+                                            <span id="mobileText5" style="color: red;font-weight:bold;display: inline-block;"></span>
+                                        </span>
                         </td>
                     </tr>
                 </table>
             </div>
             <div class="nui-fit">
                 <div id="guestBirthday" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
-                    multiSelect="false" pageSize="20" showPageInfo="true" selectOnLoad="true"  onDrawCell="onDrawCell" onselectionchanged=""
+                    multiSelect="false" pageSize="20" showPageInfo="true" selectOnLoad="true"  onDrawCell=""onselectionchanged=""
                     allowSortColumn="false" totalField="page.count">
                     <div property="columns">
                         <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
                         <div type="checkcolumn" class="mini-radiobutton" header="选择"></div>
                         <div field="guestId" headerAlign="center" allowSort="true" visible="false">guestId</div>
                         <div field="carId" headerAlign="center" allowSort="true" visible="false">orgid</div>
-                        <div field="guestName"  name="guestName"headerAlign="center" allowSort="true" width="100px">客户姓名</div>
-                        <div field="mobile" headerAlign="center" allowSort="true" width="60px">电话</div>
-                        <div field="birthdayType"  name="birthdayType"headerAlign="center" allowSort="true" width="100px">生日类型</div>
-                        <div field="birStatus"  name="birStatus"headerAlign="center" allowSort="true" width="60px">状态</div>
-                        <div field="birthday" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" width="50px">生日</div>
+                        <div field="carNo" headerAlign="center" allowSort="true" width="100px">车牌号</div>
+                        <div field="guestName" headerAlign="center" allowSort="true" width="100px">客户名称</div>
+                        <div field="mobile" headerAlign="center" allowSort="true" width="100px">联系方式</div>
+                        <div field="carModel" headerAlign="center" allowSort="true" width="200px">品牌车型</div>
+  
+                        <div field="birComeDay" headerAlign="center" allowSort="true" width="100px">距离天数</div>
+                        <div field="birthday" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true" width="100px">生日</div>
                     </div>
                 </div>
             </div>

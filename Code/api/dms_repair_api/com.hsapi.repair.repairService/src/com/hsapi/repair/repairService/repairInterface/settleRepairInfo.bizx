@@ -15,7 +15,7 @@
       <targetNode>subprocess0</targetNode>
       <process:transitionCondition>
         <process:complexCondition>
-          <process:code>billTypeId==103||billTypeId==106||billTypeId==107||billTypeId==108||billTypeId==6</process:code>
+          <process:code>billTypeId==103||billTypeId==106||billTypeId==107||billTypeId==108||billTypeId==119</process:code>
         </process:complexCondition>
       </process:transitionCondition>
     </sourceConnections>

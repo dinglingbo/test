@@ -231,6 +231,10 @@
       <process:to type="query">m:userObject/attributes/source</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">webPath</process:from>
+      <process:to type="query">m:userObject/attributes/webPath</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject</process:from>
       <process:to type="query">userObject</process:to>
     </process:copy>
@@ -659,6 +663,7 @@
     <process:input description="当前岗位" isArray="false" name="posiId" primitiveType="Long"/>
     <process:input description="" isArray="false" name="roleName" primitiveType="String"/>
     <process:input description="登录公司" isArray="false" name="company" primitiveType="String"/>
+    <process:input description="" isArray="false" name="webPath" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

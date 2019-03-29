@@ -25,188 +25,205 @@ $(document).ready(function (v) {
     car.setUrl(querybusinessUrl);
     guestBirthday.setUrl(queryRemindSUrl);
     
-    var filter = new HeaderFilter(business, {
-        columns: [
-            { name: 'carModel' },
-            { name: 'annualInspectionCompName' },
-            { name: 'annualStatus' }
-        ],
-        callback: function (column, filtered) {
-        },
-        tranCallBack: function (field) {
-        	var value = null;
-        	switch(field){
-        		case "annualStatus" :
-        			var arr = [];
-        			for (var i in statusList) {
-        			    var o = {};
-        			    o.name = statusList[i].name;
-        			    o.id = statusList[i].id;
-        			    arr.push(o);
-        			}
-        			value = arr;
-        			break;			
-        	}
-        	return value;
-        }
-    });
+    initInsureComp("insureCompCode");//保险公司
+//    var filter = new HeaderFilter(business, {
+//        columns: [
+//            { name: 'carModel' },
+//            { name: 'annualInspectionCompName' },
+//            { name: 'annualStatus' }
+//        ],
+//        callback: function (column, filtered) {
+//        },
+//        tranCallBack: function (field) {
+//        	var value = null;
+//        	switch(field){
+//        		case "annualStatus" :
+//        			var arr = [];
+//        			for (var i in statusList) {
+//        			    var o = {};
+//        			    o.name = statusList[i].name;
+//        			    o.id = statusList[i].id;
+//        			    arr.push(o);
+//        			}
+//        			value = arr;
+//        			break;			
+//        	}
+//        	return value;
+//        }
+//    });
+//    
+//    var filter = new HeaderFilter(compulsoryInsurance, {
+//        columns: [
+//            { name: 'carModel' },
+//            { name: 'insureCompName' },
+//            { name: 'insureStatus' }
+//        ],
+//        callback: function (column, filtered) {
+//        },
+//        tranCallBack: function (field) {
+//        	var value = null;
+//        	switch(field){
+//        		case "insureStatus" :
+//        			var arr = [];
+//        			for (var i in statusList) {
+//        			    var o = {};
+//        			    o.name = statusList[i].name;
+//        			    o.id = statusList[i].id;
+//        			    arr.push(o);
+//        			}
+//        			value = arr;
+//        			break;			
+//        	}
+//        	return value;
+//        }
+//    });
+//    
+//    var filter = new HeaderFilter(drivingLicense, {
+//        columns: [
+//            { name: 'guestName' },
+//            { name: 'licenseStatus' }
+//        ],
+//        callback: function (column, filtered) {
+//        },
+//        tranCallBack: function (field) {
+//        	var value = null;
+//        	switch(field){
+//        		case "licenseStatus" :
+//        			var arr = [];
+//        			for (var i in statusList) {
+//        			    var o = {};
+//        			    o.name = statusList[i].name;
+//        			    o.id = statusList[i].id;
+//        			    arr.push(o);
+//        			}
+//        			value = arr;
+//        			break;			
+//        	}
+//        	return value;
+//        }
+//    });
+//    
+//    var filter = new HeaderFilter(car, {
+//        columns: [
+//            { name: 'veriStatus' },
+//            { name: 'carModel' }
+//        ],
+//        callback: function (column, filtered) {
+//        },
+//        tranCallBack: function (field) {
+//        	var value = null;
+//        	switch(field){
+//        		case "veriStatus" :
+//        			var arr = [];
+//        			for (var i in statusList) {
+//        			    var o = {};
+//        			    o.name = statusList[i].name;
+//        			    o.id = statusList[i].id;
+//        			    arr.push(o);
+//        			}
+//        			value = arr;
+//        			break;			
+//        	}
+//        	return value;
+//        }
+//    });
     
-    var filter = new HeaderFilter(compulsoryInsurance, {
-        columns: [
-            { name: 'carModel' },
-            { name: 'insureCompName' },
-            { name: 'insureStatus' }
-        ],
-        callback: function (column, filtered) {
-        },
-        tranCallBack: function (field) {
-        	var value = null;
-        	switch(field){
-        		case "insureStatus" :
-        			var arr = [];
-        			for (var i in statusList) {
-        			    var o = {};
-        			    o.name = statusList[i].name;
-        			    o.id = statusList[i].id;
-        			    arr.push(o);
-        			}
-        			value = arr;
-        			break;			
-        	}
-        	return value;
-        }
-    });
+//    var filter = new HeaderFilter(guestBirthday, {
+//        columns: [
+//            { name: 'guestName' },
+//            { name: 'birthdayType' },
+//            { name: 'birStatus' }
+//        ],
+//        callback: function (column, filtered) {
+//        },
+//        tranCallBack: function (field) {
+//        	var value = null;
+//        	switch(field){
+//        		case "birStatus" :
+//        			var arr = [];
+//        			for (var i in statusList) {
+//        			    var o = {};
+//        			    o.name = statusList[i].name;
+//        			    o.id = statusList[i].id;
+//        			    arr.push(o);
+//        			}
+//        			value = arr;
+//        			break;	
+//        		case "birthdayType" :
+//        			var arr = [];
+//        			for (var i in birthdayTypeList) {
+//        			    var o = {};
+//        			    o.name = birthdayTypeList[i].name;
+//        			    o.id = birthdayTypeList[i].id;
+//        			    arr.push(o);
+//        			}
+//        			value = arr;
+//        			break;	
+//        	}
+//        	return value;
+//        }
+//    });
+//    
     
-    var filter = new HeaderFilter(drivingLicense, {
-        columns: [
-            { name: 'guestName' },
-            { name: 'licenseStatus' }
-        ],
-        callback: function (column, filtered) {
-        },
-        tranCallBack: function (field) {
-        	var value = null;
-        	switch(field){
-        		case "licenseStatus" :
-        			var arr = [];
-        			for (var i in statusList) {
-        			    var o = {};
-        			    o.name = statusList[i].name;
-        			    o.id = statusList[i].id;
-        			    arr.push(o);
-        			}
-        			value = arr;
-        			break;			
-        	}
-        	return value;
-        }
-    });
-    
-    var filter = new HeaderFilter(car, {
-        columns: [
-            { name: 'veriStatus' },
-            { name: 'carModel' }
-        ],
-        callback: function (column, filtered) {
-        },
-        tranCallBack: function (field) {
-        	var value = null;
-        	switch(field){
-        		case "veriStatus" :
-        			var arr = [];
-        			for (var i in statusList) {
-        			    var o = {};
-        			    o.name = statusList[i].name;
-        			    o.id = statusList[i].id;
-        			    arr.push(o);
-        			}
-        			value = arr;
-        			break;			
-        	}
-        	return value;
-        }
-    });
-    
-    var filter = new HeaderFilter(guestBirthday, {
-        columns: [
-            { name: 'guestName' },
-            { name: 'birthdayType' },
-            { name: 'birStatus' }
-        ],
-        callback: function (column, filtered) {
-        },
-        tranCallBack: function (field) {
-        	var value = null;
-        	switch(field){
-        		case "birStatus" :
-        			var arr = [];
-        			for (var i in statusList) {
-        			    var o = {};
-        			    o.name = statusList[i].name;
-        			    o.id = statusList[i].id;
-        			    arr.push(o);
-        			}
-        			value = arr;
-        			break;	
-        		case "birthdayType" :
-        			var arr = [];
-        			for (var i in birthdayTypeList) {
-        			    var o = {};
-        			    o.name = birthdayTypeList[i].name;
-        			    o.id = birthdayTypeList[i].id;
-        			    arr.push(o);
-        			}
-        			value = arr;
-        			break;	
-        	}
-        	return value;
-        }
-    });
-    
+    business.on("select", function (e) {
+//        visitHistoryList(e.record);
+        isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
+        $("#showMonile").show();
+        document.getElementById("mobileText").innerHTML = e.record.mobile;
+    }); 
+    compulsoryInsurance.on("select", function (e) {
+//        visitHistoryList(e.record);
+        isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
+        $("#showMonile2").show();
+        document.getElementById("mobileText2").innerHTML = e.record.mobile;
+    }); 
+    drivingLicense.on("select", function (e) {
+//        visitHistoryList(e.record);
+        isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
+        $("#showMonile3").show();
+        document.getElementById("mobileText3").innerHTML = e.record.mobile;
+    }); 
+    car.on("select", function (e) {
+//        visitHistoryList(e.record); 
+        isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
+        $("#showMonile4").show();
+        document.getElementById("mobileText4").innerHTML = e.record.mobile;
+    }); 
+    guestBirthday.on("select", function (e) {
+//        visitHistoryList(e.record);
+        isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
+        $("#showMonile5").show();
+        document.getElementById("mobileText5").innerHTML = e.record.mobile;
+    }); 
+
     business.on("drawcell", function (e) {
-        if (e.field == "annualStatus") {
-            if (e.value == 0) {
-                e.cellHtml = "未关怀";
-            } else {
-                e.cellHtml = "已关怀"; 
-            }
+    	if (e.field == "mobile") {
+            e.cellHtml = changedTel(e);
+        }else if (e.field == "annualInspectionCompCode") {
+            e.cellHtml = setColVal('insureCompCode', 'code', 'fullName', e.value);
         }
     });
     compulsoryInsurance.on("drawcell", function (e) {
-        if (e.field == "insureStatus") {
-            if (e.value == 0) {
-                e.cellHtml = "未关怀";
-            } else {
-                e.cellHtml = "已关怀";
-            }
+    	if (e.field == "mobile") {
+            e.cellHtml = changedTel(e);
+        }else if (e.field == "insureCompCode") {
+            e.cellHtml = setColVal('insureCompCode', 'code', 'fullName', e.value);
         }
     });
     drivingLicense.on("drawcell", function (e) {
-        if (e.field == "licenseStatus") {
-            if (e.value == 0) {
-                e.cellHtml = "未关怀";
-            } else {
-                e.cellHtml = "已关怀";
-            }
+    	if (e.field == "mobile") {
+            e.cellHtml = changedTel(e);
         }
     });
     car.on("drawcell", function (e) {
-        if (e.field == "veriStatus") {
-            if (e.value == 0) {
-                e.cellHtml = "未关怀";
-            } else {
-                e.cellHtml = "已关怀";
-            }
+    	if (e.field == "mobile") {
+            e.cellHtml = changedTel(e);
         }
     });
 
     guestBirthday.on("drawcell", function (e) {
-        if (e.field == "birStatus") {
-            if (e.value == 0) {
-                e.cellHtml = "未关怀";
-            } else {
-                e.cellHtml = "已关怀";
-            }
+    	if (e.field == "mobile") {
+            e.cellHtml = changedTel(e);
         }
         if (e.field == "birthdayType") {
             if (e.value == 0) {
@@ -218,6 +235,25 @@ $(document).ready(function (v) {
     });
 });
 
+function changedTel(e) {
+    var uid = e.record._uid;
+    var value = e.value
+    var res = {};
+    value = "" + value;
+    var reg=/(\d{3})\d{4}(\d{4})/;
+    value = value.replace(reg, "$1****$2");
+    if(e.value){
+        if(e.record.wechatOpenId){
+            res =  '<a href="javascript:bindWechat(\'' + uid + '\')" id="showA" ><span id="wechatTag" class="fa fa-wechat fa-lg"></span></a>&nbsp;'+value;
+                /*e.cellHtml = "<span id='wechatTag' class='fa fa-wechat fa-lg'></span>"+value;*/
+        }else{
+            res =  '<a href="javascript:bindWechat(\'' + uid + '\')" id="showA1" ><span id="wechatTag1" class="fa fa-wechat fa-lg"></span></a>&nbsp;'+value;
+        }
+    }else{
+        res="";
+    }
+    return res;
+}
 
 function setInitData(params) {
     var params = {};
@@ -289,9 +325,8 @@ function query(tab) {
             params = {
                 isBirRemind: 1,
                 birStatus: 0,
-                startDate:nui.get('startDate5').getFormValue(),
-                endDate: nui.get('endDate5').getFormValue(),
-                dateType:'khsr'
+//                tday:nui.get("bir").value,
+//                dateType:'khsr'
             };
             guestBirthday.load({
                 params: params,
@@ -553,16 +588,10 @@ function quickSearch(type,gridType) {
             car.load({params:params});
             break;
             case 'khsr'://客户生日
-            var menunamedate5 = nui.get("menunamedate5");
-            var startDateEl5 = nui.get("startDate5");
-            var endDateEl5 = nui.get("endDate5");
-            startDateEl5.setValue(params.startDate);
-            endDateEl5.setValue(addDate(params.endDate, -1));
-            menunamedate5.setText(queryname);
             params.isBirRemind = 1;
             params.birStatus = 0;
-            params.dateType = gridType;
-            params.endDate = addDate(params.endDate, -1);
+//            params.tday = nui.gfet("bir").value;
+//            params.dateType = gridType;
             guestBirthday.load({params:params});
             break;
         default:
@@ -570,5 +599,56 @@ function quickSearch(type,gridType) {
     }
 
 }
+
+
+
+function isButtonEnable(openId,tab) {
+    if (openId) {
+    	if(tab.name == 'syx'){
+            nui.get("wcBtn13").enable();
+            nui.get("wcBtn14").enable();
+            nui.get("wcBtn12").enable();
+        }else if(tab.name == 'jqx'){
+            nui.get("wcBtn23").enable();
+            nui.get("wcBtn24").enable();
+            nui.get("wcBtn22").enable();
+        }else if(tab.name == 'jzns'){
+            nui.get("wcBtn33").enable();
+            nui.get("wcBtn34").enable();
+            nui.get("wcBtn32").enable();
+        }else if(tab.name == 'clnj'){
+            nui.get("wcBtn43").enable();
+            nui.get("wcBtn44").enable();
+            nui.get("wcBtn42").enable();
+        }else if(tab.name == 'khsr'){
+            nui.get("wcBtn53").enable();
+            nui.get("wcBtn54").enable();
+            nui.get("wcBtn52").enable();
+        }
+    } else {
+        if(tab.name == 'syx'){
+            nui.get("wcBtn13").disable();
+            nui.get("wcBtn14").disable();
+            nui.get("wcBtn12").disable();
+        }else if(tab.name == 'jqx'){
+            nui.get("wcBtn23").disable();
+            nui.get("wcBtn24").disable();
+            nui.get("wcBtn22").disable();
+        }else if(tab.name == 'jzns'){
+            nui.get("wcBtn33").disable();
+            nui.get("wcBtn34").disable();
+            nui.get("wcBtn32").disable();
+        }else if(tab.name == 'clnj'){
+            nui.get("wcBtn43").disable();
+            nui.get("wcBtn44").disable();
+            nui.get("wcBtn42").disable();
+        }else if(tab.name == 'khsr'){
+            nui.get("wcBtn53").disable();
+            nui.get("wcBtn54").disable();
+            nui.get("wcBtn52").disable();
+        }
+    }
+}
+
 
 

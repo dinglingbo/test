@@ -129,6 +129,7 @@ pageEncoding="UTF-8" session="false" %>
                                     <table style="width:100%;">
                                         <tr>
                                             <td>
+                                            <!--<div id="isWechat1" name="isWechat1" class="nui-checkbox" readOnly="false" text="已绑定微信" ></div>-->
                                                     <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
                                                         class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                                                         <span class="separator"></span>
@@ -151,7 +152,7 @@ pageEncoding="UTF-8" session="false" %>
                                         onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
                                         <div property="columns">
                                             <!-- <div type="checkcolumn"></div> -->
-                                            <div type="indexcolumn" headerAlign="center" header="序号"></div>
+                                            <div type="indexcolumn" headerAlign="center" width="40" header="序号"></div>
                                             <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
                                             <div field="mobile" name="" width="110" headerAlign="center" header="联系方式"></div>
                                             <div field="carNo" name="" width="80" headerAlign="center" header="车牌号"></div>
@@ -206,7 +207,7 @@ pageEncoding="UTF-8" session="false" %>
                                         onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
                                         <div property="columns">
                                             <!-- <div type="checkcolumn"></div> -->
-                                            <div type="indexcolumn" headerAlign="center" header="序号"></div>
+                                            <div type="indexcolumn" headerAlign="center" width="40" header="序号"></div>
                                             <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
                                             <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>
                                             <div field="carNo" name="" width="70" headerAlign="center" header="车牌号"></div>
@@ -254,7 +255,7 @@ pageEncoding="UTF-8" session="false" %>
                                         onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
                                         <div property="columns">
                                             <!-- <div type="checkcolumn"></div> -->
-                                            <div type="indexcolumn" headerAlign="center" header="序号"></div>
+                                            <div type="indexcolumn" headerAlign="center" width="40" header="序号"></div>
                                             <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
                                             <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>
                                             <div field="carNo" name="" width="70" headerAlign="center" header="车牌号"></div>
@@ -302,7 +303,7 @@ pageEncoding="UTF-8" session="false" %>
                                         onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
                                         <div property="columns">
                                             <!-- <div type="checkcolumn"></div> -->
-                                            <div type="indexcolumn" headerAlign="center" header="序号"></div>
+                                            <div type="indexcolumn" headerAlign="center" width="40" header="序号"></div>
                                             <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
                                             <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>
                                             <div field="carNo" name="" width="70" headerAlign="center" header="车牌号"></div>
@@ -350,7 +351,7 @@ pageEncoding="UTF-8" session="false" %>
                                         onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
                                         <div property="columns">
                                             <!-- <div type="checkcolumn"></div> -->
-                                            <div type="indexcolumn" headerAlign="center" header="序号"></div>
+                                            <div type="indexcolumn" headerAlign="center" width="40" header="序号"></div>
                                             <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
                                             <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>
                                             <div field="carNo" name="" width="70" headerAlign="center" header="车牌号"></div>
@@ -398,7 +399,7 @@ pageEncoding="UTF-8" session="false" %>
                                         onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
                                         <div property="columns">
                                             <!-- <div type="checkcolumn"></div> -->
-                                            <div type="indexcolumn" headerAlign="center" header="序号"></div>
+                                            <div type="indexcolumn" headerAlign="center" width="40" header="序号"></div>
                                             <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
                                             <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>
                                             <div field="carNo" name="" width="70" headerAlign="center" header="车牌号"></div>
@@ -446,7 +447,7 @@ pageEncoding="UTF-8" session="false" %>
                                 onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
                                 <div property="columns">
                                     <!-- <div type="checkcolumn"></div> -->
-                                    <div type="indexcolumn" headerAlign="center" header="序号"></div>
+                                    <div type="indexcolumn" headerAlign="center" width="40" header="序号"></div>
                                     <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
                                     <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>
                                     <div field="carNo" name="" width="70" headerAlign="center" header="车牌号"></div>

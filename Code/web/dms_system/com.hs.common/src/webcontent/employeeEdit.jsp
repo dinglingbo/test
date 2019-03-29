@@ -92,10 +92,6 @@
                 <td colspan="2"><input class="nui-textbox" name="urgencyPersonPhone" id="urgencyPersonPhone" onvalidation="onMobileValidation" /></td>
 
             </tr> 
-            <tr>
-                <td align="right">是否仓库人员：</td>
-                <td><div  class="nui-checkbox" id="isStockman" name="isStockman" value="0" trueValue="1" falseValue="0"></div>
-            </tr> 
             
         </table>
     </fieldset>
@@ -116,6 +112,10 @@
                 </td>
                
              </tr>
+            <tr>
+                <td align="right">允许领料：</td>
+                <td><div  class="nui-checkbox" id="isStockman" name="isStockman" value="0" trueValue="1" falseValue="0"></div>
+            </tr> 
             <tr>
                 <td align="right">积分抵扣上限金额：<span></span></td>
                 <td><input class="nui-textbox" name="integralDiscountMax" id="integralDiscountMax" onvalidation="onRateValidation" value="0" required="true" vtype="range:0,1000000"/>元</td>

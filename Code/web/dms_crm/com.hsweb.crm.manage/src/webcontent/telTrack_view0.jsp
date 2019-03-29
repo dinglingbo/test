@@ -147,6 +147,7 @@
                                 <div property="columns">
                                     <div field="guestId" visible=false>客户ID</div>
                                     <div field="guestName" name="guestName" width="80" headerAlign="center" summaryType="" allowSort=false>客户名称</div>
+                                    <div field="contacts" name="contacts" width="80" headerAlign="center" summaryType="" allowSort=false>联系人</div>
                                     <div field="mobile" width="100" headerAlign="center" summaryType="" allowSort=false>手机号</div>
                                     <div field="address" width="150" headerAlign="center" summaryType="" allowSort=false>地址</div>
                                     <!--

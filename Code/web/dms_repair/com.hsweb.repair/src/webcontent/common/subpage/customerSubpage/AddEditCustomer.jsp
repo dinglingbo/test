@@ -39,6 +39,7 @@ table {
                             <td style="width:100%;">
                                 <a class="nui-button" iconCls="" plain="true" onclick="onOk"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                                 <a class="nui-button" iconCls="" plain="true" onclick="onCancel"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                                <a class="nui-button" iconCls="" plain="true" onclick="delet()" id="deletBtn"><span class="fa fa-trash-o fa-lg"></span>&nbsp;清空</a>
                             </td>
                         </tr>
                     </table>
@@ -68,7 +69,7 @@ table {
                         </td>
                         <td>
                             <input class="nui-combobox" data="[{value:'0',text:'男',},{value:'1',text:'女'},]"
-						textField="text" valueField="value" name="sex"
+						textField="text" valueField="value" name="sex" id="guestSex"
 						value="0"  width="100%" />
                         </td>
                         <td class="form_label ">
@@ -354,7 +355,7 @@ table {
                         <label>性别：</label>
                     </td>
                     <td>
-                        <input class="nui-combobox" id="sex" name="sex" data="[{id:0,text:'男'},{id:1,text:'女'},{id:2,text:'未知'}]" width="100%" value="0"
+                        <input class="nui-combobox" id="sex" name="sex"  data="[{id:0,text:'男'},{id:1,text:'女'},{id:2,text:'未知'}]" width="100%" value="0"
                         />
                     </td>
                     <td class="form_label required">

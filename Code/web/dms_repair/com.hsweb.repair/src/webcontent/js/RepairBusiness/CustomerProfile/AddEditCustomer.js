@@ -1,4 +1,5 @@
 var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
+var webBaseUrl = webPath + contextPath + "/";
 var contactInfoForm = null;
 var carInfoFrom = null;
 var basicInfoForm = null;
@@ -18,7 +19,13 @@ $(document).ready(function()
     }else{
         nui.get("carModel").enable();
     }
-	
+	 initGuestType("guestTypeId",function(data) {
+	  	guestTypeList = nui.get("guestTypeId").getData();
+	  	guestTypeList.forEach(function(v) {
+	  		guestTypeHash[v.id] = v;
+	      });
+	  });
+	    
     //init();
 });
 function init(callback)
@@ -66,13 +73,7 @@ function init(callback)
         checkComplete();
     });
     
-    initGuestType("guestTypeId",function(data) {
-      	guestTypeList = nui.get("guestTypeId").getData();
-      	guestTypeList.forEach(function(v) {
-      		guestTypeHash[v.id] = v;
-          });
-      });
-    
+   
     initProvince("provice");
     nui.get("fullName").focus();
     document.onkeyup=function(event){
@@ -677,6 +678,9 @@ function setCarModel(data){
 }*/
 
 var queryGuestUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.svr.queryCustomerList.biz.ext";
+var queryGuestListUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.svr.queryCustomerListByMobile.biz.ext";
+var mobileF = null;
+var n = 1;
 function onChanged(id){
 	if(id=="fullName"){
 		fullName = nui.get("fullName").value;
@@ -684,73 +688,93 @@ function onChanged(id){
 		nui.get("name2").setValue(fullName);
 	}
 	if(id=="mobile"){
-		mobile = nui.get("mobile").value;
+		var mobile = nui.get("mobile").value;
+		mobile = mobile.replace(/\s*/g,"");
 		nui.get("mobile2").setValue(mobile);
+		if(mobileF == mobile && n==0){
+			return;
+		}else{
+			mobileF = mobile;
+			n = 0;
+		}
 		var params = 
 		      {
-				"carNo":"",
 		        "mobile":mobile
 		      };
 		if(mobile.length==11){
+			nui.mask({
+		        el : document.body,
+			    cls : 'mini-mask-loading',
+			    html : '加载中...'
+		    });
 			nui.ajax({
-				url : queryGuestUrl,
+				url : queryGuestListUrl,
 				type : "post",
 				data : JSON.stringify({
 					params:params,
 					token: token
 				}),
-				success : function(data) {
+			success:function(data) {
+					nui.unmask(document.body);
 					var list = data.list;
-					var data = {};
 					if(list.length){
-						var guest = list[0];
-						data ={
-								guest:guest
-						};
-						setDataQuery(data);
-						empty = 1;
-					}else{
-						if(empty==1){
-							contactInfoForm.setData([]);
-							carInfoFrom.setData([]);
-		                    basicInfoForm.setData([]);
-		                    nui.get("mobile").setValue(mobile);
-						}
+						nui.confirm("是否添加到手机号为"+mobile+"的客户下？", "友情提示",function(action){
+							if(action == "ok"){
+								if(list.length>1){
+									nui.open({
+										//// targetWindow: window,,
+										url :webBaseUrl + "repair/common/subpage/customerSubpage/guestShow.jsp",
+										title : "选择客户",
+										width : 900,
+										height : 300,
+										allowDrag : true,
+										allowResize : false,
+										onload : function() {
+											var iframe = this.getIFrameEl();
+											var data = iframe.contentWindow.setData(list);
+										},
+										ondestroy : function(action) {
+											if (action == "ok") {
+												var iframe = this.getIFrameEl();
+												var data = iframe.contentWindow.getData();
+												setDataQuery(data);
+												}
+											}
+									})
+								}else{
+									var data = list[0];
+									setDataQuery(data);
+								}
+								
+							}
+						});
 					}
-					
-				},
-				error : function(jqXHR, textStatus, errorThrown) {
-					console.log(jqXHR.responseText);
-				}
-			});
-		}else{
-			carInfoFrom.setData([]);
-			contactInfoForm.setData([]);
-            basicInfoForm.setData([]);
-            nui.get("mobile").setValue(mobile);
-		}
-	}
+				 },
+			error:function(jqXHR, textStatus, errorThrown) {
+				nui.unmask(document.body);
+				console.log(jqXHR.responseText);
+			}
+	  });
+    }
+  }
 }
-
 function setDataQuery(data)
 {
 	carList = [{}];
 	carHash = {};
 	currCarIdx = 0;
-	var carNo = null;
 	var guestFullName = null;
-	if(data.guest){
-		carNo =data.guest.carNo;
-	    guestFullName =data.guest.contactName;
+	if(data){
+	    guestFullName =data.guestFullName;
 	}
 	var count = 0;
-	if(data.guest)
+	if(data)
     {
-        var guest = data.guest;
+        var guest = data;
         doPost({
             url : queryUrl,
             data : {
-                guestId:guest.guestId
+                guestId:guest.id
             },
             success : function(data)
             {
@@ -758,16 +782,23 @@ function setDataQuery(data)
                 if(data.guest && data.guest.id)
                 {
                     basicInfoForm.setData(data.guest);
+                    var tgrade = data.guest.tgrade;
+            	    if(tgrade){
+            	    	var num = parseInt(tgrade);
+            	    	var tgradeName = guestTypeHash[num].name;
+            	    	nui.get("guestTypeId").setText(tgradeName);
+            	    	nui.get("guestTypeId").setValue(tgrade);
+            	    }
                     contactList = data.contactList||[{}];
                     carList = data.carList||[{}];
                     var i;
                     for(i=0;i<carList.length;i++)
                     {
-                    	if(carNo==carList[i].carNo){
+                    	if(i==0){
                     		carInfoFrom.setData(carList[i]);
                     		currCarIdx = i;
                     	}
-                          carHash[carList[i].id] = JSON.stringify(carList[i]);
+                        carHash[carList[i].id] = JSON.stringify(carList[i]);
                     }
                     contactInfoForm.setData(contactList[0]);
                     for(i=0;i<contactList.length;i++)
@@ -815,4 +846,18 @@ function getWalkGuest(){
 	return data;
 } 
 
-
+function delet(){
+	carList = [{}];
+	carHash = {};
+	currCarIdx = 0;
+	contactList = [{}];
+	contactHash = {};
+	currContactIdx = 0;
+	contactInfoForm.setData([]);
+	nui.get("#identity").setValue("060301");
+	nui.get("#source").setValue("060110");
+	nui.get("#sex").setValue("0");
+	carInfoFrom.setData([]);
+    basicInfoForm.setData([]);
+    nui.get("#guestSex").setValue("0");
+}

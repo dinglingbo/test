@@ -11,7 +11,7 @@
 <title>客户资料导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.1"></script>
-<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/importGuest.js?v=1.0.8"></script>
+<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/importGuest.js?v=1.0.9"></script>
 <style type="text/css">
 /*.a-upload {
     padding: 4px 10px;
@@ -101,32 +101,49 @@
 			style="width:100%;height:100%;">
 			<div property="columns">
 				<div type="indexcolumn" width="40px" >序号</div>
-				<div field="客户名称" width="70px" summaryType="count" headerAlign="center" allowSort="true">
+				<div field="客户名称" width="80px" summaryType="count" headerAlign="center" allowSort="true">
 					*客户名称<input property="editor" class="nui-textbox"/></div>
 				<div field="手机号码" width="90px" summaryType="count" headerAlign="center" allowSort="true">
 					*手机号码<input property="editor" class="nui-textbox"/></div>
-				<div field="车牌号" width="70px" headerAlign="center" allowSort="true">
+				<div field="车牌号" width="80px" headerAlign="center" allowSort="true">
 					*车牌号<input property="editor" class="nui-textbox"/></div>
 				<div field="车架号" width="135px" headerAlign="center" allowSort="true">
-					车架号(VIN)<input property="editor" class="nui-textbox"/></div>
+					车架号<input property="editor" class="nui-textbox"/></div>
 				<div field="地址" width="260px" headerAlign="center" allowSort="true">
                     地址<input property="editor" class="nui-textbox"/></div>
-                <div field="厂牌车型信息" width="80px" headerAlign="center" allowSort="true">
+                <div field="厂牌车型信息" width="100px" headerAlign="center" allowSort="true">
                     厂牌车型信息<input property="editor" class="nui-textbox"/></div>
-				<div field="发动机号" width="80px" headerAlign="center" allowSort="true">
+				<div field="发动机号" width="100px" headerAlign="center" allowSort="true">
 					发动机号<input property="editor" class="nui-textbox"/></div>
-				<div field="年审到期" width="100px" headerAlign="center" allowSort="true">
-					年审到期<input property="editor" class="nui-textbox"/></div>
-				<div field="保险公司" width="100px" headerAlign="center" allowSort="true">
-					保险公司<input property="editor" class="nui-textbox"/></div>
-<!-- 				<div field="商业险单号" width="120px" headerAlign="center" allowSort="true">
-					商业险单号<input property="editor" class="nui-textbox"/></div> -->
-                <div field="商业险到期" width="120px" headerAlign="center" allowSort="true">
-                    商业险到期<input property="editor" class="nui-textbox"/></div>
-                <div field="交强险到期" width="120px" headerAlign="center" allowSort="true">
-                    交强险到期<input property="editor" class="nui-textbox"/></div>
-                <div field="保养到期" width="120px" headerAlign="center" allowSort="true">
-                    保养到期<input property="editor" class="nui-textbox"/></div>
+				<div field="年审到期日期" width="120px" headerAlign="center" allowSort="true">
+					年审到期日期<input property="editor" class="nui-textbox"/></div>
+                <div field="商业险到期日期" width="120px" headerAlign="center" allowSort="true">
+                    商业险到期日期<input property="editor" class="nui-textbox"/></div>
+                <div field="交强险到期日期" width="120px" headerAlign="center" allowSort="true">
+                    交强险到期日期<input property="editor" class="nui-textbox"/></div>
+                 <div field="颜色" width="90px" headerAlign="center" allowSort="true">
+                    颜色<input property="editor" class="nui-textbox"/></div> 
+                 <div field="驾驶证发证日期" width="120px" headerAlign="center" allowSort="true">
+                   驾驶证发证日期<input property="editor" class="nui-textbox"/></div> 
+                <div field="上次保养日期" width="120px" headerAlign="center" allowSort="true">
+                    上次保养日期<input property="editor" class="nui-textbox"/></div>                                                         
+                <div field="下次保养日期" width="120px" headerAlign="center" allowSort="true">
+                    下次保养日期<input property="editor" class="nui-textbox"/></div>
+                <div field="下次保养里程" width="120px" headerAlign="center" allowSort="true">
+                    下次保养里程<input property="editor" class="nui-textbox"/></div> 
+                    
+                <div field="最近进店里程" width="120px" headerAlign="center" allowSort="true">
+                    最近进店里程<input property="editor" class="nui-textbox"/></div> 
+                <div field="最近进店日期" width="120px" headerAlign="center" allowSort="true">
+                    最近进店日期<input property="editor" class="nui-textbox"/></div> 
+                <div field="最近离店日期" width="120px" headerAlign="center" allowSort="true">
+                    最近离店日期<input property="editor" class="nui-textbox"/></div>   
+               <div field="最后维修顾问名称" width="120px" headerAlign="center" allowSort="true">
+                    最后维修顾问名称<input property="editor" class="nui-textbox"/></div> 
+               <div field="来厂次数" width="100px" headerAlign="center" allowSort="true">
+                    来厂次数<input property="editor" class="nui-textbox"/></div> 
+               <div field="消费金额" width="100px" headerAlign="center" allowSort="true">
+                   消费金额<input property="editor" class="nui-textbox"/></div>                                                                                                                     
                 <div field="备注" width="120px" headerAlign="center" allowSort="true">
                     备注<input property="editor" class="nui-textbox"/></div>
 			</div>

@@ -124,7 +124,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">params/isDisabled</process:from>
-      <process:to type="query">cond/_expr[9]/orgid</process:to>
+      <process:to type="query">cond/_expr[9]/isDisabled</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>

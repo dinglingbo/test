@@ -295,7 +295,7 @@ function changeCarGuest(){
            if(data.errCode == "S"){
            	CloseWindow("ok");
            }else{
-           	nui.alert(data.errMsg,"提示");
+           	showMsg(data.errMsg,"E");
            }
 
 		}

@@ -839,7 +839,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign12label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">微信用户</process:from>
+      <process:from type="literal" pattern="reference">微信用户</process:from>
       <process:to type="query">rpsPrebook/recorder</process:to>
     </process:copy>
     <process:copy>

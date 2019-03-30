@@ -175,11 +175,19 @@ function SetData(params) {
 
 function onOk() {
 	var carNo = nui.get("carNo").getValue();
-	var falge = isVehicleNumber(carNo);
+	/*var falge = isVehicleNumber(carNo);
 	if(!falge){
 		showMsg("请输入正确的车牌号","W");
 		return;
 	}
+	var xcarNo = nui.get("xcarNo").value;*/
+	/*var falge = isVehicleNumber(carNo);
+	carNo = falge.vehicleNumber//返回转化好的车牌
+	if(!falge.result){
+		showMsg("请输入正确的车牌号","W");
+		return;
+	}
+	nui.get("carNo").setValue(carNo);*/
 	basicInfoForm = new nui.Form("#basicInfoForm");	
     var main = basicInfoForm.getData();
     main.prebookSource = "042101";
@@ -455,7 +463,7 @@ function CloseWindow(action)
 	}
 }*/
 
-function isVehicleNumber(vehicleNumber) {
+/*function isVehicleNumber(vehicleNumber) {
     var result = false;
     if (vehicleNumber.length == 7){
       var express = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/;
@@ -463,7 +471,7 @@ function isVehicleNumber(vehicleNumber) {
     }
     return result;
 }
-
+*/
 
 
 

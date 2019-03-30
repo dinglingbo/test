@@ -259,7 +259,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
-    <location x="283" y="222"/>
+    <location x="300" y="221"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -275,7 +275,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="191" y="258"/>
+    <location x="208" y="257"/>
     <figSize height="20" width="207"/>
     <node>invokePojo0</node>
   </nodes>

@@ -71,7 +71,7 @@
                                     class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
                             <a class="nui-button"id="wcBtn12" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
                                     class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                            <a class="nui-button"id="wcBtn13" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+                            <a class="nui-button"id="wcBtn13" plain="true" iconCls="" plain="false" onclick=""visible="false"><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
                             <a class="nui-button" id="wcBtn14"plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
                                                                 <span id="showMonile" style="display: none;">
                                             <span class="separator"></span>
@@ -134,7 +134,7 @@
                                     class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
                             <a class="nui-button" id="wcBtn22"plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
                                     class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                            <a class="nui-button"id="wcBtn23" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+                            <a class="nui-button"id="wcBtn23" plain="true" iconCls="" plain="false" onclick=""visible="false"><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
                             <a class="nui-button"id="wcBtn24" plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
                                                                 <span id="showMonile2" style="display: none;">
                                             <span class="separator"></span>
@@ -198,7 +198,7 @@
                                     class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
                             <a class="nui-button"id="wcBtn32" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
                                     class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                            <a class="nui-button" id="wcBtn33"plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+                            <a class="nui-button" id="wcBtn33"plain="true" iconCls="" plain="false" onclick=""visible="false"><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
                             <a class="nui-button" id="wcBtn34"plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
                                                                 <span id="showMonile3" style="display: none;">
                                             <span class="separator"></span>
@@ -261,7 +261,7 @@
                                     class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
                             <a class="nui-button" id="wcBtn42"plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
                                     class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                            <a class="nui-button"id="wcBtn43" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+                            <a class="nui-button"id="wcBtn43" plain="true" iconCls="" plain="false" onclick=""visible="false"><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
                             <a class="nui-button" id="wcBtn44"plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
                                                                 <span id="showMonile4" style="display: none;">
                                             <span class="separator"></span>
@@ -308,7 +308,7 @@
                                     class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
                             <a class="nui-button"id="wcBtn52" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span
                                     class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                            <a class="nui-button" id="wcBtn53"plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+                            <a class="nui-button" id="wcBtn53"plain="true" iconCls="" plain="false" onclick=""visible="false"><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
                             <a class="nui-button"id="wcBtn54" plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
                                                                 <span id="showMonile5" style="display: none;">
                                             <span class="separator"></span>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" session="false" %>
-<%@include file="/common/sysCommon.jsp"%>
+<%@include file="/common/commonPart.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!--
@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>供应商欠款明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/frm/js/finance/accountPBillDetail.js?v=1.0.3"></script>
+    <script src="<%=webPath + contextPath%>/frm/js/finance/accountPBillDetail.js?v=1.0.4"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -57,6 +57,8 @@ pageEncoding="UTF-8" session="false" %>
         <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
         <a class="nui-button" iconCls="" plain="true" onclick="doSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+						<a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn">
+							<span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
     </div>
     <div class="nui-fit">
         <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" 
@@ -78,6 +80,25 @@ pageEncoding="UTF-8" session="false" %>
         </div>
 
     </div>
+    
+    <div id="exportDiv" style="display:none">  
+	    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
+	        <tr>  
+	            <td colspan="1" align="center">业务单号</td>
+	            <td colspan="1" align="center">收支类型</td>
+	            <td colspan="1" align="center">供应商简称</td>
+	            <td colspan="1" align="center">应付金额</td>
+	            <td colspan="1" align="center">已付金额</td>
+	            <td colspan="1" align="center">未付金额</td>
+	            <td colspan="1" align="center">结算状态</td>
+	            <td colspan="1" align="center">单据日期</td>
+	            <td colspan="1" align="center">供应商全称</td>
+	        </tr>
+	        <tbody id="tableExportContent">
+	        </tbody>
+	    </table>  
+	    <a href="" id="tableExportA"></a>
+	</div>
 
 </body>
 </html>

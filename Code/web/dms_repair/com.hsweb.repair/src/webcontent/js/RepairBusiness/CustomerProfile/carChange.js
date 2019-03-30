@@ -318,9 +318,9 @@ function onButtonEdit(e) {
         ondestroy: function (action)
         {
         	 nGuest = action.guest;
-        	 nui.get("xguestFullName").setText(nGuest.guestFullName);
-        	 nui.get("xguestFullName").setValue(nGuest.guestFullName);
-        	 nui.get("xGuestId").setValue(nGuest.guestId);
+        	 nui.get("xguestFullName").setText(nGuest.fullName);
+        	 nui.get("xguestFullName").setValue(nGuest.fullName);
+        	 nui.get("xGuestId").setValue(nGuest.id);
         	 nui.get("xmobile").setValue(nGuest.mobile);
         }
     });

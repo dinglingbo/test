@@ -616,6 +616,38 @@
       <process:from type="query" pattern="reference">temp/issuingDate</process:from>
       <process:to type="query">car/issuingDate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/annualInspectionNo</process:from>
+      <process:to type="query">car/annualInspectionNo</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/annualInspectionCompCode</process:from>
+      <process:to type="query">car/annualInspectionCompCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/annualInspectionCompName</process:from>
+      <process:to type="query">car/annualInspectionCompName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/annualInspectionAmt</process:from>
+      <process:to type="query">car/annualInspectionAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/insureNo</process:from>
+      <process:to type="query">car/insureNo</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/insureCompCode</process:from>
+      <process:to type="query">car/insureCompCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/insureCompName</process:from>
+      <process:to type="query">car/insureCompName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/insureAmt</process:from>
+      <process:to type="query">car/insureAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="268" y="245"/>
@@ -1362,7 +1394,7 @@
     <figSize height="17" width="39"/>
     <node>assign22</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="车辆拓展表" displayName="insertEntity" collapsed="false" grouped="true" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="车辆扩展表" displayName="insertEntity" collapsed="false" grouped="true" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link53" name="link53" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo5</sourceNode>
       <targetNode>assign24</targetNode>
@@ -1459,13 +1491,29 @@
       <process:from type="query" pattern="reference">temp/prevAdvisorName</process:from>
       <process:to type="query">rpbCarExtend/prevAdvisorName</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/dayKilometers</process:from>
+      <process:to type="query">rpbCarExtend/dayKilometers</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/mtCycle</process:from>
+      <process:to type="query">rpbCarExtend/mtCycle</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/careCycle</process:from>
+      <process:to type="query">rpbCarExtend/careCycle</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/careKilometers</process:from>
+      <process:to type="query">rpbCarExtend/careKilometers</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign23label" name="label" nodeType="label">
     <location x="925" y="326"/>
     <figSize height="17" width="39"/>
     <node>assign23</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo7" name="客户拓展表" displayName="insertEntity1" collapsed="false" grouped="true" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo7" name="客户扩展表" displayName="insertEntity1" collapsed="false" grouped="true" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link55" name="link55" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo7</sourceNode>
       <targetNode>loopend1</targetNode>

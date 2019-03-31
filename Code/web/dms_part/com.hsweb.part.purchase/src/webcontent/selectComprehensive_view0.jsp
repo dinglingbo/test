@@ -99,6 +99,8 @@
                            showClearButton="false"/>
                      <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
+                        是否包含未收款：
+                        <div  class="nui-checkbox" id="isSettle" name="isSettle" value="1" onclick="onSearch" trueValue="1" falseValue="0"></div>
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <span class="separator"></span>
                     <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;查看</a> 

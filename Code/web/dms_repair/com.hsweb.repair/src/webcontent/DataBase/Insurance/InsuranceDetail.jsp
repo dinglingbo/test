@@ -42,7 +42,6 @@ pageEncoding="UTF-8" session="false" %>
         </table>
     </div>
     <div id="basicInfoForm" class="nui-form" style="padding-top:5px;">
-        <input name="id" class="nui-hidden">
         <table class="nui-form-table" style=" left:0;right:0;margin: 0 auto;">
             <tbody>
                 <tr>
@@ -96,6 +95,13 @@ pageEncoding="UTF-8" session="false" %>
                     </td>
                     <td>
                         <input class="nui-spinner" name="orderIndex" minvalue="0" maxvlaue="1000000000"  inputstyle="text-align:right;">
+                    </td>
+                    <td ></td>
+                    <td class="form_label">
+                        <label>保险公司ID：</label>
+                    </td>
+                    <td>
+                        <input class="nui-textbox" name="id" readonly="readonly" >
                     </td>
                 </tr>
                 <tr>   

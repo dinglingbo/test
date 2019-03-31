@@ -1897,8 +1897,9 @@ function deletePackRow(row_uid){
                     return true;
                 }
             });
-
             rpsPackageGrid.removeRows(rows);
+            //清除所有行修改痕迹，已经修改的东西不会清除，因为对修改的东西没用commitEdit，如果commitEdit，保存时，保存的是之前的值
+            rpsPackageGrid.accept();
         }else{
             showMsg(errMsg||"删除套餐信息失败!","E");
             return;
@@ -1950,6 +1951,7 @@ function deleteItemRow(row_uid){
                 }
             });
         	rpsItemGrid.removeRows(rows);
+        	rpsItemGrid.accept();
         }else{
             showMsg(errMsg||"删除项目信息失败!","E");
             return;
@@ -2000,6 +2002,7 @@ function deletePartRow(row_uid){
                 //rpsPartGrid.addRow(newRow);
             }else{
                 rpsItemGrid.removeRow(row);
+                rpsItemGrid.accept();
             }
         }else{
             showMsg(errMsg||"删除配件信息失败!","E");
@@ -2727,13 +2730,13 @@ function chooseItem(){
   	  showMsg("进厂里程不能小于上次里程","W");
   	  return;
   	}
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '数据加载中...'
+    });
     if(!data.id || falg=="N"){
       falg="Y";
-      nui.mask({
-	        el: document.body,
-	        cls: 'mini-mask-loading',
-	        html: '数据加载中...'
-	 });
 	  saveNoshowMsg(function(){
 		  var main = billForm.getData();
 		  var param = {};
@@ -2812,15 +2815,15 @@ function choosePackage(){
   	  showMsg("进厂里程不能小于上次里程","W");
   	  return;
   	}
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '数据加载中...'
+   });
     if(!data.id || falg=="N"){
        // showMsg("请选择保存工单!","S");
        // return;
       falg="Y";
-      nui.mask({
-	        el: document.body,
-	        cls: 'mini-mask-loading',
-	        html: '数据加载中...'
-	   });
 	  saveNoshowMsg(function(){
 		var main = billForm.getData();
 		var param = {};
@@ -3049,6 +3052,11 @@ function choosePart(row_uid){
         showMsg("工单已结算,不能添加配件!","W");
         return;
     }
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '数据加载中...'
+    });
 	saveItem(function(){
 		
 	    //获取到工时中的ID
@@ -3064,6 +3072,7 @@ function choosePart(row_uid){
 	        };
 	        var p3 = {};
 	        loadDetail(p1, p2, p3,main.status);
+	        nui.unmask(document.body);
 	    });
 	})
 	 
@@ -4505,7 +4514,7 @@ function saveItem(callback){
         return;
     }
     rpsItemGrid.commitEdit();
-    var rows = rpsItemGrid.getChanges();
+    var rows = rpsItemGrid.getChanges("modified");
     if(status<2){
     	var row = rpsItemGrid.findRow(function(row){
     		rpsItemGrid.beginEditRow(row);
@@ -4630,7 +4639,8 @@ function savePkg(callback){
 	errs = null;
 	var main = billForm.getData(); 
     rpsPackageGrid.commitEdit();
-    var rows = rpsPackageGrid.getChanges();
+    //只需要获取修改的行，删除时，已经对数据库删除了，如果删除时没有清除所有行修改痕迹(accept),不加modified，会获取到删除的行，此时修改会出错
+    var rows = rpsPackageGrid.getChanges("modified");
     if(main.status<2){
     	var row = rpsPackageGrid.findRow(function(row){
     		rpsPackageGrid.beginEditRow(row);

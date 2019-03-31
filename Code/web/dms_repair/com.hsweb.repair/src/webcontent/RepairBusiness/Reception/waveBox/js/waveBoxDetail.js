@@ -1565,6 +1565,7 @@ function deletePartRow(row_uid){
             }else{
                 rpsItemGrid.removeRow(row);
             }
+            rpsItemGrid.accept();
         }else{
             showMsg(errMsg||"删除配件信息失败!","E");
             return;
@@ -1628,6 +1629,7 @@ function deleteItemRow(row_uid){
             });
         	rpsItemGrid.removeRows(rows);
         	var strId = forFrom();
+        	rpsItemGrid.accept();
             if(strId!=null){
             	showTab(strId);
             }
@@ -2200,40 +2202,51 @@ function chooseItem(){
         return;
     }
     var data = billForm.getData();
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '数据加载中...'
+     });
     if(!main.id || falg=="N"){
         falg="Y";
-        openIF = 0;
+        //openIF = 0;
         if(!nui.get("boxServiceTypeId").value){
                 showMsg("业务类型不能为空,不能添加项目!","W");
+                nui.unmask(document.body);
                 return;
         }
         if(!data.carNo){
             showMsg("车牌号不能为空","W");
+            nui.unmask(document.body);
             return;
         }
 	  saveNoshowMsg(function(){
 		var param = {};
 	    param.carModelIdLy = main.carModelIdLy;
 	    param.serviceId = "xm"+main.id;//洗美开单默认查询洗美项目
-		doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
-			openIF = 1;    
-			main = billForm.getData();
-	        var p1 = { }
-	        var p2 = {
-	            interType: "item",
-	            data:{
-	                serviceId: main.id||0
-	            }
-	        };
-	        var p3 = {};
-	        loadDetail(p1, p2, p3,main.status);
-	    });	  
+	    saveItem(function(){
+	    	doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
+				//openIF = 1;    
+				main = billForm.getData();
+		        var p1 = { }
+		        var p2 = {
+		            interType: "item",
+		            data:{
+		                serviceId: main.id||0
+		            }
+		        };
+		        var p3 = {};
+		        loadDetail(p1, p2, p3,main.status);
+		        nui.unmask(document.body);
+		    });	 
+	    });
 	  });
-    }else if(openIF==1){
+    }else{
         var param = {};
 	    param.carModelIdLy = main.carModelIdLy;
 	    param.serviceId = "xm"+main.id;//洗美开单默认查询洗美项目
-		doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
+	    saveItem(function(){
+	    	doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
 			    main = billForm.getData();
 		        var p1 = { }
 		        var p2 = {
@@ -2244,7 +2257,9 @@ function chooseItem(){
 		        };
 		        var p3 = {};
 		        loadDetail(p1, p2, p3,main.status);
+		        nui.unmask(document.body);
 		    }); 
+	    });
     }
 }
 
@@ -2375,24 +2390,31 @@ function choosePart(row_uid){
         showMsg("工单已结算,不能添加配件!","W");
         return;
     }
-
-    doSelectPart(itemId,addToBillPart, delFromBillPart, null, function(text){
-    	 var p1 = {
-         }
-         var p2 = {
-             interType: "item",
-             data:{
-                 serviceId: main.id||0
-             }
-         }
-         var p3 = {
-             interType: "part",
-             data:{
-                 serviceId: main.id||0
-             }
-         }
-        loadDetail(p1, p2, p3,main.status);
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '数据加载中...'
     });
+    saveItem(function(){
+    	doSelectPart(itemId,addToBillPart, delFromBillPart, null, function(text){
+       	 var p1 = {
+            }
+            var p2 = {
+                interType: "item",
+                data:{
+                    serviceId: main.id||0
+                }
+            }
+            var p3 = {
+                interType: "part",
+                data:{
+                    serviceId: main.id||0
+                }
+            }
+           loadDetail(p1, p2, p3,main.status);
+       });
+    });
+    
 }
 
 function addToBillPart(row, callback, unmaskcall){
@@ -3644,7 +3666,7 @@ function saveItem(callback){
         return;
     }
     rpsItemGrid.commitEdit();
-    var rows = rpsItemGrid.getChanges();
+    var rows = rpsItemGrid.getChanges("modified");
     if(status<2){
     	var row = rpsItemGrid.findRow(function(row){
     		rpsItemGrid.beginEditRow(row);

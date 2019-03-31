@@ -3,7 +3,7 @@
  */
 var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
 var grid = null;
-var gridUrl = baseUrl+"com.hsapi.repair.repairService.svr.queryCustomerList.biz.ext";
+var gridUrl = baseUrl+"/com.hsapi.repair.repairService.crud.queryCustomerList.biz.ext";
 var queryForm = null;
 
 

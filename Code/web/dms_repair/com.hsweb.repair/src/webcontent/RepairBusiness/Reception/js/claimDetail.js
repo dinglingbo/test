@@ -396,6 +396,12 @@ $(document).ready(function ()
                 e.cancel = true;
             }
         }
+        if(field == 'rate' || field == 'subtotal'){
+        	var isCanRate = row.isCanRate;
+        	if(isCanRate==0){
+        		e.cancel = true;
+        	}
+        }
     });
     rpsItemGrid.on("drawcell", function (e) {
         var grid = e.sender;
@@ -1925,6 +1931,7 @@ function deletePartRow(row_uid){
             }else{
                 rpsItemGrid.removeRow(row);
             }
+            rpsItemGrid.accept();
         }else{
             showMsg(errMsg||"删除配件信息失败!","E");
             return;
@@ -1986,6 +1993,7 @@ function deletePackRow(row_uid){
             });
 
             rpsPackageGrid.removeRows(rows);
+            rpsPackageGrid.accept();
         }else{
             showMsg(errMsg||"删除套餐信息失败!","E");
             return;
@@ -2043,6 +2051,7 @@ function deleteItemRow(row_uid){
                 }
             });
         	rpsItemGrid.removeRows(rows);
+        	rpsItemGrid.accept();
         }else{
             showMsg(errMsg||"删除项目信息失败!","E");
             return;
@@ -2870,38 +2879,42 @@ function chooseItem(){
   	  showMsg("进厂里程不能小于上次里程","W");
   	  return;
   	}
+     nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '数据加载中...'
+     });
     if(!data.id || falg=="N"){
       falg="Y";
-      nui.mask({
-	        el: document.body,
-	        cls: 'mini-mask-loading',
-	        html: '数据加载中...'
-	 });
 	  saveNoshowMsg(function(){
 		  var main = billForm.getData();
 		  var param = {};
 	      param.carModelIdLy = main.carModelIdLy;
 	      param.serviceId = main.id;
-	      doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
-    	     main = billForm.getData();
-		     var p1 = { }
-		     var p2 = {
-		         interType: "item",
-		         data:{
-		             serviceId: main.id||0
-		         }
-		     };
-		     var p3 = {};
-		     loadDetail(p1, p2, p3,main.status);
-		     nui.unmask(document.body);
-	    }); 
+	      saveItem(function(){
+	    	  doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
+	     	     main = billForm.getData();
+	 		     var p1 = { }
+	 		     var p2 = {
+	 		         interType: "item",
+	 		         data:{
+	 		             serviceId: main.id||0
+	 		         }
+	 		     };
+	 		     var p3 = {};
+	 		     loadDetail(p1, p2, p3,main.status);
+	 		     nui.unmask(document.body);
+	 	    }); 
+	      });
+	     
 	  });
     }else{
     	var main = billForm.getData();
     	var param = {};
         param.carModelIdLy = main.carModelIdLy;
         param.serviceId = main.id;
-    	doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
+        saveItem(function(){
+        	doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
     		    main = billForm.getData();
     	        var p1 = { }
     	        var p2 = {
@@ -2913,6 +2926,7 @@ function chooseItem(){
     	        var p3 = {};
     	        loadDetail(p1, p2, p3,main.status);
     	    }); 
+        });
     }   
 }
 
@@ -2949,32 +2963,34 @@ function choosePackage(){
   	  showMsg("进厂里程不能小于上次里程","W");
   	  return;
   	}
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '数据加载中...'
+   });
     if(!data.id || falg=="N"){
        // showMsg("请选择保存工单!","S");
        // return;
       falg="Y";
-      nui.mask({
-	        el: document.body,
-	        cls: 'mini-mask-loading',
-	        html: '数据加载中...'
-	   });
 	  saveNoshowMsg(function(){
 		var main = billForm.getData();
 		var param = {};
 	    param.carModelIdLy = main.carModelIdLy;
 	    param.serviceId = main.id;
-	    doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, param, function(text){
-	        main = billForm.getData();
-	        var p1 = { 
-	    		interType: "package",
-	            data:{
-	                serviceId: main.id||0
-	            }
-	        };
-	        var p2 = {};
-	        var p3 = {};
-	        loadDetail(p1, p2, p3,main.status);
-	        nui.unmask(document.body);
+	    savePkg(function(){
+	    	doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, param, function(text){
+		        main = billForm.getData();
+		        var p1 = { 
+		    		interType: "package",
+		            data:{
+		                serviceId: main.id||0
+		            }
+		        };
+		        var p2 = {};
+		        var p3 = {};
+		        loadDetail(p1, p2, p3,main.status);
+		        nui.unmask(document.body);
+	      });
 	    });
 	  });
     }else{
@@ -2982,19 +2998,23 @@ function choosePackage(){
     	var param = {};
         param.carModelIdLy = main.carModelIdLy;
         param.serviceId = main.id;
-        doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, param, function(text){
-            main = billForm.getData();
-            var p1 = { 
-        		interType: "package",
-                data:{
-                    serviceId: main.id||0
-                }
-            };
-            var p2 = {};
-            var p3 = {};
-            loadDetail(p1, p2, p3,main.status);
-        });
-    }   
+        param.carNo = main.carNo;
+        savePkg(function(){
+	    	doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, param, function(text){
+		        main = billForm.getData();
+		        var p1 = { 
+		    		interType: "package",
+		            data:{
+		                serviceId: main.id||0
+		            }
+		        };
+		        var p2 = {};
+		        var p3 = {};
+		        loadDetail(p1, p2, p3,main.status);
+		        nui.unmask(document.body);
+		    });
+	    });
+    }    
 }
 function addToBillPackage(row, callback, unmaskcall){
     var main = billForm.getData();
@@ -3195,18 +3215,25 @@ function choosePart(row_uid){
         showMsg("工单已结算,不能添加配件!","W");
         return;
     }
-
-    doSelectPart(itemId,addToBillPart, delFromBillPart, null, function(text){
-        var p1 = { };
-        var p2 = {
-            interType: "item",
-            data:{
-                serviceId: main.id||0
-            }
-        };
-        var p3 = {};
-        loadDetail(p1, p2, p3,main.status);
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '数据加载中...'
     });
+    saveItem(function(){
+    	 doSelectPart(itemId,addToBillPart, delFromBillPart, null, function(text){
+    	        var p1 = { };
+    	        var p2 = {
+    	            interType: "item",
+    	            data:{
+    	                serviceId: main.id||0
+    	            }
+    	        };
+    	        var p3 = {};
+    	        loadDetail(p1, p2, p3,main.status);
+    	    });
+    });
+   
 }
 function addToBillPart(row, callback, unmaskcall){
     var main = billForm.getData();
@@ -4756,7 +4783,7 @@ function saveItem(callback){
         return;
     }
     rpsItemGrid.commitEdit();
-    var rows = rpsItemGrid.getChanges();
+    var rows = rpsItemGrid.getChanges("modified");
     if(status<2){
     	var row = rpsItemGrid.findRow(function(row){
     		rpsItemGrid.beginEditRow(row);
@@ -4881,7 +4908,7 @@ function savePkg(callback){
 	errs = null;
 	var main = billForm.getData(); 
     rpsPackageGrid.commitEdit();
-    var rows = rpsPackageGrid.getChanges();
+    var rows = rpsPackageGrid.getChanges("modified");
     if(main.status<2){
     	var row = rpsPackageGrid.findRow(function(row){
     		rpsPackageGrid.beginEditRow(row);

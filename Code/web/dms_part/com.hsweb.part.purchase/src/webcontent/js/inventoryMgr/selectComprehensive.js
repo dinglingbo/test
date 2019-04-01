@@ -383,6 +383,9 @@ function doSearch() {
     if(gsparams.billTypeIds && gsparams.billTypeIds==5){
     	gsparams.billTypeIds = "0,2,4,6";
     }
+    if(nui.get("isCollectMoney").getValue()==0){
+    	gsparams.isCollectMoney=1;
+    }
     gsparams.isSettle = 1;
    // gsparams.billTypeId = 0;
     gsparams.isDisabled = 0;

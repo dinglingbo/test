@@ -53,6 +53,9 @@
             <isNotEmpty prepend="and" property="tenantId">  
                 (b.tenant_id = #tenantId#)
             </isNotEmpty>  
+            <isNotEmpty prepend="and" property="orgid">  
+                (c.last_orgid = #orgid#)
+            </isNotEmpty> 
             <isNotEmpty prepend="and" property="isDisabled">  
                 (a.is_disabled = #isDisabled# )
             </isNotEmpty>     
@@ -186,7 +189,7 @@
                 (c.first_come_date &gt;= #lastEnterStart#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="firstEnterEnd">  
-                (c.first_come_date &lt; #lastEnterEnd#)
+                (c.first_come_date &lt;= #lastEnterEnd#)
             </isNotEmpty>
              <!--最后离厂日期 -->
             <isNotEmpty prepend="and" property="lastOutStart">  

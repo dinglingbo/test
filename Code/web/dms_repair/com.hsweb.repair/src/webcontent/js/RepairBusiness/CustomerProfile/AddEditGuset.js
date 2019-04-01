@@ -242,11 +242,12 @@ function onOk()
 
     var insCarList = [];
     var updCarList = [];
+    
     if(isAdd==1){
         var insContactList = [{
         	source: "060110",
         	mobile: guest.mobile,
-        	name: guest.fullName,
+        	name: guest.fullName, 
         	identity: "060301"
         }];
     }else{
@@ -300,7 +301,8 @@ function onOk()
                     	}
                     }
             		contactdatagrid.addRow(newRow);
-
+                    //再次保存时清空联系人的值
+            		isAdd = 0;
                 //CloseWindow("ok");
             }
             else{

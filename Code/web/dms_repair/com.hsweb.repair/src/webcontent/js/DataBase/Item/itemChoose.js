@@ -26,7 +26,8 @@ var dataTypeList = [
     {id:1,name:'本地项目'},
     {id:2,name:'标准项目'}
 ];
-var WechatShow = null;
+var WechatShow = 0;
+var WechatOrgid = null;
 var carBrandIdEl;
 var carSeriesId;
 var carModelIdEl;
@@ -139,7 +140,6 @@ $(document).ready(function()
 	//右边区域
 	rightGrid = nui.get("rightGrid");
 	rightGrid.setUrl(rightGridUrl);
-	onSearch();
 	rightGrid.on("rowdblclick",function(e){
 		var row = e.row;
 		if(WechatShow==1){
@@ -363,7 +363,12 @@ function onSearch()
 }
 function doSearch(params)
 {
-	params.orgid = currOrgId;
+	if(WechatShow){
+		params.orgid = WechatOrgid;
+	}else{
+		params.orgid = currOrgId;
+	}
+	
 	params.isDisabled = 0;
 	rightGrid.load({
 		token:token,
@@ -418,6 +423,7 @@ function getData()
 
 function wechatSetData(data){
 	WechatShow = data.WechatShow;
+	WechatOrgid = data.WechatOrgid;
 	var params = {};
 	if(data.serviceTypeId){
 		nui.get("serviceTypeId").setValue(data.serviceTypeId);
@@ -430,6 +436,7 @@ function wechatSetData(data){
 }
 function setData(data)
 {
+	onSearch();
 	list = data.list||[];
 
 	isOpenWin = 1;

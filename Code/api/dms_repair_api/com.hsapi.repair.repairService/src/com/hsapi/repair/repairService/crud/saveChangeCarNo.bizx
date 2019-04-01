@@ -1039,7 +1039,7 @@
       <targetNode>transactionbegin0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -1187,7 +1187,7 @@
       <targetNode>invokePojo2</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -1224,7 +1224,7 @@
     <nodeLabel>assign7label</nodeLabel>
     <process:copy>
       <process:from type="query" pattern="reference">list[1]</process:from>
-      <process:to type="query">tempCar</process:to>
+      <process:to type="query">temp</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">改</process:from>

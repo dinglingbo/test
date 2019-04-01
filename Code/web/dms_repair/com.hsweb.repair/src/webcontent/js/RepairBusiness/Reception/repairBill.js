@@ -390,6 +390,12 @@ $(document).ready(function ()
                 e.cancel = true;
             }
         }
+        if(field == 'rate' || field == 'subtotal'){
+        	var isCanRate = row.isCanRate;
+        	if(isCanRate==0){
+        		e.cancel = true;
+        	}
+        }
     });    
     rpsItemGrid.on("drawcell", function (e) {
         var grid = e.sender;
@@ -1655,47 +1661,107 @@ function addPrdt(data){
                 interType:interType,
                 data:data
             };
-            svrCRUD(params,function(text){
-                var errCode = text.errCode||"";
-                var errMsg = text.errMsg||"";
-                if(errCode == 'S'){
-    
-                    var params = {
-                        interType: interType,
-                        data:{
-                            serviceId: main.id||0
-                        }
-                    }
-                    getBillDetail(params, function(text){
-                        var errCode = text.errCode;
-                        var data = text.data||[];
-                        if(errCode == "S"){
-                            if(interType == 'package'){
-                                rpsPackageGrid.clearRows();
-                                rpsPackageGrid.addRows(data);
-                                if(main.status<2){
-                                	var row = rpsPackageGrid.findRow(function(row){
-                                		rpsPackageGrid.beginEditRow(row);
-                                    });
-                                }
-                            }else if(interType == 'item'){
-                                rpsItemGrid.clearRows();
-                                rpsItemGrid.addRows(data);
-                                rpsItemGrid.clearRows();
-                                rpsItemGrid.addRows(data);
-                                if(main.status<2){
-                                	var row = rpsItemGrid.findRow(function(row){
-                                		rpsItemGrid.beginEditRow(row);
-                                    });
+            nui.mask({
+                el: document.body,
+                cls: 'mini-mask-loading',
+                html: '数据加载中...'
+            });
+            if(interType == 'package'){
+            	nui.unmask(document.body);
+            	savePkg(function(){
+            		svrCRUD(params,function(text){
+                        var errCode = text.errCode||"";
+                        var errMsg = text.errMsg||"";
+                        if(errCode == 'S'){
+                        	nui.unmask(document.body);
+                            var params = {
+                                interType: interType,
+                                data:{
+                                    serviceId: main.id||0
                                 }
                             }
+                            getBillDetail(params, function(text){
+                                var errCode = text.errCode;
+                                var data = text.data||[];
+                                if(errCode == "S"){
+                                    if(interType == 'package'){
+                                        rpsPackageGrid.clearRows();
+                                        rpsPackageGrid.addRows(data);
+                                        if(main.status<2){
+                                        	var row = rpsPackageGrid.findRow(function(row){
+                                        		rpsPackageGrid.beginEditRow(row);
+                                            });
+                                        }
+                                    }else if(interType == 'item'){
+                                        rpsItemGrid.clearRows();
+                                        rpsItemGrid.addRows(data);
+                                        rpsItemGrid.clearRows();
+                                        rpsItemGrid.addRows(data);
+                                        if(main.status<2){
+                                        	var row = rpsItemGrid.findRow(function(row){
+                                        		rpsItemGrid.beginEditRow(row);
+                                            });
+                                        }
+                                    }
+                                }
+                            }, function(){});
+                        }else{
+                            showMsg(errMsg||"添加预存信息失败!","E");
+                            nui.unmask(document.body);
+                            return;
                         }
-                    }, function(){});
-                }else{
-                    showMsg(errMsg||"添加预存信息失败!","E");
-                    return;
-                }
-            });
+                    });
+            	});
+            }
+            
+            if(interType == 'part' || interType == 'item'){
+            	saveItem(function(){
+            		nui.unmask(document.body);
+            		svrCRUD(params,function(text){
+		            var errCode = text.errCode||"";
+		            var errMsg = text.errMsg||"";
+		            if(errCode == 'S'){
+		            	nui.unmask(document.body);
+		                var params = {
+		                    interType: interType,
+		                    data:{
+		                        serviceId: main.id||0
+		                    }
+		                }
+		                getBillDetail(params, function(text){
+		                    var errCode = text.errCode;
+		                    var data = text.data||[];
+		                    if(errCode == "S"){
+		                        if(interType == 'package'){
+		                            rpsPackageGrid.clearRows();
+		                            rpsPackageGrid.addRows(data);
+		                            if(main.status<2){
+		                            	var row = rpsPackageGrid.findRow(function(row){
+		                            		rpsPackageGrid.beginEditRow(row);
+		                                });
+		                            }
+		                        }else if(interType == 'item'){
+		                            rpsItemGrid.clearRows();
+		                            rpsItemGrid.addRows(data);
+		                            rpsItemGrid.clearRows();
+		                            rpsItemGrid.addRows(data);
+		                            if(main.status<2){
+		                            	var row = rpsItemGrid.findRow(function(row){
+		                            		rpsItemGrid.beginEditRow(row);
+		                                });
+		                            }
+		                        }
+		                    }
+		                }, function(){});
+		            }else{
+		                showMsg(errMsg||"添加预存信息失败!","E");
+		                nui.unmask(document.body);
+		                return;
+		            }
+                   });
+            	});
+            }
+            
         }else{
             showMsg("请选择记录!","W");
             return;
@@ -1714,35 +1780,45 @@ function addPrdt(data){
             interType:'package',
             data:data
         };
-        svrCRUD(params,function(text){
-            var errCode = text.errCode||"";
-            var errMsg = text.errMsg||"";
-            if(errCode == 'S'){
-
-                var params = {
-                    interType: 'package',
-                    data:{
-                        serviceId: main.id||0
-                    }
-                }
-                getBillDetail(params, function(text){
-                    var errCode = text.errCode;
-                    var data = text.data||[];
-                    if(errCode == "S"){
-                        rpsPackageGrid.clearRows();
-                        rpsPackageGrid.addRows(data);
-                        if(main.status<2){
-                        	var row = rpsPackageGrid.findRow(function(row){
-                        		rpsPackageGrid.beginEditRow(row);
-                            });
-                        }
-                    }
-                }, function(){});
-            }else{
-                showMsg(errMsg||"添加套餐失败!","E");
-                return;
-            }
+        nui.mask({
+            el: document.body,
+            cls: 'mini-mask-loading',
+            html: '数据加载中...'
         });
+        savePkg(function(){
+        	nui.unmask(document.body);
+        	 svrCRUD(params,function(text){
+                 var errCode = text.errCode||"";
+                 var errMsg = text.errMsg||"";
+                 if(errCode == 'S'){
+                	 nui.unmask(document.body);
+                     var params = {
+                         interType: 'package',
+                         data:{
+                             serviceId: main.id||0
+                         }
+                     }
+                     getBillDetail(params, function(text){
+                         var errCode = text.errCode;
+                         var data = text.data||[];
+                         if(errCode == "S"){
+                             rpsPackageGrid.clearRows();
+                             rpsPackageGrid.addRows(data);
+                             if(main.status<2){
+                             	var row = rpsPackageGrid.findRow(function(row){
+                             		rpsPackageGrid.beginEditRow(row);
+                                 });
+                             }
+                         }
+                     }, function(){});
+                 }else{
+                     showMsg(errMsg||"添加套餐失败!","E");
+                     nui.unmask(document.body);
+                     return;
+                 }
+             });
+        });
+       
     }else if(type == 2){
         var data = {};
         var insItem = {
@@ -1758,35 +1834,94 @@ function addPrdt(data){
             interType:'item',
             data:data
         };
-        svrCRUD(params,function(text){
-            var errCode = text.errCode||"";
-            var errMsg = text.errMsg||"";
-            if(errCode == 'S'){
-
-                var params = {
-                    interType: 'item',
-                    data:{
-                        serviceId: main.id||0
-                    }
-                }
-                getBillDetail(params, function(text){
-                    var errCode = text.errCode;
-                    var data = text.data||[];
-                    if(errCode == "S"){
-                        rpsItemGrid.clearRows();
-                        rpsItemGrid.addRows(data);
-                        if(main.status<2){
-                        	var row = rpsItemGrid.findRow(function(row){
-                        		rpsItemGrid.beginEditRow(row);
-                            });
+        nui.mask({
+            el: document.body,
+            cls: 'mini-mask-loading',
+            html: '数据加载中...'
+        });
+        saveItem(function(){
+        	nui.unmask(document.body);
+        	svrCRUD(params,function(text){
+                var errCode = text.errCode||"";
+                var errMsg = text.errMsg||"";
+                if(errCode == 'S'){
+                	nui.unmask(document.body);
+                    var params = {
+                        interType: 'item',
+                        data:{
+                            serviceId: main.id||0
                         }
                     }
-                }, function(){});
-            }else{
-                showMsg(errMsg||"添加项目信息失败!","E");
-                return;
-            }
+                    getBillDetail(params, function(text){
+                        var errCode = text.errCode;
+                        var data = text.data||[];
+                        if(errCode == "S"){
+                            rpsItemGrid.clearRows();
+                            rpsItemGrid.addRows(data);
+                            if(main.status<2){
+                            	var row = rpsItemGrid.findRow(function(row){
+                            		rpsItemGrid.beginEditRow(row);
+                                });
+                            }
+                        }
+                    }, function(){});
+                }else{
+                    showMsg(errMsg||"添加项目信息失败!","E");
+                    nui.unmask(document.body);
+                    return;
+                }
+            });
+        }); 
+    }else if(type == 3){
+        var data = {};
+        var insPart = {
+            serviceId:main.id||0,
+            partId:rtnRow.id,
+            cardDetailId:0,
+            partCode:rtnRow.code
+        };
+        data.insPart = insPart;
+        data.serviceId = main.id||0;
+
+        var params = {
+            type:"insert",
+            interType:'part',
+            data:data
+        };
+        nui.mask({
+            el: document.body,
+            cls: 'mini-mask-loading',
+            html: '数据加载中...'
         });
+        saveItem(function(){
+        	nui.unmask(document.body);
+        	svrCRUD(params,function(text){
+                var errCode = text.errCode||"";
+                var errMsg = text.errMsg||"";
+                if(errCode == 'S'){
+                	nui.unmask(document.body);
+                    var params = {
+                        interType: 'part',
+                        data:{
+                            serviceId: main.id||0
+                        }
+                    }
+                    getBillDetail(params, function(text){
+                        var errCode = text.errCode;
+                        var data = text.data||[];
+                        if(errCode == "S"){
+                            //rpsPartGrid.clearRows();
+                            //rpsPartGrid.addRows(data);
+                        }
+                    }, function(){});
+                }else{
+                    showMsg(errMsg||"添加预存信息失败!","E");
+                	nui.unmask(document.body);
+                    return;
+                }
+            });
+        });
+        
     }
 }
 function checkPrdt(data){
@@ -1891,8 +2026,9 @@ function deletePackRow(row_uid){
                     return true;
                 }
             });
-
             rpsPackageGrid.removeRows(rows);
+            //清除所有行修改痕迹，已经修改的东西不会清除，因为对修改的东西没用commitEdit，如果commitEdit，保存时，保存的是之前的值,洗美中写了不行
+           // rpsPackageGrid.accept();
         }else{
             showMsg(errMsg||"删除套餐信息失败!","E");
             return;
@@ -1944,6 +2080,7 @@ function deleteItemRow(row_uid){
                 }
             });
         	rpsItemGrid.removeRows(rows);
+        	//rpsItemGrid.accept();
         }else{
             showMsg(errMsg||"删除项目信息失败!","E");
             return;
@@ -1994,6 +2131,7 @@ function deletePartRow(row_uid){
                 //rpsPartGrid.addRow(newRow);
             }else{
                 rpsItemGrid.removeRow(row);
+                //rpsItemGrid.accept();
             }
         }else{
             showMsg(errMsg||"删除配件信息失败!","E");
@@ -2586,59 +2724,134 @@ function addCardTimesToBill(){
             interType:interType,
             data:data
         };
-        svrCRUD(params,function(text){
-            var errCode = text.errCode||"";
-            var errMsg = text.errMsg||"";
-            if(errCode == 'S'){
-                //showMsg("添加次卡信息成功!","W");
-                //根据工单ID查询套餐,隐藏次卡信息
-                advancedCardTimesWin.hide();
-                cardTimesGrid.clearRows();
-
-                var params = {
-                    interType: interType,
-                    data:{
-                        serviceId: main.id||0
-                    }
-                }
-                getBillDetail(params, function(text){
-                    var errCode = text.errCode;
-                    var data = text.data||[];
-                    if(errCode == "S"){
-                        if(interType == 'package'){
-                            rpsPackageGrid.clearRows();
-                            rpsPackageGrid.addRows(data);
-                            if(main.status<2){
-                            	var row = rpsPackageGrid.findRow(function(row){
-                            		rpsPackageGrid.beginEditRow(row);
-                                });
-                            }
-                        }else if(interType == 'item'){
-                            rpsItemGrid.clearRows();
-                            rpsItemGrid.addRows(data);
-                            if(main.status<2){
-                            	var row = rpsItemGrid.findRow(function(row){
-                            		rpsItemGrid.beginEditRow(row);
-                                });
-                            }
-                        }else if(interType == 'part'){
-                          var p1 = { }
-               		      var p2 = {
-               		      interType: "item",
-               		         data:{
-               		             serviceId: main.id||0
-               		         }
-               		     };
-               		     var p3 = {};
-               		     loadDetail(p1, p2, p3,main.status);
-                      }
-                    }
-                }, function(){});
-            }else{
-                showMsg(errMsg||"添加预存信息失败!","E");
-                return;
-            }
+        
+        nui.mask({
+            el: document.body,
+            cls: 'mini-mask-loading',
+            html: '数据加载中...'
         });
+        if(interType== 'package'){
+        	 savePkg(function(){
+        		 nui.unmask(document.body);
+        		 svrCRUD(params,function(text){
+        	            var errCode = text.errCode||"";
+        	            var errMsg = text.errMsg||"";
+        	            if(errCode == 'S'){
+        	            	nui.unmask(document.body);
+        	                //showMsg("添加次卡信息成功!","W");
+        	                //根据工单ID查询套餐,隐藏次卡信息
+        	                advancedCardTimesWin.hide();
+        	                cardTimesGrid.clearRows();
+
+        	                var params = {
+        	                    interType: interType,
+        	                    data:{
+        	                        serviceId: main.id||0
+        	                    }
+        	                }
+        	                getBillDetail(params, function(text){
+        	                    var errCode = text.errCode;
+        	                    var data = text.data||[];
+        	                    if(errCode == "S"){
+        	                        if(interType == 'package'){
+        	                            rpsPackageGrid.clearRows();
+        	                            rpsPackageGrid.addRows(data);
+        	                            if(main.status<2){
+        	                            	var row = rpsPackageGrid.findRow(function(row){
+        	                            		rpsPackageGrid.beginEditRow(row);
+        	                                });
+        	                            }
+        	                        }else if(interType == 'item'){
+        	                            rpsItemGrid.clearRows();
+        	                            rpsItemGrid.addRows(data);
+        	                            if(main.status<2){
+        	                            	var row = rpsItemGrid.findRow(function(row){
+        	                            		rpsItemGrid.beginEditRow(row);
+        	                                });
+        	                            }
+        	                        }else if(interType == 'part'){
+        	                          var p1 = { }
+        	               		      var p2 = {
+        	               		      interType: "item",
+        	               		         data:{
+        	               		             serviceId: main.id||0
+        	               		         }
+        	               		     };
+        	               		     var p3 = {};
+        	               		     loadDetail(p1, p2, p3,main.status);
+        	                      }
+        	                    }
+        	                }, function(){});
+        	            }else{
+        	                showMsg(errMsg||"添加预存信息失败!","E");
+        	                nui.unmask(document.body);
+        	                return;
+        	            }
+        	        });
+        	 });
+        	
+        }
+        if(interType== 'item' || interType== 'part'){
+        	saveItem(function(){
+        	   nui.unmask(document.body);
+       		   svrCRUD(params,function(text){
+       	            var errCode = text.errCode||"";
+       	            var errMsg = text.errMsg||"";
+       	            if(errCode == 'S'){
+       	                //showMsg("添加次卡信息成功!","W");
+       	                //根据工单ID查询套餐,隐藏次卡信息
+       	            	nui.unmask(document.body);
+       	                advancedCardTimesWin.hide();
+       	                cardTimesGrid.clearRows();
+
+       	                var params = {
+       	                    interType: interType,
+       	                    data:{
+       	                        serviceId: main.id||0
+       	                    }
+       	                }
+       	                getBillDetail(params, function(text){
+       	                    var errCode = text.errCode;
+       	                    var data = text.data||[];
+       	                    if(errCode == "S"){
+       	                        if(interType == 'package'){
+       	                            rpsPackageGrid.clearRows();
+       	                            rpsPackageGrid.addRows(data);
+       	                            if(main.status<2){
+       	                            	var row = rpsPackageGrid.findRow(function(row){
+       	                            		rpsPackageGrid.beginEditRow(row);
+       	                                });
+       	                            }
+       	                        }else if(interType == 'item'){
+       	                            rpsItemGrid.clearRows();
+       	                            rpsItemGrid.addRows(data);
+       	                            if(main.status<2){
+       	                            	var row = rpsItemGrid.findRow(function(row){
+       	                            		rpsItemGrid.beginEditRow(row);
+       	                                });
+       	                            }
+       	                        }else if(interType == 'part'){
+       	                          var p1 = { }
+       	               		      var p2 = {
+       	               		      interType: "item",
+       	               		         data:{
+       	               		             serviceId: main.id||0
+       	               		         }
+       	               		     };
+       	               		     var p3 = {};
+       	               		     loadDetail(p1, p2, p3,main.status);
+       	                      }
+       	                    }
+       	                }, function(){});
+       	            }else{
+       	                showMsg(errMsg||"添加预存信息失败!","E");
+       	                nui.unmask(document.body);
+       	                return;
+       	            }
+       	        });
+       	 });
+        }
+       
     }else{
         showMsg("请选择次卡记录!","W");
         return;
@@ -2721,32 +2934,34 @@ function chooseItem(){
   	  showMsg("进厂里程不能小于上次里程","W");
   	  return;
   	}
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '数据加载中...'
+    });
     if(!data.id || falg=="N"){
       falg="Y";
-      nui.mask({
-	        el: document.body,
-	        cls: 'mini-mask-loading',
-	        html: '数据加载中...'
-	 });
 	  saveNoshowMsg(function(){
 		  var main = billForm.getData();
 		  var param = {};
 	      param.carModelIdLy = main.carModelIdLy;
 	      param.serviceId = main.id;
 	      param.carNo = main.carNo;
-	      doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
-    	     main = billForm.getData();
-		     var p1 = { }
-		     var p2 = {
-		         interType: "item",
-		         data:{
-		             serviceId: main.id||0
-		         }
-		     };
-		     var p3 = {};
-		     loadDetail(p1, p2, p3,main.status);
-		     nui.unmask(document.body);
-	    }); 
+	      saveItem(function(){
+	    	  doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
+	     	     main = billForm.getData();
+	 		     var p1 = { }
+	 		     var p2 = {
+	 		         interType: "item",
+	 		         data:{
+	 		             serviceId: main.id||0
+	 		         }
+	 		     };
+	 		     var p3 = {};
+	 		     loadDetail(p1, p2, p3,main.status);
+	 		     nui.unmask(document.body);
+	 	    });  
+	      });
 	  });
     }else{
     	var main = billForm.getData();
@@ -2754,18 +2969,21 @@ function chooseItem(){
         param.carModelIdLy = main.carModelIdLy;
         param.serviceId = main.id;
         param.carNo = main.carNo;
-    	doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
-    		    main = billForm.getData();
-    	        var p1 = { }
-    	        var p2 = {
-    	            interType: "item",
-    	            data:{
-    	                serviceId: main.id||0
-    	            }
-    	        };
-    	        var p3 = {};
-    	        loadDetail(p1, p2, p3,main.status);
-    	    }); 
+        saveItem(function(){
+    	     doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
+     	     main = billForm.getData();
+ 		     var p1 = { }
+ 		     var p2 = {
+ 		         interType: "item",
+ 		         data:{
+ 		             serviceId: main.id||0
+ 		         }
+ 		     };
+ 		     var p3 = {};
+ 		     loadDetail(p1, p2, p3,main.status);
+ 		     nui.unmask(document.body);
+	 	 });  
+	  });
     }   
 }
 
@@ -2801,34 +3019,37 @@ function choosePackage(){
   	  showMsg("进厂里程不能小于上次里程","W");
   	  return;
   	}
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '数据加载中...'
+   });
     if(!data.id || falg=="N"){
        // showMsg("请选择保存工单!","S");
        // return;
       falg="Y";
-      nui.mask({
-	        el: document.body,
-	        cls: 'mini-mask-loading',
-	        html: '数据加载中...'
-	   });
 	  saveNoshowMsg(function(){
 		var main = billForm.getData();
 		var param = {};
 	    param.carModelIdLy = main.carModelIdLy;
 	    param.serviceId = main.id;
 	    param.carNo = main.carNo;
-	    doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, param, function(text){
-	        main = billForm.getData();
-	        var p1 = { 
-	    		interType: "package",
-	            data:{
-	                serviceId: main.id||0
-	            }
-	        };
-	        var p2 = {};
-	        var p3 = {};
-	        loadDetail(p1, p2, p3,main.status);
-	        nui.unmask(document.body);
+	    savePkg(function(){
+	    	doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, param, function(text){
+		        main = billForm.getData();
+		        var p1 = { 
+		    		interType: "package",
+		            data:{
+		                serviceId: main.id||0
+		            }
+		        };
+		        var p2 = {};
+		        var p3 = {};
+		        loadDetail(p1, p2, p3,main.status);
+		        nui.unmask(document.body);
+		    });
 	    });
+	    
 	  });
     }else{
     	var main = billForm.getData();
@@ -2836,18 +3057,21 @@ function choosePackage(){
         param.carModelIdLy = main.carModelIdLy;
         param.serviceId = main.id;
         param.carNo = main.carNo;
-        doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, param, function(text){
-            main = billForm.getData();
-            var p1 = { 
-        		interType: "package",
-                data:{
-                    serviceId: main.id||0
-                }
-            };
-            var p2 = {};
-            var p3 = {};
-            loadDetail(p1, p2, p3,main.status);
-        });
+        savePkg(function(){
+	    	doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, param, function(text){
+		        main = billForm.getData();
+		        var p1 = { 
+		    		interType: "package",
+		            data:{
+		                serviceId: main.id||0
+		            }
+		        };
+		        var p2 = {};
+		        var p3 = {};
+		        loadDetail(p1, p2, p3,main.status);
+		        nui.unmask(document.body);
+		    });
+	    });
     }   
 }
 
@@ -3010,10 +3234,8 @@ function checkFromBillPart(data){
 }
 //配件
 function choosePart(row_uid){
-    var row = rpsItemGrid.getRowByUID(row_uid);
-    //获取到工时中的ID
-    //var row = FItemRow||{};
-    var itemId = null;
+	var row = rpsItemGrid.getRowByUID(row_uid);
+	var itemId = null;
     if(row){
     	itemId = row.id;
     }else{
@@ -3034,18 +3256,30 @@ function choosePart(row_uid){
         showMsg("工单已结算,不能添加配件!","W");
         return;
     }
-    //advancedMorePartWin.hide();
-    doSelectPart(itemId,addToBillPart, delFromBillPart, null, function(text){
-        var p1 = { };
-        var p2 = {
-            interType: "item",
-            data:{
-                serviceId: main.id||0
-            }
-        };
-        var p3 = {};
-        loadDetail(p1, p2, p3,main.status);
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '数据加载中...'
     });
+	saveItem(function(){
+		
+	    //获取到工时中的ID
+	    //var row = FItemRow||{};
+	    //advancedMorePartWin.hide();
+	    doSelectPart(itemId,addToBillPart, delFromBillPart, null, function(text){
+	        var p1 = { };
+	        var p2 = {
+	            interType: "item",
+	            data:{
+	                serviceId: main.id||0
+	            }
+	        };
+	        var p3 = {};
+	        loadDetail(p1, p2, p3,main.status);
+	        nui.unmask(document.body);
+	    });
+	})
+	 
 }
 
 function addToBillPart(row, callback, unmaskcall){
@@ -3400,33 +3634,37 @@ function onPkgTypeIdValuechanged(e){
 		token : token
 	});
 	//package_discount_rate
-	nui.ajax({
-		url : scTyIdUrl,
-		type : 'POST',
-		data : json,
-		cache : false,
-		contentType : 'text/json',
-		success : function(text) {
-			var returnJson = nui.decode(text);
-			if (returnJson.errCode == "S") {
-				var cardRate = returnJson.cardRate;
-                var packageDiscountRate = cardRate.packageDiscountRate;
-				var amt = row.amt||0;
-				var subtotal = 0;
-			    if(amt>0){
-			    	subtotal = amt - packageDiscountRate*1.0*amt;
-				    subtotal = subtotal.toFixed(2);
-			    }
-			    editor1.setValue(subtotal);
-                packageDiscountRate = (packageDiscountRate*100).toFixed(2);
-				editor2.setValue(packageDiscountRate);
-				
-			} else {
-				//showMsg("出库失败");
+   var isCanRate = row.isCanRate;
+   if(isCanRate==1){
+	   nui.ajax({
+			url : scTyIdUrl,
+			type : 'POST',
+			data : json,
+			cache : false,
+			contentType : 'text/json',
+			success : function(text) {
+				var returnJson = nui.decode(text);
+				if (returnJson.errCode == "S") {
+					var cardRate = returnJson.cardRate;
+	                var packageDiscountRate = cardRate.packageDiscountRate;
+					var amt = row.amt||0;
+					var subtotal = 0;
+				    if(amt>0){
+				    	subtotal = amt - packageDiscountRate*1.0*amt;
+					    subtotal = subtotal.toFixed(2);
+				    }
+				    editor1.setValue(subtotal);
+	                packageDiscountRate = (packageDiscountRate*100).toFixed(2);
+					editor2.setValue(packageDiscountRate);
+					
+				} else {
+					//showMsg("出库失败");
+				}
+					
 			}
-				
-		}
-	});	
+		});	
+   }
+	
 }
 
 function onValueChangedComQty(e){
@@ -4480,7 +4718,7 @@ function saveItem(callback){
         return;
     }
     rpsItemGrid.commitEdit();
-    var rows = rpsItemGrid.getChanges();
+    var rows = rpsItemGrid.getChanges("modified");
     if(status<2){
     	var row = rpsItemGrid.findRow(function(row){
     		rpsItemGrid.beginEditRow(row);
@@ -4605,7 +4843,8 @@ function savePkg(callback){
 	errs = null;
 	var main = billForm.getData(); 
     rpsPackageGrid.commitEdit();
-    var rows = rpsPackageGrid.getChanges();
+    //只需要获取修改的行，删除时，已经对数据库删除了，如果删除时没有清除所有行修改痕迹(accept),不加modified，会获取到删除的行，此时修改会出错
+    var rows = rpsPackageGrid.getChanges("modified");
     if(main.status<2){
     	var row = rpsPackageGrid.findRow(function(row){
     		rpsPackageGrid.beginEditRow(row);

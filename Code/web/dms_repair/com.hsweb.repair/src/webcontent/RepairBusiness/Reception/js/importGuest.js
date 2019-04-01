@@ -111,12 +111,37 @@ function sure() {
 			newRow.addr = data[i].地址||"";
 			newRow.carModel = data[i].厂牌车型信息||"";
 			newRow.engineNo = data[i].发动机号||"";
-			newRow.annualVerificationDueDate = data[i].年审到期||"";
-			newRow.insureCompName = data[i].保险公司||"";
-			newRow.annualInspectionNo = data[i].商业险单号||"";
-			newRow.annualInspectionDate = data[i].商业险到期||"";
-			newRow.insureDueDate = data[i].交强险到期||"";
-			newRow.careDueDate = data[i].保养到期||"";
+			newRow.annualVerificationDueDate = data[i].年审到期日期||"";
+			
+			newRow.annualInspectionNo = data[i]. 商业险单号||"";
+			newRow.annualInspectionCompCode = data[i]. 商业险投保公司ID||"";
+			newRow.annualInspectionCompName = data[i]. 商业险投保公司名称||"";
+			newRow.annualInspectionAmt = data[i]. 商业险金额||"";			
+			newRow.annualInspectionDate = data[i]. 商业险到期日期||"";
+			
+			newRow.insureNo = data[i]. 交强险单号||"";
+			newRow.insureCompCode = data[i]. 交强险投保公司ID||"";
+			newRow.insureCompName = data[i]. 交强险投保公司名称||"";
+			newRow.insureAmt = data[i]. 交强险金额||"";			
+			newRow.insureDueDate = data[i].交强险到期日期||"";
+			
+			newRow.color = data[i].颜色||"";
+			newRow.issuingDate = data[i].驾驶证发证日期||"";
+			newRow.careLastDate = data[i].上次保养日期||"";
+			newRow.careDueDate = data[i].下次保养日期||"";
+			newRow.careDueMileage = data[i].下次保养里程||"";
+			
+			newRow.dayKilometers = data[i].日均里程||"";
+			newRow.mtCycle = data[i].维修周期||"";
+			newRow.careCycle = data[i].保养周期||"";
+			newRow.careKilometers = data[i].间隔保养里程||"";
+			
+			newRow.lastComeKilometers = data[i].最近进店里程||""; 
+			newRow.lastComeDate = data[i].最近进店日期||"";
+			newRow.lastLeaveDate = data[i].最近离店日期||"";
+			newRow.prevAdvisorName = data[i].最后维修顾问名称||"";
+			newRow.chainComeTimes = data[i].来厂次数||"";
+			newRow.chainConsumeAmt = data[i].消费金额||"";
 			
 			newRow.remark = data[i].备注||"";
 

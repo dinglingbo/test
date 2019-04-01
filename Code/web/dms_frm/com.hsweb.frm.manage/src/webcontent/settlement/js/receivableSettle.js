@@ -1751,7 +1751,7 @@ function doAudit(){
 				onSearch();
 
 			} else {
-				showMsg(data.errMsg || "审核失败!", "w");
+				showMsg(data.errMsg || "审核失败!", "W");
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {

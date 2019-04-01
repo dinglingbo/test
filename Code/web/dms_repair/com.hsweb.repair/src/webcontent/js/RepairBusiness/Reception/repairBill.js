@@ -4837,6 +4837,8 @@ function saveItem(callback){
       }else{
     	  callback && callback();
       }
+
+    
 }
 var errs = null;
 function savePkg(callback){

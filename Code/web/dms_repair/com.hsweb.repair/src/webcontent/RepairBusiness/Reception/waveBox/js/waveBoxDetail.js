@@ -1379,6 +1379,7 @@ function addPrdt(data){
                                 	if(interType == 'item'){
                                         rpsItemGrid.clearRows();
                                         rpsItemGrid.addRows(data);
+                                        rpsItemGrid.accept();
                                         if(main.status<2){
                                         	var row = rpsItemGrid.findRow(function(row){
                                         		rpsItemGrid.beginEditRow(row);
@@ -1416,6 +1417,7 @@ function addPrdt(data){
                                 	if(interType == 'item'){
                                         rpsItemGrid.clearRows();
                                         rpsItemGrid.addRows(data);
+                                        rpsItemGrid.accept();
                                         if(main.status<2){
                                         	var row = rpsItemGrid.findRow(function(row){
                                         		rpsItemGrid.beginEditRow(row);
@@ -1475,6 +1477,7 @@ function addPrdt(data){
                          if(errCode == "S"){
                              rpsItemGrid.clearRows();
                              rpsItemGrid.addRows(data);
+                             rpsItemGrid.accept();
                              if(main.status<2){
                              	var row = rpsItemGrid.findRow(function(row){
                              		rpsItemGrid.beginEditRow(row);
@@ -2194,6 +2197,7 @@ function selecCardTimes(main){
         	                    	if(interType == 'item'){
         	                            rpsItemGrid.clearRows();
         	                            rpsItemGrid.addRows(data);
+        	                            rpsItemGrid.accept();
         	                            if(main.status<2){
         	                            	var row = rpsItemGrid.findRow(function(row){
         	                            		rpsItemGrid.beginEditRow(row);

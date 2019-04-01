@@ -1334,36 +1334,37 @@ function loadMaintain(callback,unmaskcall){
         unmaskcall && unmaskcall();
         showMsg(requiredField[key] + "不能为空!","W");
         return;
-    }
-}
-data.billTypeId = 2;
-
-nui.ajax({
-    url : saveMaintainUrl,
-    type : "post",
-    data : JSON.stringify({
-        maintain : data,
-        token : token
-    }),
-    success : function(data) {
-        data = data || {};
-        if (data.errCode == "S") {
-            unmaskcall && unmaskcall();
-            var main = data.data;
-            fserviceId = main.id||0;
-            callback && callback(main);
-        } else {
-            unmaskcall && unmaskcall();
-            showMsg(data.errMsg || "保存单据失败","E");
-        }
-    },
-    error : function(jqXHR, textStatus, errorThrown) {
-        unmaskcall && unmaskcall();
-            // nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
+     }
+   }
+   data.billTypeId = 2;
+   nui.ajax({
+		url : saveMaintainUrl,
+		type : "post",
+		data : JSON.stringify({
+		    maintain : data,
+		    token : token
+		}),
+		success : function(data) {
+		    data = data || {};
+		    if (data.errCode == "S") {
+		        unmaskcall && unmaskcall();
+		        var main = data.data;
+		        fserviceId = main.id||0;
+		        callback && callback(main);
+		    } else {
+		        unmaskcall && unmaskcall();
+		        showMsg(data.errMsg || "保存单据失败","E");
+		    }
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+		    unmaskcall && unmaskcall();
+		        // nui.alert(jqXHR.responseText);
+		        console.log(jqXHR.responseText);
+		    }
     });
 }
+
+
 function addPrdt(data){
     var main = billForm.getData();
     if(!main.id){
@@ -1448,6 +1449,7 @@ function addPrdt(data){
                             	if(interType == 'item'){
                                     rpsItemGrid.clearRows();
                                     rpsItemGrid.addRows(data);
+                                    rpsItemGrid.accept();
                                     if(main.status<2){
                                     	var row = rpsItemGrid.findRow(function(row){
                                     		rpsItemGrid.beginEditRow(row);
@@ -1506,6 +1508,7 @@ function addPrdt(data){
                          if(errCode == "S"){
                              rpsItemGrid.clearRows();
                              rpsItemGrid.addRows(data);
+                             rpsItemGrid.accept();
                              if(main.status<2){
                              	var row = rpsItemGrid.findRow(function(row){
                              		rpsItemGrid.beginEditRow(row);
@@ -2264,6 +2267,7 @@ function selecCardTimes(main){
                         	if(interType == 'item'){
                                 rpsItemGrid.clearRows();
                                 rpsItemGrid.addRows(data);
+                                rpsItemGrid.accept();
                                 if(main.status<2){
                                 	var row = rpsItemGrid.findRow(function(row){
                                 		rpsItemGrid.beginEditRow(row);
@@ -3997,6 +4001,10 @@ function saveItem(callback){
                      updList : updPartList
                  }
              };
+    	/* console.log("updItem:");
+ 	     console.log(updList);
+ 	     console.log("updPartList:");
+ 	     console.log(updPartList);*/
     	 if(updList && updList.length>0){
     		 svrCRUD(params,function(text){
                  var errCode = text.errCode||"";
@@ -4040,6 +4048,9 @@ function saveItem(callback){
       }else{
     	  callback && callback();
       }
+  /*  var endData = rpsItemGrid.getData();
+    console.log("end:");
+    console.log(endData);*/
 }
 
 

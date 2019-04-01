@@ -424,7 +424,7 @@
     </sourceConnections>
     <targetConnections>link11</targetConnections>
     <targetConnections>link13</targetConnections>
-    <location x="455" y="222"/>
+    <location x="474" y="221"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -437,7 +437,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="412" y="258"/>
+    <location x="431" y="257"/>
     <figSize height="20" width="108"/>
     <node>invokePojo2</node>
   </nodes>
@@ -533,6 +533,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">insContact/wechatServiceId</process:from>
       <process:to type="query">contactor/wechatServiceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">060110</process:from>
+      <process:to type="query">contactor/source</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">060301</process:from>
+      <process:to type="query">contactor/identity</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">guest/id</process:from>

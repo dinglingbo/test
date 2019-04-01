@@ -1580,7 +1580,6 @@ function loadMaintain(callback,unmaskcall){
 		}
     }
     data.billTypeId = 0;
-    
     nui.ajax({
         url : saveMaintainUrl,
         type : "post",
@@ -1607,6 +1606,7 @@ function loadMaintain(callback,unmaskcall){
         }
     });
 }
+
 function addPrdt(data){
     var main = billForm.getData();
     if(!main.id){
@@ -1687,6 +1687,7 @@ function addPrdt(data){
                                     if(interType == 'package'){
                                         rpsPackageGrid.clearRows();
                                         rpsPackageGrid.addRows(data);
+                                        rpsPackageGrid.accept();
                                         if(main.status<2){
                                         	var row = rpsPackageGrid.findRow(function(row){
                                         		rpsPackageGrid.beginEditRow(row);
@@ -1695,8 +1696,7 @@ function addPrdt(data){
                                     }else if(interType == 'item'){
                                         rpsItemGrid.clearRows();
                                         rpsItemGrid.addRows(data);
-                                        rpsItemGrid.clearRows();
-                                        rpsItemGrid.addRows(data);
+                                        rpsItemGrid.accept();
                                         if(main.status<2){
                                         	var row = rpsItemGrid.findRow(function(row){
                                         		rpsItemGrid.beginEditRow(row);
@@ -1735,6 +1735,7 @@ function addPrdt(data){
 		                        if(interType == 'package'){
 		                            rpsPackageGrid.clearRows();
 		                            rpsPackageGrid.addRows(data);
+		                            rpsPackageGrid.accept();
 		                            if(main.status<2){
 		                            	var row = rpsPackageGrid.findRow(function(row){
 		                            		rpsPackageGrid.beginEditRow(row);
@@ -1743,8 +1744,7 @@ function addPrdt(data){
 		                        }else if(interType == 'item'){
 		                            rpsItemGrid.clearRows();
 		                            rpsItemGrid.addRows(data);
-		                            rpsItemGrid.clearRows();
-		                            rpsItemGrid.addRows(data);
+		                            rpsItemGrid.accept();
 		                            if(main.status<2){
 		                            	var row = rpsItemGrid.findRow(function(row){
 		                            		rpsItemGrid.beginEditRow(row);
@@ -1804,6 +1804,7 @@ function addPrdt(data){
                          if(errCode == "S"){
                              rpsPackageGrid.clearRows();
                              rpsPackageGrid.addRows(data);
+                             rpsPackageGrid.accept();
                              if(main.status<2){
                              	var row = rpsPackageGrid.findRow(function(row){
                              		rpsPackageGrid.beginEditRow(row);
@@ -1858,6 +1859,7 @@ function addPrdt(data){
                         if(errCode == "S"){
                             rpsItemGrid.clearRows();
                             rpsItemGrid.addRows(data);
+                            rpsItemGrid.accept();
                             if(main.status<2){
                             	var row = rpsItemGrid.findRow(function(row){
                             		rpsItemGrid.beginEditRow(row);
@@ -2756,6 +2758,7 @@ function addCardTimesToBill(){
         	                        if(interType == 'package'){
         	                            rpsPackageGrid.clearRows();
         	                            rpsPackageGrid.addRows(data);
+        	                            rpsPackageGrid.accept();
         	                            if(main.status<2){
         	                            	var row = rpsPackageGrid.findRow(function(row){
         	                            		rpsPackageGrid.beginEditRow(row);
@@ -2764,6 +2767,7 @@ function addCardTimesToBill(){
         	                        }else if(interType == 'item'){
         	                            rpsItemGrid.clearRows();
         	                            rpsItemGrid.addRows(data);
+        	                            rpsItemGrid.accept();
         	                            if(main.status<2){
         	                            	var row = rpsItemGrid.findRow(function(row){
         	                            		rpsItemGrid.beginEditRow(row);
@@ -2817,6 +2821,7 @@ function addCardTimesToBill(){
        	                        if(interType == 'package'){
        	                            rpsPackageGrid.clearRows();
        	                            rpsPackageGrid.addRows(data);
+       	                            rpsPackageGrid.accept();
        	                            if(main.status<2){
        	                            	var row = rpsPackageGrid.findRow(function(row){
        	                            		rpsPackageGrid.beginEditRow(row);
@@ -2825,6 +2830,7 @@ function addCardTimesToBill(){
        	                        }else if(interType == 'item'){
        	                            rpsItemGrid.clearRows();
        	                            rpsItemGrid.addRows(data);
+       	                            rpsItemGrid.accept();
        	                            if(main.status<2){
        	                            	var row = rpsItemGrid.findRow(function(row){
        	                            		rpsItemGrid.beginEditRow(row);
@@ -4794,6 +4800,10 @@ function saveItem(callback){
                      updList : updPartList
                  }
              };
+    	   /* console.log("updItem:");
+    	    console.log(updList);
+    	    console.log("updPartList:");
+    	    console.log(updPartList);*/
     	 if(updList && updList.length>0){
     		 svrCRUD(params,function(text){
                  var errCode = text.errCode||"";
@@ -4837,6 +4847,9 @@ function saveItem(callback){
       }else{
     	  callback && callback();
       }
+   /* var endData = rpsItemGrid.getData();
+    console.log("end:");
+    console.log(endData);*/
 }
 var errs = null;
 function savePkg(callback){

@@ -160,7 +160,7 @@
                 <div allowSort="true" field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码" ></div>
                 <div allowSort="true" field="partName" name="partName" width="150" headerAlign="center" header="配件名称" ></div>
                 <div allowSort="true" field="oemCode" width="100" headerAlign="center" header="OEM码" ></div>
-                <div allowSort="true" field="outQty" name="outQty" width="100" headerAlign="center"  dataType="float" header="数量" ></div>
+                <div allowSort="true" field="outQty" summaryType="sum" name="outQty" width="100" headerAlign="center"  dataType="float" header="数量" ></div>
             </div>
         </div>
         

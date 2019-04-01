@@ -1580,7 +1580,6 @@ function loadMaintain(callback,unmaskcall){
 		}
     }
     data.billTypeId = 0;
-    
     nui.ajax({
         url : saveMaintainUrl,
         type : "post",
@@ -1607,6 +1606,7 @@ function loadMaintain(callback,unmaskcall){
         }
     });
 }
+
 function addPrdt(data){
     var main = billForm.getData();
     if(!main.id){

@@ -1273,12 +1273,12 @@ function loadMaintain(callback,unmaskcall){
     var data = billForm.getData();
     data.billTypeId = 6;
 
-nui.ajax({
-    url : saveMaintainUrl,
-    type : "post",
-    data : JSON.stringify({
-        maintain : data,
-        token : token
+    nui.ajax({
+       url : saveMaintainUrl,
+       type : "post",
+       data : JSON.stringify({
+           maintain : data,
+           token : token
     }),
     success : function(data) {
         data = data || {};

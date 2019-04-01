@@ -1334,36 +1334,37 @@ function loadMaintain(callback,unmaskcall){
         unmaskcall && unmaskcall();
         showMsg(requiredField[key] + "不能为空!","W");
         return;
-    }
-}
-data.billTypeId = 2;
-
-nui.ajax({
-    url : saveMaintainUrl,
-    type : "post",
-    data : JSON.stringify({
-        maintain : data,
-        token : token
-    }),
-    success : function(data) {
-        data = data || {};
-        if (data.errCode == "S") {
-            unmaskcall && unmaskcall();
-            var main = data.data;
-            fserviceId = main.id||0;
-            callback && callback(main);
-        } else {
-            unmaskcall && unmaskcall();
-            showMsg(data.errMsg || "保存单据失败","E");
-        }
-    },
-    error : function(jqXHR, textStatus, errorThrown) {
-        unmaskcall && unmaskcall();
-            // nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
+     }
+   }
+   data.billTypeId = 2;
+   nui.ajax({
+		url : saveMaintainUrl,
+		type : "post",
+		data : JSON.stringify({
+		    maintain : data,
+		    token : token
+		}),
+		success : function(data) {
+		    data = data || {};
+		    if (data.errCode == "S") {
+		        unmaskcall && unmaskcall();
+		        var main = data.data;
+		        fserviceId = main.id||0;
+		        callback && callback(main);
+		    } else {
+		        unmaskcall && unmaskcall();
+		        showMsg(data.errMsg || "保存单据失败","E");
+		    }
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+		    unmaskcall && unmaskcall();
+		        // nui.alert(jqXHR.responseText);
+		        console.log(jqXHR.responseText);
+		    }
     });
 }
+
+
 function addPrdt(data){
     var main = billForm.getData();
     if(!main.id){

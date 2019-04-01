@@ -1594,7 +1594,6 @@ function loadMaintain(callback,unmaskcall){
 		}
     }
     data.billTypeId = 4;
-    
     nui.ajax({
         url : saveMaintainUrl,
         type : "post",

@@ -994,6 +994,7 @@
     <sourceConnections xsi:type="process:tLink" id="link29" name="link29" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign11</sourceNode>
       <targetNode>assign25</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
     <location x="591" y="205"/>
@@ -1070,6 +1071,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">userName</process:from>
       <process:to type="query">maintain/balaAuditor</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">maintain/isCollectMoney</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">d</process:from>
+      <process:to type="query">maintain/collectMoneyDate</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">

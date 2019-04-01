@@ -488,7 +488,9 @@
       <targetNode>assign12</targetNode>
       <process:transitionCondition>
         <process:complexCondition>
-          <process:code>1==3&#xD;
+          <process:code>province == null || province.equals(&quot;&quot;) ||&#xD;
+city== null || city.equals(&quot;&quot;) ||&#xD;
+area== null || area.equals(&quot;&quot;)&#xD;
 </process:code>
         </process:complexCondition>
       </process:transitionCondition>
@@ -507,6 +509,7 @@
     <sourceConnections xsi:type="process:tLink" id="link27" name="link27" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign12</sourceNode>
       <targetNode>end0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link26</targetConnections>
     <location x="123" y="360"/>

@@ -98,12 +98,12 @@
 				SELECT orgid, guest_id as guestId, name as fullName, DATE_FORMAT(birthday,'%m-%d') as dueDate,
 			   '' as mtAdvisorId, recorder as mtAdvisorName
 		from rpb_contactor
-		where datediff(DATE_ADD(birthday,INTERVAL ceil(TIMESTAMPDIFF(MONTH,NOW(),birthday)/12) YEAR),NOW()) = #ln# 
+		where datediff(( DATE_FORMAT(birthday, '%m%d')+0),( DATE_FORMAT(curdate(), '%m%d')+0)) = #ln# 
 	</select>
 	<!--客户生日  按月日提醒-->
 	<update id="updateGuestBirthdayRemind" parameterClass="java.util.HashMap">
 		update rpb_contactor set is_bir_remind = 1, bir_status = 0
-		where datediff(DATE_ADD(birthday,INTERVAL ceil(TIMESTAMPDIFF(MONTH,NOW(),birthday)/12) YEAR),NOW()) = #ln#
+		where  datediff(( DATE_FORMAT(birthday, '%m%d')+0),( DATE_FORMAT(curdate(), '%m%d')+0))= #ln#
 					and orgid = #orgid# and is_bir_remind = 0
 	</update>
 	

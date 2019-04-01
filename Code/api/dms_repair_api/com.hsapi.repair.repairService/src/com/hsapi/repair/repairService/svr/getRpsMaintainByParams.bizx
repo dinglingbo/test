@@ -122,6 +122,14 @@
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[8]/_op</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/isDisabled</process:from>
+      <process:to type="query">cond/_expr[9]/isDisabled</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[9]/_op</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="215" y="186"/>

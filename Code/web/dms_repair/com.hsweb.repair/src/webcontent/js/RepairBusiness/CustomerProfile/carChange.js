@@ -88,42 +88,115 @@ function onOk(){
 	}
 }
 
-var changeCarNoUrl = apiPath + repairApi+ "/com.hsapi.repair.repairService.crud.saveCarNoChange.biz.ext";
+//var changeCarNoUrl = apiPath + repairApi+ "/com.hsapi.repair.repairService.crud.saveCarNoChange.biz.ext";
+var changeCarNoUrl = apiPath + repairApi+ "/com.hsapi.repair.repairService.crud.saveChangeCarNo.biz.ext";
+var queryCarNo = apiPath + repairApi + "/com.hsapi.repair.repairService.crud.queryCarNoByCarNo.biz.ext";
 function changeCarNo()
 {
+	var xcarNo = nui.get("xcarNo").value;
+	var falge = isVehicleNumber(xcarNo);
+	xcarNo = falge.vehicleNumber//返回转化好的车牌
+	if(!falge.result){
+		showMsg("请输入正确的车牌号","W");
+		return;
+	}
+	nui.get("xcarNo").setValue(xcarNo);
 	nui.mask({
 		el : document.body,
 		cls : 'mini-mask-loading',
 		html : '变更中...'
 	});
-	var car = xCar.getData();
-	 car.remark = nui.get("remark").getValue();
-	var data = {
-			carId:car.id,
-			carNo:guest.carNo,
-			carVin:car.vin,
-			newCarNo:car.carNo,
-			remark:car.remark
-	}
+	var params = {};
+	params.carNo = xcarNo;
 	var json = {
-			data:data,
+			params:params,
 			token:token
 	}
 	nui.ajax({
-		url : changeCarNoUrl,
+		url : queryCarNo,
 		type : 'POST',
 		data : json,
 		cache : false,
 		contentType : 'text/json',
 		success : function(text) {
-			nui.unmask(document.body);
-            data = text||{};
-            if(data.errCode == "S"){
-            	CloseWindow("ok");
-            }else{
-            	nui.alert("变更车牌失败","提示");
-            }
+			var list = text.list;
+			if(list.length){
+				nui.unmask(document.body);
+				nui.confirm("车牌号"+xcarNo+"已存在，是否变更？", "友情提示",function(action){
+					if(action == "ok"){
+						nui.mask({
+							el : document.body,
+							cls : 'mini-mask-loading',
+							html : '变更中...'
+						});
+						var car = xCar.getData();
+						car.remark = nui.get("remark").getValue();
+						var data = {
+								carId:car.id,
+								carNo:guest.carNo,
+								carVin:car.vin,
+								newCarNo:car.carNo,
+								remark:car.remark
+						}
+						var json = {
+								data:data,
+								token:token
+						}
+						nui.ajax({
+							url : changeCarNoUrl,
+							type : 'POST',
+							data : json,
+							cache : false,
+							contentType : 'text/json',
+							success : function(text) {
+								nui.unmask(document.body);
+					            data = text||{};
+					            if(data.errCode == "S"){
+					            	CloseWindow("ok");
+					            }else{
+					                showMsg("变更车牌失败","E");
+					            }
 
+							}
+						});						
+					}
+				});
+			}else{
+				var car = xCar.getData();
+				car.remark = nui.get("remark").getValue();
+				var data = {
+						carId:car.id,
+						carNo:guest.carNo,
+						carVin:car.vin,
+						newCarNo:car.carNo,
+						remark:car.remark
+				}
+				var json = {
+						data:data,
+						token:token
+				}
+				nui.ajax({
+					url : changeCarNoUrl,
+					type : 'POST',
+					data : json,
+					cache : false,
+					contentType : 'text/json',
+					success : function(text) {
+						nui.unmask(document.body);
+			            data = text||{};
+			            if(data.errCode == "S"){
+			            	CloseWindow("ok");
+			            }else{
+			            	showMsg("变更车牌失败","E");
+			            }
+
+					}
+				});	
+			}
+		},
+		error:function(jqXHR, textStatus, errorThrown) {
+			nui.unmask(document.body);
+			console.log(jqXHR.responseText);
 		}
 	});
 }
@@ -163,22 +236,37 @@ function changeCarVIN()
             if(data.errCode == "S"){
             	CloseWindow("ok");
             }else{
-            	nui.alert(data.errMsg,"提示");
+            	showMsg(data.errMsg,"E");
             }
 
 		}
 	});
 }
-var changeCarGuestUrl = apiPath + repairApi+ "/com.hsapi.repair.repairService.crud.saveCarGuestChange.biz.ext";
+//var changeCarGuestUrl = apiPath + repairApi+ "/com.hsapi.repair.repairService.crud.saveCarGuestChange.biz.ext";
+var changeCarGuestUrl = apiPath + repairApi+ "/com.hsapi.repair.repairService.crud.saveSplitCar.biz.ext";
 function changeCarGuest(){
 	nui.mask({
 		el : document.body,
 		cls : 'mini-mask-loading',
 		html : '变更中...'
 	});
-	var car = xCar.getData();
-	 car.remark = nui.get("remark").getValue();
-	var data = {
+	 var car = xCar.getData();
+	 //car.remark = nui.get("remark").getValue();
+	 var carList = [];
+	 var insGuest = {};
+	 var oldGuest = {};
+	 var remark = null;
+	 var insCar = {};
+	 insCar.id = car.id;
+	 insCar.carNo = guest.carNo;
+	 insCar.vin = car.vin;
+	 carList.push(insCar);
+	 remark = nui.get("remark").getValue()
+	 oldGuest.id = guest.guestId;
+	 oldGuest.fullName = guest.guestFullName;
+	 insGuest.id = car.xGuestId;
+	 insGuest.fullName = car.guestFullName; 
+	/*var data = {
 			carId:car.id,
 			carNo:guest.carNo,
 			carVin:car.vin,
@@ -187,9 +275,12 @@ function changeCarGuest(){
 			newGuestId:car.xGuestId,
 			newGuestName:car.guestFullName,
 			remark:car.remark
-	}
+	}*/
 	var json = {
-			data:data,
+			carList:carList,
+			guest:insGuest,
+			oldGuest:oldGuest,
+			remark:remark,
 			token:token
 	}
 	nui.ajax({
@@ -204,7 +295,7 @@ function changeCarGuest(){
            if(data.errCode == "S"){
            	CloseWindow("ok");
            }else{
-           	nui.alert(data.errMsg,"提示");
+           	showMsg(data.errMsg,"E");
            }
 
 		}
@@ -227,9 +318,9 @@ function onButtonEdit(e) {
         ondestroy: function (action)
         {
         	 nGuest = action.guest;
-        	 nui.get("xguestFullName").setText(nGuest.guestFullName);
-        	 nui.get("xguestFullName").setValue(nGuest.guestFullName);
-        	 nui.get("xGuestId").setValue(nGuest.guestId);
+        	 nui.get("xguestFullName").setText(nGuest.fullName);
+        	 nui.get("xguestFullName").setValue(nGuest.fullName);
+        	 nui.get("xGuestId").setValue(nGuest.id);
         	 nui.get("xmobile").setValue(nGuest.mobile);
         }
     });
@@ -248,4 +339,8 @@ function CloseWindow(action) {
 
 function onClose(){
 	window.CloseOwnerWindow();	
+}
+
+function queryCarNo(e){
+	
 }

@@ -11,9 +11,17 @@ $(document).ready(function(){
 
     mtAdvisorIdEl = nui.get("mtAdvisorId");
     
-    initMember("mtAdvisorId",function(){
+    /*initMember("mtAdvisorId",function(){
         memList = mtAdvisorIdEl.getData();   
         mtAdvisorIdEl.focus();
+    });*/
+    getStockman(function(text){
+    	var data = text.data||[];
+    	if(data && data.length>0) {
+    		nui.get("mtAdvisorId").setData(data);
+    	}else {
+			showMsg("请在【员工管理】中设置允许领料人员，用于领料人选择！","W");   	
+    	}
     });
     
     mtAdvisorIdEl.on("valueChanged",function(e){

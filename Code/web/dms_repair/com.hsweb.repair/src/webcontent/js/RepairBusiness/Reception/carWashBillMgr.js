@@ -515,7 +515,8 @@ function setInitData(params){
         var p = {
             carNoEqual: carNo,
             isSettle: 0,
-            billTypeId :2
+            billTypeId :2,
+            isDisabled : 0
         };
         mainGrid.load({
             token:token,

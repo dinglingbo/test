@@ -42,12 +42,15 @@ table {
 	<div class="nui-fit">
 		<div id="datagrid1" dataField="list" class="nui-datagrid"
 			style="width: 100%; height: 100%;" pageSize="20" onselectionchanged="selectionChanged"
-			allowSortColumn="true" frozenStartColumn="0" frozenEndColumn="7" totalCount="page.count" virtualScroll="true" >
+			allowSortColumn="true" frozenStartColumn="0" frozenEndColumn="7" totalCount="page.count" 
+			virtualScroll="true"
+			totalField="page.count"
+			 >
 			<div property="columns">
 				<div width="30" type="indexcolumn">序号</div>
 				<div header="客户信息" headerAlign="center">
 					<div property="columns">
-						<div name="guestFullName" field="guestFullName"
+						<div name="fullName" field="fullName"
 							headerAlign="center" allowSort="true" visible="true"
 							width="100px">客户名称</div>
 						<div name="mobile" field="mobile"

@@ -50,14 +50,6 @@ $(document).ready(function()
             
         }
       };
-      nui.get("wechatOpenId").disable();
-      
-      initGuestType("guestTypeId",function(data) {
-      	guestTypeList = nui.get("guestTypeId").getData();
-      	guestTypeList.forEach(function(v) {
-      		guestTypeHash[v.id] = v;
-          });
-      });
 });
 function init(callback)
 {
@@ -109,6 +101,13 @@ function init(callback)
         sfData = nui.get("identity").data;
     });
     initProvince("provice");
+    nui.get("wechatOpenId").disable();
+    initGuestType("guestTypeId",function(data) {
+      	guestTypeList = nui.get("guestTypeId").getData();
+      	guestTypeList.forEach(function(v) {
+      		guestTypeHash[v.id] = v;
+          });
+      });
 }
 var carList = [{}];
 var carHash = {};
@@ -243,11 +242,12 @@ function onOk()
 
     var insCarList = [];
     var updCarList = [];
+    
     if(isAdd==1){
         var insContactList = [{
         	source: "060110",
         	mobile: guest.mobile,
-        	name: guest.fullName,
+        	name: guest.fullName, 
         	identity: "060301"
         }];
     }else{
@@ -301,7 +301,8 @@ function onOk()
                     	}
                     }
             		contactdatagrid.addRow(newRow);
-
+                    //再次保存时清空联系人的值
+            		isAdd = 0;
                 //CloseWindow("ok");
             }
             else{
@@ -637,27 +638,30 @@ function addCarList(){
 	carExtend.careDueMileage = car.careDueMileage;
 	carExtend.careDueDate = car.careDueDate;
 	car.carExtend = carExtend;
-    //判断VIN
-    var data = {};
-    data = validation(car.vin);
-    if(data.isNo){
-    	car.vin = data.vin//返回转化好的vin
-    	nui.get("vin").setValue(car.vin);
-    }else{
-    	showMsg("VIN不规范，请确认！","W");
-    	return;
-    }
-    //判断车牌号,返回是否正确，和转化后的车牌
-	var falge = isVehicleNumber(car.carNo);
-	nui.get("carNo").setValue(falge.vehicleNumber);
-	car.carNo = falge.vehicleNumber;
-	if(!falge.result){
-		showMsg("请输入正确的车牌号","W");
-		return;
-	}else{
+	//禁用的车辆不判断车牌号Vin
+	if(nui.get("isDisabled").getValue()==0){
+	    //判断VIN
+	    var data = {};
+	    data = validation(car.vin);
+	    if(data.isNo){
+	    	car.vin = data.vin//返回转化好的vin
+	    	nui.get("vin").setValue(car.vin);
+	    }else{
+	    	showMsg("VIN不规范，请确认！","W");
+	    	return;
+	    }
+	    //判断车牌号,返回是否正确，和转化后的车牌
+		var falge = isVehicleNumber(car.carNo);
+		nui.get("carNo").setValue(falge.vehicleNumber);
+		car.carNo = falge.vehicleNumber;
+		if(!falge.result){
+			showMsg("请输入正确的车牌号","W");
+			return;
+		}
+	}
 
-		 guest = basicInfoForm.getData();
-    	guest.id = resultGuest.guestId;
+	 guest = basicInfoForm.getData();
+    guest.id = resultGuest.guestId;
     for(key in basicRequiredField){
         if(!nui.get(key).value){
             showMsg(basicRequiredField[key]+"不能为空!", "W");
@@ -723,7 +727,7 @@ function addCarList(){
 				careDueMileage:car.careDueMileage,
 				careDueDate:car.careDueDate,
 				remark:car.remark,
-				isDisabled:car.is_disabled
+				isDisabled:car.isDisabled
 				
 			};
                 var cargrid = cardatagrid.getData(true);
@@ -748,7 +752,6 @@ function addCarList(){
         }
     });  
 		
-	}
 
 }
 

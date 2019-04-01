@@ -76,7 +76,28 @@ $(document).ready(function(v)
 		quickSearch(4);
 	});
 
-	
+	rightGrid.on("drawSummaryCell", function (e) {
+    	var result = e.result.list;
+        var grossSum = 0;
+        var sellAmtSum = 0; 
+        var trueCostSum = 0;
+        for(var i = 0;i<result.length;i++){
+        	grossSum = grossSum+result[i].gross;
+        	sellAmtSum = sellAmtSum +result[i].sellAmt;
+        	trueCostSum = trueCostSum +result[i].trueCost;
+        }
+        if (e.field == "grossRate") {
+            var grossRateSum = parseFloat(grossSum)/parseFloat(sellAmtSum);
+            grossRateSum = ((grossRateSum*100).toFixed(2))+"%";
+            e.cellHtml = grossRateSum;
+        }
+        if (e.field == "costRate") {
+            var costRateSum = parseFloat(trueCostSum)/parseFloat(sellAmtSum);
+            costRateSum = ((costRateSum*100).toFixed(2))+"%";
+            e.cellHtml = costRateSum;
+        }
+
+    });
 	rightGrid.on("drawcell",function(e){
 		switch (e.field) {
 		case "serviceCode":

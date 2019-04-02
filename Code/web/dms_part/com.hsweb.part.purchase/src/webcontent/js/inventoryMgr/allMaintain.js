@@ -86,6 +86,15 @@ $(document).ready(function ()
 	        	return value;
 	        }
 	    });
+	    initDicts({
+	        //carSpec:CAR_SPEC,//车辆规格
+	        //kiloType:KILO_TYPE,//里程类别
+	        //source:GUEST_SOURCE,//客户来源
+	        //identity:IDENTITY, //客户身份
+	        guestProperty:GUEST_PROPERTY //客户类别
+	    },function(data){
+
+	    });
     initMember("mtAdvisorId",function(){     
         initServiceType("serviceTypeId",function(data) {
             servieTypeList = nui.get("serviceTypeId").getData();
@@ -412,7 +421,6 @@ function doSearch(setInitData) {
         }
     }
 
-    
     var xcdate = getDays(gsparams.sEnterDate,gsparams.eEnterDate);
     if(xcdate>92){
        showMsg("查询时间相差不能大于三个月！","W");
@@ -437,6 +445,7 @@ function getSearchParam() {
     }else{
     	params.orgid=orgidsElValue;
     }*/
+    params.guestProperty = nui.get("guestProperty").getValue();
     var billTypeIdList =  nui.get("billTypeIdList").getValue();
     if(billTypeIdList!=""&&billTypeIdList!=null){
     	params.billTypeIdList = billTypeIdList;

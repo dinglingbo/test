@@ -1757,7 +1757,7 @@
       <sourceNode>assign25</sourceNode>
       <targetNode>assign9</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="LT">
+        <process:simpleCondition operator="NE">
           <process:leftOperand type="query">balaAmt</process:leftOperand>
           <process:rightOperand type="query">balaAmtC</process:rightOperand>
         </process:simpleCondition>

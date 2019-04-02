@@ -134,6 +134,15 @@ $(document).ready(function ()
         	
         }
     });
+    initDicts({
+        //carSpec:CAR_SPEC,//车辆规格
+        //kiloType:KILO_TYPE,//里程类别
+        //source:GUEST_SOURCE,//客户来源
+        //identity:IDENTITY, //客户身份
+        guestProperty:GUEST_PROPERTY //客户类别
+    },function(data){
+
+    });
     innerItemGrid.on("drawcell", function (e) {
         var grid = e.sender;
         var record = e.record;
@@ -382,7 +391,7 @@ function getSearchParam() {
     if((nui.get("billTypeId").getValue())!=999){
     	params.billTypeId = nui.get("billTypeId").getValue();
     }
-    
+    params.guestProperty = nui.get("guestProperty").getValue();
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){

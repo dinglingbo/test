@@ -1150,7 +1150,7 @@ function saveMaintain(callback,unmaskcall){
     	delete data.enterDate;
     }
     data.billTypeId = 6;
-    if(!data.enterKilometers){
+    if(data.enterKilometers == 0){
     	data.enterKilometers = lastComeKilometers;
     }
 	var params = {
@@ -3832,6 +3832,7 @@ function saveItem(callback){
             if(cardDetailId > 0){ //预存的
                 var item = {};
                 item.id = row.id;
+                item.remark = row.remark;
                 item.serviceId = row.serviceId;
                 item.serviceTypeId = row.serviceTypeId;
                 item.workerIds = row.workersId;
@@ -3848,6 +3849,7 @@ function saveItem(callback){
             }else{
                 var item = {};
                 item.id = row.id;
+                item.remark = row.remark;
                 item.serviceId = row.serviceId;
                 item.amt = row.amt;
                 item.subtotal = row.subtotal;

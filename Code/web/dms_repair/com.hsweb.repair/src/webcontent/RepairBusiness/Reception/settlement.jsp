@@ -530,7 +530,10 @@
 	        		var carNo = list.carNo || "";
 	        		var carVin = list.carVin || "";
 	        		enterDate = list.enterDate || "";
-	        		
+	        		var wechatOpenId = list.wechatOpenId || "";
+	        		if(wechatOpenId != "" || wechatOpenId != null){
+	        		      
+	        		}
 	        		var drawOutReport = list.drawOutReport || "";
 	        		if(drawOutReport != ""){
 	        		     document.getElementById("drawOutReport").innerHTML = document.getElementById("drawOutReport").innerHTML + drawOutReport;

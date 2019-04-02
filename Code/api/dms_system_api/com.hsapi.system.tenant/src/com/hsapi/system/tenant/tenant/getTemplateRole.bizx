@@ -54,7 +54,7 @@
       <process:to type="query">cd/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">default</process:from>
+      <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">cd/_expr[2]/tenantId</process:to>
     </process:copy>
     <process:copy>

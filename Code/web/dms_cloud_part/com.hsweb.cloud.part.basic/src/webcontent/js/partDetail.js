@@ -180,6 +180,7 @@ function onOk()
         data.carTypeIdT = partName.cartypet||"";
     }
   //  data.abcType = "";
+    data.code =data.code.replace(/\s+/g, "");
     data.name = nui.get("partNameId").getText();
     data.fullName = data.name;    
     data.fullName = data.fullName + " " + partBrandIdHash[data.partBrandId].name;

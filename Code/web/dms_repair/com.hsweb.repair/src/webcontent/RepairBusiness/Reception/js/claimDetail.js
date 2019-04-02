@@ -1594,7 +1594,6 @@ function loadMaintain(callback,unmaskcall){
 		}
     }
     data.billTypeId = 4;
-    
     nui.ajax({
         url : saveMaintainUrl,
         type : "post",
@@ -1701,6 +1700,7 @@ function addPrdt(data){
                                      if(interType == 'package'){
                                          rpsPackageGrid.clearRows();
                                          rpsPackageGrid.addRows(data);
+                                         rpsPackageGrid.accept();
                                          if(main.status<2){
                                          	var row = rpsPackageGrid.findRow(function(row){
                                          		rpsPackageGrid.beginEditRow(row);
@@ -1709,6 +1709,7 @@ function addPrdt(data){
                                      }else if(interType == 'item'){
                                          rpsItemGrid.clearRows();
                                          rpsItemGrid.addRows(data);
+                                         rpsItemGrid.accept();
                                          if(main.status<2){
                                          	var row = rpsItemGrid.findRow(function(row){
                                          		rpsItemGrid.beginEditRow(row);
@@ -1717,6 +1718,7 @@ function addPrdt(data){
                                      }else if(interType == 'part'){
                                          rpsPartGrid.clearRows();
                                          rpsPartGrid.addRows(data);
+                                         rpsPartGrid.accept();
                                          if(main.status<2){
                                          	var row = rpsPartGrid.findRow(function(row){
                                          		rpsPartGrid.beginEditRow(row);
@@ -1754,6 +1756,7 @@ function addPrdt(data){
                                      if(interType == 'package'){
                                          rpsPackageGrid.clearRows();
                                          rpsPackageGrid.addRows(data);
+                                         rpsPackageGrid.accept();
                                          if(main.status<2){
                                          	var row = rpsPackageGrid.findRow(function(row){
                                          		rpsPackageGrid.beginEditRow(row);
@@ -1762,6 +1765,7 @@ function addPrdt(data){
                                      }else if(interType == 'item'){
                                          rpsItemGrid.clearRows();
                                          rpsItemGrid.addRows(data);
+                                         rpsItemGrid.accept();
                                          if(main.status<2){
                                          	var row = rpsItemGrid.findRow(function(row){
                                          		rpsItemGrid.beginEditRow(row);
@@ -1770,6 +1774,7 @@ function addPrdt(data){
                                      }else if(interType == 'part'){
                                          rpsPartGrid.clearRows();
                                          rpsPartGrid.addRows(data);
+                                         rpsPartGrid.accept();
                                          if(main.status<2){
                                          	var row = rpsPartGrid.findRow(function(row){
                                          		rpsPartGrid.beginEditRow(row);
@@ -1828,6 +1833,7 @@ function addPrdt(data){
                          if(errCode == "S"){
                              rpsPackageGrid.clearRows();
                              rpsPackageGrid.addRows(data);
+                             rpsPackageGrid.accept();
                              if(main.status<2){
                              	var row = rpsPackageGrid.findRow(function(row){
                              		rpsPackageGrid.beginEditRow(row);
@@ -1882,6 +1888,7 @@ function addPrdt(data){
                          if(errCode == "S"){
                              rpsItemGrid.clearRows();
                              rpsItemGrid.addRows(data);
+                             rpsItemGrid.accept();
                              if(main.status<2){
                              	var row = rpsItemGrid.findRow(function(row){
                              		rpsItemGrid.beginEditRow(row);
@@ -2870,6 +2877,7 @@ function addCardTimesToBill(){
        	                        if(interType == 'package'){
        	                            rpsPackageGrid.clearRows();
        	                            rpsPackageGrid.addRows(data);
+       	                            rpsPackageGrid.accept();
        	                            if(main.status<2){
        	                            	var row = rpsPackageGrid.findRow(function(row){
        	                            		rpsPackageGrid.beginEditRow(row);
@@ -2878,6 +2886,7 @@ function addCardTimesToBill(){
        	                        }else if(interType == 'item'){
        	                            rpsItemGrid.clearRows();
        	                            rpsItemGrid.addRows(data);
+       	                            rpsItemGrid.accept();
        	                            if(main.status<2){
        	                            	var row = rpsItemGrid.findRow(function(row){
        	                            		rpsItemGrid.beginEditRow(row);
@@ -2931,6 +2940,7 @@ function addCardTimesToBill(){
        	                        if(interType == 'package'){
        	                            rpsPackageGrid.clearRows();
        	                            rpsPackageGrid.addRows(data);
+       	                            rpsPackageGrid.accept();
        	                            if(main.status<2){
        	                            	var row = rpsPackageGrid.findRow(function(row){
        	                            		rpsPackageGrid.beginEditRow(row);
@@ -2939,6 +2949,7 @@ function addCardTimesToBill(){
        	                        }else if(interType == 'item'){
        	                            rpsItemGrid.clearRows();
        	                            rpsItemGrid.addRows(data);
+       	                            rpsItemGrid.accept();
        	                            if(main.status<2){
        	                            	var row = rpsItemGrid.findRow(function(row){
        	                            		rpsItemGrid.beginEditRow(row);

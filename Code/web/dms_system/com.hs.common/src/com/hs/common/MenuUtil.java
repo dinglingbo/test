@@ -190,7 +190,6 @@ public class MenuUtil {
 	        String webPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();  
 	    	
 			DataObject[] appArr = ResauthUtils.getAppFunction();
-			System.out.println("==============资源数据条数：" + appArr.length);
 			if(appArr.length > 0) {
 				boolean isExists = false;
 				for(int k=0; k<appArr.length; k++) {
@@ -202,8 +201,6 @@ public class MenuUtil {
 		        	} else {
 			        	if(linkAction != null && actionUrl.indexOf(linkAction) > 0 && actionUrl.indexOf(".flow") > 0) {
 			        		isExists = true;
-			        		System.out.println("==============需要判断==============="+linkAction);
-			        		System.out.println("==============需要判断==============="+actionUrl);
 			        		break;
 			        	}else {
 			        		isExists = false;
@@ -215,7 +212,6 @@ public class MenuUtil {
 		    		return true;
 				}
 			}
-			System.out.println("==============需要判断===============");
 	        //Map<String, Object> attrMap = muo.getUserObject().getAttributes();
 	        String userId = (String) u.get("loginName");
 			//查询用户对应的角色

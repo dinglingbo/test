@@ -103,9 +103,25 @@ $(document).ready(function ()
         });
 
     });
+    mainGrid.on("drawSummaryCell", function (e) {
+    	var result = e.result.list;
+        var grossProfitSum = 0;
+        var netinAmtSum = 0;
+        for(var i = 0;i<result.length;i++){
+        	grossProfitSum = grossProfitSum+result[i].grossProfit;
+        	netinAmtSum = netinAmtSum +result[i].netinAmt;
+        }
+        if (e.field == "grossProfitRate") {
+            var grossProfitRateSum = parseFloat(grossProfitSum)/parseFloat(netinAmtSum);
+            grossProfitRateSum = ((grossProfitRateSum*100).toFixed(2))+"%";
+            e.cellHtml = grossProfitRateSum;
+        }
 
+    });
 
     mainGrid.on("drawcell", function (e) {
+
+    	    
         if (e.field == "status") {
             e.cellHtml = statusHash[e.value];
         }else if (e.field == "carBrandId") {
@@ -366,6 +382,9 @@ function doSearch() {
     var gsparams = getSearchParam();
     if(gsparams.billTypeIds && gsparams.billTypeIds==5){
     	gsparams.billTypeIds = "0,2,4,6";
+    }
+    if(nui.get("isCollectMoney").getValue()==0){
+    	gsparams.isCollectMoney=1;
     }
     gsparams.isSettle = 1;
    // gsparams.billTypeId = 0;

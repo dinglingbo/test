@@ -151,6 +151,9 @@ function doSearch() {
 
 function getSearchParam() {
     var params = {};
+    if(nui.get("isCollectMoney").getValue()==0){
+    	params.isCollectMoney=1;
+    }
     params.startDate = nui.get("startDate").getValue();
     params.endDate = addDate(endDateEl.getValue(),1);  
     params.mtAdvisorId = mtAdvisorIdEl.getValue();

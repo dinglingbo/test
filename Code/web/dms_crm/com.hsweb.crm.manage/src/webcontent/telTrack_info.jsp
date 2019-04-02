@@ -31,6 +31,7 @@ pageEncoding="UTF-8" session="false" %>
     var mainId = null;
     var baseUrl = apiPath + crmApi + "/"; 
     var saveUrl= apiPath + repairApi + '/com.hsapi.repair.repairService.crud.saveRemindRecord.biz.ext';
+    var upUrl= apiPath + repairApi + '/com.hsapi.crm.svr.svr.updateCrmGuest.biz.ext';
     var dgScoutDetail  = nui.get("dgScoutDetail");
     var form1 = new nui.Form("#form1");
     var carModelHash = [];
@@ -113,25 +114,30 @@ function setScoutForm(record){
 
 //保存跟踪
 function saveScout(){
-	saveRecord() ;
+	//saveRecord() ;
   //var url =baseUrl+ "com.hsapi.crm.telsales.crmTelsales.saveScout.biz.ext";
-  //doSave(form1, url,saveRecord);
+  doSave(form1,saveRecord);
 }
 
 
-function doSave(tform, url, callBack){
+function doSave(tform,callBack){
     //验证
     if(!formValidate(tform)){
       showMsg("请完善信息!","W");
       return ;
   }
+  var  data = tform.getData(true);
+  var p ={
+      id:mainId,
+      nextScoutDate:data.nextScoutDate
+  }
 
   try {
       nui.ajax({
-        url: url,
+        url: upUrl,
         type: 'post',
         data: nui.encode({
-          data: tform.getData(true)
+          crmGuest:p
       }),
         cache: false,
         success: function (data) {
@@ -143,7 +149,7 @@ function doSave(tform, url, callBack){
                     //tform.setData(currGuest);
                     dgScoutDetail.reload();
                 }else {
-                    showMsg(data.errMsg,"E");
+                    showMsg('保存失败',"E");
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {

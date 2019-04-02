@@ -29,7 +29,7 @@ $(document).ready(function(){
 	});
     gridCar.on("select", function (e) {
         var params = {
-            guestId: e.record.contactorIdd,
+            guestId: e.record.contactorId,
             guestSource: 0,
             token:token
         };
@@ -56,7 +56,7 @@ $(document).ready(function(){
         }
 
     };
-
+    initMember("mtAdvisorId",function(){});
 
     initGuestType("level", function (data) {
         levelList = nui.get("level").getData();
@@ -153,7 +153,7 @@ function SetData(){
 		mini.open({
 			url: webPath + contextPath + "/manage/visitMgr/visitLoseMainDetail.jsp?token="+ token,
 			title: "电话回访", 
-			width: 770, height: 390,
+			width: 650, height: 300,
 			onload: function () {
 				var iframe = this.getIFrameEl(); 
 				iframe.contentWindow.setData(row);
@@ -170,52 +170,35 @@ function SetData(){
 
 
 function quickSearch(e){
-
-	var  p = {};
+	var today = nui.formatDate(new Date(), 'yyyy-MM-dd');
+	var p = {};
+	p.type = 2;//流失回访
 	var queryname = "今日计划跟进客户";
 	if(e == 0){//车牌号
-		p = {
-			carNo:tcarNo_ctrl.value,
-			sLeaveDays:slost_ctrl.value,
-            eLeaveDays: elost_ctrl.value,
-            level:nui.get("level").value
-		};
+		p.carNo=tcarNo_ctrl.value;
+		p.sLeaveDays= slost_ctrl.value;
+		p.eLeaveDays= elost_ctrl.value;
+		p.level=nui.get("level").value;
+		p.mtAdvisorId=nui.get("mtAdvisorId").value;
+
 	}
 	if(e == 1){//今日计划跟进客户
-		slost_ctrl.setValue(0);
-		elost_ctrl.setValue(120);
 		queryname = "今日计划跟进客户";
+		p.sNextVisitDay = today;
+		p.eNextVisitDay = today + ' 23:59:59';
 	}
-	if(e == 2){//新流失客户
-		slost_ctrl.setValue(120);
-		elost_ctrl.setValue(180);
-		queryname = "新流失客户";
-	}
-	if(e == 3){//流失超过半年客户
-		slost_ctrl.setValue(180);
-		elost_ctrl.setValue(360);
-		queryname = "流失超过半年客户";
-	}
-	if(e == 4){//流失超过一年的客户
-		slost_ctrl.setValue(360);
-		elost_ctrl.setValue(null);
-		queryname = "流失超过一年的客户";
-	}
-	if(e == 5){//所有流失的客户
+	if(e == 2){//所有流失的客户
 		slost_ctrl.setValue(0);
 		elost_ctrl.setValue(null);
 		queryname = "所有流失的客户";
+	
 	}
 	
 	
-    var menunamestatus = nui.get("menunamestatus");
-    menunamestatus.setText(queryname);
-	
-	p.type = 2;//流失回访
-	p.sLeaveDays = slost_ctrl.value;
-	p.eLeaveDays = elost_ctrl.value;
-	p.carNo = tcarNo_ctrl.value;
+    // var menunamestatus = nui.get("menunamestatus");
+    // menunamestatus.setText(queryname);
 	gridCar.load({params:p,token:token});
+
 }
 
 function WindowComplianDetail(){

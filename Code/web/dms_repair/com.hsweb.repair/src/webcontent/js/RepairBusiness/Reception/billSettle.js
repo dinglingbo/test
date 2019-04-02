@@ -22,6 +22,7 @@ var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var frmUrl = apiPath + frmApi + "/";
 var expenseUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.svr.getRpsExpense.biz.ext';
+var sendWCUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.sendWeChat.sendBillCostInfo.biz.ext';
 var srnum = [];
 $(document).ready(function(v) {
 
@@ -328,8 +329,7 @@ function onChanged() {
 
 		return;
 	}
-/*	checkF = 1;
-	checkField("optaccount0");*/
+	
 /*	var amount = parseFloat(netInAmt) - parseFloat(deductible) - parseFloat(PrefAmt)-parseFloat(count);
 	amount = amount.toFixed(2);
 	document.getElementById('amount').innerHTML = amount.toFixed(2);*/
@@ -384,7 +384,7 @@ function noPay(){
 		    				if(data.errCode=="S"){  					
 		    					CloseWindow("ok");
 		    				}else{
-		    					showMsg(data.errMsg,"W");
+		    					showMsg(data.errMsg,"S");
 		    				}
 
 		    			},
@@ -435,8 +435,8 @@ function pay(){
 		}*/
 		deductible = nui.get("deductible").getValue()||0;
 		count = (count+deductible).toFixed(2);
-		if(count!=zongAmt){
-			showMsg("结算金额和应结金额不一致，请重新确认！","W");
+		if(count>zongAmt){
+			showMsg("结算金额不能大于应收，请重新确认！","W");
 			return;
 		}
 		
@@ -469,8 +469,11 @@ function pay(){
 	    				nui.unmask(document.body);
 	    				if(data.errCode=="S"){  					
 	    					CloseWindow("ok");
+	    					if( $("#settlesendwx").is(':checked')== true){
+	    						sendWCInfo(fserviceId);//发送微信通知
+	    					}
 	    				}else{
-	    					showMsg(data.errMsg,"W");
+	    					showMsg(data.errMsg,"E");
 	    				}
 
 	    			},
@@ -484,6 +487,19 @@ function pay(){
 		 }
 	});
 }
+
+function sendWCInfo(serviceId){
+	nui.ajax({
+		url:sendWCUrl,
+		async:false,
+		type:"post",
+		data:{serviceId:serviceId},
+		success:function(res){
+			console.log(res);
+		}
+	})
+}
+
 function checkGrid(){
 	var rrows = receiveGrid.findRows(function(row){
 		var amt = row.amt||0;

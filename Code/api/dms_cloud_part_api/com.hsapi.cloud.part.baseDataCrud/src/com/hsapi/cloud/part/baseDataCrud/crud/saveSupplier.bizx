@@ -48,6 +48,10 @@
       <process:from type="query" pattern="reference">userName</process:from>
       <process:to type="query">supplier/modifier</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orgid</process:from>
+      <process:to type="query">supplier/orgid</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="269" y="185"/>
@@ -362,6 +366,7 @@
     <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>assign5</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link18</targetConnections>
     <location x="-59" y="150"/>

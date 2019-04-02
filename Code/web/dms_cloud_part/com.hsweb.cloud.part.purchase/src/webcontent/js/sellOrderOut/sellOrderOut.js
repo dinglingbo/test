@@ -1982,7 +1982,7 @@ function onPrint(){
 			id : from.id,
 		auditSign:from.auditSign,
 		printName : printName,
-		guestId : guestId,
+		guestId : from.guestId,
 		currRepairSettorderPrintShow : currRepairSettorderPrintShow,
 		currOrgName : currOrgName,
 		currUserName : currUserName,

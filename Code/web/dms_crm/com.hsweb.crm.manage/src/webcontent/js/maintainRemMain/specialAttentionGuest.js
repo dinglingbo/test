@@ -104,7 +104,7 @@ $(document).ready(function (v) {
             } else {
                 e.cellHtml = '电销客户';
             }
-        }else if(e.field == "carNo"){
+        }else if(e.field == "carNo" && e.record.guestType == 0 ){
     		e.cellHtml ='<a href="##" onclick="WindowrepairHistory()">'+e.record.carNo+'</a>';
     	}
     });
@@ -118,7 +118,7 @@ $(document).ready(function (v) {
             } else {
                 e.cellHtml = '电销客户';
             }
-        }else if(e.field == "carNo"){
+        }else if(e.field == "carNo" && e.record.guestType == 0){
     		e.cellHtml ='<a href="##" onclick="WindowrepairHistory()">'+e.record.carNo+'</a>';
         } else if (e.field == "annualInspectionCompCode") {
             e.cellHtml = setColVal('insureCompCode', 'code', 'fullName', e.value);
@@ -133,7 +133,7 @@ $(document).ready(function (v) {
             } else {
                 e.cellHtml = '电销客户';
             }
-        }else if(e.field == "carNo"){
+        }else if(e.field == "carNo" && e.record.guestType == 0){
     		e.cellHtml ='<a href="##" onclick="WindowrepairHistory()">'+e.record.carNo+'</a>';
     	}else if (e.field == "insureCompCode") {
             e.cellHtml = setColVal('insureCompCode', 'code', 'fullName', e.value);
@@ -148,7 +148,7 @@ $(document).ready(function (v) {
             } else {
                 e.cellHtml = '电销客户';
             }
-        }else if(e.field == "carNo"){
+        }else if(e.field == "carNo" && e.record.guestType == 0){
     		e.cellHtml ='<a href="##" onclick="WindowrepairHistory()">'+e.record.carNo+'</a>';
     	}
     });
@@ -161,7 +161,7 @@ $(document).ready(function (v) {
             } else {
                 e.cellHtml = '电销客户';
             }
-        }else if(e.field == "carNo"){
+        }else if(e.field == "carNo" && e.record.guestType == 0){
     		e.cellHtml ='<a href="##" onclick="WindowrepairHistory()">'+e.record.carNo+'</a>';
     	}
     });
@@ -174,7 +174,7 @@ $(document).ready(function (v) {
             } else {
                 e.cellHtml = '电销客户';
             }
-        }else if(e.field == "carNo"){
+        }else if(e.field == "carNo" && e.record.guestType == 0){
     		e.cellHtml ='<a href="##" onclick="WindowrepairHistory()">'+e.record.carNo+'</a>';
     	}
     });
@@ -391,6 +391,7 @@ function remind() {
             },
             ondestroy: function (action) {
                 change();
+                visitHis.reload();
             }
         });
     } else {
@@ -418,6 +419,7 @@ function sendInfo(){
             //重新加载
             //query(tab);
         // change();
+    	visitHis.reload();
         }
     });
 }
@@ -441,6 +443,7 @@ function sendWcText(){//发送微信消息
             //重新加载 
             // query(tab);
             // change();
+    	visitHis.reload();
         }
     });
 }
@@ -465,6 +468,7 @@ function sendWcCoupon() {
     ondestroy: function (action) {
             //重新加载
             //query(tab);
+    	visitHis.reload();
         }
     });
 }

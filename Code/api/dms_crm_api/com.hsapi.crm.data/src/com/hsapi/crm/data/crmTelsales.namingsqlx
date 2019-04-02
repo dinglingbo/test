@@ -97,6 +97,7 @@
         <isNotNull property="visitManId">
             AND visit_man_id = #visitManId#
         </isNotNull>
+        order by next_scout_date  is null,next_scout_date asc
    	</select>
     <!--跟踪明细-->
     <select id="getScoutDetail" parameterClass="HashMap" resultClass="HashMap">

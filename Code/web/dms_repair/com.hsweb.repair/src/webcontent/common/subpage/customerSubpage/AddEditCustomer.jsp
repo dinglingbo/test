@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.3.33"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.3.34"></script>
 <style type="text/css">
 
 table {
@@ -111,6 +111,20 @@ table {
                                    valueFromSelect="true"
                                    nullItemText="请选择..."/>
                     </tr>
+                        <tr>
+                        	 <td class="form_label ">
+		                        <label>客户属性：</label>
+		                    </td>
+		                    <td>
+		                        <input class="nui-combobox" name="guestProperty" id="guestProperty" valueField="customid" textField="name" width="200px" value="013902" />
+		                    </td> 
+		                    <td class="form_label ">
+		                        <label>客户属性特点：</label>
+		                    </td>
+		                    <td>
+		                        <input class="nui-textbox" name="propertyFeatures" id="propertyFeatures"  width="100%"  />
+		                    </td> 
+                        </tr>                    
                     <tr>
                         <td class="form_label">
                             <label>地址：</label>

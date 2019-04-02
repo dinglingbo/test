@@ -13,7 +13,7 @@ pageEncoding="UTF-8" session="false" %>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitLoseMain.js?v=1.1.2" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitLoseMain.js?v=1.1.24 type="text/javascript"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -40,14 +40,17 @@ pageEncoding="UTF-8" session="false" %>
         <input name="visitMode" id="visitMode" class="nui-combobox "textField="name" valueField="customid" visible="false"/>
     <div class="nui-toolbar" id="toolbar1">
         <label style="font-family:Verdana;">快速查询：</label>
-        <a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">今日计划跟进客户</a>
+        <a href="##" iconCls="" plain="true" onclick="quickSearch(1)">今日回访</a>
+        <a href="##" iconCls="" plain="true" onclick="quickSearch(2)">所有待回访</a>
+
+        <!-- <a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">今日计划跟进客户</a>
         <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
             <li iconCls="" onclick="quickSearch(1)" id="type1">今日计划跟进客户</li>
             <li iconCls="" onclick="quickSearch(2)" id="type2">新流失客户</li>
             <li iconCls="" onclick="quickSearch(3)" id="type3">流失超过半年客户</li>
             <li iconCls="" onclick="quickSearch(4)" id="type4">流失超过一年的客户</li>
             <li iconCls="" onclick="quickSearch(5)" id="type5">所有客户</li>
-        </ul>
+        </ul> -->
   
         <label style="font-family:Verdana;">流失天数：</label>
         <input class="nui-textbox" name="slost" id="slost" style="width: 60px;">
@@ -56,6 +59,8 @@ pageEncoding="UTF-8" session="false" %>
         <input class="nui-textbox" name="tcarNo" id="tcarNo" style="width:90px;" emptyText="车牌号">
         <input class="nui-combobox" name="level" id="level" style="width: 125px;"  required="false" multiSelect="true"
         textField="name" valueField="id" allowInput="false" emptyText="客户等级" />
+        <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1"  popupwidth="150px;"  textField="empName" valueField="empId"   emptyText="请选择..."
+        allowInput="true" valueFromSelect="true"  showNullItem="false"  nullItemText="请选择..."style="width:100px;"/>
         <a class="nui-button" plain="true" onclick="quickSearch(0)" iconcls="" ><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         <span class="separator"></span>
         <a class="nui-button" plain="true" iconCls="" onclick="SetData()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
@@ -90,6 +95,7 @@ pageEncoding="UTF-8" session="false" %>
             <div field="guestMobile" name="guestMobile" width="110px" headerAlign="center" header="客户手机"></div>
             <div field="tgrade" name="tgrade" width="90px" headerAlign="center" header="客户等级"></div>
             <div field="serviceTypeName" name="serviceTypeName" width="155px" headerAlign="center" header="业务类型"></div>
+            <div field="nextVisitDate" name="nextVisitDate" width="120px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="下次回访时间"></div>
             <!--<div field="isSettle" name="isSettle" width="60px" headerAlign="center" header="结算状态"></div> -->
             <div field="enterDate" name="recordDate" width="120px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="进厂日期"></div>
             <div field="outDate" name="recordDate" width="120px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="离厂日期"></div>

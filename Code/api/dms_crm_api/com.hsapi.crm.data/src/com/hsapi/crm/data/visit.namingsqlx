@@ -92,11 +92,17 @@
               <isNotEmpty prepend="and" property="mtAdvisorId">  
                	e.mt_advisor_id  =  #mtAdvisorId#
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="sNextVisitDay">  
+               	e.next_visit_date &gt;=  #sNextVisitDay# 
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eNextVisitDay">  
+               	e.next_visit_date  &lt;=  #eNextVisitDay# 
+            </isNotEmpty>
              <isNotEmpty prepend="and" property="sLeaveDays">  
-               	e.leave_days &gt;  #sLeaveDays# 
+               	TIMESTAMPDIFF(DAY ,a.out_date  ,NOW()) &gt;=  #sLeaveDays# 
             </isNotEmpty>
             <isNotEmpty prepend="and" property="eLeaveDays">  
-               	e.leave_days  &lt;=  #eLeaveDays# 
+               	TIMESTAMPDIFF(DAY ,a.out_date  ,NOW())  &lt;=  #eLeaveDays# 
             </isNotEmpty>
         	<isNotEmpty prepend="and" property="level">  
     			(d.tgrade in ($level$))

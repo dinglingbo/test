@@ -233,7 +233,7 @@ $(document).ready(function () {
  });     
       
 initDicts({
-    //visitMode: "DDT20130703000021",//跟踪方式
+    visitMode: "DDT20130703000021",//跟踪方式
     chanceType:SELL_TYPE,//商机
       //carSpec:CAR_SPEC,//车辆规格
       //kiloType:KILO_TYPE,//里程类别

@@ -212,6 +212,7 @@ function onAdvancedSearchOk()
     if(searchData.lastEnterEnd)
     {
         searchData.lastEnterEnd = searchData.lastEnterEnd.substr(0,10);
+        searchData.lastEnterEnd = addDate(searchData.lastEnterEnd, 1)
     }
 
     if(searchData.firstEnterStart)
@@ -221,6 +222,7 @@ function onAdvancedSearchOk()
     if(searchData.firstEnterEnd)
     {
         searchData.firstEnterEnd = searchData.firstEnterEnd.substr(0,10);
+        searchData.firstEnterEnd = addDate(searchData.firstEnterEnd, 1)
     }
 
     if(searchData.lastOutStart)
@@ -230,6 +232,7 @@ function onAdvancedSearchOk()
     if(searchData.lastOutEnd)
     {
         searchData.lastOutEnd = searchData.lastOutEnd.substr(0,10);
+        searchData.lastOutEnd = addDate(searchData.lastOutEnd, 1)
     }
 
     if(searchData.recordStart)
@@ -239,6 +242,7 @@ function onAdvancedSearchOk()
     if(searchData.recordEnd)
     {
         searchData.recordEnd = searchData.recordEnd.substr(0,10);
+        searchData.recordEnd = addDate(searchData.recordEnd, 1)
     }
     if(searchData.carBrandId){
     	searchData.carBrandId=document.getElementsByName('carBrandId')[0].value;

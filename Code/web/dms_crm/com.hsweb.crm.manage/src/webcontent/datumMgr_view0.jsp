@@ -84,6 +84,7 @@ pageEncoding="UTF-8" session="false" %>
                     <input name="tracker"
                     id="tracker"
                     class="nui-combobox width1"
+                    popupwidth="150px;"
                     textField="empName"
                     valueField="empId"
                     emptyText="请选择..."

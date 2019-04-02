@@ -149,10 +149,10 @@
 					       <div field="partsCode" headerAlign="partsCode" visible="true" width="80"header="编码"></div>
 					       <div field="partsName" headerAlign="partsName" visible="true" width="80"header="配件名称"></div>
 					       <div field="oemCode" headerAlign="oemCode" visible="true" width="80"header="原厂编码"></div>
-					       <div field="unit" headerAlign="oemCode" visible="true" width="40"header="单位"></div>
+					       <div field="unit" headerAlign="oemCode" visible="true" width="30"header="单位"></div>
 					       <div field="full_name" id="full_name" visible="false" width="260" headerAlign="center" header="全称"></div>
 					       <div field="brandCode" name="brandCode" visible="false" headerAlign="center" header="品牌编码"></div>
-					       <div field="brandName" name="brandName" visible="true"  width="40" headerAlign="center" header="品牌"></div>
+					       <div field="brandName" name="brandName" visible="true"  width="60" headerAlign="center" header="品牌"></div>
 					       <div field="carName"  width="60" visible="false" headerAlign="center" header="厂牌"></div>
 				           <div field="storeCode"  width="60" visible="false" headerAlign="center" header="配件商编码"></div>
 						   <div field="storeName" width="150" headerAlign="center" allowSort="true" header="配件商"></div>

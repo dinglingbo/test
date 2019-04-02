@@ -2745,6 +2745,7 @@ function updateOrderStatus(orderStatus,id){
             	//车道返单时，电商订单状态为全部发货
             	if(hash.orderStatus=="6" && hash.state =="4"){
             		updateOrderStatus("9");
+            		return;
             	}
             	//车道返单时，电商订单状态为部分发货
             	if(hash.orderStatus=="6" && hash.state =="3"){

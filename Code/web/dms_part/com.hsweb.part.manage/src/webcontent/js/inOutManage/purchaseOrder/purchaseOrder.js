@@ -2623,7 +2623,7 @@ function pushSupplierOrder(flagSign, flagStr, flagRtn){
 			        url : pushOrderUrl,
 			        type : "post",
 			        data : JSON.stringify({
-			        	provice: provinceName,
+			        	province: provinceName,
 			        	city : cityName,
 			        	area : countyName,
 			        	address:currCompAddress,
@@ -2668,7 +2668,7 @@ function pushSupplierOrder(flagSign, flagStr, flagRtn){
 			        url : pushOrderUrl,
 			        type : "post",
 			        data : JSON.stringify({
-			        	provice: provinceName,
+			        	province: provinceName,
 			        	city : cityName,
 			        	area : countyName,
 			        	address:currCompAddress,

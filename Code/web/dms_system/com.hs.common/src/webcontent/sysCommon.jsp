@@ -30,15 +30,16 @@
     String partApi = Env.getContributionConfig("system", "url", "apiDomain", "PART");
     String repairApi = Env.getContributionConfig("system", "url", "apiDomain", "REPAIR");
     String cloudPartApi = Env.getContributionConfig("system", "url", "apiDomain", "CLOUDPART");
-    String crmApi = Env.getContributionConfig("system", "url", "apiDomain", "FRM");
+    String crmApi = Env.getContributionConfig("system", "url", "apiDomain", "CRM");
     String frmApi = Env.getContributionConfig("system", "url", "apiDomain", "FRM");
     String wechatApi = Env.getContributionConfig("system", "url", "apiDomain", "WECHAT");
 	
-	String serverType = Env.getContributionConfig("system", "url", "api", "serverType");
-	apiPath = Env.getContributionConfig("system", "url", "api", serverType);
+	//暂不考虑前后端部署到不同服务器
+	//String serverType = Env.getContributionConfig("system", "url", "api", "serverType");
+	//apiPath = Env.getContributionConfig("system", "url", "api", serverType);
 	
-	serverType = Env.getContributionConfig("system", "url", "web", "serverType");
-	webPath = Env.getContributionConfig("system", "url", "web", serverType);
+	//serverType = Env.getContributionConfig("system", "url", "web", "serverType");
+	//webPath = Env.getContributionConfig("system", "url", "web", serverType);
 	
 	
 	Cookie cookie = new Cookie("miniuiSkin", "bootstrap");

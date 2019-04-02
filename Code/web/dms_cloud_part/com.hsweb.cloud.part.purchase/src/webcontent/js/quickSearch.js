@@ -426,7 +426,11 @@ function searchPrice(params){
                         haveMain = 1;
                         var sellPrice = priceHash[mPartId].sellPrice;
                         var partCode = priceHash[mPartId].partCode;
-                        quoteList.push(partCode +" "+sellPrice);
+                        var partBrandId =priceHash[mPartId].partBrandId;
+                        if(brandHash[partBrandId]){     	
+                        	var partBrandName= brandHash[partBrandId].name;
+                        }
+                        quoteList.push(partCode +" "+sellPrice+" "+ partBrandName);
                     }
 
                     for(var i=0; i<price.length; i++){
@@ -434,6 +438,10 @@ function searchPrice(params){
                         var commonId = price[i].commonId;
                         var partCode = price[i].partCode;
                         var sellPrice = price[i].sellPrice;
+                        var partBrandId = price[i].partBrandId;
+                        if( brandHash[partBrandId]){                    	
+                        	var partBrandName= brandHash[partBrandId].name;
+                        }
                         
                         if(mPartId == partId){
                         }else if(mCommonId == commonId && commonId != null && mCommonId !=undefined){
@@ -444,11 +452,14 @@ function searchPrice(params){
                             }else{
                                 partCode = '='+partCode;
                             }
-                            quoteList.push(partCode +" "+sellPrice);
+                            quoteList.push(partCode +" "+sellPrice+" "+partBrandName);
                         }
                     }
 
                 }
+                //ES6去重，利用Set结构
+                var set = new Set(quoteList);
+                quoteList = Array.from(set);
 
                 var quoteStr = "";
                 if(quoteList && quoteList.length>0){

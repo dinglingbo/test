@@ -420,6 +420,7 @@ $(document).ready(function ()
             case "itemOptBtn":
             	if(pid == 0){
                   	s = ' <a class="optbtn" href="javascript:deleteItemRow(\'' + uid + '\')">删除</a>';
+                    s = s + ' <a class="optbtn" href="javascript:updateItemRow(\'' + uid + '\')">修改</a>';
                  }else{
                 	 s = ' <a class="optbtn" href="javascript:deletePartRow(\'' + uid + '\')">删除</a>';
                   }
@@ -1580,7 +1581,6 @@ function loadMaintain(callback,unmaskcall){
 		}
     }
     data.billTypeId = 0;
-    
     nui.ajax({
         url : saveMaintainUrl,
         type : "post",
@@ -1607,6 +1607,7 @@ function loadMaintain(callback,unmaskcall){
         }
     });
 }
+
 function addPrdt(data){
     var main = billForm.getData();
     if(!main.id){
@@ -1687,6 +1688,7 @@ function addPrdt(data){
                                     if(interType == 'package'){
                                         rpsPackageGrid.clearRows();
                                         rpsPackageGrid.addRows(data);
+                                        rpsPackageGrid.accept();
                                         if(main.status<2){
                                         	var row = rpsPackageGrid.findRow(function(row){
                                         		rpsPackageGrid.beginEditRow(row);
@@ -1695,8 +1697,7 @@ function addPrdt(data){
                                     }else if(interType == 'item'){
                                         rpsItemGrid.clearRows();
                                         rpsItemGrid.addRows(data);
-                                        rpsItemGrid.clearRows();
-                                        rpsItemGrid.addRows(data);
+                                        rpsItemGrid.accept();
                                         if(main.status<2){
                                         	var row = rpsItemGrid.findRow(function(row){
                                         		rpsItemGrid.beginEditRow(row);
@@ -1735,6 +1736,7 @@ function addPrdt(data){
 		                        if(interType == 'package'){
 		                            rpsPackageGrid.clearRows();
 		                            rpsPackageGrid.addRows(data);
+		                            rpsPackageGrid.accept();
 		                            if(main.status<2){
 		                            	var row = rpsPackageGrid.findRow(function(row){
 		                            		rpsPackageGrid.beginEditRow(row);
@@ -1743,8 +1745,7 @@ function addPrdt(data){
 		                        }else if(interType == 'item'){
 		                            rpsItemGrid.clearRows();
 		                            rpsItemGrid.addRows(data);
-		                            rpsItemGrid.clearRows();
-		                            rpsItemGrid.addRows(data);
+		                            rpsItemGrid.accept();
 		                            if(main.status<2){
 		                            	var row = rpsItemGrid.findRow(function(row){
 		                            		rpsItemGrid.beginEditRow(row);
@@ -1804,6 +1805,7 @@ function addPrdt(data){
                          if(errCode == "S"){
                              rpsPackageGrid.clearRows();
                              rpsPackageGrid.addRows(data);
+                             rpsPackageGrid.accept();
                              if(main.status<2){
                              	var row = rpsPackageGrid.findRow(function(row){
                              		rpsPackageGrid.beginEditRow(row);
@@ -1858,6 +1860,7 @@ function addPrdt(data){
                         if(errCode == "S"){
                             rpsItemGrid.clearRows();
                             rpsItemGrid.addRows(data);
+                            rpsItemGrid.accept();
                             if(main.status<2){
                             	var row = rpsItemGrid.findRow(function(row){
                             		rpsItemGrid.beginEditRow(row);
@@ -2087,6 +2090,70 @@ function deleteItemRow(row_uid){
         }
     });
 }
+
+function updateItemRow(row_uid){
+	 var main = billForm.getData();
+	 var serviceId = main.id;
+     var isSettle = main.isSettle||0;
+     if(!main.id){
+        showMsg("请选择保存工单!","W");
+        return;
+     }
+     var status = main.status||0;
+     if(status == 2){
+        showMsg("工单已完工,不能修改项目!","W");
+        return;
+     }
+     if(isSettle == 1){
+        showMsg("工单已结算,不能修改项目!","W");
+        return;
+     }
+    var row = rpsItemGrid.getRowByUID(row_uid);
+    var params = {}; 
+    params.id = row.id;
+    params.serviceId = serviceId;
+    params.item = 1;
+    nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : '保存中...'
+	});
+    saveItem(function(){
+    	nui.unmask(document.body);
+    	nui.open({
+    		url : webPath + contextPath + "/com.hsweb.repair.DataBase.itemChoose.flow?token=" + token,
+    		title : "维修项目",
+    		width : 1000,
+    		height : 560,
+    		allowDrag : true,
+    		allowResize : true,
+    		onload : function() {
+    			var iframe = this.getIFrameEl();
+                iframe.contentWindow.updatRowSetData(params);//显示该显示的功能
+               // iframe.contentWindow.setViewData(dock, dodelck, docck);
+    		},
+    		ondestroy : function(action) {
+    			if(action=="ok"){
+    			   main = billForm.getData();
+    			   var p1 = { }
+     		       var p2 = {
+     		       interType: "item",
+     		           data:{
+     		             serviceId: main.id||0
+     		           }
+     		        };
+     		       var p3 = {};
+     		       loadDetail(p1, p2, p3,main.status);
+    			}
+    			
+    		}
+    	});
+    });
+    
+}
+
+
+
 function deletePartRow(row_uid){
     var main = billForm.getData();
     var isSettle = main.isSettle||0;
@@ -2756,6 +2823,7 @@ function addCardTimesToBill(){
         	                        if(interType == 'package'){
         	                            rpsPackageGrid.clearRows();
         	                            rpsPackageGrid.addRows(data);
+        	                            rpsPackageGrid.accept();
         	                            if(main.status<2){
         	                            	var row = rpsPackageGrid.findRow(function(row){
         	                            		rpsPackageGrid.beginEditRow(row);
@@ -2764,6 +2832,7 @@ function addCardTimesToBill(){
         	                        }else if(interType == 'item'){
         	                            rpsItemGrid.clearRows();
         	                            rpsItemGrid.addRows(data);
+        	                            rpsItemGrid.accept();
         	                            if(main.status<2){
         	                            	var row = rpsItemGrid.findRow(function(row){
         	                            		rpsItemGrid.beginEditRow(row);
@@ -2817,6 +2886,7 @@ function addCardTimesToBill(){
        	                        if(interType == 'package'){
        	                            rpsPackageGrid.clearRows();
        	                            rpsPackageGrid.addRows(data);
+       	                            rpsPackageGrid.accept();
        	                            if(main.status<2){
        	                            	var row = rpsPackageGrid.findRow(function(row){
        	                            		rpsPackageGrid.beginEditRow(row);
@@ -2825,6 +2895,7 @@ function addCardTimesToBill(){
        	                        }else if(interType == 'item'){
        	                            rpsItemGrid.clearRows();
        	                            rpsItemGrid.addRows(data);
+       	                            rpsItemGrid.accept();
        	                            if(main.status<2){
        	                            	var row = rpsItemGrid.findRow(function(row){
        	                            		rpsItemGrid.beginEditRow(row);
@@ -4794,6 +4865,10 @@ function saveItem(callback){
                      updList : updPartList
                  }
              };
+    	   /* console.log("updItem:");
+    	    console.log(updList);
+    	    console.log("updPartList:");
+    	    console.log(updPartList);*/
     	 if(updList && updList.length>0){
     		 svrCRUD(params,function(text){
                  var errCode = text.errCode||"";
@@ -4837,6 +4912,9 @@ function saveItem(callback){
       }else{
     	  callback && callback();
       }
+   /* var endData = rpsItemGrid.getData();
+    console.log("end:");
+    console.log(endData);*/
 }
 var errs = null;
 function savePkg(callback){

@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购退货明细</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtnQuery.js?v=1.0.7"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtnQuery.js?v=1.0.8"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 
@@ -92,6 +92,7 @@
                 <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
                 <!-- <span class="separator"></span>
                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> -->
             </td>
@@ -153,6 +154,45 @@
         </div>
     </div>
 </div>
+
+<div id="exportDiv"  style="display:none">  
+    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
+        <tr>  
+        	<td colspan="1" align="center"  rowspan="2">序号</td>
+            <td colspan="6" align="center" >退货信息</td>
+            <td colspan="6" align="center" >配件信息</td>
+            <td colspan="3" align="center" >数量单价</td>
+             <td colspan="4" align="center" >其他</td>
+        </tr>
+        <tr>
+        	 <td colspan="1" align="center" >退货单号</td>
+        	 <td colspan="1" align="center" >供应商</td>
+        	 <td colspan="1" align="center" >采购员</td>
+        	 <td colspan="1" align="center" >结算方式</td>
+        	 <td colspan="1" align="center" >仓库</td>
+        	 <td colspan="1" align="center" >退货日期</td>
+        	 
+        	 <td colspan="1" align="center" >配件编码</td>
+        	 <td colspan="1" align="center" >配件名称</td>
+        	 <td colspan="1" align="center" >OEM码</td>
+        	 <td colspan="1" align="center" >品牌</td>
+        	 <td colspan="1" align="center" >品牌车型</td>
+        	 <td colspan="1" align="center" >单位</td>
+        	 
+        	 <td colspan="1" align="center" >数量</td>
+        	 <td colspan="1" align="center" >单价</td>
+        	 <td colspan="1" align="center" >金额</td>
+        	 
+        	 <td colspan="1" align="center" >备注</td>
+        	 <td colspan="1" align="center" >审核人</td>
+        	 <td colspan="1" align="center" >审核日期</td>
+        	 <td colspan="1" align="center" >所属公司</td>
+        </tr>
+        <tbody id="tableExportContent">
+        </tbody>
+    </table> 
+    <a href="" id="tableExportA"></a>
+</div>  
 
 <div id="advancedSearchWin" class="nui-window"
      title="高级查询" style="width:416px;height:360px;"

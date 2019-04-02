@@ -10,7 +10,7 @@
 -->
 <head>
 <title>全部工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/allMaintain.js?v=1.2.1"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/allMaintain.js?v=1.2.4"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -131,10 +131,10 @@
                   	 <div property="columns" >
 	                  <div type="checkcolumn" name="checkcolumn" visible="false"></div>  
 	                  <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div> 
-	                  <div field="serviceCode" name="serviceCode" width="170" headerAlign="center" header="工单号" summaryType="sum" allowsort="true"></div>
+	                  <div field="serviceCode" name="serviceCode" width="170" headerAlign="center" header="工单号" summaryType="count" allowsort="true"></div>
 	                  <div field="status" name="status" width="70px" headerAlign="center" header="进程" allowsort="true"></div> 
 	                  <div field="serviceTypeName" name="serviceTypeName" width="120" headerAlign="center" header="业务类型" allowsort="true"></div>
-	                  <!-- <div field="auditSign" name="auditSign" width="120" headerAlign="center" header="审核状态" allowsort="true"></div> -->
+	                  <div field="isSettle" name="isSettle" width="120" headerAlign="center" header="审核状态" allowsort="true"></div>
 	                  <div field="mtAdvisor" name="mtAdvisor" width="100" headerAlign="center" header="服务顾问" allowsort="true"></div>
 	                 </div>
                   </div>
@@ -172,7 +172,7 @@
 
 		              </div>
 		           </div>      
-		           <div header="成本" headerAlign="center">
+<!-- 		           <div header="成本" headerAlign="center">
 	                  <div property="columns" >	
 	                  	  <div field="partTaxCost"  width="70" headerAlign="center" summaryType="sum" allowsort="true" header="配件含税成本" dataType="float"></div>
 	                  	  <div field="partNoTaxCost"  width="70" headerAlign="center" summaryType="sum" allowsort="true" header="配件不含税成本" dataType="float"></div>
@@ -185,7 +185,7 @@
 		                  <div field="allowanceAmt" name="allowanceAmt" width="70" headerAlign="center" allowsort="true" summaryType="sum" header="其他优惠" dataType="float"></div>
 		             
             		  </div>
-		           </div>  
+		           </div>  --> 
 		            <div header="结算信息" headerAlign="center">
 	                  <div property="columns" >		
 	                  		<div field="otherAmt" name="" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="其他费用收入" dataType="float"></div>
@@ -220,7 +220,7 @@
 <div id="editFormDetail" style="display:none;padding:5px;position:relative;">
 
   <div  id="innerpackGrid" class="nui-datagrid"
-	    style="width:100%;height:100px;"
+	    style="width:1000px;height:100px;"
 	    dataField="data"
 	    showPager="false"
 	    showModified="false"
@@ -244,7 +244,7 @@
        borderStyle="border-bottom:0;"
        class="nui-datagrid"
        dataField="data"
-       style="width: 100%;height:100px;"
+       style="width: 1000px;height:100px;"
        showPager="false"
        allowSortColumn="true">
       <div property="columns">

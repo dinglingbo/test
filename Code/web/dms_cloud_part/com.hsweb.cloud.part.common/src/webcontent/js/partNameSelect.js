@@ -25,6 +25,7 @@ $(document).ready(function(v)
 //        e.data.token = token;
 //    });
     //console.log("xxx");
+    nui.get('searchKey').focus();
     grid.on("rowdblclick", function(e) {
 		var row = grid.getSelected();
 		var rowc = nui.clone(row);
@@ -39,8 +40,11 @@ $(document).ready(function(v)
 
         switch(keyCode){
             case 27:
-            window.CloseOwnerWindow("");
-            break; 
+            	window.CloseOwnerWindow("");
+            break;
+            case 13:
+            	onSearch(); 
+            break;
         }
 
         /*if((keyCode==83)&&(event.shiftKey))  {  

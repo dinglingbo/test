@@ -283,8 +283,8 @@ hr {
 				<table id="ybk" width="100%">
 				  <tr>
 				    <td width="33.3%" id="guestFullName">客户:</td>
-				    <td width="33.3%"id="">联系人:</td>
-				    <td id="">联系方式:</td>
+				    <td width="33.3%"id="contactor">联系人:</td>
+				    <td id="contactorTel">联系方式:</td>
 				  </tr>
 				  <tr>
 				    <td id="">地址</td>

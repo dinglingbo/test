@@ -10,7 +10,7 @@
 -->
 <head>
 <title>全部工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/allMaintain.js?v=1.2.4"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/allMaintain.js?v=1.2.6"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -85,8 +85,9 @@
                     审核状态:<input class="nui-combobox" id="auditSign"  name="auditSign" data="[{billTypeId:999,text:'全部'},{billTypeId:0,text:'未审核'},{billTypeId:1,text:'已审核'}]"
                           width="100px"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="999"/>
                     <br>
-                    服务顾问：<input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
+                    服务顾问：<input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId" onvaluechanged="onSearch"
                         emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="90" valueFromSelect="true"/>
+                        <input class="nui-combobox" name="guestProperty" id="guestProperty" emptyText="客户属性" valueField="customid" onvaluechanged="onSearch" textField="name" width="100px"  />
 <!--             <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/> -->
  

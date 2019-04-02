@@ -93,7 +93,8 @@ function init(callback)
         //carSpec:CAR_SPEC,//车辆规格
         //kiloType:KILO_TYPE,//里程类别
         source:GUEST_SOURCE,//客户来源
-        identity:IDENTITY //客户身份
+        identity:IDENTITY, //客户身份
+        guestProperty:GUEST_PROPERTY //客户类别
     },function(data){
         hash.initDicts = true;
         checkComplete();
@@ -647,6 +648,8 @@ function addCarList(){
 	    	car.vin = data.vin//返回转化好的vin
 	    	nui.get("vin").setValue(car.vin);
 	    }else{
+	    	nui.get("carNo").enable();
+	    	nui.get("vin").enable();
 	    	showMsg("VIN不规范，请确认！","W");
 	    	return;
 	    }
@@ -655,6 +658,8 @@ function addCarList(){
 		nui.get("carNo").setValue(falge.vehicleNumber);
 		car.carNo = falge.vehicleNumber;
 		if(!falge.result){
+			nui.get("carNo").enable();
+			nui.get("vin").enable();
 			showMsg("请输入正确的车牌号","W");
 			return;
 		}
@@ -970,6 +975,7 @@ function wechatBin(){
 	 wechatUser.userPhone = data.mobile;
 	 wechatUser.userMarke = wechatServiceId;
 	 wechatUser.contactorId = data.id;
+	 wechatUser.userName = data.name;
 	 wechatUser.guestId = data.guestId;
 	 nui.mask({
 	        el: document.body,

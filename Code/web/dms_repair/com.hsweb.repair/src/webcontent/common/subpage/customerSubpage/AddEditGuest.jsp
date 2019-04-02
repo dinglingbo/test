@@ -11,7 +11,7 @@
 -->
 <head>
     <title>新增客户档案</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.67"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.69"></script>
     <style type="text/css">
         table {
             font-size: 12px;
@@ -50,7 +50,7 @@
   
       <div class="nui-splitter" id="addEditCustomerPage" style="width:100%;height:100%;" vertical="true" borderStyle="border:0;"
         handlerSize="0" allowResize="false">
-        <div size="240" showCollapseButton="false" style="border:0;">
+        <div size="260" showCollapseButton="false" style="border:0;">
             <div class="nui-panel" showToolbar="false" title="客户信息" showFooter="false" borderStyle="border:0;" style="width:100%;height:100%;">
 
                 <div class="form" id="basicInfoForm">
@@ -103,23 +103,25 @@
                                    url=""
                                    allowInput="true"
                                    showNullItem="false"
-                                   width="32%" 
+                                   width="200px" 
                                    valueFromSelect="true"
                                    nullItemText="请选择..."/>
                         	</td>
-                           <!--  <td class="form_label">
-                                <label>生日类型：</label>
-                            </td>
-                            <td>
-                                <input class="nui-combobox" data="[{value:'0',text:'农历',},{value:'1',text:'阳历'},]" textField="text" valueField="value" name="birthdayType"
-                                    value="0"  width="200px"/>
-                            </td>
-                            <td class="form_label ">
-                                <label>生日日期：</label>
-                            </td>
-                            <td>
-                                <input name="birthday" allowInput="false" class="nui-datepicker" width="100%" />
-                            </td> -->
+        
+                        </tr>
+                        <tr>
+                        	 <td class="form_label ">
+		                        <label>客户属性：</label>
+		                    </td>
+		                    <td>
+		                        <input class="nui-combobox" name="guestProperty" id="guestProperty" valueField="customid" textField="name" width="200px" value="013902" />
+		                    </td> 
+		                    <td class="form_label ">
+		                        <label>客户属性特点：</label>
+		                    </td>
+		                    <td>
+		                        <input class="nui-textbox" name="propertyFeatures" id="propertyFeatures"  width="100%"  />
+		                    </td> 
                         </tr>
                         <tr>
                             <td class="form_label">

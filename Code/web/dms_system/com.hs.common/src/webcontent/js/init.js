@@ -41,6 +41,7 @@ var BACK_REASON = "DDT20130703000072";//采购退货原因
 var COST_TYPE = "10101";//维修项目成本分类
 var ITEM_TYPE = 'DDT20130703000063';
 var SELL_TYPE = "10201";//销售机会
+var GUEST_PROPERTY = "10042"; //客户类别
  
 var _sysApiRoot = apiPath + sysApi;
 var _initDmsObj = {};

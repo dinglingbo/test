@@ -83,6 +83,15 @@ $(document).ready(function ()
 	        	return value;
 	        }
 	    });
+	    initDicts({
+	        //carSpec:CAR_SPEC,//车辆规格
+	        //kiloType:KILO_TYPE,//里程类别
+	        //source:GUEST_SOURCE,//客户来源
+	        //identity:IDENTITY, //客户身份
+	        guestProperty:GUEST_PROPERTY //客户类别
+	    },function(data){
+
+	    });
     initMember("mtAdvisorId",function(){     
         initServiceType("serviceTypeId",function(data) {
             servieTypeList = nui.get("serviceTypeId").getData();
@@ -412,6 +421,7 @@ function getSearchParam() {
     }else{
         params.billTypeIds = nui.get("billTypeId").getValue();
     }*/
+    params.guestProperty = nui.get("guestProperty").getValue();
     params.billTypeIds = nui.get("billTypeId").getValue();
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();

@@ -1114,6 +1114,7 @@
 			c.tel AS guestTel,
 			c.mobile AS guestMobile,
 			c.addr AS guestAddr,
+			c.guest_property guestProperty,	
 			d.package_amt AS packageAmt,
 			d.package_pref_amt AS packagePrefAmt,
 			d.package_subtotal AS packageSubtotal,
@@ -1161,8 +1162,11 @@
 		WHERE 1 = 1 and a.is_settle = 1
 			
       <dynamic>
-			<isNotEmpty prepend="and" property="rid">llectMoney
+			<isNotEmpty prepend="and" property="rid">
                 (a.id = #rid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestProperty">
+                (c.guest_property = #guestProperty#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="isCollectMoney">
                 (a.is_collect_money = #isCollectMoney#)
@@ -1429,6 +1433,7 @@
 			a.car_no AS carNo,
 			c.tel AS guestTel,
 			c.mobile AS guestMobile,
+			c.guest_property guestProperty,	
 			b.car_brand_id AS carBrandId,
 			a.mt_advisor AS mtAdvisor,
 			a.`status` AS `status`,
@@ -1472,7 +1477,7 @@
 			a.mt_advisor_id as mtAdvisorId,
 			a.guest_desc guestDesc,
 			a.fault_phen faultPhen,
-			a.solve_method solveMethod,
+			a.solve_method solveMethod,		
 	    	d.wechat_open_id as openId,
 			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
 	       inner join rpb_business_type f on e.service_type_id = f.id
@@ -1492,6 +1497,9 @@
 		<dynamic>
 			<isNotEmpty prepend="and" property="rid">
                 (a.id = #rid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestProperty">
+                (c.guest_property = #guestProperty#)
             </isNotEmpty>
 			<isNotEmpty prepend="and" property="orgid">
                 (a.orgid = #orgid#)

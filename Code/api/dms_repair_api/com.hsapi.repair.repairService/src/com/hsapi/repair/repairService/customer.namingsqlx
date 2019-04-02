@@ -101,10 +101,10 @@
                 (c.chain_consume_amt &lt;= #chainConsumeAmtEnd# )
             </isNotEmpty>
             
-            <isNotEmpty prepend="and" property="chainConsumeAmtStar">  
+            <isNotEmpty prepend="and" property="chainComeTimesStar">  
                 (c.chain_come_times &gt;= #chainComeTimesStar# )
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="chainConsumeAmtEnd">  
+            <isNotEmpty prepend="and" property="chainComeTimesEnd">  
                 (c.chain_come_times &lt;= #chainComeTimesEnd# )
             </isNotEmpty>
             
@@ -186,10 +186,10 @@
             </isNotEmpty>
              <!--第一次来厂日期 -->
             <isNotEmpty prepend="and" property="firstEnterStart">  
-                (c.first_come_date &gt;= #lastEnterStart#)
+                (c.first_come_date &gt;= #firstEnterStart#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="firstEnterEnd">  
-                (c.first_come_date &lt;= #lastEnterEnd#)
+                (c.first_come_date &lt; #firstEnterEnd#)
             </isNotEmpty>
              <!--最后离厂日期 -->
             <isNotEmpty prepend="and" property="lastOutStart">  

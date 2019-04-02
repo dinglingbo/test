@@ -22,6 +22,7 @@ var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var frmUrl = apiPath + frmApi + "/";
 var expenseUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.svr.getRpsExpense.biz.ext';
+var sendWCUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.sendWeChat.sendBillCostInfo.biz.ext';
 var srnum = [];
 $(document).ready(function(v) {
 
@@ -468,8 +469,11 @@ function pay(){
 	    				nui.unmask(document.body);
 	    				if(data.errCode=="S"){  					
 	    					CloseWindow("ok");
+	    					if( $("#settlesendwx").is(':checked')== true){
+	    						sendWCInfo(fserviceId);//发送微信通知
+	    					}
 	    				}else{
-	    					showMsg(data.errMsg,"S");
+	    					showMsg(data.errMsg,"E");
 	    				}
 
 	    			},
@@ -483,6 +487,19 @@ function pay(){
 		 }
 	});
 }
+
+function sendWCInfo(serviceId){
+	nui.ajax({
+		url:sendWCUrl,
+		async:false,
+		type:"post",
+		data:{serviceId:serviceId},
+		success:function(res){
+			console.log(res);
+		}
+	})
+}
+
 function checkGrid(){
 	var rrows = receiveGrid.findRows(function(row){
 		var amt = row.amt||0;

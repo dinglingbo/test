@@ -135,26 +135,32 @@ function quickSearch(type)
     {
         case 0:
             params.todayEnter = 1;
+            params.orgid = currOrgId;
             queryname = "本日来厂";
             break;
         case 1:
             params.yesterdayEnter = 1;
+            params.orgid = currOrgId;
             queryname = "昨日来厂";
             break;
         case 2:
             params.todayNew = 1;
+            params.orgid = currOrgId;
             queryname = "本日新来厂客户";
             break;
         case 3:
             params.thisMonthNew = 1;
+            params.orgid = currOrgId;
             queryname = "本月新来厂客户";
             break;
         case 4:
             params.thisMonthEnter = 1;
+            params.orgid = currOrgId;
             queryname = "本月所有来厂客户";
             break;
         case 5:
             params.thisMonthLoss = 1;
+            params.orgid = currOrgId;
             queryname = "本月流失回厂";
             break;
         case 6:
@@ -163,6 +169,7 @@ function quickSearch(type)
             break;
         case 7:
             params.insurance = 1;
+            params.orgid = currOrgId;
             queryname = "本日所有保险开单客户";
             break;
         default:
@@ -205,6 +212,7 @@ function onAdvancedSearchOk()
     if(searchData.lastEnterEnd)
     {
         searchData.lastEnterEnd = searchData.lastEnterEnd.substr(0,10);
+        searchData.lastEnterEnd = addDate(searchData.lastEnterEnd, 1)
     }
 
     if(searchData.firstEnterStart)
@@ -214,6 +222,7 @@ function onAdvancedSearchOk()
     if(searchData.firstEnterEnd)
     {
         searchData.firstEnterEnd = searchData.firstEnterEnd.substr(0,10);
+        searchData.firstEnterEnd = addDate(searchData.firstEnterEnd, 1)
     }
 
     if(searchData.lastOutStart)
@@ -223,6 +232,7 @@ function onAdvancedSearchOk()
     if(searchData.lastOutEnd)
     {
         searchData.lastOutEnd = searchData.lastOutEnd.substr(0,10);
+        searchData.lastOutEnd = addDate(searchData.lastOutEnd, 1)
     }
 
     if(searchData.recordStart)
@@ -232,6 +242,7 @@ function onAdvancedSearchOk()
     if(searchData.recordEnd)
     {
         searchData.recordEnd = searchData.recordEnd.substr(0,10);
+        searchData.recordEnd = addDate(searchData.recordEnd, 1)
     }
     if(searchData.carBrandId){
     	searchData.carBrandId=document.getElementsByName('carBrandId')[0].value;
@@ -245,7 +256,9 @@ function onAdvancedSearchOk()
     if(searchData.guestId){
     	searchData.guestId=advancedSearchForm.gusetId;
     }
- 
+    if(nui.get("isChain").getValue()==0){
+    	searchData.orgid=currOrgId;
+    }
     advancedSearchWin.hide();
     doSearch(searchData);
     advancedSearchForm.gusetId=null;

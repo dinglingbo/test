@@ -11,7 +11,7 @@
 -->
 <head>
 	<title>客户档案</title>
-	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.5.23"></script>
+	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.5.30"></script>
 	<style type="text/css">
 		table {
 			font-size: 12px;
@@ -332,6 +332,14 @@
 					<td colspan="3">
 						<input class="nui-combobox" name="carModelId" width="100%" id="carModelId" valueField="carModelId" textField="carModel" allowInput="true"
 						/>
+					</td>
+				</tr>
+				<tr>
+					<td class="title">
+						<label>连锁客户:</label>
+					</td>
+					<td colspan="3">
+						<input class="nui-checkbox" id="isChain"   value="0" checked="checked" name="isChain"  trueValue="1" falseValue="0" />
 					</td>
 				</tr>
 				

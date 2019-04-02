@@ -89,81 +89,81 @@
         
          <div header="期初" headerAlign="center">
             <div property="columns">
-                <div  summaryType="sum" allowSort="true" datatype="float" field="qcQty" width="60" headerAlign="center" header="数量" dataType="float" align="right"></div>
-                <div  summaryType="sum" allowSort="true" datatype="float" field="qcAmt" headerAlign="center" header="金额" dataType="float" align="right"></div>
+                <div  summaryType="sum" allowSort="true" datatype="float" field="qcQty" width="60" headerAlign="center" header="数量"  align="right"></div>
+                <div  summaryType="sum" allowSort="true" datatype="float" field="qcAmt" headerAlign="center" header="金额"  align="right"></div>
             </div>
         </div>
         <div header="采购入库" headerAlign="center">
             <div property="columns">
-                <div summaryType="sum" allowSort="true" datatype="float" field="purchaseEnterQty" width="60" headerAlign="center" header="数量" dataType="float" align="right"></div>
-                <div summaryType="sum" allowSort="true" datatype="float" field="purchaseEnterAmt" headerAlign="center" header="金额" dataType="float" align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="purchaseEnterQty" width="60" headerAlign="center" header="数量"  align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="purchaseEnterAmt" headerAlign="center" header="金额"  align="right"></div>
             </div>
         </div>
         <div header="采购退货" headerAlign="center">
             <div property="columns">
-                <div summaryType="sum" allowSort="true" datatype="float" field="purchaseOutQty" width="60" headerAlign="center" header="数量" dataType="float" align="right"></div>
-                <div summaryType="sum" allowSort="true" datatype="float" field="purchaseOutAmt" headerAlign="center" header="金额" dataType="float" align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="purchaseOutQty" width="60" headerAlign="center" header="数量"  align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="purchaseOutAmt" headerAlign="center" header="金额"  align="right"></div>
             </div>
         </div>
         <div header="工单归库" headerAlign="center">
             <div property="columns">
-                <div summaryType="sum" allowSort="true" datatype="float" field="repairEnterQty" width="60" headerAlign="center" header="数量" dataType="float" align="right"></div>
-                <div summaryType="sum" allowSort="true" datatype="float" field="repairEnterAmt" headerAlign="center" header="金额" dataType="float" align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="repairEnterQty" width="60" headerAlign="center" header="数量"  align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="repairEnterAmt" headerAlign="center" header="金额"  align="right"></div>
             </div>
         </div>
         <div header="工单出库" headerAlign="center">
             <div property="columns">
-                <div summaryType="sum" allowSort="true" datatype="float" field="repairOutQty" width="60" headerAlign="center" header="数量" dataType="float" align="right"></div>
-                <div summaryType="sum" allowSort="true" datatype="float" field="repairOutAmt" headerAlign="center" header="金额" dataType="float" align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="repairOutQty" width="60" headerAlign="center" header="数量"  align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="repairOutAmt" headerAlign="center" header="金额"  align="right"></div>
             </div>
         </div>
         <div header="工单退货" headerAlign="center">
             <div property="columns">
-                <div summaryType="sum" allowSort="true" datatype="float" field="returnOutQty" headerAlign="center" header="数量" dataType="float" align="right"></div>
-                <div summaryType="sum" allowSort="true" datatype="float" field="returnOutAmt" headerAlign="center" header="金额" dataType="float" align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="returnOutQty" headerAlign="center" header="数量"  align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="returnOutAmt" headerAlign="center" header="金额"  align="right"></div>
             </div>
         </div>
         <div header="移仓入库" headerAlign="center">
             <div property="columns">
-                <div summaryType="sum" allowSort="true" datatype="float" field="shiftEnterQty" width="60" headerAlign="center" header="数量" dataType="float" align="right"></div>
-                <div summaryType="sum" allowSort="true" datatype="float" field="shiftEnterAmt" headerAlign="center" header="金额" dataType="float" align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="shiftEnterQty" width="60" headerAlign="center" header="数量"  align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="shiftEnterAmt" headerAlign="center" header="金额"  align="right"></div>
             </div>
         </div>
         
          <div header="移仓出库" headerAlign="center">
             <div property="columns">
-                <div summaryType="sum" allowSort="true" datatype="float" field="shiftOutQty" width="60" headerAlign="center" header="数量" dataType="float" align="right"></div>
-                <div summaryType="sum" allowSort="true" datatype="float" field="shiftOutAmt" headerAlign="center" header="金额" dataType="float" align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="shiftOutQty" width="60" headerAlign="center" header="数量"  align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="shiftOutAmt" headerAlign="center" header="金额"  align="right"></div>
             </div>
         </div>
         <div header="耗材入库" headerAlign="center">
             <div property="columns">
-                <div summaryType="sum" allowSort="true" datatype="float" field="consumableEnterQty" width="60" headerAlign="center" header="数量" dataType="float" align="right"></div>
-                <div summaryType="sum" allowSort="true" datatype="float" field="consumableEnterAmt" headerAlign="center" header="金额" dataType="float" align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="consumableEnterQty" width="60" headerAlign="center" header="数量"  align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="consumableEnterAmt" headerAlign="center" header="金额"  align="right"></div>
             </div>
         </div>
         <div header="耗材出库" headerAlign="center">
             <div property="columns">
-                <div summaryType="sum" allowSort="true" datatype="float" field="consumableOutQty" width="60" headerAlign="center" header="数量" dataType="float" align="right"></div>
-                <div summaryType="sum" allowSort="true" datatype="float" field="consumableOutAmt" headerAlign="center" header="金额" dataType="float" align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="consumableOutQty" width="60" headerAlign="center" header="数量"  align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="consumableOutAmt" headerAlign="center" header="金额"  align="right"></div>
             </div>
         </div>
         <div header="盘盈" headerAlign="center">
             <div property="columns">
-                <div summaryType="sum" field="inventoryProfitQty" headerAlign="center" header="数量" dataType="float" align="right"></div>
-                <div summaryType="sum" field="inventoryProfitAmt" headerAlign="center" header="金额" dataType="float" align="right"></div>
+                <div summaryType="sum" field="inventoryProfitQty" headerAlign="center" header="数量"  align="right"></div>
+                <div summaryType="sum" field="inventoryProfitAmt" headerAlign="center" header="金额"  align="right"></div>
             </div>
         </div>
        <div header="盘亏" headerAlign="center">
             <div property="columns">
-                <div summaryType="sum" field="inventoryLossQty" width="60" headerAlign="center" header="数量" dataType="float" align="right"></div>
-                <div summaryType="sum" field="inventoryLossAmt" headerAlign="center" header="金额" dataType="float" align="right"></div>
+                <div summaryType="sum" field="inventoryLossQty" width="60" headerAlign="center" header="数量"  align="right"></div>
+                <div summaryType="sum" field="inventoryLossAmt" headerAlign="center" header="金额"  align="right"></div>
             </div>
         </div>
         <div header="结存" headerAlign="center">
             <div property="columns">
-                <div summaryType="sum" field="balaQty" width="60" headerAlign="center" header="数量" dataType="float" align="right"></div>
-                <div summaryType="sum" field="balaAmt" headerAlign="center" header="金额" dataType="float" align="right"></div>
+                <div summaryType="sum" field="balaQty" width="60" headerAlign="center" header="数量"  align="right"></div>
+                <div summaryType="sum" field="balaAmt" headerAlign="center" header="金额"  align="right"></div>
             </div>
         </div>
     </div>

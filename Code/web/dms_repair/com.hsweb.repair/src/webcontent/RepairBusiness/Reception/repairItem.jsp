@@ -18,12 +18,12 @@
         <div header="项目信息">
             <div property="columns">
                 <div field="prdtName" name="prdtName" headerAlign="center" allowSort="false" visible="true" width="100">项目名称</div>
-                <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" align="center">业务类型
+                <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="50" align="center">业务类型
                     <input  property="editor" enabled="true" dataField="servieTypeList" 
                              class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
                              url="" onvaluechanged="onValueChangedItemTypeId" emptyText=""  vtype="required" width="60%"/> 
                 </div>
-                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="40" datatype="float" align="center" name="itemItemTime">工时/数量
+                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="30" datatype="float" align="center" name="itemItemTime">工时/数量
                     <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedComQty" selectOnFocus="true" width="60%"/>
                 </div>
                 <div field="planFinishDate" headerAlign="center" allowSort="false" visible="false" width="40" datatype="float" align="center" name="planFinishDate">
@@ -32,7 +32,7 @@
                 <div field="unitPrice" name="itemUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">单价
                     <input property="editor" vtype="float" class="nui-textbox"  onvaluechanged="onValueChangedItemUnitPrice" selectOnFocus="true" width="60%"/>
                 </div>
-                <div field="rate" name="itemRate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" >
+                <div field="rate" name="itemRate" headerAlign="center" allowSort="false" visible="true" width="50" datatype="float" align="center" >
                     优惠率%<a href="javascript:setItemPartRate()" title="批量设置优化率" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
                     <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemRate" selectOnFocus="true" width="60%"/>
                 </div>
@@ -46,7 +46,7 @@
                                             施工员 <a href="javascript:setItemWorkers()" title="批量设置施工员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
                     <input class="nui-textbox" property="editor" id="workersName" name="workersName"  onclick="openItemWorkers" width="60%"/> 
                 </div>
-                <div id="combobox2" property="editor" class="mini-combobox" style="width:250px;"  popupWidth="100" textField="empName" valueField="empName" 
+                <div id="combobox2" property="editor" class="mini-combobox" style="width:230px;"  popupWidth="100" textField="empName" valueField="empName" 
                     url="" data="memList" value="" multiSelect="true"  showClose="false" oncloseclick="onCloseClick" onvaluechanged="onworkerChanged" visible="false">     
                     <!-- <div property="columns">
                         <div header="ID" field="id"></div>
@@ -64,7 +64,10 @@
                 <div field="saleManId" headerAlign="center"
                      allowSort="false" visible="false" width="80" header="销售员" align="center" >
                 </div> 
-                <div field="itemOptBtn" name="itemOptBtn" width="100" headerAlign="center" header="操作" align="center" ></div>
+                <div field="remark" headerAlign="center"
+                     allowSort="false" visible="true" width="80" header="备注" align="center" >
+                </div> 
+                <div field="itemOptBtn" name="itemOptBtn" width="80" headerAlign="center" header="操作" align="center" ></div>
             </div>
         </div>
     </div>

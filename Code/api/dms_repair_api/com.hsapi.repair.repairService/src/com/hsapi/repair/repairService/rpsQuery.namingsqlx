@@ -1161,8 +1161,11 @@
 		WHERE 1 = 1 and a.is_settle = 1
 			
       <dynamic>
-			<isNotEmpty prepend="and" property="rid">
+			<isNotEmpty prepend="and" property="rid">llectMoney
                 (a.id = #rid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isCollectMoney">
+                (a.is_collect_money = #isCollectMoney#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="orgid">
                 (a.orgid = #orgid#)
@@ -1185,6 +1188,7 @@
             <isNotEmpty prepend="and" property="status">  
                 (a.status = #status#)
             </isNotEmpty>
+             <!--是否审核，isSettle=1 等于审核-->            
             <isNotEmpty prepend="and" property="isSettle">  
                 (a.is_settle = #isSettle#)
             </isNotEmpty>
@@ -1245,10 +1249,6 @@
               <!--是否出库-->
             <isNotEmpty prepend="and" property="isCheck">  
                 (a.is_check= #isCheck#)
-            </isNotEmpty>
-             <!--是否审核-->
-            <isNotEmpty prepend="and" property="auditSign">  
-                (e.audit_sign= #auditSign#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="serviceTypeIdList">  
                 exists(
@@ -1468,6 +1468,7 @@
 			a.check_date as checkDate,
 			a.out_date as outDate,
 			a.is_out_bill as isOutBill,
+			a.is_settle AS isSettle,
 			a.mt_advisor_id as mtAdvisorId,
 			a.guest_desc guestDesc,
 			a.fault_phen faultPhen,

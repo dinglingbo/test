@@ -620,6 +620,10 @@
       <process:from type="expression" pattern="reference">(noCharOffAmt-accountTotalAmt)&lt;=0?2:1</process:from>
       <process:to type="query">tempRPBill/settleStatus</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">tempRPBill/settleDate</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">
     <location x="778" y="177"/>

@@ -26,7 +26,8 @@ var dataTypeList = [
     {id:1,name:'本地项目'},
     {id:2,name:'标准项目'}
 ];
-var WechatShow = null;
+var WechatShow = 0;
+var WechatOrgid = null;
 var carBrandIdEl;
 var carSeriesId;
 var carModelIdEl;
@@ -131,6 +132,8 @@ $(document).ready(function()
 		  WechatData = row;
 		  WechatData.base=2;
 		  CloseWindow("ok");
+		}else if(updatRow && updatRow.item==1){
+			replaceItem(row);
 		}else{
 			selectStdItem(row);
 		}
@@ -139,13 +142,14 @@ $(document).ready(function()
 	//右边区域
 	rightGrid = nui.get("rightGrid");
 	rightGrid.setUrl(rightGridUrl);
-	onSearch();
 	rightGrid.on("rowdblclick",function(e){
 		var row = e.row;
 		if(WechatShow==1){
 		  WechatData = row;
 		  WechatData.base=1;
 		  CloseWindow("ok");
+		}else if(updatRow && updatRow.item==1){
+			replaceItem(row);
 		}else{
 			onOk();
 		}
@@ -363,7 +367,12 @@ function onSearch()
 }
 function doSearch(params)
 {
-	params.orgid = currOrgId;
+	if(WechatShow){
+		params.orgid = WechatOrgid;
+	}else{
+		params.orgid = currOrgId;
+	}
+	
 	params.isDisabled = 0;
 	rightGrid.load({
 		token:token,
@@ -418,6 +427,7 @@ function getData()
 
 function wechatSetData(data){
 	WechatShow = data.WechatShow;
+	WechatOrgid = data.WechatOrgid;
 	var params = {};
 	if(data.serviceTypeId){
 		nui.get("serviceTypeId").setValue(data.serviceTypeId);
@@ -428,8 +438,19 @@ function wechatSetData(data){
 	itemGrid.setWidth("99%");
 	doSearch(params);
 }
+var updatRow = {}
+function updatRowSetData(data){
+	onSearch();
+	updatRow = data;
+	var params = {};
+	document.getElementById("tempGrid").style.display="none";
+	rightGrid.setWidth("99%");
+	itemGrid.setWidth("99%");
+}
+
 function setData(data)
 {
+	onSearch();
 	list = data.list||[];
 
 	isOpenWin = 1;
@@ -517,6 +538,16 @@ function choose() {
 				WechatData.base = 1;
 			}
 			return;
+		}
+		else{
+			showMsg("请选择一个项目", "W");
+		}
+	}
+	if(updatRow && updatRow.item==1){
+		var row = rightGrid.getSelected();
+		if(row)
+		{
+			replaceItem(row);
 		}
 		else{
 			showMsg("请选择一个项目", "W");
@@ -832,4 +863,41 @@ function loadTree(){
 		}
 	 });
     
+}
+
+var replaceItemUrl =  apiPath + repairApi + "/com.hsapi.repair.repairService.crud.replaceItem.biz.ext";
+function replaceItem(row){
+	if(row){
+		var rpbItem = row;
+		nui.mask({
+			el : document.body,
+			cls : 'mini-mask-loading',
+			html : '保存中...'
+		});
+		var json = nui.encode({
+			"rpbItem" :rpbItem,
+			"oldItemId":updatRow.id,
+			"serviceId":updatRow.serviceId,
+			token : token
+		});
+		nui.ajax({
+			url : replaceItemUrl,
+			type : "post",
+			data : json,
+			success : function(data) {
+				nui.unmask(document.body);
+				data = data || {};
+				if (data.errCode == "S") {
+					showMsg("保存成功!","S");
+					 CloseWindow("ok");
+				} else {
+					showMsg(data.errMsg || "保存失败!","E");
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				nui.unmask(document.body);
+				console.log(jqXHR.responseText);
+			}
+		});
+	}
 }

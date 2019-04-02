@@ -240,7 +240,7 @@
 	    	if(data && data.length>0) {
 	    		nui.get("mtAdvisorId").setData(data);
 	    	}else {
-				showMsg("请在【员工管理】中设置仓库人员，用于领料人选择！","W");   	
+				showMsg("请在【员工管理】中设置允许领料人员，用于领料人选择！","W");   	
 	    	}
 	    });
 		
@@ -572,12 +572,12 @@
                     if(errCode == "S"){
 						nui.unmask(document.body);
                         showMsg('领料成功!','S'); 
-                        if(settleType == "ADD") {
+                        /* if(settleType == "ADD") {
                         	mainGrid.reload();
                         }else {
                         	CloseWindow("ok");
-                        }
-                        //CloseWindow("ok");
+                        } */
+                        CloseWindow("ok");
                     }else{ 
                     	nui.unmask(document.body);
                         showMsg(errMsg,'E'); 

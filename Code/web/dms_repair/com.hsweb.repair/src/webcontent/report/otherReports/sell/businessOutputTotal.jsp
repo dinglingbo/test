@@ -12,7 +12,7 @@
 <head>
     <title>已结算工单汇总表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/repair/js/sell/businessOutputTotal.js?v=1.0.32"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/sell/businessOutputTotal.js?v=1.0.33"></script>
 
     <style>
 
@@ -97,6 +97,7 @@
                                    nullItemText="请选择..." onenter="load()" onvaluechanged="load()"/>
                                    <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
+                           是否包含未收款：<div  class="nui-checkbox" id="isCollectMoney" name="isCollectMoney" value="1" onclick="onSearch" trueValue="1" falseValue="0"></div>
                     <a class="nui-button" plain="true" onclick="onSearch()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     </br>
      				<a class="nui-button" iconcls=""  name="" plain="true" onclick="load(0)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按日期汇总</a>

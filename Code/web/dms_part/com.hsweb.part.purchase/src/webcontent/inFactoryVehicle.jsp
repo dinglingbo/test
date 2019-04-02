@@ -172,7 +172,7 @@
 <div id="editFormDetail" style="display:none;padding:5px;position:relative;">
 
   <div  id="innerpackGrid" class="nui-datagrid"
-	    style="width:100%;height:100px;"
+	    style="width:1000px;height:100px;"
 	    dataField="data"
 	    showPager="false"
 	    showModified="false"
@@ -196,7 +196,7 @@
        borderStyle="border-bottom:0;"
        class="nui-datagrid"
        dataField="data"
-       style="width: 100%;height:100px;"
+       style="width: 1000px;height:100px;"
        showPager="false"
        allowSortColumn="true">
       <div property="columns">

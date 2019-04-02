@@ -88,6 +88,15 @@ $(document).ready(function(v){
             }
         }
     });
+    
+    cartPartGrid.on("cellclick",function(e){ 
+        var field=e.field;
+        if(field=="check" ){
+            if(e.row.check==1){
+                searchStok();
+            }
+        }
+    });
 
     gridParts.on("selectionchanged", function (e) { //表格绘制
         var row = e.selected;

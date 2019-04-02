@@ -5,6 +5,7 @@ var servieTypeList = [];
 var servieTypeHash = {};
 var mtAdvisorIdEl = null;
 var FItemRow = {};
+var sellForm = {};
 //var advancedMorePartWin = null;
 var baseUrl = apiPath + repairApi + "/";
 var webBaseUrl = webPath + contextPath + "/";  
@@ -33,6 +34,7 @@ var webBaseUrl = webPath + contextPath + "/";
 
 $(document).ready(function () {
 	rpsPackageGrid = nui.get("rpsPackageGrid");
+	sellForm = new nui.Form("#sellForm");
 	rpsItemGrid = nui.get("rpsItemGrid");
 	billForm = new nui.Form("#billForm");
 	mtAdvisorIdEl = nui.get("mtAdvisorId");
@@ -751,7 +753,11 @@ function save(){
         	}else{
         		showMsg(text.errMsg,"W");
             }
-        	}
+        },
+        error:function(jqXHR, textStatus, errorThrown) {
+			nui.unmask(document.body);
+			console.log(jqXHR.responseText);
+		}
     });
 }
 
@@ -1025,56 +1031,79 @@ function onCellCommitEditPkg(e) {
 	}
 }
 
-/*var sumPkgSubtotal = 0;
-var sumPkgPrefAmt = 0;
-var sumItemSubtotal = 0;
-var sumItemPrefAmt = 0;
-var sumPartSubtotal = 0;
-var sumPartPrefAmt = 0;
+
 function onDrawSummaryCellPack(e){ 	
+	  var data = sellForm.getData();
 	  var rows = e.data;
-	  sumPkgSubtotal = 0;
-	  sumPkgPrefAmt = 0;
+	  /*var pkgTotalAmt = 0;
+	  var pkgTotalPrefAmt = 0;*/
+	  var pkgSubtotal = 0;
 	  var sumPkgAmt = 0;
 	  if(e.field == "subtotal") 
 	  {   
 		  for (var i = 0; i < rows.length; i++)
 		  {
 			  if(rows[i].billPackageId=="0"){
-				  sumPkgSubtotal += parseFloat(rows[i].subtotal);
-				  sumPkgAmt  += parseFloat(rows[i].amt);
+				  pkgSubtotal += parseFloat(rows[i].subtotal);
+				 // pkgTotalAmt  += parseFloat(rows[i].amt);
+				 
 			  }
 		  }
+		 /* pkgTotalPrefAmt =  pkgTotalAmt - pkgTotalSubtotal;
+		  pkgTotalPrefAmt = pkgTotalPrefAmt.toFixed(2);*/
+		  
+		  /*data.pkgTotalPrefAmt = pkgTotalPrefAmt;
+		  data.pkgTotalAmt = pkgTotalAmt;*/
+		  pkgSubtotal = pkgSubtotal.toFixed(2);
+		  data.pkgSubtotal = pkgSubtotal;
+		  var total = parseFloat(data.pkgSubtotal) + parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+		  total = total.toFixed(2);
+		  data.totalAmt = total;
+		  sellForm.setData(data);
 	  }
 }
 
 function onDrawSummaryCellItem(e){
 	  var rows = e.data;
-	  sumItemSubtotal = 0;
-	  sumItemPrefAmt = 0;
-	  sumPartSubtotal = 0;
-	  sumPartPrefAmt = 0;
-	  // || e.field == "amt"
+	  var data = sellForm.getData();
+	  /*var itemTotalAmt = 0;
+	  var itemTotalPrefAmt = 0;*/
+	  var itemSubtotal = 0;
+
+	 /* var partTotalAmt = 0;
+	  var partTotalPrefAmt = 0;*/
+	  var partSubtotal = 0;
 	  if(e.field == "subtotal") 
 	  {   
 		  for (var i = 0; i < rows.length; i++)
 		  {
-			  if(rows[i].cardDetailId>0){
-				  gsAmt=gsAmt+rows[i].subtotal;
-			  }
 			 if(rows[i].billItemId=="0"){
-				 sumItemSubtotal += parseFloat(rows[i].subtotal);
-				 sumItemAmt  += parseFloat(rows[i].amt); 
+				 itemSubtotal += parseFloat(rows[i].subtotal);
+				 //itemTotalAmt  += parseFloat(rows[i].amt); 
 			 }else{
-				 sumPartSubtotal += parseFloat(rows[i].subtotal);
-				 sumPartAmt  += parseFloat(rows[i].amt); 
+				 partSubtotal += parseFloat(rows[i].subtotal);
+				 //partTotalPrefAmt  += parseFloat(rows[i].amt); 
 			 }
+			 
+			/* itemTotalPrefAmt = itemTotalAmt - itemTotalSubtotal;
+			 itemTotalPrefAmt = itemTotalPrefAmt.toFixed(2);
+			
+			 partTotalPrefAmt = partTotalAmt - partTotalSubtotal;
+			 partTotalPrefAmt = partTotalPrefAmt.toFixed(2);*/
+			 
 			   
 		  }
+		  itemSubtotal = itemSubtotal.toFixed(2);
+		  data.itemSubtotal = itemSubtotal;
+		  partSubtotal = partSubtotal.toFixed(2);
+		  data.partSubtotal = partSubtotal;
+		  var total = parseFloat(data.pkgSubtotal) + parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+		  total = total.toFixed(2);
+		  data.totalAmt = total;
+		  sellForm.setData(data);
 	  }
 }
 
-*/
 
 
 

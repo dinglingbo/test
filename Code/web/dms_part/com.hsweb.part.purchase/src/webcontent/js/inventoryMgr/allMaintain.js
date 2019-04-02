@@ -108,7 +108,26 @@ $(document).ready(function ()
     });
 
 
+    mainGrid.on("drawSummaryCell", function (e) {
+    	var result = e.result.data;
+        var grossProfitSum = 0;
+        var netinAmtSum = 0;
+        for(var i = 0;i<result.length;i++){
+        	grossProfitSum = grossProfitSum+result[i].grossProfit||0;
+        	netinAmtSum = netinAmtSum +result[i].netinAmt||0;
+        }
+        if (e.field == "grossProfitRate") {
+        	if(netinAmtSum!=0){
+                var grossProfitRateSum = parseFloat(grossProfitSum)/parseFloat(netinAmtSum);
+                grossProfitRateSum = ((grossProfitRateSum*100).toFixed(2))+"%";
+                e.cellHtml = grossProfitRateSum;
+        	}else{
+        		e.cellHtml = "0%";
+        	}
 
+        }
+
+    });
     mainGrid.on("drawcell", function (e) {
         if (e.field == "status") {
             e.cellHtml = statusHash[e.value];
@@ -116,7 +135,7 @@ $(document).ready(function ()
             if (brandHash && brandHash[e.value]) {
                 e.cellHtml = brandHash[e.value].name;
             }
-        }else if (e.field == "auditSign") {
+        }else if (e.field == "isSettle") {
         	if(e.value==null){
         		e.cellHtml = "未审核";
         	}else if (auditSignHash && auditSignHash[e.value]) {
@@ -427,7 +446,7 @@ function getSearchParam() {
     	params.status = nui.get("statusId").getValue();
     }
     if((nui.get("auditSign").getValue())!=999){
-    	params.auditSign = nui.get("auditSign").getValue();
+    	params.isSettle = nui.get("auditSign").getValue();
     }  
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();

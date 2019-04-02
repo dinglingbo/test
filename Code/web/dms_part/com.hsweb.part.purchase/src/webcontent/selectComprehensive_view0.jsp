@@ -10,7 +10,7 @@
 -->
 <head>
 <title>已结算工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.0.38"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.0.41"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -99,6 +99,8 @@
                            showClearButton="false"/>
                      <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
+                        是否包含未收款：
+                        <div  class="nui-checkbox" id="isCollectMoney" name="isCollectMoney" value="1" onclick="onSearch" trueValue="1" falseValue="0"></div>
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <span class="separator"></span>
                     <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;查看</a> 
@@ -191,7 +193,7 @@
 	                  	 <!--  <div field="totalPrefRate" name="totalPrefRate" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="整单优惠率"></div> 	 -->                  	                 
 		                 <!--  <div field="totalPrefAmt" name="totalPrefAmt" width="70" headerAlign="center" allowsort="true" header="整单优惠金额"></div> -->
 		                  <div field="grossProfit"  width="70" headerAlign="center" summaryType="sum" allowsort="true" header="毛利" dataType="float"></div>
-		                  <div field="grossProfitRate"  width="70" headerAlign="center" numberFormat="p" allowsort="true"  header="毛利率" dataType="float"></div>
+		                  <div field="grossProfitRate"  width="70" headerAlign="center"  numberFormat="p" allowsort="true"  header="毛利率" ></div>
 		                  <div field="grossProfitRemark"  width="70" headerAlign="center" allowsort="true" header="毛利备注"></div>		                  
 	                  </div>
                   </div>
@@ -214,7 +216,7 @@
 <div id="editFormDetail" style="display:none;padding:5px;position:relative;">
 
   <div  id="innerpackGrid" class="nui-datagrid"
-	    style="width:100%;height:100px;"
+	    style="width:1000px;height:100px;"
 	    dataField="data"
 	    showPager="false"
 	    showModified="false"
@@ -238,7 +240,7 @@
        borderStyle="border-bottom:0;"
        class="nui-datagrid"
        dataField="data"
-       style="width: 100%;height:100px;"
+       style="width: 1000px;height:100px;"
        showPager="false"
        allowSortColumn="true">
       <div property="columns">

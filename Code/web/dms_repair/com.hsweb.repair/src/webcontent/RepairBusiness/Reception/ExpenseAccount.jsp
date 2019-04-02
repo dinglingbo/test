@@ -208,7 +208,7 @@
 		     showModified="false"
 		     allowSortColumn="false" allowCellEdit="true" allowCellSelect="true"
 		     oncellcommitedit="onCellCommitEditPkg"
-		     
+		     ondrawsummarycell="onDrawSummaryCellPack"
 		     >
     <div property="columns">
     	 <div type="indexcolumn" headerAlign="center" align="center"visible="false">序号</div>
@@ -251,6 +251,7 @@
 		     showModified="false"
 		     allowSortColumn="false" allowCellEdit="true" allowCellSelect="true"
 		     oncellcommitedit="onCellCommitEditItem"
+		     ondrawsummarycell="onDrawSummaryCellItem"
 		     >
     <div property="columns">
     	<div type="indexcolumn" headerAlign="center" align="center"visible="false">序号</div>
@@ -311,10 +312,37 @@
                         
       </div>
     </div>
+    <div style="height: 10%;"></div>
+</div>
 
-
-    
-
+<div style="background-color: #cfddee;position:absolute; top:90%;width:100%;height: 10%; z-index:900;">
+ <div id="sellForm" class="form"  style="float:right;height: 100%;padding-right: 20px;">
+    	<table style='height: 100%'>
+    		<tbody>
+    			<tr>
+    				<td  style='height: 100%'>
+			        <label>套餐金额：</label>
+			            <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="pkgTotalAmt" name="pkgSubtotal"/>
+                    <label>项目金额：</label>
+ 			          <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="itemTotalAmt" name="itemSubtotal"/>
+  			       <label>配件金额：</label>
+	 			        <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="partTotalAmt" name="partSubtotal"/>
+	  			   <label>总金额：</label>
+	 			        <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalAmt" name="totalAmt"/> 
+                      <!-- <div style='display: none'>
+			          <input class="nui-hidden" enabled="false" id="packageSubtotal" name="packageSubtotal"/>
+			          <input class="nui-hidden" enabled="false" id="packagePrefAmt" name="packagePrefAmt"/>
+			          <input class="nui-hidden" enabled="false" id="itemSubtotal" name="itemSubtotal"/>
+			          <input class="nui-hidden" enabled="false" id="itemPrefAmt" name="itemPrefAmt"/>
+			          <input class="nui-hidden" enabled="false" id="partSubtotal" name="partSubtotal"/>
+			          <input class="nui-hidden" enabled="false" id="partPrefAmt" name="partPrefAmt"/>
+			          <input class="nui-hidden" enabled="false" id="ycAmt" name="ycAmt"/>
+			        </div> -->
+    				</td>
+    			 </tr>
+    		</tbody>
+    	</table>
+    </div>
 </div>
 <script type="text/javascript">
  nui.parse();

@@ -9,7 +9,7 @@
 -->
 <head>
     <title>维修出库明细</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.1.4"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.1.7"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -160,7 +160,7 @@
                 <div allowSort="true" field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码" ></div>
                 <div allowSort="true" field="partName" name="partName" width="150" headerAlign="center" header="配件名称" ></div>
                 <div allowSort="true" field="oemCode" width="100" headerAlign="center" header="OEM码" ></div>
-                <div allowSort="true" field="outQty" name="outQty" width="100" headerAlign="center"  dataType="float" header="数量" ></div>
+                <div allowSort="true" field="outQty" summaryType="sum" name="outQty" width="100" headerAlign="center"  dataType="float" header="数量" ></div>
             </div>
         </div>
         
@@ -180,8 +180,8 @@
         <div header="盈利信息" headerAlign="center">
             <div property="columns">
                 <div allowSort="true" summaryType="sum" allowSort="true" field="gross" width="80" headerAlign="center" header="毛利" dataType="float" align="left"></div>
-                <div allowSort="true"  allowSort="true" field="grossRate" numberFormat="p" headerAlign="center" header="配件毛利率" dataType="float" align="left"></div>
-                <div allowSort="true"  allowSort="true" field="costRate" numberFormat="p" headerAlign="center" header="成本率" dataType="float" align="left"></div>
+                <div allowSort="true"  allowSort="true" field="grossRate" numberFormat="p" headerAlign="center" header="配件毛利率"  align="left"></div>
+                <div allowSort="true"  allowSort="true" field="costRate" numberFormat="p" headerAlign="center" header="成本率"  align="left"></div>
             </div>
         </div>
         <div header="出库信息" headerAlign="center">

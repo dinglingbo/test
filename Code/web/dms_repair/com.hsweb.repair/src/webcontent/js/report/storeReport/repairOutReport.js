@@ -90,6 +90,37 @@ $(document).ready(function(v)
 	            servieTypeHash[v.id] = v;
 	        });
 	});
+	rightGrid.on("drawSummaryCell", function (e) {
+    	var result = e.result.list;
+        var grossSum = 0;
+        var sellAmtSum = 0; 
+        var trueCostSum = 0;
+        for(var i = 0;i<result.length;i++){
+        	grossSum = grossSum+result[i].gross||0;
+        	sellAmtSum = sellAmtSum +result[i].sellAmt||0;
+        	trueCostSum = trueCostSum +result[i].trueCost||0;
+        }
+        if (e.field == "grossRate") {
+        	if(sellAmtSum!=0){
+                var grossRateSum = parseFloat(grossSum)/parseFloat(sellAmtSum);
+                grossRateSum = ((grossRateSum*100).toFixed(2))+"%";
+                e.cellHtml = grossRateSum;
+        	}else{
+        		e.cellHtml = "0%";
+        	}
+        }
+        if (e.field == "costRate") {
+        	if(sellAmtSum!=0){
+                var costRateSum = parseFloat(trueCostSum)/parseFloat(sellAmtSum);
+                costRateSum = ((costRateSum*100).toFixed(2))+"%";
+                e.cellHtml = costRateSum;
+        	}else{
+        		e.cellHtml = "0%";
+        	}
+
+        }
+
+    });
 	rightGrid.on("drawcell",function(e){
 		var record = e.record;
 		switch (e.field) {

@@ -109,6 +109,7 @@ function SetData(rowData) {
         ondestroy: function (action) {
         	if(action == "ok"){
              gridCar.removeRow (rowData, true);
+        		visitHis.reload();
          }
      }
  });
@@ -260,6 +261,8 @@ function sendInfo(){
     ondestroy: function (action) {
             //重新加载
             //query(tab);
+    	 gridCar.removeRow (row, true);
+    	visitHis.reload();
         }
     });
 }
@@ -278,7 +281,7 @@ function addRow() {
             iframe.contentWindow.SetData(param);
         },
         ondestroy: function (action) {
-            dgGrid.reload();
+           // dgGrid.reload();
         }
     });
 }
@@ -305,6 +308,8 @@ function sendWcText(){//发送微信消息
     ondestroy: function (action) {
             //重新加载 
             //query(tab);
+    	gridCar.removeRow (row, true);
+    	visitHis.reload();
         }
     });
 }

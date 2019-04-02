@@ -492,7 +492,7 @@
       <targetNode>assign1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -593,6 +593,7 @@
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
         <process:outputVariable id="2" name="result" type="query" value="java.util.HashMap" valueType="Java">orgData</process:outputVariable>
+        <process:outputVariable id="3" name="turl" type="query" value="String" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>

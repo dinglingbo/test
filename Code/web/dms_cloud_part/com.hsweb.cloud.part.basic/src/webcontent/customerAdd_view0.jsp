@@ -103,6 +103,8 @@
                       <input id="orgid" name="orgid" width="100%" class="nui-hidden" ><!-- 
                       <input id="recordDate" name="recordDate" width="100%" class="nui-hidden" >
                       <input id="recorder" name="recorder" width="100%" class="nui-hidden" > -->
+                       <input id="tenantId" name="tenantId" width="100%" class="nui-hidden" >
+                      <input id="guestType" name="guestType" width="100%" class="nui-hidden" >
                       <input id="modifier" name="modifier" width="100%" class="nui-hidden" >
                       <input id="modifyDate" name="modifyDate" width="100%" class="nui-hidden" >
                       <table class="tmargin">

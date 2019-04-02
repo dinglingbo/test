@@ -1180,7 +1180,7 @@ function saveMaintain(callback,unmaskcall){
     	delete data.enterDate;
     }*/
     data.billTypeId = 2;
-    if(!data.enterKilometers){
+    if(data.enterKilometers == 0){
     	data.enterKilometers = lastComeKilometers;
     }
 	var params = {

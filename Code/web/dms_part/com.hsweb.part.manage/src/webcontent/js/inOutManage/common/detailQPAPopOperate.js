@@ -72,6 +72,7 @@ var partPchsPriceUrl = baseUrl
 function getPchsPartPrice(params){
     var price = 0;
     var shelf = null;
+	var sellPrice = null;
     nui.ajax({
         url : partPchsPriceUrl,
         type : "post",
@@ -90,6 +91,9 @@ function getPchsPartPrice(params){
                 if(priceRecord.shelf){
                     shelf = priceRecord.shelf;
                 }
+				if(priceRecord.sellPrice){
+					sellPrice = priceRecord.sellPrice;
+				}
             }
 
         },
@@ -99,7 +103,7 @@ function getPchsPartPrice(params){
         }
     });
 
-    var dInfo = {price: price, shelf: shelf};
+    var dInfo = {price: price, shelf: shelf, sellPrice: sellPrice};
 
     return dInfo;
 }

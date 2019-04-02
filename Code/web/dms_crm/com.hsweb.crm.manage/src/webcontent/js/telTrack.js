@@ -67,13 +67,13 @@ $(document).ready(function(v){
         }
     }
     
-    initMember("member",function(){
-        memList = nui.get('member').getData();
+    initMember("visitManId",function(){
+        memList = nui.get('visitManId').getData();
         memList.forEach(function(v) {
             memHash[v.empId] = v;
         });
-
     });
+    nui.get('visitManId').setValue(currEmpId);
     init();
     query();
 });
@@ -262,6 +262,7 @@ function telInfo(e){
         },
         ondestroy: function (action) {
             //重新加载
+            dgGrid.reload();
             visitHis.reload();
         }
     });
@@ -295,5 +296,3 @@ function addRow() {
         }
     });
 }
-
-

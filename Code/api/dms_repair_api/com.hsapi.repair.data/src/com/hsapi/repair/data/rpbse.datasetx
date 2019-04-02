@@ -3,7 +3,7 @@
   <nodes xsi:type="model:PEntityNode" id="node000" name="RpbAppointmentParams" collapsed="false" nodeType="table" displayName="RpbAppointmentParams" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_appointment_params" genStrategy="native">
     <location x="70" y="70"/>
     <size height="358" width="196"/>
-    <figSize height="20" width="207"/>
+    <figSize height="20" width="196"/>
     <columnProperty id="property17" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -1957,7 +1957,7 @@
   <nodes xsi:type="model:PEntityNode" id="node1900" name="RpbAppointmentTimes" collapsed="false" nodeType="table" displayName="RpbAppointmentTimes" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_appointment_times" genStrategy="native">
     <location x="70" y="772"/>
     <size height="196" width="150"/>
-    <figSize height="20" width="207"/>
+    <figSize height="20" width="170"/>
     <columnProperty id="property29" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -2571,7 +2571,7 @@
   <nodes xsi:type="model:PEntityNode" id="node1100" name="RpbBusinessType" collapsed="false" nodeType="table" displayName="RpbBusinessType" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_business_type" genStrategy="native">
     <location x="70" y="1024"/>
     <size height="214" width="150"/>
-    <figSize height="20" width="207"/>
+    <figSize height="20" width="170"/>
     <columnProperty id="property38" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -3245,7 +3245,7 @@
   <nodes xsi:type="model:PEntityNode" id="node1700" name="RpbCheckItemContent" collapsed="false" nodeType="table" displayName="RpbCheckItemContent" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_check_item_content" genStrategy="native">
     <location x="70" y="1294"/>
     <size height="178" width="150"/>
-    <figSize height="20" width="207"/>
+    <figSize height="20" width="170"/>
     <columnProperty id="property48" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -3788,7 +3788,7 @@
   <nodes xsi:type="model:PEntityNode" id="node2100" name="RpbClass" collapsed="false" nodeType="table" displayName="RpbClass" author="Administrator" instanceClass="" table="rpb_class" genStrategy="native">
     <location x="70" y="1528"/>
     <size height="250" width="150"/>
-    <figSize height="20" width="207"/>
+    <figSize height="20" width="170"/>
     <columnProperty id="property56" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -4595,7 +4595,7 @@
   <nodes xsi:type="model:PEntityNode" id="node2600" name="RpbClassMember" collapsed="false" nodeType="table" displayName="RpbClassMember" author="Administrator" instanceClass="" table="rpb_class_member" genStrategy="native">
     <location x="70" y="1834"/>
     <size height="214" width="150"/>
-    <figSize height="20" width="207"/>
+    <figSize height="20" width="170"/>
     <columnProperty id="property68" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -5270,7 +5270,7 @@
   <nodes xsi:type="model:PEntityNode" id="node900" name="RpbDeductRate" collapsed="false" nodeType="table" displayName="RpbDeductRate" author="chenziming" allUseViewModel="true" instanceClass="" table="rpb_deduct_rate" genStrategy="native">
     <location x="70" y="2104"/>
     <size height="178" width="150"/>
-    <figSize height="20" width="207"/>
+    <figSize height="20" width="170"/>
     <columnProperty id="property78" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -5813,7 +5813,7 @@
   <nodes xsi:type="model:PEntityNode" id="node2700" name="RpbDisclaimer" collapsed="false" nodeType="table" displayName="RpbDisclaimer" author="Administrator" instanceClass="" table="rpb_disclaimer" genStrategy="native">
     <location x="70" y="2338"/>
     <size height="196" width="150"/>
-    <figSize height="20" width="207"/>
+    <figSize height="20" width="170"/>
     <columnProperty id="property86" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -6422,7 +6422,7 @@
   <nodes xsi:type="model:PEntityNode" id="node1200" name="RpbGuestAgentExtend" collapsed="false" nodeType="table" displayName="RpbGuestAgentExtend" author="localhost" allUseViewModel="true" instanceClass="" table="rpb_guest_agent_extend" genStrategy="native">
     <location x="70" y="2590"/>
     <size height="394" width="150"/>
-    <figSize height="20" width="269"/>
+    <figSize height="20" width="218"/>
     <columnProperty id="property95" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>ID</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -7757,7 +7757,7 @@
   <nodes xsi:type="model:PEntityNode" id="node2200" name="RpbGuestType" collapsed="false" nodeType="table" displayName="RpbGuestType" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_guest_type" genStrategy="native">
     <location x="70" y="3040"/>
     <size height="448" width="150"/>
-    <figSize height="20" width="237"/>
+    <figSize height="20" width="194"/>
     <columnProperty id="property115" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -9289,7 +9289,7 @@
   <nodes xsi:type="model:PEntityNode" id="node2300" name="RpbGuestTypeDiscount" collapsed="false" nodeType="table" displayName="RpbGuestTypeDiscount" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_guest_type_discount" genStrategy="native">
     <location x="70" y="3544"/>
     <size height="250" width="150"/>
-    <figSize height="20" width="255"/>
+    <figSize height="20" width="210"/>
     <columnProperty id="property138" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -10096,7 +10096,7 @@
   <nodes xsi:type="model:PEntityNode" id="node2900" name="RpbLog" collapsed="false" nodeType="table" displayName="RpbLog" author="Administrator" instanceClass="" table="rpb_log" genStrategy="native">
     <location x="70" y="3850"/>
     <size height="142" width="150"/>
-    <figSize height="20" width="205"/>
+    <figSize height="20" width="169"/>
     <columnProperty id="property150" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -10496,7 +10496,7 @@
   <nodes xsi:type="model:PEntityNode" id="node600" name="RpbOutReport" collapsed="false" nodeType="table" displayName="RpbOutReport" author="chenziming" allUseViewModel="true" instanceClass="" table="rpb_out_report" genStrategy="native">
     <location x="70" y="4048"/>
     <size height="196" width="150"/>
-    <figSize height="20" width="207"/>
+    <figSize height="20" width="170"/>
     <columnProperty id="property156" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -11105,7 +11105,7 @@
   <nodes xsi:type="model:PEntityNode" id="node3100" name="RpbRoleMember" collapsed="false" nodeType="table" displayName="RpbRoleMember" author="Administrator" instanceClass="" table="rpb_role_member" genStrategy="assigned">
     <location x="70" y="4300"/>
     <size height="214" width="150"/>
-    <figSize height="20" width="207"/>
+    <figSize height="20" width="170"/>
     <columnProperty id="property165" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -11780,7 +11780,7 @@
   <nodes xsi:type="model:PEntityNode" id="node2400" name="RpbScoutParam" collapsed="false" nodeType="table" displayName="RpbScoutParam" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_scout_param" genStrategy="native">
     <location x="70" y="4570"/>
     <size height="268" width="150"/>
-    <figSize height="20" width="207"/>
+    <figSize height="20" width="170"/>
     <columnProperty id="property175" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -12653,7 +12653,7 @@
   <nodes xsi:type="model:PEntityNode" id="node500" name="RpbPackagePart" collapsed="false" nodeType="table" displayName="RpbPackagePart" author="chenziming" allUseViewModel="true" table="rpb_package_part">
     <location x="70" y="4894"/>
     <size height="322" width="150"/>
-    <figSize height="20" width="207"/>
+    <figSize height="20" width="170"/>
     <columnProperty id="property188" name="packageId" displayName="packageId" columnName="package_id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>套餐ID</comment>
       <viewField dict="false" dictTypeId="" displayName="packageId" entityField="packageId" id="packageId" label="packageId" name="packageId" userDefined="true">
@@ -13654,7 +13654,7 @@
   <nodes xsi:type="model:PEntityNode" id="node1400" name="RpbCardRate" collapsed="false" nodeType="table" displayName="RpbCardRate" author="Administrator" allUseViewModel="true" table="rpb_card_rate" genStrategy="native">
     <location x="70" y="5272"/>
     <size height="250" width="150"/>
-    <figSize height="20" width="255"/>
+    <figSize height="20" width="210"/>
     <columnProperty id="property204" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -14461,7 +14461,7 @@
   <nodes xsi:type="model:PEntityNode" id="node3200" name="RpbCardTimesDetail" collapsed="false" nodeType="table" displayName="RpbCardTimesDetail" author="localhost" allUseViewModel="true" table="rpb_card_times_detail" genStrategy="native">
     <location x="70" y="5578"/>
     <size height="340" width="150"/>
-    <figSize height="20" width="207"/>
+    <figSize height="20" width="170"/>
     <columnProperty id="property216" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -15598,7 +15598,7 @@
   <nodes xsi:type="model:PEntityNode" id="node200" name="RpbCardStored" collapsed="false" nodeType="table" displayName="RpbCardStored" author="Administrator" instanceClass="" table="rpb_card_stored" genStrategy="native">
     <location x="70" y="5974"/>
     <size height="448" width="150"/>
-    <figSize height="20" width="225"/>
+    <figSize height="20" width="186"/>
     <columnProperty id="property233" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -17131,7 +17131,7 @@
   <nodes xsi:type="model:PEntityNode" id="node300" name="RpbCardTimes" collapsed="false" nodeType="table" displayName="RpbCardTimes" author="Administrator" instanceClass="" table="rpb_card_times" genStrategy="assigned">
     <location x="70" y="6478"/>
     <size height="340" width="150"/>
-    <figSize height="20" width="225"/>
+    <figSize height="20" width="186"/>
     <columnProperty id="property256" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -18268,7 +18268,7 @@
   <nodes xsi:type="model:PEntityNode" id="node1000" name="RpbBusinessDeduct" collapsed="false" nodeType="table" displayName="RpbBusinessDeduct" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_business_deduct" genStrategy="native">
     <location x="70" y="6874"/>
     <size height="304" width="150"/>
-    <figSize height="20" width="243"/>
+    <figSize height="20" width="200"/>
     <columnProperty id="property273" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -19267,7 +19267,7 @@
   <nodes xsi:type="model:PEntityNode" id="node400" name="RpbPackageItem" collapsed="false" nodeType="table" displayName="RpbPackageItem" author="Administrator" instanceClass="" table="rpb_package_item">
     <location x="70" y="7234"/>
     <size height="358" width="150"/>
-    <figSize height="20" width="222"/>
+    <figSize height="20" width="181"/>
     <columnProperty id="property288" name="packageId" displayName="packageId" columnName="package_id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>套餐ID</comment>
       <viewField dict="false" dictTypeId="" displayName="packageId" entityField="packageId" id="packageId" label="packageId" name="packageId" userDefined="true">
@@ -20435,7 +20435,7 @@
   <nodes xsi:type="model:PEntityNode" id="node2800" name="RpbGuest" collapsed="false" nodeType="table" displayName="RpbGuest" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_guest" genStrategy="assigned">
     <location x="70" y="7648"/>
     <size height="394" width="150"/>
-    <figSize height="20" width="234"/>
+    <figSize height="20" width="191"/>
     <columnProperty id="property306" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>客户内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -21789,7 +21789,7 @@
   <nodes xsi:type="model:PEntityNode" id="node1600" name="RpbCheckDetail" collapsed="false" nodeType="table" displayName="RpbCheckDetail" author="Administrator" allUseViewModel="true" table="rpb_check_detail" genStrategy="native">
     <location x="70" y="8098"/>
     <size height="358" width="150"/>
-    <figSize height="20" width="207"/>
+    <figSize height="20" width="170"/>
     <columnProperty id="property326" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -22954,7 +22954,7 @@
   <nodes xsi:type="model:PEntityNode" id="node2500" name="RpbRemindParam" collapsed="false" nodeType="table" displayName="RpbRemindParam" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_remind_param" genStrategy="native">
     <location x="70" y="8512"/>
     <size height="340" width="150"/>
-    <figSize height="20" width="207"/>
+    <figSize height="20" width="170"/>
     <columnProperty id="property344" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -24088,10 +24088,10 @@
       </viewField>
     </columnProperty>
   </nodes>
-  <nodes xsi:type="model:PEntityNode" id="node800" name="RpbCarExtend" collapsed="false" nodeType="table" displayName="RpbCarExtend" author="Administrator" allUseViewModel="true" table="rpb_car_extend" genStrategy="assigned">
+  <nodes xsi:type="model:PEntityNode" id="node800" name="RpbCarExtend" collapsed="false" nodeType="table" displayName="RpbCarExtend" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_car_extend" genStrategy="assigned">
     <location x="70" y="8908"/>
-    <size height="736" width="150"/>
-    <figSize height="20" width="234"/>
+    <size height="732" width="150"/>
+    <figSize height="20" width="150"/>
     <columnProperty id="property361" name="carId" displayName="carId" columnName="car_id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="carId" entityField="carId" id="carId" label="carId" name="carId" userDefined="true">
         <fieldView showAllAttr="false">
@@ -24157,7 +24157,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property362" name="careLastDate" displayName="careLastDate" columnName="care_last_date" nullAble="true" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
+    <columnProperty id="property362" name="careLastDate" displayName="careLastDate" columnName="care_last_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <comment>上次保养时间</comment>
       <viewField dict="false" dictTypeId="" displayName="careLastDate" entityField="careLastDate" id="careLastDate" label="careLastDate" name="careLastDate" userDefined="true">
         <fieldView showAllAttr="false">
@@ -24228,7 +24228,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property363" name="careDueDate" displayName="careDueDate" columnName="care_due_date" nullAble="true" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
+    <columnProperty id="property363" name="careDueDate" displayName="careDueDate" columnName="care_due_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <comment>下次保养时间</comment>
       <viewField dict="false" dictTypeId="" displayName="careDueDate" entityField="careDueDate" id="careDueDate" label="careDueDate" name="careDueDate" userDefined="true">
         <fieldView showAllAttr="false">
@@ -24299,7 +24299,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property364" name="careDueMileage" displayName="careDueMileage" columnName="care_due_mileage" nullAble="true" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
+    <columnProperty id="property364" name="careDueMileage" displayName="careDueMileage" columnName="care_due_mileage" nullAble="true" PK="false" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
       <comment>下次保养里程</comment>
       <viewField dict="false" dictTypeId="" displayName="careDueMileage" entityField="careDueMileage" id="careDueMileage" label="careDueMileage" name="careDueMileage" userDefined="true">
         <fieldView showAllAttr="false">
@@ -24365,7 +24365,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property365" name="dayKilometers" displayName="dayKilometers" columnName="day_kilometers" nullAble="true" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="10" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
+    <columnProperty id="property365" name="dayKilometers" displayName="dayKilometers" columnName="day_kilometers" nullAble="true" PK="false" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="10" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
       <comment>日均里程</comment>
       <viewField dict="false" dictTypeId="" displayName="dayKilometers" entityField="dayKilometers" id="dayKilometers" label="dayKilometers" name="dayKilometers" userDefined="true">
         <fieldView showAllAttr="false">
@@ -24431,7 +24431,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property366" name="mtCycle" displayName="mtCycle" columnName="mt_cycle" nullAble="true" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
+    <columnProperty id="property366" name="mtCycle" displayName="mtCycle" columnName="mt_cycle" nullAble="true" PK="false" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
       <comment>维修周期</comment>
       <viewField dict="false" dictTypeId="" displayName="mtCycle" entityField="mtCycle" id="mtCycle" label="mtCycle" name="mtCycle" userDefined="true">
         <fieldView showAllAttr="false">
@@ -24497,7 +24497,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property367" name="careCycle" displayName="careCycle" columnName="care_cycle" nullAble="true" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
+    <columnProperty id="property367" name="careCycle" displayName="careCycle" columnName="care_cycle" nullAble="true" PK="false" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
       <comment>保养周期</comment>
       <viewField dict="false" dictTypeId="" displayName="careCycle" entityField="careCycle" id="careCycle" label="careCycle" name="careCycle" userDefined="true">
         <fieldView showAllAttr="false">
@@ -24563,7 +24563,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property368" name="careKilometers" displayName="careKilometers" columnName="care_kilometers" nullAble="true" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
+    <columnProperty id="property368" name="careKilometers" displayName="careKilometers" columnName="care_kilometers" nullAble="true" PK="false" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
       <comment>间隔保养里程</comment>
       <viewField dict="false" dictTypeId="" displayName="careKilometers" entityField="careKilometers" id="careKilometers" label="careKilometers" name="careKilometers" userDefined="true">
         <fieldView showAllAttr="false">
@@ -24629,7 +24629,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property369" name="chainComeTimes" displayName="chainComeTimes" columnName="chain_come_times" nullAble="true" defaultValue="0" columnType="SMALLINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
+    <columnProperty id="property369" name="chainComeTimes" displayName="chainComeTimes" columnName="chain_come_times" nullAble="true" PK="false" defaultValue="0" columnType="SMALLINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
       <comment>连锁消费次数</comment>
       <viewField dict="false" dictTypeId="" displayName="chainComeTimes" entityField="chainComeTimes" id="chainComeTimes" label="chainComeTimes" name="chainComeTimes" userDefined="true">
         <fieldView showAllAttr="false">
@@ -24695,7 +24695,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property370" name="chainConsumeAmt" displayName="chainConsumeAmt" columnName="chain_consume_amt" nullAble="true" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="10" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
+    <columnProperty id="property370" name="chainConsumeAmt" displayName="chainConsumeAmt" columnName="chain_consume_amt" nullAble="true" PK="false" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="10" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
       <comment>连锁消费金额</comment>
       <viewField dict="false" dictTypeId="" displayName="chainConsumeAmt" entityField="chainConsumeAmt" id="chainConsumeAmt" label="chainConsumeAmt" name="chainConsumeAmt" userDefined="true">
         <fieldView showAllAttr="false">
@@ -24761,7 +24761,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property371" name="proceedingSign" displayName="proceedingSign" columnName="proceeding_sign" nullAble="true" defaultValue="0" columnType="SMALLINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
+    <columnProperty id="property371" name="proceedingSign" displayName="proceedingSign" columnName="proceeding_sign" nullAble="true" PK="false" defaultValue="0" columnType="SMALLINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
       <comment>继续跟踪标志</comment>
       <viewField dict="false" dictTypeId="" displayName="proceedingSign" entityField="proceedingSign" id="proceedingSign" label="proceedingSign" name="proceedingSign" userDefined="true">
         <fieldView showAllAttr="false">
@@ -24827,7 +24827,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property372" name="lastComeKilometers" displayName="lastComeKilometers" columnName="last_come_kilometers" nullAble="true" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
+    <columnProperty id="property372" name="lastComeKilometers" displayName="lastComeKilometers" columnName="last_come_kilometers" nullAble="true" PK="false" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
       <comment>最近进店里程</comment>
       <viewField dict="false" dictTypeId="" displayName="lastComeKilometers" entityField="lastComeKilometers" id="lastComeKilometers" label="lastComeKilometers" name="lastComeKilometers" userDefined="true">
         <fieldView showAllAttr="false">
@@ -24893,7 +24893,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property373" name="lastServiceId" displayName="lastServiceId" columnName="last_service_id" nullAble="true" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
+    <columnProperty id="property373" name="lastServiceId" displayName="lastServiceId" columnName="last_service_id" nullAble="true" PK="false" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
       <viewField dict="false" dictTypeId="" displayName="lastServiceId" entityField="lastServiceId" id="lastServiceId" label="lastServiceId" name="lastServiceId" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>
@@ -24958,7 +24958,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property374" name="lastOrgid" displayName="lastOrgid" columnName="last_orgid" nullAble="true" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
+    <columnProperty id="property374" name="lastOrgid" displayName="lastOrgid" columnName="last_orgid" nullAble="true" PK="false" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
       <viewField dict="false" dictTypeId="" displayName="lastOrgid" entityField="lastOrgid" id="lastOrgid" label="lastOrgid" name="lastOrgid" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>
@@ -25023,7 +25023,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property375" name="lastComeDate" displayName="lastComeDate" columnName="last_come_date" nullAble="true" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
+    <columnProperty id="property375" name="lastComeDate" displayName="lastComeDate" columnName="last_come_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <comment>最近进店日期</comment>
       <viewField dict="false" dictTypeId="" displayName="lastComeDate" entityField="lastComeDate" id="lastComeDate" label="lastComeDate" name="lastComeDate" userDefined="true">
         <fieldView showAllAttr="false">
@@ -25094,7 +25094,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property376" name="lastLeaveDate" displayName="lastLeaveDate" columnName="last_leave_date" nullAble="true" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
+    <columnProperty id="property376" name="lastLeaveDate" displayName="lastLeaveDate" columnName="last_leave_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <comment>最后离店日期</comment>
       <viewField dict="false" dictTypeId="" displayName="lastLeaveDate" entityField="lastLeaveDate" id="lastLeaveDate" label="lastLeaveDate" name="lastLeaveDate" userDefined="true">
         <fieldView showAllAttr="false">
@@ -25165,7 +25165,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property377" name="firstServiceId" displayName="firstServiceId" columnName="first_service_id" nullAble="true" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
+    <columnProperty id="property377" name="firstServiceId" displayName="firstServiceId" columnName="first_service_id" nullAble="true" PK="false" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
       <comment>首次工单号</comment>
       <viewField dict="false" dictTypeId="" displayName="firstServiceId" entityField="firstServiceId" id="firstServiceId" label="firstServiceId" name="firstServiceId" userDefined="true">
         <fieldView showAllAttr="false">
@@ -25231,7 +25231,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property378" name="firstOrgid" displayName="firstOrgid" columnName="first_orgid" nullAble="true" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
+    <columnProperty id="property378" name="firstOrgid" displayName="firstOrgid" columnName="first_orgid" nullAble="true" PK="false" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
       <viewField dict="false" dictTypeId="" displayName="firstOrgid" entityField="firstOrgid" id="firstOrgid" label="firstOrgid" name="firstOrgid" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>
@@ -25296,7 +25296,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property379" name="firstComeDate" displayName="firstComeDate" columnName="first_come_date" nullAble="true" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
+    <columnProperty id="property379" name="firstComeDate" displayName="firstComeDate" columnName="first_come_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="firstComeDate" entityField="firstComeDate" id="firstComeDate" label="firstComeDate" name="firstComeDate" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>
@@ -25366,7 +25366,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property380" name="isCompanyInside" displayName="isCompanyInside" columnName="is_company_inside" nullAble="true" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
+    <columnProperty id="property380" name="isCompanyInside" displayName="isCompanyInside" columnName="is_company_inside" nullAble="true" PK="false" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
       <comment>是否本公司车</comment>
       <viewField dict="false" dictTypeId="" displayName="isCompanyInside" entityField="isCompanyInside" id="isCompanyInside" label="isCompanyInside" name="isCompanyInside" userDefined="true">
         <fieldView showAllAttr="false">
@@ -25432,7 +25432,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property381" name="isCompanySell" displayName="isCompanySell" columnName="is_company_sell" nullAble="true" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
+    <columnProperty id="property381" name="isCompanySell" displayName="isCompanySell" columnName="is_company_sell" nullAble="true" PK="false" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
       <comment>是否本公司销售</comment>
       <viewField dict="false" dictTypeId="" displayName="isCompanySell" entityField="isCompanySell" id="isCompanySell" label="isCompanySell" name="isCompanySell" userDefined="true">
         <fieldView showAllAttr="false">
@@ -25498,7 +25498,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property382" name="mtAdvisorId" displayName="mtAdvisorId" columnName="mt_advisor_id" nullAble="true" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
+    <columnProperty id="property382" name="mtAdvisorId" displayName="mtAdvisorId" columnName="mt_advisor_id" nullAble="true" PK="false" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
       <comment>维修顾问ID</comment>
       <viewField dict="false" dictTypeId="" displayName="mtAdvisorId" entityField="mtAdvisorId" id="mtAdvisorId" label="mtAdvisorId" name="mtAdvisorId" userDefined="true">
         <fieldView showAllAttr="false">
@@ -25564,7 +25564,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property383" name="mtAdvisorName" displayName="mtAdvisorName" columnName="mt_advisor_name" nullAble="true" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
+    <columnProperty id="property383" name="mtAdvisorName" displayName="mtAdvisorName" columnName="mt_advisor_name" nullAble="true" PK="false" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
       <comment>维修顾问名称</comment>
       <viewField dict="false" dictTypeId="" displayName="mtAdvisorName" entityField="mtAdvisorName" id="mtAdvisorName" label="mtAdvisorName" name="mtAdvisorName" userDefined="true">
         <fieldView showAllAttr="false">
@@ -25630,7 +25630,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property384" name="prevAdvisorId" displayName="prevAdvisorId" columnName="prev_advisor_id" nullAble="true" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
+    <columnProperty id="property384" name="prevAdvisorId" displayName="prevAdvisorId" columnName="prev_advisor_id" nullAble="true" PK="false" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
       <comment>上次维修顾问</comment>
       <viewField dict="false" dictTypeId="" displayName="prevAdvisorId" entityField="prevAdvisorId" id="prevAdvisorId" label="prevAdvisorId" name="prevAdvisorId" userDefined="true">
         <fieldView showAllAttr="false">
@@ -25696,7 +25696,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property385" name="prevAdvisorName" displayName="prevAdvisorName" columnName="prev_advisor_name" nullAble="true" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
+    <columnProperty id="property385" name="prevAdvisorName" displayName="prevAdvisorName" columnName="prev_advisor_name" nullAble="true" PK="false" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
       <comment>上次维修顾问名称</comment>
       <viewField dict="false" dictTypeId="" displayName="prevAdvisorName" entityField="prevAdvisorName" id="prevAdvisorName" label="prevAdvisorName" name="prevAdvisorName" userDefined="true">
         <fieldView showAllAttr="false">
@@ -25762,319 +25762,672 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property386" name="lastCareDueMan" displayName="lastCareDueMan" columnName="last_care_due_man" nullAble="true" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
+    <columnProperty id="property386" name="lastCareDueMan" displayName="lastCareDueMan" columnName="last_care_due_man" nullAble="true" PK="false" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
       <comment>最近保养提醒人</comment>
-      <viewField dict="false" displayName="lastCareDueMan" id="lastCareDueMan" label="lastCareDueMan" name="lastCareDueMan" userDefined="true">
-        <fieldView>
+      <viewField dict="false" dictTypeId="" displayName="lastCareDueMan" entityField="lastCareDueMan" id="lastCareDueMan" label="lastCareDueMan" name="lastCareDueMan" userDefined="true">
+        <fieldView showAllAttr="false">
           <type name="write"/>
-          <attr name="formatPattern"/>
-          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
           <attr name="maxLength"/>
-          <attr attrValue="" defaultValue="" name="filter"/>
-          <attr attrValue="" defaultValue="" name="maxLengthString"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
           <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
         </fieldView>
-        <fieldEdit>
+        <fieldEdit showAllAttr="false">
           <type name="text"/>
-          <attr attrValue="nui-textbox" defaultValue="nui-textbox" name="class"/>
-          <attr attrValue="" defaultValue="" name="emptyText"/>
-          <attr attrValue="" defaultValue="" name="inputStyle"/>
-          <attr attrValue="false" defaultValue="false" name="required"/>
-          <attr attrValue="" defaultValue="" name="borderStyle"/>
-          <attr attrValue="" defaultValue="" name="cls"/>
-          <attr attrValue="true" defaultValue="true" name="enabled"/>
-          <attr attrValue="" defaultValue="" name="height"/>
-          <attr attrValue="" defaultValue="" name="id"/>
-          <attr attrValue="" defaultValue="" name="name"/>
-          <attr attrValue="" defaultValue="" name="style"/>
-          <attr attrValue="" defaultValue="" name="tooltip"/>
-          <attr attrValue="true" defaultValue="true" name="visible"/>
-          <attr attrValue="" defaultValue="" name="width"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="true" name="validateOnChanged"/>
+          <attr defaultValue="请输入整数" name="intErrorText"/>
+          <attr defaultValue="" name="emptyText"/>
+          <attr defaultValue="请输入URL格式" name="urlErrorText"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="请输入邮件格式" name="emailErrorText"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="请输入数字" name="floatErrorText"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="" name="maxLength"/>
+          <attr defaultValue="数字不能小于 {0}" name="minErrorText"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="不能少于 {0} 个字符" name="minLengthErrorText"/>
+          <attr defaultValue="不能超过 {0} 个字符" name="maxLengthErrorText"/>
+          <attr defaultValue="请输入日期格式 {0}" name="dateErrorText"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="数字必须在 {0} 到 {1} 之间" name="rangeErrorText"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="requiredErrorText"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="inputStyle"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-textbox" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="" name="vtype"/>
+          <attr defaultValue="数字不能大于 {0}" name="maxErrorText"/>
+          <attr defaultValue="字符数必须在 {0} 到 {1} 之间" name="rangeLengthErrorText"/>
+          <attr defaultValue="true" name="validateOnLeave"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="" name="tooltip"/>
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property387" name="lastCareDueDate" displayName="lastCareDueDate" columnName="last_care_due_date" nullAble="true" columnType="DATETIME" eosDataType="Date" dasType="date" overWriteDefaultColumnType="false" showType="Date" update="true" insert="true">
+    <columnProperty id="property387" name="lastCareDueDate" displayName="lastCareDueDate" columnName="last_care_due_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <comment>最近保养提醒日期</comment>
-      <viewField dict="false" displayName="lastCareDueDate" id="lastCareDueDate" label="lastCareDueDate" name="lastCareDueDate" userDefined="true">
-        <fieldView>
+      <viewField dict="false" dictTypeId="" displayName="lastCareDueDate" entityField="lastCareDueDate" id="lastCareDueDate" label="lastCareDueDate" name="lastCareDueDate" userDefined="true">
+        <fieldView showAllAttr="false">
           <type name="write"/>
-          <attr name="formatPattern"/>
-          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
           <attr name="maxLength"/>
-          <attr attrValue="" defaultValue="" name="filter"/>
-          <attr attrValue="" defaultValue="" name="maxLengthString"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
           <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
         </fieldView>
-        <fieldEdit>
+        <fieldEdit showAllAttr="false">
           <type name="date"/>
-          <attr attrValue="nui-datepicker" defaultValue="nui-datepicker" name="class"/>
-          <attr attrValue="" defaultValue="" name="popup"/>
-          <attr attrValue="" defaultValue="" name="popupHeight"/>
-          <attr attrValue="100%" defaultValue="100%" name="popupWidth"/>
-          <attr attrValue="false" defaultValue="false" name="required"/>
-          <attr attrValue="" defaultValue="" name="validateOnChanged"/>
-          <attr attrValue="" defaultValue="" name="borderStyle"/>
-          <attr attrValue="" defaultValue="" name="cls"/>
-          <attr attrValue="true" defaultValue="true" name="enabled"/>
-          <attr attrValue="" defaultValue="" name="height"/>
-          <attr attrValue="" defaultValue="" name="id"/>
-          <attr attrValue="" defaultValue="" name="name"/>
-          <attr attrValue="" defaultValue="" name="style"/>
-          <attr attrValue="" defaultValue="" name="tooltip"/>
-          <attr attrValue="true" defaultValue="true" name="visible"/>
-          <attr attrValue="" defaultValue="" name="width"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="" name="validateOnChanged"/>
+          <attr defaultValue="false" name="showTime"/>
+          <attr defaultValue="H:mm" name="timeFormat"/>
+          <attr defaultValue="" name="onhidepopup"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="viewDate"/>
+          <attr defaultValue="" name="onbeforeshowpopup"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="1000" name="maxLength"/>
+          <attr defaultValue="" name="popupHeight"/>
+          <attr defaultValue="" name="popup"/>
+          <attr defaultValue="0" name="minLength"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="true" name="showTodayButton"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="100%" name="popupWidth"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="false" name="showClose"/>
+          <attr defaultValue="" name="text"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-datepicker" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="yyyy-MM-dd" name="format"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="oncloseclick"/>
+          <attr defaultValue="false" name="showOkButton"/>
+          <attr defaultValue="" name="onbuttonclick"/>
+          <attr defaultValue="" name="maxDate"/>
+          <attr defaultValue="" name="minDate"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="true" name="showClearButton"/>
+          <attr defaultValue="" name="textName"/>
+          <attr defaultValue="" name="onshowpopup"/>
+          <attr defaultValue="" name="tooltip"/>
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property388" name="isNeedRemind" displayName="isNeedRemind" columnName="is_need_remind" nullAble="true" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
+    <columnProperty id="property388" name="isNeedRemind" displayName="isNeedRemind" columnName="is_need_remind" nullAble="true" PK="false" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
       <comment>是否需要提醒</comment>
-      <viewField dict="false" displayName="isNeedRemind" id="isNeedRemind" label="isNeedRemind" name="isNeedRemind" userDefined="true">
-        <fieldView>
+      <viewField dict="false" dictTypeId="" displayName="isNeedRemind" entityField="isNeedRemind" id="isNeedRemind" label="isNeedRemind" name="isNeedRemind" userDefined="true">
+        <fieldView showAllAttr="false">
           <type name="write"/>
-          <attr name="formatPattern"/>
-          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
           <attr name="maxLength"/>
-          <attr attrValue="" defaultValue="" name="filter"/>
-          <attr attrValue="" defaultValue="" name="maxLengthString"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
           <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
         </fieldView>
-        <fieldEdit>
+        <fieldEdit showAllAttr="false">
           <type name="text"/>
-          <attr attrValue="nui-textbox" defaultValue="nui-textbox" name="class"/>
-          <attr attrValue="" defaultValue="" name="emptyText"/>
-          <attr attrValue="" defaultValue="" name="inputStyle"/>
-          <attr attrValue="false" defaultValue="false" name="required"/>
-          <attr attrValue="" defaultValue="" name="borderStyle"/>
-          <attr attrValue="" defaultValue="" name="cls"/>
-          <attr attrValue="true" defaultValue="true" name="enabled"/>
-          <attr attrValue="" defaultValue="" name="height"/>
-          <attr attrValue="" defaultValue="" name="id"/>
-          <attr attrValue="" defaultValue="" name="name"/>
-          <attr attrValue="" defaultValue="" name="style"/>
-          <attr attrValue="" defaultValue="" name="tooltip"/>
-          <attr attrValue="true" defaultValue="true" name="visible"/>
-          <attr attrValue="" defaultValue="" name="width"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="true" name="validateOnChanged"/>
+          <attr defaultValue="请输入整数" name="intErrorText"/>
+          <attr defaultValue="" name="emptyText"/>
+          <attr defaultValue="请输入URL格式" name="urlErrorText"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="请输入邮件格式" name="emailErrorText"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="请输入数字" name="floatErrorText"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="" name="maxLength"/>
+          <attr defaultValue="数字不能小于 {0}" name="minErrorText"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="不能少于 {0} 个字符" name="minLengthErrorText"/>
+          <attr defaultValue="不能超过 {0} 个字符" name="maxLengthErrorText"/>
+          <attr defaultValue="请输入日期格式 {0}" name="dateErrorText"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="数字必须在 {0} 到 {1} 之间" name="rangeErrorText"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="requiredErrorText"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="inputStyle"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-textbox" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="" name="vtype"/>
+          <attr defaultValue="数字不能大于 {0}" name="maxErrorText"/>
+          <attr defaultValue="字符数必须在 {0} 到 {1} 之间" name="rangeLengthErrorText"/>
+          <attr defaultValue="true" name="validateOnLeave"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="" name="tooltip"/>
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property389" name="remindStatus" displayName="remindStatus" columnName="remind_status" nullAble="true" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
+    <columnProperty id="property389" name="remindStatus" displayName="remindStatus" columnName="remind_status" nullAble="true" PK="false" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
       <comment>提醒状态（0未提醒；1已提醒）</comment>
-      <viewField dict="false" displayName="remindStatus" id="remindStatus" label="remindStatus" name="remindStatus" userDefined="true">
-        <fieldView>
+      <viewField dict="false" dictTypeId="" displayName="remindStatus" entityField="remindStatus" id="remindStatus" label="remindStatus" name="remindStatus" userDefined="true">
+        <fieldView showAllAttr="false">
           <type name="write"/>
-          <attr name="formatPattern"/>
-          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
           <attr name="maxLength"/>
-          <attr attrValue="" defaultValue="" name="filter"/>
-          <attr attrValue="" defaultValue="" name="maxLengthString"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
           <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
         </fieldView>
-        <fieldEdit>
+        <fieldEdit showAllAttr="false">
           <type name="text"/>
-          <attr attrValue="nui-textbox" defaultValue="nui-textbox" name="class"/>
-          <attr attrValue="" defaultValue="" name="emptyText"/>
-          <attr attrValue="" defaultValue="" name="inputStyle"/>
-          <attr attrValue="false" defaultValue="false" name="required"/>
-          <attr attrValue="" defaultValue="" name="borderStyle"/>
-          <attr attrValue="" defaultValue="" name="cls"/>
-          <attr attrValue="true" defaultValue="true" name="enabled"/>
-          <attr attrValue="" defaultValue="" name="height"/>
-          <attr attrValue="" defaultValue="" name="id"/>
-          <attr attrValue="" defaultValue="" name="name"/>
-          <attr attrValue="" defaultValue="" name="style"/>
-          <attr attrValue="" defaultValue="" name="tooltip"/>
-          <attr attrValue="true" defaultValue="true" name="visible"/>
-          <attr attrValue="" defaultValue="" name="width"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="true" name="validateOnChanged"/>
+          <attr defaultValue="请输入整数" name="intErrorText"/>
+          <attr defaultValue="" name="emptyText"/>
+          <attr defaultValue="请输入URL格式" name="urlErrorText"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="请输入邮件格式" name="emailErrorText"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="请输入数字" name="floatErrorText"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="" name="maxLength"/>
+          <attr defaultValue="数字不能小于 {0}" name="minErrorText"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="不能少于 {0} 个字符" name="minLengthErrorText"/>
+          <attr defaultValue="不能超过 {0} 个字符" name="maxLengthErrorText"/>
+          <attr defaultValue="请输入日期格式 {0}" name="dateErrorText"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="数字必须在 {0} 到 {1} 之间" name="rangeErrorText"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="requiredErrorText"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="inputStyle"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-textbox" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="" name="vtype"/>
+          <attr defaultValue="数字不能大于 {0}" name="maxErrorText"/>
+          <attr defaultValue="字符数必须在 {0} 到 {1} 之间" name="rangeLengthErrorText"/>
+          <attr defaultValue="true" name="validateOnLeave"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="" name="tooltip"/>
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property390" name="isAnnualRemind" displayName="isAnnualRemind" columnName="is_annual_remind" nullAble="true" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
+    <columnProperty id="property390" name="isAnnualRemind" displayName="isAnnualRemind" columnName="is_annual_remind" nullAble="true" PK="false" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
       <comment>是否商业险到期提醒</comment>
-      <viewField dict="false" displayName="isAnnualRemind" id="isAnnualRemind" label="isAnnualRemind" name="isAnnualRemind" userDefined="true">
-        <fieldView>
+      <viewField dict="false" dictTypeId="" displayName="isAnnualRemind" entityField="isAnnualRemind" id="isAnnualRemind" label="isAnnualRemind" name="isAnnualRemind" userDefined="true">
+        <fieldView showAllAttr="false">
           <type name="write"/>
-          <attr name="formatPattern"/>
-          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
           <attr name="maxLength"/>
-          <attr attrValue="" defaultValue="" name="filter"/>
-          <attr attrValue="" defaultValue="" name="maxLengthString"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
           <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
         </fieldView>
-        <fieldEdit>
+        <fieldEdit showAllAttr="false">
           <type name="text"/>
-          <attr attrValue="nui-textbox" defaultValue="nui-textbox" name="class"/>
-          <attr attrValue="" defaultValue="" name="emptyText"/>
-          <attr attrValue="" defaultValue="" name="inputStyle"/>
-          <attr attrValue="false" defaultValue="false" name="required"/>
-          <attr attrValue="" defaultValue="" name="borderStyle"/>
-          <attr attrValue="" defaultValue="" name="cls"/>
-          <attr attrValue="true" defaultValue="true" name="enabled"/>
-          <attr attrValue="" defaultValue="" name="height"/>
-          <attr attrValue="" defaultValue="" name="id"/>
-          <attr attrValue="" defaultValue="" name="name"/>
-          <attr attrValue="" defaultValue="" name="style"/>
-          <attr attrValue="" defaultValue="" name="tooltip"/>
-          <attr attrValue="true" defaultValue="true" name="visible"/>
-          <attr attrValue="" defaultValue="" name="width"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="true" name="validateOnChanged"/>
+          <attr defaultValue="请输入整数" name="intErrorText"/>
+          <attr defaultValue="" name="emptyText"/>
+          <attr defaultValue="请输入URL格式" name="urlErrorText"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="请输入邮件格式" name="emailErrorText"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="请输入数字" name="floatErrorText"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="" name="maxLength"/>
+          <attr defaultValue="数字不能小于 {0}" name="minErrorText"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="不能少于 {0} 个字符" name="minLengthErrorText"/>
+          <attr defaultValue="不能超过 {0} 个字符" name="maxLengthErrorText"/>
+          <attr defaultValue="请输入日期格式 {0}" name="dateErrorText"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="数字必须在 {0} 到 {1} 之间" name="rangeErrorText"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="requiredErrorText"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="inputStyle"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-textbox" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="" name="vtype"/>
+          <attr defaultValue="数字不能大于 {0}" name="maxErrorText"/>
+          <attr defaultValue="字符数必须在 {0} 到 {1} 之间" name="rangeLengthErrorText"/>
+          <attr defaultValue="true" name="validateOnLeave"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="" name="tooltip"/>
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property391" name="annualStatus" displayName="annualStatus" columnName="annual_status" nullAble="true" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
+    <columnProperty id="property391" name="annualStatus" displayName="annualStatus" columnName="annual_status" nullAble="true" PK="false" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
       <comment>提醒状态（0未提醒；1已提醒）</comment>
-      <viewField dict="false" displayName="annualStatus" id="annualStatus" label="annualStatus" name="annualStatus" userDefined="true">
-        <fieldView>
+      <viewField dict="false" dictTypeId="" displayName="annualStatus" entityField="annualStatus" id="annualStatus" label="annualStatus" name="annualStatus" userDefined="true">
+        <fieldView showAllAttr="false">
           <type name="write"/>
-          <attr name="formatPattern"/>
-          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
           <attr name="maxLength"/>
-          <attr attrValue="" defaultValue="" name="filter"/>
-          <attr attrValue="" defaultValue="" name="maxLengthString"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
           <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
         </fieldView>
-        <fieldEdit>
+        <fieldEdit showAllAttr="false">
           <type name="text"/>
-          <attr attrValue="nui-textbox" defaultValue="nui-textbox" name="class"/>
-          <attr attrValue="" defaultValue="" name="emptyText"/>
-          <attr attrValue="" defaultValue="" name="inputStyle"/>
-          <attr attrValue="false" defaultValue="false" name="required"/>
-          <attr attrValue="" defaultValue="" name="borderStyle"/>
-          <attr attrValue="" defaultValue="" name="cls"/>
-          <attr attrValue="true" defaultValue="true" name="enabled"/>
-          <attr attrValue="" defaultValue="" name="height"/>
-          <attr attrValue="" defaultValue="" name="id"/>
-          <attr attrValue="" defaultValue="" name="name"/>
-          <attr attrValue="" defaultValue="" name="style"/>
-          <attr attrValue="" defaultValue="" name="tooltip"/>
-          <attr attrValue="true" defaultValue="true" name="visible"/>
-          <attr attrValue="" defaultValue="" name="width"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="true" name="validateOnChanged"/>
+          <attr defaultValue="请输入整数" name="intErrorText"/>
+          <attr defaultValue="" name="emptyText"/>
+          <attr defaultValue="请输入URL格式" name="urlErrorText"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="请输入邮件格式" name="emailErrorText"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="请输入数字" name="floatErrorText"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="" name="maxLength"/>
+          <attr defaultValue="数字不能小于 {0}" name="minErrorText"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="不能少于 {0} 个字符" name="minLengthErrorText"/>
+          <attr defaultValue="不能超过 {0} 个字符" name="maxLengthErrorText"/>
+          <attr defaultValue="请输入日期格式 {0}" name="dateErrorText"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="数字必须在 {0} 到 {1} 之间" name="rangeErrorText"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="requiredErrorText"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="inputStyle"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-textbox" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="" name="vtype"/>
+          <attr defaultValue="数字不能大于 {0}" name="maxErrorText"/>
+          <attr defaultValue="字符数必须在 {0} 到 {1} 之间" name="rangeLengthErrorText"/>
+          <attr defaultValue="true" name="validateOnLeave"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="" name="tooltip"/>
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property392" name="isInsureRemind" displayName="isInsureRemind" columnName="is_insure_remind" nullAble="true" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
+    <columnProperty id="property392" name="isInsureRemind" displayName="isInsureRemind" columnName="is_insure_remind" nullAble="true" PK="false" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
       <comment>是否交强险到期提醒</comment>
-      <viewField dict="false" displayName="isInsureRemind" id="isInsureRemind" label="isInsureRemind" name="isInsureRemind" userDefined="true">
-        <fieldView>
+      <viewField dict="false" dictTypeId="" displayName="isInsureRemind" entityField="isInsureRemind" id="isInsureRemind" label="isInsureRemind" name="isInsureRemind" userDefined="true">
+        <fieldView showAllAttr="false">
           <type name="write"/>
-          <attr name="formatPattern"/>
-          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
           <attr name="maxLength"/>
-          <attr attrValue="" defaultValue="" name="filter"/>
-          <attr attrValue="" defaultValue="" name="maxLengthString"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
           <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
         </fieldView>
-        <fieldEdit>
+        <fieldEdit showAllAttr="false">
           <type name="text"/>
-          <attr attrValue="nui-textbox" defaultValue="nui-textbox" name="class"/>
-          <attr attrValue="" defaultValue="" name="emptyText"/>
-          <attr attrValue="" defaultValue="" name="inputStyle"/>
-          <attr attrValue="false" defaultValue="false" name="required"/>
-          <attr attrValue="" defaultValue="" name="borderStyle"/>
-          <attr attrValue="" defaultValue="" name="cls"/>
-          <attr attrValue="true" defaultValue="true" name="enabled"/>
-          <attr attrValue="" defaultValue="" name="height"/>
-          <attr attrValue="" defaultValue="" name="id"/>
-          <attr attrValue="" defaultValue="" name="name"/>
-          <attr attrValue="" defaultValue="" name="style"/>
-          <attr attrValue="" defaultValue="" name="tooltip"/>
-          <attr attrValue="true" defaultValue="true" name="visible"/>
-          <attr attrValue="" defaultValue="" name="width"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="true" name="validateOnChanged"/>
+          <attr defaultValue="请输入整数" name="intErrorText"/>
+          <attr defaultValue="" name="emptyText"/>
+          <attr defaultValue="请输入URL格式" name="urlErrorText"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="请输入邮件格式" name="emailErrorText"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="请输入数字" name="floatErrorText"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="" name="maxLength"/>
+          <attr defaultValue="数字不能小于 {0}" name="minErrorText"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="不能少于 {0} 个字符" name="minLengthErrorText"/>
+          <attr defaultValue="不能超过 {0} 个字符" name="maxLengthErrorText"/>
+          <attr defaultValue="请输入日期格式 {0}" name="dateErrorText"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="数字必须在 {0} 到 {1} 之间" name="rangeErrorText"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="requiredErrorText"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="inputStyle"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-textbox" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="" name="vtype"/>
+          <attr defaultValue="数字不能大于 {0}" name="maxErrorText"/>
+          <attr defaultValue="字符数必须在 {0} 到 {1} 之间" name="rangeLengthErrorText"/>
+          <attr defaultValue="true" name="validateOnLeave"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="" name="tooltip"/>
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property393" name="insureStatus" displayName="insureStatus" columnName="insure_status" nullAble="true" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
+    <columnProperty id="property393" name="insureStatus" displayName="insureStatus" columnName="insure_status" nullAble="true" PK="false" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
       <comment>提醒状态（0未提醒；1已提醒）</comment>
-      <viewField dict="false" displayName="insureStatus" id="insureStatus" label="insureStatus" name="insureStatus" userDefined="true">
-        <fieldView>
+      <viewField dict="false" dictTypeId="" displayName="insureStatus" entityField="insureStatus" id="insureStatus" label="insureStatus" name="insureStatus" userDefined="true">
+        <fieldView showAllAttr="false">
           <type name="write"/>
-          <attr name="formatPattern"/>
-          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
           <attr name="maxLength"/>
-          <attr attrValue="" defaultValue="" name="filter"/>
-          <attr attrValue="" defaultValue="" name="maxLengthString"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
           <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
         </fieldView>
-        <fieldEdit>
+        <fieldEdit showAllAttr="false">
           <type name="text"/>
-          <attr attrValue="nui-textbox" defaultValue="nui-textbox" name="class"/>
-          <attr attrValue="" defaultValue="" name="emptyText"/>
-          <attr attrValue="" defaultValue="" name="inputStyle"/>
-          <attr attrValue="false" defaultValue="false" name="required"/>
-          <attr attrValue="" defaultValue="" name="borderStyle"/>
-          <attr attrValue="" defaultValue="" name="cls"/>
-          <attr attrValue="true" defaultValue="true" name="enabled"/>
-          <attr attrValue="" defaultValue="" name="height"/>
-          <attr attrValue="" defaultValue="" name="id"/>
-          <attr attrValue="" defaultValue="" name="name"/>
-          <attr attrValue="" defaultValue="" name="style"/>
-          <attr attrValue="" defaultValue="" name="tooltip"/>
-          <attr attrValue="true" defaultValue="true" name="visible"/>
-          <attr attrValue="" defaultValue="" name="width"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="true" name="validateOnChanged"/>
+          <attr defaultValue="请输入整数" name="intErrorText"/>
+          <attr defaultValue="" name="emptyText"/>
+          <attr defaultValue="请输入URL格式" name="urlErrorText"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="请输入邮件格式" name="emailErrorText"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="请输入数字" name="floatErrorText"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="" name="maxLength"/>
+          <attr defaultValue="数字不能小于 {0}" name="minErrorText"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="不能少于 {0} 个字符" name="minLengthErrorText"/>
+          <attr defaultValue="不能超过 {0} 个字符" name="maxLengthErrorText"/>
+          <attr defaultValue="请输入日期格式 {0}" name="dateErrorText"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="数字必须在 {0} 到 {1} 之间" name="rangeErrorText"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="requiredErrorText"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="inputStyle"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-textbox" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="" name="vtype"/>
+          <attr defaultValue="数字不能大于 {0}" name="maxErrorText"/>
+          <attr defaultValue="字符数必须在 {0} 到 {1} 之间" name="rangeLengthErrorText"/>
+          <attr defaultValue="true" name="validateOnLeave"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="" name="tooltip"/>
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property394" name="isVeriRemind" displayName="isVeriRemind" columnName="is_veri_remind" nullAble="true" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
+    <columnProperty id="property394" name="isVeriRemind" displayName="isVeriRemind" columnName="is_veri_remind" nullAble="true" PK="false" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
       <comment>是否年检提醒</comment>
-      <viewField dict="false" displayName="isVeriRemind" id="isVeriRemind" label="isVeriRemind" name="isVeriRemind" userDefined="true">
-        <fieldView>
+      <viewField dict="false" dictTypeId="" displayName="isVeriRemind" entityField="isVeriRemind" id="isVeriRemind" label="isVeriRemind" name="isVeriRemind" userDefined="true">
+        <fieldView showAllAttr="false">
           <type name="write"/>
-          <attr name="formatPattern"/>
-          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
           <attr name="maxLength"/>
-          <attr attrValue="" defaultValue="" name="filter"/>
-          <attr attrValue="" defaultValue="" name="maxLengthString"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
           <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
         </fieldView>
-        <fieldEdit>
+        <fieldEdit showAllAttr="false">
           <type name="text"/>
-          <attr attrValue="nui-textbox" defaultValue="nui-textbox" name="class"/>
-          <attr attrValue="" defaultValue="" name="emptyText"/>
-          <attr attrValue="" defaultValue="" name="inputStyle"/>
-          <attr attrValue="false" defaultValue="false" name="required"/>
-          <attr attrValue="" defaultValue="" name="borderStyle"/>
-          <attr attrValue="" defaultValue="" name="cls"/>
-          <attr attrValue="true" defaultValue="true" name="enabled"/>
-          <attr attrValue="" defaultValue="" name="height"/>
-          <attr attrValue="" defaultValue="" name="id"/>
-          <attr attrValue="" defaultValue="" name="name"/>
-          <attr attrValue="" defaultValue="" name="style"/>
-          <attr attrValue="" defaultValue="" name="tooltip"/>
-          <attr attrValue="true" defaultValue="true" name="visible"/>
-          <attr attrValue="" defaultValue="" name="width"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="true" name="validateOnChanged"/>
+          <attr defaultValue="请输入整数" name="intErrorText"/>
+          <attr defaultValue="" name="emptyText"/>
+          <attr defaultValue="请输入URL格式" name="urlErrorText"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="请输入邮件格式" name="emailErrorText"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="请输入数字" name="floatErrorText"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="" name="maxLength"/>
+          <attr defaultValue="数字不能小于 {0}" name="minErrorText"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="不能少于 {0} 个字符" name="minLengthErrorText"/>
+          <attr defaultValue="不能超过 {0} 个字符" name="maxLengthErrorText"/>
+          <attr defaultValue="请输入日期格式 {0}" name="dateErrorText"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="数字必须在 {0} 到 {1} 之间" name="rangeErrorText"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="requiredErrorText"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="inputStyle"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-textbox" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="" name="vtype"/>
+          <attr defaultValue="数字不能大于 {0}" name="maxErrorText"/>
+          <attr defaultValue="字符数必须在 {0} 到 {1} 之间" name="rangeLengthErrorText"/>
+          <attr defaultValue="true" name="validateOnLeave"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="" name="tooltip"/>
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property395" name="veriStatus" displayName="veriStatus" columnName="veri_status" nullAble="true" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
+    <columnProperty id="property395" name="veriStatus" displayName="veriStatus" columnName="veri_status" nullAble="true" PK="false" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
       <comment>提醒状态（0未提醒；1已提醒）</comment>
-      <viewField dict="false" displayName="veriStatus" id="veriStatus" label="veriStatus" name="veriStatus" userDefined="true">
-        <fieldView>
+      <viewField dict="false" dictTypeId="" displayName="veriStatus" entityField="veriStatus" id="veriStatus" label="veriStatus" name="veriStatus" userDefined="true">
+        <fieldView showAllAttr="false">
           <type name="write"/>
-          <attr name="formatPattern"/>
-          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
           <attr name="maxLength"/>
-          <attr attrValue="" defaultValue="" name="filter"/>
-          <attr attrValue="" defaultValue="" name="maxLengthString"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
           <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
         </fieldView>
-        <fieldEdit>
+        <fieldEdit showAllAttr="false">
           <type name="text"/>
-          <attr attrValue="nui-textbox" defaultValue="nui-textbox" name="class"/>
-          <attr attrValue="" defaultValue="" name="emptyText"/>
-          <attr attrValue="" defaultValue="" name="inputStyle"/>
-          <attr attrValue="false" defaultValue="false" name="required"/>
-          <attr attrValue="" defaultValue="" name="borderStyle"/>
-          <attr attrValue="" defaultValue="" name="cls"/>
-          <attr attrValue="true" defaultValue="true" name="enabled"/>
-          <attr attrValue="" defaultValue="" name="height"/>
-          <attr attrValue="" defaultValue="" name="id"/>
-          <attr attrValue="" defaultValue="" name="name"/>
-          <attr attrValue="" defaultValue="" name="style"/>
-          <attr attrValue="" defaultValue="" name="tooltip"/>
-          <attr attrValue="true" defaultValue="true" name="visible"/>
-          <attr attrValue="" defaultValue="" name="width"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="true" name="validateOnChanged"/>
+          <attr defaultValue="请输入整数" name="intErrorText"/>
+          <attr defaultValue="" name="emptyText"/>
+          <attr defaultValue="请输入URL格式" name="urlErrorText"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="请输入邮件格式" name="emailErrorText"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="请输入数字" name="floatErrorText"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="" name="maxLength"/>
+          <attr defaultValue="数字不能小于 {0}" name="minErrorText"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="不能少于 {0} 个字符" name="minLengthErrorText"/>
+          <attr defaultValue="不能超过 {0} 个字符" name="maxLengthErrorText"/>
+          <attr defaultValue="请输入日期格式 {0}" name="dateErrorText"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="数字必须在 {0} 到 {1} 之间" name="rangeErrorText"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="requiredErrorText"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="inputStyle"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-textbox" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="" name="vtype"/>
+          <attr defaultValue="数字不能大于 {0}" name="maxErrorText"/>
+          <attr defaultValue="字符数必须在 {0} 到 {1} 之间" name="rangeLengthErrorText"/>
+          <attr defaultValue="true" name="validateOnLeave"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="" name="tooltip"/>
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property396" name="recorder" displayName="recorder" columnName="recorder" nullAble="true" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
+    <columnProperty id="property396" name="recorder" displayName="recorder" columnName="recorder" nullAble="true" PK="false" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
       <comment>建档人</comment>
       <viewField dict="false" dictTypeId="" displayName="recorder" entityField="recorder" id="recorder" label="recorder" name="recorder" userDefined="true">
         <fieldView showAllAttr="false">
@@ -26140,7 +26493,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property397" name="recordDate" displayName="recordDate" columnName="record_date" nullAble="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
+    <columnProperty id="property397" name="recordDate" displayName="recordDate" columnName="record_date" nullAble="false" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <comment>建档日期</comment>
       <viewField dict="false" dictTypeId="" displayName="recordDate" entityField="recordDate" id="recordDate" label="recordDate" name="recordDate" userDefined="true">
         <fieldView showAllAttr="false">
@@ -26211,7 +26564,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property398" name="modifier" displayName="modifier" columnName="modifier" nullAble="true" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
+    <columnProperty id="property398" name="modifier" displayName="modifier" columnName="modifier" nullAble="true" PK="false" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
       <comment>修改人</comment>
       <viewField dict="false" dictTypeId="" displayName="modifier" entityField="modifier" id="modifier" label="modifier" name="modifier" userDefined="true">
         <fieldView showAllAttr="false">
@@ -26277,7 +26630,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property399" name="modifyDate" displayName="modifyDate" columnName="modify_date" nullAble="true" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
+    <columnProperty id="property399" name="modifyDate" displayName="modifyDate" columnName="modify_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <comment>修改日期</comment>
       <viewField dict="false" dictTypeId="" displayName="modifyDate" entityField="modifyDate" id="modifyDate" label="modifyDate" name="modifyDate" userDefined="true">
         <fieldView showAllAttr="false">
@@ -26352,7 +26705,7 @@
   <nodes xsi:type="model:PEntityNode" id="node3400" name="RpbItemModel" collapsed="false" nodeType="table" displayName="RpbItemModel" author="Administrator" allUseViewModel="true" table="rpb_item_model" genStrategy="assigned">
     <location x="70" y="9700"/>
     <size height="628" width="150"/>
-    <figSize height="20" width="288"/>
+    <figSize height="20" width="236"/>
     <columnProperty id="property400" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -28541,7 +28894,7 @@
   <nodes xsi:type="model:PEntityNode" id="node3600" name="RpbPartModel" collapsed="false" nodeType="table" displayName="RpbPartModel" author="Administrator" allUseViewModel="true" table="rpb_part_model" genStrategy="native">
     <location x="70" y="10384"/>
     <size height="556" width="150"/>
-    <figSize height="20" width="270"/>
+    <figSize height="20" width="222"/>
     <columnProperty id="property433" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -30468,7 +30821,7 @@
   <nodes xsi:type="model:PEntityNode" id="node3500" name="RpbPackageModel" collapsed="false" nodeType="table" displayName="RpbPackageModel" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_package_model" genStrategy="assigned">
     <location x="70" y="10996"/>
     <size height="664" width="150"/>
-    <figSize height="20" width="288"/>
+    <figSize height="20" width="236"/>
     <columnProperty id="property462" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -32792,7 +33145,7 @@
   <nodes xsi:type="model:PEntityNode" id="node3300" name="RpbBillModel" collapsed="false" nodeType="table" displayName="RpbBillModel" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_bill_model" genStrategy="assigned">
     <location x="70" y="11716"/>
     <size height="268" width="150"/>
-    <figSize height="20" width="207"/>
+    <figSize height="20" width="170"/>
     <columnProperty id="property497" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -33663,7 +34016,7 @@
   <nodes xsi:type="model:PEntityNode" id="node1500" name="RpbPackage" collapsed="false" nodeType="table" displayName="RpbPackage" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_package" genStrategy="assigned">
     <location x="70" y="12040"/>
     <size height="484" width="150"/>
-    <figSize height="20" width="243"/>
+    <figSize height="20" width="200"/>
     <columnProperty id="property510" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -35328,7 +35681,7 @@
   <nodes xsi:type="model:PEntityNode" id="node3000" name="RpbPart" collapsed="false" nodeType="table" displayName="RpbPart" author="Administrator" allUseViewModel="true" table="rpb_part" genStrategy="native">
     <location x="70" y="12580"/>
     <size height="358" width="150"/>
-    <figSize height="20" width="225"/>
+    <figSize height="20" width="186"/>
     <columnProperty id="property535" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -36461,7 +36814,7 @@
   <nodes xsi:type="model:PEntityNode" id="node1300" name="RpbItem" collapsed="false" nodeType="table" displayName="RpbItem" author="Administrator" allUseViewModel="true" table="rpb_item" genStrategy="assigned">
     <location x="70" y="12994"/>
     <size height="736" width="150"/>
-    <figSize height="20" width="243"/>
+    <figSize height="20" width="200"/>
     <columnProperty id="property553" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -38875,7 +39228,7 @@
   <nodes xsi:type="model:PEntityNode" id="node2000" name="RpbContactor" collapsed="false" nodeType="table" displayName="RpbContactor" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_contactor" genStrategy="assigned">
     <location x="70" y="13786"/>
     <size height="844" width="150"/>
-    <figSize height="20" width="259"/>
+    <figSize height="20" width="211"/>
     <columnProperty id="property592" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>联系人ID</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -41874,7 +42227,7 @@
   <nodes xsi:type="model:PEntityNode" id="node1800" name="RpbCheckMain" collapsed="false" nodeType="table" displayName="RpbCheckMain" author="Administrator" allUseViewModel="true" instanceClass="" table="rpb_check_main" genStrategy="native">
     <location x="70" y="14686"/>
     <size height="214" width="150"/>
-    <figSize height="20" width="207"/>
+    <figSize height="20" width="170"/>
     <columnProperty id="property637" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -42549,7 +42902,7 @@
   <nodes xsi:type="model:PEntityNode" id="node700" name="RpbCar" collapsed="false" nodeType="table" displayName="RpbCar" author="56336" allUseViewModel="true" instanceClass="" table="rpb_car" genStrategy="assigned">
     <location x="70" y="14956"/>
     <size height="786" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="256"/>
     <entPojoProperty id="assproperty0" name="carExtend" displayName="carExtend" persistent="false" userDefined="true" refId="com.hsapi.repair.data.rpbse.RpbCarExtend">
       <entViewField dict="false" dictTypeId="" entityField="carExtend.carId" id="carExtend.carId" label="carId">
         <fieldView showAllAttr="false">

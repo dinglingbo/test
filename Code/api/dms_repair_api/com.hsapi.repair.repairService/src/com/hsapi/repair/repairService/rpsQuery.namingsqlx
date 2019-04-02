@@ -2190,6 +2190,7 @@
 			a.bill_type_id AS billTypeId,
 			d.`name` AS contactName,
 			d.mobile AS contactMobile,
+			d.wechat_open_id wechatOpenId,
 			a.modifier AS modifier,
 			a.modify_date AS modifyDate,
 			a.recorder AS recorder,

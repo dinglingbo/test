@@ -154,10 +154,10 @@
 	                     	<img alt="" src="" id="showImg" height="60px" style="display:none">
 	                    </td>
 	                    <td style="width:55%" >
-	                        <div style="font-size: 11px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><b><span id="comp"></span></b></div>
+	                        <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><b><span id="comp"></span></b></div>
 	                    </td>
 	                    <td rowspan="2" style="">
-	                        <div style="font-size: 20px; font-family: 华文中宋;padding-top: 5px;"><b><span id="spstorename">报价单</span></b></div>
+	                        <div style="font-size: 20px; font-family: 微软雅黑;padding-top: 5px;"><b><span id="spstorename">报价单</span></b></div>
 	                        <div style="padding-top: 2px; font-size: 13px;font-family: Arial;">
 	                          №:<span id="serviceCode"></span>  
 	                        </div>
@@ -219,13 +219,13 @@
         <div style="height: 12px;"></div>
         	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk" id="showItem">
                 <tr style="height:30px">
-                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">序号</td>
-                    <td height="28" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">项目名称</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">工时</td>
-                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">单价</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">金额</td>
-                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">优惠率</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">小计</td>
+                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">序号</td>
+                    <td height="28" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">项目名称</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">工时</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">单价</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">金额</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">优惠率</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">小计</td>
                 </tr>
                 <tbody id="tbodyId">
 				</tbody>
@@ -233,13 +233,14 @@
             <div style="height: 12px;" id="space3"></div>
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk" id="showPart" >
                 <tr>
-                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">序号</td>
-                    <td height="28" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">配件名称</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">数量</td>
-                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">单价</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">金额</td>
-                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">优惠率</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">小计</td>
+                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">序号</td>
+                    <td height="28" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">配件名称</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">数量</td>
+                     <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">单位</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">单价</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">金额</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">优惠率</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">小计</td>
                 </tr>
                 <tbody id="tbodyId2">
 				</tbody>
@@ -451,13 +452,14 @@
 		        		var tBody2 = $("#tbodyId2");
 	    				tBody.empty();
 	    				tBody2.empty();
-	    				var tds = '<td align="center">[orderIndex]</td>' +
-						    			"<td>[prdtName]</td>"+
-						    			"<td align='center'>[qty]</td>"+
-						    			"<td align='center'>[uintPrice]</td>"+ 
-						    			"<td align='center'>[amt]</td>"+ 
-						    			"<td align='center'>[rate]</td>"+
-						    			"<td align='center'>[subtotal]</td>";
+	    				var tds = '<td align="center" style="font-family: 微软雅黑;">[orderIndex]</td>' +
+						    			"<td style='font-family: 微软雅黑;'>[prdtName]</td>"+
+						    			"<td align='center' style='font-family: 微软雅黑;'>[qty]</td>"+
+						    			"<td align='center' style='font-family: 微软雅黑;'>[unit]</td>"+
+						    			"<td align='center' style='font-family: 微软雅黑;'>[uintPrice]</td>"+ 
+						    			"<td align='center' style='font-family: 微软雅黑;'>[amt]</td>"+ 
+						    			"<td align='center' style='font-family: 微软雅黑;'>[rate]</td>"+
+						    			"<td align='center' style='font-family: 微软雅黑;'>[subtotal]</td>";
 	    				
 	    				var j = 0;
 	    				var num1 = 0;
@@ -468,10 +470,17 @@
 	    					var rate = data[i].rate;
 	    					rate = rate + "%";
 	    					if(data[i].billItemId == 0){
+	    						var tds1 = '<td align="center" style="font-family: 微软雅黑;">[orderIndex]</td>' +
+						    			"<td style='font-family: 微软雅黑;'>[prdtName]</td>"+
+						    			"<td align='center' style='font-family: 微软雅黑;'>[qty]</td>"+
+						    			"<td align='center' style='font-family: 微软雅黑;'>[uintPrice]</td>"+ 
+						    			"<td align='center' style='font-family: 微软雅黑;'>[amt]</td>"+ 
+						    			"<td align='center' style='font-family: 微软雅黑;'>[rate]</td>"+
+						    			"<td align='center' style='font-family: 微软雅黑;'>[subtotal]</td>";
 	    						num1 ++;
 	    						var tr = $("<tr ></tr>");
 					    			tr.append(
-					    				tds.replace("[orderIndex]",num1)
+					    				tds1.replace("[orderIndex]",num1)
 					    				.replace("[prdtName]","&nbsp;"+prdtName || "")
 					    				.replace("[qty]",data[i].qty|| data[i].itemTime || 1)
 					    				.replace("[uintPrice]",data[i].unitPrice || 0)
@@ -486,6 +495,7 @@
 					    				tds.replace("[orderIndex]",num2)
 					    				.replace("[prdtName]","&nbsp;"+prdtName || "")
 					    				.replace("[qty]",data[i].qty || 1)
+					    				.replace("[unit]",data[i].unit || "")
 					    				.replace("[uintPrice]", data[i].unitPrice || 0)
 					    				.replace("[amt]",data[i].amt  || 0)
 					    				.replace("[rate]",rate || 0)

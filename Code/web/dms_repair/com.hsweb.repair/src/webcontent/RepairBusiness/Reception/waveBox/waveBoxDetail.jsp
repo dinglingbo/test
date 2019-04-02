@@ -12,7 +12,7 @@
         <head>
             <title>Title</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxDetail.js?v=1.323"></script>
+            <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxDetail.js?v=1.324"></script>
         </head>
         <style type="text/css">
             body {
@@ -114,7 +114,7 @@
             }
 
             a.optbtn {
-                width: 44px;
+                width: 52px;
                 /* height: 26px; */
                 border: 1px #d2d2d2 solid;
                 background: #f2f6f9;

@@ -166,7 +166,7 @@
         
         <div header="成本信息" headerAlign="center">
             <div property="columns">
-                 <div summaryType="sum" allowSort="true" field="trueUnitPrice" width="60" headerAlign="center" header="成本单价" dataType="float" align="left"></div>
+                 <div summaryType="sum" allowSort="true" field="trueUnitPrice" width="60" headerAlign="center" header="成本单价" datatype="float" align="left"></div>
                 <div summaryType="sum" allowSort="true" field="trueCost" headerAlign="center" header="成本金额" dataType="float" align="left"></div>
             </div>
         </div>

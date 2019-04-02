@@ -419,8 +419,12 @@ $(document).ready(function ()
                 break;
             case "itemOptBtn":
             	if(pid == 0){
+            		var cardDetailId = record.cardDetailId||0;
                   	s = ' <a class="optbtn" href="javascript:deleteItemRow(\'' + uid + '\')">删除</a>';
-                    s = s + ' <a class="optbtn" href="javascript:updateItemRow(\'' + uid + '\')">修改</a>';
+                  	if(cardDetailId<=0){
+                  		s = s + ' <a class="optbtn" href="javascript:updateItemRow(\'' + uid + '\')">修改项目</a>';
+                  	}
+                    
                  }else{
                 	 s = ' <a class="optbtn" href="javascript:deletePartRow(\'' + uid + '\')">删除</a>';
                   }
@@ -4806,6 +4810,7 @@ function saveItem(callback){
             if(cardDetailId > 0){ //预存的
                 var item = {};
                 item.id = row.id;
+                item.remark = row.remark;
                 item.serviceId = row.serviceId;
                 item.serviceTypeId = row.serviceTypeId;
                 item.workerIds = row.workersId;
@@ -4822,6 +4827,7 @@ function saveItem(callback){
             }else{
                 var item = {};
                 item.id = row.id;
+                item.remark = row.remark;
                 item.serviceId = row.serviceId;
                 item.amt = row.amt;
                 item.subtotal = row.subtotal;
@@ -5182,3 +5188,12 @@ function bindWechat(){
         }
     });
 }
+
+
+function remarkChang(e){
+	var el = e.sender;
+	var row = rpsItemGrid.getEditorOwnerRow(el);
+	var remark = rpsItemGrid.getCellEditor("remark", row);
+	remark.setValue(e.value);
+}
+

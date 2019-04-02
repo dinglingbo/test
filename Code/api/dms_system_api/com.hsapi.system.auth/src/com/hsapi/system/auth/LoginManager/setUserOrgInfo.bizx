@@ -235,6 +235,10 @@
       <process:to type="query">m:userObject/attributes/webPath</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">member/isCanfreeCarnovin</process:from>
+      <process:to type="query">m:userObject/attributes/isCanfreeCarnovin</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject</process:from>
       <process:to type="query">userObject</process:to>
     </process:copy>
@@ -245,10 +249,6 @@
     <process:copy>
       <process:from type="expression" pattern="reference">&quot;user_&quot; + loginName</process:from>
       <process:to type="query">userKey</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">member/isCanfreeCarnovin</process:from>
-      <process:to type="query">m:userObject/attributes/isCanfreeCarnovin</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">

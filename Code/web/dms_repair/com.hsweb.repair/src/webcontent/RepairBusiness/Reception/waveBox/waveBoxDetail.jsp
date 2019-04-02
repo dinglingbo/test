@@ -114,7 +114,7 @@
             }
 
             a.optbtn {
-                width: 44px;
+                width: 52px;
                 /* height: 26px; */
                 border: 1px #d2d2d2 solid;
                 background: #f2f6f9;

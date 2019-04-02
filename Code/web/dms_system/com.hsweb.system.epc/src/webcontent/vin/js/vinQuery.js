@@ -126,8 +126,18 @@ $(document).ready(function(v){
             if(e.row.check==1){
                 addPart(1);
                 searchStok();
+                
             }else{
                 addPart(-1);
+            }
+        }
+    });
+    
+    cartPartGrid.on("cellclick",function(e){ 
+        var field=e.field;
+        if(field=="check" ){
+            if(e.row.check==1){
+                searchStok();
             }
         }
     });
@@ -822,9 +832,9 @@ function getAvailableTags(){
 		var key=localStorage.key(i);
 		var value=localStorage.getItem(key);
 		if(availableTags.length>0){
-			for(var i =0;i<availableTags.length;i++){
+			for(var j =0;i<availableTags.length;j++){
 				//判断是否重复
-				if(value.indexOf(availableTags[i]) == -1){
+				if(value.indexOf(availableTags[j]) == -1){
 					availableTags.push(value);
 				}				
 			}

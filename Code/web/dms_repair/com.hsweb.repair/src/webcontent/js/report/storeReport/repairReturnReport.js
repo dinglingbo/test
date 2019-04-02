@@ -87,14 +87,23 @@ $(document).ready(function(v)
         	trueCostSum = trueCostSum +result[i].trueCost;
         }
         if (e.field == "grossRate") {
-            var grossRateSum = parseFloat(grossSum)/parseFloat(sellAmtSum);
-            grossRateSum = ((grossRateSum*100).toFixed(2))+"%";
-            e.cellHtml = grossRateSum;
+        	if(sellAmtSum!=0){
+                var grossRateSum = parseFloat(grossSum)/parseFloat(sellAmtSum);
+                grossRateSum = ((grossRateSum*100).toFixed(2))+"%";
+                e.cellHtml = grossRateSum;
+        	}else{
+        		e.cellHtml = "0%";
+        	}
         }
         if (e.field == "costRate") {
-            var costRateSum = parseFloat(trueCostSum)/parseFloat(sellAmtSum);
-            costRateSum = ((costRateSum*100).toFixed(2))+"%";
-            e.cellHtml = costRateSum;
+        	if(sellAmtSum!=0){
+                var costRateSum = parseFloat(trueCostSum)/parseFloat(sellAmtSum);
+                costRateSum = ((costRateSum*100).toFixed(2))+"%";
+                e.cellHtml = costRateSum;
+        	}else{
+        		e.cellHtml = "0%";
+        	}
+
         }
 
     });

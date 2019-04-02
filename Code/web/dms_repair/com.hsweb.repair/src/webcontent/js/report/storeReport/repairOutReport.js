@@ -96,19 +96,28 @@ $(document).ready(function(v)
         var sellAmtSum = 0; 
         var trueCostSum = 0;
         for(var i = 0;i<result.length;i++){
-        	grossSum = grossSum+result[i].gross;
-        	sellAmtSum = sellAmtSum +result[i].sellAmt;
-        	trueCostSum = trueCostSum +result[i].trueCost;
+        	grossSum = grossSum+result[i].gross||0;
+        	sellAmtSum = sellAmtSum +result[i].sellAmt||0;
+        	trueCostSum = trueCostSum +result[i].trueCost||0;
         }
         if (e.field == "grossRate") {
-            var grossRateSum = parseFloat(grossSum)/parseFloat(sellAmtSum);
-            grossRateSum = ((grossRateSum*100).toFixed(2))+"%";
-            e.cellHtml = grossRateSum;
+        	if(sellAmtSum!=0){
+                var grossRateSum = parseFloat(grossSum)/parseFloat(sellAmtSum);
+                grossRateSum = ((grossRateSum*100).toFixed(2))+"%";
+                e.cellHtml = grossRateSum;
+        	}else{
+        		e.cellHtml = "0%";
+        	}
         }
         if (e.field == "costRate") {
-            var costRateSum = parseFloat(trueCostSum)/parseFloat(sellAmtSum);
-            costRateSum = ((costRateSum*100).toFixed(2))+"%";
-            e.cellHtml = costRateSum;
+        	if(sellAmtSum!=0){
+                var costRateSum = parseFloat(trueCostSum)/parseFloat(sellAmtSum);
+                costRateSum = ((costRateSum*100).toFixed(2))+"%";
+                e.cellHtml = costRateSum;
+        	}else{
+        		e.cellHtml = "0%";
+        	}
+
         }
 
     });

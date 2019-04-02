@@ -2174,7 +2174,6 @@ function selecCardTimes(main){
         });
         saveItem(function(){
         	nui.unmask(document.body);
-        	svrCRUD(params,function(text){
         		 svrCRUD(params,function(text){
         	            var errCode = text.errCode||"";
         	            var errMsg = text.errMsg||"";
@@ -2216,7 +2215,6 @@ function selecCardTimes(main){
         	                return;
         	            }
         	       });
-        	});
         });
        
     }else{

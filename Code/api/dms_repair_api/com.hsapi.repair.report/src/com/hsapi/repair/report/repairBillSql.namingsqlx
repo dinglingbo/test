@@ -207,6 +207,9 @@
             <isNotEmpty prepend="and" property="orgids">
                 (a.orgid in ($orgids$))
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="isCollectMoney">
+                (a.is_collect_money = #isCollectMoney#)
+            </isNotEmpty>
             <!--结算日期 -->
             <isNotEmpty prepend="and" property="startDate">  
                 (a.out_date &gt;= #startDate#)

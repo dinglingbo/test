@@ -53,6 +53,9 @@
             <isNotEmpty prepend="and" property="tenantId">  
                 (b.tenant_id = #tenantId#)
             </isNotEmpty>  
+            <isNotEmpty prepend="and" property="orgid">  
+                (c.last_orgid = #orgid#)
+            </isNotEmpty> 
             <isNotEmpty prepend="and" property="isDisabled">  
                 (a.is_disabled = #isDisabled# )
             </isNotEmpty>     
@@ -74,7 +77,7 @@
             <isNotEmpty prepend="and" property="carBrandId">  
                 (a.car_brand_id = #carBrandId#)
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="carNo">  
+                <isNotEmpty prepend="and" property="carNo">  
                 (a.car_no like '%$carNo$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="mobile">  
@@ -183,10 +186,10 @@
             </isNotEmpty>
              <!--第一次来厂日期 -->
             <isNotEmpty prepend="and" property="firstEnterStart">  
-                (c.first_come_date &gt;= #firstEnterStart#)
+                (c.first_come_date &gt;= #lastEnterStart#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="firstEnterEnd">  
-                (c.first_come_date &lt; #firstEnterEnd#)
+                (c.first_come_date &lt;= #lastEnterEnd#)
             </isNotEmpty>
              <!--最后离厂日期 -->
             <isNotEmpty prepend="and" property="lastOutStart">  

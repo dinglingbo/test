@@ -1161,8 +1161,11 @@
 		WHERE 1 = 1 and a.is_settle = 1
 			
       <dynamic>
-			<isNotEmpty prepend="and" property="rid">
+			<isNotEmpty prepend="and" property="rid">llectMoney
                 (a.id = #rid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isCollectMoney">
+                (a.is_collect_money = #isCollectMoney#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="orgid">
                 (a.orgid = #orgid#)

@@ -68,8 +68,6 @@
 						<div type="checkcolumn">选择</div>
 						<div field="id" allowSort="true" headerAlign="center"  visible="false"
 								width="120"  >用户id</div>
-				 		<div field="type" allowSort="true" headerAlign="center"
-								width="120"  >用户分类</div>
 						<div field="mobile" allowSort="true" headerAlign="center"
 								width="120"  >手机号</div>
 						<div field="name" allowSort="true" headerAlign="center"
@@ -84,6 +82,8 @@
 								width="120"  >审核状态</div>
 						<div field="isDisabled" allowSort="true" headerAlign="center"
 								width="120"  >是否禁用</div>
+				 		<div field="type" allowSort="true" headerAlign="center"
+								width="120"  >用户分类</div>
 						<div field="recorder" allowSort="true" headerAlign="center"
 								width="120"  >建档人</div>
 						<div field="recordDate" allowSort="true" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm"

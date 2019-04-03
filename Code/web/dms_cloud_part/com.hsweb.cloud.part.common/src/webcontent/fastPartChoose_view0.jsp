@@ -273,6 +273,9 @@ body .mini-grid-row-selected{
                                 <a class="nui-button" iconCls="" plain="true" onclick="savePrice" id="savePriceBtn">
                                     <span class="fa fa-save fa-lg"></span>&nbsp;保存设置
                                 </a>
+                                <a class="nui-button" iconCls="" plain="true" onclick="onAdvancedAddCancel" id="savePriceBtn">
+                                    <span class="fa fa-close fa-lg"></span>&nbsp;取消
+                                </a>
                             </td>
                         </tr>
                     </table>

@@ -1340,6 +1340,7 @@ var partPriceUrl = baseUrl
 function getPartPrice(params){
 	var price = 0;
 	var shelf = null;
+	var sellPrice = null;
 	nui.ajax({
 		url : partPriceUrl,
 		type : "post",
@@ -1358,6 +1359,9 @@ function getPartPrice(params){
 				if(priceRecord.shelf){
 					shelf = priceRecord.shelf;
 				}
+				if(priceRecord.sellPrice){
+					sellPrice = priceRecord.sellPrice;
+				}
 			}
 
 		},
@@ -1367,7 +1371,7 @@ function getPartPrice(params){
 		}
 	});
 
-	var dInfo = {price: price, shelf: shelf};
+	var dInfo = {price: price, shelf: shelf, sellPrice: sellPrice};
 
 	return dInfo;
 }
@@ -1393,7 +1397,7 @@ function addInsertRowPartName(value,row){
 		var dInfo = getPartPrice(params);
 		var price = dInfo.price;
 		var shelf = dInfo.shelf;
-		var sellPrice = 0;
+		var sellPrice = dInfo.sellPrice;
 		
 		var newRow = {
 			partId : part.id,
@@ -1413,7 +1417,8 @@ function addInsertRowPartName(value,row){
 			partName : part.name,
 			fullName : part.fullName,
 			systemUnitId : part.unit,
-			enterUnitId : part.unit
+			enterUnitId : part.unit,
+			sellPrice : sellPrice
 		};
 		if(currCompType == "GEARBOX"){
 			if(price){
@@ -1474,6 +1479,7 @@ function addInsertRow(value,row) {
 		var dInfo = getPartPrice(params);
 		var price = dInfo.price;
 		var shelf = dInfo.shelf;
+		var sellPrice = dInfo.sellPrice;
 					
 		var newRow = {
 			partId : part.id,
@@ -1493,7 +1499,8 @@ function addInsertRow(value,row) {
 			partName : part.name,
 			fullName : part.fullName,
 			systemUnitId : part.unit,
-			enterUnitId : part.unit
+			enterUnitId : part.unit,
+			sellPrice: sellPrice
 		};
 		if(currCompType == "GEARBOX"){
 			if(price){
@@ -2085,7 +2092,7 @@ function addSelectPart(){
 		var dInfo = getPartPrice(params);
 		var price = dInfo.price;
 		var shelf = dInfo.shelf;
-		var sellPrice = 0;
+		var sellPrice = dInfo.sellPrice;
 		if(currCompType == "GEARBOX"){
 			if(price){
 				sellPrice = price*1.35;
@@ -2102,6 +2109,7 @@ function addSelectPart(){
 			orderPrice : price,
 			orderAmt : price,
 			storeId : FStoreId,
+			storeShelf : shelf,
 			sellPrice : sellPrice,
 			comOemCode : row.oemCode,
 			comSpec : row.spec,
@@ -2109,7 +2117,8 @@ function addSelectPart(){
 			partName : row.name,
 			fullName : row.fullName,
 			systemUnitId : row.unit,
-			enterUnitId : row.unit
+			enterUnitId : row.unit,
+			sellPrice: sellPrice
 		};
 
 		advancedMorePartWin.hide();

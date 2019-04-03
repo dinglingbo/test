@@ -1150,7 +1150,7 @@ function saveMaintain(callback,unmaskcall){
     	delete data.enterDate;
     }
     data.billTypeId = 6;
-    if(!data.enterKilometers){
+    if(data.enterKilometers == 0){
     	data.enterKilometers = lastComeKilometers;
     }
 	var params = {
@@ -3832,6 +3832,7 @@ function saveItem(callback){
             if(cardDetailId > 0){ //预存的
                 var item = {};
                 item.id = row.id;
+                item.remark = row.remark;
                 item.serviceId = row.serviceId;
                 item.serviceTypeId = row.serviceTypeId;
                 item.workerIds = row.workersId;
@@ -3848,6 +3849,7 @@ function saveItem(callback){
             }else{
                 var item = {};
                 item.id = row.id;
+                item.remark = row.remark;
                 item.serviceId = row.serviceId;
                 item.amt = row.amt;
                 item.subtotal = row.subtotal;
@@ -4424,4 +4426,25 @@ function remarkChang(e){
 	var row = rpsItemGrid.getEditorOwnerRow(el);
 	var remark = rpsItemGrid.getCellEditor("remark", row);
 	remark.setValue(e.value);
+}
+
+function upload(){
+	var formData = billForm.getData();
+	var serviceId = formData.id;
+	var uploadUrl = "/com.hsweb.bx.upload.flow";
+	if(serviceId){
+		nui.open({
+	        url: webPath + contextPath+uploadUrl,
+	        title: "上传图片",
+			width: "50%",
+			height: "50%",
+	        onload: function () {
+	            var iframe = this.getIFrameEl();
+	        },
+	        ondestroy: function (action){
+	        }
+	    });
+	}else{
+		showMsg("请先保存工单","W");
+	}
 }

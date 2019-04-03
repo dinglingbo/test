@@ -118,6 +118,7 @@
         <input name="guestId" class="nui-hidden"/>
         <input id="mtAdvisor" name="mtAdvisor" class="nui-hidden"/>
         <input class="nui-hidden" name="contactorId"/>
+        <input class="nui-hidden" name="guestId"/>
         <input class="nui-hidden" name="carId"/>
         <input class="nui-hidden" name="status"/>
         <input class="nui-hidden" name="carVin"/>

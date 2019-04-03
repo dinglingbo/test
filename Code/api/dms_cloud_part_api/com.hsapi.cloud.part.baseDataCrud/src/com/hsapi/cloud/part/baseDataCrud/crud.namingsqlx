@@ -285,11 +285,14 @@
 		       a.record_date           recordDate,
 		       a.modifier              modifier,
 		       a.modify_date           modifyDate,
-		       a.guset_property        gusetProperty,
+		       a.guest_property        guestProperty,
 		       a.license_code          licenseCode,
 		       a.id_card               idCard,
 		       a.license_url           licenseUrl,
-		       a.id_card_url           idCardUrl
+		       a.id_card_url           idCardUrl,
+		       a.is_need_pack          isNeedPack,
+		       a.default_logistics_id  defaultLogisticsId,
+		       a.default_logistics     defaultLogistics
 		       FROM com_guest a
 		       WHERE a.is_client = 1  
 		       <!-- 汽配客户不共享-->

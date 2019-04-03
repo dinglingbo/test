@@ -183,8 +183,8 @@
         <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
         <a href="javascript:box_setup_open()">修改</a>
         <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
-        <a plain="true" iconCls="" plain="false" onclick="sendInfo()">发送短信</a>
-        <a style="background:#999999" plain="true" iconCls="" plain="false" onclick="sendInfo1()">发送微信</a>
+        <a plain="true" iconCls="" plain="false" onclick="sendInfo()" id = "sendInfo">发送短信</a>
+        <a style="" plain="true" iconCls="" plain="false" onclick="sendWechatInfo()" id = "openId">发送微信</a>
      </div>
      
        <!-- <div showCollapseButton="false" style="border:0; text-align: center;" class="print_hide">
@@ -415,12 +415,15 @@
 		var url_two = null;
 		var url_three = null;
 		//var data = [];
-		var phones = "";
 		var itemAmt = 0;
 		var itemSubtotal = 0;
 		var partAmt = 0;
 		var partSubtotal = 0;
 		var enterDate = null;
+		var weChatData = {};
+		var wechatOpneId = null;
+		var infoData = {};
+		var sendY = 1;
 		//尊敬的客户:以上报价在实际施工过程中可能略有小幅变动，最终价格以实际结算单为准
 		$(document).ready(function (){
 			
@@ -463,6 +466,7 @@
         }
                 
         function SetData(params){
+            weChatData = params;
             var currRepairBillMobileFlag = params.currRepairBillMobileFlag || ""; 
             var imgUrl = params.currCompLogoPath || "";
             if(imgUrl && imgUrl != ""){
@@ -512,8 +516,11 @@
 	        var url = null;
 	        if(params.type){
 	        	url = "com.hsapi.repair.repairService.svr.billqyeryMaintainList.biz.ext?rid=";
+	        	document.getElementById("sendInfo").style.background="#999999";
+	        	sendY = 0;
 	        }else{
 	        	url = "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid=";
+	        	sendY = 1;
 	        }
 	       /*  var dictids= ['DDT20130703000051'];
 	        
@@ -526,11 +533,27 @@
 	        	if(text.list.length > 0){
 	        	   
 	        		var list = text.list[0];
-	        		phones = list.contactMobile || "";
+	        		var mobile = null;
+	        		if(params.type){
+	        		    mobile = list.contactorTel || "";
+	        		}else{
+	        		    mobile = list.contactMobile || "";
+	        		}
+	        		
 	        		var carNo = list.carNo || "";
 	        		var carVin = list.carVin || "";
+	        		var carId = list.carId;
+	        		infoData.mobile = mobile;
+	        		infoData.carNo = carNo;
+	        		infoData.carId = carId;
+	        		infoData.guestId = list.contactorId;
+	        		infoData.serviceType = 11;
+	        		infoData.mainId = params.serviceId;
 	        		enterDate = list.enterDate || "";
-	        		
+	        		wechatOpenId = list.openId || "";
+	        		if(wechatOpenId == "" || wechatOpenId == null){
+	        		    document.getElementById("openId").style.background="#999999"; 
+	        		}
 	        		var drawOutReport = list.drawOutReport || "";
 	        		if(drawOutReport != ""){
 	        		     document.getElementById("drawOutReport").innerHTML = document.getElementById("drawOutReport").innerHTML + drawOutReport;
@@ -934,19 +957,39 @@
    var token1 =null; 
    var webUrl =null;
    function sendInfo(){
-	nui.open({
-		url: webUrl+"com.hsweb.crm.manage.sendInfo.flow?token="+token1,
-		//url:"http://127.0.0.1:8080/default/com.hsweb.crm.manage.sendInfo.flow",
-		title: "发送短信", width: 655, height: 386,
-		onload: function () {
+     if(sendY){
+         nui.open({
+		 url: webUrl+"com.hsweb.crm.manage.sendInfo.flow?token="+token1,
+		 //url:"http://127.0.0.1:8080/default/com.hsweb.crm.manage.sendInfo.flow",
+		 title: "发送短信", width: 655, height: 386,
+		 onload: function () {
 			var iframe = this.getIFrameEl();
-			iframe.contentWindow.setPhones(phones);
-		},
-		ondestroy: function (action) {
+			iframe.contentWindow.setData(infoData);
+		 },
+		 ondestroy: function (action) {
             //重新加载
             //query(tab);
-        }
-    });
+         }
+        });
+    }else{
+        return;
+    }
+	
+  }
+  
+  function sendWechatInfo(){
+       if(wechatOpenId == "" || wechatOpenId == null){
+	       return; 
+	    }else{
+	      var url = "com.hsapi.repair.repairService.sendWeChat.sendBillCostInfo.biz.ext?serviceId=";
+           $.post(weChatData.baseUrl+url+weChatData.serviceId+"&token="+weChatData.token,{},function(text){//套餐
+        	if(text.errCode == "S"){
+        	  alert("发送微信成功!"); 
+    	    }else{
+    	      alert("发送微信失败!");
+    	    }
+          }); 
+	  } 
   }
     	
     	

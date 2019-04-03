@@ -124,7 +124,7 @@ $(document).ready(function ()
         var column = e.column;
         var field = e.field;
         var editor = e.editor;
-        if(column.field == "amt" ||column.field == "rtnCompRate" ||column.field == "rtnGuestRate"){
+        if(column.field == "amt" ||column.field == "rtnCompRate" ||column.field == "rtnGuestRate" || column.field == "rtnCompAmt" || column.field == "rtnGuestAmt" ){
             editor.validate();
             if (editor.isValid() == false) {
                 showMsg("请输入有效数字!","W");
@@ -158,6 +158,26 @@ $(document).ready(function ()
         			} else if (e.value < 0) {
         				e.value = 0;
         				rtnGuestRate = 0;
+        			}
+        		}
+            	if (e.field == "rtnCompAmt") {
+        			var rtnCompAmt = e.value;
+        			if (e.value == null || e.value == '') {
+        				e.value = 0;
+        				rtnCompAmt = 0;
+        			} else if (e.value < 0) {
+        				e.value = 0;
+        				rtnCompAmt = 0;
+        			}
+        		}
+            	if (e.field == "rtnGuestAmt") {
+        			var rtnGuestAmt = e.value;
+        			if (e.value == null || e.value == '') {
+        				e.value = 0;
+        				rtnGuestAmt = 0;
+        			} else if (e.value < 0) {
+        				e.value = 0;
+        				rtnGuestAmt = 0;
         			}
         		}
 
@@ -423,7 +443,9 @@ function setInitData(params){
                         endDate:ldata.endDate,
                         mtAdvisorId:ldata.mtAdvisorId,
                         mtAdvisor:ldata.mtAdvisor,
-                        settleTypeId :ldata.settleTypeId
+                        settleTypeId :ldata.settleTypeId,
+                        costAmt:ldata.costAmt,
+                        costRemark:ldata.costRemark
                     };
                 
             basicInfoForm.setData(sdata);
@@ -828,4 +850,99 @@ function bindWechat(){
     });
 }
 
+function changRtnCompAmt(e){
+	var row = detailGrid.getSelected();
+	var newRow = row;
+	var amt = row.amt;
+	if(amt){
+		if(e.value>0){
+			var rate = e.value/amt*100;
+			rate = rate.toFixed(2);
+			newRow.rtnCompRate = rate;
+			detailGrid.updateRow(row,newRow);
+		}
+	}
+}
 
+function changRtnGuestAmt(e){
+	var row = detailGrid.getSelected();
+	var newRow = row;
+	var amt = row.amt;
+	if(amt){
+		if(e.value>0){
+			var rate = e.value/amt*100;
+			rate = rate.toFixed(2);
+			newRow.rtnGuestRate = rate;
+			detailGrid.updateRow(row,newRow);
+		}
+	}
+	
+}
+
+function changRtnCompRate(e){
+	var row = detailGrid.getSelected();
+	var newRow = row;
+	var amt = row.amt;
+	if(amt){
+		if(e.value>0){
+			var rtnCompAmt = amt/100*e.value;
+			rtnCompAmt = rtnCompAmt.toFixed(4);
+			newRow.rtnCompAmt = rtnCompAmt;
+			detailGrid.updateRow(row,newRow);
+		}
+	}
+}
+
+function changRtnGuestRate(e){
+	var row = detailGrid.getSelected();
+	var newRow = row;
+	var amt = row.amt;
+	if(amt){
+		if(e.value>0){
+			var rtnGuestAmt = amt/100*e.value;
+			rtnGuestAmt = rtnGuestAmt.toFixed(4);
+			newRow.rtnGuestAmt = rtnGuestAmt;
+			detailGrid.updateRow(row,newRow);
+		}
+	}
+
+}
+
+function changAmt(e){
+	var row = detailGrid.getSelected();
+	var newRow = row;
+	//根据返点计算金额
+	var rtnGuestRate = row.rtnGuestRate;
+	var rtnCompRate = row.rtnCompRate;
+	if(e.value>0){
+		var rtnGuestAmt = 0;
+		var rtnCompAmt = 0;
+		if(rtnGuestRate>0){
+			rtnGuestAmt = e.value/100*rtnGuestRate;
+			rtnGuestAmt = rtnGuestAmt.toFixed(4);
+		}
+		if(rtnCompRate>0){
+			rtnCompAmt = e.value/100*rtnCompRate;
+			rtnCompAmt = rtnCompAmt.toFixed(4);
+		}
+		newRow.rtnGuestAmt = rtnGuestAmt;
+		newRow.rtnCompAmt = rtnCompAmt;
+		detailGrid.updateRow(row,newRow);
+	}
+}
+
+function changeCostAmt(e){
+	var falg = isNaN(e.value);
+	if(!falg){
+		if(e.value<0){
+			showMsg("请输入有效数字!","W");
+			nui.get("costAmt").setValue(0);
+			return;
+		}
+	}else{
+		showMsg("请输入有效数字!","W");
+		nui.get("costAmt").setValue(0);
+		return;
+	}
+	
+}

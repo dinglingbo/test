@@ -21,6 +21,7 @@ $(document).ready(function(v)
     tree = nui.get("tree1");
     tree.setUrl(treeUrl);
     tree.load({token:token});
+    nui.get("searchKey").focus();
 //    tree.on("beforeload",function(e){
 //        e.data.token = token;
 //    });
@@ -40,7 +41,10 @@ $(document).ready(function(v)
         switch(keyCode){
             case 27:
             window.CloseOwnerWindow("");
-            break; 
+            break;
+            case 13:
+            	onSearch(); 
+            break;
         }
 
         /*if((keyCode==83)&&(event.shiftKey))  {  

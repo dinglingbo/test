@@ -233,7 +233,7 @@ $(document).ready(function () {
  });     
       
 initDicts({
-    //visitMode: "DDT20130703000021",//跟踪方式
+    visitMode: "DDT20130703000021",//跟踪方式
     chanceType:SELL_TYPE,//商机
       //carSpec:CAR_SPEC,//车辆规格
       //kiloType:KILO_TYPE,//里程类别
@@ -370,16 +370,16 @@ function SetData(params) {
         }
     });
     // 回访记录根据联系人id查询
-    if (params.contactorId) {
+    if (params.contactorId || params.carId) {
         var p = {
-            guestSource: 1
+            guestSource: 0
          };
      	if(params.carId){
     		p.carId = params.carId;
     	}else if(params.contactorId){
     		p.guestId = params.contactorId;
     	}
-        loadVisitHis(params);
+        loadVisitHis(p);
     }
     // 销售机会根据客户id查询
     if (params.guestId) {

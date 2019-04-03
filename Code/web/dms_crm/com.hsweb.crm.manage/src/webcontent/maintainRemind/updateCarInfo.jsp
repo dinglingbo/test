@@ -186,10 +186,10 @@ pageEncoding="UTF-8" session="false" %>
                             </tr>
                             <tr>
                                     <td class="form_label"> 
-                                            <label>下次保养日期：</label>
+                                            <label>下次保养时间：</label>
                                         </td>
                                         <td>
-                                            <input id="careDueDate" name="careDueDate" allowInput="true" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
+                                            <input id="careDueDate" name="careDueDate" allowInput="true" format="yyyy-MM-dd HH:mm"  timeFormat="HH:mm"showTime="true"class="nui-datepicker" width="100%" />
                                         </td>
                                 <td class="form_label">
                                     <label>生产日期：</label>
@@ -299,7 +299,7 @@ function save(){
     else {
     var ex ={
         carId:carForm.id,
-        careDueDate:carForm.careDueDate,
+        careDueDate:carForm.careDueDate+":00",
         lastComeKilometers:carForm.lastComeKilometers,
         careDueMileage:carForm.careDueMileage
     };

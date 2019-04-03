@@ -11,7 +11,7 @@
 <head>
 <title>电话跟踪</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/manage/js/telTrack.js?v=1.0.18"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/telTrack.js?v=1.0.19"></script>
         <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 </head>
@@ -46,13 +46,12 @@
                     valueFromSelect="true"
                     showNullItem="false"
                     nullItemText="请选择..."/>
-                <label style="font-family:Verdana;">跟踪状态：</label>
                 <input name="visitStatus"
                     id="query_visitStatus"
                     class="nui-combobox width2"
                     textField="name"
                     valueField="customid"
-                    emptyText="请选择..."
+                    emptyText="选择跟踪状态"
                     url=""
                     value="060706" 
                     onvaluechanged="query()"
@@ -61,16 +60,7 @@
                     showNullItem="true"
                     nullItemText="请选择..."
                     style="width:130px;"/>
-                <input class="nui-combobox"
-	                  id="member"
-	                  name="member"
-	                  textField="empName"
-	                  valueField="empId"
-	          		  visible="false"
-	                  url=""
-	                  allowInput="true"
-	                  valueFromSelect="false"
-	                  width="100px">
+
 	                 <input class="nui-combobox"
 	                  id="carBrandId"
 	                  name="carBrandId"
@@ -81,19 +71,28 @@
 	                  allowInput="true"
 	                  valueFromSelect="false"
 	                  width="100px">
-                <label style="font-family:Verdana;">车牌号：</label>
-                <input class="nui-textbox" name="carNo" id="query_carno" enabled="true"style="width:100px;"/>
-
+                <input class="nui-textbox" name="carNo" id="query_carno" enabled="true"style="width:100px;" emptyText="车牌号"/>
+                <input class="nui-combobox"
+	                  id="visitManId"
+	                  name="visitManId"
+	                  textField="empName"
+	                  valueField="empId"
+	          		  visible="true"
+	                  url=""
+	                  allowInput="true"
+                      valueFromSelect="false"
+                      emptyText="营销员"
+                      popupwidth="150px;"
+	                  width="100px">
                <!--  <label style="font-family:Verdana;">手机号：</label>
                 <input class="nui-textbox" name="mobile" id="query_mobile" enabled="true"/> -->
 
-                <label style="font-family:Verdana;">下次跟踪时间：</label>
                 <input id="query_nextScoutDate"
                     name="nextScoutDate"
                     class="nui-datepicker width2"
                     dateFormat="yyyy-MM-dd"
-                    emptyText="请选择日期" alwaysView="true"
-                    style="width:100px;"/>
+                    emptyText="下次跟踪时间" alwaysView="true"
+                    style="width:120px;"/>
                 <a class="nui-button"  plain="true" onclick="query()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <li class="separator"></li>
                 <a class="nui-button"  plain="true" onclick="telInfo()" id="" enabled="true"><span class="fa fa-phone fa-lg"></span>&nbsp;电话跟踪</a>

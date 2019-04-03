@@ -12,7 +12,7 @@
         <head>
             <title>车辆详情</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.21" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.24" type="text/javascript"></script>
         </head>
         <style type="text/css">
             body {
@@ -45,8 +45,7 @@
         <body>
             <div class="nui-fit">
                 <input class="nui-hidden" id="carId" name="carId" />
-                <input class="nui-hidden" id="guestId" name="guestId" />
-                <input name="visitMode" id="visitMode" class="nui-combobox "textField="name" valueField="customid" visible="false"/>
+                <input class="nui-hidden" id="guestId" name="guestId" /> 
                 <input class="nui-combobox" name="identity" id="identity" valueField="customid" textField="name" width="100%"  visible="false" />
                  <input name="serviceTypeId"
                 id="serviceTypeId" visible="false"
@@ -534,6 +533,7 @@
 	       <div field="workerIds" headerAlign="center"  allowSort="false" visible="false" width="80" header="施工员" align="center"></div>  
 	       <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center" name="saleMan"></div>
 	       <div field="saleManId" headerAlign="center"   allowSort="false" visible="false" width="80" header="销售员" align="center"></div> 
+	       <div field="remark" headerAlign="center"   allowSort="false" visible="true" width="80" header="备注" align="center"></div>
       </div>
    </div>
 </div>

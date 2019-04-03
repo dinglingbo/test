@@ -2109,6 +2109,7 @@ function addSelectPart(){
 			orderPrice : price,
 			orderAmt : price,
 			storeId : FStoreId,
+			storeShelf : shelf,
 			sellPrice : sellPrice,
 			comOemCode : row.oemCode,
 			comSpec : row.spec,

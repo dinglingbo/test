@@ -4427,3 +4427,24 @@ function remarkChang(e){
 	var remark = rpsItemGrid.getCellEditor("remark", row);
 	remark.setValue(e.value);
 }
+
+function upload(){
+	var formData = billForm.getData();
+	var serviceId = formData.id;
+	var uploadUrl = "/com.hsweb.bx.upload.flow";
+	if(serviceId){
+		nui.open({
+	        url: webPath + contextPath+uploadUrl,
+	        title: "上传图片",
+			width: "50%",
+			height: "50%",
+	        onload: function () {
+	            var iframe = this.getIFrameEl();
+	        },
+	        ondestroy: function (action){
+	        }
+	    });
+	}else{
+		showMsg("请先保存工单","W");
+	}
+}

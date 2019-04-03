@@ -17,10 +17,10 @@ var acountyEl = null;
 var astreetAddressEl = null;
 var aaddressEl = null;
 var nrow = null;
-var gusetPropertyList=[];
-var gusetPropertyHash={};
-var gusetPropertyEl=null;
-var dictDefs ={"gusetProperty":"10042"};
+var guestPropertyList=[];
+var guestPropertyHash={};
+var guestPropertyEl=null;
+var dictDefs ={"guestProperty":"10042"};
 function initForm(){
     mainForm = new nui.Form("#mainForm");
     otherForm = new nui.Form("#otherForm");
@@ -63,10 +63,10 @@ $(document).ready(function(v)
     initForm();
     initDicts(dictDefs,function()
 	    {   
-          	gusetPropertyList = nui.get("gusetProperty").getData();
-          	gusetPropertyList.filter(function(v)
+          	guestPropertyList = nui.get("guestProperty").getData();
+          	guestPropertyList.filter(function(v)
 	        {
-          		gusetPropertyHash[v.customid] = v;
+          		guestPropertyHash[v.customid] = v;
 	            return true;
 	        });
 
@@ -231,7 +231,7 @@ var licenseCode=null;
 var name=null;
 var registerMoney=null;
 function getLicense(imgPath){
-	var gusetProperty =nui.get('gusetProperty').getValue().replace(/\s+/g, "");
+	var guestProperty =nui.get('guestProperty').getValue().replace(/\s+/g, "");
 	nui.mask({
         el : document.body,
     	cls : 'mini-mask-loading',
@@ -256,7 +256,7 @@ function getLicense(imgPath){
 	        	nui.get('shortName').setValue(name);
         		nui.get('fullName').setValue(name);
         		nui.get('licenseCode').setValue(licenseCode);
-    			if(gusetProperty && gusetProperty!='013903'){    		
+    			if(guestProperty && guestProperty!='013902'){    		
     				var params={};
     	        	params.licenseCode=licenseCode;
     	        	params.noOrgId=1;
@@ -280,7 +280,7 @@ function getLicense(imgPath){
 var idCard=null;
 var legalPerson=null;
 function getIdCard(imgPath){
-	var gusetProperty =nui.get('gusetProperty').getValue().replace(/\s+/g, "");
+	var guestProperty =nui.get('guestProperty').getValue().replace(/\s+/g, "");
 	nui.mask({
         el : document.body,
     	cls : 'mini-mask-loading',
@@ -299,7 +299,7 @@ function getIdCard(imgPath){
 	        	idCard=data.id_card;
 	        	legalPerson =data.legal_person;
 	        	nui.get('idCard').setValue(idCard);
-	        	if(gusetProperty=='013903'){
+	        	if(guestProperty=='013902'){
 	        		
 	        		nui.get('shortName').setValue(legalPerson);
 	        		nui.get('fullName').setValue(legalPerson);
@@ -461,7 +461,7 @@ function onCancel(e) {
 }
 var requiredField2 = {
 	    code:"客户编码",
-	    gusetProperty :"客户属性",
+	    guestProperty :"客户属性",
 	    licenseUrl :"营业执照图片",
 	    licenseCode :"营业执照号",
 	    idCardUrl :"身份证图片",
@@ -478,7 +478,7 @@ var requiredField2 = {
 
 var requiredField = {
 	    code:"客户编码",
-	    gusetProperty :"客户属性",
+	    guestProperty :"客户属性",
 	    idCardUrl :"身份证图片",
 	    idCard :"身份证",
 	    shortName:"客户简称",
@@ -523,8 +523,8 @@ function onOk()
     else{
         data.isInternalId = "";
     }
-    var gusetProperty=nui.get("gusetProperty").getValue();
-    if(gusetProperty=='013903'){
+    var guestProperty=nui.get("guestProperty").getValue();
+    if(guestProperty=='013902'){
     	
     	for(var key in requiredField)
     	{
@@ -702,10 +702,10 @@ function setData(data)
         	onCitySelected("cityId");
         }
         
-        var gusetProperty =nui.get('gusetProperty').getValue();
-        if(gusetProperty){
+        var guestProperty =nui.get('guestProperty').getValue();
+        if(guestProperty){
         	
-        	if(gusetProperty=='013903'){
+        	if(guestProperty=='013902'){
         		$('#idNo').show();
         		$('#lince').css("display","none");
         		$('#idNoImg').attr("src",supplier.idCardUrl);
@@ -883,8 +883,8 @@ function onStreetChange(e){
 }
 
 function onGuestPropertyChange(e){
-	var gusetProperty =nui.get('gusetProperty').getValue();
-	if(gusetProperty=='013903'){
+	var guestProperty =nui.get('guestProperty').getValue();
+	if(guestProperty=='013902'){
 		$('#idNo').show();
 		$('#lince').css("display","none");
 	}else{

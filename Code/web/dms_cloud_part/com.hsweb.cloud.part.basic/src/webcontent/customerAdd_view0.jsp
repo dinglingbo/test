@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%=webPath + contextPath%>/basic/js/customerAdd.js?v=1.0.75"></script>
+<script src="<%=webPath + contextPath%>/basic/js/customerAdd.js?v=1.0.80"></script>
 <script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
 <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
 <script src="<%= request.getContextPath() %>/common/qiniu/qiniu1.0.14.js" type="text/javascript"></script>
@@ -112,9 +112,9 @@
                               <td class=" right fwidtha required">客户编码:</td>
                               <td ><input id="code" name="code" width="100%" class="nui-textbox" ></td>
                               <td class=" right fwidtha required">客户属性:</td>
-                              <td ><input id="gusetProperty"
+                              <td ><input id="guestProperty"
                                           allowInput="false" 
-                              			  name="gusetProperty" 
+                              			  name="guestProperty" 
                               			  showNullItem="false"
                               			  onvaluechanged="onGuestPropertyChange"
                               			  class="nui-combobox" width="100%" 

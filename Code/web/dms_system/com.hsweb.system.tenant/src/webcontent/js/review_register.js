@@ -1,3 +1,4 @@
+
 /**
  * Created by lilium on 2018/5/27.
  */
@@ -25,6 +26,12 @@ var DisabledSignHash = {
 	    "0":"否",
 	    "1":"是"
 	};
+
+var advancedOrgWin = null;
+var moreOrgGrid =null;
+var moreOrgGridUrl=apiPath + sysApi + "/com.hsapi.system.basic.organization.getCompanyAll.biz.ext";
+var show=0;
+
 $(document).ready(function(v)
 {	
 	beginDate=nui.get("beginDate");
@@ -33,9 +40,28 @@ $(document).ready(function(v)
     dgGrid = nui.get("dgGrid");
     assignStatus=nui.get("assignStatus");
     assignStatus2=nui.get("assignStatus2");
+    
+    advancedOrgWin = mini.get("advancedOrgWin");
+    moreOrgGrid = mini.get("moreOrgGrid");
+    moreOrgGrid.setUrl(moreOrgGridUrl);
+    
     dgGrid.on("beforeload",function(e){
     	e.data.token = token;
     });
+    
+    document.onkeyup = function(event) {
+        var e = event || window.event;
+        var keyCode = e.keyCode || e.which;// 38向上 40向下
+        if ((keyCode == 13)) { // F9
+        	if(show==1){
+        		searchOrg();
+        	}
+        }
+        if ((keyCode == 27)) { // F9
+        	onOrgClose();
+        }
+    }
+	
    initProvince('provinceId',function(){
     	provinceList=nui.get('provinceId').getData();
     	 provinceList.forEach(function(v) {
@@ -511,4 +537,86 @@ function changebutton(){
 		nui.get(jy).setVisible(false);
 		nui.get(qy).setVisible(true);
 	}}
+}
+
+function OrgShow(){
+	var row=dgGrid.getSelected ();
+	if(!row){
+		showMsg("请选择一条记录","W");
+		return;
+	}
+	if(!row.tenantId){
+		showMsg("该数据租户ID为空","W");
+		return;
+	}
+	searchOrg();
+    advancedOrgWin.show();
+    moreOrgGrid.focus();
+    show=1;
+}
+
+function onOrgClose(){
+    advancedOrgWin.hide();
+    moreOrgGrid.setData([]);
+    nui.get('orgidOrName').setValue("");
+    show=0;
+}
+
+function searchOrg(){
+	var params={};
+	var row=dgGrid.getSelected ();
+	params.tenantId=row.tenantId;
+	var orgidOrName=nui.get('orgidOrName').value;
+	params.orgidOrName=orgidOrName;
+	moreOrgGrid.load({params:params,token :token});
+
+}
+
+var addAccountUrl=baseUrl + "com.hs.common.sysService.saveSignIn.biz.ext";
+//开通电商账号
+function addOrgAccount(){
+	var row = moreOrgGrid.getSelected();
+	if(!row){
+		showMsg("请选择一条记录","W");
+		return;
+	}
+	var srmUserId = row.srmUserId;
+	if(srmUserId){
+		showMsg("已开通电商账号","W");
+		return;
+	}
+	var companyId = row.orgid;
+	var company = row.name;
+	var mobile = row.tel;
+	
+	nui.mask({
+        el : document.body,
+        cls : 'mini-mask-loading',
+        html : '开通中...'
+    });
+    nui.ajax({
+        url: addAccountUrl,
+        type: 'post',
+        data: nui.encode({
+        	companyId : companyId,
+        	company   : company,
+        	mobile    : mobile,
+        	token     : token
+        }),
+        cache: false,
+        success: function (data) {
+            if (data.errCode == "S"){
+            	nui.unmask(document.body);
+            	showMsg(data.errMsg ||"电商账号开通成功","S");
+                }else {
+                nui.unmask(document.body);
+                showMsg(data.errMsg ||"电商账号开通成功","E");
+            }
+            moreOrgGrid.reload();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            nui.alert(jqXHR.responseText);
+        }
+	});
+	
 }

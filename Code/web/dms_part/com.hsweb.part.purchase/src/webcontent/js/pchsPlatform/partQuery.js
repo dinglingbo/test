@@ -115,7 +115,7 @@ function addOrderCar(guest, part)
 	generateOrderByBatch(main, detail, type);
  
 }
-//新增配件
+//新增配件，给生成采购车用
 function addOrEditPart(row)
 {
     nui.open({
@@ -152,6 +152,51 @@ function addOrEditPart(row)
             if(action == "ok")
             {	
             	verifyGuestForCar();
+            	
+            }
+        }
+    });
+
+}
+
+
+//新增配件,给生成采购订单用
+function addOrEditPart2(row)
+{
+    nui.open({
+        // targetWindow: window,
+        url: webPath + contextPath + "/com.hsweb.part.baseData.partDetail.flow?token=" + token,
+        title: "配件资料",
+        width: 470, height: 320,
+        allowDrag:true,
+        allowResize:false,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            var params={};
+//            params.qualityTypeIdList=null;
+//            params.partBrandIdList=null;
+//            params.unitList=null;
+//            params.abcTypeList=null;
+//            params.applyCarModelList=null;
+            if(row)
+            {
+                params.comPartCode= row.partsCode;
+                params.name=row.partsName;
+            }
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy: function (action)
+        {
+          	var iframe = this.getIFrameEl();
+        	var data = iframe.contentWindow.getData();
+        	console.log(data);
+//        	var enterDetail={
+//        		comPartCode : data.code
+//        	};
+            if(action == "ok")
+            {	
+            	verifyGuestForOrder();
             	
             }
         }
@@ -270,7 +315,7 @@ function verifyGuestForOrder(){
             
             if(partData.status==-1){
         		parent.parent.showMsg(partData.msg);
-        		addOrEditPart(jsonData);
+        		addOrEditPart2(jsonData);
         	}else{
     			addOrder();      		 
         	}

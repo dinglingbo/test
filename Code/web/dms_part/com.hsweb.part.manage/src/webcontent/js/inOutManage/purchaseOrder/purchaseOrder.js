@@ -2000,6 +2000,7 @@ function addSelectPart(){
 			orderPrice : price,
 			orderAmt : price,
 			storeId : FStoreId,
+			storeShelf : shelf,
 			comOemCode : row.oemCode,
 			comSpec : row.spec,
 			partCode : row.code,

@@ -221,10 +221,6 @@
       <process:to type="query">token</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">realm+'/'+apiName</process:from>
-      <process:to type="query">httpStr</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">token</process:from>
       <process:to type="query">params/token</process:to>
     </process:copy>

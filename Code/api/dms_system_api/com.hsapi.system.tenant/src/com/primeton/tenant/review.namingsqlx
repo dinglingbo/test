@@ -4,7 +4,7 @@
     
      <select id="queryComTrialRegister" parameterClass="HashMap" resultClass="com.primeton.tenant.tenant.ComTrialRegister">
      	SELECT
-			id,type,mobile,name,company_name companyName,province_id provinceId,city_id cityId,status,is_disabled isDisabled,recorder,record_date recordDate,modifier,modify_date modifyDate
+			id,tenant_id as tenantId, type,mobile,name,company_name companyName,province_id provinceId,city_id cityId,status,is_disabled isDisabled,recorder,record_date recordDate,modifier,modify_date modifyDate
 		FROM com_trial_register
 		WHERE 1=1	
 		<isNotEmpty prepend="and" property="beginDate">  

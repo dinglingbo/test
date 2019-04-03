@@ -53,8 +53,8 @@
             <isNotEmpty prepend="and" property="tenantId">  
                 (b.tenant_id = #tenantId#)
             </isNotEmpty>  
-            <isNotEmpty prepend="and" property="orgid">  
-                (c.last_orgid = #orgid#)
+            <isNotEmpty prepend="and" property="lastOrgid">  
+                (c.last_orgid = #lastOrgid#)
             </isNotEmpty> 
             <isNotEmpty prepend="and" property="isDisabled">  
                 (a.is_disabled = #isDisabled# )

@@ -1079,6 +1079,7 @@
 			a.check_date as checkDate,
 			a.draw_out_report as drawOutReport,
 			a.out_date as outDate,
+			a.collect_money_date as collectMoneyDate,
 			a.is_out_bill as isOutBill,
 			a.mt_advisor_id as mtAdvisorId,
 			a.is_disabled as isDisabled,
@@ -1087,6 +1088,7 @@
 			a.mt_advisor AS mtAdvisor,
 			a.`status` AS `status`,
 			a.is_settle AS isSettle,
+			a.is_collect_money as isCollectMoney,			
 			a.is_judge AS isJudge,
 			a.remark AS remark,
 			a.modifier AS modifier,
@@ -1151,9 +1153,11 @@
 			a.engine_no as boxNo,
 			a.engine_model as boxModel,
 			a.drive_type as driveType,
-			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
+			<!--(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
 	       inner join rpb_business_type f on e.service_type_id = f.id
-	       where e.service_id = a.id) as serviceTypeName
+	       where e.service_id = a.id) as serviceTypeName-->
+	       	(select GROUP_CONCAT(name) from rpb_business_type f 	       
+	       where a.service_type_id = f.id) as serviceTypeName
 		FROM
 			rps_maintain a
 			inner JOIN rpb_car b ON ( a.car_id = b.id )
@@ -1167,6 +1171,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="guestProperty">
                 (c.guest_property = #guestProperty#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="propertyFeatures">
+                (c.property_features like '%$propertyFeatures$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="isCollectMoney">
                 (a.is_collect_money = #isCollectMoney#)
@@ -1224,6 +1231,20 @@
             <isNotEmpty prepend="and" property="eEnterDate">  
                 (a.enter_date &lt; #eEnterDate#)
             </isNotEmpty>
+             <!--出厂日期 -->
+            <isNotEmpty prepend="and" property="outDateStart">  
+                (a.out_date &gt;= #outDateStart#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="outDateEnd">  
+                (a.out_date &lt; #outDateEnd#)
+            </isNotEmpty>
+             <!--结算日期 -->
+            <isNotEmpty prepend="and" property="collectMoneyDateStart">  
+                (a.collect_money_date &gt;= #collectMoneyDateStart#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="collectMoneyDateEnd">  
+                (a.collect_money_date &lt; #collectMoneyDateEnd#)
+            </isNotEmpty> 
             <!--开单日期 -->
             <isNotEmpty prepend="and" property="sRecordDate">  
                 (a.record_date &gt;= #sRecordDate#)
@@ -1472,16 +1493,20 @@
 			a.check_sign as checkSign,
 			a.check_date as checkDate,
 			a.out_date as outDate,
+			a.collect_money_date as collectMoneyDate,
 			a.is_out_bill as isOutBill,
 			a.is_settle AS isSettle,
+			a.is_collect_money as isCollectMoney,
 			a.mt_advisor_id as mtAdvisorId,
 			a.guest_desc guestDesc,
 			a.fault_phen faultPhen,
 			a.solve_method solveMethod,		
 	    	d.wechat_open_id as openId,
-			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
+			<!--(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
 	       inner join rpb_business_type f on e.service_type_id = f.id
-	       where e.service_id = a.id) as serviceTypeName,
+	       where e.service_id = a.id) as serviceTypeName,-->
+	       	(select GROUP_CONCAT(name) from rpb_business_type f 	       
+	       where a.service_type_id = f.id) as serviceTypeName,
 		      ifnull((SELECT sum(g.subtotal) from rps_package g where a.id = g.service_id),0) as packageSubtotal,
 		      ifnull((SELECT sum(h.subtotal) from rps_item h where a.id = h.service_id),0) as itemSubtotal,
 		      ifnull((SELECT sum(i.subtotal) from rps_part i where a.id = i.service_id),0) as partSubtotal,
@@ -1501,6 +1526,12 @@
             <isNotEmpty prepend="and" property="guestProperty">
                 (c.guest_property = #guestProperty#)
             </isNotEmpty>
+             <isNotEmpty prepend="and" property="propertyFeatures">
+                (c.property_features like '%$propertyFeatures$%')
+            </isNotEmpty>  
+            <isNotEmpty prepend="and" property="isCollectMoney">
+                (a.is_collect_money = #isCollectMoney#)
+            </isNotEmpty>         
 			<isNotEmpty prepend="and" property="orgid">
                 (a.orgid = #orgid#)
             </isNotEmpty>
@@ -1538,6 +1569,20 @@
             <isNotEmpty prepend="and" property="eEnterDate">  
                 (a.enter_date &lt; #eEnterDate#)
             </isNotEmpty>
+             <!--出厂日期 -->
+            <isNotEmpty prepend="and" property="outDateStart">  
+                (a.out_date &gt;= #outDateStart#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="outDateEnd">  
+                (a.out_date &lt; #outDateEnd#)
+            </isNotEmpty>
+             <!--结算日期 -->
+            <isNotEmpty prepend="and" property="collectMoneyDateStart">  
+                (a.collect_money_date &gt;= #collectMoneyDateStart#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="collectMoneyDateEnd">  
+                (a.collect_money_date &lt; #collectMoneyDateEnd#)
+            </isNotEmpty>            
             <!--开单日期 -->
             <isNotEmpty prepend="and" property="sRecordDate">  
                 (a.record_date &gt;= #sRecordDate#)

@@ -45,6 +45,7 @@
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>invokePojo1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
     <targetConnections>link6</targetConnections>
@@ -56,7 +57,7 @@
       <process:to type="query">criteria/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">=</process:from>
+      <process:from type="literal" pattern="reference">like</process:from>
       <process:to type="query">criteria/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
@@ -102,6 +103,30 @@
     <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>
       <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">like</process:from>
+      <process:to type="query">criteria/_expr[4]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/guestName</process:from>
+      <process:to type="query">criteria/_expr[4]/_value</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">guestName</process:from>
+      <process:to type="query">criteria/_expr[4]/_property</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">like</process:from>
+      <process:to type="query">criteria/_expr[5]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/serviceCode</process:from>
+      <process:to type="query">criteria/_expr[5]/_value</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">serviceCode</process:from>
+      <process:to type="query">criteria/_expr[5]/_property</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">

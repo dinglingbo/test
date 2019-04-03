@@ -497,12 +497,12 @@ function setInitData(params){
                         loadDetail(p3,status);
 
                     }else{
-                        showMsg("数据加载失败,请重新打开工单!","E");
+                        showMsg("数据加载失败,请重新打开工单!","W");
                     }
     
                 }, function(){});
             }else{
-                showMsg('数据加载失败!','E');
+                showMsg('数据加载失败!','W');
             }
         }, function(){
             nui.unmask(document.body);
@@ -590,7 +590,7 @@ function save(){
                     loadDetail(p3);
 
                 }else{
-                    showMsg("数据加载失败,请重新打开工单!","E");
+                    showMsg("数据加载失败,请重新打开工单!","W");
                 }
 
             }, function(){});           

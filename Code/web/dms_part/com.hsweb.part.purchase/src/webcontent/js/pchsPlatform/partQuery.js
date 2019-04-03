@@ -315,7 +315,7 @@ function verifyGuestForOrder(){
             
             if(partData.status==-1){
         		parent.parent.showMsg(partData.msg);
-        		addOrEditPart(jsonData);
+        		addOrEditPart2(jsonData);
         	}else{
     			addOrder();      		 
         	}

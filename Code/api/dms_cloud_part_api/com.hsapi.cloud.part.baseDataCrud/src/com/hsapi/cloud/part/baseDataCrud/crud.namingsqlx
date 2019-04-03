@@ -285,7 +285,7 @@
 		       a.record_date           recordDate,
 		       a.modifier              modifier,
 		       a.modify_date           modifyDate,
-		       a.guset_property        gusetProperty,
+		       a.guest_property        guestProperty,
 		       a.license_code          licenseCode,
 		       a.id_card               idCard,
 		       a.license_url           licenseUrl,

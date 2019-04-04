@@ -1315,11 +1315,13 @@ function onCellEditEnter(e){
 		var column = cell[1];
 		if(column.field == "orderQty"){
 			if(orderPrice){
-				addNewKeyRow();
+//				addNewKeyRow();
 			}
 		}else if(column.field == "orderPrice"){
-			addNewKeyRow();
+//			addNewKeyRow();
 		}else if(column.field == "remark"){
+//			addNewKeyRow();
+		}else if(column.field == "sellUnitPrice"){
 			addNewKeyRow();
 		}else if(column.field == "comPartCode"){
 			var partCode = record.comPartCode||"";

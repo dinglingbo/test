@@ -70,7 +70,7 @@
 						<div field="id" allowSort="true" headerAlign="center"  visible="false"
 								width="120"  >用户id</div>
 						<div field="tenantId" allowSort="true" headerAlign="center"
-								width="120"  >租户ID</div>
+								width="50"  >租户ID</div>
 						<div field="mobile" allowSort="true" headerAlign="center"
 								width="120"  >手机号</div>
 						<div field="name" allowSort="true" headerAlign="center"

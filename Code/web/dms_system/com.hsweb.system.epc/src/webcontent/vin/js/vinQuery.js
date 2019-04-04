@@ -122,10 +122,11 @@ $(document).ready(function(v){
     });
     gridParts.on("cellclick",function(e){ 
         var field=e.field;
+        var row =e.row;
         if(field=="check" ){
             if(e.row.check==1){
                 addPart(1);
-                searchStok();
+                searchStok(row);
                 
             }else{
                 addPart(-1);
@@ -135,11 +136,9 @@ $(document).ready(function(v){
     
     cartPartGrid.on("cellclick",function(e){ 
         var field=e.field;
-        if(field=="check" ){
-            if(e.row.check==1){
-                searchStok();
-            }
-        }
+        var row =e.row;
+        searchStok(row);
+
     });
 
     gridParts.on("selectionchanged", function (e) { //表格绘制

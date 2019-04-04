@@ -2,7 +2,8 @@ var baseUrl = apiPath + repairApi + "/";;
 var scoutModeHash = [];
 var scoutResutHash = [];
 var saveUrl = baseUrl + "com.hsapi.repair.repairService.booking.queryBookingList.biz.ext";
-      
+var rowData = null;
+
 $(document).ready(function(v){
     init();
     nui.get('scoutMode').focus();
@@ -34,12 +35,16 @@ function init() {
     });    
 }
 
-var rowData = null;
+
 function SetData(params) {
     basicInfoForm = new nui.Form("#basicInfoForm");	
     basicInfoForm.setData(params.data);
     rowData = params.data;
     nui.get("serviceId").setValue(params.data.id);
+    if(!rowData.wechatOpenId){
+    	//nui.get("btn_model").disable();
+    	nui.get("btn_coupon").disable();
+    }
 }
 
 function onOk() {
@@ -96,11 +101,17 @@ function sendInfo(){
 	var data = basicInfoForm.getData();
 	var phones = data.contactorTel || "";
 	if(phones=="" && phones==null){
-		showMsg("联系人电话为空!","W");
+		showMsg("联系人手机号为空!","W");
 		return;
 	}
 	var p = rowData;
+	if(p.carId== 0){
+		p .guestSource =1;//电销客户
+	}else{
+		p .guestSource = 0;//系统客户
+	}
 	p.mobile =  rowData.contactorTel;
+	p.guestId = rowData.contactorId;
 	p.serviceType = 2;//预约
 	nui.open({
 		url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
@@ -112,6 +123,61 @@ function sendInfo(){
 		ondestroy: function (action) {
             //重新加载
             //query(tab);
+        }
+    });
+}
+
+
+function telVisit(){
+	var row = rowData;
+	row .serviceType = 2;//预约
+	if(row.carId== 0){
+		row .guestSource =1;//电销客户
+	}else{
+		row .guestSource = 0;//系统客户
+	}
+	row .guestId = rowData.contactorId;
+	row.mainId=row.id;
+    nui.open({
+        url: webPath + contextPath + "/manage/maintainRemind/maintainRemMainDetail.jsp?token="+ token,
+        title: "提醒信息", 
+        width: 600, height: 300,
+        onload: function () {
+            var iframe = this.getIFrameEl(); 
+            iframe.contentWindow.setData(rowData);
+        },
+        ondestroy: function (action) {
+     }
+ });
+}
+
+function sendWcCoupon() {
+	var row = rowData;
+    row.userNickname = row.contactorName;
+    row.userMarke = row.wechatServiceId;
+    row.storeName = currOrgName;
+	row.userOpid = row.wechatOpenId;
+	row.guestId = row.contactorId;//(回访历史表 guestId 存联系人id)
+	row.serviceType = 2;//客户回访
+	if(row.carId== 0){
+		row .guestSource =1;//电销客户
+	}else{
+		row .guestSource = 0;//系统客户
+	}
+    var list = [];
+    list.push(row);
+
+    nui.open({                        
+        url: webPath + contextPath  + "/manage/sendWechatWindow/sWcInfoCoupon.jsp?token="+token,
+        title: "发送卡券", width: 800, height: 350,
+        onload: function () {
+        var iframe = this.getIFrameEl();
+        iframe.contentWindow.setData(list);
+    },
+    ondestroy: function (action) {
+            //重新加载
+            //query(tab);
+    	gridCar.reload();
         }
     });
 }

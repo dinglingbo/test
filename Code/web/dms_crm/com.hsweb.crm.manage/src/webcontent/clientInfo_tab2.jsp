@@ -67,13 +67,13 @@
                             enabled="true" emptyText="请选择日期" alwaysView="true"/></td>
     </tr>
     <tr>
-                <td><span class="title title-width2">年审到期：</span></td>
+                <td><span class="title title-width2">车辆年检：</span></td>
                 <td><input id="annualVerificationDueDate"
                             name="annualVerificationDueDate"
                             class="nui-datepicker width2"
                             dateFormat="yyyy-MM-dd"
                             enabled="true" emptyText="请选择日期" alwaysView="true"/></td>
-                <td><span class="title title-width2">驾审到期：</span></td>
+                <td><span class="title title-width2">驾照年审：</span></td>
                 <td><input id="drivingLicenceDueDate"
                             name="drivingLicenceDueDate"
                             class="nui-datepicker width2"

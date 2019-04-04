@@ -329,26 +329,15 @@ hr {
 				  </tr>
 				</table>
 				<table>
-				  <tr><td  colspan="3"><hr id="se"/></td></tr>
+				  <tr><td  colspan="4"><hr id="se"/></td></tr>
 				  <tr id="border2">
 				    <td id="currUserName" >打印人：系统管理员</td>
+				    <td id="checkMan" >检货：</td>
 				    <td id="giveMan" >送货：</td>
 				    <td id="getMan" width="" align="center">收货：</td>
 				  </tr>
-				  <tr><td  colspan="3"><hr id="se"/></td></tr>
-<!-- 				  <tr id="border3"> -->
-<!-- 				    <td id="remark1">备注</td> -->
-<!-- <!-- 				    <td style="" id="guestAddr" align="left">地址:</td> --> 
-<!-- <!-- 				    <td style="" id="nowDate" align="center"  class="" >打印日期:</td> --> 
-<!-- 				  </tr> -->
-<!-- 				  <tr><td  colspan="3"><hr/></td></tr> -->
-<!-- 				   <tr id="border4"> -->
-<!-- 				    <td id="">注(白联仓库   红联财务  黄联供应商)</td> -->
-<!-- 				    <td></td> -->
-<!-- 				    <td></td> -->
-<!-- <!-- 				    <td style="" id="phone">电话:</td> --> 
-<!-- <!-- 				   <td style="" id="createDate" align="center">订单日期:</td> --> 
-<!-- 				  </tr> -->
+				  <tr><td  colspan="4"><hr id="se"/></td></tr>
+				  <tr> <td id="orderRemark" >备注：</td></tr>
 				</table>
             </div>
       
@@ -438,6 +427,7 @@ hr {
 		       		$('#guestFullName').text("客户:"+formParms.guestFullName);
 		       		$('#createDate').text("订单日期："+format(formParms.createDate,"yyyy-MM-dd HH:mm"));
 		       		$('#serviceId').text(formParms.serviceId);
+		       		$('#orderRemark').text("备注：" +formParms.remark?null:"");
 		     		if(billTypeIdHash){
 		     			$('#billTypeId').text("票据类型:"+billTypeIdHash[formParms.billTypeId].name);
 		     		}

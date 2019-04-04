@@ -384,7 +384,7 @@ function noPay(){
 		    				if(data.errCode=="S"){  					
 		    					CloseWindow("ok");
 		    				}else{
-		    					showMsg(data.errMsg,"S");
+		    					showMsg(data.errMsg,"W");
 		    				}
 
 		    			},
@@ -435,8 +435,8 @@ function pay(){
 		}*/
 		deductible = nui.get("deductible").getValue()||0;
 		count = (count+deductible).toFixed(2);
-		if(count>zongAmt){
-			showMsg("结算金额不能大于应收，请重新确认！","W");
+		if(count!=zongAmt){
+			showMsg("结算金额和应结金额不一致，请重新确认！","W");
 			return;
 		}
 		
@@ -473,7 +473,7 @@ function pay(){
 	    						sendWCInfo(fserviceId);//发送微信通知
 	    					}
 	    				}else{
-	    					showMsg(data.errMsg,"E");
+	    					showMsg(data.errMsg,"W");
 	    				}
 
 	    			},

@@ -483,7 +483,7 @@
    var webUrl =null;
    var phones = null;
    function sendInfo(){
-	nui.open({
+	/* nui.open({
 		//url: webUrl+"com.hsweb.crm.manage.sendInfo.flow?token="+token1,
 		url:"http://127.0.0.1:8080/default/com.hsweb.crm.manage.sendInfo.flow",
 		title: "发送短信", width: 655, height: 386,
@@ -495,7 +495,7 @@
             //重新加载
             //query(tab);
         }
-    });
+    }); */
   }
     	
     	

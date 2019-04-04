@@ -139,7 +139,7 @@ $(document).ready(function(v)
 
         addSelectInnerPart();
 
-        nui.get("storeShelf").focus();
+        nui.get("qty").focus();
     });
     
     innerPartGrid2.on("rowdblclick", function(e) {
@@ -149,7 +149,7 @@ $(document).ready(function(v)
 
         addSelectInnerPart();
 
-        nui.get("storeShelf").focus();
+        nui.get("qty").focus();
     });
     
     priceGrid.on("CellCommitEdit",function(e) {
@@ -180,7 +180,7 @@ $(document).ready(function(v)
 
         addSelectPart();
 
-        nui.get("storeShelf").focus();
+        nui.get("qty").focus();
     });
 
     
@@ -236,7 +236,7 @@ $(document).ready(function(v)
 
         addSelectPart();
 
-        nui.get("storeShelf").focus();
+        nui.get("qty").focus();
         
     });
     enterGrid.on("drawcell",function(e){
@@ -335,8 +335,8 @@ $(document).ready(function(v)
 
     $("#price").bind("keydown", function (e) {
         if (e.keyCode == 13) {
-            var amt = nui.get("amt");
-            amt.focus();
+            var remark = nui.get("remark");
+            remark.focus();
         }
     });
     $("#amt").bind("keydown", function (e) {
@@ -608,7 +608,7 @@ function addSelectInnerPart(){
             nui.get("storeId").setValue(record.storeId);
             nui.get("storeShelf").setValue(record.storeShelf);
             nui.get("qty").setValue(1);
-            nui.get("storeShelf").focus();
+            nui.get("qty").focus();
 
             params.partId = record.partId;
             params.guestId = guestId;
@@ -636,7 +636,7 @@ function addSelectInnerPart(){
             nui.get("storeId").setValue(FStoreId);
             nui.get("storeShelf").setValue(record.storeShelf);
             nui.get("qty").setValue(1);
-            nui.get("storeShelf").focus();
+            nui.get("qty").focus();
             nui.get("storeId").enabled = true;
             
             record.id=record.partId
@@ -677,7 +677,7 @@ function addSelectPart(){
             nui.get("storeId").setValue(record.storeId);
             nui.get("storeShelf").setValue(record.storeShelf);
             nui.get("qty").setValue(1);
-            nui.get("storeShelf").focus();
+            nui.get("qty").focus();
 
             params.partId = record.partId;
             params.guestId = guestId;
@@ -705,7 +705,7 @@ function addSelectPart(){
             nui.get("storeId").setValue(FStoreId);
             nui.get("storeShelf").setValue(record.storeShelf);
             nui.get("qty").setValue(1);
-            nui.get("storeShelf").focus();
+            nui.get("qty").focus();
             nui.get("storeId").enabled = true;
 
             params.partId = record.id;

@@ -255,13 +255,19 @@ $(document).ready(function() {
         }
     });
 
-    var clipboard = new ClipboardJS('.tipBtn');
+    var clipboard = new ClipboardJS('.tipBtn',{
+    	text: function (trigger) {
+//           var value = document.getElementById('bar').value;\
+    		var value=  document.getElementById("tipText").value;
+    		return value;
+       }
+    });
 
     clipboard.on('success', function(e) {
          console.log(e);
     });
 
-    clipboard.on('success', function(e) {
+    clipboard.on('error', function(e) {
          console.log(e);
     });
 
@@ -865,3 +871,5 @@ function onCellCommitEdit(e) {
         }
     }
 }
+
+

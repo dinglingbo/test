@@ -10,8 +10,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -733,6 +736,30 @@ public class Utils {
 			path = java.io.File.separator + path;
 		}
 		return path;
+	}
+	
+	@Bizlet("")
+	public static String encode(String str) {
+		try {
+			str = URLEncoder.encode(str,"utf-8");
+		} catch (Exception e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		return str;
+		
+	}
+	
+	@Bizlet("")
+	public static String decode(String str) {
+		try {
+			str = URLDecoder.decode(str,"utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
+		
+		return str;
 	}
 	
 

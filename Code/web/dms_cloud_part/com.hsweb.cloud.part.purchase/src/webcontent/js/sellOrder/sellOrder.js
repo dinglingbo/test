@@ -2019,6 +2019,7 @@ function onPrint(){
 		currCompAddress : currCompAddress,
 		currCompTel : currCompTel,
 		currCompLogoPath : currCompLogoPath,
+		currCloudSellOrderPrintContent :currCloudSellOrderPrintContent,
 		storeHash : storeHash,
 		brandHash: brandHash
 	};

@@ -10,14 +10,15 @@
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
-    <targetConnections>link7</targetConnections>
-    <location x="841" y="128"/>
+    <targetConnections>link3</targetConnections>
+    <location x="917" y="134"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
       <process:return id="0" language="commonj.sdo.DataObject[]" name="roleList" type="query" valueType="Java">roleList</process:return>
       <process:return id="1" language="commonj.sdo.DataObject[]" name="resList" type="query" valueType="Java">resList</process:return>
       <process:return id="2" language="commonj.sdo.DataObject[]" name="resInfoList" type="query" valueType="Java">resInfoList</process:return>
+      <process:return id="3" language="commonj.sdo.DataObject[]" name="menuList" type="query" valueType="Java">menuList</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -26,7 +27,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="843" y="164"/>
+    <location x="919" y="170"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -74,7 +75,7 @@
   <nodes xsi:type="process:tLoopEnd" id="loopend0" name="循环结束" displayName="循环结束" grouped="true" type="loopend" matchedName="loopstart0">
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopend0</sourceNode>
-      <targetNode>end0</targetNode>
+      <targetNode>invokePojo5</targetNode>
     </sourceConnections>
     <targetConnections>link11</targetConnections>
     <location x="741" y="136"/>
@@ -157,6 +158,7 @@
     <location x="480" y="130"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="roleRes" iterableElement="res"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">
@@ -239,6 +241,29 @@
     <figSize height="17" width="69"/>
     <node>invokePojo4</node>
   </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="getMenu" displayName="getMenu" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo5</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link7</targetConnections>
+    <location x="847" y="134"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo5label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.ResauthUtils.getMenu</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables/>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java">menuList</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
+    <location x="832" y="170"/>
+    <figSize height="17" width="53"/>
+    <node>invokePojo5</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-01-28 10:35:13" date="2019-01-28Z" description="" name="test" version="7.0.0.0"/>
@@ -255,6 +280,7 @@
     <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="roleList"/>
     <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="resList"/>
     <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="resInfoList"/>
+    <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="menuList"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

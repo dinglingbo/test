@@ -29,9 +29,10 @@ pageEncoding="UTF-8" session="false" %>
     {customid:"060704",name:"已来厂/已成交"}];
     nui.parse();
     var mainId = null;
+    var mainData = null;
     var baseUrl = apiPath + crmApi + "/"; 
     var saveUrl= apiPath + repairApi + '/com.hsapi.repair.repairService.crud.saveRemindRecord.biz.ext';
-    var upUrl= apiPath + repairApi + '/com.hsapi.crm.svr.svr.updateCrmGuest.biz.ext';
+    var upUrl= apiPath + crmApi + '/com.hsapi.crm.svr.svr.updateCrmGuest.biz.ext';
     var dgScoutDetail  = nui.get("dgScoutDetail");
     var form1 = new nui.Form("#form1");
     var carModelHash = [];
@@ -86,6 +87,7 @@ function onCarBrandChange(e){
 
 
 function setScoutForm(record){
+    mainData =record;
     $(".saveGroup").show();
     mainId = record.id;
     record.scoutMode = '011401';
@@ -129,8 +131,10 @@ function doSave(tform,callBack){
   var  data = tform.getData(true);
   var p ={
       id:mainId,
-      nextScoutDate:data.nextScoutDate
-  }
+      nextScoutDate:data.nextScoutDate,
+      visitStatus:data.visitStatus,
+      priorScoutDate:mainData.nextScoutDate
+  };
 
   try {
       nui.ajax({

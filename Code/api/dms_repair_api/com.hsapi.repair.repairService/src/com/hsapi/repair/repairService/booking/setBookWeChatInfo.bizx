@@ -108,8 +108,8 @@
       <process:to type="query">conct/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">rpsPrebook/contactorTel</process:from>
-      <process:to type="query">conct/_expr[1]/mobile</process:to>
+      <process:from type="query" pattern="reference">rpsPrebook/contactorId</process:from>
+      <process:to type="query">conct/_expr[1]/id</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -486,7 +486,7 @@
     <figSize height="17" width="40"/>
     <node>invokePojo6</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign9" name="赋值9" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign9" name="赋值9" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign9</sourceNode>
       <targetNode>assign1</targetNode>
@@ -590,10 +590,10 @@
         <process:inputVariable id="2" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">orgParams</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
         <process:outputVariable id="2" name="result" type="query" value="java.util.HashMap" valueType="Java">orgData</process:outputVariable>
-        <process:outputVariable id="3" name="turl" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="3" name="turl" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

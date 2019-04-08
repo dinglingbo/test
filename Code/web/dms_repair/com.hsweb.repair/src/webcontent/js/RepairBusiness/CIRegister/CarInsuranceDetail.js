@@ -278,12 +278,20 @@ function drawSummaryCell(e){
     }
 
     if(column.field == "rtnCompRate" ){
-        e.cellHtml = rtn_comp_amt_sum.toFixed(4);
+        //e.cellHtml = rtn_comp_amt_sum.toFixed(4);
+        e.cellHtml = '';
         e.cellStyle = "text-align:center";
     }
 
     if(column.field == "rtnGuestRate" ){
-        e.cellHtml = rtn_guest_amt_sum.toFixed(4);
+        //e.cellHtml = rtn_guest_amt_sum.toFixed(4);
+        e.cellHtml = '';
+        e.cellStyle = "text-align:center";
+    }
+    if(column.field == "rtnCompAmt" ){
+        e.cellStyle = "text-align:center";
+    }
+    if(column.field == "rtnGuestAmt" ){
         e.cellStyle = "text-align:center";
     }
 }

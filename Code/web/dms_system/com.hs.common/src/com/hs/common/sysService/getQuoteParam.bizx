@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getQuoteParam.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="2019.4.8根据车牌号获取VIN改成维保大数据接口 http://mbd.prod.harsons.cn/hscp/car/cars/%E4%BA%91F111XS" title="Administrator&#x9;19-4-8 下午12:17">
+    <location x="-270" y="18"/>
+    <size height="100" width="683"/>
+  </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="link8" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>

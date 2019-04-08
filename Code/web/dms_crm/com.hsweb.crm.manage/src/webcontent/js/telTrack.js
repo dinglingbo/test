@@ -262,7 +262,7 @@ function telInfo(e){
         },
         ondestroy: function (action) {
             //重新加载
-            dgGrid.reload();
+            //dgGrid.reload();
             visitHis.reload();
         }
     });

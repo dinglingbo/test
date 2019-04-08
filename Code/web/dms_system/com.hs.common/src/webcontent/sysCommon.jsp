@@ -125,6 +125,7 @@
 	String isCanBelowCost="";
 	String swithBatchFlag ="";
 	String srmUserId = "";
+	String cloudSellOrderPrintContent ="";
 	
 	if (session == null || session.getAttribute("userObject") == null) {
 		%>backToLogin();<%
@@ -250,6 +251,10 @@
 	                if(billParams.get("repairStoreControlFlag") != null){
 	                	repairStoreControlFlag = billParams.get("repairStoreControlFlag").toString();
 	                }
+	                //销售单、销售出库打印内容
+                    if(billParams.get("cloudSellOrderPrintContent") != null){
+	                	cloudSellOrderPrintContent = billParams.get("cloudSellOrderPrintContent").toString();
+	                }
                 }
               
                 
@@ -320,6 +325,7 @@
 	currOrgJsonStr = currOrgJsonStr.replace(/'/g,'"');
 	var currOrgList = JSON.parse(currOrgJsonStr);
 	var currSrmUserId = "<%=srmUserId %>";
+	var currCloudSellOrderPrintContent = "<%=cloudSellOrderPrintContent %>";
     //alert("token=" + token);
     
     /* var _sysMsg_;

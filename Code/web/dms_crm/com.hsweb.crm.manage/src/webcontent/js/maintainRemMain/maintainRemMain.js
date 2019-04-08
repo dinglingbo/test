@@ -261,7 +261,6 @@ function sendInfo(){
     ondestroy: function (action) {
             //重新加载
             //query(tab);
-    	 gridCar.removeRow (row, true);
     	visitHis.reload();
         }
     });
@@ -308,11 +307,42 @@ function sendWcText(){//发送微信消息
     ondestroy: function (action) {
             //重新加载 
             //query(tab);
-    	gridCar.removeRow (row, true);
     	visitHis.reload();
         }
     });
 }
+
+function sendWcCoupon() {
+    var row = gridCar.getSelected();
+    row.serviceType = serviceType;
+    row.userNickname = row.guestName;
+    row.userMarke = row.wechatServiceId;
+    row.storeName = currOrgName;
+    row.guestId = row.conId;
+    row.guestSource = 0;
+    row.serviceType = 5;//保养提醒
+    if (row == undefined) {
+    showMsg("请选中一条数据","W");
+    return;
+    }
+    var list = [];
+    list.push(row);
+
+    nui.open({                        
+        url: webPath + contextPath  + "/manage/sendWechatWindow/sWcInfoCoupon.jsp?token="+token,
+        title: "发送卡券", width: 800, height: 350,
+        onload: function () {
+        var iframe = this.getIFrameEl();
+        iframe.contentWindow.setData(list);
+    },
+    ondestroy: function (action) {
+            //重新加载
+            //query(tab);
+            visitHis.reload();
+        }
+    });
+}
+
 
 
 function bindWechat(row_uid){

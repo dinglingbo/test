@@ -51,7 +51,7 @@ pageEncoding="UTF-8" session="false" %>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
         <!--<a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>-->
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcCoupon()"><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
         <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-clock-o fa-lg"></span>&nbsp;提醒</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a> -->
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="addRow()"><span class="fa fa-wrench fa-lg"></span>&nbsp;预约登记</a>

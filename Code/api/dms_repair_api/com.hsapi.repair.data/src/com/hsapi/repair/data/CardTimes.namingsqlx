@@ -11,6 +11,7 @@
    <select id="queryCardTimesList" parameterClass="java.util.HashMap"  resultClass="java.util.HashMap">
        SELECT
          a.id id,
+         a.code serviceCode,
          a.orgid as orgid,
          b.id cardDetailId,
          c.full_name fullName,
@@ -70,8 +71,39 @@
         order by a.settle_date desc
  
 	</select>
-	
-	
+	   <select id="queryCardTimesById" parameterClass="java.util.HashMap"  resultClass="commonj.sdo.DataObject">
+		SELECT
+				a.id,
+				a.orgid,
+				a.`code` serviceCode,
+				a.guest_id guestId,
+				a.guest_name guestName,
+				c.mobile,
+				a.car_id carId,
+				a.car_no carNo,
+				a.card_id cardId,
+				a.card_name cardName,
+				a.period_validity periodValidity,
+				a.past_date pastDate,
+				a.sell_amt sellAmt,
+				a.total_amt totalAmt,
+				a.sale_man_id saleManId,
+				a.sale_man saleMan,
+				a.use_remark useRemark,
+				a.remark,
+				a.`status`,
+				a.settle_date settleDate,
+				a.recorder,
+				a.record_date recordDate
+			FROM
+				rps_card_times a
+			INNER JOIN wb_common.com_guest c ON(a.guest_id = c.id) 
+			where 1=1 and a.orgid=#orgid#
+		<isNotEmpty prepend="and" property="id">  
+	            (a.id = #id#)
+	    </isNotEmpty>
+		</select>
+		
 	   <select id="queryCardTimesListreturn" parameterClass="java.util.HashMap"  resultClass="java.util.HashMap">
        SELECT
          a.id id,

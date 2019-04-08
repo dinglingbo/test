@@ -9,7 +9,7 @@
 -->
 <head>
     <title>维修归库明细</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairReturnReport.js?v=1.1.7"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairReturnReport.js?v=1.1.10"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -190,6 +190,8 @@
         </div>
         <div header="其他" headerAlign="center">
             <div property="columns">
+            	<div allowSort="true"  field="recorder" width="80" name="recorder" headerAlign="center" header="创建人"  align="left"></div>
+                <div allowSort="true" width="130"  dateFormat="yyyy-MM-dd HH:mm" field="recordDate" headerAlign="center" header="创建日期"  align="left"></div>
                <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
                 
             </div>

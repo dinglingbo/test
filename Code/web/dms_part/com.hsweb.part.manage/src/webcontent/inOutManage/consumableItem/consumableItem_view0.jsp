@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>耗材出库</title>
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=2.0.6"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=2.0.17"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -137,7 +137,7 @@ pageEncoding="UTF-8" session="false"%>
                    <div allowSort="true" field="guestName" name="guestName" width="280px" headerAlign="center" allowSort="true" header="供应商"></div>  
 
                    <div allowSort="true" field="fullName" name="fullName" width="300" headerAlign="center" header="配件全称"></div> 
-                <div allowSort="true" field="pickMan" visible="false"  name="pickMan" width="50" headerAlign="center" header="领料人">
+                <div allowSort="true" field="pickMan" visible="false"  name="pickMan" width="50" headerAlign="center" header="创建人">
                    <input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
                </div>
                <div allowSort="true" field="remark" visible="false"  name="remark" width="50" headerAlign="center" header="备注">
@@ -228,6 +228,7 @@ pageEncoding="UTF-8" session="false"%>
             <div field="remark" id="remark" name="remark" headerAlign="center" allowSort="true" visible="true" width="">备注</div>
             <div field="pickDate" headerAlign="center" allowSort="true" visible="true" width="" format="yyyy-MM-dd" dateFormat="yyyy-MM-dd HH:mm">出库日期</div>  
             <div field="pickMan" name="pickMan" headerAlign="center" allowSort="true" visible="true" width=""  align="right">领料人</div>
+            <div field="recorder" name="recorder" headerAlign="center" allowSort="true" visible="true" width=""  align="right">领料人</div>
             <div field="returnReasonId" id="returnReasonId" headerAlign="center" allowSort="true" visible="false" width="">归库原因ID
                <input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
            </div>

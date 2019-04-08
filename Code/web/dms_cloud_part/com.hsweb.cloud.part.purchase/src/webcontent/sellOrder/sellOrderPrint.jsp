@@ -335,8 +335,11 @@ hr {
 				    <td id="giveMan" >送货：</td>
 				    <td id="getMan" width="" align="center">收货：</td>
 				  </tr>
+				  <hr id="se"/>
 				  <tr><td  colspan="4"><hr id="se"/></td></tr>
 				  <tr> <td id="orderRemark" >备注：</td></tr>
+				  <tr><td  colspan="4"><hr id="se"/></td></tr>
+				  <tr id=""> <td id="currCloudSellOrderPrintContent" ></td></tr>
 				</table>
             </div>
       
@@ -412,6 +415,7 @@ hr {
     		$('#currOrgName').text(params.currRepairSettorderPrintShow||params.currOrgName);
     		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
     		$('#currUserName').text("制单:"+params.currUserName);
+    		$('#currCloudSellOrderPrintContent').text(params.currCloudSellOrderPrintContent);
     		document.getElementById("spstorename").innerHTML = "销售订单";
     		document.getElementById("guestAddr").innerHTML = "地址："+params.currCompAddress;
 	   		document.getElementById("phone").innerHTML ="电话："+params.currCompTel;
@@ -426,7 +430,11 @@ hr {
 		       		$('#guestFullName').text("客户:"+formParms.guestFullName);
 		       		$('#createDate').text("订单日期："+format(formParms.createDate,"yyyy-MM-dd HH:mm"));
 		       		$('#serviceId').text(formParms.serviceId);
-		       		$('#orderRemark').text("备注：" +formParms.remark || "");
+		       		if(formParms.remark != null){
+		       			$('#orderRemark').text("备注：" +formParms.remark);
+		       		}else{
+		       			$('#orderRemark').text("备注：" );
+		       		}
 		     		if(billTypeIdHash){
 		     			$('#billTypeId').text("票据类型:"+billTypeIdHash[formParms.billTypeId].name);
 		     		}

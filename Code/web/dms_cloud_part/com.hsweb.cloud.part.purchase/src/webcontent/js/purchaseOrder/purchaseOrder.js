@@ -1653,6 +1653,49 @@ function getPartPrice(params){
 
 	return dInfo;
 }
+
+var getStoreIdAndShelfUrl= baseUrl
++ "com.hsapi.cloud.part.report.stock.queryStoreIdAndShelf.biz.ext";
+function getStoreIdAndShelf(params){
+	var storeId ='';
+	var shelf = '';
+	nui.ajax({
+		url : getStoreIdAndShelfUrl,
+		type : "post",
+		async: false,
+		data : {
+			params: params,
+			token: token
+		},
+		success : function(data) {
+			var errCode = data.errCode;
+			if(errCode == "S"){
+				if(data.list.length>0){
+					
+					var row = data.list[0];
+					if(row.storeId){
+						storeId = row.storeId;
+					}
+					if(row.shelf){
+						shelf = row.shelf;
+					}
+				}
+			}else{
+				storeId="";
+				shelf = "";
+			}
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+
+	var storeIdAndShelf = {storeId: storeId, shelf: shelf};
+
+	return storeIdAndShelf;
+}
 function addInsertRow(value,row) {    
     /*var rows = checkAddNewRow();
     if(rows && rows.length > 0) {
@@ -1670,10 +1713,18 @@ function addInsertRow(value,row) {
 
     var params = {partCode:value};
 	var part = getPartInfo(params);
-	var storeId = FStoreId;
 
 	if(part){
 		params.partId = part.id;
+		var p={partId :part.id};
+		var storeAndShelf=getStoreIdAndShelf(p);
+		var storeId='';
+		if(storeAndShelf.storeId){		
+			storeId = storeAndShelf.storeId ;
+		}else{
+			storeId = FStoreId;
+		}
+
 		getStratePrice(part.id);
 		params.storeId = storeId;
 		var dInfo = getPartPrice(params);
@@ -2374,8 +2425,15 @@ function addSelectPart(){
 		if(row){
 			var params = {partCode:row.partCode};
 			params.partId = row.partId;
-			params.storeId = FStoreId;
+			var p={partId :row.partId};
+			var storeAndShelf=getStoreIdAndShelf(p);
+			if(storeAndShelf.storeId){		
+				params.storeId = storeAndShelf.storeId ;
+			}else{
+				params.storeId =  FStoreId;
+			}
 			var dInfo = getPartPrice(params);
+			var storeId= params.storeId;
 			var price = dInfo.price;
 			var shelf = dInfo.shelf;
 			getStratePrice(row.partId);				
@@ -2389,7 +2447,8 @@ function addSelectPart(){
 				orderQty : 1,
 				orderPrice : price,
 				orderAmt : price,
-				storeId : FStoreId,
+				storeId : storeId,
+				storeShelf :shelf,
 				comOemCode : row.oemCode,
 				comSpec : row.spec,
 				partCode : row.partCode,
@@ -2417,11 +2476,19 @@ function addSelectPart(){
 		}
 	}else{	
 		var row = morePartGrid.getSelected();
+		row.partId =row.id;
 		if(row){
 			var params = {partCode:row.code};
-			params.partId = row.id;
-			params.storeId = FStoreId;
+			params.partId = row.partId;
+			var p={partId :row.partId};
+			var storeAndShelf = getStoreIdAndShelf(p);
+			if(storeAndShelf.storeId){		
+				params.storeId = storeAndShelf.storeId ;
+			}else{
+				params.storeId =  FStoreId;
+			}
 			var dInfo = getPartPrice(params);
+			var storeId= params.storeId;
 			var price = dInfo.price;
 			var shelf = dInfo.shelf;
 			getStratePrice(row.id);				
@@ -2435,7 +2502,8 @@ function addSelectPart(){
 				orderQty : 1,
 				orderPrice : price,
 				orderAmt : price,
-				storeId : FStoreId,
+				storeId : storeId,
+				storeShelf :shelf,
 				comOemCode : row.oemCode,
 				comSpec : row.spec,
 				partCode : row.code,

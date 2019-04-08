@@ -2078,12 +2078,14 @@
 			a.pick_date AS pickDate,
 			b.out_date as outDate,
 			b.bill_type_id as billTypeId,
+			a.recorder as recorder,
 			a.record_date  as recordDate,
 			a.return_date as returnDate,
 			a.return_sign as returnSign,
 			b.is_settle   isSsettle,
 			a.out_qty outQty,
 			b.service_type_id serviceTypeId
+			
 		FROM
 			pj_repair_out a
 		INNER JOIN wb_repair.rps_maintain b ON a.service_id = b.id

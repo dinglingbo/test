@@ -237,7 +237,7 @@
       <process:to type="query">retailPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">Math.round(retailPrice * 1.16*100)/100.0</process:from>
+      <process:from type="expression" pattern="reference">Math.round(retailPrice * 1.13*100)/100.0</process:from>
       <process:to type="query">tmp</process:to>
     </process:copy>
     <process:copy>
@@ -245,7 +245,7 @@
       <process:to type="query">bmwStock/displayRetailPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">Math.round(retailPrice * (1- agioRate /100) * 1.16*100)/100.0</process:from>
+      <process:from type="expression" pattern="reference">Math.round(retailPrice * (1- agioRate /100) * 1.13*100)/100.0</process:from>
       <process:to type="query">tmp</process:to>
     </process:copy>
     <process:copy>

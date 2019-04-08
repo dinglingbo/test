@@ -71,7 +71,13 @@
                 <td class="tbCtrl" >
                     <input id="repairSettorderPrintShow" name="repairSettorderPrintShow" class="nui-textbox" >
                 </td>
-            </tr>   
+            </tr>
+            <tr>
+                <td class="tbtext">销售单、销售出库单打印内容：</td>
+                <td class="tbCtrl" >
+                    <input id="cloudSellOrderPrintContent" name="cloudSellOrderPrintContent" class="nui-textarea"   style="height:100px;width:300px">
+                </td>
+            </tr>      
         </table>
     </div>
 	<script type="text/javascript">

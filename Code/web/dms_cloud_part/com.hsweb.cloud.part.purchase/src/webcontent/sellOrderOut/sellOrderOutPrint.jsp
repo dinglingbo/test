@@ -427,7 +427,7 @@ hr {
 		       		$('#guestFullName').text("客户:"+formParms.guestFullName);
 		       		$('#createDate').text("订单日期："+format(formParms.createDate,"yyyy-MM-dd HH:mm"));
 		       		$('#serviceId').text(formParms.serviceId);
-		       		$('#orderRemark').text("备注：" +formParms.remark?null:"");
+		       		$('#orderRemark').text("备注：" +formParms.remark ||"");
 		     		if(billTypeIdHash){
 		     			$('#billTypeId').text("票据类型:"+billTypeIdHash[formParms.billTypeId].name);
 		     		}

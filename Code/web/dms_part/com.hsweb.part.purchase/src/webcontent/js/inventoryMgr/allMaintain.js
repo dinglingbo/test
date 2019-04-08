@@ -37,8 +37,8 @@ var prdtTypeHash = {
 	    "3":"配件"
 };
 var auditSignHash = {
-	    "0" : "未审核",
-	    "1" : "已审核"
+	    "0" : "在场",
+	    "1" : "出厂"
 	};
 $(document).ready(function ()
 {
@@ -150,23 +150,16 @@ $(document).ready(function ()
 
     });
     mainGrid.on("drawcell", function (e) {
+    	var record = e.record;
         if (e.field == "status") {
             e.cellHtml = statusHash[e.value];
         }else if (e.field == "carBrandId") {
             if (brandHash && brandHash[e.value]) {
                 e.cellHtml = brandHash[e.value].name;
             }
-        }else if (e.field == "isCollectMoney") {
-        	if(e.value==0){
-        		e.cellHtml = "";
-        	}else if (e.value==1) {
-                e.cellHtml = "✔";
-            }else {
-                e.cellHtml = "";
-            }
         }else if (e.field == "isSettle") {
         	if(e.value==null){
-        		e.cellHtml = "未审核";
+        		e.cellHtml = "在厂";
         	}else if (auditSignHash && auditSignHash[e.value]) {
                 e.cellHtml = auditSignHash[e.value];
             }
@@ -631,21 +624,11 @@ function onAdvancedSearchOk()
     }
     if((nui.get("auditSign").getValue())!=999){
     	searchData.isSettle = nui.get("auditSign").getValue();
-    } 
-    
-    
-    
-    var type = nui.get("search-type1").getValue();
-    var typeValue = nui.get("carNo-search1").getValue();
-    if(type==0){
-    	searchData.carNo = typeValue;
-    }else if(type==1){
-    	searchData.vin = typeValue;
-    }else if(type==2){
-    	searchData.name = typeValue;
-    }else if(type==3){
-    	searchData.mobile = typeValue;
-    }
+    }  
+    searchData.carNo = nui.get("carNo").getValue();
+    searchData.vin = nui.get("vin").getValue();
+    searchData.name = nui.get("name").getValue();
+    searchData.mobile = nui.get("mobile").getValue();
     advancedSearchWin.hide();
     doSearch2(searchData);
     advancedSearchForm.gusetId=null;

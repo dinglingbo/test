@@ -58,7 +58,8 @@
 			a.longitude longitude,
 			a.latitude latitude,
 			a.tel tel,
-			a.complain_tel complainTel
+			a.complain_tel complainTel,
+			a.srm_user_id  srmUserId
 		FROM  wb_common.com_company a
 			where a.tenant_id = #tenantId#
 		<dynamic>
@@ -70,6 +71,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="name">
             	(a.name like '%$name$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgidOrName">
+            	(a.name like '%$orgidOrName$%' or a.orgid like '%$orgidOrName$%')
             </isNotEmpty>
         </dynamic>
              ORDER BY  a.record_date  DESC

@@ -92,7 +92,7 @@
       <process:to type="query">openId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">turl+&quot;/app/ceshi-HuaHeShiNe/#/weixin/order/details&quot;</process:from>
+      <process:from type="expression" pattern="reference">turl+&quot;app/ceshi-HuaHeShiNe/#/weixin/order/details&quot;</process:from>
       <process:to type="query">turl</process:to>
     </process:copy>
     <process:copy>
@@ -333,7 +333,7 @@
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">maintain</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
@@ -383,7 +383,7 @@
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">settlement</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">

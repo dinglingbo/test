@@ -427,6 +427,14 @@
       <process:from type="query" pattern="reference">data/settleTypeId</process:from>
       <process:to type="query">main/settleTypeId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">data/costAmt</process:from>
+      <process:to type="query">main/costAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">data/costRemark</process:from>
+      <process:to type="query">main/costRemark</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
     <location x="535" y="298"/>
@@ -1114,6 +1122,7 @@
     <location x="296" y="262"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="detailData" iterableElement="detail"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend1label" name="label" nodeType="label">

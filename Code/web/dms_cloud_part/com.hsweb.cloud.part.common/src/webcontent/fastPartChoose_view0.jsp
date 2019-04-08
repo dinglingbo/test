@@ -9,7 +9,7 @@
 -->
 <head>
 <title>快速录入</title>
-<script src="<%=webPath + contextPath%>/common/js/fastPartChoose.js?v=1.0.107"></script>
+<script src="<%=webPath + contextPath%>/common/js/fastPartChoose.js?v=1.0.2"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -272,6 +272,9 @@ body .mini-grid-row-selected{
                             <td style="width:100%;text-align:center;">
                                 <a class="nui-button" iconCls="" plain="true" onclick="savePrice" id="savePriceBtn">
                                     <span class="fa fa-save fa-lg"></span>&nbsp;保存设置
+                                </a>
+                                <a class="nui-button" iconCls="" plain="true" onclick="onAdvancedAddCancel" id="savePriceBtn">
+                                    <span class="fa fa-close fa-lg"></span>&nbsp;取消
                                 </a>
                             </td>
                         </tr>

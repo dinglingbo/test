@@ -185,6 +185,105 @@ $(document).ready(function (v) {
             e.cellHtml = setColVal('visitMode', 'customid', 'name', e.value);
         }
     });
+
+    var filter = new HeaderFilter(reminding, {
+        columns: [
+            { name: 'carNo' },
+            { name: 'guestName' }, 
+            { name: 'carModel' }
+            //{ name: 'annualInspectionCompCode' }
+        ],
+        callback: function (column, filtered) {
+        },
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+        	}
+        	return value;
+        }
+    });
+    
+    var filter = new HeaderFilter(business, {
+        columns: [
+            { name: 'carNo' },
+            { name: 'guestName' }, 
+            { name: 'carModel' }
+           // { name: 'annualInspectionCompCode' }
+        ],
+        callback: function (column, filtered) {
+        },
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+        	}
+        	return value;
+        }
+    });
+    var filter = new HeaderFilter(compulsoryInsurance, {
+        columns: [
+            { name: 'carNo' },
+            { name: 'guestName' }, 
+            { name: 'carModel' }
+           // { name: 'insureCompCode' }
+        ],
+        callback: function (column, filtered) {
+        },
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){	
+        	}
+        	return value;
+        }
+    });
+    var filter = new HeaderFilter(drivingLicense, {
+        columns: [
+            { name: 'carNo' },
+            { name: 'guestName' }, 
+            { name: 'carModel' }
+            //{ name: 'annualInspectionCompCode' }
+        ],
+        callback: function (column, filtered) {
+        },
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+        	}
+        	return value;
+        }
+    });
+    var filter = new HeaderFilter(car, {
+        columns: [
+            { name: 'carNo' },
+            { name: 'guestName' }, 
+            { name: 'carModel' }
+            //{ name: 'annualInspectionCompCode' }
+        ],
+        callback: function (column, filtered) {
+        },
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+        	}
+        	return value;
+        }
+    });
+    var filter = new HeaderFilter(guestBirthday, {
+        columns: [
+            { name: 'carNo' },
+            { name: 'guestName' }, 
+            { name: 'carModel' }
+            //{ name: 'annualInspectionCompCode' }
+        ],
+        callback: function (column, filtered) {
+        },
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+        	}
+        	return value;
+        }
+    });
+    
 });
 
 function changedTel(e) {
@@ -390,7 +489,7 @@ function remind() {
                 iframe.contentWindow.setData(row);
             },
             ondestroy: function (action) {
-                change();
+                //change();
                 visitHis.reload();
             }
         });

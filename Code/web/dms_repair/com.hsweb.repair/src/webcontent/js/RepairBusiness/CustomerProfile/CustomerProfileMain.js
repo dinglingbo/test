@@ -257,7 +257,7 @@ function onAdvancedSearchOk()
     	searchData.guestId=advancedSearchForm.gusetId;
     }
     if(nui.get("isChain").getValue()==0){
-    	searchData.orgid=currOrgId;
+    	searchData.lastOrgid=currOrgId;
     }
     advancedSearchWin.hide();
     doSearch(searchData);

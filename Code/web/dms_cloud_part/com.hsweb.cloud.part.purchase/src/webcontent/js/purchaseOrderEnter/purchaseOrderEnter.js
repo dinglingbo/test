@@ -1209,6 +1209,9 @@ function onCellEditEnter(e){
 		}else if(column.field == "orderPrice"){
 //			addNewKeyRow();
 		}else if(column.field == "remark"){
+//			addNewKeyRow();
+			//统一售价到下一行
+		}else if(column.field == "sellUnitPrice"){
 			addNewKeyRow();
 		}else if(column.field == "comPartCode"){
 			if(!record.comPartCode){
@@ -1736,6 +1739,7 @@ var auditUrl = baseUrl
 		+ "com.hsapi.cloud.part.invoicing.crud.auditPjPchsOrder.biz.ext";
 function auditOrder(flagSign, flagStr, flagRtn) {
 	var data = basicInfoForm.getData();
+	var orderAmt =data.orderAmt;
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
 			showMsg(requiredField[key] + "不能为空!","W");
@@ -1846,7 +1850,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 			}
 		});
 	}else {
-		nui.confirm("是否确定入库?", "友情提示", function(action) {
+		nui.confirm("本单金额"+orderAmt+"元，是否确定入库?", "友情提示", function(action) {
 			if (action == "ok") {
 				
 				//保存价格设置

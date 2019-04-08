@@ -10,13 +10,13 @@
 -->
 <head>
 <title>全部工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/allMaintain.js?v=1.2.6"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/allMaintain.js?v=1.2.12"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
 
 .title {
-  width: 60px;
+  width: 100px;
   text-align: right;
 }
 
@@ -74,33 +74,15 @@
         <label style="font-family:Verdana;">进厂日期 从：</label>
         <input class="nui-datepicker" id="sEnterDate" name="sEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd"  showTime="false" showOkButton="false" showClearButton="false"/>
         <label style="font-family:Verdana;">至</label>
-        <input class="nui-datepicker" id="eEnterDate" name="eEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd"  showTime="false" showOkButton="false" showClearButton="false"/>
-                     工单类型:<input class="nui-combobox" id="billTypeIdList" emptyText="综合开单" name="billTypeIdList" data="[{billTypeId:0,text:'综合开单'},{billTypeId:2,text:'洗美开单'},{billTypeId:4,text:'理赔开单'},{billTypeId:6,text:'波箱开单'}]"
-                        width="100px"     multiSelect="true" textField="text" valueField="billTypeId" />
-                          
-                    维修进程:<input class="nui-combobox" id="statusId" emptyText="综合开单" name="statusId" data="[{billTypeId:999,text:'全部进程'},{billTypeId:0,text:'报价'},{billTypeId:1,text:'施工'},{billTypeId:2,text:'完工'}]"
-                          width="100px"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="999"/>
-                    <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
-                    <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="carNoSearch"/>
-                    审核状态:<input class="nui-combobox" id="auditSign"  name="auditSign" data="[{billTypeId:999,text:'全部'},{billTypeId:0,text:'未审核'},{billTypeId:1,text:'已审核'}]"
-                          width="100px"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="999"/>
-                    <br>
-                    服务顾问：<input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId" onvaluechanged="onSearch"
-                        emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="90" valueFromSelect="true"/>
-                        <input class="nui-combobox" name="guestProperty" id="guestProperty" emptyText="客户属性" valueField="customid" onvaluechanged="onSearch" textField="name" width="100px"  />
+        <input class="nui-datepicker" id="eEnterDate" name="eEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd"  showTime="false" showOkButton="false" showClearButton="false"/>                   
+        <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
+        <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="carNoSearch"/>
 <!--             <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/> -->
- 
-<!--   进厂日期:
-                    <input id="sEnterDate" name="sEnterDate" class="nui-datepicker"/>
-至:
-                    <input id="eEnterDate" name="eEnterDate" class="nui-datepicker"
-                           format="yyyy-MM-dd"
-                           timeFormat="H:mm:ss"
-                           showTime="false"
-                           showOkButton="false"
-                           showClearButton="false"/> -->
-                    <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+
+    	<a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+     	<a class="nui-button" plain="true" onclick="advancedSearch()">
+		<span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>  
 <!--                     <span class="separator"></span>
                     <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;查看</a>    -->         
                 </td>
@@ -112,6 +94,8 @@
     <div class="nui-fit">
           <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
                selectOnLoad="true"
+               frozenStartColumn="0"
+               frozenEndColumn="9"
                pageSize="500"
                totalField="page.count"
                sizeList=[500,1000,2000]
@@ -132,26 +116,17 @@
                   	 <div property="columns" >
 	                  <div type="checkcolumn" name="checkcolumn" visible="false"></div>  
 	                  <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div> 
-	                  <div field="serviceCode" name="serviceCode" width="170" headerAlign="center" header="工单号" summaryType="count" allowsort="true"></div>
-	                  <div field="status" name="status" width="70px" headerAlign="center" header="进程" allowsort="true"></div> 
-	                  <div field="serviceTypeName" name="serviceTypeName" width="120" headerAlign="center" header="业务类型" allowsort="true"></div>
-	                  <div field="isSettle" name="isSettle" width="120" headerAlign="center" header="审核状态" allowsort="true"></div>
-	                  <div field="mtAdvisor" name="mtAdvisor" width="100" headerAlign="center" header="服务顾问" allowsort="true"></div>
+	                  <div field="serviceCode" name="serviceCode" width="160" headerAlign="center" header="工单号" summaryType="count" allowsort="true"></div>
+	                  <div field="status" name="status" width="60px" headerAlign="center" header="进程" allowsort="true"></div> 
+	                  <div field="serviceTypeName" name="serviceTypeName" width="70" headerAlign="center" header="业务类型" allowsort="true"></div>
+	                  <div field="isSettle" name="isSettle" width="80" headerAlign="center" header="状态" allowsort="true"></div>
+	                  <div type="checkcolumn" field="isCollectMoney" name="isCollectMoney" width="70" headerAlign="center" header="是否收款" allowsort="true"></div>
+	                  <div field="guestFullName" name="guestFullName" width="110" headerAlign="center" header="客户名称" allowsort="true"></div>
+		              <div field="carNo" name="carNo" width="100" headerAlign="center" header="车牌号" allowsort="true"></div>
+
 	                 </div>
                   </div>
-                  <div header="客户/车辆信息" headerAlign="center">
-	                  <div property="columns" >	                  
-		                  <div field="guestFullName" name="guestFullName" width="110" headerAlign="center" header="客户名称" allowsort="true"></div>
-		                  <div field="carNo" name="carNo" width="110" headerAlign="center" header="车牌号" allowsort="true"></div>
-		                  <div field="carModel" name="carModel" width="120" headerAlign="center" header="品牌/车型" allowsort="true"></div>
-		                  
-		                  <div field="carVin" name="carVin" width="150" headerAlign="center" header="车架号(VIN)" allowsort="true"></div>
-		                   
-		                <!--   <div field="enterKilometers" name="enterKilometers" width="80" headerAlign="center" header="进厂里程" allowsort="true"></div> -->
-		                  
-<!-- 		                  <div field="guestMobile" name="guestMobile" width="90" headerAlign="center" header="客户手机" allowsort="true"></div> -->
-	                  </div>
-                  </div>
+
                
                   <div header="估算费用信息" headerAlign="center">
 	                  <div property="columns" >	                  
@@ -163,6 +138,17 @@
 		                  <div field="totalPrefAmt" name="carVin" width="70" headerAlign="center" summaryType="sum"  header="优惠金额" allowsort="true"></div>
 		                  <div field="otherAmt" name="guestFullName" width="70" headerAlign="center" summaryType="sum"  header="其它费用收入" allowsort="true"></div>
 		                  <div field="otherCostAmt" name="guestMobile" width="70" headerAlign="center" summaryType="sum"  header="其它费用支出" allowsort="true"></div> -->
+	                  </div>
+                  </div>
+                   <div header="客户/车辆信息" headerAlign="center">
+	                  <div property="columns" >	                  
+		                  <div field="carModel" name="carModel" width="120" headerAlign="center" header="品牌/车型" allowsort="true"></div>
+		                  
+		                  <div field="carVin" name="carVin" width="150" headerAlign="center" header="车架号(VIN)" allowsort="true"></div>
+		                   
+		                <!--   <div field="enterKilometers" name="enterKilometers" width="80" headerAlign="center" header="进厂里程" allowsort="true"></div> -->
+		                  
+<!-- 		                  <div field="guestMobile" name="guestMobile" width="90" headerAlign="center" header="客户手机" allowsort="true"></div> -->
 	                  </div>
                   </div>
                   <div header="优惠信息" headerAlign="center">
@@ -206,9 +192,11 @@
 	                  <div property="columns" >
 		                 <!--  <div field="carBrandId" name="carBrandId" width="60" headerAlign="center" header="品牌" allowsort="true"></div> 
 		                  <div field="carVin" name="carVin" width="130" headerAlign="center" header="车架号(VIN)" allowsort="true"></div> -->
+		                  	                  <div field="mtAdvisor" name="mtAdvisor" width="90" headerAlign="center" header="服务顾问" allowsort="true"></div>
 		                  <div field="enterDate" name="enterDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="进厂日期" allowsort="true"></div>
 		                  <div field="checkDate" name="checkDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="完工日期" allowsort="true"></div>
-		                  <div field="settleDate" name="settleRecordDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="结算日期" allowsort="true"></div>
+		                  <div field="outDate" name="outDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="出厂日期" allowsort="true"></div>
+		                  <div field="collectMoneyDate" name="collectMoneyDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="结算日期" allowsort="true"></div>		                  
 		                  <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
 	                  </div>
                   </div>
@@ -323,6 +311,138 @@
         </div>
     </div>
 </div>
+<div id="advancedSearchWin" class="nui-window" title="高级查询" style="width: 430px; height: 460px;" showModal="true" allowResize="false"
+	 allowDrag="false">
+		<div id="advancedSearchForm" class="form">
+			<table style="width: 100%;">
+				<tr>
+				
+					<td class="title">
+						<label>进厂日期 从:</label>
+					</td>
+					<td>
+						<input class="nui-datepicker" id="sEnterDate1" name="sEnterDate1" allowInput="false" width="100%" format="yyyy-MM-dd"  showTime="false" showOkButton="false" showClearButton="false"/>
+					</td>
+					<td class="title">
+						<label>至:</label>
+					</td>
+					<td>
+						<input class="nui-datepicker" id="eEnterDate1" name="eEnterDate1" allowInput="false" width="100%" format="yyyy-MM-dd"  showTime="false" showOkButton="false" showClearButton="false"/>  
+					</td>
+				</tr>
+				<tr>
+				
+					<td class="title">
+						<label>出厂日期 从:</label>
+					</td>
+					<td>
+						<input class="nui-datepicker" id="outDateStart" name="outDateStart" allowInput="false" width="100%" format="yyyy-MM-dd"  showTime="false" showOkButton="false" showClearButton="false"/> 
+					</td>
+					<td class="title">
+						<label>至:</label>
+					</td>
+					<td>
+						<input class="nui-datepicker" id="outDateEnd" name="outDateEnd" allowInput="false" width="100%" format="yyyy-MM-dd"  showTime="false" showOkButton="false" showClearButton="false"/> 
+						
+					</td>
+				</tr>
+ 
+				<tr>
+					<td class="title">
+						<label>结算日期 从:</label>
+					</td>
+					<td>
+						<input class="nui-datepicker" id="collectMoneyDateStart" name="collectMoneyDateStart" allowInput="false" width="100%" format="yyyy-MM-dd"  showTime="false" showOkButton="false" showClearButton="false"/> 
+					</td>
+					<td class="title">
+						<label>至:</label>
+					</td>
+					<td>
+						<input class="nui-datepicker" id="collectMoneyDateEnd" name="collectMoneyDateEnd" allowInput="false" width="100%" format="yyyy-MM-dd"  showTime="false" showOkButton="false" showClearButton="false"/> 					
+					</td>
+				</tr>
+				
+	       
+        			
+				 <tr>
+					<td class="title" >
+						 <input class="nui-combobox" id="search-type1" width="100%" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
+					</td>
+					<td colspan="3">
+						<input class="nui-textbox" id="carNo-search1" emptyText="输入查询条件" width="100%" onenter="carNoSearch"/>
+					</td>
+				</tr> 			
+				 <tr>
+					<td class="title">
+						<label> 工单类型:</label>
+					</td>
+					<td colspan="3">
+						<input class="nui-combobox" id="billTypeIdList" emptyText="综合开单" name="billTypeIdList" data="[{billTypeId:0,text:'综合开单'},{billTypeId:2,text:'洗美开单'},{billTypeId:4,text:'理赔开单'},{billTypeId:6,text:'波箱开单'}]"
+                        	width="100%"     multiSelect="true" textField="text" valueField="billTypeId" />
+					</td>
+				</tr> 
+				 <tr>
+					<td class="title">
+						<label> 结算进程:</label>
+					</td>
+					<td colspan="3">
+						<input class="nui-combobox" id="settleType" emptyText="全部" name="settleType" data="[{settleType:999,text:'全部'},{settleType:0,text:'未结算'},{settleType:1,text:'预结算未审核'},{settleType:2,text:'已出厂未收款'},{settleType:3,text:'已收款'}]"
+                        	width="100%"      textField="text" valueField="settleType" />
+					</td>
+				</tr> 				
+				<tr>
+					<td class="title">
+						<label>维修进程:</label>
+					</td>
+					<td colspan="3">
+					    <input class="nui-combobox" id="statusId" emptyText="综合开单" name="statusId" data="[{billTypeId:999,text:'全部进程'},{billTypeId:0,text:'报价'},{billTypeId:1,text:'施工'},{billTypeId:2,text:'完工'}]"
+                          width="100%"   textField="text" valueField="billTypeId" value="999"/>
+					</td>
+				</tr>
 
+				<tr>
+					<td class="title">
+						<label>审核状态:</label>
+					</td>
+					<td colspan="3">
+						<input class="nui-combobox" id="auditSign"  name="auditSign" data="[{billTypeId:999,text:'全部'},{billTypeId:0,text:'未审核'},{billTypeId:1,text:'已审核'}]"
+                          width="100%"   textField="text" valueField="billTypeId" value="999"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="title">
+						<label>服务顾问：</label>
+					</td>
+					<td colspan="3">
+				        <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId" 
+                       	 emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="100%" valueFromSelect="true"/>
+					</td>
+				</tr>				
+				<tr>
+					<td class="title">
+						<label>客户属性：</label>
+					</td>
+					<td colspan="3">
+				        <input class="nui-combobox" name="guestProperty" id="guestProperty" emptyText="" valueField="customid"  textField="name" width="100%"  />
+					</td>
+				</tr>
+				<tr>
+					<td class="title">
+						<label>客户属性特点：</label>
+					</td>
+					<td colspan="3">
+				        <input class="nui-textbox" name="propertyFeatures" id="propertyFeatures" emptyText="" valueField="customid"  textField="name" width="100%"  />
+					</td>
+				</tr>									
+
+                        
+			</table>
+			<div style="text-align: center; padding: 10px;">
+				<a class="nui-button" onclick="onAdvancedSearchOk" style="width: 60px; margin-right: 20px;">确定</a>
+				<a class="nui-button" onclick="onAdvancedSearchCancel" style="width: 60px;margin-right: 20px;">取消</a>
+				<a class="nui-button" onclick="cancelData" style="width: 60px;">清除</a>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

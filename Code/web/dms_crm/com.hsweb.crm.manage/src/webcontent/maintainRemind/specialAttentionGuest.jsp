@@ -12,8 +12,9 @@
 
 <head>
     <title>特别关怀</title>
-    <script src="<%= request.getContextPath() %>/manage/js/maintainRemMain/specialAttentionGuest.js?v=1.1.8">
-    </script>
+    <script src="<%= request.getContextPath() %>/manage/js/maintainRemMain/specialAttentionGuest.js?v=1.1.91"></script>
+         <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style>
           html,
         body {
@@ -83,18 +84,18 @@
             <div class="nui-fit">
                 <div id="reminding" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" multiSelect="false"
                     pageSize="20" showPageInfo="true"   selectOnLoad="true"   onDrawCell="onDrawCell" onselectionchanged="" 
-                    allowSortColumn="false" totalField='page.count'>
+                    allowSortColumn="true" totalField='page.count' sortMode="client">
                     <div property="columns">
                         <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
                         <div type="checkcolumn" class="mini-radiobutton" header="选择"></div>
-                        <div field="carId" headerAlign="center" allowSort="true" visible="false">carId</div>
-                        <div field="guestId" headerAlign="center" allowSort="true" visible="false">guestId</div>
-                        <div field="carNo" headerAlign="center" allowSort="true" width="100px">车牌号</div>
-                        <div field="guestName" headerAlign="center" allowSort="true" width="100px">客户名称</div>
-                        <div field="mobile" headerAlign="center" allowSort="true" width="100px">联系方式</div>
-                        <div field="carModel" headerAlign="center" allowSort="true" width="200px">品牌车型</div>
-                        <div field="guestType" headerAlign="center" allowSort="true" width="100px">客户类型</div>
-                        <div field="careDueDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true"
+                        <div field="carId" headerAlign="center" allowSort="true" dataType="string"visible="false">carId</div>
+                        <div field="guestId" headerAlign="center" allowSort="true" dataType="string"visible="false">guestId</div>
+                        <div field="carNo"name="carNo" headerAlign="center" allowSort="true" dataType="string"width="100px">车牌号</div>
+                        <div field="guestName"name="guestName" headerAlign="center" allowSort="true" dataType="string"width="100px">客户名称</div>
+                        <div field="mobile" headerAlign="center" allowSort="true" dataType="string"width="100px">联系方式</div>
+                        <div field="carModel" name="carModel"headerAlign="center" allowSort="true" dataType="string"width="200px">品牌车型</div>
+                        <div field="guestType" headerAlign="center" allowSort="true" dataType="string" width="100px">客户类型</div>
+                        <div field="careDueDate" headerAlign="center" dataType="date"dateFormat="yyyy-MM-dd HH:mm" allowSort="true"
                         width="100px">
                             下次保养日期</div>
                     </div>
@@ -142,20 +143,20 @@
             </div>
             <div class="nui-fit">
                 <div id="business" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" multiSelect="false"
-                    pageSize="20" showPageInfo="true"   selectOnLoad="true"   onDrawCell="" onselectionchanged="" allowSortColumn="false"
-                    totalField='page.count'>
+                    pageSize="20" showPageInfo="true"   selectOnLoad="true"   onDrawCell="" onselectionchanged="" allowSortColumn="true"
+                    totalField='page.count' sortMode="client">
                     <div property="columns" >
                         <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
                         <div type="checkcolumn" class="mini-radiobutton" header="选择"></div>
-                        <div field="carId" headerAlign="center" allowSort="true" visible="false">carId</div>
-                        <div field="guestId" headerAlign="center" allowSort="true" visible="false">guestId</div>
-                        <div field="carNo" headerAlign="center" allowSort="true" width="100px">车牌号</div>
-                        <div field="guestName" headerAlign="center" allowSort="true" width="100px">客户名称</div>
-                        <div field="mobile" headerAlign="center" allowSort="true" width="100px">联系方式</div>
-                        <div field="carModel" headerAlign="center" allowSort="true" width="200px">品牌车型</div>
-                        <div field="guestType" headerAlign="center" allowSort="true" width="100px">客户类型</div>
-                        <div field="annualInspectionCompCode" headerAlign="center" allowSort="true" width="100px">保险公司</div>
-                        <div field="annualInspectionDate" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true"
+                        <div field="carId" headerAlign="center" allowSort="true" dataType="string"visible="false">carId</div>
+                        <div field="guestId" headerAlign="center" allowSort="true" dataType="string"visible="false">guestId</div>
+                        <div field="carNo"name="carNo" headerAlign="center" allowSort="true" dataType="string"width="100px">车牌号</div>
+                        <div field="guestName"name="guestName" headerAlign="center" allowSort="true" dataType="string"width="100px">客户名称</div>
+                        <div field="mobile" headerAlign="center" allowSort="true" dataType="string"width="100px">联系方式</div>
+                        <div field="carModel" name="carModel"headerAlign="center" allowSort="true" dataType="string"width="200px">品牌车型</div>
+                        <div field="guestType" headerAlign="center" allowSort="true" dataType="string"width="100px">客户类型</div>
+                        <div field="annualInspectionCompCode" name="annualInspectionCompCode"dataType="sting" headerAlign="center" allowSort="true" dataType="string"width="100px">保险公司</div>
+                        <div field="annualInspectionDate" headerAlign="center" dataType="date"dateFormat="yyyy-MM-dd" allowSort="true"
                         width="100px">
                             商业险到期日期</div>
                     </div>
@@ -204,19 +205,19 @@
             <div class="nui-fit">
                 <div id="compulsoryInsurance" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
                     multiSelect="false" pageSize="20" showPageInfo="true" selectOnLoad="true" onDrawCell="onDrawCell" onselectionchanged=""
-                    allowSortColumn="false" totalField='page.count'>
+                    allowSortColumn="true" totalField='page.count' sortMode="client">
                     <div property="columns">
                         <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
                         <div type="checkcolumn" class="mini-radiobutton" header="选择"></div>
-                        <div field="carId" headerAlign="center" allowSort="true" visible="false">carId</div>
-                        <div field="guestId" headerAlign="center" allowSort="true" visible="false">guestId</div>
-                        <div field="carNo" headerAlign="center" allowSort="true" width="100px">车牌号</div>
-                        <div field="guestName" headerAlign="center" allowSort="true" width="100px">客户名称</div>
-                        <div field="mobile" headerAlign="center" allowSort="true" width="100px">联系方式</div>
-                        <div field="carModel" headerAlign="center" allowSort="true" width="200px">品牌车型</div>
-                        <div field="guestType" headerAlign="center" allowSort="true" width="100px">客户类型</div>
-                        <div field="insureCompCode" headerAlign="center" allowSort="true" width="100px">保险公司</div>
-                        <div field="insureDueDate" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true"
+                        <div field="carId" headerAlign="center" allowSort="true" dataType="string"visible="false">carId</div>
+                        <div field="guestId" headerAlign="center" allowSort="true" dataType="string"visible="false">guestId</div>
+                        <div field="carNo"name="carNo" headerAlign="center" allowSort="true" dataType="string"width="100px">车牌号</div>
+                        <div field="guestName"name="guestName" headerAlign="center" allowSort="true" dataType="string"width="100px">客户名称</div>
+                        <div field="mobile" headerAlign="center" allowSort="true" dataType="string"width="100px">联系方式</div>
+                        <div field="carModel" name="carModel"headerAlign="center" allowSort="true" dataType="string"width="200px">品牌车型</div>
+                        <div field="guestType" headerAlign="center" allowSort="true" dataType="string"width="100px">客户类型</div>
+                        <div field="insureCompCode"  name="insureCompCode"dataType="string" headerAlign="center" allowSort="true" dataType="string"width="100px">保险公司</div>
+                        <div field="insureDueDate" headerAlign="center" dataType="date"dateFormat="yyyy-MM-dd" allowSort="true"
                         width="100px">
                             交强险到期日期</div>
                     </div>
@@ -265,19 +266,19 @@
             <div class="nui-fit">
                 <div id="drivingLicense" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
                     multiSelect="false" pageSize="20" showPageInfo="true"   selectOnLoad="true"   onDrawCell="onDrawCell" onselectionchanged=""
-                    allowSortColumn="false" totalField='page.count'>
+                    allowSortColumn="true" totalField='page.count' sortMode="client">
                     <div property="columns">
                         <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
                         <div type="checkcolumn" class="mini-radiobutton" header="选择"></div>
-                        <div field="guestId" headerAlign="center" allowSort="true" visible="false">guestId</div>
-                        <div field="orgid" headerAlign="center" allowSort="true" visible="false">orgid</div>
-                        <div field="carId" headerAlign="center" allowSort="true" visible="false">carId</div>
-                        <div field="carNo" headerAlign="center" allowSort="true" width="100px">车牌号</div>
-                        <div field="guestName" headerAlign="center" allowSort="true" width="100px">客户名称</div>
-                        <div field="mobile" headerAlign="center" allowSort="true" width="100px">联系方式</div>
-                        <div field="carModel" headerAlign="center" allowSort="true" width="200px">品牌车型</div>
-                        <div field="guestType" headerAlign="center" allowSort="true" width="100px">客户类型</div>
-                        <div field="licenseOverDate" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true"
+                        <div field="guestId" headerAlign="center" allowSort="true" dataType="string"visible="false">guestId</div>
+                        <div field="orgid" headerAlign="center" allowSort="true" dataType="string"visible="false">orgid</div>
+                        <div field="carId" headerAlign="center" allowSort="true" dataType="string"visible="false">carId</div>
+                        <div field="carNo"name="carNo" headerAlign="center" allowSort="true" dataType="string"width="100px">车牌号</div>
+                        <div field="guestName"name="guestName" headerAlign="center" allowSort="true" dataType="string"width="100px">客户名称</div>
+                        <div field="mobile" headerAlign="center" allowSort="true" dataType="string"width="100px">联系方式</div>
+                        <div field="carModel" name="carModel"headerAlign="center" allowSort="true" dataType="string"width="200px">品牌车型</div>
+                        <div field="guestType" headerAlign="center" allowSort="true" dataType="string"width="100px">客户类型</div>
+                        <div field="licenseOverDate" headerAlign="center" dataType="date"dateFormat="yyyy-MM-dd" allowSort="true"
                         width="100px">
                             驾照年审日期</div>
                     </div>
@@ -326,19 +327,19 @@
             <div class="nui-fit">
                 <div id="car" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" pageSize="20"
                     multiSelect="false" showPageInfo="true" selectOnLoad="true" onDrawCell="onDrawCell" onselectionchanged=""
-                    allowSortColumn="false" totalField='page.count'>
+                    allowSortColumn="true" totalField='page.count' sortMode="client">
                     <div property="columns">
                         <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
                         <div type="checkcolumn" class="mini-radiobutton" header="选择"></div>
-                        <div field="carId" headerAlign="center" allowSort="true" visible="false">carId</div>
-                        <div field="guestId" headerAlign="center" allowSort="true" visible="false">guestId</div>
-                        <div field="carNo" headerAlign="center" allowSort="true" width="100px">车牌号</div>
-                        <div field="guestName" headerAlign="center" allowSort="true" width="100px">客户名称</div>
-                        <div field="mobile" headerAlign="center" allowSort="true" width="100px">联系方式</div>
-                        <div field="carModel" headerAlign="center" allowSort="true" width="200px">品牌车型</div>
-                        <div field="guestType" headerAlign="center" allowSort="true" width="100px">客户类型</div>
+                        <div field="carId" headerAlign="center" allowSort="true" dataType="string"visible="false">carId</div>
+                        <div field="guestId" headerAlign="center" allowSort="true" dataType="string"visible="false">guestId</div>
+                        <div field="carNo"name="carNo" headerAlign="center" allowSort="true" dataType="string"width="100px">车牌号</div>
+                        <div field="guestName"name="guestName" headerAlign="center" allowSort="true" dataType="string"width="100px">客户名称</div>
+                        <div field="mobile" headerAlign="center" allowSort="true" dataType="string"width="100px">联系方式</div>
+                        <div field="carModel" name="carModel"headerAlign="center" allowSort="true" dataType="string"width="200px">品牌车型</div>
+                        <div field="guestType" headerAlign="center" allowSort="true" dataType="string"width="100px">客户类型</div>
                         <div field="dueDate" headerAlign="center" dateFormat="yyyy-MM-dd"
-                            allowSort="true" width="100px">
+                            allowSort="true" dataType="date"width="100px">
                             车辆年检到期日期</div>
                     </div>
                 </div>
@@ -374,19 +375,19 @@
             <div class="nui-fit">
                 <div id="guestBirthday" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
                     multiSelect="false" pageSize="20" showPageInfo="true" selectOnLoad="true"  onDrawCell="onDrawCell" onselectionchanged=""
-                    allowSortColumn="false" totalField='page.count'>
+                    allowSortColumn="true" totalField='page.count' sortMode="client">
                     <div property="columns">
                         <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
                         <div type="checkcolumn" class="mini-radiobutton" header="选择"></div>
-                        <div field="guestId" headerAlign="center" allowSort="true" visible="false">guestId</div>
-                        <div field="carId" headerAlign="center" allowSort="true" visible="false">orgid</div>
-                        <div field="carNo" headerAlign="center" allowSort="true" width="100px">车牌号</div>
-                        <div field="guestName" headerAlign="center" allowSort="true" width="100px">客户名称</div>
-                        <div field="mobile" headerAlign="center" allowSort="true" width="100px">联系方式</div>
-                        <div field="carModel" headerAlign="center" allowSort="true" width="200px">品牌车型</div>
-                        <div field="guestType" headerAlign="center" allowSort="true" width="100px">客户类型</div>
-                        <div field="birComeDay" headerAlign="center" allowSort="true" width="100px">距离天数</div>
-                        <div field="birthday" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true" width="100px">生日</div>
+                        <div field="guestId" headerAlign="center" allowSort="true" dataType="string"visible="false">guestId</div>
+                        <div field="carId" headerAlign="center" allowSort="true" dataType="string"visible="false">orgid</div>
+                        <div field="carNo"name="carNo" headerAlign="center" allowSort="true" dataType="string"width="100px">车牌号</div>
+                        <div field="guestName"name="guestName" headerAlign="center" allowSort="true" dataType="string"width="100px">客户名称</div>
+                        <div field="mobile" headerAlign="center" allowSort="true" dataType="string"width="100px">联系方式</div>
+                        <div field="carModel" name="carModel"headerAlign="center" allowSort="true" dataType="string"width="200px">品牌车型</div>
+                        <div field="guestType" headerAlign="center" allowSort="true" dataType="string"width="100px">客户类型</div>
+                        <div field="birComeDay" headerAlign="center" allowSort="true" dataType="int"width="100px">距离天数</div>
+                        <div field="birthday" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true" dataType="date"width="100px">生日</div>
                     </div>
                 </div>
             </div>

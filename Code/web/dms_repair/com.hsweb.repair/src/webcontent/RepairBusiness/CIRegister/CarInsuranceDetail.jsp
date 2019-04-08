@@ -10,10 +10,10 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>保险开单明细</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.68"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.70"></script>
     <style type="text/css">
    .title {
-        width: 80px;
+        width: 90px;
         text-align: right; 
     }
     table {
@@ -250,14 +250,22 @@ pageEncoding="UTF-8" session="false"%>
             <td class="title required" style="color:red">
                 <label>有效日期：</label>
             </td>
-            <td style="width:20%" >
-               <input id="beginDate" name="beginDate" class="nui-datepicker" value="" format="yyyy-MM-dd " width="43%"/>
-    			至 <input id="endDate" name="endDate" class="nui-datepicker" value="" format="yyyy-MM-dd "width="43%"/> &nbsp;&nbsp;
+            <td colspan="3">
+               <input id="beginDate" name="beginDate" class="nui-datepicker" value="" format="yyyy-MM-dd " width="48%"/>
+    			至 <input id="endDate" name="endDate" class="nui-datepicker" value="" format="yyyy-MM-dd "width="48%"/>
             </td>
 
+            <!-- <td class="title required" style="color:red;width:100px">保费收取方式：</td> 
+            <td class=""><input  class="nui-combobox" name="settleTypeId" id="settleTypeId" valueField="id" textField="name" data="settleTypeIdList" dataField="settleTypeIdList" width="100%"/></td>
+			 -->
+        </tr>
+        <tr>  
             <td class="title required" style="color:red;width:100px">保费收取方式：</td> 
             <td class=""><input  class="nui-combobox" name="settleTypeId" id="settleTypeId" valueField="id" textField="name" data="settleTypeIdList" dataField="settleTypeIdList" width="100%"/></td>
-			
+            <td class="title required" >其他成本：</td> 
+            <td><input  class="nui-textbox" name="costAmt" id="costAmt"  width="100%" vtype="float" onvaluechanged="changeCostAmt"/></td>
+            <td class="title required" >其他成本说明：</td> 
+            <td class="" colspan="3"><input  class="nui-textbox" name="costRemark"  id="costRemark" enabled="true" width="100%"/></td>
         </tr>
     </table>
 </div>
@@ -312,15 +320,21 @@ pageEncoding="UTF-8" session="false"%>
         <input property="editor" class="nui-textbox" vtype="float" >
         </div>
         <div field="amt" name="amt" headeralign="center" align="center" visible="true" width="100" header="保司保费(售价/元)"summaryType="sum">
-            <input property="editor" class="nui-textbox" vtype="float" >
+            <input property="editor" class="nui-textbox" vtype="float" onvaluechanged="changAmt">
         </div>
         <div field="rtnCompRate"name="rtnCompRate" headeralign="center" align="center" visible="true" width="100" header="保司返点(%)"summaryType="sum">
-            <input property="editor" class="nui-textbox" vtype="float" >
+            <input property="editor" class="nui-textbox" vtype="float" onvaluechanged="changRtnCompRate">
+        </div>
+         <div field="rtnCompAmt"name="rtnCompAmt" headeralign="center" align="center" visible="true" width="100" header="保司返点金额(元)"summaryType="sum">
+            <input property="editor" class="nui-textbox" vtype="float" onvaluechanged="changRtnCompAmt">
         </div>
         <div field="rtnGuestRate" name="rtnGuestRate" headeralign="center" align="center" visible="true" width="100" header="客户返点(%)" summaryType="sum">
-            <input property="editor" class="nui-textbox" vtype="float" >
+            <input property="editor" class="nui-textbox" vtype="float" onvaluechanged="changRtnGuestRate">
         </div>
-       <div field="remark" name="remark" headeralign="center" align="center" visible="true" width="100" header="备注">
+        <div field="rtnGuestAmt" name="rtnGuestAmt" headeralign="center" align="center" visible="true" width="100" header="客户返点金额(元)" summaryType="sum">
+            <input property="editor" class="nui-textbox" vtype="float" onvaluechanged="changRtnGuestAmt">
+        </div>
+       <div field="remark" name="remark" headeralign="center" align="center" visible="true" width="150" header="备注">
             <input property="editor" class="nui-textbox" vtype="float" >
         </div>
     </div>

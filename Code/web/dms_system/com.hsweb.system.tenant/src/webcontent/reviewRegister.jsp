@@ -7,7 +7,7 @@
 <link
 	href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.1"
 	rel="stylesheet" type="text/css" />
-<script src="<%= request.getContextPath() %>/tenant/js/review_register.js?v=1.9.20"
+<script src="<%= request.getContextPath() %>/tenant/js/review_register.js?v=1.9.30"
 	type="text/javascript"></script>
 </head>
 <body>
@@ -44,7 +44,7 @@
 					
 					<li class="separator"></li>
 					<a class="nui-button"  plain="true" href="javascript:query();" id="query" enabled="true"  onclick="superSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-					<a class="nui-button"  plain="true" href="" id="query" enabled="true"  onclick="searchByTenant"><span class="fa fa-search fa-lg"></span>&nbsp;查看</a>
+					<a class="nui-button"  plain="true" href="" id="query" enabled="true"  onclick="OrgShow"><span class="fa fa-search fa-lg"></span>&nbsp;查看</a>
 <!-- 					<a class="nui-button"  plain="true"	 id="sh" enabled="true"  onclick="audit"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a> -->
 					<a class="nui-button"  plain="true"	 id="sh" enabled="true"  onclick="auditPart"><span class="fa fa-check fa-lg"></span>&nbsp;认证为汽配商</a>
 					<a class="nui-button"  plain="true"	 id="sh" enabled="true"  onclick="auditRepair"><span class="fa fa-check fa-lg"></span>&nbsp;认证为汽修商</a>
@@ -70,7 +70,7 @@
 						<div field="id" allowSort="true" headerAlign="center"  visible="false"
 								width="120"  >用户id</div>
 						<div field="tenantId" allowSort="true" headerAlign="center"
-								width="120"  >机构ID</div>
+								width="50"  >租户ID</div>
 						<div field="mobile" allowSort="true" headerAlign="center"
 								width="120"  >手机号</div>
 						<div field="name" allowSort="true" headerAlign="center"
@@ -111,7 +111,7 @@
                 <td style="width:100%;">
                     <input class="nui-textbox" id="orgidOrName" name="orgidOrName" width="160px" emptyText="请输入店号或公司名">
                     <a class="nui-button" iconCls="" plain="true" onclick="searchOrg()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="addOrg" id=""><span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="addOrgAccount" id=""><span class="fa fa-check fa-lg"></span>&nbsp;开通电商账号</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="onOrgClose" id=""><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
                 </td>
             </tr>
@@ -121,8 +121,7 @@
           <div id="moreOrgGrid" class="nui-datagrid" style="width:100%;height:100%;"
                selectOnLoad="true"
                showPager="false"
-               dataField="orgList"
-               onrowdblclick="addOrg"
+               dataField="companyList"
                allowCellSelect="true"
                editNextOnEnterKey="true"
                allowCellWrap = true
@@ -131,8 +130,9 @@
                url="">
               <div property="columns">
               	<div type="checkcolumn" width="15" class="mini-radiobutton" header="选择"></div>
-                <div field="orgcode" name="orgid" width="15" align="center"  visible="true" headerAlign="center" header="企业号"></div>
-                <div field="orgname" name="orgname" width="" align="center"  headerAlign="center" header="公司名称"></div>
+                <div field="orgid" name="orgid" width="15" align="center"  visible="true" headerAlign="center" header="企业号"></div>
+                <div field="name" name="name" width="" align="center"  headerAlign="center" header="公司名称"></div>
+                <div field="srmUserId" name="srmUserId" width="40" align="center"  headerAlign="center" header="电商账号"></div>
               </div>
           </div>
     </div>

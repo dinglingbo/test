@@ -28,6 +28,15 @@
       <targetNode>invokePojo2</targetNode>
       <process:transitionCondition>
         <process:complexCondition>
+          <process:code>1==4</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link9" name="link9" displayName="连接线" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign1</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
           <process:code>1==1</process:code>
         </process:complexCondition>
       </process:transitionCondition>
@@ -171,6 +180,7 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
+    <targetConnections>link11</targetConnections>
     <location x="400" y="326"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
@@ -184,10 +194,71 @@
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="getHttpByJsonParam" displayName="getHttpByJsonParam" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo3</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <targetConnections>link10</targetConnections>
+    <location x="305" y="444"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo3label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.HttpUtils.getHttpByJsonParam</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="urlPath" type="literal" value="java.lang.String" valueType="Java" pattern="reference">http://mbd.prod.harsons.cn/hscp/car/cars/%E4%BA%91F111XS</process:inputVariable>
+      <process:inputVariable id="1" name="params" type="query" value="java.util.Map&lt;java.lang.String,java.lang.String>" valueType="Java" pattern="reference">value</process:inputVariable>
+      <process:inputVariable id="2" name="method" type="literal" value="java.lang.String" valueType="Java" pattern="reference">get</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java">c</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
+    <location x="255" y="480"/>
+    <figSize height="17" width="122"/>
+    <node>invokePojo3</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>invokePojo3</targetNode>
+    </sourceConnections>
+    <targetConnections>link9</targetConnections>
+    <location x="180" y="444"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">http://mbd.prod.harsons.cn/hscp/car/cars/</process:from>
+      <process:to type="query">url</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">粤X97S87</process:from>
+      <process:to type="query">carNo</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">URLEncoder.encode(carNo,&quot;utf-8&quot;);</process:from>
+      <process:to type="query">carNo</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">url+carNo</process:from>
+      <process:to type="query">url</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
+    <location x="178" y="480"/>
+    <figSize height="17" width="32"/>
+    <node>assign1</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-03-05 10:32:07" date="2019-03-05Z" description="" name="testGuest" version="7.0.0.0"/>
-  <process:variables/>
+  <process:variables>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="url" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="carNo" primitiveType="String"/>
+  </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="password" primitiveType="String"/>
   </process:inputs>

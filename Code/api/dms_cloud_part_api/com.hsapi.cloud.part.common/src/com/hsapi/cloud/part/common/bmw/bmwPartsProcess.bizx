@@ -403,7 +403,9 @@
     <figSize height="20" width="61"/>
     <node>transactioncommit0</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="780" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Guine" createTime="2018-07-07 20:34:53" date="2018-07-07Z" description="" name="bmwPartsProcess" version="7.0.0.0"/>
   <process:variables>

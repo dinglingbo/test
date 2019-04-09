@@ -128,5 +128,27 @@
 				
     </select>
     
+    <!--获取分仓的仓库id和仓位-->
+	<select id="queryStoreIdAndShelf" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+         	SELECT
+         		a.orgid as orgid,
+				a.part_id as partId,
+				a.store_id AS storeId,
+				a.shelf AS shelf
+			FROM
+				pj_part_store_stock a
+			WHERE
+				1 = 1
+			<isNotEmpty prepend="and" property="orgid"> 
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="partId"> 
+                (a.part_id = #partId#)
+            </isNotEmpty>
+					
+	    </select>
+    
     
 </sqlMap>

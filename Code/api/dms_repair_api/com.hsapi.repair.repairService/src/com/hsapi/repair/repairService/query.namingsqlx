@@ -1033,6 +1033,7 @@
 				b.car_brand_id as carBrandId,
 				a.remind_status remindStatus,
 				e.wechat_open_id wechatOpenId,
+				e.wechat_service_id wechatServiceId,
 				e.id conId,
 				d.id
 			FROM

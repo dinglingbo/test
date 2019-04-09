@@ -11,7 +11,7 @@
 <head>
 <title>领料出库</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumableAdd.js?v=1.1.0"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumableAdd.js?v=1.1.3"></script>
     <style type="text/css">
 
    	#remark.mini-textbox{

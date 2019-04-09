@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getCarNO.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="获取车架号为空或者车型为空的数据&#xD;&#xA;1小时=3600秒 获取一次数据，&#xD;&#xA;com.hsapi.system.service.query.queryCarInfo&#xD;&#xA;&#xD;&#xA;sys_car_auto_service 不用于处理车型，只在第一次获取车牌号时取车型信息&#xD;&#xA;服务停止后，需要考虑手工处理数据，一般在晚上重启服务开启定时器时不需要手工处理" title="Administrator&#x9;19-2-21 下午4:26">
-    <location x="42" y="-15"/>
-    <size height="136" width="511"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="获取车架号为空或者车型为空的数据&#xD;&#xA;1小时=3600秒 获取一次数据，&#xD;&#xA;com.hsapi.system.service.query.queryCarInfo&#xD;&#xA;&#xD;&#xA;sys_car_auto_service 不用于处理车型，只在第一次获取车牌号时取车型信息&#xD;&#xA;服务停止后，需要考虑手工处理数据，一般在晚上重启服务开启定时器时不需要手工处理&#xD;&#xA;&#xD;&#xA;20190408 保存车辆时生成sys_car_auto_service数据" title="Administrator&#x9;19-2-21 下午4:26">
+    <location x="30" y="-75"/>
+    <size height="181" width="511"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">

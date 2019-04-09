@@ -35,6 +35,7 @@ var sCreateDateEl=null;
 var eCreateDateEl =null;
 var sEnterDateEl =null;
 var eEnterDateEl =null;
+var pickManHash={};
 $(document).ready(function(v) {
 
 	queryInfoForm = new nui.Form("#queryInfoForm").getData(false, false);
@@ -43,6 +44,19 @@ $(document).ready(function(v) {
 	grid.load(queryInfoForm);
 	grid.setUrl(gridUrl);
 	grid.on("drawcell", onDrawCell);
+//	grid.on("drawcell", function(e){
+//		switch (e.field) {
+//			case "pickMan" :
+//				if (pickManHash[e.value]) {
+//					e.cellHtml = pickManHash[e.value].empName || "";
+//				} else {
+//					e.cellHtml = e.value || "";
+//				}
+//				break;
+//			default:
+//				break;
+//		}
+//	});
 	sCreateDateEl=nui.get("sCreateDate");
 	eCreateDateEl=nui.get("eCreateDate");
 	sEnterDateEl = nui.get('sEnterDate');
@@ -123,7 +137,8 @@ $(document).ready(function(v) {
 	            { name: 'partName' },
 	            { name: 'remark' },
 	            { name: 'pickMan' },
-	            { name: 'returnMan' }
+	            { name: 'returnMan' },
+	            { name: 'recorder'}
 	        ],
 	        callback: function (column, filtered) {
 	        },
@@ -266,7 +281,10 @@ $(document).ready(function(v) {
 	}
 	
     initMember("pickMan1",function(){
-    	
+//    	var pickManList = nui.get(pickMan1).getData();
+//    	pickManList.forEach(function(v){
+//    		pickManHash[v.empId] = v;
+//    	});
     });
 
 	var dictDefs = {

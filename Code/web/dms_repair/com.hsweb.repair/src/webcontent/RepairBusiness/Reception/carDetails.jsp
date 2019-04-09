@@ -12,7 +12,7 @@
         <head>
             <title>车辆详情</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.24" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.26" type="text/javascript"></script>
         </head>
         <style type="text/css">
             body {
@@ -315,7 +315,8 @@
                             </div>
                         </div>
                         <div title="服务记录" id="main" name="main">
-                            <div id="mainGrid1" class="nui-datagrid" style="width:100%;height:100%;" 
+                        	显示客户所有车辆：<div  class="nui-checkbox" id="isAll" name="isAll" value="0" onclick="onSearch" trueValue="1" falseValue="0"></div>
+                            <div id="mainGrid1" class="nui-datagrid" style="width:100%;height:95%;" 
                                   selectOnLoad="true" showPager="true" totalField="page.count"
                                  dataField="data" onrowdblclick="" allowCellSelect="true" url=""
                                 onshowrowdetail="onShowRowDetail"

@@ -8,7 +8,7 @@
 -->
 <head>
 <title>库存查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockQuery/partStoreStockQuery.js?v=2.2.22"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockQuery/partStoreStockQuery.js?v=2.2.30"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -89,10 +89,17 @@
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
+<!--                 <a class="nui-button" iconCls="" plain="true" onclick="onEnterRecord()" id="enterBtn"><span class=""></span>&nbsp;入库记录</a> -->
+<!--                 <a class="nui-button" iconCls="" plain="true" onclick="onOutRecord()" id="outBtn"><span class=""></span>&nbsp;出库记录</a> -->
             </td>
         </tr>
     </table>
 </div>
+
+ 	<ul id="gridMenu" class="mini-contextmenu" >              
+        <li name="enterBtn" iconCls="icon-add" onclick="onEnterRecord">入库记录</li>
+	    <li name="outBtn" iconCls="icon-edit" onclick="onOutRecord">出库记录</li>        
+    </ul>
 <div class="nui-fit">
     <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
          showPager="true"
@@ -104,6 +111,7 @@
          allowCellWrap = true
          pageSize="1000"
          sizeList="[1000,2000,5000]"
+         contextMenu="#gridMenu"
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn"  width="40">序号</div>

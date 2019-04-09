@@ -1299,6 +1299,9 @@ function unfinish(){
                 var olddata = billForm.getData();
                 olddata.status = 1;
                 billForm.setData([]);
+                if(olddata.balaAuditSign == 1){
+                   olddata.balaAuditSign = 0;
+                }
                 billForm.setData(olddata);
                 nui.get("contactorName").setText(maintain.contactorName);
                 var status = 1;

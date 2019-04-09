@@ -32,7 +32,7 @@
         <br/>
         <center id="groupButton">
             <a class="nui-button groupButton2" onclick="ntab.activeTab(ntab.getTab(0));">车型选择</a>&nbsp;
-            <a class="nui-button groupButton2" onclick="showInfoRightGrid(gridSubGroup)">主组/分组</a>&nbsp;
+            <a class="nui-button groupButton2" onclick="showInfoRightGrid(subGroups)">主组/分组</a>&nbsp;
             <a class="nui-button groupButton2" style="display:none;" onclick="showInfoRightGrid(gridParts)">零件</a>
         </center>
     </div>

@@ -107,7 +107,7 @@ table {
                                    url=""
                                    allowInput="true"
                                    showNullItem="false"
-                                   width="40%" 
+                                   width="46%" 
                                    valueFromSelect="true"
                                    nullItemText="请选择..."/>
                     </tr>

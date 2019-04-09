@@ -11,7 +11,7 @@
 -->
 <head>
     <title>新增客户档案</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.69"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.70"></script>
     <style type="text/css">
         table {
             font-size: 12px;
@@ -192,7 +192,7 @@
                         </div>
                         <div class="nui-fit">
                             <div id="cardatagrid" class="nui-datagrid" style="width: 100%;height:100%" showPager="false" sortMode="client" allowCellEdit="true" onrowdblclick="eaidCar()"
-                                allowCellSelect="true" multiSelect="true"  editNextOnEnterKey="true"
+                                allowCellSelect="true" multiSelect="true"  editNextOnEnterKey="true"   showSummaryRow="true"
                                 >
                                 <div property="columns">
                                     <div type="checkcolumn" width="50" class="mini-radiobutton" header="选择"></div>

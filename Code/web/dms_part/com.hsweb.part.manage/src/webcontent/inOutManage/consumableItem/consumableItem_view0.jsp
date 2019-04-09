@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>耗材出库</title>
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=2.0.17"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=2.0.18"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -93,6 +93,12 @@ pageEncoding="UTF-8" session="false"%>
                     </tr>
                 </table>
             </div>
+            
+            <ul id="gridMenu" class="mini-contextmenu" >              
+		        <li name="enterBtn" iconCls="icon-add" onclick="onEnterRecord">入库记录</li>
+			    <li name="outBtn" iconCls="icon-edit" onclick="onOutRecord">出库记录</li>        
+		    </ul>
+		    
             <div class="nui-fit">             
                 <div id="enterGrid" class="nui-datagrid" style="width:100%;height:100%;"
                 borderStyle="border:1;"
@@ -113,6 +119,7 @@ pageEncoding="UTF-8" session="false"%>
                 multiSelect="false" 
                 allowCellWrap = true
                 showSummaryRow="true"
+                contextMenu="#gridMenu"
                 >
                 <div property="columns">
                    <div type="checkcolumn" width="40" class="mini-radiobutton" header="选择"></div> 
@@ -228,7 +235,7 @@ pageEncoding="UTF-8" session="false"%>
             <div field="remark" id="remark" name="remark" headerAlign="center" allowSort="true" visible="true" width="">备注</div>
             <div field="pickDate" headerAlign="center" allowSort="true" visible="true" width="" format="yyyy-MM-dd" dateFormat="yyyy-MM-dd HH:mm">出库日期</div>  
             <div field="pickMan" name="pickMan" headerAlign="center" allowSort="true" visible="true" width=""  align="right">领料人</div>
-            <div field="recorder" name="recorder" headerAlign="center" allowSort="true" visible="true" width=""  align="right">领料人</div>
+            <div field="recorder" name="recorder" headerAlign="center" allowSort="true" visible="true" width=""  align="right">创建人</div>
             <div field="returnReasonId" id="returnReasonId" headerAlign="center" allowSort="true" visible="false" width="">归库原因ID
                <input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
            </div>

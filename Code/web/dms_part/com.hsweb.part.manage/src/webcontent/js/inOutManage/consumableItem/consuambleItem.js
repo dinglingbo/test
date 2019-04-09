@@ -759,3 +759,67 @@ function setInitExportData( detail){
  
     method5('tableExcel',"耗材出库导出",'tableExportA');
 }
+
+//查看入库记录
+function onEnterRecord(){
+	var row ={};
+	row = enterGrid.getSelected();
+	if(!row){
+		showMsg("请选择一条记录","W");
+		return;
+	}
+	var partId = row.partId;
+	nui.open({
+		url : webPath+contextPath+"/com.hsweb.part.common.partEnterRecord.flow?token="+token,
+		title : "入库记录",
+		width : 850,
+		height : 500,
+		allowDrag : true,
+		allowResize : true,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			var params = {
+				partId: partId,
+                token :token
+            };
+            iframe.contentWindow.SetData(params);
+		},
+		ondestroy : function(action) {
+			if (action == 'ok') {
+			
+			}
+		}
+	});
+}
+
+//查看出库记录
+function onOutRecord(){
+	var row ={};
+	row = enterGrid.getSelected();
+	if(!row){
+		showMsg("请选择一条记录","W");
+		return;
+	}
+	var partId = row.partId;
+	nui.open({
+		url : webPath+contextPath+"/com.hsweb.part.common.partOutRecord.flow?token="+token,
+		title : "出库记录",
+		width : 850,
+		height : 500,
+		allowDrag : true,
+		allowResize : true,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			var params = {
+				partId: partId,
+                token :token
+            };
+            iframe.contentWindow.SetData(params);
+		},
+		ondestroy : function(action) {
+			if (action == 'ok') {
+			
+			}
+		}
+	});
+}

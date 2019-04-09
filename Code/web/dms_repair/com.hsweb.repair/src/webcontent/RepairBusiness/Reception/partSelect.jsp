@@ -123,7 +123,11 @@
           </table>
 
       </div>
-
+	
+		<ul id="gridMenu" class="mini-contextmenu" >              
+	        <li name="enterBtn" iconCls="icon-add" onclick="onEnterRecord">入库记录</li>
+		    <li name="outBtn" iconCls="icon-edit" onclick="onOutRecord">出库记录</li>        
+	    </ul>
       <div class="nui-fit">
 
         <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
@@ -138,6 +142,7 @@
         sizeList=[20,50,100,200]
         allowCellEdit="true" allowCellSelect="true" 
         editNextOnEnterKey="true"  editNextRowCell="true"
+         contextMenu="#gridMenu"
 
         >
         <div property="columns">
@@ -672,6 +677,70 @@ function gridData(){//获取汇总的数据
     		showMsg('请选择一条记录!','W');
     	}
     }
+    
+    //查看入库记录
+	function onEnterRecord(){
+		var row ={};
+		row = mainGrid.getSelected();
+		if(!row){
+			showMsg("请选择一条记录","W");
+			return;
+		}
+		var partId = row.partId;
+		nui.open({
+			url : webPath+contextPath+"/com.hsweb.part.common.partEnterRecord.flow?token="+token,
+			title : "入库记录",
+			width : 850,
+			height : 500,
+			allowDrag : true,
+			allowResize : true,
+			onload : function() {
+				var iframe = this.getIFrameEl();
+				var params = {
+					partId: partId,
+	                token :token
+	            };
+	            iframe.contentWindow.SetData(params);
+			},
+			ondestroy : function(action) {
+				if (action == 'ok') {
+				
+				}
+			}
+		});
+	}
+	
+	//查看出库记录
+	function onOutRecord(){
+		var row ={};
+		row = mainGrid.getSelected();
+		if(!row){
+			showMsg("请选择一条记录","W");
+			return;
+		}
+		var partId = row.partId;
+		nui.open({
+			url : webPath+contextPath+"/com.hsweb.part.common.partOutRecord.flow?token="+token,
+			title : "出库记录",
+			width : 850,
+			height : 500,
+			allowDrag : true,
+			allowResize : true,
+			onload : function() {
+				var iframe = this.getIFrameEl();
+				var params = {
+					partId: partId,
+	                token :token
+	            };
+	            iframe.contentWindow.SetData(params);
+			},
+			ondestroy : function(action) {
+				if (action == 'ok') {
+				
+				}
+			}
+		});
+	}
 </script>
 
 </body>

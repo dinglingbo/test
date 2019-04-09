@@ -1034,4 +1034,59 @@
 			group by c.car_type_id_f
     </select>
     
+    <!-- 入库记录 -->
+    <select id="queryEnterRecord" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT
+			a.part_id as partId,
+			a.enter_date as enterDate,
+		    a.enter_qty as enterQty,
+		   (a.enter_qty -a.outable_qty) as returnQty,
+			b.`code` as code,
+			b.guest_id as guestId,
+			c.full_name as guestName,
+		    b.enter_type_id as enterTypeId,
+			b.order_man as orderMan
+		FROM
+			pj_enter_detail_chk a
+		INNER JOIN pj_enter_main_chk b ON a.main_id = b.id
+		INNER JOIN wb_common.com_guest c ON c.id=b.guest_id
+		where 1 = 1 
+		
+		<isNotEmpty prepend="and" property="orgid"> 
+            (b.orgid = #orgid#)
+        </isNotEmpty>
+        
+        <isNotEmpty prepend="and" property="partId">  
+            (a.PART_ID = #partId#)
+        </isNotEmpty>
+        order by a.enter_date desc
+    </select>
+    
+     <!-- 出库记录 -->
+    <select id="queryOutRecord" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT
+			a.part_id as partId,
+			a.pick_date as pickDate ,
+			a.pick_type as pickType,
+			a.out_qty as outQty,
+			IFNULL(a.out_return_sign,0) as outReturnSign,
+			IFNULL(a.out_return_qty,0) as outReturnQty,
+			a.sell_unit_price as sellUnitPrice,
+			a.sell_amt as sellAmt,
+			a.recorder as recorder,
+			a.car_no as carNo,
+			a.pick_man as pickMan
+		FROM
+			pj_repair_out a			
+		where 1 = 1 
+		
+		<isNotEmpty prepend="and" property="orgid"> 
+            (a.orgid = #orgid#)
+        </isNotEmpty>
+        
+        <isNotEmpty prepend="and" property="partId">  
+            (a.PART_ID = #partId#)
+        </isNotEmpty>
+        order by a.pick_date desc
+    </select>
 </sqlMap>

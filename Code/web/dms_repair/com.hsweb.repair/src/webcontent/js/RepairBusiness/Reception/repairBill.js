@@ -1540,6 +1540,9 @@ function unfinish(){
                 var olddata = billForm.getData();
                 olddata.status = 1;
                 billForm.setData([]);
+                if(olddata.balaAuditSign == 1){
+                   olddata.balaAuditSign = 0;
+                }
                 billForm.setData(olddata);
                 var status = 1;
                 var isSettle = maintain.isSettle||0;

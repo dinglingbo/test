@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>耗材出库</title>
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=2.0.19"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=2.0.20"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -96,7 +96,7 @@ pageEncoding="UTF-8" session="false"%>
             
             <ul id="gridMenu" class="mini-contextmenu" >              
 		        <li name="enterBtn" iconCls="icon-add" onclick="onEnter">入库记录</li>
-			    <li name="outBtn" iconCls="icon-edit" onclick="onOut">出库记录</li>        
+			    <li name="outBtn" iconCls="icon-edit" onclick="onOutTo">出库记录</li>        
 		    </ul>
 		    
             <div class="nui-fit">             

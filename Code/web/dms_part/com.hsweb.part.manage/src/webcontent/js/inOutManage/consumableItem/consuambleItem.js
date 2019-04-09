@@ -774,7 +774,7 @@ function onEnter(){
 }
 
 //查看出库记录
-function onOutRecord(){
+function onOutTo(){
 	var row ={};
 	row = enterGrid.getSelected();
 	if(!row){

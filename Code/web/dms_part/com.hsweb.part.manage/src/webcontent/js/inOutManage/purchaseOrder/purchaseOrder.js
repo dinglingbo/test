@@ -2809,3 +2809,28 @@ function getArea(){
         }
     });
 }
+
+//查看入库记录
+function onEnter(){
+	var row ={};
+	row = rightGrid.getSelected();
+	if(!row){
+		showMsg("请选择一条记录","W");
+		return;
+	}
+	var partId = row.partId;
+	onEnterRecord(partId);
+	
+}
+
+//查看出库记录
+function onOut(){
+	var row ={};
+	row = rightGrid.getSelected();
+	if(!row){
+		showMsg("请选择一条记录","W");
+		return;
+	}
+	var partId = row.partId;
+	onOutRecord(partId);
+}

@@ -32,10 +32,13 @@
               <div property="columns">
                 <div type="indexcolumn">序号</div>
                 <div  field="enterDate" name="enterDate" width="80" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                <div field="storeId" name="storeId" width="50" headerAlign="center" header="仓库"></div>
                 <div allowSort="true"  field="enterQty" name="enterQty"  datatype="float"  summaryType="sum" width="40" headerAlign="center" header="入库数量"></div>
                 <div allowSort="true"  field="returnQty" name="returnQty"  datatype="float"  summaryType="sum" width="40" headerAlign="center" header="退货数量"></div>
-                <div field="code" name="code" width="100" headerAlign="center" header="入库单号"></div>
-                <div   field="guestName" name="guestName" width="100" headerAlign="center" header="供应商"></div>
+                <div allowSort="true"  field="enterPrice" name="enterPrice"  datatype="float"  summaryType="sum" width="40" headerAlign="center" header="入库价"></div>
+                <div allowSort="true"  field="enterAmt" name="enterAmt"  datatype="float"  summaryType="sum" width="40" headerAlign="center" header="入库金额"></div>
+                <div field="code" name="code" width="130" headerAlign="center" header="入库单号"></div>
+                <div   field="guestName" name="guestName" width="130" headerAlign="center" header="供应商"></div>
                 <div datatype="float" name="enterTypeId" field="enterTypeId"  width="60" headerAlign="center" header="入库类别"></div>
                 <div  field="orderMan" name ="orderMan"  width="60" headerAlign="center" header="采购员"></div>>
               </div>
@@ -59,6 +62,8 @@
 			"050108" :"退货归库",
 		    "050109" :"成品入库"
 		};
+		var storehouse =[];
+		var storeHash = {};
     	$(document).ready(function(v) {
     		enterPartGrid =nui.get('enterPartGrid');
     		enterPartGrid.setUrl(enterGridUrl);
@@ -71,9 +76,17 @@
     			 			e.cellHtml="";
     			 		}
     			 	break;
+    			 	case "storeId":
+    			 		if(storeHash[e.value]){
+    			 			e.cellHtml =storeHash[e.value].name || "";
+    			 		}else{
+    			 			e.cellHtml="";
+    			 		}
+    			 	break;
     			 }
     		});
-    		
+    	
+    	
 		 var filter = new HeaderFilter(enterPartGrid, {   
 	        columns: [
 	            { name: 'guestName' },
@@ -89,6 +102,14 @@
 	        	return value;
 	        }
 	    });
+	    
+	    getStorehouse(function(data) {
+			storehouse = data.storehouse || [];
+			storehouse.forEach(function(v){
+    			storeHash[v.id]=v;
+        		});
+        	});
+	    
 		});
 		
 		function SetData(params) {

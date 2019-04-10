@@ -67,9 +67,9 @@
                             enabled="true" emptyText="请选择日期" alwaysView="true"/></td>
     </tr>
     <tr>
-                <td><span class="title title-width2">车辆年检：</span></td>
-                <td><input id="annualVerificationDueDate"
-                            name="annualVerificationDueDate"
+                <td><span class="title title-width2">上牌日期：</span></td>
+                <td><input id="firstRegDate"
+                            name="firstRegDate"
                             class="nui-datepicker width2"
                             dateFormat="yyyy-MM-dd"
                             enabled="true" emptyText="请选择日期" alwaysView="true"/></td>

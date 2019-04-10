@@ -12,7 +12,7 @@
 
 <head>
     <title>特别关怀</title>
-    <script src="<%= request.getContextPath() %>/manage/js/maintainRemMain/specialAttentionGuest.js?v=1.1.91"></script>
+    <script src="<%= request.getContextPath() %>/manage/js/maintainRemMain/specialAttentionGuest.js?v=1.1.92"></script>
          <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style>
@@ -62,9 +62,11 @@
                             <input class="nui-datepicker" id="startDate0" name="startDate0" dateFormat="yyyy-MM-dd" style="width:100px" />
                             至
                             <input class="nui-datepicker" id="endDate0" name="endDate0" dateFormat="yyyy-MM-dd" style="width:100px" />
+                            <input class="nui-textbox"  id="carNo0"   name="carNo0"  style="width:90px;" emptyText="车牌号"/>
+                             <input id="sortType0" class="nui-combobox" width="100px" textField="text" valueField="id" emptyText="排序类型"
+                            value="2"  required="true" allowInput="false" showNullItem="true" nullItemText="请选择..." popupMaxHeight="250"/> 
                             <a class="nui-button" iconcls="" name="" plain="true" onclick="change(1)"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                             <li class="separator"></li>
-
                             <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
                             <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span
                                 class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
@@ -83,7 +85,7 @@
             </div>
             <div class="nui-fit">
                 <div id="reminding" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" multiSelect="false"
-                    pageSize="20" showPageInfo="true"   selectOnLoad="true"   onDrawCell="onDrawCell" onselectionchanged="" 
+                    pageSize="50" showPageInfo="true"   selectOnLoad="true"   onDrawCell="onDrawCell" onselectionchanged="" 
                     allowSortColumn="true" totalField='page.count' sortMode="client">
                     <div property="columns">
                         <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
@@ -123,6 +125,9 @@
                             <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd" style="width:100px" />
                             至
                             <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" />
+                            <input class="nui-textbox"  id="carNo"   name="carNo"  style="width:90px;" emptyText="车牌号"/>
+                             <input id="sortType" class="nui-combobox" width="100px" textField="text" valueField="id" emptyText="排序类型"
+                            value="2"  required="true" allowInput="false" showNullItem="true" nullItemText="请选择..." popupMaxHeight="250"/> 
                             <a class="nui-button" iconcls="" name="" plain="true" onclick="change(1)"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                             <li class="separator"></li>
                             <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
@@ -143,7 +148,7 @@
             </div>
             <div class="nui-fit">
                 <div id="business" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" multiSelect="false"
-                    pageSize="20" showPageInfo="true"   selectOnLoad="true"   onDrawCell="" onselectionchanged="" allowSortColumn="true"
+                    pageSize="50" showPageInfo="true"   selectOnLoad="true"   onDrawCell="" onselectionchanged="" allowSortColumn="true"
                     totalField='page.count' sortMode="client">
                     <div property="columns" >
                         <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
@@ -184,6 +189,9 @@
                             <input class="nui-datepicker" id="startDate2" name="startDate2" dateFormat="yyyy-MM-dd" style="width:100px" />
                             至
                             <input class="nui-datepicker" id="endDate2" name="endDate2" dateFormat="yyyy-MM-dd" style="width:100px" />
+                            <input class="nui-textbox"  id="carNo2"   name="carNo2"  style="width:90px;" emptyText="车牌号"/>
+                            <input id="sortType2" class="nui-combobox" width="100px" textField="text" valueField="id" emptyText="排序类型"
+                            value="2"  required="true" allowInput="false" showNullItem="true" nullItemText="请选择..." popupMaxHeight="250"/> 
                             <a class="nui-button" iconcls="" name="" plain="true" onclick="change(1)"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                             <li class="separator"></li>
                             <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
@@ -204,7 +212,7 @@
             </div>
             <div class="nui-fit">
                 <div id="compulsoryInsurance" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
-                    multiSelect="false" pageSize="20" showPageInfo="true" selectOnLoad="true" onDrawCell="onDrawCell" onselectionchanged=""
+                    multiSelect="false" pageSize="50" showPageInfo="true" selectOnLoad="true" onDrawCell="onDrawCell" onselectionchanged=""
                     allowSortColumn="true" totalField='page.count' sortMode="client">
                     <div property="columns">
                         <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
@@ -245,6 +253,9 @@
                             <input class="nui-datepicker" id="startDate3" name="startDate3" dateFormat="yyyy-MM-dd" style="width:100px" />
                             至
                             <input class="nui-datepicker" id="endDate3" name="endDate3" dateFormat="yyyy-MM-dd" style="width:100px" />
+                            <input class="nui-textbox"  id="carNo3"   name="carNo3"  style="width:90px;" emptyText="车牌号"/>
+                             <input id="sortType3" class="nui-combobox" width="100px" textField="text" valueField="id" emptyText="排序类型"
+                            value="2"  required="true" allowInput="false" showNullItem="true" nullItemText="请选择..." popupMaxHeight="250"/> 
                             <a class="nui-button" iconcls="" name="" plain="true" onclick="change(1)"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                             <li class="separator"></li>
                             <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
@@ -265,7 +276,7 @@
             </div>
             <div class="nui-fit">
                 <div id="drivingLicense" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
-                    multiSelect="false" pageSize="20" showPageInfo="true"   selectOnLoad="true"   onDrawCell="onDrawCell" onselectionchanged=""
+                    multiSelect="false" pageSize="50" showPageInfo="true"   selectOnLoad="true"   onDrawCell="onDrawCell" onselectionchanged=""
                     allowSortColumn="true" totalField='page.count' sortMode="client">
                     <div property="columns">
                         <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
@@ -306,6 +317,9 @@
                             <input class="nui-datepicker" id="startDate4" name="startDate2" dateFormat="yyyy-MM-dd" style="width:100px" />
                             至
                             <input class="nui-datepicker" id="endDate4" name="endDate2" dateFormat="yyyy-MM-dd" style="width:100px" />
+                            <input class="nui-textbox"  id="carNo4"   name="carNo4"  style="width:90px;" emptyText="车牌号"/>
+                             <input id="sortType4" class="nui-combobox" width="100px" textField="text" valueField="id" emptyText="排序类型"
+                            value="2"  required="true" allowInput="false" showNullItem="true" nullItemText="请选择..." popupMaxHeight="250"/> 
                             <a class="nui-button" iconcls="" name="" plain="true" onclick="change(1)"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                             <li class="separator"></li>
                             <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
@@ -325,7 +339,7 @@
                 </table>
             </div>
             <div class="nui-fit">
-                <div id="car" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" pageSize="20"
+                <div id="car" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" pageSize="50"
                     multiSelect="false" showPageInfo="true" selectOnLoad="true" onDrawCell="onDrawCell" onselectionchanged=""
                     allowSortColumn="true" totalField='page.count' sortMode="client">
                     <div property="columns">
@@ -354,6 +368,9 @@
                             <label>客户生日在</label>
                             <input class="nui-textbox" name="" id="bir" style="width: 80px;" vtype="int" value="30"/>
                             <label>天以内</label>
+                            <input class="nui-textbox"  id="carNo5"   name="carNo5"  style="width:90px;" emptyText="车牌号"/>
+                             <input id="sortType5" class="nui-combobox" width="100px" textField="text" valueField="id" emptyText="排序类型"
+                            value="2"  required="true" allowInput="false" showNullItem="true" nullItemText="请选择..." popupMaxHeight="250"/> 
                             <a class="nui-button" iconcls="" name="" plain="true" onclick="change(1)"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                             <li class="separator"></li>
                             <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
@@ -374,7 +391,7 @@
             </div>
             <div class="nui-fit">
                 <div id="guestBirthday" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
-                    multiSelect="false" pageSize="20" showPageInfo="true" selectOnLoad="true"  onDrawCell="onDrawCell" onselectionchanged=""
+                    multiSelect="false" pageSize="50" showPageInfo="true" selectOnLoad="true"  onDrawCell="onDrawCell" onselectionchanged=""
                     allowSortColumn="true" totalField='page.count' sortMode="client">
                     <div property="columns">
                         <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>

@@ -16,6 +16,7 @@ var sfData = {};
 var editFormDetail = null; 
 var innerItemGrid = null;
 var contactdatagrid = null;
+var onSearchParams = {};//现在用于查询本车或者客户全部
 var prdtTypeHash = {
 	    "1":"套餐",
 	    "2":"项目",
@@ -312,7 +313,7 @@ function CloseWindow(action) {
 }
 
 function SetData(params) {
-	
+	onSearchParams = params;
 	nui.get("carId").setValue(params.carId);
 	nui.get("guestId").setValue(params.guestId);
 	xyguest=params;
@@ -344,7 +345,11 @@ function SetData(params) {
     		token:token
     };
     grid1.load({p:pa});
-    mainGrid1.load({params:pa});
+    var pa1 = {
+    		carId:params.carId,
+    		token:token
+    };
+    mainGrid1.load({params:pa1});
 
     grid2.load({guestId:params.guestId});
     nui.ajax({
@@ -496,4 +501,21 @@ function editSell() {
 	} else {
 		showMsg("请选中一条记录!", "W");
 	}
+}
+
+function onSearch(){
+	var pa1 = {};
+	if(nui.get("isAll").getValue()==0){
+	     pa1 = {
+	    		carId:onSearchParams.carId,
+	    		token:token
+	    };
+	}else{
+	     pa1 = {
+	    		guestId:onSearchParams.guestId,
+	    		token:token
+	    };
+	}
+
+    mainGrid1.load({params:pa1});
 }

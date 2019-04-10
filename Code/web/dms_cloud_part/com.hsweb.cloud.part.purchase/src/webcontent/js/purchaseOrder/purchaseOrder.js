@@ -1514,8 +1514,18 @@ function getPartInfo(params){
 				// });
 				showMsg("没有搜索到配件信息!","W");
 				var row = rightGrid.getSelected();
-				rightGrid.removeRow(row);
-				addNewRow(false);
+				
+				nui.confirm("是否添加配件?", "友情提示", function(action) {
+					
+					if (action == "ok") {
+						addOrEditPart(row);
+					}
+					else{
+						return;
+					}
+					});
+//				rightGrid.removeRow(row);
+//				addNewRow(false);
 				/*var row = rightGrid.getSelected();
 				var newRow = {comPartCode: ""};
 
@@ -1653,6 +1663,49 @@ function getPartPrice(params){
 
 	return dInfo;
 }
+
+var getStoreIdAndShelfUrl= baseUrl
++ "com.hsapi.cloud.part.report.stock.queryStoreIdAndShelf.biz.ext";
+function getStoreIdAndShelf(params){
+	var storeId ='';
+	var shelf = '';
+	nui.ajax({
+		url : getStoreIdAndShelfUrl,
+		type : "post",
+		async: false,
+		data : {
+			params: params,
+			token: token
+		},
+		success : function(data) {
+			var errCode = data.errCode;
+			if(errCode == "S"){
+				if(data.list.length>0){
+					
+					var row = data.list[0];
+					if(row.storeId){
+						storeId = row.storeId;
+					}
+					if(row.shelf){
+						shelf = row.shelf;
+					}
+				}
+			}else{
+				storeId="";
+				shelf = "";
+			}
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+
+	var storeIdAndShelf = {storeId: storeId, shelf: shelf};
+
+	return storeIdAndShelf;
+}
 function addInsertRow(value,row) {    
     /*var rows = checkAddNewRow();
     if(rows && rows.length > 0) {
@@ -1670,10 +1723,18 @@ function addInsertRow(value,row) {
 
     var params = {partCode:value};
 	var part = getPartInfo(params);
-	var storeId = FStoreId;
 
 	if(part){
 		params.partId = part.id;
+		var p={partId :part.id};
+		var storeAndShelf=getStoreIdAndShelf(p);
+		var storeId='';
+		if(storeAndShelf.storeId){		
+			storeId = storeAndShelf.storeId ;
+		}else{
+			storeId = FStoreId;
+		}
+
 		getStratePrice(part.id);
 		params.storeId = storeId;
 		var dInfo = getPartPrice(params);
@@ -2374,8 +2435,15 @@ function addSelectPart(){
 		if(row){
 			var params = {partCode:row.partCode};
 			params.partId = row.partId;
-			params.storeId = FStoreId;
+			var p={partId :row.partId};
+			var storeAndShelf=getStoreIdAndShelf(p);
+			if(storeAndShelf.storeId){		
+				params.storeId = storeAndShelf.storeId ;
+			}else{
+				params.storeId =  FStoreId;
+			}
 			var dInfo = getPartPrice(params);
+			var storeId= params.storeId;
 			var price = dInfo.price;
 			var shelf = dInfo.shelf;
 			getStratePrice(row.partId);				
@@ -2389,7 +2457,8 @@ function addSelectPart(){
 				orderQty : 1,
 				orderPrice : price,
 				orderAmt : price,
-				storeId : FStoreId,
+				storeId : storeId,
+				storeShelf :shelf,
 				comOemCode : row.oemCode,
 				comSpec : row.spec,
 				partCode : row.partCode,
@@ -2409,6 +2478,8 @@ function addSelectPart(){
 				rightGrid.addRow(newRow);
 			}
 			rightGrid.beginEditCell(rightGrid.getSelected(), "orderQty");
+			//取消行选中
+			innerPartGrid.clearSelect();  
 
 			
 		}else{
@@ -2417,11 +2488,19 @@ function addSelectPart(){
 		}
 	}else{	
 		var row = morePartGrid.getSelected();
+		row.partId =row.id;
 		if(row){
 			var params = {partCode:row.code};
-			params.partId = row.id;
-			params.storeId = FStoreId;
+			params.partId = row.partId;
+			var p={partId :row.partId};
+			var storeAndShelf = getStoreIdAndShelf(p);
+			if(storeAndShelf.storeId){		
+				params.storeId = storeAndShelf.storeId ;
+			}else{
+				params.storeId =  FStoreId;
+			}
 			var dInfo = getPartPrice(params);
+			var storeId= params.storeId;
 			var price = dInfo.price;
 			var shelf = dInfo.shelf;
 			getStratePrice(row.id);				
@@ -2435,7 +2514,8 @@ function addSelectPart(){
 				orderQty : 1,
 				orderPrice : price,
 				orderAmt : price,
-				storeId : FStoreId,
+				storeId : storeId,
+				storeShelf :shelf,
 				comOemCode : row.oemCode,
 				comSpec : row.spec,
 				partCode : row.code,
@@ -2968,4 +3048,46 @@ function onShowRowDetail(e) {
     	token:token
 	});
     
+}
+//新增配件
+function addOrEditPart(row)
+{
+    nui.open({
+        // targetWindow: window,
+        url: webPath + contextPath + "/com.hsweb.part.baseData.partDetail.flow?token=" + token,
+        title: "配件资料",
+        width: 470, height: 320,
+        allowDrag:true,
+        allowResize:false,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            var params={};
+//            params.qualityTypeIdList=null;
+//            params.partBrandIdList=null;
+//            params.unitList=null;
+//            params.abcTypeList=null;
+//            params.applyCarModelList=null;
+            if(row)
+            {
+                params.comPartCode= row.comPartCode;
+            }
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy: function (action)
+        {
+          	var iframe = this.getIFrameEl();
+        	var data = iframe.contentWindow.getData();
+        	console.log(data);
+        	var enterDetail={
+        		comPartCode : data.code
+        	};
+            if(action == "ok")
+            {	
+            	addInsertRow(enterDetail.comPartCode,row);
+            	
+            }
+        }
+    });
+
 }

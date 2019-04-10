@@ -44,7 +44,7 @@
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link16" name="link16" displayName="连接线" type="transition">
       <sourceNode>assign0</sourceNode>
-      <targetNode>subprocess1</targetNode>
+      <targetNode>subprocess3</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="NOTNULLANDEMPTY">
           <process:leftOperand type="query">carNo</process:leftOperand>
@@ -97,11 +97,11 @@
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hs.common.sysService.getModelByOpenApiVin</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="vin" type="query" value="String" valueType="Primitive" pattern="reference">car/vin</process:inputVariable>
+        <process:inputVariable id="0" name="vin" type="query" value="String" valueType="Primitive" pattern="reference">carVin</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCodeModelLy</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
         <process:outputVariable id="2" name="data" type="query" value="com.alibaba.fastjson.JSON" valueType="Java">dataModelLy</process:outputVariable>
       </process:outputVariables>
     </process:flow>
@@ -110,48 +110,6 @@
     <location x="498" y="306"/>
     <figSize height="17" width="141"/>
     <node>subprocess0</node>
-  </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="getQuoteParam" displayName="getQuoteParam" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" description="" id="link17" name="link17" displayName="连接线" isDefault="false" type="transition">
-      <sourceNode>subprocess1</sourceNode>
-      <targetNode>assign1</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">errCodeVin</process:leftOperand>
-          <process:rightOperand type="literal">S</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess1</sourceNode>
-      <targetNode>assign2</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"/>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <targetConnections>link16</targetConnections>
-    <location x="91" y="271"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess1label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hs.common.sysService.getQuoteParam</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="carNo" type="query" value="String" valueType="Primitive" pattern="reference">carNo</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCodeVin</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
-        <process:outputVariable id="2" name="data" type="query" value="com.alibaba.fastjson.JSONObject" valueType="Java">dataVin</process:outputVariable>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="58" y="306"/>
-    <figSize height="17" width="93"/>
-    <node>subprocess1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
@@ -163,12 +121,12 @@
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">dataVin/carVin</process:from>
-      <process:to type="query">car/vin</process:to>
+      <process:from type="query" pattern="reference">dataVin/vin</process:from>
+      <process:to type="query">carVin</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">car/vin</process:from>
-      <process:to type="query">carVin</process:to>
+      <process:from type="query" pattern="reference">carVin</process:from>
+      <process:to type="query">car/vin</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -374,6 +332,48 @@
     <location x="675" y="307"/>
     <figSize height="17" width="32"/>
     <node>assign7</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess3" name="getCarVinByCarNo" displayName="getCarVinByCarNo" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" description="" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess3</sourceNode>
+      <targetNode>assign2</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link17" name="link17" displayName="连接线" isDefault="false" type="transition">
+      <sourceNode>subprocess3</sourceNode>
+      <targetNode>assign1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">errCodeVin</process:leftOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link16</targetConnections>
+    <location x="90" y="271"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess3label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hs.common.sysService.getCarVinByCarNo</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="carNo" type="query" value="String" valueType="Primitive" pattern="reference">carNo</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="data" type="query" value="com.alibaba.fastjson.JSONObject" valueType="Java">dataVin</process:outputVariable>
+        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCodeVin</process:outputVariable>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"/>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess3label" name="label" nodeType="label">
+    <location x="48" y="306"/>
+    <figSize height="17" width="110"/>
+    <node>subprocess3</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

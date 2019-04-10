@@ -123,7 +123,11 @@
           </table>
 
       </div>
-
+	
+		<ul id="gridMenu" class="mini-contextmenu" >              
+	        <li name="enterBtn" iconCls="icon-add" onclick="onEnter">入库记录</li>
+		    <li name="outBtn" iconCls="icon-edit" onclick="onOut">出库记录</li>        
+	    </ul>
       <div class="nui-fit">
 
         <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
@@ -138,6 +142,7 @@
         sizeList=[20,50,100,200]
         allowCellEdit="true" allowCellSelect="true" 
         editNextOnEnterKey="true"  editNextRowCell="true"
+         contextMenu="#gridMenu"
 
         >
         <div property="columns">
@@ -672,6 +677,32 @@ function gridData(){//获取汇总的数据
     		showMsg('请选择一条记录!','W');
     	}
     }
+    
+    //查看入库记录
+	function onEnter(){
+		var row ={};
+		row = mainGrid.getSelected();
+		if(!row){
+			showMsg("请选择一条记录","W");
+			return;
+		}
+		var partId = row.partId;
+		onEnterRecord(partId);
+		
+	}
+	
+	//查看出库记录
+	function onOut(){
+		var row ={};
+		row = mainGrid.getSelected();
+		if(!row){
+			showMsg("请选择一条记录","W");
+			return;
+		}
+		var partId = row.partId;
+		onOutRecord(partId);
+		
+	}
 </script>
 
 </body>

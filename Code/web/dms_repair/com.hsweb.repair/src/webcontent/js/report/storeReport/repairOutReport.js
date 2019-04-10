@@ -204,7 +204,8 @@ $(document).ready(function(v)
             { name: 'pickMan' },
             {name:'partName'},
             {name:'serviceCode'},
-            {name:'carNo'}
+            {name:'carNo'},
+            {name: 'recorder'}
         ],
         callback: function (column, filtered) {
         },

@@ -648,7 +648,11 @@ function addCarList(){
 	    	car.vin = data.vin//返回转化好的vin
 	    	nui.get("vin").setValue(car.vin);
 	    }else{
-	    	nui.get("carNo").enable();
+	    	if(car.id==""||car.id==null){
+	    		nui.get("carNo").enable();
+	    	}else{
+	    		nui.get("carNo").disable();
+	    	}
 	    	nui.get("vin").enable();
 	    	showMsg("VIN不规范，请确认！","W");
 	    	return;
@@ -658,8 +662,14 @@ function addCarList(){
 		nui.get("carNo").setValue(falge.vehicleNumber);
 		car.carNo = falge.vehicleNumber;
 		if(!falge.result){
-			nui.get("carNo").enable();
-			nui.get("vin").enable();
+			if(car.id==""||car.id==null){
+	    		nui.get("carNo").enable();
+	    		nui.get("vin").enable();
+	    	}else{
+	    		nui.get("carNo").disable();
+	    		nui.get("vin").disable();
+	    	}
+			//nui.get("carNo").enable();
 			showMsg("请输入正确的车牌号","W");
 			return;
 		}
@@ -714,7 +724,7 @@ function addCarList(){
             	guestId : resultCar.guestId,
 				carNo : car.carNo,
 				vin : car.vin,
-				carModel : car.carModel,
+				carModelFullName : car.carModelFullName,
 				engineNo :car.engineNo,
 				annualVerificationDueDate :car.annualVerificationDueDate,
 				insureCompCode:car.insureCompCode,

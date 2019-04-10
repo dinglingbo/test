@@ -71,7 +71,7 @@ function SetData(params) {
         resultData=params.data;
     }
     nui.get('outQty').setValue(1);
-    mtAdvisorIdEl.setValue(currEmpId);
+    mtAdvisorIdEl.setValue(currUserName);
     mtAdvisorIdEl.setText(currUserName);
     data=params.data;
     

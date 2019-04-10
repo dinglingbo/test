@@ -7,37 +7,8 @@
 <link href="<%=webPath + contextPath %>/common/nui/res/fonts/font-awesome/css/font-awesome.min.css?v=1.0.0" rel="stylesheet">
 
 <script type="text/javascript">
-<% IMUODataContext muo = DataContextManager.current()
-					.getMUODataContext();
-			String currUserName = "";
-			String currOrgid = "";
-			String currOrgName = "";
-			String currUserId = "";
-			if (muo != null) {
-				IUserObject userobject = muo.getUserObject();
-				if (userobject != null) {
-					//String ip = userobject.getUserRemoteIP();
-					//currUserName = userobject.getUserRealName();
-					currUserName = userobject.getUserName();
-					currOrgid = userobject.getUserOrgId();
-					currOrgName = userobject.getUserOrgName();
-					currUserId = userobject.getUserId();
-				}
-			}%>
-	var currUserName =
-<%="'" + currUserName + "'"%>
-	;
-	var currOrgid =
-<%="'" + currOrgid + "'"%>
-	;
-	var currOrgName =
-<%="'" + currOrgName + "'"%>
-	;
 	var currentTimeMillis =
 <%=System.currentTimeMillis()%>
-	;
-	var currUserId =
-<%="'" + currUserId + "'"%>
 	;
 </script>
 	<script type="text/javascript">
@@ -64,7 +35,7 @@
 	window._webRepairUrl = webPath + contextPath + "/";
 	//console.log(window._rootUrl);
 	</script>
-<script src="<%=request.getContextPath()%>/common/js/partUtil.js?v=1.1.0" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/common/js/partUtil.js?v=1.1.3" type="text/javascript"></script>
 <%-- <link href="<%=webPath + contextPath%>/common/nui/themes/bootstrap/skin.css" rel="stylesheet"	type="text/css" />  --%>
 <style type="text/css">
 html,body {

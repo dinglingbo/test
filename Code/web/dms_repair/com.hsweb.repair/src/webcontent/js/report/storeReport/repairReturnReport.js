@@ -173,7 +173,8 @@ $(document).ready(function(v)
         columns: [
             { name: 'partCode' },
             { name: 'pickMan' },
-            {name:'partName'}
+            {name:'partName'},
+            {name: 'recorder'}
         ],
         callback: function (column, filtered) {
         },

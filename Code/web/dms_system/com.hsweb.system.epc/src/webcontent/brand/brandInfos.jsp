@@ -28,13 +28,18 @@
 </style>
 
 <div class="nui-splitter" style="width:100%;height:60px;" style="border:0;" handlerSize=0>
-    <div size="25%" showCollapseButton="false" style="border:0;">
+    <div size="100%" showCollapseButton="false" style="border:0;">
         <br/>
-        <center id="groupButton">
+        <left id="groupButton">
             <a class="nui-button groupButton2" onclick="ntab.activeTab(ntab.getTab(0));">车型选择</a>&nbsp;
-            <a class="nui-button groupButton2" onclick="showInfoRightGrid(gridSubGroup)">主组/分组</a>&nbsp;
+            <a class="nui-button groupButton2" onclick="showInfoRightGrid(subGroups)">主组/分组</a>&nbsp;
             <a class="nui-button groupButton2" style="display:none;" onclick="showInfoRightGrid(gridParts)">零件</a>
-        </center>
+            <sapn style="padding-left:30%"></sapn>
+            <a class="nui-button groupButton2" style="display:none;" onclick="lastGroup">上一主组</a>
+            <a class="nui-button groupButton2" style="display:none;" onclick="nextGroup">下一主组</a>
+            <a class="nui-button groupButton2" style="display:none;" onclick="lastSubGroup">上一分组</a>
+            <a class="nui-button groupButton2" style="display:none;" onclick="nextSubGroup">下一分组</a>
+        </left>
     </div>
     <div showCollapseButton="false" style="border:0;">
         <br/>

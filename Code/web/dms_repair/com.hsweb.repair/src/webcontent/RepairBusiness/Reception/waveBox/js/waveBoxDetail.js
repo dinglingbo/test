@@ -1240,6 +1240,10 @@ function unfinish(){
                 var olddata = billForm.getData();
                 olddata.status = 1;
                 billForm.setData([]);
+                if(olddata.balaAuditSign == 1){
+                    olddata.balaAuditSign = 0;
+                }
+                
                 billForm.setData(olddata);
                 changeBoxService(1);
                 nui.get("contactorName").setText(maintain.contactorName);
@@ -4431,6 +4435,13 @@ function remarkChang(e){
 function upload(){
 	var formData = billForm.getData();
 	var serviceId = formData.id;
+	var serviceCode = $("#servieIdEl").html();
+	var state = null;
+	if(formData.status == 0){
+		state = 1;
+    }else{
+    	state = 2;
+    }
 	var uploadUrl = "/com.hsweb.bx.upload.flow";
 	if(serviceId){
 		nui.open({
@@ -4440,6 +4451,7 @@ function upload(){
 			height: "50%",
 	        onload: function () {
 	            var iframe = this.getIFrameEl();
+	            iframe.contentWindow.SetData(serviceId,serviceCode,state);
 	        },
 	        ondestroy: function (action){
 	        }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getModelByOpenApiVin.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="http://14.23.35.20:6288/openApi/vin/?vin=LFV2A28V4H5862267" title="Administrator&#x9;18-11-30 下午2:57">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="http://14.23.35.20:6288/openApi/vin/?vin=LFV2A28V4H5862267&#xD;&#xA;&#xD;&#xA;http://tvapp.hszb.harsons.cn/openApi/vin?vin=LGBL4AE07JD172271" title="Administrator&#x9;18-11-30 下午2:57">
     <location x="0" y="-105"/>
     <size height="100" width="451"/>
   </nodes>

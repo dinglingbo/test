@@ -181,7 +181,9 @@
             </li>
             <li class="dropdown" width="10px">
                 <a class="dropdown-toggle" style="padding-top: 18px;" >
-                    <span >换肤</span><i class="fa fa-angle-down" ></i>
+                    <span >
+
+</span><i class="fa fa-angle-down" ></i>
                 </a>
                 <ul class="dropdown-menu pull-right" >
                      <li ><a href="javascript:updateSkin('#368bf4');" ><div style="width:10px;height:15px;background-color: #368bf4;float:left;"></div>经典蓝</a></li>
@@ -411,7 +413,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
 	        success : function(text) {
 	            var list = text.rs||{};
 	            if(list.length==0){
-	                showMsg("此用户无法修改","W");
+	                //showMsg("此用户无法修改","W");
 	            }else{
 					updateSkinColor(list[0],color);
 	            }

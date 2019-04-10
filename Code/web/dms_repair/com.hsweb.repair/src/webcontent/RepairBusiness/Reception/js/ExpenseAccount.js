@@ -720,6 +720,10 @@ function save(){
         html: '保存中...'
     });
 	var maintainBill = billForm.getData();
+	var sellAmt = sellForm.getData();
+	maintainBill.packageAmt = sellAmt.pkgSubtotal;
+	maintainBill.itemAmt = sellAmt.itemSubtotal;
+	maintainBill.partAmt = sellAmt.partSubtotal;
 	if(nui.get("mtAdvisorId").text){
 		maintainBill.mtAdvisor = nui.get("mtAdvisorId").text;
 	}

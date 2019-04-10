@@ -1240,6 +1240,10 @@ function unfinish(){
                 var olddata = billForm.getData();
                 olddata.status = 1;
                 billForm.setData([]);
+                if(olddata.balaAuditSign == 1){
+                    olddata.balaAuditSign = 0;
+                }
+                
                 billForm.setData(olddata);
                 changeBoxService(1);
                 nui.get("contactorName").setText(maintain.contactorName);
@@ -4445,6 +4449,7 @@ function upload(){
 	        title: "上传图片",
 			width: "50%",
 			height: "50%",
+			allowResize : false,
 	        onload: function () {
 	            var iframe = this.getIFrameEl();
 	            iframe.contentWindow.SetData(serviceId,serviceCode,state);

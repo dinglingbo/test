@@ -319,6 +319,7 @@ function showInfoRightGrid(gridObj){
         partPanel.hide();
     }
     
+    
     /* if(gridObj == gridSubGroup){
         $(".groupButton2").attr("style", "background:#ffffff;");
         $($(".groupButton2")[1]).attr("style", "background:#e0d7d7;");

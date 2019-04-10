@@ -37,6 +37,8 @@
 			 	and ifnull(a.car_vin,'') = '' and a.vin_service_times &lt; 2
 			</isNotNull>
 			
+			limit 100
+			
 	</select>
 
 	<update id="updateRpsMaintain" parameterClass="java.util.HashMap">

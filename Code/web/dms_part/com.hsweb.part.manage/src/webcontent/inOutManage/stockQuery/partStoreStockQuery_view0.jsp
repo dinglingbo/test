@@ -8,7 +8,7 @@
 -->
 <head>
 <title>库存查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockQuery/partStoreStockQuery.js?v=2.2.30"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockQuery/partStoreStockQuery.js?v=2.2.32"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -97,8 +97,8 @@
 </div>
 
  	<ul id="gridMenu" class="mini-contextmenu" >              
-        <li name="enterBtn" iconCls="icon-add" onclick="onEnterRecord">入库记录</li>
-	    <li name="outBtn" iconCls="icon-edit" onclick="onOutRecord">出库记录</li>        
+        <li name="enterBtn" iconCls="icon-add" onclick="onEnter">入库记录</li>
+	    <li name="outBtn" iconCls="icon-edit" onclick="onOut">出库记录</li>        
     </ul>
 <div class="nui-fit">
     <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"

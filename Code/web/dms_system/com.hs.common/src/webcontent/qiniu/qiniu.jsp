@@ -43,7 +43,7 @@
 			    // save_key: true,
 			    // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
 			    domain: 'http://qxy60.7xdr.com/',//自己的七牛云存储空间域名
-			    multi_selection: false,//是否允许同时选择多文件
+			    multi_selection: true,//是否允许同时选择多文件
 			    //文件类型过滤，这里限制为图片类型
 			    filters: {
 			        mime_types: [

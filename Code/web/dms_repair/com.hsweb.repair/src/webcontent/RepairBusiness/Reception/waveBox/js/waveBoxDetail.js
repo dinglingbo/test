@@ -4435,6 +4435,13 @@ function remarkChang(e){
 function upload(){
 	var formData = billForm.getData();
 	var serviceId = formData.id;
+	var serviceCode = $("#servieIdEl").html();
+	var state = null;
+	if(formData.status == 0){
+		state = 1;
+    }else{
+    	state = 2;
+    }
 	var uploadUrl = "/com.hsweb.bx.upload.flow";
 	if(serviceId){
 		nui.open({
@@ -4444,6 +4451,7 @@ function upload(){
 			height: "50%",
 	        onload: function () {
 	            var iframe = this.getIFrameEl();
+	            iframe.contentWindow.SetData(serviceId,serviceCode,state);
 	        },
 	        ondestroy: function (action){
 	        }

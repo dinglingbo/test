@@ -97,11 +97,11 @@
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hs.common.sysService.getModelByOpenApiVin</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="vin" type="query" value="String" valueType="Primitive" pattern="reference">car/vin</process:inputVariable>
+        <process:inputVariable id="0" name="vin" type="query" value="String" valueType="Primitive" pattern="reference">carVin</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCodeModelLy</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
         <process:outputVariable id="2" name="data" type="query" value="com.alibaba.fastjson.JSON" valueType="Java">dataModelLy</process:outputVariable>
       </process:outputVariables>
     </process:flow>
@@ -339,7 +339,7 @@
       <targetNode>assign2</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -366,7 +366,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="data" type="query" value="com.alibaba.fastjson.JSONObject" valueType="Java">dataVin</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCodeVin</process:outputVariable>
-        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

@@ -33,10 +33,11 @@
               <div property="columns">
                 <div type="indexcolumn">序号</div>
                 <div field="pickDate" name="pickDate"dateFormat="yyyy-MM-dd HH:mm" width="100" headerAlign="center" header="出库日期"></div>
+                <div field="storeId" name="storeId" width="50" headerAlign="center" header="仓库"></div>
                 <div   field="pickType" name="pickType" width="100" headerAlign="center" header="出库类别"></div>
                 <div allowSort="true"  field="outQty" name="outQty" datatype="float"summaryType="sum" width="60"headerAlign="center" header="出库量"></div>
                 <div  field="outReturnSign" name="outReturnSign" width="60" headerAlign="center" header="是否归库"></div>
-                <div allowSort="true"  field="outReturnQty" name="outReturnQty" datatype="float" summaryType="sum" width="60" headerAlign="center" header="归库量"></div>
+                <div allowSort="true"  field="outReturnQty" name="outReturnQty" datatype="float" summaryType="sum" width="60" headerAlign="center" header="退货量"></div>
                 <div allowSort="true" field="sellUnitPrice" name="sellUnitPrice" datatype="float" summaryType="sum" width="100" headerAlign="center" header="销售价"></div>
                 <div allowSort="true" datatype="float" name="sellAmt" field="sellAmt" summaryType="sum" width="60" headerAlign="center" header="销售金额"></div>
                 <div field="pickMan" name ="pickMan" width="60" headerAlign="center" header="领料人"></div>
@@ -52,6 +53,8 @@
     	var baseUrl = apiPath + partApi + "/";
     	var outPartGridUrl = baseUrl  +
     	 "com.hsapi.part.query.report.queryOutRecord.biz.ext";
+	    var storehouse =[];
+		var storeHash = {};
     	$(document).ready(function(v) {
     		outPartGrid =nui.get('outPartGrid');
     		outPartGrid.setUrl(outPartGridUrl);
@@ -59,7 +62,14 @@
     			 switch (e.field){
     			 	case "outReturnSign":
     			 		if(e.value == 1){
-    			 			e.cellHtml ="✔";
+    			 			e.cellHtml ="是";
+    			 		}else{
+    			 			e.cellHtml="否";
+    			 		}
+    			 	break;
+    			 	case "storeId":
+    			 		if(storeHash[e.value]){
+    			 			e.cellHtml =storeHash[e.value].name || "";
     			 		}else{
     			 			e.cellHtml="";
     			 		}
@@ -80,6 +90,14 @@
 	        	return value;
 	        }
 	    });
+	    
+	    getStorehouse(function(data) {
+			storehouse = data.storehouse || [];
+			storehouse.forEach(function(v){
+    			storeHash[v.id]=v;
+        		});
+        	});
+	    
 		});
 		
 		function SetData(params) {

@@ -8,6 +8,9 @@ var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.report.queryAllMaint
 var getdRpsPackageUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext";
 var getRpsItemUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext";
 var getRpsPartUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext";
+
+var getRpsItemBillUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemPPartBill.biz.ext";
+var getdRpsPackageBillUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPartBill.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -37,7 +40,7 @@ var prdtTypeHash = {
 	    "3":"配件"
 };
 var auditSignHash = {
-	    "0" : "在场",
+	    "0" : "在厂",
 	    "1" : "出厂"
 	};
 $(document).ready(function ()
@@ -55,11 +58,10 @@ $(document).ready(function ()
     serviceTypeIds = nui.get("serviceTypeIds");
     advancedSearchForm = new nui.Form("#advancedSearchForm");
     editFormDetail = document.getElementById("editFormDetail");
+    advancedSearchWin = nui.get("advancedSearchWin");
     innerItemGrid = nui.get("innerItemGrid");
     innerpackGrid = nui.get("innerpackGrid");
-	advancedSearchWin = nui.get("advancedSearchWin");
-    innerItemGrid.setUrl(getRpsItemUrl);
-    innerpackGrid.setUrl(getdRpsPackageUrl);
+
 
     //判断是否有兼职门店,是否显示门店选择框
 /*    orgidsEl = nui.get("orgids");
@@ -127,7 +129,29 @@ $(document).ready(function ()
         });
 
     });
+    
+    mainGrid.on("preload",function(e)
+    	    {
+    	        var data = e.result.data;
+    	        var outBill = e.result.outBill;
 
+    	        for(var i=0;i<data.length;i++)
+    	        {
+    	            for(var j=0;j<outBill.length;j++)
+    	            {
+    	                if(data[i].id == outBill[j].sourceServiceId)
+    	                {
+    	                	data[i].packageSubtotal = outBill[j].packageAmt;
+    	                	data[i].itemSubtotal = outBill[j].itemAmt;
+    	                	data[i].partSubtotal = outBill[j].partAmt;
+    	                	data[i].total = parseFloat(outBill[j].packageAmt)+parseFloat(outBill[j].itemAmt)+parseFloat(outBill[j].partAmt);
+    	                }
+    	            }
+
+
+    	        }   	              
+    	        mainGrid.setData(data);
+    	    });
 
     mainGrid.on("drawSummaryCell", function (e) {
     	var result = e.result.data;
@@ -206,7 +230,10 @@ $(document).ready(function ()
                     e.cellHtml = "--";
                     e.cancel = false;
                 }else{
-                    e.cellHtml = servieTypeHash[e.value].name;
+                    if (servieTypeHash && servieTypeHash[e.value]) {
+                    	e.cellHtml = servieTypeHash[e.value].name;
+                    }
+                    
                 }
                 break;
             case "workers":
@@ -246,7 +273,10 @@ $(document).ready(function ()
 	            if(type>1){
 	                e.cellHtml = "--";
 	            }else{
-	                e.cellHtml = servieTypeHash[e.value].name;
+	                if(servieTypeHash[e.value])
+	                {
+	                    e.cellHtml = servieTypeHash[e.value].name;
+	                }
 	            }
             break;
 	        case "serviceTypeName":
@@ -309,8 +339,7 @@ function clear(){
    endDateEl.setValue(addDate(getMonthEndDate(), 1));
 }
 function onShowRowDetail(e) {
-    var row = e.record;
-    
+    var row = e.record;    
     //将editForm元素，加入行详细单元格内
     var td = mainGrid.getRowDetailCellEl(row);
     td.appendChild(editFormDetail);
@@ -318,6 +347,14 @@ function onShowRowDetail(e) {
 
     innerItemGrid.setData([]);
     innerpackGrid.setData([]);
+    if(row.isOutBill==1){
+        innerItemGrid.setUrl(getRpsItemBillUrl);
+        innerpackGrid.setUrl(getdRpsPackageBillUrl);
+    }else{
+        innerItemGrid.setUrl(getRpsItemUrl);
+        innerpackGrid.setUrl(getdRpsPackageUrl);
+    }
+
     var serviceId = row.id;
     innerItemGrid.load({
     	serviceId:serviceId,

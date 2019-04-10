@@ -125,8 +125,8 @@
       </div>
 	
 		<ul id="gridMenu" class="mini-contextmenu" >              
-	        <li name="enterBtn" iconCls="icon-add" onclick="onEnterRecord">入库记录</li>
-		    <li name="outBtn" iconCls="icon-edit" onclick="onOutRecord">出库记录</li>        
+	        <li name="enterBtn" iconCls="icon-add" onclick="onEnter">入库记录</li>
+		    <li name="outBtn" iconCls="icon-edit" onclick="onOut">出库记录</li>        
 	    </ul>
       <div class="nui-fit">
 
@@ -679,7 +679,7 @@ function gridData(){//获取汇总的数据
     }
     
     //查看入库记录
-	function onEnterRecord(){
+	function onEnter(){
 		var row ={};
 		row = mainGrid.getSelected();
 		if(!row){
@@ -687,31 +687,12 @@ function gridData(){//获取汇总的数据
 			return;
 		}
 		var partId = row.partId;
-		nui.open({
-			url : webPath+contextPath+"/com.hsweb.part.common.partEnterRecord.flow?token="+token,
-			title : "入库记录",
-			width : 850,
-			height : 500,
-			allowDrag : true,
-			allowResize : true,
-			onload : function() {
-				var iframe = this.getIFrameEl();
-				var params = {
-					partId: partId,
-	                token :token
-	            };
-	            iframe.contentWindow.SetData(params);
-			},
-			ondestroy : function(action) {
-				if (action == 'ok') {
-				
-				}
-			}
-		});
+		onEnterRecord(partId);
+		
 	}
 	
 	//查看出库记录
-	function onOutRecord(){
+	function onOut(){
 		var row ={};
 		row = mainGrid.getSelected();
 		if(!row){
@@ -719,27 +700,8 @@ function gridData(){//获取汇总的数据
 			return;
 		}
 		var partId = row.partId;
-		nui.open({
-			url : webPath+contextPath+"/com.hsweb.part.common.partOutRecord.flow?token="+token,
-			title : "出库记录",
-			width : 850,
-			height : 500,
-			allowDrag : true,
-			allowResize : true,
-			onload : function() {
-				var iframe = this.getIFrameEl();
-				var params = {
-					partId: partId,
-	                token :token
-	            };
-	            iframe.contentWindow.SetData(params);
-			},
-			ondestroy : function(action) {
-				if (action == 'ok') {
-				
-				}
-			}
-		});
+		onOutRecord(partId);
+		
 	}
 </script>
 

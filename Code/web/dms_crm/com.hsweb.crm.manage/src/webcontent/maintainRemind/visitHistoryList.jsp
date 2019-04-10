@@ -4,7 +4,7 @@
         <input name="visitMode" id="visitMode" class="nui-combobox "textField="name" valueField="customid" visible="false"/>
     <div id="visitHis" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
         multiSelect="false" pageSize="20" showPageInfo="true" selectOnLoad="true"  onDrawCell="" onselectionchanged=""
-        allowSortColumn="false" totalField='page.count' allowCellWrap="true">
+        allowSortColumn="false" totalField='page.count' allowCellWrap="true" contextMenu="#gridMenu">
         <div property="columns">
             <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
             <div field="contactorName" headerAlign="center" allowSort="true" width="100px">客户名称</div>
@@ -15,10 +15,14 @@
             <div field="visitDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" width="100px">回访日期</div>
         </div>
     </div>
+    <ul id="gridMenu" class="mini-contextmenu" onbeforeopen="">              
+	    <li name="remove"  onclick="onRemove"><span class="fa fa-remove fa-lg"></span>删除</li>        
+    </ul>
 </div>
 <script type="text/javascript">
     nui.parse();
     var hisUrl = apiPath + crmApi+ "/com.hsapi.crm.svr.visit.queryCrmVisitRecordSql.biz.ext";
+    var delUrl = apiPath + crmApi+ "/com.hsapi.crm.svr.visit.delectVisitRecordById.biz.ext";
     var visitHis = null; //回访历史
     var serviceTypeList = [{},{ id: 1, text: '电销' }, { id: 2, text: '预约' }, { id: 3, text: '客户回访' }, { id: 4, text: '流失回访' }, { id: 5, text: '保养提醒' }, { id: 6, text: '商业险到期' }, { id: 7, text: '交强险到期' }, { id: 8, text: '驾照年审' }, { id: 9, text: '车辆年检' }, { id: 10, text: '生日' }, { id: 11, text: '其他' }];
     visitHis = nui.get("visitHis"); 
@@ -68,6 +72,30 @@
         // };
         visitHis.load({ params:params });
     }
+function onRemove(){
+	var row =visitHis.getSelected();
+	if(row){
+	       	 nui.confirm("确定删除记录？", "确定？",
+            function (action) {
+                if (action == "ok") {
+                		nui.ajax({
+							url:delUrl,
+							type:"post",
+							data:{visitRecord:row},
+							success:function(res){
+								if(res.errCode == 'S'){
+									showMsg("删除成功","S");
+									 visitHis.reload();
+								}
+							}
+						});
+                } else {
+                    return;
+                }
+            }
+        );
+	}
+}
 
 
 </script>

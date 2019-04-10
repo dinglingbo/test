@@ -168,7 +168,12 @@
                      
                   </div>
                 </fieldset>
-   
+                
+   				<ul id="gridMenu" class="mini-contextmenu" >              
+			        <li name="enterBtn" iconCls="icon-add" onclick="onEnter">入库记录</li>
+				    <li name="outBtn" iconCls="icon-edit" onclick="onOut">出库记录</li>        
+			    </ul>
+   				
                   <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
                     <a class="nui-button" plain="true" iconCls="" id="addPartBtn" onclick="addPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>
                     </div>
@@ -191,6 +196,7 @@
                          showColumnsMenu="true"
                          onselectionchanged=""
                          editNextOnEnterKey="true"
+                         contextMenu="#gridMenu"
                          url="">
                         <div property="columns">
                             <div type="indexcolumn">序号</div>

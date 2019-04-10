@@ -104,8 +104,8 @@ pageEncoding="UTF-8" session="false" %>
                             textField="carModel" valueField="carModelId" emptyText="请选择..." onValuechanged="nui.get('_carModel').setValue(this.text)"
                             allowInput="false" showNullItem="false" nullItemText="请选择..." />
                     </td>
-                    <td><span class="title title-width1 ">上牌日期：</span></td>
-                    <td><input id="firstRegDate" name="firstRegDate" class="nui-datepicker width2" dateFormat="yyyy-MM-dd"
+                    <td><span class="title title-width1 ">年审到期：</span></td>
+                    <td><input id="annualVerificationDueDate" name="annualVerificationDueDate" class="nui-datepicker width2" dateFormat="yyyy-MM-dd"
                             enabled="true" emptyText="请选择日期" alwaysView="true" />
                     </td>
                 </tr>

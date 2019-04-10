@@ -12,41 +12,69 @@
         <head>
             <title>上传</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/upload.js?v=1" type="text/javascript"></script>3
+            <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/upload.js?v=1.09" type="text/javascript"></script>
+            <script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
+            <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
+            <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
             <script src="<%= request.getContextPath() %>/common/qiniu/qiniu1.0.14.js" type="text/javascript"></script>
-		 	<script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
-	  	    <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
-		 	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
-		  	<script src="https://cdn.staticfile.org/plupload/2.1.9/moxie.js"></script>
-		 	<script src="https://cdn.staticfile.org/plupload/2.1.9/plupload.dev.js"></script>
-		 	<style type="text/css">
-		 		.div1{
-
-					float: left;
-					
-					height: 120px;
-					
-					width: 120px;
-					position:relative;
-					
-				}
-		 	</style>  
+            <script src="https://cdn.staticfile.org/plupload/2.1.9/moxie.js"></script>
+            <script src="https://cdn.staticfile.org/plupload/2.1.9/plupload.dev.js"></script>
+            <style type="text/css">
+                .div-a {
+                    float: left;
+                    width: 49%;
+                    border: 1px solid #000;
+                    height:100%;
+                }
+                
+                .div-b {
+                    float: right;
+                    width: 49%;
+                    border: 1px solid #000;
+                    height:100%;
+                }
+            </style>
         </head>
 
         <body>
-        <div class="page-header" id="btn-uploader">
-           <div class="div1" id="faker" onchange="xmTanUploadImg(this)">
-				<img id="xmTanImg" style="width: 100px;height: 100px" onchange="xmTanUploadImg		(this)" src="<%= request.getContextPath() %>/common/images/logo.jpg"/>
-				<div id="xmTanDiv"></div>
-			</div>
-		</div>
-			<input  class="nui-textbox" id="logoImg" name="logoImg"  style="display:none" >
-
-
-
+            <input class="nui-hidden" name="serviceId" id="serviceId" enabled="false" width="100%" />
+            <input class="nui-hidden" name="serviceCode" id="serviceCode" enabled="false" width="100%" />
+            <input class="nui-hidden" name="state" id="state" enabled="false" width="100%" />
+            <div style="with:100%;height:95%">
+                <div class="div-a">
+                    <h2><strong>&nbsp;维修前</strong></h2>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tbody id="tbodyId">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="div-b">
+                    <h2><strong>&nbsp;维修后</strong></h2>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tbody id="tbodyId1">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="page-header" id="btn-uploader" align="center">
+                <small>
+			        <button class="btn btn-link" id="faker" >
+			                <span class="glyphicon  glyphicon-upload" aria-hidden="true">点击上传图片</span>
+			        </button>
+			    </small>
+            </div>
 
             <script type="text/javascript">
                 nui.parse();
+                var arr = [];
+                var brr = [];
+
+                function SetData(serviceId, serviceCode, state) {
+                    nui.get("serviceId").setValue(serviceId);
+                    nui.get("serviceCode").setValue(serviceCode);
+                    nui.get("state").setValue(state); //1维修前  2维修后
+
+                }
             </script>
         </body>
 

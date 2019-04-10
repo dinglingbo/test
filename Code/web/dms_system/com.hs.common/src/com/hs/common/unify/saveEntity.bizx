@@ -62,10 +62,6 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">data/orgid</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
       <process:to type="query">data/modifier</process:to>
     </process:copy>
@@ -220,6 +216,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
       <process:to type="query">data/recorder</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">data/orgid</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">

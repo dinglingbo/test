@@ -92,8 +92,8 @@
                         <div type="checkcolumn" class="mini-radiobutton" header="选择"></div>
                         <div field="carId" headerAlign="center" allowSort="true" dataType="string"visible="false">carId</div>
                         <div field="guestId" headerAlign="center" allowSort="true" dataType="string"visible="false">guestId</div>
-                        <div field="carNo"name="carNo" headerAlign="center" allowSort="true" dataType="string"width="100px">车牌号</div>
-                        <div field="guestName"name="guestName" headerAlign="center" allowSort="true" dataType="string"width="100px">客户名称</div>
+                        <div field="carNo"name="carNo" headerAlign="center" allowSort="true" dataType="chinese"width="100px">车牌号</div>
+                        <div field="guestName"name="guestName" headerAlign="center" allowSort="true" dataType="chinese"width="100px">客户名称</div>
                         <div field="mobile" headerAlign="center" allowSort="true" dataType="string"width="100px">联系方式</div>
                         <div field="carModel" name="carModel"headerAlign="center" allowSort="true" dataType="string"width="200px">品牌车型</div>
                         <div field="guestType" headerAlign="center" allowSort="true" dataType="string" width="100px">客户类型</div>
@@ -155,8 +155,8 @@
                         <div type="checkcolumn" class="mini-radiobutton" header="选择"></div>
                         <div field="carId" headerAlign="center" allowSort="true" dataType="string"visible="false">carId</div>
                         <div field="guestId" headerAlign="center" allowSort="true" dataType="string"visible="false">guestId</div>
-                        <div field="carNo"name="carNo" headerAlign="center" allowSort="true" dataType="string"width="100px">车牌号</div>
-                        <div field="guestName"name="guestName" headerAlign="center" allowSort="true" dataType="string"width="100px">客户名称</div>
+                        <div field="carNo"name="carNo" headerAlign="center" allowSort="true" dataType="chinese"width="100px">车牌号</div>
+                        <div field="guestName"name="guestName" headerAlign="center" allowSort="true" dataType="chinese"width="100px">客户名称</div>
                         <div field="mobile" headerAlign="center" allowSort="true" dataType="string"width="100px">联系方式</div>
                         <div field="carModel" name="carModel"headerAlign="center" allowSort="true" dataType="string"width="200px">品牌车型</div>
                         <div field="guestType" headerAlign="center" allowSort="true" dataType="string"width="100px">客户类型</div>
@@ -219,8 +219,8 @@
                         <div type="checkcolumn" class="mini-radiobutton" header="选择"></div>
                         <div field="carId" headerAlign="center" allowSort="true" dataType="string"visible="false">carId</div>
                         <div field="guestId" headerAlign="center" allowSort="true" dataType="string"visible="false">guestId</div>
-                        <div field="carNo"name="carNo" headerAlign="center" allowSort="true" dataType="string"width="100px">车牌号</div>
-                        <div field="guestName"name="guestName" headerAlign="center" allowSort="true" dataType="string"width="100px">客户名称</div>
+                        <div field="carNo"name="carNo" headerAlign="center" allowSort="true" dataType="chinese"width="100px">车牌号</div>
+                        <div field="guestName"name="guestName" headerAlign="center" allowSort="true" dataType="chinese"width="100px">客户名称</div>
                         <div field="mobile" headerAlign="center" allowSort="true" dataType="string"width="100px">联系方式</div>
                         <div field="carModel" name="carModel"headerAlign="center" allowSort="true" dataType="string"width="200px">品牌车型</div>
                         <div field="guestType" headerAlign="center" allowSort="true" dataType="string"width="100px">客户类型</div>
@@ -284,8 +284,8 @@
                         <div field="guestId" headerAlign="center" allowSort="true" dataType="string"visible="false">guestId</div>
                         <div field="orgid" headerAlign="center" allowSort="true" dataType="string"visible="false">orgid</div>
                         <div field="carId" headerAlign="center" allowSort="true" dataType="string"visible="false">carId</div>
-                        <div field="carNo"name="carNo" headerAlign="center" allowSort="true" dataType="string"width="100px">车牌号</div>
-                        <div field="guestName"name="guestName" headerAlign="center" allowSort="true" dataType="string"width="100px">客户名称</div>
+                        <div field="carNo"name="carNo" headerAlign="center" allowSort="true" dataType="chinese"width="100px">车牌号</div>
+                        <div field="guestName"name="guestName" headerAlign="center" allowSort="true" dataType="chinese"width="100px">客户名称</div>
                         <div field="mobile" headerAlign="center" allowSort="true" dataType="string"width="100px">联系方式</div>
                         <div field="carModel" name="carModel"headerAlign="center" allowSort="true" dataType="string"width="200px">品牌车型</div>
                         <div field="guestType" headerAlign="center" allowSort="true" dataType="string"width="100px">客户类型</div>
@@ -347,8 +347,8 @@
                         <div type="checkcolumn" class="mini-radiobutton" header="选择"></div>
                         <div field="carId" headerAlign="center" allowSort="true" dataType="string"visible="false">carId</div>
                         <div field="guestId" headerAlign="center" allowSort="true" dataType="string"visible="false">guestId</div>
-                        <div field="carNo"name="carNo" headerAlign="center" allowSort="true" dataType="string"width="100px">车牌号</div>
-                        <div field="guestName"name="guestName" headerAlign="center" allowSort="true" dataType="string"width="100px">客户名称</div>
+                        <div field="carNo"name="carNo" headerAlign="center" allowSort="true" dataType="chinese"width="100px">车牌号</div>
+                        <div field="guestName"name="guestName" headerAlign="center" allowSort="true" dataType="chinese"width="100px">客户名称</div>
                         <div field="mobile" headerAlign="center" allowSort="true" dataType="string"width="100px">联系方式</div>
                         <div field="carModel" name="carModel"headerAlign="center" allowSort="true" dataType="string"width="200px">品牌车型</div>
                         <div field="guestType" headerAlign="center" allowSort="true" dataType="string"width="100px">客户类型</div>
@@ -398,8 +398,8 @@
                         <div type="checkcolumn" class="mini-radiobutton" header="选择"></div>
                         <div field="guestId" headerAlign="center" allowSort="true" dataType="string"visible="false">guestId</div>
                         <div field="carId" headerAlign="center" allowSort="true" dataType="string"visible="false">orgid</div>
-                        <div field="carNo"name="carNo" headerAlign="center" allowSort="true" dataType="string"width="100px">车牌号</div>
-                        <div field="guestName"name="guestName" headerAlign="center" allowSort="true" dataType="string"width="100px">客户名称</div>
+                        <div field="carNo"name="carNo" headerAlign="center" allowSort="true" dataType="chinese"width="100px">车牌号</div>
+                        <div field="guestName"name="guestName" headerAlign="center" allowSort="true" dataType="chinese"width="100px">客户名称</div>
                         <div field="mobile" headerAlign="center" allowSort="true" dataType="string"width="100px">联系方式</div>
                         <div field="carModel" name="carModel"headerAlign="center" allowSort="true" dataType="string"width="200px">品牌车型</div>
                         <div field="guestType" headerAlign="center" allowSort="true" dataType="string"width="100px">客户类型</div>

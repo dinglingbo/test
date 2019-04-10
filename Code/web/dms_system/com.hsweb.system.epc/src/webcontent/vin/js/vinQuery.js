@@ -65,7 +65,8 @@ $(document).ready(function(v){
     availableTags=getAvailableTags();
     vin_input.autocomplete({
         source: availableTags,
-        max: 10
+        max: 10,
+        cacheLength: 10
       });
     getStorehouse(function(data)
     {
@@ -301,7 +302,9 @@ function queryGroupByVin(){
 /*
 *主组数据处理
 */
-function setgridMainGroup(data){    
+function setgridMainGroup(data){ 
+	//主组数据
+	groupData=data;
     showLeftGrid(gridMainGroup);
     gridMainGroup.set({
         columns: [
@@ -317,6 +320,9 @@ function setgridMainGroup(data){
 *分组信息
 */
 function setSubGroupData(data){
+	
+	//分组数据
+	subGroupData =data;
 	for(var i=0;i<data.length;i++){
 		if(data[i].is_filter!=0){
 			data.splice(i--, 1);
@@ -353,7 +359,12 @@ function setSubGroupData(data){
 *主组事件
 */
 function clickGdMainGroup(row){
-    if (row.auth) {
+    if (row.auth) {   	
+    	//主组标识
+    	groupnum =row.groupnum;
+    	if(row.has_subs){
+    		groupnum = row.mid;
+    	}
         var params = {
             "url": llq_pre_url + "/ppyvin/subgroup",
             "params":{
@@ -374,10 +385,13 @@ function clickGdMainGroup(row){
 function clickGdSubGroup(row){
     if(row.has_subs){
         clickGdMainGroup(row);
+        has_subs=1;
         return;
     }
     
     if (row.auth) {
+    	//分组零件号
+    	subMid=row.mid;
         var params = {
             "url": llq_pre_url + "/ppyvin/parts",
             "params":{
@@ -506,6 +520,19 @@ function showRightGrid(gridObj){
         }
 
         $($(".groupButton")[num]).show();
+        if(num ==2){
+
+       	 //上一分组
+       	 $($(".groupButton")[6]).show();
+       	 //下一分组
+       	 $($(".groupButton")[7]).show();
+       	 if(has_subs!=1){
+           	 //上一主组
+       		 $($(".groupButton")[4]).show();
+//       	 //下一主组
+       		 $($(".groupButton")[5]).show(); 
+       	 }
+       }
         //$($(".groupButton")[num]).click();
         setBgColor($(".groupButton")[num]);
       //分割栏显示
@@ -514,6 +541,14 @@ function showRightGrid(gridObj){
             showLeftGrid(gridMainGroup);
           //分隔栏不显示
             partPanel.hide();
+            //上一主组
+          	 $($(".groupButton")[4]).hide();
+          	 //下一主组
+          	 $($(".groupButton")[5]).hide();
+          	 //上一分组
+          	 $($(".groupButton")[6]).hide();
+          	 //下一分组
+          	 $($(".groupButton")[7]).hide();
         }
 
         if(gridObj==gridCfg){
@@ -831,9 +866,9 @@ function getAvailableTags(){
 		var key=localStorage.key(i);
 		var value=localStorage.getItem(key);
 		if(availableTags.length>0){
-			for(var j =0;i<availableTags.length;j++){
+			for(var j =0;j<availableTags.length;j++){
 				//判断是否重复
-				if(value.indexOf(availableTags[j]) == -1){
+				if(availableTags.indexOf(value) == -1){
 					availableTags.push(value);
 				}				
 			}
@@ -845,8 +880,110 @@ function getAvailableTags(){
 	return availableTags;
 }
 
+//用于判断
+var has_subs=null;
+//主组data
+var groupData=null;
+//分组data
+var subGroupData=null;
+//主组序号
+var groupIndex="";
+//分组序号
+var subGroupIndex = "";
+//主组标识
+var groupnum=null;
+//零件号
+var subMid=null;
+//主组对象
+var groupObj=null;
+//分组对象
+var subGroubObj=null;
+//获取零件下标
+function getSubGroupIndex(){
+	for(var i=0;i<subGroupData.length;i++){
+		if(subGroupData[i].mid ==subMid){
+			subGroupIndex =i;
+		}
+	}
 
+}
+//获取主组下标
+function getGroupIndex(){
+	for(var i=0;i<groupData.length;i++){
+		if(groupData[i].groupnum ==groupnum){
+			groupIndex =i;
+		}
+	}
+}
+//上一主组
+function lastGroup(){
+	//获取下标
+	getGroupIndex();
+	
+	groupIndex = Number(groupIndex)-1;
+	if(groupIndex<0){
+		parent.showMsg("已到第一主组","W");
+		groupIndex =0;
+		return;
+	}else{
+		groupObj=groupData[groupIndex];
+		//主组事件
+		clickGdMainGroup(groupObj);
+		subGroubObj=gridSubGroup.getRow(0);
+		clickGdSubGroup(subGroubObj);
+	}
+	
+	
+}
+//下一主组
+function nextGroup(){
+	//获取下标	
+	getGroupIndex(groupnum);
 
+	groupIndex = Number(groupIndex)+1;
+	if(groupIndex >groupData.length-1){
+		parent.showMsg("已到最后主组","W");
+		groupIndex =groupData.length-1;
+		return;
+	}else{
+		groupObj=groupData[groupIndex];
+		//主组事件
+		clickGdMainGroup(groupObj);
+		subGroubObj=gridSubGroup.getRow(0);
+		clickGdSubGroup(subGroubObj);
+	}
+	
+}
+//上一分组
+function lastSubGroup(){
+	//获取分组序号
+	getSubGroupIndex();
+	subGroupIndex =Number(subGroupIndex)-1;
+	if(subGroupIndex<0){
+		parent.showMsg("已到第一分组","W");
+		subGroupIndex =0;
+		return;
+	}else{
+
+		subGroubObj=subGroupData[subGroupIndex];
+		clickGdSubGroup(subGroubObj);
+	}
+}
+//下一分组
+function nextSubGroup(){
+	//获取分组序号
+	getSubGroupIndex();
+	subGroupIndex =Number(subGroupIndex)+1;
+	if(subGroupIndex>subGroupData.length-1){
+		parent.showMsg("已到最后分组","W");
+		subGroupIndex =subGroupData.length-1;
+		return;
+	}else{
+
+		subGroubObj=subGroupData[subGroupIndex];
+		clickGdSubGroup(subGroubObj);
+	}
+}
 
 
 

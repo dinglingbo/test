@@ -45,7 +45,7 @@
 	
 	
 	<!--获取车型数据为空，vin的长度为17的车辆数据-->
-	<select id="" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	<select id="queryCarVinByCarModelNull" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		SELECT id as id, car_no as carNo, vin as vin
 		from wb_repair.rpb_car 
 		where ifnull(car_model_full_name,'') = '' and ifnull(vin,'') != ''

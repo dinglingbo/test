@@ -32,7 +32,7 @@
     <link href="<%=contextPath%>/epc/brand/css/cloud.css?v=1.0" rel="stylesheet" type="text/css" />
     <script src="<%=contextPath%>/epc/common/llqCommon.js?v=1.0.1" type="text/javascript"></script>
     <script src="<%=contextPath%>/epc/brand/js/brandQuery.js?v=1.0" type="text/javascript"></script>
-    <script src="<%=contextPath%>/epc/brand/js/brandInfos.js?v=1.30" type="text/javascript"></script>
+    <script src="<%=contextPath%>/epc/brand/js/brandInfos.js?v=1.31" type="text/javascript"></script>
 </head>
 <body>
     <div class="nui-fit"> 

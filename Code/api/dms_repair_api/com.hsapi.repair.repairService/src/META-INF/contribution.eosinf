@@ -34,6 +34,7 @@
 			<configValue key="WBCRM">WBCRM</configValue>
 			<configValue key="part">DB03_ORA_WB_PART</configValue>
 			<configValue key="frm">	DB06_ORA_WB_FRM</configValue>
+			<configValue key="DB01_MYSQL_WB_SLOG">DB01_MYSQL_WB_SLOG</configValue>
 		</group>
 	</module>
 </contribution>

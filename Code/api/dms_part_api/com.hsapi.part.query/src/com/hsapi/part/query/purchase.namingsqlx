@@ -1037,15 +1037,20 @@
     <!-- 入库记录 -->
     <select id="queryEnterRecord" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     	SELECT
+    		b.orgid as orgid,
 			a.part_id as partId,
 			a.enter_date as enterDate,
 		    a.enter_qty as enterQty,
+		    a.enter_price as enterPrice,
+		    a.enter_amt as enterAmt,
 		   (a.enter_qty -a.outable_qty) as returnQty,
 			b.`code` as code,
+			a.store_id as storeId,
 			b.guest_id as guestId,
 			c.full_name as guestName,
 		    b.enter_type_id as enterTypeId,
 			b.order_man as orderMan
+			
 		FROM
 			pj_enter_detail_chk a
 		INNER JOIN pj_enter_main_chk b ON a.main_id = b.id
@@ -1065,12 +1070,14 @@
      <!-- 出库记录 -->
     <select id="queryOutRecord" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     	SELECT
+    		a.orgid as orgid,
 			a.part_id as partId,
 			a.pick_date as pickDate ,
 			a.pick_type as pickType,
 			a.out_qty as outQty,
 			IFNULL(a.out_return_sign,0) as outReturnSign,
 			IFNULL(a.out_return_qty,0) as outReturnQty,
+			a.store_id as storeId,
 			a.sell_unit_price as sellUnitPrice,
 			a.sell_amt as sellAmt,
 			a.recorder as recorder,

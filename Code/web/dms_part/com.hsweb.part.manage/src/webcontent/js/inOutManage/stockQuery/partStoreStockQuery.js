@@ -338,7 +338,7 @@ function setInitExportData(detail){
 }
 
 //查看入库记录
-function onEnterRecord(){
+function onEnter(){
 	var row ={};
 	row = rightGrid.getSelected();
 	if(!row){
@@ -346,31 +346,12 @@ function onEnterRecord(){
 		return;
 	}
 	var partId = row.partId;
-	nui.open({
-		url : webPath+contextPath+"/com.hsweb.part.common.partEnterRecord.flow?token="+token,
-		title : "入库记录",
-		width : 850,
-		height : 500,
-		allowDrag : true,
-		allowResize : true,
-		onload : function() {
-			var iframe = this.getIFrameEl();
-			var params = {
-				partId: partId,
-                token :token
-            };
-            iframe.contentWindow.SetData(params);
-		},
-		ondestroy : function(action) {
-			if (action == 'ok') {
-			
-			}
-		}
-	});
+	onEnterRecord(partId);
+	
 }
 
 //查看出库记录
-function onOutRecord(){
+function onOut(){
 	var row ={};
 	row = rightGrid.getSelected();
 	if(!row){
@@ -378,27 +359,7 @@ function onOutRecord(){
 		return;
 	}
 	var partId = row.partId;
-	nui.open({
-		url : webPath+contextPath+"/com.hsweb.part.common.partOutRecord.flow?token="+token,
-		title : "出库记录",
-		width : 850,
-		height : 500,
-		allowDrag : true,
-		allowResize : true,
-		onload : function() {
-			var iframe = this.getIFrameEl();
-			var params = {
-				partId: partId,
-                token :token
-            };
-            iframe.contentWindow.SetData(params);
-		},
-		ondestroy : function(action) {
-			if (action == 'ok') {
-			
-			}
-		}
-	});
+	onOutRecord(partId);
 }
 
 

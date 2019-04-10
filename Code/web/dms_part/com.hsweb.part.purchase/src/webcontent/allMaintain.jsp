@@ -10,7 +10,7 @@
 -->
 <head>
 <title>全部工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/allMaintain.js?v=1.2.14"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/allMaintain.js?v=1.2.15"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -95,7 +95,7 @@
           <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
                selectOnLoad="true"
                frozenStartColumn="0"
-               frozenEndColumn="9"
+             
                pageSize="500"
                totalField="page.count"
                sizeList=[500,1000,2000]
@@ -117,12 +117,13 @@
 	                  <div type="checkcolumn" name="checkcolumn" visible="false"></div>  
 	                  <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div> 
 	                  <div field="serviceCode" name="serviceCode" width="160" headerAlign="center" header="工单号" summaryType="count" allowsort="true"></div>
-	                  <div field="status" name="status" width="60px" headerAlign="center" header="进程" allowsort="true"></div> 
-	                  <div field="serviceTypeName" name="serviceTypeName" width="70" headerAlign="center" header="业务类型" allowsort="true"></div>
-	                  <div field="isSettle" name="isSettle" width="60" headerAlign="center" header="状态" allowsort="true"></div>
+	                  <div field="status" name="status" width="50" headerAlign="center" header="进程" allowsort="true"></div> 
+	                  <div field="serviceTypeName" name="serviceTypeName" width="65" headerAlign="center" header="业务类型" allowsort="true"></div>
+	                  <div field="isSettle" name="isSettle" width="50" headerAlign="center" header="状态" allowsort="true"></div>
 	                  <div type="checkboxcolumn" trueValue="1" falseValue="0"  field="isCollectMoney" name="isCollectMoney" width="60" headerAlign="center" header="是否收款" allowsort="true"></div>
 	                  <div field="guestFullName" name="guestFullName" width="110" headerAlign="center" header="客户名称" allowsort="true"></div>
-		              <div field="carNo" name="carNo" width="100" headerAlign="center" header="车牌号" allowsort="true"></div>
+		              <div field="carNo" name="carNo" width="90" headerAlign="center" header="车牌号" allowsort="true"></div>
+		              
 
 	                 </div>
                   </div>
@@ -133,7 +134,7 @@
 		                  <div field="packageSubtotal" name="status" width="90" headerAlign="center" summaryType="sum" header="套餐销售小计" allowsort="true" dataType="int"></div>
 		                  <div field="itemSubtotal" name="carNO" width="90" headerAlign="center" summaryType="sum" header="项目销售小计" allowsort="true" dataType="int"></div>
 		                  <div field="partSubtotal" name="carBrandId" width="90" headerAlign="center" summaryType="sum"  header="配件销售小计" allowsort="true" dataType="int"></div>
-		                  <div field="total" name="carBrandId" width="70" headerAlign="center" summaryType="sum"  header="合计" allowsort="true" dataType="int"></div>
+		                  <div field="total" name="total" width="70" headerAlign="center" summaryType="sum"  header="合计" allowsort="true" dataType="int"></div>
 	<!-- 	                  <div field="cardTimesAmt" name="cardTimesAmt" width="70" headerAlign="center" summaryType="sum"  header="预存抵扣" allowsort="true"></div>
 		                  <div field="totalPrefAmt" name="carVin" width="70" headerAlign="center" summaryType="sum"  header="优惠金额" allowsort="true"></div>
 		                  <div field="otherAmt" name="guestFullName" width="70" headerAlign="center" summaryType="sum"  header="其它费用收入" allowsort="true"></div>
@@ -196,7 +197,8 @@
 		                  <div field="enterDate" name="enterDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="进厂日期" allowsort="true"></div>
 		                  <div field="checkDate" name="checkDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="完工日期" allowsort="true"></div>
 		                  <div field="outDate" name="outDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="出厂日期" allowsort="true"></div>
-		                  <div field="collectMoneyDate" name="collectMoneyDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="结算日期" allowsort="true"></div>		                  
+		                  <div field="collectMoneyDate" name="collectMoneyDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="结算日期" allowsort="true"></div>	
+		                  <div type="checkboxcolumn" trueValue="1" falseValue="0" field="isOutBill" name="isOutBill" width="50" headerAlign="center" header="报销单" allowsort="true"></div>	                  
 		                  <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
 	                  </div>
                   </div>

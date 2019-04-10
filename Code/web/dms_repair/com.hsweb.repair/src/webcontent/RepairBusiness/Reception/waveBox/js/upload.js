@@ -17,7 +17,7 @@ $(document).ready(function(v) {
         // save_key: true,
         // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
         domain: getCompanyLogoUrl(), //自己的七牛云存储空间域名
-        multi_selection: false, //是否允许同时选择多文件
+        multi_selection: true, //是否允许同时选择多文件
         //文件类型过滤，这里限制为图片类型
         filters: {
             mime_types: [
@@ -49,11 +49,37 @@ $(document).ready(function(v) {
                 var domain = up.getOption('domain');
                 //var sourceLink = domain + res.key;//获取上传文件的链接地址
                 var info1 = JSON.parse(info);
-                $("#xmTanImg").attr("src", getCompanyLogoUrl() + info1.hash);
-                nui.get("logoImg").setValue(getCompanyLogoUrl() + info1.hash);
+                /*$("#xmTanImg").attr("src", getCompanyLogoUrl() + info1.hash);
+                nui.get("logoImg").setValue(getCompanyLogoUrl() + info1.hash);*/
+                var tBody = null;
+                if (nui.get("state").value == 1) {
+                    tBody = $("#tbodyId");
+                    arr.add(getCompanyLogoUrl() + info1.hash);
+                } else {
+                    tBody = $("#tbodyId1");
+                    brr.add(getCompanyLogoUrl() + info1.hash);
+                }
+                tBody.empty();
+                var crr = [];
+                if(nui.get("state").value == 1){
+                	crr = arr;
+                }else{
+                	crr = brr;
+                }
+                var tds = '<td>[1]</td>';
+                var tr = $("<tr></tr>");
+                for(var i = 1 , l = crr.length ; i < l ; i ++){
+                	var index = i +1;
+                	tds = tds + '<td>['+index+']</td>';
+                }
+                for(var i = 0 , l = crr.length ; i < l ; i ++){
+                	var index = i +1;
+                	tds = tds.replace("["+index+"]", '<img id="xmTanImg" style="width: 120px;height: 120px" src="'+crr[i]+'" />');   
+                }
+                tBody.append(tr.append(tds)); 
             },
             'Error': function(up, err, errTip) {
-                alert(errTip);
+                showMsg(errTip,"W");
             },
             'Key': function(up, file) {
                 //当save_key和unique_names设为false时，该方法将被调用

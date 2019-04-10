@@ -114,6 +114,8 @@ $(document).ready(function(v){
 */
 function clickGdMainGroup(row){
     if (row.auth) {
+    	//主组序号
+    	groupnum =row.groupnum;
         var params = {
             "url": llq_pre_url + "/ppycars/subgroup",
             "params":{
@@ -137,6 +139,9 @@ function clickGdSubGroup(row){
     }
     
     if (row.auth) {
+    	//分组零件号
+    	subMid=row.mid;
+    	
         var params = {
             "url": llq_pre_url + "/ppycars/parts",
             "params":{
@@ -156,6 +161,7 @@ function clickGdSubGroup(row){
             "token": token
         }
         callAjax(url, params, processAjax, setPartImg);
+        
     }
 }
 
@@ -188,7 +194,9 @@ function queryGroupByAuth(auth){
 /*
 *主组数据处理
 */
-function setgridMainGroup(data){    
+function setgridMainGroup(data){   
+	//主组数据
+	groupData=data;
     showInfoLeftGrid(gridMainGroup);
     gridMainGroup.set({
         columns: [
@@ -208,6 +216,8 @@ function setgridMainGroup(data){
 *分组信息
 */
 function setSubGroupData(data){
+	//分组数据
+	subGroupData =data;
     gridSubGroup.setData(data);
 
     //img
@@ -309,6 +319,16 @@ function showInfoRightGrid(gridObj){
     //var num = (gridObj==gridCfg)? 0 : ((gridObj==gridSubGroup)? 1 : 2);
     var num = (gridObj==gridSubGroup)? 1 : 2;
     $($(".groupButton2")[num]).show();
+    if(num ==2){
+    	 //上一主组
+    	 $($(".groupButton2")[3]).show();
+    	 //下一主组
+    	 $($(".groupButton2")[4]).show();
+    	 //上一分组
+    	 $($(".groupButton2")[5]).show();
+    	 //下一分组
+    	 $($(".groupButton2")[6]).show();
+    }
     //$($(".groupButton")[num]).click();
     setBgColor($(".groupButton2")[num]);
     //分割栏显示
@@ -317,6 +337,14 @@ function showInfoRightGrid(gridObj){
         showInfoLeftGrid(gridMainGroup);
         //分隔栏不显示
         partPanel.hide();
+        //上一主组
+        $($(".groupButton2")[3]).hide();
+        //下一主组
+	   	$($(".groupButton2")[4]).hide();
+	   	//上一分组
+	   	$($(".groupButton2")[5]).hide();
+	   	//下一分组
+	   	$($(".groupButton2")[6]).hide();
     }
     
     
@@ -525,4 +553,107 @@ function searchStok(row)
         params:params,
         token:token
     });
+}
+
+//主组data
+var groupData=null;
+//分组data
+var subGroupData=null;
+//主组序号
+var groupIndex="";
+//分组序号
+var subGroupIndex = "";
+//主组标识
+var groupnum=null;
+//零件号
+var subMid=null;
+//主组对象
+var groupObj=null;
+//分组对象
+var subGroubObj=null;
+//获取零件下标
+function getSubGroupIndex(){
+	for(var i=0;i<subGroupData.length;i++){
+		if(subGroupData[i].mid ==subMid){
+			subGroupIndex =i;
+		}
+	}
+
+}
+//获取主组下标
+function getGroupIndex(){
+	for(var i=0;i<groupData.length;i++){
+		if(groupData[i].groupnum ==groupnum){
+			groupIndex =i;
+		}
+	}
+}
+//上一主组
+function lastGroup(){
+	//获取下标
+	getGroupIndex();
+	
+	groupIndex = Number(groupIndex)-1;
+	if(groupIndex<0){
+		parent.showMsg("已到第一主组","W");
+		groupIndex =0;
+		return;
+	}else{
+		groupObj=groupData[groupIndex];
+		//主组事件
+		clickGdMainGroup(groupObj);
+		subGroubObj=gridSubGroup.getRow(0);
+		clickGdSubGroup(subGroubObj);
+	}
+	
+	
+}
+//下一主组
+function nextGroup(){
+	//获取下标	
+	getGroupIndex(groupnum);
+
+	groupIndex = Number(groupIndex)+1;
+	if(groupIndex >groupData.length-1){
+		parent.showMsg("已到最后主组","W");
+		groupIndex =groupData.length-1;
+		return;
+	}else{
+		groupObj=groupData[groupIndex];
+		//主组事件
+		clickGdMainGroup(groupObj);
+		subGroubObj=gridSubGroup.getRow(0);
+		clickGdSubGroup(subGroubObj);
+	}
+	
+}
+//上一分组
+function lastSubGroup(){
+	//获取分组序号
+	getSubGroupIndex();
+	subGroupIndex =Number(subGroupIndex)-1;
+	if(subGroupIndex<0){
+		parent.showMsg("已到第一分组","W");
+		subGroupIndex =0;
+		return;
+	}else{
+
+		subGroubObj=subGroupData[subGroupIndex];
+		clickGdSubGroup(subGroubObj);
+	}
+}
+//下一分组
+function nextSubGroup(){
+	//获取分组序号
+	getSubGroupIndex();
+	subGroupIndex =Number(subGroupIndex)+1;
+	if(subGroupIndex>subGroupData.length-1){
+		parent.showMsg("已到最后分组","W");
+		subGroupIndex =subGroupData.length-1;
+		return;
+	}else{
+
+		subGroubObj=subGroupData[subGroupIndex];
+		clickGdSubGroup(subGroubObj);
+	}
 }

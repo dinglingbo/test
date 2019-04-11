@@ -132,7 +132,10 @@
 			d.rtn_guest_rate drtnGuestRate,
 			d.rtn_guest_amt drtnGuestAmt,
 			d.insure_type_Name  insureTypeName,
-			d.insure_no insureNo
+			d.insure_no insureNo,
+			a.bala_amt balaAmt,
+			a.gross_profit_rate grossProfitRate,
+			a.gross_profit grossProfit
 		FROM
 			rps_insurance_main a
 		INNER JOIN rpb_car b ON (a.car_id = b.id)

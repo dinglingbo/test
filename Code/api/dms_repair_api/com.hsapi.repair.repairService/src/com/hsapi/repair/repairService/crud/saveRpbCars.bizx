@@ -109,8 +109,8 @@
     <targetConnections>link14</targetConnections>
     <targetConnections>link33</targetConnections>
     <targetConnections>link34</targetConnections>
-    <targetConnections>link68</targetConnections>
     <targetConnections>link71</targetConnections>
+    <targetConnections>link68</targetConnections>
     <location x="501" y="191"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend0label</nodeLabel>
@@ -154,7 +154,7 @@
       <targetNode>assign1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

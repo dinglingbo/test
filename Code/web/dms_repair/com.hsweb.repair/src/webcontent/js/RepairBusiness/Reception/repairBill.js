@@ -975,13 +975,13 @@ function setInitData(params){
                         	doSetStyle(status, isSettle);                       	
                         }
                       
-                        if(data.isOutBill){
+                        /*if(data.isOutBill){
                         	nui.get("ExpenseAccount").setVisible(false);
                         	nui.get("ExpenseAccount1").setVisible(true);
                         }else{
                         	nui.get("ExpenseAccount").setVisible(true);
                         	nui.get("ExpenseAccount1").setVisible(false);
-                        }
+                        }*/
                         sendGuestForm.setData(data);
                         //设置联系人姓名
                         nui.get("contactorName").setText(contactor.name);
@@ -1068,8 +1068,8 @@ function add(){
     $("#guestNameEl").html("");
     $("#guestTelEl").html("");
     $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
-    nui.get("ExpenseAccount").setVisible(true);
-    nui.get("ExpenseAccount1").setVisible(false);
+   /* nui.get("ExpenseAccount").setVisible(true);
+    nui.get("ExpenseAccount1").setVisible(false);*/
     document.getElementById("showA1").style.display = "";
 	document.getElementById("showA").style.display='none';
     //document.getElementById("showA").hide();
@@ -4163,7 +4163,7 @@ function addExpenseAccount(){
 		data.guestDesc = data2.guestDesc;
 		data.faultPhen = data2.faultPhen;
 		data.solveMethod = data2.solveMethod;
-		window.parent.activeTabAndInit(item,data);
+		window.parent.activeTabAndInit(item,data,);
 	}else{
 		showMsg("请先保存后再进行操作!","W");
 	}

@@ -1006,7 +1006,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign11label</nodeLabel>
     <process:copy>
-      <process:from type="expression" pattern="value">balaAmt==0?0:totalPrefAmt/balaAmt</process:from>
+      <process:from type="expression" pattern="value">balaAmt==0?0:totalPrefAmt/(netinAmt-allowanceAmt-couponAmt+receiveAmt)</process:from>
       <process:to type="query">totalPrefRate</process:to>
     </process:copy>
     <process:copy>

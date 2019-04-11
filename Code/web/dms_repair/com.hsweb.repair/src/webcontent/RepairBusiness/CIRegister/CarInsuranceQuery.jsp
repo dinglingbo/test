@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>保险开单查询</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceQuery.js?v=1.0.37"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceQuery.js?v=1.0.38"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -104,7 +104,10 @@ pageEncoding="UTF-8" session="false"%>
 	                     <div field="settleTypeId" headeralign="center" allowsort="ture" visible="true" >保费收取方式</div>
 	                     <div field="amt" name="amt"  headerAlign="center" header="保费总金额" ></div>
 	                     <div field="rtnCompAmt" name="partAmt"  headerAlign="center" header="保司返点总金额" ></div>
-	                     <div field="rtnGuestAmt" name="partAmt"  headerAlign="center" header="客户返点总金额" ></div>  
+	                     <div field="rtnGuestAmt" name="partAmt"  headerAlign="center" header="客户返点总金额" ></div>
+	                     <div field="balaAmt" name="balaAmt"  headerAlign="center" header="结算金额" ></div>  
+	                     <div field="grossProfit" name="grossProfit"  headerAlign="center" header="毛利" ></div>  
+	                     <div field="grossProfitRate" name="grossProfitRate"  headerAlign="center" header="毛利率" ></div>
 	                     <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" ></div>
                        </div>
                      </div>					

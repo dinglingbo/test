@@ -67,6 +67,10 @@
         	e.cellHtml = e.value + "%";
         }else if(e.field == "drtnGuestRate"){
         	e.cellHtml = e.value + "%";
+        }else if(e.field == "grossProfitRate"){
+        	var rate = e.value * 100;
+        	rate = rate.toFixed(2);
+        	e.cellHtml = rate + "%";
         }else if(e.field == "orgid"){
         	for(var i=0;i<currOrgList.length;i++){
         		if(currOrgList[i].orgid==e.value){
@@ -334,28 +338,34 @@ function mergeCells(){//动态合并行
 			 cells[14] = { rowIndex: 0, columnIndex: 15, rowSpan: index + 1, colSpan: 0 };
 			 cells[15] = { rowIndex: 0, columnIndex: 16, rowSpan: index + 1, colSpan: 0 };
 			 cells[16] = { rowIndex: 0, columnIndex: 17, rowSpan: index + 1, colSpan: 0 };
+			 cells[17] = { rowIndex: 0, columnIndex: 18, rowSpan: index + 1, colSpan: 0 };
+			 cells[18] = { rowIndex: 0, columnIndex: 19, rowSpan: index + 1, colSpan: 0 };
+			 cells[19] = { rowIndex: 0, columnIndex: 20, rowSpan: index + 1, colSpan: 0 };
 		 }else{
 		 	 var last = brr[i-1];
 		 	 last = parseInt(last);
 		 	 var one = brr[i];
 		 	 one = parseInt(one);
-		 	 cells[17*i+0] = { rowIndex: last + 1, columnIndex: 1, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[17*i+1] = { rowIndex: last + 1, columnIndex: 2, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[17*i+2] = { rowIndex: last + 1, columnIndex: 3, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[17*i+3] = { rowIndex: last + 1, columnIndex: 4, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[17*i+4] = { rowIndex: last + 1, columnIndex: 5, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[17*i+5] = { rowIndex: last + 1, columnIndex: 6, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[17*i+6] = { rowIndex: last + 1, columnIndex: 7, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[17*i+7] = { rowIndex: last + 1, columnIndex: 8, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[17*i+8] = { rowIndex: last + 1, columnIndex: 9, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[17*i+9] = { rowIndex: last + 1, columnIndex: 10, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[17*i+10] = { rowIndex: last + 1, columnIndex: 11, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[17*i+11] = { rowIndex: last + 1, columnIndex: 12, rowSpan: one - last, colSpan: 0 };
-		 	 cells[17*i+12] = { rowIndex: last + 1, columnIndex: 13, rowSpan: one - last, colSpan: 0 };
-		 	 cells[17*i+13] = { rowIndex: last + 1, columnIndex: 14, rowSpan: one - last, colSpan: 0 };
-		 	 cells[17*i+14] = { rowIndex: last + 1, columnIndex: 15, rowSpan: one - last, colSpan: 0 };
-		 	 cells[17*i+15] = { rowIndex: last + 1, columnIndex: 16, rowSpan: one - last, colSpan: 0 };
-		 	cells[17*i+16] = { rowIndex: last + 1, columnIndex: 17, rowSpan: one - last, colSpan: 0 };
+		 	 cells[20*i+0] = { rowIndex: last + 1, columnIndex: 1, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[20*i+1] = { rowIndex: last + 1, columnIndex: 2, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[20*i+2] = { rowIndex: last + 1, columnIndex: 3, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[20*i+3] = { rowIndex: last + 1, columnIndex: 4, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[20*i+4] = { rowIndex: last + 1, columnIndex: 5, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[20*i+5] = { rowIndex: last + 1, columnIndex: 6, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[20*i+6] = { rowIndex: last + 1, columnIndex: 7, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[20*i+7] = { rowIndex: last + 1, columnIndex: 8, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[20*i+8] = { rowIndex: last + 1, columnIndex: 9, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[20*i+9] = { rowIndex: last + 1, columnIndex: 10, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[20*i+10] = { rowIndex: last + 1, columnIndex: 11, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[20*i+11] = { rowIndex: last + 1, columnIndex: 12, rowSpan: one - last, colSpan: 0 };
+		 	 cells[20*i+12] = { rowIndex: last + 1, columnIndex: 13, rowSpan: one - last, colSpan: 0 };
+		 	 cells[20*i+13] = { rowIndex: last + 1, columnIndex: 14, rowSpan: one - last, colSpan: 0 };
+		 	 cells[20*i+14] = { rowIndex: last + 1, columnIndex: 15, rowSpan: one - last, colSpan: 0 };
+		 	 cells[20*i+15] = { rowIndex: last + 1, columnIndex: 16, rowSpan: one - last, colSpan: 0 };
+		 	cells[20*i+16] = { rowIndex: last + 1, columnIndex: 17, rowSpan: one - last, colSpan: 0 };
+		 	cells[20*i+17] = { rowIndex: last + 1, columnIndex: 18, rowSpan: one - last, colSpan: 0 };
+		 	cells[20*i+18] = { rowIndex: last + 1, columnIndex: 19, rowSpan: one - last, colSpan: 0 };
+		 	cells[20*i+19] = { rowIndex: last + 1, columnIndex: 20, rowSpan: one - last, colSpan: 0 };
 		 }
 	}
 	leftGrid.mergeCells(cells);

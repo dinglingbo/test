@@ -108,12 +108,13 @@
     <node>invokePojo0</node>
   </nodes>
   <nodes xsi:type="model:GroupNode" id="group1" name="group1" grouped="true" gstart="loopstart1" gend="loopend1">
-    <location x="450" y="108"/>
-    <size height="136" width="271"/>
+    <location x="450" y="45"/>
+    <size height="262" width="271"/>
     <chidren>assign4</chidren>
     <chidren>invokePojo1</chidren>
     <chidren>loopstart1</chidren>
     <chidren>loopend1</chidren>
+    <chidren>assign5</chidren>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">
     <location x="450" y="188"/>
@@ -124,6 +125,16 @@
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="link11" isDefault="true" type="transition">
       <sourceNode>loopstart1</sourceNode>
       <targetNode>assign4</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link2" name="link2" displayName="连接线" type="transition">
+      <sourceNode>loopstart1</sourceNode>
+      <targetNode>assign5</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">hashTemp/guestId</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
     <location x="450" y="156"/>
@@ -152,20 +163,13 @@
       <targetNode>invokePojo1</targetNode>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
+    <targetConnections>link5</targetConnections>
     <location x="525" y="154"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">hashTemp/orgid</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">guest/id</process:from>
-      <process:to type="query">hashTemp/guestId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">guest/fullName</process:from>
-      <process:to type="query">hashTemp/guestName</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">maintain/carId</process:from>
@@ -481,6 +485,29 @@
     <location x="328" y="306"/>
     <figSize height="17" width="32"/>
     <node>end1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" collapsed="false" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>assign4</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="524" y="75"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign5label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">guest/id</process:from>
+      <process:to type="query">hashTemp/guestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">guest/fullName</process:from>
+      <process:to type="query">hashTemp/guestName</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
+    <location x="522" y="111"/>
+    <figSize height="17" width="32"/>
+    <node>assign5</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

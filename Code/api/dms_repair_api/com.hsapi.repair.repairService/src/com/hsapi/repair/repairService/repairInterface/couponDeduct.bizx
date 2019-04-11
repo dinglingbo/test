@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="couponDeduct" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="优惠券抵扣（通用券只能一张，专属券不能包含相同项目）&#xD;&#xA;SA扫描客户的优惠券码（推荐使用），或者SA选择客户的优惠券&#xD;&#xA;&#xD;&#xA;生成抵扣记录，返回总的抵扣金额&#xD;&#xA;&#xD;&#xA;综合，理赔，洗美，销售" title="Administrator&#x9;18-8-11 下午3:01">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="优惠券抵扣（通用券只能一张，专属券不能包含相同项目）&#xD;&#xA;SA扫描客户的优惠券码（推荐使用），或者SA选择客户的优惠券&#xD;&#xA;&#xD;&#xA;生成抵扣记录，返回总的抵扣金额&#xD;&#xA;&#xD;&#xA;综合，理赔，洗美，销售&#xD;&#xA;&#xD;&#xA;工单，销售开单，转预结算和直接结算，涉及3个逻辑流" title="Administrator&#x9;18-8-11 下午3:01">
     <location x="-493" y="-15"/>
     <size height="181" width="434"/>
   </nodes>

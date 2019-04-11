@@ -110,6 +110,7 @@
     <targetConnections>link33</targetConnections>
     <targetConnections>link34</targetConnections>
     <targetConnections>link71</targetConnections>
+    <targetConnections>link68</targetConnections>
     <location x="501" y="191"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend0label</nodeLabel>

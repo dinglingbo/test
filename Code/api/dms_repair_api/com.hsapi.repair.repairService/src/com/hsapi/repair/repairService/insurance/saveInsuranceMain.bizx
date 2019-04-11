@@ -224,11 +224,21 @@
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
-      <targetNode>subprocess4</targetNode>
+      <targetNode>assign26</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link62" name="link62" displayName="连接线" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign28</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">total_amt</process:leftOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link6</targetConnections>
-    <location x="539" y="150"/>
+    <location x="540" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
@@ -251,13 +261,9 @@
       <process:from type="expression" pattern="reference">total_amt - total_rtnCompAmt  - total_rtnGuestAmt - costAmt</process:from>
       <process:to type="query">grossProfitAmt</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">grossProfitAmt/total_amt</process:from>
-      <process:to type="query">grossProfitRate</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
-    <location x="537" y="186"/>
+    <location x="538" y="186"/>
     <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
@@ -376,7 +382,7 @@
       <targetNode>assign25</targetNode>
     </sourceConnections>
     <targetConnections>link30</targetConnections>
-    <location x="541" y="262"/>
+    <location x="525" y="260"/>
     <size height="28" width="28"/>
     <nodeLabel>assign7label</nodeLabel>
     <process:copy>
@@ -449,7 +455,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
-    <location x="539" y="298"/>
+    <location x="523" y="296"/>
     <figSize height="17" width="32"/>
     <node>assign7</node>
   </nodes>
@@ -1296,10 +1302,20 @@
   <nodes xsi:type="process:tAssign" description="" id="assign25" name="赋值25" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link58" name="link58" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign25</sourceNode>
-      <targetNode>subprocess5</targetNode>
+      <targetNode>assign27</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link64" name="link64" displayName="连接线" type="transition">
+      <sourceNode>assign25</sourceNode>
+      <targetNode>assign29</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">total_amt</process:leftOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
-    <location x="592" y="260"/>
+    <location x="579" y="262"/>
     <size height="28" width="28"/>
     <nodeLabel>assign25label</nodeLabel>
     <process:copy>
@@ -1310,48 +1326,20 @@
       <process:from type="expression" pattern="reference">total_amt - total_rtnCompAmt  - total_rtnGuestAmt - costAmt</process:from>
       <process:to type="query">grossProfitAmt</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">grossProfitAmt/total_amt</process:from>
-      <process:to type="query">grossProfitRate</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign25label" name="label" nodeType="label">
-    <location x="587" y="296"/>
+    <location x="574" y="298"/>
     <figSize height="17" width="39"/>
     <node>assign25</node>
-  </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess4" name="dfFormat" displayName="dfFormat" collapsed="false" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link62" name="link62" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess4</sourceNode>
-      <targetNode>assign26</targetNode>
-    </sourceConnections>
-    <targetConnections>link15</targetConnections>
-    <location x="592" y="150"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess4label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hs.common.uitls.dfFormat</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="s" type="query" value="Double" valueType="Primitive" pattern="reference">grossProfitRate</process:inputVariable>
-        <process:inputVariable id="1" name="f" type="literal" value="Int" valueType="Primitive" pattern="reference">6</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="s" type="query" value="Double" valueType="Primitive">grossProfitRate</process:outputVariable>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess4label" name="label" nodeType="label">
-    <location x="578" y="185"/>
-    <figSize height="17" width="54"/>
-    <node>subprocess4</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign26" name="赋值26" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link61" name="link61" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign26</sourceNode>
       <targetNode>invokePojo6</targetNode>
     </sourceConnections>
-    <targetConnections>link62</targetConnections>
-    <location x="651" y="150"/>
+    <targetConnections>link15</targetConnections>
+    <targetConnections>link63</targetConnections>
+    <location x="657" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign26label</nodeLabel>
     <process:copy>
@@ -1364,42 +1352,18 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign26label" name="label" nodeType="label">
-    <location x="646" y="186"/>
+    <location x="652" y="186"/>
     <figSize height="17" width="39"/>
     <node>assign26</node>
-  </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess5" name="dfFormat1" displayName="dfFormat" collapsed="false" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link59" name="link59" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess5</sourceNode>
-      <targetNode>assign27</targetNode>
-    </sourceConnections>
-    <targetConnections>link58</targetConnections>
-    <location x="646" y="260"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess5label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hs.common.uitls.dfFormat</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="s" type="query" value="Double" valueType="Primitive" pattern="reference">grossProfitRate</process:inputVariable>
-        <process:inputVariable id="1" name="f" type="literal" value="Int" valueType="Primitive" pattern="reference">6</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="s" type="query" value="Double" valueType="Primitive">grossProfitRate</process:outputVariable>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess5label" name="label" nodeType="label">
-    <location x="629" y="295"/>
-    <figSize height="17" width="61"/>
-    <node>subprocess5</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign27" name="赋值27" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link60" name="link60" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign27</sourceNode>
       <targetNode>invokePojo7</targetNode>
     </sourceConnections>
-    <targetConnections>link59</targetConnections>
-    <location x="695" y="260"/>
+    <targetConnections>link58</targetConnections>
+    <targetConnections>link65</targetConnections>
+    <location x="684" y="260"/>
     <size height="28" width="28"/>
     <nodeLabel>assign27label</nodeLabel>
     <process:copy>
@@ -1412,9 +1376,47 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign27label" name="label" nodeType="label">
-    <location x="690" y="296"/>
+    <location x="679" y="296"/>
     <figSize height="17" width="39"/>
     <node>assign27</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign28" name="赋值28" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link63" name="link63" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign28</sourceNode>
+      <targetNode>assign26</targetNode>
+    </sourceConnections>
+    <targetConnections>link62</targetConnections>
+    <location x="611" y="200"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign28label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">grossProfitAmt/total_amt</process:from>
+      <process:to type="query">grossProfitRate</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign28label" name="label" nodeType="label">
+    <location x="606" y="236"/>
+    <figSize height="17" width="39"/>
+    <node>assign28</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign29" name="赋值29" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link65" name="link65" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign29</sourceNode>
+      <targetNode>assign27</targetNode>
+    </sourceConnections>
+    <targetConnections>link64</targetConnections>
+    <location x="638" y="314"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign29label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">grossProfitAmt/total_amt</process:from>
+      <process:to type="query">grossProfitRate</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign29label" name="label" nodeType="label">
+    <location x="633" y="350"/>
+    <figSize height="17" width="39"/>
+    <node>assign29</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

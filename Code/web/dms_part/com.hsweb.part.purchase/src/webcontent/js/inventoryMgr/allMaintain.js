@@ -666,6 +666,7 @@ function onAdvancedSearchOk()
 	}
     
     searchData.mtAuditorId = mtAdvisorIdEl.getValue();
+    searchData.serviceTypeIds = serviceTypeIdEl.getValue();
     searchData.guestProperty = nui.get("guestProperty").getValue();
     searchData.propertyFeatures = nui.get("propertyFeatures").getValue();
     var billTypeIdList =  nui.get("billTypeIdList").getValue();
@@ -677,7 +678,7 @@ function onAdvancedSearchOk()
     	searchData.status = nui.get("statusId").getValue();
     }
     var settleType = nui.get("settleType").getValue();
-    if(settleType==0){
+    if(settleType==4){
     	searchData.balaAuditSign = 0;
     }else if(settleType==1){
     	searchData.balaAuditSign = 1;
@@ -697,7 +698,7 @@ function onAdvancedSearchOk()
     searchData.mobile = nui.get("mobile").getValue();
     advancedSearchWin.hide();
     doSearch2(searchData);
-    advancedSearchForm.gusetId=null;
+
   
 }
 function doSearch2(params){

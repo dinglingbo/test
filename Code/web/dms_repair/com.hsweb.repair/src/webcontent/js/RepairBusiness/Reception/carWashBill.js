@@ -807,13 +807,13 @@ function setInitData(params){
                         	doSetStyle(status, isSettle);                       	
                         }
 
-                        if(data.isOutBill){
+                        /*if(data.isOutBill){
                         	nui.get("ExpenseAccount").setVisible(false);
                         	nui.get("ExpenseAccount1").setVisible(true);
                         }else{
                         	nui.get("ExpenseAccount").setVisible(true);
                         	nui.get("ExpenseAccount1").setVisible(false);
-                        }
+                        }*/
 
                         var p1 = {
                         }
@@ -894,8 +894,8 @@ function add(){
     $("#guestNameEl").html("");
     $("#guestTelEl").html("");
 
-    nui.get("ExpenseAccount").setVisible(true);
-    nui.get("ExpenseAccount1").setVisible(false);
+  /*  nui.get("ExpenseAccount").setVisible(true);
+    nui.get("ExpenseAccount1").setVisible(false);*/
     $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
     var tabList = document.querySelectorAll('.xz');
 	var natureId = null;
@@ -3211,10 +3211,10 @@ function addExpenseAccount(){
 	    item.text = "报销单详情";
 		item.url =webBaseUrl+  "com.hsweb.print.ExpenseAccount.flow?sourceServiceId="+data.id;
 		item.iconCls = "fa fa-file-text";
+		data.guestMobile = $("#guestTelEl").text();
+		data.guestTel = $("#guestNameEl").text();
+		data.contactorTel = data.mobile;
 		window.parent.activeTabAndInit(item,data);
-		data.guestTel = $("#guestTelEl").text();
-		data.guestName = $("#guestNameEl").text();
-		data.contactorTel = data.guestMobile;
 	}else{
 		showMsg("请先保存后再进行操作!","W");
 	}

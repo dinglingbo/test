@@ -224,8 +224,8 @@
                 <ul id="popupMenuMore" class="nui-menu" style="display:none;">
                     <li iconCls="" onclick="unfinish()" id="addBtn">返单</li>
                     <li iconCls="" onclick="updateBillExpense()" id="billExpense">费用登记</li>
-                    <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount">新增报销单</li>
-                    <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount1">修改报销单</li>
+                   <!--  <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount">新增报销单</li> -->
+                    <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount1">报销单</li>
                     <li iconCls="" onclick="openOrderDetail()" id="openOrderDetail">打开工单详情页</li>
                     <li iconCls="" onclick="toChangBillTypeId(2)" id="">转为洗美开单</li>
                     <li iconCls="" onclick="toChangBillTypeId(4)" id="">转为理赔开单</li>

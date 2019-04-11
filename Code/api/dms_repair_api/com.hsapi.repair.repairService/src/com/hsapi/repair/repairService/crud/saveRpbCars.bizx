@@ -109,7 +109,6 @@
     <targetConnections>link14</targetConnections>
     <targetConnections>link33</targetConnections>
     <targetConnections>link34</targetConnections>
-    <targetConnections>link68</targetConnections>
     <targetConnections>link71</targetConnections>
     <location x="501" y="191"/>
     <size height="24" width="24"/>
@@ -154,7 +153,7 @@
       <targetNode>assign1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -181,6 +180,7 @@
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>subprocess4</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link28" name="link28" displayName="连接线" type="transition">
       <sourceNode>assign1</sourceNode>
@@ -193,6 +193,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link69</targetConnections>
+    <targetConnections>link68</targetConnections>
     <location x="366" y="145"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
@@ -687,6 +688,7 @@
     <sourceConnections xsi:type="process:tLink" id="link34" name="link34" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign12</sourceNode>
       <targetNode>loopend0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link29</targetConnections>
     <location x="450" y="69"/>
@@ -1284,7 +1286,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo6" name="add2Array" displayName="add2Array" collapsed="false" grouped="true" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link68" name="link68" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo6</sourceNode>
-      <targetNode>loopend0</targetNode>
+      <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link67</targetConnections>
     <location x="403" y="277"/>

@@ -234,6 +234,139 @@
 		.zffs {
 			padding: 15px 0;
 		}
+		
+		
+	/*优惠券*/
+	
+     .quan-item {
+            width: 30%;
+            position: relative;
+            margin-bottom: 20px;
+            height: auto;
+            overflow: hidden;
+            border: 1px solid #f1f1f1;
+            background: #fff;
+            font-family: "Microsoft YaHei";
+            float:left;
+            margin-left: 20px;
+        }
+
+        .quan-item .q-type {
+            float: right;
+            width: 70%;
+            padding: 5px 0;
+        }
+
+        .quan-item .q-price,
+        .typ-txt {
+            display: inline-block;
+            display: block;
+            color: #ff9000;
+            font-size: 13px;
+        }
+
+        .quan-d-item .q-price {
+            color: #ff9000;
+            height: auto;
+            overflow: hidden;
+            padding: 5px 0;
+        }
+
+        .quan-item .q-price em {
+            margin: 5px 0 0;
+            font-family: verdana;
+            font-size: 24px;
+            font-style: normal;
+
+        }
+
+        .quan-item .q-price strong {
+            margin: 0 10px 0 5px;
+            font-size: 2rem;
+            font-family: arial;
+            _display: inline;
+        }
+
+        .quan-item .q-price .txt {
+            line-height: 22px;
+            font-size: 1rem;
+        }
+
+        
+        .quan-item .q-range {
+            color: #999;
+        }
+
+        .quan-item .q-price {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+        }
+
+        .quan-item .q-price div.titles {
+            flex: 1;
+        }
+
+        .quan-d-item .q-opbtns {
+            background: #ff9000;
+
+        }
+
+        .quan-item .q-opbtns {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            float: left;
+            width: 25%;
+            /* -webkit-writing-mode: vertical-lr; */
+            line-height: 25px;
+            background: #ff9000;
+            color: #fff;
+            font-size: 1.2rem;
+            /* padding: 0 15px; */
+           /*  height: 100%; */
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            text-align: center;
+
+
+        }
+
+        .quan-item .q-opbtns::after {
+            box-sizing: border-box;
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            bottom: 0;
+            content: "• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • •";
+            line-height: 10px;
+            width: 7px;
+            color: #fff;
+            font-size: 18px;
+            overflow: hidden;
+            z-index: 1;
+        }
+		
+		 .useText{
+		    background: #3087F7;
+			text-decoration: none;
+			display: inline-block;
+      		width:40px;
+      		height:25px;
+			border-radius: 5px;
+		   font-size: 12px;
+		   text-align: center;
+    	   color: #fff;
+		   line-height:24px
+	   } 	
+	  	
 	</style>
 </head>
 
@@ -409,7 +542,12 @@
 								<table id="tbcouponlist" width="100%" border="0" cellspacing="0" cellpadding="0">
 									<tbody>
 										<tr>
-											<td height="40">没有可用优惠券或者该用户未在微信公众号注册</td>
+											<td height="40">
+											
+                                            <div  id="show">
+                                             
+                                             </div>
+											</td>
 										</tr>
 									</tbody>
 								</table>

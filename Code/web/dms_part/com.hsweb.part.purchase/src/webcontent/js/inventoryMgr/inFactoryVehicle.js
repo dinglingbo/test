@@ -9,8 +9,8 @@ var getdRpsPackageUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPack
 var getRpsItemUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext";
 var getRpsPartUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext";
 
-var getRpsItemBillUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemPPartBill.biz.ext";
-var getdRpsPackageBillUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPartBill.biz.ext";
+//var getRpsItemBillUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemPPartBill.biz.ext";
+//var getdRpsPackageBillUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPartBill.biz.ext";
 var beginDateEl = null;
 var endDateEl = null;
 var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"车架号(VIN)"},{id:"2",name:"客户名称"},{id:"3",name:"手机号"}];
@@ -102,7 +102,22 @@ $(document).ready(function ()
 
     });
 
+    mainGrid.on("cellclick",function(e){ 
+		var field=e.field;
+		var row = e.row;
+        if(field=="isOutBill" ){
+        	if(e.value==1){
+    			var item={};
+    			item.id = "123321";
+    		    item.text = "报销单详情";
+    			item.url =webBaseUrl+  "com.hsweb.print.ExpenseAccount.flow";
+    			item.iconCls = "fa fa-file-text";
+    			row.isEdit = true;//打开页面是否可编辑
+    			window.parent.activeTabAndInit(item,row);
+        	}
 
+        }
+    });
 
     mainGrid.on("drawcell", function (e) {
         if (e.field == "status") {
@@ -276,13 +291,15 @@ function onShowRowDetail(e) {
     var td = mainGrid.getRowDetailCellEl(row);
     td.appendChild(editFormDetail);
     editFormDetail.style.display = "";
-    if(row.isOutBill==1){
+/*    if(row.isOutBill==1){
         innerItemGrid.setUrl(getRpsItemBillUrl);
         innerpackGrid.setUrl(getdRpsPackageBillUrl);
     }else{
         innerItemGrid.setUrl(getRpsItemUrl);
         innerpackGrid.setUrl(getdRpsPackageUrl);
-    }
+    }*/
+    innerItemGrid.setUrl(getRpsItemUrl);
+    innerpackGrid.setUrl(getdRpsPackageUrl);
     innerItemGrid.setData([]);
     innerpackGrid.setData([]);
     var serviceId = row.id;
@@ -527,7 +544,7 @@ function onAdvancedSearchOk()
 /*	if((nui.get("isCollectMoney").getValue())!=1){
 	searchData.isCollectMoney = 1;
 	} */
-	
+	searchData.serviceTypeIds = serviceTypeIdEl.getValue();
     searchData.mtAuditorId = mtAdvisorIdEl.getValue();
     searchData.guestProperty = nui.get("guestProperty").getValue();
     searchData.propertyFeatures = nui.get("propertyFeatures").getValue();

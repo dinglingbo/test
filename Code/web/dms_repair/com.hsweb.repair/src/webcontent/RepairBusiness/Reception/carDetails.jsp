@@ -242,14 +242,16 @@
                                     <div field="guestId" class="nui-hidden" allowSort="true" align="left" headerAlign="center" width="" visible="false">
                                         客户ID
                                     </div>
-                                    <div field="name" allowSort="true" align="left" summaryType="count" headerAlign="center" width="">姓名</div>
-                                    <div field="sex" allowSort="true" align="left" headerAlign="center" width="" dataType="int">
+                                    <div field="name" allowSort="true" align="left" summaryType="count" headerAlign="center" width="100">姓名</div>
+                                    <div field="sex" allowSort="true" align="left" headerAlign="center" width="60" dataType="int">
                                         性别
                                     </div>
-                                    <div field="mobile" allowSort="true" align="left" headerAlign="center" width="" dataType="int">
+                                    <div field="mobile" allowSort="true" align="left" headerAlign="center" width="100" dataType="int">
                                         手机
                                     </div>
-                                    <div field="identity" allowSort="true" align="left" headerAlign="center" width="">身份</div>
+                                    <div field="identity" allowSort="true" align="left" headerAlign="center" width="70">身份</div>
+                                    <div field="wechatServiceId" allowSort="true" align="left" headerAlign="center" width="80">微信服务号</div>                                                                        
+                                    <div field="wechatOpenId" allowSort="true" align="left" headerAlign="center" width="160">微信ID</div>
                                 </div>
                             </div> 
                         </div>

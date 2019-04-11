@@ -45,7 +45,6 @@ $(document).ready(function () {
 	        servieTypeHash[v.id] = v;
 	    });
 	 });
-	
 	rpsPackageGrid.on("load",function(e){
 		var data = rpsPackageGrid.getData();
 		if(data.length == 0){
@@ -860,6 +859,11 @@ function showGridMsg(serviceId){
 
 
 function setInitData(params){
+	if(params.isEdit){
+		operationHidden();
+	}else{
+		operationShow();
+	}
 	nui.get("sourceServiceId").setValue(params.id);
 	init();
 	nui.ajax({
@@ -1108,8 +1112,22 @@ function onDrawSummaryCellItem(e){
 	  }
 }
 
-
-
+function operationHidden(){
+	document.getElementById("addBtn").style.display = 'none';
+	document.getElementById("addPkg").style.display = 'none';
+	document.getElementById("addItem").style.display = 'none';	
+	//rpsItemGrid.getColumn("action").showColumnsMenu(false);
+	rpsItemGrid.hideColumn(rpsItemGrid.getColumn("action"));
+	rpsPackageGrid.hideColumn(rpsPackageGrid.getColumn("action"));
+}
+function operationShow(){
+	document.getElementById("addBtn").style.display = 'inline';
+	document.getElementById("addPkg").style.display = 'inline';
+	document.getElementById("addItem").style.display = 'inline';
+	rpsItemGrid.showColumn(rpsItemGrid.getColumn("action"));
+	rpsPackageGrid.showColumn(rpsPackageGrid.getColumn("action"));
+	
+}
 
 
 

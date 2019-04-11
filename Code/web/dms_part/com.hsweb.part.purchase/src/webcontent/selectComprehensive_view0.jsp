@@ -139,7 +139,7 @@
 	                  	<div field="guestFullName" name="guestFullName" width="100" headerAlign="center"  allowsort="true" header="客户名称" allowsort="ture"></div> 
 		                  <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌号" allowsort="true"></div>
 	                  <div field="mtAdvisor" name="mtAdvisor" width="110" headerAlign="center" allowsort="true" header="服务顾问"></div>
-	                   <div field="collectMoneyDate" name="collectMoneyDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="结算日期" allowsort="true"></div>	
+	                   <div field="collectMoneyDate" name="collectMoneyDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="收款日期" allowsort="true"></div>	
 	                 </div>
                   </div>
                   <div type="checkcolumn" name="checkcolumn" visible="false"></div>
@@ -186,7 +186,7 @@
 	                  <div property="columns" >		
 	                  	  <div field="netinAmt" name="netinAmt" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="营收金额" dataType="float"></div>	
 		                  <div field="cardTimesAmt" name="cardTimesAmt" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="计次卡抵扣" dataType="float"></div>
-	                  	  <div field="balaAmt" name="contactName" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="结算金额" dataType="float"></div>	
+	                  	  <div field="balaAmt" name="contactName" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="收款金额" dataType="float"></div>	
 	                  	 <!--  <div field="totalPrefRate" name="totalPrefRate" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="整单优惠率"></div> 	 -->                  	                 
 		                 <!--  <div field="totalPrefAmt" name="totalPrefAmt" width="70" headerAlign="center" allowsort="true" header="整单优惠金额"></div> -->
 		                  <div field="grossProfit"  width="70" headerAlign="center" summaryType="sum" allowsort="true" header="毛利" dataType="float"></div>
@@ -325,7 +325,7 @@
             <td colspan="1" align="center">工单类型</td>
             <td colspan="1" align="center">业务类型</td>
             <td colspan="1" align="center">服务顾问</td>
-             <td colspan="1" align="center">结算日期</td>
+             <td colspan="1" align="center">收款日期</td>
              
             <td colspan="1" align="center">客户姓名</td>
             <td colspan="1" align="center">车牌号</td>
@@ -355,7 +355,7 @@
             
             <td colspan="1" align="center">营收金额</td>
             <td colspan="1" align="center">计次卡抵扣</td>
-            <td colspan="1" align="center">结算金额</td>
+            <td colspan="1" align="center">收款金额</td>
             <!-- <td colspan="1" align="center">整单优惠率</td>  -->         
             <td colspan="1" align="center">毛利</td>
             <td colspan="1" align="center">毛利率</td>
@@ -411,7 +411,7 @@
  
 				<tr>
 					<td class="title">
-						<label>结算日期 从:</label>
+						<label>收款日期 从:</label>
 					</td>
 					<td>
 						<input class="nui-datepicker" id="collectMoneyDateStart" name="collectMoneyDateStart" allowInput="false" width="100%" format="yyyy-MM-dd"  showTime="false" showOkButton="false" showClearButton="false"/> 

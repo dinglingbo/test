@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="couponDeduct" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="优惠券抵扣（通用券只能一张，专属券不能包含相同项目）&#xD;&#xA;SA扫描客户的优惠券码（推荐使用），或者SA选择客户的优惠券&#xD;&#xA;&#xD;&#xA;生成抵扣记录，返回总的抵扣金额" title="Administrator&#x9;18-8-11 下午3:01">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="优惠券抵扣（通用券只能一张，专属券不能包含相同项目）&#xD;&#xA;SA扫描客户的优惠券码（推荐使用），或者SA选择客户的优惠券&#xD;&#xA;&#xD;&#xA;生成抵扣记录，返回总的抵扣金额&#xD;&#xA;&#xD;&#xA;综合，理赔，洗美，销售" title="Administrator&#x9;18-8-11 下午3:01">
     <location x="-493" y="-15"/>
-    <size height="136" width="434"/>
+    <size height="181" width="434"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="link0" isDefault="true" type="transition">
@@ -20,8 +20,8 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" collapsed="false" type="end">
     <targetConnections>link29</targetConnections>
-    <targetConnections>link40</targetConnections>
-    <location x="675" y="225"/>
+    <targetConnections>link1</targetConnections>
+    <location x="855" y="224"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -30,7 +30,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
-    <location x="677" y="261"/>
+    <location x="857" y="260"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -50,6 +50,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">抵扣成功</process:from>
       <process:to type="query">errMsg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">d</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -238,7 +242,7 @@
       <process:to type="query">params/token</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">rpAccountHash</process:from>
+      <process:from type="query" pattern="reference">paramsHash</process:from>
       <process:to type="query">params/userCouponData</process:to>
     </process:copy>
     <process:copy>
@@ -432,7 +436,7 @@
   <nodes xsi:type="process:tLoopEnd" id="loopend0" name="循环结束" displayName="循环结束" grouped="true" type="loopend" matchedName="loopstart0">
     <sourceConnections xsi:type="process:tLink" id="link40" name="link40" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopend0</sourceNode>
-      <targetNode>end0</targetNode>
+      <targetNode>invokePojo5</targetNode>
     </sourceConnections>
     <targetConnections>link42</targetConnections>
     <location x="471" y="226"/>
@@ -451,7 +455,7 @@
     <chidren>loopstart0</chidren>
     <chidren>assign2</chidren>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign2" name="赋值2" displayName="赋值" grouped="true" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link42" name="link42" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>loopend0</targetNode>
@@ -460,11 +464,83 @@
     <location x="410" y="225"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">tenantId</process:from>
+      <process:to type="query">temp/tenantId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orgid</process:from>
+      <process:to type="query">temp/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">serviceId</process:from>
+      <process:to type="query">temp/serviceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billTypeId</process:from>
+      <process:to type="query">temp/billTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">guestId</process:from>
+      <process:to type="query">temp/guestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">contactorId</process:from>
+      <process:to type="query">temp/contactorId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">carId</process:from>
+      <process:to type="query">temp/carId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">carNo</process:from>
+      <process:to type="query">temp/carNo</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">d</process:from>
+      <process:to type="query">temp/recordDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">temp/recorder</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">temp/modifier</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">d</process:from>
+      <process:to type="query">temp/modifyDate</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="408" y="261"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="insertEntityBatch" displayName="insertEntityBatch" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo5</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link40</targetConnections>
+    <location x="600" y="225"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo5label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.insertEntityBatch</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
+      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">couponList</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
+    <location x="563" y="261"/>
+    <figSize height="17" width="96"/>
+    <node>invokePojo5</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -479,12 +555,13 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="result"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="token" primitiveType="String"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="paramsHash"/>
-    <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsCouponRecord" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="优惠券抵扣编码" isArray="false" name="couponCodes" primitiveType="String"/>
     <process:input description="微信号" isArray="false" name="openId" primitiveType="String"/>
-    <process:input anyType="commonj.sdo.DataObject" description="" isArray="true" name="couponList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsCouponRecord" name="couponList"/>
     <process:input description="" isArray="false" name="tenantId" primitiveType="String"/>
     <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
     <process:input description="工单ID" isArray="false" name="serviceId" primitiveType="String"/>

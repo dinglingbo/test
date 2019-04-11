@@ -390,6 +390,7 @@
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign13</sourceNode>
       <targetNode>end1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link14</targetConnections>
     <location x="30" y="285"/>
@@ -1334,11 +1335,15 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="true" name="rpAdd"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="sysDis" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="otherAmt" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="couponCodes" primitiveType="String"/>
+    <process:variable description="优惠券抵扣金额" historyStateLocation="client" isArray="false" name="couponAmt" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsCouponRecord" name="temp"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>
     <process:input description="" isArray="false" name="allowanceAmt" primitiveType="Double"/>
     <process:input description="业务备注" isArray="false" name="remark" primitiveType="String"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsCouponRecord" name="couponList"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

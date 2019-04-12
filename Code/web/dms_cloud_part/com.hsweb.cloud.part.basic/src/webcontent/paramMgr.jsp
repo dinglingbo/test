@@ -10,7 +10,8 @@
 -->
 <head>
 <title>参数设置</title>
-    <script src="<%=webPath + contextPath%>/basic/js/paramMgr.js?v=1.0.9"></script>
+    <script src="<%=webPath + contextPath%>/basic/js/paramMgr.js?v=1.0.12"></script>
+    
     <style type="text/css">
 
     .title {
@@ -77,7 +78,8 @@
                 <td class="tbCtrl" >
                     <input id="cloudSellOrderPrintContent" name="cloudSellOrderPrintContent" class="nui-textarea"   style="height:100px;width:300px">
                 </td>
-            </tr>      
+            </tr>    
+              
         </table>
     </div>
 	<script type="text/javascript">

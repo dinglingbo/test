@@ -30,7 +30,7 @@
 <div class="nui-splitter" style="width:100%;height:60px;" style="border:0;" handlerSize=0>
     <div size="100%" showCollapseButton="false" style="border:0;">
         <br/>
-        <left id="groupButton">
+        <left style="padding-left:50px" id="groupButton">
             <a class="nui-button groupButton2" onclick="ntab.activeTab(ntab.getTab(0));">车型选择</a>&nbsp;
             <a class="nui-button groupButton2" onclick="showInfoRightGrid(subGroups)">主组/分组</a>&nbsp;
             <a class="nui-button groupButton2" style="display:none;" onclick="showInfoRightGrid(gridParts)">零件</a>

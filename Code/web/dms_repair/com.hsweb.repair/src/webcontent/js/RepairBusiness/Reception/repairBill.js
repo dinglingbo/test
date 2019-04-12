@@ -3543,7 +3543,8 @@ function pay(){
             guestName:$("#guestNameEl").text(),
             data:sellData,
             contactor:contactorF,
-            carId:fcarId
+            carId:fcarId,
+            billTypeId:0
         };
         doBillPay(params, function(data){
             data = data||{};

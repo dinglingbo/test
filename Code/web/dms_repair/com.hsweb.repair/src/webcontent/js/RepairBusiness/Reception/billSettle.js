@@ -26,6 +26,12 @@ var sendWCUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.sendWeCha
 var srnum = [];
 var userCouponDataHash = {};
 var codeHash = {};
+//工单传过来的参数
+var dataF = {};
+//优惠券抵扣的金额
+var deductionAmt = 0;
+//结算接口的优惠券对象
+var couponList = [];
 $(document).ready(function(v) {
 
 	
@@ -33,44 +39,141 @@ $(document).ready(function(v) {
 		onChanged();
 	});
 	
-	$("body").on("click","a",function(e){
+	$("body").on("click","a[name='quan']",function(e){
 		var id = e.currentTarget.id;
 		var str = "quan"+id;
 		var changStr = "#chang"+id;
+		var userCoupon = userCouponDataHash[id];
+		//判断优惠券是否重复，以及是否达到可用条件
+		var boolean = null;
 		if(document.getElementById(str).getAttribute("class")=="quan-item1"){
 			document.getElementById(str).className = "quan-item";
 			$(changStr).html("使用");
 			delete codeHash[id];
+			var strCode = isEmptyObject(codeHash);
+			if(strCode != ""){
+				document.getElementById("showCode").style.display = "";
+				$("#strCode").val(strCode);
+				$("#strCode").text(strCode);
+			}else{
+				deductionAmt = 0;
+				$("#strCode").val("");
+				$("#strCode").text("");
+				document.getElementById("showCode").style.display = "none";
+			}
+			onChanged();
 		}else{
-			document.getElementById(str).className = "quan-item1";
-			codeHash[id] = userCouponDataHash[id];
-			$(changStr).html("取消");
-			//document.getElementById(changStr).innerHTML="取消";
-		}
-		var strCode = isEmptyObject(codeHash);
-		if(strCode != ""){
-			document.getElementById("showCode").style.display = "";
-			$("#strCode").val(strCode);
-			$("#strCode").text(strCode);
-		}else{
-			$("#strCode").val("");
-			$("#strCode").text("");
-			document.getElementById("showCode").style.display = "none";
-		}
-		
+			if(userCoupon.couponType == 1){
+				boolean = coupon(userCoupon);
+			}else{
+				boolean = excCoupon(userCoupon);
+			}
+			if(boolean){	
+				/*if(document.getElementById(str).getAttribute("class")=="quan-item1"){
+					document.getElementById(str).className = "quan-item";
+					$(changStr).html("使用");
+					delete codeHash[id];
+				}else{
+					document.getElementById(str).className = "quan-item1";
+					codeHash[id] = userCoupon;
+					$(changStr).html("取消");
+					//document.getElementById(changStr).innerHTML="取消";
+				}*/
+				document.getElementById(str).className = "quan-item1";
+				codeHash[id] = userCoupon;
+				$(changStr).html("取消");
+				var strCode = isEmptyObject(codeHash);
+				if(strCode != ""){
+					document.getElementById("showCode").style.display = "";
+					$("#strCode").val(strCode);
+					$("#strCode").text(strCode);
+				}else{
+					deductionAmt = 0;
+					$("#strCode").val("");
+					$("#strCode").text("");
+					document.getElementById("showCode").style.display = "none";
+				}
+				onChanged();
+			}
+		}	
 	});
 });
+
+function coupon(userCoupon){
+	if(userCoupon.couponConditionPrice>netInAmt){
+		return false;
+	}else{
+		for(var key in codeHash ){
+			var type = codeHash[key].couponType;
+			if(type == 1){
+				return false;
+			}
+		 }
+	}
+	return true;
+}
+
+
+function excCoupon(userCoupon){
+	//判断是否使用了两张相同的专属券
+	for(var key in codeHash ){
+		var itemId = codeHash[key].itemId;
+		if(itemId == userCoupon.itemId){
+			return false;
+		}
+	 }
+	var json = {
+			rpbItemId:userCoupon.itemId,
+			serviceId:dataF.serviceId,
+			token : token
+		}
+	//判断是否使用了改项目：com.hsapi.repair.repairService.crud.queryRpsItemByRpbItemIdAndServiceId
+	nui.ajax({
+		url : baseUrl + "com.hsapi.repair.repairService.crud.queryRpsItemByRpbItemIdAndServiceId.biz.ext",
+		type : "post",
+		data : json,
+		async: false,
+		success : function(rs) {
+			if(rs.itemList.length == 0){
+				return false;
+			}else{
+				return true;
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+}
 
 function isEmptyObject (obj){
 	var str = ""
     var n = 1;
+	couponList = [];
 	for(var key in obj ){
+		var objTemp = obj[key];
+		var temp = {};
+		temp.orgid = currOrgid;
+		temp.tenantId  = currTenantId;
+		temp.carId = dataF.carId;
+		temp.carNo = dataF.carNo;
+		temp.guestId = dataF.guestId;
+		temp.billTypeId = dataF.billTypeId;
+		temp.serviceId = dataF.serviceId;
+		temp.contactorId = dataF.contactor.id;
+		temp.couponCode = objTemp.userCouponCode;
+		temp.couponName = objTemp.couponTitle;
+		temp.couponAmt = objTemp.couponDiscountsPrice;
+		couponList.push(temp);
 		if(n==1){
-			str = obj[key].userCouponCode;
-			n = 2;
+			str = objTemp.userCouponCode;
+			n = 2; 
 		}else{
-			str += "," + obj[key].userCouponCode;
+			str += "," + objTemp.userCouponCode;
 		}
+		deductionAmt = parseFloat(deductionAmt) + parseFloat(objTemp.couponDiscountsPrice);
+		
 	 }
 	return str;
 }
@@ -125,6 +228,7 @@ function getData(data){
 	onetInAmt  = data.mtAmt;
 }
 function setData(params){
+	dataF = params;
 	typeUrl = params.typeUrl||0;
 	var carId = params.carId;
 	var contactor = params.contactor;
@@ -312,20 +416,23 @@ function setData(params){
 	}
 	//加载优惠券
 	var paraMap = {};
-	/*paraMap.orgid = currOrgid;
+	paraMap.orgid = currOrgid;
 	paraMap.tenantId = currTenantId;
 	paraMap.userOpenId = contactor.wechatOpenId;
-	paraMap.userCarId = carId;*/
-	paraMap.orgid = 601;
+	paraMap.userCarId = carId;
+	paraMap.itemType = 0;
+	
+	/*paraMap.orgid = 601;
+	paraMap.itemType = 0;//0 :查专属券（普通项目的）和通用券;1 :只查专属券（套餐项目）
 	paraMap.tenantId = 121;
 	paraMap.userOpenId = "obdhQ5uhtQaRB6f-MzhkfKsQH0i0";
-	paraMap.userCarId = 31849;
+	paraMap.userCarId = 31849;*/
 	var json2 = {
 			paraMap:paraMap,
 			token: token
 	}
 	var list = '';
-	/*nui.ajax({
+	nui.ajax({
 		url :  apiPath + wechatApi +"/com.hsapi.wechat.autoServiceBackstage.weChatInterface.queryUserUseCoupon.biz.ext",
 		type : "post",
 		data : json2,
@@ -335,29 +442,31 @@ function setData(params){
 				var list = "";
 				if(userCouponDataArray.length>0){
 				   $(userCouponDataArray).each(function(k,v) {
-					  var type = v.couponType==1?'通用券':'专属劵';
-					  var str = null;
-					  if(v.couponType==1){
-						  str="(满"+v.couponConditionPrice+")"
-					  }else{
-						  str="";
-					  }
-					  list += 
-						  '<div class="quan-item"> '+
-						 '<div class="q-opbtns "><strong class="num1">￥'+ v.couponDiscountsPrice + '<br>'+ type +'</strong></div>'+
-					     '<div class="q-type">'+
-					        '<div class="q-range">'+
-					            '<div class="typ-txt">'+
-					                '<span >'+ v.couponTitle+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="##" class="useText" id='+v.couponDistributeId+'>使用</a></span>'+
-					               '</div>'+
-					            '<div class="range-item">'+ v. couponDescribe + str +'</div>'+
-					            '<div class="range-item">到期时间：'+v.couponEndDate +'</div>'+
-					            '<div class="range-item">编码：'+v.userCouponCode +'</div>'+
-					        '</div>'+
-					    '</div>'+ 
-					    '</div>'
-					});
-					document.getElementById("show").innerHTML = list;
+						  var key = v.couponDistributeId;
+						  userCouponDataHash[key] = v;
+						  var type = v.couponType==1?'通用券':'专属劵';
+						  var str = null;
+						  if(v.couponType==1){
+							  str="(满"+v.couponConditionPrice+")"
+						  }else{
+							  str="";
+						  }
+						  list += 
+							  '<div class="quan-item" id=quan'+ v.couponDistributeId +'> '+
+							 '<div class="q-opbtns "><strong class="num1">￥'+ v.couponDiscountsPrice + '<br>'+ type +'</strong></div>'+
+						     '<div class="q-type">'+
+						        '<div class="q-range">'+
+						            '<div class="typ-txt">'+
+						                '<span >'+ v.couponTitle+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="##" class="useText" name="quan" id='+v.couponDistributeId+'><span id = chang'+v.couponDistributeId+'>使用</span></a></span>'+
+						               '</div>'+
+						            '<div class="range-item">'+ v. couponDescribe + str +'</div>'+
+						            '<div class="range-item">到期时间：'+v.couponEndDate +'</div>'+
+						            '<div class="range-item">编码：'+v.userCouponCode +'</div>'+
+						        '</div>'+
+						    '</div>'+ 
+						    '</div>'
+						});
+						document.getElementById("show").innerHTML = list;
 				}else{
 					 var list  = "没有可用优惠券或者该用户未在微信公众号注册";
 				     document.getElementById("show").innerHTML = list;
@@ -372,7 +481,7 @@ function setData(params){
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR.responseText);
 		}
-	});*/
+	});
 	userCouponDataArray = [
 {
     "storeId": 6,
@@ -651,7 +760,7 @@ function setData(params){
 	                       }
 	 
 	                   ];
-	$(userCouponDataArray).each(function(k,v) {
+	/*$(userCouponDataArray).each(function(k,v) {
 		  var key = v.couponDistributeId;
 		  userCouponDataHash[key] = v;
 		  var type = v.couponType==1?'通用券':'专属劵';
@@ -667,7 +776,7 @@ function setData(params){
 		     '<div class="q-type">'+
 		        '<div class="q-range">'+
 		            '<div class="typ-txt">'+
-		                '<span >'+ v.couponTitle+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="##" class="useText" name="ide" id='+v.couponDistributeId+'><span id = chang'+v.couponDistributeId+'>使用</span></a></span>'+
+		                '<span >'+ v.couponTitle+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="##" class="useText" name="quan" id='+v.couponDistributeId+'><span id = chang'+v.couponDistributeId+'>使用</span></a></span>'+
 		               '</div>'+
 		            '<div class="range-item">'+ v. couponDescribe + str +'</div>'+
 		            '<div class="range-item">到期时间：'+v.couponEndDate +'</div>'+
@@ -676,7 +785,7 @@ function setData(params){
 		    '</div>'+ 
 		    '</div>'
 		});
-		document.getElementById("show").innerHTML = list;
+		document.getElementById("show").innerHTML = list;*/
 	
 	//$(".quan-item").prepend(list2);	
     addType();
@@ -725,7 +834,7 @@ function onChanged() {
 	 deductible = nui.get("deductible").getValue()||0;
 	var PrefAmt = nui.get("PrefAmt").getValue()||0;
 	if(PrefAmt>-1){
-		var amount = parseFloat(netInAmt) - parseFloat(PrefAmt);
+		var amount = parseFloat(netInAmt) - parseFloat(PrefAmt) - parseFloat(deductionAmt);
 		zongAmt = amount.toFixed(2);
 		document.getElementById('amount').innerHTML = amount.toFixed(2);
 	}
@@ -739,10 +848,9 @@ function onChanged() {
 
 		return;
 	}
-	if((parseFloat(deductible) + parseFloat(PrefAmt)+ parseFloat(count)).toFixed(2)>netInAmt){
+	
+	if((parseFloat(deductible) + parseFloat(PrefAmt)+ parseFloat(count) + parseFloat(deductionAmt)).toFixed(2)  >netInAmt){
 		showMsg("储值抵扣加上优惠金额不能大于应收金额","W");
-
-
 		return;
 	}
 	
@@ -781,6 +889,7 @@ function noPay(){
 				allowanceAmt:PrefAmt,
 				serviceId:fserviceId,
 				remark:nui.get("txtreceiptcomment").getValue(),
+				token:token
 			};
 	    nui.confirm("是否转入预结算？", "友情提示",function(action){
 		       if(action == "ok"){
@@ -866,7 +975,8 @@ function pay(){
 		cardPayAmt:deductible,
 		serviceId:fserviceId,
 		remark:nui.get("txtreceiptcomment").getValue(),
-		payAmt:amt
+		payAmt:amt,
+		couponList:couponList
 	};
     nui.confirm("是否确定结算？", "友情提示",function(action){
 	       if(action == "ok"){
@@ -954,6 +1064,7 @@ function doNoPay(serviceId,allowanceAmt){
 			serviceId:serviceId,
 			allowanceAmt:allowanceAmt,
 			remark:nui.get("txtreceiptcomment").getValue(),
+			couponList:couponList,
 			token:token
 	};
 	

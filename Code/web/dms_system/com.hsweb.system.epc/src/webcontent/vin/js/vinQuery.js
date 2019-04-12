@@ -61,7 +61,7 @@ $(document).ready(function(v){
     cartPartGrid = nui.get("cartPartGrid");
     stockGrid = nui.get("stockGrid");
     stockGrid.setUrl(stockGridUrl);
-    
+    //获取vin输入缓存数组
     availableTags=getAvailableTags();
     vin_input.autocomplete({
         source: availableTags,
@@ -866,16 +866,20 @@ function getAvailableTags(){
 	for(var i=localStorage.length-1;i>0;i--){
 		var key=localStorage.key(i);
 		var value=localStorage.getItem(key);
-		//控制小于10条
-		if(availableTags.length>0 && availableTags.length <= 10){
+		//控制最多10条
+		if(availableTags.length>0 && availableTags.length < 10){
 			for(var j =0;j<availableTags.length;j++){
 				//判断是否重复
 				if(availableTags.indexOf(value) == -1){
 					availableTags.push(value);
 				}				
-			}
-			
-		}else if(availableTags.length==0){
+			}			
+		}
+		//10条时中止遍历
+		if(availableTags.length == 10){
+			return availableTags;
+		}		
+		else if(availableTags.length==0){
 			availableTags.push(value);
 		}
 	}

@@ -62,7 +62,7 @@
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link12" name="link12" displayName="连接线" type="transition">
       <sourceNode>subprocess0</sourceNode>
-      <targetNode>invokePojo2</targetNode>
+      <targetNode>subprocess9</targetNode>
       <process:transitionCondition>
         <process:complexCondition>
           <process:code>1==1</process:code>
@@ -115,7 +115,7 @@
         <process:inputVariable id="4" name="expireTimes" type="literal" value="Int" valueType="Primitive" pattern="reference">-1</process:inputVariable>
         <process:inputVariable id="5" name="setDe" type="literal" value="Boolean" valueType="Primitive" pattern="reference">false</process:inputVariable>
         <process:inputVariable id="6" name="deData" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">value</process:inputVariable>
-        <process:inputVariable id="7" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="7" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">pm</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -471,28 +471,30 @@
     <figSize height="17" width="61"/>
     <node>subprocess8</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="菜单数据" displayName="del" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess9" name="菜单数据" displayName="removeCacheByName" collapsed="false" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo2</sourceNode>
+      <sourceNode>subprocess9</sourceNode>
       <targetNode>invokePojo1</targetNode>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
-    <location x="235" y="245"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo2label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hs.common.RedisUtils.del</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="key" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hs.common.orga.queryMenu</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables/>
+    <location x="232" y="249"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess9label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.system.data.sys.removeCacheByName</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="nameSqlId" type="literal" value="String" valueType="Primitive" pattern="reference">com.hs.common.orga.queryMenu</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
   </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="222" y="281"/>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess9label" name="label" nodeType="label">
+    <location x="221" y="284"/>
     <figSize height="17" width="49"/>
-    <node>invokePojo2</node>
+    <node>subprocess9</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -503,6 +505,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hs.common.com.ComAppFunction" name="menu"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hs.common.com.ComAppFunction" name="menuList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="resId" primitiveType="String"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="pm"/>
   </process:variables>
   <process:inputs varArgs="false"/>
   <process:outputs>

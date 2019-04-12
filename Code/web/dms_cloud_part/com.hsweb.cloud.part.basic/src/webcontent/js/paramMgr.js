@@ -11,6 +11,9 @@ $(document).ready(function(v) {
 	 cloudSellOrderPrintContent = nui.get('cloudSellOrderPrintContent');
 	 swithBatchFlag.setData(radioList);
 	 getComParamsList();
+	 
+	
+	 
 });
 function doSearch()
 {
@@ -37,7 +40,7 @@ function getComParamsList(){
 			if (billParams) {
                 
                 basicInfoForm.setData(billParams);
-                
+              
 			} 
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -94,3 +97,5 @@ function save(){
 		}
 	});
 }
+
+

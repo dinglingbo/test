@@ -5,6 +5,15 @@
       <sourceNode>start0</sourceNode>
       <targetNode>subprocess1</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link6" name="link6" displayName="连接线" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>invokePojo2</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>1==1</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <location x="100" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
@@ -49,7 +58,7 @@
         <process:inputVariable id="4" name="expireTimes" type="literal" value="Int" valueType="Primitive" pattern="reference">-1</process:inputVariable>
         <process:inputVariable id="5" name="setDe" type="literal" value="Boolean" valueType="Primitive" pattern="reference">false</process:inputVariable>
         <process:inputVariable id="6" name="deData" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">value</process:inputVariable>
-        <process:inputVariable id="7" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="7" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">pm</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -68,6 +77,7 @@
       <targetNode>invokePojo1</targetNode>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
+    <targetConnections>link7</targetConnections>
     <location x="414" y="149"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
@@ -112,10 +122,35 @@
     <figSize height="17" width="109"/>
     <node>invokePojo1</node>
   </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="菜单数据1" displayName="菜单数据" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo2</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="255" y="265"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo2label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.RedisUtils.del</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="key" type="literal" value="java.lang.String" valueType="Java" pattern="reference">cache_com.hs.common.orga.queryMenu</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
+    <location x="238" y="301"/>
+    <figSize height="17" width="56"/>
+    <node>invokePojo2</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-04-03 12:55:47" date="2019-04-03Z" description="" name="testMenuCache" version="7.0.0.0"/>
-  <process:variables/>
+  <process:variables>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="pm"/>
+  </process:variables>
   <process:inputs varArgs="false"/>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

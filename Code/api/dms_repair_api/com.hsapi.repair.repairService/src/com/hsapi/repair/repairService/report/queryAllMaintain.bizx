@@ -79,7 +79,7 @@
       <targetNode>loopstart0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -153,7 +153,7 @@
     </sourceConnections>
     <targetConnections>link8</targetConnections>
     <targetConnections>link9</targetConnections>
-    <location x="390" y="150"/>
+    <location x="362" y="151"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -170,7 +170,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="383" y="186"/>
+    <location x="355" y="187"/>
     <figSize height="17" width="37"/>
     <node>invokePojo3</node>
   </nodes>

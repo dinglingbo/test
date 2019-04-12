@@ -14,7 +14,7 @@
     <title>
                 计次卡详细信息
     </title>
-    <script src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesBase.js?v=1.0.2"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesBase.js?v=1.0.3"></script>
 
   </head>
   <body>
@@ -77,7 +77,7 @@
 	              是否用完:
 	            </td>
 	            <td colspan="1">
-	              <input class="nui-textbox"  name="isFinish"  readonly="readonly"/>
+	              <input class="nui-combobox"  name="isFinish"  readonly="readonly" data ="[{value:'0',text:'否',},{value:'1',text:'是'},]" textField="text" valueField="value"/>
 	            </td> 
           </tr>
            <tr>

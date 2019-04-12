@@ -187,7 +187,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" collapsed="false" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link25" name="link25" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
-      <targetNode>loopend0</targetNode>
+      <targetNode>assign0</targetNode>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
     <location x="471" y="217"/>
@@ -210,7 +210,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" collapsed="false" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
-      <targetNode>loopend0</targetNode>
+      <targetNode>assign0</targetNode>
     </sourceConnections>
     <targetConnections>link17</targetConnections>
     <location x="471" y="149"/>
@@ -252,8 +252,7 @@
       <sourceNode>loopend0</sourceNode>
       <targetNode>invokePojo1</targetNode>
     </sourceConnections>
-    <targetConnections>link24</targetConnections>
-    <targetConnections>link25</targetConnections>
+    <targetConnections>link7</targetConnections>
     <location x="631" y="186"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend0label</nodeLabel>
@@ -271,6 +270,7 @@
     <chidren>invokePojo0</chidren>
     <chidren>assign1</chidren>
     <chidren>assign6</chidren>
+    <chidren>assign0</chidren>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="insertEntityBatch" displayName="insertEntityBatch" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" lineType="note" type="exception">
@@ -299,6 +299,38 @@
     <location x="669" y="220"/>
     <figSize height="17" width="96"/>
     <node>invokePojo1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" collapsed="false" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>loopend0</targetNode>
+    </sourceConnections>
+    <targetConnections>link24</targetConnections>
+    <targetConnections>link25</targetConnections>
+    <location x="562" y="184"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign0label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">temp/recorder</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">temp/recordDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">temp/modifier</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">temp/modifyDate</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
+    <location x="564" y="220"/>
+    <figSize height="17" width="25"/>
+    <node>assign0</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

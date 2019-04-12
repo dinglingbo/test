@@ -54,7 +54,7 @@ pageEncoding="UTF-8" session="false" %>
              pageSize="100" sizeList="[50,100,200,500]" showSummaryRow="true" allowResize="true" multiSelect="true" >
             <div property="columns">   
                 <div type="indexcolumn"  headeralign="center" width="30">序号</div>
-                <div field="carNo" name="carNo" width="60" summaryType="count"  headeralign="center"  >车牌号</div>
+                <div field="carNo" name="carNo" width="100" summaryType="count"  headeralign="center"  >车牌号</div>
                 <div field="guestName" name="guestName" width="100"  headeralign="center"  >客户名称</div>
                 <div field="guestMobile" name="guestMobile" width="150"  headeralign="center" >手机号</div>
                 <div field="chanceType" name="chanceType" width="100"  headeralign="center" >机会类型</div>
@@ -64,7 +64,10 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="status" name="status" width="50"  headeralign="center" >阶段 </div>
                 <div field="nextFollowDate" name="nextFollowDate" width="100" dateFormat="yyyy-MM-dd " headeralign="center" >下次跟进时间</div>
  				<div field="planFinishDate" name="planFinishDate" width="100" dateFormat="yyyy-MM-dd " headeralign="center" >预计成单时间</div>
-           
+ 				<div field="recorder" name="recorder" width="80"  headeralign="center" >创建人</div>
+           		<div field="recordDate" name="recordDate" width="100" dateFormat="yyyy-MM-dd " headeralign="center" >创建人日期</div>
+           		<div field="modifier" name="modifier" width="80"  headeralign="center" >修改人</div>
+           		<div field="modifyDate" name="modifyDate" width="100" dateFormat="yyyy-MM-dd " headeralign="center" >修改日期</div>
             </div>
         </div>
 

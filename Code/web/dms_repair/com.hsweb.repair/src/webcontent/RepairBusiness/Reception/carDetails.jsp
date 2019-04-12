@@ -483,6 +483,10 @@
 					                  <div field="chanceMan" name="creator" width="80" headerAlign="center" header="商机所有者"></div>
 					                <div field="nextFollowDate" name="nextFollowDate" width="100" dateFormat="yyyy-MM-dd " headeralign="center" >下次跟进时间</div>
 					 				<div field="planFinishDate" name="planFinishDate" width="100" dateFormat="yyyy-MM-dd " headeralign="center" >预计成单时间</div>
+					 				<div field="recorder" name="recorder" width="80"  headeralign="center" >创建人</div>
+					           		<div field="recordDate" name="recordDate" width="100" dateFormat="yyyy-MM-dd " headeralign="center" >创建人日期</div>
+					           		<div field="modifier" name="modifier" width="80"  headeralign="center" >修改人</div>
+					           		<div field="modifyDate" name="modifyDate" width="100" dateFormat="yyyy-MM-dd " headeralign="center" >修改日期</div>
 					                  <div field="cardTimesOpt" name="cardTimesOpt" width="80" headerAlign="center"  header="操作" align="center"></div>
 					              </div>
 					          </div>

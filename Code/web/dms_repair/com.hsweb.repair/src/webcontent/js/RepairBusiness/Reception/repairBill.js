@@ -5146,7 +5146,7 @@ function editSell() {
 					var data = row;
 					data.type = 'editT';
 					// 直接从页面获取，不用去后台获取
-					iframe.contentWindow.setData(data);
+					iframe.contentWindow.SetData(data);
 				},
 				ondestroy : function(action) {
 					if (action == "saveSuccess") {

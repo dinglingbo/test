@@ -576,7 +576,7 @@ function search()
 function getSearchParam(){
     var params = {};
     params = gsparams;
-    params.guestId = nui.get("searchGuestId").getValue().replace(/\s+/g, "");
+    params.guestId = nui.get("searchGuestId").getValue();
     return params;
 }
 function setBtnable(flag)

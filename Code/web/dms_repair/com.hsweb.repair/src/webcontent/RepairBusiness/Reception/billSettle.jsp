@@ -236,7 +236,7 @@
 		}
 		
 		
-	/*优惠券*/
+	  /*优惠券*/
 	
      .quan-item {
             width: 30%;
@@ -249,15 +249,31 @@
             font-family: "Microsoft YaHei";
             float:left;
             margin-left: 20px;
+            border:2px solid #fff;
+        }
+     
+         .quan-item1 {
+            width: 30%;
+            position: relative;
+            margin-bottom: 20px;
+            height: auto;
+            overflow: hidden;
+            border: 1px solid #f1f1f1;
+            background: #fff;
+            font-family: "Microsoft YaHei";
+            float:left;
+            margin-left: 20px;
+            border:2px solid #e4007e; 
+           /*  box-shadow: darkgrey 0px 0px 30p */ 
         }
 
-        .quan-item .q-type {
+         .q-type {
             float: right;
             width: 70%;
             padding: 5px 0;
         }
 
-        .quan-item .q-price,
+        .q-price,
         .typ-txt {
             display: inline-block;
             display: block;
@@ -272,7 +288,7 @@
             padding: 5px 0;
         }
 
-        .quan-item .q-price em {
+       .q-price em {
             margin: 5px 0 0;
             font-family: verdana;
             font-size: 24px;
@@ -280,24 +296,24 @@
 
         }
 
-        .quan-item .q-price strong {
+        .q-price strong {
             margin: 0 10px 0 5px;
             font-size: 2rem;
             font-family: arial;
             _display: inline;
         }
 
-        .quan-item .q-price .txt {
+         .q-price .txt {
             line-height: 22px;
             font-size: 1rem;
         }
 
         
-        .quan-item .q-range {
+        .q-range {
             color: #999;
         }
 
-        .quan-item .q-price {
+         .q-price {
             display: -webkit-flex;
             display: flex;
             -webkit-align-items: center;
@@ -306,7 +322,7 @@
             justify-content: center;
         }
 
-        .quan-item .q-price div.titles {
+         .q-price div.titles {
             flex: 1;
         }
 
@@ -315,7 +331,7 @@
 
         }
 
-        .quan-item .q-opbtns {
+         .q-opbtns {
             position: absolute;
             top: 0;
             bottom: 0;
@@ -339,7 +355,7 @@
 
         }
 
-        .quan-item .q-opbtns::after {
+         .q-opbtns::after {
             box-sizing: border-box;
             position: absolute;
             top: -3px;
@@ -539,18 +555,24 @@
 								<a href="javascript:;" class="xz">优惠券抵扣</a>
 							</div>
 							<div class="pay_js_right">
-								<table id="tbcouponlist" width="100%" border="0" cellspacing="0" cellpadding="0">
+								<table id="tbcouponlist" width="100%"  border="0" cellspacing="0" cellpadding="0">
 									<tbody>
 										<tr>
 											<td height="40">
 											
-                                            <div  id="show">
+                                             <div  id="show">
                                              
                                              </div>
+                                             
+
 											</td>
 										</tr>
 									</tbody>
 								</table>
+					             <div  id="showCode" style="display: none;" >
+                                         所选优惠券编码：<span id="strCode" style="display:inline-block;width:80%;word-wrap:break-word;white-space:normal;"></span><!-- <input class="nui-TextArea" name="useRemark"
+						                      style="width: 80%; height: 40px;" id="strCode"/> -->
+                                 </div>
 							</div>
 						</div>
 						<div class="pay_jshj_list">

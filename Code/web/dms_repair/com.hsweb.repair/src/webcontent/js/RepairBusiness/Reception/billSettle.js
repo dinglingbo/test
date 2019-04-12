@@ -24,13 +24,57 @@ var frmUrl = apiPath + frmApi + "/";
 var expenseUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.svr.getRpsExpense.biz.ext';
 var sendWCUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.sendWeChat.sendBillCostInfo.biz.ext';
 var srnum = [];
+var userCouponDataHash = {};
+var codeHash = {};
 $(document).ready(function(v) {
 
+	
 	$("body").on("blur","input[name='amount']",function(){
 		onChanged();
 	});
-
+	
+	$("body").on("click","a",function(e){
+		var id = e.currentTarget.id;
+		var str = "quan"+id;
+		var changStr = "#chang"+id;
+		if(document.getElementById(str).getAttribute("class")=="quan-item1"){
+			document.getElementById(str).className = "quan-item";
+			$(changStr).html("使用");
+			delete codeHash[id];
+		}else{
+			document.getElementById(str).className = "quan-item1";
+			codeHash[id] = userCouponDataHash[id];
+			$(changStr).html("取消");
+			//document.getElementById(changStr).innerHTML="取消";
+		}
+		var strCode = isEmptyObject(codeHash);
+		if(strCode != ""){
+			document.getElementById("showCode").style.display = "";
+			$("#strCode").val(strCode);
+			$("#strCode").text(strCode);
+		}else{
+			$("#strCode").val("");
+			$("#strCode").text("");
+			document.getElementById("showCode").style.display = "none";
+		}
+		
+	});
 });
+
+function isEmptyObject (obj){
+	var str = ""
+    var n = 1;
+	for(var key in obj ){
+		if(n==1){
+			str = obj[key].userCouponCode;
+			n = 2;
+		}else{
+			str += "," + obj[key].userCouponCode;
+		}
+	 }
+	return str;
+}
+
 function onbillRTypeChange(e){
     var se = e.selected;
     var billTypeCode = se.code;
@@ -281,17 +325,16 @@ function setData(params){
 			token: token
 	}
 	var list = '';
-	nui.ajax({
+	/*nui.ajax({
 		url :  apiPath + wechatApi +"/com.hsapi.wechat.autoServiceBackstage.weChatInterface.queryUserUseCoupon.biz.ext",
 		type : "post",
 		data : json2,
 		success : function(data) {
 			if(data.errCode=="S"){
-				var userCouponDataArray = data.userCouponDataArray;
+				 userCouponDataArray = data.userCouponDataArray;
 				var list = "";
 				if(userCouponDataArray.length>0){
 				   $(userCouponDataArray).each(function(k,v) {
-					  console.dir(v);
 					  var type = v.couponType==1?'通用券':'专属劵';
 					  var str = null;
 					  if(v.couponType==1){
@@ -305,7 +348,7 @@ function setData(params){
 					     '<div class="q-type">'+
 					        '<div class="q-range">'+
 					            '<div class="typ-txt">'+
-					                '<span >'+ v.couponTitle+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="##" class="useText">使用</a></span>'+
+					                '<span >'+ v.couponTitle+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="##" class="useText" id='+v.couponDistributeId+'>使用</a></span>'+
 					               '</div>'+
 					            '<div class="range-item">'+ v. couponDescribe + str +'</div>'+
 					            '<div class="range-item">到期时间：'+v.couponEndDate +'</div>'+
@@ -329,12 +372,317 @@ function setData(params){
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR.responseText);
 		}
-	});
+	});*/
+	userCouponDataArray = [
+{
+    "storeId": 6,
+    "orgid": 601,
+    "tenantId": 121,
+    "storeName": "华胜宜修店",
+    "storeAverageScore": 4.8,
+    "storePicture": "/hsWechatImager/201903/201903231645_51.jpg",
+    "storeBusinessBeginTime": "06:00:00",
+    "storeBusinessEndTime": "16:00:00",
+    "storeDetailsContent": "206,207,208,209,",
+    "storeStatus": 0,
+    "storeLatitude": 23.02069092,
+    "storeLongitude": 113.75180817,
+    "storePhone": "18674656852",
+    "storeStreetAddress": "广东省东莞市长安镇新安街口麦 园工业区1号",
+    "is_delete": 0,
+    "carId": 437,
+    "carVin": null,
+    "carNo": "云F87321",
+    "userCarId": 31849,
+    "carBrandId": "b02162",
+    "carBrandName": null,
+    "carSeriesId": null,
+    "carSeriesName": null,
+    "carModelId": null,
+    "carModelName": null,
+    "lastPatronageCar": 0,
+    "userCouponId": 148,
+    "userOpenId": "obdhQ5uhtQaRB6f-MzhkfKsQH0i0",
+    "userCouponCode": "zazda2019040217294431029",
+    "couponDistributeId": 244,
+    "couponUseTime": null,
+    "userCouponStatus": "0",
+    "couponCode": "SWPia201903011931400",
+    "couponName": null,
+    "couponTitle": "满减优惠",
+    "couponDescribe": "只限此优惠",
+    "couponConditionPrice": 400,
+    "couponDiscountsPrice": 100,
+    "serviceItemId": null,
+    "serviceitemName": null,
+    "couponType": "1",
+    "couponNumber": 12,
+    "distributePeopleId": 2222,
+    "distributePeopleName": "宜修壹",
+    "distributeDate": "2019-04-02 17:28:57.0",
+    "distributeStatus": "2",
+    "couponStatus": "2",
+    "isCarUse": 1,
+    "isStoreUse": 0,
+    "isTenantUse": 1,
+    "couponBeginDate": "2019-03-01",
+    "couponEndDate": "2019-04-18",
+    "couponDeleteStatus": 0
+},
+	                       {
+	                           "storeId": 6,
+	                           "orgid": 601,
+	                           "tenantId": 121,
+	                           "storeName": "华胜宜修店",
+	                           "storeAverageScore": 4.8,
+	                           "storePicture": "/hsWechatImager/201903/201903231645_51.jpg",
+	                           "storeBusinessBeginTime": "06:00:00",
+	                           "storeBusinessEndTime": "16:00:00",
+	                           "storeDetailsContent": "206,207,208,209,",
+	                           "storeStatus": 0,
+	                           "storeLatitude": 23.02069092,
+	                           "storeLongitude": 113.75180817,
+	                           "storePhone": "18674656852",
+	                           "storeStreetAddress": "广东省东莞市长安镇新安街口麦 园工业区1号",
+	                           "is_delete": 0,
+	                           "carId": 437,
+	                           "carVin": null,
+	                           "carNo": "云F87321",
+	                           "userCarId": 31849,
+	                           "carBrandId": "b02162",
+	                           "carBrandName": null,
+	                           "carSeriesId": null,
+	                           "carSeriesName": null,
+	                           "carModelId": null,
+	                           "carModelName": null,
+	                           "lastPatronageCar": 0,
+	                           "userCouponId": 148,
+	                           "userOpenId": "obdhQ5uhtQaRB6f-MzhkfKsQH0i0",
+	                           "userCouponCode": "zazda2019040217294431029",
+	                           "couponDistributeId": 245,
+	                           "couponUseTime": null,
+	                           "userCouponStatus": "0",
+	                           "couponCode": "SWPia201903011931400",
+	                           "couponName": null,
+	                           "couponTitle": "满减优惠",
+	                           "couponDescribe": "只限此优惠",
+	                           "couponConditionPrice": 400,
+	                           "couponDiscountsPrice": 100,
+	                           "serviceItemId": null,
+	                           "serviceitemName": null,
+	                           "couponType": "1",
+	                           "couponNumber": 12,
+	                           "distributePeopleId": 2222,
+	                           "distributePeopleName": "宜修壹",
+	                           "distributeDate": "2019-04-02 17:28:57.0",
+	                           "distributeStatus": "2",
+	                           "couponStatus": "2",
+	                           "isCarUse": 1,
+	                           "isStoreUse": 0,
+	                           "isTenantUse": 1,
+	                           "couponBeginDate": "2019-03-01",
+	                           "couponEndDate": "2019-04-18",
+	                           "couponDeleteStatus": 0
+	                       },
+	                       {
+	                           "storeId": 6,
+	                           "orgid": 601,
+	                           "tenantId": 121,
+	                           "storeName": "华胜宜修店",
+	                           "storeAverageScore": 4.8,
+	                           "storePicture": "/hsWechatImager/201903/201903231645_51.jpg",
+	                           "storeBusinessBeginTime": "06:00:00",
+	                           "storeBusinessEndTime": "16:00:00",
+	                           "storeDetailsContent": "206,207,208,209,",
+	                           "storeStatus": 0,
+	                           "storeLatitude": 23.02069092,
+	                           "storeLongitude": 113.75180817,
+	                           "storePhone": "18674656852",
+	                           "storeStreetAddress": "广东省东莞市长安镇新安街口麦 园工业区1号",
+	                           "is_delete": 0,
+	                           "carId": 437,
+	                           "carVin": null,
+	                           "carNo": "云F87321",
+	                           "userCarId": 31849,
+	                           "carBrandId": "b02162",
+	                           "carBrandName": null,
+	                           "carSeriesId": null,
+	                           "carSeriesName": null,
+	                           "carModelId": null,
+	                           "carModelName": null,
+	                           "lastPatronageCar": 0,
+	                           "userCouponId": 149,
+	                           "userOpenId": "obdhQ5uhtQaRB6f-MzhkfKsQH0i0",
+	                           "userCouponCode": "YEODk2019040217294582354",
+	                           "couponDistributeId": 246,
+	                           "couponUseTime": null,
+	                           "userCouponStatus": "0",
+	                           "couponCode": "xhzjK201903011935050",
+	                           "couponName": null,
+	                           "couponTitle": "保养优惠",
+	                           "couponDescribe": "优惠劵测试1212",
+	                           "couponConditionPrice": null,
+	                           "couponDiscountsPrice": 50,
+	                           "serviceItemId": 3,
+	                           "serviceitemName": "发动机更换",
+	                           "couponType": "2",
+	                           "couponNumber": 100,
+	                           "distributePeopleId": 2222,
+	                           "distributePeopleName": "宜修壹",
+	                           "distributeDate": "2019-04-02 17:28:58.0",
+	                           "distributeStatus": "2",
+	                           "couponStatus": "2",
+	                           "isCarUse": 1,
+	                           "isStoreUse": 1,
+	                           "isTenantUse": 0,
+	                           "couponBeginDate": "2019-03-01",
+	                           "couponEndDate": "2019-04-12",
+	                           "couponDeleteStatus": 0
+	                       },
+	                       {
+	                           "storeId": 6,
+	                           "orgid": 601,
+	                           "tenantId": 121,
+	                           "storeName": "华胜宜修店",
+	                           "storeAverageScore": 4.8,
+	                           "storePicture": "/hsWechatImager/201903/201903231645_51.jpg",
+	                           "storeBusinessBeginTime": "06:00:00",
+	                           "storeBusinessEndTime": "16:00:00",
+	                           "storeDetailsContent": "206,207,208,209,",
+	                           "storeStatus": 0,
+	                           "storeLatitude": 23.02069092,
+	                           "storeLongitude": 113.75180817,
+	                           "storePhone": "18674656852",
+	                           "storeStreetAddress": "广东省东莞市长安镇新安街口麦 园工业区1号",
+	                           "is_delete": 0,
+	                           "carId": 437,
+	                           "carVin": null,
+	                           "carNo": "云F87321",
+	                           "userCarId": 31849,
+	                           "carBrandId": "b02162",
+	                           "carBrandName": null,
+	                           "carSeriesId": null,
+	                           "carSeriesName": null,
+	                           "carModelId": null,
+	                           "carModelName": null,
+	                           "lastPatronageCar": 0,
+	                           "userCouponId": 148,
+	                           "userOpenId": "obdhQ5uhtQaRB6f-MzhkfKsQH0i0",
+	                           "userCouponCode": "zazda2019040217294431029",
+	                           "couponDistributeId": 247,
+	                           "couponUseTime": null,
+	                           "userCouponStatus": "0",
+	                           "couponCode": "SWPia201903011931400",
+	                           "couponName": null,
+	                           "couponTitle": "满减优惠",
+	                           "couponDescribe": "只限此优惠",
+	                           "couponConditionPrice": 400,
+	                           "couponDiscountsPrice": 100,
+	                           "serviceItemId": null,
+	                           "serviceitemName": null,
+	                           "couponType": "1",
+	                           "couponNumber": 12,
+	                           "distributePeopleId": 2222,
+	                           "distributePeopleName": "宜修壹",
+	                           "distributeDate": "2019-04-02 17:28:57.0",
+	                           "distributeStatus": "2",
+	                           "couponStatus": "2",
+	                           "isCarUse": 1,
+	                           "isStoreUse": 0,
+	                           "isTenantUse": 1,
+	                           "couponBeginDate": "2019-03-01",
+	                           "couponEndDate": "2019-04-18",
+	                           "couponDeleteStatus": 0
+	                       },
+	                       {
+	                           "storeId": 6,
+	                           "orgid": 601,
+	                           "tenantId": 121,
+	                           "storeName": "华胜宜修店",
+	                           "storeAverageScore": 4.8,
+	                           "storePicture": "/hsWechatImager/201903/201903231645_51.jpg",
+	                           "storeBusinessBeginTime": "06:00:00",
+	                           "storeBusinessEndTime": "16:00:00",
+	                           "storeDetailsContent": "206,207,208,209,",
+	                           "storeStatus": 0,
+	                           "storeLatitude": 23.02069092,
+	                           "storeLongitude": 113.75180817,
+	                           "storePhone": "18674656852",
+	                           "storeStreetAddress": "广东省东莞市长安镇新安街口麦 园工业区1号",
+	                           "is_delete": 0,
+	                           "carId": 437,
+	                           "carVin": null,
+	                           "carNo": "云F87321",
+	                           "userCarId": 31849,
+	                           "carBrandId": "b02162",
+	                           "carBrandName": null,
+	                           "carSeriesId": null,
+	                           "carSeriesName": null,
+	                           "carModelId": null,
+	                           "carModelName": null,
+	                           "lastPatronageCar": 0,
+	                           "userCouponId": 149,
+	                           "userOpenId": "obdhQ5uhtQaRB6f-MzhkfKsQH0i0",
+	                           "userCouponCode": "YEODk2019040217294582354",
+	                           "couponDistributeId": 248,
+	                           "couponUseTime": null,
+	                           "userCouponStatus": "0",
+	                           "couponCode": "xhzjK201903011935050",
+	                           "couponName": null,
+	                           "couponTitle": "保养优惠",
+	                           "couponDescribe": "优惠劵测试1212",
+	                           "couponConditionPrice": null,
+	                           "couponDiscountsPrice": 50,
+	                           "serviceItemId": 3,
+	                           "serviceitemName": "发动机更换",
+	                           "couponType": "2",
+	                           "couponNumber": 100,
+	                           "distributePeopleId": 2222,
+	                           "distributePeopleName": "宜修壹",
+	                           "distributeDate": "2019-04-02 17:28:58.0",
+	                           "distributeStatus": "2",
+	                           "couponStatus": "2",
+	                           "isCarUse": 1,
+	                           "isStoreUse": 1,
+	                           "isTenantUse": 0,
+	                           "couponBeginDate": "2019-03-01",
+	                           "couponEndDate": "2019-04-12",
+	                           "couponDeleteStatus": 0
+	                       }
+	 
+	                   ];
+	$(userCouponDataArray).each(function(k,v) {
+		  var key = v.couponDistributeId;
+		  userCouponDataHash[key] = v;
+		  var type = v.couponType==1?'通用券':'专属劵';
+		  var str = null;
+		  if(v.couponType==1){
+			  str="(满"+v.couponConditionPrice+")"
+		  }else{
+			  str="";
+		  }
+		  list += 
+			  '<div class="quan-item" id=quan'+ v.couponDistributeId +'> '+
+			 '<div class="q-opbtns "><strong class="num1">￥'+ v.couponDiscountsPrice + '<br>'+ type +'</strong></div>'+
+		     '<div class="q-type">'+
+		        '<div class="q-range">'+
+		            '<div class="typ-txt">'+
+		                '<span >'+ v.couponTitle+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="##" class="useText" name="ide" id='+v.couponDistributeId+'><span id = chang'+v.couponDistributeId+'>使用</span></a></span>'+
+		               '</div>'+
+		            '<div class="range-item">'+ v. couponDescribe + str +'</div>'+
+		            '<div class="range-item">到期时间：'+v.couponEndDate +'</div>'+
+		            '<div class="range-item">编码：'+v.userCouponCode +'</div>'+
+		        '</div>'+
+		    '</div>'+ 
+		    '</div>'
+		});
+		document.getElementById("show").innerHTML = list;
 	
 	//$(".quan-item").prepend(list2);	
     addType();
     getData(data);
 }
+
 function addReceiveRow(row_uid){
 	var row = {};
 	receiveGrid.addRow(row);

@@ -10,7 +10,7 @@
 -->
 <head>
 <title>已结算工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.0.46"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.0.47"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -262,61 +262,7 @@
 </div>
 
 
-<div id="advancedSearchWin" class="nui-window"
-     title="高级查询" style="width:416px;height:220px;"
-     showModal="true"
-     allowResize="false"
-     allowDrag="true">
-    <div id="advancedSearchForm" class="form">
-        <table style="width:100%;">
-            
-            <input name="carBrandId"
-                id="carBrandId" visible="false"
-                class="nui-combobox"
-                textField="name"
-                valueField="id"/>
-           <input name="serviceTypeId"
-                id="serviceTypeId" visible="false"
-                class="nui-combobox"
-                textField="name"
-                valueField="id"/>
-            <tr>
-                <td class="title">创建日期:</td>
-                <td>
-                    <input id="sRecordDate"
-                           name="sRecordDate"
-                           width="100%"
-                           class="nui-datepicker"/>
-                </td>
-                <td class="">至:</td>
-                <td>
-                    <input id="eRecordDate"
-                           name="eRecordDate"
-                           class="nui-datepicker"
-                           format="yyyy-MM-dd"
-                           timeFormat="H:mm:ss"
-                           showTime="false"
-                           showOkButton="false"
-                           width="100%"
-                           showClearButton="false"/>
-                </td>
-            </tr>
 
-            <tr>
-                <td class="title">业务类型:</td>
-                <td colspan="3">
-                    <div id="serviceTypeIds" name="serviceTypeIds" class="nui-checkboxlist" repeatItems="5" 
-                    repeatLayout="flow"  value="" 
-                    textField="name" valueField="id" ></div>
-                </td>
-            </tr>
-        </table>
-        <div style="text-align:center;padding:10px;">
-            <a class="nui-button" onclick="onAdvancedSearchCancel" style="width:60px;">取消</a>
-            <a class="nui-button" onclick="onAdvancedSearchOk" style="width:60px;margin-right:20px;">确定</a>
-        </div>
-    </div>
-</div>
 
 <div id="exportDiv" style="display:none">  
     <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
@@ -459,8 +405,24 @@
 				        <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId" 
                        	 emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="100%" valueFromSelect="true"/>
 					</td>
-					<td></td>
-					<td></td>
+                        <td class="title">
+                            <label>业务类型：</label>
+                        </td>
+                        <td>
+                            <input name="serviceTypeId"
+                                   id="serviceTypeId"
+                                   class="nui-combobox"
+                                   textField="name"
+                                   valueField="id"
+                                   emptyText="请选择..."
+                                   url=""
+                                   multiSelect="true"
+                                   allowInput="true"
+                                   showNullItem="false"
+                                   width="100%"
+                                   valueFromSelect="true"
+                                   nullItemText="请选择..."/>
+                        </td>
 				</tr>		
 				 <tr>
 					<td class="title">
@@ -497,7 +459,7 @@
 					</td>
 					<td colspan="3">
 						<input class="nui-radiobuttonlist" id="settleType" emptyText="全部" name="settleType" data="[{settleType:999,text:'全部'},{settleType:0,text:'在修'},{settleType:1,text:'预结算未出厂'},{settleType:2,text:'已出厂未收款'},{settleType:3,text:'已收款'}]"
-                        	width="100%"      textField="text" valueField="settleType" allowInput="true" showNullItem="false" valueFromSelect="true" />
+                        	width="100%"      value="999" textField="text" valueField="settleType" allowInput="true" showNullItem="false" valueFromSelect="true" />
 					</td>
 				</tr> --> 								
 				<tr>

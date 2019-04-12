@@ -190,7 +190,7 @@ function onOk()
     }
     if(!data.id)
     {
-        var matches = data.code.match(/([\w]*)/ig);
+        var matches = data.code.match(/([\w\u4e00-\u9fa5]*)/ig);
         data.queryCode = "";
         for(var i=0;i<matches.length;i++)
         {

@@ -1272,6 +1272,9 @@
             <isNotEmpty prepend="and" property="serviceTypeId">  
                 (a.service_type_id = #serviceTypeId#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeIds">  
+                (a.service_type_id in ($serviceTypeIds$))
+            </isNotEmpty>
               <!--是否出库-->
             <isNotEmpty prepend="and" property="isCheck">  
                 (a.is_check= #isCheck#)
@@ -1600,6 +1603,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="billTypeId">  
                 (a.bill_type_id = #billTypeId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeIds">  
+                (a.service_type_id in ($serviceTypeIds$))
             </isNotEmpty>
              <isNotEmpty prepend="and" property="billTypeIdList">  
                 (a.bill_type_id in ($billTypeIdList$))

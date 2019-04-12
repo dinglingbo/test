@@ -772,7 +772,7 @@ function onAdvancedSearchOk()
 	    if((nui.get("isCollectMoney").getValue())!=1){
 	searchData.isCollectMoney = 1;
 } 
-	
+	searchData.serviceTypeIds = serviceTypeIdEl.getValue();
     searchData.mtAuditorId = mtAdvisorIdEl.getValue();
     searchData.guestProperty = nui.get("guestProperty").getValue();
     searchData.propertyFeatures = nui.get("propertyFeatures").getValue();

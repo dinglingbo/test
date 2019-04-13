@@ -126,6 +126,8 @@
 						<div field="serviceCode" headerAlign="center" allowSort="false" width="120px">工单号</div>
 						<div field="qty" headerAlign="center" allowSort="false" width="120px">工时/数量</div>
 						<div field="subtotal" headerAlign="center" allowSort="false" width="120px">金额</div>
+						<div field="outDate" name="outDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="出厂日期" allowsort="true"></div>
+		                <div field="collectMoneyDate" name="collectMoneyDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="收款日期" allowsort="true"></div>
 					</div>
 				</div>
 			</div>

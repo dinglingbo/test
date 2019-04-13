@@ -133,7 +133,6 @@
                             <div headerAlign="center">车辆信息
                                 <div property="columns">
                                     <div field="id" visible=false>ID</div>
-                                    <div field="orgid" width="100" headerAlign="center" allowSort="true" dataType="string">所在分店</div>
                                     <div field="carNo" width="80" headerAlign="center" allowSort="true" dataType="string">车牌号</div>
                                    
                                     <div field="carModel" name="carModel" width="250" headerAlign="center"allowSort="true" dataType="string">品牌车型</div>
@@ -171,6 +170,7 @@
                             </div>
                             <div headerAlign="center">其他
                                 <div property="columns">
+                                	<div field="orgid" width="100" headerAlign="center" allowSort="true" dataType="string">所在分店</div>
                                     <div field="recorder" name="recorder" width="80" headerAlign="center" allowSort="true" dataType="string">建档人</div>
                                     <div field="recordDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" dataType="date">建档日期</div>
                                 </div>

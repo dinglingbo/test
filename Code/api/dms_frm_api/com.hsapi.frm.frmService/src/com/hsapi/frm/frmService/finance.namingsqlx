@@ -115,15 +115,17 @@
     	SELECT a.bill_main_id as billMainId, b.orgid as orgid,a.bill_service_id as billServiceId, a.bill_type_id as billTypeId,
 			       a.bill_type_code as billTypeCode, a.char_off_amt as charOffAmt,b.rp_account_id as rpAccountId,b.guest_id as guestId,
 			       d.full_name as fullName, d.short_name as shortName, b.auditor as auditor, b.audit_date as auditDate,
-			       e.is_primary_business as isPrimaryBusiness, b.rp_dc as rpDc, f.car_no as carNo,b.remark as remark
+			       e.is_primary_business as isPrimaryBusiness, b.rp_dc as rpDc, f.car_no as carNo,b.remark as remark,
+			       g.sett_account_id as settAccountId,
+			       g.sett_account_name as settAccountName,
+			       g.char_off_amt as settCharOffAmt
+			       
 			from fis_rp_account_detail a
-			inner join fis_rp_account b
-			on a.main_id = b.id
-			inner join wb_common.com_guest d
-			on b.guest_id = d.id
-			inner join fib_income_expenses e
-			on a.bill_type_id = e.id
-			left join fis_rp_bill f on a.bill_rp_id = f.id
+			inner join fis_rp_account b on a.main_id = b.id
+			inner join wb_common.com_guest d on b.guest_id = d.id
+			inner join fib_income_expenses e on a.bill_type_id = e.id
+			inner join fis_rp_bill f on a.bill_rp_id = f.id
+			inner join fis_rp_account_d_type g on a.main_id = g.main_id 
 			where b.audit_sign = 1 
 			<isNotEmpty prepend="and" property="orgid">
                 (b.orgid = #orgid#)

@@ -263,7 +263,7 @@
             font-family: "Microsoft YaHei";
             float:left;
             margin-left: 20px;
-            border:2px solid #e4007e; 
+            border:2px solid #ff9000; 
            /*  box-shadow: darkgrey 0px 0px 30p */ 
         }
 

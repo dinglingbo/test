@@ -10,7 +10,7 @@
 -->
 <head>
 <title>已结算工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.0.47"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.0.52"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -96,6 +96,7 @@
         <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="carNoSearch"/>
                              <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
+		包含未收款： <div  class="nui-checkbox" id="isCollectMoney" name="isCollectMoney" value="1"  trueValue="1" falseValue="0"></div> 
     	<a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
      	<a class="nui-button" plain="true" onclick="advancedSearch()">
 		<span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>  
@@ -139,6 +140,7 @@
 	                  	<div field="guestFullName" name="guestFullName" width="100" headerAlign="center"  allowsort="true" header="客户名称" allowsort="ture"></div> 
 		                  <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌号" allowsort="true"></div>
 	                  <div field="mtAdvisor" name="mtAdvisor" width="110" headerAlign="center" allowsort="true" header="服务顾问"></div>
+	                  <div type="checkboxcolumn" trueValue="1" falseValue="0"  field="isCollectMoney" name="isCollectMoney" width="60" headerAlign="center" header="是否收款" allowsort="true"></div>
 	                   <div field="collectMoneyDate" name="collectMoneyDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="收款日期" allowsort="true"></div>	
 	                 </div>
                   </div>
@@ -452,8 +454,8 @@
 						<input class="nui-radiobuttonlist" id="auditSign"  name="auditSign" emptyText="全部" data="[{billTypeId:999,text:'全部'},{billTypeId:0,text:'未出厂'},{billTypeId:1,text:'已出厂'}]"
                           width="100%"   textField="text" valueField="billTypeId"  allowInput="true" showNullItem="false" valueFromSelect="true"/>
 					</td>
-				</tr>
-				<tr>
+				</tr>--> 
+<!-- 				<tr>
 					<td class="title">
 						<label> 结算进程:</label>
 					</td>
@@ -461,7 +463,16 @@
 						<input class="nui-radiobuttonlist" id="settleType" emptyText="全部" name="settleType" data="[{settleType:999,text:'全部'},{settleType:0,text:'在修'},{settleType:1,text:'预结算未出厂'},{settleType:2,text:'已出厂未收款'},{settleType:3,text:'已收款'}]"
                         	width="100%"      value="999" textField="text" valueField="settleType" allowInput="true" showNullItem="false" valueFromSelect="true" />
 					</td>
-				</tr> --> 								
+				</tr>  -->		
+				<tr>
+					<td class="title">
+						<label> 收款状态:</label>
+					</td>
+					<td colspan="3">
+						<input class="nui-radiobuttonlist" id="settleType" emptyText="全部" name="settleType" data="[{settleType:999,text:'全部'},{settleType:1,text:'未收款'},{settleType:2,text:'已收款'}]"
+                        	width="100%"      value="999" textField="text" valueField="settleType" allowInput="true" showNullItem="false" valueFromSelect="true" />
+					</td>
+				</tr>						
 				<tr>
 					<td class="title">
 						<label>客户属性：</label>
@@ -478,14 +489,14 @@
 				        <input class="nui-textbox" name="propertyFeatures" id="propertyFeatures" emptyText="" valueField="customid"  textField="name" width="100%"  />
 					</td>
 				</tr>	
-				<tr>
+<!-- 				<tr>
 					<td class="title">
 						<label> 包含未收款：：</label>
 					</td>
 					<td colspan="3">
 				         <div  class="nui-checkbox" id="isCollectMoney" name="isCollectMoney" value="1"  trueValue="1" falseValue="0"></div> 
 					</td>
-				</tr>									
+				</tr>	 -->								
 
                        
                         

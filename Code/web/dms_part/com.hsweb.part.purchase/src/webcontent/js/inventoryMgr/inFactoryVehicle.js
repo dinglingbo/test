@@ -87,7 +87,7 @@ $(document).ready(function ()
             servieTypeList.forEach(function(v) {
                 servieTypeHash[v.id] = v;
             });
-            serviceTypeIds.setData(servieTypeList);
+/*            serviceTypeIds.setData(servieTypeList);
 
             initCarBrand("carBrandId",function(data) {
                 brandList = nui.get("carBrandId").getData();
@@ -95,7 +95,7 @@ $(document).ready(function ()
                     brandHash[v.id] = v;
                 });
 
-            });
+            });*/
 
 
         });
@@ -520,10 +520,8 @@ function advancedSearch()
 	
     advancedSearchWin.show();
     advancedSearchForm.clear();
-    if(advancedSearchFormData)
-    {
-        advancedSearchForm.setData(advancedSearchFormData);
-    }
+    nui.get("sEnterDate1").setValue(getMonthStartDate());
+    nui.get("eEnterDate1").setValue(getMonthEndDate());
 }
 
 function onAdvancedSearchOk()
@@ -594,4 +592,6 @@ function onAdvancedSearchCancel(){
 
 function cancelData(){
 	advancedSearchForm.setData([]);
+    nui.get("sEnterDate1").setValue(getMonthStartDate());
+    nui.get("eEnterDate1").setValue(getMonthEndDate());
 }

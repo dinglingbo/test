@@ -4510,6 +4510,7 @@ function chooseContactor(){
         	 var iframe = this.getIFrameEl();
         	 var row = iframe.contentWindow.getData();
         	 var contactor = sendGuestForm.getData();
+        	 contactorF = contactor;
         	 contactor.id = row.id;
         	 contactor.contactorName = row.name;
         	 contactor.sex = row.sex;

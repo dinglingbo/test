@@ -399,6 +399,83 @@
         </dynamic>  
 	</select>
 	
+	<select id="queryItemTimesList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id as id,
+			a.orgid as orgid,
+			a.code_id as codeId,
+			a.`code` as code,
+			a.guest_id as guestId,
+			a.contactor_id as contactorId,
+			a.car_id as carId,
+			a.car_no as carNo,
+			a.wechat_open_id as wechatOpenId,
+			a.prdt_id as prdtId,
+			a.prdt_name as prdtName,
+			a.prdt_type as prdtType,
+			a.total_times as totalTimes,
+			a.use_times as useTimes,
+			a.bala_times as balaTimes,
+			a.can_use_times as canUseTimes,
+			a.qty as qty,
+			a.old_price as oldPrice,
+			a.sell_price as sellPrice,
+			a.old_amt as oldAmt,
+			a.sell_amt as sellAmt,
+			a.rate as rate,
+			a.is_finish as isFinish,
+			a.period_validity as periodValidity,
+			a.past_date as pastDate,
+			a.recorder as recorder,
+			a.record_date as recordDate,
+			a.modifier as modifier,
+			a.modify_date as modifyDate
+		FROM
+			rps_item_times AS a
+		where 1 = 1
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="codeId">
+                (a.code_id = #codeId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="id">
+                (a.id = #id#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">
+                (a.guest_id = #guestId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carId">
+                (a.car_id = #carId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="detailFinish">  
+                (a.is_finish = #detailFinish#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="notPast">  
+                (a.period_validity = -1 or a.past_date &gt; sysdate())
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="startDate">  
+                (a.record_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (a.record_date &lt; #endDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="balaTimes">  
+                (a.bala_times &gt; #balaTimes#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="canUseTimes">  
+                (a.can_use_times &gt; #canUseTimes#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="useTimes">  
+                (a.use_times &gt; #useTimes#)
+            </isNotEmpty>
+           <isNotEmpty prepend="and" property="type">  
+                (a.prdt_type = #type#)
+            </isNotEmpty>
+        </dynamic>  
+	</select>
+	
 	<!--
 	Fdelete as fdelete, ItemRate as itemRate, OItemRate as oitemRate, PartRate as partRate, 
 		       OPartRate as opartRate, AgioSum as agioSum, 

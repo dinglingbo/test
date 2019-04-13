@@ -28,6 +28,7 @@
                     </td>
                     <td colspan="3">
                         <input class="nui-textbox" name="carNo" id="carNo" onvaluechanged="onCarNoChanged"/>
+                        <a class="nui-button" onclick="parsingCarNo()">解析车架号(VIN)</a>
                     </td>
                 </tr>
                 <tr>

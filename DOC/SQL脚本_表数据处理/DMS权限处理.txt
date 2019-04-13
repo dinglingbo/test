@@ -1,4 +1,11 @@
 
+
+ºÊ÷∞
+insert into dms_system.org_emporg (orgid, empid, ISMAIN, TENANT_ID, APP_ID)
+SELECT ORGID, 378, ISMAIN, TENANT_ID, APP_ID from dms_system.org_emporg where EMPID = 377 and ISMAIN is null
+
+
+
 SELECT * from app_function where FUNCGROUPID in (
 	SELECT FUNCGROUPID from app_funcgroup where FUNCGROUPID in (
 		1102,1161,1162,1163,1164,1165,1241,1143,1081

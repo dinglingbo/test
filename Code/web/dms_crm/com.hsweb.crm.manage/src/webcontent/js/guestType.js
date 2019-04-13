@@ -396,7 +396,7 @@ function sendWcPic(list) {
         return;
     }
     nui.open({                        
-        url: webPath + contextPath  + "/com.hsweb.crm.manage.sendPicInfo.flow?token="+token,
+        url: webPath + contextPath  + "/manage/sendWechatWindow/sWcPicInfoMore.jsp?token="+token,
         title: "发送微信图文", width: 800, height: 350,
         onload: function () {
         var iframe = this.getIFrameEl();
@@ -460,4 +460,4 @@ function addServiceType(list,type){
 		Arr.push(data);
 	}
 	return Arr;
-}
+} 

@@ -74,7 +74,7 @@ function IncomeStatistics(){
 function CarInsuranceQuery(){
     var item={};
     item.id = "CarInsuranceQuery";
-    item.text = "保险开单明细表";
+    item.text = "车险开单明细表";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.CarInsuranceQuery.flow?token="+token
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);

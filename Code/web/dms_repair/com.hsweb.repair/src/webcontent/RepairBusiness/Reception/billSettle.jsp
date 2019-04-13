@@ -11,7 +11,7 @@
 
 <head>
 	<title>工单结算</title>
-	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/billSettle.js?v=1.5.38"></script>
+	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/billSettle.js?v=1.5.39"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -263,7 +263,7 @@
             font-family: "Microsoft YaHei";
             float:left;
             margin-left: 20px;
-            border:2px solid #e4007e; 
+            border:2px solid #ff9000; 
            /*  box-shadow: darkgrey 0px 0px 30p */ 
         }
 

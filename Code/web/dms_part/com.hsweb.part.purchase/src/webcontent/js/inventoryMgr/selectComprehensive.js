@@ -99,7 +99,7 @@ $(document).ready(function ()
             servieTypeList.forEach(function(v) {
                 servieTypeHash[v.id] = v;
             });
-            serviceTypeIds.setData(servieTypeList);
+/*            serviceTypeIds.setData(servieTypeList);
 
             initCarBrand("carBrandId",function(data) {
                 brandList = nui.get("carBrandId").getData();
@@ -107,7 +107,7 @@ $(document).ready(function ()
                     brandHash[v.id] = v;
                 });
 
-            });
+            });*/
 
 
         });
@@ -287,7 +287,7 @@ $(document).ready(function ()
                 break;
         }
     });
-    quickSearch(4);
+    //quickSearch(4);
     
 });
 var statusHash = {
@@ -421,10 +421,13 @@ function doSearch() {
     if(gsparams.billTypeIds && gsparams.billTypeIds==5){
     	gsparams.billTypeIds = "0,2,4,6";
     }
-    if(nui.get("isCollectMoney").getValue()==0){
+    if(nui.get("isCollectMoney").getValue()==1){
+    	gsparams.isCollectMoneys="0,1";
+    }else{
+    	
+    	gsparams.isSettle = 1;
     	gsparams.isCollectMoney=1;
     }
-    gsparams.isSettle = 1;
    // gsparams.billTypeId = 0;
     gsparams.isDisabled = 0;
 
@@ -748,10 +751,8 @@ function advancedSearch()
 	
     advancedSearchWin.show();
     advancedSearchForm.clear();
-    if(advancedSearchFormData)
-    {
-        advancedSearchForm.setData(advancedSearchFormData);
-    }
+    nui.get("sEnterDate1").setValue(getMonthStartDate());
+    nui.get("eEnterDate1").setValue(getMonthEndDate());
 }
 
 function onAdvancedSearchOk()
@@ -769,9 +770,7 @@ function onAdvancedSearchOk()
 	if(nui.get("eEnterDate1").getValue()){
 		searchData.eEnterDate = addDate(nui.get("eEnterDate1").getValue(),1);  
 	}
-	    if((nui.get("isCollectMoney").getValue())!=1){
-	searchData.isCollectMoney = 1;
-} 
+
 	searchData.serviceTypeIds = serviceTypeIdEl.getValue();
     searchData.mtAuditorId = mtAdvisorIdEl.getValue();
     searchData.guestProperty = nui.get("guestProperty").getValue();
@@ -796,6 +795,13 @@ function onAdvancedSearchOk()
     }else if(settleType==3){
     	searchData.isCollectMoney = 1;
     }*/
+    var settleType = nui.get("settleType").getValue();
+    if(settleType==1){
+    	searchData.isCollectMoney = 0;
+    }else if(settleType==2){
+    	searchData.balaAuditSign = 1;
+    	searchData.isCollectMoney = 1;
+    }
     
 /*    if((nui.get("auditSign").getValue())!=999){
     	searchData.isSettle = nui.get("auditSign").getValue();
@@ -818,8 +824,11 @@ function doSearch2(params){
 function onAdvancedSearchCancel(){
     advancedSearchForm.clear();
     advancedSearchWin.hide();
+
 }
 
 function cancelData(){
 	advancedSearchForm.setData([]);
+    nui.get("sEnterDate1").setValue(getMonthStartDate());
+    nui.get("eEnterDate1").setValue(getMonthEndDate());
 }

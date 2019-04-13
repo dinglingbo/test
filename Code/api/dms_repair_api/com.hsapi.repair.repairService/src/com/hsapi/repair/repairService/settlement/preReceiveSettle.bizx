@@ -549,16 +549,16 @@
       <process:to type="query">balaAmt</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">settlement/netinAmt</process:from>
+      <process:to type="query">netinAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="expression" pattern="reference">balaAmt==0?0:totalPrefAmt/(netinAmt-allowanceAmt-couponAmt+otherAmt)</process:from>
       <process:to type="query">totalPrefRate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">settlement/mtAmt</process:from>
       <process:to type="query">mtAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">settlement/netinAmt</process:from>
-      <process:to type="query">netinAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">couponAmt</process:from>

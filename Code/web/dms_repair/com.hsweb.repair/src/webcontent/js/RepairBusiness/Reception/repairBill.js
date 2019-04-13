@@ -3543,7 +3543,8 @@ function pay(){
             guestName:$("#guestNameEl").text(),
             data:sellData,
             contactor:contactorF,
-            carId:fcarId
+            carId:fcarId,
+            billTypeId:0
         };
         doBillPay(params, function(data){
             data = data||{};
@@ -4509,6 +4510,7 @@ function chooseContactor(){
         	 var iframe = this.getIFrameEl();
         	 var row = iframe.contentWindow.getData();
         	 var contactor = sendGuestForm.getData();
+        	 contactorF = contactor;
         	 contactor.id = row.id;
         	 contactor.contactorName = row.name;
         	 contactor.sex = row.sex;
@@ -5146,7 +5148,7 @@ function editSell() {
 					var data = row;
 					data.type = 'editT';
 					// 直接从页面获取，不用去后台获取
-					iframe.contentWindow.setData(data);
+					iframe.contentWindow.SetData(data);
 				},
 				ondestroy : function(action) {
 					if (action == "saveSuccess") {

@@ -35,29 +35,6 @@
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="link10" isDefault="true" type="transition">
-      <sourceNode>assign1</sourceNode>
-      <targetNode>invokePojo0</targetNode>
-    </sourceConnections>
-    <targetConnections>link2</targetConnections>
-    <location x="17" y="150"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign1label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">http://mbd.prod.harsons.cn/hscp/car/cars/</process:from>
-      <process:to type="query">url</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">url+carNo</process:from>
-      <process:to type="query">url</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="15" y="186"/>
-    <figSize height="17" width="32"/>
-    <node>assign1</node>
-  </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="getHttpByJsonParam" displayName="getHttpByJsonParam" collapsed="false" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
@@ -190,6 +167,29 @@
     <location x="265" y="289"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="link10" isDefault="true" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="17" y="150"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">http://mbd.prod.harsons.cn/hscp/car/cars/</process:from>
+      <process:to type="query">url</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">url+carNo</process:from>
+      <process:to type="query">url</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
+    <location x="15" y="186"/>
+    <figSize height="17" width="32"/>
+    <node>assign1</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

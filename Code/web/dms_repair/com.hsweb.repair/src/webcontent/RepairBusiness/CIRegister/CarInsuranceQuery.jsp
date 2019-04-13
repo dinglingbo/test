@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false"%>
   - Description:
 -->
 <head>
-    <title>保险开单查询</title>
+    <title>车险开单查询</title>
     <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceQuery.js?v=1.0.38"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>

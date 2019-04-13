@@ -9,7 +9,7 @@ pageEncoding="UTF-8" session="false"%>
   - Description:
 -->
 <head>
-    <title>保险开单</title>
+    <title>车险开单</title>
     <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceMain.js?v=1.0.77"></script>
     <style type="text/css">
 

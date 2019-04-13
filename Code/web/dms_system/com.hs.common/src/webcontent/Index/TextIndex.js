@@ -136,7 +136,7 @@ function toSellBill(){
 function toCarInsuranceDetail(){
     var item={};
     item.id = "InsuranceDetail";
-    item.text = "保险开单详情";
+    item.text = "车险开单详情";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.CarInsuranceDetail.flow?token="+token;
     item.iconCls = "fa fa-car";
     var params = {

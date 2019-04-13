@@ -170,7 +170,7 @@ function quickSearch(type)
         case 7:
             params.insurance = 1;
             params.orgid = currOrgId;
-            queryname = "本日所有保险开单客户";
+            queryname = "本日所有车险开单客户";
             break;
         default:
             break;

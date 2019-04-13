@@ -26,11 +26,9 @@
                     <td class="form_label required">
                         <label>车牌号：</label>
                     </td>
-                    <td colspan="2">
+                    <td colspan="3">
                         <input class="nui-textbox" name="carNo" id="carNo" onvaluechanged="onCarNoChanged"/>
-                    </td>
-                    <td>
-                        <a class="nui-button" onclick="parsingCarNo()">解析车牌(VIN)</a>
+                        <a class="nui-button" onclick="parsingCarNo()">解析车架号(VIN)</a>
                     </td>
                 </tr>
                 <tr>

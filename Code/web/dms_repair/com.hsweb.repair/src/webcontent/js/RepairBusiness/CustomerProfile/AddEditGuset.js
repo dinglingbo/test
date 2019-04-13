@@ -511,12 +511,12 @@ function parsingCarNo() {
 	 			if(text.errCode=="S"){
 	 				nui.get("vin").setValue(text.data.vin); 
 	 				onParseUnderpanNo();
-	 			nui.unmask();
-	 			showMsg(text.errMsg || "绑定成功!","S");
+	 			//nui.unmask();
+	 			//showMsg(text.errMsg || "解析成功!","S");
 	 			return;
 	 			}else{
 	 				nui.unmask();
-	 				showMsg(text.errMsg,"E");
+	 				showMsg("车架号(VIN)解析失败","W");
 	 				return;
 	 			}
 	 			

@@ -873,3 +873,38 @@ function delet(){
     basicInfoForm.setData([]);
     nui.get("#guestSex").setValue("0");
 }
+
+var parsingCarNoUrl = apiPath+sysApi + "/com.hs.common.sysService.getCarVinByCarNo.biz.ext";
+function parsingCarNo() {
+	var carNo = nui.get("carNo").getValue(); 
+	 nui.mask({
+	        el: document.body,
+	        cls: 'mini-mask-loading',
+	        html: '数据加载中...'
+	 });
+	 var json = nui.encode({
+		 carNo:carNo,
+		 token:token
+	  });
+	 nui.ajax({
+	 		url : parsingCarNoUrl,
+	 		type : 'POST',
+	 		data : json,
+	 		cache : false,
+	 		contentType : 'text/json',
+	 		success : function(text) {
+	 			if(text.errCode=="S"){
+	 				nui.get("vin").setValue(text.data.vin); 
+	 				onParseUnderpanNo();
+	 			//nui.unmask();
+	 			//showMsg(text.errMsg || "解析成功!","S");
+	 			return;
+	 			}else{
+	 				nui.unmask();
+	 				showMsg("车架号(VIN)解析失败","W");//不用返回的信息，统一用这个
+	 				return;
+	 			}
+	 			
+	 		}
+	});
+}

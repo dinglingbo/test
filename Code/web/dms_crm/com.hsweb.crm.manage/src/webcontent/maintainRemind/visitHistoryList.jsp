@@ -16,6 +16,7 @@
         </div>
     </div>
     <ul id="gridMenu" class="mini-contextmenu" onbeforeopen="">              
+	    <li name="remove"  onclick="edit"><span class="fa fa-edit fa-lg"></span>修改</li>        
 	    <li name="remove"  onclick="onRemove"><span class="fa fa-remove fa-lg"></span>删除</li>        
     </ul>
 </div>
@@ -45,17 +46,7 @@
 
     visitHis.on("rowdblclick", function (e) {
 
-        nui.open({
-            url: webPath + contextPath +'/manage/maintainRemind/visitHistoryListDet.jsp?token='+token,
-            title: '修改', width: 600, height:300 ,
-            onload: function () {
-                var iframe = this.getIFrameEl();
-                iframe.contentWindow.setData(e.record);
-            },
-            ondestroy: function (action) {
-                visitHis.reload();
-            }
-        });
+
     });
 
     function loadVisitHis(params) {//guestSource: 0系统客户  1电销客户
@@ -70,8 +61,24 @@
         //     guestSource:guestSource,
         //     token:token
         // };
-        visitHis.load({ params:params });
+        visitHis.load({ params:params,token:token });
     }
+
+function edit() {
+    var row =visitHis.getSelected();
+    nui.open({
+            url: webPath + contextPath +'/manage/maintainRemind/visitHistoryListDet.jsp?token='+token,
+            title: '修改', width: 600, height:300 ,
+            onload: function () {
+                var iframe = this.getIFrameEl();
+                iframe.contentWindow.setData(row);
+            },
+            ondestroy: function (action) {
+                visitHis.reload();
+            }
+        });
+}
+
 function onRemove(){
 	var row =visitHis.getSelected();
 	if(row){

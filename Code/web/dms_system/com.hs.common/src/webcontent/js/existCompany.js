@@ -14,7 +14,7 @@ $(document).ready(function(v) {
     nui.get("name").focus();
     moreOrgGrid.on("beforeselect",function(e){
     	var row = e.record;
-    	if(row.ismain!=0){
+    	if(row.ismain && row.ismain=="y"){
     		showMsg("不能取消所属机构","W");
     		e.cancel = true;
     		//moreOrgGrid.deselect(row,false);

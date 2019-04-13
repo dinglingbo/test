@@ -4,7 +4,7 @@
 
 var baseUrl = apiPath + sysApi + "/";
 var repairUrl = apiPath + repairApi + "/";
-var queryUrl = baseUrl + "com.hsapi.system.basic.organization.getCompanyAll.biz.ext";//"com.hsapi.system.employee.employeeMgr.employeeSave.biz.ext";
+var queryUrl = baseUrl + "com.hsapi.system.basic.organization.getCompanyAllWithPage.biz.ext";//"com.hsapi.system.employee.employeeMgr.employeeSave.biz.ext";
 var moreOrgGrid = null;
 var empId = null;
 $(document).ready(function(v) {
@@ -28,6 +28,9 @@ function onSearch(){
 	var params = {};
 	params.name = nui.get("name").getValue().replace(/\s+/g, "");
 	params.code = nui.get("code").getValue().replace(/\s+/g, "");
+	if(currTenantId==0){
+		params.tenantId = 0;
+	}
 	moreOrgGrid.load({
 		params:params,
 		token : token

@@ -559,7 +559,9 @@
 									<tbody>
 										<tr>
 											<td height="40">
-											
+											<!-- <div  id="showUserCode" style="" >
+                                              <input class="nui-TextArea" name="showUserCode"  style="width: 80%; height: 40px;" id="strCode" onvaluechanged="showUserQuan" /> 
+											 </div> -->
                                              <div  id="show">
                                              
                                              </div>

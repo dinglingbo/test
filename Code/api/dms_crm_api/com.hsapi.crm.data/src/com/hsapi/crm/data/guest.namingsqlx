@@ -18,6 +18,7 @@
         c.name name,
         c.wechat_open_id wechatOpenId,
         c.mobile ,
+        c.id conId,
         b.first_come_date firstComeDate,
         b.chain_come_times chainComeTimes,
         b.last_come_date lastComeDate

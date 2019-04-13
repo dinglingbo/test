@@ -66,7 +66,9 @@ $(document).ready(function(v) {
 			if(userCoupon.couponType == 1){
 				boolean = coupon(userCoupon);
 			}else{
-				boolean = excCoupon(userCoupon);
+				excCoupon(userCoupon,function(tem){
+					boolean = tem;
+				});
 			}
 			if(boolean){	
 				/*if(document.getElementById(str).getAttribute("class")=="quan-item1"){
@@ -114,12 +116,13 @@ function coupon(userCoupon){
 }
 
 
-function excCoupon(userCoupon){
+function excCoupon(userCoupon,callback){
 	//判断是否使用了两张相同的专属券
+	var boolean = false;
 	for(var key in codeHash ){
 		var itemId = codeHash[key].itemId;
 		if(itemId == userCoupon.itemId){
-			return false;
+			callback && callback(boolean);
 		}
 	 }
 	var json = {
@@ -135,15 +138,18 @@ function excCoupon(userCoupon){
 		async: false,
 		success : function(rs) {
 			if(rs.itemList.length == 0){
-				return false;
+				boolean = false;
 			}else{
-				return true;
+				boolean = true;
 			}
+			callback && callback(boolean);
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			// nui.alert(jqXHR.responseText);
 			console.log(jqXHR.responseText);
+			
 		}
+		
 	});
 }
 

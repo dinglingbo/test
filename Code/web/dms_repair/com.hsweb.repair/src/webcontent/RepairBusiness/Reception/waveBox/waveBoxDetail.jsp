@@ -377,8 +377,8 @@
                             <ul id="popupMenuMore" class="nui-menu" style="display:none;">
                                 <li iconCls="" onclick="unfinish()" id="addBtn">返单</li>
                                 <li iconCls="" onclick="updateBillExpense()" id="billExpense">费用登记</li>
-                                <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount">新增报销单</li>
-                                <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount1">修改报销单</li>
+                                <!-- <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount">新增报销单</li> -->
+                                <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount1">报销单</li>
                             </ul>
                         </td>
                     </tr>

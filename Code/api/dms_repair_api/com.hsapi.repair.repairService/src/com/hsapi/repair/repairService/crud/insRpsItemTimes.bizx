@@ -38,7 +38,7 @@
       <sourceNode>assign0</sourceNode>
       <targetNode>assign2</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link2" name="产品不能为空" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link2" name="项目ID不能为空" displayName="连接线" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>assign1</targetNode>
       <process:transitionCondition>

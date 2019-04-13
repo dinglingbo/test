@@ -75,6 +75,7 @@
  var y = 0;
  var score = 0;
  var lcheckDate = '';
+ var contactorF = null;
  var prdtTypeHash = {
     "1":"套餐",
     "2":"项目",
@@ -748,6 +749,7 @@ function setInitData(params){
                     var guest = text.guest||{};
                     var car = text.car || {};
                     var contactor = text.contactor||{};
+                    contactorF = contactor;
                     if(errCode == 'S'){
                         $("#servieIdEl").html(data.serviceCode);
                         var carNo = data.carNo||"";
@@ -980,6 +982,7 @@ function setFrom(data){
             var guest = text.guest||{};
             var car = text.car || {};
             var contactor = text.contactor||{};
+            contactorF = contactor;
             var car = text.car || {};
             if(errCode == 'S'){
                 $("#servieIdEl").html(data.serviceCode);
@@ -3313,7 +3316,10 @@ function onPay(data){
         guestId:data.guestId||0,
         carNo:data.carNo||0,
         guestName:$("#guestNameEl").text(),
-        data:sellData
+        data:sellData,
+        contactor:contactorF,
+        carId:fcarId,
+        billTypeId:2
     };
     doBillPay(params, function(data){
         data = data||{};

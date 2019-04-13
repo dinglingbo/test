@@ -16,8 +16,8 @@
     <script src="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menu/menu.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menupop.js" type="text/javascript"></script>
     <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/tabs.css" rel="stylesheet" type="text/css" />
-    <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/frame.css" rel="stylesheet" type="text/css" />
-    <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/index.css" rel="stylesheet" type="text/css" />
+    <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/frame.css?v=1.0.14" rel="stylesheet" type="text/css" />
+    <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/index.css?v=1.0.17" rel="stylesheet" type="text/css" />
     <link href="<%=webPath + contextPath%>/common/nui/themes/cupertino/skin.css" rel="stylesheet"	type="text/css" />
     <link href="<%=request.getContextPath()%>/common/nui/res/third-party/scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
     <link href="<%=request.getContextPath()%>/coframe/auth/loginCloud/feedback/feedback.css" rel="stylesheet" type="text/css" />
@@ -29,15 +29,15 @@
 	cursor: pointer;
 	 color:black;
 }
-    .navbar-brand
-{
-    width:210px;
-    background:#368bf4;/* 20180708#fff */
-    cursor:default;
-    font-size: 20px;
-    font-weight: bold;   
-    white-space:nowrap; 
-}
+/*    .navbar-brand 
+	 { 
+	     width:210px; 
+	     background:#368bf4; 
+	     cursor:default; 
+	     font-size: 20px; 
+	    font-weight: bold;    
+	     white-space:nowrap; 
+	 } */
     #_sys_tip_msg_ {
         z-index: 9999;
         position: fixed;
@@ -143,16 +143,16 @@
 </div>
 <div id="toolData" class="sidebar" >
 	<div id="tu" style="overflow-y:auto;overflow-x:auto; width:800px; height:50px;">
-    	<a><img class="icon" src="<%=webPath + contextPath%>/coframe/auth/images/icon.jpg" /></a>
+    	<a><img class="icon" id="icon" src="<%=webPath + contextPath%>/coframe/auth/images/cloud-icon.jpg" /></a>
     </div>
     <div id="mainMenu" style="overflow:auto; width:800px;">
     	
     </div>
 </div>
 
-<div class="container">
-    <div class="navbar">
-        <div class="navbar-brand">配思云汽配管理系统</div>
+<div class="container" >
+    <div class="navbar" id="skin">
+        <div class="navbar-brand" id="systemName">配思云汽配管理系统</div>
         <ul class="nav navbar-nav navbar-right">
             <!-- <li><a href="#"><i class="fa fa-paper-plane"></i> 代办事项</a></li>
             <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li> -->
@@ -186,6 +186,18 @@
                     <!--  <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li> -->
                     <!-- <li><a href="#"><i class="fa fa-eye "></i> 用户信息</a></li> -->
                     <li><a href="<%=request.getContextPath()%>/coframe/auth/loginCloud/logout.jsp"><i class="fa fa-user"></i> 退出登录</a></li>
+                </ul>
+            </li>
+            <li class="dropdown" width="10px">
+                <a class="dropdown-toggle" style="padding-top: 18px;" >
+                    <span >换肤</span><i class="fa fa-angle-down" ></i>
+                </a>
+                <ul class="dropdown-menu pull-right" >
+                     <li ><a href="javascript:updateSkin('#368bf4');" ><div style="width:10px;height:15px;background-color: #368bf4;float:left;"></div>经典蓝</a></li>
+                     <li ><a href="javascript:updateSkin('#285e9f');" ><div style="width:10px;height:15px;background-color: #285e9f;float:left;"></div>深湛蓝</a></li>
+                     <li><a href="javascript:updateSkin('#f36205');"><div style="width:10px;height:15px;background-color: #f36205;float:left;"></div>秋日橙</a></li> 
+                     <li><a href="javascript:updateSkin('#c1c1c1');"><div style="width:10px;height:15px;background-color: #c1c1c1;float:left;"></div>极简灰</a></li>
+                     <li><a href="javascript:updateSkin('#42485b');"><div style="width:10px;height:15px;background-color: #42485b;float:left;"></div>炫酷黑</a></li>
                 </ul>
             </li>
             <li class="dropdown">
@@ -236,6 +248,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
     var show=0;
     var titleUrl = null;
     var title = null;
+    skin();
     
 /*     $(document).ready(function(v) {
     moreOrgGrid = nui.get("moreOrgGrid");
@@ -246,6 +259,14 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
     });
     
 }); */
+
+// 	if(currSystemImg!=""){
+// 		$("#icon").attr("src",currSystemImg||webPath + contextPath + "/common/images/logo.jpg");
+// 	}
+// 	if(currSystemName!=""){
+// 		$('#systemName').html(currSystemName);
+// 	}
+	
     function OrgShow(){
     	searchOrg();
         advancedOrgWin.show();
@@ -362,6 +383,66 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
             width: "370px",
             height: "200px"
         });
+    }
+    
+    function updateSkin(color){
+	    var queryEmployeeUrl = baseUrl+"com.hsapi.system.tenant.employee.queryEmployee.biz.ext";
+	    nui.ajax({
+	        url : queryEmployeeUrl,
+	        type : "post",
+	        cache : false,
+	        data : JSON.stringify({
+	            params: { 
+	                orgid : currOrgId,
+	                empid : currEmpId
+	            },
+	            token:token
+	        }),
+	        success : function(text) {
+	            var list = text.rs||{};
+	            if(list.length==0){
+	                //showMsg("此用户无法修改","W");
+	            }else{
+					updateSkinColor(list[0],color);
+	            }
+	        },
+	        error : function(jqXHR, textStatus, errorThrown) {
+	            console.log(jqXHR.responseText);
+	        }
+	    });
+    }
+    
+       function skin(){
+	    var queryEmployeeUrl = baseUrl+"com.hsapi.system.tenant.employee.queryEmployee.biz.ext";
+	    nui.ajax({
+	        url : queryEmployeeUrl,
+	        type : "post",
+	        cache : false,
+	        data : JSON.stringify({
+	            params: { 
+	                orgid : currOrgId,
+	                empid : currEmpId
+	            },
+	            token:token
+	        }),
+	        success : function(text) {
+	            var list = text.rs||{};
+	            if(list.length==0){
+	                showMsg("此用户无法修改","W");
+	            }else{
+	      			if(list[0].backgroundColor!=null){
+	      				document.getElementById("skin").style.backgroundColor =list[0].backgroundColor; 
+	      			}else{
+	      				document.getElementById("skin").style.backgroundColor ="#368bf4"; 
+	      			}
+					
+	                    //list[0]
+	            }
+	        },
+	        error : function(jqXHR, textStatus, errorThrown) {
+	            console.log(jqXHR.responseText);
+	        }
+	    });
     }
     
     function updateEmployee(){
@@ -697,5 +778,40 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
     function showIndexWarn(message) {
         showMsgBox_index(message, "W");
     };
+    
+    var saveUrl = baseUrl + "com.hsapi.system.tenant.employee.saveEmployee.biz.ext";
+    function updateSkinColor(emp,color){
+		emp.backgroundColor = color;
+	    nui.mask({
+	        el : document.body,
+	        cls : 'mini-mask-loading',
+	        html : '换肤中...'
+	    });
+	    nui.ajax({
+	        url:saveUrl,
+	        type:"post",
+	        data:JSON.stringify({
+	        	emp:emp,
+	        	token: token
+	        }),
+	        success:function(data)
+	        {
+	            nui.unmask();
+	            data = data||{};
+	            if (data.errCode == 'S') {
+	                //showMsg(data.errMsg,"S");
+					skin();
+	            }else{
+	                //showMsg(data.errMsg,"W");
+	                //basicInfoForm.setData([]); 
+	            }
+	        },
+	        error:function(jqXHR, textStatus, errorThrown){
+	            //  nui.alert(jqXHR.responseText);
+	           
+	            closeWindow("cal");
+	        }
+	    });
+	}
 
 </script>

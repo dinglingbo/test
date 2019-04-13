@@ -115,21 +115,36 @@ $(document).ready(function ()
             servieTypeList.forEach(function(v) {
                 servieTypeHash[v.id] = v;
             });
-            serviceTypeIds.setData(servieTypeList);
+            //serviceTypeIds.setData(servieTypeList);
 
-            initCarBrand("carBrandId",function(data) {
+/*            initCarBrand("carBrandId",function(data) {
                 brandList = nui.get("carBrandId").getData();
                 brandList.forEach(function(v) {
                     brandHash[v.id] = v;
                 });
 
-            });
+            });*/
 
 
         });
 
     });
-    
+    mainGrid.on("cellclick",function(e){ 
+		var field=e.field;
+		var row = e.row;
+        if(field=="isOutBill" ){
+        	if(e.value==1){
+    			var item={};
+    			item.id = "123321";
+    		    item.text = "报销单详情";
+    			item.url =webBaseUrl+  "com.hsweb.print.ExpenseAccount.flow";
+    			item.iconCls = "fa fa-file-text";
+    			row.isEdit = true;//打开页面是否可编辑
+    			window.parent.activeTabAndInit(item,row);
+        	}
+
+        }
+    });
     mainGrid.on("preload",function(e)
     	    {
     	        var data = e.result.data;
@@ -137,18 +152,32 @@ $(document).ready(function ()
 
     	        for(var i=0;i<data.length;i++)
     	        {
-    	            for(var j=0;j<outBill.length;j++)
-    	            {
-    	                if(data[i].id == outBill[j].sourceServiceId)
-    	                {
-    	                	data[i].packageSubtotal = outBill[j].packageAmt;
-    	                	data[i].itemSubtotal = outBill[j].itemAmt;
-    	                	data[i].partSubtotal = outBill[j].partAmt;
-    	                	data[i].total = parseFloat(outBill[j].packageAmt)+parseFloat(outBill[j].itemAmt)+parseFloat(outBill[j].partAmt);
-    	                }
-    	            }
-
-
+    	        	if(data[i].isOutBill==1){
+        	            for(var j=0;j<outBill.length;j++)
+        	            {
+        	                if(data[i].id == outBill[j].sourceServiceId)
+        	                {
+        	                	//报销单显示报销单数据
+        	                	data[i].packageSubtotal = outBill[j].packageAmt;
+        	                	data[i].itemSubtotal = outBill[j].itemAmt;
+        	                	data[i].partSubtotal = outBill[j].partAmt;
+        	                	data[i].total = parseFloat(outBill[j].packageAmt)+parseFloat(outBill[j].itemAmt)+parseFloat(outBill[j].partAmt);
+        	                	//报销单不显示优惠信息和结算信息
+        	                	data[i].packagePrefAmt = null;
+        	                	data[i].itemPrefAmt = null;
+        	                	data[i].partPrefAmt = null;
+        	                	data[i].otherAmt = null;
+        	                	data[i].incomeTotal = null;
+        	                	data[i].netinAmt = null;
+        	                	data[i].cardTimesAmt = null;
+        	                	data[i].balaAmt = null;
+        	                	data[i].grossProfit = null;
+        	                	data[i].grossProfitRate = null;
+        	                	data[i].grossProfitRemark = null; 
+        	                	outBill.splice(j,1);//如果已经匹配，删除本记录，降低循环时间
+        	                }
+        	            }
+    	        	}
     	        }   	              
     	        mainGrid.setData(data);
     	    });
@@ -614,10 +643,8 @@ function advancedSearch()
 	
     advancedSearchWin.show();
     advancedSearchForm.clear();
-    if(advancedSearchFormData)
-    {
-        advancedSearchForm.setData(advancedSearchFormData);
-    }
+    nui.get("sEnterDate1").setValue(getMonthStartDate());
+    nui.get("eEnterDate1").setValue(getMonthEndDate());
 }
 
 function onAdvancedSearchOk()
@@ -637,6 +664,7 @@ function onAdvancedSearchOk()
 	}
     
     searchData.mtAuditorId = mtAdvisorIdEl.getValue();
+    searchData.serviceTypeIds = serviceTypeIdEl.getValue();
     searchData.guestProperty = nui.get("guestProperty").getValue();
     searchData.propertyFeatures = nui.get("propertyFeatures").getValue();
     var billTypeIdList =  nui.get("billTypeIdList").getValue();
@@ -648,7 +676,7 @@ function onAdvancedSearchOk()
     	searchData.status = nui.get("statusId").getValue();
     }
     var settleType = nui.get("settleType").getValue();
-    if(settleType==0){
+    if(settleType==4){
     	searchData.balaAuditSign = 0;
     }else if(settleType==1){
     	searchData.balaAuditSign = 1;
@@ -668,7 +696,7 @@ function onAdvancedSearchOk()
     searchData.mobile = nui.get("mobile").getValue();
     advancedSearchWin.hide();
     doSearch2(searchData);
-    advancedSearchForm.gusetId=null;
+
   
 }
 function doSearch2(params){
@@ -684,4 +712,16 @@ function onAdvancedSearchCancel(){
 
 function cancelData(){
 	advancedSearchForm.setData([]);
+    nui.get("sEnterDate1").setValue(getMonthStartDate());
+    nui.get("eEnterDate1").setValue(getMonthEndDate());
+}
+
+function queryExpense(){
+	var row = mainGrid.getSelected();
+		var item={};
+		item.id = "123321";
+	    item.text = "报销单详情";
+		item.url =webBaseUrl+  "com.hsweb.print.ExpenseAccount.flow";
+		item.iconCls = "fa fa-file-text";
+		window.parent.activeTabAndInit(item,row);
 }

@@ -9,8 +9,8 @@ var getdRpsPackageUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPack
 var getRpsItemUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext";
 var getRpsPartUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext";
 
-var getRpsItemBillUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemPPartBill.biz.ext";
-var getdRpsPackageBillUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPartBill.biz.ext";
+//var getRpsItemBillUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemPPartBill.biz.ext";
+//var getdRpsPackageBillUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPartBill.biz.ext";
 var beginDateEl = null;
 var endDateEl = null;
 var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"车架号(VIN)"},{id:"2",name:"客户名称"},{id:"3",name:"手机号"},{id:"4",name:"工单号"}];
@@ -99,7 +99,7 @@ $(document).ready(function ()
             servieTypeList.forEach(function(v) {
                 servieTypeHash[v.id] = v;
             });
-            serviceTypeIds.setData(servieTypeList);
+/*            serviceTypeIds.setData(servieTypeList);
 
             initCarBrand("carBrandId",function(data) {
                 brandList = nui.get("carBrandId").getData();
@@ -107,11 +107,27 @@ $(document).ready(function ()
                     brandHash[v.id] = v;
                 });
 
-            });
+            });*/
 
 
         });
 
+    });
+    mainGrid.on("cellclick",function(e){ 
+		var field=e.field;
+		var row = e.row;
+        if(field=="isOutBill" ){
+        	if(e.value==1){
+    			var item={};
+    			item.id = "123321";
+    		    item.text = "报销单详情";
+    			item.url =webBaseUrl+  "com.hsweb.print.ExpenseAccount.flow";
+    			item.iconCls = "fa fa-file-text";
+    			row.isEdit = true;//打开页面是否可编辑
+    			window.parent.activeTabAndInit(item,row);
+        	}
+
+        }
     });
     mainGrid.on("drawSummaryCell", function (e) {
     	var result = e.result.list;
@@ -271,7 +287,7 @@ $(document).ready(function ()
                 break;
         }
     });
-    quickSearch(4);
+    //quickSearch(4);
     
 });
 var statusHash = {
@@ -294,13 +310,15 @@ function onShowRowDetail(e) {
     var td = mainGrid.getRowDetailCellEl(row);
     td.appendChild(editFormDetail);
     editFormDetail.style.display = "";
-    if(row.isOutBill==1){
+/*    if(row.isOutBill==1){
         innerItemGrid.setUrl(getRpsItemBillUrl);
         innerpackGrid.setUrl(getdRpsPackageBillUrl);
     }else{
         innerItemGrid.setUrl(getRpsItemUrl);
         innerpackGrid.setUrl(getdRpsPackageUrl);
-    }
+    }*/
+    innerItemGrid.setUrl(getRpsItemUrl);
+    innerpackGrid.setUrl(getdRpsPackageUrl);
     innerItemGrid.setData([]);
     innerpackGrid.setData([]);
     var serviceId = row.id;
@@ -403,10 +421,13 @@ function doSearch() {
     if(gsparams.billTypeIds && gsparams.billTypeIds==5){
     	gsparams.billTypeIds = "0,2,4,6";
     }
-    if(nui.get("isCollectMoney").getValue()==0){
+    if(nui.get("isCollectMoney").getValue()==1){
+    	gsparams.isCollectMoneys="0,1";
+    }else{
+    	
+    	gsparams.isSettle = 1;
     	gsparams.isCollectMoney=1;
     }
-    gsparams.isSettle = 1;
    // gsparams.billTypeId = 0;
     gsparams.isDisabled = 0;
 
@@ -730,10 +751,8 @@ function advancedSearch()
 	
     advancedSearchWin.show();
     advancedSearchForm.clear();
-    if(advancedSearchFormData)
-    {
-        advancedSearchForm.setData(advancedSearchFormData);
-    }
+    nui.get("sEnterDate1").setValue(getMonthStartDate());
+    nui.get("eEnterDate1").setValue(getMonthEndDate());
 }
 
 function onAdvancedSearchOk()
@@ -751,10 +770,8 @@ function onAdvancedSearchOk()
 	if(nui.get("eEnterDate1").getValue()){
 		searchData.eEnterDate = addDate(nui.get("eEnterDate1").getValue(),1);  
 	}
-	    if((nui.get("isCollectMoney").getValue())!=1){
-	searchData.isCollectMoney = 1;
-} 
-	
+
+	searchData.serviceTypeIds = serviceTypeIdEl.getValue();
     searchData.mtAuditorId = mtAdvisorIdEl.getValue();
     searchData.guestProperty = nui.get("guestProperty").getValue();
     searchData.propertyFeatures = nui.get("propertyFeatures").getValue();
@@ -778,6 +795,13 @@ function onAdvancedSearchOk()
     }else if(settleType==3){
     	searchData.isCollectMoney = 1;
     }*/
+    var settleType = nui.get("settleType").getValue();
+    if(settleType==1){
+    	searchData.isCollectMoney = 0;
+    }else if(settleType==2){
+    	searchData.balaAuditSign = 1;
+    	searchData.isCollectMoney = 1;
+    }
     
 /*    if((nui.get("auditSign").getValue())!=999){
     	searchData.isSettle = nui.get("auditSign").getValue();
@@ -800,8 +824,11 @@ function doSearch2(params){
 function onAdvancedSearchCancel(){
     advancedSearchForm.clear();
     advancedSearchWin.hide();
+
 }
 
 function cancelData(){
 	advancedSearchForm.setData([]);
+    nui.get("sEnterDate1").setValue(getMonthStartDate());
+    nui.get("eEnterDate1").setValue(getMonthEndDate());
 }

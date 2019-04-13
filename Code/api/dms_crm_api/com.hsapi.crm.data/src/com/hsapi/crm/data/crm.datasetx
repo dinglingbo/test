@@ -2481,11 +2481,7 @@
       </viewField>
     </columnProperty>
   </nodes>
-  <nodes xsi:type="model:PEntityNode" id="node5" name="CrmSellChanceDetail" nodeType="table" displayName="CrmSellChanceDetail" author="Administrator" instanceClass="" table="crm_sell_chance_detail" genStrategy="native">
-    <location x="60" y="2310"/>
-    <size height="354" width="150"/>
-    <figSize height="20" width="150"/>
-    <columnProperty id="property100" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
+
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>

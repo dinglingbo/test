@@ -526,6 +526,8 @@ function setInitData(params, ck, cck){
     //     enterGrid.focus();
     // });
 }
+
+//按Enter，编码后匹配
 function morePartSearch(){
     var params = {}; 
     params.partCode = morePartCodeEl.getValue().replace(/\s+/g, "");
@@ -536,6 +538,74 @@ function morePartSearch(){
     var sortTypeValue = sortTypeEl.getValue();
 
     if(!params.partCode && !params.partName && !params.serviceId && !params.partBrandId){
+        showMsg("请输入查询条件!","W");
+        return;
+    }
+
+    var tab = morePartTabs.getActiveTab();
+    if(tab.name == "enterTab"){
+        if(sortTypeValue == 1){
+            params.sortField = "B.ENTER_DATE";
+            params.sortOrder = "asc";
+        }else if(sortTypeValue == 2){
+            params.sortField = "B.ENTER_DATE";
+            params.sortOrder = "desc";
+        }else if(sortTypeValue == 3){
+            params.sortField = "b.OUTABLE_QTY";
+            params.sortOrder = "asc";
+        }else if(sortTypeValue == 4){
+            params.sortField = "b.OUTABLE_QTY";
+            params.sortOrder = "desc";
+        }else if(sortTypeValue == 5){
+            params.sortField = "B.ENTER_PRICE";
+            params.sortOrder = "asc";
+        }else if(sortTypeValue == 6){
+            params.sortField = "B.ENTER_PRICE";
+            params.sortOrder = "desc";
+        }
+        enterGrid.load({params:params},function(e){
+            enterGrid.focus();
+        });
+    }else if(tab.name == "partInfoTab"){
+        params.showStock = showStockEl.getValue();
+        if(sortTypeValue == 1){
+            params.sortField = "b.last_enter_date";
+            params.sortOrder = "asc";
+        }else if(sortTypeValue == 2){
+            params.sortField = "b.last_enter_date";
+            params.sortOrder = "desc";
+        }else if(sortTypeValue == 3){
+            params.sortField = "b.stock_qty";
+            params.sortOrder = "asc";
+        }else if(sortTypeValue == 4){
+            params.sortField = "b.stock_qty";
+            params.sortOrder = "desc";
+        }else if(sortTypeValue == 5){
+            params.sortField = "b.cost_price";
+            params.sortOrder = "asc";
+        }else if(sortTypeValue == 6){
+            params.sortField = "b.cost_price";
+            params.sortOrder = "desc";
+        }
+
+        morePartGrid.load({params:params},function(e){
+            morePartGrid.focus();
+        });
+    }
+    
+}
+
+//点击查询按钮,编码全匹配
+function morePartSearchAll(){
+    var params = {}; 
+    params.partCodeAll = morePartCodeEl.getValue().replace(/\s+/g, "");
+    params.partName = morePartNameEl.getValue().replace(/\s+/g, "");
+    params.showStock = showStockEl.getValue().replace(/\s+/g, "");
+    params.serviceId = moreServiceIdEl.getValue().replace(/\s+/g, "");
+    params.partBrandId = nui.get('partBrandId').getValue().replace(/\s+/g, "");
+    var sortTypeValue = sortTypeEl.getValue();
+
+    if(!params.partCodeAll && !params.partName && !params.serviceId && !params.partBrandId){
         showMsg("请输入查询条件!","W");
         return;
     }

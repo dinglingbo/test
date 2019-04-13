@@ -661,8 +661,8 @@ function pay() {
     var b1= nui.get('settleTypeId').getValue();
     sTypeId = b1;
     t_amt= detailGrid.getSummaryCellEl("amt").textContent;
-    t_rtnCompRate= detailGrid.getSummaryCellEl("rtnCompRate").textContent;
-    t_rtnGuestRate= detailGrid.getSummaryCellEl("rtnGuestRate").textContent;
+    t_rtnCompRate= detailGrid.getSummaryCellEl("rtnCompAmt").textContent;
+    t_rtnGuestRate= detailGrid.getSummaryCellEl("rtnGuestAmt").textContent;
     if (sTypeId == 3){
         moneyCost = parseFloat(t_amt - t_rtnGuestRate).toFixed(2);
     }else{

@@ -181,9 +181,7 @@
             </li>
             <li class="dropdown" width="10px">
                 <a class="dropdown-toggle" style="padding-top: 18px;" >
-                    <span >
-
-</span><i class="fa fa-angle-down" ></i>
+                    <span >换肤</span><i class="fa fa-angle-down" ></i>
                 </a>
                 <ul class="dropdown-menu pull-right" >
                      <li ><a href="javascript:updateSkin('#368bf4');" ><div style="width:10px;height:15px;background-color: #368bf4;float:left;"></div>经典蓝</a></li>

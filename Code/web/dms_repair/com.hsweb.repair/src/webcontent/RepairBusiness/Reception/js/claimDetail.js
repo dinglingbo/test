@@ -980,13 +980,13 @@ function setInitData(params){
                         	doSetStyle(status, isSettle);                       	
                         }
 
-                        if(data.isOutBill){
+                        /*if(data.isOutBill){
                         	nui.get("ExpenseAccount").setVisible(false);
                         	nui.get("ExpenseAccount1").setVisible(true);
                         }else{
                         	nui.get("ExpenseAccount").setVisible(true);
                         	nui.get("ExpenseAccount1").setVisible(false);
-                        }
+                        }*/
                         //设置联系人姓名
                         nui.get("contactorName").setText(contactor.name);
                         sendGuestForm.setData(data);
@@ -1085,8 +1085,8 @@ function add(){
     $("#guestTelEl").html("");
     $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
 
-    nui.get("ExpenseAccount").setVisible(true);
-    nui.get("ExpenseAccount1").setVisible(false);
+    /*nui.get("ExpenseAccount").setVisible(true);
+    nui.get("ExpenseAccount1").setVisible(false);*/
     document.getElementById("showA1").style.display = "";
 	document.getElementById("showA").style.display='none';
 	advancedCardTimesWin.hide();

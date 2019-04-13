@@ -1164,7 +1164,7 @@
 			inner JOIN rpb_car b ON ( a.car_id = b.id )
 		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
 			inner join rps_settlement d on (a.id =  d.service_id)
-		WHERE 1 = 1 and a.is_settle = 1
+		WHERE 1 = 1 
 			
       <dynamic>
 			<isNotEmpty prepend="and" property="rid">
@@ -1178,6 +1178,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="isCollectMoney">
                 (a.is_collect_money = #isCollectMoney#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isCollectMoneys">
+                (a.is_collect_money in ($isCollectMoneys$))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="orgid">
                 (a.orgid = #orgid#)
@@ -1271,6 +1274,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="serviceTypeId">  
                 (a.service_type_id = #serviceTypeId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeIds">  
+                (a.service_type_id in ($serviceTypeIds$))
             </isNotEmpty>
               <!--是否出库-->
             <isNotEmpty prepend="and" property="isCheck">  
@@ -1600,6 +1606,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="billTypeId">  
                 (a.bill_type_id = #billTypeId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeIds">  
+                (a.service_type_id in ($serviceTypeIds$))
             </isNotEmpty>
              <isNotEmpty prepend="and" property="billTypeIdList">  
                 (a.bill_type_id in ($billTypeIdList$))

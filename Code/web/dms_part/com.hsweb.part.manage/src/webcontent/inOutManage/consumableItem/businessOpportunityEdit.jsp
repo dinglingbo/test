@@ -12,7 +12,7 @@
 <head>
 <title>商机添加</title>
 <script
-	src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/businessOpportunityEdit.js?v=1.2.2"></script>
+	src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/businessOpportunityEdit.js?v=1.2.4"></script>
 </head>
 <body>
 		     <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
@@ -28,7 +28,7 @@
 		
 		<div id="basicInfoForm" style="padding-top: 5px;">
 			<!-- hidden域 -->
-			<input class="nui-hidden" name="id"  /> 
+			<input class="nui-hidden" name="id" /> 
 			<table style="width: 100%; table-layout: fixed;white-space: nowrap;"
 				class="nui-form-table">
 				<tr>

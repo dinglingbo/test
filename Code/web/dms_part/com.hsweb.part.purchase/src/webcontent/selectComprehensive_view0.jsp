@@ -10,7 +10,7 @@
 -->
 <head>
 <title>已结算工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.0.46"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.0.52"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -96,6 +96,7 @@
         <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="carNoSearch"/>
                              <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
+		包含未收款： <div  class="nui-checkbox" id="isCollectMoney" name="isCollectMoney" value="1"  trueValue="1" falseValue="0"></div> 
     	<a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
      	<a class="nui-button" plain="true" onclick="advancedSearch()">
 		<span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>  
@@ -139,7 +140,8 @@
 	                  	<div field="guestFullName" name="guestFullName" width="100" headerAlign="center"  allowsort="true" header="客户名称" allowsort="ture"></div> 
 		                  <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌号" allowsort="true"></div>
 	                  <div field="mtAdvisor" name="mtAdvisor" width="110" headerAlign="center" allowsort="true" header="服务顾问"></div>
-	                   <div field="collectMoneyDate" name="collectMoneyDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="结算日期" allowsort="true"></div>	
+	                  <div type="checkboxcolumn" trueValue="1" falseValue="0"  field="isCollectMoney" name="isCollectMoney" width="60" headerAlign="center" header="是否收款" allowsort="true"></div>
+	                   <div field="collectMoneyDate" name="collectMoneyDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="收款日期" allowsort="true"></div>	
 	                 </div>
                   </div>
                   <div type="checkcolumn" name="checkcolumn" visible="false"></div>
@@ -186,7 +188,7 @@
 	                  <div property="columns" >		
 	                  	  <div field="netinAmt" name="netinAmt" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="营收金额" dataType="float"></div>	
 		                  <div field="cardTimesAmt" name="cardTimesAmt" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="计次卡抵扣" dataType="float"></div>
-	                  	  <div field="balaAmt" name="contactName" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="结算金额" dataType="float"></div>	
+	                  	  <div field="balaAmt" name="contactName" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="收款金额" dataType="float"></div>	
 	                  	 <!--  <div field="totalPrefRate" name="totalPrefRate" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="整单优惠率"></div> 	 -->                  	                 
 		                 <!--  <div field="totalPrefAmt" name="totalPrefAmt" width="70" headerAlign="center" allowsort="true" header="整单优惠金额"></div> -->
 		                  <div field="grossProfit"  width="70" headerAlign="center" summaryType="sum" allowsort="true" header="毛利" dataType="float"></div>
@@ -262,61 +264,7 @@
 </div>
 
 
-<div id="advancedSearchWin" class="nui-window"
-     title="高级查询" style="width:416px;height:220px;"
-     showModal="true"
-     allowResize="false"
-     allowDrag="true">
-    <div id="advancedSearchForm" class="form">
-        <table style="width:100%;">
-            
-            <input name="carBrandId"
-                id="carBrandId" visible="false"
-                class="nui-combobox"
-                textField="name"
-                valueField="id"/>
-           <input name="serviceTypeId"
-                id="serviceTypeId" visible="false"
-                class="nui-combobox"
-                textField="name"
-                valueField="id"/>
-            <tr>
-                <td class="title">创建日期:</td>
-                <td>
-                    <input id="sRecordDate"
-                           name="sRecordDate"
-                           width="100%"
-                           class="nui-datepicker"/>
-                </td>
-                <td class="">至:</td>
-                <td>
-                    <input id="eRecordDate"
-                           name="eRecordDate"
-                           class="nui-datepicker"
-                           format="yyyy-MM-dd"
-                           timeFormat="H:mm:ss"
-                           showTime="false"
-                           showOkButton="false"
-                           width="100%"
-                           showClearButton="false"/>
-                </td>
-            </tr>
 
-            <tr>
-                <td class="title">业务类型:</td>
-                <td colspan="3">
-                    <div id="serviceTypeIds" name="serviceTypeIds" class="nui-checkboxlist" repeatItems="5" 
-                    repeatLayout="flow"  value="" 
-                    textField="name" valueField="id" ></div>
-                </td>
-            </tr>
-        </table>
-        <div style="text-align:center;padding:10px;">
-            <a class="nui-button" onclick="onAdvancedSearchCancel" style="width:60px;">取消</a>
-            <a class="nui-button" onclick="onAdvancedSearchOk" style="width:60px;margin-right:20px;">确定</a>
-        </div>
-    </div>
-</div>
 
 <div id="exportDiv" style="display:none">  
     <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
@@ -325,7 +273,7 @@
             <td colspan="1" align="center">工单类型</td>
             <td colspan="1" align="center">业务类型</td>
             <td colspan="1" align="center">服务顾问</td>
-             <td colspan="1" align="center">结算日期</td>
+             <td colspan="1" align="center">收款日期</td>
              
             <td colspan="1" align="center">客户姓名</td>
             <td colspan="1" align="center">车牌号</td>
@@ -355,7 +303,7 @@
             
             <td colspan="1" align="center">营收金额</td>
             <td colspan="1" align="center">计次卡抵扣</td>
-            <td colspan="1" align="center">结算金额</td>
+            <td colspan="1" align="center">收款金额</td>
             <!-- <td colspan="1" align="center">整单优惠率</td>  -->         
             <td colspan="1" align="center">毛利</td>
             <td colspan="1" align="center">毛利率</td>
@@ -411,7 +359,7 @@
  
 				<tr>
 					<td class="title">
-						<label>结算日期 从:</label>
+						<label>收款日期 从:</label>
 					</td>
 					<td>
 						<input class="nui-datepicker" id="collectMoneyDateStart" name="collectMoneyDateStart" allowInput="false" width="100%" format="yyyy-MM-dd"  showTime="false" showOkButton="false" showClearButton="false"/> 
@@ -459,8 +407,24 @@
 				        <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId" 
                        	 emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="100%" valueFromSelect="true"/>
 					</td>
-					<td></td>
-					<td></td>
+                        <td class="title">
+                            <label>业务类型：</label>
+                        </td>
+                        <td>
+                            <input name="serviceTypeId"
+                                   id="serviceTypeId"
+                                   class="nui-combobox"
+                                   textField="name"
+                                   valueField="id"
+                                   emptyText="请选择..."
+                                   url=""
+                                   multiSelect="true"
+                                   allowInput="true"
+                                   showNullItem="false"
+                                   width="100%"
+                                   valueFromSelect="true"
+                                   nullItemText="请选择..."/>
+                        </td>
 				</tr>		
 				 <tr>
 					<td class="title">
@@ -490,16 +454,25 @@
 						<input class="nui-radiobuttonlist" id="auditSign"  name="auditSign" emptyText="全部" data="[{billTypeId:999,text:'全部'},{billTypeId:0,text:'未出厂'},{billTypeId:1,text:'已出厂'}]"
                           width="100%"   textField="text" valueField="billTypeId"  allowInput="true" showNullItem="false" valueFromSelect="true"/>
 					</td>
-				</tr>
-				<tr>
+				</tr>--> 
+<!-- 				<tr>
 					<td class="title">
 						<label> 结算进程:</label>
 					</td>
 					<td colspan="3">
 						<input class="nui-radiobuttonlist" id="settleType" emptyText="全部" name="settleType" data="[{settleType:999,text:'全部'},{settleType:0,text:'在修'},{settleType:1,text:'预结算未出厂'},{settleType:2,text:'已出厂未收款'},{settleType:3,text:'已收款'}]"
-                        	width="100%"      textField="text" valueField="settleType" allowInput="true" showNullItem="false" valueFromSelect="true" />
+                        	width="100%"      value="999" textField="text" valueField="settleType" allowInput="true" showNullItem="false" valueFromSelect="true" />
 					</td>
-				</tr> --> 								
+				</tr>  -->		
+				<tr>
+					<td class="title">
+						<label> 收款状态:</label>
+					</td>
+					<td colspan="3">
+						<input class="nui-radiobuttonlist" id="settleType" emptyText="全部" name="settleType" data="[{settleType:999,text:'全部'},{settleType:1,text:'未收款'},{settleType:2,text:'已收款'}]"
+                        	width="100%"      value="999" textField="text" valueField="settleType" allowInput="true" showNullItem="false" valueFromSelect="true" />
+					</td>
+				</tr>						
 				<tr>
 					<td class="title">
 						<label>客户属性：</label>
@@ -516,14 +489,14 @@
 				        <input class="nui-textbox" name="propertyFeatures" id="propertyFeatures" emptyText="" valueField="customid"  textField="name" width="100%"  />
 					</td>
 				</tr>	
-				<tr>
+<!-- 				<tr>
 					<td class="title">
 						<label> 包含未收款：：</label>
 					</td>
 					<td colspan="3">
 				         <div  class="nui-checkbox" id="isCollectMoney" name="isCollectMoney" value="1"  trueValue="1" falseValue="0"></div> 
 					</td>
-				</tr>									
+				</tr>	 -->								
 
                        
                         

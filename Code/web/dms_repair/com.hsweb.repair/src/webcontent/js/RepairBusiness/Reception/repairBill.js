@@ -77,6 +77,7 @@ var x = 0;
 var y = 0;
 var showSellEl=null;
 var sfData = {};
+var contactorF = null;
 var prdtTypeHash = {
     "1":"套餐",
     "2":"项目",
@@ -904,6 +905,7 @@ function setInitData(params){
                     var car = text.car || {};
                     var carExtend = text.carExtend || {};
                     var contactor = text.contactor||{};
+                    contactorF = contactor;
                     if(errCode == 'S'){
                         $("#servieIdEl").html(data.serviceCode);
                         var carNo = data.carNo||"";
@@ -973,13 +975,13 @@ function setInitData(params){
                         	doSetStyle(status, isSettle);                       	
                         }
                       
-                        if(data.isOutBill){
+                        /*if(data.isOutBill){
                         	nui.get("ExpenseAccount").setVisible(false);
                         	nui.get("ExpenseAccount1").setVisible(true);
                         }else{
                         	nui.get("ExpenseAccount").setVisible(true);
                         	nui.get("ExpenseAccount1").setVisible(false);
-                        }
+                        }*/
                         sendGuestForm.setData(data);
                         //设置联系人姓名
                         nui.get("contactorName").setText(contactor.name);
@@ -1066,8 +1068,8 @@ function add(){
     $("#guestNameEl").html("");
     $("#guestTelEl").html("");
     $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
-    nui.get("ExpenseAccount").setVisible(true);
-    nui.get("ExpenseAccount1").setVisible(false);
+   /* nui.get("ExpenseAccount").setVisible(true);
+    nui.get("ExpenseAccount1").setVisible(false);*/
     document.getElementById("showA1").style.display = "";
 	document.getElementById("showA").style.display='none';
     //document.getElementById("showA").hide();
@@ -1154,6 +1156,7 @@ function setFrom(data){
              var guest = text.guest||{};
              var car = text.car || {};
              var contactor = text.contactor||{};
+             contactorF = contactor;
              if(errCode == 'S'){
                  $("#servieIdEl").html(data.serviceCode);
                  var carNo = data.carNo||"";
@@ -3538,7 +3541,10 @@ function pay(){
             guestId:data.guestId||0,
             carNo:data.carNo||0,
             guestName:$("#guestNameEl").text(),
-            data:sellData
+            data:sellData,
+            contactor:contactorF,
+            carId:fcarId,
+            billTypeId:0
         };
         doBillPay(params, function(data){
             data = data||{};
@@ -4158,7 +4164,7 @@ function addExpenseAccount(){
 		data.guestDesc = data2.guestDesc;
 		data.faultPhen = data2.faultPhen;
 		data.solveMethod = data2.solveMethod;
-		window.parent.activeTabAndInit(item,data);
+		window.parent.activeTabAndInit(item,data,);
 	}else{
 		showMsg("请先保存后再进行操作!","W");
 	}
@@ -5141,7 +5147,7 @@ function editSell() {
 					var data = row;
 					data.type = 'editT';
 					// 直接从页面获取，不用去后台获取
-					iframe.contentWindow.setData(data);
+					iframe.contentWindow.SetData(data);
 				},
 				ondestroy : function(action) {
 					if (action == "saveSuccess") {

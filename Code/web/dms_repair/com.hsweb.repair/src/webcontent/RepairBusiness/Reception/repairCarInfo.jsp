@@ -20,7 +20,7 @@
                 <input class="nui-hidden" name="billTypeId"/>
                 <input class="nui-hidden" name="status"/>
                 <input class="nui-hidden" name="isSettle"/>
-                <input class="nui-hidden" name="isOutBill"/>
+                <!-- <input class="nui-hidden" name="isOutBill"/> -->
                 <input class="nui-hidden" name="carModelIdLy"/>
                 <input class="nui-hidden" name="balaAuditor"/>
                 <input class="nui-hidden" name="balaAuditSign"/>

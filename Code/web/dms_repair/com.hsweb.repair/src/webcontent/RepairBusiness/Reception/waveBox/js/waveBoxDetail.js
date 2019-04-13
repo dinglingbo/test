@@ -3161,7 +3161,7 @@ function pay(){
             data:sellData,
             contactor:contactorF,
             carId:fcarId,
-            billTypeId:2
+            billTypeId:6
         };
         doBillPay(params, function(data){
             data = data||{};

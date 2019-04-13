@@ -157,6 +157,7 @@ function isEmptyObject (obj){
 	var str = ""
     var n = 1;
 	couponList = [];
+	deductionAmt = 0;
 	for(var key in obj ){
 		var objTemp = obj[key];
 		var temp = {};

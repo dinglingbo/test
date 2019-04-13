@@ -489,6 +489,40 @@ function getCarModel(callBack) {
 	});
 }
 
+var parsingCarNoUrl = apiPath+sysApi + "/com.hs.common.sysService.getCarVinByCarNo.biz.ext";
+function parsingCarNo() {
+	var carNo = nui.get("carNo").getValue(); 
+	 nui.mask({
+	        el: document.body,
+	        cls: 'mini-mask-loading',
+	        html: '数据加载中...'
+	 });
+	 var json = nui.encode({
+		 carNo:carNo,
+		 token:token
+	  });
+	 nui.ajax({
+	 		url : parsingCarNoUrl,
+	 		type : 'POST',
+	 		data : json,
+	 		cache : false,
+	 		contentType : 'text/json',
+	 		success : function(text) {
+	 			if(text.errCode=="S"){
+	 				nui.get("vin").setValue(text.data.vin); 
+	 				onParseUnderpanNo();
+	 			nui.unmask();
+	 			showMsg(text.errMsg || "绑定成功!","S");
+	 			return;
+	 			}else{
+	 				nui.unmask();
+	 				showMsg(text.errMsg,"E");
+	 				return;
+	 			}
+	 			
+	 		}
+	});
+}
 
 //设置车型
 function setCarModel(data){

@@ -9,15 +9,6 @@
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link19" name="link19" displayName="连接线" type="transition">
-      <sourceNode>start0</sourceNode>
-      <targetNode>subprocess1</targetNode>
-      <process:transitionCondition>
-        <process:complexCondition>
-          <process:code>1==1</process:code>
-        </process:complexCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <location x="60" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
@@ -27,7 +18,7 @@
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="queryCardTimesByGuestId" displayName="queryCardTimesByGuestIdNopage" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="queryItemTimesByUsable" displayName="queryItemTimesByUsable" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>assign2</targetNode>
@@ -43,25 +34,24 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
-    <targetConnections>link20</targetConnections>
     <location x="255" y="150"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.repair.baseData.query.queryCardTimesByGuestIdNopage</process:partner>
+      <process:partner type="literal">com.hsapi.repair.baseData.query.queryItemTimesByUsable</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="p" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">p</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="data" type="query" value="com.hsapi.repair.data.rps.RpsCardTimesDetail[]" valueType="DataObject">data</process:outputVariable>
+        <process:outputVariable id="0" name="data" type="query" value="com.hsapi.repair.data.rps.RpsItemTimes[]" valueType="DataObject">data</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="191" y="185"/>
-    <figSize height="17" width="155"/>
+    <location x="194" y="185"/>
+    <figSize height="17" width="148"/>
     <node>subprocess0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
@@ -76,10 +66,6 @@
     <process:copy>
       <process:from type="query" pattern="reference">cardDetailId</process:from>
       <process:to type="query">p/id</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">2</process:from>
-      <process:to type="query">p/status</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
@@ -117,7 +103,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">获取预存套餐信息失败</process:from>
+      <process:from type="literal" pattern="reference">获取服务项目信息失败</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -165,7 +151,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">获取预存套餐信息失败</process:from>
+      <process:from type="literal" pattern="reference">获取服务项目信息失败</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -213,7 +199,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">此预存信息的可使用次数为0</process:from>
+      <process:from type="literal" pattern="reference">此服务项目的可使用数量为0</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -382,8 +368,8 @@
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-      <process:return id="2" language="com.hsapi.repair.data.rps.RpsCardTimesDetail" name="updateCard" type="query" valueType="DataObject">updateCard</process:return>
-      <process:return id="3" language="com.hsapi.repair.data.rps.RpsCardTimesDetail" name="card" type="query" valueType="DataObject">card</process:return>
+      <process:return id="2" language="com.hsapi.repair.data.rps.RpsItemTimes" name="updateCard" type="query" valueType="DataObject">updateCard</process:return>
+      <process:return id="3" language="com.hsapi.repair.data.rps.RpsItemTimes" name="card" type="query" valueType="DataObject">card</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
@@ -410,44 +396,12 @@
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="queryRpsItemTimes" displayName="queryRpsItemTimes" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess1</sourceNode>
-      <targetNode>subprocess0</targetNode>
-    </sourceConnections>
-    <targetConnections>link19</targetConnections>
-    <location x="135" y="240"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess1label</nodeLabel>
-    <process:flow index="6" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.repair.baseData.query.queryRpsItemTimes</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="guestId" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
-        <process:inputVariable id="1" name="contactorId" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
-        <process:inputVariable id="2" name="carId" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
-        <process:inputVariable id="3" name="openId" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
-        <process:inputVariable id="4" name="carNo" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
-        <process:inputVariable id="5" name="id" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="rpsItemTimes" type="query" value="com.hsapi.repair.data.rps.RpsItemTimes" valueType="DataObject"></process:outputVariable>
-        <process:outputVariable id="1" name="itemList" type="query" value="com.hsapi.repair.data.rps.RpsItemTimes[]" valueType="DataObject"></process:outputVariable>
-        <process:outputVariable id="2" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="3" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="90" y="275"/>
-    <figSize height="17" width="116"/>
-    <node>subprocess1</node>
-  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-08-09 14:17:55" date="2018-08-09Z" description="" name="setCardTimesInfo" version="7.0.0.0"/>
   <process:variables>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="p"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsCardTimesDetail" name="data"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsItemTimes" name="data"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="canUseTimes" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="balaTimes" primitiveType="Int"/>
   </process:variables>
@@ -459,8 +413,8 @@
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
-    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsCardTimesDetail" name="updateCard"/>
-    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsCardTimesDetail" name="card"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsItemTimes" name="updateCard"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsItemTimes" name="card"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

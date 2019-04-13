@@ -114,6 +114,7 @@
         // var turl = apiPath + repairApi + '/com.hsapi.repair.repairService.sendWeChat.sendQFRending.biz.ext';
         var turl = apiPath + wechatApi + '/com.hsapi.wechat.autoServiceBackstage.weChatInterface.queryBeatchWeChatTemplateMessage.biz.ext';
         var saveUrl = apiPath + repairApi +"/com.hsapi.repair.repairService.crud.saveRemindRecord.biz.ext";
+        var taskUrl = apiPath + crmApi +"/com.hsapi.crm.svr.guest.saveSendTask.biz.ext";
         var form = new nui.Form("#form1");
         var mainData = [];
 
@@ -180,39 +181,96 @@
 
 
         function sendWeChat() {
-            var data = form.getData(true);
-            var dataList = [];
-            for (var i = 0; i < mainDatas.length; i++) {
-                var temp = {};
-                temp.first = data.firstContent.toString().replace(/【车主姓名】/g,mainDatas[i].guestName);
-                temp.keyword1 =  mainDatas[i].carVin;
-                temp.keyword2 =  mainDatas[i].lastComeKilometers+"公里";
-                temp.keyword3 =  (mainDatas[i].lastComeDate == null?'':nui.formatDate (new Date(mainDatas[i].lastComeDate),'yyyy-MM-dd HH:mm'));
-                temp.remark =  data.endContent.toString().replace(/【车主姓名】/g,mainDatas[i].guestName);
-                temp.openid = mainDatas[i].wechatOpenId;
-                dataList.push(temp);
-            }
-            nui.mask({
-            el : document.body,
-            cls : 'mini-mask-loading',
-            html : '发送中...'
-        });
-            nui.ajax({
-                url:turl,
-                type:"post",
-                data:{
-                    paraMapList:dataList,
-                    templateId:'J503rlGOPzZgfUJ5mpGdP5cqL57sWZN_wlxYhbib234',
-                    url:'',
-                    token:token
-                },
-                success:function (res) {
-                    nui.unmask(document.body);
-                    // saveRecord(mainData);
-                }
-            })
+        //     var data = form.getData(true);
+        //     var dataList = [];
+        //     for (var i = 0; i < mainDatas.length; i++) {
+        //         var temp = {};
+        //         temp.first = data.firstContent.toString().replace(/【车主姓名】/g,mainDatas[i].guestName);
+        //         temp.keyword1 =  mainDatas[i].carVin;
+        //         temp.keyword2 =  mainDatas[i].lastComeKilometers+"公里";
+        //         temp.keyword3 =  (mainDatas[i].lastComeDate == null?'':nui.formatDate (new Date(mainDatas[i].lastComeDate),'yyyy-MM-dd HH:mm'));
+        //         temp.remark =  data.endContent.toString().replace(/【车主姓名】/g,mainDatas[i].guestName);
+        //         temp.openid = mainDatas[i].wechatOpenId;
+        //         dataList.push(temp);
+        //     }
+        //     nui.mask({
+        //     el : document.body,
+        //     cls : 'mini-mask-loading',
+        //     html : '发送中...'
+        // });
+        //     nui.ajax({
+        //         url:turl,
+        //         type:"post",
+        //         data:{
+        //             paraMapList:dataList,
+        //             templateId:'J503rlGOPzZgfUJ5mpGdP5cqL57sWZN_wlxYhbib234',
+        //             url:'',
+        //             token:token
+        //         },
+        //         success:function (res) {
+        //             nui.unmask(document.body);
+        //             // saveRecord(mainData);
+        //         }
+        //     })
+            saveTask() ;
         }
 
+
+        function saveTask() {
+    if (mainDatas.length > 0) {
+        var params = {
+            serviceType: mainDatas[0].serviceType,
+            visitMode:'011403',//微信
+            taskNum: mainDatas.length,
+        }
+
+        var formData = form.getData(true);
+        var Arr = [];
+        for (var i = 0; i < mainDatas.length; i++) {
+            var data = mainDatas[i];
+            var con = formData.firstContent.toString().replace(/【车主姓名】/g,mainDatas[i].guestName)+ '<br/>' 
+            + '车架号：' +mainDatas[i].carVin+ '<br>' 
+            + '上次进站里程：' + mainDatas[i].lastComeKilometers+"公里"+ '<br>' 
+            + '到期时间：' + (mainDatas[i].lastComeDate == null?'':nui.formatDate (new Date(mainDatas[i].lastComeDate),'yyyy-MM-dd HH:mm'))+ '<br>' 
+            + formData.endContent.toString().replace(/【车主姓名】/g,mainDatas[i].guestName);
+            var pa ={
+                guestId: data.tureGuestId || '',
+                contactorId: data.conId,
+                mobile:data.mobile,
+                carId:data.carId||'', 
+                carNo: data.carNo || '',
+                visitContent:con ,
+                guestSource: data.guestSource,
+                wechatOpenId: data.wechatOpenId,
+                wechatServiceId:data.wechatServiceId
+            };
+            Arr.push(pa);
+        }
+              nui.mask({
+                el: document.body,
+                cls: 'mini-mask-loading',
+                html: '微信发送任务后台生成中...'
+             });
+        nui.ajax({
+            url: taskUrl,
+            type: 'post',
+            data: {
+                taskMain: params,
+                taskDetail:Arr
+            },
+            success: function (res) {
+                nui.unmask(document.body);
+                if (res.errCode == 'S') {
+                    showMsg("微信发送任务生成成功！", "S");
+                    saveRecord(mainData);
+					CloseWindow("ok");
+                } else {
+                    showMsg("微信发送任务生成失败！","E");
+                }
+            }
+        })
+    }
+}
 
         
 function saveRecord(data) {

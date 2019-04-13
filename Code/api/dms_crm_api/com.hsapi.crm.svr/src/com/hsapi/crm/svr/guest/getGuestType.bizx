@@ -52,6 +52,10 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
+      <process:from type="query" pattern="reference">params</process:from>
+      <process:to type="query">p</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">p/orgid</process:to>
     </process:copy>
@@ -314,6 +318,7 @@
     <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="pageal"/>
     <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="pageno"/>
     <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="pagelo"/>
+    <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
   </process:inputs>
   <process:outputs>
     <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="firstCar"/>

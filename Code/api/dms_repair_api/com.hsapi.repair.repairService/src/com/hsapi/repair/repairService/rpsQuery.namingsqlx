@@ -1242,7 +1242,7 @@
             <isNotEmpty prepend="and" property="outDateEnd">  
                 (a.out_date &lt; #outDateEnd#)
             </isNotEmpty>
-             <!--结算日期 -->
+             <!--收款日期 -->
             <isNotEmpty prepend="and" property="collectMoneyDateStart">  
                 (a.collect_money_date &gt;= #collectMoneyDateStart#)
             </isNotEmpty>

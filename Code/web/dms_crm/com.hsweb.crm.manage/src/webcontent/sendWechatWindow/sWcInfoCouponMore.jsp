@@ -70,14 +70,20 @@
         nui.parse();
         var pushUrl = apiPath+wechatApi+ '/com.hsapi.wechat.autoServiceBackstage.weChatCardCoupon.pushCardCoupon.biz.ext'
         var saveUrl = apiPath + repairApi +"/com.hsapi.repair.repairService.crud.saveRemindRecordMore.biz.ext";
+        var taskUrl = apiPath + crmApi +"/com.hsapi.crm.svr.guest.saveSendTask.biz.ext";
         var pathapi=apiPath+wechatApi;
     	var pathweb=webPath+wechatDomain;
     	var cardCouponData = nui.get("cardCouponData");
         var mainList = [];
     	
     	$(function(){
-    		cardCouponData.setUrl(pathapi+"/com.hsapi.wechat.autoServiceBackstage.weChatCardCoupon.queryCardCoupon.biz.ext");
-			cardCouponData.load({token:token});
+    		cardCouponData.setUrl(pathapi+"/com.hsapi.wechat.autoServiceBackstage.weChatInterface.queryCardCouponChenDao.biz.ext");
+			cardCouponData.load({
+                map:{
+                    orgid:currOrgId
+                },
+                token:token
+            });
 		});
 		
 		//优惠价格
@@ -194,41 +200,42 @@
 
 
         function pushCoupon() {
-            var isSuccess = 0;
-            var rows = cardCouponData.getSelecteds();
-            if(rows.length < 1){
-                showMsg("请选择优惠券",'W');
-                return;
-            }
-            nui.mask({
-            el : document.body,
-            cls : 'mini-mask-loading',
-            html : '发送中...'
-        });
-            nui.ajax({
-                url:pushUrl,
-                type:"post",
-                async: false,
-                data:{
-                    userDataArray:mainList,
-                    couponDataArray:rows
-                },
-                success:function(res){
-                    nui.unmask(document.body);
-                    if(res.errCode =='S'){
-                        // showMsg("发送成功","S");
-                        //isSuccess=1;
-                       saveRecord(); 
+        //     var isSuccess = 0;
+        //     var rows = cardCouponData.getSelecteds();
+        //     if(rows.length < 1){
+        //         showMsg("请选择优惠券",'W');
+        //         return;
+        //     }
+        //     nui.mask({
+        //     el : document.body,
+        //     cls : 'mini-mask-loading',
+        //     html : '发送中...'
+        // });
+        //     nui.ajax({
+        //         url:pushUrl,
+        //         type:"post",
+        //         async: false,
+        //         data:{
+        //             userDataArray:mainList,
+        //             couponDataArray:rows
+        //         },
+        //         success:function(res){
+        //             nui.unmask(document.body);
+        //             if(res.errCode =='S'){
+        //                 // showMsg("发送成功","S");
+        //                 //isSuccess=1;
+        //                saveRecord(); 
            
-                    }else{
-                        showMsg("发送失败","E");
-                    }
-                    onClose();
-                }
-            })
+        //             }else{
+        //                 showMsg("发送失败","E");
+        //             }
+        //             onClose();
+        //         }
+        //     })
             /* if(isSuccess){
                 saveRecord();
             } */
+            saveTask();
         }
 
 
@@ -246,16 +253,16 @@
                     contentId +=  ',';
                 }
             }
-    if (mainDatas.length > 0) {
+    if (mainList.length > 0) {
         var params = {
-            serviceType: mainDatas[0].serviceType,
+            serviceType: mainList[0].serviceType,
             visitMode:'011404',//微信图文
-            taskNum: mainDatas.length,
+            taskNum: mainList.length,
         }
 
         var Arr = [];
-        for (var i = 0; i < mainDatas.length; i++) {
-            var data = mainDatas[i];
+        for (var i = 0; i < mainList.length; i++) {
+            var data = mainList[i];
             var pa ={
                 guestId: data.tureGuestId || '',
                 contactorId: data.conId,
@@ -285,11 +292,11 @@
             success: function (res) {
                 nui.unmask(document.body);
                 if (res.errCode == 'S') {
-                    showMsg("卡券发送任务后台生成成功！", "S");
+                    showMsg(res.snum+"条卡券发送任务后台生成成功！", "S");
                     saveRecord();
 					CloseWindow("ok");
                 } else {
-                    showMsg("卡券发送任务后台生成失败！","E");
+                    showMsg(res.fnum+"条卡券发送任务后台生成失败！","E");
                 }
             }
         })
@@ -336,12 +343,12 @@
                                 async: false,
                                 data:paramData,
                                 success:function(res){
-                                    if(res.errCode == 'S'){
-                                            showMsg("发送成功！","S");
+                                    // if(res.errCode == 'S'){
+                                    //         showMsg("发送成功！","S");
                                             
-                                    }else{
-                                            showMsg("发送失败！","E");
-                                    }
+                                    // }else{
+                                    //         showMsg("发送失败！","E");
+                                    // }
                                     onClose() ;
                                 },
                                 error: function (jqXHR) {

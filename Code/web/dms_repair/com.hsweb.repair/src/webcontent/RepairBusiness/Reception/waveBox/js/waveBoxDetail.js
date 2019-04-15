@@ -977,6 +977,13 @@ function setFrom(data){
                     guestName = guestName;
                 }
                 var t = carNo + guestName  + tel ;
+                if(contactor.wechatOpenId){
+                 	document.getElementById("showA").style.display = "";
+                 	document.getElementById("showA1").style.display='none';
+                 }else{
+                 	document.getElementById("showA").style.display='none';
+                 	document.getElementById("showA1").style.display = "";
+                 }
                 searchNameEl.setValue(t);
                 searchNameEl.setEnabled(false);
 
@@ -1078,6 +1085,7 @@ function saveNoshowMsg(callback,type){
                 var guest = text.guest||{};
                 var car = text.car || {};
                 var contactor = text.contactor||{};
+                contactorF = contactor;
                 if(errCode == 'S'){
                     $("#servieIdEl").html(data.serviceCode);
                     var carNo = data.carNo||"";
@@ -3561,6 +3569,7 @@ function chooseContactor(){
          {
         	 var iframe = this.getIFrameEl();
         	 var row = iframe.contentWindow.getData();
+        	 contactorF = row;
         	 nui.get("contactorName").setText(row.name);
         	 if(data.id){
         		 var maintain = billForm.getData();

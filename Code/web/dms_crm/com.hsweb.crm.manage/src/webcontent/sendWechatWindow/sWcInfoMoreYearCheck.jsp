@@ -252,11 +252,11 @@
             success: function (res) {
                 nui.unmask(document.body);
                 if (res.errCode == 'S') {
-                    showMsg("微信发送任务生成成功！", "S");
+                    showMsg(res.snum+"条微信发送任务生成成功！", "S");
                     saveRecord(mainData);
 					CloseWindow("ok");
                 } else {
-                    showMsg("微信发送任务生成失败！","E");
+                    showMsg(res.fnum+"条微信发送任务生成失败！","E");
                 }
             }
         })

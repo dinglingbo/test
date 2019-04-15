@@ -229,7 +229,7 @@
     <input type="hidden" name="orgid" value="" id="orgid">
 </form> 
 
-<script src="<%=request.getContextPath()%>/coframe/auth/loginCloud/feedback/drawDom.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/coframe/auth/loginCloud/feedback/drawDom.js?v=1.0.1" type="text/javascript"></script>
 </body>
 </html>
 

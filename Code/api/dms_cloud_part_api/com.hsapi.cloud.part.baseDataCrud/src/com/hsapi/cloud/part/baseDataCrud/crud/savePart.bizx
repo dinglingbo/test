@@ -603,7 +603,7 @@
     <location x="915" y="165"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
-    <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.queryAndSavePartCommon</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="partCode" type="query" value="String" valueType="Primitive" pattern="reference">part/code</process:inputVariable>

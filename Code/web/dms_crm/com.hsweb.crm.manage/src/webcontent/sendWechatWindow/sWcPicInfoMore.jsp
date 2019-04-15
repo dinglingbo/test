@@ -74,9 +74,10 @@
     <script type="text/javascript">
         nui.parse();
         var pathapi = apiPath + wechatApi;
-        var gridUrl =pathapi + "/com.hsapi.wechat.autoServiceBackstage.weChatImageTextMessage.queryImageTextMessageMain.biz.ext"
+        var gridUrl =pathapi + "/com.hsapi.wechat.autoServiceBackstage.weChatInterface.queryImageTextMessageMainChenDao.biz.ext"
         var pushUrl =pathapi + "/com.hsapi.wechat.autoServiceBackstage.weChatImageTextMessage.pushUserImageTextMessage.biz.ext"
         var saveUrl = apiPath + repairApi +"/com.hsapi.repair.repairService.crud.saveRemindRecordMore.biz.ext";
+        var taskUrl = apiPath + crmApi +"/com.hsapi.crm.svr.guest.saveSendTask.biz.ext";
         var pathweb = webPath + wechatDomain;
         var imageTextData = nui.get("imageTextData");
         var mainList = [];
@@ -141,16 +142,16 @@
             var row = imageTextData.getSelected();
             var contentText = row.textTitle;
             var contentId = row.imageTextId;
-    if (mainDatas.length > 0) {
+    if (mainList.length > 0) {
         var params = {
-            serviceType: mainDatas[0].serviceType,
+            serviceType: mainList[0].serviceType,
             visitMode:'011404',//微信图文
-            taskNum: mainDatas.length,
+            taskNum: mainList.length,
         }
 
         var Arr = [];
-        for (var i = 0; i < mainDatas.length; i++) {
-            var data = mainDatas[i];
+        for (var i = 0; i < mainList.length; i++) {
+            var data = mainList[i];
             var pa ={
                 guestId: data.tureGuestId || '',
                 contactorId: data.conId,
@@ -180,11 +181,11 @@
             success: function (res) {
                 nui.unmask(document.body);
                 if (res.errCode == 'S') {
-                    showMsg("图文消息发送任务生成成功！", "S");
+                    showMsg(res.snum+"条图文消息发送任务生成成功！", "S");
                     saveRecord();
 					CloseWindow("ok");
                 } else {
-                    showMsg("图文消息发送任务生成失败！","E");
+                    showMsg(res.fnum+"条图文消息发送任务生成失败！","E");
                 }
             }
         })

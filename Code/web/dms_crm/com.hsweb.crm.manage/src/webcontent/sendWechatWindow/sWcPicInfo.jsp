@@ -74,7 +74,7 @@
     <script type="text/javascript">
         nui.parse();
         var pathapi = apiPath + wechatApi;
-        var gridUrl =pathapi + "/com.hsapi.wechat.autoServiceBackstage.weChatImageTextMessage.queryImageTextMessageMain.biz.ext"
+        var gridUrl =pathapi + "/com.hsapi.wechat.autoServiceBackstage.weChatInterface.queryImageTextMessageMainChenDao.biz.ext"
         var pushUrl =pathapi + "/com.hsapi.wechat.autoServiceBackstage.weChatImageTextMessage.pushUserImageTextMessage.biz.ext"
         var saveUrl = apiPath + repairApi +"/com.hsapi.repair.repairService.crud.saveRemindRecordMore.biz.ext";
         var pathweb = webPath + wechatDomain;

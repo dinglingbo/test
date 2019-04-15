@@ -114,11 +114,11 @@ function saveTask() {
             success: function (res) {
                 nui.unmask(document.body);
                 if (res.errCode == 'S') {
-                    showMsg("短信发送任务生成成功！", "S");
+                    showMsg(res.snum+"条短信发送任务生成成功！", "S");
                     saveRecord();
 					CloseWindow("ok");
                 } else {
-                    showMsg("短信发送任务生成失败！","E");
+                    showMsg(res.fnum+"条短信发送任务生成失败！","E");
                 }
             }
         })

@@ -33,7 +33,9 @@
 	 <div class="nui-fit">
           <div id="moreOrgGrid" class="nui-datagrid" style="width:100%;height:100%;"
                selectOnLoad="false"
-               showPager="false"
+               showPager="true"
+               pageSize="10"
+               totalField="page.count"
                dataField="companyList"
                allowCellSelect="true"
                editNextOnEnterKey="true"

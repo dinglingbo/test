@@ -1295,6 +1295,7 @@ function saveNoshowMsg(callback){
                 var guest = text.guest||{};
                 var car = text.car || {};
                 var contactor = text.contactor||{};
+                contactorF = contactor;
                 if(errCode == 'S'){
                     $("#servieIdEl").html(data.serviceCode);
                     var carNo = data.carNo||"";
@@ -4723,7 +4724,7 @@ function chooseContactor(){
         	 var iframe = this.getIFrameEl();
         	 var row = iframe.contentWindow.getData();
         	 var contactor = sendGuestForm.getData();
-        	 contactorF = contactor;
+        	 contactorF = row;
         	 contactor.id = row.id;
         	 contactor.contactorName = row.name;
         	 contactor.sex = row.sex;

@@ -1241,7 +1241,7 @@ function getRtnData(){
 	return rs;
 }
 
-function CloseWindow(action) {
+function CloseWindow(action){
 	if (action == "close") {
 
 	} else if (window.CloseOwnerWindow)
@@ -1250,4 +1250,65 @@ function CloseWindow(action) {
 		return window.close();
 }
 
+function showUserQuan(e){
+	var paraMap = {};
+	paraMap.userOpenId = dataF.contactor.wechatOpenId;
+	paraMap.couponCode = e.value;
+	
+	var json2 = {
+			param:paraMap,
+			token: token
+	}
+	var list = '';
+	nui.ajax({
+		url :  apiPath + wechatApi +"/wechatApi/com.hsapi.wechat.autoServiceBackstage.weChatCardCoupon.queryCardCouponByCode.biz.ext",
+		type : "post",
+		data : json2,
+		success : function(data) {
+			if(data.errCode=="S"){
+				userCouponDataArray = data.userCouponDataArray;
+				var list = "";
+				if(userCouponDataArray.length>0){
+				   $(userCouponDataArray).each(function(k,v) {
+						  var key = v.couponDistributeId;
+						  userCouponDataHash[key] = v;
+						  var type = v.couponType==1?'通用券':'专属劵';
+						  var str = null;
+						  if(v.couponType==1){
+							  str="(满"+v.couponConditionPrice+")"
+						  }else{
+							  str="";
+						  }
+						  list += 
+							  '<div class="quan-item1" id=quan'+ v.couponDistributeId +'> '+
+							 '<div class="q-opbtns "><strong class="num1">￥'+ v.couponDiscountsPrice + '<br>'+ type +'</strong></div>'+
+						     '<div class="q-type">'+
+						        '<div class="q-range">'+
+						            '<div class="typ-txt">'+
+						                '<span >'+ v.couponTitle+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="##" class="useText" name="quan" id='+v.couponDistributeId+'><span id = chang'+v.couponDistributeId+'>使用</span></a></span>'+
+						               '</div>'+
+						            '<div class="range-item">'+ v. couponDescribe + str +'</div>'+
+						            '<div class="range-item">到期时间：'+v.couponEndDate +'</div>'+
+						            '<div class="range-item">编码：'+v.userCouponCode +'</div>'+
+						        '</div>'+
+						    '</div>'+ 
+						    '</div>'
+						});
+						document.getElementById("show").innerHTML = list;
+				}else{
+					 var list  = "没有可用优惠券或者该用户未在微信公众号注册";
+				     document.getElementById("show").innerHTML = list;
+				}
+				
+			}else{	
+				 var list  = "没有可用优惠券或者该用户未在微信公众号注册";
+			     document.getElementById("show").innerHTML = list;
+			}
+			
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+		}
+	});
+}
 

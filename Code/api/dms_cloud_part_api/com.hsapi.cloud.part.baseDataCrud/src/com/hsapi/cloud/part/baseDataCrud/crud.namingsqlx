@@ -576,6 +576,12 @@
     		<isNotEmpty prepend="and" property="rcode">  
                 (a.code like '%$code$')
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">  
+                (a.code = #partCode#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="commonCode">  
+                (a.common_code = #commonCode#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">
             	(a.code in ($partCodeList$))
             </isNotEmpty>

@@ -38,7 +38,7 @@
 						<a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">所有客户</a>
 						<ul id="popupMenuStatus" class="nui-menu" style="display:none;">
 							<li iconCls="" onclick="quickSearch(6)" id="type6">所有客户</li>
-							<li iconCls="" onclick="quickSearch(7)" id="type0">本日所有保险开单客户</li> 
+							<li iconCls="" onclick="quickSearch(7)" id="type0">本日所有车险开单客户</li> 
 							<li iconCls="" onclick="quickSearch(0)" id="type0">本日所有来厂客户</li>
 							<li iconCls="" onclick="quickSearch(1)" id="type1">昨日所有来厂客户</li>
 							<li iconCls="" onclick="quickSearch(2)" id="type2">本日新来厂客户</li>

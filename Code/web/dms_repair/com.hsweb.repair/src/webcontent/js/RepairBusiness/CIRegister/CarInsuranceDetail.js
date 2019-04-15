@@ -714,7 +714,7 @@ function pay() {
 
 function onPrint(argument) {
 	if(!nui.get("id").value){
-		showMsg("清先保存保险开单!","W");
+		showMsg("清先保存车险开单!","W");
 		return;
 	}
     var params={

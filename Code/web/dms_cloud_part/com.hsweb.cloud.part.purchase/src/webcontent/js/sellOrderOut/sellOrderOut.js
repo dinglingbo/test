@@ -1776,7 +1776,7 @@ function audit()
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                showMsg("出库成功!","S");
+//                showMsg("出库成功!","S");
                 //onLeftGridRowDblClick({});
                 var pjSellOrderMainList = data.pjSellOrderMainList;
                 if(pjSellOrderMainList && pjSellOrderMainList.length>0) {
@@ -1786,7 +1786,7 @@ function audit()
 
                     //保存成功后重新加载数据
                     loadMainAndDetailInfo(leftRow);
-                    nui.confirm("是否打印？", "友情提示", function(action) {
+                    nui.confirm("本单已出库，是否打印？", "友情提示", function(action) {
 						if(action== 'ok'){
 							onPrint();
 						}else{

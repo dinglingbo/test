@@ -558,10 +558,10 @@
 								<table id="tbcouponlist" width="100%"  border="0" cellspacing="0" cellpadding="0">
 									<tbody>
 										<tr>
-											<td height="40">
-											<!-- <div  id="showUserCode" style="" >
-                                              <input class="nui-TextArea" name="showUserCode"  style="width: 80%; height: 40px;" id="strCode" onvaluechanged="showUserQuan" /> 
-											 </div> -->
+											<td height="60">
+											  <div  id="inputUserCode" style="display: none;margin-bottom: 10px" >
+                                                                             卡券编码： <input class="nui-textbox" name="inputCode"  style="width: 30%;" id="inputCode"  onenter="inputUserQuan"/> 
+											  </div> 
                                              <div  id="show">
                                              
                                              </div>
@@ -778,9 +778,13 @@
 					<td >
 						<input type="checkbox" id="settlesenddx">短信通知客户
 					</td>
-										<td >
+					<td >
 						<label style="font-family:Verdana;">预存金额：</label>
 						<span id="ycAmt" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
+					</td>
+					<td >
+						<label style="font-family:Verdana;">优惠券抵扣：</label>
+						<span id="quanAmt" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
 					</td>
 					<td >
 						<label style="font-family:Verdana;">实收金额：</label>

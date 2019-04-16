@@ -243,4 +243,20 @@
 
 	</select>
 	
+
+		<select id="queryItem" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id as id,
+			a.tenant_id as tenantId,
+			a.orgid as orgid,
+			a.code as code,
+			a.type as type,
+			a.name as name
+		FROM
+			rpb_item AS a
+		where ((a.is_share=1 and a.tenant_id = #tenantId#) or (a.orgid = #orgid#) )  and a.name = #name#
+
+	</select>
+	
+
 </sqlMap>

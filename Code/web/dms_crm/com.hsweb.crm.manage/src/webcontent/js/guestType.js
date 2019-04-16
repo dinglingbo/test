@@ -434,7 +434,7 @@ function sendWcText(list,sendWcUrl){//发送微信消息
 
 function sendWcCoupon(list) {
     nui.open({                        
-        url: webPath + contextPath  + "/manage/sendWechatWindow/sWcInfoCoupon.jsp?token="+token,
+        url: webPath + contextPath  + "/manage/sendWechatWindow/sWcInfoCouponMore.jsp?token="+token,
         title: "发送卡券", width: 800, height: 350,
         onload: function () {
         var iframe = this.getIFrameEl();

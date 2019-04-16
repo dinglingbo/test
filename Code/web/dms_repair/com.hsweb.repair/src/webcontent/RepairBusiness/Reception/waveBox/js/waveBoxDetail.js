@@ -4464,6 +4464,7 @@ function upload(){
 	        title: "上传图片",
 			width: "50%",
 			height: "50%",
+			allowResize : false,
 	        onload: function () {
 	            var iframe = this.getIFrameEl();
 	            iframe.contentWindow.SetData(serviceId,serviceCode,state);

@@ -187,6 +187,10 @@
       <process:to type="query">m:userObject/attributes/isCanSettle</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">member/headPortrait</process:from>
+      <process:to type="query">m:userObject/attributes/headPortrait</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">comp/bankName</process:from>
       <process:to type="query">m:userObject/attributes/bankName</process:to>
     </process:copy>

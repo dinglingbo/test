@@ -76,8 +76,13 @@
         var mainList = [];
     	
     	$(function(){
-    		cardCouponData.setUrl(pathapi+"/com.hsapi.wechat.autoServiceBackstage.weChatCardCoupon.queryCardCoupon.biz.ext");
-			cardCouponData.load({token:token});
+    		cardCouponData.setUrl(pathapi+"/com.hsapi.wechat.autoServiceBackstage.weChatInterface.queryCardCouponChenDao.biz.ext");
+			cardCouponData.load({
+                map:{
+                    orgid:currOrgId
+                },
+                token:token
+            });
 		});
 		
 		//优惠价格

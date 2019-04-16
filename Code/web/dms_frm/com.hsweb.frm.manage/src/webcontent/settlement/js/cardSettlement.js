@@ -5,7 +5,8 @@ var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWi
 var netInAmt = 0;//应结金额
 var cardType = 2;//什么界面过来的  1计次卡，2储值卡
 var tableNum = 0;
-var card = [];//传进逻辑流的卡
+var card = {};//传进逻辑流的卡
+var cardList=[];//所有储值卡
 var form = null;
 var type = null;
 var typeList = {};
@@ -205,7 +206,7 @@ function addCardList(){
 		type : "post",
 		data : "",
 		success : function(data) {	
-			card = data.card;
+			cardList = data.card;
 				$("<option value=''>—请选择储值卡—</option>").appendTo("#cardList");
 				for(var i = 0;i<data.card.length;i++){
 						$("<option  value="+data.card[i].id+","+data.card[i].canModify+">"+data.card[i].name+"&nbsp;&nbsp;&nbsp;&nbsp;"+"充值："+data.card[i].rechargeAmt+"&nbsp;&nbsp;&nbsp;&nbsp;"+"赠送："+data.card[i].giveAmt+"</option>").appendTo("#cardList");
@@ -397,9 +398,11 @@ function settleOK() {
 							data = data || {};
 							if (data.errCode == "S") {
 								showMsg(data.errMsg||"收款成功！","S");
-								CloseWindow("ok");
+								//CloseWindow("ok");
 								printRow = card;
 								print();
+					        	guestData={};
+					        	add();
 							} else {
 								showMsg(data.errMsg,"W");
 							}
@@ -620,8 +623,10 @@ function noPayOk(){
 				        var returnJson = nui.decode(text);
 				        if (returnJson.errCode == "S") {
 				        	showMsg(text.errMsg||"转预结算成功！","S");
-				        	CloseWindow("onok");
+				        	//CloseWindow("onok");
 				        	print();
+				        	guestData={};
+				        	add();
 				        }
 				        else {
 				            showMsg("转结算失败:"+returnJson.errMsg, "W");
@@ -656,13 +661,13 @@ function payCard(){
 		  $('#edit').hide();
 	  }
 	  var carId = c.split(",")[0];
-	for(var i = 0;i<card.length;i++){
-		if(carId==card[i].id){
-			row = card[i];
+	for(var i = 0;i<cardList.length;i++){
+		if(carId==cardList[i].id){
+			row = cardList[i];
 			if(cardType==1){
-				netInAmt = card[i].sellAmt;
+				netInAmt = cardList[i].sellAmt;
 			}else if(cardType==2){
-				netInAmt = card[i].rechargeAmt;
+				netInAmt = cardList[i].rechargeAmt;
 			}
 			
 				checkF = 1;

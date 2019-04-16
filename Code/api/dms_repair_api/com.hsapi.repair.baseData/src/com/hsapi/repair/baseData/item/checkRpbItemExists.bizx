@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="checkRpbItemExists" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="1、如果是新增，则直接判断是否存在当前品牌和编码的信息&#xD;&#xA;    orgid = 0 or orgid = ##&#xD;&#xA;2、如果是修改，则要判断是否能取到值，取到后ID是否相等&#xD;&#xA;    orgid = 0  or orgid = ##" title="Administrator&#x9;18-5-15 上午11:41">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="判断工时连锁共享，名称&#xD;&#xA;com.hsapi.repair.baseData.query.queryItem" title="Administrator&#x9;18-5-15 上午11:41">
     <location x="65" y="20"/>
     <size height="100" width="361"/>
   </nodes>
@@ -47,40 +47,16 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbItem</process:from>
-      <process:to type="query">cond/_entity</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">cond/_or[1]/_expr[1]/tenantId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">cond/_or[1]/_expr[1]/_op</process:to>
+      <process:from type="query" pattern="reference">m:userObject/attributes/tenantId</process:from>
+      <process:to type="query">params/tenantId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">cond/_or[1]/_expr[2]/tenantId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">cond/_or[1]/_expr[2]/_op</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">code</process:from>
-      <process:to type="query">cond/_or[2]/_expr[1]/code</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">cond/_or[2]/_expr[1]/_op</process:to>
+      <process:to type="query">params/orgid</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">name</process:from>
-      <process:to type="query">cond/_or[2]/_expr[2]/name</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">cond/_or[2]/_expr[2]/_op</process:to>
+      <process:to type="query">params/name</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>
@@ -92,7 +68,7 @@
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="查询" displayName="查询" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="查询" displayName="Query according to namedsql" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="link3" lineType="note" type="exception">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign2</targetNode>
@@ -100,6 +76,7 @@
     <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="link7" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link12" name="link12" displayName="link9" type="transition">
       <sourceNode>invokePojo0</sourceNode>
@@ -116,15 +93,16 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.queryEntitiesByCriteriaEntity</process:partner>
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.queryByNamedSql</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
-      <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cond</process:inputVariable>
+      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.repair.baseData.query.queryItem</process:inputVariable>
+      <process:inputVariable id="2" name="parameterObject" type="query" value="java.lang.Object" valueType="Java" pattern="reference">params</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java">typeList</process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.Object[]" valueType="Java">typeList</process:outputVariable>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
@@ -180,6 +158,7 @@
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="link10" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>assign4</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link1" name="link1" displayName="link11" type="transition">
       <sourceNode>assign3</sourceNode>
@@ -219,7 +198,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">已经存在</process:from>
+      <process:from type="literal" pattern="reference">已经存在同名项目</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -287,7 +266,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">已经存在</process:from>
+      <process:from type="literal" pattern="reference">已经存在同名项目</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -304,6 +283,7 @@
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpbse.RpbItem" name="typeList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpbse.RpbItem" name="type"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="eId" primitiveType="Int"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="工时名称" isArray="false" name="name" primitiveType="String"/>

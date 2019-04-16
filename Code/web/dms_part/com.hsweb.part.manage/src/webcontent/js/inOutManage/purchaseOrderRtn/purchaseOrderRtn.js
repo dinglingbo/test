@@ -1319,9 +1319,12 @@ function addNewRow(check){
     }
 }
 var partInfoUrl = baseUrl
-        + "com.hsapi.part.invoice.paramcrud.queryPartInfoByParam.biz.ext";
+        + "com.hsapi.part.invoice.paramcrud.queryBillPartChoose.biz.ext";
 function getPartInfo(params){
     var part = null;
+    var page = {size:100,length:100};
+	params.sortField = "b.stock_qty";
+    params.sortOrder = "desc";
     nui.ajax({
         url : partInfoUrl,
         type : "post",
@@ -1331,7 +1334,7 @@ function getPartInfo(params){
             token: token
         },
         success : function(data) {
-            var partlist = data.partlist;
+            var partlist = data.parts;
             if(partlist && partlist.length>0){
                 //如果只返回一条数据，直接添加；否则切换到配件选择界面按输入的条件输出
                 if(partlist.length==1){

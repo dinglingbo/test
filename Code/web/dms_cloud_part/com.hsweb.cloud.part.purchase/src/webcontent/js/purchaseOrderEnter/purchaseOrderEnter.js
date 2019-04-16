@@ -1017,7 +1017,7 @@ function savePrice(){
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                showMsg("保存成功","S");
+//                showMsg("保存成功","S");
                 
             } else {
                 showMsg(data.errMsg || "保存失败!","E");
@@ -1873,7 +1873,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 						nui.unmask(document.body);
 						data = data || {};
 						if (data.errCode == "S") {
-							showMsg("入库成功!","S");
+//							showMsg("入库成功!","S");
 							// onLeftGridRowDblClick({});
 							var pjPchsOrderMainList = data.pjPchsOrderMainList;
 							if (pjPchsOrderMainList && pjPchsOrderMainList.length > 0) {
@@ -1881,7 +1881,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 								var row = leftGrid.getSelected();
 								leftGrid.updateRow(row, leftRow);
 								loadMainAndDetailInfo(leftRow);
-								nui.confirm("是否打印？", "友情提示", function(action) {
+								nui.confirm("本单入库成功，是否打印？", "友情提示", function(action) {
 									if(action== 'ok'){
 										onPrint();
 									}else{
@@ -1948,7 +1948,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 						nui.unmask(document.body);
 						data = data || {};
 						if (data.errCode == "S") {
-							showMsg("入库成功!","S");
+//							showMsg("入库成功!","S");
 							// onLeftGridRowDblClick({});
 							var pjPchsOrderMainList = data.pjPchsOrderMainList;
 							if (pjPchsOrderMainList && pjPchsOrderMainList.length > 0) {
@@ -1956,7 +1956,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 								var row = leftGrid.getSelected();
 								leftGrid.updateRow(row, leftRow);
 								loadMainAndDetailInfo(leftRow);
-								nui.confirm("是否打印？", "友情提示", function(action) {
+								nui.confirm("本单入库成功，是否打印？", "友情提示", function(action) {
 									if(action== 'ok'){
 										onPrint();
 									}else{
@@ -2839,7 +2839,7 @@ function addOrEditPart(row)
 {
     nui.open({
         // targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.part.baseData.partDetail.flow?token=" + token,
+        url: webPath + contextPath + "/com.hsweb.cloud.part.basic.partDetail.flow?token=" + token,
         title: "配件资料",
         width: 470, height: 320,
         allowDrag:true,

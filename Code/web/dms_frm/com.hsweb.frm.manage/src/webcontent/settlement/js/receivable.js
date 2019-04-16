@@ -37,6 +37,7 @@ function setData(data){
 	document.getElementById('totalAmt').innerHTML = "￥"+netInAmt;
 	document.getElementById('totalAmt1').innerHTML = netInAmt;
 	document.getElementById('amount').innerHTML = netInAmt;
+	
 	var json = {
 		guestId:data[0].guestId,
 		token : token
@@ -53,6 +54,62 @@ function setData(data){
 				rechargeBalaAmt = data.member[0].rechargeBalaAmt;
 			}
 			nui.get("rechargeBalaAmt").setValue("￥"+rechargeBalaAmt); 
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+		}
+	});
+	//查询使用了的优惠券
+	var params = {};
+	params.billMainId =data[0].billMainId;
+	params.carId = data[0].carId;
+	var json1 = {
+			params:params,
+			token : token
+		}
+	var deductionAmt = 0;
+	nui.ajax({
+		url : apiPath + repairApi + "/com.hsapi.repair.repairService.crud.queryRpsCouponRecordList.biz.ext" ,
+		type : "post",
+		data : json1,
+		success : function(data) {
+			if(data.errCode=="S"){
+				var couponRecordList = data.couponRecordList;
+				var list = "";
+				if(couponRecordList.length>0){
+					$(couponRecordList).each(function(k,v) {
+						  deductionAmt = parseFloat(deductionAmt) + parseFloat(v.couponAmt);
+						  var type = v.couponType==1?'通用券':'专属劵';
+						  var str = null;
+						  if(v.couponType==1){
+							  str="(满"+v.couponConditionPrice+")";
+						  }else{
+							  str="";
+						  }
+						  var endData = format(v.couponEndDate, "yyyy-MM-dd");
+						  list += 
+							  '<div class="quan-item"> '+
+							 '<div class="q-opbtns "><strong class="num1">￥'+ v.couponAmt + '<br>'+ type +'</strong></div>'+
+						     '<div class="q-type">'+
+						        '<div class="q-range">'+
+						            '<div class="typ-txt">'+
+						                '<span >'+ v.couponName+ '</span>'+
+						               '</div>'+
+						            '<div class="range-item">'+ v.couponDescribe + str +'</div>'+
+						            '<div class="range-item">到期时间：'+endData+'</div>'+
+						            '<div class="range-item">编码：'+v.couponCode +'</div>'+
+						        '</div>'+
+						    '</div>'+ 
+						    '</div>';
+						});
+						document.getElementById("show").innerHTML = list;
+						document.getElementById('quanAmt').innerHTML = deductionAmt;
+				}else{
+					 var list  = "没有使用优惠券或者该用户未在微信公众号注册";
+				     document.getElementById("show").innerHTML = list;
+				     document.getElementById('quanAmt').innerHTML = 0;
+				}
+			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR.responseText);

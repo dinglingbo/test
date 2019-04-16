@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//com.hsapi.cloud.part.baseDataCrud/eosdebug/com/hsapi/cloud/part/baseDataCrud/crud/queryQuickPartCommonList.bizx.eosdebug=UTF-8
 encoding//com.hsapi.cloud.part.baseDataCrud/eosdebug/com/hsapi/cloud/part/baseDataCrud/crud/querySellStrategy.bizx.eosdebug=UTF-8
+encoding//com.hsapi.cloud.part.baseDataCrud/eosdebug/com/hsapi/cloud/part/baseDataCrud/crud/savePart.bizx.eosdebug=UTF-8
 encoding//com.hsapi.cloud.part.baseDataCrud/eosdebug/com/hsapi/cloud/part/baseDataCrud/crud/savePartBrand.bizx.eosdebug=UTF-8
 encoding//com.hsapi.cloud.part.invoicing/eosdebug/com/hsapi/cloud/part/invoicing/crud/savePjEnter.bizx.eosdebug=UTF-8

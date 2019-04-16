@@ -4454,8 +4454,10 @@ function upload(){
 	var state = null;
 	if(formData.status == 0){
 		state = 1;
-    }else{
-    	state = 2;
+    }else if(formData.status == 1 || formData.status == 2){
+    	if(formData.isSettle != 1 && formData.balaAuditSign != 1){
+    		state = 2;
+    	}
     }
 	var uploadUrl = "/com.hsweb.bx.upload.flow";
 	if(serviceId){
@@ -4464,6 +4466,7 @@ function upload(){
 	        title: "上传图片",
 			width: "50%",
 			height: "50%",
+			allowResize : false,
 	        onload: function () {
 	            var iframe = this.getIFrameEl();
 	            iframe.contentWindow.SetData(serviceId,serviceCode,state);

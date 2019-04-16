@@ -92,6 +92,10 @@
       <process:to type="query">insurance/status</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">main/balaAmt</process:from>
+      <process:to type="query">insurance/balaAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">insurance/isSettle</process:to>
     </process:copy>

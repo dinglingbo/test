@@ -461,6 +461,10 @@
     		<isNotEmpty prepend="and" property="partCode">  
                 (a.code like '%$partCode$' or a.oem_code like '%$partCode$')
             </isNotEmpty>
+            <!-- 全匹配 -->
+            <isNotEmpty prepend="and" property="partCodeAll">  
+                (a.code like '%$partCodeAll$%' or a.oem_code like '%$partCodeAll$%')
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="partName">  
                 (a.full_name like '%$partName$%')
             </isNotEmpty>

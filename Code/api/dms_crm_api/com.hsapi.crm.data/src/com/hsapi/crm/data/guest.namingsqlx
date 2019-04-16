@@ -18,6 +18,7 @@
         c.name name,
         c.wechat_open_id wechatOpenId,
         c.mobile ,
+        c.id conId,
         b.first_come_date firstComeDate,
         b.chain_come_times chainComeTimes,
         b.last_come_date lastComeDate
@@ -32,6 +33,12 @@
         WHERE c.ORGID = #orgid#
         AND B.CHAIN_COME_TIMES = 1
         AND B.FIRST_COME_DATE  &gt;=  DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+         <isNotEmpty prepend="and" property="carNo">  
+               	a.car_no   like  '%$carNo$%'
+         </isNotEmpty>
+                        <isNotEmpty prepend="and" property="mobile">  
+               	c.mobile   like  '%$mobile$%'
+            </isNotEmpty>
     </select> 
 
         <!-- 活跃期  来店2次（含）2次，且30天内消费过车辆-->
@@ -40,6 +47,12 @@
         WHERE c.ORGID = #orgid#
         AND B.CHAIN_COME_TIMES &gt;= 2
         AND B.LAST_COME_DATE  &gt;= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) 
+                       <isNotEmpty prepend="and" property="carNo">  
+               	a.car_no   like  '%$carNo$%'
+            </isNotEmpty>
+                                    <isNotEmpty prepend="and" property="mobile">  
+               	c.mobile   like  '%$mobile$%'
+            </isNotEmpty>
     </select> 
 
         <!-- 稳定期  来店2次（含）2次，且31-90天内消费过车辆-->
@@ -49,6 +62,12 @@
         AND B.CHAIN_COME_TIMES &gt;= 2
         AND B.LAST_COME_DATE  &lt; DATE_SUB(CURDATE(), INTERVAL 30 DAY)
         AND B.LAST_COME_DATE  &gt;= DATE_SUB(CURDATE(), INTERVAL 90 DAY)
+                       <isNotEmpty prepend="and" property="carNo">  
+               	a.car_no   like  '%$carNo$%'
+            </isNotEmpty>
+                                    <isNotEmpty prepend="and" property="mobile">  
+               	c.mobile   like  '%$mobile$%'
+            </isNotEmpty>
     </select> 
 
         <!-- 睡眠期 离店天数在 91-180 天内-->
@@ -58,6 +77,12 @@
         AND B.CHAIN_COME_TIMES &gt;  0
         AND B.LAST_COME_DATE  &lt; DATE_SUB(CURDATE(), INTERVAL 90 DAY)
         AND B.LAST_COME_DATE  &gt;=  DATE_SUB(CURDATE(), INTERVAL 180 DAY)
+                       <isNotEmpty prepend="and" property="carNo">  
+               	a.car_no   like  '%$carNo$%'
+            </isNotEmpty>
+                                    <isNotEmpty prepend="and" property="mobile">  
+               	c.mobile   like  '%$mobile$%'
+            </isNotEmpty>
     </select> 
 
     <!-- 流失期  离店天数超 181 天以上-->
@@ -66,6 +91,12 @@
         WHERE c.ORGID = #orgid#
         AND B.CHAIN_COME_TIMES  &gt; 0
         AND B.LAST_COME_DATE  &lt; DATE_SUB(CURDATE(), INTERVAL 180 DAY)
+                       <isNotEmpty prepend="and" property="carNo">  
+               	a.car_no   like  '%$carNo$%'
+            </isNotEmpty>
+                                    <isNotEmpty prepend="and" property="mobile">  
+               	c.mobile   like  '%$mobile$%'
+            </isNotEmpty>
     </select>
     
         <!-- 未分类-->
@@ -73,12 +104,24 @@
         <include refid="guest_column"/>
         WHERE c.ORGID = #orgid#
         AND B.CHAIN_COME_TIMES  &lt; 1
+                       <isNotEmpty prepend="and" property="carNo">  
+               	a.car_no   like  '%$carNo$%'
+            </isNotEmpty>
+                                    <isNotEmpty prepend="and" property="mobile">  
+               	c.mobile   like  '%$mobile$%'
+            </isNotEmpty>
     </select> 
     
     <!-- 所有-->
     <select id="getGuestTypeG" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
         <include refid="guest_column"/>
         WHERE c.ORGID = #orgid#
+                       <isNotEmpty prepend="and" property="carNo">  
+               	a.car_no   like  '%$carNo$%'
+            </isNotEmpty>
+                                    <isNotEmpty prepend="and" property="mobile">  
+               	c.mobile   like  '%$mobile$%'
+            </isNotEmpty>
     </select>
 
     <select id="getGuestTypeNum" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">

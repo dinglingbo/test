@@ -72,7 +72,7 @@
                     <div class="menu_pannel menu_pannel_bg">
                         <a onclick="CarInsuranceQuery()">
                             <i class="fa fa-calendar fa-4x  fa-inverse"></i>
-                            <p>保险开单明细表</p> 
+                            <p>车险开单明细表</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">

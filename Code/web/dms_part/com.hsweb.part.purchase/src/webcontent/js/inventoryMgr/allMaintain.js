@@ -8,6 +8,9 @@ var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.report.queryAllMaint
 var getdRpsPackageUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext";
 var getRpsItemUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext";
 var getRpsPartUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext";
+
+var getRpsItemBillUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemPPartBill.biz.ext";
+var getdRpsPackageBillUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPartBill.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -37,7 +40,7 @@ var prdtTypeHash = {
 	    "3":"配件"
 };
 var auditSignHash = {
-	    "0" : "在场",
+	    "0" : "在厂",
 	    "1" : "出厂"
 	};
 $(document).ready(function ()
@@ -55,11 +58,10 @@ $(document).ready(function ()
     serviceTypeIds = nui.get("serviceTypeIds");
     advancedSearchForm = new nui.Form("#advancedSearchForm");
     editFormDetail = document.getElementById("editFormDetail");
+    advancedSearchWin = nui.get("advancedSearchWin");
     innerItemGrid = nui.get("innerItemGrid");
     innerpackGrid = nui.get("innerpackGrid");
-	advancedSearchWin = nui.get("advancedSearchWin");
-    innerItemGrid.setUrl(getRpsItemUrl);
-    innerpackGrid.setUrl(getdRpsPackageUrl);
+
 
     //判断是否有兼职门店,是否显示门店选择框
 /*    orgidsEl = nui.get("orgids");
@@ -113,21 +115,72 @@ $(document).ready(function ()
             servieTypeList.forEach(function(v) {
                 servieTypeHash[v.id] = v;
             });
-            serviceTypeIds.setData(servieTypeList);
+            //serviceTypeIds.setData(servieTypeList);
 
-            initCarBrand("carBrandId",function(data) {
+/*            initCarBrand("carBrandId",function(data) {
                 brandList = nui.get("carBrandId").getData();
                 brandList.forEach(function(v) {
                     brandHash[v.id] = v;
                 });
 
-            });
+            });*/
 
 
         });
 
     });
+    mainGrid.on("cellclick",function(e){ 
+		var field=e.field;
+		var row = e.row;
+        if(field=="isOutBill" ){
+        	if(e.value==1){
+    			var item={};
+    			item.id = "123321";
+    		    item.text = "报销单详情";
+    			item.url =webBaseUrl+  "com.hsweb.print.ExpenseAccount.flow";
+    			item.iconCls = "fa fa-file-text";
+    			row.isEdit = true;//打开页面是否可编辑
+    			window.parent.activeTabAndInit(item,row);
+        	}
 
+        }
+    });
+    mainGrid.on("preload",function(e)
+    	    {
+    	        var data = e.result.data;
+    	        var outBill = e.result.outBill;
+
+    	        for(var i=0;i<data.length;i++)
+    	        {
+    	        	if(data[i].isOutBill==1){
+        	            for(var j=0;j<outBill.length;j++)
+        	            {
+        	                if(data[i].id == outBill[j].sourceServiceId)
+        	                {
+        	                	//报销单显示报销单数据
+        	                	data[i].packageSubtotal = outBill[j].packageAmt;
+        	                	data[i].itemSubtotal = outBill[j].itemAmt;
+        	                	data[i].partSubtotal = outBill[j].partAmt;
+        	                	data[i].total = parseFloat(outBill[j].packageAmt)+parseFloat(outBill[j].itemAmt)+parseFloat(outBill[j].partAmt);
+        	                	//报销单不显示优惠信息和结算信息
+        	                	data[i].packagePrefAmt = null;
+        	                	data[i].itemPrefAmt = null;
+        	                	data[i].partPrefAmt = null;
+        	                	data[i].otherAmt = null;
+        	                	data[i].incomeTotal = null;
+        	                	data[i].netinAmt = null;
+        	                	data[i].cardTimesAmt = null;
+        	                	data[i].balaAmt = null;
+        	                	data[i].grossProfit = null;
+        	                	data[i].grossProfitRate = null;
+        	                	data[i].grossProfitRemark = null; 
+        	                	outBill.splice(j,1);//如果已经匹配，删除本记录，降低循环时间
+        	                }
+        	            }
+    	        	}
+    	        }   	              
+    	        mainGrid.setData(data);
+    	    });
 
     mainGrid.on("drawSummaryCell", function (e) {
     	var result = e.result.data;
@@ -206,7 +259,10 @@ $(document).ready(function ()
                     e.cellHtml = "--";
                     e.cancel = false;
                 }else{
-                    e.cellHtml = servieTypeHash[e.value].name;
+                    if (servieTypeHash && servieTypeHash[e.value]) {
+                    	e.cellHtml = servieTypeHash[e.value].name;
+                    }
+                    
                 }
                 break;
             case "workers":
@@ -246,7 +302,10 @@ $(document).ready(function ()
 	            if(type>1){
 	                e.cellHtml = "--";
 	            }else{
-	                e.cellHtml = servieTypeHash[e.value].name;
+	                if(servieTypeHash[e.value])
+	                {
+	                    e.cellHtml = servieTypeHash[e.value].name;
+	                }
 	            }
             break;
 	        case "serviceTypeName":
@@ -309,8 +368,7 @@ function clear(){
    endDateEl.setValue(addDate(getMonthEndDate(), 1));
 }
 function onShowRowDetail(e) {
-    var row = e.record;
-    
+    var row = e.record;    
     //将editForm元素，加入行详细单元格内
     var td = mainGrid.getRowDetailCellEl(row);
     td.appendChild(editFormDetail);
@@ -318,6 +376,14 @@ function onShowRowDetail(e) {
 
     innerItemGrid.setData([]);
     innerpackGrid.setData([]);
+    if(row.isOutBill==1){
+        innerItemGrid.setUrl(getRpsItemBillUrl);
+        innerpackGrid.setUrl(getdRpsPackageBillUrl);
+    }else{
+        innerItemGrid.setUrl(getRpsItemUrl);
+        innerpackGrid.setUrl(getdRpsPackageUrl);
+    }
+
     var serviceId = row.id;
     innerItemGrid.load({
     	serviceId:serviceId,
@@ -577,10 +643,8 @@ function advancedSearch()
 	
     advancedSearchWin.show();
     advancedSearchForm.clear();
-    if(advancedSearchFormData)
-    {
-        advancedSearchForm.setData(advancedSearchFormData);
-    }
+    nui.get("sEnterDate1").setValue(getMonthStartDate());
+    nui.get("eEnterDate1").setValue(getMonthEndDate());
 }
 
 function onAdvancedSearchOk()
@@ -600,6 +664,7 @@ function onAdvancedSearchOk()
 	}
     
     searchData.mtAuditorId = mtAdvisorIdEl.getValue();
+    searchData.serviceTypeIds = serviceTypeIdEl.getValue();
     searchData.guestProperty = nui.get("guestProperty").getValue();
     searchData.propertyFeatures = nui.get("propertyFeatures").getValue();
     var billTypeIdList =  nui.get("billTypeIdList").getValue();
@@ -611,7 +676,7 @@ function onAdvancedSearchOk()
     	searchData.status = nui.get("statusId").getValue();
     }
     var settleType = nui.get("settleType").getValue();
-    if(settleType==0){
+    if(settleType==4){
     	searchData.balaAuditSign = 0;
     }else if(settleType==1){
     	searchData.balaAuditSign = 1;
@@ -631,7 +696,7 @@ function onAdvancedSearchOk()
     searchData.mobile = nui.get("mobile").getValue();
     advancedSearchWin.hide();
     doSearch2(searchData);
-    advancedSearchForm.gusetId=null;
+
   
 }
 function doSearch2(params){
@@ -647,4 +712,16 @@ function onAdvancedSearchCancel(){
 
 function cancelData(){
 	advancedSearchForm.setData([]);
+    nui.get("sEnterDate1").setValue(getMonthStartDate());
+    nui.get("eEnterDate1").setValue(getMonthEndDate());
+}
+
+function queryExpense(){
+	var row = mainGrid.getSelected();
+		var item={};
+		item.id = "123321";
+	    item.text = "报销单详情";
+		item.url =webBaseUrl+  "com.hsweb.print.ExpenseAccount.flow";
+		item.iconCls = "fa fa-file-text";
+		window.parent.activeTabAndInit(item,row);
 }

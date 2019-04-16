@@ -61,13 +61,16 @@
 			a.complain_tel complainTel,
 			a.srm_user_id  srmUserId
 		FROM  wb_common.com_company a
-			where a.tenant_id = #tenantId#
+			where 1=1
 		<dynamic>
              <isNotEmpty prepend="and" property="code">
             	(a.code like '%$code$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="orgid">
             	(a.orgid = $orgid$)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="tenantId">
+            	(a.tenant_id = #tenantId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="name">
             	(a.name like '%$name$%')

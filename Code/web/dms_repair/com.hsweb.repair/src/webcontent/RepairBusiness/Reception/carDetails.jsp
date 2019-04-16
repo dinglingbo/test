@@ -242,14 +242,16 @@
                                     <div field="guestId" class="nui-hidden" allowSort="true" align="left" headerAlign="center" width="" visible="false">
                                         客户ID
                                     </div>
-                                    <div field="name" allowSort="true" align="left" summaryType="count" headerAlign="center" width="">姓名</div>
-                                    <div field="sex" allowSort="true" align="left" headerAlign="center" width="" dataType="int">
+                                    <div field="name" allowSort="true" align="left" summaryType="count" headerAlign="center" width="100">姓名</div>
+                                    <div field="sex" allowSort="true" align="left" headerAlign="center" width="60" dataType="int">
                                         性别
                                     </div>
-                                    <div field="mobile" allowSort="true" align="left" headerAlign="center" width="" dataType="int">
+                                    <div field="mobile" allowSort="true" align="left" headerAlign="center" width="100" dataType="int">
                                         手机
                                     </div>
-                                    <div field="identity" allowSort="true" align="left" headerAlign="center" width="">身份</div>
+                                    <div field="identity" allowSort="true" align="left" headerAlign="center" width="70">身份</div>
+                                    <div field="wechatServiceId" allowSort="true" align="left" headerAlign="center" width="80">微信服务号</div>                                                                        
+                                    <div field="wechatOpenId" allowSort="true" align="left" headerAlign="center" width="160">微信ID</div>
                                 </div>
                             </div> 
                         </div>
@@ -481,6 +483,10 @@
 					                  <div field="chanceMan" name="creator" width="80" headerAlign="center" header="商机所有者"></div>
 					                <div field="nextFollowDate" name="nextFollowDate" width="100" dateFormat="yyyy-MM-dd " headeralign="center" >下次跟进时间</div>
 					 				<div field="planFinishDate" name="planFinishDate" width="100" dateFormat="yyyy-MM-dd " headeralign="center" >预计成单时间</div>
+					 				<div field="recorder" name="recorder" width="80"  headeralign="center" >创建人</div>
+					           		<div field="recordDate" name="recordDate" width="100" dateFormat="yyyy-MM-dd " headeralign="center" >创建人日期</div>
+					           		<div field="modifier" name="modifier" width="80"  headeralign="center" >修改人</div>
+					           		<div field="modifyDate" name="modifyDate" width="100" dateFormat="yyyy-MM-dd " headeralign="center" >修改日期</div>
 					                  <div field="cardTimesOpt" name="cardTimesOpt" width="80" headerAlign="center"  header="操作" align="center"></div>
 					              </div>
 					          </div>

@@ -5,6 +5,7 @@ var visitContent = null;
 var baseUrl = apiPath + sysApi + "/";
 var sendUrl = baseUrl+"com.hsapi.system.basic.smsPush.testPushMore.biz.ext";
 var saveUrl = apiPath + repairApi +"/com.hsapi.repair.repairService.crud.saveRemindRecordMore.biz.ext";
+var taskUrl = apiPath + crmApi +"/com.hsapi.crm.svr.guest.saveSendTask.biz.ext";
 $(document).ready(function (){
 	
   form1 = new nui.Form("#form1");
@@ -29,48 +30,100 @@ function setData(rows) {
 function save() {
     //mainData.mobile = '15607733238';
         //验证
-    	var message  = visitContent.getValue();
-        if(message=="" || message==null){
-            showMsg("请输入短信内容!","W");
-            return ;
-        }
+    // 	var message  = visitContent.getValue();
+    //     if(message=="" || message==null){
+    //         showMsg("请输入短信内容!","W");
+    //         return ;
+    //     }
 
-         nui.mask({
-           el: document.body,
-           cls: 'mini-mask-loading',
-           html: '短信发送中...'
-        });
+    //      nui.mask({
+    //        el: document.body,
+    //        cls: 'mini-mask-loading',
+    //        html: '短信发送中...'
+    //     });
        
-        var json = nui.encode({
-			"list" : mainDatas,
-			"msg" : message,
-			token : token
-        });   
-        var params = {
+    //     var json = nui.encode({
+	// 		"list" : mainDatas,
+	// 		"msg" : message,
+	// 		token : token
+    //     });   
+    //     var params = {
             
-        }
-       nui.ajax({
-			url : sendUrl,
-			type : 'POST',
-			data : json,
-			cache : false,
-			contentType : 'text/json',
-			success : function(text) {
-				var returnJson = nui.decode(text);
-				if (returnJson.errCode == "S") {
-				    nui.unmask(document.body);
-                    showMsg(returnJson.errMsg || "发送成功", "S");
-                    saveRecord();
-					CloseWindow("ok");
-				} else {
-					nui.unmask(document.body);
-					showMsg(returnJson.errMsg || "发送失败","E");
+    //     }
+    //    nui.ajax({
+	// 		url : sendUrl,
+	// 		type : 'POST',
+	// 		data : json,
+	// 		cache : false,
+	// 		contentType : 'text/json',
+	// 		success : function(text) {
+	// 			var returnJson = nui.decode(text);
+	// 			if (returnJson.errCode == "S") {
+	// 			    nui.unmask(document.body);
+    //                 showMsg(returnJson.errMsg || "发送成功", "S");
+    //                 saveRecord();
+	// 				CloseWindow("ok");
+	// 			} else {
+	// 				nui.unmask(document.body);
+	// 				showMsg(returnJson.errMsg || "发送失败","E");
 					
-				}
-			}
-		});
+	// 			}
+	// 		}
+    // 	});
+    saveTask();
 }
 
+
+function saveTask() {
+    if (mainDatas.length > 0) {
+        var params = {
+            serviceType: mainDatas[0].serviceType,
+            visitMode: '011402',//短信
+            taskNum: mainDatas.length,
+        }
+
+        var message = visitContent.getValue();
+        var Arr = [];
+        for (var i = 0; i < mainDatas.length; i++) {
+            var data = mainDatas[i];
+            var pa ={
+                guestId: data.tureGuestId || '',
+                contactorId: data.conId,
+                mobile:data.mobile,
+                carId:data.carId||'', 
+                carNo: data.carNo || '',
+                visitContent: message || '',
+                guestSource: data.guestSource,
+                wechatOpenId: data.wechatOpenId,
+                wechatServiceId:data.wechatServiceId
+            };
+            Arr.push(pa);
+        }
+              nui.mask({
+                el: document.body,
+                cls: 'mini-mask-loading',
+                html: '短信发送任务后台生成中...'
+             });
+        nui.ajax({
+            url: taskUrl,
+            type: 'post',
+            data: {
+                taskMain: params,
+                taskDetail:Arr
+            },
+            success: function (res) {
+                nui.unmask(document.body);
+                if (res.errCode == 'S') {
+                    showMsg(res.snum+"条短信发送任务生成成功！", "S");
+                    saveRecord();
+					CloseWindow("ok");
+                } else {
+                    showMsg(res.fnum+"条短信发送任务生成失败！","E");
+                }
+            }
+        })
+    }
+}
 
 
 function saveRecord() {
@@ -101,11 +154,11 @@ function saveRecord() {
             params:Arr
         },
         success:function(res){
-            if(res.errCode == 'S'){
-                showMsg("发送成功！","S");
-            }else{
-                showMsg("发送失败！","E");
-            }
+            // if(res.errCode == 'S'){
+            //     showMsg("发送成功！","S");
+            // }else{
+            //     showMsg("发送失败！","E");
+            // }
         },
         error: function (jqXHR) {
             showMsg(jqXHR.responseText);
@@ -113,6 +166,10 @@ function saveRecord() {
     })
     
 }
+
+
+
+
 
 function onClear(){
     visitContent.setValue(null);

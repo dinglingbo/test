@@ -46,7 +46,7 @@ function setData(data){
 //这是表格才有的属性
 function onDrawCell(e)
 {
-	
+	var hash = new Array("套餐", "项目", "配件");
   switch (e.field)
   {
       
@@ -61,10 +61,14 @@ function onDrawCell(e)
           break; 
       case "sellAmt":
           e.cellHtml = "￥"+e.value;
-          break;     
+          break; 
+  	case "prdtType":
+		e.cellHtml = hash[e.value - 1];
+		break;
       default:
           break;
   }
+
 }
 
 

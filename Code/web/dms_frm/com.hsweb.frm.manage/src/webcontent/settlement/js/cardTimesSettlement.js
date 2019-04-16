@@ -5,7 +5,8 @@ var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWi
 var netInAmt = 0;//应结金额
 var cardType = 1;//什么界面过来的  1计次卡，2储值卡
 var tableNum = 0;
-var card = [];//传进逻辑流的卡
+var card = {};//传进逻辑流的卡
+var cardList=[];//所有计次卡
 var form = null;
 var type = null;
 var typeList = {};
@@ -179,7 +180,7 @@ function addTimesCardList(){
 		type : "post",
 		data : "",
 		success : function(data) {	
-				card = data.timesCard;
+				cardList = data.timesCard;
 				$("<option value=''>—请选择计次卡—</option>").appendTo("#cardList");
 				for(var i = 0;i<data.timesCard.length;i++){
 						$("<option  value="+data.timesCard[i].id+">"+data.timesCard[i].name+"&nbsp;&nbsp;&nbsp;&nbsp;"+"售价："+data.timesCard[i].sellAmt+"</option>").appendTo("#cardList");
@@ -365,8 +366,10 @@ function settleOK() {
 							data = data || {};
 							if (data.errCode == "S") {
 								showMsg(data.errMsg||"收款成功！","S");
-								CloseWindow("ok");
+								//CloseWindow("ok");
 								print();
+								guestData={};
+								add();
 							} else {
 								showMsg(data.errMsg,"W");
 							}
@@ -566,7 +569,9 @@ function noPayOk(){
 				        var returnJson = nui.decode(text);
 				        if (returnJson.errCode == "S") {
 				        	showMsg(text.errMsg||"转预结算成功！","S");
-				        	CloseWindow("onok");
+				        	guestData={};
+				        	add();
+				        	//CloseWindow("onok");
 				        	print();
 				        }
 				        else {
@@ -595,13 +600,13 @@ function payCard(){
 	 var myselect=document.getElementById("cardList");
 	 var index=myselect.selectedIndex;
 	 var c  =myselect.options[index].value;
-	for(var i = 0;i<card.length;i++){
-		if(c==card[i].id){
-			row = card[i];
+	for(var i = 0;i<cardList.length;i++){
+		if(c==cardList[i].id){
+			row = cardList[i];
 			if(cardType==1){
-				netInAmt = card[i].sellAmt;
+				netInAmt = cardList[i].sellAmt;
 			}else if(cardType==2){
-				netInAmt = card[i].rechargeAmt;
+				netInAmt = cardList[i].rechargeAmt;
 			}
 			
 				checkF = 1;

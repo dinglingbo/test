@@ -75,6 +75,7 @@
  var y = 0;
  var score = 0;
  var lcheckDate = '';
+ var contactorF = null;
  var prdtTypeHash = {
     "1":"套餐",
     "2":"项目",
@@ -748,6 +749,7 @@ function setInitData(params){
                     var guest = text.guest||{};
                     var car = text.car || {};
                     var contactor = text.contactor||{};
+                    contactorF = contactor;
                     if(errCode == 'S'){
                         $("#servieIdEl").html(data.serviceCode);
                         var carNo = data.carNo||"";
@@ -807,13 +809,13 @@ function setInitData(params){
                         	doSetStyle(status, isSettle);                       	
                         }
 
-                        if(data.isOutBill){
+                        /*if(data.isOutBill){
                         	nui.get("ExpenseAccount").setVisible(false);
                         	nui.get("ExpenseAccount1").setVisible(true);
                         }else{
                         	nui.get("ExpenseAccount").setVisible(true);
                         	nui.get("ExpenseAccount1").setVisible(false);
-                        }
+                        }*/
 
                         var p1 = {
                         }
@@ -894,8 +896,8 @@ function add(){
     $("#guestNameEl").html("");
     $("#guestTelEl").html("");
 
-    nui.get("ExpenseAccount").setVisible(true);
-    nui.get("ExpenseAccount1").setVisible(false);
+  /*  nui.get("ExpenseAccount").setVisible(true);
+    nui.get("ExpenseAccount1").setVisible(false);*/
     $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
     var tabList = document.querySelectorAll('.xz');
 	var natureId = null;
@@ -980,6 +982,7 @@ function setFrom(data){
             var guest = text.guest||{};
             var car = text.car || {};
             var contactor = text.contactor||{};
+            contactorF = contactor;
             var car = text.car || {};
             if(errCode == 'S'){
                 $("#servieIdEl").html(data.serviceCode);
@@ -997,6 +1000,13 @@ function setFrom(data){
                     carVin = "/"+carVin;
                 }
                 var t = carNo + tel + guestName + carVin;
+                if(contactor.wechatOpenId){
+                 	document.getElementById("showA").style.display = "";
+                 	document.getElementById("showA1").style.display='none';
+                 }else{
+                 	document.getElementById("showA").style.display='none';
+                 	document.getElementById("showA1").style.display = "";
+                }
                 searchNameEl.setValue(t);
                 searchNameEl.setEnabled(false);
 
@@ -1096,6 +1106,7 @@ function saveNoshowMsg(callback,type){
                 var guest = text.guest||{};
                 var car = text.car || {};
                 var contactor = text.contactor||{};
+                contactorF = contactor;
                 if(errCode == 'S'){
                     $("#servieIdEl").html(data.serviceCode);
                     var carNo = data.carNo||"";
@@ -3211,10 +3222,10 @@ function addExpenseAccount(){
 	    item.text = "报销单详情";
 		item.url =webBaseUrl+  "com.hsweb.print.ExpenseAccount.flow?sourceServiceId="+data.id;
 		item.iconCls = "fa fa-file-text";
+		data.guestMobile = $("#guestTelEl").text();
+		data.guestTel = $("#guestNameEl").text();
+		data.contactorTel = data.mobile;
 		window.parent.activeTabAndInit(item,data);
-		data.guestTel = $("#guestTelEl").text();
-		data.guestName = $("#guestNameEl").text();
-		data.contactorTel = data.guestMobile;
 	}else{
 		showMsg("请先保存后再进行操作!","W");
 	}
@@ -3313,7 +3324,10 @@ function onPay(data){
         guestId:data.guestId||0,
         carNo:data.carNo||0,
         guestName:$("#guestNameEl").text(),
-        data:sellData
+        data:sellData,
+        contactor:contactorF,
+        carId:fcarId,
+        billTypeId:2
     };
     doBillPay(params, function(data){
         data = data||{};
@@ -3677,6 +3691,7 @@ function chooseContactor(){
          {
         	 var iframe = this.getIFrameEl();
         	 var row = iframe.contentWindow.getData();
+        	 contactorF = row;
         	 nui.get("contactorName").setText(row.name);
         	 if(data.id){
         		 var maintain = billForm.getData();

@@ -76,6 +76,7 @@ var lastItemRate = null;
 var lastItemUnitPrice = null;
 var lastPkgSubtotal = null;
 var lastPkgRate = null;
+var contactorF = null;
 var prdtTypeHash = {
     "1":"套餐",
     "2":"项目",
@@ -906,6 +907,7 @@ function setInitData(params){
                     var guest = text.guest||{};
                     var car = text.car || {};
                     var contactor = text.contactor||{};
+                    contactorF = contactor;
                     if(errCode == 'S'){
                         $("#servieIdEl").html(data.serviceCode);
                         var carNo = data.carNo||"";
@@ -980,13 +982,13 @@ function setInitData(params){
                         	doSetStyle(status, isSettle);                       	
                         }
 
-                        if(data.isOutBill){
+                        /*if(data.isOutBill){
                         	nui.get("ExpenseAccount").setVisible(false);
                         	nui.get("ExpenseAccount1").setVisible(true);
                         }else{
                         	nui.get("ExpenseAccount").setVisible(true);
                         	nui.get("ExpenseAccount1").setVisible(false);
-                        }
+                        }*/
                         //设置联系人姓名
                         nui.get("contactorName").setText(contactor.name);
                         sendGuestForm.setData(data);
@@ -1085,8 +1087,8 @@ function add(){
     $("#guestTelEl").html("");
     $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
 
-    nui.get("ExpenseAccount").setVisible(true);
-    nui.get("ExpenseAccount1").setVisible(false);
+    /*nui.get("ExpenseAccount").setVisible(true);
+    nui.get("ExpenseAccount1").setVisible(false);*/
     document.getElementById("showA1").style.display = "";
 	document.getElementById("showA").style.display='none';
 	advancedCardTimesWin.hide();
@@ -1171,6 +1173,7 @@ function setFrom(data){
             var guest = text.guest||{};
             var car = text.car || {};
             var contactor = text.contactor||{};
+            contactorF = contactor;
             if(errCode == 'S'){
                 $("#servieIdEl").html(data.serviceCode);
                 var carNo = data.carNo||"";
@@ -1292,6 +1295,7 @@ function saveNoshowMsg(callback){
                 var guest = text.guest||{};
                 var car = text.car || {};
                 var contactor = text.contactor||{};
+                contactorF = contactor;
                 if(errCode == 'S'){
                     $("#servieIdEl").html(data.serviceCode);
                     var carNo = data.carNo||"";
@@ -3680,7 +3684,10 @@ function pay(){
             guestId:data.guestId||0,
             carNo:data.carNo||0,
             guestName:$("#guestNameEl").text(),
-            data:sellData
+            data:sellData,
+            contactor:contactorF,
+            carId:fcarId,
+            billTypeId:4
         };
         doBillPay(params, function(data){
             data = data||{};
@@ -4717,6 +4724,7 @@ function chooseContactor(){
         	 var iframe = this.getIFrameEl();
         	 var row = iframe.contentWindow.getData();
         	 var contactor = sendGuestForm.getData();
+        	 contactorF = row;
         	 contactor.id = row.id;
         	 contactor.contactorName = row.name;
         	 contactor.sex = row.sex;

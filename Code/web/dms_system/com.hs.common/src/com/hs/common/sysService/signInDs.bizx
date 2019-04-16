@@ -20,6 +20,16 @@
       <targetNode>assign4</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link9" name="用户已存在" displayName="连接线" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>assign2</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="OBJEQ">
+          <process:leftOperand type="query">result/msg</process:leftOperand>
+          <process:rightOperand type="literal">用户已存在！</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link2</targetConnections>
     <location x="405" y="257"/>
     <size height="28" width="22"/>
@@ -81,6 +91,7 @@
       <targetNode>invokePojo3</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
+    <targetConnections>link9</targetConnections>
     <location x="525" y="383"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
@@ -236,7 +247,7 @@
       <targetNode>assign0</targetNode>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
-    <location x="650" y="383"/>
+    <location x="660" y="383"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="static" synchronization="true" transactionType="join">
@@ -252,7 +263,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="626" y="419"/>
+    <location x="636" y="419"/>
     <figSize height="20" width="70"/>
     <node>invokePojo3</node>
   </nodes>

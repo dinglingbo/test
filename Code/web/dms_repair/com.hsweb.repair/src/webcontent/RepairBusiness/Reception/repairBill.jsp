@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>综合开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=2.2.53"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=2.2.54"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -224,8 +224,8 @@
                 <ul id="popupMenuMore" class="nui-menu" style="display:none;">
                     <li iconCls="" onclick="unfinish()" id="addBtn">返单</li>
                     <li iconCls="" onclick="updateBillExpense()" id="billExpense">费用登记</li>
-                    <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount">新增报销单</li>
-                    <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount1">修改报销单</li>
+                   <!--  <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount">新增报销单</li> -->
+                    <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount1">报销单</li>
                     <li iconCls="" onclick="openOrderDetail()" id="openOrderDetail">打开工单详情页</li>
                     <li iconCls="" onclick="toChangBillTypeId(2)" id="">转为洗美开单</li>
                     <li iconCls="" onclick="toChangBillTypeId(4)" id="">转为理赔开单</li>
@@ -426,7 +426,7 @@
 		          <div field="prdtName" name="prdtName" width="100" headerAlign="center" header="产品名称"></div>
 		          <div field="prdtType" name="prdtType" width="60" headerAlign="center" header="产品类别"></div>
 		          <div field="totalTimes" name="totalTimes" width="50" headerAlign="center" header="总次数"></div>
-		          <div field="balaTimes" name="balaTimes" width="60" headerAlign="center" header="剩余次数"></div>
+		          <div field="useTimes" name="useTimes" width="60" headerAlign="center" header="已使用次数"></div>
 		          <div field="doTimes" name="doTimes" width="70" headerAlign="center" header="使用中次数"></div>
 		          <div field="canUseTimes" name="canUseTimes" width="70" headerAlign="center" header="可使用次数"></div>
 		          <div field="cardTimesOpt" name="cardTimesOpt" width="60" headerAlign="center"  header="操作"></div>

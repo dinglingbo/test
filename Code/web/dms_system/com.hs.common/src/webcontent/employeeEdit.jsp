@@ -12,7 +12,12 @@
 <head> 
     <title>添加员工</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/js/employeeEdit.js?v=1.1.8" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/common/js/employeeEdit.js?v=1.1.9" type="text/javascript"></script>
+  	<script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
+  	<script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
+ 	<script src="<%= request.getContextPath() %>/common/qiniu/qiniu1.0.14.js" type="text/javascript"></script>
+  	<script src="https://cdn.staticfile.org/plupload/2.1.9/moxie.js"></script>
+ 	<script src="https://cdn.staticfile.org/plupload/2.1.9/plupload.dev.js"></script>  
     <style type="text/css">
 </style>
 </head>
@@ -33,6 +38,19 @@
             <fieldset id="fd1" style="width:600px;">
                 <legend><span>基本信息</span></legend>
                 <table >
+                	 <tr >
+			                <td align="right">头像：<span class="spanwidth"></span> </td>
+			                <td  colspan="5" class="tabwidth" >
+			                <div class="page-header" id="btn-uploader">
+				                	<div class="div1" id="faker" onchange="xmTanUploadImg(this)">
+							            <img id="xmTanImg" style="width: 100px;height: 100px" onchange="xmTanUploadImg(this)" src="<%= request.getContextPath() %>/common/images/logo.jpg"/>
+							            <div id="xmTanDiv"></div>
+							        </div>
+						        </div>
+							<input  class="nui-textbox" id="headPortrait" name="headPortrait"  style="display:none" >
+		                </td>
+				
+           			</tr>
                     <tr>
                         <td align="right">员工工号:</td>
                         <td><input class="nui-textbox" required="false" id="empid" name="empid" vtype="int" onvalidation="onempid" readonly="readonly" emptyText="系统自动分配"/></td>

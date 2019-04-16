@@ -12,7 +12,11 @@ var visitHis = null; //回访历史
 var serviceType = null; //5保养提醒 //6商业险到期   7; //交强险到期   8; //驾照到期   9; //车检到期   10; //客户生日  
 var params = {};
 var tabs = {};
+var sortTypeList = [ {id : "2",text : "到期日期↓"}, {id : "1",text : "到期日期↑"}, {id : "4",text : "客户名称↓"},{id : "3",text : "客户名称↑"}, 
+    { id: "6", text: "车牌号↓" }, { id: "5", text: "车牌号↑" }, { id: "8", text: "客户类型↓" }, { id: "7", text: "客户类型↑" }];
 
+var sortTypeList2 = [ {id : "2",text : "距离天数↓"}, {id : "1",text : "距离天数↑"}, {id : "4",text : "客户名称↓"},{id : "3",text : "客户名称↑"}, 
+{id : "6",text : "车牌号↓"}, {id : "5",text : "车牌号↑"}, {id : "8",text : "客户类型↓"}, {id : "7",text : "客户类型↑"} ];
 $(document).ready(function (v) {
     tabs = nui.get("tabs");
     reminding = nui.get("reminding");
@@ -47,6 +51,12 @@ $(document).ready(function (v) {
     nui.get('endDate2').setValue(thirdty); 
     nui.get('endDate3').setValue(thirdty);
     nui.get('endDate4').setValue(thirdty);
+    nui.get('sortType0').setData(sortTypeList); 
+    nui.get('sortType').setData(sortTypeList); 
+    nui.get('sortType2').setData(sortTypeList); 
+    nui.get('sortType3').setData(sortTypeList); 
+    nui.get('sortType4').setData(sortTypeList); 
+    nui.get('sortType5').setData(sortTypeList2); 
     
     initInsureComp("insureCompCode");//保险公司
     initDicts({
@@ -401,8 +411,15 @@ function query(tab) {
             params = {
                 startDate:nui.get('startDate0').getFormValue(),
                 endDate: nui.get('endDate0').getFormValue(),
+                carNo:nui.get("carNo0").value,
                 dateType:'bytx'
             };
+            var sortValue = nui.get("sortType0").value;
+            if (sortValue) {
+                var sort = getSort(sortValue, 'bytx');
+                params.sortField = sort.sortField;
+                params.sortOrder = sort.sortOrder;
+            }
             reminding.load({
                 params: params,
                 token: token
@@ -411,8 +428,15 @@ function query(tab) {
             params = {
                 startDate:nui.get('startDate').getFormValue(),
                 endDate: nui.get('endDate').getFormValue(),
+                carNo:nui.get("carNo").value,
                 dateType:'syx'
             };
+            var sortValue = nui.get("sortType").value;
+            if (sortValue) {
+                var sort = getSort(sortValue, 'syx');
+                params.sortField = sort.sortField;
+                params.sortOrder = sort.sortOrder;
+            }
             business.load({
                 params: params,
                 token: token
@@ -423,8 +447,15 @@ function query(tab) {
                 insureStatus: 0,
                 startDate:nui.get('startDate2').getFormValue(),
                 endDate: nui.get('endDate2').getFormValue(),
+                carNo:nui.get("carNo2").value,
                 dateType:'jqx'
             };
+            var sortValue = nui.get("sortType2").value;
+            if (sortValue) {
+                var sort = getSort(sortValue, 'jqx');
+                params.sortField = sort.sortField;
+                params.sortOrder = sort.sortOrder;
+            }
             compulsoryInsurance.load({
                 params: params,
                 token: token
@@ -434,8 +465,15 @@ function query(tab) {
             params = {
                 startDate:nui.get('startDate3').getFormValue(),
                 endDate: nui.get('endDate3').getFormValue(),
+                carNo:nui.get("carNo3").value,
                 dateType:'jzns'
             };
+            var sortValue = nui.get("sortType3").value;
+            if (sortValue) {
+                var sort = getSort(sortValue, 'jzns');
+                params.sortField = sort.sortField;
+                params.sortOrder = sort.sortOrder;
+            }
             drivingLicense.load({
                 params: params,
                 token: token
@@ -445,8 +483,15 @@ function query(tab) {
             params = {
                 startDate:nui.get('startDate4').getFormValue(),
                 endDate: nui.get('endDate4').getFormValue(),
+                carNo:nui.get("carNo4").value,
                 dateType:'clnj'
             };
+            var sortValue = nui.get("sortType4").value;
+            if (sortValue) {
+                var sort = getSort(sortValue, 'clnj');
+                params.sortField = sort.sortField;
+                params.sortOrder = sort.sortOrder;
+            }
             car.load({
                 params: params,
                 token: token
@@ -455,8 +500,15 @@ function query(tab) {
         } else if (tab.title == "客户生日提醒") {
             params = {
                 bir:nui.get('bir').value,
+                carNo:nui.get("carNo5").value,
                 dateType:'khsr'
             };
+            var sortValue = nui.get("sortType5").value;
+            if (sortValue) {
+                var sort = getSort(sortValue, 'khsr');
+                params.sortField = sort.sortField;
+                params.sortOrder = sort.sortOrder;
+            }
             guestBirthday.load({
                 params: params,
                 token: token
@@ -465,6 +517,57 @@ function query(tab) {
         }
     }
 }
+function getSort(sortTypeValue,type){
+	var data = {
+			sortField:'',
+			sortOrder:''
+	};
+	if (sortTypeValue == 1) {
+		data.sortField = getSortDateText(type);
+		data.sortOrder = "desc";
+	} else if (sortTypeValue == 2) {
+		data.sortField = getSortDateText(type);
+		data.sortOrder = "asc";
+	} else if (sortTypeValue == 3) {
+		data.sortField = "guestName";
+		data.sortOrder = "desc";
+	} else if (sortTypeValue == 4) {
+		data.sortField = "guestName";
+		data.sortOrder = "asc";
+	} else if (sortTypeValue == 5) {
+		data.sortField = "carNo";
+		data.sortOrder = "desc";
+	} else if (sortTypeValue == 6) {
+		data.sortField = "carNo";
+		data.sortOrder = "asc";
+    } else if (sortTypeValue == 7) {
+    	data.sortField = "guestType";
+    	data.sortOrder = "desc";
+    } else if (sortTypeValue == 8) {
+    	data.sortField = "guestType";
+    	data.sortOrder = "asc";
+    }
+    return data;
+}
+
+function getSortDateText(type) {
+    var dateText = '';
+    if (type == 'bytx') {
+        dateText = 'careDueDate';
+    }else if (type == 'syx') {
+        dateText = 'annualInspectionDate';
+    }else if (type == 'jqx') {
+        dateText = 'insureDueDate';
+    }else if (type == 'jzns') {
+        dateText = 'licenseOverDate';
+    }else if (type == 'clnj') {
+        dateText = 'dueDate';
+    }else if (type == 'khsr') {
+        dateText = 'birComeDay';
+    }
+    return dateText;
+}
+
 
 function setInitData(params) {
     if (params.id == '' || params.id == null) {

@@ -56,6 +56,7 @@
       <process:partner type="literal">com.hsapi.repair.repairService.crud.insRpsCardTimes</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="cardTimes" type="query" value="com.hsapi.repair.data.rps.RpsCardTimes" valueType="DataObject" pattern="reference">cardTimes</process:inputVariable>
+        <process:inputVariable id="1" name="orgid" type="query" value="String" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

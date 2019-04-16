@@ -629,8 +629,8 @@ pageEncoding="UTF-8" session="false" %>
             };
 
             myChart.on('click', function (param) {
-                console.log(param); //重要的参数都在这里！
-                // setGuestType(param);
+                //console.log(param); //重要的参数都在这里！
+                setGuestType(param);
             });
 
             var app = {};
@@ -660,47 +660,57 @@ pageEncoding="UTF-8" session="false" %>
             }, 2000);
         }
 
-        // function setGuestType(params) {
-        //     var typeId = null;
-        //     var value = 0;
-        //     switch (params.name) {
-        //         case '全 部':
-        //             typeId = 0;
-        //             value = echartData.allCarNum;
-        //             break;
-        //         case '未分类':
-        //             typeId = 1;
-        //             value = echartData.notypeCarNum;
-        //             break;
-        //         case '流失期':
-        //             typeId = 2;
-        //             value = echartData.loseCarNum;
-        //             break;
-        //         case '睡眠期':
-        //             typeId = 3;
-        //             value = echartData.sleepCarNum;
-        //             break;
-        //         case '稳定期':
-        //             typeId = 4;
-        //             value = echartData.stableCarNum;
-        //             break;
-        //         case '活跃期':
-        //             typeId = 5;
-        //             value = echartData.activeCarNum;
-        //             break;
-        //         default:
-        //             typeId = 0;
-        //             value = 0;
-        //             break;
-        //     }
-        //     value = value || 0;
-        //     var html = "<a href='javascript:;' typeId='" + typeId +
-        //         "'style='border:0px;cursor:default;color:#fff;margin-bottom:0px;background-color:" + params.color +
-        //         "'class='guestTypeCla'>" + params.name + '(' + value + ')' + "</a>";
-        //     console.log(html);
-        //     $('#selectGuestType').html(html);
-        // }
+        function setGuestType(params) {
+            var typeValue = null;
+            var value = '';
+            switch (params.name) {
+                case '全 部':
+                    typeValue = '';
+                    value = echartData.allCarNum;
+                    break;
+                case '未分类':
+                    typeValue = 6;
+                    value = echartData.notypeCarNum;
+                    break;
+                case '流失期':
+                    typeValue = 5;
+                    value = echartData.loseCarNum;
+                    break;
+                case '睡眠期':
+                    typeValue = 4;
+                    value = echartData.sleepCarNum;
+                    break;
+                case '稳定期':
+                    typeValue =3;
+                    value = echartData.stableCarNum;
+                    break;
+                case '活跃期':
+                    typeValue = 2;
+                    value = echartData.activeCarNum;
+                    break;
+                default:
+                    typeValue = 0;
+                    value = '';
+                    break;
+            }
+            var typeEl=nui.get("type");
+            typeEl.setValue(typeValue);
+            search();
+           // value = value || 0;
+            // var html = "<a href='javascript:;' typeValue='" + typeValue +
+            //     "'style='border:0px;cursor:default;color:#fff;margin-bottom:0px;background-color:" + params.color +
+            //     "'class='guestTypeCla'>" + params.name + '(' + value + ')' + "</a>";
+            // console.log(html);
+            // $('#selectGuestType').html(html);
 
+        }
+
+var gType = [{ id: 1, text: "首修客户 (最近一个月的首次消费车辆)" },
+{ id: 2, text: "活跃期 (来店至少2次且30天内消费过的车辆)" },
+{ id: 3, text: "稳定期 (来店至少2次且31-90天内消费过车辆)" },
+{ id: 4, text: "睡眠期 (来店至少1次且离店天数在91-180天内)" },
+{ id: 5, text: "流失期 (来店至少1次且离店天数181天及以上)" },
+{ id: 6, text: "未分类 (未来过店)" }];
 
         var showTooltip = function showEchartTooltip(vla) {
             var value = 0;

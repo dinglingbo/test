@@ -309,7 +309,9 @@
          b.car_vin carVin,
          b.service_type_id serviceTypeId,
          b.service_code serviceCode,
-         b.mt_advisor mtAdvisor
+         b.mt_advisor mtAdvisor,
+         b.out_date outDate,
+         b.collect_money_date collectMoneyDate
          FROM rps_item a
          INNER JOIN rps_maintain b ON(b.id = a.service_id)
          WHERE  a.card_detail_id = #cardDetailId#
@@ -324,7 +326,9 @@
          b.car_vin carVin,
          b.service_type_id serviceTypeId,
          b.service_code serviceCode,
-         b.mt_advisor mtAdvisor
+         b.mt_advisor mtAdvisor,
+         b.out_date outDate,
+         b.collect_money_date collectMoneyDate
          FROM rps_package a
          INNER JOIN rps_maintain b ON(b.id = a.service_id)
          WHERE  a.card_detail_id = #cardDetailId#
@@ -339,7 +343,9 @@
          b.car_vin carVin,
          b.service_type_id serviceTypeId,
          b.service_code serviceCode,
-         b.mt_advisor mtAdvisor
+         b.mt_advisor mtAdvisor,
+         b.out_date outDate,
+         b.collect_money_date collectMoneyDate
          FROM rps_part a
          INNER JOIN rps_maintain b ON(b.id = a.service_id)
          WHERE  a.card_detail_id = #cardDetailId#

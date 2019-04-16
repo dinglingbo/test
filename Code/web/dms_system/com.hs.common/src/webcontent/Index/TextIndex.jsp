@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
   <title>首页</title> 
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.6.20"></script>
+    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.6.21"></script>
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
   <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css?v=1.0.8" rel="stylesheet" type="text/css" />
@@ -52,7 +52,7 @@ pageEncoding="UTF-8" session="false" %>
                     <div class="menu_pannel menu_pannel_bg">
                         <a onclick="toCarInsuranceDetail()">
                             <i class="fa fa-unlock-alt fa-4x  fa-inverse"></i>
-                            <p>保险开单</p> 
+                            <p>车险开单</p> 
                         </a>
                     </div>
 

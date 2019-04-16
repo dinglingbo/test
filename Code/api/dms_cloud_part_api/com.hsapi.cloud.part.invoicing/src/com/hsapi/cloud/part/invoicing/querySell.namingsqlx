@@ -193,7 +193,7 @@
                     A.AUDIT_SIGN is NOT NULL
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
-                    (A.ID in ($serviceIdList$))
+                    (A.service_id in ($serviceIdList$))
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (D.CODE in ($partCodeList$))
@@ -305,7 +305,7 @@
                     A.AUDIT_SIGN is NOT NULL
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
-                    (A.ID in ($serviceIdList$))
+                    (A.service_id in ($serviceIdList$))
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (D.CODE in ($partCodeList$))
@@ -700,7 +700,7 @@
                     (A.AUDIT_SIGN = #auditSign#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
-                    (A.ID in ($serviceIdList$))
+                    (A.service_id in ($serviceIdList$))
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (D.CODE in ($partCodeList$))
@@ -810,7 +810,7 @@
                     (A.AUDIT_SIGN = #auditSign#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
-                    (A.ID in ($serviceIdList$))
+                    (A.service_id in ($serviceIdList$))
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (D.CODE in ($partCodeList$))
@@ -1248,7 +1248,7 @@
                     (A.is_out = #isOut#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
-                    (A.ID in ($serviceIdList$))
+                    (A.service_id in ($serviceIdList$))
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (D.CODE in ($partCodeList$))
@@ -1386,7 +1386,7 @@
                     (A.is_need_pack = #isNeedPack#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
-                    (A.ID in ($serviceIdList$))
+                    (A.service_id in ($serviceIdList$))
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (D.CODE in ($partCodeList$))
@@ -1637,7 +1637,7 @@
                     (A.AUDIT_SIGN = #auditSign#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
-                    (A.ID in ($serviceIdList$))
+                    (A.service_id in ($serviceIdList$))
                 </isNotEmpty>
             </dynamic>  
         

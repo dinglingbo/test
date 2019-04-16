@@ -220,7 +220,7 @@
     <input type="hidden" name="orgid" value="" id="orgid">
 </form> 
 
-<script src="<%=request.getContextPath()%>/coframe/auth/login/feedback/drawDom.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/coframe/auth/login/feedback/drawDom.js?v=1.0.1" type="text/javascript"></script>
 
 </body>
 </html>
@@ -411,7 +411,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
 	        success : function(text) {
 	            var list = text.rs||{};
 	            if(list.length==0){
-	                showMsg("此用户无法修改","W");
+	                //showMsg("此用户无法修改","W");
 	            }else{
 					updateSkinColor(list[0],color);
 	            }

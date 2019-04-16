@@ -229,8 +229,8 @@
                 <ul id="popupMenuMore" class="nui-menu" style="display:none;">
                     <li iconCls="" onclick="unfinish()" id="addBtn">返单</li>
                     <li iconCls="" onclick="updateBillExpense()" id="billExpense">费用登记</li>
-                    <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount">新增报销单</li>
-                    <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount1">修改报销单</li>
+                    <!-- <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount">新增报销单</li> -->
+                    <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount1">报销单</li>
                     <li iconCls="" onclick="toChangBillTypeId(0)" id="">转为综合开单</li>
                     <li iconCls="" onclick="toChangBillTypeId(2)" id="">转为洗美开单</li>
                     <!-- <li iconCls="" onclick="addcardTime()" id="type13">车牌替换/修改</li>
@@ -429,7 +429,7 @@
 		          <div field="prdtName" name="prdtName" width="100" headerAlign="center" header="产品名称"></div>
 		          <div field="prdtType" name="prdtType" width="60" headerAlign="center" header="产品类别"></div>
 		          <div field="totalTimes" name="totalTimes" width="50" headerAlign="center" header="总次数"></div>
-		          <div field="balaTimes" name="balaTimes" width="60" headerAlign="center" header="剩余次数"></div>
+		          <div field="useTimes" name="useTimes" width="60" headerAlign="center" header="已使用次数"></div>
 		          <div field="doTimes" name="doTimes" width="70" headerAlign="center" header="使用中次数"></div>
 		          <div field="canUseTimes" name="canUseTimes" width="70" headerAlign="center" header="可使用次数"></div>
 		          <div field="cardTimesOpt" name="cardTimesOpt" width="60" headerAlign="center"  header="操作"></div>

@@ -166,7 +166,7 @@
 	<select id="queryOutputAnalysis" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT  
     	     <isEqual  prepend=""  property="groupByType"   compareValue="0">
-        DATE_FORMAT(a.out_date,'%Y-%m-%d')  as groupName,
+        DATE_FORMAT(a.enter_date,'%Y-%m-%d')  as groupName,
      </isEqual>
          
      <isEqual  prepend="" property="groupByType"    compareValue="1">
@@ -195,12 +195,23 @@
 		       end as grossProfitRate,
 		       sum(b.allowance_amt) as allowanceAmt
 		from rps_maintain a
-		inner join rps_settlement b on a.id = b.service_id
+		left join rps_settlement b on a.id = b.service_id
 		inner join rpb_car c on a.car_id = c.id
-		where a.is_settle = 1 
-		and a.bill_type_id in (0,2,4,6)
+		where  a.bill_type_id in (0,2,4,6)
 		
 		<dynamic>
+			<isNotEmpty prepend="and" property="billTypeId">  
+                (a.bill_type_id = #billTypeId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="billTypeIdList">  
+                (a.bill_type_id in ($billTypeIdList$))
+            </isNotEmpty>
+		    <isNotEmpty prepend="and" property="guestProperty">
+                (c.guest_property = #guestProperty#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="propertyFeatures">
+                (c.property_features like '%$propertyFeatures$%')
+            </isNotEmpty>
 			<isNotEmpty prepend="and" property="orgid">
                 (a.orgid = #orgid#)
             </isNotEmpty>
@@ -217,15 +228,27 @@
             <isNotEmpty prepend="and" property="endDate">  
                 (a.out_date &lt; #endDate#)
             </isNotEmpty>
-            
+             <!--收款日期 -->
+            <isNotEmpty prepend="and" property="collectMoneyDateStart">  
+                (a.collect_money_date &gt;= #collectMoneyDateStart#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="collectMoneyDateEnd">  
+                (a.collect_money_date &lt; #collectMoneyDateEnd#)
+            </isNotEmpty>            
             <!--进厂日期 -->
             <isNotEmpty prepend="and" property="sEnterDate">  
-                (a.record_date &gt;= #sEnterDate#)
+                (a.enter_date &gt;= #sEnterDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="eEnterDate">  
-                (a.record_date &lt; #eEnterDate#)
+                (a.enter_date &lt; #eEnterDate#)
             </isNotEmpty>
-            
+            <!--出厂日期 -->
+            <isNotEmpty prepend="and" property="outDateStart">  
+                (a.out_date &gt;= #outDateStart#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="outDateEnd">  
+                (a.out_date &lt; #outDateEnd#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="mtAdvisorId">  
                 (a.mt_advisor_id = #mtAdvisorId#)
             </isNotEmpty>
@@ -240,7 +263,7 @@
 	    </isEqual>
 	    
 	   <isEqual  prepend="" property="groupByType"   compareValue="0">
-	        GROUP BY DATE_FORMAT(a.record_date,'%Y-%m-%d')
+	        GROUP BY DATE_FORMAT(a.enter_date,'%Y-%m-%d')
 	   </isEqual>
 	   
 	   <isEqual  prepend=""  property="groupByType"   compareValue="1">

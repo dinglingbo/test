@@ -1341,7 +1341,7 @@
       <targetNode>assign19</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -1528,7 +1528,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
-      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">serviceItem</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">serviceItemUpd</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>

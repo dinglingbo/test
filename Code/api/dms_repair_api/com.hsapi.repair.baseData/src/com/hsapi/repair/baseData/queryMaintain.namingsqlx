@@ -399,7 +399,7 @@
         </dynamic>  
 	</select>
 	
-	<select id="queryItemTimesList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	<select id="queryItemTimesList" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsItemTimes">
     	SELECT
 			a.id as id,
 			a.orgid as orgid,

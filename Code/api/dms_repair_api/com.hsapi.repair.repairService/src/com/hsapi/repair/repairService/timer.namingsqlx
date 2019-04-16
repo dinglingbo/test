@@ -225,6 +225,20 @@
 		and a.orgid=#orgid# 
 
 	</select>
+	
+	<!--车的本店来厂次数减1-->
+	<update id="updateCarComeTimes" parameterClass="java.util.HashMap">
+		update rps_guest_file set comp_come_times = case when (comp_come_times - 1) >= 0 
+								  then (comp_come_times - 1) else 0 END
+		where car_id = #carId# and orgid = #orgid#
+	</update>
+	
+	<!--车的连锁来厂次数减1-->
+	<update id="updateCarChainComeTimes" parameterClass="java.util.HashMap">
+		update rpb_car_extend set chain_come_times = case when (chain_come_times - 1) >= 0 
+		                          then (chain_come_times - 1) else 0 END
+	    where car_id = #carId#
+	</update>
 
 
 </sqlMap>

@@ -16,7 +16,7 @@ pageEncoding="UTF-8" session="false" %>
     <%@include file="/common/commonRepair.jsp"%>
     <script type="text/javascript" src="https://unpkg.com/echarts@3.5.3/dist/echarts.js"></script>
     <script src="<%= request.getContextPath() %>/common/nui/macarons.js" type="text/javascript"></script>
-    <script src="<%=webPath + contextPath%>/manage/js/guestType.js?v=0.5.3" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/guestType.js?v=0.5.4" type="text/javascript"></script>
     <style type="text/css">
         html,
         body {
@@ -70,7 +70,7 @@ pageEncoding="UTF-8" session="false" %>
                                                 </td>
                                                 <td>
                                                     <label>车辆车系：</label>
-                                                    <input id="cmodel" name="cmodel"class="nui-combobox" dataField="list"  multiSelect="true"
+                                                    <input id="cmodel" name="cmodel"class="nui-combobox" dataField="list"  multiSelect="true" allowUnselec="true"
                                                     textField="nodeName" valueField="nodeId"  allowInput="false"  
                                                     showClose="true" oncloseclick="onCloseClick" style="width:200px"/>
                                                 </td>
@@ -79,12 +79,12 @@ pageEncoding="UTF-8" session="false" %>
                                             <tr>
                                                     <td>
                                                         <label>客户等级：</label>
-                                                        <input class="nui-combobox" name="level" id="level" style="width: 200px;"  required="false" multiSelect="true"
+                                                        <input class="nui-combobox" name="level" id="level" style="width: 200px;"  required="false" multiSelect="true" allowUnselec="true"
                                                         textField="name" valueField="id" allowInput="false" />
                                                     </td>
                                                     <td>
                                                         <label>维修顾问：</label>
-                                                                <input class="nui-combobox" name="mta" id="mta" style="width: 200px;"  required="false" multiSelect="true"
+                                                                <input class="nui-combobox" name="mta" id="mta" style="width: 200px;"  required="false" multiSelect="true" allowUnselec="true"
                                                                 textField="empName" valueField="empId" allowInput="true" valueFromSelect="true" />
                                 
                                                     </td>
@@ -144,14 +144,14 @@ pageEncoding="UTF-8" session="false" %>
                                             </td>
                                         </tr>
                                     </table>
-                                </div>
+                                </div> 
         
                                 <div class="nui-fit">
                                     <div id="gridkhlx" class="nui-datagrid" style="width:100%;height:100%;" pageSize="50"
-                                        multiSelect="false" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
-                                        onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
+                                        multiSelect="true"  allowUnselec="true"totalField="page.count" sizeList=[20,50,100,200] dataField="list" idField="id"
+                                        allowCellWrap=true >
                                         <div property="columns">
-                                            <!-- <div type="checkcolumn"></div> -->
+                                            <div type="checkcolumn"></div>
                                             <div type="indexcolumn" headerAlign="center" width="40" header="序号"></div>
                                             <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
                                             <div field="mobile" name="" width="110" headerAlign="center" header="联系方式"></div>
@@ -203,10 +203,10 @@ pageEncoding="UTF-8" session="false" %>
         
                                 <div class="nui-fit">
                                     <div id="gridsyx" class="nui-datagrid" style="width:100%;height:100%;" pageSize="50"
-                                        multiSelect="false" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
-                                        onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
+                                        multiSelect="true" allowUnselec="true" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
+                                        allowCellWrap=true >
                                         <div property="columns">
-                                            <!-- <div type="checkcolumn"></div> -->
+                                            <div type="checkcolumn"></div>
                                             <div type="indexcolumn" headerAlign="center" width="40" header="序号"></div>
                                             <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
                                             <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>
@@ -251,10 +251,10 @@ pageEncoding="UTF-8" session="false" %>
         
                                 <div class="nui-fit">
                                     <div id="gridjqx" class="nui-datagrid" style="width:100%;height:100%;" pageSize="50"
-                                        multiSelect="false" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
-                                        onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
+                                        multiSelect="true" allowUnselec="true" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
+                                         allowCellWrap=true >
                                         <div property="columns">
-                                            <!-- <div type="checkcolumn"></div> -->
+                                            <div type="checkcolumn"></div>
                                             <div type="indexcolumn" headerAlign="center" width="40" header="序号"></div>
                                             <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
                                             <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>
@@ -299,10 +299,10 @@ pageEncoding="UTF-8" session="false" %>
         
                                 <div class="nui-fit">
                                     <div id="gridbydq" class="nui-datagrid" style="width:100%;height:100%;" pageSize="50"
-                                        multiSelect="false" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
-                                        onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
+                                        multiSelect="true" allowUnselec="true" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
+                                         allowCellWrap=true >
                                         <div property="columns">
-                                            <!-- <div type="checkcolumn"></div> -->
+                                            <div type="checkcolumn"></div>
                                             <div type="indexcolumn" headerAlign="center" width="40" header="序号"></div>
                                             <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
                                             <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>
@@ -347,10 +347,10 @@ pageEncoding="UTF-8" session="false" %>
         
                                 <div class="nui-fit">
                                     <div id="gridclnj" class="nui-datagrid" style="width:100%;height:100%;" pageSize="50"
-                                        multiSelect="false" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
-                                        onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
+                                        multiSelect="true" allowUnselec="true" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
+                                         allowCellWrap=true >
                                         <div property="columns">
-                                            <!-- <div type="checkcolumn"></div> -->
+                                            <div type="checkcolumn"></div>
                                             <div type="indexcolumn" headerAlign="center" width="40" header="序号"></div>
                                             <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
                                             <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>
@@ -395,10 +395,10 @@ pageEncoding="UTF-8" session="false" %>
         
                                 <div class="nui-fit">
                                     <div id="gridjzns" class="nui-datagrid" style="width:100%;height:100%;" pageSize="50"
-                                        multiSelect="false" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
-                                        onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
+                                        multiSelect="true" allowUnselec="true" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
+                                         allowCellWrap=true >
                                         <div property="columns">
-                                            <!-- <div type="checkcolumn"></div> -->
+                                            <div type="checkcolumn"></div>
                                             <div type="indexcolumn" headerAlign="center" width="40" header="序号"></div>
                                             <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
                                             <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>
@@ -443,10 +443,10 @@ pageEncoding="UTF-8" session="false" %>
 
                         <div class="nui-fit">
                             <div id="gridkhsr" class="nui-datagrid" style="width:100%;height:100%;" pageSize="50"
-                                multiSelect="false" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
-                                onrowdblclick="" allowCellSelect="true" allowCellWrap=true ondrawcell="">
+                                multiSelect="true" allowUnselec="true" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
+                                 allowCellWrap=true >
                                 <div property="columns">
-                                    <!-- <div type="checkcolumn"></div> -->
+                                    <div type="checkcolumn"></div>
                                     <div type="indexcolumn" headerAlign="center" width="40" header="序号"></div>
                                     <div field="guestName" name="" width="70" headerAlign="center" header="客户名称"></div>
                                     <div field="mobile" name="" width="80" headerAlign="center" header="联系方式"></div>

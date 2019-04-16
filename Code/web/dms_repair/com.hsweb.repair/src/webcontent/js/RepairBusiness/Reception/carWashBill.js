@@ -49,12 +49,12 @@
  var advancedCardTimesWin = null;
  var advancedPkgRateSetWin = null;
  var advancedItemPartRateSetWin = null;
+ var advancedItemTimesWin = null;
  //var advancedPkgWorkersSetWin = null;
  //var advancedPkgSaleMansSetWin = null;
  //var advancedItemWorkersSetWin = null;
  var advancedItemPartSaleManSetWin = null;
  var advancedGuest = null;
- 
  var cardTimesGrid = null;
  var advancedMemCardWin = null;
  var memCardGrid = null;
@@ -109,6 +109,7 @@ $(document).ready(function ()
     billForm = new nui.Form("#billForm");
     sellForm = new nui.Form("#sellForm");
     advancedCardTimesWin = nui.get("advancedCardTimesWin");
+    advancedItemTimesWin = nui.get("advancedItemTimesWin");
     advancedPkgRateSetWin = nui.get("advancedPkgRateSetWin");
     advancedItemPartRateSetWin = nui.get("advancedItemPartRateSetWin");
     advancedItemPartSaleManSetWin = nui.get("advancedItemPartSaleManSetWin");
@@ -375,6 +376,23 @@ $(document).ready(function ()
             e.cellHtml = '<a class="optbtn" href="javascript:addCardTimesToBill()">选择</a>';
         }
     });
+    itemTimesGrid.on("drawcell",function(e)
+    	    {
+    	        if(e.field == "prdtType" && prdtTypeHash[e.value])
+    	        {
+    	            e.cellHtml = prdtTypeHash[e.value];
+    	        }
+    	        if(e.field == "doTimes")
+    	        {
+    	            var row = e.row;
+    	            var balaTimes = row.balaTimes || 0;
+    	            var canUseTimes = row.canUseTimes||0;
+    	            e.cellHtml = balaTimes - canUseTimes;
+    	        }
+    	        if(e.field == 'cardTimesOpt'){
+    	            e.cellHtml = '<a class="optbtn" href="javascript:addItemTimesToBill()">选择</a>';
+    	        }
+    	    });
     memCardGrid.on("drawcell",function(e)
     {
         var row = e.row;
@@ -910,6 +928,7 @@ function add(){
 	document.getElementById("showA").style.display='none';
 	advancedCardTimesWin.hide();
 	advancedMemCardWin.hide();
+	advancedItemTimesWin.hide();
 }
 function save(){
 	itemF = "S";
@@ -1831,12 +1850,49 @@ function showCardTimes(){
 
     var atEl = document.getElementById("cardPackageEl");  
     advancedCardTimesWin.showAtEl(atEl, {xAlign:"right",yAlign:"below"});
+     //储值卡
     advancedMemCardWin.hide();
-    carCheckInfo.hide();
     memCardGrid.clearRows();
+
+    //销售机会
+    carSellPointInfo.hide();
+    carSellPointGrid.clearRows();
+    //服务项目
+    advancedItemTimesWin.hide();
+    itemTimesGrid.clearRows();
+    //车况
+    carCheckInfo.hide();
 
     doSearchCardTimes(fguestId,fcarId);
 }
+
+
+function showItemTimes(){
+    if(!fguestId || advancedItemTimesWin.visible) {
+    	advancedItemTimesWin.hide();
+        itemTimesGrid.clearRows();
+        return;
+    }
+
+    var atEl = document.getElementById("itemTimesEl");  
+    advancedItemTimesWin.showAtEl(atEl, {xAlign:"right",yAlign:"below"});
+    
+    //储值卡
+    advancedMemCardWin.hide();
+    memCardGrid.clearRows();
+
+    //销售机会
+    carSellPointInfo.hide();
+    carSellPointGrid.clearRows();
+    //次卡项目
+    advancedCardTimesWin.hide();
+    cardTimesGrid.clearRows();
+    //车况
+    carCheckInfo.hide();
+    
+    doSearchItemTimes(fguestId,fcarId);
+}
+
 function showCard(){
     if(!fguestId || advancedMemCardWin.visible) {
         advancedMemCardWin.hide();
@@ -1847,10 +1903,19 @@ function showCard(){
 
     var atEl = document.getElementById("clubCardEl");  
     advancedMemCardWin.showAtEl(atEl, {xAlign:"right",yAlign:"below"});
-    advancedCardTimesWin.hide();
-    carCheckInfo.hide();
-    cardTimesGrid.clearRows();
+    //服务项目
+    advancedItemTimesWin.hide();
+    itemTimesGrid.clearRows();
 
+    //销售机会
+    carSellPointInfo.hide();
+    carSellPointGrid.clearRows();
+    //次卡项目
+    advancedCardTimesWin.hide();
+    cardTimesGrid.clearRows();
+    //车况
+    carCheckInfo.hide();
+    
     doSearchMemCard(fguestId);
 }
 
@@ -1865,8 +1930,16 @@ function showCarCheckInfo(){
 
     MemSelectCancel(1);
     SearchCheckMain(changeCheckInfoTab);
+  /*  advancedCardTimesWin.hide();
+    advancedMemCardWin.hide();*/
+    //储值卡
+    advancedMemCardWin.hide(); 
+    //服务项目
+    advancedItemTimesWin.hide();
+    //销售机会
+    carSellPointInfo.hide();
+    //次卡项目
     advancedCardTimesWin.hide();
-    advancedMemCardWin.hide();
 }
 
 
@@ -1940,6 +2013,30 @@ function doSearchCardTimes(guestId,fcarId)
         }
     });
 }
+
+function doSearchItemTimes(guestId,fcarId)
+{
+    itemTimesGrid.clearRows();
+    if(!guestId) return;
+
+    var p = {};
+    p.detailFinish = 0;  
+    p.guestId = guestId;
+    p.notPast = 1; 
+    p.status = 2; 
+    p.isRefund = 0;
+    p.carId = fcarId;
+    itemTimesGrid.load({
+    	token:token,
+        p:p
+    },function(){
+        var data = itemTimesGrid.getData();
+        var len = data.length||0;
+        $("#showItemTimesEl").html("服务项目("+len+")");
+       // document.getElementById("formIframe").contentWindow.doSetCardTimes(data);
+    });
+}
+
 function doSearchMemCard(guestId)
 {
     memCardGrid.clearRows();
@@ -2376,6 +2473,136 @@ function selecCardTimes(main){
         return;
     }
 }
+
+function addItemTimesToBill(){
+    var main = billForm.getData();
+    if(!main.id){
+        /*showMsg("请先保存工单!","W");
+        return;*/
+    	saveNoshowMsg(function(){
+    	    var mainData = billForm.getData();
+    		selecItemTimes(mainData);
+    	});
+    }else{
+    	if(main.status == 2){
+            showMsg("工单已完工,不能添加项目!","W");
+            return;
+        }
+    	if(main.isSettle == 1){
+            showMsg("工单已结算,不能添加项目!","W");
+            return;
+        }
+    	selecItemTimes(main);
+    }   
+}
+
+function selecItemTimes(main){
+	var row = itemTimesGrid.getSelected();
+    if(row){
+        var t = row.prdtType||0;
+        var interType = "";
+        if(t == 1){
+            interType = "package";
+        }else if(t == 2){
+            interType = "item";
+        }else if(t == 3){
+            interType = "part";
+        }
+        if(!interType){
+            showMsg("次卡类型有误!","W");
+            return;
+        }
+        var data = {};
+        if(interType == 'package'){
+            var pkg = {
+                serviceId:main.id,
+                packageId:row.prdtId,
+                cardDetailId:row.id||0
+            };
+            data.pkg = pkg;
+        }else if(interType == 'item'){
+            var insItem = {
+                serviceId:main.id||0,
+                itemId:row.prdtId,
+                cardDetailId:row.id||0,
+                cardDetailType:2
+            };
+            data.insItem = insItem;
+            data.serviceId = main.id||0;
+        }else if(interType == 'part'){
+            var insPart = {
+                serviceId:main.id||0,
+                partId:row.prdtId,
+                cardDetailId:row.id||0,
+                partCode:row.prdtCode
+            };
+            data.insPart = insPart;
+            data.serviceId = main.id||0;
+        }
+        var params = {
+            type:"insert",
+            interType:interType,
+            data:data
+        };
+        nui.mask({
+            el: document.body,
+            cls: 'mini-mask-loading',
+            html: '数据加载中...'
+        });
+        saveItem(function(){
+        	nui.unmask(document.body);
+        	svrCRUD(params,function(text){
+                var errCode = text.errCode||"";
+                var errMsg = text.errMsg||"";
+                if(errCode == 'S'){
+                	nui.unmask(document.body);
+                    //showMsg("添加次卡信息成功!","W");
+                    //根据工单ID查询套餐,隐藏次卡信息
+                    advancedItemTimesWin.hide();
+                    itemTimesGrid.clearRows();
+
+                    var params = {
+                        interType: interType,
+                        data:{
+                            serviceId: main.id||0
+                        }
+                    }
+                    getBillDetail(params, function(text){
+                        var errCode = text.errCode;
+                        var data = text.data||[];
+                        if(errCode == "S"){
+                        	if(interType == 'item'){
+                                rpsItemGrid.clearRows();
+                                rpsItemGrid.addRows(data);
+                                rpsItemGrid.accept();
+                                if(main.status<2){
+                                	var row = rpsItemGrid.findRow(function(row){
+                                		rpsItemGrid.beginEditRow(row);
+                                    });
+                                }
+                        		//显示项目颜色
+                        		var strId = forFrom();
+                                if(strId!=null){
+                                	showTab(strId);
+                                }
+                            }
+                        }
+                    }, function(){});
+                }else{
+                    showMsg(errMsg||"添加预存信息失败!","E");
+                    nui.unmask(document.body);
+                    return;
+                }
+            });
+        });
+        
+    }else{
+        showMsg("请选择次卡记录!","W");
+        return;
+    }
+}
+
+
 function loadDetail(p1, p2, p3,status,callback){
     if(p1 && p1.interType){
         getBillDetail(p1, function(text){

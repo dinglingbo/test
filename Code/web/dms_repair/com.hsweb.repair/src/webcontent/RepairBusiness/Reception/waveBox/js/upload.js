@@ -158,6 +158,10 @@ function getCompanyLogoUrl() {
 function ok() {
 	var add = null;
 	var type = null;
+	if(!nui.get("state").value){
+		showMsg("已结算不能保存","W");
+		return;
+	}
     if(nui.get("state").value == 1){
     	add = arr;
     	type = 1;
@@ -220,7 +224,7 @@ function SetData(serviceId, serviceCode, state) {
 							showPhoto(arr,tBody);
 						}else{
 							brr.add(data[i].attachName);
-							var tBody = $("#tbodyId");
+							var tBody = $("#tbodyId1");
 							showPhoto(brr,tBody);
 						}
 					}

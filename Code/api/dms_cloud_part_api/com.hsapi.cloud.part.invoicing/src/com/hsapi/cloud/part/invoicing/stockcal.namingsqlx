@@ -123,6 +123,10 @@
 			<isNotNull prepend = "" property = "partCode">
 				AND ( F.code like '%$partCode$' or F.oem_code like '%$partCode$')
 			</isNotNull>
+			<!--编码全匹配-->
+			<isNotNull prepend = "" property = "partCodeAll">
+				AND ( F.code like '%$partCodeAll$%' or F.oem_code like '%$partCodeAll$%')
+			</isNotNull>
 			
 			<isNotNull prepend = "" property = "partName">
 				AND F.full_name like '%$partName$%'

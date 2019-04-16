@@ -41,6 +41,10 @@
         	a.plan_finish_date as planFinishDate,
         	a.next_follow_date as nextFollowDate,
         	a.chance_content as chanceContent,
+        	a.recorder as recorder,
+        	a.record_date as recordDate,
+        	a.modifier as modifier,
+        	a.modify_date as modifyDate,
         	a.remark as remark
         FROM crm_sell_chance_detail a
         WHERE orgid = #orgid#

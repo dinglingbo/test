@@ -135,7 +135,7 @@
         var orgidsEl = nui.get("orgids");
         var memList = {};
         var memHash = {};
-        quickSearch(4);
+
 
 
         //判断是否有兼职门店,是否显示门店选择框
@@ -155,6 +155,7 @@
             memList.forEach(function(v) {
                 memHash[v.empId] = v;
             });
+                    quickSearch(4);
         });
 
         grid1.on("drawcell", function (e) { //表格绘制

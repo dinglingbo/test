@@ -234,7 +234,7 @@
 		<update id="updateCarExtend" parameterClass="com.hsapi.repair.data.crm.CrmVisitRecord">
 					UPDATE wb_repair.rpb_car_extend set 
 					<isEqual  prepend="" property="serviceType"   compareValue="5">
-					is_annual_remind = 0, remind_status = 1
+					is_need_remind = 0, remind_status = 1
 					</isEqual>
 					<isEqual  prepend="" property="serviceType"   compareValue="6">
 					is_annual_remind = 0, annual_status = 1

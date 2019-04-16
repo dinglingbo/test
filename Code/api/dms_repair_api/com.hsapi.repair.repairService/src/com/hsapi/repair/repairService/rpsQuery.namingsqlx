@@ -1164,7 +1164,7 @@
 			inner JOIN rpb_car b ON ( a.car_id = b.id )
 		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
 			inner join rps_settlement d on (a.id =  d.service_id)
-		WHERE 1 = 1 and a.is_settle = 1
+		WHERE 1 = 1 
 			
       <dynamic>
 			<isNotEmpty prepend="and" property="rid">
@@ -1178,6 +1178,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="isCollectMoney">
                 (a.is_collect_money = #isCollectMoney#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isCollectMoneys">
+                (a.is_collect_money in ($isCollectMoneys$))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="orgid">
                 (a.orgid = #orgid#)
@@ -1239,7 +1242,7 @@
             <isNotEmpty prepend="and" property="outDateEnd">  
                 (a.out_date &lt; #outDateEnd#)
             </isNotEmpty>
-             <!--结算日期 -->
+             <!--收款日期 -->
             <isNotEmpty prepend="and" property="collectMoneyDateStart">  
                 (a.collect_money_date &gt;= #collectMoneyDateStart#)
             </isNotEmpty>
@@ -1271,6 +1274,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="serviceTypeId">  
                 (a.service_type_id = #serviceTypeId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeIds">  
+                (a.service_type_id in ($serviceTypeIds$))
             </isNotEmpty>
               <!--是否出库-->
             <isNotEmpty prepend="and" property="isCheck">  
@@ -1600,6 +1606,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="billTypeId">  
                 (a.bill_type_id = #billTypeId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeIds">  
+                (a.service_type_id in ($serviceTypeIds$))
             </isNotEmpty>
              <isNotEmpty prepend="and" property="billTypeIdList">  
                 (a.bill_type_id in ($billTypeIdList$))
@@ -2373,5 +2382,109 @@
             </isNotEmpty>
         </dynamic>  
         order by a.record_date desc
+	</select>
+	<select id="queryExpensePart" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id AS id,
+			a.service_id as serviceId,
+			a.service_type_id as serviceTypeId,
+			a.part_id AS partId,
+			a.package_id as packageId,
+			a.part_code AS partCode,
+			a.part_name AS partName,
+			a.qty AS qty,
+			a.unit_price AS unitPrice,
+			a.unit as unit,
+			a.amt as amt,
+			a.rate as rate,
+			a.discount_amt as discountAmt,
+			a.subtotal as subtotal,
+			a.bill_package_id as billPackageId,
+			a.remark as remark
+
+		FROM
+			rps_part_bill a 
+		WHERE 1 = 1
+		<dynamic>
+			<isNotEmpty prepend="and" property="ids">
+                (a.id in ($ids$))
+            </isNotEmpty>
+        </dynamic>  
+	</select>
+	
+		<select id="queryExpenseItem" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id AS id,
+			a.service_id as serviceId,
+			a.item_id AS itemId,
+			a.package_id as packageId,
+			a.item_code AS itemCode,
+			a.item_name AS itemName,
+			a.item_time AS itemTime,
+			a.unit_price AS unitPrice,
+			a.amt as amt,
+			a.rate as rate,
+			a.discount_amt as discountAmt,
+			a.subtotal as subtotal,
+			a.bill_item_id as billItemId,
+			a.remark as remark
+
+		FROM
+			rps_item_bill a 
+		WHERE 1 = 1
+		<dynamic>
+			<isNotEmpty prepend="and" property="ids">
+                (a.id in ($ids$))
+            </isNotEmpty>
+        </dynamic>  
+	</select>
+	
+		<select id="queryExpensePkg" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id AS id,
+			a.service_id as serviceId,
+			a.package_id as packageId,
+			a.package_name AS packageName,
+			a.amt as amt,
+			a.rate as rate,
+			a.discount_amt as discountAmt,
+			a.subtotal as subtotal,
+			a.remark as remark
+
+		FROM
+			rps_package_bill a 
+		WHERE 1 = 1
+		<dynamic>
+			<isNotEmpty prepend="and" property="ids">
+                (a.id in ($ids$))
+            </isNotEmpty>
+        </dynamic>  
+	</select>
+	
+	<select id="queryOutBill" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id AS id,
+			a.orgid as orgid,
+			a.source_service_id as sourceServiceId,
+			a.bill_type_id AS billTypeId,
+			a.service_type_id AS serviceTypeId,
+			a.service_code AS serviceCode,
+			a.guest_id AS guestId,
+			a.contactor_id as contactorId,
+			a.car_id AS carId,
+			a.car_vin AS carVin,
+			a.car_no AS carNo,
+			a.item_amt as itemAmt,
+			a.part_amt as partAmt,
+			a.package_amt as packageAmt
+		FROM
+			rps_maintain_bill a
+		WHERE 1 = 1 
+			
+      <dynamic>
+			<isNotEmpty prepend="and" property="ids">
+                (a.source_service_id in ($ids$))
+            </isNotEmpty>
+        </dynamic> 
 	</select>
 </sqlMap>

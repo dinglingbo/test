@@ -44,8 +44,8 @@ $(document).ready(function () {
 	    servieTypeList.forEach(function(v) {
 	        servieTypeHash[v.id] = v;
 	    });
+	    nui.get("serviceTypeId").setValue(serviceTypeId);
 	 });
-	
 	rpsPackageGrid.on("load",function(e){
 		var data = rpsPackageGrid.getData();
 		if(data.length == 0){
@@ -152,6 +152,7 @@ $(document).ready(function () {
 	
 	initMember("mtAdvisorId",function(){
         memList = mtAdvisorIdEl.getData();
+        nui.get("mtAdvisor").setValue(mtAdvisor);
     });
 	mtAdvisorIdEl.on("valueChanged",function(e){
         var text = mtAdvisorIdEl.getText();
@@ -858,8 +859,14 @@ function showGridMsg(serviceId){
 	}
 }*/
 
-
+var serviceTypeId = null;
+var mtAdvisor = null;
 function setInitData(params){
+	if(params.isEdit){
+		operationHidden();
+	}else{
+		operationShow();
+	}
 	nui.get("sourceServiceId").setValue(params.id);
 	init();
 	nui.ajax({
@@ -874,10 +881,16 @@ function setInitData(params){
         	var list = nui.decode(text.list);
         	if(list && list.length>0){
         		billForm.setData(list[0]);
+        		serviceTypeId = list[0].serviceTypeId ;
+        		mtAdvisor = list[0].mtAdvisor;
         	}else{
         		params.sourceServiceId = params.id;
         		params.id = "";
         		billForm.setData(params);
+        		serviceTypeId = params.serviceTypeId ;
+        		mtAdvisor = params.mtAdvisor;
+        		/*nui.get("mtAdvisorId").setValue(params.mtAdvisorId);
+        		nui.get("mtAdvisorId").setText(params.mtAdvisor);*/
         	}
         	
         }
@@ -1108,8 +1121,22 @@ function onDrawSummaryCellItem(e){
 	  }
 }
 
-
-
+function operationHidden(){
+	document.getElementById("addBtn").style.display = 'none';
+	document.getElementById("addPkg").style.display = 'none';
+	document.getElementById("addItem").style.display = 'none';	
+	//rpsItemGrid.getColumn("action").showColumnsMenu(false);
+	rpsItemGrid.hideColumn(rpsItemGrid.getColumn("action"));
+	rpsPackageGrid.hideColumn(rpsPackageGrid.getColumn("action"));
+}
+function operationShow(){
+	document.getElementById("addBtn").style.display = 'inline';
+	document.getElementById("addPkg").style.display = 'inline';
+	document.getElementById("addItem").style.display = 'inline';
+	rpsItemGrid.showColumn(rpsItemGrid.getColumn("action"));
+	rpsPackageGrid.showColumn(rpsPackageGrid.getColumn("action"));
+	
+}
 
 
 

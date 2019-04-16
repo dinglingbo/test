@@ -61,6 +61,7 @@ var webBaseUrl = webPath + contextPath + "/";
  var y = 0;
  var score = 0;
  var lcheckDate = '';
+ var contactorF = null;
  var prdtTypeHash = {
     "1":"套餐",
     "2":"项目",
@@ -597,6 +598,7 @@ function setInitData(params){
                     var guest = text.guest||{};
                     var car = text.car || {};
                     var contactor = text.contactor||{};
+                    contactorF = contactor;
                     if(errCode == 'S'){
                         $("#servieIdEl").html(data.serviceCode);
                         var carNo = data.carNo||"";
@@ -658,13 +660,13 @@ function setInitData(params){
                         	doSetStyle(status, isSettle);                       	
                         }
                         
-                        if(data.isOutBill){
+                       /* if(data.isOutBill){
                         	nui.get("ExpenseAccount").setVisible(false);
                         	nui.get("ExpenseAccount1").setVisible(true);
                         }else{
                         	nui.get("ExpenseAccount").setVisible(true);
                         	nui.get("ExpenseAccount1").setVisible(false);
-                        }
+                        }*/
 
                         var p1 = {
                         }
@@ -744,8 +746,8 @@ function add(){
     /* $("#showCarInfoEl").html(""); */
     $("#guestNameEl").html("");
     $("#guestTelEl").html("");
-    nui.get("ExpenseAccount").setVisible(true);
-    nui.get("ExpenseAccount1").setVisible(false);
+    /*nui.get("ExpenseAccount").setVisible(true);
+    nui.get("ExpenseAccount1").setVisible(false);*/
     $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
     var tabList = document.querySelectorAll('.xz');
 	var natureId = null;
@@ -957,6 +959,7 @@ function setFrom(data){
             var guest = text.guest||{};
             var car = text.car || {};
             var contactor = text.contactor||{};
+            contactorF = contactor;
             var car = text.car || {};
             if(errCode == 'S'){
                 $("#servieIdEl").html(data.serviceCode);
@@ -974,6 +977,13 @@ function setFrom(data){
                     guestName = guestName;
                 }
                 var t = carNo + guestName  + tel ;
+                if(contactor.wechatOpenId){
+                 	document.getElementById("showA").style.display = "";
+                 	document.getElementById("showA1").style.display='none';
+                 }else{
+                 	document.getElementById("showA").style.display='none';
+                 	document.getElementById("showA1").style.display = "";
+                 }
                 searchNameEl.setValue(t);
                 searchNameEl.setEnabled(false);
 
@@ -1075,6 +1085,7 @@ function saveNoshowMsg(callback,type){
                 var guest = text.guest||{};
                 var car = text.car || {};
                 var contactor = text.contactor||{};
+                contactorF = contactor;
                 if(errCode == 'S'){
                     $("#servieIdEl").html(data.serviceCode);
                     var carNo = data.carNo||"";
@@ -3155,7 +3166,10 @@ function pay(){
             guestId:data.guestId||0,
             carNo:data.carNo||0,
             guestName:$("#guestNameEl").text(),
-            data:sellData
+            data:sellData,
+            contactor:contactorF,
+            carId:fcarId,
+            billTypeId:6
         };
         doBillPay(params, function(data){
             data = data||{};
@@ -3555,6 +3569,7 @@ function chooseContactor(){
          {
         	 var iframe = this.getIFrameEl();
         	 var row = iframe.contentWindow.getData();
+        	 contactorF = row;
         	 nui.get("contactorName").setText(row.name);
         	 if(data.id){
         		 var maintain = billForm.getData();

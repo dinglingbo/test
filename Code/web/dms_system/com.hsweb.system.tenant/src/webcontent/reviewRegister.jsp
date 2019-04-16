@@ -7,7 +7,7 @@
 <link
 	href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.1"
 	rel="stylesheet" type="text/css" />
-<script src="<%= request.getContextPath() %>/tenant/js/review_register.js?v=1.9.30"
+<script src="<%= request.getContextPath() %>/tenant/js/review_register.js?v=1.9.31"
 	type="text/javascript"></script>
 </head>
 <body>

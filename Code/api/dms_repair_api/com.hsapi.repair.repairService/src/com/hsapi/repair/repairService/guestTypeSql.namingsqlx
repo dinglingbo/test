@@ -12,7 +12,7 @@
 	select 
         a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
         b.id conId,b.orgid,b.name guestName,b.mobile,b.birthday,b.wechat_open_id wechatOpenId,
-        b.wechat_service_id wechatServiceId,
+        b.wechat_service_id wechatServiceId,a.guest_id tureGuestId,
         datediff(( DATE_FORMAT(b.birthday, '%m%d')+0),( DATE_FORMAT(curdate(), '%m%d')+0)) birComeDay
     from  rpb_car a
     INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
@@ -29,7 +29,7 @@
 	select 
         a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
         b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
-        b.license_over_date licenseOverDate,
+        b.license_over_date licenseOverDate,a.guest_id tureGuestId,
         b.wechat_service_id wechatServiceId
     from  rpb_car a
     INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
@@ -46,7 +46,7 @@
 	select 
         a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
         b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
-        a.annual_verification_due_date dueDate,
+        a.annual_verification_due_date dueDate,a.guest_id tureGuestId,
         b.wechat_service_id wechatServiceId
     from  rpb_car a
     INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
@@ -64,7 +64,7 @@
         a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
         b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
         c.care_due_date careDueDate,c.last_come_kilometers lastComeKilometers,
-        c.last_come_date lastComeDate,
+        c.last_come_date lastComeDate,a.guest_id tureGuestId,
         b.wechat_service_id wechatServiceId
         
     from  rpb_car a
@@ -84,7 +84,7 @@
 	select 
         a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
         b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
-        a.insure_due_date insureDueDate,
+        a.insure_due_date insureDueDate,a.guest_id tureGuestId,
         b.wechat_service_id wechatServiceId
     from  rpb_car a
     INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
@@ -101,7 +101,7 @@
 	select 
         a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
         b.id conId,b.orgid,b.name guestName,b.mobile,b.wechat_open_id wechatOpenId,
-        a.annual_inspection_date annualInspectionDate,
+        a.annual_inspection_date annualInspectionDate,a.guest_id tureGuestId,
         b.wechat_service_id wechatServiceId
     from  rpb_car a
     INNER JOIN rpb_contactor b on a.guest_id = b.guest_id
@@ -232,7 +232,7 @@
     
     <sql id="guest_column">
  select 
-		a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+		a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,a.guest_id tureGuestId,
 		c.id conId,c.orgid,c.name guestName,c.mobile,c.wechat_open_id wechatOpenId,
 		d.tgrade,b.mt_advisor_id mtAdvisorId ,b.mt_advisor_name mtAdvisorName,
 		b.last_come_kilometers lastComeKilometers,b.chain_come_times chainComeTimes,
@@ -357,6 +357,9 @@ and a.is_disabled=0
         INNER JOIN rpb_contactor c on a.guest_id = c.guest_id
         where  a.orgid = #orgid#
         and a.is_disabled=0
+        <isNotEmpty prepend="and" property="carNo">
+                a.car_no = #carNo#
+        </isNotEmpty>
         <!-- 商业险-->
         <isEqual  prepend="" property="dateType"   compareValue="syx">
             <isNotEmpty prepend="and" property="startDate">
@@ -437,6 +440,9 @@ and a.is_disabled=0
             a.id as crmGuestId
         from wb_crm.crm_guest  a
         where  a.orgid = #orgid#
+        <isNotEmpty prepend="and" property="carNo">
+                 a.car_no = #carNo#
+        </isNotEmpty>
         <!-- 商业险-->
         <isEqual  prepend="" property="dateType"   compareValue="syx">
             <isNotEmpty prepend="and" property="startDate">
@@ -445,7 +451,7 @@ and a.is_disabled=0
             <isNotEmpty prepend="and" property="endDate">
                 a.annual_inspection_date &lt;= #endDate#
             </isNotEmpty>
-            order by annualInspectionDate asc
+       
         </isEqual>
 
         <!-- 交强险 -->
@@ -456,7 +462,7 @@ and a.is_disabled=0
             <isNotEmpty prepend="and" property="endDate">
                 a.insure_due_date &lt;= #endDate#
             </isNotEmpty>
-            order by insureDueDate asc
+     
         </isEqual>
 
         <!-- 车辆年检 -->
@@ -467,7 +473,7 @@ and a.is_disabled=0
             <isNotEmpty prepend="and" property="endDate">
                 a.annual_verification_due_date &lt;= #endDate#
             </isNotEmpty>
-            order by dueDate asc
+   
         </isEqual>
 
         <!-- 保养提醒 -->
@@ -478,7 +484,7 @@ and a.is_disabled=0
             <isNotEmpty prepend="and" property="endDate">
                 a.care_due_date &lt;= #endDate#
             </isNotEmpty>
-            order by careDueDate asc
+  
         </isEqual>
 
                         <!-- 驾照年审 -->
@@ -488,15 +494,20 @@ and a.is_disabled=0
             </isNotEmpty>
             <isNotEmpty prepend="and" property="endDate">
                 a.driving_licence_due_date  &lt;= #endDate#
-                order by licenseOverDate asc
+          
             </isNotEmpty>
         </isEqual>
 
                                 <!-- 客户生日 -->
         <isEqual  prepend="" property="dateType"   compareValue="khsr">
            and 1=2
-           order by birthday asc
+         
         </isEqual>
+        
+            <isNotEmpty prepend="order by" property="sortField">  
+                $sortField$ $sortOrder$
+            </isNotEmpty> 
+		
     </select>
 
    

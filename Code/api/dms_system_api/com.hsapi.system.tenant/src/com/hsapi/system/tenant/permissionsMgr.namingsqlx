@@ -103,6 +103,7 @@
 			a.system_account as systemAccount,
 			a.login_pwd as loginPwd,
 			a.authorize_pwd as authorizePwd,
+			a.head_portrait as headPortrait,
 			a.wechat as wechat,
 			a.open_id as openId,
 			a.urgency_person as urgencyPerson,

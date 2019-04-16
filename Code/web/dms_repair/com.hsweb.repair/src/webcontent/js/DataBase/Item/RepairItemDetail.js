@@ -152,59 +152,134 @@ function onOk(){
 			parent.showMsg("只能修改本店项目!","W");
 			return;
 		}
-	}
-	for(var key in requiredField){
-		if(!data[key] || data[key].trim().length==0)
-        {
-            parent.showMsg(requiredField[key]+"不能为空!", "W");
-            return;
-        }
-	}
-	if(!nui.get("serviceTypeId").getValue()) {
-		parent.showMsg("业务类型不能为空!", "W");
-        return;
-	}
-
-	deductForm.validate();
-    if (deductForm.isValid() == false) {
-        return;
-	}
-
-	var deData = deductForm.getData();
-	for(var key in deData){
-		data[key] = deData[key];
+		data.editType = "edit";
+	}else{
+		data.editType = "add";
+		
 	}
 	
-	nui.mask({
-		el : document.body,
-		cls : 'mini-mask-loading',
-		html : '保存中...'
-	});
-	doPost({
-		url:saveUrl,
-		data:{
-			item:data	
-		},
-		success:function(data)
-		{
-			nui.unmask();
-			data = data||{};
-			if(data.errCode == "S")
-			{
-				
-				CloseWindow("ok");
+	//判断名称重复，提示
+	var judgeResults= null;//返回参数ES
+	judge(data,function(code){
+		judgeResults = code; 
+		if(judgeResults!="S"){
+			   nui.confirm("已经存在名称为   ["+data.name+"] 的项目，是否确定保存？", "友情提示",function(action){
+				       if(action!="ok"){
+				    	   return;		
+				     }else{
+				    	 for(var key in requiredField){
+				 			if(!data[key] || data[key].trim().length==0)
+				 	        {
+				 	            parent.showMsg(requiredField[key]+"不能为空!", "W");
+				 	            return;
+				 	        }
+				 		}
+				 		if(!nui.get("serviceTypeId").getValue()) {
+				 			parent.showMsg("业务类型不能为空!", "W");
+				 	        return;
+				 		}
+
+				 		deductForm.validate();
+				 	    if (deductForm.isValid() == false) {
+				 	        return;
+				 		}
+
+				 		var deData = deductForm.getData();
+				 		for(var key in deData){
+				 			data[key] = deData[key];
+				 		}
+				 		
+				 		nui.mask({
+				 			el : document.body,
+				 			cls : 'mini-mask-loading',
+				 			html : '保存中...'
+				 		});
+				 		doPost({
+				 			url:saveUrl,
+				 			data:{
+				 				item:data	
+				 			},
+				 			success:function(data)
+				 			{
+				 				nui.unmask();
+				 				data = data||{};
+				 				if(data.errCode == "S")
+				 				{
+				 					
+				 					CloseWindow("ok");
+				 				}
+				 				else{
+				 					parent.showMsg(data.errMsg||"保存失败", "E");
+				 				}
+				 			},
+				 			error:function(jqXHR, textStatus, errorThrown)
+				 			{
+				 				console.log(jqXHR.responseText);
+				 				nui.unmask();
+				 				parent.showMsg("网络出错", "E");
+				 			}
+				 		});
+				     }
+				 });
+		}else{
+			for(var key in requiredField){
+				if(!data[key] || data[key].trim().length==0)
+		        {
+		            parent.showMsg(requiredField[key]+"不能为空!", "W");
+		            return;
+		        }
 			}
-			else{
-				parent.showMsg(data.errMsg||"保存失败", "E");
+			if(!nui.get("serviceTypeId").getValue()) {
+				parent.showMsg("业务类型不能为空!", "W");
+		        return;
 			}
-		},
-		error:function(jqXHR, textStatus, errorThrown)
-		{
-			console.log(jqXHR.responseText);
-			nui.unmask();
-			parent.showMsg("网络出错", "E");
+
+			deductForm.validate();
+		    if (deductForm.isValid() == false) {
+		        return;
+			}
+
+			var deData = deductForm.getData();
+			for(var key in deData){
+				data[key] = deData[key];
+			}
+			
+			nui.mask({
+				el : document.body,
+				cls : 'mini-mask-loading',
+				html : '保存中...'
+			});
+			doPost({
+				url:saveUrl,
+				data:{
+					item:data	
+				},
+				success:function(data)
+				{
+					nui.unmask();
+					data = data||{};
+					if(data.errCode == "S")
+					{
+						
+						CloseWindow("ok");
+					}
+					else{
+						parent.showMsg(data.errMsg||"保存失败", "E");
+					}
+				},
+				error:function(jqXHR, textStatus, errorThrown)
+				{
+					console.log(jqXHR.responseText);
+					nui.unmask();
+					parent.showMsg("网络出错", "E");
+				}
+			});
 		}
-	});
+	})
+
+	
+		
+	
 }
 function CloseWindow(action)
 {
@@ -374,4 +449,27 @@ function hidePercent(e){
 			$("#advisorDeductValue").next().show();
 		}
 	}
+}
+
+//判断是否同名
+var judgeUrl = baseUrl+"com.hsapi.repair.baseData.item.checkRpbItemExists.biz.ext";
+function judge(data,callback){
+	var json={
+			name:data.name,
+			code:data.code,
+			editType:data.editType,
+			id:data.id,
+			token:token
+	};
+	nui.ajax({
+		url : judgeUrl,
+		type : 'POST',
+		data : json,
+		cache : false,
+		contentType : 'text/json',
+		success : function(text) {
+			var returnJson = nui.decode(text);
+			callback && callback(returnJson.errCode);
+		}
+	});
 }

@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>报销单</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.4.35"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.4.39"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
@@ -233,7 +233,7 @@
                 <div field="amt" headerAlign="center"
                      allowSort="false" visible="true" width="60" header="原价" align="center">
                 </div>
-                <div field="action" headerAlign="center"
+                <div field="action" name="action" headerAlign="center"
                      allowSort="false" visible="true" width="60" header="操作" align="center"></div>
             </div>
         </div>
@@ -241,7 +241,7 @@
 </div>
 <div style="text-align:center;">
     <span id="carHealthEl" >
-        <a href="javascript:choosePackage()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择套餐</a>
+        <a href="javascript:choosePackage()" id="addPkg" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择套餐</a>
     </span>
 </div>
       <div style="width:100%;height:5px;"></div>
@@ -274,7 +274,7 @@
                 </div>
                 <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">金额
                 </div>
-                 <div field="action" headerAlign="center"
+                 <div field="action" name="action" headerAlign="center"
                      allowSort="false" visible="true" width="60" header="操作" align="center"></div>
             </div>
         </div>
@@ -282,7 +282,7 @@
 </div>
 <div style="text-align:center;">
     <span id="carHealthEl" >
-        <a href="javascript:chooseItem()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择项目</a>
+        <a href="javascript:chooseItem()" class="chooseClass" id="addItem"><span class="fa fa-plus"></span>&nbsp;选择项目</a>
     </span>
     <!--<span>&nbsp;</span>
      <span id="carHealthEl" >

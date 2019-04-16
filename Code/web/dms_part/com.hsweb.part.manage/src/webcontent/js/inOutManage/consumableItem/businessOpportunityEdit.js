@@ -122,6 +122,7 @@ function SetData(params) {
 
 
 function setData(params) {
+	params.id = null;
     basicInfoForm = new nui.Form("#basicInfoForm");
     basicInfoForm.setData(params);  
     nui.get("prdtName").setText(params.prdtName);

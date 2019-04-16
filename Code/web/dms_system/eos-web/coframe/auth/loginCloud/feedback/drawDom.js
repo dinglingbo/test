@@ -1,4 +1,4 @@
-cdnHost = 'https://cdns.007vin.com';
+cdnHost = webPath+sysDomain + '/'+'coframe/auth/loginCloud/feedback';
 var canvasContainer =   '<div class="FeedbackContainer" style="display:none">'
     canvasContainer +=     '<div class="textAreaContainer">'
     canvasContainer +=       '<div class="chooseItem">'
@@ -22,28 +22,28 @@ var canvasContainer =   '<div class="FeedbackContainer" style="display:none">'
     canvasContainer +=       '<div class="ImageParkSelectorContainer">'
     canvasContainer +=         '<div class="ImageParkSelector">'
     canvasContainer +=           '<div class="msgalert">插入矩形</div>'
-    canvasContainer +=           '<img class="ImageParkSelectorImg" src="' + cdnHost + '/img/rectangle.png" alt="text">'
+    canvasContainer +=           '<img class="ImageParkSelectorImg" src="' + cdnHost + '/rectangle.png" alt="text">'
     canvasContainer +=         '</div>'
     canvasContainer +=         '<div class="ImageParkSelector">'
     canvasContainer +=           '<div class="msgalert">插入椭圆</div>'
-    canvasContainer +=           '<img class="ImageParkSelectorImg" src="' + cdnHost + '/img/circle.png" alt="text">'
+    canvasContainer +=           '<img class="ImageParkSelectorImg" src="' + cdnHost + '/circle.png" alt="text">'
     canvasContainer +=         '</div>'
     canvasContainer +=         '<div class="ImageParkSelector">'
     canvasContainer +=           '<div class="msgalert">插入箭头</div>'
-    canvasContainer +=           '<img class="ImageParkSelectorImg" src="' + cdnHost + '/img/arrow.png" alt="text">'
+    canvasContainer +=           '<img class="ImageParkSelectorImg" src="' + cdnHost + '/arrow.png" alt="text">'
     canvasContainer +=         '</div>'
     canvasContainer +=         '<div class="ImageParkSelector">'
     canvasContainer +=           '<div class="msgalert">插入文字</div>'
-    canvasContainer +=           '<img class="ImageParkSelectorImg" src="' + cdnHost + '/img/text.png" alt="text">'
+    canvasContainer +=           '<img class="ImageParkSelectorImg" src="' + cdnHost + '/text.png" alt="text">'
     canvasContainer +=        ' </div>'
     canvasContainer +=         '<div class="ImageParkSelector">'
-    canvasContainer +=           '<img class="ImageParkSelectorImg" src="' + cdnHost + '/img/icon_chexiao.png" alt="text">'
+    canvasContainer +=           '<img class="ImageParkSelectorImg" src="' + cdnHost + '/icon_chexiao.png" alt="text">'
     canvasContainer +=         '</div>'
     canvasContainer +=         '<div class="ImageParkSelector">'
-    canvasContainer +=           '<img class="ImageParkSelectorImg" src="' + cdnHost + '/img/icon_quxiao.png" alt="text">'
+    canvasContainer +=           '<img class="ImageParkSelectorImg" src="' + cdnHost + '/icon_quxiao.png" alt="text">'
     canvasContainer +=         '</div>'
     canvasContainer +=         '<div class="ImageParkSelector">'
-    canvasContainer +=           '<img class="ImageParkSelectorImg" src="' + cdnHost + '/img/icon_tijiao.png" alt="text">'
+    canvasContainer +=           '<img class="ImageParkSelectorImg" src="' + cdnHost + '/icon_tijiao.png" alt="text">'
     canvasContainer +=         '</div>'
     canvasContainer +=       '</div>'
     canvasContainer +=     '</div>'
@@ -105,22 +105,22 @@ $(".ImageParkSelector").on("click", function() {
   });
   switch (index) {
     case 0:
-      $(this).find("img").attr("src", cdnHost + "/img/rectangle_selected.png");
+      $(this).find("img").attr("src", cdnHost + "/rectangle_selected.png");
       tools.tool = "pencil";
       tools.graphic = "rect";
       break;
     case 1:
-      $(this).find("img").attr("src", cdnHost + "/img/circle_selected.png");
+      $(this).find("img").attr("src", cdnHost + "/circle_selected.png");
       tools.tool = "pencil";
       tools.graphic = "circle";
       break;
     case 2:
-      $(this).find("img").attr("src", cdnHost + "/img/arrow_selected.png");
+      $(this).find("img").attr("src", cdnHost + "/arrow_selected.png");
       tools.tool = "pencil";
       tools.graphic = "line";
       break;
     case 3:
-      $(this).find("img").attr("src", cdnHost + "/img/text_selected.png");
+      $(this).find("img").attr("src", cdnHost + "/text_selected.png");
       tools.tool = "word";
       break;
     case 4:

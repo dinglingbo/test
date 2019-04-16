@@ -442,9 +442,9 @@ function setInitData(params){
                         }
                         
                         if(showOut.getValue == 1) {
-                        	repairOutGrid.load({serviceId:params.id,token:token});
+                        	repairOutGrid.load({serviceId:params.id,billTypeId:'050206',token:token});
                         }else {
-                        	repairOutGrid.load({serviceId:params.id,returnSign:0,token:token});
+                        	repairOutGrid.load({serviceId:params.id,billTypeId:'050206',returnSign:0,token:token});
                         }
 
                     }else{
@@ -632,9 +632,9 @@ function openPartSelect(par,type,id,row,srow,pickType){
 				mainGrid.load({serviceId:mid,token:token});
 			}
 			if(showOut.value == 1) {
-            	repairOutGrid.load({serviceId:mid,token:token});
+            	repairOutGrid.load({serviceId:mid,billTypeId:'050206',token:token});
             }else {
-            	repairOutGrid.load({serviceId:mid,returnSign:0,token:token});
+            	repairOutGrid.load({serviceId:mid,billTypeId:'050206',returnSign:0,token:token});
             }
         }
 
@@ -644,9 +644,9 @@ function openPartSelect(par,type,id,row,srow,pickType){
 function onValueChangShowOut(){
 	var main = billForm.getData();
 	if(showOut.value==1){
-		repairOutGrid.load({serviceId:main.id,token:token});
+		repairOutGrid.load({serviceId:main.id,billTypeId:'050206',token:token});
 	}else if(showOut.value==0){
-		repairOutGrid.load({serviceId:main.id,returnSign:0,token:token});
+		repairOutGrid.load({serviceId:main.id,billTypeId:'050206',returnSign:0,token:token});
 	}
 }
 
@@ -1273,9 +1273,9 @@ function  savepartOutRtn(data,childdata){
             				mainGrid.load({serviceId:mid,token:token});
             			}
             			if(showOut.getValue == 1) {
-                        	repairOutGrid.load({serviceId:mid,token:token});
+                        	repairOutGrid.load({serviceId:mid,billTypeId:'050206',token:token});
                         }else {
-                        	repairOutGrid.load({serviceId:mid,returnSign:0,token:token});
+                        	repairOutGrid.load({serviceId:mid,billTypeId:'050206',returnSign:0,token:token});
                         }
                         
             			showMsg('归库成功!','S');

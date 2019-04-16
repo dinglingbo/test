@@ -91,8 +91,8 @@
             <tr>
                 <td align="right"> <font color="red">身份证号码：</fpont></td>
                 <td ><input class="nui-textbox"  id="idcardno" name="idcardno" required="true" onvalidation="onIDCardsValidation" /></td>
-                <td align="right">微信/QQ号：<span></span></td>
-                <td colspan="2"><input class="nui-textbox" name="wechat" id="wechat" vtype="maxLength:50"/></td>
+                <td align="right">OpenID：<span></span></td>
+                <td colspan="2"><input class="nui-textbox" name="openId" id=""openId" vtype="maxLength:50"/></td>
             </tr>
             <tr>
                         <td align="right">显示个人单据：</td>

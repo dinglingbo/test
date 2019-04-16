@@ -195,7 +195,34 @@
                      
                     </td>
                 </tr>
+                
+                <tr>
+                	<td class="form_label">
+                        <label>行驶证正本照：<br><a  href="#" id="faker2">点击上传</a></label>
+                    </td>
+                    <td nowrap="nowrap">
+		                <div class="page-header" id="btn-uploader">
+						            <img id="xmTanImg2" style="width: 100px;height: 100px" onclick="changeShow(this.src)" src="<%= request.getContextPath() %>/common/images/logo.jpg"/>
+					    </div>
+		
+		
+								 <input  class="nui-textbox" id="driveLicensePicOne" name="driveLicensePicOne"  style="display:none" >
+                    </td>
+                    <td class="form_label" colspan="1">
+                       <label>行驶证副本照：<br><a  href="#" id="faker3">点击上传</a></label>
+                    </td>
+                    <td>
+		                <div class="div1" id="faker3" onchange="xmTanUploadImg(this)">
+					            <img id="xmTanImg3" style="width: 100px;height: 100px" onclick="changeShow(this.src)" src="<%= request.getContextPath() %>/common/images/logo.jpg"/>
+				        </div>
+
+
+						 <input  class="nui-textbox" id="driveLicensePicTwo" name="driveLicensePicTwo"  style="display:none" >
+                    </td>
+                </tr>
             </table>
         </div>
+    	   <div class="max_img" style="margin:0 auto">
+			<img src="" id="maxImgShow" onclick="changeHide();" width="100%" height="100%" />
+	   </div>
     </div>
-    

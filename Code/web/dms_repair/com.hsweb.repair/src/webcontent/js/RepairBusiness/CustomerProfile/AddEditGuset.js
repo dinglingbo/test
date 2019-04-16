@@ -50,7 +50,330 @@ $(document).ready(function()
             
         }
       };
+      
+		uploader = Qiniu.uploader({
+		    runtimes: 'html5,flash,html4',
+		    browse_button: 'faker',//上传按钮的ID
+		    container: 'btn-uploader',//上传按钮的上级元素ID
+		    drop_element: 'btn-uploader',
+		    max_file_size: '100mb',//最大文件限制
+		    //flash_swf_url: '/static/js/plupload/Moxie.swf',
+		    dragdrop: false,
+		    chunk_size: '4mb',//分块大小
+		    uptoken_url: webPath + sysDomain + "/com.hs.common.login.getQNAccessToken.biz.ext",//设置请求qiniu-token的url
+		    //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
+		    // uptoken : '<Your upload token>',
+		    //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
+		    unique_names: false,
+		    // 默认 false，key为文件名。若开启该选项，SDK会为每个文件自动生成key（文件名）
+		    // save_key: true,
+		    // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
+		    domain: getCompanyLogoUrl(),//自己的七牛云存储空间域名
+		    multi_selection: false,//是否允许同时选择多文件
+		    //文件类型过滤，这里限制为图片类型
+		    filters: {
+		        mime_types: [
+		            {title: "Image files", extensions: "jpg,jpeg,gif,png"}
+		        ]
+		    },
+		    auto_start: true,
+		    init: {
+		        'FilesAdded': function (up, files) {
+		            //do something
+		        },
+		        'BeforeUpload': function (up, file) {
+		            //do something
+		        },
+		        'UploadProgress': function (up, file) {
+		            //可以在这里控制上传进度的显示
+		            //可参考七牛的例子
+		        },
+		        'UploadComplete': function () {
+		            //do something
+		        },
+		        'FileUploaded': function (up, file, info) {
+		            //每个文件上传成功后,处理相关的事情
+		            //其中 info 是文件上传成功后，服务端返回的json，形式如
+		            //{
+		            //  "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
+		            //  "key": "gogopher.jpg"
+		            //}
+		            var domain = up.getOption('domain');
+		            //var sourceLink = domain + res.key;//获取上传文件的链接地址
+		            var info1 = JSON.parse(info);
+		            $("#xmTanImg").attr("src",getCompanyLogoUrl() + info1.hash);
+		            nui.get("licensePicOne").setValue(getCompanyLogoUrl() + info1.hash);
+		        },
+		        'Error': function (up, err, errTip) {
+		            alert(errTip);
+		        },
+		        'Key': function (up, file) {
+		            //当save_key和unique_names设为false时，该方法将被调用
+		            /* var key = "";
+		             $.ajax({
+		             url: '/getToken',
+		             type: 'post',
+		             async: false,//这里应设置为同步的方式
+		             success: function(data) {
+		             var ext = Qiniu.getFileExtension(file.name);
+		             key = data + '.' + ext;
+		             },
+		             cache: false
+		             });
+		             return key;*/
+		        }
+		    }
+		});
+		
+		uploader = Qiniu.uploader({
+		    runtimes: 'html5,flash,html4',
+		    browse_button: 'faker1',//上传按钮的ID
+		    container: 'btn-uploader',//上传按钮的上级元素ID
+		    drop_element: 'btn-uploader',
+		    max_file_size: '100mb',//最大文件限制
+		    //flash_swf_url: '/static/js/plupload/Moxie.swf',
+		    dragdrop: false,
+		    chunk_size: '4mb',//分块大小
+		    uptoken_url: webPath + sysDomain + "/com.hs.common.login.getQNAccessToken.biz.ext",//设置请求qiniu-token的url
+		    //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
+		    // uptoken : '<Your upload token>',
+		    //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
+		    unique_names: false,
+		    // 默认 false，key为文件名。若开启该选项，SDK会为每个文件自动生成key（文件名）
+		    // save_key: true,
+		    // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
+		    domain: getCompanyLogoUrl(),//自己的七牛云存储空间域名
+		    multi_selection: false,//是否允许同时选择多文件
+		    //文件类型过滤，这里限制为图片类型
+		    filters: {
+		        mime_types: [
+		            {title: "Image files", extensions: "jpg,jpeg,gif,png"}
+		        ]
+		    },
+		    auto_start: true,
+		    init: {
+		        'FilesAdded': function (up, files) {
+		            //do something
+		        },
+		        'BeforeUpload': function (up, file) {
+		            //do something
+		        },
+		        'UploadProgress': function (up, file) {
+		            //可以在这里控制上传进度的显示
+		            //可参考七牛的例子
+		        },
+		        'UploadComplete': function () {
+		            //do something
+		        },
+		        'FileUploaded': function (up, file, info) {
+		            //每个文件上传成功后,处理相关的事情
+		            //其中 info 是文件上传成功后，服务端返回的json，形式如
+		            //{
+		            //  "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
+		            //  "key": "gogopher.jpg"
+		            //}
+		            var domain = up.getOption('domain');
+		            //var sourceLink = domain + res.key;//获取上传文件的链接地址
+		            var info1 = JSON.parse(info);
+		            $("#xmTanImg1").attr("src",getCompanyLogoUrl() + info1.hash);
+		            nui.get("licensePicTwo").setValue(getCompanyLogoUrl() + info1.hash);
+		        },
+		        'Error': function (up, err, errTip) {
+		            alert(errTip);
+		        },
+		        'Key': function (up, file) {
+		            //当save_key和unique_names设为false时，该方法将被调用
+		            /* var key = "";
+		             $.ajax({
+		             url: '/getToken',
+		             type: 'post',
+		             async: false,//这里应设置为同步的方式
+		             success: function(data) {
+		             var ext = Qiniu.getFileExtension(file.name);
+		             key = data + '.' + ext;
+		             },
+		             cache: false
+		             });
+		             return key;*/
+		        }
+		    }
+		});
+		
+		uploader = Qiniu.uploader({
+		    runtimes: 'html5,flash,html4',
+		    browse_button: 'faker2',//上传按钮的ID
+		    container: 'btn-uploader',//上传按钮的上级元素ID
+		    drop_element: 'btn-uploader',
+		    max_file_size: '100mb',//最大文件限制
+		    //flash_swf_url: '/static/js/plupload/Moxie.swf',
+		    dragdrop: false,
+		    chunk_size: '4mb',//分块大小
+		    uptoken_url: webPath + sysDomain + "/com.hs.common.login.getQNAccessToken.biz.ext",//设置请求qiniu-token的url
+		    //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
+		    // uptoken : '<Your upload token>',
+		    //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
+		    unique_names: false,
+		    // 默认 false，key为文件名。若开启该选项，SDK会为每个文件自动生成key（文件名）
+		    // save_key: true,
+		    // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
+		    domain: getCompanyLogoUrl(),//自己的七牛云存储空间域名
+		    multi_selection: false,//是否允许同时选择多文件
+		    //文件类型过滤，这里限制为图片类型
+		    filters: {
+		        mime_types: [
+		            {title: "Image files", extensions: "jpg,jpeg,gif,png"}
+		        ]
+		    },
+		    auto_start: true,
+		    init: {
+		        'FilesAdded': function (up, files) {
+		            //do something
+		        },
+		        'BeforeUpload': function (up, file) {
+		            //do something
+		        },
+		        'UploadProgress': function (up, file) {
+		            //可以在这里控制上传进度的显示
+		            //可参考七牛的例子
+		        },
+		        'UploadComplete': function () {
+		            //do something
+		        },
+		        'FileUploaded': function (up, file, info) {
+		            //每个文件上传成功后,处理相关的事情
+		            //其中 info 是文件上传成功后，服务端返回的json，形式如
+		            //{
+		            //  "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
+		            //  "key": "gogopher.jpg"
+		            //}
+		            var domain = up.getOption('domain');
+		            //var sourceLink = domain + res.key;//获取上传文件的链接地址
+		            var info1 = JSON.parse(info);
+		            $("#xmTanImg2").attr("src",getCompanyLogoUrl() + info1.hash);
+		            nui.get("driveLicensePicOne").setValue(getCompanyLogoUrl() + info1.hash);
+		        },
+		        'Error': function (up, err, errTip) {
+		            alert(errTip);
+		        },
+		        'Key': function (up, file) {
+		            //当save_key和unique_names设为false时，该方法将被调用
+		            /* var key = "";
+		             $.ajax({
+		             url: '/getToken',
+		             type: 'post',
+		             async: false,//这里应设置为同步的方式
+		             success: function(data) {
+		             var ext = Qiniu.getFileExtension(file.name);
+		             key = data + '.' + ext;
+		             },
+		             cache: false
+		             });
+		             return key;*/
+		        }
+		    }
+		});
+		
+		uploader = Qiniu.uploader({
+		    runtimes: 'html5,flash,html4',
+		    browse_button: 'faker3',//上传按钮的ID
+		    container: 'btn-uploader',//上传按钮的上级元素ID
+		    drop_element: 'btn-uploader',
+		    max_file_size: '100mb',//最大文件限制
+		    //flash_swf_url: '/static/js/plupload/Moxie.swf',
+		    dragdrop: false,
+		    chunk_size: '4mb',//分块大小
+		    uptoken_url: webPath + sysDomain + "/com.hs.common.login.getQNAccessToken.biz.ext",//设置请求qiniu-token的url
+		    //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
+		    // uptoken : '<Your upload token>',
+		    //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
+		    unique_names: false,
+		    // 默认 false，key为文件名。若开启该选项，SDK会为每个文件自动生成key（文件名）
+		    // save_key: true,
+		    // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
+		    domain: getCompanyLogoUrl(),//自己的七牛云存储空间域名
+		    multi_selection: false,//是否允许同时选择多文件
+		    //文件类型过滤，这里限制为图片类型
+		    filters: {
+		        mime_types: [
+		            {title: "Image files", extensions: "jpg,jpeg,gif,png"}
+		        ]
+		    },
+		    auto_start: true,
+		    init: {
+		        'FilesAdded': function (up, files) {
+		            //do something
+		        },
+		        'BeforeUpload': function (up, file) {
+		            //do something
+		        },
+		        'UploadProgress': function (up, file) {
+		            //可以在这里控制上传进度的显示
+		            //可参考七牛的例子
+		        },
+		        'UploadComplete': function () {
+		            //do something
+		        },
+		        'FileUploaded': function (up, file, info) {
+		            //每个文件上传成功后,处理相关的事情
+		            //其中 info 是文件上传成功后，服务端返回的json，形式如
+		            //{
+		            //  "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
+		            //  "key": "gogopher.jpg"
+		            //}
+		            var domain = up.getOption('domain');
+		            //var sourceLink = domain + res.key;//获取上传文件的链接地址
+		            var info1 = JSON.parse(info);
+		            $("#xmTanImg3").attr("src",getCompanyLogoUrl() + info1.hash);
+		            nui.get("driveLicensePicTwo").setValue(getCompanyLogoUrl() + info1.hash);
+		        },
+		        'Error': function (up, err, errTip) {
+		            alert(errTip);
+		        },
+		        'Key': function (up, file) {
+		            //当save_key和unique_names设为false时，该方法将被调用
+		            /* var key = "";
+		             $.ajax({
+		             url: '/getToken',
+		             type: 'post',
+		             async: false,//这里应设置为同步的方式
+		             success: function(data) {
+		             var ext = Qiniu.getFileExtension(file.name);
+		             key = data + '.' + ext;
+		             },
+		             cache: false
+		             });
+		             return key;*/
+		        }
+		    }
+		});
 });
+
+function getCompanyLogoUrl(){
+	  var url="";
+  nui.ajax({
+    url:webPath + sysDomain +"/com.hs.common.login.getCompanyLogoUrl.biz.ext",
+    type:"post",
+    data:{},
+    async:false,
+    success:function(data)
+    {
+        nui.unmask();
+        data = data||{};
+        if(data.errCode && data.errCode == 'S'){
+      	  url =  data.companyLogoUrl;
+        }else{
+            showMsg(data.errMsg,"W");
+        }
+        
+    },
+    error:function(jqXHR, textStatus, errorThrown){
+        //  nui.alert(jqXHR.responseText);
+    	  nui.unmask();
+        closeWindow("cal");
+    }
+});
+return url;
+};
 function init(callback)
 {
 	var addEditCustomerPage = nui.get("addEditCustomerPage");
@@ -775,6 +1098,8 @@ function addCarList(){
 				lastComeKilometers:car.lastComeKilometers,
 				careDueMileage:car.careDueMileage,
 				careDueDate:car.careDueDate,
+				driveLicensePicOne : car.driveLicensePicOne,
+				driveLicensePicTwo : car.driveLicensePicTwo,
 				remark:car.remark,
 				isDisabled:car.isDisabled
 				
@@ -871,6 +1196,8 @@ function addContactList(){
         				birthdayType:contact.birthdayType,
         				birthday:contact.birthday,
         				idNo:contact.idNo,
+        				licensePicOne : contact.licensePicOne,
+        				licensePicTwo : contact.licensePicTwo,
         				remark:contact.remark
 
         			};
@@ -912,6 +1239,8 @@ function eaidCar(){
 		showMsg("请选择车辆!","W");
 		return;
 	}
+    $("#xmTanImg2").attr("src",row.driveLicensePicOne||webPath + contextPath + "/common/images/logo.jpg");
+    $("#xmTanImg3").attr("src",row.driveLicensePicTwo||webPath + contextPath + "/common/images/logo.jpg");
 	//cardatagrid.removeRow(row);
 	carview.show();
 	carInfoFrom.setData(row);
@@ -932,6 +1261,8 @@ function eaidContact(){
 	//contactdatagrid.removeRow(row);
 	contactview.show();
 	contactInfoForm.setData(row);
+    $("#xmTanImg").attr("src",row.licensePicOne||webPath + contextPath + "/common/images/logo.jpg");
+    $("#xmTanImg1").attr("src",row.licensePicTwo||webPath + contextPath + "/common/images/logo.jpg");
 	if(row.wechatOpenId && row.wechatOpenId!=null){
 		nui.get("wechatServiceId").disable();
 	}else{
@@ -1113,4 +1444,23 @@ function mergeCar(){
 }
 
 
-
+function changeShow1(src){
+	var str = src.substr(src.length-8, 4);
+	if(str=="logo"){
+		return;
+	}
+	$("#maxImgShow1").attr("src",src);
+	$(".max_img1").show();
+}
+function changeShow(src){
+	var str = src.substr(src.length-8, 4);
+	if(str=="logo"){
+		return;
+	}
+	$("#maxImgShow").attr("src",src);
+	$(".max_img").show();
+}
+function changeHide(){
+	$(".max_img").hide();
+	$(".max_img1").hide();
+}

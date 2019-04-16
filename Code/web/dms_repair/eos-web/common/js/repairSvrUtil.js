@@ -368,7 +368,7 @@ function doApplyCustomer(params,callback){
         url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
         title:"新增客户资料",
         width:560,
-        height:675,
+        height:600,
         onload:function(){
             var iframe = this.getIFrameEl();
             iframe.contentWindow.setData(params);

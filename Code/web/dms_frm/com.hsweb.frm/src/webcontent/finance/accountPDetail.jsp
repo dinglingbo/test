@@ -82,7 +82,9 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="carNo" name="carNo" width="70"  headeralign="center" allowsort="true" >车牌号</div>
                 <div field="charOffAmt" name="charOffAmt" width="80" summaryType="sum" headeralign="center" allowsort="true" dataType="float">付款金额</div>
                 <div field="feeService" name="feeService" width="80" summaryType="sum" headeralign="center" allowsort="true" dataType="float">手续费</div>
-                <div field="trueInoutAmt" name="trueInoutAmt" width="80" summaryType="sum" headeralign="center" allowsort="true" dataType="float" >实付金额 </div>
+                <!-- <div field="trueInoutAmt" name="trueInoutAmt" width="80" summaryType="sum" headeralign="center" allowsort="true" dataType="float" >实付金额 </div> -->
+                <div field="settAccountName" name="settAccountName" width="110"  headeralign="center" allowsort="true" >付款账户 </div>
+                <div field="settCharOffAmt" name="settCharOffAmt" width="80" summaryType="sum" headeralign="center" allowsort="true" dataType="float">付款金额</div>
                 <div field="auditor" name="auditor" width="80"  headeralign="center" allowsort="true"  >付款人</div>
                 <div field="remark" name="remark" width="180"  headeralign="center" allowsort="true">付款备注</div>
                 <div field="auditDate" name="auditDate" width="150" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" allowsort="true" >付款日期</div>

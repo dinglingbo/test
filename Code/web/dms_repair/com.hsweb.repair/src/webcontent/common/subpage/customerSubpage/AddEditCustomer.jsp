@@ -11,9 +11,24 @@
 -->
 <head>
 <title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.3.35"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.3.39"></script>
+      	<script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
+  	    <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
+ 	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+ 	<script src="<%= request.getContextPath() %>/common/qiniu/qiniu1.0.14.js" type="text/javascript"></script>
+  	<script src="https://cdn.staticfile.org/plupload/2.1.9/moxie.js"></script>
+ 	<script src="https://cdn.staticfile.org/plupload/2.1.9/plupload.dev.js"></script>  
 <style type="text/css">
-
+ 	.max_img{
+		display: none;
+		position: absolute;
+		bottom: 0;
+		left: 0; 
+		width:550px;
+		height:500px;
+		z-index:999;
+		margin:0 auto;
+	}
 table {
 	font-size: 12px;
 }
@@ -25,6 +40,9 @@ table {
 
 .required {
 	color: red;
+}
+a{
+cursor: pointer;
 }
 </style>
 </head>
@@ -171,8 +189,8 @@ table {
 
         <div class="nui-fit">
             <div class="nui-tabs" activeIndex="0" id="tabs"
-                 style="width:100%;">
-                <div title="车辆信息" showCloseButton="false">
+                 style="width:100%;height: 100%">
+                <div title="车辆信息" showCloseButton="false" >
                     <div class="form" id="carInfoFrom">
                         <input class="nui-hidden" name="id"/>
                         <input class="nui-hidden" name="guestId"/>
@@ -330,6 +348,33 @@ table {
 				                    <input class="nui-textbox" name="remark" width="100%" />
 				                </td>
 				            </tr>
+							  <tr>
+			                	<td class="form_label" colspan="1">
+			                        <label>行驶证正本照：<br><a  href="#" id="faker2">点击上传</a></label>
+			                    </td>
+			                    <td >
+					                <div class="page-header" id="btn-uploader" style="position: unset;">
+									            <img id="xmTanImg2" style="width: 100px;height: 100px" onclick="changeShow(this.src);" src="<%= request.getContextPath() %>/common/images/logo.jpg"/>
+			
+								    </div>
+					
+					
+											 <input  class="nui-textbox" id="driveLicensePicOne" name="driveLicensePicOne"  style="display:none" >
+			                    </td>
+			                    <td class="form_label" colspan="1">
+			                       <label>行驶证副本照：<br><a  href="#" id="faker3">点击上传</a></label>
+			                    </td>
+			                    <td>
+				                    <div class="page-header" id="btn-uploader" style="position: unset;">
+					                	
+								            <img id="xmTanImg3" style="width: 100px;height: 100px" onclick="changeShow(this.src);" src="<%= request.getContextPath() %>/common/images/logo.jpg"/>
+								        
+							        </div>
+			
+			
+									 <input  class="nui-textbox" id="driveLicensePicTwo" name="driveLicensePicTwo"  style="display:none" >
+			                    </td>
+			                </tr>
                         </table>
                     </div>
                 </div>
@@ -338,7 +383,7 @@ table {
                         <input class="nui-hidden" name="id"/>
                         <input class="nui-hidden" name="guestId"/>
                     
-					<table class="nui-form-table" style="width:100%;">
+					<table class="nui-form-table" style="width:100%;height: 100%">
                 <tr>
                     <td class="form_label required">
                         <label>姓名：</label>
@@ -429,13 +474,37 @@ table {
                         <input class="nui-textbox" name="idNo" width="100%" />
                     </td>
                 </tr>
-                
                 <tr>
                     <td class="form_label">
                         <label>备注：</label>
                     </td>
                     <td colspan="3">
                         <input class="nui-textbox" name="remark" width="100%" />
+                    </td>
+                </tr>
+                <tr>
+               		 <td class="form_label">
+                        <label>驾驶证正本照：<br><a  href="#" id="faker">点击上传</a></label>
+                    </td>
+                    <td nowrap="nowrap">
+		                <div class="page-header" id="btn-uploader">
+						            <img id="xmTanImg" style="width: 100px;height: 100px" onclick="changeShow(this.src)" src="<%= request.getContextPath() %>/common/images/logo.jpg"/>
+					    </div>
+		
+		
+								 <input  class="nui-textbox" id="licensePicOne" name="licensePicOne"  style="display:none" >
+                    </td>
+                    <td class="form_label" colspan="1">
+                       <label>驾驶证副本照：<br><a  href="#" id="faker1">点击上传</a></label>
+                    </td>
+                    <td>
+	                    <div class="page-header" id="btn-uploader">
+					            <img id="xmTanImg1" style="width: 100px;height: 100px" onclick="changeShow(this.src)" src="<%= request.getContextPath() %>/common/images/logo.jpg"/>
+
+				        </div>
+
+
+						 <input  class="nui-textbox" id="licensePicTwo" name="licensePicTwo"  style="display:none" >
                     </td>
                 </tr>
             </table>
@@ -448,6 +517,8 @@ table {
 <!--                 <a class="nui-button" onclick="onCancel" style="width:60px;">取消</a> -->
 <!--             </div> -->
         </div>
-
+	   <div class="max_img" style=" margin:0 auto">
+			<img src="" id="maxImgShow" onclick="changeHide();" width="100%" height="100%" />
+	   </div>
 </body>
 </html>

@@ -1,3 +1,4 @@
+ var baseUrl = apiPath + repairApi + "/";  
 $(document).ready(function(v) {
     uploader = Qiniu.uploader({
         runtimes: 'html5,flash,html4',
@@ -46,6 +47,23 @@ $(document).ready(function(v) {
                 //  "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
                 //  "key": "gogopher.jpg"
                 //}
+                var photos = null;
+                var table = null;
+                if (nui.get("state").value == 1) {
+                    table = document.getElementById("table1");
+                } else {
+                    table = document.getElementById("table2");
+                }
+                if (table.rows.length > 3) {
+                    showMsg("最多上传9张图片", "W");
+                    return;
+                }
+                if (table.rows.length == 3) {
+                    if (table.rows[2].cells[2].innerHTML != "") {
+                        showMsg("最多上传9张图片", "W");
+                        return;
+                    }
+                }
                 var domain = up.getOption('domain');
                 //var sourceLink = domain + res.key;//获取上传文件的链接地址
                 var info1 = JSON.parse(info);
@@ -61,25 +79,31 @@ $(document).ready(function(v) {
                 }
                 tBody.empty();
                 var crr = [];
-                if(nui.get("state").value == 1){
-                	crr = arr;
-                }else{
-                	crr = brr;
+                if (nui.get("state").value == 1) {
+                    crr = arr;
+                } else {
+                    crr = brr;
                 }
-                var tds = '<td>[1]</td>';
-                var tr = $("<tr></tr>");
-                for(var i = 1 , l = crr.length ; i < l ; i ++){
-                	var index = i +1;
-                	tds = tds + '<td>['+index+']</td>';
+                for (var i = 0, l = crr.length; i < l; i++) {
+                    var tds = '<td align="center">[1]</td><td align="center">[2]</td><td align="center">[3]</td>';
+                    var tr = $("<tr></tr>");
+                    var index = i + 1;
+                    var value1 = crr[i] || "";
+                    var value2 = crr[i + 1] || "";
+                    var value3 = crr[i + 2] || "";
+                    value1 = value1 ? '<img id="xmTanImg" style="width: 120px;height: 120px" onclick="changeShow(this);" src="' + value1 + '" />' : "";
+                    value2 = value2 ? '<img id="xmTanImg" style="width: 120px;height: 120px" onclick="changeShow(this);" src="' + value2 + '" />' : "";
+                    value3 = value3 ? '<img id="xmTanImg" style="width: 120px;height: 120px" onclick="changeShow(this);" src="' + value3 + '" />' : "";
+                    tr.append(
+                        tds.replace("[1]", value1)
+                        .replace("[2]", value2)
+                        .replace("[3]", value3));
+                    tBody.append(tr);
+                    i = i + 2;
                 }
-                for(var i = 0 , l = crr.length ; i < l ; i ++){
-                	var index = i +1;
-                	tds = tds.replace("["+index+"]", '<img id="xmTanImg" style="width: 120px;height: 120px" src="'+crr[i]+'" />');   
-                }
-                tBody.append(tr.append(tds)); 
             },
             'Error': function(up, err, errTip) {
-                showMsg(errTip,"W");
+                showMsg(errTip, "W");
             },
             'Key': function(up, file) {
                 //当save_key和unique_names设为false时，该方法将被调用
@@ -98,7 +122,11 @@ $(document).ready(function(v) {
             }
         }
     });
-
+    
+    $("table td").click(function()	{
+		var photoUrl = $(this).text();
+		$("#maxImgShow").attr("src",photoUrl)
+	});
 });
 
 function getCompanyLogoUrl() {
@@ -126,3 +154,118 @@ function getCompanyLogoUrl() {
     });
     return url;
 };
+
+function ok() {
+	var add = null;
+	var type = null;
+	if(!nui.get("state").value){
+		showMsg("已结算不能保存","W");
+		return;
+	}
+    if(nui.get("state").value == 1){
+    	add = arr;
+    	type = 1;
+    }else{
+    	add = brr;
+    	type = 2;
+    }
+    if(add.length == 0){
+    	showMsg("暂无图片需要保存","W");
+    	return;
+    }
+    var addData = [];
+    for(var i = 0 , l = add.length ; i < l ; i ++){
+    	var newRow = {attachName : add[i],type:type,serviceId:nui.get("serviceId").value};
+    	addData.add(newRow);
+    }
+    nui.ajax({
+		url: baseUrl+ "com.hsapi.repair.repairService.waveBox.addUploadPhoto.biz.ext",
+		type: "post",
+		cache: false,
+		async: false,
+		data: {
+			add: addData,
+			type : type,
+			serviceId : nui.get("serviceId").value
+		},
+		success: function (text) {
+				if(text.errCode == "S"){
+					showMsg("执行成功","S");
+				}else{
+					showMsg(text.errMsg,"W");
+				}
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+			showMsg("网络出错", "E");
+		}
+	});
+}
+
+function SetData(serviceId, serviceCode, state) {
+    nui.get("serviceId").setValue(serviceId);
+    nui.get("serviceCode").setValue(serviceCode);
+    nui.get("state").setValue(state); //1维修前  2维修后
+	nui.ajax({
+		url: baseUrl+ "com.hsapi.repair.repairService.waveBox.searchUploadPhoto.biz.ext",
+		type: "post",
+		cache: false,
+		async: false,
+		data: {
+			serviceId : nui.get("serviceId").value
+		},
+		success: function (text) {
+				if(text.errCode == "S"){
+					var data = text.data;
+					for(var i = 0 , l = data.length ; i < l ;i ++){
+						if(data[i].type == 1){
+							arr.add(data[i].attachName);
+							var tBody = $("#tbodyId");
+							showPhoto(arr,tBody);
+						}else{
+							brr.add(data[i].attachName);
+							var tBody = $("#tbodyId1");
+							showPhoto(brr,tBody);
+						}
+					}
+					
+				}else{
+					showMsg(text.errMsg,"W");
+				}
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+			showMsg("网络出错", "E");
+		}
+	});
+}
+
+function showPhoto(crr,tBody){
+	tBody.empty();
+	for (var i = 0, l = crr.length; i < l; i++) {
+        var tds = '<td align="center">[1]</td><td align="center">[2]</td><td align="center">[3]</td>';
+        var tr = $("<tr></tr>");
+        var index = i + 1;
+        var value1 = crr[i] || "";
+        var value2 = crr[i + 1] || "";
+        var value3 = crr[i + 2] || "";
+        value1 = value1 ? '<img id="xmTanImg" style="width: 120px;height: 120px" onclick="changeShow(this);" src="' + value1 + '" />' : "";
+        value2 = value2 ? '<img id="xmTanImg" style="width: 120px;height: 120px" onclick="changeShow(this);" src="' + value2 + '" />' : "";
+        value3 = value3 ? '<img id="xmTanImg" style="width: 120px;height: 120px" onclick="changeShow(this);" src="' + value3 + '" />' : "";
+        tr.append(
+            tds.replace("[1]", value1)
+            .replace("[2]", value2)
+            .replace("[3]", value3));
+        tBody.append(tr);
+        i = i + 2;
+    }
+}
+
+function changeHide(){
+	$(".max_img").hide();
+}
+
+function changeShow(evn){
+	$("#maxImgShow").attr("src",evn.src);
+	$(".max_img").show();
+}

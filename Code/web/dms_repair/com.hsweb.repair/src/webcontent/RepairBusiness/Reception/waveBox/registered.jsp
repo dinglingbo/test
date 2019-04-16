@@ -165,6 +165,8 @@
                     			var params = {serviceId : nui.get("serviceId").value};
 								grid.load({params : params});
                     			showMsg("保存成功","S");
+                    		}else{
+                    			showMsg(text.errMsg,"W");
                     		} 
                     }
             });

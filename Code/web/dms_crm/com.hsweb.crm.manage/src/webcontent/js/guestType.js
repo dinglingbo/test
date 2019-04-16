@@ -300,30 +300,30 @@ function sendInfo(e) {
     var sendWcUrl = {};
     switch (tab.name) {
         case "bir":
-             gridList = addServiceType(gridkhsr.getData(),10);
+             gridList = addServiceType(gridkhsr.getSelecteds(),10);
             break;
         case "lic":
-        	gridList = addServiceType(gridjzns.getData(),8);
+        	gridList = addServiceType(gridjzns.getSelecteds(),8);
             sendWcUrl = 'manage/sendWechatWindow/sWcInfoMoreLicense.jsp';
             break;
         case "due":
-        	gridList = addServiceType(gridclnj.getData(),9);
+        	gridList = addServiceType(gridclnj.getSelecteds(),9);
             sendWcUrl = 'manage/sendWechatWindow/sWcInfoMoreYearCheck.jsp';
             break;
         case "care":
-        	gridList = addServiceType(gridbydq.getData(),5);
+        	gridList = addServiceType(gridbydq.getSelecteds(),5);
             sendWcUrl = 'manage/sendWechatWindow/sWcInfoMoreRemind.jsp';
             break;
         case "insure":
-        	gridList = addServiceType(gridjqx.getData(),7);
+        	gridList = addServiceType(gridjqx.getSelecteds(),7);
             sendWcUrl = 'manage/sendWechatWindow/sWcInfoMoreInsurance.jsp';
             break;
         case "annual":
-        	gridList = addServiceType(gridsyx.getData(),6);
+        	gridList = addServiceType(gridsyx.getSelecteds(),6);
             sendWcUrl = 'manage/sendWechatWindow/sWcInfoMoreInsurance.jsp';
             break;
         case "type":
-        	gridList = addServiceType(gridkhlx.getData(),11);//其他
+        	gridList = addServiceType(gridkhlx.getSelecteds(),11);//其他
             break;
         default:
             break;
@@ -382,7 +382,7 @@ function sendInfo(e) {
             }
         }
         if(dataArr.length <2){
-            showMsg("筛选至少包含一位已绑定微信号的客户","W");
+            showMsg("筛选至少包含两位已绑定微信号的客户","W");
             return;
         }else{
             sendWcCoupon(dataArr);
@@ -449,7 +449,7 @@ function sendWcCoupon(list) {
 
 function addServiceType(list,type){
 	if(list.length <1){
-		return;
+		return [];
 	}
 	var Arr = [];
 	for(var i =0;i<list.length;i++){

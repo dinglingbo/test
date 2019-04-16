@@ -315,6 +315,8 @@ function settleOK() {
 				useRemark:row.useRemark,
 				carId:guestData.carId,
 				carNo:guestData.carNo,
+				buySource:1
+                
 		};
 		json={
 				payAmt:netInAmt,
@@ -516,7 +518,8 @@ function noPayOk(){
 				totalAmt:row.totalAmt,
 				useRemark:row.useRemark,
 				carId:guestData.carId,
-				carNo:guestData.carNo
+				carNo:guestData.carNo,
+				buySource:1
 		    };
 		//整理数据
 		 payAmt = row.sellAmt;

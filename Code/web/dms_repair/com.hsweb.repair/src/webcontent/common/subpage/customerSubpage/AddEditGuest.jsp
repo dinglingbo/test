@@ -11,7 +11,13 @@
 -->
 <head>
     <title>新增客户档案</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.73"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.80"></script>
+      	<script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
+  	    <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
+ 	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+ 	<script src="<%= request.getContextPath() %>/common/qiniu/qiniu1.0.14.js" type="text/javascript"></script>
+  	<script src="https://cdn.staticfile.org/plupload/2.1.9/moxie.js"></script>
+ 	<script src="https://cdn.staticfile.org/plupload/2.1.9/plupload.dev.js"></script>  
     <style type="text/css">
         table {
             font-size: 12px;
@@ -38,6 +44,29 @@
         text-decoration: none;
         border-radius: 5px; 
     }
+    a{
+cursor: pointer;
+}
+ 	.max_img{
+		display: none;
+		position: absolute;
+		bottom: 0;
+		left: 120px; 
+		width:500px;
+		height:530px;
+		z-index:999;
+		margin:0 auto;		
+	}
+	 	.max_img1{
+		display: none;
+		position: absolute;
+		bottom: 0;
+		left: 120px; 
+		width:450px;
+		height:370px;
+		z-index:999;
+		margin:0 auto;		
+	}
     </style>
 </head>
 
@@ -330,6 +359,7 @@
             </div>
         </div>
     </div>
+
 </body>
 
 </html>

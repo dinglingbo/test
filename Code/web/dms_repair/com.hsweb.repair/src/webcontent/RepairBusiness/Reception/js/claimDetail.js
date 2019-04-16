@@ -7,6 +7,7 @@ var mainGrid = null;
 var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
 var partGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
 var cardTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesByGuestIdNopage.biz.ext";
+var itemTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryItemTimesByUsable.biz.ext";
 var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestIdNoPage.biz.ext";
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryAccount.biz.ext";
@@ -39,7 +40,7 @@ var score = 0;
 var lcheckDate = '';
 var carSellPointInfo = null;
 var lastCheckParams = null;
-
+var itemTimesGrid = null;
 var rpsPackageGrid = null;
 var rpsItemGrid = null;
 var packageDetailGrid = null;
@@ -130,6 +131,8 @@ $(document).ready(function ()
     carSellPointInfo = nui.get("carSellPointInfo");
     cardTimesGrid = nui.get("cardTimesGrid");
     cardTimesGrid.setUrl(cardTimesGridUrl);
+    itemTimesGrid = nui.get("itemTimesGrid");
+    itemTimesGrid.setUrl(itemTimesGridUrl);
     carSellPointGrid = nui.get("carSellPointGrid");
     /*    var data = [{prdtName:'保养到期提醒',amt:'3850',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'保养到期提醒'},
                     {prdtName:'商业险到期提醒',amt:'2600',status:'未联系',creator:'杨超越',doTimes:'2018-12-15',type:'商业险到期提醒'},
@@ -819,6 +822,7 @@ function doSetMainInfo(car){
     fcarId = car.id||0;
 
     doSearchCardTimes(fguestId,fcarId);
+    doSearchItemTimes(fguestId,fcarId);
     doSearchMemCard(fguestId);
     doSearchSell(fguestId);
     $("#guestNameEl").html(car.guestFullName);
@@ -988,6 +992,7 @@ function setInitData(params){
                         fcarId = data.carId||0;
 
                         doSearchCardTimes(fguestId,fcarId);
+                        doSearchItemTimes(fguestId,fcarId);
                         doSearchMemCard(fguestId);
                         
                         billForm.setData(data);
@@ -3939,6 +3944,7 @@ function showCarSellPointInfo(){
     var atEl = document.getElementById("carSellInfoEl");  
     carSellPointInfo.showAtEl(atEl, {xAlign:"right",yAlign:"below"});
     advancedCardTimesWin.hide();
+    advancedItemTimesWin.hide();
     carCheckInfo.hide();
     advancedMemCardWin.hide();
     doSearchSell(fguestId);

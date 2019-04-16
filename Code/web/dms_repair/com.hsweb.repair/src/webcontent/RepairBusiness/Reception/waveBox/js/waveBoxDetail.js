@@ -5,6 +5,7 @@ var webBaseUrl = webPath + contextPath + "/";
  var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
  var partGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
  var cardTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesByGuestIdNopage.biz.ext";
+ var itemTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryItemTimesByUsable.biz.ext";
  var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestIdNoPage.biz.ext";
  var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext"; 
  var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryAccount.biz.ext";
@@ -29,7 +30,7 @@ var webBaseUrl = webPath + contextPath + "/";
  var tcAmt = 0;
  var gsAmt = 0;
  var lastCheckParams = null;
-
+ var itemTimesGrid = null;
  var rpsItemGrid = null;
  var packageDetailGrid = null;
  var packageDetailGridForm = null;
@@ -84,6 +85,8 @@ $(document).ready(function ()
     carCheckInfo = nui.get("carCheckInfo");
     cardTimesGrid = nui.get("cardTimesGrid");
     cardTimesGrid.setUrl(cardTimesGridUrl);
+    itemTimesGrid = nui.get("itemTimesGrid");
+    itemTimesGrid.setUrl(itemTimesGridUrl);
     advancedMemCardWin = nui.get("advancedMemCardWin");
     memCardGrid = nui.get("memCardGrid");
     memCardGrid.setUrl(memCardGridUrl);
@@ -512,6 +515,7 @@ function doSetMainInfo(car){
     fcarId = car.id||0;
 
     doSearchCardTimes(fguestId,fcarId);
+    doSearchItemTimes(fguestId,fcarId);
     doSearchMemCard(fguestId);
     
     $("#guestNameEl").html(car.guestFullName);
@@ -661,6 +665,7 @@ function setInitData(params){
                         fcarId = data.carId||0;
 
                         doSearchCardTimes(fguestId,fcarId);
+                        doSearchItemTimes(fguestId,fcarId);
                         doSearchMemCard(fguestId);
                         xyguest = data;
                         nui.get("contactorName").setText(contactor.name);

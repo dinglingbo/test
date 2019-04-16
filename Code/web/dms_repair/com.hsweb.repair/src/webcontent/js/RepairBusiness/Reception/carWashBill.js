@@ -8,6 +8,7 @@
  var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
  var partGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
  var cardTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesByGuestIdNopage.biz.ext";
+ var itemTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryItemTimesByUsable.biz.ext";
  var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestIdNoPage.biz.ext";
  var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext"; 
  var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryAccount.biz.ext";
@@ -34,7 +35,7 @@
  var tcAmt = 0;
  var gsAmt = 0;
  var lastCheckParams = null;
-
+ var itemTimesGrid = null;
  //var rpsPackageGrid = null;
  var rpsItemGrid = null;
  var packageDetailGrid = null;
@@ -118,6 +119,8 @@ $(document).ready(function ()
     carSellPointInfo = nui.get("carSellPointInfo");
     cardTimesGrid = nui.get("cardTimesGrid");
     cardTimesGrid.setUrl(cardTimesGridUrl);
+    itemTimesGrid = nui.get("itemTimesGrid");
+    itemTimesGrid.setUrl(itemTimesGridUrl);
     advancedMemCardWin = nui.get("advancedMemCardWin");
     memCardGrid = nui.get("memCardGrid");
     memCardGrid.setUrl(memCardGridUrl);
@@ -376,23 +379,22 @@ $(document).ready(function ()
             e.cellHtml = '<a class="optbtn" href="javascript:addCardTimesToBill()">选择</a>';
         }
     });
-    itemTimesGrid.on("drawcell",function(e)
-    	    {
-    	        if(e.field == "prdtType" && prdtTypeHash[e.value])
-    	        {
-    	            e.cellHtml = prdtTypeHash[e.value];
-    	        }
-    	        if(e.field == "doTimes")
-    	        {
-    	            var row = e.row;
-    	            var balaTimes = row.balaTimes || 0;
-    	            var canUseTimes = row.canUseTimes||0;
-    	            e.cellHtml = balaTimes - canUseTimes;
-    	        }
-    	        if(e.field == 'cardTimesOpt'){
-    	            e.cellHtml = '<a class="optbtn" href="javascript:addItemTimesToBill()">选择</a>';
-    	        }
-    	    });
+    itemTimesGrid.on("drawcell",function(e){
+	        if(e.field == "prdtType" && prdtTypeHash[e.value])
+	        {
+	            e.cellHtml = prdtTypeHash[e.value];
+	        }
+	        if(e.field == "doTimes")
+	        {
+	            var row = e.row;
+	            var balaTimes = row.balaTimes || 0;
+	            var canUseTimes = row.canUseTimes||0;
+	            e.cellHtml = balaTimes - canUseTimes;
+	        }
+	        if(e.field == 'cardTimesOpt'){
+	            e.cellHtml = '<a class="optbtn" href="javascript:addItemTimesToBill()">选择</a>';
+	        }
+    });
     memCardGrid.on("drawcell",function(e)
     {
         var row = e.row;
@@ -663,6 +665,7 @@ function doSetMainInfo(car){
     fcarId = car.id||0;
 
     doSearchCardTimes(fguestId,fcarId);
+    doSearchItemTimes(fguestId,fcarId);
     doSearchMemCard(fguestId);
     doSearchSell(fguestId);
     $("#guestNameEl").html(car.guestFullName);
@@ -813,6 +816,7 @@ function setInitData(params){
                         fcarId = data.carId||0;
 
                         doSearchCardTimes(fguestId,fcarId);
+                        doSearchItemTimes(fguestId,fcarId);
                         doSearchMemCard(fguestId);
                         xyguest = data;
                         nui.get("contactorName").setText(contactor.name);
@@ -1960,6 +1964,7 @@ function showCarSellPointInfo(){
     var atEl = document.getElementById("carSellInfoEl");  
     carSellPointInfo.showAtEl(atEl, {xAlign:"right",yAlign:"below"});
     advancedCardTimesWin.hide();
+    advancedItemTimesWin.hide();
     carCheckInfo.hide();
     advancedMemCardWin.hide();
     doSearchSell(fguestId);

@@ -499,7 +499,7 @@ function doSelectPackage(dock, dodelck, docck, param, callback) {
 	});
 }
 
-function doAddcardTime(xyguest,contactor){
+function doAddcardTime(xyguest){
     var item={};
     item.id = "timesCard";
     item.text = "计次卡销售";
@@ -507,7 +507,6 @@ function doAddcardTime(xyguest,contactor){
     item.iconCls = "fa fa-file-text";
     var params = {
     		xyguest:xyguest,
-    		contactor:contactorF,
     			cardType:1 //计次卡
     		};
     window.parent.activeTabAndInit(item,params);

@@ -3735,7 +3735,7 @@ function delFromBillPart(data, callback){
 }
 
 function addcardTime(){	
-	doAddcardTime(xyguest,contactorF);
+	doAddcardTime(xyguest);
 }
 
 

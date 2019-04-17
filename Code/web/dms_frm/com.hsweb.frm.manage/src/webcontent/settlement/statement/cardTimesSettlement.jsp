@@ -611,7 +611,7 @@
 
 		</div>
 	</div>
-	<div style="background-color: #cfddee;position:fixed; top:90%;width:100%;height: 10%; z-index:900;">
+	<!-- <div style="background-color: #cfddee;position:fixed; top:90%;width:100%;height: 10%; z-index:900;">
 		<div style="float:left;height:100%;width:100%;">
 			<table id="statustable" style="width:100%;height:100%;font-size:16px;color:#5a78a0;padding-left:20px;">
 				<tr>
@@ -644,7 +644,75 @@
 					</td>
 				</tr>
 			</table>
+		</div> -->
+	<div style="background-color: #cfddee;position:fixed; top:90%;width:100%;height: 10%; z-index:900;">
+		<div style="float:left;height:100%;width:100%;">
+			<table id="statustable" style="width:100%;height:100%;font-size:16px;color:#5a78a0;padding-left:20px;">
+				<tr>
+					<td >
+						<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					</td>
+					<td >
+						<label style="font-family:Verdana;">应收金额：</label>
+						<span id="totalAmt1" name="totalAmt1" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
+					</td>
+					<td >
+					</td>
+					<td >
+						<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					</td>
+					<td >
+						<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					</td>
+					<td >
+						<input type="checkbox" id="settlesendwx" checked="checked">微信通知客户
+					</td>
+					<td >
+						<input type="checkbox" id="settlesenddx">短信通知客户
+					</td>
+					<!-- <td >
+						<label style="font-family:Verdana;">预存金额：</label>
+						<span id="ycAmt" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
+					</td> -->
+					<td >
+						<label style="font-family:Verdana;">优惠券抵扣：</label>
+						<span id="quanAmt" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
+					</td>
+					<td >
+						<label style="font-family:Verdana;">实收金额：</label>
+						<span id="amount" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
+					</td>
+					<td >
+						<a id="ysettle" style="    width: 120px;
+							height: 40px;
+							font-size: 18px;
+							background: #2ac476;
+							color: #fff;
+							text-align: center;
+							display: block;
+							border-radius: 5px;
+							line-height: 2;
+							text-decoration: none;" 
+							href="javascript:void(0)" onclick="noPayOk()" >转预结算</a>
+					</td>
+					<td >
+						<a id="settle" style="    width: 120px;
+							height: 40px;
+							font-size: 18px;
+							background: #578ccd;
+							color: #fff;
+							text-align: center;
+							display: block;
+							border-radius: 5px;
+							text-decoration: none;
+							line-height: 2;" 
+							href="javascript:void(0)" onclick="settleOK()" >结算收款</a>
+					</td>
+				</tr>
+			</table>
 		</div>
+			
+			
 			
 		<!-- <div style="float: left;height: 100%;">
 			<table id="statustable" style="width:100%;height:100%;font-size:16px;color:#5a78a0;padding-left:20px;align-content: ">

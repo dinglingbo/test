@@ -11,11 +11,16 @@ var form = null;
 var type = null;
 var typeList = {};
 var guestData = {};
-var contactor = {};
 var deductible = 0;
 var row = {};
 var searchKeyEl = null;
 var searchNameEl = null;
+var userCouponDataHash = {};
+var codeHash = {};
+//优惠券抵扣的金额
+var deductionAmt = 0;
+//结算接口的优惠券对象
+var couponList = [];
 $(document).ready(function (){
 	$("body").on("blur","input[name='amount']",function(){
 		onChanged();
@@ -65,13 +70,31 @@ $(document).ready(function (){
         
     });
     
+    searchKeyEl.on("valuechanged",function(e){
+    	var item = e.selected;
+        /*if(fserviceId){
+            return;
+        }
+        if (item) { 
+        	if(item.guestMobile == "10000"){
+        		addOrEdit(item);
+        	}else{
+        		setGuest(item);
+        	}
+        	
+        }*/
+    	if (item) { 
+        	setGuest(item);
+        }
+    });
     
     searchKeyEl.on("itemclick",function(e){
     	var item = e.item;
         if (item) { 
         	setGuest(item);
         }
-    });
+     });
+    
     searchKeyEl.focus();
     
 	$("body").on("click","a[name='quan']",function(e){
@@ -80,7 +103,7 @@ $(document).ready(function (){
 		var changStr = "#chang"+id;
 		var userCoupon = userCouponDataHash[id];
 		//判断优惠券是否重复，以及是否达到可用条件
-		var boolean = null;
+		var boolean = false;
 		if(document.getElementById(str).getAttribute("class")=="quan-item1"){
 			document.getElementById(str).className = "quan-item";
 			$(changStr).html("使用");
@@ -101,11 +124,11 @@ $(document).ready(function (){
 			onChanged();
 		}else{
 			if(userCoupon.couponType == 1){
-				boolean = coupon(userCoupon);
+				boolean = false;
 			}else{
-				excCoupon(userCoupon,function(tem){
-					boolean = tem;
-				});
+				if(v.carId && v.carId == row.id){
+					boolean = true;
+				}
 			}
 			if(boolean){	
 				document.getElementById(str).className = "quan-item1";
@@ -124,8 +147,8 @@ $(document).ready(function (){
 					document.getElementById("showCode").style.display = "none";
 					document.getElementById('quanAmt').innerHTML = 0;
 				}
-				onChanged();
 			}
+			onChanged();
 		}	
 	});
 });
@@ -181,11 +204,16 @@ function setGuest(item){
 
 function onChanged() {
 	var count = scount();
-	if(parseFloat(count) > netInAmt){
+	var totalCount = parseFloat(count) + parseFloat(deductionAmt);
+	totalCount = totalCount.toFixed(2);
+	/*if(parseFloat(count) > netInAmt){
 		showMsg("收款大于应收金额，请重新填写","W");
 		return;
+	}*/
+	if( totalCount > netInAmt){
+		showMsg("加上优惠券金额不能大于应收金额","W");
+		return;
 	}
-
 }
 
 
@@ -328,8 +356,10 @@ function settleOK() {
 		showMsg("请选择客户！","W");
 		return;
 	}
-	if(count!=netInAmt){
-		showMsg("付款金额和应付金额不一致，请重新确认！","W");
+	var totalCount = parseFloat(count) + parseFloat(deductionAmt);
+	totalCount = totalCount.toFixed(2);
+	if(totalCount!=netInAmt){
+		showMsg("付款金额与实收金额不一致，请重新确认！","W");
 		return;
 	}	
 	var accountTypeList =[];
@@ -375,7 +405,7 @@ function settleOK() {
                 
 		};
 		json={
-				payAmt:netInAmt,
+				payAmt:count,
 				remark:nui.get("txtreceiptcomment").getValue(),
 				payType:020104,
 				accountTypeList:accountTypeList,
@@ -400,7 +430,7 @@ function settleOK() {
 		};
 
 		json={
-				payAmt:netInAmt,
+				payAmt:count,
 				remark:nui.get("txtreceiptcomment").getValue(),
 				payType:020104,
 				accountTypeList:accountTypeList,
@@ -656,9 +686,14 @@ function CloseWindow(action) {
 }
 
 function payCard(){
-	 var myselect=document.getElementById("cardList");
-	 var index=myselect.selectedIndex;
-	 var c  =myselect.options[index].value;
+	var myselect=document.getElementById("cardList");
+	var index=myselect.selectedIndex;
+	if(index == 0){
+		row = {};
+		netInAmt = 0;
+		return;
+	}
+	var c  =myselect.options[index].value;
 	for(var i = 0;i<cardList.length;i++){
 		if(c==cardList[i].id){
 			row = cardList[i];
@@ -668,16 +703,95 @@ function payCard(){
 				netInAmt = cardList[i].rechargeAmt;
 			}
 			
-				checkF = 1;
-				checkField("optaccount0");
+			checkF = 1;
+			checkField("optaccount0");
 
 		}
 	}
+	//更新页面应付金额
+	document.getElementById('totalAmt1').innerHTML = netInAmt;
+	//当扫描了优惠券后，购买的计次卡改变，判断选择的计次卡是否适合该优惠券
+	if(index != 0){
+		if(userCouponDataHash.length>0){
+			//循环判断优惠券
+			$(userCouponDataHash).each(function(k,v){
+				var id = v.couponDistributeId;
+				var str = "quan" + id;
+				var changStr = "#chang"+id;
+				if(v.cardId = row.id){
+					document.getElementById(str).className = "quan-item1";
+					$(changStr).html("取消");
+					codeHash[id] = v;
+				}else{
+					document.getElementById(str).className = "quan-item";
+					$(changStr).html("使用");
+					delete codeHash[id];
+				}
+			});
+			var strCode = isEmptyObject(codeHash);
+			if(strCode != ""){
+				document.getElementById("showCode").style.display = "";
+				$("#strCode").val(strCode);
+				$("#strCode").text(strCode);
+				document.getElementById('quanAmt').innerHTML = deductionAmt || 0;
+			}else{
+				deductionAmt = 0;
+				$("#strCode").val("");
+				$("#strCode").text("");
+				document.getElementById("showCode").style.display = "none";
+				document.getElementById('quanAmt').innerHTML = 0;
+			}
+			//更新页面实收金额
+			var amountAmt = parseFloat(netInAmt) - parseFloat(deductionAmt);
+			amountAmt = amountAmt.toFixed(2);
+			document.getElementById('amount').innerHTML = amountAmt;
+			onChanged();
+		}else{
+			document.getElementById('amount').innerHTML = netInAmt;
+		}
+		
+	}else{
+		document.getElementById('amount').innerHTML = netInAmt;
+	}
+}
+
+function isEmptyObject (obj){
+	var str = "";
+    var n = 1;
+	couponList = [];
+	deductionAmt = 0;
+	for(var key in obj ){
+		var objTemp = obj[key];
+		var temp = {};
+		temp.orgid = currOrgid;
+		temp.tenantId  = currTenantId;
+		temp.carId = guestData.carId;
+		temp.carNo = guestData.carNo;
+		temp.guestId = guestData.guestId;
+		temp.billTypeId = 7;
+		temp.contactorId = guestData.contactorId;
+		temp.couponCode = objTemp.userCouponCode;
+		temp.couponName = objTemp.couponTitle;
+		temp.couponAmt = objTemp.couponDiscountsPrice;
+		temp.couponType = objTemp.couponType;
+		temp.couponDescribe = objTemp.couponDescribe;
+		temp.couponEndDate = objTemp.couponEndDate;
+		temp.couponConditionPrice = objTemp.couponConditionPrice;
+		couponList.push(temp);
+		if(n==1){
+			str = objTemp.userCouponCode;
+			n = 2; 
+		}else{
+			str += "," + objTemp.userCouponCode;
+		}
+		deductionAmt = parseFloat(deductionAmt) + parseFloat(objTemp.couponDiscountsPrice);
+		
+	 }
+	return str;
 }
 
 function setInitData(params){
 	guestData = params.xyguest||{};
-	contactor = params.contactor;
 	if(guestData.guestId){
 		var carNo = guestData.carNo||"";
 	    var tel = guestData.mobile||"";
@@ -706,7 +820,7 @@ function setInitData(params){
 		addCardList();
 	}*/
 	
-	if(contactor.wechatOpenId){
+	if(guestData.wechatOpenId){
 		document.getElementById("inputUserCode").style.display = "";
     }else{
        document.getElementById("inputUserCode").style.display = "none";
@@ -733,7 +847,12 @@ function add(){
 }
 
 function inputUserQuan(e){
-    if(!row){
+	var isRow = false;
+	for(var a in row){
+		isEnp = true;
+		break;
+	}
+    if(!isRow){
 		showMsg("请选择购买的计次卡!","W");
 		return;
 	}
@@ -789,13 +908,13 @@ if(code != "" && code != null){
 						        '</div>'+
 						    '</div>'+ 
 						    '</div>';
-							var boolean = true;
+							var boolean = false;
 							if(v.couponType == 1){
 								boolean = false;
 							}else{
-								excCoupon(v,function(tem){
-									boolean = tem;
-								});
+								if(v.carId && v.carId == row.id){
+									boolean = true;
+								}
 							}
 							if(boolean){	
 								document.getElementById("show").innerHTML = document.getElementById("show").innerHTML + list;

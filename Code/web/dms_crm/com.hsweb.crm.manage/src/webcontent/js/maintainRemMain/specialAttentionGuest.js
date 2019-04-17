@@ -66,40 +66,39 @@ $(document).ready(function (v) {
         //artType: "DDT20130725000001"//话术类型        
     });
 
-
     reminding.on("select", function (e) {
-        visitHistoryList(e.record);
+        visitHistoryList(e.record,5);
         isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
         $("#showMonile0").show();
         document.getElementById("mobileText0").innerHTML = e.record.mobile;
      
     }); 
     business.on("select", function (e) {
-        visitHistoryList(e.record);
+        visitHistoryList(e.record,6);
         isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
         $("#showMonile").show();
         document.getElementById("mobileText").innerHTML = e.record.mobile;
     }); 
     compulsoryInsurance.on("select", function (e) {
-        visitHistoryList(e.record);
+        visitHistoryList(e.record,7);
         isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
         $("#showMonile2").show();
         document.getElementById("mobileText2").innerHTML = e.record.mobile;
     }); 
     drivingLicense.on("select", function (e) {
-        visitHistoryList(e.record);
+        visitHistoryList(e.record,8);
         isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
         $("#showMonile3").show();
         document.getElementById("mobileText3").innerHTML = e.record.mobile;
     }); 
     car.on("select", function (e) {
-        visitHistoryList(e.record);
+        visitHistoryList(e.record,9);
         isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
         $("#showMonile4").show();
         document.getElementById("mobileText4").innerHTML = e.record.mobile;
     }); 
     guestBirthday.on("select", function (e) {
-        visitHistoryList(e.record);
+        visitHistoryList(e.record,10);
         isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
         $("#showMonile5").show();
         document.getElementById("mobileText5").innerHTML = e.record.mobile;
@@ -316,10 +315,11 @@ function changedTel(e) {
     return res;
 }
 
-function visitHistoryList(row) {
+function visitHistoryList(row,serviceType) {
     if (row.guestType == 0) {
         var params = {
             guestId: row.conId,
+            serviceType:serviceType,
             guestSource: 0,
             token:token
         };
@@ -327,6 +327,7 @@ function visitHistoryList(row) {
     if (row.guestType == 1) {
         var params = {
             mainId: row.crmGuestId,
+            serviceType:serviceType,
             guestSource: 1,
             token:token
         };

@@ -6,7 +6,8 @@
         multiSelect="false" pageSize="20" showPageInfo="true" selectOnLoad="true"  onDrawCell="" onselectionchanged=""
         allowSortColumn="false" totalField='page.count' allowCellWrap="true" contextMenu="#gridMenu">
         <div property="columns">
-            <div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
+            <div type="indexcolumn" headerAlign="center" header="序号" width="40px"></div>
+            <div field="carNo" width="75" headerAlign="center"align="center">车牌号</div>
             <div field="contactorName" headerAlign="center" allowSort="true" width="100px">客户名称</div>
             <div field="serviceType" headerAlign="center" allowSort="true" width="100px">回访类型</div>
             <div field="visitMode" headerAlign="center" allowSort="true" width="100px">回访方式</div>

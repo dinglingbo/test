@@ -11,6 +11,7 @@ var form = null;
 var type = null;
 var typeList = {};
 var guestData = {};
+var contactor = {};
 var deductible = 0;
 var row = {};
 var searchKeyEl = null;
@@ -72,6 +73,61 @@ $(document).ready(function (){
         }
     });
     searchKeyEl.focus();
+    
+	$("body").on("click","a[name='quan']",function(e){
+		var id = e.currentTarget.id;
+		var str = "quan"+id;
+		var changStr = "#chang"+id;
+		var userCoupon = userCouponDataHash[id];
+		//判断优惠券是否重复，以及是否达到可用条件
+		var boolean = null;
+		if(document.getElementById(str).getAttribute("class")=="quan-item1"){
+			document.getElementById(str).className = "quan-item";
+			$(changStr).html("使用");
+			delete codeHash[id];
+			var strCode = isEmptyObject(codeHash);
+			if(strCode != ""){
+				document.getElementById("showCode").style.display = "";
+				$("#strCode").val(strCode);
+				$("#strCode").text(strCode);
+				document.getElementById('quanAmt').innerHTML = deductionAmt || 0;
+			}else{
+				deductionAmt = 0;
+				$("#strCode").val("");
+				$("#strCode").text("");
+				document.getElementById("showCode").style.display = "none";
+				document.getElementById('quanAmt').innerHTML = 0;
+			}
+			onChanged();
+		}else{
+			if(userCoupon.couponType == 1){
+				boolean = coupon(userCoupon);
+			}else{
+				excCoupon(userCoupon,function(tem){
+					boolean = tem;
+				});
+			}
+			if(boolean){	
+				document.getElementById(str).className = "quan-item1";
+				codeHash[id] = userCoupon;
+				$(changStr).html("取消");
+				var strCode = isEmptyObject(codeHash);
+				if(strCode != ""){
+					document.getElementById("showCode").style.display = "";
+					$("#strCode").val(strCode);
+					$("#strCode").text(strCode);
+					document.getElementById('quanAmt').innerHTML = deductionAmt || 0;
+				}else{
+					deductionAmt = 0;
+					$("#strCode").val("");
+					$("#strCode").text("");
+					document.getElementById("showCode").style.display = "none";
+					document.getElementById('quanAmt').innerHTML = 0;
+				}
+				onChanged();
+			}
+		}	
+	});
 });
 
 function setGuest(item){
@@ -621,6 +677,7 @@ function payCard(){
 
 function setInitData(params){
 	guestData = params.xyguest||{};
+	contactor = params.contactor;
 	if(guestData.guestId){
 		var carNo = guestData.carNo||"";
 	    var tel = guestData.mobile||"";
@@ -648,6 +705,15 @@ function setInitData(params){
 	}else if(cardType==2){
 		addCardList();
 	}*/
+	
+	if(contactor.wechatOpenId){
+		document.getElementById("inputUserCode").style.display = "";
+    }else{
+       document.getElementById("inputUserCode").style.display = "none";
+	   var list  = "没有可用优惠券或者该用户未在微信公众号注册";
+       document.getElementById("show").innerHTML = list;
+    }
+	
 	if(currIsCanSettle==0){
 		document.getElementById("settle").style.display='none';
 	}
@@ -665,3 +731,121 @@ function add(){
     searchKeyEl.setValue("");//点增加给输入框个值，防止触发不了onchanged方法，不能放入客户
 
 }
+
+function inputUserQuan(e){
+    if(!row){
+		showMsg("请选择购买的计次卡!","W");
+		return;
+	}
+	var code =  nui.get("inputCode").getValue();
+	var paraMap = {};
+	paraMap.userOpenId = dataF.contactor.wechatOpenId;
+	paraMap.couponCode = code;
+	
+	var json2 = {
+			param:paraMap,
+			token: token
+	}
+	var list = '';
+if(code != "" && code != null){
+	nui.ajax({
+		url :  apiPath + wechatApi +"/wechatApi/com.hsapi.wechat.autoServiceBackstage.weChatCardCoupon.queryCardCouponByCode.biz.ext",
+		type : "post",
+		data : json2,
+		success : function(data) {
+			if(data.result.code=="S"){
+				v = data.result.data;
+				//判断对象是否为空
+				var isEnp = false;
+				for(var a in v){
+					isEnp = true;
+					break;
+				}
+				var list = "";
+				if(isEnp){
+					//判断已扫描的优惠券中是否存在该优惠券
+					 var isExistTemp = userCouponDataHash[v.couponDistributeId];
+					 if(!isExistTemp){
+						 var key = null;
+						  key = v.couponDistributeId;
+						  var type = v.couponType==1?'通用券':'专属劵';
+						  var str = null;
+						  if(v.couponType==1){
+							  str="(满"+v.couponConditionPrice+")"
+						  }else{
+							  str="";
+						  }
+						  list += 
+							  '<div class="quan-item" id=quan'+ v.couponDistributeId +'> '+
+							 '<div class="q-opbtns "><strong class="num1">￥'+ v.couponDiscountsPrice + '<br>'+ type +'</strong></div>'+
+						     '<div class="q-type">'+
+						        '<div class="q-range">'+
+						            '<div class="typ-txt">'+
+						                '<span >'+ v.couponTitle+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="##" class="useText" name="quan" id='+v.couponDistributeId+'><span id = chang'+v.couponDistributeId+'>使用</span></a></span>'+
+						               '</div>'+
+						            '<div class="range-item">'+ v. couponDescribe + str +'</div>'+
+						            '<div class="range-item">到期时间：'+v.couponEndDate +'</div>'+
+						            '<div class="range-item">编码：'+v.userCouponCode +'</div>'+
+						        '</div>'+
+						    '</div>'+ 
+						    '</div>';
+							var boolean = true;
+							if(v.couponType == 1){
+								boolean = false;
+							}else{
+								excCoupon(v,function(tem){
+									boolean = tem;
+								});
+							}
+							if(boolean){	
+								document.getElementById("show").innerHTML = document.getElementById("show").innerHTML + list;
+								userCouponDataHash[key] = v;
+								var changStr = "#chang"+key;
+								var strQuan = "quan"+key;
+								document.getElementById(strQuan).className = "quan-item1";
+								codeHash[key] = v;
+								$(changStr).html("取消");
+								var strCode = isEmptyObject(codeHash);
+								if(strCode != ""){
+									document.getElementById("showCode").style.display = "";
+									$("#strCode").val(strCode);
+									$("#strCode").text(strCode);
+									document.getElementById('quanAmt').innerHTML = deductionAmt || 0;
+								}else{
+									deductionAmt = 0;
+									$("#strCode").val(""); 
+									$("#strCode").text("");
+									document.getElementById("showCode").style.display = "none";
+									document.getElementById('quanAmt').innerHTML =  0;
+								}
+								onChanged();
+							}else{
+								showMsg("优惠券不满足抵扣条件！","W");
+								 nui.get("inputCode").setValue("");
+								return;
+							}
+							nui.get("inputCode").setValue("");
+					 }else{
+						 showMsg("该优惠券已扫描！","W");
+						 nui.get("inputCode").setValue("");
+						 return;
+					 }
+					  
+			}else{	
+				showMsg("用户没有该优惠券！","W");
+				nui.get("inputCode").setValue("");
+				return;
+			}
+		 }
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+		}
+	});
+ }	
+}
+
+
+
+
+

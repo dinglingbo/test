@@ -16,7 +16,7 @@ var currEmpIdEl = null;
 var searchNameEl = null;
 var servieIdEl = null;
 var searchKeyEl = null;
-
+var contactorF = null;
 var rpsPackageGrid = null;//
 var rpsPartGrid = null;
 
@@ -252,6 +252,11 @@ function setGuest(item){
                               opt.text="退货开单";
                               opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.sellReturn.flow";
                       	}
+                      	if(list.billTypeId == "6"){
+                            opt.id="2863";
+                            opt.text="波箱开单";
+                            opt.url=webPath + contextPath + "/com.hsweb.bx.waveBoxMain.flow";
+                    	}
                       	var params = {
                                   type: 'view',
                                   carNo: carNo
@@ -446,6 +451,7 @@ function setInitData(params){
                     var errCode = text.errCode||"";
                     var guest = text.guest||{};
                     var contactor = text.contactor||{};
+                    contactorF = contactor;
                     if(errCode == 'S'){
                         $("#servieIdEl").html(data.serviceCode);
                         var carNo = data.carNo||"";
@@ -556,6 +562,7 @@ function save(){
                 var errCode = text.errCode||"";
                 var guest = text.guest||{};
                 var contactor = text.contactor||{};
+                contactorF = contactor;
                 if(errCode == 'S'){
                     $("#servieIdEl").html(data.serviceCode);
                     var carNo = data.carNo||"";
@@ -614,6 +621,7 @@ function saveNoShowMsg(callback){
                 var errCode = text.errCode||"";
                 var guest = text.guest||{};
                 var contactor = text.contactor||{};
+                contactorF = contactor;
                 if(errCode == 'S'){
                     $("#servieIdEl").html(data.serviceCode);
                     var carNo = data.carNo||"";
@@ -1343,6 +1351,7 @@ function saveBatch(){
 			                var errCode = text.errCode||"";
 			                var guest = text.guest||{};
 			                var contactor = text.contactor||{};
+			                contactorF = contactor;
 			                if(errCode == 'S'){
 			                    $("#servieIdEl").html(data.serviceCode);
 			                    var carNo = data.carNo||"";
@@ -1582,7 +1591,10 @@ function pay(){
 		    	"guestName":main.guestFullName,
 		    	"serviceId":main.id,
 		    	"data":data,
-		    	"typeUrl" :1
+		    	"typeUrl" :1,
+		    	contactor:contactorF,
+		    	billTypeId:0
+		    	
 		    };
 		    iframe.contentWindow.setData(params);			
 		},

@@ -157,6 +157,9 @@
 		<isNotEmpty prepend="and" property="carId">  
 		   	a.car_id =   #carId#
 		</isNotEmpty>
+		<isNotEmpty prepend="and" property="carNo">  
+		   	a.car_no =   #carNo#
+		</isNotEmpty>
 		<isNotEmpty prepend="and" property="guestSource">  
 		   	a.guest_source =   #guestSource#
 		</isNotEmpty>

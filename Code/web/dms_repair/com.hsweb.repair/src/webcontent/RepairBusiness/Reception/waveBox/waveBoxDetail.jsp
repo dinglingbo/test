@@ -12,7 +12,7 @@
         <head>
             <title>Title</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxDetail.js?v=1.330"></script>
+            <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxDetail.js?v=1.331"></script>
         </head>
         <style type="text/css">
             body {
@@ -314,7 +314,7 @@
 
         <body>
             <input name="serviceTypeId" id="serviceTypeId" class="nui-combobox width1" textField="name" valueField="id" emptyText="请选择..." url="" allowInput="true" showNullItem="false" valueFromSelect="true" nullItemText="请选择..." width="100%" visible="false" />
-            <div class="nui-toolbar" style="padding:2px;height:65px;position: relative;">
+            <div class="nui-toolbar" style="padding:2px;height:48px;position: relative;">
                 <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
                     <tr>
                         <td class="btn">
@@ -374,19 +374,11 @@
                                 <li iconCls="" onclick="updateBillExpense()" id="billExpense">费用登记</li>
                                 <!-- <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount">新增报销单</li> -->
                                 <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount1">报销单</li>
+                                <li iconCls="" onclick="attach()" id="ExpenseAccount1">附件登记</li>
+                                <li iconCls="" onclick="fault()" id="ExpenseAccount1">故障现象</li>
+                                <li iconCls="" onclick="upload()" id="ExpenseAccount1">上传维修前后照片</li>
                             </ul>
                         </td>
-                    </tr>
-                    <tr>
-                    	<td></td>
-                    	<td style="text-align:right;">
-                    			<a class="nui-button" iconCls="" plain="true" onclick="upload()" id="addBtn">
-                                <span class="fa fa-upload fa-lg"></span>&nbsp;上传维修前后照片</a>      
-                                <a class="nui-button" plain="true" id="attach" onclick="attach()">
-                                <span class="fa fa-edit fa-lg"></span>&nbsp;附件登记</a>
-                            <a class="nui-button" plain="true" id="fault" onclick="fault()">
-                                <span class="fa fa-user fa-lg"></span>&nbsp;故障现象</a>
-                    	</td>
                     </tr>
                 </table>
             </div>
@@ -537,7 +529,7 @@
                             <td>
 			                    <div >
 			                        <span id="carSellInfoEl" >
-			                            <a href="javascript:showSellPoint()" class="healthview" id="showSellEl" href="javascript:showSell()">销售机会(0)</a>&nbsp;
+			                            <a href="javascript:showSellPoint()" class="healthview" id="showSellEl" ">销售机会(0)</a>&nbsp;
 			                        </span>
 			                    </div>
                				 </td>

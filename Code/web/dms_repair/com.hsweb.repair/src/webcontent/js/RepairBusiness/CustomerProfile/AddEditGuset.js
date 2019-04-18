@@ -21,6 +21,10 @@ var resultCar = {};
 var resultContact= {};
 var isAdd = 0;//是否是添加界面
 var empty = 0;//是否清空
+var  index = 0;//汽车图片的下标
+var photos = [];//汽车图片
+var isOpen = true;
+var carIdForPhoto = null;
 $(document).ready(function()
 {
 	carview = nui.get("carview");
@@ -325,6 +329,86 @@ $(document).ready(function()
 		            var info1 = JSON.parse(info);
 		            $("#xmTanImg3").attr("src",getCompanyLogoUrl() + info1.hash);
 		            nui.get("driveLicensePicTwo").setValue(getCompanyLogoUrl() + info1.hash);
+		        },
+		        'Error': function (up, err, errTip) {
+		            alert(errTip);
+		        },
+		        'Key': function (up, file) {
+		            //当save_key和unique_names设为false时，该方法将被调用
+		            /* var key = "";
+		             $.ajax({
+		             url: '/getToken',
+		             type: 'post',
+		             async: false,//这里应设置为同步的方式
+		             success: function(data) {
+		             var ext = Qiniu.getFileExtension(file.name);
+		             key = data + '.' + ext;
+		             },
+		             cache: false
+		             });
+		             return key;*/
+		        }
+		    }
+		});
+    	uploader = Qiniu.uploader({
+		    runtimes: 'html5,flash,html4',
+		    browse_button: 'faker4',//上传按钮的ID
+		    container: 'btn-uploader',//上传按钮的上级元素ID
+		    drop_element: 'btn-uploader',
+		    max_file_size: '100mb',//最大文件限制
+		    //flash_swf_url: '/static/js/plupload/Moxie.swf',
+		    dragdrop: false,
+		    chunk_size: '4mb',//分块大小
+		    uptoken_url: webPath + sysDomain + "/com.hs.common.login.getQNAccessToken.biz.ext",//设置请求qiniu-token的url
+		    //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
+		    // uptoken : '<Your upload token>',
+		    //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
+		    unique_names: false,
+		    // 默认 false，key为文件名。若开启该选项，SDK会为每个文件自动生成key（文件名）
+		    // save_key: true,
+		    // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
+		    domain: getCompanyLogoUrl(),//自己的七牛云存储空间域名
+		    multi_selection: true,//是否允许同时选择多文件
+		    //文件类型过滤，这里限制为图片类型
+		    filters: {
+		        mime_types: [
+		            {title: "Image files", extensions: "jpg,jpeg,gif,png"}
+		        ]
+		    },
+		    auto_start: true,
+		    init: {
+		        'FilesAdded': function (up, files) {
+		            //do something
+		        },
+		        'BeforeUpload': function (up, file) {
+		            //do something
+		        },
+		        'UploadProgress': function (up, file) {
+		            //可以在这里控制上传进度的显示
+		            //可参考七牛的例子
+		        },
+		        'UploadComplete': function () {
+		            //do something
+		        },
+		        'FileUploaded': function (up, file, info) {
+		            //每个文件上传成功后,处理相关的事情
+		            //其中 info 是文件上传成功后，服务端返回的json，形式如
+		            //{
+		            //  "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
+		            //  "key": "gogopher.jpg"
+		            //}
+		            var domain = up.getOption('domain');
+		            //var sourceLink = domain + res.key;//获取上传文件的链接地址
+		            var info1 = JSON.parse(info);
+		            index++;
+		            var html=imageHtml(getCompanyLogoUrl() + info1.hash,index);
+		            $(".photos").before(html);
+		            mouseImage();
+		            photos[photos.length]={
+		            		address:getCompanyLogoUrl() + info1.hash,
+		            		carId: carIdForPhoto,
+		            	    index : index
+		            }
 		        },
 		        'Error': function (up, err, errTip) {
 		            alert(errTip);
@@ -962,6 +1046,7 @@ function addCar() {
 		showMsg("请先保存客户信息!","W");
 		return;
 	}
+	carIdForPhoto = null;
 	nui.get("carNo").enable();
 	nui.get("vin").enable();
 	carInfoFrom.setData("");
@@ -1239,6 +1324,39 @@ function eaidCar(){
 		showMsg("请选择车辆!","W");
 		return;
 	}
+	carIdForPhoto = row.id;
+	nui.ajax({
+		url: baseUrl+ "com.hsapi.repair.repairService.waveBox.searchCarPhoto.biz.ext",
+		type: "post",
+		cache: false,
+		async: false,
+		data: {
+			carIdForPhoto : carIdForPhoto
+		},
+		success: function (text) {
+				if(text.errCode == "S"){
+					var data = text.data;
+					for(var i = 0 , l = data.length ; i < l ;i ++){
+							index++;
+				            var html=imageHtml(data[i].attachName,index);
+							 $(".photos").before(html);
+							 mouseImage();
+					         photos[photos.length]={
+					            		address:getCompanyLogoUrl() + info1.hash,
+					            		carId: carIdForPhoto,
+					            	    index : index
+					            }
+					}
+					
+				}else{
+					showMsg(text.errMsg,"W");
+				}
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+			showMsg("网络出错", "E");
+		}
+	});
     $("#xmTanImg2").attr("src",row.driveLicensePicOne||webPath + contextPath + "/common/images/logo.jpg");
     $("#xmTanImg3").attr("src",row.driveLicensePicTwo||webPath + contextPath + "/common/images/logo.jpg");
 	//cardatagrid.removeRow(row);
@@ -1463,4 +1581,131 @@ function changeShow(src){
 function changeHide(){
 	$(".max_img").hide();
 	$(".max_img1").hide();
+}
+
+
+function imageHtml(imageUrl,indexss){
+	var html="";
+	var imagerText="imagers"+indexss;
+	var imagerShow="imageshow"+indexss;
+	html+='<a href="#" class="imgListA '+imagerText+'">';
+	html+='		<div class="" style="position: relative;" >';
+	html+='		<div class="imgListOneDiv" style="display:none;" >';
+	html+='			<img id="" alt="" src="'+webPath + contextPath +'/repair/prototype/images/preview.png" class="imgListone preview" num="'+indexss+'" >';
+	html+='			<img  id="" alt="" src="'+webPath + contextPath +'/repair/prototype/images/deleteImage.png"  class="imgListtwo imgDelete" num="'+indexss+'" >';
+	html+='		</div>';
+	html+='			<img id=""  alt="" src="'+imageUrl+'" class="imgStyle '+imagerShow+'" >';
+	html+='		</div>';
+	html+='</a>';
+	return html;
+};
+
+
+
+function addCarListPhoto(){
+	if(!carIdForPhoto){
+		showMsg("请先保存车辆!","W");
+		return;
+	}
+    if(photos.length == 0){
+    	showMsg("暂无图片需要保存","W");
+    	return;
+    }
+	 nui.mask({
+	        el: document.body,
+	        cls: 'mini-mask-loading',
+	        html: '数据加载中...'
+	 });
+    nui.ajax({
+		url: baseUrl+ "com.hsapi.repair.repairService.waveBox.addCarPhoto.biz.ext",
+		type: "post",
+		cache: false,
+		async: false,
+		data: {
+			add: photos,
+			carIdForPhoto : carIdForPhoto
+		},
+		success: function (text) {
+			nui.unmask();
+				if(text.errCode == "S"){
+					showMsg("执行成功","S");
+				}else{
+					showMsg(text.errMsg,"W");
+				}
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+			showMsg("网络出错", "E");
+		}
+	});
+}
+
+function mouseImage(){
+	//鼠标移动到图片上时触发
+	$(".imgListA").mouseover(function(){
+    		$(this).css("cursor","default");
+		$(this).find(".imgListOneDiv").show();
+		
+		var height = $(this).find(".imgStyle").height();
+		var width = $(this).find(".imgStyle").width();
+		$( $(this).find(".imgListOneDiv") ).css("height",height+"px");
+		$( $(this).find(".imgListOneDiv") ).css("width",width+"px");
+		var heightTo=height/2;
+		if( heightTo>20 ){
+			heightTo-=20;
+			$( $(this).find(".imgListOneDiv") ).css("padding-top",heightTo+"px");
+		}else{
+			$( $(this).find(".imgListOneDiv") ).css("padding-top",heightTo+"px");
+		}
+	});
+
+	//鼠标从图片上离开时触发
+	$(".imgListA").mouseout(function(){
+		$(this).css("cursor","pointer");
+		$(this).find(".imgListOneDiv").hide();
+		
+	});
+	
+	//删除选择的图片
+	$(".imgDelete").click(function(e){
+		var num=$(this).attr("num");
+		for(var i =0;i<photos.length;i++){
+			if(photos[i].index==num){
+				photos.splice(i,1); 
+			}
+		}
+		$(".fileImage"+num).remove();
+		$(".imagers"+num).remove();
+	});
+	//预览选择的图片
+	$(".preview").click(function(e){
+		var num=$(this).attr("num");
+		if(isOpen){
+			for(var i =0;i<photos.length;i++){
+				if(photos[i].index==num){
+					preview(photos[i].address); 
+				}
+			}
+		}
+
+	});
+}
+
+function preview(url){
+	isOpen = false;
+	nui.open({
+	    url: webPath + contextPath
+		+ "/com.hsweb.repair.repoart.preview.flow?token="+token,
+	    title: "预览图片",
+		width: "700px",
+		height: "610px",
+		allowResize : false,
+	    onload: function () {
+	        var iframe = this.getIFrameEl();
+	        iframe.contentWindow.setData(url);
+	    },
+	    ondestroy: function (action){
+	    	isOpen = true;
+	    }
+	});
 }

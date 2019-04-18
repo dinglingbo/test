@@ -12,8 +12,8 @@ var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuest
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryAccount.biz.ext";
 var insuranceInfoUrl = baseUrl + "com.hsapi.repair.baseData.insurance.InsuranceQuery.biz.ext?params/orgid="+currOrgId+"&params/isDisabled=0";
-var sellUrl = apiPath + crmApi
-+ "/com.hsapi.crm.basic.crmBasic.querySellList.biz.ext";
+//var sellUrl = apiPath + crmApi + "/com.hsapi.crm.basic.crmBasic.querySellList.biz.ext";
+var sellUrl = apiPath + crmApi + "/com.hsapi.crm.basic.crmBasic.querySellListNoPage.biz.ext";
 var sfData = {};
 var billForm = null;
 var sendGuestForm = null;
@@ -5651,7 +5651,8 @@ function addSell() {
 		},
 		ondestroy : function(action) {
 			if (action == "saveSuccess") {
-				grid.reload();
+				carSellPointInfo.hide();
+				showSellPoint();
 			}
 		}
 	});
@@ -5676,7 +5677,8 @@ function editSell() {
 				},
 				ondestroy : function(action) {
 					if (action == "saveSuccess") {
-						grid.reload();
+						carSellPointInfo.hide();
+						showSellPoint();
 					}
 				}
 			});
@@ -5725,4 +5727,36 @@ function remarkChang(e){
 	var row = rpsItemGrid.getEditorOwnerRow(el);
 	var remark = rpsItemGrid.getCellEditor("remark", row);
 	remark.setValue(e.value);
+}
+
+function upload(){
+	var formData = billForm.getData();
+	var serviceId = formData.id;
+	var serviceCode = $("#servieIdEl").html();
+	var state = null;
+	if(formData.status == 0){
+		state = 1;
+    }else if(formData.status == 1 || formData.status == 2){
+    	if(formData.isSettle != 1 && formData.balaAuditSign != 1){
+    		state = 2;
+    	}
+    }
+	var uploadUrl = "/com.hsweb.RepairBusiness.maintenancePicture.flow";
+	if(serviceId){
+		nui.open({
+	        url: webPath + contextPath+uploadUrl,
+	        title: "上传图片",
+			width: "700px",
+			height: "610px",
+			allowResize : false,
+	        onload: function () {
+	            var iframe = this.getIFrameEl();
+	            iframe.contentWindow.SetData(serviceId,serviceCode,state);
+	        },
+	        ondestroy: function (action){
+	        }
+	    });
+	}else{
+		showMsg("请先保存工单","W");
+	}
 }

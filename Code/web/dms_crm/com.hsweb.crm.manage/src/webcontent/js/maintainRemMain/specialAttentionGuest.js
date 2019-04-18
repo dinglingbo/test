@@ -318,8 +318,9 @@ function changedTel(e) {
 function visitHistoryList(row,serviceType) {
     if (row.guestType == 0) {
         var params = {
-            guestId: row.conId,
-            serviceType:serviceType,
+            carNo:row.carNo,
+            //guestId: row.conId,
+            //serviceType:serviceType,
             guestSource: 0,
             token:token
         };
@@ -327,7 +328,7 @@ function visitHistoryList(row,serviceType) {
     if (row.guestType == 1) {
         var params = {
             mainId: row.crmGuestId,
-            serviceType:serviceType,
+            //serviceType:serviceType,
             guestSource: 1,
             token:token
         };

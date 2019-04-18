@@ -33,7 +33,6 @@ var deductionAmt = 0;
 //结算接口的优惠券对象
 var couponList = [];
 $(document).ready(function(v) {
-
 	
 	$("body").on("blur","input[name='amount']",function(){
 		onChanged();
@@ -959,9 +958,14 @@ if(code != "" && code != null){
 							if(v.couponType == 1){
 								boolean = coupon(v);
 							}else{
-								excCoupon(v,function(tem){
-									boolean = tem;
-								});
+								if(v.itemId){
+									excCoupon(v,function(tem){
+										boolean = tem;
+									});
+								}else{
+									boolean = false;
+								}
+								
 							}
 							if(boolean){	
 								document.getElementById("show").innerHTML = document.getElementById("show").innerHTML + list;

@@ -17,7 +17,7 @@
 <style>
 	        table, td {
 	            font-family: Tahoma,Geneva,sans-serif;
-	            font-size: 16px;
+	            font-size: 14px;
 	            color: #000;
 	        }
 
@@ -58,7 +58,7 @@
                 line-height: 42px;
                 border-radius: 5px;
                 color: #fff;
-                font-size: 18px;
+                font-size: 16px;
                 text-decoration: none;
                 margin: 0 10px;
             }
@@ -72,7 +72,7 @@
             height: 40px;
             border: 1px #b4b4b4 solid;
             float: left;
-            font-size: 16px;
+            font-size: 14px;
             font-family: "微软雅黑";
         }
 
@@ -98,7 +98,7 @@
 
             .jsxx h3 {
                 color: #000;
-                font-size: 15px;
+                font-size: 13px;
                 font-weight: 700;
                 height: 26px;
                 border-bottom: 1px #000 solid;
@@ -145,11 +145,11 @@
         <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
         <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
     </div>
-        <div style="padding-top:10px ;" align="center">
-            <h1 id="currRepairSettorderPrintShow"></h1>
-            <h2>费&nbsp;&nbsp;用&nbsp;&nbsp;报&nbsp;&nbsp;销&nbsp;&nbsp;单</h2>
+        <div style="padding-top:5px ;" align="center">
+            <h2 id="currRepairSettorderPrintShow"></h2>
+            <h3>费&nbsp;&nbsp;用&nbsp;&nbsp;报&nbsp;&nbsp;销&nbsp;&nbsp;单</h3>
         </div>
-        <div style="margin: 0 10px;" class="printny">
+        <div style="margin: 0 2px;" class="printny">
         <div class="company-info">
             <table  width="100%" border="0" cellspacing="0" cellpadding="0">
 	            <tbody>
@@ -174,19 +174,19 @@
         <div style="padding-top: 10px;">
             <table  width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk">
                 <tr>
-                    <td align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;width: 25%">
+                    <td align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;width: 25%">
                         摘要
                     </td>
-                    <td align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;width: 16%">
+                    <td align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;width: 16%">
                         收支类别
                     </td>
-                    <td align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;width: 16%">
+                    <td align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;width: 16%">
                         数量
                     </td>
-                    <td align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;width: 16%">
+                    <td align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;width: 16%">
                         单价
                     </td>
-                    <td align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;width: 16% ">
+                    <td align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;width: 16% ">
                         金额
                     </td>
                 </tr>

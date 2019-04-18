@@ -10,8 +10,12 @@ var webBaseUrl = webPath + contextPath + "/";
  var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext"; 
  var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryAccount.biz.ext";
  var itemRpbGridUrl = baseUrl +"com.hsapi.repair.baseData.item.queryRepairItemList.biz.ext";
+ //var sellUrl = apiPath + crmApi + "/com.hsapi.crm.basic.crmBasic.querySellList.biz.ext";
+ var sellUrl = apiPath + crmApi + "/com.hsapi.crm.basic.crmBasic.querySellListNoPage.biz.ext";
+
+ var hash = new Array("尚未联系", "有兴趣", "意向明确", "成交" ,"输单");
  var itemGrid = null;
-  
+ var showSellEl=null; 
  var billForm = null;   
  var xyguest = null;  
  var brandList = []; 
@@ -21,6 +25,7 @@ var webBaseUrl = webPath + contextPath + "/";
  var receTypeIdList = [];
  var receTypeIdHash = {};
  var memList = [];
+ var sfData = {}
  var serviceTypeIdEl = null; 
  var mtAdvisorIdEl = null;
  var searchNameEl = null;
@@ -51,7 +56,8 @@ var webBaseUrl = webPath + contextPath + "/";
  var checkMainData = null;
  var rdata = null;
  var isRecord = null;
-
+ var carSellPointInfo = null;
+ var carSellPointGrid = null;
  var fserviceId = 0;
  var fguestId = 0;
  var fcarId = 0;
@@ -77,6 +83,9 @@ $(document).ready(function ()
     initCarBrand("carBrandId",function(){
 				 
 	 });
+    carSellPointInfo = nui.get("carSellPointInfo");
+    carSellPointGrid = nui.get("carSellPointGrid");
+    carSellPointGrid.setUrl(sellUrl);
     advancedCardTimesWin = nui.get("advancedCardTimesWin");
     advancedItemTimesWin = nui.get("advancedItemTimesWin");
     advancedPkgRateSetWin = nui.get("advancedPkgRateSetWin");
@@ -90,7 +99,7 @@ $(document).ready(function ()
     advancedMemCardWin = nui.get("advancedMemCardWin");
     memCardGrid = nui.get("memCardGrid");
     memCardGrid.setUrl(memCardGridUrl);
-
+    showSellEl = nui.get("showSellEl");
    // pkgRateEl = nui.get("pkgRateEl");
     itemRateEl = nui.get("itemRateEl");
     partRateEl = nui.get("partRateEl");
@@ -144,6 +153,26 @@ $(document).ready(function ()
             }
         }
     });
+    carSellPointGrid.on("drawcell", function(e) {
+		switch (e.field) {
+		case "status":
+			e.cellHtml = hash[e.value];
+			break;
+		case "chanceType":
+			for(var i=0;i<sfData.length;i++){
+				if(e.value==sfData[i].customid){
+					e.cellHtml =sfData[i].name;
+					}
+				}
+			break;
+		case "cardTimesOpt":
+			e.cellHtml = '<a class="optbtn" href="javascript:void()" onclick="editSell()">跟进</a>';
+			break;
+		default:
+			break;
+		}
+
+	});
     searchKeyEl.on("valuechanged",function(e){
     	var item = e.selected;
         if(fserviceId){
@@ -393,7 +422,44 @@ function setGuest(item){
 
 }
 
+function doSearchSell(guestId)
+{
+    memCardGrid.clearRows();
+    if(!guestId) return;
+    var params = {
+    		 guestId:guestId
+    }
+    carSellPointGrid.load({
+    	token:token,
+    	params:params
+    },function(){
+        var data = carSellPointGrid.getData();
+        var len = data.length||0;
+        $("#showSellEl").html("销售机会("+len+")");
+    });
+}
+function showSellPoint() {
+	 sfData = nui.get("chanceType").data;
+	showCarSellPointInfo();
+}
 
+function showCarSellPointInfo(){
+    if(!fguestId || carSellPointInfo.visible) {
+        advancedMemCardWin.hide();
+        carCheckInfo.hide();
+        advancedCardTimesWin.hide();
+        carSellPointInfo.hide();
+        return;
+    }
+
+    var atEl = document.getElementById("carSellInfoEl");  
+    carSellPointInfo.showAtEl(atEl, {xAlign:"right",yAlign:"below"});
+    advancedCardTimesWin.hide();
+    advancedItemTimesWin.hide();
+    carCheckInfo.hide();
+    advancedMemCardWin.hide();
+    doSearchSell(fguestId);
+}
 var statusHash = {
     "0" : "制单",
     "1" : "维修",
@@ -517,7 +583,7 @@ function doSetMainInfo(car){
     doSearchCardTimes(fguestId,fcarId);
     doSearchItemTimes(fguestId,fcarId);
     doSearchMemCard(fguestId);
-    
+    doSearchSell(fguestId);
     $("#guestNameEl").html(car.guestFullName);
    /*  $("#showCarInfoEl").html(car.carNo); */
     $("#guestTelEl").html(car.guestMobile);
@@ -667,6 +733,7 @@ function setInitData(params){
                         doSearchCardTimes(fguestId,fcarId);
                         doSearchItemTimes(fguestId,fcarId);
                         doSearchMemCard(fguestId);
+                        doSearchSell(fguestId);
                         xyguest = data;
                         nui.get("contactorName").setText(contactor.name);
                         billForm.setData(data);
@@ -4677,7 +4744,7 @@ function remarkChang(e){
 	remark.setValue(e.value);
 }
 
-function upload(){
+/*function upload(){
 	var formData = billForm.getData();
 	var serviceId = formData.id;
 	var serviceCode = $("#servieIdEl").html();
@@ -4707,4 +4774,89 @@ function upload(){
 	}else{
 		showMsg("请先保存工单","W");
 	}
+}*/
+
+function upload(){
+	var formData = billForm.getData();
+	var serviceId = formData.id;
+	var serviceCode = $("#servieIdEl").html();
+	var state = null;
+	if(formData.status == 0){
+		state = 1;
+    }else if(formData.status == 1 || formData.status == 2){
+    	if(formData.isSettle != 1 && formData.balaAuditSign != 1){
+    		state = 2;
+    	}
+    }
+	var uploadUrl = "/com.hsweb.RepairBusiness.maintenancePicture.flow";
+	if(serviceId){
+		nui.open({
+	        url: webPath + contextPath+uploadUrl,
+	        title: "上传图片",
+			width: "700px",
+			height: "610px",
+			allowResize : false,
+	        onload: function () {
+	            var iframe = this.getIFrameEl();
+	            iframe.contentWindow.SetData(serviceId,serviceCode,state);
+	        },
+	        ondestroy: function (action){
+	        }
+	    });
+	}else{
+		showMsg("请先保存工单","W");
+	}
 }
+function addSell() {
+	
+	nui.open({
+		url : webPath + contextPath
+				+ "/com.hsweb.part.manage.businessOpportunityEdit.flow?token="
+				+ token,
+		title : "添加商机",
+		width : 550,
+		height : 410,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			//工单页面添加商机信息直接带过去
+			var data = xyguest;
+			//新增页面商机的姓名字段是guestName
+			data.guestName = data.guestFullName;
+			data.type = "add";
+			iframe.contentWindow.setData(data);
+		},
+		ondestroy : function(action) {
+			if (action == "saveSuccess") {
+				grid.reload();
+			}
+		}
+	});
+}
+
+function editSell() {
+		var row = carSellPointGrid.getSelected();
+		if (row) {
+			nui.open({
+				url : webPath + contextPath
+				+ "/com.hsweb.part.manage.businessOpportunityEdit.flow?token="
+				+ token,
+				title : "更新商机",
+				width : 550,
+				height : 410,
+				onload : function() {
+					var iframe = this.getIFrameEl();
+					var data = row;
+					data.type = 'editT';
+					// 直接从页面获取，不用去后台获取
+					iframe.contentWindow.SetData(data);
+				},
+				ondestroy : function(action) {
+					if (action == "saveSuccess") {
+						grid.reload();
+					}
+				}
+			});
+		} else {
+			showMsg("请选中一条记录!", "W");
+		}
+	}

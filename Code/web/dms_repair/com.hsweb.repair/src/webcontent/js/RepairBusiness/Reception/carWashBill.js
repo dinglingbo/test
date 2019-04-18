@@ -13,8 +13,8 @@
  var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext"; 
  var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryAccount.biz.ext";
  var itemRpbGridUrl = baseUrl + "com.hsapi.repair.baseData.item.queryRepairItemList.biz.ext";
- var sellUrl = apiPath + crmApi
- + "/com.hsapi.crm.basic.crmBasic.querySellList.biz.ext";
+ //var sellUrl = apiPath + crmApi + "/com.hsapi.crm.basic.crmBasic.querySellList.biz.ext";
+ var sellUrl = apiPath + crmApi + "/com.hsapi.crm.basic.crmBasic.querySellListNoPage.biz.ext";
  var itemGrid = null;
  var sfData = {};
  var billForm = null;   
@@ -511,6 +511,11 @@ function setGuest(item){
                             opt.id="2088";
                             opt.text="退货开单";
                             opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.sellReturn.flow";
+                    	}
+                    	if(list.billTypeId == "6"){
+                            opt.id="2863";
+                            opt.text="波箱开单";
+                            opt.url=webPath + contextPath + "/com.hsweb.bx.waveBoxMain.flow";
                     	}
                     	var params = {
                                 type: 'view',

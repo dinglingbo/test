@@ -919,7 +919,7 @@ if(code != "" && code != null){
 		data : json2,
 		success : function(data) {
 			if(data.result.code=="S"){
-				v = data.result.data;
+				var v = data.result.data;
 				//判断对象是否为空
 				var isEnp = false;
 				for(var a in v){

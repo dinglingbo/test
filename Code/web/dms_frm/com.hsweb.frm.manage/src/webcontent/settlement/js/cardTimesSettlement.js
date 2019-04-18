@@ -132,7 +132,7 @@ $(document).ready(function (){
 			if(userCoupon.couponType == 1){
 				boolean = false;
 			}else{
-				if(v.cardId && v.cardId == row.id){
+				if(userCoupon.cardId && userCoupon.cardId == row.id){
 					boolean = true;
 				}
 			}
@@ -929,7 +929,7 @@ if(code != "" && code != null){
 		data : json2,
 		success : function(data) {
 			if(data.result.code=="S"){
-				v = data.result.data;
+				var v = data.result.data;
 				//判断对象是否为空
 				var isEnp = false;
 				for(var a in v){

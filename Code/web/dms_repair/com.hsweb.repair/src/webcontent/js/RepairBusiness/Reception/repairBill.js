@@ -3734,7 +3734,8 @@ function delFromBillPart(data, callback){
     });
 }
 
-function addcardTime(){	
+function addcardTime(){
+	xyguest.wechatOpenId = contactorF.wechatOpenId;
 	doAddcardTime(xyguest);
 }
 
@@ -5451,7 +5452,8 @@ function addSell() {
 		},
 		ondestroy : function(action) {
 			if (action == "saveSuccess") {
-				grid.reload();
+				  carSellPointInfo.hide();
+					showSellPoint();
 			}
 		}
 	});
@@ -5476,7 +5478,8 @@ function editSell() {
 				},
 				ondestroy : function(action) {
 					if (action == "saveSuccess") {
-						grid.reload();
+						  carSellPointInfo.hide();
+							showSellPoint();
 					}
 				}
 			});
@@ -5530,4 +5533,5 @@ function remarkChang(e){
 	var remark = rpsItemGrid.getCellEditor("remark", row);
 	remark.setValue(e.value);
 }
+
 

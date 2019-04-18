@@ -2964,6 +2964,7 @@ function addcard(){
 		buyCard("store");
 		return;
 	}
+  
   doAddcard(xyguest);
 }
 

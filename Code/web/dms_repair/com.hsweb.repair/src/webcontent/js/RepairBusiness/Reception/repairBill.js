@@ -654,6 +654,11 @@ function setGuest(item){
                             opt.text="退货开单";
                             opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.sellReturn.flow";
                     	}
+                    	if(list.billTypeId == "6"){
+                            opt.id="2863";
+                            opt.text="波箱开单";
+                            opt.url=webPath + contextPath + "/com.hsweb.bx.waveBoxMain.flow";
+                    	}
                     	var params = {
                                 type: 'view',
                                 carNo: carNo

@@ -2122,6 +2122,13 @@
             <isNotEmpty prepend="and" property="serviceTypeId">  
                 (b.service_type_id = #serviceTypeId#)
             </isNotEmpty>
+            <!-- 领料人-->
+			<isNotEmpty prepend="and" property="pickMan">
+                (a.pick_man = #pickMan#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="pickMans">  
+                (a.pick_man in ($pickMans$))
+            </isNotEmpty> 
             <!-- 领料日期-->
             <isNotEmpty prepend="and" property="sPickDate">  
                 (a.pick_date &gt;= #sPickDate#)

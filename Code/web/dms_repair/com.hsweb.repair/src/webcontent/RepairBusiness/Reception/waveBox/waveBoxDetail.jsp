@@ -12,7 +12,7 @@
         <head>
             <title>Title</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxDetail.js?v=1.330"></script>
+            <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxDetail.js?v=1.331"></script>
         </head>
         <style type="text/css">
             body {
@@ -537,7 +537,7 @@
                             <td>
 			                    <div >
 			                        <span id="carSellInfoEl" >
-			                            <a href="javascript:showSellPoint()" class="healthview" id="showSellEl" href="javascript:showSell()">销售机会(0)</a>&nbsp;
+			                            <a href="javascript:showSellPoint()" class="healthview" id="showSellEl" ">销售机会(0)</a>&nbsp;
 			                        </span>
 			                    </div>
                				 </td>

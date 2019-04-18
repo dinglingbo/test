@@ -4718,7 +4718,8 @@ function addSell() {
 		},
 		ondestroy : function(action) {
 			if (action == "saveSuccess") {
-				grid.reload();
+				carSellPointInfo.hide();
+				showSellPoint();
 			}
 		}
 	});
@@ -4743,7 +4744,8 @@ function editSell() {
 				},
 				ondestroy : function(action) {
 					if (action == "saveSuccess") {
-						grid.reload();
+						carSellPointInfo.hide();
+						showSellPoint();
 					}
 				}
 			});

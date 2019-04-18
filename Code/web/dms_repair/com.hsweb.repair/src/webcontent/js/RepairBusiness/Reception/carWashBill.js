@@ -2954,6 +2954,7 @@ function addcardTime(){
 		buyCard("card");
 		return;
 	}
+	xyguest.wechatOpenId = contactorF.wechatOpenId;
 	doAddcardTime(xyguest);
 	
 }
@@ -2964,6 +2965,7 @@ function addcard(){
 		buyCard("store");
 		return;
 	}
+  
   doAddcard(xyguest);
 }
 

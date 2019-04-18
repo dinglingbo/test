@@ -12,11 +12,11 @@
 <head>
 <title>预览</title>
 <script
-	src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/waveBox/js/preview.js?v=1.0.0"></script>
+	src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/waveBox/js/preview.js?v=1.0.1"></script>
 </head>
 <body>
 	<div style="width: 100%;height: 100%">
-		<img  id="picture"  src=""  style="width: 100%;height: 100%">';
+		<img  id="picture"  src="" onclick="onCancel()" style="width: 100%;height: 100%">';
 	</div>    
 
 </body>

@@ -12,7 +12,7 @@
 <head>
 <title>维修前后图片上传</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  	<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/maintenancePicture.js?v=1.0.6" type="text/javascript"></script>
+  	<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/maintenancePicture.js?v=1.0.7" type="text/javascript"></script>
   	<script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
   	    <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
  	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">

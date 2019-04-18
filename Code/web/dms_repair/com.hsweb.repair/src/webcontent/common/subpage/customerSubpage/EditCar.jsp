@@ -25,7 +25,7 @@
 	    	overflow: auto;
 	    	border: 1px solid #B8B8B8;
 		    border-radius: 5%;
-		    height: 390px;
+		    height: 380px;
 		    width: 315px;
 		    padding: 10px;
 	    }
@@ -328,7 +328,7 @@
                         </table>
                     </div>
 
-                    <div class="form" id="" name="basicInfoForm" style="height:95%;left:0;right:0;margin: 0 auto;display: flex;padding-top: 10px;padding-left: 10px;float: left;">
+                    <div class="form" id="" name="basicInfoForm" style="height:90%;left:0;right:0;margin: 0 auto;display: flex;padding-top: 10px;padding-left: 10px;float: left;">
 
                         <div style="display:flew;">
 <!--                             <div style="text-align: center;">

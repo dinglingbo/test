@@ -1336,13 +1336,13 @@ function eaidCar(){
 		success: function (text) {
 				if(text.errCode == "S"){
 					var data = text.data;
-					for(var i = 0 , l = data.length ; i < l ;i ++){
+					for(var i = 0;i< data.length;i ++){
 							index++;
-				            var html=imageHtml(data[i].attachName,index);
+				            var html=imageHtml(data[i].address,index);
 							 $(".photos").before(html);
 							 mouseImage();
 					         photos[photos.length]={
-					            		address:getCompanyLogoUrl() + info1.hash,
+					            		address:data[i].address,
 					            		carId: carIdForPhoto,
 					            	    index : index
 					            }

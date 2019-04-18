@@ -12,8 +12,8 @@ var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuest
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryAccount.biz.ext";
 var insuranceInfoUrl = baseUrl + "com.hsapi.repair.baseData.insurance.InsuranceQuery.biz.ext?params/orgid="+currOrgId+"&params/isDisabled=0";
-var sellUrl = apiPath + crmApi
-+ "/com.hsapi.crm.basic.crmBasic.querySellList.biz.ext";
+//var sellUrl = apiPath + crmApi + "/com.hsapi.crm.basic.crmBasic.querySellList.biz.ext";
+var sellUrl = apiPath + crmApi + "/com.hsapi.crm.basic.crmBasic.querySellListNoPage.biz.ext";
 var sfData = {};
 var billForm = null;
 var sendGuestForm = null;

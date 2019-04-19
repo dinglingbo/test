@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-<%@include file="/common/sysCommon.jsp"%>
+    <%@include file="/common/common.jsp"%>
+        <%@include file="/common/commonRepair.jsp"%>
 <% String webcssPath = webPath + wechatDomain; %>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -12,7 +13,7 @@
 <head>
 <title>维修前后图片上传</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  	<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/maintenancePicture.js?v=1.0.2" type="text/javascript"></script>
+  	<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/maintenancePicture.js?v=1.0.9" type="text/javascript"></script>
   	<script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
   	    <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
  	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
@@ -73,6 +74,7 @@
 		    width: 28px;
     		height: 28px;
     		position: relative;
+    		margin-bottom: -100px;
     		margin-left: 35%;
     		cursor: pointer;
 	    }
@@ -80,7 +82,8 @@
 		   	width: 28px;
     		height: 28px;
     		position: relative;
-    		margin-left: 42%;
+    		margin-bottom: 100px;
+    		margin-left: 50%;
     		cursor: pointer;
 	    }
 	    label{
@@ -125,12 +128,12 @@
 					<label><font size="4" color="red">维修前</font>(建议尺寸：414像素*519像素)</label>
 				</div>
 	    		<div class="imgList" >
-					<div class="before" style="display: block;padding: 4px;">
+					<div class="before" >
 
 						<div id="btn-uploader" >
-							<a href="javascript:;" id="faker" class="addImage tc sub-add-btn" style="display: flex;border: 2px dotted #B8B8B8;border-radius: 5px 5px 5px 5px;color: #222222;height: 40px;text-align: center;text-decoration: none;">
-								
-								<span class="fa fa-plus-square" style="margin-left: 40%;margin-top: 13px">添加图片</span>
+							<a href="javascript:;" id="faker" class="addImage tc sub-add-btn" style="display: flex;border: 2px dotted #B8B8B8;border-radius: 5px 5px 5px 5px;color: #222222;height: 25px;text-align: center;text-decoration: none;">
+								<div class="vm dib sub-add-icon" style="background: url(<%=webPath + contextPath%>/repair/prototype/images/add.png);height: 18px;margin-right: 5px;width: 18px;9px;;margin-left: 36%;background-size: 18px;"></div>
+								添加图片
 							</a>
 						</div>
 
@@ -143,13 +146,14 @@
     		
     		<div style="display:flew;" >
 				<div style="text-align: center;" > 
-					<label><font size="4" >维修后</font>(建议尺寸：414像素*519像素)</label>
+					<label><font size="4" color="red">维修后</font>(建议尺寸：414像素*519像素)</label>
 				</div>
 	    		<div class="imgList" >
 					<div class="after" style="display: block;padding: 4px;">
 						<div id="btnuploader" >
-							<a href="javascript:;"  id="faker1" class="addImage tc sub-add-btn" style="display: flex;border: 2px dotted #B8B8B8;border-radius: 5px 5px 5px 5px;color: #222222;height: 40px;text-align: center;text-decoration: none;">
-								<span class="fa fa-plus-square" style="margin-left: 40%;margin-top: 13px">添加图片</span>
+							<a href="javascript:;" id="faker1" class="addImage tc sub-add-btn" style="display: flex;border: 2px dotted #B8B8B8;border-radius: 5px 5px 5px 5px;color: #222222;height: 25px;text-align: center;text-decoration: none;">
+								<div class="vm dib sub-add-icon" style="background: url(<%=webPath + contextPath%>/repair/prototype/images/add.png);height: 18px;margin-right: 5px;width: 18px;9px;;margin-left: 36%;background-size: 18px;"></div>
+								添加图片
 							</a>
 						</div>
 					</div>

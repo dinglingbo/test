@@ -117,7 +117,8 @@ function CloseWindow(action) {
 
 function SetData(params) {
     basicInfoForm = new nui.Form("#basicInfoForm");
-    basicInfoForm.setData(params);    
+    basicInfoForm.setData(params); 
+    nui.get("prdtName").setText(params.prdtName);
 }
 
 

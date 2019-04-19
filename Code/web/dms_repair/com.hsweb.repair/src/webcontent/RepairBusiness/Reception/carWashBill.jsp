@@ -10,7 +10,7 @@
 -->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.5.95"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.5.96"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -287,6 +287,7 @@ html, body{
                     <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount1">报销单</li>
                     <li iconCls="" onclick="toChangBillTypeId(0)" id="">转为综合开单</li>
                     <li iconCls="" onclick="toChangBillTypeId(4)" id="">转为理赔开单</li>
+                    <li iconCls="" onclick="upload()" id="ExpenseAccount1">上传维修前后照片</li>
                     <!-- <li iconCls="" onclick="addcardTime()" id="type13">车牌替换/修改</li>
                     <li iconCls="" onclick="addcard()" id="type11">等级转介绍客户</li> -->
                 </ul>
@@ -440,7 +441,7 @@ html, body{
                         <label style="font-family:Verdana;">车牌号:</label>
                         <label id="guestCarEl" style="font-family:Verdana;"><a id="showCarInfoEl" href="javascript:showBillInfo()"></a></label>&nbsp;
                         <label id="cardPackageEl" style="font-family:Verdana;color:blue;"><a id="showCardTimesEl" href="javascript:showCardTimes()">次卡套餐(0)</a></label>
-                        <label id="itemTimesEl" style="font-family:Verdana;color:blue;"><a id="showItemTimesEl" href="javascript:showItemTimes()">服务项目(0)</a></label>
+                        <label id="itemTimesEl" style="font-family:Verdana;color:blue;"><a id="showItemTimesEl" href="javascript:showItemTimes()">订单项目(0)</a></label>
                         <label id="clubCardEl" style="font-family:Verdana;color:blue;"><a id="showCardEl" href="javascript:showCard()">储值卡(0)</a></label>
                         <label id="creditEl" style="font-family:Verdana;color:#578ccd;">挂账:0</label><span>&nbsp;&nbsp;&nbsp;</span>
                     </div>

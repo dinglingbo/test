@@ -517,7 +517,7 @@
                                         <a id="showCardTimesEl" href="javascript:showCardTimes()">次卡套餐(0)</a>
                                     </label>
                                     <label id="itemTimesEl" style="font-family:Verdana;color:blue;">
-                                          <a id="showItemTimesEl" href="javascript:showItemTimes()">服务项目(0)</a>
+                                          <a id="showItemTimesEl" href="javascript:showItemTimes()">订单项目(0)</a>
                                     </label>
                                     <label id="clubCardEl" style="font-family:Verdana;color:blue;">
                                         <a id="showCardEl" href="javascript:showCard()">储值卡(0)</a>

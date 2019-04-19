@@ -270,7 +270,7 @@
                         <label id="prdtDEl" style="font-family:Verdana;color:blue;"><a id="prdtEl" href="javascript:showPrdt()">维保推荐</a></label>
                         <label id="thDEl" style="font-family:Verdana;color:blue;"><a id="tdEl" href="javascript:showthD()">3D模型</a></label>
                         <label id="cardPackageEl" style="font-family:Verdana;color:blue;"><a id="showCardTimesEl" href="javascript:showCardTimes()">次卡套餐(0)</a></label>
-                        <label id="itemTimesEl" style="font-family:Verdana;color:blue;"><a id="showItemTimesEl" href="javascript:showItemTimes()">服务项目(0)</a></label>
+                        <label id="itemTimesEl" style="font-family:Verdana;color:blue;"><a id="showItemTimesEl" href="javascript:showItemTimes()">订单项目(0)</a></label>
                         <label id="clubCardEl" style="font-family:Verdana;color:blue;"><a id="showCardEl" href="javascript:showCard()">储值卡(0)</a></label>
                         <label id="creditEl" style="font-family:Verdana;color:#578ccd;">挂账:0</label><span>&nbsp;&nbsp;</span>
                     </div>

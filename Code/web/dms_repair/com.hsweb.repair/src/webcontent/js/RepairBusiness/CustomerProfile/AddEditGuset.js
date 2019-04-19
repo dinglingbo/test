@@ -1593,7 +1593,7 @@ function imageHtml(imageUrl,indexss){
 	var imagerText="imagers"+indexss;
 	var imagerShow="imageshow"+indexss;
 	html+='<a href="#" class="imgListA '+imagerText+'">';
-	html+='		<div class="" style="width:200px;height: 200px;float: left;" >';
+	html+='		<div class="" style="width:150px;height: 100px;float: left;" >';
 	html+='		<div class="imgListOneDiv" style="display:none;" >';
 	html+='			<img id="" alt="" src="'+webPath + contextPath +'/repair/prototype/images/preview.png" class="imgListone preview" num="'+indexss+'" >';
 	html+='			<img  id="" alt="" src="'+webPath + contextPath +'/repair/prototype/images/deleteImage.png"  class="imgListtwo imgDelete" num="'+indexss+'" >';

@@ -58,7 +58,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">执行成功</process:from>
+      <process:from type="literal" pattern="reference">查询成功</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -111,7 +111,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">执行失败</process:from>
+      <process:from type="literal" pattern="reference">查询失败</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>

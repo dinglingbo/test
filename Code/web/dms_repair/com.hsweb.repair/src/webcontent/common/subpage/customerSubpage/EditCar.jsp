@@ -334,7 +334,7 @@
 
                     <div class="form" id="" class="imgList" name="basicInfoForm" style="height:100%;width:100%;left:0;right:0;margin: 0 auto;display: flex;padding-top: 10px;padding-left: 10px;float: left;">
 
-                                <div class="photos" style="word-wrap: break-word;word-break: break-all;overflow: hidden;">
+                                <div class="photos" style="width:300px; display:block;word-break: break-all;word-wrap: break-word;">
                                     <div id="btn-uploader">
                                         <a href="javascript:;" id="faker4" class="addImage tc sub-add-btn" style="display: flex;border: 2px dotted #B8B8B8;border-radius: 5px 5px 5px 5px;color: #222222;height: 80px;width:80px;text-align: center;text-decoration: none;">
                                             <div class="vm dib sub-add-icon" style="height: 80px;margin-right: 5px;width: 80px;9px;;margin-left: 0%;background-size: 18px;">

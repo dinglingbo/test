@@ -264,6 +264,12 @@
                     </div> -->
                      <span style="margin-left: 0px;">优惠金额：<span id="yh">0</span>元</span>
                 </td>
+               <!--  <td height="36" colspan="1" style="border:0px" >
+                    <div style="float: center; color: #000; margin-right: 12px; line-height: 36px;">
+                        <span style="margin-left: 200px;">优惠金额：<span id="yh">0</span>元</span>
+                    </div>
+                     <span style="margin-left: 0px;">优惠券抵扣：<span id="quanAmt">0</span>元</span>
+                </td> -->
                 <td height="36" colspan="2" style="border:0px;font-family: Arial; font-size:16px;font-weight: bold;">
                     <div style="float: left; color: #000; margin-right: 12px; line-height: 36px;">
                         <span style="margin-right: 15px;">
@@ -384,11 +390,15 @@
 	    				}
 		        	}
         	});
-        	var amt =  parseFloat(cardTime.totalAmt)-parseFloat(cardTime.sellAmt);
+        	var amt =  parseFloat(cardTime.totalAmt)-parseFloat(cardTime.sellAmt) + parseFloat(cardTime.deductionAmt);
         	amt = amt.toFixed(2);
         	document.getElementById("yh").innerHTML = amt;
-    		document.getElementById("cash1").innerHTML = cardTime.sellAmt;			
-    		var money = transform(cardTime.sellAmt+"");
+        	/* document.getElementById("quanAmt").innerHTML = cardTime.deductionAmt ; */
+        	var quanSellAmt = parseFloat(cardTime.sellAmt) - parseFloat(cardTime.deductionAmt);
+        	quanSellAmt = quanSellAmt.toFixed(2);
+        	var quanSellAmt = 
+    		document.getElementById("cash1").innerHTML = quanSellAmt;			
+    		var money = transform(quanSellAmt+""); 
 			document.getElementById("money").innerHTML = money;
      }   	
         function box_setup_open() {

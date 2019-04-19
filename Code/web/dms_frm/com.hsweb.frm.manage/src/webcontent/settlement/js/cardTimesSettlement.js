@@ -187,15 +187,15 @@ function setGuest(item){
     if(guestData.wechatOpenId){
 		document.getElementById("inputUserCode").style.display = "";
 		document.getElementById("showCode").style.display = "none";
-		 var list  = "";
-	       document.getElementById("show").innerHTML = list;
+		var list  = "";
+	    document.getElementById("show").innerHTML = list;
     }else{
        document.getElementById("inputUserCode").style.display = "none";
        document.getElementById("showCode").style.display = "none";
 	   var list  = "没有可用优惠券或者该用户未在微信公众号注册";
        document.getElementById("show").innerHTML = list;
     }
-
+   
 }
 
 /*function setData(data){
@@ -286,7 +286,7 @@ function addTimesCardList(){
 		data : "",
 		success : function(data) {	
 				cardList = data.timesCard;
-				$("<option value=''>—请选择计次卡—</option>").appendTo("#cardList");
+				$("<option value='0' >—请选择计次卡—</option>").appendTo("#cardList");
 				for(var i = 0;i<data.timesCard.length;i++){
 						$("<option  value="+data.timesCard[i].id+">"+data.timesCard[i].name+"&nbsp;&nbsp;&nbsp;&nbsp;"+"售价："+data.timesCard[i].sellAmt+"</option>").appendTo("#cardList");
 					}
@@ -305,7 +305,7 @@ function addCardList(){
 		data : "",
 		success : function(data) {	
 			card = data.card;
-				$("<option value=''>—请选择储值卡—</option>").appendTo("#cardList");
+				$("<option value='0'>—请选择储值卡—</option>").appendTo("#cardList");
 				for(var i = 0;i<data.card.length;i++){
 						$("<option  value="+data.card[i].id+">"+data.card[i].name+"&nbsp;&nbsp;&nbsp;&nbsp;"+"充值："+data.card[i].rechargeAmt+"&nbsp;&nbsp;&nbsp;&nbsp;"+"赠送："+data.card[i].giveAmt+"</option>").appendTo("#cardList");
 					}
@@ -478,8 +478,20 @@ function settleOK() {
 							if (data.errCode == "S") {
 								showMsg(data.errMsg||"收款成功！","S");
 								//CloseWindow("ok");
-								print();
-								guestData={};
+								//清除应收、储值卡，实际金额
+					        	couponList = [];
+					        	document.getElementById('quanAmt').innerHTML = 0;
+					        	netInAmt = 0;
+					        	document.getElementById('amount').innerHTML = 0;
+					        	document.getElementById('totalAmt1').innerHTML = 0;
+					        	document.getElementById("cardList").value="0";
+					        	var guestData2 = guestData;
+					        	guestData={};
+					        	var row2 = row;
+					        	row2.deductionAmt = deductionAmt;
+					        	deductionAmt = 0;
+					        	row = {};
+					        	print(row2,guestData2);
 								add();
 							} else {
 								showMsg(data.errMsg,"W");
@@ -501,7 +513,7 @@ function settleOK() {
 }
 
 //打印函数
-function print(){
+function print(row2,guestData2){
 	var sourceUrl = "";
 	var printName = currRepairSettorderPrintShow||currOrgName;
 	var p = {
@@ -521,8 +533,8 @@ function print(){
 		token : token
 	};
 	params = {
-		guestData:guestData,
-		row :row,
+		guestData:guestData2,
+		row :row2,
 		p:p
 	};
 	if(cardType==1){
@@ -543,6 +555,7 @@ function print(){
            iframe.contentWindow.SetData(params);
         },
         ondestroy: function (action){
+        	
         }
     });
 }
@@ -684,10 +697,23 @@ function noPayOk(){
 				        var returnJson = nui.decode(text);
 				        if (returnJson.errCode == "S") {
 				        	showMsg(text.errMsg||"转预结算成功！","S");
-				        	guestData={};
+				        	//清除应收、储值卡，实际金额
+				        	couponList = [];
+				        	document.getElementById('quanAmt').innerHTML = 0;
+				        	netInAmt = 0;
+				        	document.getElementById('amount').innerHTML = 0;
+				        	document.getElementById('totalAmt1').innerHTML = 0;
+				        	document.getElementById("cardList").value="0";
 				        	add();
 				        	//CloseWindow("onok");
-				        	print();
+				        	var guestData2 = guestData;
+				        	guestData={};
+				        	var row2 = row;
+				        	row2.deductionAmt = deductionAmt;
+				        	deductionAmt = 0;
+				        	row = {};
+				        	print(row2,guestData2);
+				        	
 				        }
 				        else {
 				            showMsg("转结算失败:"+returnJson.errMsg, "W");
@@ -876,13 +902,25 @@ function setInitData(params){
 		addCardList();
 	}*/
 	
-	if(guestData.wechatOpenId){
+	/*if(guestData.wechatOpenId){
 		document.getElementById("inputUserCode").style.display = "";
     }else{
        document.getElementById("inputUserCode").style.display = "none";
 	   var list  = "没有可用优惠券或者该用户未在微信公众号注册";
        document.getElementById("show").innerHTML = list;
+    }*/
+	if(guestData.wechatOpenId){
+		document.getElementById("inputUserCode").style.display = "";
+		document.getElementById("showCode").style.display = "none";
+		var list  = "";
+	    document.getElementById("show").innerHTML = list;
+    }else{
+       document.getElementById("inputUserCode").style.display = "none";
+       document.getElementById("showCode").style.display = "none";
+	   var list  = "没有可用优惠券或者该用户未在微信公众号注册";
+       document.getElementById("show").innerHTML = list;
     }
+	
 	document.getElementById("quanAmt").innerHTML = 0;
 	if(currIsCanSettle==0){
 		document.getElementById("settle").style.display='none';

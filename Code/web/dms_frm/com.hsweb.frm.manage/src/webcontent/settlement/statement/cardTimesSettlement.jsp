@@ -11,7 +11,7 @@
 
 <head>
 	<title>计次卡/储值卡结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardTimesSettlement.js?v=1.4.9"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardTimesSettlement.js?v=1.5.0"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -477,8 +477,7 @@
 											<td width="50%" height="&quot;44&quot;">
 												<select name="cardList" id="cardList" onchange="payCard(this.id)" style="width: 94%; height: 33px; font-weight: bold; font-size: 15px; color: #578ccd;border:0;">
 
-
-													</select>
+												</select>
 												</td>
 												<td>
 												</td>

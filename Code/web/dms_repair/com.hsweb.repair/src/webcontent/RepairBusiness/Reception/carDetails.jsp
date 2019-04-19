@@ -332,14 +332,15 @@
                         </div>
                          <div title="优惠券" id="main" name="main">
                             <div id="grid4" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" totalField="page.count"
-                                dataField="data" onrowdblclick="" allowCellSelect="true" url="">
+                                dataField="userCouponDataArray" onrowdblclick="" allowCellSelect="true" url="">
                                 <div property="columns">
-                                    <div field="cardName" name="cardName" width="100" headerAlign="center" header="名称"></div>
-                                    <div field="balaAmt" name="balaAmt" width="50" headerAlign="center" header="优惠金额"></div>
-                                    <div field="balaAmt" name="balaAmt" width="50" headerAlign="center" header="使用说明"></div>
-                                    <div field="modifyDate" name="modifyDate" width="100" headerAlign="center" header="到期日期" dateFormat="yyyy-MM-dd"></div>
-                                    <div field="balaAmt" name="balaAmt" width="50" headerAlign="center" header="优惠券编码"></div>
-                                    <div field="balaAmt" name="balaAmt" width="50" headerAlign="center" header="领券人"></div>
+                                    <div field="couponCode" name="couponCode" width="100" headerAlign="center" header="优惠券编码"></div>
+                                    <div field="couponTitle" name="couponTitle" width="50" headerAlign="center" header="名称"></div>
+                                    <div field="couponType" name="couponType" width="50" headerAlign="center" header="类型"></div>
+                                    <div field="couponDiscountsPrice" name="couponDiscountsPrice" width="50" headerAlign="center" header="优惠金额"></div>
+                                    <div field="couponDescribe" name="couponDescribe" width="100" headerAlign="center" header="使用说明"></div>
+                                    <div field="userName" name="userName" width="50" headerAlign="center" header="领券人"></div>
+                                    <div field="couponEndDate" name="couponEndDate" width="100" headerAlign="center" header="到期日期" dateFormat="yyyy-MM-dd"></div>
                                 </div>
                             </div>
                         </div>

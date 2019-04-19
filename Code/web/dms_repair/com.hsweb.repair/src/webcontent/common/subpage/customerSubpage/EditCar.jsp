@@ -8,8 +8,8 @@
 	    }
 	    .imgStyle{
 	    	border: none;
-	    	width:200px;
-	    	height:200px;
+	    	width:150px;
+	    	height:100px;
 /* 		    max-width: 100%;
 		    height: auto; */
 		    vertical-align: middle;
@@ -35,8 +35,8 @@
 	    	display: flex;
 	    	border-bottom: 2px solid #f2f5f7;
 	    	cursor: pointer;
-	    	width:200px;
-	    	height: 200px;
+	    	width:150px;
+	    	height: 100px;
 	    }
 	    .imgListOneDiv{
 	    	background: none repeat scroll 0 0 rgba(229, 229, 229, 0.85);
@@ -334,14 +334,16 @@
 
                     <div class="form" id="" class="imgList" name="basicInfoForm" style="height:100%;width:100%;left:0;right:0;margin: 0 auto;display: flex;padding-top: 10px;padding-left: 10px;float: left;">
 
-                                <div class="photos">
-
+                                <div class="photos" style="word-wrap: break-word;word-break: break-all;overflow: hidden;">
                                     <div id="btn-uploader">
-                                        <a href="javascript:;" id="faker4" class="addImage tc sub-add-btn" style="display: flex;border: 2px dotted #B8B8B8;border-radius: 5px 5px 5px 5px;color: #222222;height: 25px;text-align: center;text-decoration: none;">
-                                            <div class="vm dib sub-add-icon" style="background: url(<%=webPath + contextPath%>/repair/prototype/images/add.png);height: 18px;margin-right: 5px;width: 18px;9px;;margin-left: 36%;background-size: 18px;"></div>
-                                            添加图片
+                                        <a href="javascript:;" id="faker4" class="addImage tc sub-add-btn" style="display: flex;border: 2px dotted #B8B8B8;border-radius: 5px 5px 5px 5px;color: #222222;height: 80px;width:80px;text-align: center;text-decoration: none;">
+                                            <div class="vm dib sub-add-icon" style="height: 80px;margin-right: 5px;width: 80px;9px;;margin-left: 0%;background-size: 18px;">
+                                            	<img alt="" style="height: 80px;width: 80px;" src="<%=webPath + contextPath%>/repair/prototype/images/add1.png">
+                                            	
+                                            </div>
                                         </a>
                                     </div>
+
 
                                 </div>
 

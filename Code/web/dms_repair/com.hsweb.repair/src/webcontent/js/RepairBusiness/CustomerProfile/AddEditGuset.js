@@ -1601,6 +1601,9 @@ function imageHtml(imageUrl,indexss){
 	html+='			<img id=""  alt="" src="'+imageUrl+'" class="imgStyle '+imagerShow+'" >';
 	html+='		</div>';
 	html+='</a>';
+	if(indexss%4==0){
+		html+='<br>';
+	}
 	return html;
 };
 
@@ -1652,8 +1655,8 @@ function mouseImage(){
 		
 		var height = $(this).find(".imgStyle").height();
 		var width = $(this).find(".imgStyle").width();
-		$( $(this).find(".imgListOneDiv") ).css("height",height+"px");
-		$( $(this).find(".imgListOneDiv") ).css("width",width+"px");
+		$( $(this).find(".imgListOneDiv") ).css("height","70px");
+		$( $(this).find(".imgListOneDiv") ).css("width","150px");
 		var heightTo=height/2;
 		if( heightTo>20 ){
 			heightTo-=20;

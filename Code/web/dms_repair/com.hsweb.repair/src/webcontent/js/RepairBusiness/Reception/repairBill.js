@@ -3736,6 +3736,7 @@ function delFromBillPart(data, callback){
 }
 
 function addcardTime(){	
+	xyguest.wechatOpenId = contactorF.wechatOpenId;
 	doAddcardTime(xyguest);
 }
 
@@ -5452,7 +5453,9 @@ function addSell() {
 		},
 		ondestroy : function(action) {
 			if (action == "saveSuccess") {
-				grid.reload();
+				//销售机会
+			    carSellPointInfo.hide();
+				showSellPoint();
 			}
 		}
 	});
@@ -5477,7 +5480,9 @@ function editSell() {
 				},
 				ondestroy : function(action) {
 					if (action == "saveSuccess") {
-						grid.reload();
+						//销售机会
+					    carSellPointInfo.hide();
+						showSellPoint();
 					}
 				}
 			});
@@ -5531,4 +5536,34 @@ function remarkChang(e){
 	var remark = rpsItemGrid.getCellEditor("remark", row);
 	remark.setValue(e.value);
 }
-
+function upload(){
+	var formData = billForm.getData();
+	var serviceId = formData.id;
+	var serviceCode = $("#servieIdEl").html();
+	var state = null;
+	if(formData.status == 0){
+		state = 1;
+    }else if(formData.status == 1 || formData.status == 2){
+    	if(formData.isSettle != 1 && formData.balaAuditSign != 1){
+    		state = 2;
+    	}
+    }
+	var uploadUrl = "/com.hsweb.RepairBusiness.maintenancePicture.flow";
+	if(serviceId){
+		nui.open({
+	        url: webPath + contextPath+uploadUrl,
+	        title: "上传图片",
+			width: "700px",
+			height: "610px",
+			allowResize : false,
+	        onload: function () {
+	            var iframe = this.getIFrameEl();
+	            iframe.contentWindow.SetData(serviceId,serviceCode,state);
+	        },
+	        ondestroy: function (action){
+	        }
+	    });
+	}else{
+		showMsg("请先保存工单","W");
+	}
+}

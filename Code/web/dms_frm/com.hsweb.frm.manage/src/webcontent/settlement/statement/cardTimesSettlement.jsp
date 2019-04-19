@@ -11,7 +11,7 @@
 
 <head>
 	<title>计次卡/储值卡结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardTimesSettlement.js?v=1.4.8"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardTimesSettlement.js?v=1.4.9"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -471,7 +471,6 @@
 
 						<div class="pay_jshj_list">
 
-
 								<table width="100%" border="0" cellspacing="0" cellpadding="0" >
 									<tbody>
 										<tr>
@@ -517,6 +516,7 @@
 
 											</td>
 										</tr>
+										
 									</tbody>
 								</table>
 					             <div  id="showCode" style="display: none;" >

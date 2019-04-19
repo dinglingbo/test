@@ -28,9 +28,11 @@ $(document).ready(function(){
 		SetData();
 	});
     gridCar.on("select", function (e) {
-        var params = {
-            guestId: e.record.contactorId,
-            guestSource: 0,
+		var params = {
+			carNo:e.record.carNo,
+           // guestId: e.record.contactorId,
+			guestSource: 0,
+			//serviceType:4,
             token:token
         };
         loadVisitHis(params);

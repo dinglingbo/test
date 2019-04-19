@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>理赔开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/claimDetail.js?v=1.6.46"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/claimDetail.js?v=1.6.48"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -233,6 +233,7 @@
                     <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount1">报销单</li>
                     <li iconCls="" onclick="toChangBillTypeId(0)" id="">转为综合开单</li>
                     <li iconCls="" onclick="toChangBillTypeId(2)" id="">转为洗美开单</li>
+                    <li iconCls="" onclick="upload()" id="ExpenseAccount1">上传维修前后照片</li>
                     <!-- <li iconCls="" onclick="addcardTime()" id="type13">车牌替换/修改</li>
                     <li iconCls="" onclick="addcard()" id="type11">等级转介绍客户</li> -->
                 </ul>

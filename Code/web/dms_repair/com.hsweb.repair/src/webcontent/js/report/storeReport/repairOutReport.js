@@ -26,6 +26,8 @@ var ePickDateEl=null;
 var servieTypeList = [];
 var servieTypeHash = {};
 var orgidsEl = null;
+var workTeamIdEl = null;
+var workTeamIdList = [];
 var billTypeIdEl=null;
 var billTypeIdList=[{id:"0",name:"综合"},{id:"1",name:"检查"},{id:"2",name:"洗美"},{id:"3",name:"销售"},{id:"4",name:"理赔"},{id:"5",name:"退货"},{id:"6",name:"波箱"}];
 $(document).ready(function(v)
@@ -46,6 +48,7 @@ $(document).ready(function(v)
     	orgidsEl.setValue(currOrgid);
     }
 
+    workTeamIdEl=nui.get('workTeamId');
     billTypeIdEl=nui.get('billTypeId');
     billTypeIdEl.setData(billTypeIdList);
 	document.onkeyup = function(event) {
@@ -226,6 +229,11 @@ $(document).ready(function(v)
 			partTypeHash[v.id]=v;
 		});
 	});
+	
+	getWorkTeam(function(data){
+		workTeamIdList = data.list||[];
+		workTeamIdEl.setData(workTeamIdList);
+	});
 });
 function getSearchParams(){
     var params = {};
@@ -251,6 +259,38 @@ function getSearchParams(){
     	 params.orgids =  currOrgs;
     }else{
     	params.orgid=orgidsElValue;
+    }
+    var workTeamId = workTeamIdEl.getValue();
+    if(workTeamId) {
+    	var pickMans = "''";
+    	var pd = {
+    		memberGroupId: workTeamId,
+    		token: token
+    	};
+    	nui.ajax({
+    		url : apiPath + sysApi + "/com.hsapi.system.dict.org.queryMember.biz.ext",
+    		type : "post",
+    		async: false,
+    		data : JSON.stringify(pd),
+    		success : function(data) {
+    			var memList = data.data||[];
+    			if(memList && memList.length>0) {
+    				
+    				for(var i=0; i<memList.length; i++) {
+    					if(i==0) {
+    						pickMans = "'" + memList[i].empName + "'";
+    					}else {
+    						pickMans = pickMans + ",'" + memList[i].empName + "'";
+    					}
+    				}
+    				
+    			}
+    		},
+    		error : function(jqXHR, textStatus, errorThrown) {
+    			console.log(jqXHR.responseText);
+    		}
+    	});
+    	params.pickMans = pickMans; 
     }
 
    

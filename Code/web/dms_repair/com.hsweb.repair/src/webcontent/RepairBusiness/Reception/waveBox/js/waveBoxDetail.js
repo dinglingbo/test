@@ -2937,6 +2937,7 @@ function delFromBillPart(data, callback){
     });
 }
 function addcardTime(){	
+	xyguest.wechatOpenId = contactorF.wechatOpenId;
 	doAddcardTime(xyguest);
 	
 }
@@ -4827,7 +4828,9 @@ function addSell() {
 		},
 		ondestroy : function(action) {
 			if (action == "saveSuccess") {
-				grid.reload();
+			    //销售机会
+			    carSellPointInfo.hide();
+				showSellPoint();
 			}
 		}
 	});
@@ -4852,7 +4855,9 @@ function editSell() {
 				},
 				ondestroy : function(action) {
 					if (action == "saveSuccess") {
-						grid.reload();
+					    //销售机会
+					    carSellPointInfo.hide();
+						showSellPoint();
 					}
 				}
 			});

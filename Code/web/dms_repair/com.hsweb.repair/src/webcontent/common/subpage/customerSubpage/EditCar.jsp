@@ -8,8 +8,10 @@
 	    }
 	    .imgStyle{
 	    	border: none;
-		    max-width: 100%;
-		    height: auto;
+	    	width:200px;
+	    	height:200px;
+/* 		    max-width: 100%;
+		    height: auto; */
 		    vertical-align: middle;
 	    }
 	    .windowsss{
@@ -33,6 +35,8 @@
 	    	display: flex;
 	    	border-bottom: 2px solid #f2f5f7;
 	    	cursor: pointer;
+	    	width:200px;
+	    	height: 200px;
 	    }
 	    .imgListOneDiv{
 	    	background: none repeat scroll 0 0 rgba(229, 229, 229, 0.85);
@@ -46,7 +50,7 @@
 		    width: 28px;
     		height: 28px;
     		position: relative;
-    		margin-bottom: -100px;
+    		margin-bottom: -90px;
     		margin-left: 35%;
     		cursor: pointer;
 	    }
@@ -74,9 +78,9 @@
 	    	font-size: 12px;
 	    }
     </style>
-    <div title="车辆信息" class="nui-window" id="carview" style="width: 100%">
-        <div class="nui-tabs" activeIndex="0" style="width:100%;height: 85%;">
-            <div title="基本信息">
+    <div title="车辆信息" class="nui-window" id="carview" style="width: 100%;height:100%">
+        <div class="nui-tabs" activeIndex="0" style="width:100%;height: 100%;">
+            <div title="基本信息" >
                 <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
                     <table style="width:100%;">
                         <tr>
@@ -282,7 +286,7 @@
                             </td>
                             <td nowrap="nowrap">
                                 <div class="page-header" id="btn-uploader">
-                                    <img id="xmTanImg2" style="width: 100px;height: 100px" onclick="changeShow(this.src)" src="<%= request.getContextPath() %>/common/images/logo.jpg"
+                                    <img id="xmTanImg2" style="width: 100px;height: 100px" onclick="preview(this.src)" src="<%= request.getContextPath() %>/common/images/logo.jpg"
                                     />
                                 </div>
 
@@ -297,7 +301,7 @@
                             </td>
                             <td>
                                 <div class="div1" id="faker3" onchange="xmTanUploadImg(this)">
-                                    <img id="xmTanImg3" style="width: 100px;height: 100px" onclick="changeShow(this.src)" src="<%= request.getContextPath() %>/common/images/logo.jpg"
+                                    <img id="xmTanImg3" style="width: 100px;height: 100px" onclick="preview(this.src)" src="<%= request.getContextPath() %>/common/images/logo.jpg"
                                     />
                                 </div>
 
@@ -313,7 +317,7 @@
             </div>
             <div title="车辆照片">
                 <div class="nui-fit">
-                    <div class="nui-toolbar" style="padding:0px;">
+                    <div class="nui-toolbar" style="padding:0px;width="100%" height="100%"">
                         <table style="width:100%;">
                             <tr>
                                 <td style="width:100%;">
@@ -328,14 +332,8 @@
                         </table>
                     </div>
 
-                    <div class="form" id="" name="basicInfoForm" style="height:90%;left:0;right:0;margin: 0 auto;display: flex;padding-top: 10px;padding-left: 10px;float: left;">
+                    <div class="form" id="" class="imgList" name="basicInfoForm" style="height:100%;width:100%;left:0;right:0;margin: 0 auto;display: flex;padding-top: 10px;padding-left: 10px;float: left;">
 
-                        <div style="display:flew;">
-<!--                             <div style="text-align: center;">
-                                <label>
-                                    <font size="4" color="red">车辆照片</font>(建议尺寸：414像素*519像素)</label>
-                            </div> -->
-                            <div class="imgList">
                                 <div class="photos">
 
                                     <div id="btn-uploader">
@@ -346,8 +344,6 @@
                                     </div>
 
                                 </div>
-                            </div>
-                        </div>
 
                     </div>
 

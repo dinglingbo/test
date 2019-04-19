@@ -1050,6 +1050,8 @@ function addCar() {
 	nui.get("carNo").enable();
 	nui.get("vin").enable();
 	carInfoFrom.setData("");
+    $("#xmTanImg2").attr("src",webPath + contextPath + "/common/images/logo.jpg");
+    $("#xmTanImg3").attr("src",webPath + contextPath + "/common/images/logo.jpg");
 	carview.show();
 }
 
@@ -1065,6 +1067,8 @@ function addContact() {
 	nui.get("mobile2").setValue(mobile);
 	nui.get("wechatOpenId").disable();
 	nui.get("wechatServiceId").enable();
+    $("#xmTanImg").attr("src",webPath + contextPath + "/common/images/logo.jpg");
+    $("#xmTanImg1").attr("src",webPath + contextPath + "/common/images/logo.jpg");
 }
 
 function addCarList(){
@@ -1589,7 +1593,7 @@ function imageHtml(imageUrl,indexss){
 	var imagerText="imagers"+indexss;
 	var imagerShow="imageshow"+indexss;
 	html+='<a href="#" class="imgListA '+imagerText+'">';
-	html+='		<div class="" style="position: relative;" >';
+	html+='		<div class="" style="width:200px;height: 200px;float: left;" >';
 	html+='		<div class="imgListOneDiv" style="display:none;" >';
 	html+='			<img id="" alt="" src="'+webPath + contextPath +'/repair/prototype/images/preview.png" class="imgListone preview" num="'+indexss+'" >';
 	html+='			<img  id="" alt="" src="'+webPath + contextPath +'/repair/prototype/images/deleteImage.png"  class="imgListtwo imgDelete" num="'+indexss+'" >';
@@ -1691,21 +1695,3 @@ function mouseImage(){
 	});
 }
 
-function preview(url){
-	isOpen = false;
-	nui.open({
-	    url: webPath + contextPath
-		+ "/com.hsweb.repair.repoart.preview.flow?token="+token,
-	    title: "预览图片",
-		width: "700px",
-		height: "610px",
-		allowResize : false,
-	    onload: function () {
-	        var iframe = this.getIFrameEl();
-	        iframe.contentWindow.setData(url);
-	    },
-	    ondestroy: function (action){
-	    	isOpen = true;
-	    }
-	});
-}

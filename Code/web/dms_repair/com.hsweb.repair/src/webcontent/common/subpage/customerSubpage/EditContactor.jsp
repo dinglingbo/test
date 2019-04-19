@@ -60,6 +60,14 @@
                         <input class="nui-textbox" name="idNo" width="100%" />
                     </td>
                 </tr>
+                <tr>
+                    <td class="form_label">
+                        <label>备注：</label>
+                    </td>
+                    <td colspan="3">
+                        <input class="nui-textbox" name="remark" width="100%" />
+                    </td>
+                </tr>
                  <tr>
                     <td class="form_label">
                         <label>驾驶证号：</label>
@@ -118,20 +126,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="form_label">
-                        <label>备注：</label>
-                    </td>
-                    <td colspan="3">
-                        <input class="nui-textbox" name="remark" width="100%" />
-                    </td>
-                </tr>
-                <tr>
                 <td class="form_label">
                         <label>驾驶证正本照：<br><a  href="#" id="faker">点击上传</a></label>
                     </td>
                     <td nowrap="nowrap">
 		                <div class="page-header" id="btn-uploader">
-						            <img id="xmTanImg" style="width: 100px;height: 100px" onclick="changeShow1(this.src)" src="<%= request.getContextPath() %>/common/images/logo.jpg"/>
+						            <img id="xmTanImg" style="width: 100px;height: 100px" onclick="preview(this.src)" src="<%= request.getContextPath() %>/common/images/logo.jpg"/>
 					    </div>
 		
 		
@@ -142,7 +142,7 @@
                     </td>
                     <td>
 	                    <div class="page-header" id="btn-uploader">
-					            <img id="xmTanImg1" style="width: 100px;height: 100px" onclick="changeShow1(this.src)" src="<%= request.getContextPath() %>/common/images/logo.jpg"/>
+					            <img id="xmTanImg1" style="width: 100px;height: 100px" onclick="preview(this.src)" src="<%= request.getContextPath() %>/common/images/logo.jpg"/>
 				        </div>
 
 

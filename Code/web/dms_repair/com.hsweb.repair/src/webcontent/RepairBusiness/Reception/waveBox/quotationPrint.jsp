@@ -16,7 +16,7 @@
 <style>
 	        table, td {
 	            font-family: Tahoma,Geneva,sans-serif;
-	            font-size: 16px;
+	            font-size: 14px;
 	            color: #000;
 	        }
 
@@ -154,7 +154,7 @@
 	                     	<img alt="" src="" id="showImg" height="60px" style="display:none">
 	                    </td>
 	                    <td style="width:55%" >
-	                        <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><b><span id="comp"></span></b></div>
+	                        <div style="font-size: 20px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><b><span id="comp"></span></b></div>
 	                    </td>
 	                    <td rowspan="2" style="">
 	                        <div style="font-size: 20px; font-family: 微软雅黑;padding-top: 5px;"><b><span id="spstorename">报价单</span></b></div>
@@ -174,18 +174,17 @@
 	        
         </div>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
-             <tr>
-                <td style="font-size:8px;" width="40%">地址：<span id="currCompAddress"></span></td>
-                <td style="font-size:8px;"   width="33%">开户银行：<span id="currBankName"></span></td>
-                <td style="font-size:8px;padding-right:1%" width="33%" align="right">打印时间：<span id="date"></span></td>
+            <tr>
+                <td style="font-size:8px;" >地址：<span id="currCompAddress"></span></td>
+                <td style="font-size:8px;">开户银行：<span id="currBankName"></span></td>
+                <td style="font-size:8px;">打印时间：<span id="date"></span></td>
             </tr> 
             <tr>
                 <td style="font-size:8px;">电话：<span id="currCompTel"></span></td>
-                <td style="font-size:8px;">银行账号：<span id="currBankAccountNumber"></span></td>
-             	<td style="font-size:8px;padding-right:1%" align="right" >进厂时间：<span id="enterDate"></span></td>
+                <td style="font-size:8px;" >银行账号：<span id="currBankAccountNumber"></span></td>
+             	<td style="font-size:8px;">进厂时间：<span id="enterDate"></span></td>
             </tr>
         </table>
-
         <div style="padding-top: 10px;">
             <table  width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk">
                 <tr>
@@ -255,14 +254,14 @@
                 <td height="36" colspan="1" style="border:0px" >
                      <span style="margin-left: 0px;">优惠金额：<span id="yh">0</span>元</span>
                 </td>
-                <td height="36" colspan="2" style="border:0px;font-family: Arial; font-size:16px;font-weight: bold;">
+                <td height="36" colspan="2" style="border:0px;font-family: Arial; font-size:14px;font-weight: bold;">
                     <div style="float: left; color: #000; margin-right: 12px; line-height: 36px;">
                         <span style="margin-right: 15px;">
-                            <font style="font-size: 16px; font-weight: bold;">
+                            <font style="font-size: 14px; font-weight: bold;">
                                 结算金额：<span id="cash1"></span>元
                             </font>
                         </span>
-                        <font style="font-size: 16px; font-weight: bold;">
+                        <font style="font-size: 14px; font-weight: bold;">
                             大写：<span id="money"></span>
                         </font>
                     </div>
@@ -283,7 +282,7 @@
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk" >
                 <tr>
                    <td height="30" style="padding: 8px;" colspan="4">
-                   		<span style="padding: 8px;font-size: 16px;" id="msg">尊敬的客户：以上报价在实际施工过程中可能有小幅变动，最终价格以实际结算单为准！</span>
+                   		<span style="padding: 8px;font-size: 14px;" id="msg">尊敬的客户：以上报价在实际施工过程中可能有小幅变动，最终价格以实际结算单为准！</span>
                    		<div style="display:none" id="hidden2" >
                    			<table  width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk"  >
 				                <tr >
@@ -369,7 +368,7 @@
 	            else window.close();
        		 }
         	
-			 function SetData(serviceId,type){
+			 function SetData(serviceId,type,sourceServiceId){
 			 	document.getElementById("comp").innerHTML = currRepairSettorderPrintShow
 			    var imgUrl = currCompLogoPath || "";
                 if(imgUrl && imgUrl != ""){
@@ -521,7 +520,6 @@
 	          }
         	});
         	$.ajaxSettings.async = false;
-	        	if(type != 5 && type != 6){
 		        	$.post(baseUrl+"com.hsapi.repair.repairService.query.querySettleAmt.biz.ext?serviceId="+serviceId+"&token="+token,{},function(text){
 			    				if(text.errCode=="S"){ 
 			    				 		document.getElementById("yh").innerHTML = text.data.totalPrefAmt || 0;;
@@ -533,7 +531,6 @@
 			    					showMsg(text.errMsg,"W");
 			    				}
 			            }); 
-	        	}
 			 }
     </script>
 </body>

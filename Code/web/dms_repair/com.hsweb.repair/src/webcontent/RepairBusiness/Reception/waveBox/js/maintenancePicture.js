@@ -367,24 +367,7 @@ function mouseImage(){
 	});
 }
 
-function preview(url){
-	isOpen = false;
-	nui.open({
-	    url: webPath + contextPath
-		+ "/com.hsweb.repair.repoart.preview.flow?token="+token,
-	    title: "预览图片",
-		width: "700px",
-		height: "610px",
-		allowResize : false,
-	    onload: function () {
-	        var iframe = this.getIFrameEl();
-	        iframe.contentWindow.setData(url);
-	    },
-	    ondestroy: function (action){
-	    	isOpen = true;
-	    }
-	});
-}
+
 //取消
 function onCancel() {
     CloseWindow("cancel");

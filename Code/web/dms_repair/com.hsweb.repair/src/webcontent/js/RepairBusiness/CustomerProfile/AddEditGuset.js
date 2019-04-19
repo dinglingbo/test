@@ -1050,6 +1050,8 @@ function addCar() {
 	nui.get("carNo").enable();
 	nui.get("vin").enable();
 	carInfoFrom.setData("");
+    $("#xmTanImg2").attr("src",webPath + contextPath + "/common/images/logo.jpg");
+    $("#xmTanImg3").attr("src",webPath + contextPath + "/common/images/logo.jpg");
 	carview.show();
 }
 
@@ -1065,6 +1067,8 @@ function addContact() {
 	nui.get("mobile2").setValue(mobile);
 	nui.get("wechatOpenId").disable();
 	nui.get("wechatServiceId").enable();
+    $("#xmTanImg").attr("src",webPath + contextPath + "/common/images/logo.jpg");
+    $("#xmTanImg1").attr("src",webPath + contextPath + "/common/images/logo.jpg");
 }
 
 function addCarList(){
@@ -1589,7 +1593,7 @@ function imageHtml(imageUrl,indexss){
 	var imagerText="imagers"+indexss;
 	var imagerShow="imageshow"+indexss;
 	html+='<a href="#" class="imgListA '+imagerText+'">';
-	html+='		<div class="" style="position: relative;" >';
+	html+='		<div class="" style="width:200px;height: 200px;float: left;" >';
 	html+='		<div class="imgListOneDiv" style="display:none;" >';
 	html+='			<img id="" alt="" src="'+webPath + contextPath +'/repair/prototype/images/preview.png" class="imgListone preview" num="'+indexss+'" >';
 	html+='			<img  id="" alt="" src="'+webPath + contextPath +'/repair/prototype/images/deleteImage.png"  class="imgListtwo imgDelete" num="'+indexss+'" >';
@@ -1597,6 +1601,9 @@ function imageHtml(imageUrl,indexss){
 	html+='			<img id=""  alt="" src="'+imageUrl+'" class="imgStyle '+imagerShow+'" >';
 	html+='		</div>';
 	html+='</a>';
+	if(indexss%4==0){
+		html+='<br>';
+	}
 	return html;
 };
 
@@ -1648,8 +1655,8 @@ function mouseImage(){
 		
 		var height = $(this).find(".imgStyle").height();
 		var width = $(this).find(".imgStyle").width();
-		$( $(this).find(".imgListOneDiv") ).css("height",height+"px");
-		$( $(this).find(".imgListOneDiv") ).css("width",width+"px");
+		$( $(this).find(".imgListOneDiv") ).css("height","70px");
+		$( $(this).find(".imgListOneDiv") ).css("width","150px");
 		var heightTo=height/2;
 		if( heightTo>20 ){
 			heightTo-=20;
@@ -1691,21 +1698,3 @@ function mouseImage(){
 	});
 }
 
-function preview(url){
-	isOpen = false;
-	nui.open({
-	    url: webPath + contextPath
-		+ "/com.hsweb.repair.repoart.preview.flow?token="+token,
-	    title: "预览图片",
-		width: "700px",
-		height: "610px",
-		allowResize : false,
-	    onload: function () {
-	        var iframe = this.getIFrameEl();
-	        iframe.contentWindow.setData(url);
-	    },
-	    ondestroy: function (action){
-	    	isOpen = true;
-	    }
-	});
-}

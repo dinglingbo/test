@@ -274,27 +274,35 @@ function imageHtml(imageUrl,indexss){
 
 
 function save(){
+	var all = [];
 	for(var i=0;i<before.length;i++){
-		after.push(before[i]);
+		all.push(before[i]);
 	}
-
-    if(after.length == 0){
+	for(var i=0;i<after.length;i++){
+		all.push(after[i]);
+	}
+    if(all.length == 0){
     	showMsg("暂无图片需要保存","W");
     	return;
     }
-
+	 nui.mask({
+	        el: document.body,
+	        cls: 'mini-mask-loading',
+	        html: '保存中...'
+	 });
     nui.ajax({
 		url: baseUrl+ "com.hsapi.repair.repairService.waveBox.addUploadPhoto.biz.ext",
 		type: "post",
 		cache: false,
 		async: false,
 		data: {
-			add: after,
+			add: all,
 			serviceId : serviceId
 		},
 		success: function (text) {
+			nui.unmask();
 				if(text.errCode == "S"){
-					showMsg("执行成功","S");
+					showMsg("保存成功","S");
 				}else{
 					showMsg(text.errMsg,"W");
 				}

@@ -1290,7 +1290,7 @@
       <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link67</targetConnections>
-    <location x="403" y="277"/>
+    <location x="393" y="257"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo6label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -1306,7 +1306,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo6label" name="label" nodeType="label">
-    <location x="383" y="313"/>
+    <location x="373" y="293"/>
     <figSize height="17" width="62"/>
     <node>invokePojo6</node>
   </nodes>
@@ -1316,7 +1316,7 @@
       <targetNode>loopend0</targetNode>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
-    <location x="400" y="191"/>
+    <location x="418" y="171"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess4label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -1335,7 +1335,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess4label" name="label" nodeType="label">
-    <location x="365" y="226"/>
+    <location x="383" y="206"/>
     <figSize height="17" width="97"/>
     <node>subprocess4</node>
   </nodes>

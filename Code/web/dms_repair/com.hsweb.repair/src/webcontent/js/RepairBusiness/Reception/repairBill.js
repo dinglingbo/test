@@ -3736,7 +3736,9 @@ function delFromBillPart(data, callback){
 }
 
 function addcardTime(){	
-	xyguest.wechatOpenId = contactorF.wechatOpenId;
+	if(contactorF){
+		xyguest.wechatOpenId = contactorF.wechatOpenId;
+	}
 	doAddcardTime(xyguest);
 }
 

@@ -1759,3 +1759,69 @@ function doAudit(){
 		}
 	});
 }
+
+function print(){
+	var msg = checkSettleRow();
+	if (msg) {
+		showMsg(msg, "W");
+		return;
+	}
+	var rows = rRightGrid.getSelecteds();
+	var sourceUrl = webPath + contextPath + "/com.hsweb.RepairBusiness.arrearsPrint.flow?token="+token;
+	var printName = currOrgName;
+	var p = {
+		comp : printName,
+		partApiUrl:apiPath + partApi + "/",
+		frmApiUrl:apiPath + frmApi + "/",
+		baseUrl: apiPath + repairApi + "/",
+		sysUrl: apiPath + sysApi + "/",
+		webUrl:webPath + contextPath + "/",
+        bankName: currBankName,
+        bankAccountNumber: currBankAccountNumber,
+        currCompAddress: currCompAddress,
+        currCompTel: currCompTel,
+        currSlogan1: currSlogan1,
+        currSlogan2: currSlogan2,
+        currUserName : currUserName,
+        currCompLogoPath: currCompLogoPath,
+		token : token
+	};
+	var businessNumber = "";
+	var netInAmt =0;
+	for(var i = 0;i<rows.length;i++){
+		rows[i].guestName = rows[i].fullName;//打印界面用的是guestName
+		if(i==rows.length-1){
+			businessNumber = businessNumber+rows[i].billServiceId
+			netInAmt = parseFloat(netInAmt)+parseFloat(rows[i].nowAmt);
+			netInAmt = netInAmt.toFixed(2);
+			
+		}else{
+			businessNumber = businessNumber+rows[i].billServiceId+","
+			netInAmt = parseFloat(netInAmt)+parseFloat(rows[i].nowAmt);
+			netInAmt = netInAmt.toFixed(2)
+		}
+		
+	}
+	//var guestData = [{guestName:rows[0].fullName}]
+	params = {
+		guestData:rows,
+		businessNumber :businessNumber,
+		billServiceId : rows[0].billServiceId,
+		netInAmt:netInAmt,
+		p:p
+	};
+
+
+	nui.open({
+        url: sourceUrl,
+        title:"打印欠款证明单",
+		width: "100%",
+		height: "100%",
+        onload: function () {
+            var iframe = this.getIFrameEl();
+           iframe.contentWindow.SetData(params);
+        },
+        ondestroy: function (action){
+        }
+    });
+}

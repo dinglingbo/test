@@ -9,7 +9,7 @@
 
 <head>
 	<title>应收账款管理</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.7.12"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.7.14"></script>
 	    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 	<style type="text/css">
@@ -152,6 +152,7 @@
 							<span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
 						<a class="nui-button" iconCls="" plain="true" onclick="openOrderDetail()">
 							<span class="fa fa-search fa-lg"></span>&nbsp;详情</a>
+						<a class="nui-button" iconCls="" plain="true" onclick="print()"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
 <!-- 						<a class="nui-button" iconCls="" plain="true" onclick="doDelete()">
 							<span class="fa fa-trash fa-lg"></span>&nbsp;作废</a> -->
 						<a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn">

@@ -225,6 +225,7 @@
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>invokePojo1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link23</targetConnections>
     <location x="134" y="435"/>
@@ -248,7 +249,7 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="运算逻辑1" displayName=" Query according to  criteria Entity" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="运算逻辑1" displayName="" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>assign7</targetNode>
@@ -483,6 +484,7 @@
     <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="link33" isDefault="true" type="transition">
       <sourceNode>loopstart3</sourceNode>
       <targetNode>assign10</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link11</targetConnections>
     <location x="558" y="438"/>

@@ -9,7 +9,7 @@
 -->
 <head>
     <title>维修出库明细</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.1.11"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.1.12"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -111,6 +111,19 @@
           valueField="id"
           dataField="billTypeIdList"
           emptyText="工单类型"
+          url=""
+          allowInput="true"
+          valueFromSelect="false"
+          width="100px"
+          onvaluechanged="onSearch"
+          >
+       <input class="nui-combobox" 
+          id="workTeamId" 
+          name="workTeamId"
+          textField="name"
+          valueField="id"
+          dataField="workTeamIdList"
+          emptyText="工作组"
           url=""
           allowInput="true"
           valueFromSelect="false"

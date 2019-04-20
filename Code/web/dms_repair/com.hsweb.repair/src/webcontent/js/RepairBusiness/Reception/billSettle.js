@@ -33,7 +33,6 @@ var deductionAmt = 0;
 //结算接口的优惠券对象
 var couponList = [];
 $(document).ready(function(v) {
-
 	
 	$("body").on("blur","input[name='amount']",function(){
 		onChanged();
@@ -920,7 +919,7 @@ if(code != "" && code != null){
 		data : json2,
 		success : function(data) {
 			if(data.result.code=="S"){
-				v = data.result.data;
+				var v = data.result.data;
 				//判断对象是否为空
 				var isEnp = false;
 				for(var a in v){
@@ -947,8 +946,8 @@ if(code != "" && code != null){
 						     '<div class="q-type">'+
 						        '<div class="q-range">'+
 						            '<div class="typ-txt">'+
-						                '<span >'+ v.couponTitle+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="##" class="useText" name="quan" id='+v.couponDistributeId+'><span id = chang'+v.couponDistributeId+'>使用</span></a></span>'+
-						               '</div>'+
+						                '<span >'+ v.couponTitle+ '</span>'+
+						               '<a href="##" class="useText" name="quan" id='+v.couponDistributeId+'><span id = chang'+v.couponDistributeId+'>使用</span></a></div>'+
 						            '<div class="range-item">'+ v. couponDescribe + str +'</div>'+
 						            '<div class="range-item">到期时间：'+v.couponEndDate +'</div>'+
 						            '<div class="range-item">编码：'+v.userCouponCode +'</div>'+
@@ -959,9 +958,14 @@ if(code != "" && code != null){
 							if(v.couponType == 1){
 								boolean = coupon(v);
 							}else{
-								excCoupon(v,function(tem){
-									boolean = tem;
-								});
+								if(v.itemId){
+									excCoupon(v,function(tem){
+										boolean = tem;
+									});
+								}else{
+									boolean = false;
+								}
+								
 							}
 							if(boolean){	
 								document.getElementById("show").innerHTML = document.getElementById("show").innerHTML + list;

@@ -148,13 +148,13 @@
         <div style="padding-top:15px; margin:0 15px;">
             <table  width="92%" border="0" align="center" cellpadding="0" cellspacing="0">
                 <tbody>
-                    <tr>
+<!--                     <tr>
                         <td class="color999" width="76" height="46">单据编号：</td>
                         <td><input type="text" id="serviceCode1" class="peijianss" value="" /></td>
-                    </tr>
+                    </tr> -->
                     <tr>
-                        <td class="color999" height="46">打印日期：</td>
-                        <td><input id="payDate1" type="datetime-local" value=""/></td>
+                        <td class="color999" height="46">欠款日期：</td>
+                        <td><input id="payDate1"  value="" length="99"/></td>
                     </tr>
                     <tr>
                         <td class="color999" height="46">欠款人：</td>
@@ -205,17 +205,17 @@
         	</div>
             <table  width="100%" >
 	            <tbody>
-	                <tr>
+<!-- 	                <tr>
 	                    <td  style="padding-left: 70%">
 	                        <div style=" font-size: 13px;font-family: Arial;">
 	                          №:<span id="serviceCode"></span>  
 	                        </div>
 	                    </td>
-	                </tr>
+	                </tr> -->
 	                <tr>
 	                    <td  style="padding-left: 70%">
 	                        <div style="font-size: 13px;font-family: Arial;">
-	                         	 打印日期:<span id="payDate"></span>  
+	                         	 欠款日期:<span id="payDate"></span>  
 	                        </div>
 	                    </td>
 	                </tr>
@@ -257,20 +257,20 @@
             	<p><b>
             	<div style="margin-left: 50px;margin-top: 25px;">兹有:<div style="border-bottom: 1px solid black;margin-left: 35px;margin-top: -22px;"><span  id="guestName"></span></div></div>          	
             	<div style="margin-left: 30px;margin-right: 50px;border-bottom: 1px solid black;"><div style="margin-left: 200px;margin-top: 10px;">业务单号:<span id="businessNumber"></span></div></div>
-            	<div style="margin-left: 50px;margin-top: 15px;float:left;">人民币（大写）:</div>
+            	<div style="margin-left: 50px;margin-top: 15px;float:left;">在我处欠款人民币（大写）:</div>
             	<div style="margin-top: 15px;border-bottom: 1px solid black;float:left;width: 40%"><span id="money"></span></div>
             	<div style="margin-top: 15px;float:left">￥:</div>
             	<div style="margin-top: 15px;border-bottom: 1px solid black;float:left;width: 20%"><span id="netInAmt"></span></div>
             	</b></p>
 				</br>
 				<div>
-	            	<div style="margin-left: 50px;margin-top: 20px;float:left;width: 50%">
+<!-- 	            	<div style="margin-left: 50px;margin-top: 20px;float:left;width: 50%">
 	            	支付方式:    <input type="checkbox"   />现金  
 	            			<input type="checkbox"   />刷卡
 	   						<input type="checkbox"   />汇款    
 	   					    <input type="checkbox"   />支票  
 	    					<input type="checkbox"   />转账    
-	    			</div>		
+	    			</div> -->		
 	    			<div style="margin-right: 100px;margin-top: 20px;float:left">收款单位（盖章）：<span id="companyName"></span></div>
     			</div>
             </div>
@@ -278,9 +278,9 @@
 	            <tbody>
 	                <tr>
 	                	<td colspan="2" >
-	                     	收款人:
+	                     	欠款人:
 	                    </td>
-	                    <td colspan="3" >
+	                    <td colspan="2" >
 	                      	  附单:
 	                    </td>
 	                </tr>
@@ -295,9 +295,9 @@
 	                	<td >
 							证明人:
 	                	</td>
-	                	<td >
+<!-- 	                	<td >
 							支款人:
-	                	</td>
+	                	</td> -->
 	                	<td >
 							经手人:<span id="makeMan"></span>
 	                	</td>
@@ -328,12 +328,12 @@
 		     }  
 
         });
-		function SetData(params){
+/* 		function SetData(params){
 			var frmBill = {};
 			$.post(params.p.frmApiUrl+"com.hsapi.frm.frmService.finance.queryRPAccountDetail.biz.ext?params/billServiceId="+params.billServiceId||""+"&token="+params.p.token,{},function(text){
     		    if(text.list){
     		      frmBill = text.list;
-    		      document.getElementById("serviceCode").innerHTML = frmBill[0].rpAccountId||"";
+    		      document.getElementById("serviceCode").innerHTML = frmBill[0].billServiceId||"";
     		      	var payDate = frmBill[0].auditDate;
     		      	payDate = payDate.replace(/-/g,"/");
 	        		payDate = new Date(payDate);
@@ -355,22 +355,42 @@
     		    }
 	         });
 			
+		} */
+		
+		function SetData(params){
+					var payDate = params.guestData[0].createDate;
+	        		payDate = new Date(payDate);
+	        	    payDate=payDate.getFullYear() + '-' + (payDate.getMonth() + 1) + '-' + payDate.getDate() + ' ' + payDate.getHours() + ':' + payDate.getMinutes() + ':' + payDate.getSeconds();
+/*     		      	payDate = payDate.replace(/-/g,"/");
+	        		payDate = format(payDate, "yyyy-MM-dd HH:mm"); */
+	        		document.getElementById("payDate").innerHTML = payDate;
+				    var carNoList = "";
+	        		for(var i =0;i<params.guestData.length;i++){
+	        			carNoList = (carNoList +params.guestData[i].carNo||"")+"&nbsp;&nbsp;";
+	        		}
+	        		document.getElementById("guestName").innerHTML = (params.guestData[0].guestName||"")+"&nbsp;&nbsp;&nbsp;"+carNoList;
+	        		document.getElementById("businessNumber").innerHTML = params.businessNumber||"";
+	        		
+	        		var money = transform(params.netInAmt+"");
+					document.getElementById("money").innerHTML = money;
+					document.getElementById("netInAmt").innerHTML = params.netInAmt||"";
+					document.getElementById("makeMan").innerHTML=params.p.currUserName||"";
+					document.getElementById("companyName").innerHTML=params.p.comp||"";
 		}
 		
 		function box_setup_open() {
 	        $(".boxbg").show();
 	        $(".popbox").show();
-	        document.getElementById("serviceCode1").value = document.getElementById("serviceCode").innerHTML;
     		document.getElementById("payDate1").value = document.getElementById("payDate").innerHTML;
     		document.getElementById("guestName1").value = document.getElementById("guestName").innerHTML;
     		document.getElementById("businessNumber1").value = document.getElementById("businessNumber").innerHTML;
     		document.getElementById("netInAmt1").value = document.getElementById("netInAmt").innerHTML;
-    		if(document.getElementById("payDate").innerHTML.length > 16){
+/*     		if(document.getElementById("payDate").innerHTML.length > 16){
     			var value = document.getElementById("payDate").innerHTML.substring(0, document.getElementById("payDate").innerHTML.length-3);
     			document.getElementById("payDate1").value = value.replace(" ","T");
     		}else{
     			document.getElementById("payDate1").value = document.getElementById("payDate").innerHTML.replace(" ","T");
-    		}
+    		} */
     	}
     	function CloseWindow(action) {
             if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
@@ -379,11 +399,10 @@
 
     	 function save(){
 			box_setup_close();
-    		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode1").value;
     		document.getElementById("netInAmt").innerHTML = document.getElementById("netInAmt1").value;
     		document.getElementById("guestName").innerHTML = document.getElementById("guestName1").value;
     		document.getElementById("businessNumber").innerHTML = document.getElementById("businessNumber1").value;
-			document.getElementById("payDate").innerHTML =  document.getElementById("payDate1").value.replace("T"," ");
+			document.getElementById("payDate").innerHTML =  document.getElementById("payDate1").value;
 			var money = transform(document.getElementById("netInAmt1").value+"");
 			document.getElementById("money").innerHTML = money;
     	}

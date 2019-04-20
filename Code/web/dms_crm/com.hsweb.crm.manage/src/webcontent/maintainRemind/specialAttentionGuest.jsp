@@ -12,7 +12,7 @@
 
 <head>
     <title>特别关怀</title>
-    <script src="<%= request.getContextPath() %>/manage/js/maintainRemMain/specialAttentionGuest.js?v=1.1.92"></script>
+    <script src="<%= request.getContextPath() %>/manage/js/maintainRemMain/specialAttentionGuest.js?v=1.1.93"></script>
          <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style>

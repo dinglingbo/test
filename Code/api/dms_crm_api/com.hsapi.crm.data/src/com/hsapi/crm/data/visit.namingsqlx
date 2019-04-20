@@ -98,6 +98,24 @@
             <isNotEmpty prepend="and" property="eNextVisitDay">  
                	e.next_visit_date  &lt;=  #eNextVisitDay# 
             </isNotEmpty>
+           <isNotEmpty prepend="and" property="sEnterDate">  
+               	a.enter_date &gt;=  #sEnterDate# 
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eEnterDate">  
+               	a.enter_date  &lt;=  #eEnterDate# 
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="sOutDate">  
+               	a.out_date &gt;=  #sOutDate# 
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eOutDate">  
+               	a.out_date  &lt;=  #eOutDate# 
+            </isNotEmpty>
+             <isNotEmpty prepend="and" property="sVisitTimes">  
+               	e.visit_times &gt;=  #sVisitTimes# 
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eVisitTimes">  
+               	e.visit_times  &lt;=  #eVisitTimes# 
+            </isNotEmpty>
              <isNotEmpty prepend="and" property="sLeaveDays">  
                	TIMESTAMPDIFF(DAY ,a.out_date  ,NOW()) &gt;=  #sLeaveDays# 
             </isNotEmpty>
@@ -106,6 +124,9 @@
             </isNotEmpty>
         	<isNotEmpty prepend="and" property="level">  
     			(d.tgrade in ($level$))
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="dataType">  
+    			(e.data_type in ($dataType$))
 			</isNotEmpty>
         </select>
         
@@ -156,6 +177,9 @@
 		</isNotEmpty>
 		<isNotEmpty prepend="and" property="carId">  
 		   	a.car_id =   #carId#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="carNo">  
+		   	a.car_no =   #carNo#
 		</isNotEmpty>
 		<isNotEmpty prepend="and" property="guestSource">  
 		   	a.guest_source =   #guestSource#

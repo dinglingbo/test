@@ -116,16 +116,22 @@ function CloseWindow(action) {
 
 
 function SetData(params) {
+	if(params.type=="add"){
+		params.id = null;
+	}
     basicInfoForm = new nui.Form("#basicInfoForm");
-    basicInfoForm.setData(params);    
+    basicInfoForm.setData(params); 
+    nui.get("prdtName").setText(params.prdtName||"");
 }
 
 
 function setData(params) {
-	params.id = null;
+	if(params.type=="add"){
+		params.id = null;
+	}
     basicInfoForm = new nui.Form("#basicInfoForm");
     basicInfoForm.setData(params);  
-    nui.get("prdtName").setText(params.prdtName);
+    nui.get("prdtName").setText(params.prdtName||"");
 }
 
 

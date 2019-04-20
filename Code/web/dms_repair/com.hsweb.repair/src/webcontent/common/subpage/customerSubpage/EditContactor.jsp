@@ -60,6 +60,14 @@
                         <input class="nui-textbox" name="idNo" width="100%" />
                     </td>
                 </tr>
+                <tr>
+                    <td class="form_label">
+                        <label>备注：</label>
+                    </td>
+                    <td colspan="3">
+                        <input class="nui-textbox" name="remark" width="100%" />
+                    </td>
+                </tr>
                  <tr>
                     <td class="form_label">
                         <label>驾驶证号：</label>
@@ -118,13 +126,32 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="form_label">
-                        <label>备注：</label>
+                <td class="form_label">
+                        <label>驾驶证正本照：<br><a  href="#" id="faker">点击上传</a></label>
                     </td>
-                    <td colspan="3">
-                        <input class="nui-textbox" name="remark" width="100%" />
+                    <td nowrap="nowrap">
+		                <div class="page-header" id="btn-uploader">
+						            <img id="xmTanImg" style="width: 100px;height: 100px" onclick="preview(this.src)" src="<%= request.getContextPath() %>/common/images/logo.jpg"/>
+					    </div>
+		
+		
+								 <input  class="nui-textbox" id="licensePicOne" name="licensePicOne"  style="display:none" >
+                    </td>
+                    <td class="form_label" colspan="1">
+                       <label>驾驶证副本照：<br><a  href="#" id="faker1">点击上传</a></label>
+                    </td>
+                    <td>
+	                    <div class="page-header" id="btn-uploader">
+					            <img id="xmTanImg1" style="width: 100px;height: 100px" onclick="preview(this.src)" src="<%= request.getContextPath() %>/common/images/logo.jpg"/>
+				        </div>
+
+
+						 <input  class="nui-textbox" id="licensePicTwo" name="licensePicTwo"  style="display:none" >
                     </td>
                 </tr>
             </table> 
         </div>
+       <div class="max_img1" style="margin:0 auto">
+			<img src="" id="maxImgShow1" onclick="changeHide();" width="100%" height="100%" />
+	   </div>
     </div>

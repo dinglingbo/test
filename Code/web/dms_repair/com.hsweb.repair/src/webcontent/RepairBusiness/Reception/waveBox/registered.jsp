@@ -81,7 +81,7 @@
     	var serviceTypeList = [];
     	var baseUrl = apiPath + repairApi + "/";
     	var serviceTypeUrl = baseUrl + "com.hsapi.repair.common.common.getBusinessType.biz.ext";
-    	var gridUrl =baseUrl + "com.hsapi.repair.repairService.crud.searchRegistered.biz.ext";
+    	var gridUrl =baseUrl + "com.hsapi.repair.repairService.waveBox.searchRegistered.biz.ext";
     	$(document).ready(function(v) {
     		repairPartAuditFlag = nui.get("repairPartAuditFlag");
     		grid = nui.get("grid");

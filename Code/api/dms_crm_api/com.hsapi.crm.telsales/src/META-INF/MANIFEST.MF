@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
-Require-Bundle: com.eos.workflow,com.hs.common,com.primeton.eos.richwe
- b,com.eos.foundation,com.hsapi.crm.data
-eos-webCtxPath: telsales
+Require-Bundle: com.hsapi.crm.svr,com.eos.workflow,com.primeton.eos.ri
+ chweb,com.hs.common,com.eos.foundation,com.hsapi.crm.data
 Bundle-Vendor: Guine
+eos-webCtxPath: telsales
 Bundle-Version: 1.0.0
 Bundle-Name: com.hsapi.crm.telsales
 Bundle-Description: 

@@ -3,6 +3,8 @@ var rightGridUrl = baseUrl+"com.hsapi.repair.baseData.item.queryRepairItemList.b
 var treeUrl = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryDictTypeTree.biz.ext";
 //var itemGridUrl = apiPath + sysApi + "/com.hsapi.system.product.items.getItem.biz.ext";
 var itemGridUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.svr.getStandardItemList.biz.ext";
+//var itemGridUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.svr.getStandardItemListByCarModelId.biz.ext";
+
 //var hotUrl = apiPath + sysApi + "/com.hsapi.system.product.items.getHotWord.biz.ext";
 var hotUrl = apiPath + repairApi +"/com.hsapi.repair.repairService.svr.getStandardItem.biz.ext";
 var tree1 = null;

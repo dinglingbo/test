@@ -8,23 +8,23 @@
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
     
-    <!--下次保养  （暂时没用到）-->
+    <!--下次保养  （暂时没用到）TIMESTAMPDIFF(DAY, NOW(), a.care_due_date)-->
 	<select id="getNextCare" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT a.last_orgid as orgid, b.guest_id as guestId, a.car_id as carId, b.car_no as carNo, b.vin as carVin, 
 			   a.mt_advisor_id as mtAdvisorId, a.mt_advisor_name as mtAdvisorName, DATE_FORMAT(a.care_due_date,'%Y-%m-%d') as dueDate 
 		from rpb_car_extend a
 		inner join rpb_car b
 		on a.car_id = b.id
-		where TIMESTAMPDIFF(DAY, NOW(), a.care_due_date) = #ln#
+		where DATEDIFF(now(),a.care_due_date) = #ln#
 		      and a.last_orgid = #orgid# and a.is_need_remind = 0
 	</select>
-	<!--下次保养-->
+	<!--下次保养  TIMESTAMPDIFF(DAY , NOW(), a.care_due_date) = #ln#-->
 	<update id="updateNextCare" parameterClass="java.util.HashMap">
 		update rpb_car_extend a
 		inner join rpb_car b
 		on a.car_id = b.id
 		set a.is_need_remind = 1, a.remind_status = 0
-		where TIMESTAMPDIFF(DAY , NOW(), a.care_due_date) = #ln#
+		where DATEDIFF(now(),a.care_due_date) = #ln#
 		      and a.last_orgid = #orgid# and a.is_need_remind = 0
 	</update>
 	
@@ -32,55 +32,55 @@
 	<select id="getCareCircle" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 	</select>
 	
-	<!--年审到期-->
+	<!--年审到期  TIMESTAMPDIFF(DAY, NOW() , b.annual_verification_due_date) = #ln#-->
 	<select id="getAnnualVerification" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT a.last_orgid as orgid, b.guest_id as guestId, a.car_id as carId, b.car_no as carNo, b.vin as carVin, 
 		       b.mt_advisor_id as mtAdvisorId, b.mt_advisor_name as mtAdvisorName, DATE_FORMAT(b.annual_verification_due_date,'%Y-%m-%d') as dueDate
 		from rpb_car_extend a
 		inner join rpb_car b
 		on a.car_id = b.id
-		where TIMESTAMPDIFF(DAY, NOW() , b.annual_verification_due_date) = #ln#
+		where DATEDIFF(now(),b.annual_verification_due_date) = #ln#
 	</select>
 	
-	<!--商业险到期  （暂时没用到）-->
+	<!--商业险到期  （暂时没用到）TIMESTAMPDIFF(DAY , NOW(), b.annual_inspection_date) = #ln#-->
 	<select id="getAnnualInspection" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT a.last_orgid as orgid, b.guest_id as guestId, a.car_id as carId, b.car_no as carNo, b.vin as carVin, 
 		       a.mt_advisor_id as mtAdvisorId, a.mt_advisor_name as mtAdvisorName, DATE_FORMAT(b.annual_inspection_date,'%Y-%m-%d') as dueDate
 		from rpb_car_extend a
 		inner join rpb_car b
 		on a.car_id = b.id
-		where TIMESTAMPDIFF(DAY , NOW(), b.annual_inspection_date) = #ln#
+		where DATEDIFF(now(),b.annual_inspection_date) = #ln#
 	</select>
-	<!--商业险到期-->
+	<!--商业险到期  TIMESTAMPDIFF(DAY , NOW() , b.annual_inspection_date) = #ln#-->
 	<update id="updateAnnualRemind" parameterClass="java.util.HashMap">
 		update rpb_car_extend a
 		inner join rpb_car b
 		on a.car_id = b.id
 		set a.is_annual_remind = 1, a.annual_status = 0
-		where TIMESTAMPDIFF(DAY , NOW() , b.annual_inspection_date) = #ln#
+		where DATEDIFF(now(),b.annual_inspection_date) = #ln#
 		      and a.last_orgid = #orgid# and a.is_annual_remind = 0
 	</update>
 
-	<!--交强险到期 （暂时没用到） -->
+	<!--交强险到期 （暂时没用到） TIMESTAMPDIFF(DAY, NOW(), b.insure_due_date) = #ln#-->
 	<select id="getInsureDueDate" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT a.last_orgid as orgid, b.guest_id as guestId, a.car_id as carId, b.car_no as carNo, b.vin as carVin, 
 		       b.mt_advisor_id as mtAdvisorId, b.mt_advisor_name as mtAdvisorName, DATE_FORMAT(b.insure_due_date,'%Y-%m-%d') as dueDate
 		from rpb_car_extend a
 		inner join rpb_car b
 		on a.car_id = b.id
-		where TIMESTAMPDIFF(DAY, NOW(), b.insure_due_date) = #ln#
+		where DATEDIFF(now(),b.insure_due_date) = #ln#
 	</select>
-	<!--交强险到期-->
+	<!--交强险到期  TIMESTAMPDIFF(DAY, NOW(), b.insure_due_date) = #ln#-->
 	<update id="updateInsureRemind" parameterClass="java.util.HashMap">
 		update rpb_car_extend a
 		inner join rpb_car b
 		on a.car_id = b.id
 		set a.is_insure_remind = 1, a.insure_status = 0
-		where TIMESTAMPDIFF(DAY, NOW(), b.insure_due_date) = #ln#
+		where DATEDIFF(now(),b.insure_due_date) = #ln#
 		      and a.last_orgid = #orgid# and a.is_insure_remind = 0
 	</update>
 	
-	<!--年检到期-->
+	<!--年检到期  TIMESTAMPDIFF(DAY , NOW(), b.annual_verification_due_date) = #ln#-->
 	<select id="getRpsItemCardTimesAmt" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 	</select>
 	<!--年检到期-->
@@ -89,7 +89,7 @@
 		inner join rpb_car b
 		on a.car_id = b.id
 		set a.is_veri_remind = 1, a.veri_status = 0
-		where TIMESTAMPDIFF(DAY , NOW(), b.annual_verification_due_date) = #ln#
+		where DATEDIFF(now(),b.annual_verification_due_date) = #ln#
 					and a.last_orgid = #orgid# and a.is_veri_remind = 0
 	</update>
 	
@@ -107,10 +107,10 @@
 					and orgid = #orgid# and is_bir_remind = 0
 	</update>
 	
-	<!--驾照到期-->
+	<!--驾照到期  TIMESTAMPDIFF(DAY, NOW(), license_over_date) = #ln#-->
 	<update id="updateGuestLicenseRemind" parameterClass="java.util.HashMap">
 		update rpb_contactor set is_license_remind = 1, license_status = 0
-		where TIMESTAMPDIFF(DAY, NOW(), license_over_date) = #ln#
+		where DATEDIFF(now(),license_over_date) = #ln#
 					and orgid = #orgid# and is_license_remind = 0
 	</update>
 	
@@ -177,7 +177,7 @@
 		where ifnull(a.is_cal_times,0) = 0 
 	</update>
 
-	<!--工单回访-->
+	<!--工单回访  TIMESTAMPDIFF(DAY, a.out_date,NOW())-->
 	<select id="getVisitMaintainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 			select 
 			a.orgid,
@@ -194,13 +194,13 @@
 			a.mt_advisor mtAdvisor,
 			a.out_date outDate
 		from  wb_repair.rps_maintain a
-		where TIMESTAMPDIFF(DAY, a.out_date,NOW()) = #tday#
+		where DATEDIFF(now(),a.out_date) = #tday#
 		and orgid=#orgid# 
 		and a.bill_type_id =#billTypeId#
 	</select>
 
 
-	<!--流失回访-->
+	<!--流失回访  TIMESTAMPDIFF(DAY, b.last_leave_date, NOW()) = #tday#-->
 	<select id="getLostVisitMaintainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		select 
 			a.orgid,
@@ -221,10 +221,24 @@
 		from   wb_repair.rpb_car_extend b
 		INNER JOIN wb_repair.rpb_car c on c.id = car_id
 		INNER JOIN  wb_repair.rps_maintain a on a.id = b.last_service_id
-		where TIMESTAMPDIFF(DAY, b.last_leave_date, NOW()) = #tday#
+		where DATEDIFF(now(),b.last_leave_date) = #tday#
 		and a.orgid=#orgid# 
 
 	</select>
+	
+	<!--车的本店来厂次数减1-->
+	<update id="updateCarComeTimes" parameterClass="java.util.HashMap">
+		update rps_guest_file set comp_come_times = case when (comp_come_times - 1) >= 0 
+								  then (comp_come_times - 1) else 0 END
+		where car_id = #carId# and orgid = #orgid#
+	</update>
+	
+	<!--车的连锁来厂次数减1-->
+	<update id="updateCarChainComeTimes" parameterClass="java.util.HashMap">
+		update rpb_car_extend set chain_come_times = case when (chain_come_times - 1) >= 0 
+		                          then (chain_come_times - 1) else 0 END
+	    where car_id = #carId#
+	</update>
 
 
 </sqlMap>

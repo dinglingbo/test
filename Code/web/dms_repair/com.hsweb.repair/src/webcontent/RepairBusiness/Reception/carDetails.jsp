@@ -12,7 +12,7 @@
         <head>
             <title>车辆详情</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.26" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.28" type="text/javascript"></script>
         </head>
         <style type="text/css">
             body {
@@ -243,6 +243,7 @@
                                         客户ID
                                     </div>
                                     <div field="name" allowSort="true" align="left" summaryType="count" headerAlign="center" width="100">姓名</div>
+                                     <div field="remark" allowSort="true" align="left"  headerAlign="center" width="100">备注</div>
                                     <div field="sex" allowSort="true" align="left" headerAlign="center" width="60" dataType="int">
                                         性别
                                     </div>
@@ -299,9 +300,22 @@
                                     <div field="prdtName" name="prdtName" width="100" headerAlign="center" header="产品名称"></div>
                                     <div field="prdtType" name="prdtType" width="50" headerAlign="center" header="产品类别"></div>
                                     <div field="totalTimes" name="totalTimes" width="50" headerAlign="center" header="总次数"></div>
-                                    <div field="canUseTimes" name="canUseTimes" width="50" headerAlign="center" header="可使用次数"></div>
+                                    <div field="useTimes" name="useTimes" width="50" headerAlign="center" header="已使用次数"></div>
                                     <div field="doTimes" name="doTimes" width="50" headerAlign="center" header="使用中次数"></div>
                                     <div field="balaTimes" name="balaTimes" width="50" headerAlign="center" header="剩余次数"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div title="线上订单" id="main" name="main">
+                            <div id="grid3" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" totalField="page.count" dataField="data"
+                                onrowdblclick="" allowCellSelect="true" url="">
+                                <div property="columns">
+	                                  <div field="prdtName" name="prdtName" width="100" headerAlign="center" header="产品名称"></div>
+							          <div field="prdtType" name="prdtType" width="60" headerAlign="center" header="产品类别"></div>
+							          <div field="totalTimes" name="totalTimes" width="50" headerAlign="center" header="总数量"></div>
+							          <div field="useTimes" name="useTimes" width="60" headerAlign="center" header="已使用数量"></div>
+							          <div field="doTimes" name="doTimes" width="70" headerAlign="center" header="使用中数量"></div>
+							          <div field="canUseTimes" name="canUseTimes" width="70" headerAlign="center" header="可使用数量"></div>
                                 </div>
                             </div>
                         </div>
@@ -313,6 +327,20 @@
                                     <div field="cardName" name="cardName" width="100" headerAlign="center" header="卡名称"></div>
                                     <div field="balaAmt" name="balaAmt" width="50" headerAlign="center" header="余额"></div>
                                     <div field="modifyDate" name="modifyDate" width="100" headerAlign="center" header="储值日期" dateFormat="yyyy-MM-dd"></div>
+                                </div>
+                            </div>
+                        </div>
+                         <div title="优惠券" id="main" name="main">
+                            <div id="grid4" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" totalField="page.count"
+                                dataField="userCouponDataArray" onrowdblclick="" allowCellSelect="true" url="">
+                                <div property="columns">
+                                    <div field="couponCode" name="couponCode" width="100" headerAlign="center" header="优惠券编码"></div>
+                                    <div field="couponTitle" name="couponTitle" width="50" headerAlign="center" header="名称"></div>
+                                    <div field="couponType" name="couponType" width="50" headerAlign="center" header="类型"></div>
+                                    <div field="couponDiscountsPrice" name="couponDiscountsPrice" width="50" headerAlign="center" header="优惠金额"></div>
+                                    <div field="couponDescribe" name="couponDescribe" width="100" headerAlign="center" header="使用说明"></div>
+                                    <div field="userName" name="userName" width="50" headerAlign="center" header="领券人"></div>
+                                    <div field="couponEndDate" name="couponEndDate" width="100" headerAlign="center" header="到期日期" dateFormat="yyyy-MM-dd"></div>
                                 </div>
                             </div>
                         </div>

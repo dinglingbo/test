@@ -80,6 +80,25 @@ $(document).ready(function (v)
                break;
         }
     });
+    grid.on("drawcell", function (e) {
+        var grid = e.sender;
+        var record = e.record;
+        switch (e.field) {
+           case "buySource":
+        	   if(record.buySource == 1){
+        		   e.cellHtml = "pc";
+        	   }
+        	   if(record.buySource == 2){
+        		   e.cellHtml = "微信";
+        	   }
+        	   if(record.buySource == 3){
+        		   e.cellHtml = "APP";
+        	   }
+        	   break;
+           default:
+               break;
+        }
+    });
     search();
        
 });

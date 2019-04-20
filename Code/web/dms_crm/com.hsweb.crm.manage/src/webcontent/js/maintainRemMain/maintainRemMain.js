@@ -27,7 +27,8 @@ $(document).ready(function(){
         $("#showMonile").show();
         document.getElementById("mobileText").innerHTML = e.record.mobile;
         var params = {
-            guestId: e.record.conId,
+            carNo:e.record.carNo,
+            //guestId: e.record.conId,
             guestSource: 0,
             token:token
         };

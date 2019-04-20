@@ -368,7 +368,7 @@ function doApplyCustomer(params,callback){
         url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
         title:"新增客户资料",
         width:560,
-        height:675,
+        height:600,
         onload:function(){
             var iframe = this.getIFrameEl();
             iframe.contentWindow.setData(params);
@@ -854,5 +854,46 @@ function doOutCarMainExpenseDetail(params,callback){
 			callback && callback();*/
         }
     });
+}
+//预览
+function preview(url){
+	var str = url.substr(url.length-8, 4);
+	if(str=="logo"){
+		return;
+	}
+	isOpen = false;
+	nui.open({
+	    url: webPath + contextPath
+		+ "/com.hsweb.repair.repoart.preview.flow?token="+token,
+	    title: "预览图片",
+		width: "700px",
+		height: "600px",
+		allowResize : false,
+	    onload: function () {
+	        var iframe = this.getIFrameEl();
+	        iframe.contentWindow.setData(url);
+	    },
+	    ondestroy: function (action){
+	    	isOpen = true;
+	    }
+	});
+}
+
+function completionWeChat(maintain){
+	 var completionWeChatUrl = baseUrl + "com.hsapi.repair.repairService.sendWeChat.sendFinishMTInfo.biz.ext";
+		var json = nui.encode({
+			"maintain":maintain,
+			token : token
+		});
+	  nui.ajax({
+			url : completionWeChatUrl,
+			type : 'POST',
+			data : json,
+			cache : false,
+			contentType : 'text/json',
+			success : function(text) {
+				var returnJson = nui.decode(text);
+			}
+		});
 }
 

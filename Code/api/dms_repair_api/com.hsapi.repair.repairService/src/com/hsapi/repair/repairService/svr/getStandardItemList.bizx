@@ -324,7 +324,7 @@
       <process:to type="query">index</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">httpStr+&quot;&amp;index=&quot;</process:from>
+      <process:from type="expression" pattern="reference">httpStr+&quot;&amp;page=&quot;</process:from>
       <process:to type="query">httpStr</process:to>
     </process:copy>
     <process:copy>
@@ -439,6 +439,7 @@
     <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>assign6</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link10</targetConnections>
     <location x="870" y="149"/>
@@ -503,7 +504,7 @@
       <targetNode>assign5</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

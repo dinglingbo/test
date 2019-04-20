@@ -1,9 +1,10 @@
 Manifest-Version: 1.0
-Require-Bundle: com.hsapi.part.common,com.hs.common,com.primeton.eos.r
- ichweb,com.hsapi.repair.common,com.hsapi.repair.data,com.eos.foundati
- on,com.hsapi.crm.data,com.hsapi.repair.baseData
-Bundle-Vendor: Administrator
+Require-Bundle: com.hsapi.part.common,com.hsapi.system.basic,com.prime
+ ton.eos.richweb,com.hs.common,com.hsapi.repair.data,com.hsapi.repair.
+ common,com.eos.foundation,com.hsapi.repair.baseData,com.hsapi.crm.dat
+ a
 eos-webCtxPath: svr
+Bundle-Vendor: Administrator
 Bundle-Version: 1.0.0
 Bundle-Name: com.hsapi.crm.svr
 Bundle-Description: 

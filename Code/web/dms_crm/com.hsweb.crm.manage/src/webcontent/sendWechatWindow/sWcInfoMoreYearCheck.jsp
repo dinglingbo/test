@@ -233,7 +233,11 @@
                 visitContent:con ,
                 guestSource: data.guestSource,
                 wechatOpenId: data.wechatOpenId,
-                wechatServiceId:data.wechatServiceId
+                wechatServiceId:data.wechatServiceId,
+                firstText:formData.firstContent.toString().replace(/【车主姓名】/g,mainDatas[i].guestName),
+                endText:formData.endContent.toString().replace(/【车主姓名】/g,mainDatas[i].guestName),
+                keyword1:mainDatas[i].carNo ,
+                keyword2:(mainDatas[i].dueDate == null?'':nui.formatDate (new Date(mainDatas[i].dueDate),'yyyy-MM-dd HH:mm'))
             };
             Arr.push(pa);
         }

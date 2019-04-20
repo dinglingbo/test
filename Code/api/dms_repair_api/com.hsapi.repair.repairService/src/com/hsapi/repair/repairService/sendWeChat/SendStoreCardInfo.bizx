@@ -104,10 +104,6 @@
       <process:from type="literal" pattern="reference">如有疑问，请联系商家客服</process:from>
       <process:to type="query">paraMap/remark</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">https://www.baidu.com/</process:from>
-      <process:to type="query">turl</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign14label" name="label" nodeType="label">
     <location x="457" y="321"/>

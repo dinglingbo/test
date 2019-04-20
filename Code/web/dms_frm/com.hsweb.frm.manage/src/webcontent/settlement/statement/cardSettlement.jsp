@@ -11,7 +11,7 @@
 
 <head>
 	<title>计次卡/储值卡结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardSettlement.js?v=1.6.1"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardSettlement.js?v=1.6.2"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -435,7 +435,7 @@
 			<table id="statustable" style="width:100%;height:100%;font-size:16px;color:#5a78a0;padding-left:20px;">
 				<tr>
  					<td >
-						<input type="checkbox" id="settlesendwx" >微信通知客户
+						<input class="nui-checkbox" id="cardSettleWeChat" >微信通知客户
 					</td>
 					<td >
 						<input type="checkbox" id="settlesenddx">短信通知客户

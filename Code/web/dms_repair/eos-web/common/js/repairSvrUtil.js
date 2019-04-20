@@ -855,4 +855,26 @@ function doOutCarMainExpenseDetail(params,callback){
         }
     });
 }
-
+//预览
+function preview(url){
+	var str = url.substr(url.length-8, 4);
+	if(str=="logo"){
+		return;
+	}
+	isOpen = false;
+	nui.open({
+	    url: webPath + contextPath
+		+ "/com.hsweb.repair.repoart.preview.flow?token="+token,
+	    title: "预览图片",
+		width: "700px",
+		height: "600px",
+		allowResize : false,
+	    onload: function () {
+	        var iframe = this.getIFrameEl();
+	        iframe.contentWindow.setData(url);
+	    },
+	    ondestroy: function (action){
+	    	isOpen = true;
+	    }
+	});
+}

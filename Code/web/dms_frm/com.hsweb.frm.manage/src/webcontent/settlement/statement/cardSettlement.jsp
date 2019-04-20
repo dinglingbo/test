@@ -434,7 +434,12 @@
 		<div style="float:left;height:100%;width:100%;">
 			<table id="statustable" style="width:100%;height:100%;font-size:16px;color:#5a78a0;padding-left:20px;">
 				<tr>
- 
+ 					<td >
+						<input type="checkbox" id="settlesendwx" >微信通知客户
+					</td>
+					<td >
+						<input type="checkbox" id="settlesenddx">短信通知客户
+					</td>
  					<td  width="350px" align="right">
 						<a id="wxbtnsettle" style="    width: 120px;
 							height: 40px;

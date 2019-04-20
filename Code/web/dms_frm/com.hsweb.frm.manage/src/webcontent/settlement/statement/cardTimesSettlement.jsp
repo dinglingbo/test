@@ -11,7 +11,7 @@
 
 <head>
 	<title>计次卡/储值卡结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardTimesSettlement.js?v=1.4.8"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardTimesSettlement.js?v=1.5.0"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -471,15 +471,13 @@
 
 						<div class="pay_jshj_list">
 
-
 								<table width="100%" border="0" cellspacing="0" cellpadding="0" >
 									<tbody>
 										<tr>
 											<td width="50%" height="&quot;44&quot;">
 												<select name="cardList" id="cardList" onchange="payCard(this.id)" style="width: 94%; height: 33px; font-weight: bold; font-size: 15px; color: #578ccd;border:0;">
 
-
-													</select>
+												</select>
 												</td>
 												<td>
 												</td>
@@ -517,6 +515,7 @@
 
 											</td>
 										</tr>
+										
 									</tbody>
 								</table>
 					             <div  id="showCode" style="display: none;" >
@@ -665,7 +664,7 @@
 						<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 					</td>
 					<td >
-						<input type="checkbox" id="settlesendwx" checked="checked">微信通知客户
+						<input type="checkbox" id="settlesendwx" >微信通知客户
 					</td>
 					<td >
 						<input type="checkbox" id="settlesenddx">短信通知客户

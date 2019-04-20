@@ -20,8 +20,8 @@
 </head>
 <style>
 	        table, td {
-	            font-family: Tahoma,Geneva,sans-serif;
-	            font-size: 16px;
+	            font-family: 微软雅黑;
+	            font-size: 14px;
 	            color: #000;
 	        }
 
@@ -57,7 +57,7 @@
             height: 40px;
             border: 1px #b4b4b4 solid;
             float: left;
-            font-size: 16px;
+            font-size: 14px;
             font-family: "微软雅黑";
         }
 
@@ -201,20 +201,20 @@
         <div style="margin: 0 10px;" class="printny">
         <div class="company-info">
         	<div class="parent">
-        		<p><font size="6" ><b>收&nbsp;&nbsp;款&nbsp;&nbsp;证&nbsp;&nbsp;明&nbsp;&nbsp;单</b></font></p>
+        		<p><font size="5" ><b>收&nbsp;&nbsp;款&nbsp;&nbsp;证&nbsp;&nbsp;明&nbsp;&nbsp;单</b></font></p>
         	</div>
             <table  width="100%" >
 	            <tbody>
 	                <tr>
 	                    <td  style="padding-left: 70%">
-	                        <div style=" font-size: 13px;font-family: Arial;">
+	                        <div style=" font-size: 13px;font-family: 微软雅黑;">
 	                          №:<span id="serviceCode"></span>  
 	                        </div>
 	                    </td>
 	                </tr>
 	                <tr>
 	                    <td  style="padding-left: 70%">
-	                        <div style="font-size: 13px;font-family: Arial;">
+	                        <div style="font-size: 13px;font-family: 微软雅黑;">
 	                         	 结算日期:<span id="payDate"></span>  
 	                        </div>
 	                    </td>
@@ -232,13 +232,13 @@
              <div style="height: 12px;display:none" id="space3"></div>
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1" id="showPart" style="display:none">
                 <tr>
-                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;"></td>
-                    <td height="28" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">配件名称</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">数量</td>
-                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">单价</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">金额</td>
-                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">优惠率</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">小计</td>
+                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:14px;font-weight: bold;"></td>
+                    <td height="28" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:14px;font-weight: bold;">配件名称</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:14px;font-weight: bold;">数量</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:14px;font-weight: bold;">单价</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:14px;font-weight: bold;">金额</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:14px;font-weight: bold;">优惠率</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:14px;font-weight: bold;">小计</td>
                 </tr>
                 <tr>
                 	<td ><hr style="border:0.5px solid #000"></td>
@@ -255,24 +255,24 @@
 
             <div class="content">
             	<p><b>
-            	<div style="margin-left: 50px;margin-top: 25px;">即收:<div style="border-bottom: 1px solid black;margin-left: 35px;margin-top: -22px;"><span  id="guestName"></span></div></div>
+            	<div style="margin-left: 50px;margin-top: 25px;">即收:<div style="border-bottom: 1px solid black;margin-left: 35px;margin-top: -22px;"><span  id="guestName"  style="font-weight: bold;"></span></div></div>
             	
-            	<div style="margin-left: 30px;margin-right: 50px;border-bottom: 1px solid black;"><div style="margin-left: 200px;margin-top: 10px;">业务单号:<span id="businessNumber"></span></div></div>
-            	<div style="margin-left: 50px;margin-top: 15px;float:left;">人民币（大写）:</div>
-            	<div style="margin-top: 15px;border-bottom: 1px solid black;float:left;width: 40%"><span id="money"></span></div>
-            	<div style="margin-top: 15px;float:left">￥:</div>
-            	<div style="margin-top: 15px;border-bottom: 1px solid black;float:left;width: 20%"><span id="netInAmt"></span></div>
+            	<div style="margin-left: 30px;margin-right: 50px;border-bottom: 1px solid black;"><div style="margin-left: 200px;margin-top: 10px;font-weight: bold;">业务单号:<span id="businessNumber" style="font-weight: bold;"></span></div></div>
+            	<div style="margin-left: 50px;margin-top: 15px;float:left;font-weight: bold; ">人民币（大写）:</div>
+            	<div style="margin-top: 15px;border-bottom: 1px solid black;float:left;width: 40%;font-weight: bold;"><span id="money"></span></div>
+            	<div style="margin-top: 15px;float:left;font-weight: bold;">￥:</div>
+            	<div style="margin-top: 15px;border-bottom: 1px solid black;float:left;width: 20%;font-weight: bold;"><span id="netInAmt"></span></div>
             	</b></p>
 				</br>
 				<div>
-	            	<div style="margin-left: 50px;margin-top: 20px;float:left;width: 50%">
+	            	<div style="margin-left: 50px;margin-top: 20px;float:left;width: 50%;font-weight: bold;">
 	            	支付方式:    <input type="checkbox"   />现金  
 	            			<input type="checkbox"   />刷卡
 	   						<input type="checkbox"   />汇款    
 	   					    <input type="checkbox"   />支票  
 	    					<input type="checkbox"   />转账    
 	    			</div>		
-	    			<div style="margin-right: 100px;margin-top: 20px;float:left">收款单位（盖章）：<span id="companyName"></span></div>
+	    			<div style="margin-right: 100px;margin-top: 20px;float:left;font-weight: bold;">收款单位（盖章）：<span id="companyName"></span></div>
     			</div>
             </div>
  			<table  width="100%" style="margin-top: 20px;padding-left: 100px;padding-right: 100px"   cellpadding="10">

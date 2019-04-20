@@ -1,4 +1,6 @@
 var tabs = null;
+
+
 var mainGrid1 = null;
 var params = {};
 var form = null; 
@@ -8,8 +10,10 @@ var datagrid3 = null;
 var grid = null;
 var grid1 = null;
 var grid2 = null;
+var grid3 = null;
 var carSellPointGrid = null;
 var baseUrl = apiPath + repairApi + "/";
+var baseUrl2 = apiPath + wechatApi + "/";
 var mainGrid2 = null;
 var xyguest = {};
 var sfData = {};
@@ -57,8 +61,12 @@ $(document).ready(function () {
     
     grid1 = nui.get("grid1");
     grid2 = nui.get("grid2");
+    grid3 = nui.get("grid3");
+    grid4 = nui.get("grid4");
     grid1.setUrl(baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesByGuestId.biz.ext");
     grid2.setUrl(baseUrl+"com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext");
+    grid3.setUrl(baseUrl+"com.hsapi.repair.baseData.query.queryItemTimesByUsableWithPage.biz.ext");
+    grid4.setUrl(baseUrl2 +"com.hsapi.wechat.autoServiceBackstage.weChatInterface.queryUserUseCouponChenDaoCarId.biz.ext");
     mainGrid1.setUrl(baseUrl+"com.hsapi.repair.repairService.query.querySettleList.biz.ext");
     mainGrid2 = nui.get("mainGrid2");
 
@@ -101,6 +109,37 @@ $(document).ready(function () {
 
 
   grid1.on("drawcell", function (e) {
+      switch (e.field) {
+          case "prdtType":
+        	  e.cellHtml = prdtTypeHash[e.value];
+        	  break;
+          case "doTimes":
+        	  var row = e.row;
+              var balaTimes = row.balaTimes || 0;
+              var canUseTimes = row.canUseTimes||0;
+              e.cellHtml = balaTimes - canUseTimes;
+          default:
+              break;
+      }
+  });
+  grid4.on("drawcell", function (e) {
+	  var record = e.record;
+	  var couponType = record.couponType;
+      switch (e.field) {
+          case "couponType":
+        	  e.cellHtml = couponType==1?"通用券":"专属券";
+        	  break;
+          case "couponDescribe":
+        	 var str = "";
+        	 if(couponType==1){
+        		 str = "(满"+record.couponConditionPrice+"元)";
+        		 e.cellHtml = record.couponDescribe + str; 
+        	 }
+          default:
+              break;
+      }
+  });
+  grid3.on("drawcell", function (e) {
       switch (e.field) {
           case "prdtType":
         	  e.cellHtml = prdtTypeHash[e.value];
@@ -349,6 +388,24 @@ function SetData(params) {
     		carId:params.carId,
     		token:token
     };
+    var p3 = {};
+    p3.detailFinish = 0;  
+    p3.guestId = params.guestId;
+    p3.notPast = 1; 
+    p3.status = 2; 
+    p3.isRefund = 0;
+    grid3.load({
+    	token:token,
+        p:p3
+    });
+    var paraMap = {};
+    paraMap.orgid = currOrgId;  
+    paraMap.tenantId = currTenantId;
+    paraMap.userCarId = params.carId; 
+    grid4.load({
+    	token:token,
+    	paraMap:paraMap
+    });
     mainGrid1.load({params:pa1});
 
     grid2.load({guestId:params.guestId});

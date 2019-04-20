@@ -481,3 +481,19 @@ function getStockman(callback) {
 		}
 	});
 }
+
+var getWorkTeamUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.team.queryWorkTeam.biz.ext";
+function getWorkTeam(callback) {
+	doPost({
+		url : getWorkTeamUrl,
+		data : {token: token},
+		success : function(data) {
+			callback && callback(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+			callback && callback({});
+		}
+	});
+}

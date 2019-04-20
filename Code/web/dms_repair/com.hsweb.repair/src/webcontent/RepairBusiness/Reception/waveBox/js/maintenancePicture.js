@@ -1,10 +1,10 @@
  var baseUrl = apiPath + repairApi + "/";  
- var beforeIndex = 0;//维修前的图片下标
- var afterIndex = 0;//维修后的图片下标
+ var index = 0;//图片下标
  var before = [];
  var after = [];
  var add = [];
  var serviceId =0;
+ var isOpen = true;
 $(document).ready(function(v) {
     	uploader = Qiniu.uploader({
 		    runtimes: 'html5,flash,html4',
@@ -56,14 +56,15 @@ $(document).ready(function(v) {
 		            var domain = up.getOption('domain');
 		            //var sourceLink = domain + res.key;//获取上传文件的链接地址
 		            var info1 = JSON.parse(info);
-		            beforeIndex++;
-		            var html=imageHtml(getCompanyLogoUrl() + info1.hash,beforeIndex);
+		            index++;
+		            var html=imageHtml(getCompanyLogoUrl() + info1.hash,index);
 		            $(".before").before(html);
 		            mouseImage();
 		            before[before.length]={
 		            		attachName:getCompanyLogoUrl() + info1.hash,
 		            		serviceId: serviceId,
-		            	    type: 1
+		            	    type: 1,
+		            	    index : index
 		            }
 		        },
 		        'Error': function (up, err, errTip) {
@@ -136,14 +137,15 @@ $(document).ready(function(v) {
 		            var domain = up.getOption('domain');
 		            //var sourceLink = domain + res.key;//获取上传文件的链接地址
 		            var info1 = JSON.parse(info);
-		            afterIndex++;
-		            var html=imageHtml(getCompanyLogoUrl() + info1.hash,afterIndex);
+		            index++;
+		            var html=imageHtml(getCompanyLogoUrl() + info1.hash,index);
 		            $(".after").before(html);
 		            mouseImage();
 		            after[after.length]={
 		            		attachName:getCompanyLogoUrl() + info1.hash,
 		            		serviceId: serviceId,
-		            	    type: 2
+		            	    type: 2,
+		            	    index : index
 		            }
 		        },
 		        'Error': function (up, err, errTip) {
@@ -215,25 +217,27 @@ function SetData(serviceId1, serviceCode, state) {
 					var data = text.data;
 					for(var i = 0 , l = data.length ; i < l ;i ++){
 						if(data[i].type == 1){
-				            var html=imageHtml(data[i].attachName,beforeIndex);
-				            beforeIndex++;
+							index++;
+				            var html=imageHtml(data[i].attachName,index);
 							 $(".before").before(html);
 							 mouseImage();
 							 before[before.length]={
 					            		attachName:data[i].attachName,
 					            		serviceId: serviceId,
-					            	    type: 1
+					            	    type: 1,
+					            	    index:index
 					            }
 
 						}else{
-							 var html=imageHtml(data[i].attachName,afterIndex);
-							 afterIndex++;
+							index++;
+							 var html=imageHtml(data[i].attachName,index);
 							 $(".after").before(html);
 							 mouseImage();
 					            after[after.length]={
 					            		attachName:data[i].attachName,
 					            		serviceId: serviceId,
-					            	    type: 2
+					            	    type: 2,
+					            	    index:index
 					            }
 						}
 					}
@@ -252,16 +256,16 @@ function SetData(serviceId1, serviceCode, state) {
 
 
 function imageHtml(imageUrl,indexss){
-	var str = imageUrl.substr(imageUrl.length-28, 28);
 	var html="";
-	var imagerText="imagers"+str;
+	var imagerText="imagers"+indexss;
 	var imagerShow="imageshow"+indexss;
 	html+='<a href="#" class="imgListA '+imagerText+'">';
 	html+='		<div class="" style="position: relative;" >';
 	html+='		<div class="imgListOneDiv" style="display:none;" >';
-	html+='			<img  id="" alt="" src="'+webPath + contextPath +'/repair/prototype/images/deleteImage.png"  class="imgListtwo imgDelete" num="'+imageUrl+'" >';
+	html+='			<img id="" alt="" src="'+webPath + contextPath +'/repair/prototype/images/preview.png" class="imgListone preview" num="'+indexss+'" >';
+	html+='			<img  id="" alt="" src="'+webPath + contextPath +'/repair/prototype/images/deleteImage.png"  class="imgListtwo imgDelete" num="'+indexss+'" >';
 	html+='		</div>';
-	html+='			<img id=""  alt="" src="'+imageUrl+'" class="imgStyle '+imageUrl+'" >';
+	html+='			<img id=""  alt="" src="'+imageUrl+'" class="imgStyle '+imagerShow+'" >';
 	html+='		</div>';
 	html+='</a>';
 	return html;
@@ -270,27 +274,35 @@ function imageHtml(imageUrl,indexss){
 
 
 function save(){
+	var all = [];
 	for(var i=0;i<before.length;i++){
-		after.push(before[i]);
+		all.push(before[i]);
 	}
-
-    if(after.length == 0){
+	for(var i=0;i<after.length;i++){
+		all.push(after[i]);
+	}
+    if(all.length == 0){
     	showMsg("暂无图片需要保存","W");
     	return;
     }
-
+	 nui.mask({
+	        el: document.body,
+	        cls: 'mini-mask-loading',
+	        html: '保存中...'
+	 });
     nui.ajax({
 		url: baseUrl+ "com.hsapi.repair.repairService.waveBox.addUploadPhoto.biz.ext",
 		type: "post",
 		cache: false,
 		async: false,
 		data: {
-			add: after,
+			add: all,
 			serviceId : serviceId
 		},
 		success: function (text) {
+			nui.unmask();
 				if(text.errCode == "S"){
-					showMsg("执行成功","S");
+					showMsg("保存成功","S");
 				}else{
 					showMsg(text.errMsg,"W");
 				}
@@ -307,6 +319,7 @@ function mouseImage(){
 	$(".imgListA").mouseover(function(){
     		$(this).css("cursor","default");
 		$(this).find(".imgListOneDiv").show();
+		
 		var height = $(this).find(".imgStyle").height();
 		var width = $(this).find(".imgStyle").width();
 		$( $(this).find(".imgListOneDiv") ).css("height",height+"px");
@@ -330,8 +343,46 @@ function mouseImage(){
 	//删除选择的图片
 	$(".imgDelete").click(function(e){
 		var num=$(this).attr("num");
-		/*$(".fileImage"+num).remove();*/
-		var str = num.substr(num.length-28, 28);
-		$(".imagers"+str).remove();
+		for(var i =0;i<before.length;i++){
+			if(before[i].index==num){
+				before.splice(i,1); 
+			}
+		}
+		for(var i =0;i<after.length;i++){
+			if(after[i].index==num){
+				after.splice(i,1); 
+			}
+		}
+		$(".fileImage"+num).remove();
+		$(".imagers"+num).remove();
 	});
+	//预览选择的图片
+	$(".preview").click(function(e){
+		var num=$(this).attr("num");
+		if(isOpen){
+			for(var i =0;i<before.length;i++){
+				if(before[i].index==num){
+					preview(before[i].attachName); 
+				}
+			}
+			for(var i =0;i<after.length;i++){
+				if(after[i].index==num){
+					preview(after[i].attachName);  
+				}
+			}
+		}
+
+	});
+}
+
+
+//取消
+function onCancel() {
+    CloseWindow("cancel");
+}
+//关闭窗口
+function CloseWindow(action) {
+    if (window.CloseOwnerWindow)
+        return window.CloseOwnerWindow(action);
+    else window.close();
 }

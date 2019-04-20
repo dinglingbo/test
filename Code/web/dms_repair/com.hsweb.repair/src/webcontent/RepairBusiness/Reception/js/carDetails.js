@@ -367,7 +367,6 @@ function SetData(params) {
         success: function (text) {
             var list = nui.decode(text.rpbCar);
             form.setData(list);
-            searchOld(list.carNo||"");
             var carExtend = {};
             carExtend.lastComeKilometers = list.lastComeKilometers;
             carExtend.careDueMileage = list.careDueMileage;
@@ -379,36 +378,6 @@ function SetData(params) {
             showMsg("网络出错", "E");
         }
     });
-    var pa = {
-    		guestId:params.guestId,
-    		token:token
-    };
-    grid1.load({p:pa});
-    var pa1 = {
-    		carId:params.carId,
-    		token:token
-    };
-    var p3 = {};
-    p3.detailFinish = 0;  
-    p3.guestId = params.guestId;
-    p3.notPast = 1; 
-    p3.status = 2; 
-    p3.isRefund = 0;
-    grid3.load({
-    	token:token,
-        p:p3
-    });
-    var paraMap = {};
-    paraMap.orgid = currOrgId;  
-    paraMap.tenantId = currTenantId;
-    paraMap.userCarId = params.carId; 
-    grid4.load({
-    	token:token,
-    	paraMap:paraMap
-    });
-    mainGrid1.load({params:pa1});
-
-    grid2.load({guestId:params.guestId});
     nui.ajax({
         url: baseUrl+"com.hsapi.repair.repairService.svr.getGuestCarContactInfoById.biz.ext",
         type : "post",
@@ -431,6 +400,42 @@ function SetData(params) {
             nui.unmask();
         }
     });
+/*	//计次卡
+    var pa = {
+    		guestId:params.guestId,
+    		token:token
+    };
+    grid1.load({p:pa});
+
+    //线上订单
+    var p3 = {};
+    p3.detailFinish = 0;  
+    p3.guestId = params.guestId;
+    p3.notPast = 1; 
+    p3.status = 2; 
+    p3.isRefund = 0;
+    grid3.load({
+    	token:token,
+        p:p3
+    });
+    //优惠券
+    var paraMap = {};
+    paraMap.orgid = currOrgId;  
+    paraMap.tenantId = currTenantId;
+    paraMap.userCarId = params.carId; 
+    grid4.load({
+    	token:token,
+    	paraMap:paraMap
+    });
+    //服务记录
+    var pa1 = {
+    		carId:params.carId,
+    		token:token
+    };
+    mainGrid1.load({params:pa1});
+//储值卡
+    grid2.load({guestId:params.guestId});
+
     // 回访记录根据联系人id查询
     if (params.contactorId || params.carId) {
         var p = {
@@ -452,7 +457,7 @@ function SetData(params) {
         	params:p,
         	token:token
         });
-    }
+    }*/
 }
 
 
@@ -525,8 +530,11 @@ function addSell() {
 		},
 		ondestroy : function(action) {
 			if (action == "saveSuccess") {
+		        var p = {
+		                guestId:onSearchParams.guestId,
+		            };
 		        carSellPointGrid.load({ 
-		        	params:xyguest.id,
+		        	params:p,
 		        	token:token
 		        });
 			}
@@ -553,9 +561,12 @@ function editSell() {
 				iframe.contentWindow.setData(data);
 			},
 			ondestroy : function(action) {
+		        var p = {
+		                guestId:onSearchParams.guestId,
+		            };
 				if (action == "saveSuccess") {
 			        carSellPointGrid.load({ 
-			        	params:xyguest.id,
+			        	params:p,
 			        	token:token
 			        });
 				}
@@ -581,4 +592,74 @@ function onSearch(){
 	}
 
     mainGrid1.load({params:pa1});
+}
+
+function activechangedmain(){
+	var tabs = nui.get("mainTabs").getActiveTab();
+	if(tabs.name=="cardTimes"){
+		//计次卡
+	    var pa = {
+	    		guestId:onSearchParams.guestId,
+	    		token:token
+	    };
+	    grid1.load({p:pa});
+	}else if(tabs.name=="order"){
+	    //线上订单
+	    var p3 = {};
+	    p3.detailFinish = 0;  
+	    p3.guestId = onSearchParams.guestId;
+	    p3.notPast = 1; 
+	    p3.status = 2; 
+	    p3.isRefund = 0;
+	    grid3.load({
+	    	token:token,
+	        p:p3
+	    });
+	}else if(tabs.name=="card"){
+		//储值卡
+	    grid2.load({guestId:onSearchParams.guestId});
+	}else if(tabs.name=="coupons"){
+	    //优惠券
+	    var paraMap = {};
+	    paraMap.orgid = currOrgId;  
+	    paraMap.tenantId = currTenantId;
+	    paraMap.userCarId = onSearchParams.carId; 
+	    grid4.load({
+	    	token:token,
+	    	paraMap:paraMap
+	    });
+	}else if(tabs.name=="serviceRecord"){
+	    //服务记录
+	    var pa1 = {
+	    		carId:onSearchParams.carId,
+	    		token:token
+	    };
+	    mainGrid1.load({params:pa1});
+	}else if(tabs.name=="serviceRecordOld"){
+		searchOld(onSearchParams.carNo||"");
+	}else if(tabs.name=="sales"){
+	    // 销售机会根据客户id查询
+	    if (onSearchParams.guestId) {
+	        var p = {
+	            guestId:onSearchParams.guestId
+	        };
+	        carSellPointGrid.load({ 
+	        	params:p,
+	        	token:token
+	        });
+	    }
+	}else if(tabs.name=="visit"){
+	    // 回访记录根据联系人id查询
+	    if (onSearchParams.contactorId || onSearchParams.carId) {
+	        var p = {
+	            guestSource: 0
+	         };
+	     	if(onSearchParams.carId){
+	    		p.carId = onSearchParams.carId;
+	    	}else if(onSearchParams.contactorId){
+	    		p.guestId = onSearchParams.contactorId;
+	    	}
+	        loadVisitHis(p);
+	    }
+	}
 }

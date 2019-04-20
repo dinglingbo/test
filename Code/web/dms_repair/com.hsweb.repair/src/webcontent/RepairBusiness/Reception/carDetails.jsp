@@ -12,7 +12,7 @@
         <head>
             <title>车辆详情</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.28" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.31" type="text/javascript"></script>
         </head>
         <style type="text/css">
             body {
@@ -53,7 +53,7 @@
                 textField="name"
                 valueField="id"/>
                 <div id="editForm1" style="width:100%;height:100%;">
-                    <div id="mainTabs" class="nui-tabs" name="mainTabs" activeIndex="0" style="width:100%; height:100%;" plain="false" onactivechanged="">
+                    <div id="mainTabs" class="nui-tabs" name="mainTabs" activeIndex="0" style="width:100%; height:100%;" plain="false" onactivechanged="activechangedmain()">
                         <div title="客户信息" id="main" name="main">
 					<fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:25%;">
                          <legend>客户信息</legend>
@@ -293,7 +293,7 @@
                    </div>
 
 
-                        <div title="计次卡" id="main" name="main">
+                        <div title="计次卡" id="cardTimes" name="cardTimes">
                             <div id="grid1" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" totalField="page.count" dataField="data"
                                 onrowdblclick="" allowCellSelect="true" url="">
                                 <div property="columns">
@@ -306,7 +306,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div title="线上订单" id="main" name="main">
+                        <div title="线上订单" id="order" name="order">
                             <div id="grid3" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" totalField="page.count" dataField="data"
                                 onrowdblclick="" allowCellSelect="true" url="">
                                 <div property="columns">
@@ -319,7 +319,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div title="储值卡" id="main" name="main">
+                        <div title="储值卡" id="card" name="card">
 							
                             <div id="grid2" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" totalField="page.count"
                                 dataField="data" onrowdblclick="" allowCellSelect="true" url="">
@@ -330,11 +330,11 @@
                                 </div>
                             </div>
                         </div>
-                         <div title="优惠券" id="main" name="main">
+                         <div title="优惠券" id="coupons" name="coupons">
                             <div id="grid4" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" totalField="page.count"
                                 dataField="userCouponDataArray" onrowdblclick="" allowCellSelect="true" url="">
                                 <div property="columns">
-                                    <div field="couponCode" name="couponCode" width="100" headerAlign="center" header="优惠券编码"></div>
+                                    <div field="userCouponCode" name="couponCode" width="100" headerAlign="center" header="优惠券编码"></div>
                                     <div field="couponTitle" name="couponTitle" width="50" headerAlign="center" header="名称"></div>
                                     <div field="couponType" name="couponType" width="50" headerAlign="center" header="类型"></div>
                                     <div field="couponDiscountsPrice" name="couponDiscountsPrice" width="50" headerAlign="center" header="优惠金额"></div>
@@ -344,7 +344,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div title="服务记录" id="main" name="main">
+                        <div title="服务记录" id="serviceRecord" name="serviceRecord">
                         	显示客户所有车辆：<div  class="nui-checkbox" id="isAll" name="isAll" value="0" onclick="onSearch" trueValue="1" falseValue="0"></div>
                             <div id="mainGrid1" class="nui-datagrid" style="width:100%;height:95%;" 
                                   selectOnLoad="true" showPager="true" totalField="page.count"
@@ -370,7 +370,7 @@
                             </div>
                         </div>
                         
-                        <div title="历史维修记录(导入)" id="main" name="main">
+                        <div title="历史维修记录(导入)" id="serviceRecordOld" name="serviceRecordOld">
                         <div class="nui-splitter" vertical="true" style="width: 100%; height: 100%;" allowResize="true">
 					<div size="40%" showCollapseButton="true">
 						<div class="nui-fit">

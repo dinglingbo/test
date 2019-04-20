@@ -479,6 +479,9 @@ function settleOK() {
 								showMsg(data.errMsg||"收款成功！","S");
 								//CloseWindow("ok");
 								//清除应收、储值卡，实际金额
+					            if(nui.get("cardTimesSettleWeChat").getValue()=="true"){
+					            	cardTimesSettleWeChat(data.cardTimes);//发送微信
+					            }
 					        	couponList = [];
 					        	document.getElementById('quanAmt').innerHTML = 0;
 					        	netInAmt = 0;
@@ -1231,4 +1234,20 @@ function addOrEdit(item)
 }
 
 
-
+function cardTimesSettleWeChat(cardTimes){
+	 var cardTimesSettleWeChatUrl = baseUrl+ "com.hsapi.repair.repairService.sendWeChat.sendTimeCardSellInfo.biz.ext";
+		var json = nui.encode({
+			"cardTimes":cardTimes,
+			token : token
+		});
+	  nui.ajax({
+			url : cardTimesSettleWeChatUrl,
+			type : 'POST',
+			data : json,
+			cache : false,
+			contentType : 'text/json',
+			success : function(text) {
+				var returnJson = nui.decode(text);
+			}
+		});
+}

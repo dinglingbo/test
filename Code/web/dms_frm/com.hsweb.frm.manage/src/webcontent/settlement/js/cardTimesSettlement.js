@@ -99,6 +99,15 @@ $(document).ready(function (){
         	}
         	
         }
+        //清除应收，实际金额
+    	couponList = [];
+    	userCouponDataHash = {};
+    	codeHash = {};
+    	deductionAmt = 0;
+    	document.getElementById('quanAmt').innerHTML = 0;
+    	document.getElementById('amount').innerHTML = netInAmt;
+    	document.getElementById('totalAmt1').innerHTML = netInAmt;
+
      });
     
     searchKeyEl.focus();
@@ -132,8 +141,19 @@ $(document).ready(function (){
 			if(userCoupon.couponType == 1){
 				boolean = false;
 			}else{
-				if(userCoupon.cardId && userCoupon.cardId == row.id){
-					boolean = true;
+				var b = false;
+				for(var k in codeHash){
+					var tep = codeHash[k];
+					if(tep.cardId == row.id){
+						b = true;
+					}
+				}
+				if(b){
+					boolean = false;
+				}else{
+					if(userCoupon.cardId && userCoupon.cardId == row.id){
+						boolean = true;
+					}
 				}
 			}
 			if(boolean){	
@@ -153,8 +173,9 @@ $(document).ready(function (){
 					document.getElementById("showCode").style.display = "none";
 					document.getElementById('quanAmt').innerHTML = 0;
 				}
+				onChanged();
 			}
-			onChanged();
+			
 		}	
 	});
 });
@@ -480,6 +501,8 @@ function settleOK() {
 								//CloseWindow("ok");
 								//清除应收、储值卡，实际金额
 					        	couponList = [];
+					        	userCouponDataHash = {};
+					        	codeHash = {};
 					        	document.getElementById('quanAmt').innerHTML = 0;
 					        	netInAmt = 0;
 					        	document.getElementById('amount').innerHTML = 0;
@@ -699,6 +722,8 @@ function noPayOk(){
 				        	showMsg(text.errMsg||"转预结算成功！","S");
 				        	//清除应收、储值卡，实际金额
 				        	couponList = [];
+				        	userCouponDataHash = {};
+				        	codeHash = {};
 				        	document.getElementById('quanAmt').innerHTML = 0;
 				        	netInAmt = 0;
 				        	document.getElementById('amount').innerHTML = 0;
@@ -798,16 +823,20 @@ function payCard(){
 	//当扫描了优惠券后，购买的计次卡改变，判断选择的计次卡是否适合该优惠券
 	if(index != 0){
 		if(isUserEmp){
+			var tpb = true;
 			//循环判断优惠券
 			for(var key in userCouponDataHash){
 				var v = userCouponDataHash[key];
 				var id = v.couponDistributeId;
 				var str = "quan" + id;
 				var changStr = "#chang"+id;
-				if(v.cardId == row.id){
+				//只要有一个适合，其他都不选中
+				 
+				if(v.cardId == row.id && tpb){
 					document.getElementById(str).className = "quan-item1";
 					$(changStr).html("取消");
 					codeHash[id] = v;
+					tpb = false;
 				}else{
 					document.getElementById(str).className = "quan-item";
 					$(changStr).html("使用");
@@ -873,6 +902,14 @@ function isEmptyObject (obj){
 }
 
 function setInitData(params){
+	 //清除应收，实际金额
+	couponList = [];
+	userCouponDataHash = {};
+	codeHash = {};
+	deductionAmt = 0;
+	document.getElementById('quanAmt').innerHTML = 0;
+	document.getElementById('amount').innerHTML = netInAmt;
+	document.getElementById('totalAmt1').innerHTML = netInAmt;
 	guestData = params.xyguest||{};
 	if(guestData.guestId){
 		var carNo = guestData.carNo||"";
@@ -984,7 +1021,7 @@ if(code != "" && code != null){
 						  var type = v.couponType==1?'通用券':'专属劵';
 						  var str = null;
 						  if(v.couponType==1){
-							  str="(满"+v.couponConditionPrice+")"
+							  str="(满"+v.couponConditionPrice+")";
 						  }else{
 							  str="";
 						  }
@@ -994,8 +1031,8 @@ if(code != "" && code != null){
 						     '<div class="q-type">'+
 						        '<div class="q-range">'+
 						            '<div class="typ-txt">'+
-						                '<span >'+ v.couponTitle+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="##" class="useText" name="quan" id='+v.couponDistributeId+'><span id = chang'+v.couponDistributeId+'>使用</span></a></span>'+
-						               '</div>'+
+						                '<span >'+ v.couponTitle+ '</span>'+
+						               '<a href="##" class="useText" name="quan" id='+v.couponDistributeId+'><span id = chang'+v.couponDistributeId+'>使用</span></a></div>'+
 						            '<div class="range-item">'+ v. couponDescribe + str +'</div>'+
 						            '<div class="range-item">到期时间：'+v.couponEndDate +'</div>'+
 						            '<div class="range-item">编码：'+v.userCouponCode +'</div>'+
@@ -1006,9 +1043,21 @@ if(code != "" && code != null){
 							if(v.couponType == 1){
 								boolean = false;
 							}else{
-								if(v.cardId && v.cardId == row.id){
-									boolean = true;
+								var b = false;
+								for(var k in codeHash){
+									var tep = codeHash[k];
+									if(tep.cardId == row.id){
+										b = true;
+									}
 								}
+								if(b){
+									boolean = false;
+								}else{
+									if(v.cardId && v.cardId == row.id){
+										boolean = true;
+									}
+								}
+								
 							}
 							if(boolean){	
 								document.getElementById("show").innerHTML = document.getElementById("show").innerHTML + list;
@@ -1217,7 +1266,7 @@ function addOrEdit(item)
             			if (returnJson.errCode == "S") {
             				var data = returnJson.list;
             				if(data && data.length>0){
-            					setGuest(data[0]);
+            					uest(data[0]);
             				}
             			}else {
             				showMsg("数据加载失败,请重新操作!","E");

@@ -946,8 +946,8 @@ if(code != "" && code != null){
 						     '<div class="q-type">'+
 						        '<div class="q-range">'+
 						            '<div class="typ-txt">'+
-						                '<span >'+ v.couponTitle+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="##" class="useText" name="quan" id='+v.couponDistributeId+'><span id = chang'+v.couponDistributeId+'>使用</span></a></span>'+
-						               '</div>'+
+						                '<span >'+ v.couponTitle+ '</span>'+
+						               '<a href="##" class="useText" name="quan" id='+v.couponDistributeId+'><span id = chang'+v.couponDistributeId+'>使用</span></a></div>'+
 						            '<div class="range-item">'+ v. couponDescribe + str +'</div>'+
 						            '<div class="range-item">到期时间：'+v.couponEndDate +'</div>'+
 						            '<div class="range-item">编码：'+v.userCouponCode +'</div>'+

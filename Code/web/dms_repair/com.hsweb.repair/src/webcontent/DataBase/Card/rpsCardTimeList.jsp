@@ -103,6 +103,9 @@
 						</div>
 						<div field="settleDate" width="120"dateFormat="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true" >
 							办卡日期
+						</div>
+						<div field="buySource" width="120"  headerAlign="center" allowSort="true" >
+							来源
 						</div>	
 						<div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
 				</div>

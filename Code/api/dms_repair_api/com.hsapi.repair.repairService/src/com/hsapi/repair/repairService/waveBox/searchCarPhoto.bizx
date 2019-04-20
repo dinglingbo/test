@@ -47,7 +47,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">carIdForPhoto</process:from>
-      <process:to type="query">ct/_expr[1]/carIdForPhoto</process:to>
+      <process:to type="query">ct/_expr[1]/carId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>

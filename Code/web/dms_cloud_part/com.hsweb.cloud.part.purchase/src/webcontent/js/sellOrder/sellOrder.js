@@ -56,6 +56,7 @@ var StatusHash={
 	"1"	:"已提交",
 	"2"	:"已出库"
 };
+var partShow=0;
 $(document).ready(function(v)
 {
     nui.mask({
@@ -572,7 +573,7 @@ function getPartInfo(params, callback){
     return part;
 }
 function showPartInfo(row, value, mainId){
-
+	partShow=1;
     nui.open({
         // targetWindow: window,
         url: webBaseUrl+"com.hsweb.cloud.part.common.fastPartChoose.flow?token="+token,
@@ -680,6 +681,16 @@ function loadRightGridData(mainId)
         token:token
     },function(){
 
+    	var data = rightGrid.getData();
+		if(data && data.length <= 0){
+			if(partShow==1){
+				
+			}else{				
+				addNewRow(false);
+			}
+		}	
+
+		
         var tab = mainTabs.getActiveTab();
         if(tab.name == "billmain"){
             var data = rightGrid.getData();

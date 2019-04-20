@@ -823,6 +823,7 @@ function setInitData(params){
                         doSearchCardTimes(fguestId,fcarId);
                         doSearchItemTimes(fguestId,fcarId);
                         doSearchMemCard(fguestId);
+                        doSearchSell(fguestId);
                         xyguest = data;
                         nui.get("contactorName").setText(contactor.name);
                         billForm.setData(data);

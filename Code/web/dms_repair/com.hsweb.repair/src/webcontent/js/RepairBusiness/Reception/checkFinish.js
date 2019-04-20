@@ -6,6 +6,7 @@ var baseUrl = apiPath + repairApi + "/";
 var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.query.getRpsItemByServiceId.biz.ext";
 var partGridUrl = baseUrl + "com.hsapi.repair.repairService.query.getRpsPartByServiceId.biz.ext";
 var queryUrl = baseUrl + "com.hsapi.repair.repairService.crud.queryOurCartReport.biz.ext";
+
 var itemGrid = null;
 var partGrid = null;
 var fserviceId = 0;
@@ -139,6 +140,9 @@ function finish(){
 	    	            resultData = dataHash.maintain||{};
 	    	            resultData.action = 'ok';
 	    	            showMsg("操作成功","S");
+	    	            if(nui.get("completionWeChat").getValue()=="true"){
+	    		            completionWeChat(resultData);//发送微信
+	    	            }
 	    	            CloseWindow('ok');
 	    	        }else{
 	    	        	showMsg(errMsg||"操作失败","E");
@@ -175,6 +179,9 @@ function finish(){
 	            resultData = dataHash.maintain||{};
 	            resultData.action = 'ok';
 	            showMsg("操作成功","S");
+	            if(nui.get("completionWeChat").getValue()=="true"){
+		            completionWeChat(resultData);//发送微信
+	            }
 	            CloseWindow('ok');
 	        }else{
 	        	showMsg(errMsg||"操作失败","W");
@@ -224,4 +231,6 @@ function CloseWindow(action) {
 function onCancel() {
     CloseWindow("cancel");
 }
+
+ 
 

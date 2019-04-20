@@ -525,7 +525,10 @@ function addSell() {
 		},
 		ondestroy : function(action) {
 			if (action == "saveSuccess") {
-				grid.reload();
+		        carSellPointGrid.load({ 
+		        	params:xyguest.id,
+		        	token:token
+		        });
 			}
 		}
 	});
@@ -551,7 +554,10 @@ function editSell() {
 			},
 			ondestroy : function(action) {
 				if (action == "saveSuccess") {
-					carSellPointGrid.reload();
+			        carSellPointGrid.load({ 
+			        	params:xyguest.id,
+			        	token:token
+			        });
 				}
 			}
 		});

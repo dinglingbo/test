@@ -1789,7 +1789,6 @@ function print(){
 	var businessNumber = "";
 	var netInAmt =0;
 	for(var i = 0;i<rows.length;i++){
-		rows[i].guestName = rows[i].fullName;//打印界面用的是guestName
 		if(i==rows.length-1){
 			businessNumber = businessNumber+rows[i].billServiceId
 			netInAmt = parseFloat(netInAmt)+parseFloat(rows[i].nowAmt);

@@ -3458,6 +3458,7 @@ function onDrawSummaryCellItem(e){
 
 function addExpenseAccount(){
 	var data = billForm.getData();
+	data.lastComeKilometers = lastComeKilometers;
 	if(data.id){
 		var item={};
 		item.id = "123321";

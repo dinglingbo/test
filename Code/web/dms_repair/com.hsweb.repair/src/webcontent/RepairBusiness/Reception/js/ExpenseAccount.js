@@ -755,6 +755,8 @@ function save(){
         		nui.get("rid").setValue(text.mainId);
             	showGridMsg(text.mainId);
             	showMsg(text.errMsg,"S");
+            	var main = text.maintain[0];
+            	nui.get("recordDate").setValue(main.recordDate);
         	}else{
         		showMsg(text.errMsg,"W");
             }

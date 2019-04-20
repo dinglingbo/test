@@ -1234,6 +1234,9 @@
                 <isNotEmpty prepend="and" property="partId">  
                     (C.PART_ID = #partId#)
                 </isNotEmpty>
+                 <isNotEmpty prepend="and" property="partCode">  
+                    (D.CODE like '%$partCode$%')
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (A.guest_id = #guestId#)
                 </isNotEmpty>
@@ -1313,7 +1316,7 @@
 				FROM
 				DMS_CLOUD_PART.pj_sell_order_main_chk A
 				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
-				LEFT JOIN DMS_CLOUD_PART.PJ_PCHS_ORDER_DETAIL_chk C ON A.ID = C.MAIN_ID
+				LEFT JOIN DMS_CLOUD_PART.pj_sell_order_detail_chk C ON A.ID = C.MAIN_ID
 				LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
                 where 1=1
             <dynamic>
@@ -1368,6 +1371,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partId">  
                     (C.PART_ID = #partId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="partCode">  
+                    (D.CODE like '%$partCode$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (A.guest_id = #guestId#)
@@ -1514,6 +1520,7 @@
                 <isNotEmpty prepend="and" property="mainIds">  
                     (A.MAIN_ID in ($mainIds$))
                 </isNotEmpty>
+                
             </dynamic>  
             
         

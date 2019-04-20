@@ -12,7 +12,7 @@
 <title>期初库存导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-<script src="<%=webPath + contextPath%>/basic/js/initPartStockImport.js?v=2.0.7"></script>
+<script src="<%=webPath + contextPath%>/basic/js/initPartStockImport.js?v=2.0.82"></script>
 <style type="text/css">
 /*.a-upload {
     padding: 4px 10px;
@@ -83,13 +83,19 @@
 	<!-- <a href="javascript:;" class="a-upload">
 	    <input type="file" name="" id="" onchange="importf(this)">点击这里上传文件
 	</a> -->
+	<input class="nui-textbox"id="type" name="type" visible="false">
 	<div class="nui-toolbar" style="padding:0px;border-bottom:0;">
 	    <table style="width:100%;">
 	        <tr>
 	            <td style="width:100%;">
-					<a href="javascript:;" class="file">点击这里选择文件
+					<span>非4S用</span><a href="javascript:;" class="file">点击这里选择文件
 					    <input type="file" name="" id="" onchange="importf(this)">
 					</a>
+
+					<a style="margin-left:10px" href="javascript:;" class="file">4S店库存导入接口
+					    <input type="file" name="" id="" onchange="importfBMW(this)">
+					</a>
+				
 	                <a class="nui-button" iconCls="" plain="true" onclick="sure()" id="openBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
 	                <a class="nui-button" iconCls="" plain="true" onclick="clear()" id="saveBtn"><span class="fa fa-trash fa-lg"></span>&nbsp;清空</a>
 	                <a class="nui-button" iconCls="" plain="true" onclick="close()" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
@@ -103,8 +109,8 @@
 			showSummaryRow="true"
 			style="width:100%;height:100%;">
 			<div property="columns">
-				<div type="indexcolumn">序号</div>
-				<div field="品牌" width="80px" headerAlign="center" allowSort="true">
+				<div type="indexcolumn"  width="50px">序号</div>
+				<div field="品牌" width="100px" headerAlign="center" allowSort="true">
 					品牌</div>
 				<div field="配件编码" width="150px" summaryType="count" headerAlign="center" allowSort="true">
 					配件编码</div>

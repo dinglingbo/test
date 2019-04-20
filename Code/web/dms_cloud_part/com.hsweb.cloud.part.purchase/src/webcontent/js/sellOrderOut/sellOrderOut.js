@@ -42,7 +42,7 @@ var autoNew = 0;
 var guestIdEl=null;
 var quickAddShow=0;
 var advancedSearchShow=0;
-
+var partShow =0;
 var AuditSignHash = {
   "0":"草稿",
   "1":"已出库"
@@ -527,7 +527,7 @@ function getPartInfo(params, callback){
     return part;
 }
 function showPartInfo(row, value, mainId){
-
+	partShow =1;
     nui.open({
         // targetWindow: window,
         url: webBaseUrl+"com.hsweb.cloud.part.common.fastPartChoose.flow?token="+token,
@@ -641,7 +641,11 @@ function loadRightGridData(mainId)
 
         var data = rightGrid.getData();
 		if(data && data.length <= 0){
-			addNewRow(false);
+			if(partShow==1){
+				
+			}else{				
+				addNewRow(false);
+			}
 		}	
 
 		if(autoNew == 0){

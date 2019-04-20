@@ -75,7 +75,7 @@ $(document).ready(function(v) {
         }
         var params = {};
     	params.pny = e.data.key.replace(/\s+/g, "");
-    	params.isSupplier = 1;
+    	params.isClient = 1;
 
         data.params = params;
         e.data =data;

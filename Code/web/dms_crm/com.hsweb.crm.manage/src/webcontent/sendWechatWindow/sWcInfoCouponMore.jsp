@@ -293,7 +293,7 @@
                 nui.unmask(document.body);
                 if (res.errCode == 'S') {
                     showMsg(res.snum+"条卡券发送任务后台生成成功！", "S");
-                    saveRecord();
+                    //saveRecord();
 					CloseWindow("ok");
                 } else {
                     showMsg(res.fnum+"条卡券发送任务后台生成失败！","E");

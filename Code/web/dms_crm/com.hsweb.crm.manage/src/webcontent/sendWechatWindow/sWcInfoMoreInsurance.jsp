@@ -256,7 +256,7 @@
                 nui.unmask(document.body);
                 if (res.errCode == 'S') {
                     showMsg(res.snum+"条微信发送任务生成成功！", "S");
-                    saveRecord(mainData);
+                    //saveRecord(mainData);
 					CloseWindow("ok");
                 } else {
                     showMsg(res.fnum+"条微信发送任务生成失败！","E");

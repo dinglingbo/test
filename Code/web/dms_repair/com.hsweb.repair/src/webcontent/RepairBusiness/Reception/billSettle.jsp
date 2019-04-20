@@ -380,7 +380,8 @@
 		   font-size: 12px;
 		   text-align: center;
     	   color: #fff;
-		   line-height:24px
+		   line-height:24px;
+		    margin-left: 45px
 	   } 	
 	  	
 	</style>

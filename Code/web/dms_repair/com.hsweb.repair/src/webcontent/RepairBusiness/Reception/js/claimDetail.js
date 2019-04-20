@@ -999,7 +999,7 @@ function setInitData(params){
                         doSearchCardTimes(fguestId,fcarId);
                         doSearchItemTimes(fguestId,fcarId);
                         doSearchMemCard(fguestId);
-                        
+                        doSearchSell(fguestId);
                         billForm.setData(data);
                         insuranceForm.setData(insuranceData);
                         var status = data.status||0;

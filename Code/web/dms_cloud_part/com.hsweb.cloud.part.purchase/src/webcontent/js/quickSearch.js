@@ -307,6 +307,9 @@ function getSearchParams()
         var tmpList = partCodeList.split("\n");
         for (i = 0; i < tmpList.length; i++) {
             //tmpList[i] = "'" + (tmpList[i]).replace(/\s+/g, "") + "'";
+        	if(tmpList[i].length==10){
+        		tmpList.push("A"+tmpList[i]);
+        	}
             var partCode =  (tmpList[i]).replace(/\s+/g, "");
             if(!partHash[partCode]){
                 partCodeArr.push(partCode);

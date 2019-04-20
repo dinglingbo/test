@@ -710,8 +710,13 @@
 	
     </select>
 	
+	<delete id="deletePartStock" parameterClass="java.util.HashMap">
+		DELETE FROM pj_part_stock WHERE orgid = #orgid#
+	</delete>
 	
-	
+	<delete id="deletePartStoreStock" parameterClass="java.util.HashMap">
+		DELETE FROM pj_part_store_stock WHERE orgid = #orgid#
+	</delete>
 	
 	
 </sqlMap>

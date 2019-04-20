@@ -423,6 +423,9 @@ function settleOK() {
 							if (data.errCode == "S") {
 								showMsg(data.errMsg||"收款成功！","S");
 								//CloseWindow("ok");
+					            if(nui.get("cardSettleWeChat").getValue()=="true"){
+					            	cardSettleWeChat(data.stored);//发送微信
+					            }
 								printRow = card;
 								print();
 					        	guestData={};
@@ -809,4 +812,20 @@ function addOrEdit(item)
     });
 }
 
-
+function cardSettleWeChat(stored){
+	 var cardTimesSettleWeChatUrl = baseUrl+ "com.hsapi.repair.repairService.sendWeChat.SendStoreCardInfo.biz.ext";
+		var json = nui.encode({
+			"stored":stored,
+			token : token
+		});
+	  nui.ajax({
+			url : cardTimesSettleWeChatUrl,
+			type : 'POST',
+			data : json,
+			cache : false,
+			contentType : 'text/json',
+			success : function(text) {
+				var returnJson = nui.decode(text);
+			}
+		});
+}

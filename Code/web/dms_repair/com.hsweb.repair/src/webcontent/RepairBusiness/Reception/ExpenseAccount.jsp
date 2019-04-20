@@ -135,6 +135,7 @@
         <input class="nui-hidden" name="faultPhen"/>
         <input class="nui-hidden" name="solveMethod"/>
         <input class="nui-hidden" name="enterOilMass"/>
+         <input class="nui-hidden" name="recordDate" id="recordDate"/>
         <input id="enterDate" name="enterDate" class="nui-datepicker"visible="false"nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
         <table  style=" left:0;right:0;margin: 0 auto;width:100%"> 
             <tr>   

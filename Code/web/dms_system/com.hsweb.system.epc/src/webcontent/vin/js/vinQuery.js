@@ -165,7 +165,7 @@ $(document).ready(function(v){
                     "vin":vin,
                     "brand": row.brand,
                     "is_filter":1,
-                    "auth":unescape(row.auth)
+                    "auth":row.auth//unescape
                 },
                 "token": token
             }
@@ -398,7 +398,7 @@ function clickGdSubGroup(row){
                 "vin":vin,
                 "code":brand,
                 "filter":1,
-                "auth":unescape(row.auth)
+                "auth":row.auth
             },
             "token": token
         }
@@ -408,7 +408,7 @@ function clickGdSubGroup(row){
             "url": llq_pre_url + "/ppycars/subimgs",
             "params":{
                 "code":brand,
-                "auth":unescape(row.auth)
+                "auth":row.auth
             },
             "token": token
         }

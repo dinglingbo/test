@@ -148,13 +148,13 @@
         <div style="padding-top:15px; margin:0 15px;">
             <table  width="92%" border="0" align="center" cellpadding="0" cellspacing="0">
                 <tbody>
-                    <tr>
+<!--                     <tr>
                         <td class="color999" width="76" height="46">单据编号：</td>
                         <td><input type="text" id="serviceCode1" class="peijianss" value="" /></td>
-                    </tr>
+                    </tr> -->
                     <tr>
-                        <td class="color999" height="46">打印日期：</td>
-                        <td><input id="payDate1" type="datetime-local" value=""/></td>
+                        <td class="color999" height="46">欠款日期：</td>
+                        <td><input id="payDate1"  value="" length="99"/></td>
                     </tr>
                     <tr>
                         <td class="color999" height="46">欠款人：</td>
@@ -358,6 +358,12 @@
 		} */
 		
 		function SetData(params){
+					var payDate = params.guestData[0].createDate;
+	        		payDate = new Date(payDate);
+	        	    payDate=payDate.getFullYear() + '-' + (payDate.getMonth() + 1) + '-' + payDate.getDate() + ' ' + payDate.getHours() + ':' + payDate.getMinutes() + ':' + payDate.getSeconds();
+/*     		      	payDate = payDate.replace(/-/g,"/");
+	        		payDate = format(payDate, "yyyy-MM-dd HH:mm"); */
+	        		document.getElementById("payDate").innerHTML = payDate;
 				    var carNoList = "";
 	        		for(var i =0;i<params.guestData.length;i++){
 	        			carNoList = (carNoList +params.guestData[i].carNo||"")+"&nbsp;&nbsp;";
@@ -375,17 +381,16 @@
 		function box_setup_open() {
 	        $(".boxbg").show();
 	        $(".popbox").show();
-	        document.getElementById("serviceCode1").value = document.getElementById("serviceCode").innerHTML;
     		document.getElementById("payDate1").value = document.getElementById("payDate").innerHTML;
     		document.getElementById("guestName1").value = document.getElementById("guestName").innerHTML;
     		document.getElementById("businessNumber1").value = document.getElementById("businessNumber").innerHTML;
     		document.getElementById("netInAmt1").value = document.getElementById("netInAmt").innerHTML;
-    		if(document.getElementById("payDate").innerHTML.length > 16){
+/*     		if(document.getElementById("payDate").innerHTML.length > 16){
     			var value = document.getElementById("payDate").innerHTML.substring(0, document.getElementById("payDate").innerHTML.length-3);
     			document.getElementById("payDate1").value = value.replace(" ","T");
     		}else{
     			document.getElementById("payDate1").value = document.getElementById("payDate").innerHTML.replace(" ","T");
-    		}
+    		} */
     	}
     	function CloseWindow(action) {
             if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
@@ -394,11 +399,10 @@
 
     	 function save(){
 			box_setup_close();
-    		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode1").value;
     		document.getElementById("netInAmt").innerHTML = document.getElementById("netInAmt1").value;
     		document.getElementById("guestName").innerHTML = document.getElementById("guestName1").value;
     		document.getElementById("businessNumber").innerHTML = document.getElementById("businessNumber1").value;
-			document.getElementById("payDate").innerHTML =  document.getElementById("payDate1").value.replace("T"," ");
+			document.getElementById("payDate").innerHTML =  document.getElementById("payDate1").value;
 			var money = transform(document.getElementById("netInAmt1").value+"");
 			document.getElementById("money").innerHTML = money;
     	}

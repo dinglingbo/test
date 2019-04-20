@@ -27,6 +27,7 @@ var eBillAuditDateEl = null;
 var billSearchGuestIdEl = null;
 var billServiceIdEl = null;
 var billServiceManEl = null;
+var pjSellOrderDetailList =null;
 
 $(document).ready(function(v)
 {
@@ -169,8 +170,9 @@ function getBillSearchParam(){
 	var params = {};
     params.sAuditDate = sBillAuditDateEl.getValue();
     params.eAuditDate = addDate(eBillAuditDateEl.getValue(), 1);
-    params.serviceId = billServiceIdEl.getValue();
+    params.serviceId = billServiceIdEl.getValue().replace(/\s+/g, "");
     params.guestId = billSearchGuestIdEl.getValue();
+    params.partCode = nui.get('partCode').getValue().replace(/\s+/g, "");
     return params;
 }
 function searchBill()
@@ -250,6 +252,20 @@ function addStatement()
             getPchsDetails();
         }else if(orderTypeId == 2){
             getSellDetails();
+            if(pjSellOrderDetailList){
+            	var innerPchsRtnGridRow=innerPchsRtnGrid.getSelecteds();
+            	var mainId = innerPchsRtnGridRow[0].mainId;
+            	for(var i=0;i<pjSellOrderDetailList.length;i++){
+            		if(pjSellOrderDetailList[i].mainId==mainId){   					
+            			pjSellOrderDetailList.splice(i--, 1);
+    				}
+            	}
+            	for(var i=0;i<innerPchsRtnGridRow.length;i++){			
+            		pjSellOrderDetailList.push(innerPchsRtnGridRow[i]);
+    			}
+            }
+            callback(pjSellOrderDetailList);
+            CloseWindow("ok");
         }        
 
         /*//需要判断是否已经添加了此单据
@@ -295,18 +311,19 @@ function getSellDetails()
         nui.ajax({
             url : querySellUrl,
             type : "post",
+            async: false,
             data : JSON.stringify({
                 params : params,
                 token : token
             }),
             success : function(data) {
                 nui.unmask(document.body);
-                var pjSellOrderDetailList = data.pjSellOrderDetailList || [];
+                 pjSellOrderDetailList = data.pjSellOrderDetailList || [];
                 if (pjSellOrderDetailList && pjSellOrderDetailList.length>0) {
                     
-                    callback(pjSellOrderDetailList);
-
-                    CloseWindow("ok");
+//                    callback(pjSellOrderDetailList);
+//
+//                    CloseWindow("ok");
                     
                 } else {
                     showMsg(data.errMsg || "操作失败!","W");

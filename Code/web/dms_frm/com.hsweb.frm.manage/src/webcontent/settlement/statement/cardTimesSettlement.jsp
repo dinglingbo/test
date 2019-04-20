@@ -11,7 +11,7 @@
 
 <head>
 	<title>计次卡/储值卡结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardTimesSettlement.js?v=1.5.0"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardTimesSettlement.js?v=1.5.2"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -415,11 +415,9 @@
 		   font-size: 12px;
 		   text-align: center;
     	   color: #fff;
-		   line-height:24px
+		   line-height:24px;
+		   margin-left: 45px
 	   }
-
-
-
 
 
 	</style>
@@ -664,7 +662,7 @@
 						<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 					</td>
 					<td >
-						<input type="checkbox" id="settlesendwx" >微信通知客户
+						<input class="nui-checkbox" id="cardTimesSettleWeChat" >微信通知客户
 					</td>
 					<td >
 						<input type="checkbox" id="settlesenddx">短信通知客户

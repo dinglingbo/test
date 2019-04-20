@@ -823,6 +823,7 @@ function setInitData(params){
                         doSearchCardTimes(fguestId,fcarId);
                         doSearchItemTimes(fguestId,fcarId);
                         doSearchMemCard(fguestId);
+                        doSearchSell(fguestId);
                         xyguest = data;
                         nui.get("contactorName").setText(contactor.name);
                         billForm.setData(data);
@@ -3457,6 +3458,7 @@ function onDrawSummaryCellItem(e){
 
 function addExpenseAccount(){
 	var data = billForm.getData();
+	data.lastComeKilometers = lastComeKilometers;
 	if(data.id){
 		var item={};
 		item.id = "123321";

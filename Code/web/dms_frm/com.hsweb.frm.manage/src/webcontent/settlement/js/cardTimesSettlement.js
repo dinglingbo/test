@@ -918,7 +918,8 @@ function setInitData(params){
 		var carNo = guestData.carNo||"";
 	    var tel = guestData.mobile||"";
 	    var guestName = guestData.guestFullName||"";
-	    var carVin = guestData.carVin||"";
+	    var carVin = guestData.carVin||""; 
+	     
 	    if(tel){
 	        tel = "/"+tel;
 	    }

@@ -94,7 +94,11 @@ $(document).ready(function(){
         levelList.forEach(function(v) {
 	        levelHash[v.id] = v;
 	    });//客户级别 
-    });
+	});
+	
+	initMember("mtAdvisorId",function(){
+		nui.get('mtAdvisorId').setValue(currEmpId);
+	});
 
     gridCar.on("drawcell", function (e) { 
         var uid = e.record._uid;
@@ -243,8 +247,8 @@ function quickSearch(e){
 	if(e == 3){
 		p = {
             carNo: tcarNo_ctrl.value,
-            level: nui.get("level").value,
-            mobile:nui.get("mobile").value
+			mobile: nui.get("mobile").value,
+			mtAdvisorId:nui.get("mtAdvisorId").value
 		};
 	}
 	p.type = 1;//客户回访
@@ -433,4 +437,33 @@ function sellPoint() {//销售机会
 	}else{
 		showMsg("请选中一条数据","W");
 	}
+}
+
+
+function moreQuery(){
+
+    //nui.get("carNo").setValue(null);
+    nui.open({
+        url: webPath + contextPath + "/manage/visitMgr/visitSearchDetail.jsp?token="+ token,
+        title: "更多查询", width: 520, height: 380,
+        //allowResize:false,
+        onload: function () { 
+            var iframe = this.getIFrameEl();
+            //var data = { action: "edit", id: row.id };
+            //iframe.contentWindow.setData(row);
+        },
+        ondestroy: function (action) {
+            if(action == "ok"){
+                
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+				//dgGrid.load({p:data,token:token});
+				data.type = 1;//客户回访
+				data.carNo = tcarNo_ctrl.value;
+				data.mobile = nui.get("mobile").value;
+				data.mtAdvisorId = nui.get("mtAdvisorId").value;
+				gridCar.load({params:data,token:token});
+            }
+        }
+    });
 }

@@ -41,14 +41,17 @@ pageEncoding="UTF-8" session="false" %>
     <input name="serviceTypeId"id="serviceTypeId" visible="false"class="nui-combobox"textField="name"valueField="id"/>
     <input name="carBrandId" id="carBrandId" visible="false"class="nui-combobox"textField="name"valueField="id"/>
     <div class="nui-toolbar">
-        <label style="font-family:Verdana;">快速查询：</label>
+        <!-- <label style="font-family:Verdana;">快速查询：</label>
         <a href="##" iconCls="" plain="true" onclick="quickSearch(1)">我接待的车辆</a>
-        <a href="##" iconCls="" plain="true" onclick="quickSearch(2)">所有维修车辆</a>
+        <a href="##" iconCls="" plain="true" onclick="quickSearch(2)">所有维修车辆</a> -->
+        <input id="mtAdvisorId" name="mtAdvisorId" class="nui-combobox " allowInput="true" textField="empName" 
+        valueField="empId" emptyText="维系顾问"nullItemText="请选择..." >
         <input class="nui-textbox" name="tcarNo" id="tcarNo" style="width:90px;" emptyText="车牌号">
         <input class="nui-textbox" name="mobile" id="mobile" style="width:110px;" emptyText="手机号">
         <input class="nui-combobox" name="level" id="level" style="width: 125px;"  required="false" multiSelect="true"
-        textField="name" valueField="id" allowInput="false"  emptyText="客户等级"/>
+        textField="name" valueField="id" allowInput="false"  emptyText="客户等级" visible="false"/>
         <a class="nui-button" plain="true" onclick="quickSearch(3)" iconcls="" plain="false"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+         <a class="nui-button"  plain="true" onclick="moreQuery()" id="" enabled="true"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
         <span class="separator"></span>
         <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="visit()"><span class="fa fa-clock-o fa-lg"></span>&nbsp;回访</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-send fa-lg"></span>&nbsp;发送短信</a>
@@ -91,6 +94,7 @@ pageEncoding="UTF-8" session="false" %>
             <div field="outDate" name="recordDate" width="120px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="离厂时间"></div>
             <!-- <div field="planFinishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="预计完工日期"></div> -->
             <!-- <div field="mtAdvisor" width="70" headerAlign="center" align="center">维修顾问</div> -->
+            <div field="visitTimes" name="visitTimes"width="60" headerAlign="center" align="center">回访次数</div>
             <div field="dataType" name="dataType"width="90" headerAlign="center" align="center">回访类型</div>
             <div field="leaveDays" width="60" headerAlign="center" align="center">离厂天数</div>
             <div field="mtAdvisor" name="mtAdvisor" width="80px" headerAlign="center" header="服务顾问"></div>

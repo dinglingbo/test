@@ -1450,40 +1450,6 @@
     <figSize height="17" width="39"/>
     <node>assign22</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess5" name="推送消息" displayName="sendNoticeAlertToUser" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" description="" id="link106" name="link106" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess5</sourceNode>
-      <targetNode>end0</targetNode>
-      <process:transitionCondition>
-        <process:complexCondition>
-          <process:code>1==1</process:code>
-        </process:complexCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <targetConnections>link56</targetConnections>
-    <location x="2104" y="206"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess5label</nodeLabel>
-    <process:flow index="4" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hs.common.uitls.sendNoticeAlertToUser</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="msg" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">msgRecord</process:inputVariable>
-        <process:inputVariable id="1" name="title" type="query" value="String" valueType="Primitive" pattern="reference">msgRecord/msgTitle</process:inputVariable>
-        <process:inputVariable id="2" name="content" type="query" value="String" valueType="Primitive" pattern="reference">msgRecord/msgContent</process:inputVariable>
-        <process:inputVariable id="3" name="userId" type="query" value="String" valueType="Primitive" pattern="reference">maintain/mtAdvisorId</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
-        <process:outputVariable id="2" name="data" type="query" value="cn.jpush.api.push.PushResult" valueType="Java"/>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess5label" name="label" nodeType="label">
-    <location x="2093" y="241"/>
-    <figSize height="17" width="49"/>
-    <node>subprocess5</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign23" name="赋值22" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link58" name="link58" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign23</sourceNode>
@@ -2811,6 +2777,40 @@
     <location x="686" y="411"/>
     <figSize height="17" width="39"/>
     <node>assign47</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess5" name="推送消息" displayName="sendNoticeAlertToUser" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" description="" id="link106" name="link106" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess5</sourceNode>
+      <targetNode>end0</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>1==1</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link56</targetConnections>
+    <location x="2104" y="206"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess5label</nodeLabel>
+    <process:flow index="4" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hs.common.uitls.sendNoticeAlertToUser</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="msg" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">msgRecord</process:inputVariable>
+        <process:inputVariable id="1" name="title" type="query" value="String" valueType="Primitive" pattern="reference">msgRecord/msgTitle</process:inputVariable>
+        <process:inputVariable id="2" name="content" type="query" value="String" valueType="Primitive" pattern="reference">msgRecord/msgContent</process:inputVariable>
+        <process:inputVariable id="3" name="userId" type="query" value="String" valueType="Primitive" pattern="reference">maintain/mtAdvisorId</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="2" name="data" type="query" value="cn.jpush.api.push.PushResult" valueType="Java"/>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess5label" name="label" nodeType="label">
+    <location x="2093" y="241"/>
+    <figSize height="17" width="49"/>
+    <node>subprocess5</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

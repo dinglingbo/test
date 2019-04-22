@@ -242,7 +242,13 @@
                 visitContent:con ,
                 guestSource: data.guestSource,
                 wechatOpenId: data.wechatOpenId,
-                wechatServiceId:data.wechatServiceId
+                wechatServiceId:data.wechatServiceId,
+                firstText:formData.firstContent.toString().replace(/【车主姓名】/g,mainDatas[i].guestName),
+                endText:formData.endContent.toString().replace(/【车主姓名】/g,mainDatas[i].guestName),
+                keyword1:mainDatas[i].carVin ,
+                keyword2:mainDatas[i].lastComeKilometers+"公里",
+                keyword3:(mainDatas[i].lastComeDate == null?'':nui.formatDate (new Date(mainDatas[i].lastComeDate),'yyyy-MM-dd HH:mm'))
+
             };
             Arr.push(pa);
         }
@@ -262,7 +268,7 @@
                 nui.unmask(document.body);
                 if (res.errCode == 'S') {
                     showMsg(res.snum+"条微信发送任务生成成功！", "S");
-                    saveRecord(mainData);
+                    //saveRecord(mainData);
 					CloseWindow("ok");
                 } else {
                     showMsg(res.fnum+"条微信发送任务生成失败！","E");

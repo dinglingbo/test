@@ -228,6 +228,7 @@
                 guestId: data.tureGuestId || '',
                 contactorId: data.conId,
                 mobile:data.mobile,
+                contactor:data.guestName,
                 carId:data.carId||'', 
                 carNo: data.carNo || '',
                 visitContent:con ,

@@ -16,7 +16,8 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="commonj.sdo.DataObject[]" name="mainList" type="query" valueType="Java">mainList</process:return>
+      <process:return id="0" language="java.util.HashMap" name="res" type="query" valueType="Java">res</process:return>
+      <process:return id="1" language="java.util.HashMap" name="resModel" type="query" valueType="Java">resModel</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -114,6 +115,7 @@
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopstart0</sourceNode>
       <targetNode>assign2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
     <location x="47" y="385"/>
@@ -156,6 +158,7 @@
     <chidren>invokePojo2</chidren>
     <chidren>assign9</chidren>
     <chidren>subprocess3</chidren>
+    <chidren>assign4</chidren>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
@@ -317,8 +320,8 @@
         <process:inputVariable id="0" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">params</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
         <process:outputVariable id="2" name="snum" type="query" value="Int" valueType="Primitive">snum</process:outputVariable>
         <process:outputVariable id="3" name="fnum" type="query" value="Int" valueType="Primitive">fnum</process:outputVariable>
       </process:outputVariables>
@@ -349,6 +352,7 @@
         <process:outputVariable id="2" name="result" type="query" value="java.util.HashMap" valueType="Java"></process:outputVariable>
         <process:outputVariable id="3" name="snum" type="query" value="Int" valueType="Primitive">snum</process:outputVariable>
         <process:outputVariable id="4" name="fnum" type="query" value="Int" valueType="Primitive">fnum</process:outputVariable>
+        <process:outputVariable id="5" name="res" type="query" value="java.util.HashMap" valueType="Java">res</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -376,6 +380,7 @@
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
         <process:outputVariable id="2" name="snum" type="query" value="Int" valueType="Primitive">snum</process:outputVariable>
         <process:outputVariable id="3" name="fnum" type="query" value="Int" valueType="Primitive">fnum</process:outputVariable>
+        <process:outputVariable id="4" name="res" type="query" value="java.util.HashMap" valueType="Java">resModel</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -437,6 +442,10 @@
       <process:from type="expression" pattern="reference">new Date()</process:from>
       <process:to type="query">main/taskEndTime</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">main/isSend</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
     <location x="568" y="419"/>
@@ -452,7 +461,7 @@
     <location x="380" y="555"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess3label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.sendWechatCouponQF</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">params</process:inputVariable>
@@ -462,6 +471,7 @@
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
         <process:outputVariable id="2" name="snum" type="query" value="Int" valueType="Primitive">snum</process:outputVariable>
         <process:outputVariable id="3" name="fnum" type="query" value="Int" valueType="Primitive">fnum</process:outputVariable>
+        <process:outputVariable id="4" name="res" type="query" value="java.util.HashMap" valueType="Java"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -484,10 +494,12 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.crm.data.crm.CrmSendTaskMain" name="main"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="snum" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="fnum" primitiveType="Int"/>
+    <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="true" name="mainList"/>
   </process:variables>
   <process:inputs varArgs="false"/>
   <process:outputs>
-    <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="mainList"/>
+    <process:output anyType="java.util.HashMap" description="" isArray="false" name="res"/>
+    <process:output anyType="java.util.HashMap" description="" isArray="false" name="resModel"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

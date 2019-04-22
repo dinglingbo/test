@@ -60,7 +60,7 @@ function setData(data){
 		}
 	});
 	//查询使用了的优惠券
-	var params = {};
+/*	var params = {};
 	params.billMainId =data[0].billMainId;
 	params.carId = data[0].carId;
 	var json1 = {
@@ -114,7 +114,7 @@ function setData(data){
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR.responseText);
 		}
-	});
+	});*/
 	addType();
 }
 
@@ -431,7 +431,7 @@ function print(accountDetailList,netInAmt){
 		}
 		
 	}
-	  nui.confirm("付款成功，需要打印付款凭证吗？", "友情提示",function(action){
+	  nui.confirm("收款成功，需要打印收款凭证吗？", "友情提示",function(action){
 		       if(action == "ok"){
 		    		var sourceUrl = webPath + contextPath + "/com.hsweb.print.closedmentPrint.flow?token="+token;
 		    		var printName = currRepairSettorderPrintShow||currOrgName;

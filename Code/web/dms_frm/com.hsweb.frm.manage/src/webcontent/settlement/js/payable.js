@@ -10,6 +10,7 @@ var typeList = {};
 var zongAmt = 0;//实时填写的结算金额
 var guestData = null;
 var deductible = 0;
+var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryFrmAccount.biz.ext";
 $(document).ready(function (){
 	$("body").on("blur","input[name='amount']",function(){
 		onChanged();
@@ -44,6 +45,32 @@ function setData(data){
 	document.getElementById('totalAmt1').innerHTML = netInAmt;
 	document.getElementById('amount').innerHTML = netInAmt;
 	
+	if(guestData[0].guestId){
+    	var accAmt = {};
+    	accAmt.guestId = guestData[0].guestId;
+    	nui.ajax({
+            url : getAccountUrl,
+            type : "post",
+            data : JSON.stringify({
+                params : accAmt,
+                token : token
+            }),
+            success : function(data) {
+            	data = data || {};
+                if (data.errCode == "S") {
+                    var account = data.account[0];
+                    var Amt = account.accountAmt || 0;
+                    $("#creditEl").html(Amt+"元");
+                } else {
+                    showMsg(data.errMsg || "获取挂账信息失败","E");
+                }
+            },
+            error : function(jqXHR, textStatus, errorThrown) {
+                unmaskcall && unmaskcall();
+                console.log(jqXHR.responseText);
+            }
+        });
+    }
 
 	
 	addType();

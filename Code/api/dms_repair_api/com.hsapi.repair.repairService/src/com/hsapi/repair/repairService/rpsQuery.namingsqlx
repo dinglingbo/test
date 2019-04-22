@@ -1378,6 +1378,19 @@
 		    and a.status = 2
 			and a.guest_id = #guestId#	
 	</select>
+	
+	 <select id="queryFrmAccount" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			sum(no_char_off_amt) as accountAmt
+		FROM
+			wb_frm.fis_rp_bill a
+		WHERE 
+		    a.settle_status != 2
+		    and a.bill_dc = 1
+		    and a.is_disabled = 0
+			and a.guest_id = #guestId#	
+	</select>
+	
   <select id="queryRpsMaintainInfo" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 			select 
 				a.id id,a.orgid orgid,a.bill_type_id billTypeId,a.service_code serviceCode,a.guest_id guestId,a.service_type_id serviceTypeId,

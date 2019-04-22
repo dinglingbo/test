@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>收款明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%=webPath + contextPath%>/frm/js/finance/accountRDetail.js?v=1.1.9"></script>
+    <script src="<%=webPath + contextPath%>/frm/js/finance/accountRDetail.js?v=1.2.2"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -83,6 +83,7 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="feeService" name="feeService" width="80" summaryType="sum" headeralign="center" allowsort="true" dataType="float">手续费</div>
 <!--                 <div field="trueInoutAmt" name="trueInoutAmt" width="80" summaryType="sum" headeralign="center" allowsort="true" dataType="float">实收金额 </div> -->
                  <div field="settAccountName" name="settAccountName" width="110"  headeralign="center" allowsort="true" >收款账户 </div>
+                  <div field="balaTypeCode" name="balaTypeCode" width="110"  headeralign="center" allowsort="true" >收款方式 </div>
                 <div field="settCharOffAmt" name="settCharOffAmt" width="80" summaryType="sum" headeralign="center" allowsort="true" dataType="float">收款金额</div>
                 <div field="remark" name="remark" width="180"  headeralign="center" allowsort="true">收款备注</div>
                 <div field="auditor" name="auditor" width="80"  headeralign="center" allowsort="true">收款人</div>

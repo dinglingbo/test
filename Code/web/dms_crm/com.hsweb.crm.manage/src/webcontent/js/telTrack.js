@@ -76,6 +76,8 @@ $(document).ready(function(v){
     nui.get('visitManId').setValue(currEmpId);
     init();
     query();
+    
+    initM800(connect);
 });
 
 function init(){
@@ -296,3 +298,26 @@ function addRow() {
         }
     });
 }
+
+function signwUp() {
+	
+layer.load(2, { shade: false })
+            // options.phoneNumber = '+8613302387912'
+            let identity ={
+                identifierType: 'PHONE_NUMBER',     //这个是固定的,无法自定义            
+                identifier: '+8613302387912',      //这个由用户输入手机号（必须是手机号格式）         
+                countryCode:'CN'   //这个是固定（前提是中国）
+            }
+            signUp(options,identity)
+    
+
+
+    
+
+    
+}
+
+function signwDown() {
+	
+}
+

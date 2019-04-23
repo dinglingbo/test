@@ -116,22 +116,113 @@ function CloseWindow(action) {
 
 
 function SetData(params) {
-	if(params.type=="add"){
-		params.id = null;
+	var queryGuestUrl =  apiPath + repairApi+"/com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
+	if(params.carNo!=null){
+		if(params.type=="add"){
+			params.id = null;
+			if(params.guestName==null){
+			    nui.mask({
+			        el: document.body,
+			        cls: 'mini-mask-loading',
+			        html: '加载中...'
+			    });
+				var p={
+						isDisabled: 0,
+						lcarNo: params.carNo,
+						orgid: currOrgId	
+				};
+				var json = {
+						params:p,
+						token:token
+				};
+				nui.ajax({
+					url : queryGuestUrl,
+					type : 'POST',
+					data : json,
+					cache : false,
+					contentType : 'text/json',
+					success : function(text) {
+						var returnJson = nui.decode(text);
+						nui.unmask(document.body);
+						if (returnJson.errCode == 'S') {
+							params.guestName = returnJson.list[0].guestFullName;
+							params.guestMobile = returnJson.list[0].guestMobile;
+							basicInfoForm.setData(params); 
+						} else {
+							showMsg(returnJson.errMsg||"加载失败","W");
+						}
+					}
+				});
+
+
+			}else{
+			    basicInfoForm.setData(params);  
+			    nui.get("prdtName").setText(params.prdtName||"");
+			}
+		}else{
+		    basicInfoForm.setData(params);  
+		    nui.get("prdtName").setText(params.prdtName||"");
+		}
+	}else{
+		basicInfoForm.setData({}); 
 	}
-    basicInfoForm = new nui.Form("#basicInfoForm");
-    basicInfoForm.setData(params); 
-    nui.get("prdtName").setText(params.prdtName||"");
+
 }
 
 
 function setData(params) {
-	if(params.type=="add"){
-		params.id = null;
-	}
     basicInfoForm = new nui.Form("#basicInfoForm");
-    basicInfoForm.setData(params);  
-    nui.get("prdtName").setText(params.prdtName||"");
+	var queryGuestUrl =  apiPath + repairApi+"/com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
+	if(params.carNo!=null){
+		if(params.type=="add"){
+			params.id = null;
+			if(params.guestName==null){
+			    nui.mask({
+			        el: document.body,
+			        cls: 'mini-mask-loading',
+			        html: '加载中...'
+			    });
+				var p={
+						isDisabled: 0,
+						lcarNo: params.carNo,
+						orgid: currOrgId	
+				};
+				var json = {
+						params:p,
+						token:token
+				};
+				nui.ajax({
+					url : queryGuestUrl,
+					type : 'POST',
+					data : json,
+					cache : false,
+					contentType : 'text/json',
+					success : function(text) {
+						var returnJson = nui.decode(text);
+						nui.unmask(document.body);
+						if (returnJson.errCode == 'S') {
+							params.guestName = returnJson.list[0].guestFullName;
+							params.guestMobile = returnJson.list[0].guestMobile;
+							basicInfoForm.setData(params);  
+						} else {
+							showMsg(returnJson.errMsg||"加载失败","W");
+						}
+					}
+				});
+
+
+			}else{
+			    basicInfoForm.setData(params);  
+			    nui.get("prdtName").setText(params.prdtName||"");
+			}
+		}else{
+		    basicInfoForm.setData(params);  
+		    nui.get("prdtName").setText(params.prdtName||"");
+		}
+	    
+	}else{
+		basicInfoForm.setData({}); 
+	}
 }
 
 

@@ -20,6 +20,7 @@
       <process:return id="2" language="java.util.HashMap" name="result" type="query" valueType="Java">result</process:return>
       <process:return id="3" language="Int" name="snum" type="query" valueType="Primitive">snum</process:return>
       <process:return id="4" language="Int" name="fnum" type="query" valueType="Primitive">fnum</process:return>
+      <process:return id="5" language="java.util.HashMap" name="res" type="query" valueType="Java">res</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -66,15 +67,6 @@
       <sourceNode>assign0</sourceNode>
       <targetNode>loopstart0</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link3" name="link3" displayName="连接线" type="transition">
-      <sourceNode>assign0</sourceNode>
-      <targetNode>assign8</targetNode>
-      <process:transitionCondition>
-        <process:complexCondition>
-          <process:code>1==1</process:code>
-        </process:complexCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <targetConnections>link4</targetConnections>
     <location x="150" y="173"/>
     <size height="28" width="28"/>
@@ -117,7 +109,7 @@
   <nodes xsi:type="process:tLoopEnd" id="loopend0" name="循环结束" displayName="循环结束" grouped="true" type="loopend" matchedName="loopstart0">
     <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopend0</sourceNode>
-      <targetNode>assign1</targetNode>
+      <targetNode>invokePojo1</targetNode>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
     <location x="743" y="175"/>
@@ -143,7 +135,7 @@
       <sourceNode>assign1</sourceNode>
       <targetNode>subprocess0</targetNode>
     </sourceConnections>
-    <targetConnections>link9</targetConnections>
+    <targetConnections>link8</targetConnections>
     <location x="123" y="318"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
@@ -152,8 +144,16 @@
       <process:to type="query">p/orgid</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">openIdList</process:from>
+      <process:from type="query" pattern="value">openIdList</process:from>
       <process:to type="query">p/openIdList</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">p/paramsType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">p</process:from>
+      <process:to type="query">res</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -186,44 +186,26 @@
       <targetNode>invokePojo2</targetNode>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
-    <location x="587" y="173"/>
+    <location x="470" y="171"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
       <process:from type="query" pattern="reference">f/wechatOpenId</process:from>
-      <process:to type="query">tempList/wechatOpenId</process:to>
+      <process:to type="query">tempList/userOpid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">f/contactorId</process:from>
+      <process:to type="query">tempList/contactorId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">f/id</process:from>
+      <process:to type="query">tempList/id</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="585" y="209"/>
+    <location x="468" y="207"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
-  </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="运算逻辑" displayName="运算逻辑" collapsed="false" grouped="true" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo2</sourceNode>
-      <targetNode>loopend0</targetNode>
-    </sourceConnections>
-    <targetConnections>link7</targetConnections>
-    <location x="663" y="173"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo2label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hs.common.ArrayUtils.add2Array</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="sourceDO" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">tempList</process:inputVariable>
-      <process:inputVariable id="1" name="dos" type="query" value="java.util.HashMap[]" valueType="Java" pattern="reference">openIdList</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="java.util.HashMap[]" valueType="Java">openIdList</process:outputVariable>
-    </process:outputVariables>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="650" y="209"/>
-    <figSize height="17" width="49"/>
-    <node>invokePojo2</node>
   </nodes>
   <nodes xsi:type="process:tLoopStart" description="" id="loopstart1" name="循环1" displayName="循环" grouped="true" type="loopstart" matchedName="loopend1" loopType="iterate">
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
@@ -302,7 +284,7 @@
       <process:to type="query">visitRecord/serviceType</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">f2/guestId</process:from>
+      <process:from type="query" pattern="reference">f2/contactorId</process:from>
       <process:to type="query">visitRecord/guestId</process:to>
     </process:copy>
     <process:copy>
@@ -367,7 +349,7 @@
     <figSize height="17" width="80"/>
     <node>invokePojo0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign7" name="赋值6" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值6" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign7</sourceNode>
       <targetNode>loopstart1</targetNode>
@@ -376,6 +358,10 @@
     <location x="123" y="467"/>
     <size height="28" width="28"/>
     <nodeLabel>assign7label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">result</process:from>
+      <process:to type="query">res/result</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
     <location x="121" y="503"/>
@@ -388,7 +374,6 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link19</targetConnections>
-    <targetConnections>link3</targetConnections>
     <location x="767" y="460"/>
     <size height="28" width="28"/>
     <nodeLabel>assign8label</nodeLabel>
@@ -492,6 +477,59 @@
     <figSize height="17" width="80"/>
     <node>invokePojo4</node>
   </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="运算逻辑" displayName="运算逻辑" collapsed="false" grouped="true" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo2</sourceNode>
+      <targetNode>loopend0</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link7</targetConnections>
+    <location x="663" y="173"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo2label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.ArrayUtils.add2Array</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="sourceDO" type="query" value="java.util.HashMap" valueType="Java" pattern="value">tempList</process:inputVariable>
+      <process:inputVariable id="1" name="dos" type="query" value="java.util.HashMap[]" valueType="Java" pattern="reference">openIdList</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.util.HashMap[]" valueType="Java">openIdList</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
+    <location x="650" y="209"/>
+    <figSize height="17" width="49"/>
+    <node>invokePojo2</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="remove" displayName="remove" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo1</sourceNode>
+      <targetNode>assign1</targetNode>
+    </sourceConnections>
+    <targetConnections>link9</targetConnections>
+    <location x="240" y="318"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo1label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.ArrayUtils.remove</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="pros" type="query" value="java.lang.Object[]" valueType="Java" pattern="reference">openIdList</process:inputVariable>
+      <process:inputVariable id="1" name="index" type="literal" value="java.lang.Integer" valueType="Java" pattern="reference">0</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.Object[]" valueType="Java">openIdList</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
+    <location x="229" y="354"/>
+    <figSize height="17" width="45"/>
+    <node>invokePojo1</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-04-20 11:27:39" date="2019-04-20Z" description="" name="sendWechatPicText" version="7.0.0.0"/>
@@ -513,6 +551,7 @@
     <process:output anyType="java.util.HashMap" description="" isArray="false" name="result"/>
     <process:output description="" isArray="false" name="snum" primitiveType="Int"/>
     <process:output description="" isArray="false" name="fnum" primitiveType="Int"/>
+    <process:output anyType="java.util.HashMap" description="" isArray="false" name="res"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

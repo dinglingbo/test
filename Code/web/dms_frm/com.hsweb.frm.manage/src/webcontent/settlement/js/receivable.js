@@ -1,6 +1,7 @@
 
 var baseUrl = apiPath + repairApi + "/";
 var frmUrl = apiPath + frmApi + "/";
+var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryFrmAccount.biz.ext";
 var netInAmt = 0;
 var tableNum = 0;
 var form = null;
@@ -59,6 +60,35 @@ function setData(data){
 			console.log(jqXHR.responseText);
 		}
 	});
+	
+	//挂账
+	if(guestData[0].guestId){
+    	var accAmt = {};
+    	accAmt.guestId = guestData[0].guestId;
+    	nui.ajax({
+            url : getAccountUrl,
+            type : "post",
+            data : JSON.stringify({
+                params : accAmt,
+                token : token
+            }),
+            success : function(data) {
+            	data = data || {};
+                if (data.errCode == "S") {
+                    var account = data.account[0];
+                    var Amt = account.accountAmt || 0;
+                    $("#creditEl").html(Amt+"元");
+                } else {
+                    showMsg(data.errMsg || "获取挂账信息失败","E");
+                }
+            },
+            error : function(jqXHR, textStatus, errorThrown) {
+                unmaskcall && unmaskcall();
+                console.log(jqXHR.responseText);
+            }
+        });
+    }
+
 	//查询使用了的优惠券
 /*	var params = {};
 	params.billMainId =data[0].billMainId;

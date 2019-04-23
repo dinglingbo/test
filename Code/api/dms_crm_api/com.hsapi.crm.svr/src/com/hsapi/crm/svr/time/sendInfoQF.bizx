@@ -15,7 +15,6 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link16</targetConnections>
-    <targetConnections>link4</targetConnections>
     <location x="780" y="218"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
@@ -41,16 +40,6 @@
       <sourceNode>assign3</sourceNode>
       <targetNode>loopstart1</targetNode>
       <process:transitionCondition/>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="连接线" type="transition">
-      <bendPoint heightToEnd="164" heightToStart="164" widthToEnd="-359" widthToStart="331"/>
-      <sourceNode>assign3</sourceNode>
-      <targetNode>end0</targetNode>
-      <process:transitionCondition>
-        <process:complexCondition>
-          <process:code>1==1</process:code>
-        </process:complexCondition>
-      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
     <location x="90" y="218"/>
@@ -264,7 +253,7 @@
       <process:to type="query">visitRecord/serviceType</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">f/guestId</process:from>
+      <process:from type="query" pattern="reference">f/contactorId</process:from>
       <process:to type="query">visitRecord/guestId</process:to>
     </process:copy>
     <process:copy>

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8" session="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
      <%@include file="/common/commonRepair.jsp"%>
+     <%@include file="/common/commonCrm.jsp"%>
 <html>
 <!--
   - Author(s): Guine
@@ -11,7 +12,7 @@
 <head>
 <title>电话跟踪</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/manage/js/telTrack.js?v=1.0.20"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/telTrack.js?v=1.0.21"></script>
         <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 </head>
@@ -95,6 +96,13 @@
                     style="width:120px;"/>
                 <a class="nui-button"  plain="true" onclick="query()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <li class="separator"></li>
+                
+                <a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">状态</a>
+                <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
+                    <li iconCls="" onclick="signwUp()" id="type0">上线</li>
+                    <li iconCls="" onclick="signwDown()" id="type1">下线</li>
+                </ul>
+                    
                 <a class="nui-button"  plain="true" onclick="telInfo()" id="" enabled="true"><span class="fa fa-phone fa-lg"></span>&nbsp;电话跟踪</a>
                 <a class="nui-button"  plain="true" onclick="sendInfo()" id="add" enabled="true"><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
                 <a class="nui-button"  plain="true" onclick="addRow()" id="" enabled="true"><span class="fa fa-wrench fa-lg"></span>&nbsp;预约登记</a>

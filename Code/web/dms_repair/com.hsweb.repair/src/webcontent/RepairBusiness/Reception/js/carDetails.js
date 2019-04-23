@@ -524,7 +524,10 @@ function addSell() {
 			//工单页面添加商机信息直接带过去
 			var data = xyguest;
 			//新增页面商机的姓名字段是guestName
-			data.guestName = data.guestFullName;
+			if(data.guestName==null){
+				data.guestName = data.guestFullName;
+			}
+
 			data.type = "add";
 			iframe.contentWindow.setData(data);
 		},

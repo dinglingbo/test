@@ -12,7 +12,7 @@
 <head>
 <title>商机添加</title>
 <script
-	src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/businessOpportunityEdit.js?v=1.2.5"></script>
+	src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/businessOpportunityEdit.js?v=1.3.0"></script>
 </head>
 <body>
 		     <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
@@ -62,7 +62,8 @@
 					</td>
 					<td class="form_label" align="right">预计金额:</td>
 					<td colspan="1">
-					<input class="nui-textbox" name="prdtAmt" id="prdtAmt"    />
+					<input class="mini-spinner" id="prdtAmt" name="prdtAmt"  minValue="0" maxValue="1000000" showbutton="false" changeOnMousewheel="false"
+						allowNull="false"  />
 					</td>
 				</tr>
 				<tr>

@@ -31,6 +31,12 @@ pageEncoding="UTF-8" session="false" %>
         .textboxWidth{
             width:100%
         }
+        #wechatTag1{
+            color:#ccc;
+    }
+    #wechatTag{
+        color:#62b900;
+    }
     </style>
 </head>
 
@@ -55,17 +61,19 @@ pageEncoding="UTF-8" session="false" %>
             <tr class="htr">
                 <td  class="tbText">联系人：</td>
                 <td style="width: 135px;">
-                    <input id="contactorId" name="contactorId" class="nui-combobox textboxWidth" dataField="data.contacter" valueField="id" textField="name" >
+                    <input id="contactorId" name="contactorId" class="nui-combobox textboxWidth" dataField="data.contacter" valueField="id" textField="name"
+                    onvaluechanged="contactorChange" >
                 </td>
                 <td class="tbText">手机号码：</td> 
                 <td style="width: 135px;">
-                    <input id="" name="" class="nui-textbox textboxWidth" dataField="data" valueField="customid" textField="name" >
+                    <!-- <input id="mobile" name="mobile" class="nui-textbox textboxWidth" dataField="data" valueField="customid" textField="name" > -->
+                    <div id="mobile"></div>
                 </td>
             </tr>
             <tr class="htr">
                 <td class="tbText">备注：</td>
                 <td colspan="6">
-                    <input id="remark" name="remark" class="nui-textarea textboxWidth" style="width: 100%;height:50px;">
+                    <input id="remark" name="remark" class="nui-textarea textboxWidth" style="width: 100%;height:50px;" enabled="false">
                 </td>
             </tr>
             <tr class="htr">
@@ -89,6 +97,7 @@ pageEncoding="UTF-8" session="false" %>
         var contactorId = nui.get("contactorId");
         visitMode.setUrl(visitModeCtrlUrl);
         var mainData = {};
+        var conDetail = {};//联系人详情
 
         nui.get("visitContent").focus();
         document.onkeyup = function (event) {
@@ -96,14 +105,23 @@ pageEncoding="UTF-8" session="false" %>
             var keyCode = e.keyCode || e.which; //38向上 40向下
             if ((keyCode == 27)) { //ESC
                 onCancel();
-            }
+            } 
         };
 
         function setData(rowData) {
             mainData = rowData;
-            var turl = conUrl+'?guestId='+mainData.trueGuestId;
-            contactorId.setUrl(turl);
-            //contactorId.select(1);
+            if(mainData.guestSource == 0){
+                    var turl = conUrl+'?guestId='+mainData.trueGuestId;
+		            contactorId.setUrl(turl);
+		            contactorId.select(0);
+		            contactorId.doValueChanged();
+            }else{
+                contactorId.disable(true);
+                contactorId.setText(mainData.guestName);
+                document.getElementById('mobile').innerHTML=mainData.mobile;
+                nui.get("remark").setValue(mainData.remark);
+            }
+
         }
 
         function save() {
@@ -115,7 +133,7 @@ pageEncoding="UTF-8" session="false" %>
             var params = {
                 serviceType:mainData.serviceType,
                 mainId:mainData.mainId,
-                guestId: mainData.guestId,
+                guestId: conDetail.id||'',
                 carId: mainData.carId,
                 carNo:mainData.carNo||'',
                 visitMode: data.visitMode,
@@ -141,6 +159,18 @@ pageEncoding="UTF-8" session="false" %>
             });
         }
 
+        function contactorChange(e) {
+             conDetail = e.selected;
+            nui.get("remark").setValue(conDetail.remark);
+            var con = '<span id="wechatTag" class="fa fa-wechat fa-lg"></span>&nbsp;'+conDetail.mobile;
+            var con1 = '<span id="wechatTag1" class="fa fa-wechat fa-lg"></span>&nbsp;'+conDetail.mobile;
+            if(conDetail.wechatOpenId){
+                document.getElementById('mobile').innerHTML=con;
+            }else{
+                document.getElementById('mobile').innerHTML=con1;
+            }
+        }
+        
         function onCancel() {
             CloseWindow("cancel");
         }

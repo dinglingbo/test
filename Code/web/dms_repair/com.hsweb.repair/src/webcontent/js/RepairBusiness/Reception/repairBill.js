@@ -4718,7 +4718,7 @@ function SearchLastCheckMain() {
                 var ldata = text.list[0];
                 lastCheckParams = ldata;
                 score = ldata.check_point || 0;
-                lcheckDate = ldata.checkDate ;
+                lcheckDate = nui.formatDate(nui.parseDate(ldata.checkDate),"yyyy-MM-dd HH:mm:ss");
                 var rdate = nui.formatDate(nui.parseDate(ldata.record_date),"yyyy-MM-dd HH:mm:ss")
 
                 $("#lastCheckInfo1").html('上次检查');

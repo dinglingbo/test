@@ -155,7 +155,7 @@ pageEncoding="UTF-8" session="false" %>
             <!--         </div> -->
         </form>
 
-        <div class="nui-hidden">
+        <div style="display:none;">
             <div id="dgScoutDetail" class="nui-datagrid"
             allowCellEdit="false" allowCellSelect="true"
             style="width:100%;height:100%;"

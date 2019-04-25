@@ -6,10 +6,12 @@ var currGuest;
 var memList = [];
 var memHash={};  
 var carModelHash = [];
+var loginWin = null;
 
 $(document).ready(function(v){
     queryForm = new nui.Form("#queryForm"); 
     dgGrid = nui.get("dgGrid");
+    loginWin = nui.get("loginWin");
     dgGrid.setUrl(getScoutGuestListUrl);
     dgGrid.on("beforeload",function(e){ 
         e.data.token = token;
@@ -299,25 +301,51 @@ function addRow() {
     });
 }
 
-function signwUp() {
+// function signwUp() {
 	
-layer.load(2, { shade: false })
-            // options.phoneNumber = '+8613302387912'
-            var  identity ={
-                identifierType: 'PHONE_NUMBER',     //这个是固定的,无法自定义            
-                identifier: '+8613302387912',      //这个由用户输入手机号（必须是手机号格式）         
-                countryCode:'CN'   //这个是固定（前提是中国）
-            };
-            signUp(options,identity);
-    
+// layer.load(2, { shade: false })
+//             // options.phoneNumber = '+8613302387912'
+//             var  identity ={
+//                 identifierType: 'PHONE_NUMBER',     //这个是固定的,无法自定义            
+//                 identifier: '+8613302387912',      //这个由用户输入手机号（必须是手机号格式）         
+//                 countryCode:'CN'   //这个是固定（前提是中国）
+//             };
+//             signUp(options,identity);
+
+// }
+
+// function signwDown() {
+	
+// }
 
 
-    
-
-    
+function login() {
+    if (loginWin.visible == false) {
+        var atEl = document.getElementById("login");  
+        loginWin.showAtEl(atEl, {xAlign:"left",yAlign:"below"});
+    } else {
+        loginWin.hide();
+    }
 }
 
-function signwDown() {
-	
+function hideLoginWin() {
+    loginWin.hide();
 }
+
+function onLogin() {
+    var lmobile = nui.get("LoginMobile");
+    var VerificationCode = nui.get("VerificationCode");
+    if (checkMobile(lmobile.value)) { 
+        if (VerificationCode.value) {
+            //执行登录操作
+        } else {
+            showMsg("请输入验证码", "W");
+        }
+
+
+    }
+        
+}
+
+
 

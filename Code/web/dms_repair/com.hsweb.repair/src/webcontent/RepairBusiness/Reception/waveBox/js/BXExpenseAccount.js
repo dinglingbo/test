@@ -414,6 +414,7 @@ function save(){
 
 function onPrint(e){
 	var main = billForm.getData();
+	
 	var printUrl = "/com.hsweb.bx.quotationPrint.flow";
 	if(main.id){
 		print = e;
@@ -424,7 +425,7 @@ function onPrint(e){
 			height: "100%",
 	        onload: function () {
 	            var iframe = this.getIFrameEl();
-	           iframe.contentWindow.SetData(main.id,print);
+	           iframe.contentWindow.SetData(main.id,print,main.sourceServiceId);
 	        },
 	        ondestroy: function (action){
 	        }

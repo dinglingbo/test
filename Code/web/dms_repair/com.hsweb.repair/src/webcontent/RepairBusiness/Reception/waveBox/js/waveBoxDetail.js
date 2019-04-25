@@ -4730,7 +4730,7 @@ function bxOnPrint(e){
 			height: "100%",
 	        onload: function () {
 	            var iframe = this.getIFrameEl();
-	           iframe.contentWindow.SetData(serviceId,print);
+	           iframe.contentWindow.SetData(serviceId,print,null);
 	        },
 	        ondestroy: function (action){
 	        }

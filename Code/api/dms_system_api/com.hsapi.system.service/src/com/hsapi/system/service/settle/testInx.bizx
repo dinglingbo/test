@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="testInx.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
+    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <location x="100" y="150"/>
+    <size height="28" width="28"/>
+    <nodeLabel>start0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
+    <targetConnections>link1</targetConnections>
+    <location x="600" y="150"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end0label</nodeLabel>
+    <process:returns/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
+    <location x="102" y="186"/>
+    <figSize height="17" width="25"/>
+    <node>start0</node>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
+    <location x="602" y="186"/>
+    <figSize height="17" width="25"/>
+    <node>end0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link0</targetConnections>
+    <location x="212" y="150"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign0label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">+8613710326756@ruixinchangyin-comphs-1-test.m800-api.com</process:from>
+      <process:to type="query">str</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">str.indexOf('@')</process:from>
+      <process:to type="query">inx</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">str.substring(3,inx)</process:from>
+      <process:to type="query">str</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">8613810326756</process:from>
+      <process:to type="query">str</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">str.length()</process:from>
+      <process:to type="query">len</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">str.substring(2,len)</process:from>
+      <process:to type="query">str</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
+    <location x="214" y="186"/>
+    <figSize height="17" width="25"/>
+    <node>assign0</node>
+  </nodes>
+  <topRuler/>
+  <leftRuler/>
+  <process:info author="Administrator" createTime="2019-04-25 11:51:05" date="2019-04-25Z" description="" name="testInx" version="7.0.0.0"/>
+  <process:variables>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="str" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="inx" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="len" primitiveType="Int"/>
+  </process:variables>
+  <process:inputs varArgs="false"/>
+  <process:outputs/>
+  <process:extAttribute1>public</process:extAttribute1>
+  <process:transactionType>true</process:transactionType>
+</process:tBusinessLogic>

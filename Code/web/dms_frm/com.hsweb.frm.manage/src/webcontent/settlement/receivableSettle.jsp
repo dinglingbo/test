@@ -9,7 +9,7 @@
 
 <head>
 	<title>应收账款管理</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.7.12"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.7.15"></script>
 	    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 	<style type="text/css">
@@ -120,11 +120,11 @@
 						</ul>
 						<input class="nui-combobox"
 						data="[{value:'0',text:'未收款',},{value:'1',text:'部分收款'},{value:'2',text:'已收款'},{value:'3',text:'全部'}]"
-						textField="text" valueField="value" name="settleStatus" id="settleStatus" width="90px"
+						textField="text" valueField="value" name="settleStatus" id="settleStatus" width="80px"
 						value="0" onvalidation="onSearch()"  />
 						<input class="nui-combobox"
 						data="[{value:'0',text:'未审核',},{value:'1',text:'已审核'},{value:'2',text:'全部'}]"
-						textField="text" valueField="value" name="auditSign" id="auditSign" width="90px"
+						textField="text" valueField="value" name="auditSign" id="auditSign" width="70px"
 						value="2" onvalidation="onSearch()"  />
 						<label style="font-family: Verdana;">转单日期 从：</label>
 						<input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false"
@@ -152,10 +152,16 @@
 							<span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
 						<a class="nui-button" iconCls="" plain="true" onclick="openOrderDetail()">
 							<span class="fa fa-search fa-lg"></span>&nbsp;详情</a>
-<!-- 						<a class="nui-button" iconCls="" plain="true" onclick="doDelete()">
-							<span class="fa fa-trash fa-lg"></span>&nbsp;作废</a> -->
+<!-- 						<a class="nui-button" iconCls="" plain="true" onclick="print()"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+						<a class="nui-button" iconCls="" plain="true" onclick="doDelete()">
+							<span class="fa fa-trash fa-lg"></span>&nbsp;作废</a>
 						<a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn">
-							<span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
+							<span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a> -->
+						<a class="nui-menubutton" plain="true" menu="#popupMenuMore" id="menuMore"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
+						<ul id="popupMenuMore" class="nui-menu" style="display:none;">
+		                    <li iconCls="" onclick="onExport()" id="">导出</li>
+		                    <li iconCls="" onclick="print()" id="type11">打印欠款单</li>
+		                </ul>
 					</td>
 				</tr>
 			</table>

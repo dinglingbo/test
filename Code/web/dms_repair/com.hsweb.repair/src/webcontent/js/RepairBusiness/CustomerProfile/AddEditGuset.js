@@ -1053,6 +1053,8 @@ function addCar() {
     $("#xmTanImg2").attr("src",webPath + contextPath + "/common/images/logo.jpg");
     $("#xmTanImg3").attr("src",webPath + contextPath + "/common/images/logo.jpg");
 	carview.show();
+	$(".imgListA").remove();
+	photos=[];
 }
 
 function addContact() {
@@ -1328,6 +1330,8 @@ function eaidCar(){
 		showMsg("请选择车辆!","W");
 		return;
 	}
+	$(".imgListA").remove();
+	photos=[];
 	carIdForPhoto = row.id;
 	nui.ajax({
 		url: baseUrl+ "com.hsapi.repair.repairService.waveBox.searchCarPhoto.biz.ext",
@@ -1340,9 +1344,14 @@ function eaidCar(){
 		success: function (text) {
 				if(text.errCode == "S"){
 					var data = text.data;
+					index = 0;
 					for(var i = 0;i< data.length;i ++){
 							index++;
 				            var html=imageHtml(data[i].address,index);
+				        	if(index%4==0){
+				        		
+				        		html+='<br/>';
+				        	}
 							 $(".photos").before(html);
 							 mouseImage();
 					         photos[photos.length]={
@@ -1592,8 +1601,11 @@ function imageHtml(imageUrl,indexss){
 	var html="";
 	var imagerText="imagers"+indexss;
 	var imagerShow="imageshow"+indexss;
-	html+='<a href="#" class="imgListA '+imagerText+'">';
-	html+='		<div class="" style="width:200px;height: 200px;float: left;" >';
+	/*if(indexss%4==0){
+		html+='<br>';
+	}*/
+	html+='<a href="#" class="imgListA '+imagerText+'" >';
+	html+='		<div class="" style="width:150px;height: 100px;float: left;" >';
 	html+='		<div class="imgListOneDiv" style="display:none;" >';
 	html+='			<img id="" alt="" src="'+webPath + contextPath +'/repair/prototype/images/preview.png" class="imgListone preview" num="'+indexss+'" >';
 	html+='			<img  id="" alt="" src="'+webPath + contextPath +'/repair/prototype/images/deleteImage.png"  class="imgListtwo imgDelete" num="'+indexss+'" >';
@@ -1601,6 +1613,7 @@ function imageHtml(imageUrl,indexss){
 	html+='			<img id=""  alt="" src="'+imageUrl+'" class="imgStyle '+imagerShow+'" >';
 	html+='		</div>';
 	html+='</a>';
+
 	return html;
 };
 
@@ -1632,7 +1645,7 @@ function addCarListPhoto(){
 		success: function (text) {
 			nui.unmask();
 				if(text.errCode == "S"){
-					showMsg("执行成功","S");
+					showMsg("保存成功","S");
 				}else{
 					showMsg(text.errMsg,"W");
 				}
@@ -1652,8 +1665,8 @@ function mouseImage(){
 		
 		var height = $(this).find(".imgStyle").height();
 		var width = $(this).find(".imgStyle").width();
-		$( $(this).find(".imgListOneDiv") ).css("height",height+"px");
-		$( $(this).find(".imgListOneDiv") ).css("width",width+"px");
+		$( $(this).find(".imgListOneDiv") ).css("height","70px");
+		$( $(this).find(".imgListOneDiv") ).css("width","150px");
 		var heightTo=height/2;
 		if( heightTo>20 ){
 			heightTo-=20;

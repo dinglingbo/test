@@ -17,6 +17,7 @@ var advancedTipForm = null;
 
 var brandHash = {};
 var brandList = [];
+var type=null;
 
 $(document).ready(function(v)
 {
@@ -64,6 +65,7 @@ function importf(obj) {//导入
 		var indexs = XLSX.utils
 				.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
 		mainGrid.addRows(indexs);
+		type=null;
 	};
 	if (rABS) {
 		reader.readAsArrayBuffer(f);
@@ -71,6 +73,145 @@ function importf(obj) {//导入
 		reader.readAsBinaryString(f);
 	}
 }
+
+function importfBMW(obj){
+	if (!obj.files) return;
+	
+	nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '处理中...'
+    });
+	
+    var f = obj.files[0];
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        var data = e.target.result;
+        wb = null;
+        if (isCSV) {
+            data = new Uint8Array(data);
+            let f = isUTF8(data);
+            var result = "是CSV文件,编码" + (f ? "是" : "不是") + "UTF-8";
+            console.log(result);
+            if (f) {
+                data = e.target.result;
+            } else {
+            	nui.unmask(document.body);
+            	showMsg("请选择xlsx的格式","W");
+//            	var	str =Utf8ArrayToStr(data);
+            	
+//                var str = cptable.utils.decode(936, data); //UTF-8数组转字符串；
+//                wb = XLSX.read(str, { type: "string" });
+            }
+        }else{
+        	var result ="不是CSV文件";
+        	console.log(result);
+        }
+        if (!wb) {
+            wb = rABS|| isCSV ? XLSX.read(btoa(fixdata(data)), { type: 'base64' }) : XLSX.read(data, { type: 'binary' });
+        }
+        //wb.SheetNames[0]是获取Sheets中第一个Sheet的名字
+        //wb.Sheets[Sheet名]获取第一个Sheet的数据
+       var result = JSON.stringify(XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]));
+       console.log(result);
+       var needArray=strToArray(result);
+       nui.unmask(document.body);
+       mainGrid.addRows(needArray);
+       type='4S';
+    };
+    isCSV = f.name.split(".").reverse()[0] == "csv";//判断是否是 CSV
+    if (rABS || isCSV) {
+        reader.readAsArrayBuffer(f);
+    } else {
+        reader.readAsBinaryString(f);
+    }
+    obj.value = "";
+}
+
+//给宝马用
+function strToArray(result){
+	
+	var array =JSON.parse(result);
+	var needKey={"零件编号.":"配件编码",
+				"总库存量":"数量",
+				"主(1)仓仓位":"仓位",
+				"Stock价格":"销售价"};
+	var needArray=[];
+	for(var i=0;i<array.length;i++){
+		var object={};
+		for(var key in needKey){		
+			if(array[i].hasOwnProperty(key)){				
+				if(key=='零件编号.'){
+					var reg=/[A-Za-z]+/
+					var str=array[i][key].replace(reg,"").replace(/\./g,"");
+					object[needKey[key]]=str;
+				}
+				if(key=='Stock价格'){
+					object['单价']=array[i][key];
+					object[needKey[key]]=array[i][key];
+				}
+				if(key == '总库存量'){
+					if(array[i][key]>0){
+						object[needKey[key]]=array[i][key];
+					}else{
+						break;
+					}
+				}
+				else if(key!='零件编号.' &&  key!='Stock价格' && key !='总库存量'){				
+					object[needKey[key]]=array[i][key];	
+					object['品牌']='原厂';
+					object['是否含税']='是';
+					object['税率']='0.13';
+				}
+			}
+			
+		}
+		if(object.hasOwnProperty('配件编码') && object.hasOwnProperty('数量') && object.hasOwnProperty('仓位') && object.hasOwnProperty('销售价')){			
+			needArray.push(object);
+
+		}
+	}
+	
+	console.log(needArray);
+    return needArray;
+	
+	
+}
+function Utf8ArrayToStr(array) {
+	var out, i, len, c;
+	var char2, char3;
+
+	out = "";
+	len = array.length;
+	i = 0;
+	while(i < len) {
+	c = array[i++];
+	switch(c >> 4)
+	{ 
+	case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:
+	// 0xxxxxxx
+	out += String.fromCharCode(c);
+	break;
+	case 12: case 13:
+	// 110x xxxx 10xx xxxx
+	char2 = array[i++];
+	out += String.fromCharCode(((c & 0x1F) << 6) | (char2 & 0x3F));
+	break;
+	case 14:
+	// 1110 xxxx 10xx xxxx 10xx xxxx
+	char2 = array[i++];
+	char3 = array[i++];
+	out += String.fromCharCode(((c & 0x0F) << 12) |
+	((char2 & 0x3F) << 6) |
+	((char3 & 0x3F) << 0));
+	break;
+	}
+	}
+
+	return out;
+	}
+
+
 
 function fixdata(data) { //文件流转BinaryString
 	var o = "", l = 0, w = 10240;
@@ -81,10 +222,41 @@ function fixdata(data) { //文件流转BinaryString
 			* w)));
 	return o;
 }
-
+var deleteUrl=baseUrl + "com.hsapi.cloud.part.invoicing.crud.deletePartStock.biz.ext";
+function deletePartStock(){
+	 nui.ajax({
+	        url : deleteUrl,
+	        type : "post",
+	        async: false,
+	        data : JSON.stringify({
+	            token : token
+	        }),
+	        success : function(data) {
+	            nui.unmask(document.body);
+	            data = data || {};
+	            var errMsg = data.errMsg;
+	            if (data.errCode == "S") {
+	                return true;
+	            } else {
+					showMsg(data.errMsg || "删除库存失败!","W");
+					return false;
+	            }
+	        },
+	        error : function(jqXHR, textStatus, errorThrown) {
+	            // nui.alert(jqXHR.responseText);
+	            console.log(jqXHR.responseText);
+	        }
+	    });
+}
 function sure() {
 	var data = mainGrid.getData();
 	var partList = [];
+	if(type=='4S'){
+		var flag=deletePartStock();
+		if(flag==false){
+			return;
+		}
+	}
 	if (data) {
 		//alert(data.length);
 		for (var i = 0; i < data.length; i++) {

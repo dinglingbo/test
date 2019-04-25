@@ -1164,7 +1164,7 @@
 			inner JOIN rpb_car b ON ( a.car_id = b.id )
 		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
 			inner join rps_settlement d on (a.id =  d.service_id)
-		WHERE 1 = 1 
+		WHERE 1 = 1 and a.bill_type_id in (0,2,4,6)
 			
       <dynamic>
 			<isNotEmpty prepend="and" property="rid">
@@ -1378,6 +1378,19 @@
 		    and a.status = 2
 			and a.guest_id = #guestId#	
 	</select>
+	
+	 <select id="queryFrmAccount" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			sum(no_char_off_amt) as accountAmt
+		FROM
+			wb_frm.fis_rp_bill a
+		WHERE 
+		    a.settle_status != 2
+		    and a.bill_dc = 1
+		    and a.is_disabled = 0
+			and a.guest_id = #guestId#	
+	</select>
+	
   <select id="queryRpsMaintainInfo" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 			select 
 				a.id id,a.orgid orgid,a.bill_type_id billTypeId,a.service_code serviceCode,a.guest_id guestId,a.service_type_id serviceTypeId,

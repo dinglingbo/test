@@ -456,5 +456,20 @@ public class DateUtils {
 	         DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	         return sdf.format(date);
 	     }
+		  
+		 @Bizlet("")
+	     public static String getLongToDate(long lo) {
+	         
+	         
+	         Date date = new Date(lo);
+	         
+	         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	         return sdf.format(date);
+	     }
+		 
+		 @Bizlet("")
+	     public static long getDateToLong(Date d) {
+	         return d.getTime()/1000;
+	     }
 			  
 }

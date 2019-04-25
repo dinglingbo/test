@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveWechatCustomerInfo.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="微信客户认证：&#xD;&#xA;1、已有客户认证，联系人根据客户id和客户手机号查询，如果有此联系人，则更新该联系人的服务号和openID，如果没有，则新增一个和客户手机号一样的联系人。&#xD;&#xA;2、认证的车辆：查询该客户有无此车辆，有，不新增，并把所有客户车辆返回给微信端&#xD;&#xA;没有，新增，并把所有客户车辆返回给微信端&#xD;&#xA;3、添加车辆：查询该客户有无此车辆，有，不新增，并把该车辆返回给微信端&#xD;&#xA;没有，新增，并把该车辆返回给微信端&#xD;&#xA;&#xD;&#xA;" title="Administrator&#x9;19-4-24 下午2:42">
+    <location x="60" y="585"/>
+    <size height="226" width="537"/>
+  </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -88,6 +92,7 @@
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>assign3</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="连接线" type="transition">
       <sourceNode>assign1</sourceNode>
@@ -114,7 +119,7 @@
       <targetNode>invokePojo6</targetNode>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
-    <location x="242" y="315"/>
+    <location x="236" y="315"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
@@ -143,7 +148,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="240" y="351"/>
+    <location x="234" y="351"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
@@ -176,7 +181,7 @@
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
     <targetConnections>link39</targetConnections>
-    <location x="241" y="222"/>
+    <location x="263" y="222"/>
     <size height="28" width="28"/>
     <nodeLabel>assign22label</nodeLabel>
     <process:copy>
@@ -205,7 +210,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign22label" name="label" nodeType="label">
-    <location x="236" y="258"/>
+    <location x="258" y="258"/>
     <figSize height="17" width="39"/>
     <node>assign22</node>
   </nodes>
@@ -231,7 +236,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
-    <location x="300" y="221"/>
+    <location x="341" y="222"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -247,7 +252,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="230" y="257"/>
+    <location x="271" y="258"/>
     <figSize height="17" width="162"/>
     <node>invokePojo0</node>
   </nodes>
@@ -265,11 +270,11 @@
       <process:to type="query">contactor</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">insContact/wechatOpenId</process:from>
+      <process:from type="query" pattern="reference">insContactor/wechatOpenId</process:from>
       <process:to type="query">contactor/wechatOpenId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">insContact/wechatServiceId</process:from>
+      <process:from type="query" pattern="reference">insContactor/wechatServiceId</process:from>
       <process:to type="query">contactor/wechatServiceId</process:to>
     </process:copy>
   </nodes>
@@ -282,6 +287,7 @@
     <sourceConnections xsi:type="process:tLink" id="link26" name="link26" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>assign9</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link29" name="link29" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo1</sourceNode>
@@ -312,7 +318,8 @@
       <targetNode>invokePojo2</targetNode>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
-    <location x="363" y="222"/>
+    <targetConnections>link13</targetConnections>
+    <location x="436" y="222"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
     <process:copy>
@@ -385,7 +392,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="361" y="258"/>
+    <location x="434" y="258"/>
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
@@ -395,8 +402,7 @@
       <targetNode>invokePojo3</targetNode>
     </sourceConnections>
     <targetConnections>link11</targetConnections>
-    <targetConnections>link13</targetConnections>
-    <location x="474" y="221"/>
+    <location x="506" y="222"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -409,7 +415,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="443" y="257"/>
+    <location x="475" y="258"/>
     <figSize height="17" width="85"/>
     <node>invokePojo2</node>
   </nodes>
@@ -419,7 +425,7 @@
       <targetNode>assign8</targetNode>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
-    <location x="540" y="222"/>
+    <location x="561" y="222"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -433,18 +439,18 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="519" y="258"/>
+    <location x="540" y="258"/>
     <figSize height="17" width="64"/>
     <node>invokePojo3</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
-      <targetNode>invokePojo2</targetNode>
+      <targetNode>assign5</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link46</targetConnections>
-    <location x="472" y="315"/>
+    <location x="437" y="315"/>
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
     <process:copy>
@@ -521,7 +527,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
-    <location x="470" y="351"/>
+    <location x="435" y="351"/>
     <figSize height="17" width="32"/>
     <node>assign6</node>
   </nodes>
@@ -872,12 +878,12 @@
     </sourceConnections>
     <targetConnections>link35</targetConnections>
     <targetConnections>link36</targetConnections>
-    <location x="300" y="435"/>
+    <location x="271" y="435"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionrollback1label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactionrollback1label" name="label" nodeType="label">
-    <location x="286" y="471"/>
+    <location x="257" y="471"/>
     <figSize height="17" width="56"/>
     <node>transactionrollback1</node>
   </nodes>
@@ -887,7 +893,7 @@
       <targetNode>transactionrollback1</targetNode>
     </sourceConnections>
     <targetConnections>link34</targetConnections>
-    <location x="376" y="435"/>
+    <location x="338" y="435"/>
     <size height="28" width="28"/>
     <nodeLabel>assign12label</nodeLabel>
     <process:copy>
@@ -900,13 +906,13 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">
-    <location x="371" y="471"/>
+    <location x="333" y="471"/>
     <figSize height="17" width="39"/>
     <node>assign12</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
     <targetConnections>link33</targetConnections>
-    <location x="297" y="525"/>
+    <location x="271" y="525"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
@@ -918,7 +924,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="295" y="561"/>
+    <location x="269" y="561"/>
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>
@@ -1068,7 +1074,7 @@
       <targetNode>invokePojo8</targetNode>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
-    <location x="315" y="315"/>
+    <location x="290" y="315"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo6label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -1081,7 +1087,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo6label" name="label" nodeType="label">
-    <location x="280" y="351"/>
+    <location x="255" y="351"/>
     <figSize height="17" width="92"/>
     <node>invokePojo6</node>
   </nodes>
@@ -1095,7 +1101,7 @@
       <targetNode>assign19</targetNode>
     </sourceConnections>
     <targetConnections>link18</targetConnections>
-    <location x="378" y="315"/>
+    <location x="341" y="315"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo8label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -1109,7 +1115,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo8label" name="label" nodeType="label">
-    <location x="354" y="351"/>
+    <location x="317" y="351"/>
     <figSize height="17" width="71"/>
     <node>invokePojo8</node>
   </nodes>
@@ -1117,9 +1123,10 @@
     <sourceConnections xsi:type="process:tLink" id="link46" name="link46" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign19</sourceNode>
       <targetNode>assign6</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
-    <location x="424" y="315"/>
+    <location x="393" y="315"/>
     <size height="28" width="28"/>
     <nodeLabel>assign19label</nodeLabel>
     <process:copy>
@@ -1128,7 +1135,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign19label" name="label" nodeType="label">
-    <location x="419" y="351"/>
+    <location x="388" y="351"/>
     <figSize height="17" width="39"/>
     <node>assign19</node>
   </nodes>

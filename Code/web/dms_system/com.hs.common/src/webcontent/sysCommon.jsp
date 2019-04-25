@@ -12,10 +12,11 @@
 	//应用地址 
 	String contextPath=request.getContextPath();
 	//api地址
-	String apiPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort(); 
+//String apiPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort(); 
 	//web地址
-	String webPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();  
-	
+// 	String webPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();  
+	String apiPath = "";
+	String webPath = "";
     //Web域 访问其他Web域使用：xxDomain + 页面路径
 	String sysDomain = Env.getContributionConfig("system", "url", "webDomain", "SYS");
     String partDomain = Env.getContributionConfig("system", "url", "webDomain", "PART");

@@ -33,6 +33,7 @@
          b.sell_amt sellAmt,
          b.bala_times balaTimes,
          b.use_times useTimes,
+         a.buy_source as buySource,
          b.total_times totalTimes,
          (b.bala_times * b.sell_price) remainAmt
          FROM rps_card_times a 
@@ -120,7 +121,7 @@
          a.period_validity periodValidity,
          a.settle_date as settleDate,
          a.car_no as carNo
-
+         
          FROM rps_card_times a 
 
          WHERE  a.orgid = #orgid# and a.status = 2 and a.is_refund = 0
@@ -131,9 +132,6 @@
 	     <isNotEmpty prepend="and" property="carNo">  
 	            (a.car_no like '%$carNo$%')
 	     </isNotEmpty>        
-	     <isNotEmpty prepend="and" property="mobile">  
-	            (c.mobile like '%$mobile$%')
-	    </isNotEmpty>
 	    <isNotEmpty prepend="and" property="guestId">  
 	            (a.guest_id = #guestId#)
 	    </isNotEmpty>

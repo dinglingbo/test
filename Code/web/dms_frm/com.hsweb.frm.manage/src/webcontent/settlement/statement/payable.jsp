@@ -11,7 +11,7 @@
 
 <head>
 	<title>应付结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/payable.js?v=1.2.2"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/payable.js?v=1.2.3"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -262,7 +262,7 @@
 							</td>
 							<td align="center" style="padding-left: 10px;">
 								挂账：
-								<span style="color: #ff7800;">0.00元</span>
+								<span style="color: #ff7800;" id="creditEl">0.00元</span>
 							</td>
 							<td width="320" valign="top" style="position: relative;">
 								<dl>
@@ -381,7 +381,7 @@
 						<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 					</td>
 					<td >
-						<input type="checkbox" id="settlesendwx" checked="checked">微信通知客户
+						<input type="checkbox" id="settlesendwx" >微信通知客户
 					</td>
 					<td >
 						<input type="checkbox" id="settlesenddx">短信通知客户

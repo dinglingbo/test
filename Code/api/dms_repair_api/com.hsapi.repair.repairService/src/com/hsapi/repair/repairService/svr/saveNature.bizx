@@ -219,7 +219,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">更新成功成功</process:from>
+      <process:from type="literal" pattern="reference">更新成功</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
     <process:copy>

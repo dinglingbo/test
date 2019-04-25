@@ -12,7 +12,7 @@
 
 <head>
     <title>特别关怀</title>
-    <script src="<%= request.getContextPath() %>/manage/js/maintainRemMain/specialAttentionGuest.js?v=1.1.93"></script>
+    <script src="<%= request.getContextPath() %>/manage/js/maintainRemMain/specialAttentionGuest.js?v=1.1.96"></script>
          <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style>
@@ -37,6 +37,8 @@
 <body style="margin:0;width: 100%; height:100%;overflow-x:hidden">
     <input name="insureCompCode" id="insureCompCode" dataField="list"
     class="nui-combobox " textField="fullName"  valueField="code" visible="false"/>
+    <input name="guestProperty" id="guestProperty" dataField="data"
+    class="nui-combobox " textField="name"  valueField="customid" visible="false"/>
     <div class="mini-splitter" vertical="true" style="width:100%;height:100%;">
         <div size="70%" showCollapseButton="true">
 
@@ -96,6 +98,7 @@
                         <div field="guestName"name="guestName" headerAlign="center" allowSort="true" dataType="chinese"width="100px">客户名称</div>
                         <div field="mobile" headerAlign="center" allowSort="true" dataType="string"width="100px">联系方式</div>
                         <div field="carModel" name="carModel"headerAlign="center" allowSort="true" dataType="string"width="200px">品牌车型</div>
+                        <div field="guestProperty"  name="guestProperty" headerAlign="center" allowSort="true" dataType="string" width="70px">客户属性</div>
                         <div field="guestType" headerAlign="center" allowSort="true" dataType="string" width="100px">客户类型</div>
                         <div field="careDueDate" headerAlign="center" dataType="date"dateFormat="yyyy-MM-dd HH:mm" allowSort="true"
                         width="100px">
@@ -159,6 +162,7 @@
                         <div field="guestName"name="guestName" headerAlign="center" allowSort="true" dataType="chinese"width="100px">客户名称</div>
                         <div field="mobile" headerAlign="center" allowSort="true" dataType="string"width="100px">联系方式</div>
                         <div field="carModel" name="carModel"headerAlign="center" allowSort="true" dataType="string"width="200px">品牌车型</div>
+                        <div field="guestProperty"  name="guestProperty" headerAlign="center" allowSort="true" dataType="string" width="70px">客户属性</div>
                         <div field="guestType" headerAlign="center" allowSort="true" dataType="string"width="100px">客户类型</div>
                         <div field="annualInspectionCompCode" name="annualInspectionCompCode"dataType="sting" headerAlign="center" allowSort="true" dataType="string"width="100px">保险公司</div>
                         <div field="annualInspectionDate" headerAlign="center" dataType="date"dateFormat="yyyy-MM-dd" allowSort="true"
@@ -223,6 +227,7 @@
                         <div field="guestName"name="guestName" headerAlign="center" allowSort="true" dataType="chinese"width="100px">客户名称</div>
                         <div field="mobile" headerAlign="center" allowSort="true" dataType="string"width="100px">联系方式</div>
                         <div field="carModel" name="carModel"headerAlign="center" allowSort="true" dataType="string"width="200px">品牌车型</div>
+                        <div field="guestProperty"  name="guestProperty" headerAlign="center" allowSort="true" dataType="string" width="70px">客户属性</div>
                         <div field="guestType" headerAlign="center" allowSort="true" dataType="string"width="100px">客户类型</div>
                         <div field="insureCompCode"  name="insureCompCode"dataType="string" headerAlign="center" allowSort="true" dataType="string"width="100px">保险公司</div>
                         <div field="insureDueDate" headerAlign="center" dataType="date"dateFormat="yyyy-MM-dd" allowSort="true"
@@ -351,6 +356,7 @@
                         <div field="guestName"name="guestName" headerAlign="center" allowSort="true" dataType="chinese"width="100px">客户名称</div>
                         <div field="mobile" headerAlign="center" allowSort="true" dataType="string"width="100px">联系方式</div>
                         <div field="carModel" name="carModel"headerAlign="center" allowSort="true" dataType="string"width="200px">品牌车型</div>
+                        <div field="guestProperty"  name="guestProperty" headerAlign="center" allowSort="true" dataType="string" width="70px">客户属性</div>
                         <div field="guestType" headerAlign="center" allowSort="true" dataType="string"width="100px">客户类型</div>
                         <div field="dueDate" headerAlign="center" dateFormat="yyyy-MM-dd"
                             allowSort="true" dataType="date"width="100px">

@@ -17,10 +17,11 @@ var onetInAmt = 0;
 var netInAmt = 0;
 var zongAmt = 0;//总金额
 var typeUrl = 0;//不同工单URL不同   1销售开单  2退货开单
-var settlementUrl = baseUrl+ "com.hsapi.repair.repairService.settlement.receiveSettle.biz.ext" ;
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var frmUrl = apiPath + frmApi + "/";
+var settlementUrl = baseUrl+ "com.hsapi.repair.repairService.settlement.receiveSettle.biz.ext";
+var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryFrmAccount.biz.ext";
 var expenseUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.svr.getRpsExpense.biz.ext';
 var sendWCUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.sendWeChat.sendBillCostInfo.biz.ext';
 var srnum = [];
@@ -446,6 +447,35 @@ function setData(params){
 	   var list  = "没有可用优惠券或者该用户未在微信公众号注册";
        document.getElementById("show").innerHTML = list;
     }	
+	
+	//挂账
+	if(params.guestId){
+    	var accAmt = {};
+    	accAmt.guestId = params.guestId;
+    	nui.ajax({
+            url : getAccountUrl,
+            type : "post",
+            data : JSON.stringify({
+                params : accAmt,
+                token : token
+            }),
+            success : function(data) {
+            	data = data || {};
+                if (data.errCode == "S") {
+                    var account = data.account[0];
+                    var Amt = account.accountAmt || 0;
+                    $("#creditEl").html(Amt+"元");
+                } else {
+                    showMsg(data.errMsg || "获取挂账信息失败","E");
+                }
+            },
+            error : function(jqXHR, textStatus, errorThrown) {
+                unmaskcall && unmaskcall();
+                console.log(jqXHR.responseText);
+            }
+        });
+    }
+	
     addType();
     getData(data);
 }
@@ -946,8 +976,8 @@ if(code != "" && code != null){
 						     '<div class="q-type">'+
 						        '<div class="q-range">'+
 						            '<div class="typ-txt">'+
-						                '<span >'+ v.couponTitle+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="##" class="useText" name="quan" id='+v.couponDistributeId+'><span id = chang'+v.couponDistributeId+'>使用</span></a></span>'+
-						               '</div>'+
+						                '<span >'+ v.couponTitle+ '</span>'+
+						               '<a href="##" class="useText" name="quan" id='+v.couponDistributeId+'><span id = chang'+v.couponDistributeId+'>使用</span></a></div>'+
 						            '<div class="range-item">'+ v. couponDescribe + str +'</div>'+
 						            '<div class="range-item">到期时间：'+v.couponEndDate +'</div>'+
 						            '<div class="range-item">编码：'+v.userCouponCode +'</div>'+

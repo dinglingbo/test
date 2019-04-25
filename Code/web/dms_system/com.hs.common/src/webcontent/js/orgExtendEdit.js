@@ -4,7 +4,7 @@
 
 baseUrl = apiPath + sysApi + "/";;
 var saveUrl = baseUrl + "com.hsapi.system.tenant.tenant.saveCompany.biz.ext";
-
+var wachSaveUrl = apiPath + wechatApi + "/" + "wechatApi/com.hsapi.wechat.autoServiceBackstage.weChatInterface.updateStoreSystentInfoChenDao.biz.ext";
 var sex;
 var isservice;
 var isservicelist = [{id: 1, name: '是'}, {id: 0, name: '否'}];
@@ -188,6 +188,7 @@ var requiredField = {
 function save(action) {
 	var form = new nui.Form("#basicInfoForm");
     var data = form.getData();
+    var data1 = form.getData();
     var provinceId = 0;
     for ( var key in requiredField) {
     	if(key == "provinceId"){
@@ -211,7 +212,7 @@ function save(action) {
         cls : 'mini-mask-loading',
         html : '保存中...'
     });
-
+   
     nui.ajax({
         url:saveUrl,
         type:"post",
@@ -224,8 +225,46 @@ function save(action) {
             nui.unmask();
             data = data||{};
             if(data.errCode && data.errCode == 'S'){
-                showMsg("保存成功!","S");
+            	//修改门店信息同步到微信
+            	   var storeMap = {
+            		   modifier:currUserName,
+                       modifierId:currEmpId,
+                       orgid:data1.orgid,
+                       storeCityId:data1.cityId,
+                       storeLatitude:data1.latitude,
+                       storeLongitude:data1.longitude,
+                       storePhone:data1.tel,
+                       storeProvinceId:data1.provinceId,
+                       storeRegionId:data1.countyId,
+                       storeStreetAddress:data1.address,
+                       tenantId:currTenantId
+            	   }
+            	   nui.ajax({
+                    url:wachSaveUrl,
+                    type:"post",
+                    data:JSON.stringify({
+                    	storeMap:storeMap,
+                    	token: token
+                    }),
+                    success:function(data2)
+                    {
+                        nui.unmask();
+                        data2 = data2||{};
+                        if(data2.errCode && data2.errCode == 'S'){
+                            showMsg("保存成功!","S");
+                        }else{
+                            showMsg(data2.errMsg,"W");
+                        }
+                       
+                    },
+                    error:function(jqXHR, textStatus, errorThrown){
+                        //  nui.alert(jqXHR.responseText);
+                    	  nui.unmask();
+                         console.log(jqXHR.responseText);
+                    }
+                });
             }else{
+            	nui.unmask();
                 showMsg(data.errMsg,"W");
             }
             

@@ -81,6 +81,7 @@ var y = 0;
 var showSellEl=null;
 var sfData = {};
 var contactorF = null;
+var rdata = {};
 var prdtTypeHash = {
     "1":"套餐",
     "2":"项目",

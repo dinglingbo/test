@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveWechatCustomerInfo.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="微信客户认证：&#xD;&#xA;1、已有客户认证，联系人根据客户id和客户手机号查询，如果有此联系人，则更新该联系人的服务号和openID，如果没有，则新增一个和客户手机号一样的联系人。&#xD;&#xA;2、认证的车辆：查询该客户有无此车辆，有，不新增，并把所有客户车辆返回给微信端&#xD;&#xA;没有，新增，并把所有客户车辆返回给微信端&#xD;&#xA;3、添加车辆：查询该客户有无此车辆，有，不新增，并把该车辆返回给微信端&#xD;&#xA;没有，新增，并把该车辆返回给微信端&#xD;&#xA;&#xD;&#xA;" title="Administrator&#x9;19-4-24 下午2:42">
+    <location x="60" y="585"/>
+    <size height="226" width="537"/>
+  </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>

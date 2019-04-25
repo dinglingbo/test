@@ -8,7 +8,7 @@ var webBaseUrl = webPath + contextPath + "/";
  var itemTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryItemTimesByUsable.biz.ext";
  var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestIdNoPage.biz.ext";
  var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext"; 
- var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryAccount.biz.ext";
+ var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryFrmAccount.biz.ext";
  var itemRpbGridUrl = baseUrl +"com.hsapi.repair.baseData.item.queryRepairItemList.biz.ext";
  //var sellUrl = apiPath + crmApi + "/com.hsapi.crm.basic.crmBasic.querySellList.biz.ext";
  var sellUrl = apiPath + crmApi + "/com.hsapi.crm.basic.crmBasic.querySellListNoPage.biz.ext";
@@ -54,7 +54,7 @@ var webBaseUrl = webPath + contextPath + "/";
  var sellForm = null;
  var carCheckInfo = null;
  var checkMainData = null;
- var rdata = null;
+ var rdata = {};
  var isRecord = null;
  var carSellPointInfo = null;
  var carSellPointGrid = null;
@@ -2937,7 +2937,9 @@ function delFromBillPart(data, callback){
     });
 }
 function addcardTime(){	
-	xyguest.wechatOpenId = contactorF.wechatOpenId;
+	if(contactorF){
+		xyguest.wechatOpenId = contactorF.wechatOpenId;
+	}
 	doAddcardTime(xyguest);
 	
 }

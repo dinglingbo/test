@@ -878,3 +878,22 @@ function preview(url){
 	    }
 	});
 }
+
+function completionWeChat(maintain){
+	 var completionWeChatUrl = baseUrl + "com.hsapi.repair.repairService.sendWeChat.sendFinishMTInfo.biz.ext";
+		var json = nui.encode({
+			"maintain":maintain,
+			token : token
+		});
+	  nui.ajax({
+			url : completionWeChatUrl,
+			type : 'POST',
+			data : json,
+			cache : false,
+			contentType : 'text/json',
+			success : function(text) {
+				var returnJson = nui.decode(text);
+			}
+		});
+}
+

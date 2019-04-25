@@ -1207,7 +1207,7 @@ function onCellEditEnter(e){
 //				addNewKeyRow();
 			}
 		}else if(column.field == "orderPrice"){
-//			addNewKeyRow();
+			rightGrid.beginEditCell(record, "remark");;
 		}else if(column.field == "remark"){
 //			addNewKeyRow();
 			//统一售价到下一行

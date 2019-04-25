@@ -1,6 +1,7 @@
 
 var baseUrl = apiPath + repairApi + "/";
 var frmUrl = apiPath + frmApi + "/";
+var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryFrmAccount.biz.ext";
 var netInAmt = 0;
 var tableNum = 0;
 var form = null;
@@ -59,8 +60,37 @@ function setData(data){
 			console.log(jqXHR.responseText);
 		}
 	});
+	
+	//挂账
+	if(guestData[0].guestId){
+    	var accAmt = {};
+    	accAmt.guestId = guestData[0].guestId;
+    	nui.ajax({
+            url : getAccountUrl,
+            type : "post",
+            data : JSON.stringify({
+                params : accAmt,
+                token : token
+            }),
+            success : function(data) {
+            	data = data || {};
+                if (data.errCode == "S") {
+                    var account = data.account[0];
+                    var Amt = account.accountAmt || 0;
+                    $("#creditEl").html(Amt+"元");
+                } else {
+                    showMsg(data.errMsg || "获取挂账信息失败","E");
+                }
+            },
+            error : function(jqXHR, textStatus, errorThrown) {
+                unmaskcall && unmaskcall();
+                console.log(jqXHR.responseText);
+            }
+        });
+    }
+
 	//查询使用了的优惠券
-	var params = {};
+/*	var params = {};
 	params.billMainId =data[0].billMainId;
 	params.carId = data[0].carId;
 	var json1 = {
@@ -114,7 +144,7 @@ function setData(data){
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR.responseText);
 		}
-	});
+	});*/
 	addType();
 }
 
@@ -431,7 +461,7 @@ function print(accountDetailList,netInAmt){
 		}
 		
 	}
-	  nui.confirm("付款成功，需要打印付款凭证吗？", "友情提示",function(action){
+	  nui.confirm("收款成功，需要打印收款凭证吗？", "友情提示",function(action){
 		       if(action == "ok"){
 		    		var sourceUrl = webPath + contextPath + "/com.hsweb.print.closedmentPrint.flow?token="+token;
 		    		var printName = currRepairSettorderPrintShow||currOrgName;

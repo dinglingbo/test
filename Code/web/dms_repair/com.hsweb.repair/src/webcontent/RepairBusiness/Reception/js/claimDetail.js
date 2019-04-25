@@ -10,7 +10,7 @@ var cardTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesBy
 var itemTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryItemTimesByUsable.biz.ext";
 var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestIdNoPage.biz.ext";
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
-var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryAccount.biz.ext";
+var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryFrmAccount.biz.ext";
 var insuranceInfoUrl = baseUrl + "com.hsapi.repair.baseData.insurance.InsuranceQuery.biz.ext?params/orgid="+currOrgId+"&params/isDisabled=0";
 //var sellUrl = apiPath + crmApi + "/com.hsapi.crm.basic.crmBasic.querySellList.biz.ext";
 var sellUrl = apiPath + crmApi + "/com.hsapi.crm.basic.crmBasic.querySellListNoPage.biz.ext";
@@ -79,6 +79,7 @@ var lastItemUnitPrice = null;
 var lastPkgSubtotal = null;
 var lastPkgRate = null;
 var contactorF = null;
+var rdata = {};
 var prdtTypeHash = {
     "1":"套餐",
     "2":"项目",
@@ -999,7 +1000,7 @@ function setInitData(params){
                         doSearchCardTimes(fguestId,fcarId);
                         doSearchItemTimes(fguestId,fcarId);
                         doSearchMemCard(fguestId);
-                        
+                        doSearchSell(fguestId);
                         billForm.setData(data);
                         insuranceForm.setData(insuranceData);
                         var status = data.status||0;
@@ -3858,7 +3859,9 @@ function delFromBillPart(data, callback){
     });
 }
 function addcardTime(){	
-	xyguest.wechatOpenId = contactorF.wechatOpenId;
+	if(contactorF){
+		xyguest.wechatOpenId = contactorF.wechatOpenId;
+	}
 	doAddcardTime(xyguest);
 	
 }

@@ -10,7 +10,7 @@
 -->
 <head>
 <title>完工</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/checkFinish.js?v=1.0.7"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/checkFinish.js?v=1.1.0"></script>
 <style type="text/css">
 
 .title {
@@ -100,7 +100,7 @@
                 <td  style="text-align:left">
                     <label >出车报告：</label>
                  <a class="nui-button"  onclick="SelectReport()" id = "SelectReport" plain="true"><span class="fa fa-check fa-lg"></span>&nbsp;选择出车报告</a>
-                    
+                    <div class="nui-checkbox" id="completionWeChat" name="completionWeChat" ></div>微信通知客户
                 </td>
             </tr>
             <tr>

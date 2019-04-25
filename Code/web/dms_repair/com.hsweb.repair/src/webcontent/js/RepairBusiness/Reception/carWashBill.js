@@ -11,7 +11,7 @@
  var itemTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryItemTimesByUsable.biz.ext";
  var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestIdNoPage.biz.ext";
  var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext"; 
- var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryAccount.biz.ext";
+ var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryFrmAccount.biz.ext";
  var itemRpbGridUrl = baseUrl + "com.hsapi.repair.baseData.item.queryRepairItemList.biz.ext";
  //var sellUrl = apiPath + crmApi + "/com.hsapi.crm.basic.crmBasic.querySellList.biz.ext";
  var sellUrl = apiPath + crmApi + "/com.hsapi.crm.basic.crmBasic.querySellListNoPage.biz.ext";
@@ -63,7 +63,7 @@
  var sellForm = null;
  var carCheckInfo = null;
  var checkMainData = null;
- var rdata = null;
+ var rdata = {};
  var isRecord = null;
 
  var fserviceId = 0;
@@ -823,6 +823,7 @@ function setInitData(params){
                         doSearchCardTimes(fguestId,fcarId);
                         doSearchItemTimes(fguestId,fcarId);
                         doSearchMemCard(fguestId);
+                        doSearchSell(fguestId);
                         xyguest = data;
                         nui.get("contactorName").setText(contactor.name);
                         billForm.setData(data);
@@ -2954,7 +2955,9 @@ function addcardTime(){
 		buyCard("card");
 		return;
 	}
-	xyguest.wechatOpenId = contactorF.wechatOpenId;
+	if(contactorF){
+		xyguest.wechatOpenId = contactorF.wechatOpenId;
+	}
 	doAddcardTime(xyguest);
 	
 }
@@ -3455,6 +3458,7 @@ function onDrawSummaryCellItem(e){
 
 function addExpenseAccount(){
 	var data = billForm.getData();
+	data.lastComeKilometers = lastComeKilometers;
 	if(data.id){
 		var item={};
 		item.id = "123321";

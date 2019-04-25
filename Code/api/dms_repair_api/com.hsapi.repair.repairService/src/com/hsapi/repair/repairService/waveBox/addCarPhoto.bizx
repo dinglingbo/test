@@ -56,7 +56,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">carIdForPhoto</process:from>
-      <process:to type="query">ct/_expr[1]/carIdForPhoto</process:to>
+      <process:to type="query">ct/_expr[1]/carId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
@@ -67,7 +67,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">执行成功</process:from>
+      <process:from type="literal" pattern="reference">保存成功</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -183,7 +183,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">执行失败</process:from>
+      <process:from type="literal" pattern="reference">保存失败</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -259,6 +259,22 @@
     <location x="675" y="137"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">attach/modifier</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">attach/modifyDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">attach/recorder</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">attach/recordDate</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
     <location x="673" y="173"/>

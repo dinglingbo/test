@@ -51,11 +51,11 @@
       <process:to type="query">m:userObject/userId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">user/userName</process:from>
+      <process:from type="query" pattern="reference">member/name</process:from>
       <process:to type="query">m:userObject/userName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">user/userName</process:from>
+      <process:from type="query" pattern="reference">member/name</process:from>
       <process:to type="query">m:userObject/userRealName</process:to>
     </process:copy>
     <process:copy>
@@ -71,7 +71,7 @@
       <process:to type="query">m:userObject/attributes/currUserId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">user/userName</process:from>
+      <process:from type="query" pattern="reference">member/name</process:from>
       <process:to type="query">m:userObject/attributes/currUserName</process:to>
     </process:copy>
     <process:copy>

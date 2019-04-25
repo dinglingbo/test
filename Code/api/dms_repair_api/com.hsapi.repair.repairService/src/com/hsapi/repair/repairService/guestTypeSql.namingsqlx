@@ -511,4 +511,145 @@ and a.is_disabled=0
     </select>
 
    
+            	<!--特别关怀  ：保养提醒 商业 交强  车辆年检 -->
+	<select id="getGuest" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        select 
+            a.id carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+            a.annual_verification_due_date dueDate,a.insure_due_date insureDueDate,
+            a.annual_inspection_date annualInspectionDate,
+            c.id guestId,c.orgid,c.short_name guestName,c.mobile,
+            c.guest_property guestProperty,
+            b.care_due_date careDueDate,
+            0 as guestType,
+            b.last_come_kilometers lastComeKilometers,
+            b.last_come_date lastComeDate,
+            a.annual_inspection_comp_code annualInspectionCompCode,
+            a.insure_comp_code insureCompCode,
+            a.remark,
+            '' as crmGuestId
+        from  rpb_car a
+        INNER JOIN rpb_car_extend b on b.car_id = a.id 
+        INNER JOIN wb_common.com_guest c on a.guest_id = c.id
+        where  a.orgid = #orgid#
+        and a.is_disabled=0
+        and c.is_disabled =0
+        <isNotEmpty prepend="and" property="carNo">
+                a.car_no = #carNo#
+        </isNotEmpty>
+        <!-- 商业险-->
+        <isEqual  prepend="" property="dateType"   compareValue="syx">
+            <isNotEmpty prepend="and" property="startDate">
+                a.annual_inspection_date &gt;= #startDate# 
+            </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">
+                a.annual_inspection_date &lt;= #endDate#
+            </isNotEmpty>
+            
+        </isEqual>
+
+        <!-- 交强险 -->
+        <isEqual  prepend="" property="dateType"   compareValue="jqx">
+            <isNotEmpty prepend="and" property="startDate">
+                a.insure_due_date &gt;= #startDate#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">
+                a.insure_due_date &lt;= #endDate#
+            </isNotEmpty>
+        </isEqual>
+
+
+        <!-- 车辆年检 -->
+        <isEqual  prepend="" property="dateType"   compareValue="clnj">
+            <isNotEmpty prepend="and" property="startDate">
+                a.annual_verification_due_date &gt;= #startDate#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">
+                a.annual_verification_due_date &lt;= #endDate#
+            </isNotEmpty>
+        </isEqual>
+
+        <!-- 保养提醒 -->
+        <isEqual  prepend="" property="dateType"   compareValue="bytx">
+            <isNotEmpty prepend="and" property="startDate">
+                b.care_due_date &gt;= #startDate#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">
+                b.care_due_date &lt;= #endDate#
+            </isNotEmpty>
+        </isEqual>
+
+        UNION all
+
+        SELECT 
+            '' as carId,a.car_no carNo,a.car_model carModel,a.vin carVin,
+            a.annual_verification_due_date dueDate,a.insure_due_date insureDueDate,
+            a.annual_inspection_date annualInspectionDate,
+            a.guest_id as guestId,a.orgid ,a.guest_name guestName,a.mobile,
+            '' as  guestProperty,
+            a.care_due_date careDueDate,
+            1 as guestType,
+            '' as lastComeKilometers,
+            '' as lastComeDate,
+            a.insure_comp_code annualInspectionCompCode,
+            a.insure_comp_code insureCompCode,
+            a.remark,
+            a.id as crmGuestId
+        from wb_crm.crm_guest  a
+        where  a.orgid = #orgid#
+        and a.status = 0
+        and a.is_come &lt;&gt; 1
+        <isNotEmpty prepend="and" property="carNo">
+                 a.car_no = #carNo#
+        </isNotEmpty>
+        <!-- 商业险-->
+        <isEqual  prepend="" property="dateType"   compareValue="syx">
+            <isNotEmpty prepend="and" property="startDate">
+                a.annual_inspection_date &gt;= #startDate# 
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">
+                a.annual_inspection_date &lt;= #endDate#
+            </isNotEmpty>
+       
+        </isEqual>
+
+        <!-- 交强险 -->
+        <isEqual  prepend="" property="dateType"   compareValue="jqx">
+            <isNotEmpty prepend="and" property="startDate">
+                a.insure_due_date &gt;= #startDate#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">
+                a.insure_due_date &lt;= #endDate#
+            </isNotEmpty>
+     
+        </isEqual>
+
+        <!-- 车辆年检 -->
+        <isEqual  prepend="" property="dateType"   compareValue="clnj">
+            <isNotEmpty prepend="and" property="startDate">
+                a.annual_verification_due_date &gt;= #startDate#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">
+                a.annual_verification_due_date &lt;= #endDate#
+            </isNotEmpty>
+   
+        </isEqual>
+
+        <!-- 保养提醒 -->
+        <isEqual  prepend="" property="dateType"   compareValue="bytx">
+            <isNotEmpty prepend="and" property="startDate">
+                a.care_due_date &gt;= #startDate#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">
+                a.care_due_date &lt;= #endDate#
+            </isNotEmpty>
+  
+        </isEqual>
+
+
+            <isNotEmpty prepend="order by" property="sortField">  
+                $sortField$ $sortOrder$
+            </isNotEmpty> 
+		
+    </select>
+
 </sqlMap>

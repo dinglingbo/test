@@ -1,4 +1,6 @@
 var tabs = null;
+
+
 var mainGrid1 = null;
 var params = {};
 var form = null; 
@@ -8,8 +10,10 @@ var datagrid3 = null;
 var grid = null;
 var grid1 = null;
 var grid2 = null;
+var grid3 = null;
 var carSellPointGrid = null;
 var baseUrl = apiPath + repairApi + "/";
+var baseUrl2 = apiPath + wechatApi + "/";
 var mainGrid2 = null;
 var xyguest = {};
 var sfData = {};
@@ -57,8 +61,12 @@ $(document).ready(function () {
     
     grid1 = nui.get("grid1");
     grid2 = nui.get("grid2");
+    grid3 = nui.get("grid3");
+    grid4 = nui.get("grid4");
     grid1.setUrl(baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesByGuestId.biz.ext");
     grid2.setUrl(baseUrl+"com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext");
+    grid3.setUrl(baseUrl+"com.hsapi.repair.baseData.query.queryItemTimesByUsableWithPage.biz.ext");
+    grid4.setUrl(baseUrl2 +"com.hsapi.wechat.autoServiceBackstage.weChatInterface.queryUserUseCouponChenDaoCarId.biz.ext");
     mainGrid1.setUrl(baseUrl+"com.hsapi.repair.repairService.query.querySettleList.biz.ext");
     mainGrid2 = nui.get("mainGrid2");
 
@@ -101,6 +109,37 @@ $(document).ready(function () {
 
 
   grid1.on("drawcell", function (e) {
+      switch (e.field) {
+          case "prdtType":
+        	  e.cellHtml = prdtTypeHash[e.value];
+        	  break;
+          case "doTimes":
+        	  var row = e.row;
+              var balaTimes = row.balaTimes || 0;
+              var canUseTimes = row.canUseTimes||0;
+              e.cellHtml = balaTimes - canUseTimes;
+          default:
+              break;
+      }
+  });
+  grid4.on("drawcell", function (e) {
+	  var record = e.record;
+	  var couponType = record.couponType;
+      switch (e.field) {
+          case "couponType":
+        	  e.cellHtml = couponType==1?"通用券":"专属券";
+        	  break;
+          case "couponDescribe":
+        	 var str = "";
+        	 if(couponType==1){
+        		 str = "(满"+record.couponConditionPrice+"元)";
+        		 e.cellHtml = record.couponDescribe + str; 
+        	 }
+          default:
+              break;
+      }
+  });
+  grid3.on("drawcell", function (e) {
       switch (e.field) {
           case "prdtType":
         	  e.cellHtml = prdtTypeHash[e.value];
@@ -328,7 +367,6 @@ function SetData(params) {
         success: function (text) {
             var list = nui.decode(text.rpbCar);
             form.setData(list);
-            searchOld(list.carNo||"");
             var carExtend = {};
             carExtend.lastComeKilometers = list.lastComeKilometers;
             carExtend.careDueMileage = list.careDueMileage;
@@ -340,18 +378,6 @@ function SetData(params) {
             showMsg("网络出错", "E");
         }
     });
-    var pa = {
-    		guestId:params.guestId,
-    		token:token
-    };
-    grid1.load({p:pa});
-    var pa1 = {
-    		carId:params.carId,
-    		token:token
-    };
-    mainGrid1.load({params:pa1});
-
-    grid2.load({guestId:params.guestId});
     nui.ajax({
         url: baseUrl+"com.hsapi.repair.repairService.svr.getGuestCarContactInfoById.biz.ext",
         type : "post",
@@ -374,6 +400,42 @@ function SetData(params) {
             nui.unmask();
         }
     });
+/*	//计次卡
+    var pa = {
+    		guestId:params.guestId,
+    		token:token
+    };
+    grid1.load({p:pa});
+
+    //线上订单
+    var p3 = {};
+    p3.detailFinish = 0;  
+    p3.guestId = params.guestId;
+    p3.notPast = 1; 
+    p3.status = 2; 
+    p3.isRefund = 0;
+    grid3.load({
+    	token:token,
+        p:p3
+    });
+    //优惠券
+    var paraMap = {};
+    paraMap.orgid = currOrgId;  
+    paraMap.tenantId = currTenantId;
+    paraMap.userCarId = params.carId; 
+    grid4.load({
+    	token:token,
+    	paraMap:paraMap
+    });
+    //服务记录
+    var pa1 = {
+    		carId:params.carId,
+    		token:token
+    };
+    mainGrid1.load({params:pa1});
+//储值卡
+    grid2.load({guestId:params.guestId});
+
     // 回访记录根据联系人id查询
     if (params.contactorId || params.carId) {
         var p = {
@@ -395,7 +457,7 @@ function SetData(params) {
         	params:p,
         	token:token
         });
-    }
+    }*/
 }
 
 
@@ -462,13 +524,22 @@ function addSell() {
 			//工单页面添加商机信息直接带过去
 			var data = xyguest;
 			//新增页面商机的姓名字段是guestName
-			data.guestName = data.guestFullName;
+			if(data.guestName==null){
+				data.guestName = data.guestFullName;
+			}
+
 			data.type = "add";
 			iframe.contentWindow.setData(data);
 		},
 		ondestroy : function(action) {
 			if (action == "saveSuccess") {
-				grid.reload();
+		        var p = {
+		                guestId:onSearchParams.guestId,
+		            };
+		        carSellPointGrid.load({ 
+		        	params:p,
+		        	token:token
+		        });
 			}
 		}
 	});
@@ -493,8 +564,14 @@ function editSell() {
 				iframe.contentWindow.setData(data);
 			},
 			ondestroy : function(action) {
+		        var p = {
+		                guestId:onSearchParams.guestId,
+		            };
 				if (action == "saveSuccess") {
-					carSellPointGrid.reload();
+			        carSellPointGrid.load({ 
+			        	params:p,
+			        	token:token
+			        });
 				}
 			}
 		});
@@ -518,4 +595,74 @@ function onSearch(){
 	}
 
     mainGrid1.load({params:pa1});
+}
+
+function activechangedmain(){
+	var tabs = nui.get("mainTabs").getActiveTab();
+	if(tabs.name=="cardTimes"){
+		//计次卡
+	    var pa = {
+	    		guestId:onSearchParams.guestId,
+	    		token:token
+	    };
+	    grid1.load({p:pa});
+	}else if(tabs.name=="order"){
+	    //线上订单
+	    var p3 = {};
+	    p3.detailFinish = 0;  
+	    p3.guestId = onSearchParams.guestId;
+	    p3.notPast = 1; 
+	    p3.status = 2; 
+	    p3.isRefund = 0;
+	    grid3.load({
+	    	token:token,
+	        p:p3
+	    });
+	}else if(tabs.name=="card"){
+		//储值卡
+	    grid2.load({guestId:onSearchParams.guestId});
+	}else if(tabs.name=="coupons"){
+	    //优惠券
+	    var paraMap = {};
+	    paraMap.orgid = currOrgId;  
+	    paraMap.tenantId = currTenantId;
+	    paraMap.userCarId = onSearchParams.carId; 
+	    grid4.load({
+	    	token:token,
+	    	paraMap:paraMap
+	    });
+	}else if(tabs.name=="serviceRecord"){
+	    //服务记录
+	    var pa1 = {
+	    		carId:onSearchParams.carId,
+	    		token:token
+	    };
+	    mainGrid1.load({params:pa1});
+	}else if(tabs.name=="serviceRecordOld"){
+		searchOld(onSearchParams.carNo||"");
+	}else if(tabs.name=="sales"){
+	    // 销售机会根据客户id查询
+	    if (onSearchParams.guestId) {
+	        var p = {
+	            guestId:onSearchParams.guestId
+	        };
+	        carSellPointGrid.load({ 
+	        	params:p,
+	        	token:token
+	        });
+	    }
+	}else if(tabs.name=="visit"){
+	    // 回访记录根据联系人id查询
+	    if (onSearchParams.contactorId || onSearchParams.carId) {
+	        var p = {
+	            guestSource: 0
+	         };
+	     	if(onSearchParams.carId){
+	    		p.carId = onSearchParams.carId;
+	    	}else if(onSearchParams.contactorId){
+	    		p.guestId = onSearchParams.contactorId;
+	    	}
+	        loadVisitHis(p);
+	    }
+	}
 }

@@ -156,6 +156,7 @@
                 guestId: data.tureGuestId || '',
                 contactorId: data.conId,
                 mobile:data.mobile,
+                contactor:data.guestName,
                 carId:data.carId||'', 
                 carNo: data.carNo || '',
                 visitContent: contentText,
@@ -182,7 +183,7 @@
                 nui.unmask(document.body);
                 if (res.errCode == 'S') {
                     showMsg(res.snum+"条图文消息发送任务生成成功！", "S");
-                    saveRecord();
+                    //saveRecord();
 					CloseWindow("ok");
                 } else {
                     showMsg(res.fnum+"条图文消息发送任务生成失败！","E");

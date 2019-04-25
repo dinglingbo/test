@@ -307,6 +307,10 @@ function getSearchParams()
         var tmpList = partCodeList.split("\n");
         for (i = 0; i < tmpList.length; i++) {
             //tmpList[i] = "'" + (tmpList[i]).replace(/\s+/g, "") + "'";
+        	//奔驰10位都为数字
+        	if(tmpList[i].length==10 && /^\d+$/.test(tmpList[i])){
+        		tmpList[i] = "A"+tmpList[i];
+        	}
             var partCode =  (tmpList[i]).replace(/\s+/g, "");
             if(!partHash[partCode]){
                 partCodeArr.push(partCode);

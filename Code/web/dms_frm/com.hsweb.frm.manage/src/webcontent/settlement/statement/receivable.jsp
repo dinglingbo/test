@@ -11,7 +11,7 @@
 
 <head>
 	<title>应收结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.5.3"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.5.5"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -410,7 +410,7 @@
 							</td>
 							<td align="center" style="padding-left: 10px;">
 								挂账：
-								<span style="color: #ff7800;">0.00元</span>
+								<span style="color: #ff7800;" id="creditEl">0.00元</span>
 							</td>
 							<td width="320" valign="top" style="position: relative;">
 								<dl>
@@ -455,7 +455,7 @@
 								</table>
 							</div>
 						</div>
-						<div class="pay_jshj_list">
+						<!-- <div class="pay_jshj_list">
 							<div class="pay_js_left">
 								<a href="javascript:;" class="xz">优惠券抵扣</a>
 							</div>
@@ -509,8 +509,8 @@
 					</div>
 				</div>
 			</div>
-
-
+ -->
+<input class="nui-textbox" id="PrefAmt" name="PrefAmt" enabled="false" m="1" cardid="" amount="" style="width: 100px; float: left;display:none;"   >
 					<div class="pay_list">
 						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">收款方式</span></h2>
 						<div class="pay_tcbk zffs" style="padding: 0 0 18px 0;">
@@ -612,15 +612,15 @@
 						<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 					</td>
 					<td >
-						<input type="checkbox" id="settlesendwx" checked="checked">微信通知客户
+						<input type="checkbox" id="settlesendwx" >微信通知客户
 					</td>
 					<td >
 						<input type="checkbox" id="settlesenddx">短信通知客户
 					</td>
-					<td >
+<!-- 					<td >
 						<label style="font-family:Verdana;">优惠券抵扣：</label>
 						<span id="quanAmt" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
-					</td>
+					</td> -->
 					<td >
 						<label style="font-family:Verdana;">实收金额：</label>
 						<span id="amount" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元

@@ -20,7 +20,7 @@
       <targetNode>assign0</targetNode>
       <process:transitionCondition>
         <process:complexCondition>
-          <process:code>1!=1</process:code>
+          <process:code>1==1</process:code>
         </process:complexCondition>
       </process:transitionCondition>
     </sourceConnections>

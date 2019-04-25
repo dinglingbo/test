@@ -63,7 +63,7 @@
  var sellForm = null;
  var carCheckInfo = null;
  var checkMainData = null;
- var rdata = null;
+ var rdata = {};
  var isRecord = null;
 
  var fserviceId = 0;

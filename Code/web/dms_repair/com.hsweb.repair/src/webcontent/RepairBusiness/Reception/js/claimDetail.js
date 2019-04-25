@@ -79,6 +79,7 @@ var lastItemUnitPrice = null;
 var lastPkgSubtotal = null;
 var lastPkgRate = null;
 var contactorF = null;
+var rdata = {};
 var prdtTypeHash = {
     "1":"套餐",
     "2":"项目",

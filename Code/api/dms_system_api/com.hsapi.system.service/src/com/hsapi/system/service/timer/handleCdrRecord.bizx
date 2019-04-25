@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="handleCdrRecord.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="每5分钟处理一次云呼叫通话记录,每5分钟取前30分钟的数据，例如  10点，则取9:30 ~ 10:00&#xD;&#xA;&#xD;&#xA;客服在收听录音乐时，再去取state&#xD;&#xA;&#xD;&#xA;http://sit.open.recency.cn/auth/accessToken&#xD;&#xA;&#xD;&#xA;http://sit.api.recency.cn/openapi/sip/cdr/query" title="Administrator&#x9;19-4-24 下午4:30">
-    <location x="45" y="-15"/>
-    <size height="181" width="691"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="每5分钟处理一次云呼叫通话记录,每5分钟取前30分钟的数据，例如  10点，则取9:30 ~ 10:00&#xD;&#xA;&#xD;&#xA;客服在收听录音乐时，再去取state&#xD;&#xA;&#xD;&#xA;http://sit.open.recency.cn/auth/accessToken&#xD;&#xA;&#xD;&#xA;http://sit.api.recency.cn/openapi/sip/cdr/query&#xD;&#xA;&#xD;&#xA;startFrom   &#xD;&#xA;startTo        当前时间，往前推30分钟" title="Administrator&#x9;19-4-24 下午4:30">
+    <location x="45" y="-105"/>
+    <size height="226" width="691"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -14,8 +14,8 @@
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
-    <targetConnections>link4</targetConnections>
-    <location x="705" y="202"/>
+    <targetConnections>link9</targetConnections>
+    <location x="1005" y="202"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -28,7 +28,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="707" y="238"/>
+    <location x="1007" y="238"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -98,6 +98,10 @@
       <process:from type="literal" pattern="reference">ruixinchangyin-comphs-1-test.m800-api.com</process:from>
       <process:to type="query">params/carrierId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">startDate</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="122" y="238"/>
@@ -107,7 +111,7 @@
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="queryCdrRecord" displayName="queryCdrRecord" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
-      <targetNode>end0</targetNode>
+      <targetNode>loopstart0</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
@@ -134,10 +138,10 @@
         <process:outputVariable id="0" name="data" type="query" value="com.alibaba.fastjson.JSON[]" valueType="Java">recordList</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
         <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="3" name="page" type="query" value="Int" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="4" name="pageSize" type="query" value="Int" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="5" name="total" type="query" value="Int" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="6" name="maxPage" type="query" value="Int" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="3" name="page" type="query" value="Int" valueType="Primitive">page</process:outputVariable>
+        <process:outputVariable id="4" name="pageSize" type="query" value="Int" valueType="Primitive">pageSize</process:outputVariable>
+        <process:outputVariable id="5" name="total" type="query" value="Int" valueType="Primitive">total</process:outputVariable>
+        <process:outputVariable id="6" name="maxPage" type="query" value="Int" valueType="Primitive">maxPage</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -170,6 +174,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">accessToken</process:from>
       <process:to type="query">jparams/access_token</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">50</process:from>
+      <process:to type="query">jparams/pageSize</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -204,6 +212,122 @@
     <figSize height="17" width="49"/>
     <node>invokePojo0</node>
   </nodes>
+  <nodes xsi:type="process:tLoopStart" description="" id="loopstart0" name="循环" displayName="循环" grouped="true" type="loopstart" matchedName="loopend0" loopType="while">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>loopstart0</sourceNode>
+      <targetNode>assign2</targetNode>
+    </sourceConnections>
+    <targetConnections>link4</targetConnections>
+    <location x="645" y="204"/>
+    <size height="24" width="24"/>
+    <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition>
+      <process:simpleCondition operator="LT">
+        <process:leftOperand type="query">page</process:leftOperand>
+        <process:rightOperand type="query">maxPage</process:rightOperand>
+      </process:simpleCondition>
+    </process:condition>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
+    <location x="645" y="236"/>
+    <figSize height="17" width="25"/>
+    <node>loopstart0</node>
+  </nodes>
+  <nodes xsi:type="process:tLoopEnd" id="loopend0" name="循环结束" displayName="循环结束" grouped="true" type="loopend" matchedName="loopstart0">
+    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>loopend0</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link8</targetConnections>
+    <location x="876" y="204"/>
+    <size height="24" width="24"/>
+    <nodeLabel>loopend0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
+    <location x="864" y="236"/>
+    <figSize height="17" width="49"/>
+    <node>loopend0</node>
+  </nodes>
+  <nodes xsi:type="model:GroupNode" id="group0" name="group" grouped="true" gstart="loopstart0" gend="loopend0">
+    <location x="645" y="132"/>
+    <size height="184" width="256"/>
+    <chidren>loopend0</chidren>
+    <chidren>loopstart0</chidren>
+    <chidren>assign2</chidren>
+    <chidren>subprocess2</chidren>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>subprocess2</targetNode>
+    </sourceConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="690" y="202"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign2label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">page+1</process:from>
+      <process:to type="query">page</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">page</process:from>
+      <process:to type="query">pageStr</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pageStr</process:from>
+      <process:to type="query">jparams/page</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">50</process:from>
+      <process:to type="query">jparams/pageSize</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <location x="688" y="238"/>
+    <figSize height="17" width="32"/>
+    <node>assign2</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="queryCdrRecord1" displayName="queryCdrRecord" collapsed="false" grouped="true" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess2</sourceNode>
+      <targetNode>loopend0</targetNode>
+    </sourceConnections>
+    <targetConnections>link7</targetConnections>
+    <location x="788" y="202"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess2label</nodeLabel>
+    <process:flow index="12" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hs.common.uitls.queryCdrRecord</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="userId" type="query" value="String" valueType="Primitive" pattern="reference">serverData/userId</process:inputVariable>
+        <process:inputVariable id="1" name="username" type="query" value="String" valueType="Primitive" pattern="reference">serverData/username</process:inputVariable>
+        <process:inputVariable id="2" name="clientId" type="query" value="String" valueType="Primitive" pattern="reference">serverData/clientId</process:inputVariable>
+        <process:inputVariable id="3" name="carrierId" type="literal" value="String" valueType="Primitive" pattern="reference">ruixinchangyin-comphs-1-test.m800-api.com</process:inputVariable>
+        <process:inputVariable id="4" name="version" type="literal" value="String" valueType="Primitive" pattern="reference">1.0</process:inputVariable>
+        <process:inputVariable id="5" name="state" type="query" value="String" valueType="Primitive" pattern="reference">state</process:inputVariable>
+        <process:inputVariable id="6" name="companyId" type="query" value="String" valueType="Primitive" pattern="reference">serverData/companyId</process:inputVariable>
+        <process:inputVariable id="7" name="contentType" type="literal" value="String" valueType="Primitive" pattern="reference">application/json</process:inputVariable>
+        <process:inputVariable id="8" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">jparams</process:inputVariable>
+        <process:inputVariable id="9" name="host" type="query" value="String" valueType="Primitive" pattern="reference">host</process:inputVariable>
+        <process:inputVariable id="10" name="path" type="query" value="String" valueType="Primitive" pattern="reference">path</process:inputVariable>
+        <process:inputVariable id="11" name="accessToken" type="query" value="String" valueType="Primitive" pattern="reference">accessToken</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="data" type="query" value="com.alibaba.fastjson.JSON[]" valueType="Java">recordList</process:outputVariable>
+        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="3" name="page" type="query" value="Int" valueType="Primitive">page</process:outputVariable>
+        <process:outputVariable id="4" name="pageSize" type="query" value="Int" valueType="Primitive">pageSize</process:outputVariable>
+        <process:outputVariable id="5" name="total" type="query" value="Int" valueType="Primitive">total</process:outputVariable>
+        <process:outputVariable id="6" name="maxPage" type="query" value="Int" valueType="Primitive">maxPage</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
+    <location x="749" y="237"/>
+    <figSize height="17" width="104"/>
+    <node>subprocess2</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-04-24 16:29:51" date="2019-04-24Z" description="" name="handleCdrRecord" version="7.0.0.0"/>
@@ -217,6 +341,15 @@
     <process:variable anyType="com.alibaba.fastjson.JSON" description="" historyStateLocation="client" isArray="false" name="serverData"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="jparams"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="state" primitiveType="String"/>
+    <process:variable description="通话结束时间from" historyStateLocation="client" isArray="false" name="startFrom" primitiveType="String"/>
+    <process:variable description="通话结束时间to" historyStateLocation="client" isArray="false" name="startTo" primitiveType="String"/>
+    <process:variable description="第几页" historyStateLocation="client" isArray="false" name="page" primitiveType="Int"/>
+    <process:variable description="每页条数" historyStateLocation="client" isArray="false" name="pageSize" primitiveType="Int"/>
+    <process:variable description="总记录数" historyStateLocation="client" isArray="false" name="total" primitiveType="Int"/>
+    <process:variable description="总页数" historyStateLocation="client" isArray="false" name="maxPage" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="pageStr" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="startDate" primitiveType="Date"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="endDate" primitiveType="Date"/>
   </process:variables>
   <process:inputs varArgs="false"/>
   <process:outputs>

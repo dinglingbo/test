@@ -368,13 +368,14 @@
     <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>invokePojo2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link10</targetConnections>
     <location x="-80" y="202"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">900000</process:from>
+      <process:from type="literal" pattern="reference">1800000</process:from>
       <process:to type="query">halfHour</process:to>
     </process:copy>
     <process:copy>

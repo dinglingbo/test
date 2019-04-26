@@ -1996,6 +1996,7 @@ function doSearchCardTimes(guestId,fcarId)
     p.type = 2;
     p.isRefund = 0;
     p.carId = fcarId;
+    p.orgid = currOrgid;
     cardTimesGrid.load({
     	token:token,
         p:p
@@ -4730,7 +4731,7 @@ function bxOnPrint(e){
 			height: "100%",
 	        onload: function () {
 	            var iframe = this.getIFrameEl();
-	           iframe.contentWindow.SetData(serviceId,print);
+	           iframe.contentWindow.SetData(serviceId,print,null);
 	        },
 	        ondestroy: function (action){
 	        }

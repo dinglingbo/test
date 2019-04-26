@@ -995,6 +995,9 @@ function inputUserQuan(e){
 	var paraMap = {};
 	paraMap.userOpenId = guestData.wechatOpenId;
 	paraMap.couponCode = code;
+	paraMap.orgid = currOrgid;
+	paraMap.tenantId = currTenantId;
+	paraMap.userCarId = guestData.carId;
 	
 	var json2 = {
 			param:paraMap,

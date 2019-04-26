@@ -2410,6 +2410,7 @@ function doSearchCardTimes(guestId,fcarId)
     p.status = 2;
     p.isRefund = 0;
     p.carId = fcarId;
+    p.orgid = currOrgid;
     cardTimesGrid.load({
     	token:token,
         p:p

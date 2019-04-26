@@ -143,7 +143,7 @@ function excCoupon(userCoupon,callback){
 			serviceId:dataF.serviceId,
 			token : token
 		}
-	//判断是否使用了改项目：com.hsapi.repair.repairService.crud.queryRpsItemByRpbItemIdAndServiceId
+	//判断是否使用了该项目：com.hsapi.repair.repairService.crud.queryRpsItemByRpbItemIdAndServiceId
 	nui.ajax({
 		url : baseUrl + "com.hsapi.repair.repairService.crud.queryRpsItemByRpbItemIdAndServiceId.biz.ext",
 		type : "post",
@@ -936,7 +936,9 @@ function inputUserQuan(e){
 	var paraMap = {};
 	paraMap.userOpenId = dataF.contactor.wechatOpenId;
 	paraMap.couponCode = code;
-	
+	paraMap.orgid = currOrgid;
+	paraMap.tenantId = currTenantId;
+	paraMap.userCarId = dataF.carId;
 	var json2 = {
 			param:paraMap,
 			token: token

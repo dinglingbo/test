@@ -2433,6 +2433,7 @@ function doSearchItemTimes(guestId,fcarId)
     p.status = 2; 
     p.isRefund = 0;
     p.carId = fcarId;
+    p.orgid = currOrgid;
     itemTimesGrid.load({
     	token:token,
         p:p
@@ -2451,7 +2452,8 @@ function doSearchMemCard(guestId)
 
     memCardGrid.load({
     	token:token,
-        guestId:guestId
+        guestId:guestId,
+        orgid:currOrgid
     },function(){
         var data = memCardGrid.getData();
         var len = data.length||0;

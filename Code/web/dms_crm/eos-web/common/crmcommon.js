@@ -484,6 +484,8 @@ function startCall(el) {
 
 }
 function makeOffnetCall(){
+      callSessionManager = client.getServiceLocator().get('call');
+
       let phone = $('#whphone').val()
       callSessionManager.makeOffnetCall(phone)
 }

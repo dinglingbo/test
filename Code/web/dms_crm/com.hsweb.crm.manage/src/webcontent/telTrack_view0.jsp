@@ -19,11 +19,22 @@
 <head>
 <title>电话跟踪</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/manage/js/telTrack.js?v=1.0.22"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/telTrack.js?v=1.0.31"></script>
         <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 </head>
 <body>
+  
+        <div style="display: none;">
+            <audio id="music" loop>
+                <source src="<%=webPath + contextPath%>/common/dudu.wav" type="audio/wav">
+            </audio>
+        </div>
+        <div style="display: none;">
+            <audio id="musicIn" loop>
+                <source src="<%=webPath + contextPath%>/common/incall.wav" type="audio/wav">
+            </audio>
+        </div>
     <div class="mini-splitter" vertical="true" style="width:100%;height:100%;">
         <div size="70%" showCollapseButton="true">
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;" id="queryForm">
@@ -103,7 +114,6 @@
                     style="width:120px;"/>
                 <a class="nui-button"  plain="true" onclick="query()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <li class="separator"></li>
-                <a class="nui-button"  plain="true" onclick="login()" id="login" enabled="true"><span class="fa fa-user-circle-o fa-lg"></span>&nbsp;登录</a>
                 <!-- <a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">状态</a>
                 <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
                     <li iconCls="" onclick="signwUp()" id="type0">上线</li>
@@ -116,13 +126,16 @@
                 <li class="separator"></li>
                 <a class="nui-button"  plain="true" onclick="newClient()" id="edit" enabled="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增客户资料</a>
                 <a class="nui-button"  plain="true" onclick="editClient()" id="" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改客户资料</a>
+                <li class="separator"></li>
+                <a class="nui-button"  plain="true" onclick="login()" id="login" enabled="true"><span id="userStatus" class="fa fa-user-circle-o fa-lg"></span>&nbsp;登录</a>
+                <a class="nui-button"  plain="true" onclick="signOut()" id="login" enabled="true"><span class="fa fa-toggle-right fa-lg"></span>&nbsp;退出</a>
             </td>
         </tr>
     </table> 
 </div>
 
 <div id="loginWin" class="nui-window"
-     title="" style="width:350px;height:150px;"
+     title="" style="width:350px;height:180px;"
      showModal="false"
      showHeader="false"
      allowResize="false"
@@ -132,7 +145,6 @@
             <tr>
                 <td style="width:80%;">
                     <a class="nui-button" iconCls="" plain="true" onclick="hideLoginWin()"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
-
                 </td>
             </tr>
         </table>
@@ -144,9 +156,8 @@
                         <input id="LoginMobile" name="LoginMobile" class="nui-textbox textboxWidth" emptyText="输入手机号" >
                     </td>
                     <td >
-                            <a class="nui-button" iconCls="" plain="false" onclick=""><span class="fa fa-tablet fa-lg"></span>&nbsp;获取验证码</a>
+                            <a class="nui-button" iconCls="" plain="false" onclick="getCode()"><span class="fa fa-tablet fa-lg"></span>&nbsp;获取验证码</a>
                     </td>
-              
             </tr>
             <tr class="htr">
                 <td style="width: 135px;">
@@ -156,7 +167,14 @@
                             <a class="nui-button" iconCls="" plain="false" onclick="onLogin()"><span class="fa fa-circle-o-notch fa-lg"></span>&nbsp;登录</a>
                     </td>
             </tr>
-
+            <tr class="htr">
+                    <td style="width: 135px;">
+                            <input id="tarMobile" name="tarMobile" class="nui-textbox textboxWidth" emptyText="输入客户电话" >
+                        </td>
+                        <td>
+                                <a class="nui-button" iconCls="" plain="false" onclick="makeOffnetCall(this)"><span class="fa fa-toggle-right fa-lg"></span>&nbsp;呼出</a>
+                        </td>
+                </tr>
         </table>
     </div>
 </div> 

@@ -95,7 +95,7 @@
 					    <input type="file" name="" id="" onchange="importf(this)">
 					</a>
 	                <a class="nui-button" iconCls="" plain="true" onclick="sure()" id="openBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
-	                <a class="nui-button" plain="true" href="<%=request.getContextPath() %>/repair/RepairBusiness/template/supplier.xlsx" download="供应商导入模板"><span class="fa fa-arrow-down fa-lg"></span>下载模板</a>
+	                <a style="text-decoration: none;color: #2779aa;" plain="true" href="<%=request.getContextPath() %>/repair/RepairBusiness/template/supplier.xlsx" download="供应商导入模板"><span class="fa fa-arrow-down fa-lg"></span>下载模板</a>
 
 				</td>
 	        </tr>

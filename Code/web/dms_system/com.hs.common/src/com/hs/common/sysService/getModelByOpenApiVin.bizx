@@ -5,7 +5,7 @@
     <size height="100" width="451"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
-    <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>subprocess0</targetNode>
     </sourceConnections>
@@ -160,8 +160,9 @@
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
       <targetNode>invokePojo2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
-    <targetConnections>link0</targetConnections>
+    <targetConnections>link2</targetConnections>
     <location x="285" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign8label</nodeLabel>
@@ -226,12 +227,12 @@
     <node>invokePojo2</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="getMaintenance" displayName="getMaintenance" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>assign8</targetNode>
     </sourceConnections>
-    <targetConnections>link14</targetConnections>
-    <location x="180" y="150"/>
+    <targetConnections>link1</targetConnections>
+    <location x="183" y="150"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -245,7 +246,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="146" y="185"/>
+    <location x="149" y="185"/>
     <figSize height="17" width="94"/>
     <node>subprocess0</node>
   </nodes>

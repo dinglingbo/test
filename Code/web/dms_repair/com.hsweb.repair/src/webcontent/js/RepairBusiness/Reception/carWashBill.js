@@ -63,7 +63,7 @@
  var sellForm = null;
  var carCheckInfo = null;
  var checkMainData = null;
- var rdata = null;
+ var rdata = {};
  var isRecord = null;
 
  var fserviceId = 0;
@@ -2009,6 +2009,7 @@ function doSearchCardTimes(guestId,fcarId)
     p.type = 2;
     p.isRefund = 0;
     p.carId = fcarId;
+    p.orgid = currOrgid;
     cardTimesGrid.load({
     	token:token,
         p:p

@@ -135,6 +135,11 @@ function doSave(tform,callBack){
       visitStatus:data.visitStatus,
       priorScoutDate:mainData.nextScoutDate
   };
+  if(nui.get("visitStatus").value == '060704'){
+  	p.isCome = 1;
+  }else{
+  	p.isCome = 0;
+  }
 
   try {
       nui.ajax({

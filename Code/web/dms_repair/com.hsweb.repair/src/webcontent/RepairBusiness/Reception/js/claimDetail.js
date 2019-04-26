@@ -79,6 +79,7 @@ var lastItemUnitPrice = null;
 var lastPkgSubtotal = null;
 var lastPkgRate = null;
 var contactorF = null;
+var rdata = {};
 var prdtTypeHash = {
     "1":"套餐",
     "2":"项目",
@@ -2409,6 +2410,7 @@ function doSearchCardTimes(guestId,fcarId)
     p.status = 2;
     p.isRefund = 0;
     p.carId = fcarId;
+    p.orgid = currOrgid;
     cardTimesGrid.load({
     	token:token,
         p:p

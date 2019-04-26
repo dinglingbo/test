@@ -6,10 +6,12 @@ var currGuest;
 var memList = [];
 var memHash={};  
 var carModelHash = [];
+var loginWin = null;
 
-$(document).ready(function(v){
+$(document).ready(function (v) {
     queryForm = new nui.Form("#queryForm"); 
     dgGrid = nui.get("dgGrid");
+    loginWin = nui.get("loginWin");
     dgGrid.setUrl(getScoutGuestListUrl);
     dgGrid.on("beforeload",function(e){ 
         e.data.token = token;
@@ -77,7 +79,7 @@ $(document).ready(function(v){
     init();
     query();
     
-    initM800(connect);
+    //initM800(connect);
 });
 
 function init(){
@@ -299,25 +301,158 @@ function addRow() {
     });
 }
 
-function signwUp() {
+// function signwUp() {
 	
-layer.load(2, { shade: false })
-            // options.phoneNumber = '+8613302387912'
-            let identity ={
-                identifierType: 'PHONE_NUMBER',     //这个是固定的,无法自定义            
-                identifier: '+8613302387912',      //这个由用户输入手机号（必须是手机号格式）         
-                countryCode:'CN'   //这个是固定（前提是中国）
+// layer.load(2, { shade: false })
+//             // options.phoneNumber = '+8613302387912'
+//             var  identity ={
+//                 identifierType: 'PHONE_NUMBER',     //这个是固定的,无法自定义            
+//                 identifier: '+8613302387912',      //这个由用户输入手机号（必须是手机号格式）         
+//                 countryCode:'CN'   //这个是固定（前提是中国）
+//             };
+//             signUp(options,identity);
+
+// }
+
+// function signwDown() {
+	
+// }
+
+
+function login() {
+    if (loginWin.visible == false) {
+        var atEl = document.getElementById("login");  
+        loginWin.showAtEl(atEl, {xAlign:"right",yAlign:"below"});
+    } else {
+        loginWin.hide();
+    }
+}
+
+function hideLoginWin() {
+    loginWin.hide();
+}  
+ 
+function onLogin() {
+    var lmobile = nui.get("LoginMobile");
+    var VerificationCode = nui.get("VerificationCode");
+    if (checkMobile(lmobile.value)) { 
+        if (VerificationCode.value) {
+            //执行登录操作
+            signIn();
+        } else {
+            showMsg("请输入验证码", "W");
+        }
+    }
+}
+ 
+function getCode() {
+    if (checkMobile(nui.get("LoginMobile").value)) { 
+    const verificationManager = client.getServiceLocator().get('verification');
+    const type = M800Verification.VerificationType.SMS;
+    // const type = M800Verification.VerificationType.IVR;
+     // const type = M800Verification.VerificationType.MULTI_DEVICE
+
+    options.phoneNumber = "+86" + nui.get("LoginMobile").value
+    console.log(options)
+  
+    verificationManager.startVerification(type, options)
+        .then((verification) => {
+
+            // sessionStorage.setItem("verificationInstance", JSON.stringify(verification))
+            console.log(verification)
+            verificationInstance = verification
+
+            showMsg("发送成功", "S");
+        })
+    }
+}
+
+function signIn() {
+    var VerificationCode = nui.get("VerificationCode");
+    //const verificationManager = client.getServiceLocator().get('verification');
+   // const verificationInstance = verificationManager.getCurrentVerification();
+//       let identity = JSON.parse(sessionStorage.getItem('identity'))
+//       let verification = JSON.parse(sessionStorage.getItem('verification'))
+    if(verificationInstance._state!='verify-ready'){
+        showMsg("验证码已失效，请重新获取", "W");
+        return false
+   }
+    verificationInstance.verify(VerificationCode.value)
+        .then((result) => {
+            console.log(result)
+            if (result.verification.result) {
+                console.log(options)
+                layer.load(2, { shade: false })
+                const { identity, verification } = result
+                signUp(options, identity, verification)
             }
-            signUp(options,identity)
-    
+        })
+        .catch((result) => {
+            showMsg(result.message, "S");
 
-
-    
-
-    
+        });
 }
 
-function signwDown() {
-	
+function signUp(opts, identity, verification) {
+    console.log(opts)
+
+    console.log(identity)
+    accountMgr.signUp(opts, identity, verification)
+        .then(({ jid, token }) => {
+            console.log(jid)
+            if (identity) {
+                $(".jid01").val(jid)
+            } else {
+                $(".jid02").val(jid)
+            }
+            if (!localStorage.getItem('jid')) {
+                localStorage.setItem("jid", jid)
+            }
+            console.log("链接服务中...")
+            connectA(jid)
+        })
+        .catch(res =>{
+             layer.closeAll()
+        })
 }
 
+function connectA(bareJid) {
+    layer.load()
+    let jid =''
+    if(bareJid){
+          jid = bareJid
+    }else{ 
+       jid =  localStorage.getItem('jid')
+    }
+     
+    return client.getConnection().connect(jid)
+        .then((res) => {
+            loginWin.hide();
+            document.getElementById("userStatus").style.color = '#62b900';
+            layer.closeAll()
+            layer.msg('连接成功');
+            console.log("连接成功")
+            console.log(res)
+            // getDeviceList()
+
+        })
+        .catch(err => {
+            layer.closeAll()
+            console.log(err)
+
+
+        })
+}
+
+function signOut() {
+    localStorage.removeItem("jid")
+    accountMgr.signOut().then(res =>{
+         layer.alert('退出成功');
+    })
+    document.getElementById("userStatus").style.color = '#2779aa';
+}
+
+function makeOffnetCall(){
+    let phone ='+86'+ nui.get("tarMobile").value;
+    callSessionManager.makeOffnetCall(phone);
+}

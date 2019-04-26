@@ -995,6 +995,9 @@ function inputUserQuan(e){
 	var paraMap = {};
 	paraMap.userOpenId = guestData.wechatOpenId;
 	paraMap.couponCode = code;
+	paraMap.orgid = currOrgid;
+	paraMap.tenantId = currTenantId;
+	paraMap.userCarId = guestData.carId;
 	
 	var json2 = {
 			param:paraMap,
@@ -1008,6 +1011,7 @@ if(code != "" && code != null){
 		data : json2,
 		success : function(data) {
 			if(data.result.code=="S"){
+				var type = data.result.type || 0;
 				var v = data.result.data;
 				//判断对象是否为空
 				var isEnp = false;
@@ -1063,7 +1067,7 @@ if(code != "" && code != null){
 								}
 								
 							}
-							if(boolean){	
+							if(boolean && type == 1){	
 								document.getElementById("show").innerHTML = document.getElementById("show").innerHTML + list;
 								userCouponDataHash[key] = v;
 								var changStr = "#chang"+key;

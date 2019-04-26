@@ -73,7 +73,7 @@
             border: 1px #b4b4b4 solid;
             float: left;
             font-size: 14px;
-            font-family: "微软雅黑";
+            font-family: "黑体";
         }
 
         .smbottom {
@@ -146,8 +146,8 @@
         <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
     </div>
         <div style="padding-top:5px ;" align="center">
-            <h2 id="currRepairSettorderPrintShow"></h2>
-            <h3>费&nbsp;&nbsp;用&nbsp;&nbsp;报&nbsp;&nbsp;销&nbsp;&nbsp;单</h3>
+            <div style="font-size: 20px; font-family: 黑体;"><b><span  id="currRepairSettorderPrintShow"></span></b></div>
+            <div style="font-size: 16px; font-family: 黑体; padding-top:5px"><b  id="currRepairSettorderPrintShow"><span>费&nbsp;&nbsp;用&nbsp;&nbsp;报&nbsp;&nbsp;销&nbsp;&nbsp;单</span></b></div>
         </div>
         <div style="margin: 0 2px;" class="printny">
         <div class="company-info">
@@ -174,19 +174,19 @@
         <div style="padding-top: 10px;">
             <table  width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk">
                 <tr>
-                    <td align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;width: 25%">
+                    <td align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;width: 25%">
                         摘要
                     </td>
-                    <td align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;width: 16%">
+                    <td align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;width: 16%">
                         收支类别
                     </td>
-                    <td align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;width: 16%">
+                    <td align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;width: 16%">
                         数量
                     </td>
-                    <td align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;width: 16%">
+                    <td align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;width: 16%">
                         单价
                     </td>
-                    <td align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;width: 16% ">
+                    <td align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;width: 16% ">
                         金额
                     </td>
                 </tr>

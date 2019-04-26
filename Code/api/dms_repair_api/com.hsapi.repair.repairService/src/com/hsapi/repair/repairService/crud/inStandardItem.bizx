@@ -750,11 +750,11 @@
       <process:to type="query">initItem/itemIsNeed</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
+      <process:from type="query" pattern="reference">item/itemTime</process:from>
       <process:to type="query">initItem/itemTime</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
+      <process:from type="query" pattern="reference">item/amount</process:from>
       <process:to type="query">initItem/amt</process:to>
     </process:copy>
     <process:copy>

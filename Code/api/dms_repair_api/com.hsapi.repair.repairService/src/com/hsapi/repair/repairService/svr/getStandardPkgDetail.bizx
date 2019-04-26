@@ -76,11 +76,11 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="expression" pattern="reference">httpStr+&quot;&amp;&amp;pkgName=&quot;</process:from>
+      <process:from type="expression" pattern="reference">httpStr+&quot;&amp;pkgName=&quot;</process:from>
       <process:to type="query">httpStr</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">params/pkgName</process:from>
+      <process:from type="query" pattern="reference">params/name</process:from>
       <process:to type="query">pkgName</process:to>
     </process:copy>
     <process:copy>
@@ -247,7 +247,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
-      <process:from type="expression" pattern="reference">httpStr+&quot;?pkgType%5B0%5D.id=&quot;</process:from>
+      <process:from type="expression" pattern="reference">httpStr+&quot;&amp;pkgType%5B0%5D.id=&quot;</process:from>
       <process:to type="query">httpStr</process:to>
     </process:copy>
     <process:copy>
@@ -271,20 +271,20 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
-    <location x="255" y="69"/>
+    <location x="240" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">params/carNo</process:from>
-      <process:to type="query">carNo</process:to>
+      <process:from type="query" pattern="reference">params/carModelIdLy</process:from>
+      <process:to type="query">carModelIdLy</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">httpStr+carNo</process:from>
+      <process:from type="expression" pattern="reference">httpStr+carModelIdLy</process:from>
       <process:to type="query">httpStr</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
-    <location x="253" y="105"/>
+    <location x="238" y="186"/>
     <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
@@ -309,7 +309,6 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link1</targetConnections>
     <targetConnections>link12</targetConnections>
     <location x="330" y="150"/>
     <size height="28" width="28"/>
@@ -356,6 +355,7 @@
     <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign8</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link15</targetConnections>
     <location x="115" y="150"/>
@@ -377,16 +377,6 @@
     <node>subprocess1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" description="" id="link1" name="link1" displayName="连接线" isDefault="false" type="transition">
-      <sourceNode>assign8</sourceNode>
-      <targetNode>assign5</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="ISNULL">
-          <process:leftOperand type="query">params/carNo</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
       <targetNode>assign4</targetNode>
@@ -402,7 +392,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign8label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">pkg/carModel/carno/</process:from>
+      <process:from type="literal" pattern="reference">pkg/carModel?carModelId=</process:from>
       <process:to type="query">url</process:to>
     </process:copy>
     <process:copy>
@@ -458,7 +448,7 @@
       <process:to type="query">index</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">httpStr+&quot;&amp;index=&quot;</process:from>
+      <process:from type="expression" pattern="reference">httpStr+&quot;&amp;page=&quot;</process:from>
       <process:to type="query">httpStr</process:to>
     </process:copy>
     <process:copy>
@@ -504,7 +494,7 @@
       <targetNode>assign14</targetNode>
     </sourceConnections>
     <targetConnections>link29</targetConnections>
-    <location x="977" y="42"/>
+    <location x="973" y="30"/>
     <size height="28" width="28"/>
     <nodeLabel>assign12label</nodeLabel>
     <process:copy>
@@ -513,7 +503,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">
-    <location x="943" y="78"/>
+    <location x="939" y="66"/>
     <figSize height="17" width="97"/>
     <node>assign12</node>
   </nodes>
@@ -609,7 +599,7 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="returnResult"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params2"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="id" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="carNo" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="carModelIdLy" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="pkgName" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="maintenanceUrl" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="url" primitiveType="String"/>

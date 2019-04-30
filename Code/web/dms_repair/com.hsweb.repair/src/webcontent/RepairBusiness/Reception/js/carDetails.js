@@ -135,6 +135,20 @@ $(document).ready(function () {
         		 str = "(满"+record.couponConditionPrice+"元)";
         		 e.cellHtml = record.couponDescribe + str; 
         	 }
+          case "userFile":
+        	  var isCarUse = record.isCarUse || 0;//本车使用,0,是，1否
+        	  var isStoreUse = record.isStoreUse || 0;//本店使用,0,是，1否
+        	  var isTenantUse = record.isTenantUse || 0;//连锁使用,0,是，1否
+        	  if(isCarUse){
+        		  if(isStoreUse){
+        			  e.cellHtml = "本店使用";
+        		  }else{
+        			  e.cellHtml = "连锁使用";
+        		  }
+        	  }else{
+        		  e.cellHtml = "本车使用";
+        	  }
+        	  
           default:
               break;
       }

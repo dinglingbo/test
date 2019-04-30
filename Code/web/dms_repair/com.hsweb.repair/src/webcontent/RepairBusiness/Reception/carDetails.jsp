@@ -341,6 +341,7 @@
                                     <div field="couponDescribe" name="couponDescribe" width="100" headerAlign="center" header="使用说明"></div>
                                     <div field="userName" name="userName" width="50" headerAlign="center" header="领券人"></div>
                                     <div field="couponEndDate" name="couponEndDate" width="100" headerAlign="center" header="到期日期" dateFormat="yyyy-MM-dd"></div>
+                                    <div field="userFile" name="userFile" width="100" headerAlign="center" header="使用范围" ></div>
                                 </div>
                             </div>
                         </div>

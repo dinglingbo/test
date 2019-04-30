@@ -1011,7 +1011,7 @@ if(code != "" && code != null){
 		data : json2,
 		success : function(data) {
 			if(data.result.code=="S"){
-				var type = data.result.type || 0;
+				var type2 = data.result.type || 0;
 				var v = data.result.data;
 				//判断对象是否为空
 				var isEnp = false;
@@ -1067,7 +1067,7 @@ if(code != "" && code != null){
 								}
 								
 							}
-							if(boolean && type == 1){	
+							if(boolean && type2 == 1){	
 								document.getElementById("show").innerHTML = document.getElementById("show").innerHTML + list;
 								userCouponDataHash[key] = v;
 								var changStr = "#chang"+key;

@@ -76,7 +76,16 @@ a.optbtn {
 								<input property="editor" vtype="float" class="nui-textbox"  />
 							</div>
 							<div field="guestName"  width="120" headerAlign="center" header="往来单位">
-					              <input property="editor" class="nui-textbox" id="guestId"/>
+					             <input property="editor" class="nui-textbox" id="guestId"/>
+					           <!--   <input id="contactorName"
+	                         name="contactorName"
+	                         class="nui-buttonedit"
+	                         emptyText=""
+	                         onbuttonclick="chooseContactor()"
+	                         placeholder="请选择联系人"
+	                         selectOnFocus="true" 
+	                         allowInput="false"
+	                         /> -->
 							</div>
 							<div field="guestId"  width="120" headerAlign="center" header="往来单位id" visible="false">
 							</div>

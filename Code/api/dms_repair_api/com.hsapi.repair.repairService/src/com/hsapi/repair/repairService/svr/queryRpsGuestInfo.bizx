@@ -323,6 +323,10 @@
       <process:from type="query" pattern="reference">carObj/carModelIdLy</process:from>
       <process:to type="query">data/carModelIdLy</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">contactorObj/wechatOpenId</process:from>
+      <process:to type="query">data/wechatOpenId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
     <location x="705" y="186"/>
@@ -362,7 +366,7 @@
         <process:outputVariable id="2" name="car" type="query" value="com.hsapi.repair.data.rpbse.RpbCar" valueType="DataObject">carObj</process:outputVariable>
         <process:outputVariable id="3" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="4" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="5" name="carExtend" type="query" value="com.hsapi.repair.data.rpbse.RpbCarExtend" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="5" name="carExtend" type="query" value="com.hsapi.repair.data.rpbse.RpbCarExtend" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

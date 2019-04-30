@@ -88,7 +88,7 @@
       <sourceNode>assign0</sourceNode>
       <targetNode>invokePojo6</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link91" name="link91" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link91" name="link91" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>assign38</targetNode>
       <process:transitionCondition>

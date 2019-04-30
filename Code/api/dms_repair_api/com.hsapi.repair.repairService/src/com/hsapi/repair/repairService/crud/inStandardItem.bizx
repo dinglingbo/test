@@ -730,7 +730,7 @@
       <process:to type="query">initItem/rate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">item/id</process:from>
+      <process:from type="query" pattern="reference">item/itemId</process:from>
       <process:to type="query">initItem/itemId</process:to>
     </process:copy>
     <process:copy>

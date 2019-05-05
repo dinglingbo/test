@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/orderDetail.js?v=1.3.63"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/orderDetail.js?v=1.3.65"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     

@@ -246,7 +246,6 @@
             .addyytime a.hui {
                 padding-left: 5px;
                 padding-right: 5px;
-                height: ;
                 line-height: 24px;
                 border: 1px #a6e0f5 solid;
                 display: block;
@@ -338,7 +337,7 @@
                                 <span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                             <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn">
                                 <span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                           
+
                             <span class="separator"></span>
                             <a class="nui-button" iconCls="" plain="true" onclick="sureMT()" id="addBtn"><span class="fa fa-car fa-lg"></span>&nbsp;施工</a>
                             <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;完工</a>
@@ -527,12 +526,12 @@
                                 </div>
                             </td>
                             <td>
-			                    <div >
-			                        <span id="carSellInfoEl" >
+                                <div>
+                                    <span id="carSellInfoEl">
 			                            <a href="javascript:showSellPoint()" class="healthview" id="showSellEl" ">销售机会(0)</a>&nbsp;
 			                        </span>
-			                    </div>
-               				 </td>
+                                </div>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -629,7 +628,7 @@
                             <div field="prdtName" name="prdtName" width="100" headerAlign="center" header="产品名称"></div>
                             <div field="prdtType" name="prdtType" width="60" headerAlign="center" header="产品类别"></div>
                             <div field="totalTimes" name="totalTimes" width="50" headerAlign="center" header="总次数"></div>
-		                    <div field="useTimes" name="useTimes" width="60" headerAlign="center" header="已使用次数"></div>
+                            <div field="useTimes" name="useTimes" width="60" headerAlign="center" header="已使用次数"></div>
                             <div field="doTimes" name="doTimes" width="70" headerAlign="center" header="使用中次数"></div>
                             <div field="canUseTimes" name="canUseTimes" width="70" headerAlign="center" header="可使用次数"></div>
                             <div field="cardTimesOpt" name="cardTimesOpt" width="60" headerAlign="center" header="操作"></div>
@@ -637,43 +636,31 @@
                     </div>
                 </div>
             </div>
-           <div id="advancedItemTimesWin" class="nui-window"
-			     title="" style="width:550px;height:200px;"
-			     showModal="false"
-			     showHeader="false"
-			     allowResize="false"
-			     allowDrag="false">
-			      <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-			        <table style="width:100%;">
-			            <tr>
-			                <td style="width:100%;">
-			                    <a class="nui-button" iconCls="" plain="true" onclick="showItemTimes()" id="itemTimesBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
-			                </td>
-			            </tr>
-			        </table>
-			    </div>
-			    <div class="nui-fit">
-			          <div id="itemTimesGrid" class="nui-datagrid" style="width:100%;height:95%;"
-			               selectOnLoad="true"
-			               showPager="false"
-			               dataField="data"
-			               idField="id"
-			               allowCellSelect="true"
-			               editNextOnEnterKey="true"
-			               url="">
-				          <div property="columns">
-					          <div field="prdtName" name="prdtName" width="100" headerAlign="center" header="产品名称"></div>
-					          <div field="prdtType" name="prdtType" width="60" headerAlign="center" header="产品类别"></div>
-					          <div field="totalTimes" name="totalTimes" width="50" headerAlign="center" header="总数量"></div>
-					          <div field="useTimes" name="useTimes" width="60" headerAlign="center" header="已使用数量"></div>
-					          <div field="doTimes" name="doTimes" width="70" headerAlign="center" header="使用中数量"></div>
-					          <div field="canUseTimes" name="canUseTimes" width="70" headerAlign="center" header="可使用数量"></div>
-					          <div field="cardTimesOpt" name="cardTimesOpt" width="60" headerAlign="center"  header="操作"></div>
-				        </div>
-			          </div>
-			    </div>
-			</div> 
-		     <div id="advancedMemCardWin" class="nui-window" title="" style="width:500px;height:200px;" showModal="false" showHeader="false" allowResize="false" allowDrag="false">
+            <div id="advancedItemTimesWin" class="nui-window" title="" style="width:550px;height:200px;" showModal="false" showHeader="false" allowResize="false" allowDrag="false">
+                <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="width:100%;">
+                                <a class="nui-button" iconCls="" plain="true" onclick="showItemTimes()" id="itemTimesBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="nui-fit">
+                    <div id="itemTimesGrid" class="nui-datagrid" style="width:100%;height:95%;" selectOnLoad="true" showPager="false" dataField="data" idField="id" allowCellSelect="true" editNextOnEnterKey="true" url="">
+                        <div property="columns">
+                            <div field="prdtName" name="prdtName" width="100" headerAlign="center" header="产品名称"></div>
+                            <div field="prdtType" name="prdtType" width="60" headerAlign="center" header="产品类别"></div>
+                            <div field="totalTimes" name="totalTimes" width="50" headerAlign="center" header="总数量"></div>
+                            <div field="useTimes" name="useTimes" width="60" headerAlign="center" header="已使用数量"></div>
+                            <div field="doTimes" name="doTimes" width="70" headerAlign="center" header="使用中数量"></div>
+                            <div field="canUseTimes" name="canUseTimes" width="70" headerAlign="center" header="可使用数量"></div>
+                            <div field="cardTimesOpt" name="cardTimesOpt" width="60" headerAlign="center" header="操作"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="advancedMemCardWin" class="nui-window" title="" style="width:500px;height:200px;" showModal="false" showHeader="false" allowResize="false" allowDrag="false">
                 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
                     <table style="width:100%;">
                         <tr>
@@ -716,7 +703,7 @@
                             </td>
                         </tr>
                     </table>
-                    <input class="nui-combobox" name="chanceType" id="chanceType" valueField="customid" textField="name"  visible="false" />
+                    <input class="nui-combobox" name="chanceType" id="chanceType" valueField="customid" textField="name" visible="false" />
                     <table style="width: 100%;margin-top:20px; ">
                         <tr>
                             <td class="">
@@ -780,44 +767,32 @@
                     </div>
                 </div>
             </div>
-            <div id="carSellPointInfo" class="nui-window"
-    title="" style="width:700px;height:200px;"
-    showModal="false"
-    showHeader="false"
-    allowResize="false"
-    allowDrag="false">
-	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-        <table style="width:100%;">
-            <tr>
-                <td style="width:100%;">
-                <a class="nui-button" iconCls="" plain="true" onclick="addSell()" id="auditBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增销售机会</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="showCarSellPointInfo()" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div class="nui-fit">
-          <div id="carSellPointGrid" class="nui-datagrid" style="width:100%;height:95%;"
-               selectOnLoad="true"
-               showPager="false"
-               dataField="list"
-               idField="id"
-               allowCellSelect="true"
-               editNextOnEnterKey="true"
-               url="">
-              <div property="columns">
-                  <div field="prdtName" name="prdtName" width="80" headerAlign="center" header="项目"></div>
-                  <div field="prdtAmt" name="amt" width="40" headerAlign="center" header="金额"></div>
-                  <div field="chanceType" name="type" width="60" headerAlign="center" header="机会类型"></div>
-                  <div field="status" name="status" width="50" headerAlign="center" header="阶段"></div>
-                  <div field="chanceMan" name="creator" width="80" headerAlign="center" header="商机所有者"></div>
-                <div field="nextFollowDate" name="nextFollowDate" width="100" dateFormat="yyyy-MM-dd " headeralign="center" >下次跟进时间</div>
- 				<div field="planFinishDate" name="planFinishDate" width="100" dateFormat="yyyy-MM-dd " headeralign="center" >预计成单时间</div>
-                  <div field="cardTimesOpt" name="cardTimesOpt" width="80" headerAlign="center"  header="操作" align="center"></div>
-              </div>
-          </div>
-    </div>
-</div>
+            <div id="carSellPointInfo" class="nui-window" title="" style="width:700px;height:200px;" showModal="false" showHeader="false" allowResize="false" allowDrag="false">
+                <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="width:100%;">
+                                <a class="nui-button" iconCls="" plain="true" onclick="addSell()" id="auditBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增销售机会</a>
+                                <a class="nui-button" iconCls="" plain="true" onclick="showCarSellPointInfo()" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="nui-fit">
+                    <div id="carSellPointGrid" class="nui-datagrid" style="width:100%;height:95%;" selectOnLoad="true" showPager="false" dataField="list" idField="id" allowCellSelect="true" editNextOnEnterKey="true" url="">
+                        <div property="columns">
+                            <div field="prdtName" name="prdtName" width="80" headerAlign="center" header="项目"></div>
+                            <div field="prdtAmt" name="amt" width="40" headerAlign="center" header="金额"></div>
+                            <div field="chanceType" name="type" width="60" headerAlign="center" header="机会类型"></div>
+                            <div field="status" name="status" width="50" headerAlign="center" header="阶段"></div>
+                            <div field="chanceMan" name="creator" width="80" headerAlign="center" header="商机所有者"></div>
+                            <div field="nextFollowDate" name="nextFollowDate" width="100" dateFormat="yyyy-MM-dd " headeralign="center">下次跟进时间</div>
+                            <div field="planFinishDate" name="planFinishDate" width="100" dateFormat="yyyy-MM-dd " headeralign="center">预计成单时间</div>
+                            <div field="cardTimesOpt" name="cardTimesOpt" width="80" headerAlign="center" header="操作" align="center"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <script type="text/javascript">
                 var boxServiceTypeId = [{
                     id: 1,

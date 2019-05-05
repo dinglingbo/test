@@ -25,7 +25,7 @@
             height: 100%;
             overflow: hidden;
         }
-        #wechatTag1{
+        #wechatTag1{ 
             color:#ccc;
     }
     #wechatTag{

@@ -156,7 +156,10 @@ $(document).ready(function(v) {
 function loadStdPKG(packageTypeId) {
 	var params = {};
 	params.packageName = nui.get('pkgName').getValue();
+	//转码，维保大数据GET请求
+	params.name = encodeURI(params.packageName); 
 	params.id = packageTypeId;
+	params.carModelIdLy = carModelIdLy;
 	if(carNo!=null){
 		//转码，维保大数据GET请求
 		params.carNo = encodeURI(carNo); 

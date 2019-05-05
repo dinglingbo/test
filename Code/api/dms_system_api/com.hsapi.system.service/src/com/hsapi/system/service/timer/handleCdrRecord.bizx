@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="handleCdrRecord.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="每5分钟处理一次云呼叫通话记录,每5分钟取前30分钟的数据，例如  10点，则取9:30 ~ 10:00&#xD;&#xA;&#xD;&#xA;客服在收听录音乐时，再去取state&#xD;&#xA;&#xD;&#xA;http://sit.open.recency.cn/auth/accessToken&#xD;&#xA;&#xD;&#xA;http://sit.api.recency.cn/openapi/sip/cdr/query&#xD;&#xA;&#xD;&#xA;startFrom   &#xD;&#xA;startTo        当前时间，往前推30分钟" title="Administrator&#x9;19-4-24 下午4:30">
-    <location x="45" y="-105"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="每5分钟处理一次云呼叫通话记录,每5分钟取前30分钟的数据，例如  10点，则取9:30 ~ 10:00&#xD;&#xA;&#xD;&#xA;客服在收听录音乐时，再去取state&#xD;&#xA;&#xD;&#xA;http://sit.open.recency.cn/auth/accessToken&#xD;&#xA;&#xD;&#xA;http://sit.api.recency.cn/openapi/sip/cdr/query&#xD;&#xA;&#xD;&#xA;1、startFrom   startTo        当前时间，往前推30分钟（测试时startFrom固定，startTo为空）&#xD;&#xA;2、获取返回数据里面的callee  caller  +8613710326756@ruixinchangyin-comphs-1-test.m800-api.com&#xD;&#xA;3、通过 callee主叫  caller被叫  匹配crm_cdr_record中caller_phone，callee_phone" title="Administrator&#x9;19-4-24 下午4:30">
+    <location x="-45" y="-105"/>
     <size height="226" width="691"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
@@ -9,26 +9,26 @@
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
     </sourceConnections>
-    <location x="45" y="202"/>
+    <location x="-290" y="202"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link9</targetConnections>
-    <location x="1005" y="202"/>
+    <location x="1095" y="201"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.alibaba.fastjson.JSON[]" name="recordList" type="query" valueType="Java">recordList</process:return>
+      <process:return id="0" language="com.alibaba.fastjson.JSON[]" name="cdrList" type="query" valueType="Java">cdrList</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="47" y="238"/>
+    <location x="-288" y="238"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="1007" y="238"/>
+    <location x="1097" y="237"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -37,8 +37,8 @@
       <sourceNode>subprocess0</sourceNode>
       <targetNode>assign1</targetNode>
     </sourceConnections>
-    <targetConnections>link1</targetConnections>
-    <location x="225" y="202"/>
+    <targetConnections>link13</targetConnections>
+    <location x="115" y="202"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="7" synchronization="true" transactionType="join" varArgs="false">
@@ -61,17 +61,23 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="200" y="237"/>
+    <location x="90" y="237"/>
     <figSize height="17" width="77"/>
     <node>subprocess0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+  <nodes xsi:type="process:tAssign" description="" id="assign0" name="startTo" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" description="" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
-      <targetNode>subprocess0</targetNode>
+      <targetNode>invokePojo1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="120" y="202"/>
+    <location x="-230" y="201"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
@@ -99,23 +105,23 @@
       <process:to type="query">params/carrierId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">new Date()</process:from>
-      <process:to type="query">startDate</process:to>
+      <process:from type="literal" pattern="reference">2019-04-22 12:59:08</process:from>
+      <process:to type="query">endDate</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="122" y="238"/>
-    <figSize height="17" width="25"/>
+    <location x="-237" y="237"/>
+    <figSize height="17" width="42"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="queryCdrRecord" displayName="queryCdrRecord" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
-      <targetNode>loopstart0</targetNode>
+      <targetNode>subprocess3</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
-    <location x="555" y="202"/>
+    <location x="445" y="202"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="12" synchronization="true" transactionType="join" varArgs="false">
@@ -135,7 +141,7 @@
         <process:inputVariable id="11" name="accessToken" type="query" value="String" valueType="Primitive" pattern="reference">accessToken</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="data" type="query" value="com.alibaba.fastjson.JSON[]" valueType="Java">recordList</process:outputVariable>
+        <process:outputVariable id="0" name="data" type="query" value="com.alibaba.fastjson.JSON[]" valueType="Java">cdrList</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
         <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
         <process:outputVariable id="3" name="page" type="query" value="Int" valueType="Primitive">page</process:outputVariable>
@@ -146,7 +152,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="520" y="237"/>
+    <location x="410" y="237"/>
     <figSize height="17" width="97"/>
     <node>subprocess1</node>
   </nodes>
@@ -156,7 +162,7 @@
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
-    <location x="345" y="201"/>
+    <location x="235" y="201"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
@@ -179,9 +185,13 @@
       <process:from type="literal" pattern="reference">50</process:from>
       <process:to type="query">jparams/pageSize</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">startFrom</process:from>
+      <process:to type="query">jparams/startFrom</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="343" y="237"/>
+    <location x="233" y="237"/>
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
@@ -191,7 +201,7 @@
       <targetNode>subprocess1</targetNode>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
-    <location x="450" y="202"/>
+    <location x="340" y="202"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -208,7 +218,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="437" y="238"/>
+    <location x="327" y="238"/>
     <figSize height="17" width="49"/>
     <node>invokePojo0</node>
   </nodes>
@@ -217,7 +227,7 @@
       <sourceNode>loopstart0</sourceNode>
       <targetNode>assign2</targetNode>
     </sourceConnections>
-    <targetConnections>link4</targetConnections>
+    <targetConnections>link14</targetConnections>
     <location x="645" y="204"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
@@ -238,23 +248,24 @@
       <sourceNode>loopend0</sourceNode>
       <targetNode>end0</targetNode>
     </sourceConnections>
-    <targetConnections>link8</targetConnections>
-    <location x="876" y="204"/>
+    <targetConnections>link15</targetConnections>
+    <location x="996" y="204"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
-    <location x="864" y="236"/>
+    <location x="984" y="236"/>
     <figSize height="17" width="49"/>
     <node>loopend0</node>
   </nodes>
   <nodes xsi:type="model:GroupNode" id="group0" name="group" grouped="true" gstart="loopstart0" gend="loopend0">
     <location x="645" y="132"/>
-    <size height="184" width="256"/>
+    <size height="184" width="376"/>
     <chidren>loopend0</chidren>
     <chidren>loopstart0</chidren>
     <chidren>assign2</chidren>
     <chidren>subprocess2</chidren>
+    <chidren>subprocess4</chidren>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
@@ -290,7 +301,7 @@
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="queryCdrRecord1" displayName="queryCdrRecord" collapsed="false" grouped="true" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess2</sourceNode>
-      <targetNode>loopend0</targetNode>
+      <targetNode>subprocess4</targetNode>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
     <location x="788" y="202"/>
@@ -313,7 +324,7 @@
         <process:inputVariable id="11" name="accessToken" type="query" value="String" valueType="Primitive" pattern="reference">accessToken</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="data" type="query" value="com.alibaba.fastjson.JSON[]" valueType="Java">recordList</process:outputVariable>
+        <process:outputVariable id="0" name="data" type="query" value="com.alibaba.fastjson.JSON[]" valueType="Java">cdrList</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
         <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
         <process:outputVariable id="3" name="page" type="query" value="Int" valueType="Primitive">page</process:outputVariable>
@@ -327,6 +338,133 @@
     <location x="749" y="237"/>
     <figSize height="17" width="104"/>
     <node>subprocess2</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="getDateToLong" displayName="getDateToLong" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo1</sourceNode>
+      <targetNode>assign3</targetNode>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <location x="-156" y="201"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo1label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.DateUtils.getDateToLong</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="d" type="query" value="java.util.Date" valueType="Java" pattern="reference">endDate</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="long" valueType="Java">startToLong</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
+    <location x="-190" y="237"/>
+    <figSize height="17" width="91"/>
+    <node>invokePojo1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign3" name="startFrom" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign3</sourceNode>
+      <targetNode>invokePojo2</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link10</targetConnections>
+    <location x="-80" y="202"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign3label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1800000</process:from>
+      <process:to type="query">halfHour</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">startToLong</process:from>
+      <process:to type="query">startTo</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">startToLong-halfHour</process:from>
+      <process:to type="query">startFrom</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
+    <location x="-94" y="238"/>
+    <figSize height="17" width="57"/>
+    <node>assign3</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="getLongToDate" displayName="getLongToDate" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo2</sourceNode>
+      <targetNode>subprocess0</targetNode>
+    </sourceConnections>
+    <targetConnections>link11</targetConnections>
+    <location x="10" y="202"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo2label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.DateUtils.getLongToDate</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="lo" type="query" value="long" valueType="Java" pattern="reference">startFrom</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java">startDate</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
+    <location x="-24" y="238"/>
+    <figSize height="17" width="91"/>
+    <node>invokePojo2</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess3" name="setCdrRecord" displayName="setCdrRecord" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess3</sourceNode>
+      <targetNode>loopstart0</targetNode>
+    </sourceConnections>
+    <targetConnections>link4</targetConnections>
+    <location x="559" y="202"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess3label</nodeLabel>
+    <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.system.service.settle.setCdrRecord</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="startDate" type="query" value="Date" valueType="Primitive" pattern="reference">startDate</process:inputVariable>
+        <process:inputVariable id="1" name="endDate" type="query" value="Date" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="2" name="cdrList" type="query" value="com.alibaba.fastjson.JSON[]" valueType="Java" pattern="reference">cdrList</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables/>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess3label" name="label" nodeType="label">
+    <location x="532" y="237"/>
+    <figSize height="17" width="81"/>
+    <node>subprocess3</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess4" name="setCdrRecord1" displayName="setCdrRecord" collapsed="false" grouped="true" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess4</sourceNode>
+      <targetNode>loopend0</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link8</targetConnections>
+    <location x="900" y="202"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess4label</nodeLabel>
+    <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.system.service.settle.setCdrRecord</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="startDate" type="query" value="Date" valueType="Primitive" pattern="reference">startDate</process:inputVariable>
+        <process:inputVariable id="1" name="endDate" type="query" value="Date" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="2" name="cdrList" type="query" value="com.alibaba.fastjson.JSON[]" valueType="Java" pattern="reference">cdrList</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables/>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess4label" name="label" nodeType="label">
+    <location x="869" y="237"/>
+    <figSize height="17" width="88"/>
+    <node>subprocess4</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -342,7 +480,9 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="jparams"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="state" primitiveType="String"/>
     <process:variable description="通话结束时间from" historyStateLocation="client" isArray="false" name="startFrom" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="startFromLong" primitiveType="Long"/>
     <process:variable description="通话结束时间to" historyStateLocation="client" isArray="false" name="startTo" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="startToLong" primitiveType="Long"/>
     <process:variable description="第几页" historyStateLocation="client" isArray="false" name="page" primitiveType="Int"/>
     <process:variable description="每页条数" historyStateLocation="client" isArray="false" name="pageSize" primitiveType="Int"/>
     <process:variable description="总记录数" historyStateLocation="client" isArray="false" name="total" primitiveType="Int"/>
@@ -350,10 +490,11 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="pageStr" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="startDate" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="endDate" primitiveType="Date"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="halfHour" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false"/>
   <process:outputs>
-    <process:output anyType="com.alibaba.fastjson.JSON" description="" isArray="true" name="recordList"/>
+    <process:output anyType="com.alibaba.fastjson.JSON" description="" isArray="true" name="cdrList"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

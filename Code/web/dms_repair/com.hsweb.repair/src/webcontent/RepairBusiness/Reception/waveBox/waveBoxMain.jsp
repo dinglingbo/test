@@ -55,7 +55,7 @@
 
 </head>
 <body>
-<div class="nui-fit">
+<div class="nui-fit">     
 <input  class="nui-combobox" name="carBrandId" id="carBrandId"  valueField="id"
                                textField="name"width="100%"/ visible="false"></td>
     <div class="nui-toolbar" style="padding:2px;border-bottom:0;">

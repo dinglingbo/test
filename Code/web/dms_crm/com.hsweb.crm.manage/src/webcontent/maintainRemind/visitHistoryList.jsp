@@ -14,6 +14,7 @@
             <div field="visitMan" headerAlign="center" allowSort="true" width="100px">回访员</div>
             <div field="carNo" width="75" headerAlign="center"align="center">车牌号</div>
             <div field="contactorName" headerAlign="center" allowSort="true" width="100px">客户名称</div>
+            <div field="recordId" headerAlign="center" allowSort="true" width="100px">通话详情</div>
         </div>
     </div>
     <ul id="gridMenu" class="mini-contextmenu" onbeforeopen="">              
@@ -42,13 +43,29 @@
             e.cellHtml = serviceTypeList[e.value].text;
         } else if(e.field == "visitMode"){//跟踪方式
             e.cellHtml = setColVal('visitMode', 'customid', 'name', e.value);
+        }else if(e.field == 'recordId' && e.record.visitMode == '011401'){
+            e.cellHtml = '  <a class="nui-button" onclick="playVoice()" plain="true" style="cursor:pointer"><span class="fa fa-volume-up fa-lg"></span>&nbsp;播放通话语音</a>'
+            //e.cellHtml = '<a class="nui-button"  click="playVoice">播放通话语音</a>'
         }
     });
-
     visitHis.on("rowdblclick", function (e) {
 
-
     });
+
+    function playVoice() {
+    var row =visitHis.getSelected();
+    nui.open({
+            url: webPath + contextPath +'/manage/maintainRemind/playVoice.jsp?token='+token,
+            title: '播放文件', width: 600, height:300 ,
+            onload: function () {
+                var iframe = this.getIFrameEl();
+
+            },
+            ondestroy: function (action) {
+            }
+        });
+} 
+
 
     function loadVisitHis(params) {//guestSource: 0系统客户  1电销客户
         // var params = {//系统
@@ -64,6 +81,8 @@
         // };
         visitHis.load({ params:params,token:token });
     }
+
+
 
 function edit() {
     var row =visitHis.getSelected();

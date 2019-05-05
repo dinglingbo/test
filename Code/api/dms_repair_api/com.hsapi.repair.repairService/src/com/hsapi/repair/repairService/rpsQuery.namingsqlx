@@ -562,7 +562,7 @@
 			AND ifnull( a.package_id, '' ) = ''
 	</select>
 	
-	<select id="queryLastMaintainByCarNo" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsItem">
+	<select id="queryLastMaintainByCarNo" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsMaintain">
     	SELECT
 			a.orgid orgid,
 			a.mt_advisor_id mtAdvisorId,

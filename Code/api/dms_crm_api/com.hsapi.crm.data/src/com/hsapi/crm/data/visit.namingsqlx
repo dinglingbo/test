@@ -166,7 +166,7 @@
 		select 
 			a.id,a.orgid,a.main_id mainId,a.service_type serviceType,a.guest_source guestSource,a.service_id serviceId,
 			a.guest_id guestId,a.car_no carNo,a.car_id carId,a.visit_mode visitMode,a.care_due_date careDueDate,
-			a.visit_content visitContent,a.visit_id visitId,a.visit_man visitMan,a.visit_date visitDate,
+			a.visit_content visitContent,a.visit_id visitId,a.visit_man visitMan,a.visit_date visitDate,record_id recordId,
 		 	case when a.guest_source = 0 then b.name else c.guest_name end as  contactorName
 		from crm_visit_record a 
 		LEFT JOIN wb_repair.rpb_contactor b on a.guest_id = b.id

@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>报销单</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/waveBox/js/BXExpenseAccount.js?v=1.4.39"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/waveBox/js/BXExpenseAccount.js?v=1.4.40"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     

@@ -67,6 +67,7 @@
     <location x="330" y="151"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="carList" iterableElement="car"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -344,12 +345,12 @@
       <targetNode>assign2</targetNode>
     </sourceConnections>
     <targetConnections>link10</targetConnections>
-    <location x="793" y="122"/>
+    <location x="780" y="122"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="795" y="158"/>
+    <location x="782" y="158"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
@@ -400,9 +401,10 @@
     <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>loopend0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
-    <location x="930" y="196"/>
+    <location x="950" y="149"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -418,7 +420,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="910" y="232"/>
+    <location x="930" y="185"/>
     <figSize height="17" width="62"/>
     <node>invokePojo1</node>
   </nodes>
@@ -426,6 +428,7 @@
     <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>end0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link17</targetConnections>
     <location x="1125" y="149"/>

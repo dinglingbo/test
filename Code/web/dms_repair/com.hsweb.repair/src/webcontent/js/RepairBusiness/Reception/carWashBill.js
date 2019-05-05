@@ -11,7 +11,7 @@
  var itemTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryItemTimesByUsable.biz.ext";
  var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestIdNoPage.biz.ext";
  var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext"; 
- var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryAccount.biz.ext";
+ var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryFrmAccount.biz.ext";
  var itemRpbGridUrl = baseUrl + "com.hsapi.repair.baseData.item.queryRepairItemList.biz.ext";
  //var sellUrl = apiPath + crmApi + "/com.hsapi.crm.basic.crmBasic.querySellList.biz.ext";
  var sellUrl = apiPath + crmApi + "/com.hsapi.crm.basic.crmBasic.querySellListNoPage.biz.ext";
@@ -63,7 +63,7 @@
  var sellForm = null;
  var carCheckInfo = null;
  var checkMainData = null;
- var rdata = null;
+ var rdata = {};
  var isRecord = null;
 
  var fserviceId = 0;
@@ -2009,6 +2009,7 @@ function doSearchCardTimes(guestId,fcarId)
     p.type = 2;
     p.isRefund = 0;
     p.carId = fcarId;
+    p.orgid = currOrgid;
     cardTimesGrid.load({
     	token:token,
         p:p
@@ -2037,6 +2038,7 @@ function doSearchItemTimes(guestId,fcarId)
     p.status = 2; 
     p.isRefund = 0;
     p.carId = fcarId;
+    p.orgid = currOrgid;
     itemTimesGrid.load({
     	token:token,
         p:p
@@ -2055,7 +2057,8 @@ function doSearchMemCard(guestId)
 
     memCardGrid.load({
     	token:token,
-        guestId:guestId
+        guestId:guestId,
+        orgid:currOrgid
     },function(){
         var data = memCardGrid.getData();
         var len = data.length||0;

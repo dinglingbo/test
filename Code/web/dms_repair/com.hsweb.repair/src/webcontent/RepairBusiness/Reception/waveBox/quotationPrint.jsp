@@ -73,7 +73,7 @@
             border: 1px #b4b4b4 solid;
             float: left;
             font-size: 16px;
-            font-family: "微软雅黑";
+            font-family: "黑体";
         }
 
         .smbottom {
@@ -154,10 +154,10 @@
 	                     	<img alt="" src="" id="showImg" height="60px" style="display:none">
 	                    </td>
 	                    <td style="width:55%" >
-	                        <div style="font-size: 20px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><b><span id="comp"></span></b></div>
+	                        <div style="font-size: 28px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><b><span id="comp"></span></b></div>
 	                    </td>
 	                    <td rowspan="2" style="">
-	                        <div style="font-size: 20px; font-family: 微软雅黑;padding-top: 5px;"><b><span id="spstorename">报价单</span></b></div>
+	                        <div style="font-size: 20px; font-family: 黑体;padding-top: 5px;"><b><span id="spstorename">报价单</span></b></div>
 	                        <div style="padding-top: 2px; font-size: 13px;font-family: Arial;">
 	                          №:<span id="serviceCode"></span>  
 	                        </div>
@@ -173,19 +173,20 @@
 	        </table>
 	        
         </div>
-        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-             <tr>
-                <td style="font-size:12px;" colspan="2" >地址：<span id="currCompAddress"></span> <span style="padding-left:160px">开户银行：</span><span id="currBankName"></span></td>
-                <td style="font-size:12px; padding-right:20px"colspan="2" align="right"></td>
-            </tr> 
-            <tr>
-                <td style="font-size:12px;">电话：<span id="currCompTel"></span></td>
-                <td style="font-size:12px;">银行账号：<span id="currBankAccountNumber"></span></td>
-             	<td style="font-size:12px;" align="right" >进厂时间：<span id="enterDate"></span></td>
-             	<td style="font-size:12px;padding-right:20px" align="right">打印时间：<span id="date"></span></td>
-            </tr>
-        </table>
-
+        <div style="padding-top: 10px;">
+	        <table width="100%" border="0" cellspacing="0" cellpadding="0" >
+	            <tr>
+	                <td style="font-size:8px;font-family: 黑体;" >地址：<span id="currCompAddress"></span></td>
+	                <td style="font-size:8px;font-family: 黑体;">开户银行：<span id="currBankName"></span></td>
+	                <td style="font-size:8px;font-family: 黑体;">打印时间：<span id="date"></span></td>
+	            </tr> 
+	            <tr>
+	                <td style="font-size:8px;font-family: 黑体;">电话：<span id="currCompTel"></span></td>
+	                <td style="font-size:8px;font-family: 黑体;" >银行账号：<span id="currBankAccountNumber"></span></td>
+	             	<td style="font-size:8px;font-family: 黑体;">进厂时间：<span id="enterDate"></span></td>
+	            </tr>
+	        </table>
+        </div>
         <div style="padding-top: 10px;">
             <table  width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk">
                 <tr>
@@ -219,13 +220,13 @@
         <div style="height: 12px;"></div>
         	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk" id="showItem">
                 <tr style="height:30px">
-                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">序号</td>
-                    <td height="28" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">项目名称</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">工时</td>
-                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">单价</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">金额</td>
-                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">优惠率</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">小计</td>
+                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;">序号</td>
+                    <td height="28" align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;">项目名称</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;">工时</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;">单价</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;">金额</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;">优惠率</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;">小计</td>
                 </tr>
                 <tbody id="tbodyId">
 				</tbody>
@@ -233,14 +234,14 @@
             <div style="height: 12px;" id="space3"></div>
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk" id="showPart" >
                 <tr>
-                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">序号</td>
-                    <td height="28" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">配件名称</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">数量</td>
-                     <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">单位</td>
-                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">单价</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">金额</td>
-                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">优惠率</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;">小计</td>
+                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;">序号</td>
+                    <td height="28" align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;">配件名称</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;">数量</td>
+                     <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;">单位</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;">单价</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;">金额</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;">优惠率</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;">小计</td>
                 </tr>
                 <tbody id="tbodyId2">
 				</tbody>
@@ -274,7 +275,7 @@
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk">
 				<tr>
 					<td>
-							<div style="width:100%;height:100%;min-height:80px;" id="drawOutReport"></div>
+							<div style="width:100%;height:100%;min-height:60px;" id="drawOutReport"></div>
 					</td>
 				</tr>
         </table>
@@ -369,7 +370,7 @@
 	            else window.close();
        		 }
         	
-			 function SetData(serviceId,type){
+			 function SetData(serviceId,type,sourceServiceId){
 			 	document.getElementById("comp").innerHTML = currRepairSettorderPrintShow
 			    var imgUrl = currCompLogoPath || "";
                 if(imgUrl && imgUrl != ""){
@@ -397,10 +398,10 @@
 				 if(type == 5 || type == 6){//报销单   5报价单   6结算单 
 				 	mainUrl = "com.hsapi.repair.repairService.svr.billqyeryMaintainList.biz.ext?rid=";
 				 }
-				 document.getElementById("currCompTel").innerHTML = "&nbsp;&nbsp;&nbsp;"+currCompTel;
-				 document.getElementById("currCompAddress").innerHTML = "&nbsp;&nbsp;&nbsp;"+currCompAddress;
-				 document.getElementById("currBankName").innerHTML = "&nbsp;&nbsp;&nbsp;"+currBankName;
-				 document.getElementById("currBankAccountNumber").innerHTML = "&nbsp;&nbsp;&nbsp;"+currBankAccountNumber;
+				 document.getElementById("currCompTel").innerHTML = currCompTel;
+				 document.getElementById("currCompAddress").innerHTML = currCompAddress;
+				 document.getElementById("currBankName").innerHTML = currBankName;
+				 document.getElementById("currBankAccountNumber").innerHTML = currBankAccountNumber;
 				 $.ajaxSettings.async = false;
 			 	 $.post(baseUrl+mainUrl+serviceId+"&token="+token,{},function(text){
 			 	 	   if(text.list.length > 0){
@@ -452,14 +453,14 @@
 		        		var tBody2 = $("#tbodyId2");
 	    				tBody.empty();
 	    				tBody2.empty();
-	    				var tds = '<td align="center" style="font-family: 微软雅黑;">[orderIndex]</td>' +
-						    			"<td style='font-family: 微软雅黑;'>[prdtName]</td>"+
-						    			"<td align='center' style='font-family: 微软雅黑;'>[qty]</td>"+
-						    			"<td align='center' style='font-family: 微软雅黑;'>[unit]</td>"+
-						    			"<td align='center' style='font-family: 微软雅黑;'>[uintPrice]</td>"+ 
-						    			"<td align='center' style='font-family: 微软雅黑;'>[amt]</td>"+ 
-						    			"<td align='center' style='font-family: 微软雅黑;'>[rate]</td>"+
-						    			"<td align='center' style='font-family: 微软雅黑;'>[subtotal]</td>";
+	    				var tds = '<td align="center" style="font-family: 黑体;">[orderIndex]</td>' +
+						    			"<td style='font-family: 黑体;'>[prdtName]</td>"+
+						    			"<td align='center' style='font-family: 黑体;'>[qty]</td>"+
+						    			"<td align='center' style='font-family: 黑体;'>[unit]</td>"+
+						    			"<td align='center' style='font-family: 黑体;'>[uintPrice]</td>"+ 
+						    			"<td align='center' style='font-family: 黑体;'>[amt]</td>"+ 
+						    			"<td align='center' style='font-family: 黑体;'>[rate]</td>"+
+						    			"<td align='center' style='font-family: 黑体;'>[subtotal]</td>";
 	    				
 	    				var j = 0;
 	    				var num1 = 0;
@@ -470,13 +471,13 @@
 	    					var rate = data[i].rate;
 	    					rate = rate + "%";
 	    					if(data[i].billItemId == 0){
-	    						var tds1 = '<td align="center" style="font-family: 微软雅黑;">[orderIndex]</td>' +
-						    			"<td style='font-family: 微软雅黑;'>[prdtName]</td>"+
-						    			"<td align='center' style='font-family: 微软雅黑;'>[qty]</td>"+
-						    			"<td align='center' style='font-family: 微软雅黑;'>[uintPrice]</td>"+ 
-						    			"<td align='center' style='font-family: 微软雅黑;'>[amt]</td>"+ 
-						    			"<td align='center' style='font-family: 微软雅黑;'>[rate]</td>"+
-						    			"<td align='center' style='font-family: 微软雅黑;'>[subtotal]</td>";
+	    						var tds1 = '<td align="center" style="font-family: 黑体;">[orderIndex]</td>' +
+						    			"<td style='font-family: 黑体;'>[prdtName]</td>"+
+						    			"<td align='center' style='font-family: 黑体;'>[qty]</td>"+
+						    			"<td align='center' style='font-family: 黑体;'>[uintPrice]</td>"+ 
+						    			"<td align='center' style='font-family: 黑体;'>[amt]</td>"+ 
+						    			"<td align='center' style='font-family: 黑体;'>[rate]</td>"+
+						    			"<td align='center' style='font-family: 黑体;'>[subtotal]</td>";
 	    						num1 ++;
 	    						var tr = $("<tr ></tr>");
 					    			tr.append(
@@ -494,7 +495,7 @@
 					    			tr.append(
 					    				tds.replace("[orderIndex]",num2)
 					    				.replace("[prdtName]","&nbsp;"+prdtName || "")
-					    				.replace("[qty]",data[i].qty || 1)
+					    				.replace("[qty]",data[i].qty|| data[i].itemTime || 1)
 					    				.replace("[unit]",data[i].unit || "")
 					    				.replace("[uintPrice]", data[i].unitPrice || 0)
 					    				.replace("[amt]",data[i].amt  || 0)
@@ -502,10 +503,18 @@
 					    				.replace("[subtotal]",data[i].subtotal || 0));
 					    			tBody2.append(tr); 
 	    					}
-	    					if(data[i].pid != 0 ){
-    						   document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML) + parseFloat(data[i].subtotal);
-    					    }else{
-    						   document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
+	    					if(type != 5 && type != 6){
+		    					if(data[i].pid != 0 ){
+	    						   document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML) + parseFloat(data[i].subtotal);
+	    					    }else{
+	    						   document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
+	    					   }
+    					   }else{
+    					   		if(data[i].billItemId == 0){
+    					   			document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
+    					   		}else{
+    					   			document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML) + parseFloat(data[i].subtotal);
+    					   		}
     					   }
 	    				}
 	    				 document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML).toFixed(2);
@@ -521,19 +530,26 @@
 	          }
         	});
         	$.ajaxSettings.async = false;
-	        	if(type != 5 && type != 6){
+        			if(sourceServiceId){
+        				serviceId = sourceServiceId;
+        			}
 		        	$.post(baseUrl+"com.hsapi.repair.repairService.query.querySettleAmt.biz.ext?serviceId="+serviceId+"&token="+token,{},function(text){
 			    				if(text.errCode=="S"){ 
-			    				 		document.getElementById("yh").innerHTML = text.data.totalPrefAmt || 0;;
-			    				 		document.getElementById("cash1").innerHTML = text.data.balaAmt || 0;	    		    				 			
-			    						    		var money = transform(text.data.balaAmt+"");
-													document.getElementById("money").innerHTML = money;
-			    					
+			    				 		document.getElementById("yh").innerHTML = text.data.totalPrefAmt || 0;
+			    				 		if(type != 5 && type != 6){
+			    				 			document.getElementById("cash1").innerHTML = text.data.balaAmt || 0;	    		    				 			
+	    						    		var money = transform(text.data.balaAmt+"");
+											document.getElementById("money").innerHTML = money;
+			    				 		}else{
+			    				 			var cash1 = parseFloat(document.getElementById("part").innerHTML) + parseFloat(document.getElementById("item").innerHTML) - parseFloat(document.getElementById("yh").innerHTML);
+			    				 			document.getElementById("cash1").innerHTML = cash1;
+			    				 			var money = transform(cash1+"");
+											document.getElementById("money").innerHTML = money;
+			    				 		}
 			    				}else{
 			    					showMsg(text.errMsg,"W");
 			    				}
 			            }); 
-	        	}
 			 }
     </script>
 </body>

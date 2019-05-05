@@ -10,11 +10,11 @@
     <script type="text/javascript" src="assets/js/jquery.js" charset="utf8"></script>
     <script src="http://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
     <script src="assets/js/layer.js"></script>
-    <script type="text/javascript" src="lib/polyfill.min.js" charset="utf8"></script>
-    <script type="text/javascript" src="lib/M800Core.js" id="m800Core" charset="utf-8"></script>
-    <script type="text/javascript" src="lib/M800Verification.js" charset="utf-8"></script>
-    <script type="text/javascript" src="lib/M800Im.js" charset="utf8"></script>
-    <script type="text/javascript" src="lib/M800Call.js" charset="utf8"></script>
+    <script type="text/javascript" src="libs/polyfill.min.js" charset="utf8"></script>
+    <script type="text/javascript" src="libs/M800Core.js" id="m800Core" charset="utf-8"></script>
+    <script type="text/javascript" src="libs/M800Verification.js" charset="utf-8"></script>
+    <script type="text/javascript" src="libs/M800Im.js" charset="utf8"></script>
+    <script type="text/javascript" src="libs/M800Call.js" charset="utf8"></script>
     <link rel="stylesheet" href="assets/layui.css">
     <style type="text/css">
     * {
@@ -125,7 +125,7 @@
                     <input type="text" name="phoneNumber" class="layui-input" placeholder="输入手机号" style="display: inline-block;width: 75%"> <button onclick="getCode()" class="layui-btn">获取验证码</button>
                     <br /> <br /> <br />
                     <input type="text" name="code" class="layui-input" placeholder="输入验证码" style="display: inline-block;width: 75%"> <button onclick="signUpNow(0)" class="layui-btn">立即登陆</button>
-                    <button onclick="connect()" class="layui-btn">连接服务</button>
+                    <!-- <button onclick="connect()" class="layui-btn">连接服务</button> -->
                     <br />
                 </div>
                 <table cellpadding="0" cellspacing="0" width="85%" style="margin:20px auto">
@@ -141,7 +141,7 @@
                     </tr>
                        <tr>
                         <td>夏天</td>
-                        <td><复制> <span ><input type="text"  id="whphone" value="+8613302387912" style="width: 440px;height: 30px;padding-left: 10px;"></span></td>
+                        <td><复制> <span ><input type="text"  id="whphone" value="+8618598103656" style="width: 440px;height: 30px;padding-left: 10px;"></span></td>
                         <td style="text-align: center;"> <button onclick="makeOffnetCall(this)" class="layui-btn layui-btn-normal">外呼</button></td>
                     </tr>
                 </table>
@@ -209,14 +209,23 @@
 
     const appMeta = {
 
-        applicationKey: 'mapp6819136e-7c9f-4ee3-abe0-ecbd0df69e47',
-        applicationSecret: '7f3c03af-9e89-4ac1-b285-0431bcc2f9ca',
-        developerKey: 'mdev1e81c103-2b2e-437a-869b-f34430166a02',
-        developerSecret: '037057b4-e59a-4586-8c3b-2836751c4256',
-        applicationIdentifier: 'com.maaii-api.org.ruixinchangyin-comphs-1-test',
-        carrier: 'ruixinchangyin-comphs-1-test.m800-api.com',
-        capabilities: [],
-        applicationVersion: '1.0.0',
+  /*   applicationKey: 'mappc741a4f4-e6cc-4685-884a-e3222958b0be',
+    applicationSecret: 'f6b3a584-a429-41fb-b203-faf6e3bf1e93',
+    developerKey: 'mdev9ac578cb-05f3-4180-80df-60ff9629a86e',
+    developerSecret: 'b13f64af-ab62-4fba-9c6b-f157b194ae4d',
+    applicationIdentifier: 'com.maaii-api.org.ruixinchangyin-comphs-1-prod',
+    carrier: 'ruixinchangyin-comphs-1-prod.m800-api.com',
+    capabilities: [],
+    applicationVersion: '1.0.0', */
+
+         applicationKey: 'mapp6819136e-7c9f-4ee3-abe0-ecbd0df69e47',
+         applicationSecret: '7f3c03af-9e89-4ac1-b285-0431bcc2f9ca',
+         developerKey: 'mdev1e81c103-2b2e-437a-869b-f34430166a02',
+         developerSecret: '037057b4-e59a-4586-8c3b-2836751c4256',
+         applicationIdentifier: 'com.maaii-api.org.ruixinchangyin-comphs-1-test',
+         carrier: 'ruixinchangyin-comphs-1-test.m800-api.com',
+         capabilities: [],
+         applicationVersion: '1.0.0',
 
     };
 
@@ -225,7 +234,8 @@
         signUpServers: ['https://signupv2.m800400.cn:443'], //https://signupv2.m800400.cn:443 https://signupv2.maaii.com
         verificationServers: ['https://ivs.m800400.cn', 'https://vs-bj.m800.com'],
         callServers: ['wss://webrtcgw.m800.com:443'],
-        log: {level: M800Core.LogLevel.TRACE }
+        log: {level: M800Core.LogLevel.TRACE },
+        // persistConnection: true 
 
     }
 
@@ -384,6 +394,7 @@
                         if (toState == 'talking') {
                             pauseSound()
                             layer.closeAll();
+                          
                             layerCall(1, calledSession) //监听对方接通，才调用,m如何监听对方接通
                         }
 
@@ -404,6 +415,7 @@
 
 
                 callSessionManager.on(CallSessionEvent.INCOMING_CALL, (callSession) => {
+
 
                     console.log(callSession)
 
@@ -444,6 +456,7 @@
 
 
                         if (toState == 'talking') {
+                              alert("1111")
                             layerCall(2, callSession)
                         }
 
@@ -478,23 +491,23 @@
                     console.log(callSessionResult)
 
 
-                    if (type == 'cancelled') { //主叫方
+                    if (type == 'cancelled') { //主叫方看到
                         layer.alert('你已取消呼叫',{closeBtn: 0})
                     }
-
-                    if (type == 'missed') { //被叫方
+ 
+                    if (type == 'missed') { //被叫方看到
                         layer.alert('你有未接来电',{closeBtn: 0})
                     }
 
-                    if (type == 'no-answer') { //主叫方
+                    if (type == 'no-answer') { //主叫方看到
                         layer.alert('对方无应答',{closeBtn: 0})
                     }
 
-                    if (type == 'rejected' && !context) { //主叫方
+                    if (type == 'rejected' && !context) { //主叫方看到
                         layer.alert('你已挂断',{closeBtn: 0})
                     }
 
-                     if (type == 'rejected' && context) { //主叫方
+                     if (type == 'rejected' && context) { //主叫方看到
                         layer.alert('对方忙',{closeBtn: 0})
                      }
 
@@ -502,13 +515,13 @@
                         layer.alert('通话错误',{closeBtn: 0})
                     }
 
-                    if (type == 'hung-up ') {
+                    if (type == 'hung-up ') { //双方看到
                         layer.alert('通话结束',{closeBtn: 0})
                     }
 
-                      if (type == 'hung-up ') {
-                        layer.alert('通话结束',{closeBtn: 0})
-                    }
+                    //   if (type == 'hung-up') {
+                    //     layer.alert('通话结束',{closeBtn: 0})
+                    // }
 
 
                     pauseSound()
@@ -610,6 +623,7 @@
                 } else {
                     $(".jid02").val(jid)
                 }
+               
 
                 if (!localStorage.getItem('jid')) {
                     localStorage.setItem("jid", jid)
@@ -650,6 +664,8 @@
             .catch(err => {
                 layer.closeAll()
                 console.log(err)
+
+
             })
     }
 
@@ -695,6 +711,10 @@
         options.phoneNumber = "+86" + $('input[name="phoneNumber"]').val()
 
         console.log(options)
+
+       
+
+      
         verificationManager.startVerification(type, options)
             .then((verification) => {
 
@@ -716,7 +736,14 @@
         //             signUp(options,identity,verification)
         //     }else{
 
-        // let verificationInstance = JSON.parse(sessionStorage.getItem('verificationInstance'))
+         let verificationInstance = JSON.parse(sessionStorage.getItem('verificationInstance'))
+
+
+        const verificationManager = client.getServiceLocator().get('verification')
+       
+
+
+
         if (loginTyle == 0) {
 
 
@@ -724,6 +751,18 @@
                 layer.alert('请输入验证码')
                 return false
             }
+           const verificationInstance  =   verificationManager.getCurrentVerification();
+
+          console.log(verificationManager.getCurrentVerification())
+          console.log(verificationInstance)
+
+           if(verificationInstance._state!='verify-ready'){
+
+                layer.alert('验证码已失效，请重新获取')
+
+                return false
+
+           }
             verificationInstance.verify($('input[name="code"]').val())
                 .then((result) => {
                     console.log(result)
@@ -754,7 +793,7 @@
             // options.phoneNumber = '+8613302387912'
             let identity ={
                 identifierType: 'PHONE_NUMBER',     //这个是固定的,无法自定义            
-                identifier: '+86',      //这个由用户输入手机号（必须是手机号格式）         
+                identifier: '+8613302387912',      //这个由用户输入手机号（必须是手机号格式）         
                 countryCode:'CN'   //这个是固定（前提是中国）
             }
             signUp(options,identity)

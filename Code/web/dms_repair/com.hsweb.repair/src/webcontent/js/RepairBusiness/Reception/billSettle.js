@@ -17,10 +17,11 @@ var onetInAmt = 0;
 var netInAmt = 0;
 var zongAmt = 0;//总金额
 var typeUrl = 0;//不同工单URL不同   1销售开单  2退货开单
-var settlementUrl = baseUrl+ "com.hsapi.repair.repairService.settlement.receiveSettle.biz.ext" ;
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var frmUrl = apiPath + frmApi + "/";
+var settlementUrl = baseUrl+ "com.hsapi.repair.repairService.settlement.receiveSettle.biz.ext";
+var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryFrmAccount.biz.ext";
 var expenseUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.svr.getRpsExpense.biz.ext';
 var sendWCUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.sendWeChat.sendBillCostInfo.biz.ext';
 var srnum = [];
@@ -135,14 +136,15 @@ function excCoupon(userCoupon,callback){
 		var itemId = codeHash[key].itemId;
 		if(itemId == userCoupon.itemId){
 			callback && callback(boolean);
+			return;
 		}
 	 }
 	var json = {
-			rpbItemId:userCoupon.itemId,
+			rpbItemId:userCoupon.itemId || 0,
 			serviceId:dataF.serviceId,
 			token : token
 		}
-	//判断是否使用了改项目：com.hsapi.repair.repairService.crud.queryRpsItemByRpbItemIdAndServiceId
+	//判断是否使用了该项目：com.hsapi.repair.repairService.crud.queryRpsItemByRpbItemIdAndServiceId
 	nui.ajax({
 		url : baseUrl + "com.hsapi.repair.repairService.crud.queryRpsItemByRpbItemIdAndServiceId.biz.ext",
 		type : "post",
@@ -446,6 +448,35 @@ function setData(params){
 	   var list  = "没有可用优惠券或者该用户未在微信公众号注册";
        document.getElementById("show").innerHTML = list;
     }	
+	
+	//挂账
+	if(params.guestId){
+    	var accAmt = {};
+    	accAmt.guestId = params.guestId;
+    	nui.ajax({
+            url : getAccountUrl,
+            type : "post",
+            data : JSON.stringify({
+                params : accAmt,
+                token : token
+            }),
+            success : function(data) {
+            	data = data || {};
+                if (data.errCode == "S") {
+                    var account = data.account[0];
+                    var Amt = account.accountAmt || 0;
+                    $("#creditEl").html(Amt+"元");
+                } else {
+                    showMsg(data.errMsg || "获取挂账信息失败","E");
+                }
+            },
+            error : function(jqXHR, textStatus, errorThrown) {
+                unmaskcall && unmaskcall();
+                console.log(jqXHR.responseText);
+            }
+        });
+    }
+	
     addType();
     getData(data);
 }
@@ -906,7 +937,9 @@ function inputUserQuan(e){
 	var paraMap = {};
 	paraMap.userOpenId = dataF.contactor.wechatOpenId;
 	paraMap.couponCode = code;
-	
+	paraMap.orgid = currOrgid;
+	paraMap.tenantId = currTenantId;
+	paraMap.userCarId = dataF.carId;
 	var json2 = {
 			param:paraMap,
 			token: token
@@ -919,6 +952,7 @@ if(code != "" && code != null){
 		data : json2,
 		success : function(data) {
 			if(data.result.code=="S"){
+				var type2 = data.result.type || 0;
 				var v = data.result.data;
 				//判断对象是否为空
 				var isEnp = false;
@@ -967,7 +1001,7 @@ if(code != "" && code != null){
 								}
 								
 							}
-							if(boolean){	
+							if(boolean && type2 == 1){	
 								document.getElementById("show").innerHTML = document.getElementById("show").innerHTML + list;
 								userCouponDataHash[key] = v;
 								var changStr = "#chang"+key;

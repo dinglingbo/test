@@ -188,7 +188,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">rs1/name</process:from>
-      <process:to type="query">provinceIdprovince</process:to>
+      <process:to type="query">province</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">rs2/name</process:from>

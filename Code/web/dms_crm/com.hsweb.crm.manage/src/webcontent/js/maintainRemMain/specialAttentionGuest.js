@@ -1,6 +1,7 @@
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
-var queryRemindSUrl = baseUrl + "com.hsapi.repair.repairService.query.queryRemindByDate.biz.ext";
+var queryRemindSUrl = baseUrl + "com.hsapi.repair.repairService.query.queryRemindByDate.biz.ext";//驾照   生日
+var queryUrl = baseUrl + "com.hsapi.repair.repairService.query.queryRemindbyGuest.biz.ext";//b保养  商业 交强  车辆年检
 
 var reminding = null; //保养提醒
 var business = null; //商业险
@@ -12,6 +13,8 @@ var visitHis = null; //回访历史
 var serviceType = null; //5保养提醒 //6商业险到期   7; //交强险到期   8; //驾照到期   9; //车检到期   10; //客户生日  
 var params = {};
 var tabs = {};
+var guestPropertyList = [];
+var guestPropertyHash = [];
 var sortTypeList = [ {id : "2",text : "到期日期↓"}, {id : "1",text : "到期日期↑"}, {id : "4",text : "客户名称↓"},{id : "3",text : "客户名称↑"}, 
     { id: "6", text: "车牌号↓" }, { id: "5", text: "车牌号↑" }, { id: "8", text: "客户类型↓" }, { id: "7", text: "客户类型↑" }];
 
@@ -27,11 +30,11 @@ $(document).ready(function (v) {
     guestBirthday = nui.get("guestBirthday"); 
     visitHis = nui.get("visitHis"); 
 
-    reminding.setUrl(queryRemindSUrl);
-    business.setUrl(queryRemindSUrl);
-    compulsoryInsurance.setUrl(queryRemindSUrl);
+    reminding.setUrl(queryUrl);
+    business.setUrl(queryUrl);
+    compulsoryInsurance.setUrl(queryUrl);
     drivingLicense.setUrl(queryRemindSUrl);
-    car.setUrl(queryRemindSUrl);
+    car.setUrl(queryUrl);
     guestBirthday.setUrl(queryRemindSUrl);
     visitHis.setUrl(hisUrl);
 
@@ -64,42 +67,48 @@ $(document).ready(function (v) {
         // visitStatus: "DDT20130703000081",//跟踪状态
         //query_visitStatus: "DDT20130703000081",//跟踪状态
         //artType: "DDT20130725000001"//话术类型        
+        guestProperty:GUEST_PROPERTY //客户类别
+    }, function () {
+            guestPropertyList = nui.get("guestProperty").getData();
+            guestPropertyList.forEach(function(v) {
+                guestPropertyHash[v.customid] = v;
+            });
     });
 
     reminding.on("select", function (e) {
         visitHistoryList(e.record,5);
-        isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
+        //isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
         $("#showMonile0").show();
         document.getElementById("mobileText0").innerHTML = e.record.mobile;
      
     }); 
     business.on("select", function (e) {
         visitHistoryList(e.record,6);
-        isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
+        //isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
         $("#showMonile").show();
         document.getElementById("mobileText").innerHTML = e.record.mobile;
     }); 
     compulsoryInsurance.on("select", function (e) {
         visitHistoryList(e.record,7);
-        isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
+        //isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
         $("#showMonile2").show();
         document.getElementById("mobileText2").innerHTML = e.record.mobile;
     }); 
     drivingLicense.on("select", function (e) {
         visitHistoryList(e.record,8);
-        isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
+        //isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
         $("#showMonile3").show();
         document.getElementById("mobileText3").innerHTML = e.record.mobile;
     }); 
     car.on("select", function (e) {
         visitHistoryList(e.record,9);
-        isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
+        //isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
         $("#showMonile4").show();
         document.getElementById("mobileText4").innerHTML = e.record.mobile;
     }); 
     guestBirthday.on("select", function (e) {
         visitHistoryList(e.record,10);
-        isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
+        //isButtonEnable(e.record.wechatOpenId, tabs.getActiveTab());
         $("#showMonile5").show();
         document.getElementById("mobileText5").innerHTML = e.record.mobile;
     }); 
@@ -115,7 +124,9 @@ $(document).ready(function (v) {
             }
         }else if(e.field == "carNo" && e.record.guestType == 0 ){
     		e.cellHtml ='<a href="##" onclick="WindowrepairHistory()">'+e.record.carNo+'</a>';
-    	}
+        } else if (e.field == "guestProperty") {
+                e.cellHtml= guestPropertyHash[e.value] != undefined?guestPropertyHash[e.value].name :'';
+        }
     });
 
     business.on("drawcell", function (e) {
@@ -131,7 +142,9 @@ $(document).ready(function (v) {
     		e.cellHtml ='<a href="##" onclick="WindowrepairHistory()">'+e.record.carNo+'</a>';
         } else if (e.field == "annualInspectionCompCode") {
             e.cellHtml = setColVal('insureCompCode', 'code', 'fullName', e.value);
-        }
+        }else if (e.field == "guestProperty") {
+            e.cellHtml= guestPropertyHash[e.value] != undefined?guestPropertyHash[e.value].name :'';
+    }
     });
     compulsoryInsurance.on("drawcell", function (e) {
         if (e.field == "mobile") {
@@ -146,7 +159,9 @@ $(document).ready(function (v) {
     		e.cellHtml ='<a href="##" onclick="WindowrepairHistory()">'+e.record.carNo+'</a>';
     	}else if (e.field == "insureCompCode") {
             e.cellHtml = setColVal('insureCompCode', 'code', 'fullName', e.value);
-        }
+        }else if (e.field == "guestProperty") {
+            e.cellHtml= guestPropertyHash[e.value] != undefined?guestPropertyHash[e.value].name :'';
+    }
     });
     drivingLicense.on("drawcell", function (e) {
         if (e.field == "mobile") {
@@ -172,7 +187,9 @@ $(document).ready(function (v) {
             }
         }else if(e.field == "carNo" && e.record.guestType == 0){
     		e.cellHtml ='<a href="##" onclick="WindowrepairHistory()">'+e.record.carNo+'</a>';
-    	}
+    	}else if (e.field == "guestProperty") {
+            e.cellHtml= guestPropertyHash[e.value] != undefined?guestPropertyHash[e.value].name :'';
+    }
     });
     guestBirthday.on("drawcell", function (e) {
         if (e.field == "mobile") {
@@ -312,7 +329,8 @@ function changedTel(e) {
     }else{
         res="";
     }
-    return res;
+    //return res;
+    return value;
 }
 
 function visitHistoryList(row,serviceType) {
@@ -583,12 +601,18 @@ function setInitData(params) {
 
 function remind() {
     var row = getRow();
+    var furl = null;
+    if (row.serviceType == 8 || row.serviceType == 10) {
+        furl = webPath + contextPath + "/manage/maintainRemind/maintainRemMainDetail.jsp?token=" + token;
+    } else {
+        furl = webPath + contextPath + "/manage/maintainRemind/telVisit.jsp?token=" + token;
+    }
     if (row) {
         mini.open({
-            url: webPath + contextPath + "/manage/maintainRemind/maintainRemMainDetail.jsp?token=" + token,
-            title: "提醒信息",
+            url: furl,
+            title: "电话回访",
             width: 600,
-            height: 300,
+            height: 350,
             onload: function () {
                 var iframe = this.getIFrameEl();
                 iframe.contentWindow.setData(row);
@@ -610,12 +634,22 @@ function sendInfo(){
     }
     if (!row) {
         showMsg("请选中一条数据","W");
-        return;
+        return; 
+    }
+    var furl = null;
+    var valw = 655;
+    var valh = 280;
+    if (row.serviceType == 8 || row.serviceType == 10) {
+        furl = webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token=" + token;
+    } else {
+        furl = webPath + contextPath + "/manage/visitMgr/sendInfoGuest.jsp?token=" + token;
+        valh = 380;
     }
     nui.open({
-        url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
-        title: "发送短信", width: 655, height: 280,
-        onload: function () {
+        //url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
+        url: furl,
+        title: "发送短信", width: valw, height: valh,
+        onload: function () { 
         var iframe = this.getIFrameEl();
         iframe.contentWindow.setData(row);
     },
@@ -625,8 +659,8 @@ function sendInfo(){
         // change();
     	visitHis.reload();
         }
-    });
-}
+    }); 
+} 
 
 function sendWcText(){//发送微信消息
     var row = getRow();
@@ -636,9 +670,16 @@ function sendWcText(){//发送微信消息
     }
     // var tit = "发送微信[" + row.guestName + '/' + row.mobile + '/' + row.carModel + ']';
     var tit = "发送微信";
+    var valw = 800;
+    var valh = 350;
+    if (row.serviceType == 8 || row.serviceType == 10) {
+
+    } else {
+        valh = 410;
+    }
     nui.open({
         url: webPath + contextPath  + "/"+row.sendWcUrl+"?token="+token,
-        title: tit, width: 800, height: 350,
+        title: tit, width: valw, height: valh,
         onload: function () {
         var iframe = this.getIFrameEl();
         iframe.contentWindow.setData(row);
@@ -662,10 +703,19 @@ function sendWcCoupon() {
     var list = [];
     list.push(row);
 
+    var furl = null;
+    var valw = 800;
+    var valh = 350;
+    if (row.serviceType == 8 || row.serviceType == 10) {
+        furl = webPath + contextPath  + "/manage/sendWechatWindow/sWcInfoCoupon.jsp?token="+token;
+    } else {
+        furl = webPath + contextPath + "/manage/sendWechatWindow/sWcInfoCouponGuest.jsp?token=" + token;
+        valh = 400;
+    }
     nui.open({                        
-        url: webPath + contextPath  + "/manage/sendWechatWindow/sWcInfoCoupon.jsp?token="+token,
-        title: "发送卡券", width: 800, height: 350,
-        onload: function () {
+        url: furl,
+        title: "发送卡券", width: valw, height: valh,
+        onload: function () { 
         var iframe = this.getIFrameEl();
         iframe.contentWindow.setData(list);
     },
@@ -685,21 +735,24 @@ function getRow() {
         sRow = reminding.getSelected();
         if (sRow != null) {
             sRow.serviceType = 5;
-            sRow.sendWcUrl = "com.hsweb.crm.manage.sWcInfoRemind.flow";
+            //sRow.sendWcUrl = "com.hsweb.crm.manage.sWcInfoRemind.flow";
+            sRow.sendWcUrl = "manage/sendWechatWindow/sWcInfoRemindGuest.jsp";
             sRow.updateUrl = 'manage/maintainRemind/updateCarInfo.jsp';//修改信息页面用-车
         }
     } else if (tab.name == "syx") {
         sRow = business.getSelected();
         if (sRow != null) {
             sRow.serviceType = 6;
-            sRow.sendWcUrl = "manage/sendWechatWindow/sWcInfoInsurces.jsp";
+            //sRow.sendWcUrl = "manage/sendWechatWindow/sWcInfoInsurces.jsp";
+            sRow.sendWcUrl = "manage/sendWechatWindow/sWcInfoInsurcesGuest.jsp";
             sRow.updateUrl = 'manage/maintainRemind/updateCarInfo.jsp';//修改信息页面用-车
         }
     } else if (tab.name == "jqx") {
         sRow = compulsoryInsurance.getSelected();
         if (sRow != null) {
             sRow.serviceType = 7;
-            sRow.sendWcUrl = "manage/sendWechatWindow/sWcInfoInsurces.jsp";
+            //sRow.sendWcUrl = "manage/sendWechatWindow/sWcInfoInsurces.jsp";
+            sRow.sendWcUrl = "manage/sendWechatWindow/sWcInfoInsurcesGuest.jsp";
             sRow.updateUrl = 'manage/maintainRemind/updateCarInfo.jsp';//修改信息页面用-车
         }
     } else if (tab.name == "jzns") {
@@ -713,7 +766,8 @@ function getRow() {
         sRow = car.getSelected();
         if (sRow != null) {
             sRow.serviceType = 9;
-            sRow.sendWcUrl = "manage/sendWechatWindow/sWcYearCheck.jsp";
+            //sRow.sendWcUrl = "manage/sendWechatWindow/sWcYearCheck.jsp";
+            sRow.sendWcUrl = "manage/sendWechatWindow/sWcYearCheckGuest.jsp";
             sRow.updateUrl = 'manage/maintainRemind/updateCarInfo.jsp';//修改信息页面用-车
         }
     } else if (tab.name == "khsr") {
@@ -724,16 +778,17 @@ function getRow() {
             sRow.updateUrl = 'manage/maintainRemind/updateConInfo.jsp';//修改信息页面用
         }
     }
-    sRow.title = tab.title;
-    sRow.name = sRow.guestName;//发送微信界面用到
-    sRow.trueGuestId = sRow.guestId;//真正的guestId
-    sRow.guestId = sRow.conId;//电话回访界面用到 联系表id
-    sRow.contactorId = sRow.conId;//点击车牌号弹窗用到 联系表id
-    sRow.annualVerificationDueDate = sRow.dueDate;//车辆年检发送微信界面用到
-    sRow.guestSource = sRow.guestType;//保存历史用到
-    sRow.mainId = sRow.crmGuestId ;//电销保存用到
+    var temp = nui.clone(sRow);
+    temp.title = tab.title;
+    temp.name = temp.guestNam;//发送微信界面用到
+    temp.trueGuestId = temp.guestId;//真正的guestId
+    temp.guestId = temp.conId;//电话回访界面用到 联系表id
+    temp.contactorId = temp.conId;//点击车牌号弹窗用到 联系表id
+    temp.annualVerificationDueDate = temp.dueDate;//车辆年检发送微信界面用到
+    temp.guestSource = temp.guestType;//保存历史用到
+    temp.mainId = temp.crmGuestId ;//电销保存用到
 
-    return sRow||0;
+    return temp||0;
 }
 
 
@@ -880,16 +935,38 @@ function updateDate() {
         var hei = 500;
         var wid = 800;
         if (row.guestType == 0) {
-            turl = webPath + contextPath + '/' + row.updateUrl + "?token=" + token;
+           // turl = webPath + contextPath + '/' + row.updateUrl + "?token=" + token;
             // if (row.serviceType != 10 && row.serviceType != 8) {
             //     hei = 500;
             // }
+            var guest = {
+                guestId:row.trueGuestId,
+                    carNo:row.carNo,
+                    guestFullName:row.guestName
+            };
+                nui.open({
+                    url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditGuest.flow?token="+token,
+                    title: "修改客户资料", width: 750, height: 570,
+                    onload: function () {
+                        var iframe = this.getIFrameEl();
+                        var params = {};
+                        if(guest)
+                        {
+                            params.guest = guest;
+                        }
+                        iframe.contentWindow.setData(params);
+                    },
+                    ondestroy: function (action){
+                            gridReload(row.serviceType);
+                    }
+                });
+
         } else {
             turl = webPath + contextPath + "/com.hsweb.crm.manage.clientInfo_edit.flow?token=" + token;
             hei = 550;
             wid = 520;
             row.id = row.crmGuestId;
-        }
+       
         nui.open({
             url: turl,
             title: tit, width: wid, height: hei,
@@ -901,6 +978,7 @@ function updateDate() {
                 gridReload(row.serviceType);
             }
         });
+    }
     } else {
         showMsg("请选中一条数据", "W");
     }

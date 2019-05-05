@@ -10,7 +10,7 @@ var cardTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesBy
 var itemTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryItemTimesByUsable.biz.ext";
 var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestIdNoPage.biz.ext";
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
-var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryAccount.biz.ext";
+var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryFrmAccount.biz.ext";
 var insuranceInfoUrl = baseUrl + "com.hsapi.repair.baseData.insurance.InsuranceQuery.biz.ext?params/orgid="+currOrgId+"&params/isDisabled=0";
 //var sellUrl = apiPath + crmApi + "/com.hsapi.crm.basic.crmBasic.querySellList.biz.ext";
 var sellUrl = apiPath + crmApi + "/com.hsapi.crm.basic.crmBasic.querySellListNoPage.biz.ext";
@@ -79,6 +79,7 @@ var lastItemUnitPrice = null;
 var lastPkgSubtotal = null;
 var lastPkgRate = null;
 var contactorF = null;
+var rdata = {};
 var prdtTypeHash = {
     "1":"套餐",
     "2":"项目",
@@ -2409,6 +2410,7 @@ function doSearchCardTimes(guestId,fcarId)
     p.status = 2;
     p.isRefund = 0;
     p.carId = fcarId;
+    p.orgid = currOrgid;
     cardTimesGrid.load({
     	token:token,
         p:p
@@ -2431,6 +2433,7 @@ function doSearchItemTimes(guestId,fcarId)
     p.status = 2; 
     p.isRefund = 0;
     p.carId = fcarId;
+    p.orgid = currOrgid;
     itemTimesGrid.load({
     	token:token,
         p:p
@@ -2449,7 +2452,8 @@ function doSearchMemCard(guestId)
 
     memCardGrid.load({
     	token:token,
-        guestId:guestId
+        guestId:guestId,
+        orgid:currOrgid
     },function(){
         var data = memCardGrid.getData();
         var len = data.length||0;

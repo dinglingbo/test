@@ -32,6 +32,7 @@
 			<configValue key="common">DB02_ORA_WB_COMMON</configValue>
 			<configValue key="slog">DB01_MYSQL_WB_SLOG</configValue>
 			<configValue key="part">DB03_ORA_WB_PART</configValue>
+			<configValue key="crm">DB10_MYSQL_WB_CRM</configValue>
 		</group>
 	</module>
 </contribution>

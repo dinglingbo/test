@@ -456,5 +456,38 @@ public class DateUtils {
 	         DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	         return sdf.format(date);
 	     }
+		  
+		 @Bizlet("")
+	     public static String getLongToDate(long lo) {
+	         
+	         
+	         Date date = new Date(lo);
+	         
+	         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	         return sdf.format(date);
+	     }
+		 
+		 @Bizlet("")
+	     public static long getDateToLong(Date d) {
+	         return d.getTime();
+	     }
+		 
+		 public static void main(String args[]) {
+			 String strDate = "2018-10-13 16:59:08";
+			 //注意：SimpleDateFormat构造函数的样式与strDate的样式必须相符
+	         //SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy年MM月dd日 ");
+	         SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //加上时间
+	         //必须捕获异常
+	         try {
+	             Date date=sDateFormat.parse(strDate);
+	             System.out.println(date);
+	             System.out.println(date.getTime());
+	             
+	             Calendar calendar = Calendar.getInstance();
+		         if(null != date) calendar.setTime(date);
+	         } catch(ParseException px) {
+	             px.printStackTrace();
+	         }
+		 }
 			  
 }

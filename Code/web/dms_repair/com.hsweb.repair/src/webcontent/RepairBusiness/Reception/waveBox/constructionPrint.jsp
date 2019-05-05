@@ -391,7 +391,7 @@
 <!--             <h3><span id="comp"></span></h3> -->
         </div>
         <div align="center">
-        	<h2>华胜自动变速箱维修中心</h2>
+        	<div style="font-size: 28px; font-family: 黑体;"><b><span id="comp"></span></b></div>
         </div>
        <table  width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-top:10px">
 	            <tbody>
@@ -510,6 +510,7 @@
         
         function SetData(serviceId,type){
         	showtime("date");
+        	document.getElementById("comp").innerHTML = currRepairSettorderPrintShow;
         	 $.post(baseUrl+mainUrl+"params/rid="+serviceId+"&token="+token,{},function(text){
 	        	 	if(text.list.length > 0){
 	        	 		var list = text.list[0];
@@ -540,7 +541,7 @@
 	    				var tds = '<td align="center">[orderIndex]</td>' +
 						    			"<td>[prdtName]</td>"+
 						    			"<td align='center'>[qty]</td>"+
-						    			"<td align='center'>[uintPrice]</td>"+ 
+						    			"<td align='center'>[unitPrice]</td>"+ 
 						    			"<td align='center'>[amt]</td>"+ 
 						    			"<td align='center'>[rate]</td>"+
 						    			"<td align='center'>[subtotal]</td>";
@@ -564,7 +565,7 @@
 					    				tds.replace("[orderIndex]","<hr style= 'border:1px dashed #000' />")
 					    				.replace("[prdtName]","<hr style= 'border:1px dashed #000' />")
 					    				.replace("[qty]","<hr style= 'border:1px dashed #000' />")
-					    				.replace("[uintPrice]","<hr style= 'border:1px dashed #000' />")
+					    				.replace("[unitPrice]","<hr style= 'border:1px dashed #000' />")
 					    				.replace("[amt]","<hr style= 'border:1px dashed #000' />")
 					    				.replace("[rate]","<hr style= 'border:1px dashed #000' />")
 					    				.replace("[subtotal]","<hr style= 'border:1px dashed #000' />"));
@@ -575,7 +576,7 @@
 					    				tds.replace("[orderIndex]",orderIndex)
 					    				.replace("[prdtName]",prdtName)
 					    				.replace("[qty]",data[i].qty || 1)
-					    				.replace("[uintPrice]",data[i].amt)
+					    				.replace("[unitPrice]",data[i].unitPrice)
 					    				.replace("[amt]",data[i].amt)
 					    				.replace("[rate]",rate)
 					    				.replace("[subtotal]",data[i].subtotal));
@@ -586,7 +587,7 @@
 					    				tds.replace("[orderIndex]",orderIndex)
 					    				.replace("[prdtName]",prdtName)
 					    				.replace("[qty]",data[i].qty || 1)
-					    				.replace("[uintPrice]",data[i].amt)
+					    				.replace("[unitPrice]",data[i].unitPrice)
 					    				.replace("[amt]",data[i].amt)
 					    				.replace("[rate]",rate)
 					    				.replace("[subtotal]",data[i].subtotal));

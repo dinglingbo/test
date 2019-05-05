@@ -256,7 +256,7 @@
     if (mainList.length > 0) {
         var params = {
             serviceType: mainList[0].serviceType,
-            visitMode:'011404',//微信图文
+            visitMode:'011405',//微信图文
             taskNum: mainList.length,
         }
 
@@ -267,6 +267,7 @@
                 guestId: data.tureGuestId || '',
                 contactorId: data.conId,
                 mobile:data.mobile,
+                contactor:data.guestName,
                 carId:data.carId||'', 
                 carNo: data.carNo || '',
                 visitContent: contentText,

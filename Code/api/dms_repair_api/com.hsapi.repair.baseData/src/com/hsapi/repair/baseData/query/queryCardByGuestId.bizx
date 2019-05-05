@@ -77,6 +77,22 @@
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cr/_expr[2]/_op</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orgid</process:from>
+      <process:to type="query">cr/_expr[3]/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cr/_expr[3]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">cr/_expr[4]/balaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">></process:from>
+      <process:to type="query">cr/_expr[4]/_op</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="215" y="221"/>
@@ -146,6 +162,7 @@
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="guestId" primitiveType="Int"/>
     <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
+    <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsStoredRecord" name="data"/>

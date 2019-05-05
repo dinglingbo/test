@@ -60,10 +60,6 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">id</process:from>
-      <process:to type="query">temp/id</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpbse.RpbBusinessDeduct</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>

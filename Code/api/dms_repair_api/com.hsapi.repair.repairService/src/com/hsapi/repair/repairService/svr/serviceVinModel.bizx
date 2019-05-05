@@ -101,7 +101,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCodeModelLy</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
         <process:outputVariable id="2" name="data" type="query" value="com.alibaba.fastjson.JSON" valueType="Java">dataModelLy</process:outputVariable>
       </process:outputVariables>
     </process:flow>
@@ -324,7 +324,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign7label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">dataModelLy/id</process:from>
+      <process:from type="query" pattern="reference">dataModelLy/carModelId</process:from>
       <process:to type="query">car/carModelIdLy</process:to>
     </process:copy>
   </nodes>
@@ -375,7 +375,9 @@
     <figSize height="17" width="110"/>
     <node>subprocess3</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="413" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-11-30 17:13:18" date="2018-11-30Z" description="" name="serviceVinModel" version="7.0.0.0"/>
   <process:variables>

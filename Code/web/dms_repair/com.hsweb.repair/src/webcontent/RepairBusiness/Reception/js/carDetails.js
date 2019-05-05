@@ -135,6 +135,20 @@ $(document).ready(function () {
         		 str = "(满"+record.couponConditionPrice+"元)";
         		 e.cellHtml = record.couponDescribe + str; 
         	 }
+          case "userFile":
+        	  var isCarUse = record.isCarUse || 0;//本车使用,0,是，1否
+        	  var isStoreUse = record.isStoreUse || 0;//本店使用,0,是，1否
+        	  var isTenantUse = record.isTenantUse || 0;//连锁使用,0,是，1否
+        	  if(isCarUse){
+        		  if(isStoreUse){
+        			  e.cellHtml = "本店使用";
+        		  }else{
+        			  e.cellHtml = "连锁使用";
+        		  }
+        	  }else{
+        		  e.cellHtml = "本车使用";
+        	  }
+        	  
           default:
               break;
       }
@@ -603,6 +617,7 @@ function activechangedmain(){
 		//计次卡
 	    var pa = {
 	    		guestId:onSearchParams.guestId,
+	    		orgid:currOrgid,
 	    		token:token
 	    };
 	    grid1.load({p:pa});
@@ -614,13 +629,14 @@ function activechangedmain(){
 	    p3.notPast = 1; 
 	    p3.status = 2; 
 	    p3.isRefund = 0;
+	    p3.orgid = currOrgId;
 	    grid3.load({
 	    	token:token,
 	        p:p3
 	    });
 	}else if(tabs.name=="card"){
 		//储值卡
-	    grid2.load({guestId:onSearchParams.guestId});
+	    grid2.load({guestId:onSearchParams.guestId,orgid:currOrgid});
 	}else if(tabs.name=="coupons"){
 	    //优惠券
 	    var paraMap = {};

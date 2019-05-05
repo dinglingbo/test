@@ -76,7 +76,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="expression" pattern="reference">httpStr+&quot;itemTypeId=&quot;</process:from>
+      <process:from type="expression" pattern="reference">httpStr+&quot;?itemTypeId=&quot;</process:from>
       <process:to type="query">httpStr</process:to>
     </process:copy>
   </nodes>
@@ -114,7 +114,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">returnResult/data/itemList</process:from>
+      <process:from type="query" pattern="reference">returnResult/data/list</process:from>
       <process:to type="query">result</process:to>
     </process:copy>
   </nodes>
@@ -166,7 +166,7 @@
       <process:to type="query">page/count</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">wbPage/nowPage</process:from>
+      <process:from type="query" pattern="reference">wbPage/page</process:from>
       <process:to type="query">page/currentPage</process:to>
     </process:copy>
     <process:copy>
@@ -186,11 +186,11 @@
       <process:to type="query">page/length</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">wbPage/nowPageSize</process:from>
+      <process:from type="query" pattern="reference">wbPage/size</process:from>
       <process:to type="query">page/size</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">wbPage/totalPage</process:from>
+      <process:from type="query" pattern="reference">wbPage/pages</process:from>
       <process:to type="query">page/totalPage</process:to>
     </process:copy>
   </nodes>
@@ -222,6 +222,7 @@
     <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign8</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
     <location x="183" y="150"/>
@@ -280,10 +281,10 @@
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
       <process:from type="query" pattern="reference">params/itemName</process:from>
-      <process:to type="query">name</process:to>
+      <process:to type="query">itemName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">&quot;&amp;&amp;itemName=&quot;+name</process:from>
+      <process:from type="expression" pattern="reference">&quot;&amp;orQuery=&quot;+itemName</process:from>
       <process:to type="query">name</process:to>
     </process:copy>
     <process:copy>
@@ -347,7 +348,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign7label</nodeLabel>
     <process:copy>
-      <process:from type="expression" pattern="reference">httpStr+&quot;itemTypeId=&quot;</process:from>
+      <process:from type="expression" pattern="reference">httpStr+&quot;?itemTypeId=&quot;</process:from>
       <process:to type="query">httpStr</process:to>
     </process:copy>
     <process:copy>
@@ -390,11 +391,19 @@
     <size height="28" width="28"/>
     <nodeLabel>assign8label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">item/itemStd?</process:from>
+      <process:from type="literal" pattern="reference">item/itemCarStd/carId/</process:from>
       <process:to type="query">url</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">params/carModelIdLy</process:from>
+      <process:to type="query">carModelIdLy</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="expression" pattern="reference">maintenanceUrl+url</process:from>
+      <process:to type="query">httpStr</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">httpStr+carModelIdLy</process:from>
       <process:to type="query">httpStr</process:to>
     </process:copy>
   </nodes>
@@ -450,7 +459,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="param" type="query" value="java.lang.String" valueType="Java" pattern="reference">returnResult/data/pageParameter</process:inputVariable>
+      <process:inputVariable id="0" name="param" type="query" value="java.lang.String" valueType="Java" pattern="reference">returnResult/data</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
       <process:outputVariable id="0" name="out0" type="query" value="java.util.HashMap&lt;java.lang.String,java.lang.Object>" valueType="Java">wbPage</process:outputVariable>
@@ -540,6 +549,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="begin" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="length" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="pyCode" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="carModelIdLy" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="itemName" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>

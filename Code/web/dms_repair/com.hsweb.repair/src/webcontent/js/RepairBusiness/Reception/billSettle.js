@@ -136,10 +136,11 @@ function excCoupon(userCoupon,callback){
 		var itemId = codeHash[key].itemId;
 		if(itemId == userCoupon.itemId){
 			callback && callback(boolean);
+			return;
 		}
 	 }
 	var json = {
-			rpbItemId:userCoupon.itemId,
+			rpbItemId:userCoupon.itemId || 0,
 			serviceId:dataF.serviceId,
 			token : token
 		}
@@ -951,6 +952,7 @@ if(code != "" && code != null){
 		data : json2,
 		success : function(data) {
 			if(data.result.code=="S"){
+				var type2 = data.result.type || 0;
 				var v = data.result.data;
 				//判断对象是否为空
 				var isEnp = false;
@@ -999,7 +1001,7 @@ if(code != "" && code != null){
 								}
 								
 							}
-							if(boolean){	
+							if(boolean && type2 == 1){	
 								document.getElementById("show").innerHTML = document.getElementById("show").innerHTML + list;
 								userCouponDataHash[key] = v;
 								var changStr = "#chang"+key;

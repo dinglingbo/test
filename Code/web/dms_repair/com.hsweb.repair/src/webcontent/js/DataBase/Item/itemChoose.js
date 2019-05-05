@@ -322,7 +322,7 @@ function doSearchItem(params)
 {
     params.itemName = params.name||"";
     if(WechatShow!=1){
-    	params.carModelId = carModelIdLy;
+    	params.carModelIdLy = carModelIdLy;
     }
 	//转码，维保大数据GET请求
 	params.itemName = encodeURI(params.itemName); 

@@ -453,6 +453,7 @@ function signOut() {
 }
 
 function makeOffnetCall(){
+	callSessionManager = client.getServiceLocator().get('call');
     let phone ='+86'+ nui.get("tarMobile").value;
     callSessionManager.makeOffnetCall(phone);
 }

@@ -205,7 +205,7 @@ cursor: pointer;
                                 </td>
                                 <td colspan="3">
                                     <input class="nui-textbox" name="carNo" id="carNo"/>
-                                      	<a class="nui-button" onclick="parsingCarNo()">解析车架号(VIN)</a>
+                                      	<a class="nui-button" onclick="parsingCarNo()">获取车架号(VIN)</a>
                                         <a class="nui-button" iconCls="" id="preCarBtn" onclick="preCar()" style="margin-right:10px;" tooltip="上一个" plain="true"><span class="fa fa-chevron-left fa-lg"></span></a>
                                         <a class="nui-button" iconCls="" id="nextCarBtn" onclick="nextCar()" style="margin-right:10px;" tooltip="下一个" plain="true"><span class="fa fa-chevron-right fa-lg"></span></a>
                                         <a class="nui-button" iconCls="" onclick="addCar()" tooltip="新增" plain="true"><span class="fa fa-plus fa-lg"></span></a>

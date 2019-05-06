@@ -107,7 +107,8 @@
          dataField="detailList"
          idField="detailId"
          ondrawcell="onDrawCell"
-          sortMode="client"
+         sortMode="client"
+         totalField="page.count"
          url=""
          allowCellWrap = true
          pageSize="10000"

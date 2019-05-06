@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="serviceVinModel.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据VIN查询车辆信息，然后更新car/carModelIdLy&#xD;&#xA;&#xD;&#xA;vapp/com.hsapi.bdb.home.getQuoteParam.biz.ext&#xD;&#xA;&#xD;&#xA;http://api.harsons.cn/collect.php&#xD;&#xA;&#xD;&#xA;http://14.23.35.20:6288/openApi/vin/?vin=LFV2A28V4H5862267" title="Administrator&#x9;18-11-30 下午5:13">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据VIN查询车辆信息，然后更新car/carModelIdLy&#xD;&#xA;&#xD;&#xA;vapp/com.hsapi.bdb.home.getQuoteParam.biz.ext&#xD;&#xA;&#xD;&#xA;http://api.harsons.cn/collect.php&#xD;&#xA;&#xD;&#xA;http://14.23.35.20:6288/openApi/vin/?vin=LFV2A28V4H5862267&#xD;&#xA;&#xD;&#xA;car/carModelIdLy更新为维保的carModelId 20190427" title="Administrator&#x9;18-11-30 下午5:13">
     <location x="30" y="-60"/>
     <size height="166" width="481"/>
   </nodes>

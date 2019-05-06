@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getModelByOpenApiVin.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="http://14.23.35.20:6288/openApi/vin/?vin=LFV2A28V4H5862267&#xD;&#xA;&#xD;&#xA;http://tvapp.hszb.harsons.cn/openApi/vin?vin=LGBL4AE07JD172271" title="Administrator&#x9;18-11-30 下午2:57">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="http://14.23.35.20:6288/openApi/vin/?vin=LFV2A28V4H5862267&#xD;&#xA;&#xD;&#xA;http://tvapp.hszb.harsons.cn/openApi/vin?vin=LGBL4AE07JD172271&#xD;&#xA;&#xD;&#xA;接口更换为维保car_model/models/vin/   carModelIdLy更新为维保的carModelId 20190427&#xD;&#xA;&#xD;&#xA;" title="Administrator&#x9;18-11-30 下午2:57">
     <location x="0" y="-105"/>
-    <size height="100" width="451"/>
+    <size height="128" width="451"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
@@ -241,7 +241,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="maintenanceUrl" type="query" value="String" valueType="Primitive">maintenanceUrl</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">value</process:outputVariable>
-        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

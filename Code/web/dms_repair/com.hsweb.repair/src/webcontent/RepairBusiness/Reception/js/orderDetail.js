@@ -477,13 +477,33 @@ function onPrint(e){
 				return;
 			}
 		}else{
-			 doPrint(params);
+			 if(currCompType == "GEARBOX" && e == 2){
+				 bxOnPrint(main.id);
+			 }else{
+				 doPrint(params);
+			 }
 		}
        
 	}else{
         showMsg("请先保存工单,再打印!","W");
         return;
     }
+}
+
+function bxOnPrint(serviceId){
+	var printUrl = "/com.hsweb.bx.constructionPrint.flow";
+	nui.open({
+        url: webPath + contextPath+printUrl,
+        title: "打印",
+		width: "100%",
+		height: "100%",
+        onload: function () {
+            var iframe = this.getIFrameEl();
+           iframe.contentWindow.SetData(serviceId,null);
+        },
+        ondestroy: function (action){
+        }
+    });
 }
 
 //查询其他收入支出

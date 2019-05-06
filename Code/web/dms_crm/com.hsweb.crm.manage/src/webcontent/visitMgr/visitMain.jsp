@@ -102,7 +102,7 @@ pageEncoding="UTF-8" session="false" %>
         </div> 
     </div> 
 </div> 
-    <div >
+        <div >
             <%@include file="/manage/maintainRemind/visitHistoryList.jsp" %>
         </div>
     </div>

@@ -154,7 +154,7 @@
 	                     	<img alt="" src="" id="showImg" height="60px" style="display:none">
 	                    </td>
 	                    <td style="width:55%" >
-	                        <div style="font-size: 20px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><b><span id="comp"></span></b></div>
+	                        <div style="font-size: 28px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><b><span id="comp"></span></b></div>
 	                    </td>
 	                    <td rowspan="2" style="">
 	                        <div style="font-size: 20px; font-family: 黑体;padding-top: 5px;"><b><span id="spstorename">报价单</span></b></div>
@@ -173,18 +173,20 @@
 	        </table>
 	        
         </div>
-        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-                <td style="font-size:8px;" >地址：<span id="currCompAddress"></span></td>
-                <td style="font-size:8px;">开户银行：<span id="currBankName"></span></td>
-                <td style="font-size:8px;">打印时间：<span id="date"></span></td>
-            </tr> 
-            <tr>
-                <td style="font-size:8px;">电话：<span id="currCompTel"></span></td>
-                <td style="font-size:8px;" >银行账号：<span id="currBankAccountNumber"></span></td>
-             	<td style="font-size:8px;">进厂时间：<span id="enterDate"></span></td>
-            </tr>
-        </table>
+        <div style="padding-top: 10px;">
+	        <table width="100%" border="0" cellspacing="0" cellpadding="0" >
+	            <tr>
+	                <td style="font-size:8px;font-family: 黑体;" >地址：<span id="currCompAddress"></span></td>
+	                <td style="font-size:8px;font-family: 黑体;">开户银行：<span id="currBankName"></span></td>
+	                <td style="font-size:8px;font-family: 黑体;">打印时间：<span id="date"></span></td>
+	            </tr> 
+	            <tr>
+	                <td style="font-size:8px;font-family: 黑体;">电话：<span id="currCompTel"></span></td>
+	                <td style="font-size:8px;font-family: 黑体;" >银行账号：<span id="currBankAccountNumber"></span></td>
+	             	<td style="font-size:8px;font-family: 黑体;">进厂时间：<span id="enterDate"></span></td>
+	            </tr>
+	        </table>
+        </div>
         <div style="padding-top: 10px;">
             <table  width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk">
                 <tr>
@@ -273,7 +275,7 @@
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk">
 				<tr>
 					<td>
-							<div style="width:100%;height:100%;min-height:80px;" id="drawOutReport"></div>
+							<div style="width:100%;height:100%;min-height:60px;" id="drawOutReport"></div>
 					</td>
 				</tr>
         </table>
@@ -396,10 +398,10 @@
 				 if(type == 5 || type == 6){//报销单   5报价单   6结算单 
 				 	mainUrl = "com.hsapi.repair.repairService.svr.billqyeryMaintainList.biz.ext?rid=";
 				 }
-				 document.getElementById("currCompTel").innerHTML = "&nbsp;&nbsp;&nbsp;"+currCompTel;
-				 document.getElementById("currCompAddress").innerHTML = "&nbsp;&nbsp;&nbsp;"+currCompAddress;
-				 document.getElementById("currBankName").innerHTML = "&nbsp;&nbsp;&nbsp;"+currBankName;
-				 document.getElementById("currBankAccountNumber").innerHTML = "&nbsp;&nbsp;&nbsp;"+currBankAccountNumber;
+				 document.getElementById("currCompTel").innerHTML = currCompTel;
+				 document.getElementById("currCompAddress").innerHTML = currCompAddress;
+				 document.getElementById("currBankName").innerHTML = currBankName;
+				 document.getElementById("currBankAccountNumber").innerHTML = currBankAccountNumber;
 				 $.ajaxSettings.async = false;
 			 	 $.post(baseUrl+mainUrl+serviceId+"&token="+token,{},function(text){
 			 	 	   if(text.list.length > 0){
@@ -493,7 +495,7 @@
 					    			tr.append(
 					    				tds.replace("[orderIndex]",num2)
 					    				.replace("[prdtName]","&nbsp;"+prdtName || "")
-					    				.replace("[qty]",data[i].qty || 1)
+					    				.replace("[qty]",data[i].qty|| data[i].itemTime || 1)
 					    				.replace("[unit]",data[i].unit || "")
 					    				.replace("[uintPrice]", data[i].unitPrice || 0)
 					    				.replace("[amt]",data[i].amt  || 0)

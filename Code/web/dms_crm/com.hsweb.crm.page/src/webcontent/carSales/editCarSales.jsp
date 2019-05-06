@@ -178,7 +178,7 @@
                     <td align="right">结算备注
                     </td>
                     <td colspan="9">
-                        <input id="txtSettleRem" class="nui-textbox" style="width: 820px;height:40px" multiline="true" />
+                        <input id="txtSettleRem" class="nui-textarea" style="width: 820px;height:40px" multiline="true" />
                     </td>
                 </tr>
             </table>
@@ -345,7 +345,7 @@
                             <td align="right" rowspan="2">备注
                             </td>
                             <td colspan="5" rowspan="2">
-                                <input id="txtRemark" class="nui-textbox" style="width: 540px; height: 50px" multiline="true" />
+                                <input id="txtRemark" class="nui-textarea" style="width: 540px; height: 50px" multiline="true" />
                             </td>
                             <td align="right">交车日期
                             </td>
@@ -366,7 +366,7 @@
                             <td align="right">交车备注
                             </td>
                             <td colspan="7">
-                                <input id="txtJCRem" style="width: 735px;height:40px" multiline="true" disabled="disabled" class="nui-textbox" />
+                                <input id="txtJCRem" style="width: 735px;height:40px" multiline="true" disabled="disabled" class="nui-textarea" />
                             </td>
                         </tr>
                     </table>
@@ -423,12 +423,12 @@
                                     <td align="right">备注
                                     </td>
                                     <td colspan="3">
-                                        <input id="db_Remark" style="width: 360px;height:50px" class="nui-textbox" multiline="true" />
+                                        <input id="db_Remark" style="width: 360px;height:50px" class="nui-textarea" multiline="true" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="4" align="right" style="padding-right: 30px">
-                                        <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="js"><span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
+                                        <a class="nui-button" iconCls="" onclick="pay()" id="js"><span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
                                     </td>
                                 </tr>
                             </table>
@@ -481,12 +481,12 @@
                                     <td align="right">备注
                                     </td>
                                     <td colspan="3">
-                                        <input id="db_Remark" style="width: 360px;" class="nui-textbox" />
+                                        <input id="txtDocumentRemark" class="nui-textarea" style="width: 305px; height: 50px" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="4" align="right" style="padding-right: 30px">
-                                        <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="js"><span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
+                                        <a class="nui-button" iconCls="" onclick="pay()" id="js"><span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
                                     </td>
                                 </tr>
                             </table>
@@ -588,12 +588,12 @@
                                     <td align="right">备注
                                     </td>
                                     <td colspan="3">
-                                        <input id="zh_remDetal" style="width: 360px;" multiline="true" class="nui-textbox" onblur="remblur()" />
+                                        <input id="txtDocumentRemark" class="nui-textarea" style="width: 305px; height: 50px" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="4" align="right" style="padding-right: 30px">
-                                        <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="js"><span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
+                                        <a class="nui-button" iconCls="" onclick="pay()" id="js"><span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
                                     </td>
                                 </tr>
                             </table>
@@ -639,7 +639,7 @@
                                     <td align="right">备注
                                     </td>
                                     <td colspan="3">
-                                        <input id="txtbxbz" class="nui-textbox" multiline="true" style="width: 360px;" />
+                                        <input id="txtDocumentRemark" class="nui-textarea" style="width: 305px; height: 50px" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -649,7 +649,7 @@
                                         <input id="isPrint" class="nui-checkbox" editable="false" style="width: 30px" />
                                     </td>
                                     <td colspan="2" style="text-align: right; padding-right: 5px">
-                                        <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="js"><span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
+                                        <a class="nui-button" iconCls="" onclick="pay()" id="js"><span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
                                     </td>
                                 </tr>
                             </table>

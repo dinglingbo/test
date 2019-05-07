@@ -3,7 +3,7 @@
  */
 var statusList = [{id:"0",name:"联系人"},{id:"1",name:"联系电话"},{id:"2",name:"车架号（VIN）"}];
 $(document).ready(function(v){
-
+	
 });
 function getSearchParam(){
 

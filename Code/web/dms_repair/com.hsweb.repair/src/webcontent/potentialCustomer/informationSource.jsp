@@ -48,7 +48,7 @@
             <tr>
                 <td style="width:100%;">
                     
-                   <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;" id="onOk"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                   <a class="nui-button" onclick="advancedAddWinShow()" plain="true" style="width: 60px;" id="onOk"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                    <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;" id="onOk"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
                    <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;" id="onOk"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                    <a class="nui-button" onclick="CloseWindow('cancle')" plain="true" id="cancle" style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;退出</a>
@@ -79,7 +79,7 @@
 </div>
 
 <div id="advancedAddWin" class="nui-window"
-     title="购车用途" style="width:300px;height:160px;"
+     title="新建信息来源" style="width:300px;height:160px;"
      showModal="true"
      allowResize="false"
      allowDrag="true">
@@ -103,7 +103,22 @@
         </table>
     </div>
 </div>
- 
+ <script type="text/javascript">
+    var advancedAddWin = null;
+	$(document).ready(function (){
+	    advancedAddWin = nui.get("advancedAddWin");
+       document.onkeyup = function(event) {
+	        var e = event || window.event;
+	        var keyCode = e.keyCode || e.which;// 38向上 40向下
+	        if ((keyCode == 27)) { // ESC
+	            CloseWindow('cancle');
+	        }
+	     }  
+        });
+        function advancedAddWinShow(){
+           advancedAddWin.show();
+        }
+	</script>
 </body>
 
 </html>

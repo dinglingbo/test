@@ -11,7 +11,7 @@
 -->
 <head>
 <title>潜在客户</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.2.28" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/potentialCustomer/potentialCustomer.js?v=1.0.4" type="text/javascript"></script>
 <style type="text/css">
 /* table {
 	table-layout: fixed;
@@ -55,7 +55,7 @@
             <tr>
                 <td style="width:100%;">
                     
-                   <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;" id="onOk"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                   <a class="nui-button" onclick="addCus()" plain="true" style="width: 60px;" id="onOk"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                    <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;" id="onOk"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
                    <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;" id="onOk"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                    <a class="nui-button" onclick="CloseWindow('cancle')" plain="true" id="cancle" style="width: 60px;"><span class="fa fa-check fa-lg"></span>&nbsp;成功</a>
@@ -295,10 +295,10 @@
 				<table style="width: 100%">
 					<tr>
 				  <td style="width:100%;">
-                   <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;" id="onOk"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                   <a class="nui-button" onclick="addFollowUpRecord()" plain="true" style="width: 60px;" id="onOk"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                      <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;" id="onOk"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
                    <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;" id="onOk"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
-                   <a class="nui-button" onclick="CloseWindow('cancle')" plain="true" id="cancle" style="width: 60px;"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
+                   <a class="nui-button" onclick="potentialCustomer" plain="true" id="cancle" style="width: 60px;"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
                 </td>
 					</tr>
 				</table>

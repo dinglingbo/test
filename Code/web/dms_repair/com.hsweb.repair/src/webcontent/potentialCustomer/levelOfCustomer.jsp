@@ -48,7 +48,7 @@
             <tr>
                 <td style="width:100%;">
                     
-                   <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;" id="onOk"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                   <a class="nui-button" onclick="advancedAddWinShow()" plain="true" style="width: 60px;" id="onOk"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                    <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;" id="onOk"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
                    <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;" id="onOk"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                    <a class="nui-button" onclick="CloseWindow('cancle')" plain="true" id="cancle" style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;退出</a>
@@ -80,7 +80,7 @@
 </div>  
 
 <div id="advancedAddWin" class="nui-window"
-     title="新建意向级别" style="width:300px;height:160px;"
+     title="新建意向级别" style="width:330px;height:160px;"
      showModal="true"
      allowResize="false"
      allowDrag="true">
@@ -99,17 +99,32 @@
     	<input id="orgid" name="orgid" width="100%" class="nui-hidden" >
         <table class="tmargin" style="width:100%;margin-top:10px;">
             <tr class="htr">
-                <td class=" right fwidtha required">新建意向级别:</td>
+                <td class=" right fwidtha">新建意向级别:</td>
                 <td ><input id="name" name="name" width="100%" class="nui-textbox" ></td>
             </tr>
             <tr class="htr">
-                <td class=" right fwidtha required">回访间隔 :</td>
+                <td class=" right fwidtha">回访间隔 :</td>
                 <td ><input id="dictid" name="dictid" width="94%" class="nui-textbox" textField="name" valueField="id"     dataField="" url="" valueFromSelect="true" allowinput="true">天</td>
             </tr>
         </table>
     </div>
 </div>
- 
+ <script type="text/javascript">
+ var advancedAddWin = null;
+	$(document).ready(function (){
+	    advancedAddWin = nui.get("advancedAddWin");
+       document.onkeyup = function(event) {
+	        var e = event || window.event;
+	        var keyCode = e.keyCode || e.which;// 38向上 40向下
+	        if ((keyCode == 27)) { // ESC
+	            CloseWindow('cancle');
+	        }
+	     }  
+        });
+        function advancedAddWinShow(){
+           advancedAddWin.show();
+        }
+	</script>
 </body>
 
 </html>

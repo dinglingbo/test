@@ -28,7 +28,7 @@
 	<script src="<%=request.getContextPath()%>/coframe/imjs/message.js"></script>
 	<script src="<%=request.getContextPath()%>/coframe/imjs/messagebody.js"></script>
 	<script src="<%=request.getContextPath()%>/layim-v3.8.0/dist/layui.js"></script>
-	<script src="<%=request.getContextPath()%>/coframe/imjs/websocketconfig.js?v=1.0.1"></script>
+	<script src="<%=request.getContextPath()%>/coframe/imjs/websocketconfig.js?v=1.0.2"></script>
     <style type="text/css">
 	a {
 	cursor: pointer;
@@ -855,7 +855,30 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
 
 <script>
 
-		var currentsession= "10000";
+		var currentsession= currImCode;
+		
+
+if(!/^http(s*):\/\//.test(location.href)){
+  alert('请部署到localhost上查看该演示');
+}
+
+layui.use('layim', function(layim){
+
+
+		//回复消息
+		  var reMsg=function(sender,time,msg){
+		  	  layim.getMessage({
+		        username: "Hi"
+		        ,avatar: ""
+		        ,id: sender
+		        ,type: "friend"
+		        ,content: msg
+		      });
+			  //var content = $(".remsg").html();
+		       //content  =content.replace("{content}", HtmlUtil.htmlEncodeByRegExp(msg)).replace("{time}",time).replace("{sender}",sender);
+		       //$("#chatcontent").append(msg);
+	   	       //$("#chatcontent").scrollTop( $("#chatcontent")[0].scrollHeight); 
+		  }
 		
 		//发送消息
 	      var sendMsg=function(msg,receiver,group){ 
@@ -934,6 +957,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
               	    		   if(msg.getGroupid()==null||msg.getGroupid().length<1){
               	    			 var msgCon =  proto.MessageBody.deserializeBinary(msg.getContent()); 
                   	    	     reMsg(msg.getSender(),msg.getTimestamp(),msgCon.getContent());
+                  	    	     
               	    		   } 
               	    	   } 
               	       }
@@ -973,12 +997,6 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
 	  
 	  
       createWebSocket(websocketurl,initEventHandle);
-
-if(!/^http(s*):\/\//.test(location.href)){
-  alert('请部署到localhost上查看该演示');
-}
-
-layui.use('layim', function(layim){
   
   //演示自动回复
   var autoReplay = [
@@ -1020,7 +1038,7 @@ layui.use('layim', function(layim){
 
     //查看群员接口
     ,members: {
-      url: webPath + sysDomain + '/layim-v3.8.0/示例/json/getMembers.json'
+      url: webPath + sysDomain + '/coframe/imjs/getMembers.json'
       ,data: {}
     }
     

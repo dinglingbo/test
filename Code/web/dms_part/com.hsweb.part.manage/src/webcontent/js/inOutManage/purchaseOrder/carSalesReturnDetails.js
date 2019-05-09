@@ -2820,3 +2820,30 @@ function onOut(){
 	var partId = row.partId;
 	onOutRecord(partId);
 }
+function addProcurement(){
+    nui.open({
+        url: webPath+contextPath+"/com.hsweb.part.manage.carSales.flow?token="+token,
+        title: "选择采购单", width: 980, height: 560,
+        allowDrag:true,
+        allowResize:true,
+        onload: function (){
+
+        },
+        ondestroy: function (action){
+        }
+    });
+}
+
+function addPutStorage(){
+    nui.open({
+        url: webPath+contextPath+"/com.hsweb.part.manage.carSalesPutStorage.flow?token="+token,
+        title: "选择入库单", width: 980, height: 560,
+        allowDrag:true,
+        allowResize:true,
+        onload: function (){
+
+        },
+        ondestroy: function (action){
+        }
+    });
+}

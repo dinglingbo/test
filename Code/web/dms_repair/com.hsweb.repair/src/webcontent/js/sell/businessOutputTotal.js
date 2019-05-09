@@ -157,8 +157,8 @@ function getSearchParam() {
     if(nui.get("isCollectMoney").getValue()==0){
     	params.isCollectMoney=1;
     }
-    params.sEnterDate = nui.get("sEnterDate").getValue();
-    params.eEnterDate = addDate(endDateEl.getValue(),1); 
+    params.startDate = nui.get("sEnterDate").getValue();
+    params.endDate = addDate(endDateEl.getValue(),1); 
     params.groupByType = cType;
     var orgidsElValue = orgidsEl.getValue();
     if(orgidsElValue==null||orgidsElValue==""){
@@ -185,7 +185,7 @@ function updateGridColoumn(e){
 	
     var column = mainGrid.getColumn("groupName");
     if(e == 0){
-    	mainGrid.updateColumn(column,{header:"进厂日期"});
+    	mainGrid.updateColumn(column,{header:"出厂日期"});
     }else if(e == 1){
     	mainGrid.updateColumn(column,{header:"服务顾问"});
     }else if(e == 2){

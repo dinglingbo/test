@@ -91,7 +91,7 @@
                         <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
                         <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                     </ul>
-		                    进厂日期:<input class="nui-datepicker" id="sEnterDate" name="sEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd"  showTime="false" showOkButton="false" showClearButton="false"/>
+		                    出厂日期:<input class="nui-datepicker" id="sEnterDate" name="sEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd"  showTime="false" showOkButton="false" showClearButton="false"/>
 		        	<label style="font-family:Verdana;">至</label>
 		        	<input class="nui-datepicker" id="eEnterDate" name="eEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd"  showTime="false" showOkButton="false" showClearButton="false"/>                   
 		        	<input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"

@@ -38,7 +38,7 @@
     <a class="nui-button" plain="true" onclick="edit(2)" id="" enabled="true"><span
         class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
     <a class="nui-button" plain="true" onclick="" id="" enabled="true"><span
-        class="fa fa-close fa-lg"></span>&nbsp;删除</a>
+        class="fa fa-close fa-lg"></span>&nbsp;禁用</a>
   </div>
 
   <div class="nui-fit">

@@ -127,22 +127,21 @@
             <div type="indexcolumn" width="40">序号</div>
             <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
                     <div field="" allowSort="true"  width="160" summaryType="count" headerAlign="center" header="订单单号"></div>
-                    <div field="" allowSort="true"  width="130" headerAlign="center" header="单据日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                    
-                    <div field="" name="guestFullName" width="220" headerAlign="center" header="组织机构"></div>
-                    <div field="" width="90" name = "orderMan" headerAlign="center" header="经办人"></div>
                     <div field="guestFullName" name="guestFullName" width="220" headerAlign="center" header="供应商"></div>                    
-                    <div field="" allowSort="true"   name="billTypeId" width="90" headerAlign="center" header="联系人"></div>
-                    <div field="" allowSort="true"  name="settleTypeId" width="90" headerAlign="center" header="联系电话"></div>
+                    <div field="" width="90" name = "orderMan" headerAlign="center" header="采购员"></div>
                     <div allowSort="true" field="billTypeId"  name="billTypeId" width="90" headerAlign="center" header="票据类型"></div>
-                    <div allowSort="true" field="billTypeId"  name="billTypeId" width="90" headerAlign="center" header="发票号码"></div>    
                     <div allowSort="true" field="settleTypeId" name="settleTypeId" width="90" headerAlign="center" header="结算方式"></div>
-                    <div allowSort="true" field="settleTypeId" name="settleTypeId" width="90" headerAlign="center" header="运输方式"></div>                                                                                                
+                    <div field="" allowSort="true"  width="130" headerAlign="center" header="订货日期" dateFormat="yyyy-MM-dd HH:mm" ></div> 
+                    <div field="" allowSort="true"   name="billTypeId" width="90" headerAlign="center" header="仓库"></div>                 
+                    <div field="" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="订单数量"></div>
+                    <div field="" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="订单金额"></div>
+                    <div allowSort="true" field="settleTypeId" name="settleTypeId" width="90" headerAlign="center" header="运输方式"></div>                                                                                                   
                     <div field="" allowSort="true"  width="130" headerAlign="center" header="预计到货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-                    <div field="" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="合计数量"></div>
-                    <div field="" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="合计金额"></div>
-                    <div field="" width="90" name="creator" headerAlign="center" header="制单人"></div>
-                    <div field="" allowSort="true"  width="130" headerAlign="center" header="制单日期" dateFormat="yyyy-MM-dd HH:mm" ></div>  
                     <div field="" allowSort="true"  width="80" headerAlign="center" header="备注"></div>
+                    <div field="" width="90" name="creator" headerAlign="center" header="创建人"></div>
+                    <div field="" allowSort="true"  width="130" headerAlign="center" header="创建日期" dateFormat="yyyy-MM-dd HH:mm" ></div>  
+                                        <div field="" width="90" name="creator" headerAlign="center" header="修改人"></div>
+                    <div field="" allowSort="true"  width="130" headerAlign="center" header="修改日期" dateFormat="yyyy-MM-dd HH:mm" ></div>  
         </div>
     </div> 
 </div>

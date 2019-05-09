@@ -40,7 +40,6 @@ $(document).ready(function(v)
             else{
                 e.cellHtml = "";
             }
-            break;
         }
         else if("storeId" == field)
         {

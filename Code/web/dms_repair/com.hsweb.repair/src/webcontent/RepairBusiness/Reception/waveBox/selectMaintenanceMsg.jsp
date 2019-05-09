@@ -14,18 +14,29 @@
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         </head>
         <style>
-            table,
+            /* #table1
             td {
                 font-family: Tahoma, Geneva, sans-serif;
                 font-size: 14px;
                 color: #000;
             }
             
-            table td {
+            #table1 td {
                 border: 1px solid #000;
                 height: 33px;
                 text-align: center;
-            }
+            }  */
+            #table1,#table2 {
+                border-right:1px solid #CCC;
+                border-bottom:1px solid #CCC;
+                font-size: 14px;
+                }
+            #table1  td,#table2  td{
+                border-left:1px solid #CCC;
+                border-top:1px solid #CCC;
+                text-align: center;
+                padding:2px;
+                }
             
             body {
                 margin: 0;
@@ -55,6 +66,7 @@
                 left: 0;
                 width: 1000px;
                 height: 800px;
+                background-color: aliceblue;
             }
         </style>
 
@@ -62,7 +74,7 @@
             <fieldset id="fd3" style="width:99%;">
                 <legend><span>车型参数</span></legend>
                 <div class="fieldset-body">
-                    <table class="form-table" style="width:100%" border="1" cellspacing="0" cellpadding="0">
+                    <table id="table1" style="width:100%" cellspacing="0" cellpadding="0">
                         <tr>
                             <td style="width: 30%">
                                 车型信息
@@ -90,13 +102,13 @@
                     </table>
                 </div>
             </fieldset>
-            <div style="padding-top: 20px;">
+            <div style="padding-top: 10px;">
             </div>
             <div id="showDiv" class="tipStyle"></div>
             <fieldset id="fd3" style="width:99%;">
                 <legend><span>养护信息</span></legend>
                 <div class="fieldset-body">
-                    <table class="form-table" style="width:100%" border="1" cellspacing="0" cellpadding="0">
+                    <table id="table2" style="width:100%"  cellspacing="0" cellpadding="0">
                         <tr>
                             <td colspan="2" style="color: red;">
                                 该车型养护信息完善中
@@ -115,8 +127,8 @@
                                 保养总价
                             </td>
                             <td style="color: red;">
-                                ￥ 16.00（查看明细）
-                                <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)" onmouseout="outHide()"></span>
+                                ￥ 16.00 <span onmouseover="overShow(this,con8)" onmouseout="outHide()">（查看明细）</span>
+                                <!-- <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" ></span> -->
                             </td>
                         </tr>
                         <tr>
@@ -124,7 +136,7 @@
                                 变速箱油
                             </td>
                             <td>
-                                IX<span id="boxOilPhoto" style="color: #ff8000;" onclick="changeShow(1)">（查看图片）</span>
+                                IX<span id="boxOilPhoto" style="color: #ff8000;cursor:pointer" onclick="changeShow(1)">（查看图片）</span>
                             </td>
                         </tr>
                         <tr>
@@ -153,7 +165,7 @@
                                 接头型号
                             </td>
                             <td>
-                                A045<span id="JointTypePhoto" style="color: #ff8000;" onclick="changeShow(2)">（查看图片）</span>
+                                A045<span id="JointTypePhoto" style="color: #ff8000;cursor:pointer" onclick="changeShow(2)">（查看图片）</span>
                             </td>
                         </tr>
                         <tr>
@@ -169,7 +181,7 @@
                                 换油宝典
                             </td>
                             <td>
-                                <span id="biblePhoto" style="color: #ff8000;" onclick="changeShow(3)">（查看图片）</span>
+                                <span id="biblePhoto" style="color: #ff8000;cursor:pointer" onclick="changeShow(3)">（查看图片）</span>
                             </td>
                         </tr>
                         <tr>
@@ -184,25 +196,27 @@
                 </div>
             </fieldset>
             <div class="nui-fit">
-                <div style="padding-top: 20px">
-                    <input class="nui-textArea" style="width: 100%;height: 80%;" id="matters">
+                <div style="padding-top: 10px;padding:0px 5px;">
+                    <!-- <input class="nui-textArea" style="width: 100%;height: 80%;" id="matters"> -->
+                    <lable id="matters"></lable>  
                 </div>
             </div>
             <div class="max_img" style=" width:100%;height:100%;margin:0 auto">
-                <img src="" id="maxImgShow" onclick="changeHide();" width="100%" height="100%" />
+                <img src="" id="maxImgShow" onclick="changeHide();" width="100%" />
             </div>
             <script type="text/javascript">
                 nui.parse();
                 var con8 = '总价=油品价格+工时费<br>油品价格=单价*循环换油量';
                 var matters = "查询系统使用说明：在使用连顺变速箱油产品之前，核实车辆配置信息是首要前提。本油品推荐仅供参考，具体用油规格以车辆用户手册的规定为准。建议使用VIN码查询，确保查询结果准确。连顺变速箱深度养护“小程序”会根据市场及应用的情况适时地更新产品推荐，在查看此版本时，所有先前的版本不再有效。任何形式的复制信息均需要得到广州市连顺汽车维修服务有限公司的书面许可。如有疑问，请联系客服。";
-                nui.get("matters").setValue(matters);
-                nui.get("matters").disable();
+                document.getElementById("matters").innerHTML = matters;
+                // nui.get("matters").setValue(matters);
+                // nui.get("matters").disable();
 
                 function overShow(e, con) {
                     var showDiv = document.getElementById('showDiv');
                     var pos = e.getBoundingClientRect();
                     $("#showDiv").css("top", pos.bottom); //设置提示div的位置
-                    $("#showDiv").css("left", pos.right);
+                    $("#showDiv").css("left", pos.right-100);
                     showDiv.style.display = 'block';
                     showDiv.innerHTML = con;
                 }

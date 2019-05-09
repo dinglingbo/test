@@ -4842,31 +4842,62 @@ function addSell() {
 }
 
 function editSell() {
-		var row = carSellPointGrid.getSelected();
-		if (row) {
-			nui.open({
-				url : webPath + contextPath
-				+ "/com.hsweb.part.manage.businessOpportunityEdit.flow?token="
+    var row = carSellPointGrid.getSelected();
+    if (row) {
+        nui.open({
+            url : webPath + contextPath
+            + "/com.hsweb.part.manage.businessOpportunityEdit.flow?token="
+            + token,
+            title : "更新商机",
+            width : 550,
+            height : 410,
+            onload : function() {
+                var iframe = this.getIFrameEl();
+                var data = row;
+                data.type = 'editT';
+                // 直接从页面获取，不用去后台获取
+                iframe.contentWindow.SetData(data);
+            },
+            ondestroy : function(action) {
+                if (action == "saveSuccess") {
+                    //销售机会
+                    carSellPointInfo.hide();
+                    showSellPoint();
+                }
+            }
+        });
+    } else {
+        showMsg("请选中一条记录!", "W");
+    }
+}
+    
+
+function showVideo() {
+	nui.open({
+		url : webPath + contextPath
+				+ "/repair/RepairBusiness/Reception/waveBox/videoView.jsp?token="
 				+ token,
-				title : "更新商机",
-				width : 550,
-				height : 410,
-				onload : function() {
-					var iframe = this.getIFrameEl();
-					var data = row;
-					data.type = 'editT';
-					// 直接从页面获取，不用去后台获取
-					iframe.contentWindow.SetData(data);
-				},
-				ondestroy : function(action) {
-					if (action == "saveSuccess") {
-					    //销售机会
-					    carSellPointInfo.hide();
-						showSellPoint();
-					}
-				}
-			});
-		} else {
-			showMsg("请选中一条记录!", "W");
+		title : "视频教程",
+		width : 1000,
+		height : 500,
+		onload : function() {
+		},
+		ondestroy : function(action) {
 		}
-	}
+	});
+}
+
+function showMmsg() {
+	nui.open({
+		url : webPath + contextPath
+				+ "/repair/RepairBusiness/Reception/waveBox/selectMaintenanceMsg.jsp?token="
+				+ token,
+		title : "养护数据",
+		width : 600,
+		height : 580,
+		onload : function() {
+		},
+		ondestroy : function(action) {
+		}
+	});
+}

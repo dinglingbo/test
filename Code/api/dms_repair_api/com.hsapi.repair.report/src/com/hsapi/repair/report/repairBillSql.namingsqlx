@@ -166,7 +166,7 @@
 	<select id="queryOutputAnalysis" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT  
     	     <isEqual  prepend=""  property="groupByType"   compareValue="0">
-        DATE_FORMAT(a.enter_date,'%Y-%m-%d')  as groupName,
+        DATE_FORMAT(a.out_date,'%Y-%m-%d')  as groupName,
      </isEqual>
          
      <isEqual  prepend="" property="groupByType"    compareValue="1">
@@ -263,7 +263,7 @@
 	    </isEqual>
 	    
 	   <isEqual  prepend="" property="groupByType"   compareValue="0">
-	        GROUP BY DATE_FORMAT(a.enter_date,'%Y-%m-%d')
+	        GROUP BY DATE_FORMAT(a.out_date,'%Y-%m-%d')
 	   </isEqual>
 	   
 	   <isEqual  prepend=""  property="groupByType"   compareValue="1">

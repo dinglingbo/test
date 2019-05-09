@@ -232,7 +232,7 @@
 							<tr>
 							<td class="form_label" align="right">车型配置:</td>
 					        <td colspan="5"><input class="nui-TextArea" name="useRemark"
-						       style="width: 98%; height: 50px;" /></td>
+						       style="width: 100%; height: 50px;" /></td>
 							</tr>
 							<tr>
 								<td class="form_label">
@@ -284,7 +284,7 @@
 						    <tr>
 							<td class="form_label" align="right">备注:</td>
 					        <td colspan="5"><input class="nui-TextArea" name="useRemark"
-						       style="width: 98%; height: 50px;" /></td>
+						       style="width: 100%; height: 50px;" /></td>
 							</tr>
 						    <tr>
 							<td class="form_label">

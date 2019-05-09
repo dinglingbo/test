@@ -7,8 +7,8 @@
   - Description:
 -->
 <head>
-<title>整车采购入库</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/carSalesPutStorage.js?v=1.0.0"></script>
+<title>整车采购退货</title>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/carSalesReturn.js?v=1.0.0"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -66,7 +66,7 @@
                 </ul> 
 
 
-				<label style="font-family:Verdana;">订货日期 从：</label>
+				<label style="font-family:Verdana;">退货日期 从：</label>
                 <input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <label style="font-family:Verdana;">至</label>
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
@@ -126,8 +126,8 @@
         <div property="columns">
             <div type="indexcolumn" width="40">序号</div>
             <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
-                    <div field="" allowSort="true"  width="160" summaryType="count" headerAlign="center" header="订单单号"></div>
-                    <div field="" allowSort="true"  width="130" headerAlign="center" header="单据日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                    
+                    <div field="" allowSort="true"  width="160" summaryType="count" headerAlign="center" header="退货单号"></div>
+                    <div field="" allowSort="true"  width="130" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                    
                     <div field="" name="guestFullName" width="220" headerAlign="center" header="组织机构"></div>
                     <div field="" width="90" name = "orderMan" headerAlign="center" header="经办人"></div>
                     <div field="" name="" width="100" headerAlign="center" header="供应商编号"></div>                     
@@ -138,7 +138,6 @@
                     <div allowSort="true" field="billTypeId"  name="billTypeId" width="90" headerAlign="center" header="发票号码"></div>    
                     <div allowSort="true" field="settleTypeId" name="settleTypeId" width="90" headerAlign="center" header="结算方式"></div>
                     <div allowSort="true" field="settleTypeId" name="settleTypeId" width="90" headerAlign="center" header="运输方式"></div>                                                                                                
-                    <div field="" allowSort="true"  width="130" headerAlign="center" header="预计到货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div field="" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="合计数量"></div>
                     <div field="" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="合计金额"></div>
                     <div field="" width="90" name="creator" headerAlign="center" header="制单人"></div>

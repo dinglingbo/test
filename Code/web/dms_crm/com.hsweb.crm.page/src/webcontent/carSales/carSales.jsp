@@ -11,7 +11,6 @@
     <head>
         <title>整车销售</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
         <%@include file="/common/commonRepair.jsp"%>
     </head>
     <style type="text/css">
@@ -120,70 +119,20 @@
         </div>
         <div class="nui-fit">
             <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="list" showModified="false" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true"
-                onshowrowdetail="onShowRowDetail" allowCellWrap="true" url="">
+                allowCellWrap="true" url="">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
-                    <div field="" name="" width="70px" headerAlign="center" header="单据编号"></div>
-                    <div field="" name="" width="150px" headerAlign="center" header="单据日期"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="单据状态"></div>
-                    <div field="" name="" width="80px" headerAlign="center" header="客户编号"></div>
-                    <div field="" name="" width="110px" headerAlign="center" header="客户名称"></div>
-                    <div field="" name="" width="140px" headerAlign="center" header="联系人"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="联系电话"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="车牌号码"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="车型编号"></div>
-                    <div field="" name="" width="130px" headerAlign="center" header="车型名称"></div>
-                    <div field="" name="" width="90px" headerAlign="center" header="汽车品牌"></div>
-                    <div field="" name="" width="90px" headerAlign="center" header="车辆类型"></div>
-                    <div field="" name="" width="80px" headerAlign="center" header="颜色"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="车内饰色"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="VIN码"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="发动机号"></div>
+                    <div field="" name="" width="100px" headerAlign="center" header="工单号"></div>
+                    <div field="" name="" width="100px" headerAlign="center" header="状态"></div>
+                    <div field="" name="" width="100px" headerAlign="center" header="客户名称"></div>
+                    <div field="" name="" width="100px" headerAlign="center" header="订车日期"></div>
+                    <div field="" name="" width="100px" headerAlign="center" header="车型名称"></div>
                     <div field="" name="" width="100px" headerAlign="center" header="预交车日期"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="交车日期"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="交车人"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="交车备注"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="购车方式"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="开票客户"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="结算类型"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="是否开票"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="票据类型"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="发票号码"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="合同编号"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="指导销价"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="成交车价"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="代办金额"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="让利金额"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="装潢金额"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="应收金额"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="实收金额"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="欠款金额"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="业务员"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="制单人"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="制单时间"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="组织机构"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="结算备注"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="单据备注"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="手机号码"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="传真号码"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="电子邮箱"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="合格证号"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="商检单号"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="关单号"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="钥匙号"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="出厂日期"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="车辆仓库"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="提单号"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="生产日期"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="上市日期"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="车体结构"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="车辆级别"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="变速箱"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="排量"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="驱动方式"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="是否进口"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="座位数"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="车型备注"></div>
+                    <div field="" name="" width="100px" headerAlign="center" header="销售顾问"></div>
+                    <div field="" name="" width="100px" headerAlign="center" header="车辆销价"></div>
+                    <div field="" name="" width="100px" headerAlign="center" header="应收定金"></div>
+                    <div field="" name="" width="100px" headerAlign="center" header="已收定金"></div>
+                    <div field="" name="" width="100px" headerAlign="center" header="应收余款"></div>
                 </div>
             </div>
         </div>

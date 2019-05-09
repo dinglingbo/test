@@ -15,8 +15,7 @@
                 <!-- <a class="nui-button" iconCls="icon-edit" plain="true" onclick="editInbound()" id="editEnterMainBtn">修改</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <!-- <a class="nui-button" iconCls="icon-undo" plain="true" onclick="cancelEditInbound()" id="cancelEditEnterMainBtn">取消</a> -->
-                <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="auditToEnter()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;入库</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;退货</a>
                 
                 <!-- <a class="nui-menubutton " menu="#popupMenuPrint" id="menuprint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
 
@@ -27,7 +26,6 @@
 
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="unAudit()" id="uAuditBtn"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返单</a>
                 <span class="separator"></span>
 <!--                 <a class="nui-button" iconCls="" plain="true" onclick="addMorePart()" id="fastEnterBtn"><span class="fa fa-hand-o-right fa-lg"></span>&nbsp;快速录入配件</a> -->
                 <a class="nui-button" plain="true" iconCls="" onclick="importPart()" id="importPartBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
@@ -38,7 +36,7 @@
 </div>
 
               <fieldset id="fd1" style="width:99.5%;">
-                  <legend><span>整车采购订单信息</span></legend>
+                  <legend><span>采购订单信息</span></legend>
                   <div class="fieldset-body">
                   
                       <div id="basicInfoForm" class="form" contenteditable="false">
@@ -111,36 +109,16 @@
                                              onvalidation="onComboValidation"/>
                                   </td>
                                   
-                              </tr>
-                              <tr>
-                              	 <td class="title required" >
-                                      <label>发票号码：</label>
-                                  </td>
-                                  <td colspan="3" style="width:15%">
-										<input allowInput="false" class="nui-textbox" width="100%" id="" name=""/>
-                                  </td>
-                              	 <td class="title required">
-                                      <label>联系人：</label>
-                                  </td>
-                                  <td colspan="1" style="width:15%">
-										<input allowInput="false" class="nui-textbox" width="100%" id="" name=""/>
-                                  </td>  
-                              	 <td class="title required">
-                                      <label>联系电话：</label>
-                                  </td>
-                                  <td colspan="1" style="width:15%">
-										<input allowInput="false" class="nui-textbox" width="100%" id="" name=""/>
-                                  </td> 
-                              	 <td class="title required" style="width:6%;">
+                              </tr>                             
+                              <tr>   
+                                  <td class="title required" style="width:6%;">
                                       <label>运输方式：</label>
                                   </td>
                                   <td colspan="1" style="width:15%">
 										<input allowInput="false" class="nui-textbox" width="100%" id="" name=""/>
-                                  </td>                                                                                                     
-                              </tr>                              
-                              <tr>           
+                                  </td>          
                                   <td class="title required" >
-                                      <label>采购员：</label>
+                                      <label>退货员：</label>
                                   </td>
                                   <td colspan="1" style="width:15%">
                                       <input class="nui-combobox" 
@@ -168,7 +146,7 @@
                                   <td class="title">
                                       <label>备注：</label>
                                   </td>
-                                  <td colspan="5">
+                                  <td colspan="3">
                                       <input class="nui-textbox" width="100%" id="remark" name="remark"/>
                                   </td>
 
@@ -185,7 +163,9 @@
 			    </ul>
    				
                   <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-                    <a class="nui-button" plain="true" iconCls="" id="addPartBtn" onclick="addPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加车辆</a>
+                    <a class="nui-button" plain="true" iconCls="" id="addPartBtn" onclick="addProcurement()"><span class="fa fa-plus fa-lg"></span>&nbsp;选择采购订单</a>
+                    <a class="nui-button" plain="true" iconCls="" id="addPartBtn" onclick="addPutStorage()"><span class="fa fa-plus fa-lg"></span>&nbsp;选择入库单</a>
+                    <a class="nui-button" plain="true" iconCls="" id="addPartBtn" onclick="addPart()"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                     </div>
                     <div class="nui-fit">
                     <div id="rightGrid" class="nui-datagrid" 

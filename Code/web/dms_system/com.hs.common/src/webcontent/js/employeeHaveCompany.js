@@ -28,7 +28,7 @@ function onSearch(){
 	var params = {};
 	params.name = nui.get("name").getValue().replace(/\s+/g, "");
 	params.code = nui.get("code").getValue().replace(/\s+/g, "");
-	if(currTenantId==121){
+	if(currTenantId==0){
 		params.tenantId = 0;
 	}
 	moreOrgGrid.load({

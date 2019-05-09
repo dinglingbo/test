@@ -11,7 +11,7 @@
 -->
 <head>
 <title>编辑来访记录</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemDetail.js?v=1.1.21"></script>
+<script src="<%= request.getContextPath() %>/repair/js/potentialCustomer/addVisitRecords.js?v=1.0.0"></script>
 <style type="text/css">
 /* table {
 	table-layout: fixed;
@@ -54,8 +54,14 @@
                 <table style="width:100%;">
                     <tr>
                         <td style="width:100%;">
-                            <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</ a>
-                            <a class="nui-button" onclick="onCancel" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
+                            <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                            <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                            <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;归档</a>
+                            <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;精品加装</a>
+                            <a class="nui-button" onclick="onCancel" plain="true"  style="width: 80px;"><span class="fa fa-dollar fa-lg"></span>&nbsp;购车预算</a>
+                            <a class="nui-button" onclick="onCancel" plain="true"  style="width: 80px;"><span class="fa fa-remove fa-lg"></span>&nbsp;转销售</a>
+                            <a class="nui-button" onclick="onCancel" plain="true"  style="width: 80px;"><span class="fa fa-remove fa-lg"></span>&nbsp;客户档案</a>
+                            <a class="nui-button" onclick="onCancel" plain="true"  style="width: 80px;"><span class="fa fa-search fa-lg"></span>&nbsp;库存查询</a>
                         </td>
                     </tr>
                 </table>
@@ -107,45 +113,11 @@
 			                             textField="name"
 			                             valueField="id"
 			                             allowInput="true"
-			                             width="85%"
+			                             width="100%"
 			                             
 			                            />
-	                              <input id="contactorName"
-			                         name="contactorName"
-			                         class="nui-buttonedit"
-			                         emptyText=""
-			                         onbuttonclick="chooseContactor()"
-			                         placeholder=""
-			                         selectOnFocus="true" 
-			                         allowInput="false"
-			                         width="30px"
-			                         />
 						     	</td>
-						     	<td class="form_label">
-									<label>客户来源：</label>
-								</td>
-								<td colspan="1">
-			                      <input name="serviceTypeId"
-			                             id="serviceTypeId"
-			                             class="nui-combobox"
-			                             textField="name"
-			                             valueField="id"
-			                             allowInput="true"
-			                             width="85%"
-			                             
-			                            />
-	                              <input id="contactorName"
-			                         name="contactorName"
-			                         class="nui-buttonedit"
-			                         emptyText=""
-			                         onbuttonclick="chooseContactor()"
-			                         placeholder=""
-			                         selectOnFocus="true" 
-			                         allowInput="false"
-			                         width="30px"
-			                         />
-						     	</td>
-						     	<td class="form_label required">
+						     	<!-- <td class="form_label required">
 									<label>意向级别：</label>
 								</td>
 								<td colspan="1">
@@ -168,7 +140,7 @@
 			                         allowInput="false"
 			                         width="30px"
 			                         />
-						     	</td>
+						     	</td> -->
 							<!-- <td class="form_label required">
 									<label>项目类型：</label>
 								</td>
@@ -187,24 +159,25 @@
 								<td colspan="1">
 									<input class="nui-textbox" name="code" width="100%" maxlength="20"/>
 								</td> -->
-							
+							<td class="form_label required">
+								<label>客户名称：</label>
+						    </td>
+							<td colspan="1">
+								<input class="nui-textbox" name="code" width="100%" maxlength="20"/>
+							</td>
+							<td class="form_label">
+								<label>客户性质：</label>
+							</td>
+							<td>
+								<input class="nui-combobox" id="billTypeId" emptyText="个人客户" name="billTypeId" data="[{billTypeId:5,text:'个人客户'},{billTypeId:0,text:'单位客户'}]"
+                          width="100%"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="5"/>
+               
+							</td>
 							</tr>
 							
 							<tr>
-							<td class="form_label required">
-									<label>客户名称：</label>
-								</td>
-								<td colspan="3">
-									<input class="nui-textbox" name="code" width="100%" maxlength="20"/>
-								</td>
-							<td class="form_label">
-									<label>客户性质：</label>
-								</td>
-								<td>
-									<input class="nui-combobox" id="billTypeId" emptyText="个人客户" name="billTypeId" data="[{billTypeId:5,text:'个人客户'},{billTypeId:0,text:'单位客户'}]"
-                          width="98%"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="5"/>
-               
-								</td>
+							
+							
 							</tr>
 							<tr>
 								<td class="form_label">
@@ -227,62 +200,6 @@
 								</td>
 							</tr>
 							<tr>
-							  <td class="form_label">
-									<label>客户区域：</label>
-								</td>
-								<td colspan="1">
-			                      <input name="serviceTypeId"
-			                             id="serviceTypeId"
-			                             class="nui-combobox"
-			                             textField="name"
-			                             valueField="id"
-			                             allowInput="true"
-			                             width="85%"
-			                             
-			                            />
-	                              <input id="contactorName"
-			                         name="contactorName"
-			                         class="nui-buttonedit"
-			                         emptyText=""
-			                         onbuttonclick="chooseContactor()"
-			                         placeholder=""
-			                         selectOnFocus="true" 
-			                         allowInput="false"
-			                         width="30px"
-			                         />
-						     	</td>
-						     	<td class="form_label">
-									<label>证件号码：</label>
-								</td>
-								<td colspan="1">
-									<input class="nui-textbox" name="code" width="100%" maxlength="20"/>
-								</td>
-						     	<td class="form_label">
-									<label>上牌地点：</label>
-								</td>
-								<td colspan="1">
-			                      <input name="serviceTypeId"
-			                             id="serviceTypeId"
-			                             class="nui-combobox"
-			                             textField="name"
-			                             valueField="id"
-			                             allowInput="true"
-			                             width="85%"
-			                             
-			                            />
-	                              <input id="contactorName"
-			                         name="contactorName"
-			                         class="nui-buttonedit"
-			                         emptyText=""
-			                         onbuttonclick="chooseContactor()"
-			                         placeholder=""
-			                         selectOnFocus="true" 
-			                         allowInput="false"
-			                         width="30px"
-			                         />
-						     	</td>
-							</tr>
-							<tr>
 								<td class="form_label required">
 									<label>意向车型：</label>
 								</td>
@@ -293,22 +210,12 @@
 			                             textField="name"
 			                             valueField="id"
 			                             allowInput="true"
-			                             width="85%"
+			                             width="100%"
 			                             
 			                            />
-	                              <input id="contactorName"
-			                         name="contactorName"
-			                         class="nui-buttonedit"
-			                         emptyText=""
-			                         onbuttonclick="chooseContactor()"
-			                         placeholder=""
-			                         selectOnFocus="true" 
-			                         allowInput="false"
-			                         width="30px"
-			                         />
 						     </td>
 						     <td class="form_label">
-									<label>意向颜色：</label>
+									<label>车身颜色：</label>
 								</td>
 								<td colspan="1">
 			                      <input name="serviceTypeId"
@@ -317,19 +224,9 @@
 			                             textField="name"
 			                             valueField="id"
 			                             allowInput="true"
-			                             width="85%"
+			                             width="100%"
 			                             
 			                            />
-	                              <input id="contactorName"
-			                         name="contactorName"
-			                         class="nui-buttonedit"
-			                         emptyText=""
-			                         onbuttonclick="chooseContactor()"
-			                         placeholder=""
-			                         selectOnFocus="true" 
-			                         allowInput="false"
-			                         width="30px"
-			                         />
 						     </td>
 						    </tr>
 							<tr>
@@ -339,84 +236,18 @@
 							</tr>
 							<tr>
 								<td class="form_label">
-									<label>购车用途：</label>
+									<label>内饰颜色：</label>
 								</td>
 								<td colspan="1">
-			                      <input name="serviceTypeId"
+			                       <input name="serviceTypeId"
 			                             id="serviceTypeId"
 			                             class="nui-combobox"
 			                             textField="name"
 			                             valueField="id"
 			                             allowInput="true"
-			                             width="85%"
+			                             width="100%"
 			                             
 			                            />
-	                              <input id="contactorName"
-			                         name="contactorName"
-			                         class="nui-buttonedit"
-			                         emptyText=""
-			                         onbuttonclick="chooseContactor()"
-			                         placeholder=""
-			                         selectOnFocus="true" 
-			                         allowInput="false"
-			                         width="30px"
-			                         />
-						     </td>
-						     <td class="form_label">
-									<label>付款方式：</label>
-								</td>
-								<td colspan="1">
-			                      <input name="serviceTypeId"
-			                             id="serviceTypeId"
-			                             class="nui-combobox"
-			                             textField="name"
-			                             valueField="id"
-			                             allowInput="true"
-			                             width="85%"
-			                             
-			                            />
-	                              <input id="contactorName"
-			                         name="contactorName"
-			                         class="nui-buttonedit"
-			                         emptyText=""
-			                         onbuttonclick="chooseContactor()"
-			                         placeholder=""
-			                         selectOnFocus="true" 
-			                         allowInput="false"
-			                         width="30px"
-			                         />
-						     </td>
-						     <td class="form_label">
-									<label>预算金额：</label>
-								</td>
-								<td colspan="1">
-									<input class="nui-textbox" name="code" width="100%" maxlength="20"/>
-								</td>
-						    </tr>
-						    <tr>
-								<td class="form_label">
-									<label>考虑因素：</label>
-								</td>
-								<td colspan="1">
-			                      <input name="serviceTypeId"
-			                             id="serviceTypeId"
-			                             class="nui-combobox"
-			                             textField="name"
-			                             valueField="id"
-			                             allowInput="true"
-			                             width="85%"
-			                             
-			                            />
-	                              <input id="contactorName"
-			                         name="contactorName"
-			                         class="nui-buttonedit"
-			                         emptyText=""
-			                         onbuttonclick="chooseContactor()"
-			                         placeholder=""
-			                         selectOnFocus="true" 
-			                         allowInput="false"
-			                         width="30px"
-			                         />
 						     </td>
 						     <td class="form_label">
 									<label>是否试驾：</label>
@@ -427,12 +258,29 @@
                
 						     </td>
 						     <td class="form_label">
-									<label>购车日期：</label>
+									<label>预算金额：</label>
 								</td>
 								<td colspan="1">
-                                     <input id="enterDate" name="enterDate" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
+									<input class="nui-textbox" name="code" width="100%" maxlength="20"/>
 								</td>
 						    </tr>
+					        <tr>
+					            <td class="form_label"><label>关注重点：</label></td>
+					            <td colspan="5">
+					                <div id="important" name="important" class="nui-checkboxlist" repeatItems="15" 
+					                repeatLayout="flow"  value="" 
+					                textField="text" valueField="id" ></div>
+					            </td>
+					        </tr>
+					        
+					        <tr>
+					            <td class="form_label"><label>意向级别：</label></td>
+					            <td colspan="5">
+					                <div id="levelOfIntent" name="levelOfIntent" class="nui-checkboxlist" repeatItems="15" 
+					                repeatLayout="flow"  value="" 
+					                textField="text" valueField="id" ></div>
+					            </td>
+					        </tr>
 						    <tr>
 							<td class="form_label" align="right">备注:</td>
 					        <td colspan="5"><input class="nui-TextArea" name="useRemark"

@@ -13,7 +13,7 @@
     <script type="text/javascript" src="<%=webPath + contextPath%>/cloudservice/cloudcall/libs/M800Verification.js" charset="utf-8"></script>
     <script type="text/javascript" src="<%=webPath + contextPath%>/cloudservice/cloudcall/libs/M800Im.js" charset="utf8"></script>
     <script type="text/javascript" src="<%=webPath + contextPath%>/cloudservice/cloudcall/libs/M800Call.js" charset="utf8"></script>
-<script src="<%=webPath + contextPath%>/common/crmcommon.js?v=1.0.0" type="text/javascript"></script>
+<script src="<%=webPath + contextPath%>/common/crmcommon.js?v=1.0.1" type="text/javascript"></script>
 
 
 <style type="text/css">

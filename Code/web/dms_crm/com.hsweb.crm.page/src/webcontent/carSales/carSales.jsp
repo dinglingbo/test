@@ -30,89 +30,41 @@
     </style>
 
     <body>
+        <input class="nui-hidden" id="typeMsg" name="typeMsg" value='<b:write property="typeMsg"/>' />
         <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-            <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-            <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
-            <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
-            <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="onPrint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
-        </div>
-        <div style="padding-top: 5px">
-            <table>
+            <table style="width:100%;">
                 <tr>
-                    <td>
-                        <input class="nui-combobox" id="DateType" name="DateType" editable="false" style="width: 90px;">
-                    </td>
-                    <td colspan="2">
-                        <input id="txtStartDate" editable="false" name="StartDate" class="nui-datepicker" style="width: 95px" /> -
-                        <input id="txtEndDate" editable="false" name="EndDate" class="nui-datepicker" style="width: 95px" />
-                    </td>
-                    <td style="width:60px;text-align:right">单据编号
-                    </td>
-                    <td>
-                        <input id="txtDocumentId" name="Order_id" class="nui-textbox" style="width: 90px" />
-                    </td>
-                    <td class="td_title">客户姓名
-                    </td>
-                    <td>
-                        <input id="txtCustName" name="txtUnitName" class="nui-textbox" style="width: 90px" />
-                    </td>
-                    <td class="td_title">车型名称
-                    </td>
-                    <td colspan="4">
-                        <input id="txtAutotypeName" name="txtDealMan" class="nui-textbox" style="width: 100px" />
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">整车仓库
-                    </td>
-                    <td colspan="2">
-                        <input id="cmbAutoStore" class="nui-combobox" style="width: 208px" data="cmbAutoStoreList" editable="false" />
-                    </td>
-                    <td style="width:50px;text-align:right">车身颜色
-                    </td>
-                    <td>
-                        <input id="cmbAutoColor" class="nui-combobox" style="width: 90px" editable="false" />
-                    </td>
-                    <td align="right">车内饰色
-                    </td>
-                    <td>
-                        <input id="cmbAutoSetcolor" class="nui-combobox" style="width: 90px" editable="false" />
-                    </td>
-                    <td align="right">购买方式
-                    </td>
-                    <td colspan="4">
-                        <input id="cmbAutoBuyway" class="nui-combobox" style="width: 100px" editable="false" />
-                    </td>
+                    <td style="white-space:nowrap;">
+                        <label style="font-family:Verdana;">快速查询：</label>
+                        <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
 
+                        <ul id="popupMenuDate" class="nui-menu" style="display:none;">
+                            <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
+                            <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
+                            <li class="separator"></li>
+                            <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
+                            <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
+                            <li class="separator"></li>
+                            <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
+                            <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
+                            <li class="separator"></li>
+                            <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
+                            <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
+                        </ul>
+                        <a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">所有</a>
+                        <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
+                            <li iconCls="" onclick="quickSearch()" id="type">所有</li>
+                            <li iconCls="" onclick="quickSearch(12)" id="type12">草稿</li>
+                        </ul>
+                        <input id="serviceId" width="120px" emptyText="订单单号" class="nui-textbox" />
 
-                </tr>
-                <tr>
-                    <td>
-                        <input id="selType" class="nui-combobox" name="state" editable="false" style="width: 90px;">
-                    </td>
-                    <td colspan="2">
-                        <input id="txtsel" class="nui-textbox" type="text" style="width: 80px" /> 业务员
-                        <input id="cmbBusinessMan" class="nui-combobox" style="width: 80px" editable="false" />
+                        <input id="" name="" width="80px" emptyText="车型名称" class="nui-textbox" />
 
+                        <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
 
-                    </td>
-
-                    <td align="right">组织机构
-                    </td>
-                    <td>
-                        <input id="cmbOrganization" class="nui-combobox" style="width: 90px">
-                    </td>
-                    <td align="right">单据状态
-                    </td>
-                    <td>
-                        <!--<input id="cmbDocumentState" class="nui-combobox" type="text" style="width: 80px" />-->
-                        <input id="cmbDocumentState" class="nui-combobox" editable="false" style="width: 90px">
-                    </td>
-                    <td align="right">是否开票
-                    </td>
-                    <td>
-                        <input id="cmbBillFlg" class="nui-combobox" name="state" editable="false">
-                        <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     </td>
                 </tr>
             </table>
@@ -135,9 +87,62 @@
                     <div field="" name="" width="100px" headerAlign="center" header="应收余款"></div>
                 </div>
             </div>
+            <div id="mainGrid2" class="nui-datagrid" visible="false" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="list" showModified="false" onrowdblclick="" allowCellSelect="true"
+                editNextOnEnterKey="true" allowCellWrap="true" url="">
+                <div property="columns">
+                    <div type="indexcolumn">序号</div>
+                    <div field="" name="" width="100px" headerAlign="center" header="客户名称"></div>
+                    <div field="" name="" width="100px" headerAlign="center" header="车型"></div>
+                    <div field="" name="" width="100px" headerAlign="center" header="预交车日期"></div>
+                    <div field="" name="" width="100px" headerAlign="center" header="工单号"></div>
+                    <div field="" name="" width="100px" headerAlign="center" header="单据状态"></div>
+                </div>
+            </div>
+            <div id="mainGrid3" visible="false" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="list" showModified="false" onrowdblclick="" allowCellSelect="true"
+                editNextOnEnterKey="true" allowCellWrap="true" url="">
+                <div property="columns">
+                    <div type="indexcolumn">序号</div>
+                    <div field="" name="" width="100px" headerAlign="center" header="销售顾问"></div>
+                    <div field="" name="" width="100px" headerAlign="center" header="客户名称"></div>
+                    <div field="" name="" width="100px" headerAlign="center" header="车型"></div>
+                    <div field="" name="" width="100px" headerAlign="center" header="销售日期"></div>
+                    <div field="" name="" width="100px" headerAlign="center" header="交车日期"></div>
+                    <div field="" name="" width="100px" headerAlign="center" header="结案日期"></div>
+                    <div field="" name="" width="100px" headerAlign="center" header="结案人"></div>
+                    <div field="" name="" width="100px" headerAlign="center" header="工单号"></div>
+                </div>
+            </div>
         </div>
         <script type="text/javascript">
             nui.parse();
+
+            var mainGrid = null;
+            var mainGrid2 = null;
+            var mainGrid3 = null;
+            $(document).ready(function(v) {
+                mainGrid = nui.get("mainGrid");
+                mainGrid2 = nui.get("mainGrid2");
+                mainGrid3 = nui.get("mainGrid3");
+                if (nui.get("typeMsg").value == 1) {
+                    mainGrid.setVisible(true);
+                }
+                if (nui.get("typeMsg").value == 2) {
+                    mainGrid2.setVisible(true);
+                }
+                if (nui.get("typeMsg").value == 3) {
+                    mainGrid3.setVisible(true);
+                }
+            });
+
+            function add() {
+                var item = {};
+                item.id = "7476";
+                item.text = "编辑整车销售";
+                item.url = webPath + contextPath + "/page/carSales/editCarSales.jsp";
+                item.iconCls = "fa fa-file-text";
+                var params = {};
+                window.parent.activeTabAndInit(item, params);
+            }
         </script>
     </body>
 

@@ -12,7 +12,7 @@
         <head>
             <title>Title</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxDetail.js?v=1.332"></script>
+            <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxDetail.js?v=1.333"></script>
         </head>
         <style type="text/css">
             body {
@@ -522,6 +522,12 @@
                                         <a id="showCardEl" href="javascript:showCard()">储值卡(0)</a>
                                     </label>
                                     <label id="creditEl" style="font-family:Verdana;color:#578ccd;">挂账:0</label>
+                                    <label id="Mmsglabel" style="font-family:Verdana;color:blue;">
+                                        <a id="MmsgEl" href="javascript:showMmsg()">养护数据</a>
+                                    </label>
+                                    <label id="videoLabel" style="font-family:Verdana;color:blue;">
+                                        <a id="videoEl" href="javascript:showVideo()">教程</a>
+                                    </label>
                                     <span>&nbsp;&nbsp;&nbsp;</span>
                                 </div>
                             </td>

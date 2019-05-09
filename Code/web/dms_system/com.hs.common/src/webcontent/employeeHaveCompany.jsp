@@ -12,7 +12,7 @@
 <head>
     <title>员工兼职选择</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />	
-    <script src="<%=webPath + contextPath%>/common/js/employeeHaveCompany.js?v=1.0.5" type="text/javascript"></script>    
+    <script src="<%=webPath + contextPath%>/common/js/employeeHaveCompany.js?v=1.0.6" type="text/javascript"></script>    
 </head>
 <body>
 	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">

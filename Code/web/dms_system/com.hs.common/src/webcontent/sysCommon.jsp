@@ -104,6 +104,7 @@
     String bankAccountNumber = "";
     String slogan1 = "";
     String slogan2 = "";
+    String imCode = "";
 	Map attr=new HashMap();
 	Object billParamsObj = null;
 	Map billParams = new HashMap();
@@ -215,6 +216,9 @@
                 if(attr.get("srmUserId") != null){
                 	srmUserId = attr.get("srmUserId").toString();
                 }
+                if(attr.get("imCode") != null){
+                	imCode = attr.get("imCode").toString();
+                }
                 
                 if(attr.get("billParams") != null){
                 	billParamsObj = attr.get("billParams");
@@ -296,6 +300,7 @@
     var currEmpId = "<%=empId %>";
     var currEmpTel = "<%=empTel %>";
     var token = "<%=token %>";
+    var currImCode = "<%=imCode %>";
     var currCompAddress = "<%=compAddress %>";
     var currCompTel = "<%=compTel %>";
     var currCompLogoPath = "<%=compLogoPath %>";

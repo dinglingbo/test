@@ -169,7 +169,7 @@ function selectSupplier(elId)
 function add(){
     var item={};
     item.id = "carSalesDetails";
-    item.text = "整车采购订单详情";
+    item.text = "验车入库详情";
     item.url = webPath + contextPath + "/com.hsweb.part.manage.carSalesPutStorageDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
@@ -183,10 +183,23 @@ function edit(){
     if(!row) return; 
     var item={};
     item.id = "carSalesDetails";
-    item.text = "整车采购订单详情";
+    item.text = "验车入库详情";
     item.url = webPath + contextPath + "/com.hsweb.part.manage.carSalesPutStorageDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = row; 
     window.parent.activeTabAndInit(item,params);
+}
+function carCheck(){
+    nui.open({
+        url: webPath+contextPath+"/com.hsweb.part.manage.carCheck.flow?token="+token,
+        title: "验车", width: 980, height: 560,
+        allowDrag:true,
+        allowResize:true,
+        onload: function (){
+
+        },
+        ondestroy: function (action){
+        }
+    });
 }

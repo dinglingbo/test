@@ -1,184 +1,152 @@
-<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@include file="/common/commonPart.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" session="false"%>
+<%@include file="/common/common.jsp"%>
+<%@include file="/common/commonRepair.jsp"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!--  
-  - Author(s): Administrator
-  - Date: 2018-02-23 14:18:46
-  - Description:
--->
+<%--
+- Author(s): huang
+- Date: 2014-08-13 12:27:01
+- Description:
+  --%>
 <head>
-<title>整车采购入库详情</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/carSalesPutStorageDetails.js?v=1.0.1"></script>
-<style type="text/css">
-.title {
-  width: 60px;
-  text-align: right;
-}
-
-.title.required {
-  color: red;
-}
-.title.tip {
-  color: blue;
-}
-
-.title.wide {
-  width: 100px;
-}
-
-.mini-panel-border {
-  border: 0;
-}
-
-.mini-panel-body {
-  padding: 0;
-}
-body .mini-grid-row-selected{
-    background:#89c3d6 !important; 
-}
-.mini-tabs-scrollCt{
-	display:none;
-}
-.mini-tabs-body-top{
-	padding:0px;
-}
-
-</style>
-
+<title>验车入库添加</title>
+<%--<script
+	 src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.1.20"></script> --%>
+</head>
 <body>
-    <%@include file="/manage/inOutManage/purchaseOrder/carSalesPutStorageDetail.jsp" %>
-   
-
-
-<div id="advancedMorePartWin" class="nui-window"
-     title="配件选择" style="width:700px;height:350px;"
-     showModal="true"
-     showHeader="false"
-     allowResize="false"
-     style="padding:2px;border-bottom:0;"
-     allowDrag="true">
-     <div class="nui-toolbar" >
-        <table style="width:100%;">
-            <tr>
-                <td style="width:100%;">
-                    <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div class="nui-fit">
-          <div id="morePartGrid" class="nui-datagrid" style="width:100%;height:95%;"
-               selectOnLoad="true"
-               showPager="false"
-               dataField=""
-               frozenStartColumn="0"
-               frozenEndColumn="1"
-               onrowdblclick="addSelectPart"
-               allowCellSelect="true"
-               editNextOnEnterKey="true"
-               allowCellWrap = true
-               url="">
-              <div property="columns">
-                <div type="indexcolumn">序号</div>
-                <div field="code" name="code" width="100" headerAlign="center" header="配件编码"></div>
-                <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
-                <div field="name" name="name" width="100" headerAlign="center" header="配件名称"></div>
-                <div field="partBrandId" name="partBrandId" width="100" headerAlign="center" header="品牌"></div>
-                <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="品牌车型"></div>
-                <div allowSort="true" datatype="float" name="outableQty" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
-                <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div>
-                <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
-                <div allowSort="true" datatype="float" field="onRoadQty" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>
-                <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div>
-              </div>
-          </div>
-    </div>
-</div>
-
-<div id="advancedAddWin" class="nui-window"
-     title="快速录入配件" style="width:400px;height:200px;"
-     showModal="true"
-     allowResize="false"
-     allowDrag="true">
-<!--          <div class="nui-toolbar" style="padding:0px;border-bottom:0;"> -->
-<!--             <table style="width:80%;"> -->
-<!--                 <tr> -->
-<!--                     <td style="width:80%;"> -->
-<!--                         <a class="nui-button" iconCls="" plain="true" onclick="onAdvancedAddOk()"><span class="fa fa-check fa-lg"></span>&nbsp;确定</a> -->
-<!--                         <a class="nui-button" iconCls="" plain="true" onclick="onAdvancedAddCancel"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a> -->
-<!--                     </td> -->
-<!--                 </tr> -->
-<!--             </table> -->
-<!--         </div> -->
-    <div id="advancedAddForm" class="form">
-        <table style="width:100%;">
-          
-            <tr>
-                <td colspan="3">
-                    <textarea class="nui-textarea" emptyText="格式:编码*数量*单价" width="100%" style="height: 110px;" id="fastCodeList" name="fastCodeList"></textarea>
-                </td>
-            </tr>
-            
-        </table>
-        <div style="text-align:center;padding:10px;">
-            <a class="nui-button" onclick="onAdvancedAddOk" style="width:60px;margin-right:20px;">确定</a>
-            <a class="nui-button" onclick="onAdvancedAddCancel" style="width:60px;">取消</a>
-        </div>
-    </div>
-</div>
-
-<div id="exportDiv" style="display:none">  
-    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
-        <tr>
-            <td colspan="1" align="left">单号：</td>
-            <td colspan="1" align="left"><span id="eServiceId"></span></td>
-        </tr>
-        <tr>
-            <td colspan="1" align="left">供应商名称：</td>
-            <td colspan="1" align="left"><span id="eGuestName"></span></td>
-        </tr>
-        <tr>
-            <td colspan="1" align="left">备注：</td>
-            <td colspan="1" align="left"><span id="eRemark"></span></td>
-        </tr>
-        <tr>  
-            <td colspan="1" align="center">配件编码</td>
-            <td colspan="1" align="center">配件全称</td>
-            <td colspan="1" align="center">品牌车型</td>
-            <td colspan="1" align="center">单位</td>
-            <td colspan="1" align="center">数量</td>
-            <td colspan="1" align="center">单价</td>
-            <td colspan="1" align="center">金额</td>
-            <td colspan="1" align="center">备注</td>
-            <td colspan="1" align="center">仓库</td>
-            <td colspan="1" align="center">仓位</td>
-            <td colspan="1" align="center">OEM码</td>
-            <td colspan="1" align="center">规格/方向/颜色</td> 
-        </tr>
-        <tbody id="tableExportContent">
-        </tbody>
-    </table>  
-    <a href="" id="tableExportA"></a>
-</div>  
-    
-<div id="advancedTipWin" class="nui-window"
-        title="未成功导入配件" style="width:400px;height:200px;"
-        showModal="true"
-        allowResize="false"
-        allowDrag="true">
-        <div id="advancedTipForm" class="form">
-            <table style="width:100%;height: 100%;">
-            
-                <tr>
-                    <td colspan="3">
-                        <textarea class="nui-textarea" emptyText="" width="100%" style="height: 100%;" id="imprtPastCodeList" name="imprtPastCodeList"></textarea>
+		     <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:100%;">
+                            <a class="nui-button" onclick="onOk()" id="save" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                            <a class="nui-button" onclick="onClose()" id="cancel" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+	<fieldset
+		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;">
+		<legend>入库单信息</legend>
+		
+		<div id="dataform1" style="padding-top: 5px;">
+			<!-- hidden域 -->
+			<input class="nui-hidden" name="id"  /> 
+			<table style="width: 100%; "
+				class="nui-form-table">
+				<tr>
+					<td class="form_label"  align="right">入库单号:</td>
+					<td ><input class="nui-textbox" name="name" /></td>
+					<td class="form_label"  align="right">供应商:</td>
+					<td colspan="3" style="width:38%">
+                      <input id="guestId"
+                             name="guestId"
+                             class="nui-buttonedit"
+                             emptyText="请选择供应商..."
+                             onbuttonclick="selectSupplier('guestId')"
+                             onvaluechanged="onGuestValueChanged"
+                             width="100%"
+                             placeholder="请选择供应商"
+                             selectOnFocus="true" />
                     </td>
-                </tr>
-                
-            </table>
-        </div>
-    </div>
-
+					<td class="form_label"  align="right">入库日期:</td>
+					<td>
+	                   <input name="" id=""  showTime="true" class="nui-datepicker"  format="yyyy-MM-dd HH:mm"/>
+					</td>
+					<td class="form_label"  align="right">经手人:</td>
+					<td>
+	                   <input name="" id=""  showTime="true" class="nui-textbox" />
+					</td>
+				</tr>
+				<tr>
+					<td class="form_label"  align="right">车价（成本）:</td>
+					<td ><input class="nui-textbox" name="name" /></td>
+					<td class="form_label"  align="right">运输公司:</td>
+					<td colspan="3" style="width:38%">
+                      <input id="guestId"
+                             name="guestId"
+                             class="nui-buttonedit"
+                             emptyText="请选择供应商..."
+                             onbuttonclick="selectSupplier('guestId')"
+                             onvaluechanged="onGuestValueChanged"
+                             width="100%"
+                             placeholder="请选择供应商"
+                             selectOnFocus="true" />
+                    </td>
+					<td class="form_label"  align="right">物流专员:</td>
+					<td>
+	                   <input name="" id=""  showTime="true" class="nui-textbox" />
+					</td>
+					<td class="form_label"  align="right">运输费:</td>
+					<td>
+	                   <input name="" id=""  showTime="true" class="nui-textbox" />
+					</td>
+				</tr>				
+			</table>
+		</div>
+	</fieldset>
+	<fieldset
+		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;">
+		<legend>车辆信息</legend>
+		
+		<div id="dataform1" style="padding-top: 5px;">
+			<!-- hidden域 -->
+			<input class="nui-hidden" name="id"  /> 
+			<table style="width: 100%; "
+				class="nui-form-table">
+				<tr>
+					<td class="form_label"  align="right">车型:</td>
+					<td ><input class="nui-textbox" name="name" /></td>
+					<td class="form_label"  align="right">品牌:</td>
+					<td ><input class="nui-textbox" name="name" /></td>
+					<td class="form_label"  align="right">规格:</td>
+	                <td ><input class="nui-textbox" name="name" /></td>
+					<td class="form_label"  align="right">排量:</td>
+					<td> <input  class="nui-textbox" /></td>
+					<td class="form_label"  align="right">缸数:</td>
+					<td> <input  class="nui-textbox" /></td>					
+				</tr>
+				<tr>
+					<td class="form_label"  align="right">驱动模式:</td>
+					<td ><input class="nui-textbox" name="name" /></td>
+					<td class="form_label"  align="right">变速箱:</td>
+					<td ><input class="nui-textbox" name="name" /></td>
+					<td class="form_label"  align="right">配置:</td>
+	                <td colspan="3" ><input class="nui-textbox" width="100%"name="name" /></td>
+					<td class="form_label"  align="right">车架号:</td>
+					<td> <input  class="nui-textbox" /></td>					
+				</tr>
+				<tr>
+					<td class="form_label"  align="right">发动机号:</td>
+					<td ><input class="nui-textbox" name="name" /></td>
+					<td class="form_label"  align="right">公里数:</td>
+					<td ><input class="nui-textbox" name="name" /></td>
+					<td class="form_label"  align="right">车身颜色:</td>
+	                <td ><input class="nui-textbox" width="100%"name="name" /></td>
+					<td class="form_label"  align="right">内饰颜色:</td>
+					<td> <input  class="nui-textbox" /></td>	
+					<td class="form_label"  align="right">生产日期:</td>
+					<td> <input name="" id=""  showTime="true" class="nui-datepicker"  format="yyyy-MM-dd HH:mm"/></td>									
+				</tr>
+				<tr>
+					<td class="form_label"  align="right">车况备注:</td>
+					<td colspan="9"> <input  class="nui-TextArea" width="50%"/></td>
+				</tr>									
+			</table>
+		</div>
+	</fieldset>
+	<!-- 从表的修改 -->
+	<div style="margin: 0px 2px 0px 2px;">
+		<div class="nui-tabs" id="tab" activeIndex="0" style="width: 100%;height:59%">
+			<div title="随车物品">
+				<div class="nui-fit" >
+				</div>
+			</div>
+			<div title="车辆检查">
+				<div class="nui-fit" >
+				</div>
+			</div>			
+		</div>
+	</div>
 </body>
 </html>

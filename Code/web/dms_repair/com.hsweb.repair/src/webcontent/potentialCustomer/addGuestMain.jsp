@@ -150,7 +150,6 @@
               </div>
           </div>
     </div>
-</div>
 
 
 <div id="advancedSearchWin" class="nui-window"

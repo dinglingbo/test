@@ -11,14 +11,12 @@
 %>
 
 <head>
-    <title>考虑因素</title>
+    <title>车型结构</title>
     <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%= request.getContextPath() %>/repair/js/potentialCustomer/considerations.js?v=1.0.0"></script>
-
+    <script src="<%= request.getContextPath() %>/repair/js/potentialCustomer/visitMode.js?v=1.0.0"></script>
 </head>
 
 <body>
-
     <div class="nui-toolbar">
         <a class="nui-button" plain="true" onclick="addShareUrl" id="addStationBtn">
             <span class="fa fa-plus fa-lg"></span>&nbsp;新增
@@ -32,8 +30,8 @@
             allowCellSelect="true" allowCellEdit="true" showModified="false" showSummaryRow="true"
             style="width: 80%; height: 40%; margin-left:10%; ">
             <div property="columns">
-                <div type="indexcolumn">序号</div>
-                <div allowSort="true" field="name" summaryType="count" headerAlign="center" header="名称">
+                <div type="indexcolumn" headerAlign="center">序号</div>
+                <div allowSort="true" field="name" summaryType="count" headerAlign="center" header="车型结构">
                     <input property="editor" class="nui-textbox" />
                 </div>
                 <div allowSort="true" allowSort="true" field="isDisabled" headerAlign="center" header="状态">
@@ -42,7 +40,6 @@
             </div>
         </div>
     </div>
-
 </body>
 <script type="text/javascript">
 

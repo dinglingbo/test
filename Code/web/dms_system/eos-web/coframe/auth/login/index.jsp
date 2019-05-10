@@ -25,6 +25,7 @@
     <script src="<%=request.getContextPath()%>/coframe/auth/login/feedback/html2canvas.min.js" type="text/javascript"></script>
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/layim-v3.8.0/dist/css/layui.css">
 	<script src="<%=request.getContextPath()%>/layim-v3.8.0/dist/layui.js"></script>
+	<script src="<%=request.getContextPath()%>/layim-v3.8.0/dist/layim.js?v=1.0.1"></script>
     <style type="text/css">
 	a {
 	cursor: pointer;
@@ -937,7 +938,7 @@ layui.use('layim', function(layim){
     //,voice: false //声音提醒，默认开启，声音文件为：default.mp3
     
     ,msgbox: layui.cache.dir + 'css/modules/layim/html/msgbox.html' //消息盒子页面地址，若不开启，剔除该项即可
-    ,find: layui.cache.dir + 'css/modules/layim/html/find.html' //发现页面地址，若不开启，剔除该项即可
+    ,find: layui.cache.dir + 'css/modules/layim/html/find.jsp' //发现页面地址，若不开启，剔除该项即可
     ,chatLog: layui.cache.dir + 'css/modules/layim/html/chatlog.html' //聊天记录页面地址，若不开启，剔除该项即可
     
   });

@@ -78,7 +78,6 @@
                     <div field="" headerAlign="center" allowSort="true" width="100px">金额（元） </div>
                     <div field="" headerAlign="center" allowSort="true" width="100px">制单人</div>
                     <div field="" headerAlign="center" allowSort="true" width="100px">制单时间</div>
-                    <div field="" headerAlign="center" allowSort="true" width="100px">组织机构</div>
                     <div field="" headerAlign="center" allowSort="true" width="100px">备注</div>
                 </div>
             </div>

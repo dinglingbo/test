@@ -7,7 +7,7 @@ const ConnectionEvent = M800Core.ConnectionEvent;
 const { VerificationType } = M800Verification;
 const Connection = M800Core.Connection;
 const CallSessionEvent = M800Call.CallSessionEvent;
-
+ 
 const appMeta = {
 
 /*applicationKey: 'mappc741a4f4-e6cc-4685-884a-e3222958b0be',
@@ -19,14 +19,23 @@ carrier: 'ruixinchangyin-comphs-1-prod.m800-api.com',
 capabilities: [],
 applicationVersion: '1.0.0',*/
 
-     applicationKey: 'mapp6819136e-7c9f-4ee3-abe0-ecbd0df69e47',
-     applicationSecret: '7f3c03af-9e89-4ac1-b285-0431bcc2f9ca',
-     developerKey: 'mdev1e81c103-2b2e-437a-869b-f34430166a02',
-     developerSecret: '037057b4-e59a-4586-8c3b-2836751c4256',
-     applicationIdentifier: 'com.maaii-api.org.ruixinchangyin-comphs-1-test',
-     carrier: 'ruixinchangyin-comphs-1-test.m800-api.com',
-     capabilities: [],
-     applicationVersion: '1.0.0',
+//     applicationKey: 'mapp6819136e-7c9f-4ee3-abe0-ecbd0df69e47',
+//     applicationSecret: '7f3c03af-9e89-4ac1-b285-0431bcc2f9ca',
+//     developerKey: 'mdev1e81c103-2b2e-437a-869b-f34430166a02',
+//     developerSecret: '037057b4-e59a-4586-8c3b-2836751c4256',
+//     applicationIdentifier: 'com.maaii-api.org.ruixinchangyin-comphs-1-test',
+//     carrier: 'ruixinchangyin-comphs-1-test.m800-api.com',
+//     capabilities: [], 
+//     applicationVersion: '1.0.0', 
+		
+		applicationKey: 'mappc741a4f4-e6cc-4685-884a-e3222958b0be',
+	    applicationSecret: 'f6b3a584-a429-41fb-b203-faf6e3bf1e93',
+	    developerKey: 'mdev9ac578cb-05f3-4180-80df-60ff9629a86e',
+	    developerSecret: 'b13f64af-ab62-4fba-9c6b-f157b194ae4d',
+	    applicationIdentifier: 'com.maaii-api.org.ruixinchangyin-comphs-1-prod',
+	    carrier: 'ruixinchangyin-comphs-1-prod.m800-api.com',
+	    capabilities: [],
+	    applicationVersion: '1.0.0',
 
 };
 
@@ -57,9 +66,9 @@ const options = {
 
 
 function signOut() {
-    localStorage.removeItem("jid")
+    localStorage.removeItem("jid");
     accountMgr.signOut().then(res =>{
-
+ 
          layer.alert('提出成功')
     })
 
@@ -484,6 +493,8 @@ function startCall(el) {
 
 }
 function makeOffnetCall(){
+      callSessionManager = client.getServiceLocator().get('call');
+
       let phone = $('#whphone').val()
       callSessionManager.makeOffnetCall(phone)
 }

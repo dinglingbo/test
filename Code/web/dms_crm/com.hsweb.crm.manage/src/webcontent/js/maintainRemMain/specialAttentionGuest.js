@@ -935,16 +935,38 @@ function updateDate() {
         var hei = 500;
         var wid = 800;
         if (row.guestType == 0) {
-            turl = webPath + contextPath + '/' + row.updateUrl + "?token=" + token;
+           // turl = webPath + contextPath + '/' + row.updateUrl + "?token=" + token;
             // if (row.serviceType != 10 && row.serviceType != 8) {
             //     hei = 500;
             // }
+            var guest = {
+                guestId:row.trueGuestId,
+                    carNo:row.carNo,
+                    guestFullName:row.guestName
+            };
+                nui.open({
+                    url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditGuest.flow?token="+token,
+                    title: "修改客户资料", width: 750, height: 570,
+                    onload: function () {
+                        var iframe = this.getIFrameEl();
+                        var params = {};
+                        if(guest)
+                        {
+                            params.guest = guest;
+                        }
+                        iframe.contentWindow.setData(params);
+                    },
+                    ondestroy: function (action){
+                            gridReload(row.serviceType);
+                    }
+                });
+
         } else {
             turl = webPath + contextPath + "/com.hsweb.crm.manage.clientInfo_edit.flow?token=" + token;
             hei = 550;
             wid = 520;
             row.id = row.crmGuestId;
-        }
+       
         nui.open({
             url: turl,
             title: tit, width: wid, height: hei,
@@ -956,6 +978,7 @@ function updateDate() {
                 gridReload(row.serviceType);
             }
         });
+    }
     } else {
         showMsg("请选中一条数据", "W");
     }

@@ -239,7 +239,7 @@ position:relative;
             </tr>
             <tr>
                 <td class="tbtext">组合地址<span class="spanwidth"></span></td>
-                <td colspan="5"><input class="nui-textbox tabwidth" enabled="false" name="address" id="address"/></td>
+                <td colspan="5"><input class="nui-textbox tabwidth" enabled="true" name="address" id="address"/></td>
 
             </tr>
 

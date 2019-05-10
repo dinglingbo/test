@@ -81,6 +81,7 @@ var y = 0;
 var showSellEl=null;
 var sfData = {};
 var contactorF = null;
+var rdata = {};
 var prdtTypeHash = {
     "1":"套餐",
     "2":"项目",
@@ -2341,6 +2342,7 @@ function doSearchCardTimes(guestId,fcarId)
     p.status = 2; 
     p.isRefund = 0;
     p.carId = fcarId;
+    p.orgid = currOrgid;
     cardTimesGrid.load({
     	token:token,
         p:p
@@ -2364,6 +2366,7 @@ function doSearchItemTimes(guestId,fcarId)
     p.status = 2; 
     p.isRefund = 0;
     p.carId = fcarId;
+    p.orgid = currOrgid;
     itemTimesGrid.load({
     	token:token,
         p:p
@@ -2382,7 +2385,8 @@ function doSearchMemCard(guestId)
 
     memCardGrid.load({
     	token:token,
-        guestId:guestId
+        guestId:guestId,
+        orgid:currOrgid
     },function(){
         var data = memCardGrid.getData();
         var len = data.length||0;
@@ -4718,7 +4722,7 @@ function SearchLastCheckMain() {
                 var ldata = text.list[0];
                 lastCheckParams = ldata;
                 score = ldata.check_point || 0;
-                lcheckDate = ldata.checkDate ;
+                lcheckDate = nui.formatDate(nui.parseDate(ldata.checkDate),"yyyy-MM-dd HH:mm:ss");
                 var rdate = nui.formatDate(nui.parseDate(ldata.record_date),"yyyy-MM-dd HH:mm:ss")
 
                 $("#lastCheckInfo1").html('上次检查');

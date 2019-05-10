@@ -24,8 +24,11 @@
     <script src="<%=request.getContextPath()%>/common/nui/res/third-party/scrollbar/jquery.mCustomScrollbar.concat.min.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/coframe/auth/login/feedback/html2canvas.min.js" type="text/javascript"></script>
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/layim-v3.8.0/dist/css/layui.css">
+	<script src="<%=request.getContextPath()%>/coframe/imjs/util.js"></script>
+	<script src="<%=request.getContextPath()%>/coframe/imjs/message.js"></script>
+	<script src="<%=request.getContextPath()%>/coframe/imjs/messagebody.js"></script>
 	<script src="<%=request.getContextPath()%>/layim-v3.8.0/dist/layui.js"></script>
-	<script src="<%=request.getContextPath()%>/layim-v3.8.0/dist/layim.js?v=1.0.1"></script>
+	<script src="<%=request.getContextPath()%>/coframe/imjs/websocketconfig.js?v=1.0.2"></script>
     <style type="text/css">
 	a {
 	cursor: pointer;
@@ -852,11 +855,148 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
 
 <script>
 
+		var currentsession= currImCode;
+		
+
 if(!/^http(s*):\/\//.test(location.href)){
   alert('请部署到localhost上查看该演示');
 }
 
 layui.use('layim', function(layim){
+
+
+		//回复消息
+		  var reMsg=function(sender,time,msg){
+		  	  layim.getMessage({
+		        username: "Hi"
+		        ,avatar: ""
+		        ,id: sender
+		        ,type: "friend"
+		        ,content: msg
+		      });
+			  //var content = $(".remsg").html();
+		       //content  =content.replace("{content}", HtmlUtil.htmlEncodeByRegExp(msg)).replace("{time}",time).replace("{sender}",sender);
+		       //$("#chatcontent").append(msg);
+	   	       //$("#chatcontent").scrollTop( $("#chatcontent")[0].scrollHeight); 
+		  }
+		
+		//发送消息
+	      var sendMsg=function(msg,receiver,group){ 
+	    	  var message = new proto.Model(); 
+	      	  var content = new proto.MessageBody();
+	           message.setMsgtype(4);
+	           message.setCmd(5);
+	           message.setGroupid(group);//系统用户组
+	           message.setToken(currentsession);  
+	           message.setSender(currentsession);
+	           message.setReceiver(receiver);//好友ID
+	           content.setContent(msg);
+	           content.setType(0)
+	           message.setContent(content.serializeBinary())
+	           socket.send(message.serializeBinary()); 
+		  }
+		 //拉取离线消息
+	     var showOfflineMsg = function (layim){
+	    	 $.ajax({
+				  type : "post",
+				  url : "192.168.111.6089/getofflinemsg",
+				  async : true,
+				  success : function(data){ 
+					  var dataObj=eval("("+data+")");
+				      if(dataObj!=null&&dataObj.length>0){
+				    	  for(var i =0;i<dataObj.length;i++){
+				    		  layim.getMessage({
+						 	        username: dataObj[i].sendusername
+						 	        ,avatar: dataObj[i].avatar+"?"+new Date().getTime()
+						 	        ,id: dataObj[i].senduser
+						 	        ,type: "friend"
+						 	        ,content: dataObj[i].content
+						 	        ,timestamp: dataObj[i].createdate
+					 	       }); 
+				    	  }   
+					  } 
+				  }
+			  }); 
+	     }
+
+		var initEventHandle = function () {
+    	 
+     
+              //收到消息后
+              socket.onmessage = function(event) {
+              	  if (event.data instanceof ArrayBuffer){
+              	       var msg =  proto.Model.deserializeBinary(event.data);      //如果后端发送的是二进制帧（protobuf）会收到前面定义的类型
+              	       //心跳消息
+              	       if(msg.getCmd()==2){
+              	    	   //发送心跳回应
+              	    	   var message1 = new proto.Model();
+                           message1.setCmd(2);
+                           message1.setMsgtype(4);
+                           socket.send(message1.serializeBinary());
+              	       }else if(msg.getCmd()==3){
+              	    	  if(msg.getSender()!=currentsession){
+              	    		layer.msg("用户"+msg.getSender()+"上线了");  
+              	    		 var existsUser =  $("li[title='"+msg.getSender()+"']").html();
+              	    		 if(existsUser == undefined){
+              	    			var usertpl = $(".usertemplate").html();
+              	    			usertpl  =usertpl.replace("{user}", msg.getSender()).replace("{user}",msg.getSender());
+              	    			$(".u-lst").append(usertpl);  
+              	    		 }else{
+              	    			$("li[title='"+msg.getSender()+"']").removeClass("off");
+              	    		 }  
+              	    	  } 
+              	       }else if(msg.getCmd()==4){
+               	    	  if(msg.getSender()!=currentsession){
+                	    		layer.msg("用户"+msg.getSender()+"下线了");  
+                	    		$("li[title='"+msg.getSender()+"']").addClass("off");
+                	       }    
+                	   }else if(msg.getCmd()==5){
+              	    	   //显示非自身消息    
+              	    	   if(msg.getSender()!=currentsession){
+              	    		   //不显示用户组消息
+              	    		   if(msg.getGroupid()==null||msg.getGroupid().length<1){
+              	    			 var msgCon =  proto.MessageBody.deserializeBinary(msg.getContent()); 
+                  	    	     reMsg(msg.getSender(),msg.getTimestamp(),msgCon.getContent());
+                  	    	     
+              	    		   } 
+              	    	   } 
+              	       }
+              	  }else {
+                        var data = event.data;                //后端返回的是文本帧时触发
+                  } 
+              };
+              //连接后
+              socket.onopen = function(event) {
+            	   var message = new proto.Model();
+            	   var browser=BrowserUtil.info();
+    	   	       message.setVersion("1.0");
+    	   	       message.setDeviceid("")
+    	   	       message.setCmd(1);
+    	   	       message.setSender(currentsession);
+    	   	       message.setMsgtype(1); 
+    	   	       message.setFlag(1);
+    	   	       message.setPlatform(browser.name);
+    	   	       message.setPlatformversion(browser.version);
+    	   	       message.setToken(currentsession);
+    	   	       var bytes = message.serializeBinary();  
+                   socket.send(bytes);
+                   showOfflineMsg();
+              };
+              //连接关闭
+              socket.onclose = function(event) {
+            	  //layer.confirm('您已下线，重新上线?', function(index){
+            		//  reconnect(websocketurl,initEventHandle); 
+	        		//  layer.close(index);
+	        	  //}); 
+    	      };
+    	      socket.onerror = function () {
+    	    	  //layer.msg("服务器连接出错，请检查websocketconfig.js里面的IP地址");  
+    	          //reconnect(websocketurl,initEventHandle);
+    	      }; 
+      }
+	  
+	  
+      createWebSocket(websocketurl,initEventHandle);
   
   //演示自动回复
   var autoReplay = [
@@ -898,7 +1038,7 @@ layui.use('layim', function(layim){
 
     //查看群员接口
     ,members: {
-      url: webPath + sysDomain + '/layim-v3.8.0/示例/json/getMembers.json'
+      url: webPath + sysDomain + '/coframe/imjs/getMembers.json'
       ,data: {}
     }
     
@@ -938,7 +1078,7 @@ layui.use('layim', function(layim){
     //,voice: false //声音提醒，默认开启，声音文件为：default.mp3
     
     ,msgbox: layui.cache.dir + 'css/modules/layim/html/msgbox.html' //消息盒子页面地址，若不开启，剔除该项即可
-    ,find: layui.cache.dir + 'css/modules/layim/html/find.jsp' //发现页面地址，若不开启，剔除该项即可
+    ,find: layui.cache.dir + 'css/modules/layim/html/find.html' //发现页面地址，若不开启，剔除该项即可
     ,chatLog: layui.cache.dir + 'css/modules/layim/html/chatlog.html' //聊天记录页面地址，若不开启，剔除该项即可
     
   });
@@ -1027,7 +1167,33 @@ layui.use('layim', function(layim){
 
   //监听发送消息
   layim.on('sendMessage', function(data){
-    var To = data.to;
+    
+     var To = data.to; 
+	 var my = data.mine;
+	 var message = my.content;
+	 var receiver =To.id+"";
+	 if($.trim(currentsession)=='' ){
+	   return;
+	 } 
+	 if($.trim(message)==''){
+	   layer.msg("请输入要发送的消息!");
+	   return;
+	 }   
+	 if (!window.WebSocket) {
+		//判断是发送好友消息还是群消息
+		 
+	 }else{
+		 if (socket.readyState == WebSocket.OPEN) {
+	    	 //判断是发送好友消息还是群消息
+	    	 if(To.type=="friend"){
+	    		 sendMsg(message,receiver,null)
+	    	 }else{
+	    		 sendMsg(message,null,receiver)
+	    	 }   
+	     }   
+	 }
+ 
+    /* var To = data.to;
     //console.log(data);
     
     if(To.type === 'friend'){
@@ -1056,7 +1222,9 @@ layui.use('layim', function(layim){
         layim.setChatStatus('<span style="color:#FF5722;">在线</span>');
       }
       layim.getMessage(obj);
-    }, 1000);
+    }, 1000); */
+    
+    
   });
 
   //监听查看群员

@@ -978,4 +978,8 @@ public class HttpUtils {
 		}
 	}
 
+	
+	public static void getHttpUrl(){
+		
+	}
 }

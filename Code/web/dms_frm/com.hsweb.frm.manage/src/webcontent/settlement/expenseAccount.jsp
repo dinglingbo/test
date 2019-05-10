@@ -19,6 +19,7 @@
 	            font-family: Tahoma,Geneva,sans-serif;
 	            font-size: 14px;
 	            color: #000;
+	            font-family: 黑体;
 	        }
 
             table.ybk {
@@ -73,7 +74,7 @@
             border: 1px #b4b4b4 solid;
             float: left;
             font-size: 14px;
-            font-family: "微软雅黑";
+            font-family: "黑体";
         }
 
         .smbottom {
@@ -145,24 +146,24 @@
         <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
         <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
     </div>
-        <div style="padding-top:5px ;" align="center">
-            <h2 id="currRepairSettorderPrintShow"></h2>
-            <h3>费&nbsp;&nbsp;用&nbsp;&nbsp;报&nbsp;&nbsp;销&nbsp;&nbsp;单</h3>
+        <div align="center">
+            <div style="font-size: 20px; font-family: 黑体;"><span  id="currRepairSettorderPrintShow"></span></div>
+            <div style="font-size: 16px; font-family: 黑体;"><span>费&nbsp;&nbsp;用&nbsp;&nbsp;报&nbsp;&nbsp;销&nbsp;&nbsp;单</span></div>
         </div>
         <div style="margin: 0 2px;" class="printny">
         <div class="company-info">
             <table  width="100%" border="0" cellspacing="0" cellpadding="0">
 	            <tbody>
 	            	<tr>
-	            		<td colspan="2" align="right">
+	            		<td colspan="2" align="right" style="font-family: 黑体;">
 	            			№:<span id="rpAccountId"></span>
 	            		</td>
 	            	</tr>
 	                <tr>
-	                	<td >
+	                	<td style="font-family: 黑体;">
                                 部门：<span id=""></span>  
                         </td>
-                        <td style="width: auto;" align="right">
+                        <td style="width: auto;" align="right"style="font-family: 黑体;">
                                 日期：<span id="date"></span>  
 	                	</td>
 	                </tr>
@@ -171,80 +172,80 @@
 	        
         </div>
         
-        <div style="padding-top: 10px;">
+        <div style="padding-top: 5px;">
             <table  width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk">
                 <tr>
-                    <td align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;width: 25%">
+                    <td align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;width: 25%">
                         摘要
                     </td>
-                    <td align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;width: 16%">
+                    <td align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;width: 16%">
                         收支类别
                     </td>
-                    <td align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;width: 16%">
+                    <td align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;width: 16%">
                         数量
                     </td>
-                    <td align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;width: 16%">
+                    <td align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;width: 16%">
                         单价
                     </td>
-                    <td align="center" bgcolor="#f8f8f8" style="font-family: 微软雅黑; font-size:16px;font-weight: bold;width: 16% ">
+                    <td align="center" bgcolor="#f8f8f8" style="font-family: 黑体; font-size:16px;font-weight: bold;width: 16% ">
                         金额
                     </td>
                 </tr>
                 <tbody id="tbodyId">
                 </tbody>
                 <tr>
-                    <td colspan="2">
+                    <td colspan="2" style='font-family: 黑体;'>
                         <font style="font-size: 16px; font-weight: bold;">
                                 &nbsp;&nbsp;共计金额：<span id="money"></span>
                         </font>
                     </td>
-                    <td colspan="2" align="right">
+                    <td colspan="2" align="right" style='font-family: 黑体;'>
                         <font style="font-size: 16px; font-weight: bold;">
                                 &nbsp;&nbsp;小写金额：
                         </font>
                     </td>
-                    <td align="left">
+                    <td align="left" style='font-family: 黑体;'>
                         <font style="font-size: 16px; font-weight: bold;">
                             &nbsp;&nbsp;<span id="cash">0</span>元
                         </font>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td style='font-family: 黑体;'>
                             &nbsp;&nbsp;收款人：<span></span>
                     </td>
-                    <td align="right" style="width:10%">
+                    <td align="right" style="width:10%" style='font-family: 黑体;'>
                             &nbsp;&nbsp;制单：
                     </td>
-                    <td colspan="3">
+                    <td colspan="3" style='font-family: 黑体;'>
 
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td style='font-family: 黑体;'>
                     	&nbsp;&nbsp;审批人：
                     </td>
-                    <td>
+                    <td style='font-family: 黑体;'>
                     	&nbsp;&nbsp;审核人：
                     </td>
-                    <td>
+                    <td style='font-family: 黑体;'>
                     	&nbsp;&nbsp;证明人：
                     </td>
-                    <td colspan="2">
+                    <td colspan="2" style='font-family: 黑体;'>
                     	&nbsp;&nbsp;经手人：
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td style='font-family: 黑体;'>
                     	&nbsp;&nbsp;董事长：
                     </td>
-                    <td>
+                    <td style='font-family: 黑体;'>
                     	&nbsp;&nbsp;财务经理：
                     </td>
-                    <td>
+                    <td style='font-family: 黑体;'>
                     	&nbsp;&nbsp;财务主管：
                     </td>
-                    <td colspan="2">
+                    <td colspan="2" style='font-family: 黑体;'>
                     	&nbsp;&nbsp;支出人（收纳）：
                     </td>
                 </tr>
@@ -269,11 +270,11 @@
                 var tBody = $("#tbodyId");
                 tBody.empty();
                 document.getElementById("currRepairSettorderPrintShow").innerHTML = currRepairSettorderPrintShow;
-                var tds = '<td align="center">[remark]</td>' +
-						    			"<td align='center'>[billTypeId]</td>"+
-						    			"<td align='center'>[number]</td>"+ 
-						    			"<td align='center'>[charOffAmt]</td>"+
-                                        "<td align='center'>[charOffAmt1]</td>";
+                var tds = '<td align="center" >[remark]</td>' +
+						    			"<td align='center' style='font-family: 黑体;'>[billTypeId]</td>"+
+						    			"<td align='center' style='font-family: 黑体;'>[number]</td>"+ 
+						    			"<td align='center' style='font-family: 黑体;'>[charOffAmt]</td>"+
+                                        "<td align='center' style='font-family: 黑体;'>[charOffAmt1]</td>";
                 for(var i = 0 , l = arr.length ; i < l ; i++){
                 	if( i == 0){
                 		document.getElementById("rpAccountId").innerHTML = arr[i].rpAccountId;

@@ -15,13 +15,12 @@
 	<script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/jquery-1.8.3.min.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"  type="text/javascript"></script>  
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/numberFormat.js"  type="text/javascript"></script>    
-    <link href="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/mian.css" rel="stylesheet" type="text/css" /> 
     
 </head>
 <style>
 	        table, td {
-	            font-family: Tahoma,Geneva,sans-serif;
-	            font-size: 16px;
+	            font-family: 宋体;
+	            font-size: 17px;
 	            color: #000;
 	        }
 
@@ -31,82 +30,23 @@
 	        .print_btn {
 	            text-align: center;
 	            width: 100%;
-	            padding: 30px 0 20px 0;
 	            border:0px solid red; 
 	        }
 
             .print_btn a {
-                width: 160px;
-                height: 42px;
+                width: 80px;
+                height: 22px;
                 display: inline-block;
                 background: #578ccd;
-                line-height: 42px;
+                line-height: 22px;
                 border-radius: 5px;
                 color: #fff;
                 font-size: 18px;
                 text-decoration: none;
-                margin: 0 10px;
             }
 
             .print_btn a:active, .print_btn a:hover {
                 background: #df0024;
-            }
-
-        .sminput {
-            width: 640px;
-            height: 40px;
-            border: 1px #b4b4b4 solid;
-            float: left;
-            font-size: 16px;
-            font-family: "微软雅黑";
-        }
-
-        .smbottom {
-            width: 50px;
-            height: 44px;
-            background: #c8c8c8;
-            border: 0;
-            border-radius: 5px;
-            margin-left: 5px;
-        }
-
-        .xgsm {
-            width: 720px;
-            margin: 0 auto;
-            display: none;
-        }
-
-        .jsxx {
-            color: #000;
-            padding-bottom: 15px;
-        }
-
-            .jsxx h3 {
-                color: #000;
-                font-size: 15px;
-                font-weight: 700;
-                height: 26px;
-                border-bottom: 1px #000 solid;
-            }
-
-            .jsxx ul {
-                padding-top: 6px;
-            }
-
-                .jsxx ul li {
-                    color: #000;
-                }
-
-        .renyuan {
-            height: 40px;
-            line-height: 40px;
-            width: 97%;
-            margin: 0 auto;
-        }
-
-            .renyuan li {
-                width: 33%;
-                float: left;
             }
 
         .myddc dd, .myddc dt {
@@ -126,16 +66,20 @@
 
 		margin: 0 auto;
 		width: 100%;
-		height: 80px;
+		height: 30px;
 		text-align: center;
-		line-height: 80px;
+		line-height: 30px;
 		
 		}
+		*{font:黑体}
 		.content{
+			font-size: 15px;
+			font-family:黑体;
+			
 			border:1px solid #000;
-			margin-left: 100px;
-			margin-right: 100px;
-			min-height:200px;　
+			margin-left: 0px;
+			margin-right: 0px;
+			min-height:150px;　
 			height:auto;
 			
 			
@@ -201,7 +145,7 @@
         <div style="margin: 0 10px;" class="printny">
         <div class="company-info">
         	<div class="parent">
-        		<p><font size="6" ><b>欠&nbsp;&nbsp;款&nbsp;&nbsp;证&nbsp;&nbsp;明&nbsp;&nbsp;单</b></font></p>
+        		<p><font size="6" style="border-bottom:3px double black;" ><b>欠&nbsp;&nbsp;款&nbsp;&nbsp;证&nbsp;&nbsp;明&nbsp;&nbsp;单</b></font></p>
         	</div>
             <table  width="100%" >
 	            <tbody>
@@ -213,10 +157,8 @@
 	                    </td>
 	                </tr> -->
 	                <tr>
-	                    <td  style="padding-left: 70%">
-	                        <div style="font-size: 13px;font-family: Arial;">
+	                    <td  align="right">
 	                         	 欠款日期:<span id="payDate"></span>  
-	                        </div>
 	                    </td>
 	                </tr>
 	            </tbody>
@@ -227,40 +169,14 @@
 
 
 
-        <div style="height: 12px;"></div>
-
-             <div style="height: 12px;display:none" id="space3"></div>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1" id="showPart" style="display:none">
-                <tr>
-                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;"></td>
-                    <td height="28" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">配件名称</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">数量</td>
-                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">单价</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">金额</td>
-                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">优惠率</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">小计</td>
-                </tr>
-                <tr>
-                	<td ><hr style="border:0.5px solid #000"></td>
-                    <td ><hr style="border:0.5px solid #000"></td>
-                    <td ><hr style="border:0.5px solid #000"></td>
-                    <td ><hr style="border:0.5px solid #000"></td>
-                    <td ><hr style="border:0.5px solid #000"></td>
-                    <td ><hr style="border:0.5px solid #000"></td>
-                    <td ><hr style="border:0.5px solid #000"></td>
-                </tr>
-                <tbody id="tbodyId3">
-				</tbody>
-            </table>
-
             <div class="content">
             	<p><b>
-            	<div style="margin-left: 50px;margin-top: 25px;">兹有:<div style="border-bottom: 1px solid black;margin-left: 35px;margin-top: -22px;"><span  id="guestName"></span></div></div>          	
-            	<div style="margin-left: 30px;margin-right: 50px;border-bottom: 1px solid black;"><div style="margin-left: 200px;margin-top: 10px;">业务单号:<span id="businessNumber"></span></div></div>
-            	<div style="margin-left: 50px;margin-top: 15px;float:left;">在我处欠款人民币（大写）:</div>
-            	<div style="margin-top: 15px;border-bottom: 1px solid black;float:left;width: 40%"><span id="money"></span></div>
-            	<div style="margin-top: 15px;float:left">￥:</div>
-            	<div style="margin-top: 15px;border-bottom: 1px solid black;float:left;width: 20%"><span id="netInAmt"></span></div>
+            	<div style="margin-left: 40px;margin-top: 3px;">兹有:<div style="border-bottom: 1px solid black;margin-left: 35px;margin-top: -22px;"><span  id="guestName"></span></div></div>          	
+            	<div style="margin-left: 5px;margin-top: 3px;border-bottom: 1px solid black;"><div style="margin-top: 10px;">业务单号:<span id="businessNumber"></span></div></div>
+            	<div style="margin-left: 10px;margin-top: 3px;float:left;">在我处欠款人民币（大写）:</div>
+            	<div style="margin-top: 5px;margin-top: 3px;border-bottom: 1px solid black;float:left;width: 40%"><span id="money"></span></div>
+            	<div style="margin-top: 5px;margin-top: 3px;float:left">￥:</div>
+            	<div style="margin-top: 5px;margin-top: 3px;border-bottom: 1px solid black;float:left;width: 20%"><span id="netInAmt"></span></div>
             	</b></p>
 				</br>
 				<div>
@@ -271,33 +187,22 @@
 	   					    <input type="checkbox"   />支票  
 	    					<input type="checkbox"   />转账    
 	    			</div> -->		
-	    			<div style="margin-right: 100px;margin-top: 20px;float:left">收款单位（盖章）：<span id="companyName"></span></div>
+	    			<div style="margin-top: 5px;float:left">支款单位(盖章):<span id="companyName"></span></div>
     			</div>
             </div>
- 			<table  width="100%" style="margin-top: 20px;padding-left: 100px;padding-right: 100px"   cellpadding="10">
+ 			<table  width="100%" style="margin-top: 5px;padding-left: 10px;"   >
 	            <tbody>
-	                <tr>
-	                	<td colspan="2" >
-	                     	欠款人:
-	                    </td>
-	                    <td colspan="2" >
-	                      	  附单:
-	                    </td>
-	                </tr>
 	                
 	                <tr>
 	                	<td >
-							审批人:
+							会计:
 	                	</td>
 	                	<td >
-							审核人:
+							计账:
 	                	</td>
 	                	<td >
-							证明人:
+							出纳:
 	                	</td>
-<!-- 	                	<td >
-							支款人:
-	                	</td> -->
 	                	<td >
 							经手人:<span id="makeMan"></span>
 	                	</td>

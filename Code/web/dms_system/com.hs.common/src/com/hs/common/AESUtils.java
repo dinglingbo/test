@@ -8,13 +8,16 @@ import sun.misc.BASE64Encoder;
 
 import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.net.URLEncoder;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -132,14 +135,56 @@ public class AESUtils {
         SimpleDateFormat format = new SimpleDateFormat(pattern);
         return format.format(date);
     }
+    
+    
+    @Bizlet("")
+    public static String getState(String clientId, String state, String carrierId) {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String key = clientId + "_" + carrierId + "_" + df.format(new Date());
+        String encryptString = AESEncode(key, state);
+        return encryptString.replaceAll("\r|\n", "");
+    }
 
     public static void main(String[] args) {
-        /**
+    	//clientId  263a9ef3-702d-48a1-b50b-b89f770c9934
+    	//carrierId ruixinchangyin-comphs-1-test.m800-api.com，如果head头carrierId不知道，则传carrierId=””,相应的state的carrierId也是””
+    	//当前时间   2019-01-24 00:00:00
+    	//state签名的aes密匙  sadasdad
+    	
+    	String stateStr =  getState("263a9ef3-702d-48a1-b50b-b89f770c9934", "sadasdad", "ruixinchangyin-comphs-1-test.m800-api.com");
+    	System.out.println("stateStr:" + stateStr);
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String d = df.format(new Date());
+        System.out.println("date: " + (new Date().getTime()-(1000*60*60*36)));
+        System.out.println(d);
+        String state =
+                "263a9ef3-702d-48a1-b50b-b89f770c9934" +
+                        "_" +
+                        "ruixinchangyin-comphs-1-test.m800-api.com" +
+                        "_" +
+                        d;
+        String[] keys = {
+                state
+        };
+//        System.out.println("key | AESEncode | AESDecode");
+        for (String key : keys) {
+            System.out.println(" key:" + key + " | ");
+            // encryptString就是加密之后的字符串
+            String encryptString = AESEncode(key, "sadasdad");
+            System.out.println(encryptString + " ------------------ ");
+
+            System.out.println("ekey:" + AESDecode(encryptString, "sadasdad"));
+            System.out.println(URLEncoder.encode(encryptString) + " | ");
+        }
+    }
+
+    /*public static void main(String[] args) {
+        *
          *
          *  clientId   263a9ef3-702d-48a1-b50b-abcsb89fedXXX,说明：clientId不是登录返回的那个值，对商户来说一个确定的值，是申请之后睿信给商户的clientId
          *  carrierId  ruixinchangyin-compXX-X-test.m800-api.com
          *  aessecret  3e573c84-7241-4ece-b0d3-40b5faefde48
-         */
+         *//*
         //String str = "263a9ef3-702d-48a1-b50b-abcsb89fedXXX"+"_"+"ruixinchangyin-compXX-X-test.m800-api.com"+"_"+ dateFormat(new Date(), "yyyy-MM-dd HH:mm:ss");
         String str = "263a9ef3-702d-48a1-b50b-b89f770c9934" + "_" + "ruixinchangyin-comphs-1-test.m800-api.com"+"_"+ dateFormat(new Date(), "yyyy-MM-dd HH:mm:ss");
     	System.out.println("state:" + str);
@@ -148,5 +193,8 @@ public class AESUtils {
         String decryptString = AESDecode(encryptString, "3e573c84-7241-4ece-b0d3-40b5faefde48");
         System.out.println("decryptString:"+decryptString);//decryptString解密之后的字符串
     }
+    */
+    
+    
 
 }

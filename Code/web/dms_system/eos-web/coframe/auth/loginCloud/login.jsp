@@ -49,7 +49,8 @@
    }
 
    	//api地址
-	String apiPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort(); 
+//	String apiPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort(); 
+	String apiPath = "";
 	String sysApi = Env.getContributionConfig("system", "url", "apiDomain", "SYS");
 	String sendUrl = apiPath + sysApi + "/com.hsapi.system.tenant.register.sendRegisterMsg.biz.ext";
 	String privacyUrl = request.getContextPath() + "/coframe/auth/loginCloud/privacyUrl.jsp";

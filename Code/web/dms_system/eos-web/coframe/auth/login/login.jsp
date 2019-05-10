@@ -289,7 +289,7 @@ a {
 <div class="login_box">
 	<form method="post"	name="registerForm" onsubmit="return register();" action="">
 	<div class="login" id="registerBox">
-		<div class="title">注册</div>	
+		<div class="title">欢迎注册</div>	
 		<label style="width:100%">
 			<p ><span id="errorP" style="font-size:15px;color:red"></span></p>
 			<input type="text" id="registercompname" name="registercompname" value="" placeholder="请输入公司名" maxlength="50" />

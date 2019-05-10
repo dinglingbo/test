@@ -85,7 +85,7 @@ body .mini-grid-row-selected{
                 <div field="name" name="name" width="100" headerAlign="center" header="车型名称"></div>
                 <div field="partBrandId" name="partBrandId" width="100" headerAlign="center" header="汽车品牌"></div>
                 <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="汽车类型"></div>
-                <div allowSort="true"  name="outableQty" field="outableQty"  width="60" headerAlign="center" header="颜色"></div>
+                <div allowSort="true"  name="outableQty" field="outableQty"  width="60" headerAlign="center" header="车身颜色"></div>
                 <div allowSort="true"  field="orderQty"  width="60" headerAlign="center" header="车辆内饰"></div>
                 <div allowSort="true"  field="stockQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
                 <div allowSort="true"  field="onRoadQty" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>

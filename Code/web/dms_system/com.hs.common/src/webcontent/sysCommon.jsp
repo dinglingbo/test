@@ -420,6 +420,8 @@
 		   showMsg("登录超时，正在跳转！", "E");
 		   if(currSource=="easy"){
 		 		window.top.location.href = sysDomain + "/coframe/auth/easy/login.jsp";
+			}else if(currSource=="waveBox"){
+		 		window.top.location.href = sysDomain + "/coframe/auth/waveBox/login.jsp";
 			}else{
 			   window.top.location.href = sysDomain + "/coframe/auth/login/login.jsp";
 			}

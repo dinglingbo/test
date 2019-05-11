@@ -114,7 +114,6 @@ function processSell(data){
     _initDmsCallback["initSell"] && _initDmsCallback["initSell"]() && (_initDmsCallback["initSell"] = null);    
 }
 
-
 //车系
 function initCarSeries(id, carBrandId, callback){	
     _initDmsCallback["initCarSeries"] = callback;

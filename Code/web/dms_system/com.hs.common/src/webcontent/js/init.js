@@ -42,6 +42,8 @@ var COST_TYPE = "10101";//维修项目成本分类
 var ITEM_TYPE = 'DDT20130703000063';
 var SELL_TYPE = "10201";//销售机会
 var GUEST_PROPERTY = "10042"; //客户类别
+var ITEM_NAME = "10281";//钣喷部位   要查询字典树
+var REPAIR_OPT = "10321";//维修动作
  
 var _sysApiRoot = apiPath + sysApi;
 var _initDmsObj = {};
@@ -194,7 +196,6 @@ function processInsureComp(data){
     setDataToHash(data,"insureComp","id");
     _initDmsCallback["initInsureComp"] && _initDmsCallback["initInsureComp"]() && (_initDmsCallback["initInsureComp"] = null);
 }
-
 //数据字典
 function initDicts(dictDefs,callback){//dictDefs{id1: dictid1, id2: dictid2}
 	_initDmsCallback["initDicts"] = callback;
@@ -208,6 +209,19 @@ function processDictids(data){
     setDataToHash(data,"dict","customid");
     _initDmsCallback["initDicts"]  && _initDmsCallback["initDicts"]() && (_initDmsCallback["initDicts"] = null);
 }
+//数据字典--树结构输出
+function initDictTrees(dictDefs,callback){//dictDefs{id1: dictid1, id2: dictid2}
+	_initDmsCallback["initDictTrees"] = callback;
+  var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.queryDictTree.biz.ext";
+  params = {};
+  params.parentid = filterParam("_dictDefTrees", dictDefs);
+  callAjax(url, params, processAjax, processDictTreeids, null);
+}
+function processDictTreeids(data){
+	adapterAllData(_initDmsObj["_dictDefTrees"], data, "parentid");
+  _initDmsCallback["initDictTrees"]  && _initDmsCallback["initDictTrees"]() && (_initDmsCallback["initDictTrees"] = null);
+}
+
 //数据字典--树结构输出
 function initTreeDicts(dictDefs,callback){//dictDefs{id1: dictid1, id2: dictid2}
 	_initDmsCallback["initTreeDicts"] = callback;

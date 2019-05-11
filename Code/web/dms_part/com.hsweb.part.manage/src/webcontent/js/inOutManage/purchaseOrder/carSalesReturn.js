@@ -165,8 +165,8 @@ function selectSupplier(elId)
 
 function add(){
     var item={};
-    item.id = "carSalesDetails";
-    item.text = "整车采购订单详情";
+    item.id = "carSalesReturnDetails";
+    item.text = "采购退货详情";
     item.url = webPath + contextPath + "/com.hsweb.part.manage.carSalesReturnDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
@@ -179,8 +179,8 @@ function edit(){
     var row = rightGrid.getSelected();
     if(!row) return; 
     var item={};
-    item.id = "carSalesDetails";
-    item.text = "整车采购订单详情";
+    item.id = "carSalesReturnDetails";
+    item.text = "采购退货详情";
     item.url = webPath + contextPath + "/com.hsweb.part.manage.carSalesReturnDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);

@@ -438,8 +438,8 @@ function doSearch() {
 }
 function getSearchParam() {
     var params = {};
-    params.sEnterDate = nui.get("sEnterDate").getValue();
-    params.eEnterDate = addDate(endDateEl.getValue(),1); 
+    params.outDateStart = nui.get("sEnterDate").getValue();
+    params.outDateEnd = addDate(endDateEl.getValue(),1); 
     
     var orgidsElValue = orgidsEl.getValue();
     if(orgidsElValue==null||orgidsElValue==""){

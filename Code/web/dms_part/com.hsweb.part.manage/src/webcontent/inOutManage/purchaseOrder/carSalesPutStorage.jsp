@@ -7,8 +7,8 @@
   - Description:
 -->
 <head>
-<title>整车采购入库</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/carSalesPutStorage.js?v=1.0.0"></script>
+<title>验车入库</title>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/carSalesPutStorage.js?v=1.0.1"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -98,9 +98,10 @@
 	            <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="80px" onenter="search()" /> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 <!--                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> -->
-                <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
+				<a class="nui-button" iconCls="" plain="true" onclick="carCheck()" ><span class="fa fa-automobile fa-lg"></span>&nbsp;验车</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="add()" ><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="edit()" ><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="del()" ><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
 
             </td>
         </tr>
@@ -128,22 +129,20 @@
             <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
                     <div field="" allowSort="true"  width="160" summaryType="count" headerAlign="center" header="订单单号"></div>
                     <div field="" allowSort="true"  width="130" headerAlign="center" header="单据日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                    
-                    <div field="" name="guestFullName" width="220" headerAlign="center" header="组织机构"></div>
-                    <div field="" width="90" name = "orderMan" headerAlign="center" header="经办人"></div>
-                    <div field="" name="" width="100" headerAlign="center" header="供应商编号"></div>                     
-                    <div field="" name="" width="220" headerAlign="center" header="供应商"></div>                    
-                    <div field="" allowSort="true"   name="billTypeId" width="90" headerAlign="center" header="联系人"></div>
-                    <div field="" allowSort="true"  name="settleTypeId" width="90" headerAlign="center" header="联系电话"></div>
-                    <div allowSort="true" field="billTypeId"  name="billTypeId" width="90" headerAlign="center" header="票据类型"></div>
-                    <div allowSort="true" field="billTypeId"  name="billTypeId" width="90" headerAlign="center" header="发票号码"></div>    
-                    <div allowSort="true" field="settleTypeId" name="settleTypeId" width="90" headerAlign="center" header="结算方式"></div>
-                    <div allowSort="true" field="settleTypeId" name="settleTypeId" width="90" headerAlign="center" header="运输方式"></div>                                                                                                
-                    <div field="" allowSort="true"  width="130" headerAlign="center" header="预计到货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-                    <div field="" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="合计数量"></div>
-                    <div field="" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="合计金额"></div>
-                    <div field="" width="90" name="creator" headerAlign="center" header="制单人"></div>
-                    <div field="" allowSort="true"  width="130" headerAlign="center" header="制单日期" dateFormat="yyyy-MM-dd HH:mm" ></div>  
-                    <div field="" allowSort="true"  width="220" headerAlign="center" header="备注"></div>
+                    <div field="" width="90" name = "orderMan" headerAlign="center" header="采购员"></div>                   
+                    <div field="" name="" width="220" headerAlign="center" header="供应商"></div> 
+                    <div field="" allowSort="true"  width="100" summaryType="count" headerAlign="center" header="品牌"></div>
+                    <div field="" name="guestFullName" width="100" headerAlign="center" header="车型"></div>
+                    <div field="" width="90" name = "orderMan" headerAlign="center" header="年款"></div>
+                    <div field="" name="guestFullName" width="100" headerAlign="center" header="规格"></div>
+                    <div field="" width="90" name = "orderMan" headerAlign="center" header="排量"></div>
+                    <div field="" name="guestFullName" width="100" headerAlign="center" header="缸数"></div>
+                    <div field="" width="90" name = "orderMan" headerAlign="center" header="发动机号"></div>  
+                    <div field="" width="90" name = "orderMan" headerAlign="center" header="配置"></div>
+                    <div field="" name="guestFullName" width="220" headerAlign="center" header="数量"></div>
+                    <div field="" width="90" name = "orderMan" headerAlign="center" header="金额"></div>   
+                    <div field="" name="guestFullName" width="220" headerAlign="center" header="供方合同号"></div>
+                    <div field="" width="90" name = "orderMan" headerAlign="center" header="许可证编码"></div> 
         </div>
     </div> 
 </div>

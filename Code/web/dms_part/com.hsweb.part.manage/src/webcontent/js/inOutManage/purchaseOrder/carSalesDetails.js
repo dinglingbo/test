@@ -941,23 +941,7 @@ function getPartInfo(params){
 
 	return part;
 }
-function selectPart(callback, checkcallback) {
-	nui.open({
-		// targetWindow: window,,
-		url : webPath+contextPath+"/com.hsweb.part.manage.addCarSales.flow?token="+token,
-		title : "车辆选择",
-		width : 530,
-		height : 360,
-		allowDrag : true,
-		allowResize : true,
-		onload : function() {
-/*			var iframe = this.getIFrameEl();
-			iframe.contentWindow.setData({}, callback, checkcallback);*/
-		},
-		ondestroy : function(action) {
-		}
-	});
-}
+
 function addDetail(part) {
 	var data = basicInfoForm.getData();
 	var row=rightGrid.getData();
@@ -2820,4 +2804,21 @@ function onOut(){
 	}
 	var partId = row.partId;
 	onOutRecord(partId);
+}
+function selectCar(callback, checkcallback) {
+	nui.open({
+		// targetWindow: window,,
+		url : webPath+contextPath+"/page/car/chexingkuanshi.jsp?token="+token,
+		title : "车辆选择",
+		width : 910,
+		height : 560,
+		allowDrag : true,
+		allowResize : true,
+		onload : function() {
+/*			var iframe = this.getIFrameEl();
+			iframe.contentWindow.setData({}, callback, checkcallback);*/
+		},
+		ondestroy : function(action) {
+		}
+	});
 }

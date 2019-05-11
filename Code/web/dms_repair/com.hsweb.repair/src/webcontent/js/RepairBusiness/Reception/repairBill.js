@@ -5573,3 +5573,29 @@ function upload(){
 		showMsg("请先保存工单","W");
 	}
 }
+//选择钣喷项目
+function chooseBlank(){
+	nui.open({
+ 		url :  webPath + contextPath + "/repair/RepairBusiness/blankChoose.jsp?token="+token,
+ 		title : "钣喷项目",
+ 		width : 1100,
+ 		height : 680,
+ 		allowResize: false,
+ 		onload : function() {
+ 			var iframe = this.getIFrameEl(); 
+ 			iframe.contentWindow.setData();
+ 		},
+ 		ondestroy : function(action) {// 弹出页面关闭前
+ 			if (action == "ok") {
+
+ 			}
+ 		}
+ 	});
+	   
+	
+
+}
+
+
+
+

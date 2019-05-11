@@ -71,29 +71,22 @@
                 <label style="font-family:Verdana;">至</label>
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <span class="separator"></span> 
-                <input id="serviceId" width="120px" emptyText="车型编号" class="nui-textbox"/>
-                <input id="serviceId" width="120px" emptyText="车型名称" class="nui-textbox"/>
- 				<input id="serviceId" width="120px" emptyText="拼音码" class="nui-textbox"/>   
- 				<input id="serviceId" width="120px" emptyText="进口车" class="nui-textbox"/>
-                <input id="" name="" width="80px" emptyText="汽车品牌" class="nui-textbox"/>
-                <input id="" name="" width="80px" emptyText="产地" class="nui-textbox"/>
-                <input id="" name="" width="80px" emptyText="车辆类型" class="nui-textbox"/> 				
- 			</td>
- 		</tr>
- 		<tr>
- 			<td>  
-                <input id="" name="" width="80px" emptyText="车体结构" class="nui-textbox"/>
+                <input id="serviceId" width="120px" emptyText="车型名称" class="nui-textbox"/>	
+                <input id="serviceId" width="120px" emptyText="品牌名称" class="nui-textbox"/>				 
+<!--                 <input id="" name="" width="80px" emptyText="车体结构" class="nui-textbox"/>
                 <input id="" name="" width="80px" emptyText="车身色" class="nui-textbox"/> 			        
                 <input class="nui-combobox" id="search-type" width="100px" textField="name" valueField="id" value="0" data="statusList" allowInput="false" />
 	            <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="80px" onenter="search()" />
 	            <input id="" name="" width="80px" emptyText="内饰色" class="nui-textbox"/>
 	            <input id="" name="" width="80px" emptyText="车辆级别" class="nui-textbox"/>
 	            <input id="" name="" width="80px" emptyText="车辆状态" class="nui-textbox"/>
-	            <input id="" name="" width="80px" emptyText="单据编号" class="nui-textbox"/>
+	            <input id="" name="" width="80px" emptyText="单据编号" class="nui-textbox"/> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="" ><span class="fa fa-cny fa-lg"></span>&nbsp;成本调整</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="" ><span class="fa fa-lock fa-lg"></span>&nbsp;锁库</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="detection()" ><span class="fa fa-plus fa-lg"></span>&nbsp;PDI检测</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="upload()" ><span class="fa fa-arrow-up fa-lg"></span>&nbsp;图片上传</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="edit()" ><span class="fa fa-gear fa-lg"></span>&nbsp;设置</a>
+<!--                <a class="nui-button" iconCls="" plain="true" onclick="edit()" ><span class="fa fa-gear fa-lg"></span>&nbsp;设置</a>-->
 
             </td>
         </tr>
@@ -129,7 +122,7 @@
                     <div field="" name="" width="220" headerAlign="center" header="供应商"></div>    
                      <div field="" allowSort="true"  width="130" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                 
                     <div field="" allowSort="true"   name="" width="90" headerAlign="center" header="库龄（天）"></div>
-                    <div field="" allowSort="true"  name="" width="90" headerAlign="center" header="颜色"></div>
+                    <div field="" allowSort="true"  name="" width="90" headerAlign="center" header="车身颜色"></div>
                     <div allowSort="true" field=""  name="" width="90" headerAlign="center" header="车内饰色"></div>
                     <div allowSort="true" field=""  name="" width="90" headerAlign="center" header="PDI检测"></div>    
                     <div allowSort="true" field="" name="" width="90" headerAlign="center" header="进价"></div>

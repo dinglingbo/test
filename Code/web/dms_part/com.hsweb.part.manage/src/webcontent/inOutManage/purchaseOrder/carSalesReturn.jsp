@@ -8,7 +8,7 @@
 -->
 <head>
 <title>整车采购退货</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/carSalesReturn.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/carSalesReturn.js?v=1.0.1"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -126,23 +126,21 @@
         <div property="columns">
             <div type="indexcolumn" width="40">序号</div>
             <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
+            <div field="" width="90" name = "orderMan" headerAlign="center" header="状态"></div> 
                     <div field="" allowSort="true"  width="160" summaryType="count" headerAlign="center" header="退货单号"></div>
-                    <div field="" allowSort="true"  width="130" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                    
-                    <div field="" name="guestFullName" width="220" headerAlign="center" header="组织机构"></div>
-                    <div field="" width="90" name = "orderMan" headerAlign="center" header="经办人"></div>
-                    <div field="" name="" width="100" headerAlign="center" header="供应商编号"></div>                     
                     <div field="" name="" width="220" headerAlign="center" header="供应商"></div>                    
-                    <div field="" allowSort="true"   name="billTypeId" width="90" headerAlign="center" header="联系人"></div>
-                    <div field="" allowSort="true"  name="settleTypeId" width="90" headerAlign="center" header="联系电话"></div>
-                    <div allowSort="true" field="billTypeId"  name="billTypeId" width="90" headerAlign="center" header="票据类型"></div>
-                    <div allowSort="true" field="billTypeId"  name="billTypeId" width="90" headerAlign="center" header="发票号码"></div>    
+                    <div field="" width="90" name = "orderMan" headerAlign="center" header="采购员"></div>                     
+                    <div allowSort="true" field="billTypeId"  name="billTypeId" width="90" headerAlign="center" header="票据类型"></div>   
                     <div allowSort="true" field="settleTypeId" name="settleTypeId" width="90" headerAlign="center" header="结算方式"></div>
                     <div allowSort="true" field="settleTypeId" name="settleTypeId" width="90" headerAlign="center" header="运输方式"></div>                                                                                                
-                    <div field="" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="合计数量"></div>
-                    <div field="" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="合计金额"></div>
-                    <div field="" width="90" name="creator" headerAlign="center" header="制单人"></div>
-                    <div field="" allowSort="true"  width="130" headerAlign="center" header="制单日期" dateFormat="yyyy-MM-dd HH:mm" ></div>  
+                    <div field="" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="退货数量"></div>
+                    <div field="" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="退货金额"></div>
+                    <div field="" allowSort="true"  width="130" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                    
                     <div field="" allowSort="true"  width="220" headerAlign="center" header="备注"></div>
+                    <div field="" width="90" name="creator" headerAlign="center" header="创建人"></div>
+                    <div field="" allowSort="true"  width="130" headerAlign="center" header="创建日期" dateFormat="yyyy-MM-dd HH:mm" ></div>  
+                    <div field="" width="90" name="creator" headerAlign="center" header="修改人"></div>
+                    <div field="" allowSort="true"  width="130" headerAlign="center" header="修改日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                      
         </div>
     </div> 
 </div>

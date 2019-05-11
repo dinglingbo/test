@@ -51,6 +51,137 @@ public class ArrayUtils {
 	}
 	
 	@Bizlet("")
+	public static HashMap[] settleMetalSpray(Integer serviceId) {
+		DataObject criteria = com.eos.foundation.data.DataObjectUtil
+				.createDataObject("com.primeton.das.criteria.criteriaType");
+    	criteria.set("_entity", "com.hsapi.repair.data.rps.RpsItem");
+    	criteria.set("_expr[1]/serviceId", serviceId);
+    	criteria.set("_expr[1]/_op", "=");
+    	criteria.set("_expr[2]/billPackageId", 0);
+    	criteria.set("_expr[2]/_op", "=");
+    	criteria.set("_expr[3]/sourceId", 3);
+    	criteria.set("_expr[3]/_op", "=");
+    	DataObject[] result = com.eos.foundation.database.DatabaseUtil
+    	.queryEntitiesByCriteriaEntity("repair", criteria);
+    	
+    	if(result.length <= 0) {
+    		return null;
+    	}else {
+    		String itemCode = "";//工单项目编码      XTCZ001002
+    		String itemName = "";//工单项目名称      拆装左前保险杠
+    		String msCode = "";//项目名称编码 
+    		String msName = "";//项目名称
+    		String typeCode = "";//维修动作编码
+    		ArrayList<HashMap> arrayList = new ArrayList<HashMap>();
+    		for(int i=0; i<result.length; i++) {
+    			DataObject temp = result[i];
+    			itemCode = temp.getString("itemCode");
+    			itemName = temp.getString("itemName");
+    			msCode = itemCode.substring(7, 10);
+    			typeCode = itemCode.substring(4, 7);
+    			if(typeCode.equals("005")) {  //喷漆项目
+    				msName = itemName.substring(0, itemName.length() - 2);
+    			}else {
+    				msName = itemName.substring(2, itemName.length());
+    			}
+    			
+    			//判断名称是否已经存在,如果已经存在，更新记录的维修动作或是是否喷漆； 需要钣金的价格，喷漆的价格
+    			arrayList = putMSItem(temp, arrayList, msName, msCode, typeCode); 
+    		}
+    		
+    		return arrayList.toArray(new HashMap[arrayList.size()]);
+    	}
+    	
+	}
+	
+	private static ArrayList putMSItem(DataObject item, ArrayList nameList, String name, String code, String typeCode) {
+		//msCode    msName typeCode isPaint 
+		//项目名称编码  项目名称  维修动作编码  是否喷漆
+		//ido itemIdo itemCodeo itemNameo itemTimeo unitPriceo amto rateo discountAmto  subtotalo    
+		// 钣金                                  
+		//idt itemIdt itemCodet itemNamet itemTimet unitPricet amtt ratet discountAmtt  subtotalt
+		// 喷漆
+		boolean check = false;				
+		for(int i=0; i< nameList.size(); i++) {
+			HashMap nameObj = (HashMap) nameList.get(i);
+			if(name.equals(nameObj.get("msName"))) {
+				check = true;
+				//已经存在就更新已有的记录数据   typeCode == 005
+				if(typeCode.equals("005")) {
+					nameObj.put("idt", item.get("id"));
+					nameObj.put("itemIdt", item.get("itemId"));
+					nameObj.put("itemCodet", item.get("itemCode"));
+					nameObj.put("itemNamet", item.get("itemName"));
+					nameObj.put("itemTimet", item.get("itemTime"));
+					nameObj.put("unitPricet", item.get("unitPrice"));
+					nameObj.put("amtt", item.get("amt"));
+					nameObj.put("ratet", item.get("rate"));
+					nameObj.put("discountAmtt", item.get("discountAmt"));
+					nameObj.put("subtotalt", item.get("subtotal"));
+					nameObj.put("isPaint", 1);
+				}else {
+					nameObj.put("ido", item.get("id"));
+					nameObj.put("itemIdo", item.get("itemId"));
+					nameObj.put("itemCodeo", item.get("itemCode"));
+					nameObj.put("itemNameo", item.get("itemName"));
+					nameObj.put("itemTimeo", item.get("itemTime"));
+					nameObj.put("unitPriceo", item.get("unitPrice"));
+					nameObj.put("amto", item.get("amt"));
+					nameObj.put("rateo", item.get("rate"));
+					nameObj.put("discountAmto", item.get("discountAmt"));
+					nameObj.put("subtotalo", item.get("subtotal"));
+					nameObj.put("isPaint", 0);
+				}
+				
+				nameList.set(i, nameObj);
+				
+			} else {
+				continue;
+			}
+		}
+		
+		//不存在则组装数据存入nameList   typeCode == 005
+		if(!check) {
+			HashMap hm = new HashMap();
+			
+			if(typeCode.equals("005")) {
+				hm.put("msCode", code);
+				hm.put("msName", name);
+				hm.put("typeCode", null);
+				hm.put("idt", item.get("id"));
+				hm.put("itemIdt", item.get("itemId"));
+				hm.put("itemCodet", item.get("itemCode"));
+				hm.put("itemNamet", item.get("itemName"));
+				hm.put("itemTimet", item.get("itemTime"));
+				hm.put("unitPricet", item.get("unitPrice"));
+				hm.put("amtt", item.get("amt"));
+				hm.put("ratet", item.get("rate"));
+				hm.put("discountAmtt", item.get("discountAmt"));
+				hm.put("subtotalt", item.get("subtotal"));
+				hm.put("isPaint", 1);
+			}else {
+				hm.put("msCode", code);
+				hm.put("msName", name);
+				hm.put("typeCode", item.get("id"));
+				hm.put("ido", item.get("id"));
+				hm.put("itemIdo", item.get("itemId"));
+				hm.put("itemCodeo", item.get("itemCode"));
+				hm.put("itemNameo", item.get("itemName"));
+				hm.put("itemTimeo", item.get("itemTime"));
+				hm.put("unitPriceo", item.get("unitPrice"));
+				hm.put("amto", item.get("amt"));
+				hm.put("rateo", item.get("rate"));
+				hm.put("discountAmto", item.get("discountAmt"));
+				hm.put("subtotalo", item.get("subtotal"));
+				hm.put("isPaint", 0);
+			}
+			nameList.add(hm);
+		}
+		
+		return nameList;
+	}
+	
+	@Bizlet("")
 	public static DataObject[] add2ArrayExcludeI(DataObject[] a, DataObject[] b,String columnField) {
 		List<DataObject> list = new ArrayList<DataObject>(Arrays.asList(a));
 		Boolean exists=false;

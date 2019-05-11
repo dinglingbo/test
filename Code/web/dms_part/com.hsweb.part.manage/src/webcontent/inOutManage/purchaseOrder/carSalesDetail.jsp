@@ -16,7 +16,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <!-- <a class="nui-button" iconCls="icon-undo" plain="true" onclick="cancelEditInbound()" id="cancelEditEnterMainBtn">取消</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
-<!--                 <a class="nui-button" iconCls="" plain="true" onclick="auditToEnter()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;入库</a> -->
+                <a class="nui-button" iconCls="" plain="true" onclick="auditToEnter()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;申请验车</a>
                 
                 <!-- <a class="nui-menubutton " menu="#popupMenuPrint" id="menuprint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
 
@@ -248,9 +248,7 @@
                                         <input property="editor" class="nui-textbox" />
                                     </div>
                                     <div field="" headerAlign="center" header="车型名称"></div>
-                                    <div field="" id="" width="60" headerAlign="center" header="汽车品牌"></div>
-                                    <div field="" id="" width="60" headerAlign="center" header="车辆类型"></div>
-                                    <div field="" name="" width="40" headerAlign="center" header="颜色"></div>
+                                    <div field="" name="" width="40" headerAlign="center" header="车身颜色"></div>
                                     <div field="" name="" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="车内饰色">
                                       <input property="editor" vtype="float" class="nui-textbox"/>
                                     </div>

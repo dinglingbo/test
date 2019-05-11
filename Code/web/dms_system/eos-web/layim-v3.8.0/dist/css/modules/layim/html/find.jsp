@@ -21,10 +21,10 @@
     <li class="layui-this">找人</li>
     <li>找群</li>
   </ul>
-  <div class="layui-tab-content" style="height: 100px;">
+  <div class="layui-tab-content" style="height: 50px;">
     <div class="layui-tab-item layui-show">
-    	<input type="text" name="title" required  lay-verify="required" placeholder="请输入查找名称"  class="layui-input" style="width: 400px;display: inline-block;">
-    	<button class="layui-btn" lay-submit lay-filter="formDemo" style="width: 80px;">查找</button>
+    	<input type="text" name="friend" id="friend" required  lay-verify="required" placeholder="请输入查找名称"  class="layui-input" style="width: 400px;display: inline-block;">
+    	<button class="layui-btn" lay-submit lay-filter="find" style="width: 80px;">查找</button>
     	<div></div>
     </div>
     <div class="layui-tab-item">
@@ -34,47 +34,68 @@
     </div>
   </div>
 </div> 
-
-
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 0px;">
+  <legend>查找结果</legend>
+</fieldset>
+	<div id="photos" class="photos" style="width:300px; display:block;word-break: break-all;word-wrap: break-word;">
+<%-- 		<div style="width:150px;height: 100px">
+			<div style="width:100px;height: 80px;float: left;">
+				<img alt="" style="height: 100px;width: 80px;" src="<%=webPath + contextPath%>/layim-v3.8.0/dist/css/modules/layim/skin/1.jpg">
+			</div>
+			<div style="width:50px;height: 100px;float: left;">
+					<li>张三</li>
+					<li>男</li>
+					<button class="layui-btn" lay-submit lay-filter="formDemo" style="height: 35px;width: 50px;margin-top: 20px;padding: 0px;">+好友</button>
+			</div>			
+		</div>	 --%>
+	</div>     
 <script>
-layui.use('element', function(){
-  var $ = layui.jquery
-  ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+var baseUrl = apiPath + repairApi + "/";
+layui.use(['form', 'upload'], function(){  //如果只加载一个模块，可以不填数组。如：layui.use('form')
+  var form = layui.form //获取form模块
+  ,upload = layui.upload; //获取upload模块
   
-  //触发事件
-  var active = {
-    tabAdd: function(){
-      //新增一个Tab项
-      element.tabAdd('demo', {
-        title: '新选项'+ (Math.random()*1000|0) //用于演示
-        ,content: '内容'+ (Math.random()*1000|0)
-        ,id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
-      })
-    }
-    ,tabDelete: function(othis){
-      //删除指定Tab项
-      element.tabDelete('demo', '44'); //删除：“商品管理”
-      
-      
-      othis.addClass('layui-btn-disabled');
-    }
-    ,tabChange: function(){
-      //切换到指定Tab项
-      element.tabChange('demo', '22'); //切换到：用户管理
-    }
+  //监听提交按钮
+  form.on('submit(find)', function(data){
+  var name  = $('#friend').val();
+  //转码
+  name = encodeURI(name); 
+  var json ={
+  	params: { name : name },
+	token:token
   };
-  
-  $('.site-demo-active').on('click', function(){
-    var othis = $(this), type = othis.data('type');
-    active[type] ? active[type].call(this, othis) : '';
-  });
-  
-  //Hash地址的定位
-  var layid = location.hash.replace(/^#test=/, '');
-  element.tabChange('test', layid);
-  
-  element.on('tab(test)', function(elem){
-    location.hash = 'test='+ $(this).attr('lay-id');
+    var paramst ={
+  	 name : name ,
+	 token:token
+  };
+    //查询
+    $.ajax({
+        type:'post',
+        dataType:'json',
+        contentType:'application/json',
+        cache : false,
+        data: JSON.stringify({
+        	params:paramst
+        }),
+        url:baseUrl + "com.hs.common.env.queryUserInfo.biz.ext",
+        success:function(data){
+        	var friendList = data.result;
+        	var htmlStr = "";
+        	for(var i =0;i<friendList.length;i++){
+        			htmlStr+='<div style="width:150px;height: 100px">';
+					htmlStr+='	<div style="width:100px;height: 80px;float: left;">';
+					htmlStr+='		<img alt="" style="height: 100px;width: 80px;" src="<%=webPath + contextPath%>/layim-v3.8.0/dist/css/modules/layim/skin/1.jpg">';
+					htmlStr+='	</div>';
+					htmlStr+='	<div style="width:50px;height: 100px;float: left;">';
+					htmlStr+='		<li>'+friendList[i].name+'</li>';
+					htmlStr+='		<li>男</li>';
+					htmlStr+='		<button class="layui-btn" lay-submit lay-filter="formDemo" style="height: 35px;width: 50px;margin-top: 20px;padding: 0px;">+好友</button>';
+					htmlStr+='	</div>';
+					htmlStr+='</div>';
+        	}
+            $(".photos").before(htmlStr);
+        }
+    })
   });
   
 });

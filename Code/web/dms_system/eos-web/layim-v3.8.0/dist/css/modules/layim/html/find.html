@@ -26,16 +26,36 @@
 
 <script src="http://local.res.layui.com/layui/src/layui.js"></script>
 <script>
-layui.use(['layim', 'laypage'], function(){
-  var layim = layui.layim
-  ,layer = layui.layer
-  ,laytpl = layui.laytpl
-  ,$ = layui.jquery
-  ,laypage = layui.laypage;
-  
-  //ä¸äºæ·»å å¥½åè¯·æ±ä¹ç±»çäº¤äºåè§ææ¡£
-  
-});
+    $(function(){
+        fenye();
+    })
+    function fenye(){
+        layui.use(['laypage', 'layer'], function(){
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+
+        });
+    }
+function showData(ds){
+    $("#tbs").empty();
+    var htmlStr="";
+for(var i=0;i<ds.data.length;i++){
+    htmlStr+='<tr><td>';
+    htmlStr+=ds.data[i].id;
+    htmlStr+='</td><td>';
+    htmlStr+=ds.data[i].className;
+    htmlStr+='</td><td>';
+    htmlStr+=ds.data[i].classSumNum;
+    htmlStr+='</td><td>';
+    htmlStr+=ds.data[i].teacherName;
+    htmlStr+='</td><td>';
+    htmlStr+=ds.data[i].fdyName;
+    htmlStr+='</td><td>';
+    htmlStr+=ds.data[i].fdyNum;
+    htmlStr+='</td></tr>'
+ 
+}
+    $("#tbs").append(htmlStr);
 </script>
 </body>
 </html>

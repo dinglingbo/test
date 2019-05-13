@@ -211,36 +211,24 @@ ondrawsummarycell="onDrawSummaryCell"
 			onvaluechanged = "onValueChanged"			
 			>
 	    <div property="columns">
-		   <div field="itemname" name="itemname" headerAlign="center" allowSort="false" visible="true" width="120px">名称</div>
+	       <div type="indexcolumn">序号</div>
+		   <div field="itemName" name="itemName" headerAlign="center" allowSort="false" visible="true" width="120px">名称</div>
 		   <div field="code" name="code" headerAlign="code" allowSort="false" visible="false" width="120px">编码</div>
-	            <div field="itemprice" allowSort="true" align="left"
-					headerAlign="center" width="">
-					原价 <input class="nui-textbox"  vtype="float" datatype="float"  name="sellPrice" property="editor" onvaluechanged ="onValueChangedSellPrice"/>
-				</div>
-	            <div field="itemdiscountprice" allowSort="true" align="left"
-					headerAlign="center" width="">
-					折后价 <input class="nui-textbox" vtype="float" datatype="float" name="itemdiscountprice" property="editor" onvaluechanged ="onValueChangedSellPrice"/>
-				</div>
-	            <div field="action" headerAlign="center" allowSort="false" visible="true" align="center" name="action">维修动作
-	           <input class="nui-combobox" showNullItem="true" name="chanceType"  valueField="customid" textField="name"  property="editor" data="statusList" emptyText=""/>
-	               <!--  <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedComQty" selectOnFocus="true" width="60%"/> -->
-	             		<!-- <input class="nui-combobox" id="billTypeId" emptyText="个人客户" name="billTypeId" data="[{billTypeId:5,text:'个人客户'},{billTypeId:0,text:'单位客户'}]"
-              width="100%"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="5"/> -->
-	                 <!-- <input name="serviceTypeId"
-		                 id="serviceTypeId"
-		                 class="nui-combobox"
-		                 textField="name"
-		                 valueField="id"
-		                 allowInput="true"
-		                 width="100%"
-		                 class="nui-combobox"
-                    /> -->
-                   <!--  <input property="editor" class="nui-combobox" textField="name" data="statusList"
-						valueField="id" /> -->
-	            </div>
-	           <div type="checkboxcolumn" trueValue="1" falseValue="0" field="isPaint" name="isPaint" value="1" width="50" headerAlign="center" header="是否喷漆" allowsort="true"></div>
-	           <div field="blankOptBtn" name="blankOptBtn" width="80" headerAlign="center" header="操作" align="center" ></div>
-	   </div>
+		   <div field="nameId" name="nameId" headerAlign="code" allowSort="false" visible="false" width="120px">编码</div>
+            <div field="amt" allowSort="true" align="left"
+				headerAlign="center" width="">
+				原价 <input class="nui-textbox"  vtype="float" datatype="float"  name="amt" property="editor" onvaluechanged ="onValueChangedSellPrice"/>
+			</div>
+            <div field="discountAmt" allowSort="true" align="left"
+				headerAlign="center" width="">
+				折后价 <input class="nui-textbox" vtype="float" datatype="float" name="discountAmt" property="editor" onvaluechanged ="onValueChangedSellPrice"/>
+			</div>
+            <div field="action" headerAlign="center" allowSort="false" visible="true" align="center" name="action">维修动作
+           <input class="nui-combobox" showNullItem="true" name="chanceType"  valueField="customid" id="setAction" textField="name"  property="editor" data="statusList" emptyText="" onvaluechanged ="onValueChangedAction"/>
+            </div>
+           <div type="checkboxcolumn" trueValue="1" falseValue="0" field="isPaint" name="isPaint" value="1" width="50" headerAlign="center" header="是否喷漆" allowsort="true"></div>
+           <div field="blankOptBtn" name="blankOptBtn" width="80" headerAlign="center" header="操作" align="center" ></div>
+      </div>
      </div>            
  </div>   
      
@@ -336,7 +324,7 @@ ondrawsummarycell="onDrawSummaryCell"
     <div style="height: 10%;"></div>
 </div>
 
-<div style="background-color: #cfddee;position:absolute; top:85%;width:100%;height: 15%; z-index:900;">
+<div style="background-color: #cfddee;position:absolute; top:83%;width:100%;height: 17%; z-index:900;">
     <div id="statustable" style="float: left;height:100%;font-size:16px;color:#5a78a0;padding-left:20px;">
     	<table  style='height: 100%'>
     		<tbody>

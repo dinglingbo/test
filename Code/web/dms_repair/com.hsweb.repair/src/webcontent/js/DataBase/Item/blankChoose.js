@@ -8,6 +8,7 @@ var blankGrid = null;
 //var statusHash = {1:"拆装",2:"修复",3:"更换",4:"校正"};
 var statusHash = {};
 var statusList = {};
+var allSpecialItemList = {};
 $(document).ready(function(){
 
 	/*$("body").on("mouseenter","path",function(e){
@@ -57,6 +58,20 @@ $(document).ready(function(){
                 break;
         }
     });
+	//行选中时发生
+	blankGrid.on("select",function(e){
+		var row = e.record;
+		var dictids= [row.nameId];
+	    $.post(apiPath + sysApi + "/"+"com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictids="+dictids+"&token="+token,{},function(text){
+		    if(text.data){
+		    	var setStatusList = text.data;
+		    	nui.get("setAction").setData(setStatusList);
+		        /*statusList = [{id:1,name:"拆装"},{id:2,name:"修复"},{id:3,name:"更换"}];*/
+		    	
+		    }
+	    });
+	});
+	
 	/*//查找动作接口
 	initDicts({
     	chanceType:REPAIR_ACTION//商机
@@ -76,6 +91,13 @@ $(document).ready(function(){
 	    	
 	    }
     });
+    //查找车对应的部位名称
+    var parentid= 10281;
+    $.post(apiPath + sysApi + "/"+"com.hsapi.system.dict.dictMgr.queryDictTree.biz.ext?parentid="+parentid+"&token="+token,{},function(text){
+	    if(text.data){
+	    	allSpecialItemList = text.data;
+	    }
+    });
 	
 });
 
@@ -83,7 +105,7 @@ function setData(){
 	$("#imgShow").attr("src",url);
 }
 
-var allSpecialItemList = [
+var allSpecialItemList1 = [
    {
 	"cpno": "001",
 	"cpstr": "左前后视镜",
@@ -447,9 +469,14 @@ function removeSpecialForView(path){
 
 //添加项目
 function addSpecialForView(cpno){
-	var addItem = getSpecialDataByParam(cpno);
-	addItem.code = addItem.cpno;
+	var data = getSpecialDataByParam(cpno);
+	var addItem = {};
+	addItem.itemName = data.name;
+	addItem.code = data.customid;
+	addItem.nameId = data.id;
 	addItem.isPaint = 1;
+	addItem.discountAmt = 0;
+	addItem.amt = 0;
 	//addItem.action = null;
 	/*var data = {};
 	data.itemname = addItem.itemname*/
@@ -463,7 +490,7 @@ function addSpecialForView(cpno){
 //获取对应面的数据
 function getSpecialDataByParam(cpno){
 	for(var i = 0 ; i < this.allSpecialItemList.length ; i ++){
-		if(cpno == this.allSpecialItemList[i].cpno){
+		if(cpno == this.allSpecialItemList[i].customid){
 			return this.allSpecialItemList[i];
 		}
 	}
@@ -493,6 +520,12 @@ function deletItem(row_uid){
 	}
 });
 */
+
+function saveItem(){
+	//获取所有行
+	
+	
+}
 
 
 

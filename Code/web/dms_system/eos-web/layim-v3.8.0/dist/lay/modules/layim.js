@@ -142,7 +142,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     options.item = options.item || ('d.' + options.type);
 
     return ['{{# var length = 0; layui.each('+ options.item +', function(i, data){ length++; }}'
-      ,'<li layim-event="chat" data-type="'+ options.type +'" data-index="{{ '+ (options.index||'i') +' }}" class="layim-'+ (options.type === 'history' ? '{{i}}' : options.type + '{{data.id}}') +' {{ data.status === "offline" ? "layim-list-gray" : "" }}"><img src="{{ data.avatar }}"><span>{{ data.username||data.groupname||data.name||"佚名" }}</span><p>{{ data.remark||data.sign||"" }}</p><span class="layim-msg-status">new</span></li>'
+      ,'<li layim-event="chat" data-type="'+ options.type +'" data-index="{{ '+ (options.index||'i') +' }}" id="layim-'+ options.type +'{{data.id}}" class="layim-'+ (options.type === 'history' ? '{{i}}' : options.type + '{{data.id}}') +' {{ data.status === "offline" ? "layim-list-gray" : "" }}"><img src="{{ data.avatar }}"><span>{{ data.username||data.groupname||data.name||"佚名" }}</span><p>{{ data.remark||data.sign||"" }}</p><span class="layim-msg-status">new</span></li>'
     ,'{{# }); if(length === 0){ }}'
       ,'<li class="layim-null">'+ (nodata[options.type] || "暂无数据") +'</li>'
     ,'{{# } }}'].join('');

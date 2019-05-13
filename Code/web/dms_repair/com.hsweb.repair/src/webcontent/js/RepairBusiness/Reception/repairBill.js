@@ -5579,7 +5579,7 @@ function chooseBlank(){
  		url :  webPath + contextPath + "/repair/RepairBusiness/blankChoose.jsp?token="+token,
  		title : "钣喷项目",
  		width : 1100,
- 		height : 680,
+ 		height : 640,
  		allowResize: false,
  		onload : function() {
  			var iframe = this.getIFrameEl(); 

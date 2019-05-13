@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>钣喷项目</title>
-    <script src="<%=request.getContextPath()%>/repair/js/DataBase/Item/blankChoose.js?v=1.0.2"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/DataBase/Item/blankChoose.js?v=1.0.4"></script>
     <%-- <script src="<%=request.getContextPath()%>/repair/js/DataBase/Item/item_special.js?v=1.0.0"></script> --%>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
@@ -203,7 +203,7 @@ ondrawsummarycell="onDrawSummaryCell"
 </div> -->
 <div class="nui-fit">
        
- <div style="float:left;width:68%;height:600px;background:#fff;">
+ <div style="float:left;width:71%;height:600px;background:#fff;">
 	     <div id="blankGrid" class="nui-datagrid" style="width: 100%;height:100%"
 			showPager="false" sortMode="client" allowCellEdit="true"
 			allowCellSelect="true" multiSelect="true" showsummaryrow = "true"
@@ -212,21 +212,40 @@ ondrawsummarycell="onDrawSummaryCell"
 			>
 	    <div property="columns">
 	       <div type="indexcolumn">序号</div>
-		   <div field="itemName" name="itemName" headerAlign="center" allowSort="false" visible="true" width="120px">名称</div>
-		   <div field="code" name="code" headerAlign="code" allowSort="false" visible="false" width="120px">编码</div>
-		   <div field="nameId" name="nameId" headerAlign="code" allowSort="false" visible="false" width="120px">编码</div>
-            <div field="amt" allowSort="true" align="left"
+		   <div field="itemNameo" name="itemName" headerAlign="center" allowSort="false" visible="true" width="120px">名称</div>
+		   <div field="itemNamet" name="code" headerAlign="code" allowSort="false" visible="false" width="120px">喷漆名称</div>
+		   <div field="itemCodeo" name="itemCodeo" headerAlign="code" allowSort="false" visible="false" width="120px">编码</div>
+		   <div field="itemCodet" name="itemCodet" headerAlign="itemCodet" allowSort="false" visible="false" width="120px">编码</div>
+		   <div field="msCode" name="msCode" headerAlign="msCode" allowSort="false" visible="false" width="120px">显示图片编码</div>
+		   <div field="Ido" name="itemIdo" headerAlign="itemIdo" allowSort="false" visible="false" width="120px">id</div>
+		   <div field="Idt" name="itemIdt" headerAlign="itemIdt" allowSort="false" visible="false" width="120px">id</div>
+		   <div field="itemTimeo" name="itemTimeo" headerAlign="itemTimeo" allowSort="false" visible="false" width="120px">数量</div>
+		   <div field="itemTimet" name="itemTimet" headerAlign="itemTimet" allowSort="false" visible="false" width="120px">数量</div>
+		   <div field="unitPricet" name="unitPricet" headerAlign="unitPricet" allowSort="false" visible="false" width="120px">单价</div>
+		   <div field="unitPriceo" name="unitPriceo" headerAlign="unitPriceo" allowSort="false" visible="false" width="120px">单价</div>
+		   <div field="rateo" name="rateo" headerAlign="rateo" allowSort="false" visible="false" width="120px">优惠率</div>
+		   <div field="ratet" name="ratet" headerAlign="ratet" allowSort="false" visible="false" width="120px">优惠率</div>
+		   <div field="nameId" name="nameId" headerAlign="code" allowSort="false" visible="false" width="120px">名称Id</div>
+            <div field="amto" allowSort="true" align="left"
 				headerAlign="center" width="">
-				原价 <input class="nui-textbox"  vtype="float" datatype="float"  name="amt" property="editor" onvaluechanged ="onValueChangedSellPrice"/>
+				原价 <input class="nui-textbox"  vtype="float" datatype="float"  name="amt" property="editor" onvaluechanged ="onValueChangedAmto"/>
 			</div>
-            <div field="discountAmt" allowSort="true" align="left"
+            <div field="subtotalo" allowSort="false" align="left"
 				headerAlign="center" width="">
-				折后价 <input class="nui-textbox" vtype="float" datatype="float" name="discountAmt" property="editor" onvaluechanged ="onValueChangedSellPrice"/>
+				折后价 <input class="nui-textbox" vtype="float" datatype="float" name="subtotal" property="editor" onvaluechanged ="onValueChangedSubtotalo"/>
 			</div>
             <div field="action" headerAlign="center" allowSort="false" visible="true" align="center" name="action">维修动作
-           <input class="nui-combobox" showNullItem="true" name="chanceType"  valueField="customid" id="setAction" textField="name"  property="editor" data="statusList" emptyText="" onvaluechanged ="onValueChangedAction"/>
+                <input class="nui-combobox" showNullItem="true" name="chanceType"  valueField="customid" id="setAction" textField="name"  property="editor" data="statusList" emptyText=""/>
             </div>
-           <div type="checkboxcolumn" trueValue="1" falseValue="0" field="isPaint" name="isPaint" value="1" width="50" headerAlign="center" header="是否喷漆" allowsort="true"></div>
+           <div type="checkboxcolumn" trueValue="1" falseValue="0" field="isPaint" name="isPaint" value="1" width="60" headerAlign="center" header="是否喷漆" allowsort="true"></div>
+           <div field="amtt" allowSort="true" align="left"
+				headerAlign="center" width="">
+				喷漆原价 <input class="nui-textbox"  vtype="float" datatype="float"  name="amt" property="editor" onvaluechanged ="onValueChangedAmtt"/>
+			</div>
+            <div field="subtotalt" allowSort="false" align="left"
+				headerAlign="center" width="">
+				喷漆折后价 <input class="nui-textbox" vtype="float" datatype="float" name="subtotalq" property="editor" onvaluechanged ="onValueChangedSubtotalt"/>
+			</div>
            <div field="blankOptBtn" name="blankOptBtn" width="80" headerAlign="center" header="操作" align="center" ></div>
       </div>
      </div>            
@@ -372,7 +391,7 @@ ondrawsummarycell="onDrawSummaryCell"
 							border-radius: 5px;
 							text-decoration: none;
 							line-height: 2;" 
-							href="javascript:void(0)" onclick="pay()" >确定</a>
+							href="javascript:void(0)" onclick="insItem()">确定</a>
 					</td>
 					<td >
 						<a id="ysettle" style="    width: 120px;
@@ -385,7 +404,7 @@ ondrawsummarycell="onDrawSummaryCell"
 							border-radius: 5px;
 							line-height: 2;
 							text-decoration: none;" 
-							href="javascript:void(0)" onclick="noPay()" >取消</a>
+							href="javascript:void(0)" onclick="onCancel()" >取消</a>
 					</td>
     			</tr>
     		</tbody>

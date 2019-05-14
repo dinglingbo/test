@@ -31,7 +31,7 @@
 
     <body>
         <input class="nui-hidden" id="typeMsg" name="typeMsg" value='<b:write property="typeMsg"/>' />
-        <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+       <div class="nui-toolbar" style="padding:2px;height:48px;position: relative;">
             <table style="width:100%;">
                 <tr>
                     <td style="white-space:nowrap;">
@@ -61,17 +61,21 @@
                         <input id="" name="" width="80px" emptyText="车型名称" class="nui-textbox" />
 
                         <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn" visible="false"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="editBtn" visible="false"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn" visible="false"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="add()" id="audit" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="add()" id="auditno" visible="false"><span class="fa fa-close fa-lg"></span>&nbsp;反审</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="add()" id="case" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;结案</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="add()" id="csaeno" visible="false"><span class="fa fa-close fa-lg"></span>&nbsp;反结案</a>
 
                     </td>
                 </tr>
             </table>
         </div>
         <div class="nui-fit">
-            <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="list" showModified="false" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true"
-                allowCellWrap="true" url="">
+            <div id="mainGrid" class="nui-datagrid" visible="false" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="list" showModified="false" onrowdblclick="" allowCellSelect="true"
+                editNextOnEnterKey="true" allowCellWrap="true" url="">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
                     <div field="" name="" width="100px" headerAlign="center" header="工单号"></div>
@@ -125,12 +129,18 @@
                 mainGrid3 = nui.get("mainGrid3");
                 if (nui.get("typeMsg").value == 1) {
                     mainGrid.setVisible(true);
+                    nui.get("addBtn").setVisible(true);
+                    nui.get("editBtn").setVisible(true);
                 }
                 if (nui.get("typeMsg").value == 2) {
                     mainGrid2.setVisible(true);
+                    nui.get("audit").setVisible(true);
+                    nui.get("auditno").setVisible(true);
                 }
                 if (nui.get("typeMsg").value == 3) {
                     mainGrid3.setVisible(true);
+                    nui.get("case").setVisible(true);
+                    nui.get("csaeno").setVisible(true);
                 }
             });
 
@@ -140,7 +150,9 @@
                 item.text = "编辑整车销售";
                 item.url = webPath + contextPath + "/page/carSales/editCarSales.jsp";
                 item.iconCls = "fa fa-file-text";
-                var params = {};
+                var params = {
+                    typeMsg: nui.get("typeMsg").value
+                };
                 window.parent.activeTabAndInit(item, params);
             }
         </script>

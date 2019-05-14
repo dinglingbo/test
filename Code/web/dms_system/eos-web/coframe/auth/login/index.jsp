@@ -1272,7 +1272,22 @@ layui.use('layim', function(layim){
     }
   });
   
-  
+  /* //鼠标右键点击事件测试
+  $("div").mousedown(function(e) {
+    console.log(e.which);
+    //右键为3
+    if (3 == e.which) {
+        $(this).css({
+            "font-size": "-=2px"
+        });
+    } else if (1 == e.which) {
+        //左键为1
+        $(this).css({
+            "font-size": "+=3px"
+        });
+    }
+ }) */
+
 
 });
 </script>

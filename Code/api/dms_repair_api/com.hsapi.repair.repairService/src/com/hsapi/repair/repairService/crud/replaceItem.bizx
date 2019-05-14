@@ -693,7 +693,7 @@
     <node>assign13</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess7" name="getRpbItemById1" displayName="getRpbItemByCode" collapsed="false" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" description="" id="link31" name="link31" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link31" name="link31" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>subprocess7</sourceNode>
       <targetNode>assign5</targetNode>
       <process:transitionCondition>
@@ -703,9 +703,15 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" id="link32" name="link32" displayName="连接线" isDefault="false" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link32" name="link32" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess7</sourceNode>
       <targetNode>assign6</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link33</targetConnections>
     <location x="585" y="97"/>

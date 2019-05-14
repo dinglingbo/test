@@ -1,7 +1,13 @@
- 
- 
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" session="false" %>
+<%@include file="/common/sysVarCommon.jsp"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<!-- 
+  - Author(s): Administrator
+  - Date: 2019-05-13 18:11:51
+  - Description:
+-->
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -80,8 +86,8 @@ layui.use(['layim', 'flow'], function(){
     
     //实际部署时，请将下述 getmsg.json 改为你的接口地址
     
-    $.get('getmsg.json', {
-      page: page || 1
+    $.get(apiPath + sysApi + "/com.hsapi.system.im.message.getHistoryMessage.biz.ext", {
+      page: page || 1, typeList: "0,1,2,3"
     }, function(res){
       if(res.code != 0){
         return layer.msg(res.msg);

@@ -32,10 +32,10 @@
 
 <ul class="layim-msgbox" id="LAY_view"></ul>
 
-<div style="margin: 0 15px;" >
+<!-- <div style="margin: 0 15px;" >
   <blockquote class="layui-elem-quote">注意：这些都是模拟数据，实际使用时，需将其中的模拟接口改为你的项目真实接口。
   <br>该模版文件所在目录（相对于layui.js）：/css/modules/layim/html/msgbox.html</blockquote>
-</div>
+</div> -->
 
 <textarea title="消息模版" id="LAY_tpl" style="display:none;">
 {{# layui.each(d.data, function(index, item){
@@ -86,8 +86,8 @@ layui.use(['layim', 'flow'], function(){
     
     //实际部署时，请将下述 getmsg.json 改为你的接口地址
     
-    $.get(apiPath + sysApi + "/com.hsapi.system.im.message.getHistoryMessage.biz.ext", {
-      page: page || 1, typeList: "0,1,2,3", receiveuser: currImCode
+    $.get(apiPath + sysApi + "/com.hsapi.system.im.message.getBoxList.biz.ext", {
+      page: page || 1, typeList: "2,3", receiveuser: currImCode
     }, function(res){
       if(res.code != 0){
         return layer.msg(res.msg);

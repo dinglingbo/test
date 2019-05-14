@@ -19,18 +19,12 @@
 <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
   <ul class="layui-tab-title">
     <li class="layui-this">找人</li>
-    <li>找群</li>
   </ul>
   <div class="layui-tab-content" style="height: 50px;">
     <div class="layui-tab-item layui-show">
     	<input type="text" name="friend" id="friend" required  lay-verify="required" placeholder="请输入查找名称"  class="layui-input" style="width: 400px;display: inline-block;">
     	<button class="layui-btn" lay-submit lay-filter="find" style="width: 80px;">查找</button>
     	<div></div>
-    </div>
-    <div class="layui-tab-item">
-     	<input type="text" name="title" required  lay-verify="required" placeholder="请输入查找名称"  class="layui-input" style="width: 400px;display: inline-block;">
-    	<button class="layui-btn" lay-submit lay-filter="formDemo" style="width: 80px;">查找</button>  
-    	<div></div> 
     </div>
   </div>
 </div> 

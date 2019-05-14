@@ -52,11 +52,15 @@ $(document).ready(function(){
           		s =  ' <a class="optbtn" href="javascript:deletItem(\'' + uid + '\')">删除</a>';
                 e.cellHtml = s;
                  break;
-          	 case "action":
+          	 case "typeCode":
           		 if (statusHash[e.value]) {
                      e.cellHtml = statusHash[e.value] || "";
                  } else {
                      e.cellHtml = "";
+                 }
+          	 case "itemNameo":
+          		 if (e.value==null) {
+                     e.cellHtml = record.itemNamet;
                  }
             default:
                 break;
@@ -125,9 +129,14 @@ function setData(main){
 			var returnJson = nui.decode(text);
 			var data = returnJson.data;
 			//设置表格数据
-			blankGrid.setData(data);
+			blankGrid.addRows(data);
+			blankGrid.accept();
+			var rows = blankGrid.getData();
+			for(var i=0;i<rows.length;i++){
+				blankGrid.beginEditRow(rows[i]);
+			}
 			//设置图片数据
-			if(data.length>0){
+			if(data && data.length>0){
 				for(var i = 0;i<data.length;i++){
 					$('#path-list-1').find('path').each(function(){
 						if($(this).attr('data-cpno') == data[i].msCode){
@@ -254,25 +263,38 @@ var addList = [];
 var delList = [];
 function insItem(){
 	var rows = blankGrid.getData();
+	var falg = false;
+	for(var i = 0;i<rows.length;i++){
+		if( (rows[i].typeCode == "" || rows[i].typeCode == null) && rows[i].isPaint == 0){
+			falg = true ;
+			break;
+		}		
+	}
+	if(falg){
+		showMsg("项目没有选择维修动作或者喷漆","W");
+		return;
+	}
 	//获取所有新增行
 	var rowAdd = blankGrid.getChanges("added");
 	if(rowAdd && rowAdd.length>0){
 		for(var i=0;i<rowAdd.length;i++){
-			   var codeNum = rowAdd[i].action;
-			   var codeo = codeHash[codeNum];
-			   codeo = codeo + rowAdd[i].msCode;
-		  	   var insItemo = {
-		  	        serviceId:serviceIdF,
-		  	        code:codeo,
-		  	        cardDetailId:0,
-		  	        sourceId:3,
-		  	        itemTime:1,
-		  	        unitPrice:rowAdd[i].unitPriceo,
-		  	        subtotal:rowAdd[i].subtotalo,
-		  	        rate:rowAdd[i].rateo,
-		  	        amt:rowAdd[i].amto
-		  	    };
-		  	    addList.push(insItemo);
+			   var codeNum = rowAdd[i].typeCode || "";
+			   if(codeNum != null && codeNum != ""){
+				   var codeo = codeHash[codeNum];
+				   codeo = codeo + rowAdd[i].msCode;
+			  	   var insItemo = {
+			  	        serviceId:serviceIdF,
+			  	        code:codeo,
+			  	        cardDetailId:0,
+			  	        sourceId:3,
+			  	        itemTime:1,
+			  	        unitPrice:rowAdd[i].unitPriceo,
+			  	        subtotal:rowAdd[i].subtotalo,
+			  	        rate:rowAdd[i].rateo,
+			  	        amt:rowAdd[i].amto
+			  	    };  
+			  	  addList.push(insItemo);
+			   }
 			    if(rowAdd[i].isPaint==1){
 			    	var codet = "XTPQ005";
 				  	codet = codet + rowAdd[i].msCode;
@@ -345,14 +367,15 @@ function insItem(){
     		var rowo = rowMod[i];
     		serviceId = serviceIdF;
             var cardDetailId = 0;
-            var itemo = {};
-            itemto.id = rowo.ido;
-            itemto.serviceId = serviceIdF;
-            itemto.amt = rowo.amto;
-            itemto.subtotal = rowo.subtotalo;	
-            itemto.rate = rowo.rateo;
-            itemto.unitPrice = rowo.unitPriceo;
-            itemto.itemTime = rowo.itemTimeo;
+            var itemo = {
+             id:rowo.ido,
+		     serviceId:serviceIdF,
+		     amt:rowo.amto,
+		     subtotal:rowo.subtotalo,	
+		     rate:rowo.rateo,
+		     unitPrice:rowo.unitPriceo,
+		     itemTime:rowo.itemTimeo
+            }
         	updList.push(itemo);
     	}
     }	
@@ -399,6 +422,8 @@ function insItem(){
 var addF = "S";
 function addItem(rows, callback){
 	if(rows && rows.length>0){
+		var len = rows.length;
+    	var num = 0;
 		//循环判断是否选择了喷漆
 		var addItemList = rows;
 		//循环调用接口
@@ -413,12 +438,13 @@ function addItem(rows, callback){
 		        data:data
 		    };
 			svrCRUD(params,function(text){
+				num = num + 1;
 		        var errCode = text.errCode||"";
 		        var errMsg = text.errMsg||"";
 		        if(errCode == 'E'){
 		        	addF = "E";
 		        }
-		        if(num==i){
+		        if(num==len){
 			       callback && callback();	
 			    }
 	        
@@ -432,26 +458,30 @@ function addItem(rows, callback){
 var deleF = "S";
 function delItem(rows, callback){
 	if(rows && rows.length>0){
-		var num = rows.length-1;
-		for(var n=0;n<rows.length;n++)
-		var item = rows[i];
-	    var params = {
-	        type:"delete",
-	        interType:"item",
-	        data:{
-	            item: item
-	        }
-	    };
-	    svrCRUD(params,function(text){
-	        var errCode = text.errCode||"";
-	        var errMsg = text.errMsg||"";
-	        if(errCode == 'E'){   
-	        	deleF = "E"
-	        }
-	        if(num==n){
-	           callback && callback();	
-	        }
-	    });
+		var len = rows.length;
+    	var num = 0;
+		for(var n=0;n<rows.length;n++){
+			var item = rows[n];
+		    var params = {
+		        type:"delete",
+		        interType:"item",
+		        data:{
+		            item: item
+		        }
+		    };
+		    svrCRUD(params,function(text){
+		    	num = num + 1;
+		        var errCode = text.errCode||"";
+		        var errMsg = text.errMsg||"";
+		        if(errCode == 'E'){   
+		        	deleF = "E"
+		        }
+		        if(num==len){
+		           callback && callback();	
+		        }
+		    });
+		}
+		
 	}else{
 		callback && callback();
 	}
@@ -569,8 +599,8 @@ function onValueChangedAmto(e){
 	var el = e.sender;
 	var flag = isNaN(e.value);
 	var amto = el.getValue();
-	var rowOld = blankGrid.getEditorOwnerRow(el);
-	var row = rowOld;
+	var row = blankGrid.getEditorOwnerRow(el);
+	//var row = rowOld;
 	var itemTimeo = row.itemTimeo;
 	//var setSubtotal = rpsItemGrid.getCellEditor("itemSubtotal", row);
 	if (flag) {
@@ -603,7 +633,7 @@ function onValueChangedAmto(e){
 		}
 		row.amto = amto;
 		row.unitPriceo = unitPriceo;
-		blankGrid.updateRow(rowOld,row);
+		//blankGrid.updateRow(rowOld,row);
 	}
 }
 
@@ -612,8 +642,9 @@ function onValueChangedSubtotalo(e){
 	var el = e.sender;
 	var flag = isNaN(e.value);
 	var subtotalo = el.getValue();
-	var rowOld = blankGrid.getEditorOwnerRow(el);
-	var row = rowOld;
+	var row = blankGrid.getEditorOwnerRow(el);
+	//var setSubtotalo = blankGrid.getCellEditor("subtotalo", row);
+	//var row = rowOld;
 	var itemTimeo = row.itemTimeo;
 	//var setSubtotal = rpsItemGrid.getCellEditor("itemSubtotal", row);
 	if (flag) {
@@ -639,7 +670,8 @@ function onValueChangedSubtotalo(e){
 		}
 		row.rateo = rateo;
 		row.subtotalo = subtotalo;
-		blankGrid.updateRow(rowOld,row);
+		//setSubtotalo.setValue(subtotalo);
+		//blankGrid.updateRow(rowOld,row);
 	}
 }
 

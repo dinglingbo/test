@@ -87,7 +87,7 @@ layui.use(['layim', 'flow'], function(){
     //实际部署时，请将下述 getmsg.json 改为你的接口地址
     
     $.get(apiPath + sysApi + "/com.hsapi.system.im.message.getHistoryMessage.biz.ext", {
-      page: page || 1, typeList: "0,1,2,3"
+      page: page || 1, typeList: "0,1,2,3", receiveuser: currImCode
     }, function(res){
       if(res.code != 0){
         return layer.msg(res.msg);

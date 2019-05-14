@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>钣喷项目</title>
-    <script src="<%=request.getContextPath()%>/repair/js/DataBase/Item/blankChoose.js?v=1.0.4"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/DataBase/Item/blankChoose.js?v=1.0.5"></script>
     <%-- <script src="<%=request.getContextPath()%>/repair/js/DataBase/Item/item_special.js?v=1.0.0"></script> --%>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
@@ -228,13 +228,13 @@ ondrawsummarycell="onDrawSummaryCell"
 		   <div field="nameId" name="nameId" headerAlign="code" allowSort="false" visible="false" width="120px">名称Id</div>
             <div field="amto" allowSort="true" align="left"
 				headerAlign="center" width="">
-				原价 <input class="nui-textbox"  vtype="float" datatype="float"  name="amt" property="editor" onvaluechanged ="onValueChangedAmto"/>
+				原价 <input class="nui-textbox" selectOnFocus="true" width="60%" vtype="float" datatype="float"  name="amt" property="editor" onvaluechanged ="onValueChangedAmto"/>
 			</div>
             <div field="subtotalo" allowSort="false" align="left"
 				headerAlign="center" width="">
 				折后价 <input class="nui-textbox" vtype="float" datatype="float" name="subtotal" property="editor" onvaluechanged ="onValueChangedSubtotalo"/>
 			</div>
-            <div field="action" headerAlign="center" allowSort="false" visible="true" align="center" name="action">维修动作
+            <div field="typeCode" headerAlign="center" allowSort="false" visible="true" align="center" name="action">维修动作
                 <input class="nui-combobox" showNullItem="true" name="chanceType"  valueField="customid" id="setAction" textField="name"  property="editor" data="statusList" emptyText=""/>
             </div>
            <div type="checkboxcolumn" trueValue="1" falseValue="0" field="isPaint" name="isPaint" value="1" width="60" headerAlign="center" header="是否喷漆" allowsort="true"></div>

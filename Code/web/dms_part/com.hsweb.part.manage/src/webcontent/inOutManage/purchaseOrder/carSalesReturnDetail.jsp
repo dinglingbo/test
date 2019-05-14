@@ -5,7 +5,7 @@
 <style type="text/css">
 
 </style>
-<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+<div class="nui-toolbar" style="padding:2px;">
     <table style="width:100%;">
         <tr>
             <td style="width:100%;">
@@ -197,8 +197,8 @@
                                     <div field="" headerAlign="center" header="车型名称"></div>
                                     <div field="" id="" width="60" headerAlign="center" header="汽车品牌"></div>
                                     <div field="" id="" width="60" headerAlign="center" header="车辆类型"></div>
-                                    <div field="" name="" width="40" headerAlign="center" header="颜色"></div>
-                                    <div field="" name="" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="车内饰色">
+                                    <div field="" name="" width="40" headerAlign="center" header="车身颜色"></div>
+                                    <div field="" name="" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="内饰颜色">
                                       <input property="editor" vtype="float" class="nui-textbox"/>
                                     </div>
                                     <div field="" numberFormat="0.0000" width="60" headerAlign="center" header="进价">

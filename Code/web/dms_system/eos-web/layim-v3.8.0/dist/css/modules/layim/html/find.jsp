@@ -14,12 +14,14 @@
   <%@include file="/common/sysCommon.jsp" %>
 <link href="<%=request.getContextPath()%>/layim-v3.8.0/dist/css/layui.css?v=1.0.11" rel="stylesheet" type="text/css" />
     <script src="<%=request.getContextPath()%>/layim-v3.8.0/dist/layui.js?v=1.0.1"></script>
+    <style type="text/css">
+    	.yuan{width:80px;height:80px;border-radius:80px}
+    </style>
 </head>
 <body>
 <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
   <ul class="layui-tab-title">
     <li class="layui-this">找人</li>
-    <li>找群</li>
   </ul>
   <div class="layui-tab-content" style="height: 50px;">
     <div class="layui-tab-item layui-show">
@@ -27,17 +29,12 @@
     	<button class="layui-btn" lay-submit lay-filter="find" style="width: 80px;">查找</button>
     	<div></div>
     </div>
-    <div class="layui-tab-item">
-     	<input type="text" name="title" required  lay-verify="required" placeholder="请输入查找名称"  class="layui-input" style="width: 400px;display: inline-block;">
-    	<button class="layui-btn" lay-submit lay-filter="formDemo" style="width: 80px;">查找</button>  
-    	<div></div> 
-    </div>
   </div>
 </div> 
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 0px;">
   <legend>查找结果</legend>
 </fieldset>
-	<div id="photos" class="photos" style="width:300px; display:block;word-break: break-all;word-wrap: break-word;">
+	<div id="photos" class="photos" style="width:1000px; display:block;word-break: break-all;word-wrap: break-word;">
 <%-- 		<div style="width:150px;height: 100px">
 			<div style="width:100px;height: 80px;float: left;">
 				<img alt="" style="height: 100px;width: 80px;" src="<%=webPath + contextPath%>/layim-v3.8.0/dist/css/modules/layim/skin/1.jpg">
@@ -82,18 +79,19 @@ layui.use(['form', 'upload'], function(){  //如果只加载一个模块，可�
         	var friendList = data.result;
         	var htmlStr = "";
         	for(var i =0;i<friendList.length;i++){
-        			htmlStr+='<div style="width:150px;height: 100px">';
-					htmlStr+='	<div style="width:100px;height: 80px;float: left;">';
-					htmlStr+='		<img alt="" style="height: 100px;width: 80px;" src="<%=webPath + contextPath%>/layim-v3.8.0/dist/css/modules/layim/skin/1.jpg">';
+        			htmlStr+='<div style="width:240px;height: 100px;float: left;">';
+					htmlStr+='	<div style="width:100px;height: 100px;float: left;" >';
+					htmlStr+='		<img alt="" class="yuan" src="<%=webPath + contextPath%>/layim-v3.8.0/dist/css/modules/layim/skin/1.jpg">';
 					htmlStr+='	</div>';
-					htmlStr+='	<div style="width:50px;height: 100px;float: left;">';
+					htmlStr+='	<div style="width:140px;height: 100px;float: left;">';
 					htmlStr+='		<li>'+friendList[i].name+'</li>';
 					htmlStr+='		<li>男</li>';
-					htmlStr+='		<button class="layui-btn" lay-submit lay-filter="formDemo" style="height: 35px;width: 50px;margin-top: 20px;padding: 0px;">+好友</button>';
+					htmlStr+='		<button class="layui-btn layui-btn-xs layui-btn-normal" >+好友</button>';
 					htmlStr+='	</div>';
 					htmlStr+='</div>';
         	}
-            $(".photos").before(htmlStr);
+        	$(".photos").html("");
+            $(".photos").html(htmlStr);
         }
     })
   });

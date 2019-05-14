@@ -16,6 +16,8 @@ import com.eos.system.annotation.Bizlet;
 
 
 
+
+
 import commonj.sdo.DataObject;
 
 @Bizlet("")
@@ -104,6 +106,7 @@ public class ArrayUtils {
 		boolean check = false;				
 		for(int i=0; i< nameList.size(); i++) {
 			HashMap nameObj = (HashMap) nameList.get(i);
+			boolean isPain = false;
 			if(name.equals(nameObj.get("msName"))) {
 				check = true;
 				//已经存在就更新已有的记录数据   typeCode == 005
@@ -119,6 +122,11 @@ public class ArrayUtils {
 					nameObj.put("discountAmtt", item.get("discountAmt"));
 					nameObj.put("subtotalt", item.get("subtotal"));
 					nameObj.put("isPaint", 1);
+					String action =  (String) nameObj.get("typeCode");
+					if(action  == null || action.equals("")){
+						nameObj.put("typeCode", null);
+					}
+					
 				}else {
 					nameObj.put("ido", item.get("id"));
 					nameObj.put("itemIdo", item.get("itemId"));
@@ -130,7 +138,23 @@ public class ArrayUtils {
 					nameObj.put("rateo", item.get("rate"));
 					nameObj.put("discountAmto", item.get("discountAmt"));
 					nameObj.put("subtotalo", item.get("subtotal"));
-					nameObj.put("isPaint", 0);
+					nameObj.put("typeCode", typeCode);
+					//不存在时，已经把“isPaint”设置进去，key不存在没有值的情况
+					Integer paint =  (Integer) nameObj.get("isPaint");
+					int isnum = paint.intValue();
+					if(isnum == 1){
+						nameObj.put("isPaint", 1);
+					}else{
+						nameObj.put("isPaint", 0);
+					}
+					/*if()
+
+					   {
+
+					            resultKey = str.getValue();
+
+					   }*/
+					
 				}
 				
 				nameList.set(i, nameObj);
@@ -162,7 +186,7 @@ public class ArrayUtils {
 			}else {
 				hm.put("msCode", code);
 				hm.put("msName", name);
-				hm.put("typeCode", item.get("id"));
+				hm.put("typeCode", typeCode);
 				hm.put("ido", item.get("id"));
 				hm.put("itemIdo", item.get("itemId"));
 				hm.put("itemCodeo", item.get("itemCode"));

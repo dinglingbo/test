@@ -71,8 +71,7 @@
                     <div field="" name="guestFullName" width="220" headerAlign="center" header="数量"></div>
                     <div field="" width="90" name = "orderMan" headerAlign="center" header="金额"></div>   
                     <div field="" name="guestFullName" width="220" headerAlign="center" header="供方合同号"></div>
-                    <div field="" width="90" name = "orderMan" headerAlign="center" header="许可证编码"></div>                                     
-                    <div field="" allowSort="true"  width="130" headerAlign="center" header="预计到货" dateFormat="yyyy-MM-dd HH:mm" ></div>                    
+                    <div field="" width="90" name = "orderMan" headerAlign="center" header="许可证编码"></div>                                                        
         </div>
     </div> 
 </div>

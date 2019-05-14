@@ -5,34 +5,57 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>发现</title>
-
-<link rel="stylesheet" href="http://local.res.layui.com/layui/src/css/layui.css">
+<title>查找</title>
+  <%@include file="/common/sysCommon.jsp" %>
+<link href="<%=request.getContextPath()%>/layim-v3.8.0/dist/css/layui.css?v=1.0.11" rel="stylesheet" type="text/css" />
 <style>
 
 </style>
 </head>
 <body>
 
-<div style="margin: 15px;">
-  <blockquote class="layui-elem-quote">此为自定义的【查找】页面，因需求不一，所以官方暂不提供该模版结构与样式，实际使用时，可移至该文件到你的项目中，对页面自行把控。
-  <br>文件所在目录（相对于layui.js）：/css/modules/layim/html/find.html</blockquote>
-</div>
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+  <ul class="layui-tab-title">
+    <li class="layui-this">找人</li>
+    <li>找群</li>
+  </ul>
+  <div class="layui-tab-content"></div>
+</div>  
 
 
 
 <script src="http://local.res.layui.com/layui/src/layui.js"></script>
 <script>
-layui.use(['layim', 'laypage'], function(){
-  var layim = layui.layim
-  ,layer = layui.layer
-  ,laytpl = layui.laytpl
-  ,$ = layui.jquery
-  ,laypage = layui.laypage;
-  
-  //一些添加好友请求之类的交互参见文档
-  
-});
+    $(function(){
+        fenye();
+    })
+    function fenye(){
+        layui.use(['laypage', 'layer'], function(){
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+
+        });
+    }
+function showData(ds){
+    $("#tbs").empty();
+    var htmlStr="";
+for(var i=0;i<ds.data.length;i++){
+    htmlStr+='<tr><td>';
+    htmlStr+=ds.data[i].id;
+    htmlStr+='</td><td>';
+    htmlStr+=ds.data[i].className;
+    htmlStr+='</td><td>';
+    htmlStr+=ds.data[i].classSumNum;
+    htmlStr+='</td><td>';
+    htmlStr+=ds.data[i].teacherName;
+    htmlStr+='</td><td>';
+    htmlStr+=ds.data[i].fdyName;
+    htmlStr+='</td><td>';
+    htmlStr+=ds.data[i].fdyNum;
+    htmlStr+='</td></tr>'
+ 
+}
+    $("#tbs").append(htmlStr);
 </script>
 </body>
 </html>

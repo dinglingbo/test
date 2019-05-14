@@ -56,12 +56,9 @@
                         <td style="width:100%;">
                             <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                             <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                            <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;归档</a>
                             <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;精品加装</a>
                             <a class="nui-button" onclick="onCancel" plain="true"  style="width: 80px;"><span class="fa fa-dollar fa-lg"></span>&nbsp;购车预算</a>
-                            <a class="nui-button" onclick="onCancel" plain="true"  style="width: 80px;"><span class="fa fa-remove fa-lg"></span>&nbsp;转销售</a>
-                            <a class="nui-button" onclick="onCancel" plain="true"  style="width: 80px;"><span class="fa fa-remove fa-lg"></span>&nbsp;客户档案</a>
-                            <a class="nui-button" onclick="onCancel" plain="true"  style="width: 80px;"><span class="fa fa-search fa-lg"></span>&nbsp;库存查询</a>
+                            
                         </td>
                     </tr>
                 </table>
@@ -86,9 +83,8 @@
                                 <td>
                                      <input id="enterDate" name="enterDate" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
                                </td>
-								
 								<td class="form_label">
-									<label>业务员：</label>
+							  <label>来访方式：</label>
 								</td>
 								<td colspan="1">
 			                      <input name="serviceTypeId"
@@ -104,7 +100,7 @@
 							</tr>
 							<tr>
 							<td class="form_label">
-							  <label>来访方式：</label>
+									<label>业务员：</label>
 								</td>
 								<td colspan="1">
 			                      <input name="serviceTypeId"
@@ -165,39 +161,69 @@
 							<td colspan="1">
 								<input class="nui-textbox" name="code" width="100%" maxlength="20"/>
 							</td>
-							<td class="form_label">
-								<label>客户性质：</label>
-							</td>
-							<td>
-								<input class="nui-combobox" id="billTypeId" emptyText="个人客户" name="billTypeId" data="[{billTypeId:5,text:'个人客户'},{billTypeId:0,text:'单位客户'}]"
-                          width="100%"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="5"/>
-               
-							</td>
-							</tr>
-							
-							<tr>
-							
-							
-							</tr>
-							<tr>
-								<td class="form_label">
-									<label>联系人：</label>
-								</td>
-								<td colspan="1">
-									<input class="nui-textbox" name="code" width="100%" maxlength="20"/>
-								</td>
-								<td class="form_label required">
+							<td class="form_label required">
 									<label>手机号码：</label>
 								</td>
 								<td colspan="1">
 									<input class="nui-textbox" name="code" width="100%" maxlength="20"/>
 								</td>
+							</tr>
+							
+							<tr>
+							
+							
+							</tr>
+							<tr>
 								<td class="form_label">
+									<label>客户性质：</label>
+								</td>
+								<td>
+									<input class="nui-combobox" id="billTypeId" emptyText="个人客户" name="billTypeId" data="[{billTypeId:5,text:'个人客户'},{billTypeId:0,text:'单位客户'}]"
+		                      width="100%"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="5"/>
+		           
+								</td>
+							    
+								 <td class="form_label">
+									<label>车身颜色：</label>
+								</td>
+								<td colspan="1">
+			                      <input name="serviceTypeId"
+			                             id="serviceTypeId"
+			                             class="nui-combobox"
+			                             textField="name"
+			                             valueField="id"
+			                             allowInput="true"
+			                             width="100%"
+			                             
+			                            />
+			                  <td class="form_label">
+									<label>内饰颜色：</label>
+								</td>
+								<td colspan="1">
+			                       <input name="serviceTypeId"
+			                             id="serviceTypeId"
+			                             class="nui-combobox"
+			                             textField="name"
+			                             valueField="id"
+			                             allowInput="true"
+			                             width="100%"
+			                             
+			                            />
+						     </td>          
+						     </td>
+								<!-- <td class="form_label">
+									<label>联系人：</label>
+								</td>
+								<td colspan="1">
+									<input class="nui-textbox" name="code" width="100%" maxlength="20"/>
+								</td> -->
+								
+								<!-- <td class="form_label">
 									<label>联系电话：</label>
 								</td>
 								<td colspan="1">
 									<input class="nui-textbox" name="code" width="100%" maxlength="20"/>
-								</td>
+								</td> -->
 							</tr>
 							<tr>
 								<td class="form_label required">
@@ -214,20 +240,7 @@
 			                             
 			                            />
 						     </td>
-						     <td class="form_label">
-									<label>车身颜色：</label>
-								</td>
-								<td colspan="1">
-			                      <input name="serviceTypeId"
-			                             id="serviceTypeId"
-			                             class="nui-combobox"
-			                             textField="name"
-			                             valueField="id"
-			                             allowInput="true"
-			                             width="100%"
-			                             
-			                            />
-						     </td>
+						    
 						    </tr>
 							<tr>
 							<td class="form_label" align="right">车型配置:</td>
@@ -235,20 +248,7 @@
 						       style="width: 100%; height: 50px;" /></td>
 							</tr>
 							<tr>
-								<td class="form_label">
-									<label>内饰颜色：</label>
-								</td>
-								<td colspan="1">
-			                       <input name="serviceTypeId"
-			                             id="serviceTypeId"
-			                             class="nui-combobox"
-			                             textField="name"
-			                             valueField="id"
-			                             allowInput="true"
-			                             width="100%"
-			                             
-			                            />
-						     </td>
+								
 						     <td class="form_label">
 									<label>是否试驾：</label>
 								</td>

@@ -16,62 +16,87 @@
         <%@include file="/common/commonRepair.jsp"%>
             <style>
                 html,
-                body {
-                    margin: 0px;
+                body { 
+                    margin: 0px; 
                     padding: 0px;
                     border: 0px;
                     width: 100%;
                     height: 100%;
                     overflow: hidden;
                 }
+                .td_title{
+                    width:6%;
+                    text-align:right;
+                }
+                .td_ctrl{
+                    width:13%;
+                }
             </style>
     </head>
 
     <body>
         <div class="nui-toolbar">
-            <table cellpadding="0" cellspacing="0" style="line-height: 27px; padding-top: 4px; padding-left: 0px;">
-                <tr>
-                    <td class="td_title">单据编号
+                <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+            </div>
+            <table cellpadding="0" cellspacing="0" style="padding:5px 20px;">
+                <tr style="height: 35px;">
+                    <td class="td_title">单据编号：
                     </td>
-                    <td>
-                        <input id="txtDocumentId" value="自动编号" style="width: 130px" disabled class="nui-textbox" />
+                    <td class="td_ctrl">
+                        <input id="txtDocumentId" value="自动编号" style="width: 100%" disabled class="nui-textbox" />
                     </td>
-                    <td class="td_title">返利日期
+                    <td class="td_title">返利日期：
                     </td>
-                    <td>
-                        <input id="txtDocumentDate" editable="false" style="width: 95px" class="nui-datepicker" />
+                    <td class="td_ctrl">
+                        <input id="txtDocumentDate" editable="false" style="width: 100%" class="nui-datepicker" />
                     </td>
 
-                    <td class="td_title">厂家名称
+                    <td class="td_title">厂家名称：
                     </td>
-                    <td colspan="3">
-                        <input id="cmbUnitName" class="nui-combobox" style="width: 200px">
-                        </input>
+                    <td class="td_ctrl">
+                        <input id="cmbUnitName" class="nui-combobox" style="width: 100%"></input>
                     </td>
+                    <td class="td_title" style="text-align: right">经办人：
+                        </td>
+                        <td  class="td_ctrl">
+                            <input class="nui-combobox" id="cmbDealMan" style="width: 100%;" validtype="equals" />
+                        </td>
                 </tr>
-                <tr>
-                    <td class="td_title" style="text-align: right">经办人
+                 <tr style="height: 35px;">
+                    <td style="text-align: right">返利政策：
                     </td>
-                    <td>
-                        <input class="nui-combobox" id="cmbDealMan" style="width: 130px;" validtype="equals" />
+                    <td >
+                        <input class="nui-combobox" editable="false" id="cmbRebatePolicy" style="width: 100%;" />
                     </td>
-                    <td style="text-align: right">返利政策
-                    </td>
-                    <td colspan="3">
-                        <input class="nui-combobox" editable="false" id="cmbRebatePolicy" style="width: 360px;" />
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: right">备注
+               
+                    <td style="text-align: right">备注：
                     </td>
                     <td colspan="5">
-                        <input id="txtRemark" style="width: 555px; height: 40px" class="nui-textarea" multiline="true" />
+                        <input id="txtRemark" style="width: 100%; " class="nui-textbox" multiline="true" />
                     </td>
-                </tr>
+                </tr> 
             </table>
-        </div>
 
         <div class="nui-fit">
+
+                <div class="nui-splitter" vertical="false" style="width:100%;height:100%;">
+                        <div size="30%" showCollapseButton="true">
+
+                                <div id="business" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" multiSelect="false" pageSize="20" pageList='[10,20,50,100]' showPageInfo="true" selectOnLoad="true" onDrawCell="" onselectionchanged="" allowSortColumn="false"
+                                totalField="page.count">
+                                <div property="columns">
+                                    <div type="checkcolumn" ></div>    
+                                    <div type="indexcolumn" headerAlign="center" width="60px">序号</div>
+                                    <div field="" headerAlign="center" allowSort="true" width="100px">整车编号</div>
+                                    <div field="" headerAlign="center" allowSort="true" width="100px">车架号(VIN)</div>
+                                    <div field="" headerAlign="center" allowSort="true" width="100px">车型名称</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div showCollapseButton="true">
+                            
+
             <div id="business" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" multiSelect="false" pageSize="20" pageList='[10,20,50,100]' showPageInfo="true" selectOnLoad="true" onDrawCell="" onselectionchanged="" allowSortColumn="false"
                 totalField="page.count">
                 <div property="columns">
@@ -86,6 +111,8 @@
                     <div field="" headerAlign="center" allowSort="true" width="100px">操作</div>
                 </div>
             </div>
+        </div>        
+    </div>
         </div>
         <script type="text/javascript">
             nui.parse();

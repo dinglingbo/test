@@ -1,5 +1,6 @@
-var websocketurl="ws://192.168.122.68:2048/ws";   //ws://{ip}:{端口}/{java后端websocket配置的上下文}
-//var websocketurl="ws://127.0.0.1:2048/ws";
+//var websocketurl="ws://192.168.122.68:2048/ws";   //ws://{ip}:{端口}/{java后端websocket配置的上下文}
+var websocketurl="ws://127.0.0.1:2048/ws";
+//var websocketurl="wss://192.168.111.60:2048/ws";   
 var reconnectflag = false;//避免重复连接
 var socket; 
 

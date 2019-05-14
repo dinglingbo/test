@@ -55,7 +55,7 @@
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand>result</process:leftOperand>
-          <process:rightOperand>1</process:rightOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -111,9 +111,9 @@
         <process:inputVariable id="4" name="webPath" type="query" value="String" valueType="Primitive" pattern="reference">original_url</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="userKey" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="2" name="token" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="userKey" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="2" name="token" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

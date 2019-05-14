@@ -11,16 +11,45 @@
   --%>
 <head>
 <title>验车入库添加</title>
-<%--<script
-	 src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.1.20"></script> --%>
+<script
+	 src="<%=request.getContextPath()%>/manage/js/inOutManage/purchaseOrder/carSalesPutStorageDetails.js?v=1.0.0"></script> 
+	 <style type="text/css">
+		.btn .mini-buttonedit
+{
+    height:39px;
+}
+.btn .mini-buttonedit-border
+{
+    height:36px;
+}
+.btn .mini-buttonedit-input
+{
+    height:36px;
+    line-height:25px;
+}
+.btn .mini-buttonedit-button
+{
+    height:33px;
+}
+.btn .mini-buttonedit-icon
+{
+       
+    width:15px;
+    height:34px;
+} 
+	 </style>
 </head>
 <body>
-		     <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+		     <div class="nui-toolbar" style="padding:0px;height: 50px">
                 <table style="width:100%;">
                     <tr>
-                        <td style="width:100%;">
-                            <a class="nui-button" onclick="onOk()" id="save" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                            <a class="nui-button" onclick="onClose()" id="cancel" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</a>
+                    	<td class="btn">      
+                    		<input id="" name="" class="nui-buttonedit" emptyText="选择待验车辆..."  onbuttonclick="check()" width="300px" onvaluechanged=""   selectOnFocus="true"/>                 		                 		                                		
+                    	</td>
+                        <td align="right">
+                        	<a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                            <a class="nui-button" onclick="onOk()"  plain="true" ><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                            <a class="nui-button" onclick=""  plain="true" ><span class="fa fa-automobile fa-lg"></span>&nbsp;验车入库</a>
                         </td>
                     </tr>
                 </table>
@@ -51,7 +80,7 @@
                     </td>
 					<td class="form_label"  align="right">入库日期:</td>
 					<td>
-	                   <input name="" id=""  showTime="true" class="nui-datepicker"  format="yyyy-MM-dd HH:mm"/>
+	                   <input name="" id=""  showTime="true"  class="nui-datepicker"  format="yyyy-MM-dd HH:mm"/>
 					</td>
 					<td class="form_label"  align="right">经手人:</td>
 					<td>
@@ -97,32 +126,14 @@
 				<tr>
 					<td class="form_label"  align="right">车型:</td>
 					<td ><input class="nui-textbox" name="name" /></td>
-					<td class="form_label"  align="right">品牌:</td>
-					<td ><input class="nui-textbox" name="name" /></td>
-					<td class="form_label"  align="right">规格:</td>
-	                <td ><input class="nui-textbox" name="name" /></td>
-					<td class="form_label"  align="right">排量:</td>
-					<td> <input  class="nui-textbox" /></td>
-					<td class="form_label"  align="right">缸数:</td>
-					<td> <input  class="nui-textbox" /></td>					
-				</tr>
-				<tr>
-					<td class="form_label"  align="right">驱动模式:</td>
-					<td ><input class="nui-textbox" name="name" /></td>
-					<td class="form_label"  align="right">变速箱:</td>
-					<td ><input class="nui-textbox" name="name" /></td>
-					<td class="form_label"  align="right">配置:</td>
-	                <td colspan="3" ><input class="nui-textbox" width="100%"name="name" /></td>
 					<td class="form_label"  align="right">车架号:</td>
 					<td> <input  class="nui-textbox" /></td>					
-				</tr>
-				<tr>
-					<td class="form_label"  align="right">发动机号:</td>
-					<td ><input class="nui-textbox" name="name" /></td>
 					<td class="form_label"  align="right">公里数:</td>
 					<td ><input class="nui-textbox" name="name" /></td>
+				</tr>
+				<tr>
 					<td class="form_label"  align="right">车身颜色:</td>
-	                <td ><input class="nui-textbox" width="100%"name="name" /></td>
+	                <td ><input class="nui-textbox" name="name" /></td>
 					<td class="form_label"  align="right">内饰颜色:</td>
 					<td> <input  class="nui-textbox" /></td>	
 					<td class="form_label"  align="right">生产日期:</td>
@@ -130,7 +141,7 @@
 				</tr>
 				<tr>
 					<td class="form_label"  align="right">车况备注:</td>
-					<td colspan="9"> <input  class="nui-TextArea" width="50%"/></td>
+					<td colspan="5"> <input  class="nui-TextArea" width="50%"/></td>
 				</tr>									
 			</table>
 		</div>

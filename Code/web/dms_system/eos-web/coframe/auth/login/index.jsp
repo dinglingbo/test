@@ -1101,7 +1101,7 @@ layui.use('layim', function(layim){
     
     ,msgbox: layui.cache.dir + 'css/modules/layim/html/msgbox.jsp' //消息盒子页面地址，若不开启，剔除该项即可
     ,find: layui.cache.dir + 'css/modules/layim/html/find.jsp' //发现页面地址，若不开启，剔除该项即可
-    ,chatLog: layui.cache.dir + 'css/modules/layim/html/chatlog.html' //聊天记录页面地址，若不开启，剔除该项即可
+    ,chatLog: layui.cache.dir + 'css/modules/layim/html/chatlog.jsp' //聊天记录页面地址，若不开启，剔除该项即可
     
   });
 

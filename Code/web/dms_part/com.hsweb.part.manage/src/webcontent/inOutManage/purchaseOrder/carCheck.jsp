@@ -7,8 +7,8 @@
   - Description:
 -->
 <head>
-<title>整车采购退货</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/carSalesReturn.js?v=1.0.0"></script>
+<title>验车</title>
+<%-- <script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/carSalesReturn.js?v=1.0.0"></script> --%>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -37,7 +37,7 @@
         <table style="width:100%;">
             <tr>
                 <td style="width:100%;">
-                    <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;验车入库</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
                 </td>
             </tr>
@@ -60,18 +60,12 @@
         <div property="columns">
             <div type="indexcolumn" width="40">序号</div>
             <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
-                    <div field="" allowSort="true"  width="100" summaryType="count" headerAlign="center" header="品牌"></div>
+            		<div field="" allowSort="true"  width="100" summaryType="count" headerAlign="center" header="单号"></div>
+            		<div field="" allowSort="true"  width="100" summaryType="count" headerAlign="center" header="供应商"></div>
                     <div field="" name="guestFullName" width="100" headerAlign="center" header="车型"></div>
-                    <div field="" width="90" name = "orderMan" headerAlign="center" header="年款"></div>
-                    <div field="" name="guestFullName" width="100" headerAlign="center" header="规格"></div>
-                    <div field="" width="90" name = "orderMan" headerAlign="center" header="排量"></div>
-                    <div field="" name="guestFullName" width="100" headerAlign="center" header="缸数"></div>
-                    <div field="" width="90" name = "orderMan" headerAlign="center" header="发动机号"></div>  
-                    <div field="" width="90" name = "orderMan" headerAlign="center" header="配置"></div>
-                    <div field="" name="guestFullName" width="220" headerAlign="center" header="数量"></div>
-                    <div field="" width="90" name = "orderMan" headerAlign="center" header="金额"></div>   
-                    <div field="" name="guestFullName" width="220" headerAlign="center" header="供方合同号"></div>
-                    <div field="" width="90" name = "orderMan" headerAlign="center" header="许可证编码"></div>                                                        
+                    <div field="" name="guestFullName" width="60" headerAlign="center" header="待验"></div>
+                     <div field="" name="guestFullName" width="60" headerAlign="center" header="已验"></div>
+                                                      
         </div>
     </div> 
 </div>

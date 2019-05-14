@@ -1,4 +1,6 @@
 var url = webPath + contextPath + "/repair/imag/select-path-back.png";
+var baseUrl = apiPath + repairApi + "/";
+var queryUrl = baseUrl + "com.hsapi.repair.repairService.svr.getMetalSprayItem.biz.ext";
 var selectColor = [];
 var pathOpacity = null;
 var nowitemspecialflg = null;
@@ -6,9 +8,11 @@ var blankGrid = null;
 //var data = ["1":"拆装","2":"修复","3":"更换","4":"校正"];
 //var statusList = [{id:1,name:"拆装"},{id:2,name:"修复"},{id:3,name:"更换"},{id:4,name:"校正"}];
 //var statusHash = {1:"拆装",2:"修复",3:"更换",4:"校正"};
+var codeHash = {};
 var statusHash = {};
 var statusList = {};
 var allSpecialItemList = {};
+var serviceIdF = null;
 $(document).ready(function(){
 
 	/*$("body").on("mouseenter","path",function(e){
@@ -64,7 +68,7 @@ $(document).ready(function(){
 		var dictids= [row.nameId];
 	    $.post(apiPath + sysApi + "/"+"com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictids="+dictids+"&token="+token,{},function(text){
 		    if(text.data){
-		    	var setStatusList = text.data;
+		    	statusList = text.data;
 		    	nui.get("setAction").setData(setStatusList);
 		        /*statusList = [{id:1,name:"拆装"},{id:2,name:"修复"},{id:3,name:"更换"}];*/
 		    	
@@ -87,6 +91,8 @@ $(document).ready(function(){
 	    	for(var i = 0;i<text.data.length;i++){
 	    		var temp = text.data[i]
 	    		statusHash[temp.customid] = temp.name;
+	    		var str = temp.property1 + temp.customid;
+	    		codeHash[temp.customid]=str;
 	    	}
 	    	
 	    }
@@ -101,327 +107,42 @@ $(document).ready(function(){
 	
 });
 
-function setData(){
+function setData(main){
+	serviceIdF = main.id;
 	$("#imgShow").attr("src",url);
+	//查找已经添加的项目
+	var json = nui.encode({
+		serviceId:serviceIdF,
+		token:token
+	});
+	nui.ajax({
+		url : queryUrl,
+		type : 'POST',
+		data : json,
+		cache : false,
+		contentType : 'text/json',
+		success : function(text) {
+			var returnJson = nui.decode(text);
+			var data = returnJson.data;
+			//设置表格数据
+			blankGrid.setData(data);
+			//设置图片数据
+			if(data.length>0){
+				for(var i = 0;i<data.length;i++){
+					$('#path-list-1').find('path').each(function(){
+						if($(this).attr('data-cpno') == data[i].msCode){
+							//$(this).attr({'fill':'#ffffff','stroke':'none','fill-opacity':'0','data-itemspecialflg':'0'});
+							$(this).attr({'fill':selectColor[nowitemspecialflg],'stroke':'none','fill-opacity':pathOpacity,'data-itemspecialflg':nowitemspecialflg});
+							
+						}
+					});
+				}
+			}
+		}
+	 });
 }
 
-var allSpecialItemList1 = [
-   {
-	"cpno": "001",
-	"cpstr": "左前后视镜",
-	"itemdiscountprice": 0,
-	"itemid": 1,
-	"itemname": "左前后视镜",
-	"itemprice": 0
-	},
-	{
-	"cpno": "002",
-	"cpstr": "左前保险杠",
-	"itemdiscountprice": 0,
-	"itemid": 2,
-	"itemname": "左前后视镜",
-	"itemprice": 0
-	},
-	{
-	"cpno": "003",
-	"cpstr": "左前车门外拉手",
-	"itemdiscountprice": 0,
-	"itemid": 3,
-	"itemname": "左前车门外拉手",
-	"itemprice": 0
-	},
-	
-	{
-	"cpno": "004",
-	"cpstr": "左前车门饰条",
-	"itemdiscountprice": 0,
-	"itemid": 4,
-	"itemname": "左前车门饰条",
-	"itemprice": 0
-	},
-	{
-	"cpno": "005",
-	"cpstr": "左前叶子板",
-	"itemdiscountprice": 0,
-	"itemid": 5,
-	"itemname": "左前叶子板",
-	"itemprice": 0
-	},
-	{
-	"cpno": "006",
-	"cpstr": "左前铝合金钢圈",
-	"itemdiscountprice": 0,
-	"itemid": 6,
-	"itemname": "左前铝合金钢圈",
-	"itemprice": 0
-	},
-	{
-	"cpno": "007",
-	"cpstr": "左A柱",
-	"itemdiscountprice": 0,
-	"itemid": 7,
-	"itemname": "左A柱",
-	"itemprice": 0
-	},
-	{
-	"cpno": "008",
-	"cpstr": "左前车门",
-	"itemdiscountprice": 0,
-	"itemid": 8,
-	"itemname": "左前车门",
-	"itemprice": 0
-	},
-	{
-	"cpno": "009",
-	"cpstr": "左B柱",
-	"itemdiscountprice": 0,
-	"itemid": 9,
-	"itemname": "左B柱",
-	"itemprice": 0
-	},
-	{
-	"cpno": "010",
-	"cpstr": "左后车门",
-	"itemdiscountprice": 0,
-	"itemid": 10,
-	"itemname": "左后车门",
-	"itemprice": 0
-	},
-	{
-	"cpno": "011",
-	"cpstr": "左下边梁",
-	"itemdiscountprice": 0,
-	"itemid": 11,
-	"itemname": "左下边梁",
-	"itemprice": 0
-	},
-	{
-	"cpno": "012",
-	"cpstr": "左C柱",
-	"itemdiscountprice": 0,
-	"itemid": 12,
-	"itemname": "左C柱",
-	"itemprice": 0
-	},
-	
-	 {
-		"cpno": "013",
-		"cpstr": "左后叶子板",
-		"itemdiscountprice": 0,
-		"itemid": 13,
-		"itemname": "左后叶子板",
-		"itemprice": 0
-		},
-		{
-		"cpno": "014",
-		"cpstr": "左后铝合金钢圈",
-		"itemdiscountprice": 0,
-		"itemid": 14,
-		"itemname": "左后铝合金钢圈",
-		"itemprice": 0
-		},
-		{
-		"cpno": "015",
-		"cpstr": "左后车门饰条",
-		"itemdiscountprice": 0,
-		"itemid": 15,
-		"itemname": "左后车门饰条",
-		"itemprice": 0
-		},
-		
-		{
-		"cpno": "016",
-		"cpstr": "左后车门外拉手",
-		"itemdiscountprice": 0,
-		"itemid": 16,
-		"itemname": "左后车门外拉手",
-		"itemprice": 0
-		},
-		{
-		"cpno": "017",
-		"cpstr": "左后保险杠",
-		"itemdiscountprice": 0,
-		"itemid": 17,
-		"itemname": "左后保险杠",
-		"itemprice": 0
-		},
-		{
-		"cpno": "018",
-		"cpstr": "右前后视镜",
-		"itemdiscountprice": 0,
-		"itemid": 18,
-		"itemname": "右前后视镜",
-		"itemprice": 0
-		},
-		{
-		"cpno": "019",
-		"cpstr": "右前保险杠",
-		"itemdiscountprice": 0,
-		"itemid": 19,
-		"itemname": "右前保险杠",
-		"itemprice": 0
-		},
-		{
-		"cpno": "020",
-		"cpstr": "右前车门外拉手",
-		"itemdiscountprice": 0,
-		"itemid": 20,
-		"itemname": "右前车门外拉手",
-		"itemprice": 0
-		},
-		{
-		"cpno": "021",
-		"cpstr": "右前车门饰条",
-		"itemdiscountprice": 0,
-		"itemid": 21,
-		"itemname": "右前车门饰条",
-		"itemprice": 0
-		},
-		{
-		"cpno": "022",
-		"cpstr": "右前叶子板",
-		"itemdiscountprice": 0,
-		"itemid": 22,
-		"itemname": "右前叶子板",
-		"itemprice": 0
-		},
-		{
-		"cpno": "023",
-		"cpstr": "右前铝合金钢圈",
-		"itemdiscountprice": 0,
-		"itemid": 23,
-		"itemname": "右前铝合金钢圈",
-		"itemprice": 0
-		},
-		{
-		"cpno": "024",
-		"cpstr": "右A柱",
-		"itemdiscountprice": 0,
-		"itemid": 24,
-		"itemname": "右A柱",
-		"itemprice": 0
-		},
-		{
-			"cpno": "025",
-			"cpstr": "右前车门",
-			"itemdiscountprice": 0,
-			"itemid": 25,
-			"itemname": "右前车门",
-			"itemprice": 0
-			},
-			{
-			"cpno": "026",
-			"cpstr": "右B柱",
-			"itemdiscountprice": 0,
-			"itemid": 26,
-			"itemname": "右B柱",
-			"itemprice": 0
-			},
-			{
-			"cpno": "027",
-			"cpstr": "右后车门",
-			"itemdiscountprice": 0,
-			"itemid": 27,
-			"itemname": "右后车门",
-			"itemprice": 0
-			},
-			{
-			"cpno": "028",
-			"cpstr": "右下边梁",
-			"itemdiscountprice": 0,
-			"itemid": 28,
-			"itemname": "右下边梁",
-			"itemprice": 0
-			},
-			{
-			"cpno": "029",
-			"cpstr": "右C柱",
-			"itemdiscountprice": 0,
-			"itemid": 29,
-			"itemname": "右C柱",
-			"itemprice": 0
-			},
-			{
-			"cpno": "030",
-			"cpstr": "右后叶子板",
-			"itemdiscountprice": 0,
-			"itemid": 30,
-			"itemname": "右后叶子板",
-			"itemprice": 0
-			},
-			{
-			"cpno": "031",
-			"cpstr": "右后铝合金钢圈",
-			"itemdiscountprice": 0,
-			"itemid": 31,
-			"itemname": "右后铝合金钢圈",
-			"itemprice": 0
-			},
-			{
-			"cpno": "032",
-			"cpstr": "右后车门饰条",
-			"itemdiscountprice": 0,
-			"itemid": 32,
-			"itemname": "右后车门饰条",
-			"itemprice": 0
-			},
-			{
-			"cpno": "033",
-			"cpstr": "右后车门外拉手",
-			"itemdiscountprice": 0,
-			"itemid": 33,
-			"itemname": "右后车门外拉手",
-			"itemprice": 0
-			},
-			{
-			"cpno": "034",
-			"cpstr": "右后保险杠",
-			"itemdiscountprice": 0,
-			"itemid": 34,
-			"itemname": "右后保险杠",
-			"itemprice": 0
-			},
-			{
-			"cpno": "035",
-			"cpstr": "前中网",
-			"itemdiscountprice": 0,
-			"itemid": 35,
-			"itemname": "前中网",
-			"itemprice": 0
-			},
-			{
-			"cpno": "036",
-			"cpstr": "机盖",
-			"itemdiscountprice": 0,
-			"itemid": 36,
-			"itemname": "机盖",
-			"itemprice": 0
-			},
-			{
-			"cpno": "037",
-			"cpstr": "车顶",
-			"itemdiscountprice": 0,
-			"itemid": 37,
-			"itemname": "车顶",
-			"itemprice": 0
-			},
-			{
-			"cpno": "038",
-			"cpstr": "行李箱舱盖",
-			"itemdiscountprice": 0,
-			"itemid": 38,
-			"itemname": "行李箱舱盖",
-			"itemprice": 0
-					},
-			{
-				"cpno": "039",
-				"cpstr": "下部行李箱舱盖",
-				"itemdiscountprice": 0,
-				"itemid": 39,
-				"itemname": "下部行李箱舱盖",
-				"itemprice": 0
-						}
-   ];
+
 function selectPath(path){
 	//选中操作
 	var self = this;
@@ -442,7 +163,7 @@ function selectPath(path){
 function removeSpecialForView(path){
 	var deletRow = null; 
 	var row = blankGrid.findRow(function(row){
-		if(row.code == $(path).attr('data-cpno')){
+		if(row.msCode == $(path).attr('data-cpno')){
 			deletRow = row;
 		}
 		
@@ -471,12 +192,19 @@ function removeSpecialForView(path){
 function addSpecialForView(cpno){
 	var data = getSpecialDataByParam(cpno);
 	var addItem = {};
-	addItem.itemName = data.name;
-	addItem.code = data.customid;
+	addItem.itemNameo = data.name;
+	addItem.msCode = data.customid;
 	addItem.nameId = data.id;
-	addItem.isPaint = 1;
-	addItem.discountAmt = 0;
-	addItem.amt = 0;
+	addItem.isPaint = 0;
+	addItem.subtotalo = 0;
+	addItem.amto = 0;
+	addItem.itemTimeo = 1;
+	addItem.unitPriceo = 0;
+	
+	addItem.subtotalt = 0;
+	addItem.amtt = 0;
+	addItem.itemTimet = 1;
+	addItem.unitPricet = 0;
 	//addItem.action = null;
 	/*var data = {};
 	data.itemname = addItem.itemname*/
@@ -500,7 +228,7 @@ function getSpecialDataByParam(cpno){
 function deletItem(row_uid){
 	 var row = blankGrid.getRowByUID(row_uid);
 	$('#path-list-1').find('path').each(function(){
-		if($(this).attr('data-cpno') == row.code){
+		if($(this).attr('data-cpno') == row.msCode){
 			$(this).attr({'fill':'#ffffff','stroke':'none','fill-opacity':'0','data-itemspecialflg':'0'});
 			/*if(wilifewealthflg){
 				//如果是国寿财项目，删除时要扣除对应的优惠金额
@@ -521,11 +249,407 @@ function deletItem(row_uid){
 });
 */
 
-function saveItem(){
-	//获取所有行
+var updList = [];
+var addList = [];
+var delList = [];
+function insItem(){
+	var rows = blankGrid.getData();
+	//获取所有新增行
+	var rowAdd = blankGrid.getChanges("added");
+	if(rowAdd && rowAdd.length>0){
+		for(var i=0;i<rowAdd.length;i++){
+			   var codeNum = rowAdd[i].action;
+			   var codeo = codeHash[codeNum];
+			   codeo = codeo + rowAdd[i].msCode;
+		  	   var insItemo = {
+		  	        serviceId:serviceIdF,
+		  	        code:codeo,
+		  	        cardDetailId:0,
+		  	        sourceId:3,
+		  	        itemTime:1,
+		  	        unitPrice:rowAdd[i].unitPriceo,
+		  	        subtotal:rowAdd[i].subtotalo,
+		  	        rate:rowAdd[i].rateo,
+		  	        amt:rowAdd[i].amto
+		  	    };
+		  	    addList.push(insItemo);
+			    if(rowAdd[i].isPaint==1){
+			    	var codet = "XTPQ005";
+				  	codet = codet + rowAdd[i].msCode;
+				    var insItemt = {
+				        serviceId:serviceIdF,
+				        code:codet,
+				        cardDetailId:0,
+				        sourceId:3,
+				        itemTime:1,
+				        unitPrice:rowAdd[i].unitPricet,
+				        subtotal:rowAdd[i].subtotalt,
+				        rate:rowAdd[i].ratet,
+				        amt:rowAdd[i].amtt
+				  };
+				  addList.push(insItemt);
+			    }
+			}
+	}
 	
+	//获取所有修改行
+	var rowMod = blankGrid.getChanges("modified");
+	if(rowMod && rowMod.length>0){
+    	for(var i = 0;i<rowMod.length;i++){
+    		var idt = rowMod[i].idt || 0;
+    		if(idt>0){
+    		   if(rowMod[i].isPaint==1){
+    			   //修改喷漆
+    				var row = rowMod[i];
+    	    		serviceId = serviceIdF;
+    	            var cardDetailId = 0;
+    	            var itemt = {};
+    	            itemt.id = row.idt;
+    	            itemt.serviceId = serviceIdF;
+    	            itemt.amt = row.amtt;
+    	            itemt.subtotal = row.subtotalt;	
+    	            itemt.rate = row.ratet;
+    	            itemt.unitPrice = row.unitPricet;
+    	            itemt.itemTime = row.itemTimet;
+    	        	updList.push(itemt); 
+    		   }else{
+    			   //删除喷漆
+    			   var itemto = {
+    			     cardDetailId:0,
+    			     id: idt,
+    			     serviceId: serviceIdF
+    			   };
+    			   delList.push(itemto);
+    		   }
+    		 
+    		}else{
+    			if(rowMod[i].isPaint==1){
+    				var row = rowMod[i];
+    			   var codet = "XTPQ005";
+			  	   codet = codet + row.msCode;
+			  	   var insItemt = {
+			  	        serviceId:serviceIdF,
+			  	        code:codet,
+			  	        cardDetailId:0,
+			  	        sourceId:3,
+			  	        itemTime:1,
+			  	        unitPrice:row.unitPricet,
+			  	        subtotal:row.subtotalt,
+			  	        rate:row.ratet,
+			  	        amt:row.amtt
+			  	    };
+			  	   addList.push(insItemt)
+    			}
+    		}
+    		//修改项目
+    		var rowo = rowMod[i];
+    		serviceId = serviceIdF;
+            var cardDetailId = 0;
+            var itemo = {};
+            itemto.id = rowo.ido;
+            itemto.serviceId = serviceIdF;
+            itemto.amt = rowo.amto;
+            itemto.subtotal = rowo.subtotalo;	
+            itemto.rate = rowo.rateo;
+            itemto.unitPrice = rowo.unitPriceo;
+            itemto.itemTime = rowo.itemTimeo;
+        	updList.push(itemo);
+    	}
+    }	
+	//获取所有删除行
+	var rowDel = blankGrid.getChanges("removed");
+	if(rowDel && rowDel.length>0){
+    	for(var i = 0;i<rowDel.length;i++){
+    		var idt = rowDel[i].idt || 0;
+    		if(idt>0){
+			   //删除喷漆
+			   var row = rowDel[i];
+			   var item = {
+			   cardDetailId: 0,
+			   id: idt,
+			   serviceId: serviceIdF
+			   }
+			   delList.push(item);
+    		}
+    		//删除项目
+    		var rowo = rowDel[i];
+    		var itemo = {
+		        cardDetailId: 0,
+		        id: rowo.ido,
+		        serviceId: serviceIdF
+    		};
+		   delList.push(itemo);
+    	}
+    }	
+  nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '保存中...'
+    });
+	addItem(addList,function(){
+		updItem(updList,function(){
+			delItem(delList,function(){
+				CloseWindow("ok");
+				nui.unmask(document.body);
+			})
+		})
+	});
+}
+
+var addF = "S";
+function addItem(rows, callback){
+	if(rows && rows.length>0){
+		//循环判断是否选择了喷漆
+		var addItemList = rows;
+		//循环调用接口
+		var num = addItemList.length-1;
+		for(var i=0;i<addItemList.length;i++){
+		    var data = {};
+		    data.insItem = addItemList[i];
+		    data.serviceId = serviceIdF;
+		    var params = { 
+		        type:"insert",
+		        interType:'item',
+		        data:data
+		    };
+			svrCRUD(params,function(text){
+		        var errCode = text.errCode||"";
+		        var errMsg = text.errMsg||"";
+		        if(errCode == 'E'){
+		        	addF = "E";
+		        }
+		        if(num==i){
+			       callback && callback();	
+			    }
+	        
+		    });
+		}
+	}else{
+		callback && callback();
+	}
+}
+
+var deleF = "S";
+function delItem(rows, callback){
+	if(rows && rows.length>0){
+		var num = rows.length-1;
+		for(var n=0;n<rows.length;n++)
+		var item = rows[i];
+	    var params = {
+	        type:"delete",
+	        interType:"item",
+	        data:{
+	            item: item
+	        }
+	    };
+	    svrCRUD(params,function(text){
+	        var errCode = text.errCode||"";
+	        var errMsg = text.errMsg||"";
+	        if(errCode == 'E'){   
+	        	deleF = "E"
+	        }
+	        if(num==n){
+	           callback && callback();	
+	        }
+	    });
+	}else{
+		callback && callback();
+	}
+}
+
+//修改
+var itemF = "S"
+function updItem(rows,callback){
+	 if(rows && rows.length>0){
+		 var params = {
+	        type:"update",
+	        interType:"item",
+	        data:{
+	            serviceId: serviceIdF,
+	            updList : updList
+	        }
+	     };
+		 svrCRUD(params,function(text){
+	         var errCode = text.errCode||"";
+	         var errMsg = text.errMsg||"";
+	         if(errCode == 'S'){   
+	        	 itemF = "S";
+	         }else{
+	        	 itemF = "E";
+	         }
+	         callback && callback();
+	     });
+	 }else{
+		 callback && callback(); 
+	 }
 	
+}	
+//修改原价，单价和优惠率改变，小计不改变
+function onValueChangedAmtt(e){
+	var el = e.sender;
+	var flag = isNaN(e.value);
+	var amtt = el.getValue();
+	var rowOld = blankGrid.getEditorOwnerRow(el);
+	var row = rowOld;
+	var itemTimet = row.itemTimet;
+	//var setSubtotal = rpsItemGrid.getCellEditor("itemSubtotal", row);
+	if (flag) {
+		showMsg("请输入数字!","W");
+		blankGrid.updateRow(rowOld,row);
+		return;
+	}else if(amtt<0){
+		showMsg("金额不小于0","W");
+		blankGrid.updateRow(rowOld,row);
+		return;
+	}else if(amtt == "" || amtt == null){
+		blankGrid.updateRow(rowOld,row); 
+		return;
+	}else{
+		var ratet = 0;
+		//小计
+		var subtotalt = row.subtotalt;
+		//计算优惠率
+		var rateMun = amtt-subtotalt;
+		if(rateMun>0){
+			ratet = rateMun/amtt;
+			ratet = ratet.toFixed(4);
+		}
+		row.ratet = ratet;
+		//计算单价
+		var unitPricet = row.unitPricet;
+		if(itemTimet>0){
+			unitPricet = amtt/itemTimet;
+			unitPricet = unitPricet.toFixed(2);
+		}
+		row.amtt = amtt;
+		row.unitPricet = unitPricet;
+		blankGrid.updateRow(rowOld,row);
+	}
+}
+
+//修改小计，优惠率和单价改变，金额不改变
+function onValueChangedSubtotalt(e){
+	var el = e.sender;
+	var flag = isNaN(e.value);
+	var subtotalt = el.getValue();
+	var rowOld = blankGrid.getEditorOwnerRow(el);
+	var row = rowOld;
+	var itemTimet = row.itemTimet;
+	//var setSubtotal = rpsItemGrid.getCellEditor("itemSubtotal", row);
+	if (flag) {
+		showMsg("请输入数字!","W");
+		blankGrid.updateRow(rowOld,row);
+		return;
+	}else if(subtotalt<0){
+		showMsg("金额不小于0","W");
+		blankGrid.updateRow(rowOld,row);
+		return;
+	}else if(subtotalt == "" || subtotalt == null){
+		blankGrid.updateRow(rowOld,row); 
+		return;
+	}else{
+		var ratet = 0;
+		//小计
+		var amtt = row.amtt;
+		//计算优惠率
+		var rateMun = amtt-subtotalt;
+		if(rateMun>0){
+			ratet = rateMun/amtt;
+			ratet = ratet.toFixed(4);
+		}
+		row.ratet = ratet;
+		row.subtotalt = subtotalt;
+		blankGrid.updateRow(rowOld,row);
+	}
 }
 
 
+//修改原价，单价和优惠率改变，小计不改变
+function onValueChangedAmto(e){
+	var el = e.sender;
+	var flag = isNaN(e.value);
+	var amto = el.getValue();
+	var rowOld = blankGrid.getEditorOwnerRow(el);
+	var row = rowOld;
+	var itemTimeo = row.itemTimeo;
+	//var setSubtotal = rpsItemGrid.getCellEditor("itemSubtotal", row);
+	if (flag) {
+		showMsg("请输入数字!","W");
+		blankGrid.updateRow(rowOld,row);
+		return;
+	}else if(amto<0){
+		showMsg("金额不小于0","W");
+		blankGrid.updateRow(rowOld,row);
+		return;
+	}else if(amto == "" || amto == null){
+		blankGrid.updateRow(rowOld,row); 
+		return;
+	}else{
+		var rateo = 0;
+		//小计
+		var subtotalo = row.subtotalo;
+		//计算优惠率
+		var rateMun = amto-subtotalo;
+		if(rateMun>0){
+			rateo = rateMun/amto;
+			rateo = rateo.toFixed(4);
+		}
+		row.rateo = rateo;
+		//计算单价
+		var unitPriceo = row.unitPriceo;
+		if(itemTimeo>0){
+			unitPriceo = amto/itemTimeo;
+			unitPriceo = unitPriceo.toFixed(2);
+		}
+		row.amto = amto;
+		row.unitPriceo = unitPriceo;
+		blankGrid.updateRow(rowOld,row);
+	}
+}
 
+//修改小计，优惠率和单价改变，金额不改变
+function onValueChangedSubtotalo(e){
+	var el = e.sender;
+	var flag = isNaN(e.value);
+	var subtotalo = el.getValue();
+	var rowOld = blankGrid.getEditorOwnerRow(el);
+	var row = rowOld;
+	var itemTimeo = row.itemTimeo;
+	//var setSubtotal = rpsItemGrid.getCellEditor("itemSubtotal", row);
+	if (flag) {
+		showMsg("请输入数字!","W");
+		blankGrid.updateRow(rowOld,row);
+		return;
+	}else if(subtotalo<0){
+		showMsg("金额不小于0","W");
+		blankGrid.updateRow(rowOld,row);
+		return;
+	}else if(subtotalo == "" || subtotalo == null){
+		blankGrid.updateRow(rowOld,row); 
+		return;
+	}else{
+		var rateo = 0;
+		//小计
+		var amto = row.amto;
+		//计算优惠率
+		var rateMun = amto-subtotalo;
+		if(rateMun>0){
+			rateo = rateMun/amto;
+			rateo = rateo.toFixed(4);
+		}
+		row.rateo = rateo;
+		row.subtotalo = subtotalo;
+		blankGrid.updateRow(rowOld,row);
+	}
+}
+
+function CloseWindow(action)
+{
+	if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else window.close();
+}
+
+function onCancel() {
+	CloseWindow("cancel");
+}

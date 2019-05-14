@@ -28,7 +28,7 @@
 	<script src="<%=request.getContextPath()%>/coframe/imjs/message.js"></script>
 	<script src="<%=request.getContextPath()%>/coframe/imjs/messagebody.js"></script>
 	<script src="<%=request.getContextPath()%>/layim-v3.8.0/dist/layui.js"></script>
-	<script src="<%=request.getContextPath()%>/coframe/imjs/websocketconfig.js?v=1.0.2"></script>
+	<script src="<%=request.getContextPath()%>/coframe/imjs/websocketconfig.js?v=1.0.3"></script>
     <style type="text/css">
 	a {
 	cursor: pointer;
@@ -202,8 +202,7 @@
 				</a>
            	</li>
         </ul>
-    </div>
-    
+    </div>  
     <div class="main">
         <div id="mainTabs" class="mini-tabs indexTabs" activeIndex="0" style="width:100%;height:100%;" plain="false"
                 buttons="#tabsButtons" arrowPosition="side" ontabload="ontabload">
@@ -247,6 +246,29 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
     var show=0;
     var titleUrl = null;
     var title = null;
+    
+    
+    /* var music=new Audio();
+	music.src=defDomin+"/layim-v3.8.0/src/css/modules/layim/voice/default.mp3";
+	music.loop=true;
+	var playStatus=false;
+	var lastRunTime=Date.now();
+	function playOrPause(){
+	    var currentTime=Date.now();
+	    var protectTime=100;//设置保护性延时 单位毫秒，不要小于50 建议100以上
+	    if((currentTime-lastRunTime)<protectTime){
+	        return;//两次执行太过频繁，直接退出
+	    }
+	    
+	    if(playStatus){
+	        music.pause();
+	    }else{
+	        music.play();
+	    }
+	    playStatus=!playStatus;
+	    lastRunTime=Date.now();
+	} */
+    
     skin();
 /*     $(document).ready(function(v) {
     moreOrgGrid = nui.get("moreOrgGrid");
@@ -1054,15 +1076,15 @@ layui.use('layim', function(layim){
       ,type: '' //默认post
     }
     
-    ,isAudio: true //开启聊天工具栏音频
-    ,isVideo: true //开启聊天工具栏视频
+    ,isAudio: false //开启聊天工具栏音频
+    ,isVideo: false //开启聊天工具栏视频
     
     //扩展工具栏
-    ,tool: [{
-      alias: 'code'
-      ,title: '代码'
-      ,icon: '&#xe64e;'
-    }]
+    //,tool: [{
+    //  alias: 'code'
+    //  ,title: '代码'
+    //  ,icon: '&#xe64e;'
+    //}]
     
     //,brief: true //是否简约模式（若开启则不显示主面板）
     
@@ -1075,10 +1097,10 @@ layui.use('layim', function(layim){
     //,isgroup: false //是否开启群组
     //,min: true //是否始终最小化主面板，默认false
     ,notice: true //是否开启桌面消息提醒，默认false
-    //,voice: false //声音提醒，默认开启，声音文件为：default.mp3
+    ,voice: true //声音提醒，默认开启，声音文件为：default.mp3
     
-    ,msgbox: layui.cache.dir + 'css/modules/layim/html/msgbox.html' //消息盒子页面地址，若不开启，剔除该项即可
-    ,find: layui.cache.dir + 'css/modules/layim/html/find.html' //发现页面地址，若不开启，剔除该项即可
+    ,msgbox: layui.cache.dir + 'css/modules/layim/html/msgbox.jsp' //消息盒子页面地址，若不开启，剔除该项即可
+    ,find: layui.cache.dir + 'css/modules/layim/html/find.jsp' //发现页面地址，若不开启，剔除该项即可
     ,chatLog: layui.cache.dir + 'css/modules/layim/html/chatlog.html' //聊天记录页面地址，若不开启，剔除该项即可
     
   });

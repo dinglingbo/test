@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getHistoryMessage.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="senduser  receiveuser  groupid  isread  type" title="Administrator&#x9;19-5-13 下午4:00">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="senduser  receiveuser  groupid  isread  type&#xD;&#xA;http://127.0.0.1:8089/usermessage/boxlist" title="Administrator&#x9;19-5-13 下午4:00">
     <location x="82" y="-60"/>
     <size height="100" width="526"/>
   </nodes>
@@ -113,7 +113,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">usermessage/list</process:from>
+      <process:from type="literal" pattern="reference">usermessage/boxlist</process:from>
       <process:to type="query">apiName</process:to>
     </process:copy>
     <process:copy>

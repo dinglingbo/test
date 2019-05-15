@@ -5,10 +5,10 @@
 <style type="text/css">
 
 </style>
-<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+<div class="nui-toolbar" style="padding:2px;position: relative;">
     <table style="width:100%;">
         <tr>
-            <td style="width:100%;">
+            <td style="width:100%;white-space:nowrap;">
 <!--                 <span class="separator"></span> -->
         <span  id="bServiceId" style="">订单号：新采购订单</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
@@ -244,12 +244,12 @@
                         <div property="columns">
                             <div type="indexcolumn">序号</div>
                                     <div field="operateBtn" name="operateBtn" align="center" width="50" headerAlign="center" header="操作"></div>
-                                    <div field="comPartCode" name="comPartCode" width="180" headerAlign="center" header="车型编码">
+                                    <div field="comPartCode" name="comPartCode" width="120" headerAlign="center" header="车型编码">
                                         <input property="editor" class="nui-textbox" />
                                     </div>
-                                    <div field="" headerAlign="center" header="车型名称"></div>
+                                    <div field="" headerAlign="center" width="150" header="车型名称"></div>
                                     <div field="" name="" width="40" headerAlign="center" header="车身颜色"></div>
-                                    <div field="" name="" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="车内饰色">
+                                    <div field="" name="" summaryType="sum" numberFormat="0.00" width="40" headerAlign="center" header="内饰颜色">
                                       <input property="editor" vtype="float" class="nui-textbox"/>
                                     </div>
                                     <div field="" numberFormat="0.0000" width="60" headerAlign="center" header="订货数量">

@@ -2500,4 +2500,41 @@
             </isNotEmpty>
         </dynamic> 
 	</select>
+	
+	<select id="searchContentManagement" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT 
+			a.id as id,
+			a.parent_id As parentId,
+			a.name AS name,
+			a.introduce AS introduce,
+			a.name_sort AS nameSort,
+			a.is_disabled AS isDisabled,
+			b.id AS rid,
+			b.title AS title,
+			b.time AS time,
+			b.brief_introduction AS briefIntroduction,
+			b.specific_content AS specificContent,
+			b.url AS url
+	FROM wb_slog.sys_list_information a
+		INNER JOIN sys_content_management b
+			ON a.id = b.main_id
+			
+		WHERE 1 = 1
+		<dynamic>
+			<isNotEmpty prepend="and" property="parentId">
+                (a.parent_id = #parentId#)
+            </isNotEmpty>
+        </dynamic>  
+        <dynamic>
+			<isNotEmpty prepend="and" property="id">
+                (a.id = #id#)
+            </isNotEmpty>
+        </dynamic> 
+        <dynamic>
+			<isNotEmpty prepend="and" property="rid">
+                (b.id = #rid#)
+            </isNotEmpty>
+        </dynamic> 
+        ORDER BY parent_id asc
+	</select>
 </sqlMap>

@@ -66,160 +66,7 @@ var cityName =null;
 var countyName = null;
 
 $(document).ready(function(v) {
-	nui.mask({
-        el: document.body,
-        cls: 'mini-mask-loading',
-        html: '加载中...'
-	});
 	
-	rightGrid = nui.get("rightGrid");
-	rightGrid.setUrl(rightGridUrl);
-
-	advancedMorePartWin = nui.get("advancedMorePartWin");
-	advancedAddWin = nui.get("advancedAddWin");
-	morePartGrid = nui.get("morePartGrid");
-
-	basicInfoForm = new nui.Form("#basicInfoForm");
-	advancedAddForm  = new nui.Form("#advancedAddForm");
-
-
-	gsparams.startDate = getNowStartDate();
-	gsparams.endDate = addDate(getNowEndDate(), 1);
-
-	sOrderDate = nui.get("sOrderDate");
-	eOrderDate = nui.get("eOrderDate");
-	
-	nui.get("orderMan").setValue(currEmpId);
-	nui.get("orderMan").setText(currUserName);
-	initMember("orderMan",function(){
-        memList = nui.get('orderMan').getData();
-    });
-
-
-	advancedTipWin = nui.get("advancedTipWin");
-	getArea();
-
-    $("#orderMan").bind("keydown", function (e) {
-        if (e.keyCode == 13) {
-            var remark = nui.get("remark");
-            remark.focus();
-        }
-    });
-
-    $("#remark").bind("keydown", function (e) {
-
-    	if (e.keyCode == 13) {
-            addNewRow(true);
-        }
-   $("#planArriveDate").bind("keydown", function (e) {
-        if (e.keyCode == 13) {
-            addNewRow(true);
-        }
-    })
-
-    	
-	});
-	
-    morePartGrid.on("load", function(e) {
-        var row = morePartGrid.getRow(0);
-        if(row){
-            morePartGrid.select(row,true);
-        }
-    });
-    
-	morePartGrid.on("drawcell",function(e){
-        switch (e.field)
-        {
-            case "partBrandId":
-            	 if(brandHash[e.value])
-                 {
-//                     e.cellHtml = brandHash[e.value].name||"";
-                 	if(brandHash[e.value].imageUrl){
-                 		
-                 		e.cellHtml = "<img src='"+ brandHash[e.value].imageUrl+ "'alt='配件图片' height='25px' width=' '/><br> "+brandHash[e.value].name||"";
-                 	}else{
-                 		e.cellHtml = brandHash[e.value].name||"";
-                 	}
-                 }
-                 else{
-                     e.cellHtml = "";
-                 }
-                 break;
-            default:
-                break;
-        }
-
-    });
-	
-	document.ondragstart = function() {
-	    return false;
-	};
-    document.onkeyup=function(event){
-	    var e=event||window.event;
-	    var keyCode=e.keyCode||e.which;
-	  
-	    if((keyCode==78)&&(event.altKey))  {  //新建
-			add();	
-	    } 
-	  
-	    if((keyCode==83)&&(event.altKey))  {   //保存
-			save();
-	    } 
-	  
-	    if((keyCode==80)&&(event.altKey))  {   //打印
-			onPrint();
-	    } 
-	    if((keyCode==113))  {  
-			addMorePart();
-		} 
-		 
-		if((keyCode==13))  {  //新建
-            if(partShow == 1) {
-				var row = morePartGrid.getSelected();
-				if(row){
-					addSelectPart();
-				}
-			}
-        } 
-
-        if((keyCode==27))  {  //ESC
-            if(partShow == 1){
-                onPartClose();
-            }
-            if(quickAddShow==1){
-            	onAdvancedAddCancel();
-            }
-        }
-	 
-	};
-
-	$("partTempId").focus(function(){
-		$("orderMan").css("background-color","#FFFFCC");
-		addNewRow(true);
-	});
-
-
-	// 绑定表单
-
-	var dictDefs ={"billTypeId":"DDT20130703000008", "settleTypeId":"DDT20130703000035"};
-	initDicts(dictDefs, function(){
-		getStorehouse(function(data) {
-			getAllPartBrand(function(data) {
-				brandList = data.brand;
-				brandList.forEach(function(v) {
-					brandHash[v.id] = v;
-				});
-		
-				gsparams.billStatusId = 2;
-				gsparams.auditSign = 1;
-//				quickSearch(0);
-
-				nui.unmask();
-			});
-			
-		});
-	});
-	add();
 	
 });
 
@@ -2545,8 +2392,7 @@ function setInitData(params){
 			nui.get("guestId").enable();
 		}
 	}else{
-		formJson = nui.encode(basicInfoForm.getData());
-		add();	
+
 	}
 }
 
@@ -2821,3 +2667,17 @@ function onOut(){
 	onOutRecord(partId);
 }
 
+function check() {
+	nui.open({
+		url : webPath+contextPath+"/com.hsweb.part.manage.carCheck.flow?token="+token,
+		title : "选择待验车辆",
+		width : 980,
+		height : 560,
+		onload : function() {
+
+		},
+		ondestroy : function(action) {
+
+		}
+	});
+}

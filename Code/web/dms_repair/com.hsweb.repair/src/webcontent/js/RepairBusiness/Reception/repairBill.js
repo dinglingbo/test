@@ -5601,17 +5601,18 @@ function chooseBlank(){
  			iframe.contentWindow.setData(main);
  		},
  		ondestroy : function(action) {// 弹出页面关闭前
- 			if (action == "ok") {
-			  var p1 = { }
- 		      var p2 = {
- 		      interType: "item",
- 		         data:{
- 		             serviceId: main.id||0
- 		         }
- 		     };
- 		     var p3 = {};
- 		     loadDetail(p1, p2, p3,main.status);
- 			}
+ 			/*if (action == "ok") {
+			
+ 			}*/
+		  var p1 = { }
+	      var p2 = {
+	      interType: "item",
+	         data:{
+	             serviceId: main.id||0
+	         }
+	     };
+	     var p3 = {};
+	     loadDetail(p1, p2, p3,main.status);
  		}
  	});
 	   

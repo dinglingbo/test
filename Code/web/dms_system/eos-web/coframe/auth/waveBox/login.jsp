@@ -79,7 +79,7 @@ body {
 .login_box{
 	max-width: 100%;
 	height: 97vh;
-	background-image: url(images/waveBox.png);
+	background-image: url(images/wave.png);
 	background-repeat: no-repeat;
 	background-position:center center;
 	margin: 0 auto;

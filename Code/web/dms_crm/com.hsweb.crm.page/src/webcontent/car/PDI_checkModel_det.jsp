@@ -47,13 +47,13 @@ pageEncoding="UTF-8" session="false" %>
        <table >
        <tr>
            <td style="text-align: right; width:61px;">
-               编号&nbsp;
+               编号：&nbsp;
            </td>
            <td>
                <input id="TemplateId_input" value="自动编号" style="width: 150px" disabled class="nui-textbox" />
            </td>
            <td style="text-align: right ;width:60px;">
-               拼音码&nbsp;
+               拼音码：&nbsp;
            </td>
            <td>
                <input id="TemplateCode_input" editable="false" style="width: 140px" class="nui-textbox" />
@@ -61,7 +61,7 @@ pageEncoding="UTF-8" session="false" %>
        </tr>
        <tr>
            <td style="text-align: right; width:61px;">
-               名称&nbsp;
+               名称：&nbsp;
            </td>
            <td colspan="3">
                <input id="TemplateName_input" style="width: 360px" class="nui-textbox" />
@@ -69,7 +69,7 @@ pageEncoding="UTF-8" session="false" %>
        </tr>
        <tr>
            <td style="text-align: right; width:61px;">
-               车型&nbsp;
+               车型：&nbsp;
            </td>
            <td colspan="3">
                <input id="CarType_combobox" class="nui-combobox" showheader="false" style="width: 250px;">
@@ -79,7 +79,7 @@ pageEncoding="UTF-8" session="false" %>
        </tr>
        <tr>
            <td style="text-align: right; width:61px;">
-               备注&nbsp;
+               备注：&nbsp;
            </td>
            <td colspan="3">
                <input id="Remark_input" class="nui-textarea" multiline="true" type="text" style="width: 360px;height:40px"

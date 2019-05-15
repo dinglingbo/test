@@ -179,27 +179,22 @@ function add(){
 }
 
 function edit(){
-    var row = rightGrid.getSelected();
-    if(!row) return; 
     var item={};
     item.id = "carSalesPutStorageDetails";
     item.text = "验车入库详情";
     item.url = webPath + contextPath + "/com.hsweb.part.manage.carSalesPutStorageDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
-    var params = row; 
+    var params = {}; 
     window.parent.activeTabAndInit(item,params);
 }
-/*function carCheck(){
-    nui.open({
-        url: webPath+contextPath+"/com.hsweb.part.manage.carCheck.flow?token="+token,
-        title: "验车", width: 980, height: 560,
-        allowDrag:true,
-        allowResize:true,
-        onload: function (){
-
-        },
-        ondestroy: function (action){
-        }
-    });
-}*/
+function carCheck(){
+    var item={};
+    item.id = "carSalesPutStorageDetails";
+    item.text = "验车入库详情";
+    item.url = webPath + contextPath + "/com.hsweb.part.manage.carSalesPutStorageDetails.flow";
+    item.iconCls = "fa fa-file-text";
+    //window.parent.activeTab(item);
+    var params = {}; 
+    window.parent.activeTabAndInit(item,params);
+}

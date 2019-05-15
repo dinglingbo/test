@@ -56,116 +56,121 @@ pageEncoding="UTF-8" session="false" %>
         </div>
         <table style="font-size: 9pt; padding-left: 10px">
             <tr>
-                <td class="td_title">车型编号
+                <td class="td_title">车型编号：
                 </td>
                 <td>
                     <input id="AutotypeId_input" class="nui-textbox" type="text" style="width: 150px" value="自动编号"
                         disabled="disabled" />
                 </td>
-                <td class="td_title">拼音码
+                <td class="td_title">拼音码：
                 </td>
                 <td>
                     <input id="AutotypeCode_input" class="nui-textbox" type="text" style="width: 150px" />
                 </td>
             </tr>
             <tr>
-                <td class="td_title">级别
+                <td class="td_title">级别：
                 </td>
                 <td>
                     <input id="" class="nui-combobox" style="width: 150px" />
                 </td>
-                <td class="td_title">国别
-                </td>
-                <td>
-                    <input id="" class="nui-combobox" style="width: 150px" />
-                </td>
-            </tr>
-            <tr>
-                <td class="td_title">车系
-                </td>
-                <td>
-                    <input id="" class="nui-combobox" style="width: 150px" />
-                </td>
-                <td class="td_title">车型名称
+                <td class="td_title">国别：
                 </td>
                 <td>
                     <input id="" class="nui-combobox" style="width: 150px" />
                 </td>
             </tr>
             <tr>
-                <td class="td_title">结构
+                <td class="td_title">车系：
                 </td>
                 <td>
                     <input id="" class="nui-combobox" style="width: 150px" />
                 </td>
-                <td class="td_title">排量
-                </td>
-                <td>
-                    <input id="" class="nui-combobox" style="width: 150px" />
-                </td>
-            </tr>
-            <tr>
-                <td class="td_title">座位数
-                </td>
-                <td>
-                    <input id="" class="nui-combobox" style="width: 150px" />
-                </td>
-                <td class="td_title">进气形式
+                <td class="td_title">年款：
                 </td>
                 <td>
                     <input id="" class="nui-combobox" style="width: 150px" />
                 </td>
             </tr>
             <tr>
-                <td class="td_title">能源
+                <td class="td_title">车型名称：
                 </td>
                 <td>
                     <input id="" class="nui-combobox" style="width: 150px" />
                 </td>
-                <td class="td_title">驱动方式
+                <td class="td_title">结构：
                 </td>
                 <td>
                     <input id="" class="nui-combobox" style="width: 150px" />
                 </td>
             </tr>
             <tr>
-                <td class="td_title">续航里程
+                <td class="td_title">排量：
+                </td>
+                <td>
+                    <input id="" class="nui-combobox" style="width: 150px" />
+                </td>
+                <td class="td_title">座位数：
+                </td>
+                <td>
+                    <input id="" class="nui-combobox" style="width: 150px" />
+                </td>
+            </tr>
+            <tr>
+                <td class="td_title">进气形式：
+                </td>
+                <td>
+                    <input id="" class="nui-combobox" style="width: 150px" />
+                </td>
+                <td class="td_title">能源：
+                </td>
+                <td>
+                    <input id="" class="nui-combobox" style="width: 150px" />
+                </td>
+            </tr>
+            <tr>
+                <td class="td_title">驱动方式：
+                </td>
+                <td>
+                    <input id="" class="nui-combobox" style="width: 150px" />
+                </td>
+                <td class="td_title">续航里程：
                 </td>
                 <td>
                     <input id="" class="nui-textbox" style="width: 150px" enabled="false"/>
                 </td>
-                <td class="td_title">电动机
+            </tr>
+            <tr>
+                <td class="td_title">电动机：
                 </td>
                 <td>
                     <input id="" class="nui-combobox" style="width: 150px" enabled="false"/>
                 </td>
-            </tr>
-            <tr>
-                <td class="td_title">充电时间
+                <td class="td_title">充电时间：
                 </td>
-                <td colspan="3">
-                    <input id="" class="nui-textbox" style="width: 100%" enabled="false"/>
+                <td >
+                    <input id="" class="nui-textbox" style="width: 150px" enabled="false"/>
                 </td>
             </tr>
             <tr>
-                <td class="td_title">变速箱
+                <td class="td_title">变速箱：
                 </td>
                 <td>
                     <input id="" class="nui-combobox" style="width: 150px" />
                 </td>
-                <td class="td_title">生产方式
+                <td class="td_title">生产方式：
                 </td>
                 <td>
                     <input id="" class="nui-combobox" style="width: 150px" />
                 </td>
             </tr>
             <tr>
-                <td class="td_title">上市日期
+                <td class="td_title">上市日期：
                 </td>
                 <td>
                     <input id="" class="nui-combobox" style="width: 150px" />
                 </td>
-                <td class="td_title">是否共享
+                <td class="td_title">是否共享：
                 </td>
                 <td>
                     <input id="" class="nui-combobox" style="width: 150px" />
@@ -174,32 +179,32 @@ pageEncoding="UTF-8" session="false" %>
 
 
             <tr>
-                <td align="right">指导进价
+                <td align="right">指导进价：
                 </td>
                 <td>
                     <input id="PurchasePrice_input" class="nui-textbox" type="text" style="width: 135px" />元
                 </td>
 
-                <td align="right">指导销价
+                <td align="right">指导销价：
                 </td>
                 <td>
                     <input id="SailPrice_input" class="nui-textbox" type="text" style="width: 135px" />元
                 </td>
             </tr>
             <tr>
-                <td align="right">销售底价
+                <td align="right">销售底价：
                 </td>
                 <td>
                     <input id="LimitPrice_input" class="nui-textbox" type="text" style="width: 135px" />元
                 </td>
-                <td align="right">购车订金
+                <td align="right">购车订金：
                 </td>
                 <td>
                     <input id="MustDeposit_input" class="nui-textbox" type="text" style="width: 135px" />元
                 </td>
             </tr>
             <tr>
-                <td align="right">备注说明
+                <td align="right">备注说明：
                 </td>
                 <td colspan="3">
                     <input id="Remark_input" class="nui-textarea" multiline="true" style="width: 100%; height: 65px;" />

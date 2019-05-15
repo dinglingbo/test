@@ -123,7 +123,7 @@
                      <div field="" allowSort="true"  width="130" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                 
                     <div field="" allowSort="true"   name="" width="90" headerAlign="center" header="库龄（天）"></div>
                     <div field="" allowSort="true"  name="" width="90" headerAlign="center" header="车身颜色"></div>
-                    <div allowSort="true" field=""  name="" width="90" headerAlign="center" header="车内饰色"></div>
+                    <div allowSort="true" field=""  name="" width="90" headerAlign="center" header="内饰颜色"></div>
                     <div allowSort="true" field=""  name="" width="90" headerAlign="center" header="PDI检测"></div>    
                     <div allowSort="true" field="" name="" width="90" headerAlign="center" header="进价"></div>
                     <div allowSort="true" field="" name="" width="90" headerAlign="center" header="运费"></div>                                                                                                

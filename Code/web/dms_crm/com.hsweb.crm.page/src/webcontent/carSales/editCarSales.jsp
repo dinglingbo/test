@@ -70,94 +70,101 @@
 
     <body>
         <input class="nui-hidden" id="type">
-        <div class="nui-toolbar" style="padding:2px;height:48px;position: relative;">
-            <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn" visible="false"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-            <a class="nui-button" iconCls="" plain="true" onclick="save()" id="submitBtn" visible="false"><span class="fa fa-save fa-lg"></span>&nbsp;提交</a>
-            <a class="nui-button" iconCls="" plain="true" onclick="save()" id="invalidBtn" visible="false"><span class="fa fa-close fa-lg"></span>&nbsp;作废</a>
-            <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="selectBtn"  visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;选车</a>
-            <a class="nui-button" iconCls="" plain="true" onclick="audit(1)" id="audit" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
-            <a class="nui-button" iconCls="" plain="true" onclick="caseMsg()" id="case" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;结案</a>
-            <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="jsBtn" visible="false"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
+        <div class="nui-toolbar" style="padding:2px;height:35px;position: relative;">
+            <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
+                <tr>
+                    <td style="text-align:right;">
+                        <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn" visible="false"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="save()" id="submitBtn" visible="false"><span class="fa fa-save fa-lg"></span>&nbsp;提交</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="save()" id="invalidBtn" visible="false"><span class="fa fa-close fa-lg"></span>&nbsp;作废</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="selectBtn" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;选车</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="audit(1)" id="audit" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="caseMsg()" id="case" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;结案</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="jsBtn" visible="false"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
 
-            <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="onPrint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
-            <a class="nui-menubutton" plain="true" menu="#popupMenuMore" id="menuMore">
-                <span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="onPrint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+                        <a class="nui-menubutton" plain="true" menu="#popupMenuMore" id="menuMore">
+                            <span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
 
-            <ul id="popupMenuMore" class="nui-menu" style="display:none;">
-                <li iconCls="" onclick="unfinish()" id="unfinishBtn" style="display:none;">返单</li>
-                <li iconCls="" onclick="unfinish()" id="auditno" style="display:none;">反审</li>
-                <li iconCls="" onclick="unfinish()" id="caseno" style="display:none;">反结案</li>
-                <li iconCls="" onclick="registration()" id="addBtn">车辆上牌</li>
-                <li iconCls="" onclick="upload()" id="ExpenseAccount1">车辆图片</li>
-            </ul>
+                        <ul id="popupMenuMore" class="nui-menu" style="display:none;">
+                            <li iconCls="" onclick="unfinish()" id="unfinishBtn" style="display:none;">返单</li>
+                            <li iconCls="" onclick="unfinish()" id="auditno" style="display:none;">反审</li>
+                            <li iconCls="" onclick="unfinish()" id="caseno" style="display:none;">反结案</li>
+                            <li iconCls="" onclick="registration()" id="addBtn">车辆上牌</li>
+                            <li iconCls="" onclick="upload()" id="ExpenseAccount1">车辆图片</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+
         </div>
-        <table cellpadding="0" cellspacing="0" style="line-height: 27px; padding-top: 4px; padding-left: 0px;">
+        <table cellpadding="0" cellspacing="0" style="line-height: 30px; padding-top: 4px; padding-left: 0px;width:100%">
             <tr>
                 <td class="td_title">单据编号：
                 </td>
                 <td>
-                    <input id="txtDocumentId" required="true" value="自动编号" style="width: 110px;" class="nui-textbox" />
+                    <input id="txtDocumentId" required="true" value="自动编号" style="width: 100%;" class="nui-textbox" />
                 </td>
                 <td class="td_title">单据日期：
                 </td>
                 <td>
-                    <input id="txtDocumentDate" editable="false" name="txtDocumentDate" class="nui-datepicker" style="width: 110px" />
+                    <input id="txtDocumentDate" editable="false" name="txtDocumentDate" class="nui-datepicker" style="width: 100%" />
                 </td>
                 <td class="td_title">预交日期：
                 </td>
                 <td>
-                    <input id="txtReserveGiveDate" editable="false" name="txtReserveGiveDate" class="nui-datepicker" style="width: 110px" />
+                    <input id="txtReserveGiveDate" editable="false" name="txtReserveGiveDate" class="nui-datepicker" style="width: 100%" />
                 </td>
                 <td class="td_title">客户名称：
                 </td>
                 <td>
-                    <input class="nui-combobox" id="txtCustName" style="width: 120px;" validtype="equals" editable="false">
+                    <input class="nui-combobox" id="txtCustName" style="width: 100%;" validtype="equals" editable="false">
                 </td>
             </tr>
             <tr>
                 <td align="right" class="auto-style1">销售顾问：
                 </td>
                 <td class="auto-style1">
-                    <input class="nui-combobox" id="cmbBusinessMan" style="width: 120px;" validtype="equals" editable="false">
+                    <input class="nui-combobox" id="cmbBusinessMan" style="width: 100%;" validtype="equals" editable="false">
                 </td>
                 <td align="right" class="auto-style1">联系人：
                 </td>
                 <td class="auto-style1">
-                    <input id="txtLinkMan" style="width: 140px;" class="nui-textbox" />
+                    <input id="txtLinkMan" style="width: 100%;" class="nui-textbox" />
                 </td>
                 <td align="right" class="auto-style1">手机号码：
                 </td>
                 <td class="auto-style1" colspan="3">
-                    <input id="txtMovePhone" style="width: 110px;" class="nui-textbox" />
+                    <input id="txtMovePhone" style="width: 100%;" class="nui-textbox" />
                 </td>
             </tr>
             <tr>
                 <td align="right">购车方式：
                 </td>
                 <td>
-                    <input class="nui-combobox" id="cmbAutoBuyway" style="width: 120px;" validtype="equals" editable="false">
+                    <input class="nui-combobox" id="cmbAutoBuyway" style="width: 100%;" validtype="equals" editable="false">
                 </td>
                 <td align="right">合同号：
                 </td>
                 <td>
-                    <input id="txtContractNum" class="nui-textbox" style="width: 140px;" />
+                    <input id="txtContractNum" class="nui-textbox" style="width: 100%;" />
                 </td>
                 <td align="right">是否开票：
                 </td>
                 <td>
-                    <input id="cmbBillFlg" class="nui-combobox" editable="false" style="width: 110px">
+                    <input id="cmbBillFlg" class="nui-combobox" editable="false" style="width: 100%">
                 </td>
                 <td align="right">票据类型：
                 </td>
                 <td>
-                    <input class="nui-combobox" id="cmbBillSort" style="width: 120px;" validtype="equals" editable="false">
+                    <input class="nui-combobox" id="cmbBillSort" style="width: 100%;" validtype="equals" editable="false">
                 </td>
             </tr>
             <tr>
                 <td align="right">发票号码：
                 </td>
                 <td colspan="3">
-                    <input id="txtBillNum" style="width: 285px;" class="nui-textbox" />
+                    <input id="txtBillNum" style="width: 100%;" class="nui-textbox" />
                 </td>
                 <td align="right">开票客户：
                 </td>
@@ -170,11 +177,11 @@
                 <td align="right">结算备注：
                 </td>
                 <td colspan="9">
-                    <input id="txtSettleRem" class="nui-textarea" style="width: 820px;height:40px" multiline="true" />
+                    <input id="txtSettleRem" class="nui-textarea" style="width: 100%;height:40px" multiline="true" />
                 </td>
             </tr>
         </table>
-        <div class="nui-fit">
+        <div class="nui-fit" style="padding-top:10px">
             <div class="mini-tabs" activeIndex="0" style="width:100%;height:100%;">
                 <div title="精品加装">
                     <div class="mini-splitter" style="width:100%;height:100%;">
@@ -216,12 +223,12 @@
                 <div title="保险信息">
                     <table cellpadding="0" cellspacing="0" style="line-height: 27px; padding-top: 4px; padding-left: 0px;width: 100%">
                         <tr>
-                            <td style="color:red" class="td_title">保险公司：</td>
+                            <td style="" class="td_title">保险公司：</td>
                             <td class=""><input class="nui-combobox" id="insureCompName" name="insureCompName" emptyText="选择保险公司" dataField="list" valueField="fullName" textField="fullName" showNullItem="true" nullItemText="请选择..." width="100%" /></td>
-                            <td style="color:red" class="td_title">销售人员：</td>
+                            <td style="" class="td_title">销售人员：</td>
                             <td><input class="nui-combobox" id="saleManIds" name="saleManIds" emptyText="选择销售人员" dataField="data" valueField="empId" textField="empName" showNullItem="true" nullItemText="请选择..." multiSelect="true" width="100%" /></td>
 
-                            <td style="color:red" class="td_title">
+                            <td class="td_title">
                                 <label>有效日期：</label>
                             </td>
                             <td>
@@ -229,7 +236,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td style="color:red;width:100px" class="td_title">保费收取方式：</td>
+                            <td class="td_title">保费收取方式：</td>
                             <td class=""><input class="nui-combobox" name="settleTypeId" id="settleTypeId" valueField="id" textField="name" dataField="settleTypeIdList" width="100%" /></td>
                             <td class="td_title">其他成本：</td>
                             <td><input class="nui-textbox" name="costAmt" id="costAmt" width="100%" vtype="float" onvaluechanged="changeCostAmt" /></td>
@@ -348,14 +355,14 @@
             }
 
             function setInitData(params) {
-            	if(params.typeMsg == 1){
-            		nui.get("saveBtn").setVisible(true);
-            		nui.get("submitBtn").setVisible(true);
-            		nui.get("invalidBtn").setVisible(true);
-            		nui.get("selectBtn").setVisible(true);
-            		nui.get("jsBtn").setVisible(true);
-            		document.getElementById("unfinishBtn").style.display = "";
-            	}else if (params.typeMsg == 2) {
+                if (params.typeMsg == 1) {
+                    nui.get("saveBtn").setVisible(true);
+                    nui.get("submitBtn").setVisible(true);
+                    nui.get("invalidBtn").setVisible(true);
+                    nui.get("selectBtn").setVisible(true);
+                    nui.get("jsBtn").setVisible(true);
+                    document.getElementById("unfinishBtn").style.display = "";
+                } else if (params.typeMsg == 2) {
                     nui.get("audit").setVisible(true);
                     document.getElementById("auditno").style.display = "";
                 } else if (params.typeMsg == 3) {

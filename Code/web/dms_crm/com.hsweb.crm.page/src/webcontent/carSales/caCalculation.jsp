@@ -68,7 +68,7 @@
     </style>
 
     <body>
-        <table style="line-height: 23px; padding-top: 10px;width: 55%">
+        <table style="line-height: 18px; padding-top: 10px;width: 60%">
             <tr>
                 <td colspan="8">请填写购车计算信息(按回车计算)</td>
             </tr>
@@ -289,7 +289,7 @@
                 <td align="right">备注：
                 </td>
                 <td colspan="7">
-                    <input id="db_Remark" style="width: 100%;height:100px" class="nui-textarea" multiline="true" />
+                    <input id="db_Remark" style="width: 100%;height:50px" class="nui-textarea" multiline="true" />
                 </td>
             </tr>
             <tr>
@@ -300,9 +300,11 @@
                 </td>
             </tr>
         </table>
+
         <script type="text/javascript">
             nui.parse();
-            var calculate = "银行利息=贷款金额*贷款利率(%)   担保费=贷款金额*担保费率(%)" +
+            var calculate = "银行利息=贷款金额*贷款利率(%)" +
+                "\r\n担保费=贷款金额*担保费率(%)" +
                 "\r\n费用合计 = 按揭手续费 + 合同保证金 + 续保押金 + 风险保证金+ 家访费+ 保险费预算+ 购置税预算 + GPS费用   + 上牌费 + 其它费 + 不分摊银行利息" +
                 "\r\n购车预算合计= 车辆销价+费用合计"
             nui.get("calculate").setValue(calculate);

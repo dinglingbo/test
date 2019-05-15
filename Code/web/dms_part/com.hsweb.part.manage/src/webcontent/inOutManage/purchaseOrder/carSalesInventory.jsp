@@ -82,6 +82,8 @@
 	            <input id="" name="" width="80px" emptyText="车辆状态" class="nui-textbox"/>
 	            <input id="" name="" width="80px" emptyText="单据编号" class="nui-textbox"/> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="" ><span class="fa fa-cny fa-lg"></span>&nbsp;成本调整</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="" ><span class="fa fa-lock fa-lg"></span>&nbsp;锁库</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="detection()" ><span class="fa fa-plus fa-lg"></span>&nbsp;PDI检测</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="upload()" ><span class="fa fa-arrow-up fa-lg"></span>&nbsp;图片上传</a>
 <!--                <a class="nui-button" iconCls="" plain="true" onclick="edit()" ><span class="fa fa-gear fa-lg"></span>&nbsp;设置</a>-->
@@ -120,8 +122,8 @@
                     <div field="" name="" width="220" headerAlign="center" header="供应商"></div>    
                      <div field="" allowSort="true"  width="130" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                 
                     <div field="" allowSort="true"   name="" width="90" headerAlign="center" header="库龄（天）"></div>
-                    <div field="" allowSort="true"  name="" width="90" headerAlign="center" header="颜色"></div>
-                    <div allowSort="true" field=""  name="" width="90" headerAlign="center" header="车内饰色"></div>
+                    <div field="" allowSort="true"  name="" width="90" headerAlign="center" header="车身颜色"></div>
+                    <div allowSort="true" field=""  name="" width="90" headerAlign="center" header="内饰颜色"></div>
                     <div allowSort="true" field=""  name="" width="90" headerAlign="center" header="PDI检测"></div>    
                     <div allowSort="true" field="" name="" width="90" headerAlign="center" header="进价"></div>
                     <div allowSort="true" field="" name="" width="90" headerAlign="center" header="运费"></div>                                                                                                

@@ -170,7 +170,7 @@
 					 </div>
 				 </div>
 			    </div>
-			    <div title="其他意向车型" id="deductTab" name="deductTab" >
+			  <!--   <div title="其他意向车型" id="deductTab" name="deductTab" >
 			    <div  id="datagrid2" dataField="data" class="nui-datagrid" 
 					style="width: 100%; height: 100%;"  sortMode="client"
 					allowSortColumn="true" showPager="false" allowCellWrap=true>
@@ -179,7 +179,7 @@
 						<div field="carNo" headerAlign="center" allowSort="true" width="70px">车型信息</div>
 					 </div>
 				 </div>
-			    </div>
+			    </div> -->
 			 </div>
 			</div>
 		</div>

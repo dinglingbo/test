@@ -34,6 +34,22 @@
 			AND A.name like '%$name$%'
 		</isNotNull>
     </select>
+    <select id="queryDictTree" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT A.id, A.parentid, A.customid, A.name, A.description, a.root_id as rootId 
+    	from COM_DATADICTIONARIES A
+		WHERE 1 = 1 and (orgid = 0 or orgid = #orgid#)
+		      and a.is_disabled = 0
+		<isNull property="parentid">
+			and LENGTH(IFNULL(A.PARENTID,''))=0
+		</isNull>
+        <isNotNull property="parentid">
+			and ifnull(A.PARENTID,'') = #parentid#
+		</isNotNull>
+        <isNotNull property="customid">
+			and ifnull(A.customid,'') = #customid#
+		</isNotNull>
+        
+    </select>
     <!--字典项-->
     <select id="queryDictItem" parameterClass="HashMap" resultClass="HashMap">
     	SELECT id, dictid, customid, name, tenant_id as tenantId, orgid, property1, property2, property3, description, is_Disabled isDisabled
@@ -41,6 +57,9 @@
 		WHERE 1=1 
 		<isNotNull property="dictid">
 			AND A.DICTID = #dictid#
+		</isNotNull>
+		<isNotNull property="customid">
+			AND A.customid = #customid#
 		</isNotNull>
         <isNull property="dictid">
 			AND A.DICTID in($dictids$)

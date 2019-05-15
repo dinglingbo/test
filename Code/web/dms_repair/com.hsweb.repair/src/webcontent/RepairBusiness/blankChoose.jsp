@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>钣喷项目</title>
-    <script src="<%=request.getContextPath()%>/repair/js/DataBase/Item/blankChoose.js?v=1.0.7"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/DataBase/Item/blankChoose.js?v=1.0.8"></script>
     <%-- <script src="<%=request.getContextPath()%>/repair/js/DataBase/Item/item_special.js?v=1.0.0"></script> --%>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
@@ -238,7 +238,7 @@ ondrawsummarycell="onDrawSummaryCell"
 			</div>
             <div field="typeCode" headerAlign="center" allowSort="false" visible="true" align="center" name="action">维修动作
                 <input class="nui-combobox" showNullItem="true" name="chanceType"  valueField="customid" id="setAction"
-                 textField="name"  property="editor" data="statusList" emptyText="" onvaluechanged ="onValueChangedTypeCode"/>
+                 textField="name"  property="editor" data="statusList" emptyText="" />
             </div>
            <div type="checkboxcolumn" trueValue="1" falseValue="0" field="isPaint" name="isPaint" value="1" width="60" headerAlign="center" header="是否喷漆" allowsort="true"></div>
            <div field="amtt" allowSort="true" align="left"

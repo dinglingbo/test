@@ -91,9 +91,9 @@ layui.use(['form', 'upload'], function(){  //如果只加载一个模块，可�
 		        	if(data.errCode=="S"){
 		        		var index = parent.layer.getFrameIndex(window.name); 
 						parent.layer.close(index);//关闭当前页  
-					    parent.layer.msg('申请成功，等待对方同意！');
+					    parent.layer.msg('申请成功，等待对方同意！',{icon: 1,time: 2000});
 		        	}else{
-		        		parent.layer.msg('申请异常');
+		        		parent.layer.msg('申请异常',{icon: 7,time: 2000});
 		        	}
 		        }
 		    });
@@ -103,7 +103,6 @@ layui.use(['form', 'upload'], function(){  //如果只加载一个模块，可�
   form.on('submit(cancel)', function(data){
 		var index = parent.layer.getFrameIndex(window.name); 
 		parent.layer.close(index);//关闭当前页  
-
      });
      
   });

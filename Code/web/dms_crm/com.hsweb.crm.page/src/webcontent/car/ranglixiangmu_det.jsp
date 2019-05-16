@@ -46,26 +46,26 @@ pageEncoding="UTF-8" session="false" %>
        </div>
        <table style="font-size: 9pt; padding: 0px 10px">
             <tr>
-                <td align="right" style="width: 80px;">项目名称
+                <td align="right" style="width: 80px;">项目名称：
                 </td>
                 <td colspan="3">
                     <input id="AgentitemName_input" class="nui-textbox" type="text" style="width: 308px" />
                 </td>
             </tr>
             <tr>
-                <td align="right" style="width: 80px;">拼音码
+                <td align="right" style="width: 80px;">拼音码：
                 </td>
                 <td>
                     <input id="AgentitemCode_input" class="nui-textbox" type="text" style="width: 110px" />
                 </td>
-                <td align="right" style="width: 80px;">让利金额(元)
+                <td align="right" style="width: 80px;">让利金额(元)：
                 </td>
                 <td>
                     <input id="AgentMoney_input" class="nui-textbox" type="text" style="width: 110px"  />
                 </td>
             </tr>
             <tr>
-                <td align="right" style="width: 80px;">备注
+                <td align="right" style="width: 80px;">备注：
                 </td>
                 <td colspan="3">
                     <input id="Remark_input" class="nui-textarea" multiline="true" style="width: 308px; height: 60px"/>

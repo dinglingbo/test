@@ -46,19 +46,19 @@ pageEncoding="UTF-8" session="false" %>
        </div>
        <table style="font-size: 9pt; padding-left: 10px">
             <tr>
-                <td class="td_title">项目编号
+                <td class="td_title">项目编号：
                 </td>
                 <td>
                     <input id="ItemId_input" class="nui-textbox" type="text" style="width: 150px" value="自动编号" disabled="disabled" />
                 </td>
-                <td class="td_title">拼音码
+                <td class="td_title">拼音码：
                 </td>
                 <td>
                     <input id="ItemCode_input" class="nui-textbox" type="text" style="width: 150px" />
                 </td>
             </tr>
             <tr>
-                <td class="td_title">项目名称
+                <td class="td_title">项目名称：
                 </td>
                 <td colspan="3">
                     <input id="ItemName_input" class="nui-textbox" type="text" style="width: 285px"  />

@@ -61,25 +61,28 @@ layui.use(['form', 'upload'], function(){  //如果只加载一个模块，可�
 	  }; */
 	   
 	  //修改
+	  //var json = {};
+	  var params = {};
 	  if(user && user.id>0){
-	   var paramst ={
+	    params ={
 	  	  name:name,
-	  	  id:user.id
+	  	  id:user.id,
+	  	  edit:"update"
 	     };
-	   var json = nui.encode({
-	          paramst:paramst,
+	      json = nui.encode({
+	          params:params,
 			  edit:"update",
 			  token:token
-		});
+		}); 
 	  }else{
-		  var paramst ={
+		   params ={
 		  	  name:name,
 		  	  userid:currImCode,
 		     };
-		   var json = nui.encode({
-		          paramst:paramst,
+		    json = nui.encode({
+		          params:params,
 				  token:token
-			});
+			}); 
 	  
 	  }
 	  
@@ -89,12 +92,10 @@ layui.use(['form', 'upload'], function(){  //如果只加载一个模块，可�
         dataType:'json',
         contentType:'application/json',
         cache : false,
-        data: JSON.stringify({
-        	params:paramst,
-        }),
+        data: json,
         url:baseUrl + "com.hs.common.env.editUserType.biz.ext",
+        async:false, 
         success:function(data){
-        	var friendList = data.result;
         	if(data.errCode=="S"){
         	    var index = parent.layer.getFrameIndex(window.name);  
                 parent.layer.close(index);//关闭当前页  

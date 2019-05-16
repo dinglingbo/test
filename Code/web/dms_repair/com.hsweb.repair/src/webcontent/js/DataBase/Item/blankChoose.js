@@ -22,6 +22,7 @@ $(document).ready(function(){
 	//初始化参数
 	//获取当前页面中可喷漆的面
 	sellForm = new nui.Form("#sellForm");
+	
 	var self = this;
 	this.pathCount = $('#path-list-2').find('path').length;
 	//绑定鼠标移动到元素上的事件
@@ -75,7 +76,10 @@ $(document).ready(function(){
 	    $.post(apiPath + sysApi + "/"+"com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictids="+dictids+"&token="+token,{},function(text){
 		    if(text.data){
 		    	statusList = text.data;
-		    	nui.get("setAction").setData(statusList);
+		    	var action = nui.get("setAction");
+		    	if(action){
+		    		action.setData(statusList);
+		    	}
 		        /*statusList = [{id:1,name:"拆装"},{id:2,name:"修复"},{id:3,name:"更换"}];*/
 		    	
 		    }

@@ -64,13 +64,13 @@
                         <input id="" name="" width="80px" emptyText="车型名称" class="nui-textbox" /> -->
 
                         <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn" visible="false"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="editBtn" visible="false"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn" visible="false"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="add()" id="audit" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="add()" id="auditno" visible="false"><span class="fa fa-close fa-lg"></span>&nbsp;反审</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="add()" id="case" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;结案</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="add()" id="csaeno" visible="false"><span class="fa fa-close fa-lg"></span>&nbsp;反结案</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="addAndEdit(1)" id="addBtn" visible="false"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="addAndEdit(2)" id="editBtn" visible="false"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="addAndEdit(2)" id="deletBtn" visible="false"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="addAndEdit(2)" id="audit" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="addAndEdit(2)" id="auditno" visible="false"><span class="fa fa-close fa-lg"></span>&nbsp;反审</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="addAndEdit(2)" id="case" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;结案</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="addAndEdit(2)" id="csaeno" visible="false"><span class="fa fa-close fa-lg"></span>&nbsp;反结案</a>
 
                     </td>
                 </tr>
@@ -112,10 +112,10 @@
                     <div field="saleAdvisor" name="saleAdvisor" width="100px" headerAlign="center" header="销售顾问"></div>
                     <div field="guestFullName" name="guestFullName" width="100px" headerAlign="center" header="客户名称"></div>
                     <div field="carModelName" name="carModelName" width="100px" headerAlign="center" header="车型"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="销售日期"></div>
+                    <div field="submitTrueDate" name="submitTrueDate" width="100px" headerAlign="center" header="销售日期"></div>
                     <div field="submiPlanDate" name="submiPlanDate" width="100px" headerAlign="center" header="交车日期"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="结案日期"></div>
-                    <div field="" name="" width="100px" headerAlign="center" header="结案人"></div>
+                    <div field="financialEndDate" name="financialEndDate" width="100px" headerAlign="center" header="结案日期"></div>
+                    <div field="financialEndMan" name="financialEndMan" width="100px" headerAlign="center" header="结案人"></div>
                     <div field="serviceCode" name="serviceCode" width="100px" headerAlign="center" header="工单号"></div>
                 </div>
             </div>

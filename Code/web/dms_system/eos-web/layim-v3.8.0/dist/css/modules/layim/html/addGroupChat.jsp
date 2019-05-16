@@ -9,7 +9,7 @@
   - Description:
 -->
 <head>
-<title>好友申请</title>
+<title>创建群聊</title>
     <script src="<%=request.getContextPath()%>/common/nui/jquery/jQuery-2.2.0.min.js?v=1.0.1"></script>
 	<%@include file="/common/sysVarCommon.jsp" %>
 <link href="<%=request.getContextPath()%>/layim-v3.8.0/dist/css/layui.css?v=1.0.11" rel="stylesheet" type="text/css" />

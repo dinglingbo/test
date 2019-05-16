@@ -44,7 +44,7 @@ pageEncoding="UTF-8" session="false" %>
                </tr>
            </table>
        </div>
-       <table style="font-size: 9pt; padding-left: 10px">
+       <table style="font-size: 9pt; padding-left: 10px;padding-top: 10px;line-height:30px;">
             <tr>
                 <td class="td_title">项目编号：
                 </td>

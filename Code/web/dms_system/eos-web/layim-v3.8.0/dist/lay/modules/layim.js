@@ -492,6 +492,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
         
         banRightMenu();
         groupRightMenu();
+        groupChatRightMenu();
         events.sign();
       }
       ,cancel: function(index){
@@ -586,6 +587,46 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     });
   }
   
+  //自定义群聊面板右键菜单
+  var groupChatRightMenu = function(){
+    layimMain.on('contextmenu', function(event){
+      event.cancelBubble = true;
+      event.returnValue = false;
+      return false; 
+    });
+    
+    var hide = function(){
+      layer.closeAll('tips');
+    };
+    
+    layimMain.find('.layim-list-group').on('contextmenu', 'li', function(e){
+      var othis = $(this);
+     /* var str = othis[0].textContent.lastIndexOf("(");
+
+      var arr = str.split("(");
+     
+      groupInfo.name = str.*/
+      groupId = othis[0].id;
+      var html = '<ul data-id="'+ othis[0].id +'" data-index="'+ othis.data('index') +'"><li layim-event="editGroupChat" data-type="add">发起群聊</li><li layim-event="editGroupChat" data-type="updat">修改主题</li><li layim-event="deletGroup" data-type="one">退出群聊</li></ul>';
+      
+      if(othis.hasClass('layim-null')) return;
+      
+      layer.tips(html, this, {
+        tips: 1
+        ,time: 0
+        ,anim: 5
+        ,fixed: true
+        ,skin: 'layui-box layui-layim-contextmenu'
+        ,success: function(layero){
+          var stopmp = function(e){ stope(e); };
+          layero.off('mousedown', stopmp).on('mousedown', stopmp);
+        }
+      });
+      $(document).off('mousedown', hide).on('mousedown', hide);
+      $(window).off('resize', hide).on('resize', hide);
+      
+    });
+  } 
   
   
   //主面板最小化状态
@@ -1976,7 +2017,51 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       
       layer.closeAll('tips');
     }
-    
+    //群聊右键菜单操作
+    ,editGroupChat: function(othis, e){
+      var local = layui.data('layim')[cache.mine.id] || {};
+      var parent = othis.parent(), type = othis.data('type');
+      var editGroupChatUrl = webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/editGroupChat.jsp";
+      var addGroupChatUrl = webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/addGroupChat.jsp";
+      if(type === 'updat'){
+    	  var groupTemp = {};
+    	  groupTemp = {
+    		    "group_name":"华胜古天乐粉丝群1群",
+    		    "group_man_id":"",
+    			"id":25
+    	  }
+      	layer.open({
+      		  type: 2, 
+      		  title: '修改',
+      		  content: editGroupChatUrl, //这里content是一个普通的String
+      		  area:['600px','500px'],
+      		  maxmin:true,
+      		  success: function (layero, index) {
+      		  // 获取子页面的iframe
+      		  var iframe = window['layui-layer-iframe' + index];
+      		  // 向子页面的全局函数child传参
+      		  iframe.setData(groupTemp);
+      		  }
+      		});
+          
+      } else if(type === 'add') {
+    	  layer.open({
+      		  type: 2, 
+      		  title: '创建群聊',
+      		  content: addGroupChatUrl, //这里content是一个普通的String
+      		  area:['600px','500px'],
+      		  maxmin:true,
+      		  success: function (layero, index) {
+      		  // 获取子页面的iframe
+      		  var iframe = window['layui-layer-iframe' + index];
+      		  // 向子页面的全局函数child传参
+      		  //iframe.setData(groupTemp);
+      		  }
+      		});    
+      }
+      
+      layer.closeAll('tips');
+    }  
     
     
   };

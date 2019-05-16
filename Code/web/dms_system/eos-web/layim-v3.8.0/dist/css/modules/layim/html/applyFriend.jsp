@@ -35,7 +35,7 @@
   <div class="layui-form-item">
     <label class="layui-form-label" style="width: 75px">选择框：</label>
     <div class="layui-input-block" >
-      <select name="city"  lay-verify="required" >
+      <select name="city"   >
         <option value=""></option>
         <option value="0">北京</option>
         <option value="1">上海</option>
@@ -53,8 +53,8 @@
   </div>
   <div class="layui-form-item">
     <div class="layui-input-block" >
-      <button class=" layui-btn-xs " onclick="apply()" style="margin-left: 130px;margin-top: 120px;">发送申请</button>
-      <button type="reset" onclick="close()" class=" layui-btn-xs" >取消</button>
+      <button class=" layui-btn-xs " id="apply" lay-submit lay-filter="apply"  style="margin-left: 130px;margin-top: 120px;">发送申请</button>
+      <button  id="cancel"  lay-submit lay-filter="cancel" class=" layui-btn-xs" >取消</button>
     </div>
   </div>
 </form>
@@ -64,45 +64,55 @@
 var baseUrl = apiPath + sysApi + "/";
 var applyFriend ={};
 //Demo
-layui.use('form', function(){
-  var form = layui.form;
+layui.use(['form', 'upload'], function(){  //如果只加载一个模块，可以不填数组。如：layui.use('form')
+  var form = layui.form //获取form模块
+  ,upload = layui.upload; //获取upload模块
   
-});
- function child(applyFriend) {
- applyFriend = applyFriend;
+  //监听申请按钮
+  form.on('submit(apply)', function(data){
+      		var friend = {
+				uid : applyFriend.id,
+				from : currImCode,
+				status : 0,
+				remark : $('#remark').val()		
+			}
+			    //申请好友
+		    $.ajax({
+		        type:'post',
+		        dataType:'json',
+		        contentType:'application/json',
+		        cache : false,
+		        async:false, 
+		        data: JSON.stringify({
+		        	friend:friend
+		        }),
+		        url:baseUrl + "com.hs.common.env.applyFriend.biz.ext",
+		        success:function(data){
+		        	if(data.errCode=="S"){
+		        		var index = parent.layer.getFrameIndex(window.name); 
+						parent.layer.close(index);//关闭当前页  
+					    parent.layer.msg('申请成功，等待对方同意！');
+		        	}else{
+		        		parent.layer.msg('申请异常');
+		        	}
+		        }
+		    });
+
+     });cancel
+  //监听取消按钮
+  form.on('submit(cancel)', function(data){
+		var index = parent.layer.getFrameIndex(window.name); 
+		parent.layer.close(index);//关闭当前页  
+
+     });
+     
+  });
+ function child(apply) {
+ applyFriend = apply;
   $('#name').val(applyFriend.name);
   $('#remark').val("我是"+applyFriend.name);
-  
 }
-function close(){
-	var index = parent.layer.getFrameIndex(window.name); 
-	parent.layer.close(index);//关闭当前页  
-}
-function apply(){
-	var friend = {
-		uid : applyFriend.id,
-		from_id : currImCode,
-		status : 0,
-		remark : $('#remark').val()
-		
-	}
-	    //申请好友
-    $.ajax({
-        type:'post',
-        dataType:'json',
-        contentType:'application/json',
-        cache : false,
-        data: JSON.stringify({
-        	friend:friend
-        }),
-        url:baseUrl + "com.hs.common.env.applyFriend.biz.ext",
-        success:function(data){
-        	
-        }
-    })
-	var index = parent.layer.getFrameIndex(window.name); 
-	parent.layer.close(index);//关闭当前页  
-}
+
 </script>
 </body>
 </html>

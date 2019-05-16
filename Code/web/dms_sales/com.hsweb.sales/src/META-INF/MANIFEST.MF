@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Require-Bundle: com.primeton.eos.richweb,com.eos.foundation,com.eos.wo
+ rkflow
+eos-webCtxPath: sales
+Bundle-Vendor: Administrator
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsweb.sales
+Bundle-Description: 
+Bundle-SymbolicName: com.hsweb.sales
+

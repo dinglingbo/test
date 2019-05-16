@@ -19,6 +19,7 @@
 				</dictionary>
 				<dictionary>
 					<key>database</key>
+					<value>mysql</value>
 				</dictionary>
 				<dictionary>
 					<key>server</key>

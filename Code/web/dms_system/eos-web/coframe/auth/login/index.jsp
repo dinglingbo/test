@@ -919,23 +919,32 @@ layui.use('layim', function(layim){
 		  }
 		 //拉取离线消息
 	     var showOfflineMsg = function (layim){
-	    	 $.ajax({
+	    	 nui.ajax({
 				  type : "post",
-				  url : "192.168.111.6089/getofflinemsg",
+				  url : baseUrl + "com.hsapi.system.im.message.getOffLineMsg.biz.ext?token="+token+"&receiveuser="+currentsession,
 				  async : true,
-				  success : function(data){ 
-					  var dataObj=eval("("+data+")");
+				  success : function(text){ 
+					  var dataObj=text.data;
 				      if(dataObj!=null&&dataObj.length>0){
 				    	  for(var i =0;i<dataObj.length;i++){
 				    		  layim.getMessage({
-						 	        username: dataObj[i].sendusername
+						 	        username: dataObj[i].username
 						 	        ,avatar: dataObj[i].avatar+"?"+new Date().getTime()
-						 	        ,id: dataObj[i].senduser
+						 	        ,id: dataObj[i].id
 						 	        ,type: "friend"
 						 	        ,content: dataObj[i].content
-						 	        ,timestamp: dataObj[i].createdate
+						 	        ,timestamp: dataObj[i].timestamp
 					 	       }); 
 				    	  }   
+				    	  
+				    	  layim.getMessage({
+						 	        username: "前端群"
+						 	        ,avatar: "http://tp2.sinaimg.cn/2211874245/180/40050524279/0"
+						 	        ,id: 101
+						 	        ,type: "group"
+						 	        ,content: "ok.........."
+						 	        ,timestamp: ""
+					 	       }); 
 					  } 
 				  }
 			  }); 
@@ -1002,7 +1011,7 @@ layui.use('layim', function(layim){
     	   	       message.setToken(currentsession);
     	   	       var bytes = message.serializeBinary();  
                    socket.send(bytes);
-                   showOfflineMsg();
+                   showOfflineMsg(layim);
               };
               //连接关闭
               socket.onclose = function(event) {
@@ -1010,10 +1019,12 @@ layui.use('layim', function(layim){
             		//  reconnect(websocketurl,initEventHandle); 
 	        		//  layer.close(index);
 	        	  //}); 
+	        	  console.log("close");
     	      };
     	      socket.onerror = function () {
     	    	  //layer.msg("服务器连接出错，请检查websocketconfig.js里面的IP地址");  
     	          //reconnect(websocketurl,initEventHandle);
+    	          console.log("error");
     	      }; 
       }
 	  

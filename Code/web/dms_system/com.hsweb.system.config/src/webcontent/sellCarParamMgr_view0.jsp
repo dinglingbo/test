@@ -12,7 +12,7 @@
 <body>
     <div class="nui-fit">
         <div id="mainTabs" class="nui-tabs" name="mainTabs" activeIndex="0" style="width:100%; height:100%;"
-            plain="false">
+            plain="false" tabPosition="left">
             <div title="购车用途" id="buyCarUser" name="buyCarUser" url=""></div>
             <div title="信息来源" id="infoSourceTab" name="infoSourceTab" url=""></div>
             <div title="意向级别" id="purposeTypeTab" name="purposeTypeTab" url=""></div>

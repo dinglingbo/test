@@ -49,7 +49,7 @@
                     车型名称：<input id="txtTypeId" class="nui-textbox" type="text" style="width: 110px" />
                     <a class="nui-button" plain="true" onclick="" id="" enabled="true"><span
                             class="fa fa-search fa-lg"></span>&nbsp;查找</a>
-                    <li class="separator"></li>
+                    <span class="separator"></span>
                     <a class="nui-button" plain="true" onclick="edit(1)" id="" plain="false"><span
                             class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                     <a class="nui-button" plain="true" onclick="edit(2)" id="" enabled="true"><span
@@ -69,11 +69,12 @@
                             <div type="indexcolumn" headerAlign="center" width="60px">序号</div>
                             <div type="checkcolumn" class="mini-radiobutton" width="60px">选择</div>
                             <div field="" headerAlign="center" allowSort="true" width="100px">车型编号</div>
-                            <div field="" headerAlign="center" allowSort="true" width="100px">车型名称</div>
+                            <div field="" headerAlign="center" allowSort="true" width="100px">车型全称</div>
                             <div field="" headerAlign="center" allowSort="true" width="100px">拼音码</div>
                             <div field="" headerAlign="center" allowSort="true" width="100px">产地</div>
                             <div field="" headerAlign="center" allowSort="true" width="100px">汽车品牌</div>
                             <div field="" headerAlign="center" allowSort="true" width="100px">车辆类型</div>
+                            <div field="" headerAlign="center" allowSort="true" width="100px">年款</div>
                             <div field="" headerAlign="center" allowSort="true" width="100px">上市日期</div>
                             <div field="" headerAlign="center" allowSort="true" width="100px">车体结构</div>
                             <div field="" headerAlign="center" allowSort="true" width="100px">车辆级别</div>
@@ -110,11 +111,11 @@
             nui.open({
                 url: webPath + contextPath + '/page/car/chexingkuanshi_det.jsp',
                 title: tit,
-                width: 480,
+                width: 530,
                 height: 480,
                 onload: function () {
                     var iframe = this.getIFrameEl();
-                    iframe.contentWindow.setData(row);
+                   // iframe.contentWindow.setData(row);
                 },
                 ondestroy: function (action) {
                     visitHis.reload();

@@ -31,7 +31,7 @@
 
     <body>
         <input class="nui-hidden" id="typeMsg" name="typeMsg" value='<b:write property="typeMsg"/>' />
-       <div class="nui-toolbar" style="padding:2px;height:48px;position: relative;">
+        <div class="nui-toolbar" style="padding:2px;height:48px;position: relative;">
             <table style="width:100%;">
                 <tr>
                     <td style="white-space:nowrap;">
@@ -145,9 +145,23 @@
             });
 
             function add() {
+                var tabsId = null;
+                var text = null;
+                if (nui.get("typeMsg").value == 1) {
+                    tabsId = "12780";
+                    text = "编辑销售管理";
+                }
+                if (nui.get("typeMsg").value == 2) {
+                    tabsId = "12781";
+                    text = "编辑销售单审核";
+                }
+                if (nui.get("typeMsg").value == 3) {
+                    tabsId = "12782";
+                    text = "编辑销售结案";
+                }
                 var item = {};
-                item.id = "7476";
-                item.text = "编辑整车销售";
+                item.id = tabsId;
+                item.text = text;
                 item.url = webPath + contextPath + "/page/carSales/editCarSales.jsp";
                 item.iconCls = "fa fa-file-text";
                 var params = {

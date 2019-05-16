@@ -68,7 +68,7 @@
     </style>
 
     <body>
-        <table style="line-height: 18px; padding-top: 10px;width: 60%">
+        <table style="line-height: 18px; padding-top: 10px;width: 100%">
             <tr>
                 <td colspan="8">请填写购车计算信息(按回车计算)</td>
             </tr>
@@ -77,19 +77,19 @@
                     购车方式：
                 </td>
                 <td>
-                    <input id="cmbDbxm" style="width: 130px" class="nui-combobox">
+                    <input id="cmbDbxm" style="width: 100%" class="nui-combobox">
                 </td>
                 <td class="td_title">
                     车型销价：
                 </td>
                 <td>
-                    <input id="db_AgentitemId" style="width: 130px" class="nui-textbox" />
+                    <input id="db_AgentitemId" style="width: 100%" class="nui-textbox" />
                 </td>
                 <td class="td_title">
                     预付款：
                 </td>
                 <td>
-                    <input id="db_AgentitemId" style="width: 130px" class="nui-textbox" />
+                    <input id="db_AgentitemId" style="width: 100%" class="nui-textbox" />
                 </td>
             </tr>
             <tr>
@@ -97,13 +97,13 @@
                     外观：
                 </td>
                 <td>
-                    <input id="cmbDbxm" style="width: 130px" class="nui-combobox">
+                    <input id="cmbDbxm" style="width: 100%" class="nui-combobox">
                 </td>
                 <td class="td_title">
                     外饰：
                 </td>
                 <td>
-                    <input id="cmbDbxm" style="width: 130px" class="nui-combobox">
+                    <input id="cmbDbxm" style="width: 100%" class="nui-combobox">
                 </td>
                 <td class="td_title">
                     交车地点：
@@ -117,20 +117,20 @@
                     贷款比例：
                 </td>
                 <td>
-                    <input id="cmbDbxm" style="width: 130px" class="nui-combobox">
+                    <input id="cmbDbxm" style="width: 100%" class="nui-combobox">
                 </td>
                 <td class="td_title">
                     贷款金额：
                 </td>
                 <td>
-                    <input id="db_AgentitemId" style="width: 130px" class="nui-textbox" />
+                    <input id="db_AgentitemId" style="width: 100%" class="nui-textbox" />
 
                 </td>
                 <td class="td_title">
                     贷款期数：
                 </td>
                 <td>
-                    <input id="db_AgentitemId" style="width: 130px" class="nui-combobox" />
+                    <input id="db_AgentitemId" style="width: 100%" class="nui-combobox" />
                 </td>
                 <td class="td_title">
                     首付金额：
@@ -145,19 +145,19 @@
                     贷款银行：
                 </td>
                 <td>
-                    <input id="cmbDbxm" style="width: 130px" class="nui-combobox">
+                    <input id="cmbDbxm" style="width: 100%" class="nui-combobox">
                 </td>
                 <td class="td_title">
                     贷款利率(%)：
                 </td>
                 <td>
-                    <input id="cmbDbxm" style="width: 130px" class="nui-combobox">
+                    <input id="cmbDbxm" style="width: 100%" class="nui-combobox">
                 </td>
                 <td class="td_title">
                     银行利息分摊：
                 </td>
                 <td>
-                    <input id="cmbDbxm" style="width: 130px" class="nui-combobox">
+                    <input id="cmbDbxm" style="width: 100%" class="nui-combobox">
                 </td>
                 <td class="td_title">
                     贷款利息：
@@ -172,21 +172,21 @@
                     月供：
                 </td>
                 <td>
-                    <input id="db_AgentitemId" style="width: 130px" class="nui-textbox" />
+                    <input id="db_AgentitemId" style="width: 100%" class="nui-textbox" />
 
                 </td>
                 <td class="td_title">
                     按揭手续费：
                 </td>
                 <td>
-                    <input id="db_AgentitemId" style="width: 130px" class="nui-textbox" />
+                    <input id="db_AgentitemId" style="width: 100%" class="nui-textbox" />
 
                 </td>
                 <td class="td_title">
                     合同保证金：
                 </td>
                 <td>
-                    <input id="db_AgentitemId" style="width: 130px" class="nui-textbox" />
+                    <input id="db_AgentitemId" style="width: 100%" class="nui-textbox" />
 
                 </td>
                 <td class="td_title">
@@ -202,14 +202,14 @@
                     月供保证金：
                 </td>
                 <td>
-                    <input id="db_AgentitemId" style="width: 130px" class="nui-textbox" />
+                    <input id="db_AgentitemId" style="width: 100%" class="nui-textbox" />
 
                 </td>
                 <td class="td_title">
                     家访费：
                 </td>
                 <td>
-                    <input id="db_AgentitemId" style="width: 130px" class="nui-textbox" />
+                    <input id="db_AgentitemId" style="width: 100%" class="nui-textbox" />
 
                 </td>
             </tr>
@@ -218,21 +218,21 @@
                     保险费预算：
                 </td>
                 <td>
-                    <input id="db_AgentitemId" style="width: 130px" class="nui-textbox" />
+                    <input id="db_AgentitemId" style="width: 100%" class="nui-textbox" />
 
                 </td>
                 <td class="td_title">
                     购置税预算：
                 </td>
                 <td>
-                    <input id="db_AgentitemId" style="width: 130px" class="nui-textbox" />
+                    <input id="db_AgentitemId" style="width: 100%" class="nui-textbox" />
 
                 </td>
                 <td class="td_title">
                     GPS费用：
                 </td>
                 <td>
-                    <input id="db_AgentitemId" style="width: 130px" class="nui-textbox" />
+                    <input id="db_AgentitemId" style="width: 100%" class="nui-textbox" />
 
                 </td>
                 <td class="td_title">
@@ -248,14 +248,14 @@
                     精品加装：
                 </td>
                 <td>
-                    <input id="db_AgentitemId" style="width: 130px" class="nui-textbox" />
+                    <input id="db_AgentitemId" style="width: 100%" class="nui-textbox" />
 
                 </td>
                 <td class="td_title">
                     其他费用：
                 </td>
                 <td>
-                    <input id="db_AgentitemId" style="width: 130px" class="nui-textbox" />
+                    <input id="db_AgentitemId" style="width: 100%" class="nui-textbox" />
 
                 </td>
             </tr>
@@ -264,21 +264,21 @@
                     费用合计：
                 </td>
                 <td>
-                    <input id="db_AgentitemId" style="width: 130px" class="nui-textbox" />
+                    <input id="db_AgentitemId" style="width: 100%" class="nui-textbox" />
 
                 </td>
                 <td class="td_title">
                     提车合计：
                 </td>
                 <td>
-                    <input id="db_AgentitemId" style="width: 130px" class="nui-textbox" />
+                    <input id="db_AgentitemId" style="width: 100%" class="nui-textbox" />
 
                 </td>
                 <td class="td_title">
                     购车预算合计：
                 </td>
                 <td>
-                    <input id="db_AgentitemId" style="width: 130px" class="nui-textbox" />
+                    <input id="db_AgentitemId" style="width: 100%" class="nui-textbox" />
 
                 </td>
                 <td class="td_title">

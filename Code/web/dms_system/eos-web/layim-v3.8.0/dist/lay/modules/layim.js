@@ -19,7 +19,10 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
   
   //回调
   var call = {};
-  
+  //分组信息
+  var groupInfo = {};
+  var groupId = 0;
+  var htmlStr = webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/editGroup.jsp";
   //对外API
   var LAYIM = function(){
     this.v = v;
@@ -199,8 +202,8 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     ,'</ul>'
     ,'<ul class="layui-unselect layim-tab-content {{# if(d.base.isfriend){ }}layui-show{{# } }} layim-list-friend">'
     ,'{{# layui.each(d.friend, function(index, item){ var spread = d.local["spread"+index]; }}'
-      ,'<li>'
-        ,'<h5 layim-event="spread" lay-type="{{ spread }}"><i class="layui-icon">{{# if(spread === "true"){ }}&#xe61a;{{# } else {  }}&#xe602;{{# } }}</i><span>{{ item.groupname||"未命名分组"+index }}</span><em>(<cite class="layim-count"> {{ (item.list||[]).length }}</cite>)</em></h5>'
+      ,'<li class = "layim-list-friend-group">'
+        ,'<h5 layim-event="spread" lay-type="{{ spread }}" id="{{item.id}}"><i class="layui-icon">{{# if(spread === "true"){ }}&#xe61a;{{# } else {  }}&#xe602;{{# } }}</i><span>{{ item.groupname||"未命名分组"+index }}</span><em>(<cite class="layim-count"> {{ (item.list||[]).length }}</cite>)</em></h5>'
         ,'<ul class="layui-layim-list {{# if(spread === "true"){ }}'
         ,' layui-show'
         ,'{{# } }}">'
@@ -422,7 +425,8 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       ,mine: mine
       ,history: local.history || {}
     }, create = function(data){
-      var mine = data.mine || {};
+      var mine = data.mine || {}; 
+      groupInfo = data.group || [];
       var local = layui.data('layim')[mine.id] || {}, obj = {
         base: options //基础配置信息
         ,local: local //本地数据
@@ -485,6 +489,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
         }
         
         banRightMenu();
+        groupRightMenu();
         events.sign();
       }
       ,cancel: function(index){
@@ -502,7 +507,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
   
   //屏蔽主面板右键菜单
   var banRightMenu = function(){
-    layimMain.on('contextmenu', function(event){
+      layimMain.on('contextmenu', function(event){
       event.cancelBubble = true 
       event.returnValue = false;
       return false; 
@@ -535,6 +540,51 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       
     });
   }
+  
+  
+  //自定义联系人主面板右键菜单
+  var groupRightMenu = function(){
+    layimMain.on('contextmenu', function(event){
+      event.cancelBubble = true 
+      event.returnValue = false;
+      return false; 
+    });
+    
+    var hide = function(){
+      layer.closeAll('tips');
+    };
+    
+    //自定义历史会话右键菜单
+    layimMain.find('.layim-list-friend-group').on('contextmenu', 'h5', function(e){
+      var othis = $(this);
+     /* var str = othis[0].textContent.lastIndexOf("(");
+
+      var arr = str.split("(");
+     
+      groupInfo.name = str.*/
+      groupId = othis[0].id;
+      var html = '<ul data-id="'+ othis[0].id +'" data-index="'+ othis.data('index') +'"><li layim-event="editGroup" data-type="add">添加分组</li><li layim-event="editGroup" data-type="updat">修改分组</li><li layim-event="deletGroup" data-type="one">删除分组</li></ul>';
+      
+      if(othis.hasClass('layim-null')) return;
+      
+      layer.tips(html, this, {
+        tips: 1
+        ,time: 0
+        ,anim: 5
+        ,fixed: true
+        ,skin: 'layui-box layui-layim-contextmenu'
+        ,success: function(layero){
+          var stopmp = function(e){ stope(e); };
+          layero.off('mousedown', stopmp).on('mousedown', stopmp);
+        }
+      });
+      $(document).off('mousedown', hide).on('mousedown', hide);
+      $(window).off('resize', hide).on('resize', hide);
+      
+    });
+  }
+  
+  
   
   //主面板最小化状态
   var layimClose, popmin = function(content){
@@ -1858,6 +1908,70 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       
       layer.closeAll('tips');
     }
+    
+   
+    //联系人右键菜单操作
+    ,editGroup: function(othis, e){
+      var local = layui.data('layim')[cache.mine.id] || {};
+      var parent = othis.parent(), type = othis.data('type');
+      if(type === 'updat'){
+    	 // var id = othis[0].id;
+    	  var groupTemp = null;
+          for(var i = 0;i<groupInfo.length;i++){
+        	  if(groupId == groupInfo[i].id){
+        		  groupTemp = groupInfo[i];
+        	  }
+          }
+          //弹出添加分组页面
+      	layer.open({
+      		  type: 2, 
+      		  title: '分组管理',
+      		  content: htmlStr, //这里content是一个普通的String
+      		  area:['400px','200px'],
+      		  maxmin:true,
+      		  success: function (layero, index) {
+      		  // 获取子页面的iframe
+      		  var iframe = window['layui-layer-iframe' + index];
+      		  // 向子页面的全局函数child传参
+      		  iframe.setData(groupTemp);
+      		  }
+      		});
+          
+      /*  var history = local.history;
+        delete history[parent.data('index')];
+        local.history = history;
+        layui.data('layim', {
+          key: cache.mine.id
+          ,value: local
+        });
+        $('#'+parent.data('id')).remove();
+        if(hisElem.find('li').length === 0){
+          hisElem.html(none);
+        }*/
+      } else if(type === 'add') {
+    	  layer.open({
+      		  type: 2, 
+      		  title: '分组管理',
+      		  content: htmlStr, //这里content是一个普通的String
+      		  area:['400px','200px'],
+      		  maxmin:true,
+      		  success: function (layero, index) {
+      		  // 获取子页面的iframe
+      		  var iframe = window['layui-layer-iframe' + index];
+      		  // 向子页面的全局函数child传参
+      		  iframe.setData(groupTemp);
+      		  }
+      		});
+      
+      
+      
+      
+      }
+      
+      layer.closeAll('tips');
+    }
+    
+    
     
   };
   

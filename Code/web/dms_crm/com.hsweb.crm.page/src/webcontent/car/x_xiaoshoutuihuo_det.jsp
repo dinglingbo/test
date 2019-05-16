@@ -47,19 +47,19 @@ pageEncoding="UTF-8" session="false" %>
        <table style="font-size: 9pt; padding-left: 10px">
             <tr>
                 <td class="td_title">
-                    单据编号
+                    单据编号：
                 </td>
                 <td>
                     <input id="txtDocumentId" class="nui-textbox" disabled value="自动编号" style="width: 120px" />
                 </td>
                 <td class="td_title">
-                    单据日期
+                    单据日期：
                 </td>
                 <td>
                     <input id="txtDocumentDate" class="nui-datepicker" style="width: 120px" />
                 </td>
                 <td class="td_title">
-                    经办人
+                    经办人：
                 </td>
                 <td>
                     <input id="cmbDealMan" class="nui-combobox" style="width: 120px"   />
@@ -67,13 +67,13 @@ pageEncoding="UTF-8" session="false" %>
             </tr>
             <tr>
                 <td align="right">
-                    销售单号
+                    销售单号：
                 </td>
                 <td colspan="3">
                     <input id="cmbSailId" class="nui-combobox" style="width: 295px" />
                 </td>
                 <td align="right">
-                    客户名称
+                    客户名称：
                 </td>
                 <td>
                     <input id="txtCustName" class="nui-textbox" disabled style="width: 120px" />
@@ -81,19 +81,19 @@ pageEncoding="UTF-8" session="false" %>
             </tr>
             <tr>
                 <td align="right">
-                    联系人
+                    联系人：
                 </td>
                 <td>
                     <input id="txtLinkMan" class="nui-textbox" disabled style="width: 120px" />
                 </td>
                 <td align="right">
-                    手机号码
+                    手机号码：
                 </td>
                 <td>
                     <input id="txtMovePhone" class="nui-textbox" disabled style="width: 120px" />
                 </td>
                 <td align="right">
-                    联系电话
+                    联系电话：
                 </td>
                 <td>
                     <input id="txtPhone" class="nui-textbox" disabled style="width: 120px" />
@@ -101,13 +101,13 @@ pageEncoding="UTF-8" session="false" %>
             </tr>
             <tr>
                 <td align="right">
-                    车型编号
+                    车型编号：
                 </td>
                 <td>
                     <input id="txtAutoTypeId" class="nui-textbox" disabled style="width: 120px" />
                 </td>
                 <td align="right">
-                    车型名称
+                    车型名称：
                 </td>
                 <td colspan="3">
                     <input id="txtAutoTypeName" class="nui-textbox" disabled style="width: 305px" />
@@ -115,13 +115,13 @@ pageEncoding="UTF-8" session="false" %>
             </tr>
             <tr>
                 <td align="right">
-                    付款方式
+                    付款方式：
                 </td>
                 <td>
                     <input id="cmbPayWay" class="nui-combobox" style="width: 120px" />
                 </td>
                 <td align="right">
-                    票据类型
+                    票据类型：
                 </td>
                 <td>
                     <select id="cmbBillSort" class="nui-combobox" style="width: 120px" >
@@ -131,7 +131,7 @@ pageEncoding="UTF-8" session="false" %>
                     </select>
                 </td>
                 <td align="right">
-                    发票号码
+                    发票号码：
                 </td>
                 <td>
                     <input id="txtBillNum" class="nui-textbox" style="width: 120px" />
@@ -139,19 +139,19 @@ pageEncoding="UTF-8" session="false" %>
             </tr>
             <tr>
                 <td align="right">
-                    应收金额
+                    应收金额：
                 </td>
                 <td>
                     <input id="txtTotalMoney"  min="0" disabled class="nui-textbox" style="width: 93px;" value="0" />元
                 </td>
                 <td align="right">
-                    已收金额
+                    已收金额：
                 </td>
                 <td>
                     <input id="txtCollectMoney" min="0" disabled class="nui-textbox" style="width: 93px;" value="0" />元
                 </td>
                 <td align="right">
-                    退款金额
+                    退款金额：
                 </td>
                 <td>
                     <input id="txtReturnMoney" numbertype="Money" min="0" disabled class="nui-textbox" style="width: 93px;" value="0" />元
@@ -159,7 +159,7 @@ pageEncoding="UTF-8" session="false" %>
             </tr>
             <tr>
                 <td align="right">
-                    退货原因
+                    退货原因：
                 </td>
                 <td colspan="5">
                     <input id="txtReason" class="nui-textarea" style="width: 486px; height: 50px;"
@@ -168,7 +168,7 @@ pageEncoding="UTF-8" session="false" %>
             </tr>
             <tr>
                 <td align="right">
-                    备注
+                    备注：
                 </td>
                 <td colspan="5">
                     <input id="txtRemark" class="nui-textarea" style="width: 486px; height: 50px;"

@@ -1114,6 +1114,7 @@ layui.use('layim', function(layim){
     ,find: layui.cache.dir + 'css/modules/layim/html/find.jsp' //发现页面地址，若不开启，剔除该项即可
     ,chatLog: layui.cache.dir + 'css/modules/layim/html/chatlog.jsp' //聊天记录页面地址，若不开启，剔除该项即可
     
+    
   });
 
   /*
@@ -1283,7 +1284,22 @@ layui.use('layim', function(layim){
     }
   });
   
-  
+  /* //鼠标右键点击事件测试
+  $("div").mousedown(function(e) {
+    console.log(e.which);
+    //右键为3
+    if (3 == e.which) {
+        $(this).css({
+            "font-size": "-=2px"
+        });
+    } else if (1 == e.which) {
+        //左键为1
+        $(this).css({
+            "font-size": "+=3px"
+        });
+    }
+ }) */
+
 
 });
 </script>

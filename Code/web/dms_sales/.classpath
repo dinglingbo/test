@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="com.primeton.studio.workflow.bpsPath"/>
+	<classpathentry kind="con" path="com.primeton.studio.workbench.serverPath"/>
+	<classpathentry kind="con" path="com.primeton.studio.workbench.libraries"/>
+	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db|**/**.desc" kind="src" output="com.hsweb.sales/bin" path="com.hsweb.sales/src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="com.primeton.studio.workbench.classPath"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

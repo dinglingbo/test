@@ -69,7 +69,7 @@
       nui.open({
         url: webPath + contextPath + '/page/car/PDI_check_det.jsp',
         title: tit,
-        width: 440,
+        width: 480,
         height: 150,
         onload: function () {
           var iframe = this.getIFrameEl();

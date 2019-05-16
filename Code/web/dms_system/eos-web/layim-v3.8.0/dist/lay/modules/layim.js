@@ -21,6 +21,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
   var call = {};
   //分组信息
   var groupInfo = {};
+  var friendInfo =  {};
   var groupId = 0;
   var htmlStr = webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/editGroup.jsp";
   //对外API
@@ -427,6 +428,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     }, create = function(data){
       var mine = data.mine || {}; 
       groupInfo = data.group || [];
+      friendInfo = data.friend || [];
       var local = layui.data('layim')[mine.id] || {}, obj = {
         base: options //基础配置信息
         ,local: local //本地数据
@@ -1917,11 +1919,15 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       if(type === 'updat'){
     	 // var id = othis[0].id;
     	  var groupTemp = null;
-          for(var i = 0;i<groupInfo.length;i++){
-        	  if(groupId == groupInfo[i].id){
-        		  groupTemp = groupInfo[i];
+          /*for(var i = 0;i<friendInfo.length;i++){
+        	  if(groupId == friendInfo[i].id){
+        		  groupTemp = friendInfo[i];
         	  }
-          }
+          }*/
+    	  groupTemp = {
+    		    "groupname":"ceshiooooo",
+    			"id":25
+    	  }
           //弹出添加分组页面
       	layer.open({
       		  type: 2, 

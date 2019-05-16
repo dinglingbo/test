@@ -1,6 +1,8 @@
 var url = webPath + contextPath + "/repair/imag/select-path-back.png";
 var baseUrl = apiPath + repairApi + "/";
 var queryUrl = baseUrl + "com.hsapi.repair.repairService.svr.getMetalSprayItem.biz.ext";
+var queryTree = apiPath + sysApi + "/"+"com.hsapi.system.dict.dictMgr.queryDictTree.biz.ext";
+var qurryAction = apiPath + sysApi + "/"+"com.hsapi.system.dict.dictMgr.queryDict.biz.ext";
 var selectColor = [];
 var pathOpacity = null;
 var nowitemspecialflg = null;
@@ -73,17 +75,39 @@ $(document).ready(function(){
 	blankGrid.on("select",function(e){
 		var row = e.record;
 		var dictids= [row.nameId];
-	    $.post(apiPath + sysApi + "/"+"com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictids="+dictids+"&token="+token,{},function(text){
+		var json = nui.encode({
+			   dictids:dictids,
+				token:token
+		});
+		nui.ajax({
+			url : qurryAction,
+			type : 'POST',
+			data : json,
+			cache : false,
+			contentType : 'text/json',
+			success : function(text) {
+				if(text.data){
+			    	statusList = text.data;
+			    	var action = nui.get("setAction");
+			    	if(action){
+			    		action.setData(statusList);
+			    	}
+			        /*statusList = [{id:1,name:"拆装"},{id:2,name:"修复"},{id:3,name:"更换"}];*/
+			    	
+			    }
+			}
+		 });
+	   /* $.post(apiPath + sysApi + "/"+"com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictids="+dictids+"&token="+token,{},function(text){
 		    if(text.data){
 		    	statusList = text.data;
 		    	var action = nui.get("setAction");
 		    	if(action){
 		    		action.setData(statusList);
 		    	}
-		        /*statusList = [{id:1,name:"拆装"},{id:2,name:"修复"},{id:3,name:"更换"}];*/
+		        statusList = [{id:1,name:"拆装"},{id:2,name:"修复"},{id:3,name:"更换"}];
 		    	
 		    }
-	    });
+	    });*/
 	});
 	
 	/*//查找动作接口
@@ -95,7 +119,7 @@ $(document).ready(function(){
     });*/
 	//查找维修动作接口
 	var dictids= ['10321'];
-    $.post(apiPath + sysApi + "/"+"com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictids="+dictids+"&token="+token,{},function(text){
+   /* $.post(apiPath + sysApi + "/"+"com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictids="+dictids+"&token="+token,{},function(text){
 	    if(text.data){
 	    	statusList = text.data;
 	    	for(var i = 0;i<text.data.length;i++){
@@ -106,14 +130,51 @@ $(document).ready(function(){
 	    	}
 	    	
 	    }
-    });
+    });*/
+	 var jsonDic = nui.encode({
+		   dictids:dictids,
+			token:token
+		});
+	    nui.ajax({
+			url : qurryAction,
+			type : 'POST',
+			data : jsonDic,
+			cache : false,
+			contentType : 'text/json',
+			success : function(text) {
+				if(text.data){
+			    	statusList = text.data;
+			    	for(var i = 0;i<text.data.length;i++){
+			    		var temp = text.data[i]
+			    		statusHash[temp.customid] = temp.name;
+			    		var str = temp.property1 + temp.customid;
+			    		codeHash[temp.customid]=str;
+			    	}
+			    	
+			    }
+			}
+		 });
     //查找车对应的部位名称
     var parentid= 10281;
-    $.post(apiPath + sysApi + "/"+"com.hsapi.system.dict.dictMgr.queryDictTree.biz.ext?parentid="+parentid+"&token="+token,{},function(text){
+   /*  $.post(apiPath + sysApi + "/"+"com.hsapi.system.dict.dictMgr.queryDictTree.biz.ext?parentid="+parentid+"&token="+token,{},function(text){
 	    if(text.data){
 	    	allSpecialItemList = text.data;
 	    }
-    });
+    });*/
+    var jsonTree = nui.encode({
+    	parentid:10281,
+		token:token
+	});
+    nui.ajax({
+		url : queryTree,
+		type : 'POST',
+		data : jsonTree,
+		cache : false,
+		contentType : 'text/json',
+		success : function(text) {
+		    allSpecialItemList = text.data;
+		}
+	 });
 	
 });
 var dataList = [];

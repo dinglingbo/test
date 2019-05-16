@@ -38,6 +38,7 @@
 			<configValue key="DB10_MYSQL_WB_CRM">DB10_MYSQL_WB_CRM</configValue>
 			<configValue key="part">DB09_ORA_DMS_CLOUD_PART</configValue>
 			<configValue key="repair">DB04_ORA_WB_REPAIR</configValue>
+			<configValue key="DB01_MYSQL_WB_SLOG">	DB01_MYSQL_WB_SLOG</configValue>
 		</group>
 	</module>
 </contribution>

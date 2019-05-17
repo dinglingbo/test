@@ -34,17 +34,17 @@
 		)
 		values
 		(
-			#{group_num},
-			#{group_name},
+			#{groupNum},
+			#{groupName},
 			#{avatar},
-			#{group_man_id},
-			#{group_man},
+			#{groupManId},
+			#{groupMan},
 			#{status},
 			#{remark},
-			#{recorder_id},
+			#{recorderId},
 			#{recorder},
 			NOW(),
-			#{modifier_id},
+			#{modifierId},
 			#{modifier},
 			NOW()
 		)

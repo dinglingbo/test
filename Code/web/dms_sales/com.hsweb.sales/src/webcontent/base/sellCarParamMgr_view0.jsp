@@ -6,9 +6,20 @@
 
 <head>
     <title>系统参数</title>
-    <script src="<%=webPath + contextPath%>/sales/base/js/sellCarParamMgr.js?v=1.0.4"></script>
+    <script src="<%=webPath + contextPath%>/sales/base/js/sellCarParamMgr.js?v=1.0.5"></script>
         <link href="<%=webPath + contextPath%>/sales/base/css/botton.css" rel="stylesheet" type="text/css" />
     <style>
+
+        html,
+        body {
+            margin: 0px;
+            padding: 0px;
+            border: 0px;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
     .mini-tabs-header-left .mini-tab-active {
     /* border-right-color: #f2f5f7; */
     /* border-bottom: 2px solid blue; */
@@ -36,14 +47,14 @@
 
 <body>
     <div class="nui-fit">
-        <div style="width:100%; height:100%;">
+        <div style="width:100%; height:calc(100% - 2px);">
                 <div style="float:left;height:100%;width:114px;overflow: scroll;" class="test-1">
                         <!--<a href="#" class="btn-two green large">Button</a>-->
-                        <div style="float:left;height:800px;width:114px;">
+                        <div style="float:left;height:750px;width:114px;">
                     <div id="mainTabs" class="nui-tabs" name="mainTabs" activeIndex="0" style="height:100%;"
                         plain="false" tabPosition="left" showBody="false">
                         <div title="PID检查分类" id="PIDCheck" name="PIDCheck" url=""></div>
-                        <div title="身份" id="ID" name="PIDCheck" url=""></div>
+                        <div title="身份" id="ID" name="ID" url=""></div>
                         <div title="行业" id="work" name="work" url=""></div>
                         <div title="职务" id="dept" name="dept" url=""></div>
                         <div title="来源" id="source" name="source" url=""></div>
@@ -66,6 +77,7 @@
                         <div title="意向级别" id="IntentionLevel" name="IntentionLevel" url=""></div>
                         <div title="购车方式" id="buyCarType" name="buyCarType" url=""></div>
                         <div title="购车用途" id="buyCarUser" name="buyCarUser" url=""></div>
+                        <div title="银行定义" id="bank" name="bank" url=""></div>
 
                         <!--<div title="信息来源" id="infoSourceTab" name="infoSourceTab" url=""></div>
                         <div title="意向级别" id="purposeTypeTab" name="purposeTypeTab" url=""></div>
@@ -103,6 +115,15 @@
                                 <div property="columns">
                                     <div type="indexcolumn" headerAlign="center" >序号</div>
                                     <div field="name" name="name"allowSort="true" headerAlign="center" header="购车用途">
+                                        <input property="editor" class="nui-textbox" />
+                                    </div>
+                                    <div field="property1" name="property1"allowSort="true" headerAlign="center" header="属性1" visible="false">
+                                        <input property="editor" class="nui-textbox" />
+                                    </div>
+                                    <div field="property2" name="property2"allowSort="true" headerAlign="center" header="属性2" visible="false">
+                                        <input property="editor" class="nui-textbox" />
+                                    </div>
+                                    <div field="property3" name="property3"allowSort="true" headerAlign="center" header="属性3" visible="false">
                                         <input property="editor" class="nui-textbox" />
                                     </div>
                                     <div field="isDisabled"  allowSort="true" headerAlign="center" header="状态">

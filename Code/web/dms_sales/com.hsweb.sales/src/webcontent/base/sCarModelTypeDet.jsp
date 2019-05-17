@@ -215,8 +215,13 @@ pageEncoding="UTF-8" session="false" %>
     <script type="text/javascript">
         nui.parse();
 
+    // initDicts({
+    //     //isCome: "DDT20150303000004",//来厂状态
+    //     visitStatus: "DDT20130703000081",//跟踪状态
+    //     color: "DDT20130726000003"//车辆颜色
+    // });
 
-
+    
 
 
         function onCancel() {

@@ -29,9 +29,13 @@
 </div>     
 <script>
 var baseUrl = apiPath + repairApi + "/";
-
+var user = null;
 function setData(params){
-  var t = params;
+  user = params;
+  if(user){
+    $('#groud').val(user.groupname);
+  }
+  
 }
 
 function addGroup(){
@@ -46,8 +50,8 @@ layui.use(['form', 'upload'], function(){  //如果只加载一个模块，可�
   //监听提交按钮
    form.on('submit(find)', function(data){
 	  var name  = $('#groud').val();
-	  //转码
-	  name = encodeURI(name); 
+	  //如果参数放在URL后面，需要转码
+	 // name = encodeURI(name); 
 	  /* var userType = {};
 	  userType.name =  name;
 	  userType.userid = currImCode; */
@@ -55,23 +59,51 @@ layui.use(['form', 'upload'], function(){  //如果只加载一个模块，可�
 	  	params: { userType : userType },
 		token:token
 	  }; */
-	    var paramst ={
-	  	 name:name ,
-	  	 userid:currImCode,
-		 token:token
-	  };
+	   
+	  //修改
+	  //var json = {};
+	  var params = {};
+	  if(user && user.id>0){
+	    params ={
+	  	  name:name,
+	  	  id:user.id,
+	  	  edit:"update"
+	     };
+	      json = nui.encode({
+	          params:params,
+			  edit:"update",
+			  token:token
+		}); 
+	  }else{
+		   params ={
+		  	  name:name,
+		  	  userid:currImCode,
+		     };
+		    json = nui.encode({
+		          params:params,
+				  token:token
+			}); 
+	  
+	  }
+	  
     //查询
     $.ajax({
         type:'post',
         dataType:'json',
         contentType:'application/json',
         cache : false,
-        data: JSON.stringify({
-        	params:paramst
-        }),
+        data: json,
         url:baseUrl + "com.hs.common.env.editUserType.biz.ext",
+        async:false, 
         success:function(data){
-        	var friendList = data.result;
+        	if(data.errCode=="S"){
+        	    var index = parent.layer.getFrameIndex(window.name);  
+                parent.layer.close(index);//关闭当前页  
+               // window.parent.location.replace(location.href)//刷新父级页面  
+               // window.parent.location.reload(); 
+        	}else{
+        	   showMsg("保存失败","E");
+        	}
         	
         }
     }) 

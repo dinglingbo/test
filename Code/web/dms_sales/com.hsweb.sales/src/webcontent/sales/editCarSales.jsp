@@ -108,22 +108,23 @@
                     <td class="td_title">单据日期：
                     </td>
                     <td>
-                        <input id="txtDocumentDate" editable="false" name="txtDocumentDate" class="nui-datepicker" style="width: 100%" />
+                        <input id="orderDate" name="orderDate" class="nui-datepicker" style="width: 100%" />
                     </td>
                     <td class="td_title">预交日期：
                     </td>
                     <td>
-                        <input id="txtReserveGiveDate" editable="false" name="txtReserveGiveDate" class="nui-datepicker" style="width: 100%" />
+                        <input id="submiPlanDate" name="submiPlanDate" class="nui-datepicker" style="width: 100%" />
                     </td>
                     <td class="td_title">客户名称：
                     </td>
                     <td>
-                        <input class="nui-combobox" id="txtCustName" style="width: 100%;" validtype="equals" editable="false">
+                        <input class="nui-textbox" id="guestFullName" name="guestFullName" style="width: 100%;">
                     </td>
                     <td align="right" class="auto-style1">销售顾问：
                     </td>
                     <td class="auto-style1">
-                        <input class="nui-combobox" id="cmbBusinessMan" style="width: 100%;" validtype="equals" editable="false">
+                        <input class="nui-combobox" id="saleAdvisor" name="saleAdvisor" style="width: 100%;">
+                        <input class="nui-combobox" id="saleAdvisorId" name="saleAdvisor" style="width: 100%;" visible="false">
                     </td>
                     <td align="right" class="auto-style1">联系人：
                     </td>
@@ -140,22 +141,22 @@
                     <td align="right">购车方式：
                     </td>
                     <td>
-                        <input class="nui-combobox" id="cmbAutoBuyway" style="width: 100%;" validtype="equals" editable="false">
+                        <input class="nui-combobox" id="cmbAutoBuyway" style="width: 100%;">
                     </td>
                     <td align="right">合同号：
                     </td>
                     <td>
-                        <input id="txtContractNum" class="nui-textbox" style="width: 100%;" />
+                        <input id="contractNo" id="contractNo" class="nui-textbox" style="width: 100%;" />
                     </td>
                     <td align="right">是否开票：
                     </td>
                     <td>
-                        <input id="cmbBillFlg" class="nui-combobox" editable="false" style="width: 100%">
+                        <input id="cmbBillFlg" class="nui-combobox" style="width: 100%">
                     </td>
                     <td align="right">票据类型：
                     </td>
                     <td>
-                        <input class="nui-combobox" id="cmbBillSort" style="width: 100%;" validtype="equals" editable="false">
+                        <input class="nui-combobox" id="cmbBillSort" style="width: 100%;">
                     </td>
                 </tr>
                 <tr>
@@ -175,7 +176,7 @@
                     <td align="right">结算备注：
                     </td>
                     <td colspan="9">
-                        <input id="txtSettleRem" class="nui-textarea" style="width: 100%;height:40px" multiline="true" />
+                        <input id="remark" nama="remark" class="nui-textarea" style="width: 100%;height:40px" multiline="true" />
                     </td>
                 </tr>
             </table>

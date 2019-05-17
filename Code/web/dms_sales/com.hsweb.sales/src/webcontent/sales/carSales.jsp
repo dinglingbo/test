@@ -94,7 +94,7 @@
                     <div field="calculateField" name="calculateField" width="100px" headerAlign="center" header="应收余款"></div>
                 </div>
             </div>
-            <div id="mainGrid2" class="nui-datagrid" visible="false" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="list" showModified="false" onrowdblclick="" allowCellSelect="true"
+            <div id="mainGrid2" class="nui-datagrid" visible="false" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="data" showModified="false" onrowdblclick="" allowCellSelect="true"
                 editNextOnEnterKey="true" allowCellWrap="true" url="">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
@@ -105,7 +105,7 @@
                     <div field="status" name="status" width="100px" headerAlign="center" header="单据状态"></div>
                 </div>
             </div>
-            <div id="mainGrid3" visible="false" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="list" showModified="false" onrowdblclick="" allowCellSelect="true"
+            <div id="mainGrid3" visible="false" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="data" showModified="false" onrowdblclick="" allowCellSelect="true"
                 editNextOnEnterKey="true" allowCellWrap="true" url="">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>

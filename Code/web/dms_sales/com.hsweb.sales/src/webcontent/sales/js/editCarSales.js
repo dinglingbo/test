@@ -1,12 +1,13 @@
 var webBaseUrl = webPath + contextPath + "/";
+var billForm = null;
 $(document).ready(function(v) {
-    document.getElementById("caCalculation").src = webBaseUrl + "page/carSales/caCalculation.jsp";
-
+    document.getElementById("caCalculation").src = webBaseUrl + "sales/sales/caCalculation.jsp";
+    billForm = new nui.Form("#billForm");
 });
 
 function registration() {
     nui.open({
-        url: webPath + contextPath + "/page/carSales/vehicleRegistration.jsp?token=" + token,
+        url: webPath + contextPath + "/sales/sales/vehicleRegistration.jsp?token=" + token,
         title: "车辆上牌",
         width: "880px",
         height: "290px",
@@ -21,7 +22,7 @@ function registration() {
 
 function caseMsg() {
     nui.open({
-        url: webPath + contextPath + "/page/carSales/salesReview.jsp?token=" + token,
+        url: webPath + contextPath + "/sales/sales/salesReview.jsp?token=" + token,
         title: "销售结案审核",
         width: "880px",
         height: "700px",
@@ -50,6 +51,6 @@ function setInitData(params) {
         document.getElementById("caseno").style.display = "";
     }
     if (params.id) {
-        document.getElementById("iframeNowData").contentWindow.setDataMsg(params.id);
+        document.getElementById("caCalculation").contentWindow.SetDataMsg(params.id);
     }
 }

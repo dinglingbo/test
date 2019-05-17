@@ -31,6 +31,13 @@ $(document).ready(function() {
             default:
                 break;
         }
+    });
+    	dgGrid.on("cellbeginedit",function(e){
+		var field=e.field; 
+		var row = e.row;
+        if(row.orgid == 0){
+			e.cancel = true;
+		}
 	});
 
 });
@@ -110,10 +117,16 @@ function checkName(){
 	return true;
 }
 
+//hideColumn ( column )		隐藏列	
+//showColumn ( column )
+
 function showTabInfo(){
 	var tab = mainTabs.getActiveTab();
 	var name = tab.name;
     var url = tab.url;
+    dgGrid.hideColumn('property1');
+    dgGrid.hideColumn('property2');
+    dgGrid.hideColumn('property3');
     var col = dgGrid.getColumn('name');
     var tit = tab.title;
     DICTID = '';
@@ -192,103 +205,12 @@ function showTabInfo(){
         case "buyCarUser"://购车用途  
             DICTID = '10341';
             break;
-        case "visitorsTab": 
-            if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/com.hsweb.repair.potentialCustomer.visitMode.flow?token="+token, tab);
-            }else {
-                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
-            }  
-            break; 
-        case "focusTab": 
-            if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/com.hsweb.repair.potentialCustomer.considerations.flow?token="+token, tab);
-            }else {
-                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
-            }  
-            break;
-        case "carOutcolor": 
-            if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/repair/potentialCustomer/set_carOutcolor.jsp?token="+token, tab);
-            }else {
-                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
-            }  
-            break;
-        case "carIncolor": 
-            if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/repair/potentialCustomer/set_carIncolor.jsp?token="+token, tab);
-            }else {
-                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
-            }  
-            break;
-        case "carLevel": 
-            if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/repair/potentialCustomer/set_carLevel.jsp?token="+token, tab);
-            }else {
-                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
-            }  
-            break;
-        case "carCountry": 
-            if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/repair/potentialCustomer/set_carCountry.jsp?token="+token, tab);
-            }else {
-                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
-            }  
-            break;
-        case "structure": 
-            if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/repair/potentialCustomer/set_structure.jsp?token="+token, tab);
-            }else {
-                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
-            }  
-            break;
-        case "useType": 
-            if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/repair/potentialCustomer/set_useType.jsp?token="+token, tab);
-            }else {
-                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
-            }  
-            break;
-        case "sittingNum": 
-            if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/repair/potentialCustomer/set_sittingNum.jsp?token="+token, tab);
-            }else {
-                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
-            }  
-            break;
-        case "displacement": 
-            if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/repair/potentialCustomer/set_displacement.jsp?token="+token, tab);
-            }else {
-                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
-            }  
-            break;
-        case "intakeType": 
-            if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/repair/potentialCustomer/set_intakeType.jsp?token="+token, tab);
-            }else {
-                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
-            }  
-            break;
-        case "driveType": 
-            if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/repair/potentialCustomer/set_driveType.jsp?token="+token, tab);
-            }else {
-                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
-            }   
-            break;
-        case "changeSpeed": 
-            if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/repair/potentialCustomer/set_proType.jsp?token="+token, tab);
-            }else {
-                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
-            }  
-            break;
-        case "proType": 
-            if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/repair/potentialCustomer/set_proType.jsp?token="+token, tab);
-            }else {
-                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
-            }  
+        case "bank"://银行定义
+            tit = '银行名称';
+            DICTID = 'DDT20140530000001';
+            dgGrid.showColumn('property1');
+            var colPro = dgGrid.getColumn('property1');
+            dgGrid.updateColumn(colPro, { header: '贷款比例(%)'});
             break;
         default:
             break;

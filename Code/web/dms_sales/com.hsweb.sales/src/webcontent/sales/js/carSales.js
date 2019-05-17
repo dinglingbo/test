@@ -87,7 +87,7 @@ function openPage(params) {
     var item = {};
     item.id = tabsId;
     item.text = text;
-    item.url = webPath + contextPath + "/page/carSales/editCarSales.jsp";
+    item.url = webPath + contextPath + "/sales/sales/editCarSales.jsp";
     item.iconCls = "fa fa-file-text";
     window.parent.activeTabAndInit(item, params);
 }

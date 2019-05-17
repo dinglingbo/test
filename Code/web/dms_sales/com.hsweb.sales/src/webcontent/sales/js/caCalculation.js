@@ -1,3 +1,5 @@
+var webBaseUrl = webPath + contextPath + "/";
+var baseUrl = apiPath + saleApi + "/";
 var form = null;
 $(document).ready(function(v) {
     form = new nui.Form("#form1");
@@ -18,7 +20,7 @@ function SetDataMsg(rid) {
         rid: rid
     };
     nui.ajax({
-        url: "com.hsapi.managementt.crud.submitStragetyPlan.biz.ext",
+        url: baseUrl + "sales.search.searchSalesMainMsg.biz.ext",
         type: "post",
         cache: false,
         data: {
@@ -27,11 +29,21 @@ function SetDataMsg(rid) {
         success: function(text) {
             if (text.errCode == "S") {
                 var data = text.data;
-                form.setData(data);
-                nui.alert(text.errMsg, "温馨提示");
-            } else {
-                nui.alert(text.errMsg, "温馨提示");
+                form.setData(data[0]);
             }
         }
     });
+}
+
+function calculate() { //开始计算
+    var data = form.getData();
+    var bankHandlingAmt = parseFloat(data.loanAmt || 0) * parseFloat(data.bankHandlingRate || 0); //银行利息=贷款金额*贷款利率(%)
+    var receTotal = parseFloat(data.mortgageAmt || 0) + parseFloat(data.contractGuaranteeAmt || 0) + parseFloat(data.agentDeposit || 0) +
+        parseFloat(data.familyAmt || 0) + parseFloat(data.insuranceBudgetAmt || 0) + parseFloat(data.purchaseBudgetAmt || 0) + parseFloat(data.gpsAmt || 0) +
+        parseFloat(data.boardLotAmt || 0) + parseFloat(data.otherAmt || 0) + bankHandlingAmt; //费用合计 = 按揭手续费 + 合同保证金 + 续保押金 + 风险保证金+ 家访费+ 保险费预算+ 购置税预算 + GPS费用   + 上牌费 + 其它费 + 不分摊银行利息
+    var buyBudgetTotal = parseFloat(data.saleAmt || 0) + receTotal; //购车预算合计= 车辆销价+费用合计
+    data.bankHandlingAmt = bankHandlingAmt;
+    data.receTotal = receTotal;
+    data.buyBudgetTotal = buyBudgetTotal;
+    form.setData(data);
 }

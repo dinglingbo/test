@@ -126,7 +126,7 @@
                         贷款期数：
                     </td>
                     <td>
-                        <input id="loanPeriod" name="loanPeriod" style="width: 100%" class="nui-combobox" />
+                        <input id="loanPeriod" name="loanPeriod" data="period" style="width: 100%" class="nui-combobox" />
                     </td>
                     <td class="td_title">
                         首付金额：
@@ -153,7 +153,7 @@
                         银行利息分摊：
                     </td>
                     <td>
-                        <input id="bankhandlingapportion" name="bankhandlingapportion" style="width: 100%" class="nui-combobox">
+                        <input id="bankhandlingapportion" name="bankhandlingapportion" data="is_not" style="width: 100%" class="nui-combobox">
                     </td>
                     <td class="td_title">
                         贷款利息：
@@ -216,7 +216,7 @@
 
                     </td>
                     <td class="td_title">
-                        其他费用：
+                        其它费用：
                     </td>
                     <td>
                         <input id="otherAmt" name="otherAmt" style="width: 100%" class="nui-textbox" />
@@ -276,7 +276,7 @@
 
                     </td>
                     <td class="td_title">
-                        <a class="nui-button">开始计算</a>
+                        <a class="nui-button" onclick="calculate()">开始计算</a>
                     </td>
                 </tr>
                 <tr>
@@ -296,6 +296,32 @@
             </table>
         </form>
         <script type="text/javascript">
+            var period = [{
+                id: 0,
+                text: ""
+            }, {
+                id: 1,
+                text: "12期"
+            }, {
+                id: 2,
+                text: "24期"
+            }, {
+                id: 3,
+                text: "36期"
+            }, {
+                id: 4,
+                text: "48期"
+            }, {
+                id: 5,
+                text: "60期"
+            }];
+            var is_not = [{
+                id: 0,
+                text: '是'
+            }, {
+                id: 1,
+                text: '否'
+            }];
             nui.parse();
         </script>
     </body>

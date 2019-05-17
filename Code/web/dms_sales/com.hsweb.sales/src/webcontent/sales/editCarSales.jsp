@@ -12,8 +12,9 @@
     <head>
         <title>编辑整车销售</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
         <%@include file="/common/commonRepair.jsp"%>
+            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.00" type="text/javascript"></script>
+
     </head>
     <style type="text/css">
         body {
@@ -321,55 +322,6 @@
         </div>
         <script type="text/javascript">
             nui.parse();
-            var webBaseUrl = webPath + contextPath + "/";
-            document.getElementById("caCalculation").src = webBaseUrl + "page/carSales/caCalculation.jsp";
-
-            function registration() {
-                nui.open({
-                    url: webPath + contextPath + "/page/carSales/vehicleRegistration.jsp?token=" + token,
-                    title: "车辆上牌",
-                    width: "880px",
-                    height: "290px",
-                    onload: function() {
-                        var iframe = this.getIFrameEl();
-                    },
-                    ondestroy: function(action) {
-
-                    }
-                });
-            }
-
-            function caseMsg() {
-                nui.open({
-                    url: webPath + contextPath + "/page/carSales/salesReview.jsp?token=" + token,
-                    title: "销售结案审核",
-                    width: "880px",
-                    height: "700px",
-                    onload: function() {
-                        var iframe = this.getIFrameEl();
-                    },
-                    ondestroy: function(action) {
-
-                    }
-                });
-            }
-
-            function setInitData(params) {
-                if (params.typeMsg == 1) {
-                    nui.get("saveBtn").setVisible(true);
-                    nui.get("submitBtn").setVisible(true);
-                    nui.get("invalidBtn").setVisible(true);
-                    nui.get("selectBtn").setVisible(true);
-                    nui.get("jsBtn").setVisible(true);
-                    document.getElementById("unfinishBtn").style.display = "";
-                } else if (params.typeMsg == 2) {
-                    nui.get("audit").setVisible(true);
-                    document.getElementById("auditno").style.display = "";
-                } else if (params.typeMsg == 3) {
-                    nui.get("case").setVisible(true);
-                    document.getElementById("caseno").style.display = "";
-                }
-            }
         </script>
     </body>
 

@@ -112,9 +112,13 @@
 		WHERE 1 = 1
 		<dynamic>
 			<isNotEmpty prepend="and" property="serviceCode">
-                (aserviceCode= #serviceCode#)
+                (a.serviceCode= #serviceCode#)
             </isNotEmpty>
         </dynamic>  
-        
+        <dynamic>
+			<isNotEmpty prepend="and" property="rid">
+                (a.id= #rid#)
+            </isNotEmpty>
+        </dynamic>
 	</select>
 </sqlMap>

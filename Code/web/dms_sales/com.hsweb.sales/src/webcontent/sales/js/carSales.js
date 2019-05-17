@@ -2,7 +2,7 @@ var mainGrid = null;
 var mainGrid2 = null;
 var mainGrid3 = null;
 var webBaseUrl = webPath + contextPath + "/";
-var baseUrl = apiPath + repairApi + "/"; //等待修改
+var baseUrl = apiPath + saleApi + "/";
 var mainGridUrl = baseUrl + "sales.search.searchSalesMainMsg.biz.ext";
 var statusList = [{ id: "0", name: "订单单号" }, { id: "1", name: "客户名称" }];
 $(document).ready(function(v) {
@@ -10,20 +10,25 @@ $(document).ready(function(v) {
     mainGrid2 = nui.get("mainGrid2");
     mainGrid3 = nui.get("mainGrid3");
     mainGrid.setUrl(mainGridUrl);
+    mainGrid2.setUrl(mainGridUrl);
+    mainGrid3.setUrl(mainGridUrl);
     if (nui.get("typeMsg").value == 1) {
         mainGrid.setVisible(true);
         nui.get("addBtn").setVisible(true);
         nui.get("editBtn").setVisible(true);
+        mainGrid.load();
     }
     if (nui.get("typeMsg").value == 2) {
         mainGrid2.setVisible(true);
         nui.get("audit").setVisible(true);
         nui.get("auditno").setVisible(true);
+        mainGrid2.load();
     }
     if (nui.get("typeMsg").value == 3) {
         mainGrid3.setVisible(true);
         nui.get("case").setVisible(true);
         nui.get("csaeno").setVisible(true);
+        mainGrid3.load();
     }
 
     mainGrid.on("load", function(e) {
@@ -64,7 +69,7 @@ function onSearch() {
 
 }
 
-function add() {
+function openPage(params) {
     var tabsId = null;
     var text = null;
     if (nui.get("typeMsg").value == 1) {
@@ -84,8 +89,16 @@ function add() {
     item.text = text;
     item.url = webPath + contextPath + "/page/carSales/editCarSales.jsp";
     item.iconCls = "fa fa-file-text";
+    window.parent.activeTabAndInit(item, params);
+}
+
+function addAndEdit(e) {
     var params = {
         typeMsg: nui.get("typeMsg").value
     };
-    window.parent.activeTabAndInit(item, params);
+    if (e == 2) {
+        var row = mainGrid.getSelected() || mainGrid2.getSelected() || mainGrid3.getSelected();
+        params.id = row.id;
+    }
+    openPage(params);
 }

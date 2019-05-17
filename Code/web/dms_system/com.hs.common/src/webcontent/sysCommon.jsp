@@ -34,7 +34,7 @@
     String crmApi = Env.getContributionConfig("system", "url", "apiDomain", "CRM");
     String frmApi = Env.getContributionConfig("system", "url", "apiDomain", "FRM");
     String wechatApi = Env.getContributionConfig("system", "url", "apiDomain", "WECHAT");
-	
+	String saleApi = Env.getContributionConfig("system", "url", "apiDomain", "SALES");
 	//暂不考虑前后端部署到不同服务器
 	//String serverType = Env.getContributionConfig("system", "url", "api", "serverType");
 	//apiPath = Env.getContributionConfig("system", "url", "api", serverType);
@@ -76,7 +76,7 @@
     var crmApi   = "<%=crmApi%>";
     var frmApi   = "<%=frmApi%>";
     var wechatApi   = "<%=wechatApi%>";
-
+	var saleApi   = "<%=saleApi%>";
 	$(function(){
 		nui.context='<%=contextPath %>';
 		nui.parse();

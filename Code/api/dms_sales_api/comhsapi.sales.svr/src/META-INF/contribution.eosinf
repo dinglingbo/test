@@ -28,6 +28,7 @@
 				and the field value 'default' of 'configValue' node stands for an application datasource. 
 			-->
 			<configValue key="default">default</configValue>
+			<configValue key="sales">DB11_MYSQL_WB_SALES</configValue>
 		</group>
 	</module>
 </contribution>

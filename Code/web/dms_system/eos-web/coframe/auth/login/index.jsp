@@ -28,12 +28,17 @@
 	<script src="<%=request.getContextPath()%>/coframe/imjs/message.js"></script>
 	<script src="<%=request.getContextPath()%>/coframe/imjs/messagebody.js"></script>
 	<script src="<%=request.getContextPath()%>/layim-v3.8.0/dist/layui.js"></script>
-	<script src="<%=request.getContextPath()%>/coframe/imjs/websocketconfig.js?v=1.0.3"></script>
+	<script src="<%=request.getContextPath()%>/coframe/imjs/websocketconfig.js?v=1.0.4"></script>
     <style type="text/css">
 	a {
 	cursor: pointer;
 	 color:black;
 }
+  .groupSize{
+    max-height: 200px;
+    overflow: auto;
+}
+
 
     #_sys_tip_msg_ {
         z-index: 9999;

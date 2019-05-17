@@ -13,7 +13,7 @@
         <title>购车计算</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%=request.getContextPath()%>/sales/sales/js/caCalculation.js?v=1.0.3"></script>
+            <script src="<%=request.getContextPath()%>/sales/sales/js/caCalculation.js?v=1.0.4"></script>
     </head>
     <style type="text/css">
         body {
@@ -70,6 +70,7 @@
 
     <body>
         <form id="form1">
+            <input class="nui--hidden" name="id" />
             <table style="line-height: 18px; padding-top: 10px;width: 100%">
                 <tr>
                     <td colspan="8">请填写购车计算信息(按回车计算)</td>

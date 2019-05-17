@@ -19,10 +19,12 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
   
   //回调
   var call = {};
-  //分组信息
+  
   var groupInfo = {};
+//分组信息
   var friendInfo =  {};
   var groupId = 0;
+  var isShow = true; 
   var htmlStr = webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/editGroup.jsp";
   //对外API
   var LAYIM = function(){
@@ -32,6 +34,62 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       events[methid] ? events[methid].call(this, othis, e) : '';
     });
   };
+  
+  $('body').on('click', '#layui-layim-list-move2', function(e){
+	  if(!isShow){
+		  isShow = true; 
+		  document.getElementById("showGroup").style.display='none';
+	  }else{
+		  isShow = false;
+		  var html = '<ul>';
+	      //循环分组，生成标签,分组全局变量：friendInfo,如果只有一个分组，不显示 <li layim-event="editGroup" data-type="delet">删除分组</li>
+	      //<h5 layim-event="spread" lay-type="false" id="1"><i class="layui-icon"></i><span>前端码屌</span><em>(<cite class="layim-count"> 5</cite>)</em></h5>
+	      if(friendInfo.length<1){
+	    	  return;
+	      }
+	      for(var i = 0;i < friendInfo.length;i++){
+	    	  var temp = friendInfo[i];
+	    	   html = html + '<li layim-event="moveGroup" style="padding-left:15px"><h5  lay-type="false" id=""><i class="layui-icon">&#xe602;</i><span>'+temp.groupname+'</span></h5>';
+	    	   
+	      }
+	      html = html + "</ul>";
+	      //var atEl = document.getElementById("layui-layim-list-move"); 
+	      $("#showGroup").html(html);
+	      document.getElementById("showGroup").style.display = "";
+	  }
+	 
+  	 // document.getElementById("showA").style.display='none';
+     
+  	  /*layer.tips(html, atEl, {
+          tips: 2
+          ,time: 0
+          ,anim: 5
+          ,fixed: true
+          ,skin: 'layui-box layui-layim-contextmenu'
+          ,success: function(layero){
+            var stopmp = function(e){ stope(e); };
+            layero.off('mousedown', stopmp).on('mousedown', stopmp);
+          }
+        });*/
+  	  
+    });
+  
+//鼠标mouseover事件
+  $('#layui-layim-list-move').bind({
+      'mouseover' : function(){
+          //获取当前元素的索引值
+          int = $(this).index();
+            alert(kkk);
+          //执行函数,这里会显示右侧的第一个div元素
+          divShow(int);
+      },
+      'mouseout' : function(){
+          //鼠标划开时的操作
+          //int = 0;
+          //divShow(int);
+      	 alert(mmm);
+      }
+  });
   
   //基础配置
   LAYIM.prototype.config = function(options){
@@ -205,7 +263,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     ,'{{# layui.each(d.friend, function(index, item){ var spread = d.local["spread"+index]; }}'
       ,'<li class = "layim-list-friend-group">'
         ,'<h5 layim-event="spread" lay-type="{{ spread }}" id="{{item.id}}"><i class="layui-icon">{{# if(spread === "true"){ }}&#xe61a;{{# } else {  }}&#xe602;{{# } }}</i><span>{{ item.groupname||"未命名分组"+index }}</span><em>(<cite class="layim-count"> {{ (item.list||[]).length }}</cite>)</em></h5>'
-        ,'<ul class="layui-layim-list {{# if(spread === "true"){ }}'
+        ,'<ul class="layui-layim-list layui-layim-list-friden {{# if(spread === "true"){ }}'
         ,' layui-show'
         ,'{{# } }}">'
         ,listTpl({
@@ -493,6 +551,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
         banRightMenu();
         groupRightMenu();
         groupChatRightMenu();
+        fridenRightMenu();
         events.sign();
       }
       ,cancel: function(index){
@@ -545,7 +604,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
   }
   
   
-  //自定义联系人主面板右键菜单
+  //自定义联系人主面板分组右键菜单
   var groupRightMenu = function(){
     layimMain.on('contextmenu', function(event){
       event.cancelBubble = true 
@@ -557,16 +616,16 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       layer.closeAll('tips');
     };
     
-    //自定义历史会话右键菜单
+    //联系人分组
     layimMain.find('.layim-list-friend-group').on('contextmenu', 'h5', function(e){
       var othis = $(this);
-     /* var str = othis[0].textContent.lastIndexOf("(");
+    	 /*var str = othis[0].textContent.lastIndexOf("(");
 
       var arr = str.split("(");
      
       groupInfo.name = str.*/
-      groupId = othis[0].id;
-      var html = '<ul data-id="'+ othis[0].id +'" data-index="'+ othis.data('index') +'"><li layim-event="editGroup" data-type="add">添加分组</li><li layim-event="editGroup" data-type="updat">修改分组</li><li layim-event="deletGroup" data-type="one">删除分组</li></ul>';
+      groupId = this.id;
+      var html = '<ul data-id="'+ othis[0].id +'" data-index="'+ othis.data('index') +'"><li layim-event="editGroup" data-type="add">添加分组</li><li layim-event="editGroup" data-type="updat">修改分组</li><li layim-event="editGroup" data-type="delet">删除分组</li></ul>';
       
       if(othis.hasClass('layim-null')) return;
       
@@ -586,6 +645,48 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       
     });
   }
+  
+  //好友右键菜单
+   var fridenRightMenu = function(){
+    layimMain.on('contextmenu', function(event){
+      event.cancelBubble = true 
+      event.returnValue = false;
+      return false; 
+    });
+    
+    var hide = function(){
+      layer.closeAll('tips');
+    };
+    
+    
+    layimMain.find('.layui-layim-list-friden').on('contextmenu', 'li', function(e){
+      var othis = $(this);
+     /* var str = othis[0].textContent.lastIndexOf("(");
+
+      var arr = str.split("(");
+     
+      groupInfo.name = str.*/
+      var uerId = this.id; 
+      var html = '<ul data-id="'+ othis[0].id +'" data-index="'+ othis.data('index') +'" id="'+this.id+'"><li layim-event="showList" data-type="'+uerId+'" ><span id="layui-layim-list-move">移至分组</span><div style="display:none" id="showGroup">wwr</div></li><li layim-event="deletFriden" data-type="'+uerId+'">删除好友</li><li layim-event="editGroup" data-type="'+uerId+'">查看联系人</li></ul>';
+      
+      if(othis.hasClass('layim-null')) return;
+      layer.tips(html, this, {
+        tips: 1
+        ,time: 0
+        ,anim: 5
+        ,fixed: true
+        ,skin: 'layui-box layui-layim-contextmenu groupSize'
+        ,success: function(layero){
+          var stopmp = function(e){ stope(e); };
+          layero.off('mousedown', stopmp).on('mousedown', stopmp);
+        }
+      });
+      $(document).off('mousedown', hide).on('mousedown', hide);
+      $(window).off('resize', hide).on('resize', hide);
+      
+    });
+  }
+  
   
   //自定义群聊面板右键菜单
   var groupChatRightMenu = function(){
@@ -1952,7 +2053,34 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       layer.closeAll('tips');
     }
     
-   
+    
+    
+      //选择分组后的操作
+      ,moveGroup: function(othis, e){
+    	 var html = '<ul data-id="'+ othis[0].id +'" data-index="'+ othis.data('index') +'">';
+        //循环分组，生成标签,分组全局变量：friendInfo,如果只有一个分组，不显示 <li layim-event="editGroup" data-type="delet">删除分组</li>
+        //<h5 layim-event="spread" lay-type="false" id="1"><i class="layui-icon"></i><span>前端码屌</span><em>(<cite class="layim-count"> 5</cite>)</em></h5>
+        if(friendInfo.length<1){
+      	  return;
+        }
+        for(var i = 0;i < friendInfo.length;i++){
+      	  var temp = friendInfo[i];
+      	   html = html + '<li style="padding-left:15px"><h5 layim-event="spread" lay-type="false" id=""><i class="layui-icon">&#xe602;</i><span>'+temp.groupname+'</span></h5>';
+        }
+        html = html + "</ul>";
+        var atEl = document.getElementById("layui-layim-list-move"); 
+    	layer.tips(html, atEl, {
+            tips: 2
+            ,time: 0
+            ,anim: 5
+            ,fixed: true
+            ,skin: 'layui-box layui-layim-contextmenu'
+            ,success: function(layero){
+              /*var stopmp = function(e){ stope(e); };
+              layero.off('mousedown', stopmp).on('mousedown', stopmp);*/
+            }
+          });
+    }
     //联系人右键菜单操作
     ,editGroup: function(othis, e){
       var local = layui.data('layim')[cache.mine.id] || {};
@@ -2009,14 +2137,89 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       		  iframe.setData(groupTemp);
       		  }
       		});
-      
-      
-      
-      
-      }
-      
+      }else if(type === 'delet') {
+    	  //判断该分组下面是否有好友
+    	   var groupTemp = null;
+    	   for(var i = 0;i<friendInfo.length;i++){
+	    	  if(groupId == friendInfo[i].id){
+	    		  groupTemp = friendInfo[i];
+	       }
+        }
+    	 if(groupTemp){
+    		if(groupTemp.list>0){
+    			showMsg("该分组下还有联系人，不能删除!","W");
+    			return;
+    		}else{
+    		var params ={
+			  	  id:1
+			     };
+			var json = nui.encode({
+			          params:params,
+			          edit:"delet",
+					  token:token
+				}); 
+			 $.ajax({
+		        type:'post',
+		        dataType:'json',
+		        contentType:'application/json',
+		        cache : false,
+		        data: json,
+		        url:baseUrl + "com.hs.common.env.editUserType.biz.ext",
+		        async:false, 
+		        success:function(data){
+		        	//把右键显示隐藏
+		        	 var hide = function(){
+		        	      layer.closeAll('tips');
+		        	    };
+			      
+			  }
+		    }); 
+    		}
+    	 }
+      }   
       layer.closeAll('tips');
+   }
+    
+    ,showList:function(othis,e){
+    	 var local = layui.data('layim')[cache.mine.id] || {};
+         var type = othis.data('type'), index = othis.data('index');
+         var list = othis.attr('data-list') || othis.index(), data = {};
+         if(type === 'friend'){
+           data = cache[type][index].list[list];
+         } else if(type === 'group'){
+           data = cache[type][list];
+         } else if(type === 'history'){
+           data = (local.history || {})[index] || {};
+         }
+         data.name = data.name || data.username || data.groupname;
+         if(type !== 'history'){
+           data.type = type;
+         }
+    	var local = layui.data('layim')[cache.mine.id] || {};
+        var parent = othis.parent(), type = othis.data('type');
+    	if(!isShow){
+  		  isShow = true; 
+  		  document.getElementById("showGroup").style.display='none';
+  	  }else{
+  		  isShow = false;
+  		  var html = '<ul>';
+  	      //循环分组，生成标签,分组全局变量：friendInfo,如果只有一个分组，不显示 <li layim-event="editGroup" data-type="delet">删除分组</li>
+  	      //<h5 layim-event="spread" lay-type="false" id="1"><i class="layui-icon"></i><span>前端码屌</span><em>(<cite class="layim-count"> 5</cite>)</em></h5>
+  	      if(friendInfo.length<1){
+  	    	  return;
+  	      }
+  	      for(var i = 0;i < friendInfo.length;i++){
+  	    	  var temp = friendInfo[i];
+  	    	   html = html + '<li layim-event="moveGroup" style="padding-left:15px"><h5  lay-type="false" id=""><i class="layui-icon">&#xe602;</i><span>'+temp.groupname+'</span></h5>';
+  	    	   
+  	      }
+  	      html = html + "</ul>";
+  	      //var atEl = document.getElementById("layui-layim-list-move"); 
+  	      $("#showGroup").html(html);
+  	      document.getElementById("showGroup").style.display = "";
+  	  }
     }
+    
     //群聊右键菜单操作
     ,editGroupChat: function(othis, e){
       var local = layui.data('layim')[cache.mine.id] || {};

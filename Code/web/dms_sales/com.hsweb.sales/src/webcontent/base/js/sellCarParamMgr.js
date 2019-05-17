@@ -31,6 +31,13 @@ $(document).ready(function() {
             default:
                 break;
         }
+    });
+    	dgGrid.on("cellbeginedit",function(e){
+		var field=e.field; 
+		var row = e.row;
+        if(row.orgid == 0){
+			e.cancel = true;
+		}
 	});
 
 });
@@ -110,10 +117,16 @@ function checkName(){
 	return true;
 }
 
+//hideColumn ( column )		隐藏列	
+//showColumn ( column )
+
 function showTabInfo(){
 	var tab = mainTabs.getActiveTab();
 	var name = tab.name;
     var url = tab.url;
+    dgGrid.hideColumn('property1');
+    dgGrid.hideColumn('property2');
+    dgGrid.hideColumn('property3');
     var col = dgGrid.getColumn('name');
     var tit = tab.title;
     DICTID = '';
@@ -191,6 +204,13 @@ function showTabInfo(){
             break;
         case "buyCarUser"://购车用途  
             DICTID = '10341';
+            break;
+        case "bank"://银行定义
+            tit = '银行名称';
+            DICTID = 'DDT20140530000001';
+            dgGrid.showColumn('property1');
+            var colPro = dgGrid.getColumn('property1');
+            dgGrid.updateColumn(colPro, { header: '贷款比例(%)'});
             break;
         default:
             break;

@@ -901,6 +901,20 @@ layui.use('layim', function(layim){
 		       //$("#chatcontent").append(msg);
 	   	       //$("#chatcontent").scrollTop( $("#chatcontent")[0].scrollHeight); 
 		  }
+		  
+		  var reGroupMsg=function(sender,time,msg){
+		  	  layim.getMessage({
+		        username: "Hi"
+		        ,avatar: ""
+		        ,id: sender
+		        ,type: "group"
+		        ,content: msg
+		      });
+			  //var content = $(".remsg").html();
+		       //content  =content.replace("{content}", HtmlUtil.htmlEncodeByRegExp(msg)).replace("{time}",time).replace("{sender}",sender);
+		       //$("#chatcontent").append(msg);
+	   	       //$("#chatcontent").scrollTop( $("#chatcontent")[0].scrollHeight); 
+		  }
 		
 		//发送消息
 	      var sendMsg=function(msg,receiver,group){ 
@@ -985,11 +999,12 @@ layui.use('layim', function(layim){
               	    	   //显示非自身消息    
               	    	   if(msg.getSender()!=currentsession){
               	    		   //不显示用户组消息
+              	    		   var msgCon =  proto.MessageBody.deserializeBinary(msg.getContent()); 
               	    		   if(msg.getGroupid()==null||msg.getGroupid().length<1){
-              	    			 var msgCon =  proto.MessageBody.deserializeBinary(msg.getContent()); 
                   	    	     reMsg(msg.getSender(),msg.getTimestamp(),msgCon.getContent());
-                  	    	     
-              	    		   } 
+              	    		   } else {
+              	    		   	 reGroupMsg(msg.getGroupid(),msg.getTimestamp(),msgCon.getContent());
+              	    		   }
               	    	   } 
               	       }
               	  }else {

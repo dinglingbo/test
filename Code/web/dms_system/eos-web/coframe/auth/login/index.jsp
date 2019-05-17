@@ -34,6 +34,11 @@
 	cursor: pointer;
 	 color:black;
 }
+  .groupSize{
+    max-height: 200px;
+    overflow: auto;
+}
+
 
     #_sys_tip_msg_ {
         z-index: 9999;

@@ -20,6 +20,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.alibaba.fastjson.JSONObject.*;
+
 @Controller
 @RequestMapping("GroupInfo")
 public class GroupInfoController extends BaseController {
@@ -35,17 +37,22 @@ public class GroupInfoController extends BaseController {
         StringBuilder errCode= new StringBuilder();
 
         List<HashMap> userList = (List<HashMap>)params.get("groupInfo");
-        GroupUserEntity groupManager = (GroupUserEntity) params.get("groupManager");
+        Map<String,Object> groupManager = (Map<String, Object>) params.get("groupManager");
+        String groupMan  = (String) groupManager.get("userName");
+        String id = (String) groupManager.get("userId");
+        id=id.replace("\"", "");
+        Integer groupManId = Integer.valueOf(id);
+
         String name = (String) params.get("name");
         GroupInfoEntity groupInfo = new GroupInfoEntity();
         groupInfo.setGroupNum("111");
         groupInfo.setGroupName(name);
-        groupInfo.setGroupManId(groupManager.getUserId());
-        groupInfo.setGroupMan(groupManager.getUserName());
-        groupInfo.setRecorderId(groupManager.getUserId());
-        groupInfo.setRecorder(groupManager.getUserName());
-        groupInfo.setModifierId(groupManager.getUserId());
-        groupInfo.setModifier(groupManager.getUserName());
+        groupInfo.setGroupManId(groupManId);
+        groupInfo.setGroupMan(groupMan);
+        groupInfo.setRecorderId(groupManId);
+        groupInfo.setRecorder(groupMan);
+        groupInfo.setModifierId(groupManId);
+        groupInfo.setModifier(groupMan);
         try{
            groupInfoServiceImpl.addGroupInfo(groupInfo);
         }catch (Exception e){

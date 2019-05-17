@@ -6,7 +6,7 @@ import com.chedao.websocket.webserver.user.model.UserFriendApplyEntity;
 
 import java.util.Map;
 
-public interface GroupInfoDao extends BaseDao<UserFriendApplyEntity> {
+public interface GroupInfoDao extends BaseDao<GroupInfoEntity> {
 
     int addGroupInfo(GroupInfoEntity groupInfo);
 }

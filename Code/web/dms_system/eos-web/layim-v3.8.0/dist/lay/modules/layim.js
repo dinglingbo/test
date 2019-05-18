@@ -26,6 +26,8 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
   var groupId = 0;
   var isShow = true; 
   var htmlStr = webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/editGroup.jsp";
+  var htmlStrFriendName = webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/updateFriendName.jsp";
+
   //对外API
   var LAYIM = function(){
     this.v = v;
@@ -672,7 +674,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       var type = this.id; 
       //var urerId = othis.data('type');
       var uerId = type.substring(12,type.length);
-      var html = '<ul data-id="'+ othis[0].id +'" data-index="'+ othis.data('index') +'" id="'+uerId+'"><li id="layui-layim-list-move"><span id="test" layim-event="showList" data-type="'+uerId+'">移至分组</span></li><li layim-event="deletFriden" data-type="'+uerId+'"><span>删除好友</span></li><li layim-event="editGroup" data-type="'+uerId+'"><span>查看联系人</span></li></ul>';
+      var html = '<ul data-id="'+ othis[0].id +'" data-index="'+ othis.data('index') +'" id="'+uerId+'"><li id="layui-layim-list-move"><span id="test" layim-event="showList" data-type="'+uerId+'">移至分组</span></li><li layim-event="updateName" data-type="'+uerId+'"><span>修改名称备注</span></li><li layim-event="deletFriden" data-type="'+uerId+'"><span>删除好友</span></li><li layim-event="editGroup" data-type="'+uerId+'"><span>查看联系人</span></li></ul>';
       
       if(othis.hasClass('layim-null')) return;
       layer.tips(html, this, {
@@ -2060,11 +2062,85 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     
     
     
-      //选择分组后的操作
+      //选择分组后的操作(移至哪个分组)
      ,moveGroup: function(othis, e){
     	 var type = othis.data('type');
+    	 if(type>0){
+    		 var params ={
+   			  	  id:1
+   			     };
+   			var json = nui.encode({
+   			          params:params,
+   			          edit:"update",
+   					  token:token
+   				}); 
+   			 $.ajax({
+   		        type:'post',
+   		        dataType:'json',
+   		        contentType:'application/json',
+   		        cache : false,
+   		        data: json,
+   		        url:baseUrl + "com.hs.common.env.editUserFriend.biz.ext",
+   		        async:false, 
+   		        success:function(data){
+   		        	//把右键显示隐藏
+   		        	 var hide = function(){
+   		        	      layer.closeAll('tips');
+   		        	    };
+   			      
+   			  }
+   		    }); 
+    	 }
     	  
      }
+     //删除好友，删除两条
+     ,deletFriden:function(othis, e){
+    	 var type = othis.data('type');
+    	 if(type>0){
+    		 var params ={
+   			  	  id:type
+   			     };
+   			var json = nui.encode({
+   			          params:params,
+   			          edit:"delet",
+   					  token:token
+   				}); 
+   			 $.ajax({
+   		        type:'post',
+   		        dataType:'json',
+   		        contentType:'application/json',
+   		        cache : false,
+   		        data: json,
+   		        url:baseUrl + "com.hs.common.env.editUserFriend.biz.ext",
+   		        async:false, 
+   		        success:function(data){
+   		        	//把右键显示隐藏
+   		        	 var hide = function(){
+   		        	      layer.closeAll('tips');
+   		        	    };
+   			      
+   			  }
+   		    }); 
+    	 } 
+     }
+     //修改备注
+     ,updateName:function(){
+    	//弹出修改备注页面
+       	layer.open({
+       		  type: 2, 
+       		  title: '分组管理',
+       		  content: htmlStr, //这里content是一个普通的String
+       		  area:['400px','200px'],
+       		  maxmin:true,
+       		  success: function (layero, index) {
+       		  // 获取子页面的iframe
+       		  var iframe = window['layui-layer-iframe' + index];
+       		  // 向子页面的全局函数child传参
+       		  iframe.setData(groupTemp);
+       		  }
+       		});
+     }
+     
     //联系人右键菜单操作
     ,editGroup: function(othis, e){
       var local = layui.data('layim')[cache.mine.id] || {};

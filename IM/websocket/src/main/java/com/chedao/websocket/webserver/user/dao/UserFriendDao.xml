@@ -77,10 +77,21 @@
 	<update id="update" parameterType="com.chedao.websocket.webserver.user.model.UserFriendEntity">
 		update user_friend
 		<set>
-			<if test="typeid != null">`type_id` = #{typeid} </if>
+			<if test="typeid != null">`type_id` = #{typeid},</if>
+		</set>
+		<set>
+			<if test="typeid != null">`friend_name` = #{friendname} </if>
 		</set>
 		where id = #{id}
 	</update>
+
+	<delete id="deleteOne">
+		delete from user_friend where id = #{value}
+	</delete>
+
+	<delete id="delete" parameterType="com.chedao.websocket.webserver.user.model.UserFriendEntity">
+		delete from user_friend where id = #{id} or ( user_id = #{friendid} and friend_id={userid} )
+	</delete>
 
 	<!--<update id="update" parameterType="com.chedao.websocket.webserver.user.model.UserInfoEntity">
 		update user_info 

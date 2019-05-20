@@ -70,7 +70,7 @@
 
     <body>
         <form id="form1">
-            <input class="nui--hidden" name="id" />
+            <input class="nui-hidden" name="id" />
             <table style="line-height: 18px; padding-top: 10px;width: 100%">
                 <tr>
                     <td colspan="8">请填写购车计算信息(按回车计算)</td>

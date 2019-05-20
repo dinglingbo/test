@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chedao.websocket.webserver.user.dao.UserFriendApplyDao">
+
+    <resultMap type="com.chedao.websocket.webserver.user.model.UserFriendApplyEntity" id="userFriendApplyEntity">
+        <result property="id" column="id"/>
+        <result property="uid" column="uid"/>
+        <result property="remark" column="remark"/>
+        <result property="from" column="from_id"/>
+        <result property="from_group" column="from_group_id"/>
+        <result property="applyDate" column="apply_date"/>
+        <result property="status" column="status"/>
+        <association property="user" select="com.chedao.websocket.webserver.user.dao.UserInfoDao.queryByUid"
+                     column="from_id">
+        </association>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+  	  	id,
+        uid,
+        from_id,
+        from_group_id ,
+        apply_date,
+        `status`,
+        remark
+    </sql>
+
+    <select id="queryObject" resultType="com.chedao.websocket.webserver.user.model.UserFriendApplyEntity">
+        select  <include refid="Base_Column_List" />  from user_friend_apply where id = #{value}
+    </select>
+
+    <select id="queryByUid"  parameterType="long" resultType="com.chedao.websocket.webserver.user.model.UserFriendApplyEntity">
+        select  <include refid="Base_Column_List" />  from user_friend_apply where uid = #{id}
+    </select>
+
+    <select id="queryList" resultType="com.chedao.websocket.webserver.user.model.UserFriendApplyEntity">
+        select  <include refid="Base_Column_List" />  from user_friend_apply
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <resultMap type="com.chedao.websocket.webserver.user.model.UserMessageTEntity" id="userMessageTMap">
+        <result property="id" column="id"/>
+        <result property="uid" column="uid"/>
+        <result property="content" column="content"/>
+        <result property="type" column="tp"/>
+        <result property="read" column="rd"/>
+        <result property="from" column="from_id"/>
+        <result property="from_group" column="from_group"/>
+        <association property="user" select="com.chedao.websocket.webserver.user.dao.UserInfoDao.queryByUid"
+                     column="from_id">
+        </association>
+    </resultMap>
+    <select id="queryBoxList" resultMap="userMessageTMap">
+        select id, uid, from_id, apply_date, `status`, remark, '申请添加你为好友' as content,
+                0 as from_group, 1 as tp, 1 as rd,
+        CASE
+        WHEN TIMESTAMPDIFF(DAY, apply_date,NOW()) &gt; 0
+        THEN CONCAT(TIMESTAMPDIFF(DAY, apply_date,NOW()),'天前')
+        WHEN TIMESTAMPDIFF(HOUR, apply_date,NOW()) &gt; 0
+        THEN CONCAT(TIMESTAMPDIFF(HOUR, apply_date,NOW()),'小时前')
+        WHEN TIMESTAMPDIFF(MINUTE, apply_date,NOW()) &gt;= 5
+        THEN CONCAT(TIMESTAMPDIFF(MINUTE, apply_date,NOW()),'分前')
+        WHEN TIMESTAMPDIFF(MINUTE, apply_date,NOW()) &gt;= 0 and  TIMESTAMPDIFF(MINUTE, apply_date,NOW()) &lt; 5
+        THEN '刚刚'
+        end AS 'time'
+        from user_friend_apply
+        where 1 = 1
+        <if test="senduser != null ">
+            and from_id =#{senduser}
+        </if>
+        <if test="receiveuser != null ">
+            and uid =#{receiveuser}
+        </if>
+        <if test="status != null ">
+            and status =#{status}
+        </if>
+        order by id desc
+    </select>
+
+    <select id="queryTotal" resultType="int">
+		select count(1) from user_friend_apply
+        where 1 = 1
+        <if test="uid != null">
+            and uid = #{uid}
+        </if>
+	</select>
+
+    <select id="getHistoryMessageList" resultType="com.chedao.websocket.webserver.user.model.UserFriendApplyEntity" >
+        SELECT
+        a.id,
+        a.senduser,
+        b.name sendusername ,
+        ifnull(b.profilephoto,'layui/images/0.jpg') avatar,
+        a.content,
+        a.createuser,
+        a.createdate,
+        a.updatedate
+        FROM  user_message  a
+        LEFT JOIN user_info b ON b.uid=a.senduser
+        where (a.senduser =#{senduser} AND a.receiveuser =#{receiveuser} )  OR  (a.senduser =#{receiveuser} AND a.receiveuser =#{senduser}  )  ORDER BY id DESC
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="getHistoryMessageCount" resultType="int" >
+		   select  count(1)
+			from  user_message  a
+		   where (a.senduser =#{senduser} AND a.receiveuser =#{receiveuser} )  OR  (a.senduser =#{receiveuser} AND a.receiveuser =#{senduser}  )
+	</select>
+
+    <select id="getUserFriendApplyList" resultMap="userFriendApplyEntity" >
+        SELECT
+        a.id,
+        a.uid,
+        a.from_id,
+        a.from_group_id,
+        a.apply_date,
+        a.`status`,
+        a.remark
+        FROM
+        user_friend_apply AS a
+        where a.uid = #{uid}
+    </select>
+
+    <insert id="save" parameterType="com.chedao.websocket.webserver.user.model.UserFriendApplyEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into user_info
+		(
+			`uid`,
+			`deptid`,
+			`name`,
+			`nickname`,
+			`sex`,
+			`birthday`,
+			`cardid`,
+			`signature`,
+			`school`,
+			`education`,
+			`address`,
+			`phone`,
+			`email`,
+			`remark`,
+			`profilephoto`,
+			`createdate`,
+			`createuser`,
+			`updatedate`,
+			`updateuser`
+		)
+		values
+		(
+			#{uid},
+			#{deptid},
+			#{name},
+			#{nickname},
+			#{sex},
+			#{birthday},
+			#{cardid},
+			#{signature},
+			#{school},
+			#{education},
+			#{address},
+			#{phone},
+			#{email},
+			#{remark},
+			#{profilephoto},
+			NOW(),
+			#{uid},
+			NOW(),
+			#{uid}
+		)
+	</insert>
+
+    <update id="update" parameterType="com.chedao.websocket.webserver.user.model.UserFriendApplyEntity">
+        update user_friend_apply
+        <set>
+            <if test="uid != null">`uid` = #{uid}, </if>
+            <if test="deptid != null">`deptid` = #{deptid}, </if>
+            <if test="name != null">`name` = #{name}, </if>
+            <if test="nickname != null">`nickname` = #{nickname}, </if>
+            <if test="sex != null">`sex` = #{sex}, </if>
+            <if test="birthday != null">`birthday` = #{birthday}, </if>
+            <if test="cardid != null">`cardid` = #{cardid}, </if>
+            <if test="signature != null">`signature` = #{signature}, </if>
+            <if test="school != null">`school` = #{school}, </if>
+            <if test="education != null">`education` = #{education}, </if>
+            <if test="address != null">`address` = #{address}, </if>
+            <if test="phone != null">`phone` = #{phone}, </if>
+            <if test="email != null">`email` = #{email}, </if>
+            <if test="remark != null">`remark` = #{remark}, </if>
+            <if test="profilephoto != null">`profilephoto` = #{profilephoto}, </if>
+            <if test="createdate != null">`createdate` = #{createdate}, </if>
+            <if test="createuser != null">`createuser` = #{createuser}, </if>
+            <if test="updatedate != null">`updatedate` = #{updatedate}, </if>
+            <if test="updateuser != null">`updateuser` = #{updateuser}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+		delete from user_friend_apply where id = #{value}
+	</delete>
+
+    <delete id="deleteBatch">
+        delete from user_friend_apply where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <insert id="applyFriend" parameterType="com.chedao.websocket.webserver.user.model.UserFriendApplyEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into qiqiim.user_friend_apply
+		(
+			`uid`,
+			`from_id`,
+			`from_group_id`,
+			`apply_date`,
+			`status`,
+			`remark`
+		)
+		values
+		(
+			#{uid},
+			#{from},
+			#{from_group},
+			NOW(),
+			#{status},
+			#{remark}
+		)
+	</insert>
+</mapper>

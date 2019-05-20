@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chedao.websocket.webserver.user.dao.UserMessageDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.chedao.websocket.webserver.user.model.UserMessageEntity" id="userMessageMap">
+        <result property="id" column="id"/>
+        <result property="senduser" column="senduser"/>
+        <result property="receiveuser" column="receiveuser"/>
+        <result property="groupid" column="groupid"/>
+        <result property="isread" column="isread"/>
+        <result property="type" column="type"/>
+        <result property="content" column="content"/>
+        <result property="createuser" column="createuser"/>
+        <result property="createdate" column="createdate"/>
+        <result property="updatedate" column="updatedate"/>
+    </resultMap>
+    
+  <sql id="Base_Column_List" > 
+  	  	         id     ,  	        
+  	  	         senduser     ,  	        
+  	  	         receiveuser     ,  	        
+  	  	         groupid     ,  	        
+  	  	         isread     ,  	        
+  	  	         type     ,  	        
+  	  	         content     ,  	        
+  	  	         createuser     ,  	        
+  	  	         createdate     ,  	        
+  	  	         updatedate      	        
+  	  
+  </sql>
+
+
+   <select id="getHistoryMessageList" resultType="com.chedao.websocket.webserver.user.model.UserMessageEntity" >
+		   SELECT
+			  a.id,
+			  a.senduser,
+			  b.name sendusername , 
+			  ifnull(b.profilephoto,'layui/images/0.jpg') avatar,
+			  a.content,
+			  a.createuser,
+			  a.createdate,
+			  a.updatedate
+			FROM  user_message  a 
+			LEFT JOIN user_info b ON b.uid=a.senduser
+			where (a.senduser =#{senduser} AND a.receiveuser =#{receiveuser} )  OR  (a.senduser =#{receiveuser} AND a.receiveuser =#{senduser}  )  ORDER BY id DESC   
+			<if test="offset != null and limit != null">
+			   limit #{offset}, #{limit}
+		    </if>
+	</select>
+
+    <resultMap type="com.chedao.websocket.webserver.user.model.MessageInfoEntity" id="messageTMap">
+        <result property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="content" column="content"/>
+        <result property="timestamp" column="tt"/>
+        <result property="avatar" column="avatar"/>
+		<result property="type" column="tp"/>
+    </resultMap>
+	<select id="getIMHistoryMessageList" resultMap="messageTMap" >
+		SELECT
+			  a.senduser as id,
+			  b.nickname as username,
+			  ifnull(b.profilephoto,'layui/images/0.jpg') avatar,
+			  a.content,
+              UNIX_TIMESTAMP(a.createdate)*1000 as tt
+		FROM  user_message  a
+		inner JOIN user_info b ON b.uid=a.senduser
+		where (a.senduser =#{senduser} AND a.receiveuser =#{receiveuser} )
+		       OR  (a.senduser =#{receiveuser} AND a.receiveuser =#{senduser}  )
+		ORDER BY a.createdate desc
+
+	</select>
+
+	<select id="getHistoryMessageCount" resultType="int" >
+		   select  count(1)
+			from  user_message  a 
+		   where (a.senduser =#{senduser} AND a.receiveuser =#{receiveuser} )  OR  (a.senduser =#{receiveuser} AND a.receiveuser =#{senduser}  )      
+	</select>
+
+	<select id="getOfflineMessageList" resultMap="messageTMap" >
+		    SELECT
+			  a.senduser as id,
+			  b.nickname as username ,
+			  IFNULL(b.profilephoto,'layui/images/0.jpg') avatar,
+			  a.content,
+			  'friend' as tp,
+			  UNIX_TIMESTAMP(a.createdate)*1000 as tt
+			FROM  user_message  a 
+			inner JOIN user_info b ON b.uid=a.senduser
+			WHERE (a.receiveuser =#{receiveuser} and type=0 and isread = 0)
+			ORDER BY a.createdate ASC
+	</select>
+
+	<select id="getOfflineGroupMessageList" resultMap="messageTMap" >
+		    SELECT
+			  a.senduser as id,
+			  b.group_name as username ,
+			  IFNULL(b.avatar,'layui/images/0.jpg') avatar,
+			  a.content,
+			  'group' as tp,
+			  UNIX_TIMESTAMP(a.createdate)*1000 as tt
+			FROM  user_message  a
+			inner JOIN group_info b ON b.id=a.groupid
+			inner join group_user c on b.id = c.group_id
+			inner join user_info d on c.user_id = d.uid
+			WHERE type = 1 and c.user_id = #{receiveuser} and a.createdate > d.lastoffdate
+			ORDER BY a.createdate ASC
+	</select>
+
+	<select id="queryObject" resultType="com.chedao.websocket.webserver.user.model.UserMessageEntity">
+		select  <include refid="Base_Column_List" />  from user_message where id = #{value}
+	</select>
+
+	<!--<select id="queryList" resultType="com.chedao.websocket.webserver.user.model.UserMessageEntity">
+		select  <include refid="Base_Column_List" />  from user_message
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>-->
+	<select id="queryList" resultType="com.chedao.websocket.webserver.user.model.UserMessageEntity">
+		select  <include refid="Base_Column_List" />  from user_message
+		where 1 = 1
+		<if test="senduser != null ">
+			and senduser =#{senduser}
+		</if>
+		<if test="receiveuser != null ">
+			and receiveuser =#{receiveuser}
+		</if>
+		<if test="isread != null ">
+			and isread =#{isread}
+		</if>
+		<if test="groupid != null ">
+			and groupid =#{groupid}
+		</if>
+		<if test="type != null ">
+			and type =#{type}
+		</if>
+		<if test="typeList != null ">
+			and type in
+			<foreach item="id" collection="typeList" open="(" separator="," close=")">
+				#{id}
+			</foreach>
+		</if>
+		order by id desc
+	</select>
+
+	<resultMap type="com.chedao.websocket.webserver.user.model.UserMessageTEntity" id="userMessageTMap">
+		<result property="id" column="id"/>
+		<result property="uid" column="uid"/>
+		<result property="content" column="content"/>
+		<result property="type" column="tp"/>
+		<result property="read" column="rd"/>
+		<result property="from" column="fm"/>
+		<result property="from_group" column="from_group"/>
+	</resultMap>
+
+	<select id="queryBoxList" resultMap="userMessageTMap">
+		select id, receiveuser as uid, content, createdate, 1 as tp, '' as href, '' as remark,
+		        1 as rd, null as fm, null as from_group,
+				CASE
+				WHEN TIMESTAMPDIFF(DAY, createdate,NOW()) &gt; 0
+				THEN CONCAT(TIMESTAMPDIFF(DAY, createdate,NOW()),'天前')
+				WHEN TIMESTAMPDIFF(HOUR, createdate,NOW()) &gt; 0
+				THEN CONCAT(TIMESTAMPDIFF(HOUR, createdate,NOW()),'小时前')
+				WHEN TIMESTAMPDIFF(MINUTE, createdate,NOW()) &gt;= 5
+				THEN CONCAT(TIMESTAMPDIFF(MINUTE, createdate,NOW()),'分前')
+				WHEN TIMESTAMPDIFF(MINUTE, createdate,NOW()) &gt;= 0 and  TIMESTAMPDIFF(MINUTE, createdate,NOW()) &lt; 5
+				THEN '刚刚'
+				end AS 'time'
+		from user_message
+		where 1 = 1 and (type = 2
+			<if test="senduser != null ">
+				and senduser =#{senduser}
+			</if>
+			<if test="receiveuser != null ">
+				and receiveuser =#{receiveuser}
+			</if>
+			<if test="isread != null ">
+				and isread =#{isread}
+			</if>
+			<if test="groupid != null ">
+				and groupid =#{groupid}
+			</if>
+			<if test="type != null ">
+				and type =#{type}
+			</if>
+		)
+		or type = 3
+		order by id desc
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(1) from user_message
+		where 1 = 1
+		<if test="senduser != null ">
+			and senduser =#{senduser}
+		</if>
+		<if test="receiveuser != null ">
+			and receiveuser =#{receiveuser}
+		</if>
+		<if test="isread != null ">
+			and isread =#{isread}
+		</if>
+		<if test="groupid != null ">
+			and groupid =#{groupid}
+		</if>
+		<if test="type != null ">
+			and type =#{type}
+		</if>
+		<if test="typeList != null ">
+			and type in
+			<foreach item="id" collection="typeList" open="(" separator="," close=")">
+				#{id}
+			</foreach>
+		</if>
+	</select>
+
+	<select id="queryBoxTotal" resultType="int">
+		select count(1) from user_message
+		where 1 = 1 and (type = 2
+		<if test="senduser != null ">
+			and senduser =#{senduser}
+		</if>
+		<if test="receiveuser != null ">
+			and receiveuser =#{receiveuser}
+		</if>
+		<if test="isread != null ">
+			and isread =#{isread}
+		</if>
+		<if test="groupid != null ">
+			and groupid =#{groupid}
+		</if>
+		<if test="type != null ">
+			and type =#{type}
+		</if>
+		)
+		or type = 3
+	</select>
+	 
+	<insert id="save" parameterType="com.chedao.websocket.webserver.user.model.UserMessageEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into user_message
+		(
+			`senduser`, 
+			`receiveuser`, 
+			`groupid`, 
+			`isread`, 
+			`type`, 
+			`content`, 
+			`createuser`, 
+			`createdate`, 
+			`updatedate`
+		)
+		values
+		(
+			#{senduser}, 
+			#{receiveuser}, 
+			#{groupid}, 
+			#{isread}, 
+			#{type}, 
+			#{content}, 
+			#{createuser}, 
+			#{createdate}, 
+			NOW()
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.chedao.websocket.webserver.user.model.UserMessageEntity">
+		update user_message 
+		<set>
+			<if test="senduser != null">`senduser` = #{senduser}, </if>
+			<if test="receiveuser != null">`receiveuser` = #{receiveuser}, </if>
+			<if test="groupid != null">`groupid` = #{groupid}, </if>
+			<if test="isread != null">`isread` = #{isread}, </if>
+			<if test="type != null">`type` = #{type}, </if>
+			<if test="content != null">`content` = #{content}, </if>
+			<if test="createuser != null">`createuser` = #{createuser}, </if>
+			<if test="createdate != null">`createdate` = #{createdate}, </if>
+			<if test="updatedate != null">`updatedate` = #{updatedate}</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<update id="updateuserdate" >
+		update user_info
+		<set>
+			<if test="lastondate != null">lastondate = now(), </if>
+			<if test="lastoffdate != null">lastoffdate = now(), </if>
+			lastupdatedate = now()
+		</set>
+		where uid = #{uid}
+	</update>
+	
+	<update id="updatemsgstate" >
+		update user_message 
+		<set>
+			 isread = 1,
+			 updatedate= NOW()
+		</set>
+		where receiveuser = #{receiveuser} and isread = 0
+	</update>
+	
+	<delete id="delete">
+		delete from user_message where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from user_message where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

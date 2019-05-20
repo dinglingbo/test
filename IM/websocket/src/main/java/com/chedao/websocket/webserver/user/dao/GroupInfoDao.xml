@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chedao.websocket.webserver.user.dao.GroupInfoDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.chedao.websocket.webserver.user.model.GroupInfoEntity" id="GroupInfoMap">
+        <result property="id" column="id"/>
+        <result property="account" column="account"/>
+        <result property="password" column="password"/>
+        <result property="disablestate" column="disablestate"/>
+        <result property="isdel" column="isdel"/>
+        <result property="createdate" column="createdate"/>
+        <result property="updatedate" column="updatedate"/>
+        <result property="updateuser" column="updateuser"/>
+    </resultMap>
+
+    <insert id="addGroupInfo" parameterType="com.chedao.websocket.webserver.user.model.GroupInfoEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into qiqiim.group_info
+		(
+			`group_num`,
+			`group_name`,
+			`avatar`,
+			`group_man_id`,
+			`group_man`,
+			`status`,
+			`remark`,
+			`recorder_id`,
+			`recorder`,
+			`record_date`,
+			`modifier_id`,
+			`modifier`,
+			`modify_date`
+		)
+		values
+		(
+			#{groupNum},
+			#{groupName},
+			#{avatar},
+			#{groupManId},
+			#{groupMan},
+			#{status},
+			#{remark},
+			#{recorderId},
+			#{recorder},
+			NOW(),
+			#{modifierId},
+			#{modifier},
+			NOW()
+		)
+	</insert>
+
+</mapper>

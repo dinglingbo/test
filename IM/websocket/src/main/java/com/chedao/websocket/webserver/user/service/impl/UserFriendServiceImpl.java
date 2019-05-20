@@ -27,6 +27,8 @@ public class UserFriendServiceImpl implements UserFriendService {
         return userFriendDao.delete(id);
     }
 
-
-
+    @Override
+    public int delete(UserFriendEntity userFriend) {
+        return userFriendDao.delete(userFriend);
+    }
 }

@@ -8,4 +8,6 @@ public interface UserFriendService {
     int update(UserFriendEntity userFriend);
 
     int delete(Long id);
+
+    int delete(T t);
 }

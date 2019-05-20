@@ -50,16 +50,6 @@
 		)
 	</insert>
 
-	<update id="updateGroup" parameterType="com.chedao.websocket.webserver.user.model.GroupInfoEntity">
-		update qiqiim.group_info
-		<set>
-			<if test="group_name != null">`group_name` = #{groupName}, </if>
-			<if test="avatar != null">`avatar` = #{avatar}, </if>
-			<if test="modifier_id != null">`modifier_id` = #{modifierId}, </if>
-			<if test="modifier != null">`modifier` = #{modifier}, </if>
-			<if test="modifier_date != null">`modifier_date` = NOW() </if>
-		</set>
-		where id = #{id}
-	</update>
+
 
 </mapper>

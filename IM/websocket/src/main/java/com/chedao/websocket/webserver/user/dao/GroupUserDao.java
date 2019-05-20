@@ -8,6 +8,6 @@ import java.util.Map;
 
 public interface GroupUserDao {
     int addGroupUser(List groupUser);
-    int deleteGroup(Integer groupId,Integer userId);
+    int deleteGroup(Integer userId,Integer groupId);
     List<GroupUserEntity> queryGroupUsers(int groupId);
 }

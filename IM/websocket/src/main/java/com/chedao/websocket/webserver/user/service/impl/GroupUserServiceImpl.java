@@ -21,11 +21,13 @@ public class GroupUserServiceImpl implements GroupUserService {
 
     @Override
     public int deleteGroup(Integer userId,Integer groupId) {
-        return groupUserDao.deleteGroup(userId,groupId);
+        groupUserDao.deleteGroup(userId,groupId);
+        return 0;
     }
 
     @Override
     public List<GroupUserEntity> queryGroupUsers(int groupId ) {
+
         return groupUserDao.queryGroupUsers(groupId);
     }
 }

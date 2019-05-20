@@ -715,7 +715,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
      
       groupInfo.name = str.*/
       groupId = othis[0].id;
-      var html = '<ul data-id="'+ othis[0].id +'" data-index="'+ othis.data('index') +'"><li layim-event="editGroupChat" data-type="add">发起群聊</li><li layim-event="editGroupChat" data-type="updat">修改主题</li><li layim-event="deletGroup" data-type="one">退出群聊</li></ul>';
+      var html = '<ul data-id="'+ othis[0].id +'" data-index="'+ othis.data('index') +'"><li layim-event="editGroupChat" data-type="add">发起群聊</li><li layim-event="editGroupChat" data-type="updat">修改主题</li><li layim-event="editGroupChat" data-type="delete">退出群聊</li></ul>';
       
       if(othis.hasClass('layim-null')) return;
       
@@ -2366,11 +2366,38 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       		  //iframe.setData(groupTemp);
       		  },
 	    	  end: function () {
-	    		  location.reload();//layer.open关闭刷新
+		        	var group={
+			        		avatar: "http://tva3.sinaimg.cn/crop.64.106.361.361.50/7181dbb3jw8evfbtem8edj20ci0dpq3a.jpg",
+							groupname: "华胜古天乐粉丝群",
+							historyTime: 1558335578328,
+							id: "12333333",
+							members: 0,
+							name: "华胜古天乐粉丝群",
+							type: "group",
+			        	}
+		        	popchat(group);
 	    		  }
 	      		});    
-      } else if(type === 'delet') {
-    	     
+      } else if(type === 'delete') {
+		    $.ajax({
+		        type:'post',
+		        dataType:'json',
+		        contentType:'application/json',
+		        cache : false,
+		        async:false, 
+		        data: JSON.stringify({
+		        	userId:currImCode,
+		        	groupId : 11     	
+		        }),
+		        url:baseUrl + "com.hs.common.env.deleteGroup.biz.ext",
+		        success:function(data){
+		        	if(data.errCode=="S"){
+					    parent.layer.msg('退出群聊成功！',{icon: 1,time: 2000});
+		        	}else{
+		        		parent.layer.msg('退出异常',{icon: 7,time: 2000});
+		        	}
+		        }
+		    });
       }
       
       layer.closeAll('tips');

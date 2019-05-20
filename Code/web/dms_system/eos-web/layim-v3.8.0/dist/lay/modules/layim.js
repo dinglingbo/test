@@ -2331,8 +2331,11 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       		  var iframe = window['layui-layer-iframe' + index];
       		  // 向子页面的全局函数child传参
       		  //iframe.setData(groupTemp);
-      		  }
-      		});    
+      		  },
+	    	  end: function () {//无论是确认还是取消，只要层被销毁了，end都会执行，不携带任何参数。layer.open关闭事件
+	    		  location.reload();//layer.open关闭刷新
+	    		  }
+	      		});    
       }
       
       layer.closeAll('tips');

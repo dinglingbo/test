@@ -15,6 +15,7 @@
 <%@include file="/common/sysVarCommon.jsp"%>
 <link href="<%=request.getContextPath()%>/layim-v3.8.0/dist/css/modules/layim/layim.css?v=3.8.01" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/layim-v3.8.0/dist/css/layui.css">
+<script src="<%=request.getContextPath()%>/layim-v3.8.0/dist/lay/modules/layim.js"></script>
 <style type="text/css">
 
 </style>
@@ -213,14 +214,22 @@
 		        async:false, 
 		        data: JSON.stringify({
 		        	members:members,
-		        	name : "嘤嘤嘤",
+		        	name : "华胜古天乐粉丝群",
 		        	groupManager :  groupManager       	
 		        }),
 		        url:baseUrl + "com.hs.common.env.AddCreateChat.biz.ext",
 		        success:function(data){
 		        	if(data.errCode=="S"){
-		        		var index = parent.layer.getFrameIndex(window.name); 
-						parent.layer.close(index);//关闭当前页  
+		        	var group={
+		        		avatar: "http://tva3.sinaimg.cn/crop.64.106.361.361.50/7181dbb3jw8evfbtem8edj20ci0dpq3a.jpg",
+						groupname: "华胜古天乐粉丝群",
+						historyTime: 1558335578328,
+						id: "12333333",
+						members: 0,
+						name: "华胜古天乐粉丝群",
+						type: "group",
+		        	}
+		        		layimChat(group);
 					    parent.layer.msg('创建成功！',{icon: 1,time: 2000});
 		        	}else{
 		        		parent.layer.msg('创建异常',{icon: 7,time: 2000});

@@ -10,6 +10,7 @@
 //分组信息
  var friendInfo =  {};
  var groupId = 0;
+ var baseUrl = apiPath + repairApi + "/";
 layui.define(['layer', 'laytpl', 'upload'], function(exports){
   
   var v = '3.8.0';
@@ -2174,9 +2175,11 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
      
      ,queryUserInfo:function(othis, e){
     	 var type = othis.data('type');
-    	 var userid = currImCode;
-    	 var groupTemp = {};
-    	 groupTemp.id = type;
+    	 var params = {};
+    	 params.id = currImCode;
+    	 params.name = currUserName;
+    	 params.baseUrl = baseUrl;
+    	 params.id = 7;
     	//弹出修改备注页面
        	layer.open({
        		  type: 2, 
@@ -2188,7 +2191,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
        		  // 获取子页面的iframe
        		  var iframe = window['layui-layer-iframe' + index];
        		  // 向子页面的全局函数child传参
-       		  iframe.setData(groupTemp);
+       		  iframe.setDataSys(params);
        		  }
        		});
      }

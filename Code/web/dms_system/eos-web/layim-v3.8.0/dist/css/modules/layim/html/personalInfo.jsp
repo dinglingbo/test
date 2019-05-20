@@ -24,9 +24,9 @@
 <body>
 <div >
 
-<form class="layui-form" >
+<form class="layui-form" action="">
   
-  <div class="layui-form-item" style="margin-top: 20px;">
+  <div class="layui-form-item" style="margin-top: 20px;" >
     <div class="layui-inline">
     <label class="layui-form-label">昵称</label>
      <input type="text" name="nickname" id="nickname" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input" style="width: 250px;">
@@ -34,7 +34,7 @@
   
      <div class="layui-inline">
     <label class="layui-form-label">个人编号</label>
-     <input type="text" name="title"   lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input" style="width: 250px;">
+     <input type="text" name="title"    placeholder="请输入标题" autocomplete="off" class="layui-input" style="width: 250px;">
     </div>
  </div>
  
@@ -56,12 +56,12 @@
   <div class="layui-form-item" style="margin-top: 20px;">
     <div class="layui-inline">
      <label class="layui-form-label">职位</label>
-     <input type="text" name="title"   lay-verify="required" placeholder="请输入职位" autocomplete="off" class="layui-input" style="width: 250px;">
+     <input type="text" name="title"    placeholder="请输入职位" autocomplete="off" class="layui-input" style="width: 250px;">
    </div>
   
     <div class="layui-inline">
      <label class="layui-form-label">邮箱</label>
-     <input type="text" name="email"  lay-verify="required" placeholder="请输入邮箱" autocomplete="off" class="layui-input" style="width: 250px;">
+     <input type="text" name="email"   placeholder="请输入邮箱" autocomplete="off" class="layui-input" style="width: 250px;">
    </div>
  </div>
  
@@ -106,8 +106,9 @@
  
    <div class="layui-form-item">
     <div class="layui-input-block">
-      <button class="layui-btn" lay-submit lay-filter="formDemo" onclic="save">保存</button>
+      <button class="layui-btn" lay-submit lay-filter="formDemo" >保存</button>
       <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
+      <!-- <button class="layui-btn"  lay-filter="find" style="width: 80px;" >确定</button> -->
     </div>
   </div>
     
@@ -121,11 +122,12 @@
 var form;
 var $; */
 var dataSys = {};
+var Area = [];
 var areaData = Area;
 var $form;
 var form;
 var $;
-layui.use('form', function(){
+layui.use(['form', 'upload'], function(){
   /* var form = layui.form;
   form.render();
   loadProvince(); */
@@ -134,9 +136,9 @@ layui.use('form', function(){
     form = layui.form;
     $form = $('form');
     loadProvince();
-  
+   var form2 = layui.form //获取form模块
   //监听提交
-   form.on('submit(formDemo)', function(data){
+   form2.on('submit(formDemo)', function(data){
     //layer.msg(JSON.stringify(data.field));
      //调用接口
      var temp = data.field;
@@ -144,10 +146,11 @@ layui.use('form', function(){
      var params = temp;
       params.id=dataSys.id,
       params.updateuser = dataSys.name;
-	  json = nui.encode({
+	  var json = {
 	          params:params,
 			  token:dataSys.token
-		});
+	  }; 
+		
      $.ajax({
         type:'post',
         dataType:'json',
@@ -167,24 +170,31 @@ layui.use('form', function(){
         	}
         }
     });
-    return false;
+    
   });  
+  return false;
 });
 
 function save(obj){
+                        var d = {};
+						var t = $('#recordListSearchForm [name]').serializeArray();
+						$.each(t, function() {
+							d[this.name] = this.value;
+						});
+						alert(JSON.stringify(d));
     data = obj.data;
     layer.msg(JSON.stringify(data.field));
     return false;
 }
 
-layui.use('laydate', function(){
+/* layui.use('laydate', function(){
   var laydate = layui.laydate;
   
   //执行一个laydate实例
   laydate.render({
     elem: '#test1' //指定元素
   });
-});
+}); */
 
 /* var provinces = {};
 var city = {};
@@ -195,7 +205,7 @@ $(document).ready(function(){
 
 }); */
 //http://127.0.0.1:8080/default/com.hs.common.region.getRegin.biz.ext
-function setData(params){
+function setDataSys(params){
    dataSys = params;
    
    /*  $.post(params.apiPath + params.sysApi + "/"+"com.hsapi.system.dict.dictMgr.getProvinces.biz.ext?token="+params.token,{},function(text){

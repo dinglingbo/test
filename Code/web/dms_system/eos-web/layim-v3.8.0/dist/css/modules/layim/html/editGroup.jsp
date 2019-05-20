@@ -11,7 +11,7 @@
 <head>
 <title>添加好友</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <%@include file="/common/sysCommon.jsp" %>
+  <%@include file="/common/sysVarCommon.jsp" %>
 <link href="<%=request.getContextPath()%>/layim-v3.8.0/dist/css/layui.css?v=1.0.11" rel="stylesheet" type="text/css" />
     <script src="<%=request.getContextPath()%>/layim-v3.8.0/dist/layui.js?v=1.0.1"></script>
     <style type="text/css">

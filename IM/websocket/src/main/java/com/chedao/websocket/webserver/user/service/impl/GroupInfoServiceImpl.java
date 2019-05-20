@@ -15,7 +15,11 @@ public class GroupInfoServiceImpl implements GroupInfoService {
     private GroupInfoDao groupInfoDao;
     @Override
     public int addGroupInfo(GroupInfoEntity groupInfo) {
-        return groupInfoDao.addGroupInfo(groupInfo);
+        groupInfoDao.addGroupInfo(groupInfo);
+       return  groupInfo.getId();
     }
-
+    @Override
+    public int updateGroup(GroupInfoEntity groupInfo) {
+       return groupInfoDao.updateGroup(groupInfo);
+    }
 }

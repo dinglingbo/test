@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chedao.websocket.webserver.user.dao.GroupUserDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.chedao.websocket.webserver.user.model.GroupUserEntity" id="GroupUserMap">
+        <result property="id" column="id"/>
+        <result property="account" column="account"/>
+        <result property="password" column="password"/>
+        <result property="disablestate" column="disablestate"/>
+        <result property="isdel" column="isdel"/>
+        <result property="createdate" column="createdate"/>
+        <result property="updatedate" column="updatedate"/>
+        <result property="updateuser" column="updateuser"/>
+    </resultMap>
+
+    <insert id="addGroupUser" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+		insert into qiqiim.group_user
+		(
+			`user_id`,
+			`user_name`,
+			`group_id`,
+			`join_time`
+		)
+		values
+        <foreach collection="list" item="item" index="index" separator=",">
+		(
+			#{item.userId},
+			#{item.userName},
+			#{item.groupId},
+			NOW()
+		)
+        </foreach>
+	</insert>
+
+	<delete id="deleteGroup">
+		delete from qiqiim.group_user where user_id = #{userId} and group_id = #{groupId}
+	</delete>
+
+	<!-- 查询群聊下的所有成员 -->
+	<select id="queryGroupUsers" resultType="com.chedao.websocket.webserver.user.model.GroupUserEntity">
+		  select
+		   	id as id,
+		   	user_id as userId,
+		   	user_name as userName,
+		   	group_id as groupId,
+		   	join_time as joinTime
+		   from qiqiim.group_user
+		   where group_id = #{groupId}
+    </select>
+</mapper>

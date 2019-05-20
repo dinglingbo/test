@@ -5,4 +5,5 @@ import com.chedao.websocket.webserver.user.model.UserInfoEntity;
 
 public interface GroupInfoService {
     int addGroupInfo(GroupInfoEntity groupInfo);
+    int updateGroup(GroupInfoEntity groupInfo);
 }

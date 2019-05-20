@@ -36,7 +36,7 @@ public interface UserFriendApplyDao extends BaseDao<UserFriendApplyEntity> {
     List<UserMessageTEntity> queryBoxList(Map<String, Object> map);
 
     /**
-     * 查询好友申请
+     * 好友申请
      * @param
      * @return
      */

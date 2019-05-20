@@ -9,4 +9,8 @@ import java.util.Map;
 public interface GroupInfoDao extends BaseDao<GroupInfoEntity> {
 
     int addGroupInfo(GroupInfoEntity groupInfo);
+
+    int updateGroup(GroupInfoEntity groupInfo);
+
+
 }

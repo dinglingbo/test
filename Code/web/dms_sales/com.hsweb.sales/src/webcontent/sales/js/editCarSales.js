@@ -20,6 +20,12 @@ function registration() {
     });
 }
 
+function save() {
+    var billFormData = billForm.getData();
+    var caCalculation = document.getElementById("caCalculation").contentWindow.getValue();
+
+}
+
 function caseMsg() {
     nui.open({
         url: webPath + contextPath + "/sales/sales/salesReview.jsp?token=" + token,

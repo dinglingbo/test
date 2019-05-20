@@ -21,12 +21,12 @@ public class UserFriendController extends BaseController {
     //添加好友，新增两条数据,添加好友时，要确定是在那个分组下的好友
     @RequestMapping(value="/save", produces="application/json;charset=UTF-8", method = RequestMethod.POST)
     @ResponseBody
-    public Object update(@RequestBody UserFriendEntity userFriend){
+    public Object save(@RequestBody UserFriendEntity userFriend){
 
         StringBuilder errCode = new StringBuilder();
         try{
             for (int i = 0;i<2;i++){
-                if(n==0){
+                if(i==0){
                     userFriendServiceImpl.save(userFriend);
                 }else{
                    UserFriendEntity userf = new UserFriendEntity();
@@ -63,13 +63,13 @@ public class UserFriendController extends BaseController {
     }
 
     //删除好友，删除两条数据
-    /@RequestMapping(value="/delet", produces="application/json;charset=UTF-8", method = RequestMethod.POST)
+    @RequestMapping(value="/delet", produces="application/json;charset=UTF-8", method = RequestMethod.POST)
     @ResponseBody
     public Object delet(@RequestBody UserFriendEntity userFriend){
-        System.out.print(id);
+
         StringBuilder errCode = new StringBuilder();
         try{
-            userFriendServiceImpl.delete(id);
+            userFriendServiceImpl.delete(userFriend);
         }catch (Exception e){
             errCode.append("E");
             return errCode;

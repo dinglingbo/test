@@ -6,7 +6,10 @@
  @License：LGPL
     
  */
- 
+ var groupInfo ={};
+//分组信息
+ var friendInfo =  {};
+ var groupId = 0;
 layui.define(['layer', 'laytpl', 'upload'], function(exports){
   
   var v = '3.8.0';
@@ -20,10 +23,8 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
   //回调
   var call = {};
   
-  var groupInfo = {};
-//分组信息
-  var friendInfo =  {};
-  var groupId = 0;
+
+  
   var isShow = true; 
   var htmlStr = webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/editGroup.jsp";
   var htmlStrFriendName = webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/updateFriendName.jsp";
@@ -489,6 +490,21 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       ,mine: mine
       ,history: local.history || {}
     }, create = function(data){
+    	//赋值群聊
+	    $.ajax({
+	        type:'post',
+	        dataType:'json',
+	        contentType:'application/json',
+	        cache : false,
+	        async:false, 
+	        data: JSON.stringify({
+	        	userId:currImCode   	
+	        }),
+	        url:baseUrl + "com.hs.common.env.queryGroupInfo.biz.ext",
+	        success:function(text){
+	        	data.group  = text.result||[];
+	        }
+	    });
       var mine = data.mine || {}; 
       groupInfo = data.group || [];
       friendInfo = data.friend || [];
@@ -715,7 +731,8 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
      
       groupInfo.name = str.*/
       groupId = othis[0].id;
-      var html = '<ul data-id="'+ othis[0].id +'" data-index="'+ othis.data('index') +'"><li layim-event="editGroupChat" data-type="add">发起群聊</li><li layim-event="editGroupChat" data-type="updat">修改主题</li><li layim-event="deletGroup" data-type="one">退出群聊</li></ul>';
+      var groupId1 = groupId.substring(11,groupId.length);
+      var html = '<ul data-id="'+ othis[0].id +'" data-index="'+ othis.data('index') +'"><li layim-event="editGroupChat" data-type="add">发起群聊</li><li layim-event="editGroupChat" id="'+groupId1+'" data-type="updat">修改群资料</li><li layim-event="editGroupChat" id="'+groupId1+'" data-type="delete">退出群聊</li></ul>';
       
       if(othis.hasClass('layim-null')) return;
       
@@ -2327,22 +2344,32 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     
     //群聊右键菜单操作
     ,editGroupChat: function(othis, e){
+    	var editGroupChatId=othis[0].id;//点击的群组ID
       var local = layui.data('layim')[cache.mine.id] || {};
       var parent = othis.parent(), type = othis.data('type');
       var editGroupChatUrl = webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/editGroupChat.jsp";
       var addGroupChatUrl = webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/addGroupChat.jsp";
-      if(type === 'updat'){
-    	  var groupTemp = {};
-    	  groupTemp = {
-    		    "group_name":"华胜古天乐粉丝群1群",
-    		    "group_man_id":"",
-    			"id":25
+ 	  var groupTemp = {};
+      for(var i = 0;i<groupInfo.length;i++){
+    	  if(groupInfo[i].id==editGroupChatId){
+    	 	 groupTemp.id = groupInfo[i].id;
+    	 	 groupTemp.groupName = groupInfo[i].groupname;
+    	 	 groupTemp.avatar = groupInfo[i].avatar;
     	  }
+      }
+      if(type === 'updat'){
+   
+/*    	  groupTemp = {
+    			  "id" : 1,
+    		    "groupName":"华胜古天乐粉丝群1群",
+    		    "avatar":"",
+    			"remark":"华胜古天乐粉丝1群"
+    	  }*/
       	layer.open({
       		  type: 2, 
-      		  title: '修改',
+      		  title: '修改群资料',
       		  content: editGroupChatUrl, //这里content是一个普通的String
-      		  area:['600px','500px'],
+      		  area:['400px','400px'],
       		  maxmin:true,
       		  success: function (layero, index) {
       		  // 获取子页面的iframe
@@ -2366,11 +2393,38 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       		  //iframe.setData(groupTemp);
       		  },
 	    	  end: function () {
-	    		  location.reload();//layer.open关闭刷新
+		        	var group={
+			        		avatar: "http://tva3.sinaimg.cn/crop.64.106.361.361.50/7181dbb3jw8evfbtem8edj20ci0dpq3a.jpg",
+							groupname: "华胜古天乐粉丝群",
+							historyTime: 1558335578328,
+							id: "12333333",
+							members: 0,
+							name: "华胜古天乐粉丝群",
+							type: "group",
+			        	}
+		        	popchat(group);
 	    		  }
 	      		});    
-      } else if(type === 'delet') {
-    	     
+      } else if(type === 'delete') {
+		    $.ajax({
+		        type:'post',
+		        dataType:'json',
+		        contentType:'application/json',
+		        cache : false,
+		        async:false, 
+		        data: JSON.stringify({
+		        	userId:currImCode,
+		        	groupId : 11     	
+		        }),
+		        url:baseUrl + "com.hs.common.env.deleteGroup.biz.ext",
+		        success:function(data){
+		        	if(data.errCode=="S"){
+					    layer.msg('退出群聊成功！',{icon: 1,time: 2000});
+		        	}else{
+		        		layer.msg('退出异常',{icon: 7,time: 2000});
+		        	}
+		        }
+		    });
       }
       
       layer.closeAll('tips');

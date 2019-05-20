@@ -191,6 +191,10 @@
       				userName : "张三"
   			}
       		var members =[
+	      		{
+	  			    userId:currImCode,
+	      			userName : "张三"
+	  			},
       			{
       				userId:4,
       				userName : "李四"
@@ -220,16 +224,8 @@
 		        url:baseUrl + "com.hs.common.env.AddCreateChat.biz.ext",
 		        success:function(data){
 		        	if(data.errCode=="S"){
-		        	var group={
-		        		avatar: "http://tva3.sinaimg.cn/crop.64.106.361.361.50/7181dbb3jw8evfbtem8edj20ci0dpq3a.jpg",
-						groupname: "华胜古天乐粉丝群",
-						historyTime: 1558335578328,
-						id: "12333333",
-						members: 0,
-						name: "华胜古天乐粉丝群",
-						type: "group",
-		        	}
-		        		layimChat(group);
+						var index = parent.layer.getFrameIndex(window.name); 
+						parent.layer.close(index);//关闭当前页  
 					    parent.layer.msg('创建成功！',{icon: 1,time: 2000});
 		        	}else{
 		        		parent.layer.msg('创建异常',{icon: 7,time: 2000});

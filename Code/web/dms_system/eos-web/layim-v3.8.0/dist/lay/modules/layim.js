@@ -2129,7 +2129,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     	 } 
      }
      //修改备注
-     ,updateName:function(){
+     ,updateName:function(othis, e){
     	 var friendid = othis.data('type');
     	 var userid = currImCode;
     	 var groupTemp = {};
@@ -2151,7 +2151,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
        		});
      }
      
-     ,queryUserInfo:function(){
+     ,queryUserInfo:function(othis, e){
     	 var type = othis.data('type');
     	 var userid = currImCode;
     	 var groupTemp = {};
@@ -2365,10 +2365,12 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       		  // 向子页面的全局函数child传参
       		  //iframe.setData(groupTemp);
       		  },
-	    	  end: function () {//无论是确认还是取消，只要层被销毁了，end都会执行，不携带任何参数。layer.open关闭事件
+	    	  end: function () {
 	    		  location.reload();//layer.open关闭刷新
 	    		  }
 	      		});    
+      } else if(type === 'delet') {
+    	     
       }
       
       layer.closeAll('tips');

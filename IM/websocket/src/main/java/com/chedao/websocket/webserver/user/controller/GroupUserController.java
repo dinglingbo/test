@@ -3,6 +3,7 @@ package com.chedao.websocket.webserver.user.controller;
 import com.chedao.websocket.webserver.base.controller.BaseController;
 import com.chedao.websocket.webserver.user.model.GroupInfoEntity;
 import com.chedao.websocket.webserver.user.model.GroupUserEntity;
+import com.chedao.websocket.webserver.user.model.UserInfoEntity;
 import com.chedao.websocket.webserver.user.service.impl.GroupInfoServiceImpl;
 import com.chedao.websocket.webserver.user.service.impl.GroupUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +63,7 @@ public class GroupUserController extends BaseController {
 
         try{
            List<GroupUserEntity> groupUserEntity =  groupUserServiceImpl.queryGroupInfo(userId);
-           String userIdStr = "";
+/*           String userIdStr = "";
             for(int i=0;i<groupUserEntity.size();i++) {
                 if(i<(groupUserEntity.size()-1)){
                     GroupUserEntity gu  =  groupUserEntity.get(i);
@@ -72,8 +73,14 @@ public class GroupUserController extends BaseController {
                     userIdStr += gu.getGroupId();
                 }
 
-            }
-            List<GroupInfoEntity> groupInfoEntityList =  groupInfoService.queryGroupInfo(userIdStr);
+            }*/
+/*            List<GroupUserEntity> userIds = new ArrayList<GroupUserEntity>();
+            for(int i=0;i<groupUserEntity.size();i++) {
+                GroupUserEntity gu  =  groupUserEntity.get(i);
+                userIds.add(gu);
+
+            }*/
+            List<GroupInfoEntity> groupInfoEntityList =  groupInfoService.queryGroupInfo(groupUserEntity);
             map.put("data", groupInfoEntityList);
         }catch (Exception e){
             errCode.append("E");

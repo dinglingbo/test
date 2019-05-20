@@ -9,5 +9,5 @@ import java.util.List;
 public interface GroupInfoService {
     int addGroupInfo(GroupInfoEntity groupInfo);
     int updateGroup(GroupInfoEntity groupInfo);
-    List<GroupInfoEntity> queryGroupInfo(String groupIds);
+    List<GroupInfoEntity> queryGroupInfo(List groupIds);
 }

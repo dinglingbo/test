@@ -154,7 +154,7 @@ layui.use('form', function(){
         contentType:'application/json',
         cache : false,
         data: json,
-        url:baseUrl + "com.hs.common.env.upateUserInfo.biz.ext",
+        url:dataSys.baseUrl + "com.hs.common.env.upateUserInfo.biz.ext",
         async:false, 
         success:function(data){
         	if(data.errCode=="S"){
@@ -165,7 +165,6 @@ layui.use('form', function(){
         	}else{
         	   showMsg("保存失败","E");
         	}
-        	
         }
     });
     return false;

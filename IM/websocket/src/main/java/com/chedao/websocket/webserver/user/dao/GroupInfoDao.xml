@@ -62,7 +62,7 @@
 		where id = #{id}
 	</update>
 	<!-- 群聊查询 -->
-	<select id="queryGroupInfo" resultType="com.chedao.websocket.webserver.user.model.GroupInfoEntity">
+	<select id="queryGroupInfo" parameterType="java.util.List" resultType="com.chedao.websocket.webserver.user.model.GroupInfoEntity">
 		  select
 		   	id as id,
 		   	group_num as groupNum,
@@ -73,6 +73,10 @@
 		   	status as status,
 		   	remark as remark
 		   from qiqiim.group_info
-		   where id in (#{groupIds,jdbcType=VARCHAR})
-    </select>
+		   where id in
+			<foreach collection="groupIds" item="groupId" index="index" open="(" separator="," close=")">
+				#{groupId.groupId}
+			</foreach>
+
+	</select>
 </mapper>

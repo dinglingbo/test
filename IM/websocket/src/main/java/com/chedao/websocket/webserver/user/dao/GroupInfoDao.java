@@ -14,6 +14,6 @@ public interface GroupInfoDao extends BaseDao<GroupInfoEntity> {
 
     int updateGroup(GroupInfoEntity groupInfo);
 
-    List<GroupInfoEntity> queryGroupInfo(@Param("groupIds") String groupIds);
+    List<GroupInfoEntity> queryGroupInfo(@Param("groupIds") List groupIds);
 
 }

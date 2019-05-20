@@ -24,7 +24,7 @@ public class GroupInfoServiceImpl implements GroupInfoService {
        return groupInfoDao.updateGroup(groupInfo);
     }
     @Override
-    public List<GroupInfoEntity> queryGroupInfo(String groupIds){
+    public List<GroupInfoEntity> queryGroupInfo(List groupIds){
         return groupInfoDao.queryGroupInfo(groupIds);
     }
 

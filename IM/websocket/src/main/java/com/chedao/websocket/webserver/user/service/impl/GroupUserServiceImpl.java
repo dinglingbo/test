@@ -30,4 +30,9 @@ public class GroupUserServiceImpl implements GroupUserService {
 
         return groupUserDao.queryGroupUsers(groupId);
     }
+    @Override
+    public List<GroupUserEntity> queryGroupInfo(int userId ) {
+
+        return groupUserDao.queryGroupInfo(userId);
+    }
 }

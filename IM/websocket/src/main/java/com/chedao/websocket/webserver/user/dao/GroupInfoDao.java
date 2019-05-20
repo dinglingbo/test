@@ -3,7 +3,9 @@ package com.chedao.websocket.webserver.user.dao;
 import com.chedao.websocket.webserver.base.dao.BaseDao;
 import com.chedao.websocket.webserver.user.model.GroupInfoEntity;
 import com.chedao.websocket.webserver.user.model.UserFriendApplyEntity;
+import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
 import java.util.Map;
 
 public interface GroupInfoDao extends BaseDao<GroupInfoEntity> {
@@ -12,5 +14,6 @@ public interface GroupInfoDao extends BaseDao<GroupInfoEntity> {
 
     int updateGroup(GroupInfoEntity groupInfo);
 
+    List<GroupInfoEntity> queryGroupInfo(@Param("groupIds") String groupIds);
 
 }

@@ -79,11 +79,11 @@ public class GroupInfoController extends BaseController {
     public String updataGroupInfo(@RequestBody Map<String,Object> params){
         StringBuilder errCode= new StringBuilder();
 
-        Map<String,Object> group = (Map<String, Object>) params.get("group");
+        Map<String,Object> group = (Map<String, Object>) params.get("groupInfo");
         String id1 = (String) group.get("userId");
         id1=id1.replace("\"", "");
         Integer userId = Integer.valueOf(id1);
-        String id2 = (String) group.get("groupId");
+        String id2 = (String) group.get("id");
         id2=id2.replace("\"", "");
         Integer groupId = Integer.valueOf(id2);
 
@@ -91,6 +91,7 @@ public class GroupInfoController extends BaseController {
         groupInfo.setId(groupId);
         groupInfo.setGroupName((String) group.get("groupName"));
         groupInfo.setAvatar((String) group.get("avatar"));
+        groupInfo.setAvatar((String) group.get("remark"));
         groupInfo.setModifierId(userId);
         groupInfo.setModifier((String) group.get("userName"));
         try{
@@ -102,4 +103,6 @@ public class GroupInfoController extends BaseController {
         errCode.append("S");
         return errCode.toString();
     }
+
+
 }

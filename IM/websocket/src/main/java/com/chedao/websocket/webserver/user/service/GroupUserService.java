@@ -10,4 +10,5 @@ public interface GroupUserService {
      int addGroupUser(List groupUser);
     int deleteGroup(Integer userId,Integer groupId);
     List<GroupUserEntity> queryGroupUsers(int groupId);
+    List<GroupUserEntity> queryGroupInfo(int userId);
 }

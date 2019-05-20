@@ -77,7 +77,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">members</process:from>
-      <process:to type="query">params/groupInfo</process:to>
+      <process:to type="query">params/groupUser</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">name</process:from>

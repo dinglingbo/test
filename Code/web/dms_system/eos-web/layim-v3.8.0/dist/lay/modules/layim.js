@@ -502,6 +502,10 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
 	        }),
 	        url:baseUrl + "com.hs.common.env.queryGroupInfo.biz.ext",
 	        success:function(text){
+	        	var gg = text.result||[];
+	        	for(var i = 0;i<gg.length;i++){
+	        		gg[i].groupname=gg[i].groupName;
+	        	}
 	        	data.group  = text.result||[];
 	        }
 	    });

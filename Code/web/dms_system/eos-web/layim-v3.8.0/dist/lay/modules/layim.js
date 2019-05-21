@@ -6,7 +6,11 @@
  @License：LGPL
     
  */
- 
+ var groupInfo ={};
+//分组信息
+ var friendInfo =  {};
+ var groupId = 0;
+ var baseUrl = apiPath + repairApi + "/";
 layui.define(['layer', 'laytpl', 'upload'], function(exports){
   
   var v = '3.8.0';
@@ -20,12 +24,12 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
   //回调
   var call = {};
   
-  var groupInfo = {};
-//分组信息
-  var friendInfo =  {};
-  var groupId = 0;
+
+  
   var isShow = true; 
   var htmlStr = webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/editGroup.jsp";
+  var htmlStrFriendName = webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/updateFriendName.jsp";
+  var userInfoUrl =  webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/personalInfo.jsp";
   //对外API
   var LAYIM = function(){
     this.v = v;
@@ -35,13 +39,15 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     });
   };
   
-  $('body').on('click', '#layui-layim-list-move2', function(e){
+  $('body').on('click', '#test2', function(e){
+	  var html = "<span id='test'>移至分组</span>";
 	  if(!isShow){
 		  isShow = true; 
-		  document.getElementById("showGroup").style.display='none';
+		 // document.getElementById("showGroup").style.display='none';
+		  $("#layui-layim-list-move").html(html);
 	  }else{
-		  isShow = false;
-		  var html = '<ul>';
+		     isShow = false;
+			 html = html +'<ul>';
 	      //循环分组，生成标签,分组全局变量：friendInfo,如果只有一个分组，不显示 <li layim-event="editGroup" data-type="delet">删除分组</li>
 	      //<h5 layim-event="spread" lay-type="false" id="1"><i class="layui-icon"></i><span>前端码屌</span><em>(<cite class="layim-count"> 5</cite>)</em></h5>
 	      if(friendInfo.length<1){
@@ -54,8 +60,9 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
 	      }
 	      html = html + "</ul>";
 	      //var atEl = document.getElementById("layui-layim-list-move"); 
-	      $("#showGroup").html(html);
-	      document.getElementById("showGroup").style.display = "";
+	     // $("#showGroup").html(html);
+	     // document.getElementById("showGroup").style.display = "";
+	      $("#layui-layim-list-move").html(html);
 	  }
 	 
   	 // document.getElementById("showA").style.display='none';
@@ -484,6 +491,25 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       ,mine: mine
       ,history: local.history || {}
     }, create = function(data){
+    	//赋值群聊
+	    $.ajax({
+	        type:'post',
+	        dataType:'json',
+	        contentType:'application/json',
+	        cache : false,
+	        async:false, 
+	        data: JSON.stringify({
+	        	userId:currImCode   	
+	        }),
+	        url:baseUrl + "com.hs.common.env.queryGroupInfo.biz.ext",
+	        success:function(text){
+	        	var gg = text.result||[];
+	        	for(var i = 0;i<gg.length;i++){
+	        		gg[i].groupname=gg[i].groupName;
+	        	}
+	        	data.group  = text.result||[];
+	        }
+	    });
       var mine = data.mine || {}; 
       groupInfo = data.group || [];
       friendInfo = data.friend || [];
@@ -663,11 +689,13 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       var othis = $(this);
      /* var str = othis[0].textContent.lastIndexOf("(");
 
-      var arr = str.split("(");
+      var arr = str.split("(");<div style="display:none" id="showGroup">wwr</div>
      
       groupInfo.name = str.*/
-      var uerId = this.id; 
-      var html = '<ul data-id="'+ othis[0].id +'" data-index="'+ othis.data('index') +'" id="'+this.id+'"><li layim-event="showList" data-type="'+uerId+'" ><span id="layui-layim-list-move">移至分组</span><div style="display:none" id="showGroup">wwr</div></li><li layim-event="deletFriden" data-type="'+uerId+'">删除好友</li><li layim-event="editGroup" data-type="'+uerId+'">查看联系人</li></ul>';
+      var type = this.id; 
+      //var urerId = othis.data('type');
+      var uerId = type.substring(12,type.length);
+      var html = '<ul data-id="'+ othis[0].id +'" data-index="'+ othis.data('index') +'" id="'+uerId+'"><li id="layui-layim-list-move"><span id="test" layim-event="showList" data-type="'+uerId+'">移至分组</span></li><li layim-event="updateName" data-type="'+uerId+'"><span>修改名称备注</span></li><li layim-event="deletFriden" data-type="'+uerId+'"><span>删除好友</span></li><li layim-event="queryUserInfo" data-type="'+uerId+'"><span>查看联系人</span></li></ul>';
       
       if(othis.hasClass('layim-null')) return;
       layer.tips(html, this, {
@@ -708,7 +736,8 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
      
       groupInfo.name = str.*/
       groupId = othis[0].id;
-      var html = '<ul data-id="'+ othis[0].id +'" data-index="'+ othis.data('index') +'"><li layim-event="editGroupChat" data-type="add">发起群聊</li><li layim-event="editGroupChat" data-type="updat">修改主题</li><li layim-event="deletGroup" data-type="one">退出群聊</li></ul>';
+      var groupId1 = groupId.substring(11,groupId.length);
+      var html = '<ul data-id="'+ othis[0].id +'" data-index="'+ othis.data('index') +'"><li layim-event="editGroupChat" data-type="add">发起群聊</li><li layim-event="editGroupChat" id="'+groupId1+'" data-type="updat">修改群资料</li><li layim-event="editGroupChat" id="'+groupId1+'" data-type="delete">退出群聊</li></ul>';
       
       if(othis.hasClass('layim-null')) return;
       
@@ -1787,33 +1816,52 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
             }
             members.data = $.extend(members.data, {
               id: thatChat.data.id
-            });
-            post(members, function(res){
-              layui.each(res.list, function(index, item){
-                li += '<li data-uid="'+ item.id +'"><a href="javascript:;"><img src="'+ item.avatar +'"><cite>'+ item.username +'</cite></a></li>';
-                membersCache[item.id] = item;
-              });
-              ul.html(li);
+            });       	   
+              //查询群成员
+  		    $.ajax({
+  		        type:'post',
+  		        dataType:'json',
+  		        contentType:'application/json',
+  		        cache : false,
+  		        async:false, 
+  		        data: JSON.stringify({
+  		        	groupId:members.data.id
+  		        }),
+  		        url:baseUrl + "com.hs.common.env.queryGroupUserInfo.biz.ext",
+  		        success:function(data){
+  		        	if(data.errCode=="S"){
+  		              layui.each(data.result, function(index, item){
+  		                li += '<li data-uid="'+ item.id +'"><a href="javascript:;"><img src="'+ item.avatar +'"><cite>'+ item.username +'</cite></a></li>';
+  		                membersCache[item.id] = item;
+  		              });
+  		              ul.html(li);
+  		              
+  		              //获取群员
+  		              othis.find('.layim-chat-members').html((data.result||[]).length + '人');
+  		              
+  		              //私聊
+  		              ul.find('li').on('click', function(){
+  		                var uid = $(this).data('uid'), info = membersCache[uid]
+  		                popchat({
+  		                  name: info.username
+  		                  ,type: 'friend'
+  		                  ,avatar: info.avatar
+  		                  ,id: info.id
+  		                });
+  		                hide();
+  		              });
+  		              
+  		              layui.each(call.members, function(index, item){
+  		                item && item(data);
+  		              });
+  		        	}else{
+  		        		parent.layer.msg('异常,请重新打开',{icon: 7,time: 2000});
+  		        	}
+  		        }
+  		    });
+
               
-              //获取群员
-              othis.find('.layim-chat-members').html(res.members||(res.list||[]).length + '人');
-              
-              //私聊
-              ul.find('li').on('click', function(){
-                var uid = $(this).data('uid'), info = membersCache[uid]
-                popchat({
-                  name: info.username
-                  ,type: 'friend'
-                  ,avatar: info.avatar
-                  ,id: info.id
-                });
-                hide();
-              });
-              
-              layui.each(call.members, function(index, item){
-                item && item(res);
-              });
-            });
+
             layero.on('mousedown', function(e){
               stope(e);
             });
@@ -2055,32 +2103,121 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     
     
     
-      //选择分组后的操作
-      ,moveGroup: function(othis, e){
-    	 var html = '<ul data-id="'+ othis[0].id +'" data-index="'+ othis.data('index') +'">';
-        //循环分组，生成标签,分组全局变量：friendInfo,如果只有一个分组，不显示 <li layim-event="editGroup" data-type="delet">删除分组</li>
-        //<h5 layim-event="spread" lay-type="false" id="1"><i class="layui-icon"></i><span>前端码屌</span><em>(<cite class="layim-count"> 5</cite>)</em></h5>
-        if(friendInfo.length<1){
-      	  return;
-        }
-        for(var i = 0;i < friendInfo.length;i++){
-      	  var temp = friendInfo[i];
-      	   html = html + '<li style="padding-left:15px"><h5 layim-event="spread" lay-type="false" id=""><i class="layui-icon">&#xe602;</i><span>'+temp.groupname+'</span></h5>';
-        }
-        html = html + "</ul>";
-        var atEl = document.getElementById("layui-layim-list-move"); 
-    	layer.tips(html, atEl, {
-            tips: 2
-            ,time: 0
-            ,anim: 5
-            ,fixed: true
-            ,skin: 'layui-box layui-layim-contextmenu'
-            ,success: function(layero){
-              /*var stopmp = function(e){ stope(e); };
-              layero.off('mousedown', stopmp).on('mousedown', stopmp);*/
-            }
-          });
-    }
+      //选择分组后的操作(移至哪个分组)
+     ,moveGroup: function(othis, e){
+    	 var type = othis.data('type');
+    	 var typeid = othis[0].id;
+    	 typeid = 6;
+    	 if(type>0){
+    		 var params ={
+   			  	  id:1,
+   			  	 typeid:typeid
+   			     };
+   			var json = nui.encode({
+   			          params:params,
+   			          edit:"update",
+   					  token:token
+   				}); 
+   			 $.ajax({
+   		        type:'post',
+   		        dataType:'json',
+   		        contentType:'application/json',
+   		        cache : false,
+   		        data: json,
+   		        url:baseUrl + "com.hs.common.env.editUserFriend.biz.ext",
+   		        async:false, 
+   		        success:function(data){
+   		        	//把右键显示隐藏,没有隐藏
+   		        	 var hide = function(){
+   		        	      layer.closeAll('tips');
+   		        	    };
+   			      
+   			  }
+   		    }); 
+    	 }
+    	  
+     }
+     //删除好友，删除两条
+     ,deletFriden:function(othis, e){
+    	 var type = othis.data('type');
+    	 var userid = currImCode;
+    	 if(type>0){
+    		 var params ={
+    			 friendid:type,
+   			  	 userid:userid
+   			     };
+   			var json = nui.encode({
+   			          params:params,
+   			          edit:"delet",
+   					  token:token
+   				}); 
+   			 $.ajax({
+   		        type:'post',
+   		        dataType:'json',
+   		        contentType:'application/json',
+   		        cache : false,
+   		        data: json,
+   		        url:baseUrl + "com.hs.common.env.editUserFriend.biz.ext",
+   		        async:false, 
+   		        success:function(data){
+   		        	//把右键显示隐藏
+   		        	 var hide = function(){
+   		        	      layer.closeAll('tips');
+   		        	    };
+   			      
+   			  }
+   		    }); 
+    	 } 
+     }
+     //修改备注
+     ,updateName:function(othis, e){
+    	 var friendid = othis.data('type');
+    	 var userid = currImCode;
+    	 var groupTemp = {};
+    	 groupTemp.friendid = friendid;
+    	 groupTemp.userid = userid;
+    	//弹出修改备注页面
+       	layer.open({
+       		  type: 2, 
+       		  title: '修改备注',
+       		  content: htmlStrFriendName, //这里content是一个普通的String
+       		  area:['400px','200px'],
+       		  maxmin:true,
+       		  success: function (layero, index) {
+       		  // 获取子页面的iframe
+       		  var iframe = window['layui-layer-iframe' + index];
+       		  // 向子页面的全局函数child传参
+       		  iframe.setData(groupTemp);
+       		  }
+       		});
+     }
+     
+     ,queryUserInfo:function(othis, e){
+    	 var type = othis.data('type');
+    	 var params = {};
+    	 params.id = currImCode;
+    	 params.name = currUserName;
+    	 params.baseUrl = baseUrl;
+    	 params.id = 7;
+    	 params.token = token;
+    	//弹出修改备注页面
+       	layer.open({
+       		  type: 2, 
+       		  title: '查看资料',
+       		  content: userInfoUrl, //这里content是一个普通的String
+       		  area:['800px','600px'],
+       		  maxmin:true,
+       		  success: function (layero, index) {
+       		  // 获取子页面的iframe
+       		  var iframe = window['layui-layer-iframe' + index];
+       		  // 向子页面的全局函数child传参
+       		  iframe.setDataSys(params);
+       		  }
+       		});
+     }
+     
+     
+     
     //联系人右键菜单操作
     ,editGroup: function(othis, e){
       var local = layui.data('layim')[cache.mine.id] || {};
@@ -2181,27 +2318,13 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
    }
     
     ,showList:function(othis,e){
-    	 var local = layui.data('layim')[cache.mine.id] || {};
-         var type = othis.data('type'), index = othis.data('index');
-         var list = othis.attr('data-list') || othis.index(), data = {};
-         if(type === 'friend'){
-           data = cache[type][index].list[list];
-         } else if(type === 'group'){
-           data = cache[type][list];
-         } else if(type === 'history'){
-           data = (local.history || {})[index] || {};
-         }
-         data.name = data.name || data.username || data.groupname;
-         if(type !== 'history'){
-           data.type = type;
-         }
-    	var local = layui.data('layim')[cache.mine.id] || {};
-        var parent = othis.parent(), type = othis.data('type');
-    	if(!isShow){
+        /*var type = othis.data('type');
+        var urerId = type.substring(12,type.length);
+    	if(isShow){
   		  isShow = true; 
   		  document.getElementById("showGroup").style.display='none';
   	  }else{
-  		  isShow = false;
+  		  isShow = true;
   		  var html = '<ul>';
   	      //循环分组，生成标签,分组全局变量：friendInfo,如果只有一个分组，不显示 <li layim-event="editGroup" data-type="delet">删除分组</li>
   	      //<h5 layim-event="spread" lay-type="false" id="1"><i class="layui-icon"></i><span>前端码屌</span><em>(<cite class="layim-count"> 5</cite>)</em></h5>
@@ -2210,34 +2333,71 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
   	      }
   	      for(var i = 0;i < friendInfo.length;i++){
   	    	  var temp = friendInfo[i];
-  	    	   html = html + '<li layim-event="moveGroup" style="padding-left:15px"><h5  lay-type="false" id=""><i class="layui-icon">&#xe602;</i><span>'+temp.groupname+'</span></h5>';
+  	    	   html = html + '<li layim-event="moveGroup" style="padding-left:15px" data-type="'+urerId+'"><h5  lay-type="false" id=""><i class="layui-icon">&#xe602;</i><span>'+temp.groupname+'</span></h5>';
   	    	   
   	      }
   	      html = html + "</ul>";
   	      //var atEl = document.getElementById("layui-layim-list-move"); 
-  	      $("#showGroup").html(html);
-  	      document.getElementById("showGroup").style.display = "";
-  	  }
+  	      $("#layui-layim-list-move").html(html);
+  	      //document.getElementById("showGroup").style.display = "";
+  	  }*/
+      var uerId = othis.data('type');
+      //var urerId = type.substring(12,type.length);
+      var html = '<span id="test" layim-event="showList" data-type="'+uerId+'">移至分组</span>';
+   	  if(!isShow){
+   		  isShow = true; 
+   		 // document.getElementById("showGroup").style.display='none';
+   		  $("#layui-layim-list-move").html(html);
+   	  }else{
+   		     isShow = false;
+   			 html = html +'<ul>';
+   	      //循环分组，生成标签,分组全局变量：friendInfo,如果只有一个分组，不显示 <li layim-event="editGroup" data-type="delet">删除分组</li>
+   	      //<h5 layim-event="spread" lay-type="false" id="1"><i class="layui-icon"></i><span>前端码屌</span><em>(<cite class="layim-count"> 5</cite>)</em></h5>
+   	      if(friendInfo.length<1){
+   	    	  return;
+   	      }
+   	      for(var i = 0;i < friendInfo.length;i++){
+   	    	  var temp = friendInfo[i];
+ 	    	   html = html + '<li layim-event="moveGroup" id='+temp.id+' style="padding-left:15px" data-type="'+uerId+'"><h5  lay-type="false" id=""><i class="layui-icon">&#xe602;</i><span>'+temp.groupname+'</span></h5>';
+ 		   
+   	      }
+   	      html = html + "</ul>";
+   	      //var atEl = document.getElementById("layui-layim-list-move"); 
+   	     // $("#showGroup").html(html);
+   	     // document.getElementById("showGroup").style.display = "";
+   	      $("#layui-layim-list-move").html(html);
+   	  }
     }
     
     //群聊右键菜单操作
     ,editGroupChat: function(othis, e){
+    	var editGroupChatId=othis[0].id;//点击的群组ID
       var local = layui.data('layim')[cache.mine.id] || {};
       var parent = othis.parent(), type = othis.data('type');
       var editGroupChatUrl = webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/editGroupChat.jsp";
       var addGroupChatUrl = webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/addGroupChat.jsp";
-      if(type === 'updat'){
-    	  var groupTemp = {};
-    	  groupTemp = {
-    		    "group_name":"华胜古天乐粉丝群1群",
-    		    "group_man_id":"",
-    			"id":25
+ 	  var groupTemp = {};
+      for(var i = 0;i<groupInfo.length;i++){
+    	  if(groupInfo[i].id==editGroupChatId){
+    	 	 groupTemp.id = groupInfo[i].id;
+    	 	 groupTemp.groupName = groupInfo[i].groupname;
+    	 	 groupTemp.avatar = groupInfo[i].avatar;
+    	 	 groupTemp.remark = groupInfo[i].remark;
     	  }
+      }
+      if(type === 'updat'){
+   
+/*    	  groupTemp = {
+    			  "id" : 1,
+    		    "groupName":"华胜古天乐粉丝群1群",
+    		    "avatar":"",
+    			"remark":"华胜古天乐粉丝1群"
+    	  }*/
       	layer.open({
       		  type: 2, 
-      		  title: '修改',
+      		  title: '修改群资料',
       		  content: editGroupChatUrl, //这里content是一个普通的String
-      		  area:['600px','500px'],
+      		  area:['400px','400px'],
       		  maxmin:true,
       		  success: function (layero, index) {
       		  // 获取子页面的iframe
@@ -2259,8 +2419,55 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       		  var iframe = window['layui-layer-iframe' + index];
       		  // 向子页面的全局函数child传参
       		  //iframe.setData(groupTemp);
-      		  }
-      		});    
+      		  },
+	    	  end: function () {
+		        	var group={
+			        		avatar: "http://tva3.sinaimg.cn/crop.64.106.361.361.50/7181dbb3jw8evfbtem8edj20ci0dpq3a.jpg",
+							groupname: "华胜古天乐粉丝群",
+							historyTime: 1558335578328,
+							id: "12333333",
+							members: 0,
+							name: "华胜古天乐粉丝群",
+							type: "group",
+			        	}
+		        	popchat(group);
+	    		  }
+	      		});    
+      } else if(type === 'delete') {
+    	  layer.confirm('确定退出此群聊吗？', {
+    		  btn: ['确定', '取消'] //可以无限个按钮
+    		  ,btn2: function(index, layero){
+      			layer.msg('车道', {
+  				  icon: 6,
+  				  time:1//2秒关闭（如果不配置，默认是3秒）
+  				}, function(){
+  				  //do something
+  				}); 
+    		  }
+    		}, function(index, layero){
+			    $.ajax({
+			        type:'post',
+			        dataType:'json',
+			        contentType:'application/json',
+			        cache : false,
+			        async:false, 
+			        data: JSON.stringify({
+			        	userId:currImCode,
+			        	groupId : groupTemp.id     	
+			        }),
+			        url:baseUrl + "com.hs.common.env.deleteGroup.biz.ext",
+			        success:function(data){
+			        	if(data.errCode=="S"){
+						    layer.msg('退出群聊成功！',{icon: 1,time: 2000});
+			        	}else{
+			        		layer.msg('退出异常',{icon: 7,time: 2000});
+			        	}
+			        }
+			    });
+    		}, function(index){
+    		layer.msg('55',{icon: 7,time: 2000});
+    		});
+
       }
       
       layer.closeAll('tips');

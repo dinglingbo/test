@@ -55,7 +55,10 @@
   	  	     createdate ,  	        
   	  	     createuser ,  	        
   	  	     updatedate ,  	        
-  	  	     updateuser   	        
+  	  	     updateuser,
+  	  	     province,
+  	  	     city,
+  	  	     area
   	  
   </sql>
 
@@ -63,8 +66,8 @@
 		select  <include refid="Base_Column_List" />  from user_info where id = #{value}
 	</select>
 	
-	<select id="queryByUid"  parameterType="long" resultMap="userInfoForFriend">
-		select  uid , profilephoto, nickname, signature from user_info where uid = #{id}
+	<select id="queryByUid"   resultType="com.chedao.websocket.webserver.user.model.UserInfoEntity">
+		select <include refid="Base_Column_List"/> from user_info where uid = #{value}
 	</select>
 
 	<select id="queryBoxUserInfoByUid"  parameterType="long" resultMap="userInfoForFriend">
@@ -138,7 +141,7 @@
 	</insert>
 	 
 	<update id="update" parameterType="com.chedao.websocket.webserver.user.model.UserInfoEntity">
-		update user_info 
+		update qiqiim.user_info
 		<set>
 			<if test="uid != null">`uid` = #{uid}, </if>
 			<if test="deptid != null">`deptid` = #{deptid}, </if>
@@ -155,12 +158,14 @@
 			<if test="email != null">`email` = #{email}, </if>
 			<if test="remark != null">`remark` = #{remark}, </if>
 			<if test="profilephoto != null">`profilephoto` = #{profilephoto}, </if>
-			<if test="createdate != null">`createdate` = #{createdate}, </if>
 			<if test="createuser != null">`createuser` = #{createuser}, </if>
 			<if test="updatedate != null">`updatedate` = #{updatedate}, </if>
-			<if test="updateuser != null">`updateuser` = #{updateuser}</if>
+			<if test="updateuser != null">`updateuser` = #{updateuser},</if>
+			<if test="province != null">`province` = #{province}, </if>
+			<if test="city != null">`city` = #{city}, </if>
+			<if test="area != null">`area` = #{area}</if>
 		</set>
-		where id = #{id}
+		where uid = #{id}
 	</update>
 	
 	<delete id="delete">

@@ -16,6 +16,36 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class UserFriendController extends BaseController {
     @Autowired
    private UserFriendServiceImpl userFriendServiceImpl;
+
+
+    //添加好友，新增两条数据,添加好友时，要确定是在那个分组下的好友
+    @RequestMapping(value="/save", produces="application/json;charset=UTF-8", method = RequestMethod.POST)
+    @ResponseBody
+    public Object save(@RequestBody UserFriendEntity userFriend){
+
+        StringBuilder errCode = new StringBuilder();
+        try{
+            for (int i = 0;i<2;i++){
+                if(i==0){
+                    userFriendServiceImpl.save(userFriend);
+                }else{
+                   UserFriendEntity userf = new UserFriendEntity();
+                   userf.setFriendid(userFriend.getUserid());
+                   userf.setFriendname(userFriend.getUsername());
+                   userf.setUserid(userFriend.getFriendid());
+                   userf.setUsername(userFriend.getFriendname());
+                    userFriendServiceImpl.save(userf);
+                }
+            }
+
+        }catch (Exception e){
+            errCode.append("E");
+            return errCode;
+        }
+        errCode.append("S");
+        return errCode;
+    }
+
     //更换分组
     @RequestMapping(value="/update", produces="application/json;charset=UTF-8", method = RequestMethod.POST)
     @ResponseBody
@@ -32,5 +62,21 @@ public class UserFriendController extends BaseController {
         return errCode;
     }
 
+    //删除好友，删除两条数据
+    @RequestMapping(value="/delet", produces="application/json;charset=UTF-8", method = RequestMethod.POST)
+    @ResponseBody
+    public Object delet(@RequestBody UserFriendEntity userFriend){
+
+        StringBuilder errCode = new StringBuilder();
+        try{
+            userFriendServiceImpl.delete(userFriend);
+        }catch (Exception e){
+            errCode.append("E");
+            return errCode;
+        }
+        errCode.append("S");
+        return errCode;
+        // return "pppp";
+    }
 
 }

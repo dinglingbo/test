@@ -479,9 +479,10 @@
         	    
         	   var money = parseFloat(document.getElementById("prdt").innerHTML) + parseFloat(document.getElementById("item").innerHTML) + parseFloat(document.getElementById("part").innerHTML);
         	   var expenseAmt = parseFloat(document.getElementById("expense").innerHTML);
-        	   if(params.type && params.type==1){
+        	   /* if(params.type && params.type==1){
     		       money = parseFloat(money) + parseFloat(expenseAmt);      
-    		    }
+    		    } */
+    		     money = parseFloat(money) + parseFloat(expenseAmt); 
         	  // document.getElementById("cash").innerHTML = money;
         	   document.getElementById("cash1").innerHTML = money;
         	   money = transform(money+"");
@@ -913,9 +914,10 @@
     		             if(expAmt>0){
     		                expAmt = expAmt.toFixed(2);
     		                document.getElementById("expense").innerHTML = expAmt;
-    		                if(params.type && params.type==1){
+    		                /* if(params.type && params.type==1){
     		                   getSubtotal(params);
-    		                }
+    		                } */
+    		                getSubtotal(params);
     		             }
     		            }
     		       }

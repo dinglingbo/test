@@ -14,8 +14,8 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
  */
 public class UserInfoEntity extends BaseModel {
 	private static final long serialVersionUID = 1L;
-	
- 
+
+	private Long id;
 	//用户id
 	private Long uid;
 	//部门
@@ -46,6 +46,34 @@ public class UserInfoEntity extends BaseModel {
 	private String remark;
 	//个人头像
 	private String profilephoto;
+
+	private String  province;
+	private String city;
+	private String area;
+
+	public String getProvince() {
+		return province;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public String getArea() {
+		return area;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
+	}
 
 	/**
 	 * 设置：

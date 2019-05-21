@@ -9,9 +9,9 @@
   - Description:
 -->
 <head>
-<title>添加好友</title>
+<title>修改备注</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <%@include file="/common/sysVarCommon.jsp" %>
+  <%@include file="/common/sysCommon.jsp" %>
 <link href="<%=request.getContextPath()%>/layim-v3.8.0/dist/css/layui.css?v=1.0.11" rel="stylesheet" type="text/css" />
     <script src="<%=request.getContextPath()%>/layim-v3.8.0/dist/layui.js?v=1.0.1"></script>
     <style type="text/css">
@@ -22,7 +22,7 @@
 <div >
 <form class="layui-form" action="">
   <div class="layui-tab-item layui-show" style="margin-top: 20px;margin-left: 20px;height:100px">
-	<input type="text" name="friend" id="groud" required  lay-verify="required" placeholder="请输入分组名称"  class="layui-input" style="width: 250px;display: inline-block;margin-top:20px,margin-left: 10px;">
+	<input type="text" name="friend" id="groud" required  lay-verify="required" placeholder="请输入名称备注"  class="layui-input" style="width: 250px;display: inline-block;margin-top:20px,margin-left: 10px;">
 	<button class="layui-btn" lay-submit lay-filter="find" style="width: 80px;" >确定</button>
   </div>
   </form>
@@ -49,7 +49,7 @@ layui.use(['form', 'upload'], function(){  //如果只加载一个模块，可�
   
   //监听提交按钮
    form.on('submit(find)', function(data){
-	  var name  = $('#groud').val();
+	  var friendname  = $('#groud').val();
 	  //如果参数放在URL后面，需要转码
 	 // name = encodeURI(name); 
 	  /* var userType = {};
@@ -63,10 +63,16 @@ layui.use(['form', 'upload'], function(){  //如果只加载一个模块，可�
 	  //修改
 	  //var json = {};
 	  var params = {};
-	  if(user && user.id>0){
-	    params ={
-	  	  name:name,
-	  	  id:user.id,
+	   /* params ={
+	  	  friendname:friendname,
+	  	  userid:user.userid,
+	  	  friendid:user.friendid,
+	  	  edit:"update"
+	     }; */
+	      params ={
+	  	  friendname:friendname,
+	  	  userid:3,
+	  	  friendid:7,
 	  	  edit:"update"
 	     };
 	      json = nui.encode({
@@ -74,17 +80,6 @@ layui.use(['form', 'upload'], function(){  //如果只加载一个模块，可�
 			  edit:"update",
 			  token:token
 		}); 
-	  }else{
-		   params ={
-		  	  name:name,
-		  	  userid:currImCode,
-		     };
-		    json = nui.encode({
-		          params:params,
-				  token:token
-			}); 
-	  
-	  }
 	  
     //查询
     $.ajax({
@@ -93,7 +88,7 @@ layui.use(['form', 'upload'], function(){  //如果只加载一个模块，可�
         contentType:'application/json',
         cache : false,
         data: json,
-        url:baseUrl + "com.hs.common.env.editUserType.biz.ext",
+        url:baseUrl + "com.hs.common.env.editUserFriend.biz.ext",
         async:false, 
         success:function(data){
         	if(data.errCode=="S"){

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="AddCreateChat" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryGroupUserInfo" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <location x="45" y="150"/>
     <size height="28" width="28"/>
@@ -17,6 +18,7 @@
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="java.util.List" name="result" type="query" valueType="Java">result</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -29,7 +31,7 @@
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="sendPost" displayName="sendPostByJson" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="sendPost" displayName="sendPost" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" description="" id="link0" name="link0" displayName="link4" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>invokePojo0</targetNode>
@@ -72,20 +74,12 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">http://localhost:8089/GroupInfo/addGroupInfo</process:from>
+      <process:from type="literal" pattern="reference">http://localhost:8089/usermessage/queryGroupUserinfoList</process:from>
       <process:to type="query">httpStr</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">members</process:from>
-      <process:to type="query">params/groupUser</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">name</process:from>
-      <process:to type="query">params/name</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">groupManager</process:from>
-      <process:to type="query">params/groupManager</process:to>
+      <process:from type="query" pattern="reference">groupId</process:from>
+      <process:to type="query">params/groupId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -103,7 +97,11 @@
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">retData</process:from>
+      <process:from type="query" pattern="reference">returnResult/data</process:from>
+      <process:to type="query">result</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">returnResult/errCode</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>
   </nodes>
@@ -143,21 +141,20 @@
   <process:info author="Administrator" createTime="2019-03-11 11:15:27" date="2019-03-11Z" description="" name="getStandardPkg" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="httpStr" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="retData" primitiveType="String"/>
-    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="returnResult"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="maintenanceUrl" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="url" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="json" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="name" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="retData" primitiveType="String"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="returnResult"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input anyType="java.util.HashMap" description="" isArray="true" name="members"/>
-    <process:input anyType="java.util.HashMap" description="" isArray="false" name="groupManager"/>
-    <process:input description="" isArray="false" name="name" primitiveType="String"/>
+    <process:input description="" isArray="false" name="groupId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
+    <process:output anyType="java.util.List" description="" isArray="false" name="result"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

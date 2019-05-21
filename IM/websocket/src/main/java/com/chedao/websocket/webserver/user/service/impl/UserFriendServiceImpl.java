@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 @Service("userFriendServiceImpl")
-public class UserFriendServiceImpl implements UserFriendService {
+public class UserFriendServiceImpl implements UserFriendService<UserFriendEntity> {
     @Resource
     private UserFriendDao userFriendDao;
 
@@ -28,5 +28,8 @@ public class UserFriendServiceImpl implements UserFriendService {
     }
 
 
-
+    @Override
+    public int delete(UserFriendEntity userFriend) {
+        return userFriendDao.delete(userFriend);
+    }
 }

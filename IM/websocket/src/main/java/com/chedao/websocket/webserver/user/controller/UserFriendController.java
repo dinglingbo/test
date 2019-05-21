@@ -78,5 +78,4 @@ public class UserFriendController extends BaseController {
         return errCode;
         // return "pppp";
     }
-
 }

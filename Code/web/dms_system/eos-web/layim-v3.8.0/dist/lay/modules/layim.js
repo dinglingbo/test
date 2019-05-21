@@ -2180,6 +2180,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     	 params.name = currUserName;
     	 params.baseUrl = baseUrl;
     	 params.id = 7;
+    	 params.token = token;
     	//弹出修改备注页面
        	layer.open({
        		  type: 2, 

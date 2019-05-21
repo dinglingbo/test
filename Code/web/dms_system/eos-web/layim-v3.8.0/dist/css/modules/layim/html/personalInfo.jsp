@@ -146,17 +146,20 @@ layui.use(['form', 'upload'], function(){
      var params = temp;
       params.id=dataSys.id,
       params.updateuser = dataSys.name;
-	  var json = {
+	  /* var json = {
 	          params:params,
 			  token:dataSys.token
-	  }; 
+	  };  */
 		
      $.ajax({
         type:'post',
         dataType:'json',
         contentType:'application/json',
         cache : false,
-        data: json,
+        data: JSON.stringify({
+		        	params:params,
+		        	token:dataSys.token
+		      }),
         url:dataSys.baseUrl + "com.hs.common.env.upateUserInfo.biz.ext",
         async:false, 
         success:function(data){

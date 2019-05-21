@@ -11,7 +11,8 @@
 <head>
 <title>添加好友</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <%@include file="/common/sysVarCommon.jsp" %>
+    <script src="<%=request.getContextPath()%>/common/nui/jquery/jQuery-2.2.0.min.js?v=1.0.1"></script>
+	<%@include file="/common/sysVarCommon.jsp" %>
 <link href="<%=request.getContextPath()%>/layim-v3.8.0/dist/css/layui.css?v=1.0.11" rel="stylesheet" type="text/css" />
     <script src="<%=request.getContextPath()%>/layim-v3.8.0/dist/layui.js?v=1.0.1"></script>
     <style type="text/css">
@@ -22,7 +23,7 @@
 <div >
 <form class="layui-form" action="">
   <div class="layui-tab-item layui-show" style="margin-top: 20px;margin-left: 20px;height:100px">
-	<input type="text" name="groudName" id="groudName" required  lay-verify="required" placeholder="请输入分组名称"  class="layui-input" style="width: 250px;display: inline-block;margin-top:20px,margin-left: 10px;">
+	<input type="text" name="groudName" id="groudName" required  lay-verify="required" placeholder="请输入群昵称"  class="layui-input" style="width: 250px;display: inline-block;margin-top:20px,margin-left: 10px;">
 	<button class="layui-btn" lay-submit lay-filter="find" style="width: 80px;" >确定</button>
   </div>
   </form>
@@ -30,8 +31,8 @@
 <script>
 var baseUrl = apiPath + repairApi + "/";
 var groupTemp = {};
-function setData(groupTemp){
-  groupTemp = groupTemp;
+function setData(group){
+  groupTemp = group;
   			    $.ajax({
 			        type:'post',
 			        dataType:'json',

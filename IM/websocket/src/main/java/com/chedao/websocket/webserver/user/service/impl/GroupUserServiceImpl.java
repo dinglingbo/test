@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Map;
 
 @Service("GroupUserServiceImpl")
 public class GroupUserServiceImpl implements GroupUserService {
@@ -34,5 +33,17 @@ public class GroupUserServiceImpl implements GroupUserService {
     public List<GroupUserEntity> queryGroupInfo(int userId ) {
 
         return groupUserDao.queryGroupInfo(userId);
+    }
+
+    @Override
+    public List<GroupUserEntity> queryGroupName(String userId, String groupId) {
+
+        return groupUserDao.queryGroupName(userId,groupId);
+    }
+
+    @Override
+    public int updateGroupName(String userId, String groupId,String name) {
+
+        return groupUserDao.updateGroupName(userId,groupId,name);
     }
 }

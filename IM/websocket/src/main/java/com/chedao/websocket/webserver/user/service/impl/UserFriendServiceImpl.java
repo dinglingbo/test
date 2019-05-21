@@ -6,6 +6,7 @@ import com.chedao.websocket.webserver.user.service.UserFriendService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service("userFriendServiceImpl")
 public class UserFriendServiceImpl implements UserFriendService<UserFriendEntity> {
@@ -31,5 +32,9 @@ public class UserFriendServiceImpl implements UserFriendService<UserFriendEntity
     @Override
     public int delete(UserFriendEntity userFriend) {
         return userFriendDao.delete(userFriend);
+    }
+
+    public int isFriend(String userId, String friendId){
+        return userFriendDao.isFriend(userId,friendId);
     }
 }

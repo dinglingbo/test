@@ -182,7 +182,7 @@
     <!-- 好友查询 -->
     <select id="queryUserInfo" resultType="com.chedao.websocket.webserver.user.model.UserInfoEntity">
 		  select
-		   	id as id,
+		   	uid as id,
 		   	uid as uid,
 		   	deptid as deptid,
 		   	name as name,

@@ -1,6 +1,7 @@
 package com.chedao.websocket.webserver.user.controller;
 
 import com.chedao.websocket.webserver.base.controller.BaseController;
+import com.chedao.websocket.webserver.user.model.GroupInfoEntity;
 import com.chedao.websocket.webserver.user.model.UserFriendEntity;
 import com.chedao.websocket.webserver.user.service.impl.UserFriendServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Controller
@@ -77,5 +81,32 @@ public class UserFriendController extends BaseController {
         errCode.append("S");
         return errCode;
         // return "pppp";
+    }
+    /**
+     * 判断是否为好友
+     */
+    @ResponseBody
+    @RequestMapping(value = "/isFriend", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
+    public Map<String,Object> updataGroupInfo(@RequestBody Map<String,Object> params){
+        Map<String, Object> map = new HashMap<String, Object>();
+        StringBuilder errCode= new StringBuilder();
+        String userId = (String) params.get("userId");
+        userId=userId.replace("\"", "");
+        String friendId = (String) params.get("friendId");
+        friendId=friendId.replace("\"", "");
+        try{
+            Integer count = userFriendServiceImpl.isFriend(userId,friendId);
+            if(count>0){
+                map.put("isFriend", true);
+            }else{
+                map.put("isFriend", true);
+            }
+        }catch (Exception e){
+            errCode.append("E");
+            map.put("errCode", errCode);
+        }
+        errCode.append("S");
+        map.put("errCode", errCode);
+        return map;
     }
 }

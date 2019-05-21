@@ -1816,33 +1816,52 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
             }
             members.data = $.extend(members.data, {
               id: thatChat.data.id
-            });
-            post(members, function(res){
-              layui.each(res.list, function(index, item){
-                li += '<li data-uid="'+ item.id +'"><a href="javascript:;"><img src="'+ item.avatar +'"><cite>'+ item.username +'</cite></a></li>';
-                membersCache[item.id] = item;
-              });
-              ul.html(li);
+            });       	   
+              //查询群成员
+  		    $.ajax({
+  		        type:'post',
+  		        dataType:'json',
+  		        contentType:'application/json',
+  		        cache : false,
+  		        async:false, 
+  		        data: JSON.stringify({
+  		        	groupId:members.data.id
+  		        }),
+  		        url:baseUrl + "com.hs.common.env.queryGroupUserInfo.biz.ext",
+  		        success:function(data){
+  		        	if(data.errCode=="S"){
+  		              layui.each(data.result, function(index, item){
+  		                li += '<li data-uid="'+ item.id +'"><a href="javascript:;"><img src="'+ item.avatar +'"><cite>'+ item.username +'</cite></a></li>';
+  		                membersCache[item.id] = item;
+  		              });
+  		              ul.html(li);
+  		              
+  		              //获取群员
+  		              othis.find('.layim-chat-members').html((data.result||[]).length + '人');
+  		              
+  		              //私聊
+  		              ul.find('li').on('click', function(){
+  		                var uid = $(this).data('uid'), info = membersCache[uid]
+  		                popchat({
+  		                  name: info.username
+  		                  ,type: 'friend'
+  		                  ,avatar: info.avatar
+  		                  ,id: info.id
+  		                });
+  		                hide();
+  		              });
+  		              
+  		              layui.each(call.members, function(index, item){
+  		                item && item(data);
+  		              });
+  		        	}else{
+  		        		parent.layer.msg('异常,请重新打开',{icon: 7,time: 2000});
+  		        	}
+  		        }
+  		    });
+
               
-              //获取群员
-              othis.find('.layim-chat-members').html(res.members||(res.list||[]).length + '人');
-              
-              //私聊
-              ul.find('li').on('click', function(){
-                var uid = $(this).data('uid'), info = membersCache[uid]
-                popchat({
-                  name: info.username
-                  ,type: 'friend'
-                  ,avatar: info.avatar
-                  ,id: info.id
-                });
-                hide();
-              });
-              
-              layui.each(call.members, function(index, item){
-                item && item(res);
-              });
-            });
+
             layero.on('mousedown', function(e){
               stope(e);
             });
@@ -2363,6 +2382,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     	 	 groupTemp.id = groupInfo[i].id;
     	 	 groupTemp.groupName = groupInfo[i].groupname;
     	 	 groupTemp.avatar = groupInfo[i].avatar;
+    	 	 groupTemp.remark = groupInfo[i].remark;
     	  }
       }
       if(type === 'updat'){
@@ -2414,25 +2434,40 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
 	    		  }
 	      		});    
       } else if(type === 'delete') {
-		    $.ajax({
-		        type:'post',
-		        dataType:'json',
-		        contentType:'application/json',
-		        cache : false,
-		        async:false, 
-		        data: JSON.stringify({
-		        	userId:currImCode,
-		        	groupId : 11     	
-		        }),
-		        url:baseUrl + "com.hs.common.env.deleteGroup.biz.ext",
-		        success:function(data){
-		        	if(data.errCode=="S"){
-					    layer.msg('退出群聊成功！',{icon: 1,time: 2000});
-		        	}else{
-		        		layer.msg('退出异常',{icon: 7,time: 2000});
-		        	}
-		        }
-		    });
+    	  layer.confirm('确定退出此群聊吗？', {
+    		  btn: ['确定', '取消'] //可以无限个按钮
+    		  ,btn2: function(index, layero){
+      			layer.msg('车道', {
+  				  icon: 6,
+  				  time:1//2秒关闭（如果不配置，默认是3秒）
+  				}, function(){
+  				  //do something
+  				}); 
+    		  }
+    		}, function(index, layero){
+			    $.ajax({
+			        type:'post',
+			        dataType:'json',
+			        contentType:'application/json',
+			        cache : false,
+			        async:false, 
+			        data: JSON.stringify({
+			        	userId:currImCode,
+			        	groupId : groupTemp.id     	
+			        }),
+			        url:baseUrl + "com.hs.common.env.deleteGroup.biz.ext",
+			        success:function(data){
+			        	if(data.errCode=="S"){
+						    layer.msg('退出群聊成功！',{icon: 1,time: 2000});
+			        	}else{
+			        		layer.msg('退出异常',{icon: 7,time: 2000});
+			        	}
+			        }
+			    });
+    		}, function(index){
+    		layer.msg('55',{icon: 7,time: 2000});
+    		});
+
       }
       
       layer.closeAll('tips');

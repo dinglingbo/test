@@ -343,6 +343,9 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
         ,'{{# if(d.base && d.base.uploadFile){ }}'
         ,'<span class="layui-icon layim-tool-image" title="发送文件" layim-event="image" data-type="file">&#xe61d;<input type="file" name="file"></span>'
          ,'{{# }; }}'
+         ,'{{# if(d.base && d.base.uploadFile){ }}'
+         ,'<span class="layui-icon layim-tool-image" title="添加好友" layim-event="addFriend" id="addFriend">&#xe770;</span>'
+         ,'{{# }; }}'
          ,'{{# if(d.base && d.base.isAudio){ }}'
         ,'<span class="layui-icon layim-tool-audio" title="发送网络音频" layim-event="media" data-type="audio">&#xe6fc;</span>'
          ,'{{# }; }}'
@@ -738,7 +741,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       groupInfo.name = str.*/
       groupId = othis[0].id;
       var groupId1 = groupId.substring(11,groupId.length);
-      var html = '<ul data-id="'+ othis[0].id +'" data-index="'+ othis.data('index') +'"><li layim-event="editGroupChat" data-type="add">发起群聊</li><li layim-event="editGroupChat" id="'+groupId1+'" data-type="updat">修改群资料</li><li layim-event="editGroupChat" id="'+groupId1+'" data-type="delete">退出群聊</li></ul>';
+      var html = '<ul data-id="'+ othis[0].id +'" data-index="'+ othis.data('index') +'"><li layim-event="editGroupChat" data-type="add">发起群聊</li><li layim-event="editGroupChat" id="'+groupId1+'" data-type="updat">修改群资料</li><li layim-event="editGroupChat" id="'+groupId1+'" data-type="updateName">修改群昵称</li><li layim-event="editGroupChat" id="'+groupId1+'" data-type="delete">退出群聊</li></ul>';
       
       if(othis.hasClass('layim-null')) return;
       
@@ -803,7 +806,6 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
   //显示聊天面板
   var layimChat, layimMin, chatIndex, To = {}, popchat = function(data){
     data = data || {};
-    
     var chat = $('#layui-layim-chat'), render = {
       data: data
       ,base: cache.base
@@ -850,7 +852,6 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       listThat[0] || viewChatlog();
       setHistory(data);
       hotkeySend();
-      
       return chatIndex;
     }
     
@@ -869,6 +870,26 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       ,closeBtn: cache.base.brief ? false : 1
       ,content: laytpl('<ul class="layui-unselect layim-chat-list">'+ elemChatList +'</ul><div class="layim-chat-box">' + elemChatTpl + '</div>').render(render)
       ,success: function(layero){
+/*    	    //判断是否是好友
+    	    $.ajax({
+    	        type:'post',
+    	        dataType:'json',
+    	        contentType:'application/json',
+    	        cache : false,
+    	        async:false, 
+    	        data: JSON.stringify({
+    	        	userId : currImCode,
+    	        	friendId : data.id
+    	        }),
+    	        url:baseUrl + "com.hs.common.env.queryIsFriend.biz.ext",
+    	        success:function(data){
+    	        	if(data.isFriend){
+    	        		$("#addFriend").hide();
+    	        	}else{
+    	        		$("#addFriend").show();
+    	        	}
+    	        }
+    	    });*/
         layimChat = layero;
         
         layero.css({
@@ -936,11 +957,33 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
   
   //同步置灰状态
   var syncGray = function(data){
+      //判断是否是好友
+      $.ajax({
+          type:'post',
+          dataType:'json',
+          contentType:'application/json',
+          cache : false,
+          async:false, 
+          data: JSON.stringify({
+          	userId : currImCode,
+          	friendId : data.id
+          }),
+          url:baseUrl + "com.hs.common.env.queryIsFriend.biz.ext",
+          success:function(data){
+          	if(data.isFriend){
+          		$("#addFriend").hide();
+          	}else{
+          	}
+          }
+      });
     $('.layim-'+data.type+data.id).each(function(){
+
       if($(this).hasClass('layim-list-gray')){
         layui.layim.setFriendStatus(data.id, 'offline'); 
+
       }
     });
+
   };
   
   //重置聊天窗口大小
@@ -1963,6 +2006,26 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       });
     }
     
+    //添加好友
+    ,addFriend: function(){
+    	var thatChat = thisChat(), ul = thatChat.elem.find('.layim-chat-main ul');
+		var htmlStr = layui.cache.dir + 'css/modules/layim/html/applyFriend.jsp';
+			layer.open({
+			  type: 2, 
+			  title: '好友申请',
+			  content: htmlStr, //这里content是一个普通的String
+			  area:['400px','400px'],
+			  maxmin:true,
+			  success: function (layero, index) {
+			  // 获取子页面的iframe
+			  var iframe = window['layui-layer-iframe' + index];
+			  // 向子页面的全局函数child传参
+			  iframe.child(thatChat.data);
+			  
+			    }
+			});
+		}
+
     //音频和视频
     ,media: function(othis){
       var type = othis.data('type'), text = {
@@ -2377,6 +2440,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
       var parent = othis.parent(), type = othis.data('type');
       var editGroupChatUrl = webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/editGroupChat.jsp";
       var addGroupChatUrl = webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/addGroupChat.jsp";
+      var editGroupName = webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/editGroupName.jsp";
  	  var groupTemp = {};
       for(var i = 0;i<groupInfo.length;i++){
     	  if(groupInfo[i].id==editGroupChatId){
@@ -2469,6 +2533,20 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
     		layer.msg('55',{icon: 7,time: 2000});
     		});
 
+      } else if(type === 'updateName') {
+        	layer.open({
+        		  type: 2, 
+        		  title: '修改群昵称',
+        		  content: editGroupName, //这里content是一个普通的String
+        		  area:['400px','200px'],
+        		  maxmin:true,
+        		  success: function (layero, index) {
+        		  // 获取子页面的iframe
+        		  var iframe = window['layui-layer-iframe' + index];
+        		  // 向子页面的全局函数child传参
+        		  iframe.setData(groupTemp);
+        		  }
+        		});
       }
       
       layer.closeAll('tips');

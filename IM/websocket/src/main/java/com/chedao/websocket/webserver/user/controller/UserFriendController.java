@@ -99,7 +99,7 @@ public class UserFriendController extends BaseController {
             if(count>0){
                 map.put("isFriend", true);
             }else{
-                map.put("isFriend", true);
+                map.put("isFriend", false);
             }
         }catch (Exception e){
             errCode.append("E");

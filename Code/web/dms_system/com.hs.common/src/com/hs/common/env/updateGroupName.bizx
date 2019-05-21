@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryIsFriend" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="updateGroupName" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -18,7 +18,6 @@
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-      <process:return id="2" language="Boolean" name="isFriend" type="query" valueType="Primitive">isFriend</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -74,7 +73,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">http://localhost:8089/userfriend/isFriend</process:from>
+      <process:from type="literal" pattern="reference">http://localhost:8089/GroupUser/updateGroupName</process:from>
       <process:to type="query">httpStr</process:to>
     </process:copy>
     <process:copy>
@@ -82,8 +81,12 @@
       <process:to type="query">params/userId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">friendId</process:from>
-      <process:to type="query">params/friendId</process:to>
+      <process:from type="query" pattern="reference">groupId</process:from>
+      <process:to type="query">params/groupId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">name</process:from>
+      <process:to type="query">params/name</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -100,10 +103,6 @@
     <location x="375" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">returnResult/isFriend</process:from>
-      <process:to type="query">isFriend</process:to>
-    </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">returnResult/errCode</process:from>
       <process:to type="query">errCode</process:to>
@@ -148,18 +147,17 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="maintenanceUrl" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="url" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="name" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="retData" primitiveType="String"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="returnResult"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="userId" primitiveType="String"/>
-    <process:input description="" isArray="false" name="friendId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="groupId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="name" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
-    <process:output description="" isArray="false" name="isFriend" primitiveType="Boolean"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

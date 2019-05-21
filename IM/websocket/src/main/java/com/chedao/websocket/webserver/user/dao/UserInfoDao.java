@@ -18,7 +18,7 @@ import java.util.Map;
 public interface UserInfoDao extends BaseDao<UserInfoEntity> {
     List<UserInfoEntity> queryByUid(Map<String, Object> map);
 
-    Map queryByUid(Long uid);
+    UserInfoEntity queryByUid(Long uid);
 
     List<UserInfoExtendEntity> queryBoxUserInfoByUid(Map<String, Object> map);
     public List<UserInfoEntity> queryUserInfo(String name);

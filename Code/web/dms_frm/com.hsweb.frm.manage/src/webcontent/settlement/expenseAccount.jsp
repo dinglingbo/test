@@ -296,7 +296,7 @@
                                 .replace("[charOffAmt1]",data[i].charOffAmt || ""));
                             tBody.append(tr); 
                 }
-
+				document.getElementById("cash").innerHTML = parseFloat(document.getElementById("cash").innerHTML).toFixed(2);
                 document.getElementById("money").innerHTML = transform(document.getElementById("cash").innerHTML);
              }
 

@@ -190,29 +190,39 @@
                             <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
                                 精品名称：<input class="nui-textbox"><a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                             </div>
-                            <div class="nui-fit" id="hhhh">
-                                <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="list" showModified="false" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true"
-                                    allowCellWrap="true" url="">
+                            <div class="nui-fit">
+                                <div id="jpGrid" class="nui-datagrid" style="width:100%;height:100%;" multiSelect="true" selectOnLoad="false" showPager="false" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="data" showModified="false" onrowdblclick="" allowCellSelect="true"
+                                    editNextOnEnterKey="true" allowCellWrap="true" url="">
                                     <div property="columns">
-                                        <div type="checkcolumn">选择</div>
-                                        <div field="" name="" width="100px" headerAlign="center" header="精品名称"></div>
+                                        <div type="checkcolumn" width="8px">选择</div>
+                                        <div field="name" name="name" width="100px" headerAlign="center" header="精品名称"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div showCollapseButton="true">
-                            <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="list" showModified="false" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true"
-                                allowCellWrap="true" url="">
+                            <div id="jpDetailGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="false" allowcellwrap="true" allowcelledit="true"showPager="true" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="data" showModified="false" onrowdblclick="" allowCellSelect="true"
+                                editNextOnEnterKey="true" allowCellWrap="true" url="">
                                 <div property="columns">
                                     <div type="indexcolumn">序号</div>
-                                    <div field="" name="" width="100px" headerAlign="center" header="精品名称"></div>
-                                    <div field="" name="" width="100px" headerAlign="center" header="收费类型"></div>
-                                    <div field="" name="" width="100px" headerAlign="center" header="数量"></div>
-                                    <div field="" name="" width="100px" headerAlign="center" header="单价"></div>
-                                    <div field="" name="" width="100px" headerAlign="center" header="金额"></div>
-                                    <div field="" name="" width="100px" headerAlign="center" header="成本金额"></div>
-                                    <div field="" name="" width="100px" headerAlign="center" header="备注内容"></div>
+                                    <div field="giftName" name="giftName" width="100px" headerAlign="center" header="精品名称"></div>
+                                    <div field="receType" name="receType" width="100px" headerAlign="center" header="收费类型"></div>
+                                    <div field="qty" name="qty" width="100px" headerAlign="center" header="数量">
+                                        <input class="nui-textarea" property="editor">
+                                    </div>
+                                    <div field="price" name="price" width="100px" headerAlign="center" header="单价">
+                                        <input class="nui-textarea" property="editor">
+                                    </div>
+                                    <div field="amt" name="amt" width="100px" headerAlign="center" header="金额">
+                                        <input class="nui-textarea" property="editor">
+                                    </div>
+                                    <div field="costAmt" name="costAmt" width="100px" headerAlign="center" header="成本金额">
+                                        <input class="nui-textarea" property="editor">
+                                    </div>
+                                    <div field="remark" name="remark" width="100px" headerAlign="center" header="备注内容">
+                                        <input class="nui-textarea" property="editor">
+                                    </div>
                                 </div>
                             </div>
                         </div>

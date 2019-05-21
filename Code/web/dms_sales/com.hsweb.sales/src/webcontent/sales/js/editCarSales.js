@@ -1,8 +1,41 @@
 var webBaseUrl = webPath + contextPath + "/";
+var baseUrl = apiPath + saleApi + "/";
 var billForm = null;
+var jpGrid = null;
+var jpUrl = baseUrl + "sales.search.searchCsbGiftMsg.biz.ext";
+var jpDetailGrid = null;
 $(document).ready(function(v) {
     document.getElementById("caCalculation").src = webBaseUrl + "sales/sales/caCalculation.jsp";
     billForm = new nui.Form("#billForm");
+    jpGrid = nui.get("jpGrid");
+    jpGrid.setUrl(jpUrl);
+    jpDetailGrid = nui.get("jpDetailGrid");
+
+    jpGrid.on("rowclick", function(e) {
+        var jpdata = jpGrid.getSelecteds();
+        var jpDetailData = jpDetailGrid.getData();
+        for (var i = 0, l = jpdata.length; i < l; i++) {
+            var msg = jpDetailData.find(jpDetailData => jpDetailData.giftId == jpdata[i].id);
+            if (!msg) {
+                var newRow = {
+                    giftId: jpdata[i].id,
+                    giftName: jpdata[i].name
+                };
+                jpDetailGrid.addRow(newRow, jpDetailData.length);
+            }
+        }
+        jpDetailData = jpDetailGrid.getData();
+        if (jpDetailData.length != jpdata.length) {
+            for (var i = 0, l = jpDetailData.length; i < l; i++) {
+                var row = jpDetailGrid.getRow(i);
+                var msg = jpdata.find(jpdata => jpdata.id == jpDetailData[i].giftId);
+                if (!msg) {
+                    jpDetailGrid.commitEdit();
+                    jpDetailGrid.removeRow(row, false);
+                }
+            }
+        }
+    });
 });
 
 function registration() {
@@ -20,10 +53,27 @@ function registration() {
     });
 }
 
-function save() {
-    var billFormData = billForm.getData();
-    var caCalculation = document.getElementById("caCalculation").contentWindow.getValue();
+function save() { //保存（主表信息+精品加装+购车信息+费用信息）
+    var billFormData = billForm.getData(); //主表信息
+    var caCalculation = document.getElementById("caCalculation").contentWindow.getValue(); //购车信息
+    var jpDetailGridAdd = jpDetailGrid.getChanges("added");
+    var jpDetailGridEdit = jpDetailGrid.getChanges("modified");
+    var jpDetailGridDel = jpDetailGrid.getChanges("removed");
+    nui.ajax({
+        url: "com.hs.annual_project.saveAll.disable.biz.ext",
+        data: {
+            billFormData: billFormData,
+            caCalculation: caCalculation,
+            jpDetailGridAdd: jpDetailGridAdd,
+            jpDetailGridEdit: jpDetailGridEdit,
+            jpDetailGridDel: jpDetailGridDel
+        },
+        cache: false,
+        async: false,
+        success: function(text) {
 
+        }
+    });
 }
 
 function caseMsg() {
@@ -59,4 +109,5 @@ function setInitData(params) {
     if (params.id) {
         document.getElementById("caCalculation").contentWindow.SetDataMsg(params.id);
     }
+    jpGrid.load();
 }

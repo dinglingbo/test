@@ -220,12 +220,12 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
 
   var elemTpl = ['<div class="layui-layim-main">'
     ,'<div class="layui-layim-info">'
-      ,'<div class="layui-layim-user">{{ d.mine.username }}</div>'
-      ,'<div class="layui-layim-status">'
+      ,'<div class="layui-unselect layui-layim-user" style="cursor:pointer" layim-event="editUserInfo">{{ d.mine.username }}</div>'
+      ,'<div class="layui-layim-status" style="display:none" >'
         ,'{{# if(d.mine.status === "online"){ }}'
         ,'<span class="layui-icon layim-status-online" layim-event="status" lay-type="show">&#xe617;</span>'
         ,'{{# } else if(d.mine.status === "hide") { }}'
-        ,'<span class="layui-icon layim-status-hide" layim-event="status" lay-type="show">&#xe60f;</span>'
+        ,'<span class="layui-icon layim-status-hide" layim-event="status" lay-type="show"  >&#xe60f;</span>'
         ,'{{# } }}'
         ,'<ul class="layui-anim layim-menu-box">'
           ,'<li {{d.mine.status === "online" ? "class=layim-this" : ""}} layim-event="status" lay-type="online"><i class="layui-icon">&#xe605;</i><cite class="layui-icon layim-status-online">&#xe617;</cite>在线</li>'
@@ -1627,7 +1627,29 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
         }
       });
     }
-    
+    //编辑资料
+    ,editUserInfo: function(){
+   	 var params = {};
+   	 params.id = currImCode;
+   	 params.name = currUserName;
+   	 params.baseUrl = baseUrl;
+   	 params.id = 7;
+   	 params.token = token;
+   	//弹出修改备注页面
+      	layer.open({
+      		  type: 2, 
+      		  title: '编辑资料',
+      		  content: userInfoUrl, //这里content是一个普通的String
+      		  area:['800px','600px'],
+      		  maxmin:true,
+      		  success: function (layero, index) {
+      		  // 获取子页面的iframe
+      		  var iframe = window['layui-layer-iframe' + index];
+      		  // 向子页面的全局函数child传参
+      		  iframe.setDataSys(params);
+      		  }
+      		});
+    }
     //大分组切换
     ,tab: function(othis){
       var index, main = '.layim-tab-content';
@@ -2259,7 +2281,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
      ,queryUserInfo:function(othis, e){
     	 var type = othis.data('type');
     	 var params = {};
-    	 params.id = currImCode;
+    	 params.id = type;//uid
     	 params.name = currUserName;
     	 params.baseUrl = baseUrl;
     	 params.id = 7;

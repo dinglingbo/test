@@ -110,7 +110,7 @@ public class UserInfoController extends BaseController {
 	}
 
 	/**
-	 * 好友查询
+	 * 添加好友查询
 	 */
 	@ResponseBody
 	@RequestMapping("/queryUserinfo")
@@ -122,4 +122,6 @@ public class UserInfoController extends BaseController {
 		//map.put("ct", countx);
 		return map;
 	}
+
+
 }

@@ -159,8 +159,6 @@ layui.use(['form', 'upload'], function(){
 			    type: 'datetime',
 			    value:user.birthday
 			  });
-        	}else{
-        	   showMsg("查询失败","E");
         	}
         	pca.init('select[name=province]', 'select[name=city]', 'select[name=area]', province,city,area);
         	form.render();

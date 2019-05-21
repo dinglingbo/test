@@ -8,6 +8,7 @@ import com.chedao.websocket.webserver.user.service.GroupInfoService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service("GroupInfoServiceImpl")
 public class GroupInfoServiceImpl implements GroupInfoService {
@@ -15,7 +16,16 @@ public class GroupInfoServiceImpl implements GroupInfoService {
     private GroupInfoDao groupInfoDao;
     @Override
     public int addGroupInfo(GroupInfoEntity groupInfo) {
-        return groupInfoDao.addGroupInfo(groupInfo);
+        groupInfoDao.addGroupInfo(groupInfo);
+       return  groupInfo.getId();
+    }
+    @Override
+    public int updateGroup(GroupInfoEntity groupInfo) {
+       return groupInfoDao.updateGroup(groupInfo);
+    }
+    @Override
+    public List<GroupInfoEntity> queryGroupInfo(List groupIds){
+        return groupInfoDao.queryGroupInfo(groupIds);
     }
 
 }

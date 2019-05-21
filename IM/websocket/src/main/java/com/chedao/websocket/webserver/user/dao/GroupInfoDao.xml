@@ -50,4 +50,33 @@
 		)
 	</insert>
 
+	<update id="updateGroup" parameterType="com.chedao.websocket.webserver.user.model.GroupInfoEntity">
+		update qiqiim.group_info
+		<set>
+			<if test="groupName != null">`group_name` = #{groupName}, </if>
+			<if test="avatar != null">`avatar` = #{avatar}, </if>
+			<if test="modifierId != null">`modifier_id` = #{modifierId}, </if>
+			<if test="modifier != null">`modifier` = #{modifier}, </if>
+			`modify_date` = NOW()
+		</set>
+		where id = #{id}
+	</update>
+	<!-- 群聊查询 -->
+	<select id="queryGroupInfo" parameterType="java.util.List" resultType="com.chedao.websocket.webserver.user.model.GroupInfoEntity">
+		  select
+		   	id as id,
+		   	group_num as groupNum,
+		   	group_name as groupName,
+		   	avatar as avatar,
+		   	group_man_id as groupManId,
+		   	group_man as groupMan,
+		   	status as status,
+		   	remark as remark
+		   from qiqiim.group_info
+		   where id in
+			<foreach collection="groupIds" item="groupId" index="index" open="(" separator="," close=")">
+				#{groupId.groupId}
+			</foreach>
+
+	</select>
 </mapper>

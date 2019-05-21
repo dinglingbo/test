@@ -27,33 +27,32 @@
 <body>
 <form class="layui-form" action="">
   <div class="layui-form-item">
-    <label class="layui-form-label" style="width: 75px">备注姓名：</label>
+    <label class="layui-form-label" style="width: 75px">群名称：</label>
     <div class="layui-input-block">
-      <input class="layui-input" type="text" id="name" name="name"  placeholder="请输入备注姓名"  autocomplete="off" >
+      <input class="layui-input" type="text" id="groupName" name="groupName"  placeholder="请输入群名称"  autocomplete="off" >
     </div>
   </div>
-  <div class="layui-form-item">
-    <label class="layui-form-label" style="width: 75px">选择分组：</label>
-    <div class="layui-input-block" >
-      <select name="city"   >
-        <option value=""></option>
-        <option value="0">北京</option>
-        <option value="1">上海</option>
-        <option value="2">广州</option>
-        <option value="3">深圳</option>
-        <option value="4">杭州</option>
-      </select>
+    <div class="layui-form-item">
+    <label class="layui-form-label" style="width: 75px">群头像：</label>
+    <div class="layui-input-block">
+      <img id="avatar" src=""  style="width: 100px;height: 100px">
+    </div>
+  </div>
+    <div class="layui-form-item">
+    <label class="layui-form-label" style="width: 75px">群昵称：</label>
+    <div class="layui-input-block">
+      <input class="layui-input" type="text" id="name" name="name"  placeholder="请输入我在本群昵称"  autocomplete="off" >
     </div>
   </div>
   <div class="layui-form-item layui-form-text">
-    <label class="layui-form-label" style="width: 75px">验证信息：</label>
+    <label class="layui-form-label" style="width: 75px">群说明：</label>
     <div class="layui-input-block">
-      <textarea name="remark" id="remark" placeholder="请输入验证信息" class="layui-textarea" ></textarea>
+      <textarea name="remark" id="remark" placeholder="请输入群说明" class="layui-textarea" ></textarea>
     </div>
   </div>
   <div class="layui-form-item">
     <div class="layui-input-block" >
-      <button class=" layui-btn-xs " id="apply" lay-submit lay-filter="apply"  style="margin-left: 130px;margin-top: 120px;">发送申请</button>
+      <button class=" layui-btn-xs " id="apply" lay-submit lay-filter="apply"  style="margin-left: 130px;margin-top: 10px;">保存</button>
       <button  id="cancel"  lay-submit lay-filter="cancel" class=" layui-btn-xs" >取消</button>
     </div>
   </div>
@@ -62,7 +61,7 @@
          
 <script>
 var baseUrl = apiPath + sysApi + "/";
-var applyFriend ={};
+var groupInfo ={};
 //Demo
 layui.use(['form', 'upload'], function(){  //如果只加载一个模块，可以不填数组。如：layui.use('form')
   var form = layui.form //获取form模块
@@ -70,13 +69,12 @@ layui.use(['form', 'upload'], function(){  //如果只加载一个模块，可�
   
   //监听申请按钮
   form.on('submit(apply)', function(data){
-      		var friend = {
-				uid : applyFriend.id,
-				from : currImCode,
-				status : 0,
-				remark : $('#remark').val()		
-			}
-			    //申请好友
+  			groupInfo.userName=currUserName;
+  			groupInfo.userId=currImCode;
+  			groupInfo.groupName=$('#groupName').val();
+  			groupInfo.avatar=$('#avatar').val();
+  			groupInfo.remark=$('#remark').val();
+			    //修改群资料
 		    $.ajax({
 		        type:'post',
 		        dataType:'json',
@@ -84,16 +82,16 @@ layui.use(['form', 'upload'], function(){  //如果只加载一个模块，可�
 		        cache : false,
 		        async:false, 
 		        data: JSON.stringify({
-		        	friend:friend
+		        	groupInfo:groupInfo
 		        }),
-		        url:baseUrl + "com.hs.common.env.applyFriend.biz.ext",
+		        url:baseUrl + "com.hs.common.env.updateGroup.biz.ext",
 		        success:function(data){
 		        	if(data.errCode=="S"){
 		        		var index = parent.layer.getFrameIndex(window.name); 
 						parent.layer.close(index);//关闭当前页  
-					    parent.layer.msg('申请成功，等待对方同意！',{icon: 1,time: 2000});
+					    parent.layer.msg('修改成功！！',{icon: 1,time: 2000});
 		        	}else{
-		        		parent.layer.msg('申请异常',{icon: 7,time: 2000});
+		        		parent.layer.msg('修改异常',{icon: 7,time: 2000});
 		        	}
 		        }
 		    });
@@ -106,10 +104,12 @@ layui.use(['form', 'upload'], function(){  //如果只加载一个模块，可�
      });
      
   });
- function child(apply) {
- applyFriend = apply;
-  $('#name').val(applyFriend.name);
-  $('#remark').val("我是"+applyFriend.name);
+ function setData(group) {
+ groupInfo = group;
+  $('#groupName').val(groupInfo.groupName);
+  $("#avatar").attr("src",groupInfo.avatar);
+   //$('#avatar').val(groupInfo.avatar);
+  $('#remark').val(groupInfo.remark);
 }
 
 </script>

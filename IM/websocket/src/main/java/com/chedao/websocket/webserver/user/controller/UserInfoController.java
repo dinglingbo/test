@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +25,7 @@ import java.util.Map;
  * @date 2017-11-27 14:56:08
  */
 @Controller
-@RequestMapping("userinfo")
+@RequestMapping("/userinfo")
 public class UserInfoController extends BaseController {
 	@Autowired
 	private UserInfoService userInfoServiceImpl;
@@ -79,7 +81,10 @@ public class UserInfoController extends BaseController {
 	 */
 	@RequestMapping(value="/update", produces="text/html;charset=UTF-8", method = RequestMethod.POST)
 	@ResponseBody
-	public Object update(@ModelAttribute UserInfoEntity userInfo){
+	public Object update(@RequestBody UserInfoEntity userInfo){
+		SimpleDateFormat sdf =   new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String str = sdf.format(new Date());
+		userInfo.setUpdatedate(str);
 		int result = userInfoServiceImpl.update(userInfo);
 		return putMsgToJsonString(result,"",0,"");
 	}

@@ -212,6 +212,10 @@
       <process:to type="query">userid</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">7</process:from>
+      <process:to type="query">userid</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="expression" pattern="reference">httpStr + userid</process:from>
       <process:to type="query">httpStr</process:to>
     </process:copy>
@@ -231,7 +235,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">data/code</process:from>
+      <process:from type="query" pattern="reference">returnResult/code</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>
   </nodes>

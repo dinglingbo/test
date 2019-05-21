@@ -100,18 +100,7 @@
     <div class="layui-input-block" style="margin-top: 20px;width: 480px;">
       <textarea placeholder="请输入内容" class="layui-textarea" name="remark" id="remark"></textarea>
     </div>
-  </div>
- 
-   <div class="layui-form-item">
-    <div class="layui-input-block" >
-      <button class="layui-btn" lay-submit lay-filter="formDemo" >保存</button>
-      <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
-      <!-- <button class="layui-btn"  lay-filter="find" style="width: 80px;" >确定</button> -->
-    </div>
-  </div>
-    
-  
-  
+  </div>  
 </form>
 </div>     
 <script type="text/javascript">
@@ -177,47 +166,6 @@ layui.use(['form', 'upload'], function(){
         	form.render();
         }
     });
-    
-    
-    //监听提交
-   form2.on('submit(formDemo)', function(data){
-    //layer.msg(JSON.stringify(data.field));
-     //调用接口
-    var temp = data.field;
-     //查询
-    var params = temp;
-    params.id=dataSys.id,
-    params.updateuser = dataSys.id;
-	/* var city  = $('#city').val();
-	params.city = city;
-	var area = $("#area").val();
-	params.area = area; */
-     $.ajax({
-        type:'post',
-        dataType:'json',
-        contentType:'application/json',
-        cache : false,
-        data: JSON.stringify({
-		        	params:params,
-		        	token:dataSys.token
-		      }),
-        url:dataSys.baseUrl + "com.hs.common.env.upateUserInfo.biz.ext",
-        async:false, 
-        success:function(data){
-        	if(data.errCode=="S"){
-        	    var index = parent.layer.getFrameIndex(window.name);  
-                parent.layer.close(index);//关闭当前页  
-               // window.parent.location.replace(location.href)//刷新父级页面  
-               // window.parent.location.reload(); 
-        	}else{
-        	   showMsg("保存失败","E");
-        	}
-        	return false;
-        }
-    });
-    
-  });  
-  
 });
 var laydate = null;
 layui.use('laydate', function(){

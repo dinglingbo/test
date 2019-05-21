@@ -30,6 +30,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
   var htmlStr = webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/editGroup.jsp";
   var htmlStrFriendName = webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/updateFriendName.jsp";
   var userInfoUrl =  webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/personalInfo.jsp";
+  var queryUserInfoUrl = webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/queryPersonalInfo.jsp";
   //对外API
   var LAYIM = function(){
     this.v = v;
@@ -2204,7 +2205,7 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
        	layer.open({
        		  type: 2, 
        		  title: '查看资料',
-       		  content: userInfoUrl, //这里content是一个普通的String
+       		  content: queryUserInfoUrl, //这里content是一个普通的String
        		  area:['800px','600px'],
        		  maxmin:true,
        		  success: function (layero, index) {

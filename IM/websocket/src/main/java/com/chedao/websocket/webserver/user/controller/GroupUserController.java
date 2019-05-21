@@ -84,6 +84,7 @@ public class GroupUserController extends BaseController {
             map.put("data", groupInfoEntityList);
         }catch (Exception e){
             errCode.append("E");
+            map.put("errCode", errCode);
         }
         errCode.append("S");
         map.put("errCode", errCode);

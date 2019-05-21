@@ -14,8 +14,8 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
  */
 public class UserInfoEntity extends BaseModel {
 	private static final long serialVersionUID = 1L;
-	
- 
+
+	private Long id;
 	//用户id
 	private Long uid;
 	//部门

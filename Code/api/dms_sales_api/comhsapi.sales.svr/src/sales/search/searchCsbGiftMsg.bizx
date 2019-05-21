@@ -40,7 +40,7 @@
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="189" y="149"/>
+    <location x="215" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
@@ -57,7 +57,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="191" y="185"/>
+    <location x="217" y="186"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>

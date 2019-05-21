@@ -15,6 +15,7 @@
 <%@include file="/common/sysVarCommon.jsp"%>
 <link href="<%=request.getContextPath()%>/layim-v3.8.0/dist/css/modules/layim/layim.css?v=3.8.01" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/layim-v3.8.0/dist/css/layui.css">
+<script src="<%=request.getContextPath()%>/layim-v3.8.0/dist/lay/modules/layim.js"></script>
 <style type="text/css">
 
 </style>
@@ -190,6 +191,10 @@
       				userName : "张三"
   			}
       		var members =[
+	      		{
+	  			    userId:currImCode,
+	      			userName : "张三"
+	  			},
       			{
       				userId:4,
       				userName : "李四"
@@ -213,13 +218,13 @@
 		        async:false, 
 		        data: JSON.stringify({
 		        	members:members,
-		        	name : "嘤嘤嘤",
+		        	name : "华胜古天乐粉丝群",
 		        	groupManager :  groupManager       	
 		        }),
 		        url:baseUrl + "com.hs.common.env.AddCreateChat.biz.ext",
 		        success:function(data){
 		        	if(data.errCode=="S"){
-		        		var index = parent.layer.getFrameIndex(window.name); 
+						var index = parent.layer.getFrameIndex(window.name); 
 						parent.layer.close(index);//关闭当前页  
 					    parent.layer.msg('创建成功！',{icon: 1,time: 2000});
 		        	}else{

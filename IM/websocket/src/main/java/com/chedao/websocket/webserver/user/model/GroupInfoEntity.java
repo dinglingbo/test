@@ -2,11 +2,11 @@ package com.chedao.websocket.webserver.user.model;
 
 import com.chedao.websocket.webserver.base.model.BaseModel;
 
-public class GroupInfoEntity extends BaseModel {
+public class GroupInfoEntity  {
     private static final long serialVersionUID = 1L;
 
     //群id
-    private Long id;
+    private Integer id;
     //群号
     private String groupNum;
     //群名称
@@ -43,13 +43,13 @@ public class GroupInfoEntity extends BaseModel {
         return serialVersionUID;
     }
 
-    @Override
-    public Long getId() {
+
+    public Integer getId() {
         return id;
     }
 
-    @Override
-    public void setId(Long id) {
+
+    public void setId(Integer id) {
         this.id = id;
     }
 

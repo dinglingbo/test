@@ -11,4 +11,5 @@ public interface GroupUserService {
     int deleteGroup(Integer userId,Integer groupId);
     List<GroupUserEntity> queryGroupUsers(int groupId);
     List<GroupUserEntity> queryGroupInfo(int userId);
+
 }

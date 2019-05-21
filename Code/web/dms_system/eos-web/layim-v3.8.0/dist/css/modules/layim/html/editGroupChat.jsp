@@ -71,7 +71,7 @@ layui.use(['form', 'upload'], function(){  //如果只加载一个模块，可�
   form.on('submit(apply)', function(data){
   			groupInfo.userName=currUserName;
   			groupInfo.userId=currImCode;
-  			groupInfo.groupname=$('#groupname').val();
+  			groupInfo.groupName=$('#groupName').val();
   			groupInfo.avatar=$('#avatar').val();
   			groupInfo.remark=$('#remark').val();
 			    //修改群资料

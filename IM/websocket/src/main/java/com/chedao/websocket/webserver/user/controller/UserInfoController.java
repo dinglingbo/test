@@ -49,10 +49,10 @@ public class UserInfoController extends BaseController {
 		return putMsgToJsonString(Constants.WebSite.SUCCESS, "", total, userInfoList);
 	}
 
-	@RequestMapping(value = "/userinfo/{uid}", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
+	@RequestMapping(value = "/queryByUid/{uid}", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
 	@ResponseBody
 	public Object queryByUid(@PathVariable("uid") Long uid) {
-		Map userInfo = userInfoServiceImpl.queryByUid(uid);
+		UserInfoEntity userInfo = userInfoServiceImpl.queryByUid(uid);
 		return putMsgToJsonString(Constants.WebSite.SUCCESS, "", 0, userInfo);
 	}
 	
@@ -79,14 +79,24 @@ public class UserInfoController extends BaseController {
 	/**
 	 * 修改
 	 */
-	@RequestMapping(value="/update", produces="text/html;charset=UTF-8", method = RequestMethod.POST)
+	@RequestMapping(value="/update", produces="application/json;charset=UTF-8", method = RequestMethod.POST)
 	@ResponseBody
 	public Object update(@RequestBody UserInfoEntity userInfo){
 		SimpleDateFormat sdf =   new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String str = sdf.format(new Date());
 		userInfo.setUpdatedate(str);
-		int result = userInfoServiceImpl.update(userInfo);
-		return putMsgToJsonString(result,"",0,"");
+		int result = 0;
+		StringBuilder errCode = new StringBuilder();
+		try {
+			result = userInfoServiceImpl.update(userInfo);
+		}catch (Exception e){
+
+			//return putMsgToJsonString(result,"",0,"");
+			return errCode.append("E");
+		}
+		//int result = userInfoServiceImpl.update(userInfo);
+		//return putMsgToJsonString(result,"",0,"");
+		return errCode.append("S");
 	}
 	
 	/**

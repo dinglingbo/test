@@ -1800,6 +1800,13 @@ var auditUrl = baseUrl
 function auditOrder(flagSign, flagStr, flagRtn) {
 	var data = basicInfoForm.getData();
 	var orderAmt =data.orderAmt;
+	var rightRow = rightGrid.getData();
+	if(data.orderAmt===""){
+		for(var i=0;i<rightRow.length;i++){
+			orderAmt+=rightRow[i].orderAmt;
+		}
+	}
+
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
 			showMsg(requiredField[key] + "不能为空!","W");

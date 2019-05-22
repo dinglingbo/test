@@ -29,7 +29,7 @@ public interface UserInfoService {
 	
 	int deleteBatch(Long[] ids);
 
-	Map queryByUid(Long uid);
+	UserInfoEntity queryByUid(Long uid);
 
 	List<UserInfoExtendEntity> queryBoxUserInfoByUid(Map<String, Object> map);
 

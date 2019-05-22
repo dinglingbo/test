@@ -62,11 +62,13 @@
 
         for (var property in logger)logger.hasOwnProperty(property) && "number" == typeof logger[property] && !logger.hasOwnProperty(property.toLowerCase()) && makeLogFunc(property);
         var qiniuUploadUrl;
-        qiniuUploadUrl = "https:" === window.location.protocol ? "https://up.qbox.me" : "http://upload-z2.qiniup.com";
+        //20190521只按区域上传  qiniuUploadUrl = "https:" === window.location.protocol ? "https://up.qbox.me" : "http://upload-z2.qiniup.com";
+        qiniuUploadUrl = "https:" === window.location.protocol ? "https://upload-z2.qiniup.com" : "http://upload-z2.qiniup.com";
         var qiniuUploadUrls = ["http://upload-z2.qiniup.com", "http://up-z2.qiniup.com"];
         var changeUrlTimes = 0;
         this.resetUploadUrl = function () {
-            if ("https:" === window.location.protocol) qiniuUploadUrl = "https://up.qbox.me"; else {
+            if ("https:" === window.location.protocol) qiniuUploadUrl = "https://upload-z2.qiniup.com";//qiniuUploadUrl = "https://up.qbox.me"; 
+            else {
                 var a = changeUrlTimes % qiniuUploadUrls.length;
                 qiniuUploadUrl = qiniuUploadUrls[a], changeUrlTimes++
             }

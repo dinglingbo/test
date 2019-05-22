@@ -99,10 +99,10 @@
             <div type="indexcolumn">序号</div>
             <div header="" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="销售单号"></div>
+                    <div allowSort="true" field="code" width="150" summaryType="count" headerAlign="center" header="销售单号"></div>
                     <div field="guestFullName" width="150" headerAlign="center" header="客户"></div>
-                    <div field="orderMan" width="60" headerAlign="center" header="销售员"></div>
-                    <div allowSort="true" width="120"field="outDate" headerAlign="center" header="出库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div field="auditor" width="60" headerAlign="center" header="销售员"></div>
+                    <div allowSort="true" width="120"field="auditDate" headerAlign="center" header="出库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div> 
                     <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>-->
                     <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>

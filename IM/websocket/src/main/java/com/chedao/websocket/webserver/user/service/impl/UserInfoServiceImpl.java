@@ -54,7 +54,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	}
 
 	@Override
-	public Map queryByUid(Long uid) { return userInfoDao.queryByUid(uid);}
+	public UserInfoEntity queryByUid(Long uid) { return userInfoDao.queryByUid(uid);}
 
 	@Override
 	public List<UserInfoExtendEntity> queryBoxUserInfoByUid(Map<String, Object> map) {

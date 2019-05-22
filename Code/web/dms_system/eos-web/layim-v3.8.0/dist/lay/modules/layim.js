@@ -2404,29 +2404,6 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
    }
     
     ,showList:function(othis,e){
-        /*var type = othis.data('type');
-        var urerId = type.substring(12,type.length);
-    	if(isShow){
-  		  isShow = true; 
-  		  document.getElementById("showGroup").style.display='none';
-  	  }else{
-  		  isShow = true;
-  		  var html = '<ul>';
-  	      //循环分组，生成标签,分组全局变量：friendInfo,如果只有一个分组，不显示 <li layim-event="editGroup" data-type="delet">删除分组</li>
-  	      //<h5 layim-event="spread" lay-type="false" id="1"><i class="layui-icon"></i><span>前端码屌</span><em>(<cite class="layim-count"> 5</cite>)</em></h5>
-  	      if(friendInfo.length<1){
-  	    	  return;
-  	      }
-  	      for(var i = 0;i < friendInfo.length;i++){
-  	    	  var temp = friendInfo[i];
-  	    	   html = html + '<li layim-event="moveGroup" style="padding-left:15px" data-type="'+urerId+'"><h5  lay-type="false" id=""><i class="layui-icon">&#xe602;</i><span>'+temp.groupname+'</span></h5>';
-  	    	   
-  	      }
-  	      html = html + "</ul>";
-  	      //var atEl = document.getElementById("layui-layim-list-move"); 
-  	      $("#layui-layim-list-move").html(html);
-  	      //document.getElementById("showGroup").style.display = "";
-  	  }*/
       var uerId = othis.data('type');
       //var urerId = type.substring(12,type.length);
       var html = '<span id="test" layim-event="showList" data-type="'+uerId+'">移至分组</span>';

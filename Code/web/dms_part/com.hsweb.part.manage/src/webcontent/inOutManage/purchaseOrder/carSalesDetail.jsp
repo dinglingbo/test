@@ -5,10 +5,10 @@
 <style type="text/css">
 
 </style>
-<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+<div class="nui-toolbar" style="padding:2px;position: relative;">
     <table style="width:100%;">
         <tr>
-            <td style="width:100%;">
+            <td style="width:100%;white-space:nowrap;">
 <!--                 <span class="separator"></span> -->
         <span  id="bServiceId" style="">订单号：新采购订单</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
@@ -16,7 +16,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <!-- <a class="nui-button" iconCls="icon-undo" plain="true" onclick="cancelEditInbound()" id="cancelEditEnterMainBtn">取消</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="auditToEnter()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;入库</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="auditToEnter()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;申请验车</a>
                 
                 <!-- <a class="nui-menubutton " menu="#popupMenuPrint" id="menuprint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
 
@@ -58,7 +58,7 @@
                           <input class="nui-textbox" visible="false" width="100%" id="isInner" name="isInner"/>
                           <table style="width: 100%;">
                               <tr>
-                                  <td class="title required" style="width:5%">
+                                  <td class="title required" style="width:8%">
                                       <label>供应商：</label>
                                   </td>
                                   <td colspan="3" style="width:38%">
@@ -91,7 +91,7 @@
                                              nullItemText="请选择..."
                                              onvalidation="onComboValidation"/>
                                   </td>
-                                  <td class="title required" style="width:6%">
+                                  <td class="title required" style="width:8%">
                                       <label>结算方式：</label>
                                   </td>
                                   <td>
@@ -110,8 +110,15 @@
                                              nullItemText="请选择..."
                                              onvalidation="onComboValidation"/>
                                   </td>
-                                  
-                                  <td class="title required" style="width:8%;">
+                                  <td class="title required" style="width:8%">
+                                      <label>预交定金：</label>
+                                  </td>
+                                  <td colspan="1" >
+										<input allowInput="false" class="nui-textbox" width="100%" id="" name=""/>
+                                  </td>
+                              </tr>
+                              <tr>                              
+                                  <td class="title required" >
                                       <label>预计到货日期：</label>
                                   </td>
                                   <td width="160">
@@ -121,32 +128,42 @@
                                              showTime="true"
                                              class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
                                   </td>
-                              </tr>
-                              <tr>
-                              	 <td class="title required" >
-                                      <label>发票号码：</label>
+                              	 <td class="title required" style="width:8%">
+                                      <label>预计发运日期：</label>
                                   </td>
-                                  <td colspan="3" style="width:15%">
-										<input allowInput="false" class="nui-textbox" width="100%" id="" name=""/>
-                                  </td>
-                              	 <td class="title required">
-                                      <label>联系人：</label>
-                                  </td>
-                                  <td colspan="1" style="width:15%">
-										<input allowInput="false" class="nui-textbox" width="100%" id="" name=""/>
-                                  </td>  
-                              	 <td class="title required">
-                                      <label>联系电话：</label>
-                                  </td>
-                                  <td colspan="1" style="width:15%">
-										<input allowInput="false" class="nui-textbox" width="100%" id="" name=""/>
+                                  <td width="160">
+                                      <input name=""
+                                             id=""
+                                             width="100%"
+                                             showTime="true"
+                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
                                   </td> 
                               	 <td class="title required">
                                       <label>运输方式：</label>
                                   </td>
                                   <td colspan="1" style="width:15%">
 										<input allowInput="false" class="nui-textbox" width="100%" id="" name=""/>
-                                  </td>                                                                                                     
+                                  </td> 
+                                  <td class="title" >
+                                      <label>定金截止日期：</label>
+                                  </td>
+                                  <td width="160">
+                                      <input name=""
+                                             id=""
+                                             width="100%"
+                                             showTime="true"
+                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
+                                  </td>
+                              	 <td class="title">
+                                      <label>尾款截止日期：</label>
+                                  </td>
+                                  <td width="160">
+                                      <input name=""
+                                             id=""
+                                             width="100%"
+                                             showTime="true"
+                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
+                                  </td>                                                                                                                                       
                               </tr>                              
                               <tr>           
                                   <td class="title required" >
@@ -201,7 +218,7 @@
 			    </ul>
    				
                   <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-                    <a class="nui-button" plain="true" iconCls="" id="addPartBtn" onclick="addPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加车辆</a>
+                    <a class="nui-button" plain="true" iconCls="" id="addPartBtn" onclick="selectCar()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加车辆</a>
                     </div>
                     <div class="nui-fit">
                     <div id="rightGrid" class="nui-datagrid" 
@@ -227,14 +244,12 @@
                         <div property="columns">
                             <div type="indexcolumn">序号</div>
                                     <div field="operateBtn" name="operateBtn" align="center" width="50" headerAlign="center" header="操作"></div>
-                                    <div field="comPartCode" name="comPartCode" width="180" headerAlign="center" header="车型编码">
+                                    <div field="comPartCode" name="comPartCode" width="120" headerAlign="center" header="车型编码">
                                         <input property="editor" class="nui-textbox" />
                                     </div>
-                                    <div field="" headerAlign="center" header="车型名称"></div>
-                                    <div field="" id="" width="60" headerAlign="center" header="汽车品牌"></div>
-                                    <div field="" id="" width="60" headerAlign="center" header="车辆类型"></div>
-                                    <div field="" name="" width="40" headerAlign="center" header="颜色"></div>
-                                    <div field="" name="" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="车内饰色">
+                                    <div field="" headerAlign="center" width="150" header="车型名称"></div>
+                                    <div field="" name="" width="40" headerAlign="center" header="车身颜色"></div>
+                                    <div field="" name="" summaryType="sum" numberFormat="0.00" width="40" headerAlign="center" header="内饰颜色">
                                       <input property="editor" vtype="float" class="nui-textbox"/>
                                     </div>
                                     <div field="" numberFormat="0.0000" width="60" headerAlign="center" header="订货数量">

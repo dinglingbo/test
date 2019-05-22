@@ -5573,3 +5573,53 @@ function upload(){
 		showMsg("请先保存工单","W");
 	}
 }
+//选择钣喷项目
+function chooseBlank(){
+	var main = billForm.getData();
+	var status = main.status||0;
+    var isSettle = main.isSettle||0;
+    if(!main.id){
+        showMsg("请选择保存工单!","W");
+        return;
+    }
+    if(status == 2){
+        showMsg("工单已完工,不能修改项目!","W");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("工单已结算,不能修改项目!","W");
+        return;
+    }
+	nui.open({
+ 		url :  webPath + contextPath + "/repair/RepairBusiness/blankChoose.jsp?token="+token,
+ 		title : "钣喷项目",
+ 		width : 1220,
+ 		height : 640,
+ 		allowResize: false,
+ 		onload : function() {
+ 			var iframe = this.getIFrameEl(); 
+ 			iframe.contentWindow.setData(main);
+ 		},
+ 		ondestroy : function(action) {// 弹出页面关闭前
+ 			/*if (action == "ok") {
+			
+ 			}*/
+		  var p1 = { }
+	      var p2 = {
+	      interType: "item",
+	         data:{
+	             serviceId: main.id||0
+	         }
+	     };
+	     var p3 = {};
+	     loadDetail(p1, p2, p3,main.status);
+ 		}
+ 	});
+	   
+	
+
+}
+
+
+
+

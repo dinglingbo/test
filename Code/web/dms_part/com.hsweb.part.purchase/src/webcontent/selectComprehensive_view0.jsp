@@ -88,7 +88,7 @@
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                         是否包含未收款：
                         <div  class="nui-checkbox" id="isCollectMoney" name="isCollectMoney" value="1" onclick="onSearch" trueValue="1" falseValue="0"></div> -->
-        <label style="font-family:Verdana;">进厂日期 从：</label>
+        <label style="font-family:Verdana;">出厂日期 从：</label>
         <input class="nui-datepicker" id="sEnterDate" name="sEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd"  showTime="false" showOkButton="false" showClearButton="false"/>
         <label style="font-family:Verdana;">至</label>
         <input class="nui-datepicker" id="eEnterDate" name="eEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd"  showTime="false" showOkButton="false" showClearButton="false"/>                   

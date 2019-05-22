@@ -38,7 +38,7 @@
     <table style="width:100%;">
         <tr>
             <td style="white-space:nowrap;">
-<!--                 <label style="font-family:Verdana;">快速查询：</label>
+                 <label style="font-family:Verdana;">快速查询：</label>
                 <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
 
                 <ul id="popupMenuDate" class="nui-menu" style="display:none;">
@@ -63,10 +63,10 @@
                     <li iconCls="" onclick="quickSearch(13)" id="type13">待发货</li>
                     <li iconCls="" onclick="quickSearch(14)" id="type14">待收货</li>
                     <li iconCls="" onclick="quickSearch(15)" id="type15">已入库</li>
-                </ul> -->
+                </ul> 
 
 
-				<label style="font-family:Verdana;">单据日期 从：</label>
+				<label style="font-family:Verdana;">订货日期 从：</label>
                 <input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <label style="font-family:Verdana;">至</label>
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
@@ -80,7 +80,7 @@
                 <span class="separator"></span>
 
                 <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->
-                <input id="storeId"
+<!--                 <input id="storeId"
                            name="storeId"
                            class="nui-combobox"
                            textField="name"
@@ -90,17 +90,17 @@
                            valueFromSelect="true"
                            allowInput="false"
                            showNullItem="false"
-                           nullItemText="请选择..."/>
-                <input id="" name="" width="80px" emptyText="经办人" class="nui-textbox"/>
-                <input id="" name="" width="80px" emptyText="组织机构" class="nui-textbox"/>
+                           nullItemText="请选择..."/> -->
+<!--                 <input id="" name="" width="80px" emptyText="经办人" class="nui-textbox"/>
+                <input id="" name="" width="80px" emptyText="组织机构" class="nui-textbox"/> -->
                 <input id="" name="" width="80px" emptyText="车型名称" class="nui-textbox"/>
-                <input class="nui-combobox" id="search-type" width="80px" textField="name" valueField="id" value="0" data="statusList" allowInput="false" />
-	            <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="80px" onenter="search()" />
+<!--                 <input class="nui-combobox" id="search-type" width="80px" textField="name" valueField="id" value="0" data="statusList" allowInput="false" />
+	            <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="80px" onenter="search()" /> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 <!--                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
 
             </td>
         </tr>
@@ -126,23 +126,22 @@
         <div property="columns">
             <div type="indexcolumn" width="40">序号</div>
             <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
-                    <div field="" allowSort="true"  width="160" summaryType="count" headerAlign="center" header="单据编号"></div>
-                    <div field="" allowSort="true"  width="130" headerAlign="center" header="单据日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                    
-                    <div field="" name="guestFullName" width="220" headerAlign="center" header="组织机构"></div>
-                    <div field="" width="90" name = "orderMan" headerAlign="center" header="经办人"></div>
+                    <div field="" allowSort="true"  width="160" summaryType="count" headerAlign="center" header="订单单号"></div>
                     <div field="guestFullName" name="guestFullName" width="220" headerAlign="center" header="供应商"></div>                    
-                    <div field="" allowSort="true"   name="billTypeId" width="90" headerAlign="center" header="联系人"></div>
-                    <div field="" allowSort="true"  name="settleTypeId" width="90" headerAlign="center" header="联系电话"></div>
+                    <div field="" width="90" name = "orderMan" headerAlign="center" header="采购员"></div>
                     <div allowSort="true" field="billTypeId"  name="billTypeId" width="90" headerAlign="center" header="票据类型"></div>
-                    <div allowSort="true" field="billTypeId"  name="billTypeId" width="90" headerAlign="center" header="发票号码"></div>    
                     <div allowSort="true" field="settleTypeId" name="settleTypeId" width="90" headerAlign="center" header="结算方式"></div>
-                    <div allowSort="true" field="settleTypeId" name="settleTypeId" width="90" headerAlign="center" header="运输方式"></div>                                                                                                
+                    <div field="" allowSort="true"  width="130" headerAlign="center" header="订货日期" dateFormat="yyyy-MM-dd HH:mm" ></div> 
+                    <div field="" allowSort="true"   name="billTypeId" width="90" headerAlign="center" header="仓库"></div>                 
+                    <div field="" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="订单数量"></div>
+                    <div field="" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="订单金额"></div>
+                    <div allowSort="true" field="settleTypeId" name="settleTypeId" width="90" headerAlign="center" header="运输方式"></div>                                                                                                   
                     <div field="" allowSort="true"  width="130" headerAlign="center" header="预计到货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-                    <div field="" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="合计数量"></div>
-                    <div field="" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="合计金额"></div>
-                    <div field="" width="90" name="creator" headerAlign="center" header="制单人"></div>
-                    <div field="" allowSort="true"  width="130" headerAlign="center" header="制单日期" dateFormat="yyyy-MM-dd HH:mm" ></div>  
                     <div field="" allowSort="true"  width="80" headerAlign="center" header="备注"></div>
+                    <div field="" width="90" name="creator" headerAlign="center" header="创建人"></div>
+                    <div field="" allowSort="true"  width="130" headerAlign="center" header="创建日期" dateFormat="yyyy-MM-dd HH:mm" ></div>  
+                                        <div field="" width="90" name="creator" headerAlign="center" header="修改人"></div>
+                    <div field="" allowSort="true"  width="130" headerAlign="center" header="修改日期" dateFormat="yyyy-MM-dd HH:mm" ></div>  
         </div>
     </div> 
 </div>

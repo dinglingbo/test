@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chedao.websocket.webserver.user.dao.GroupInfoDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.chedao.websocket.webserver.user.model.GroupInfoEntity" id="GroupInfoMap">
+        <result property="id" column="id"/>
+        <result property="account" column="account"/>
+        <result property="password" column="password"/>
+        <result property="disablestate" column="disablestate"/>
+        <result property="isdel" column="isdel"/>
+        <result property="createdate" column="createdate"/>
+        <result property="updatedate" column="updatedate"/>
+        <result property="updateuser" column="updateuser"/>
+    </resultMap>
+
+    <insert id="addGroupInfo" parameterType="com.chedao.websocket.webserver.user.model.GroupInfoEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into qiqiim.group_info
+		(
+			`group_num`,
+			`group_name`,
+			`avatar`,
+			`group_man_id`,
+			`group_man`,
+			`status`,
+			`remark`,
+			`recorder_id`,
+			`recorder`,
+			`record_date`,
+			`modifier_id`,
+			`modifier`,
+			`modify_date`
+		)
+		values
+		(
+			#{groupNum},
+			#{groupName},
+			#{avatar},
+			#{groupManId},
+			#{groupMan},
+			#{status},
+			#{remark},
+			#{recorderId},
+			#{recorder},
+			NOW(),
+			#{modifierId},
+			#{modifier},
+			NOW()
+		)
+	</insert>
+
+	<update id="updateGroup" parameterType="com.chedao.websocket.webserver.user.model.GroupInfoEntity">
+		update qiqiim.group_info
+		<set>
+			<if test="groupName != null">`group_name` = #{groupName}, </if>
+			<if test="avatar != null">`avatar` = #{avatar}, </if>
+			<if test="modifierId != null">`modifier_id` = #{modifierId}, </if>
+			<if test="modifier != null">`modifier` = #{modifier}, </if>
+			`modify_date` = NOW()
+		</set>
+		where id = #{id}
+	</update>
+	<!-- 群聊查询 -->
+	<select id="queryGroupInfo" parameterType="java.util.List" resultType="com.chedao.websocket.webserver.user.model.GroupInfoEntity">
+		  select
+		   	id as id,
+		   	group_num as groupNum,
+		   	group_name as groupName,
+		   	avatar as avatar,
+		   	group_man_id as groupManId,
+		   	group_man as groupMan,
+		   	status as status,
+		   	remark as remark
+		   from qiqiim.group_info
+		   where id in
+			<foreach collection="groupIds" item="groupId" index="index" open="(" separator="," close=")">
+				#{groupId.groupId}
+			</foreach>
+
+	</select>
+</mapper>

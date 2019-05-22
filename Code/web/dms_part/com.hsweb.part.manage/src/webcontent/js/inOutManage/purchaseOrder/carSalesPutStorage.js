@@ -168,8 +168,8 @@ function selectSupplier(elId)
 
 function add(){
     var item={};
-    item.id = "carSalesDetails";
-    item.text = "整车采购订单详情";
+    item.id = "carSalesPutStorageDetails";
+    item.text = "验车入库详情";
     item.url = webPath + contextPath + "/com.hsweb.part.manage.carSalesPutStorageDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
@@ -179,14 +179,22 @@ function add(){
 }
 
 function edit(){
-    var row = rightGrid.getSelected();
-    if(!row) return; 
     var item={};
-    item.id = "carSalesDetails";
-    item.text = "整车采购订单详情";
+    item.id = "carSalesPutStorageDetails";
+    item.text = "验车入库详情";
     item.url = webPath + contextPath + "/com.hsweb.part.manage.carSalesPutStorageDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
-    var params = row; 
+    var params = {}; 
+    window.parent.activeTabAndInit(item,params);
+}
+function carCheck(){
+    var item={};
+    item.id = "carSalesPutStorageDetails";
+    item.text = "验车入库详情";
+    item.url = webPath + contextPath + "/com.hsweb.part.manage.carSalesPutStorageDetails.flow";
+    item.iconCls = "fa fa-file-text";
+    //window.parent.activeTab(item);
+    var params = {}; 
     window.parent.activeTabAndInit(item,params);
 }

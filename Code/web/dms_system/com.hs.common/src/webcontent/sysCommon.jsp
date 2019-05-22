@@ -34,7 +34,7 @@
     String crmApi = Env.getContributionConfig("system", "url", "apiDomain", "CRM");
     String frmApi = Env.getContributionConfig("system", "url", "apiDomain", "FRM");
     String wechatApi = Env.getContributionConfig("system", "url", "apiDomain", "WECHAT");
-	
+	String saleApi = Env.getContributionConfig("system", "url", "apiDomain", "SALES");
 	//暂不考虑前后端部署到不同服务器
 	//String serverType = Env.getContributionConfig("system", "url", "api", "serverType");
 	//apiPath = Env.getContributionConfig("system", "url", "api", serverType);
@@ -76,7 +76,7 @@
     var crmApi   = "<%=crmApi%>";
     var frmApi   = "<%=frmApi%>";
     var wechatApi   = "<%=wechatApi%>";
-
+	var saleApi   = "<%=saleApi%>";
 	$(function(){
 		nui.context='<%=contextPath %>';
 		nui.parse();
@@ -104,6 +104,7 @@
     String bankAccountNumber = "";
     String slogan1 = "";
     String slogan2 = "";
+    String imCode = "";
 	Map attr=new HashMap();
 	Object billParamsObj = null;
 	Map billParams = new HashMap();
@@ -215,6 +216,9 @@
                 if(attr.get("srmUserId") != null){
                 	srmUserId = attr.get("srmUserId").toString();
                 }
+                if(attr.get("imCode") != null){
+                	imCode = attr.get("imCode").toString();
+                }
                 
                 if(attr.get("billParams") != null){
                 	billParamsObj = attr.get("billParams");
@@ -296,6 +300,7 @@
     var currEmpId = "<%=empId %>";
     var currEmpTel = "<%=empTel %>";
     var token = "<%=token %>";
+    var currImCode = "<%=imCode %>";
     var currCompAddress = "<%=compAddress %>";
     var currCompTel = "<%=compTel %>";
     var currCompLogoPath = "<%=compLogoPath %>";
@@ -415,6 +420,8 @@
 		   showMsg("登录超时，正在跳转！", "E");
 		   if(currSource=="easy"){
 		 		window.top.location.href = sysDomain + "/coframe/auth/easy/login.jsp";
+			}else if(currSource=="waveBox"){
+		 		window.top.location.href = sysDomain + "/coframe/auth/waveBox/login.jsp";
 			}else{
 			   window.top.location.href = sysDomain + "/coframe/auth/login/login.jsp";
 			}
@@ -433,7 +440,7 @@
 </script>
 <script src="<%=webPath + contextPath%>/common/js/sysCommon.js?v=1.1.4" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/constantDef.js?v=1.1" type="text/javascript"></script>
-<script src="<%=webPath + contextPath%>/common/js/init.js?v=1.9.3" type="text/javascript"></script>
+<script src="<%=webPath + contextPath%>/common/js/init.js?v=1.9.4" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/jsCryptoJS.js?v=1.0" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/settleCenter.js?v=1.1" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/date.js?v=1.7" type="text/javascript"></script>

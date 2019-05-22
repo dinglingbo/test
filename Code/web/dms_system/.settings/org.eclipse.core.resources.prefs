@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//com.hs.common/eosdebug/com/hs/common/env/queryGroupUserInfo.bizx.eosdebug=UTF-8
 encoding//com.hs.common/eosdebug/com/hs/common/env/reLoadEnv.bizx.eosdebug=UTF-8
 encoding//com.hs.common/eosdebug/com/hs/common/uitls/testJPush.bizx.eosdebug=UTF-8
 encoding//com.hs.common/src/webcontent/orgExtendEdit_view0.jsp=UTF-8
@@ -7,4 +8,5 @@ encoding//eos-web/coframe/auth/img.jsp=UTF-8
 encoding//eos-web/coframe/auth/login/login.jsp=UTF-8
 encoding//eos-web/coframe/auth/login/privacyUrl.jsp=UTF-8
 encoding//eos-web/coframe/tools/skins/common.jsp=UTF-8
+encoding//eos-web/layim-v3.8.0/dist/css/modules/layim/html/find.html=UTF-8
 encoding//eos-web/skins/default/newFile.jsp=UTF-8

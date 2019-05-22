@@ -1,6 +1,7 @@
 package com.chedao.websocket.webserver.user.service.impl;
 
 import com.chedao.websocket.webserver.user.dao.UserTypeDao;
+import com.chedao.websocket.webserver.user.model.ImFriendUserInfoData;
 import com.chedao.websocket.webserver.user.model.UserTypeEntity;
 import com.chedao.websocket.webserver.user.service.UserTypeService;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,8 @@ public class UserTypeServiceImpl implements UserTypeService {
     public List<UserTypeEntity> queryList(Map<String, Object> map) {
         return userTypeDao.queryList(map);
     }
+
+
 
 
 }

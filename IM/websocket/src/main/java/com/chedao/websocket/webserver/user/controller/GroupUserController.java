@@ -62,7 +62,7 @@ public class GroupUserController extends BaseController {
         Integer userId = Integer.valueOf(id1);
 
         try{
-           List<GroupUserEntity> groupUserEntity =  groupUserServiceImpl.queryGroupInfo(userId);
+            List<GroupUserEntity> groupUserEntity =  groupUserServiceImpl.queryGroupInfo(userId);
 /*           String userIdStr = "";
             for(int i=0;i<groupUserEntity.size();i++) {
                 if(i<(groupUserEntity.size()-1)){
@@ -82,6 +82,54 @@ public class GroupUserController extends BaseController {
             }*/
             List<GroupInfoEntity> groupInfoEntityList =  groupInfoService.queryGroupInfo(groupUserEntity);
             map.put("data", groupInfoEntityList);
+        }catch (Exception e){
+            errCode.append("E");
+            map.put("errCode", errCode);
+        }
+        errCode.append("S");
+        map.put("errCode", errCode);
+        return map;
+    }
+
+    /**
+     * c查询群聊昵称
+     */
+    @ResponseBody
+    @RequestMapping(value = "/queryGroupName", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
+    public Map<String,Object> queryGroupName(@RequestBody Map<String,Object> params){
+        Map<String, Object> map = new HashMap<String, Object>();
+        StringBuilder errCode= new StringBuilder();
+        String userId = (String) params.get("userId");
+        userId=userId.replace("\"", "");
+        String groupId = (String) params.get("groupId");
+        groupId=groupId.replace("\"", "");
+        try{
+            List<GroupUserEntity> groupUserEntityList =  groupUserServiceImpl.queryGroupName(userId,groupId);
+            map.put("name", groupUserEntityList.get(0).getUserName());
+        }catch (Exception e){
+            errCode.append("E");
+            map.put("errCode", errCode);
+        }
+        errCode.append("S");
+        map.put("errCode", errCode);
+        return map;
+    }
+
+    /**
+     * 修改群聊昵称
+     */
+    @ResponseBody
+    @RequestMapping(value = "/updateGroupName", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
+    public Map<String,Object> updateGroupName(@RequestBody Map<String,Object> params){
+        Map<String, Object> map = new HashMap<String, Object>();
+        StringBuilder errCode= new StringBuilder();
+        String userId = (String) params.get("userId");
+        userId=userId.replace("\"", "");
+        String groupId = (String) params.get("groupId");
+        groupId=groupId.replace("\"", "");
+        String name = (String) params.get("name");
+        try{
+              groupUserServiceImpl.updateGroupName(userId,groupId,name);
         }catch (Exception e){
             errCode.append("E");
             map.put("errCode", errCode);

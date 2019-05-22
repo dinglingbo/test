@@ -1,8 +1,11 @@
 package com.chedao.websocket.webserver.user.controller;
 
+import com.chedao.websocket.constant.Constants;
 import com.chedao.websocket.webserver.base.controller.BaseController;
 import com.chedao.websocket.webserver.user.model.GroupInfoEntity;
+import com.chedao.websocket.webserver.user.model.ImFriendUserData;
 import com.chedao.websocket.webserver.user.model.UserFriendEntity;
+import com.chedao.websocket.webserver.user.model.UserInfoEntity;
 import com.chedao.websocket.webserver.user.service.impl.UserFriendServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -99,7 +103,7 @@ public class UserFriendController extends BaseController {
             if(count>0){
                 map.put("isFriend", true);
             }else{
-                map.put("isFriend", true);
+                map.put("isFriend", false);
             }
         }catch (Exception e){
             errCode.append("E");
@@ -109,4 +113,14 @@ public class UserFriendController extends BaseController {
         map.put("errCode", errCode);
         return map;
     }
+
+    //查找好友
+    //删除好友，删除两条数据
+    @RequestMapping(value="/queryFriend", produces="application/json;charset=UTF-8", method = RequestMethod.POST)
+    @ResponseBody
+    public Object queryFriend(@RequestBody UserInfoEntity uesr) {
+        List<ImFriendUserData> friend = userFriendServiceImpl.queryFriend(uesr);
+        return putMsgToJsonString(Constants.WebSite.SUCCESS, "", 0, friend);
+    }
+
 }

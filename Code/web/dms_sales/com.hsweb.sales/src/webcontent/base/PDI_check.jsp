@@ -30,8 +30,8 @@
 
 <body>
     <div class="nui-toolbar">
-      项目编码：<input id="txtItemCode" class="nui-textbox" type="text" style="width: 110px" />
-      项目名称：<input id="txtItemName" class="nui-textbox" type="text" style="width: 110px" />
+      项目编码：<input id="code" class="nui-textbox" type="text" style="width: 110px" />
+      项目名称：<input id="name" class="nui-textbox" type="text" style="width: 110px" />
       <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
         class="fa fa-search fa-lg"></span>&nbsp;查找</a>
     <a class="nui-button" plain="true" onclick="addShareUrl()" id="" plain="false"><span

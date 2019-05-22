@@ -13,7 +13,7 @@
         <title>编辑整车销售</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.03" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.05" type="text/javascript"></script>
 
     </head>
     <style type="text/css">
@@ -78,11 +78,11 @@
                         工单号：<span id="serviceCode"></span>
                     </td>
                     <td style="text-align:right;">
-                        <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn" visible="false"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="save()" id="submitBtn" visible="false"><span class="fa fa-save fa-lg"></span>&nbsp;提交</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="save()" id="invalidBtn" visible="false"><span class="fa fa-close fa-lg"></span>&nbsp;作废</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="save(0)" id="saveBtn" visible="false"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="save(1)" id="submitBtn" visible="false"><span class="fa fa-save fa-lg"></span>&nbsp;提交</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="save(3)" id="invalidBtn" visible="false"><span class="fa fa-close fa-lg"></span>&nbsp;作废</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="selectBtn" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;选车</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="audit(1)" id="audit" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="save(2)" id="audit" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="caseMsg()" id="case" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;结案</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="jsBtn" visible="false"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
 
@@ -91,8 +91,8 @@
                             <span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
 
                         <ul id="popupMenuMore" class="nui-menu" style="display:none;">
-                            <li iconCls="" onclick="unfinish()" id="unfinishBtn" style="display:none;">返单</li>
-                            <li iconCls="" onclick="unfinish()" id="auditno" style="display:none;">反审</li>
+                            <li iconCls="" onclick="save(0)" id="unfinishBtn" style="display:none;">返单</li>
+                            <li iconCls="" onclick="save(1)" id="auditno" style="display:none;">反审</li>
                             <li iconCls="" onclick="unfinish()" id="caseno" style="display:none;">反结案</li>
                             <li iconCls="" onclick="registration()" id="addBtn">车辆上牌</li>
                             <li iconCls="" onclick="upload()" id="ExpenseAccount1">车辆图片</li>
@@ -104,6 +104,8 @@
         </div>
         <form id="billForm">
             <input class="nui-hidden" name="id" />
+            <input class="nui-hidden" name="status" value="0" />
+            <input class="nui-hidden" name="serviceCode" />
             <table cellpadding="0" cellspacing="0" style="line-height: 30px; padding-top: 4px; padding-left: 0px;width:100%">
                 <tr>
                     <td class="td_title">单据日期：
@@ -147,7 +149,7 @@
                     <td align="right">合同号：
                     </td>
                     <td>
-                        <input id="contractNo" id="contractNo" class="nui-textbox" style="width: 100%;" />
+                        <input id="contractNo" name="contractNo" class="nui-textbox" style="width: 100%;" />
                     </td>
                     <td align="right">是否开票：
                     </td>
@@ -164,12 +166,12 @@
                     <td align="right">发票号码：
                     </td>
                     <td colspan="3">
-                        <input id="txtBillNum" style="width: 100%;" class="nui-textbox" />
+                        <input id="billNo" name="billNo" style="width: 100%;" class="nui-textbox" />
                     </td>
                     <td align="right">开票客户：
                     </td>
                     <td colspan="5">
-                        <input id="txtBillCust" class="nui-textbox" style="width: 100%;" />
+                        <input id="billTitle" name="billTitle" class="nui-textbox" style="width: 100%;" />
                     </td>
 
                 </tr>
@@ -177,7 +179,7 @@
                     <td align="right">结算备注：
                     </td>
                     <td colspan="9">
-                        <input id="remark" nama="remark" class="nui-textarea" style="width: 100%;height:40px" multiline="true" />
+                        <input id="remark" name="remark" class="nui-textarea" style="width: 100%;height:40px" multiline="true" />
                     </td>
                 </tr>
             </table>
@@ -202,8 +204,8 @@
                         </div>
 
                         <div showCollapseButton="true">
-                            <div id="jpDetailGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="false" allowcellwrap="true" allowcelledit="true"showPager="true" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="data" showModified="false" onrowdblclick="" allowCellSelect="true"
-                                editNextOnEnterKey="true" allowCellWrap="true" url="">
+                            <div id="jpDetailGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="false" allowcellwrap="true" allowcelledit="true" showPager="false" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="data" showModified="false"
+                                onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true" allowCellWrap="true" url="">
                                 <div property="columns">
                                     <div type="indexcolumn">序号</div>
                                     <div field="giftName" name="giftName" width="100px" headerAlign="center" header="精品名称"></div>

@@ -92,7 +92,7 @@
                         预付款：
                     </td>
                     <td>
-                        <input id="receivedBala" name="receivedBala" style="width: 100%" class="nui-textbox" />
+                        <input id="advanceChargeAmt" name="advanceChargeAmt" style="width: 100%" class="nui-textbox" />
                     </td>
                 </tr>
                 <tr>
@@ -259,7 +259,7 @@
                         费用合计：
                     </td>
                     <td>
-                        <input id="receTotal" name="receTotal" style="width: 100%" class="nui-textbox" enabled="false" />
+                        <input id="totalAmt" name="totalAmt" style="width: 100%" class="nui-textbox" enabled="false" />
 
                     </td>
                     <td class="td_title">

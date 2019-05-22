@@ -4,6 +4,8 @@ import com.chedao.websocket.webserver.user.dao.UserFriendDao;
 import com.chedao.websocket.webserver.user.dao.UserTypeDao;
 import com.chedao.websocket.webserver.user.model.*;
 import com.chedao.websocket.webserver.user.service.UserFriendService;
+import com.chedao.websocket.webserver.util.JedisCache;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,7 +18,24 @@ public class UserFriendServiceImpl implements UserFriendService {
     private UserFriendDao userFriendDao;
     @Resource
     private UserTypeDao  userTypeDao;
+    @Autowired
+    private JedisCache jedisCache;
 
+    private static final String cacheName = "LAYIM_GROUP";
+    private static final String cacheKey = "USERID_FRIEND_";
+
+    //每个组存一个
+    private String getCacheKey(String userId){
+        return cacheKey + userId;
+    }
+
+    //将某个用户的好友信息存入缓存  key=》list  用于IM界面好友信息显示
+    public boolean saveUserFriend(String userId, List<UserFriendTEntity> userFriendList) {
+
+        String key = getCacheKey(userId);
+        jedisCache.hashSet(cacheName,key,userFriendList);
+        return true;
+    }
 
     @Override
     public void save(UserFriendEntity userFriend) {
@@ -39,6 +58,7 @@ public class UserFriendServiceImpl implements UserFriendService {
         return userFriendDao.delete(userFriend);
     }
 
+    @Override
     public int isFriend(String userId, String friendId){
         return userFriendDao.isFriend(userId,friendId);
     }
@@ -63,5 +83,19 @@ public class UserFriendServiceImpl implements UserFriendService {
             }
         }
         return friend;
+    }
+
+    //查找用户好友列表
+    @Override
+    public List<UserFriendTEntity> queryUserFriendList(String userId) {
+        String key = getCacheKey(userId);
+        List<UserFriendTEntity> userFriendList = (List<UserFriendTEntity>)jedisCache.hashGet(cacheName,key);
+        if (userFriendList == null || userFriendList.size() == 0) {
+            System.out.println("缓存中没有数据，需要从数据库读取");
+            userFriendList = userFriendDao.queryUserFriendList(userId);
+            saveUserFriend(userId, userFriendList);
+            return userFriendList;
+        }
+        return userFriendList;
     }
 }

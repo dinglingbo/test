@@ -2,9 +2,12 @@ package com.chedao.websocket.webserver.user.model;
 
 import com.chedao.websocket.webserver.base.model.BaseModel;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class UserTypeEntity extends BaseModel {
+public class UserTypeEntity extends BaseModel implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     //用户id
     private Long id;
     //用户id

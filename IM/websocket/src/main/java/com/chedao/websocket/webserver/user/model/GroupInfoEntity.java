@@ -2,7 +2,9 @@ package com.chedao.websocket.webserver.user.model;
 
 import com.chedao.websocket.webserver.base.model.BaseModel;
 
-public class GroupInfoEntity  {
+import java.io.Serializable;
+
+public class GroupInfoEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     //群id

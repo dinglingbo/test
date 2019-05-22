@@ -2,7 +2,9 @@ package com.chedao.websocket.webserver.user.model;
 
 import com.chedao.websocket.webserver.base.model.BaseModel;
 
-public class GroupUserEntity extends BaseModel {
+import java.io.Serializable;
+
+public class GroupUserEntity extends BaseModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
     //id
@@ -15,10 +17,6 @@ public class GroupUserEntity extends BaseModel {
     private Long groupId;
     //加入时间
     private String joinTime;
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
 
     @Override
     public Long getId() {

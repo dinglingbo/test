@@ -16,7 +16,7 @@
     </resultMap>
 
     <insert id="addGroupInfo" parameterType="com.chedao.websocket.webserver.user.model.GroupInfoEntity" useGeneratedKeys="true" keyProperty="id">
-		insert into qiqiim.group_info
+		insert into group_info
 		(
 			`group_num`,
 			`group_name`,
@@ -50,8 +50,16 @@
 		)
 	</insert>
 
+	<!-- 查找该用户所有群组-->
+	<select id="queryUserGroupList" resultType="com.chedao.websocket.webserver.user.model.GroupInfoTEntity" >
+           SELECT a.id, a.group_name as groupname, a.avatar
+		   from group_info a
+		   where ifnull(status,0) = 0
+		         and exists (select 1 from group_user b where a.id = b.group_id and b.user_id = #{userId})
+    </select>
+
 	<update id="updateGroup" parameterType="com.chedao.websocket.webserver.user.model.GroupInfoEntity">
-		update qiqiim.group_info
+		update group_info
 		<set>
 			<if test="groupName != null">`group_name` = #{groupName}, </if>
 			<if test="avatar != null">`avatar` = #{avatar}, </if>
@@ -61,6 +69,8 @@
 		</set>
 		where id = #{id}
 	</update>
+
+
 	<!-- 群聊查询 -->
 	<select id="queryGroupInfo" parameterType="java.util.List" resultType="com.chedao.websocket.webserver.user.model.GroupInfoEntity">
 		  select
@@ -72,11 +82,14 @@
 		   	group_man as groupMan,
 		   	status as status,
 		   	remark as remark
-		   from qiqiim.group_info
+		   from group_info
 		   where id in
 			<foreach collection="groupIds" item="groupId" index="index" open="(" separator="," close=")">
 				#{groupId.groupId}
 			</foreach>
 
 	</select>
+
+
+
 </mapper>

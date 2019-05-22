@@ -215,6 +215,9 @@ function showTabInfo(){
             var colPro = dgGrid.getColumn('property1');
             dgGrid.updateColumn(colPro, { header: '贷款比例(%)'});
             break;
+            case "visitType"://来访类型 
+            DICTID = 'DDT20130731000003';
+            break;
         default:
             break;
     }

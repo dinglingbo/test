@@ -24,7 +24,7 @@ public class GroupUserManager implements IGroupUserManager {
 
     private static final String cacheName = "LAYIM_GROUP";
     private static final String cacheKey = "GROUPID_";
-    private static final String memCacheKey = "GROUPID_MEM";
+    private static final String memCacheKey = "GROUPID_MEM_";
 
     //private static GroupUserManager manager = new GroupUserManager();
 
@@ -92,9 +92,6 @@ public class GroupUserManager implements IGroupUserManager {
             saveGroupMemeberList(groupId, groupUserList);
             return groupUserList;
         }
-//        }else{
-//            System.out.println("直接从缓存中读取出来");
-//        }
         return groupUserList;
     }
 }

@@ -119,13 +119,23 @@
 		WHERE 1 = 1
 		<dynamic>
 			<isNotEmpty prepend="and" property="serviceCode">
-                (a.serviceCode= #serviceCode#)
+                (a.service_code= #serviceCode#)
             </isNotEmpty>
-        </dynamic>
-        <dynamic>
-			<isNotEmpty prepend="and" property="id">
+            <isNotEmpty prepend="and" property="id">
                 (a.id= #id#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="status">
+                (a.status ($status$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestName">  
+                (a.guest_full_name like '%$guestName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="recordStartDate"> 
+                (a.record_date &gt;= #recordStartDate#)
+              </isNotEmpty>
+              <isNotEmpty prepend="and" property="recordEndDate"> 
+                (a.record_date &lt; #recordEndDate#)
+              </isNotEmpty>
         </dynamic>  
 	</select>
 	

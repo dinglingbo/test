@@ -291,7 +291,11 @@ function selectSupplier(elId)
         allowResize:true,
         onload: function ()
         {
-
+        	 var iframe = this.getIFrameEl();
+             var params = {
+        		 isSupplier: 1,
+             };
+             iframe.contentWindow.setData(params);
         },
         ondestroy: function (action)
         {

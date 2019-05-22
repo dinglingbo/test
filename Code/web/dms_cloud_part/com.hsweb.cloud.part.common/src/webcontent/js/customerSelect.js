@@ -51,7 +51,7 @@ $(document).ready(function(v)
                     return true;
                 }
             });
-            nui.get("guestType").setData(guestTypeList);
+//            nui.get("guestType").setData(guestTypeList);
             billTypeIdList = dataItems.filter(function(v)
             {
                 if(v.dictid == "DDT20130703000008")
@@ -70,6 +70,9 @@ $(document).ready(function(v)
             });
             grid.load();
         }
+    });
+    grid.on("drawcell",function(e){
+    	onDrawCell(e);
     });
 });
 var cityList = [];
@@ -102,7 +105,7 @@ function getSearchParam()
     params.name = nui.get("name").getValue().replace(/\s+/g, "");
     params.mobile = nui.get("phone").getValue().replace(/\s+/g, "");
     params.contactorTel = params.mobile;
-    params.guestType = nui.get("guestType").getValue().replace(/\s+/g, "");
+//    params.guestType = nui.get("guestType").getValue();
     var showDisabled = nui.get("showDisabled").getValue().replace(/\s+/g, "");
     if(showDisabled == 0)
     {

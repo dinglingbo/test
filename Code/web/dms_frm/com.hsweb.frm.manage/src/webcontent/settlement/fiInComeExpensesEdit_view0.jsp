@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" session="false" %>
-<%@include file="/common/sysCommon.jsp"%>
+<%@include file="/common/commonPart.jsp"%>
 <html>
 <!-- 
   - Author(s): chenziming
@@ -9,7 +9,7 @@ pageEncoding="UTF-8" session="false" %>
 -->
 <head>
 <title>新增项目</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/fiInComeExpensesEdit.js?v=2.0.6"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/fiInComeExpensesEdit.js?v=2.0.7"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -100,6 +100,15 @@ pageEncoding="UTF-8" session="false" %>
 	                <td class=" right fwidtha required">是否主营业务项目:</td>
 	                <td >
 	                    <div id="isPrimaryBusiness" name="isPrimaryBusiness" class="nui-radiobuttonlist" repeatItems="1" repeatLayout="table" repeatDirection="vertical" 
+	                        textField="name" valueField="id" value="1"  width="100%"
+	                        url="" >
+	                    </div> 
+	                </td>
+	            </tr>
+	            <tr class="htr">
+	                <td class=" right fwidtha required">是否销售费用:</td>
+	                <td >
+	                    <div id="isSale" name="isSale" class="nui-radiobuttonlist" repeatItems="1" repeatLayout="table" repeatDirection="vertical" 
 	                        textField="name" valueField="id" value="1"  width="100%"
 	                        url="" >
 	                    </div> 

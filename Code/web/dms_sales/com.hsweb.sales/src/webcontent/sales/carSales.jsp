@@ -37,7 +37,7 @@
                 <tr>
                     <td style="white-space:nowrap;">
                         <label style="font-family:Verdana;">快速查询：</label>
-                        <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+                        <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本月</a>
 
                         <ul id="popupMenuDate" class="nui-menu" style="display:none;">
                             <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
@@ -54,8 +54,11 @@
                         </ul>
                         <a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">所有</a>
                         <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
-                            <li iconCls="" onclick="quickSearch()" id="type">所有</li>
-                            <li iconCls="" onclick="quickSearch(12)" id="type12">草稿</li>
+                            <li iconCls="" onclick="quickSearch(12)" id="type">所有</li>
+                            <li iconCls="" onclick="quickSearch(13)" id="type12">草稿</li>
+                            <li iconCls="" onclick="quickSearch(14)" id="type12">待审</li>
+                            <li iconCls="" onclick="quickSearch(15)" id="type12">已审</li>
+                            <li iconCls="" onclick="quickSearch(16)" id="type12">作废</li>
                         </ul>
                         <input class="nui-combobox" id="searchType" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false" />
                         <input class="nui-textbox" id="textValue" emptyText="输入查询条件" width="120" onenter="onenterSearch(this.value)" />

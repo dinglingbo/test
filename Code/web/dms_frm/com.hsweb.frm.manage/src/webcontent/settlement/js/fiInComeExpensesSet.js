@@ -120,7 +120,7 @@ function showEditModal(row, newRow, type){
 		url: "com.hsweb.frm.manage.fiInComeExpensesEdit.flow",
 		title: title,
 		width: "500px",
-		height: "250px",
+		height: "300px",
         allowDrag:true,
         allowResize:false,
 		onload: function() {

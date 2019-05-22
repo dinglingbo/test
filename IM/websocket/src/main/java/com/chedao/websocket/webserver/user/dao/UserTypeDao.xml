@@ -13,9 +13,9 @@
 
     <sql id="Base_Column_List" >
   	  	     id ,
-  	  	     userid ,
+  	  	     user_id ,
   	  	     name,
-  	  	     buildtime
+  	  	     build_time
 
   </sql>
 
@@ -23,7 +23,6 @@
     <select id="queryList" resultType="com.chedao.websocket.webserver.user.model.UserTypeEntity" parameterType="map">
         select  <include refid="Base_Column_List" />  from user_type where user_id = #{userid}
     </select>
-
     <!-- <select id="queryByUid"  parameterType="long" resultType="com.chedao.websocket.webserver.user.model.UserInfoEntity">
          select  <include refid="Base_Column_List" />  from user_info where id = #{id}
      </select>

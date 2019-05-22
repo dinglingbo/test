@@ -1,5 +1,6 @@
 package com.chedao.websocket.webserver.user.service;
 
+import com.chedao.websocket.webserver.user.model.ImFriendUserInfoData;
 import com.chedao.websocket.webserver.user.model.UserTypeEntity;
 
 import java.util.List;

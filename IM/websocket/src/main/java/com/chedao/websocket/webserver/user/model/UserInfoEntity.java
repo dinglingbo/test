@@ -47,6 +47,34 @@ public class UserInfoEntity extends BaseModel {
 	//个人头像
 	private String profilephoto;
 
+	private String  province;
+	private String city;
+	private String area;
+
+	public String getProvince() {
+		return province;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public String getArea() {
+		return area;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
+	}
+
 	/**
 	 * 设置：
 	 */

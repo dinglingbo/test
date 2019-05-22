@@ -130,4 +130,21 @@
 		</foreach>
 	</delete>-->
 
+	<select id="isFriend" resultType="int">
+		select count(*) from qiqiim.user_friend
+		where user_id=#{userId} and friend_id=#{friendId}
+	</select>
+
+	<!-- 查找该用户某分组下的好友-->
+	<select id="queryListUser" resultType="com.chedao.websocket.webserver.user.model.ImFriendUserInfoData" >
+           select
+		   	b.uid as id,
+		    b.profilephoto as avatar,
+		    b.name as username,
+		   	b.signature as sign
+		   from qiqiim.user_friend a
+		   INNER JOIN qiqiim.user_info b on b.uid = a.friend_id
+		   where a.type_id = #{value}
+    </select>
+
 </mapper>

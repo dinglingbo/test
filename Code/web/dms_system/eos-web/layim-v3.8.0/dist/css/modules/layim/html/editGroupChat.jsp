@@ -36,6 +36,13 @@
     <label class="layui-form-label" style="width: 75px">群头像：</label>
     <div class="layui-input-block">
       <img id="avatar" src=""  style="width: 100px;height: 100px">
+	  	 <div class="page-header" id="btn-uploader">
+			<div class="div1" id="faker" onchange="xmTanUploadImg(this)">
+				<img id="xmTanImg" style="width: 100px;height: 100px" onchange="xmTanUploadImg(this)" src="<%= request.getContextPath() %>/common/images/logo.jpg"/>
+		        <div id="xmTanDiv"></div>
+		    </div>
+	    </div>
+		<input  class="nui-textbox" id="headPortrait" name="headPortrait"  style="display:none" >
     </div>
   </div>
     <div class="layui-form-item">

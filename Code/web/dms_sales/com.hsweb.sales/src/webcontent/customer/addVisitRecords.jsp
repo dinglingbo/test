@@ -214,9 +214,15 @@
 	         placeholder=""
 	         selectOnFocus="true" 
 	         allowInput="false"
-	         width="100%"
+	         width="50%"
 	        />
+	        <input id="carModelId" name="carModelId" class="nui-textbox" visible="false" style="width: 352px;"/>
+       <input id="carModelName" name="carModelName" class="nui-buttonedit" style="width: 352px;" onbuttonclick="onButtonEdit"/>
+        
         </td>
+        
+        
+        
         <td class="form_label">
 		 <label>预算金额：</label>
 	   </td>

@@ -153,7 +153,7 @@ function potentialCustomer(){
 	});
 }
 
-function chooseCarModelType(){
+/*function chooseCarModelType(){
 	nui.open({
         url: webPath + contextPath + "/sales/base/sCarModelType.jsp?token="+token,
         title: '选择意向车型',
@@ -171,4 +171,26 @@ function chooseCarModelType(){
        	 
         }
     });
-}
+}*/
+
+function chooseCarModelType(e) {
+	nui.open({
+	url: webPath + contextPath + '/sales/base/selectCarModel.jsp',
+	title: '选择车型',
+	width: 1000,
+	height: 500,
+	onload: function () {
+	var iframe = this.getIFrameEl();
+	//iframe.contentWindow.setData(row);
+	},
+	ondestroy: function (action) {
+	var iframe = this.getIFrameEl();
+	if(action == 'ok'){
+	var row = iframe.contentWindow.getRow();
+	nui.get("carModelId").setValue(row.id);
+	nui.get("carModelName").setValue(row.name);
+	nui.get("carModelName").setText(row.name);
+	}
+	}
+	});
+	}

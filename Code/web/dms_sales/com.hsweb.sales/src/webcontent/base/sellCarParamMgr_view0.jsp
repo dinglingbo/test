@@ -78,6 +78,7 @@
                         <div title="购车方式" id="buyCarType" name="buyCarType" url=""></div>
                         <div title="购车用途" id="buyCarUser" name="buyCarUser" url=""></div>
                         <div title="银行定义" id="bank" name="bank" url=""></div>
+                        <div title="来访类型" id="visitType" name="visitType" url=""></div>
 
                         <!--<div title="信息来源" id="infoSourceTab" name="infoSourceTab" url=""></div>
                         <div title="意向级别" id="purposeTypeTab" name="purposeTypeTab" url=""></div>

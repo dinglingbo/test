@@ -94,8 +94,8 @@ $(document).ready(function(v) {
 		            var domain = up.getOption('domain');
 		            //var sourceLink = domain + res.key;//获取上传文件的链接地址
 		            var info1 = JSON.parse(info);
-		            $("#xmTanImg").attr("src",getCompanyLogoUrl() + info1.hash);
-		            nui.get("headPortrait").setValue(getCompanyLogoUrl() + info1.hash);
+		            $("#xmTanImg").attr("src",domain + '/' + info1.key);
+		            nui.get("headPortrait").setValue(domain + '/' + info1.key);
 		        },
 		        'Error': function (up, err, errTip) {
 		            alert(errTip);

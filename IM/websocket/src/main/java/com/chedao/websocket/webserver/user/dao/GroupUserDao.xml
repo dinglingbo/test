@@ -61,4 +61,40 @@
 		   from qiqiim.group_user
 		   where user_id = #{userId}
     </select>
+	<!-- 查询群聊下的所有成员id -->
+	<select id="queryGroupUserId" resultType="java.lang.String">
+		  select
+		   	user_id as userId
+		   from qiqiim.group_user
+		   where group_id = #{groupId}
+    </select>
+	<!-- 查询群聊下的所有成员信息 -->
+	<select id="queryUserInfoExtend" resultType="com.chedao.websocket.webserver.user.model.UserInfoExtendEntity">
+		  select
+		   	a.uid as id,
+		    a.profilephoto as avatar,
+		   	a.name as username,
+		   	a.signature as sign
+		   from qiqiim.user_info a
+		   INNER JOIN qiqiim.group_user b on a.uid = b.user_id
+		   where b.group_id = #{groupId}
+    </select>
+	<!-- 查询昵称 -->
+	<select id="queryGroupName" resultType="com.chedao.websocket.webserver.user.model.GroupUserEntity">
+		  select
+		   	id as id,
+		   	user_id as userId,
+		   	user_name as userName,
+		   	group_id as groupId,
+		   	join_time as joinTime
+		   from qiqiim.group_user
+		   where user_id = #{userId} and group_id= #{groupId}
+    </select>
+	<update id="updateGroupName" parameterType="java.lang.String">
+		update qiqiim.group_user
+		<set>
+			<if test="name != null">`user_name` = #{name} </if>
+		</set>
+		where user_id = #{userId} and group_id = #{groupId}
+	</update>
 </mapper>

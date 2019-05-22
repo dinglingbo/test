@@ -3,11 +3,9 @@ package com.chedao.websocket.webserver.user.controller;
 import com.alibaba.fastjson.JSONArray;
 import com.chedao.websocket.constant.Constants;
 import com.chedao.websocket.webserver.base.controller.BaseController;
-import com.chedao.websocket.webserver.user.model.MessageInfoEntity;
-import com.chedao.websocket.webserver.user.model.UserFriendApplyEntity;
-import com.chedao.websocket.webserver.user.model.UserMessageEntity;
-import com.chedao.websocket.webserver.user.model.UserMessageTEntity;
+import com.chedao.websocket.webserver.user.model.*;
 import com.chedao.websocket.webserver.user.service.UserMessageService;
+import com.chedao.websocket.webserver.user.service.impl.GroupUserManager;
 import com.chedao.websocket.webserver.user.service.impl.UserFriendApplyServiceImpl;
 import com.chedao.websocket.webserver.util.PageBean;
 import com.github.pagehelper.PageHelper;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.crypto.MacSpi;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,10 +29,10 @@ import java.util.Map;
 public class UserMessageController extends BaseController {
     @Autowired
     private UserMessageService userMessageServiceImpl;
-
+    @Autowired
+    private GroupUserManager groupUserManager;
     @Autowired
     private UserFriendApplyServiceImpl userFriendApplyServiceImpl;
-
     /**
      * 页面
      */
@@ -153,5 +152,26 @@ public class UserMessageController extends BaseController {
         int result = userMessageServiceImpl.deleteBatch(ids);
         return putMsgToJsonString(result, "", 0, "");
     }
-
+    /**
+     * 查询所有成员信息
+     */
+    @ResponseBody
+    @RequestMapping(value = "/queryGroupUserinfoList", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
+    public Map<String,Object> queryGroupUserinfoList(@RequestBody Map<String,Object> params){
+        StringBuilder errCode= new StringBuilder();
+        Map<String, Object> map = new HashMap<String, Object>();
+        String groupId = (String) params.get("groupId");
+        groupId=groupId.replace("\"", "");
+        try{
+            List<UserInfoExtendEntity> userInfoExtendEntityList =  groupUserManager.getGroupMemberList(groupId);
+            map.put("data", userInfoExtendEntityList);
+        }catch (Exception e){
+            errCode.append("E");
+            map.put("errCode", "E");
+            return map;
+        }
+        errCode.append("S");
+        map.put("errCode", "S");
+        return map;
+    }
 }

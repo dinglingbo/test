@@ -109,7 +109,7 @@ layui.use(['form', 'upload'], function(){  //如果只加载一个模块，可�
  function child(apply) {
  applyFriend = apply;
   $('#name').val(applyFriend.name);
-  $('#remark').val("我是"+applyFriend.name);
+  $('#remark').val("我是"+currUserName);
 }
 
 </script>

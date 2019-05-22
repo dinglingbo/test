@@ -3,6 +3,7 @@ import com.chedao.websocket.webserver.base.dao.BaseDao;
 import com.chedao.websocket.webserver.user.model.UserFriendApplyEntity;
 import com.chedao.websocket.webserver.user.model.UserInfoEntity;
 import com.chedao.websocket.webserver.user.model.UserInfoExtendEntity;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -18,8 +19,8 @@ import java.util.Map;
 public interface UserInfoDao extends BaseDao<UserInfoEntity> {
     List<UserInfoEntity> queryByUid(Map<String, Object> map);
 
-    Map queryByUid(Long uid);
+    UserInfoEntity queryByUid(Long uid);
 
     List<UserInfoExtendEntity> queryBoxUserInfoByUid(Map<String, Object> map);
-    public List<UserInfoEntity> queryUserInfo(String name);
+    public List<UserInfoEntity> queryUserInfo(@Param("name") String name);
 }

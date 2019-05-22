@@ -91,7 +91,7 @@ public class GroupInfoController extends BaseController {
         groupInfo.setId(groupId);
         groupInfo.setGroupName((String) group.get("groupName"));
         groupInfo.setAvatar((String) group.get("avatar"));
-        groupInfo.setAvatar((String) group.get("remark"));
+        groupInfo.setRemark((String) group.get("remark"));
         groupInfo.setModifierId(userId);
         groupInfo.setModifier((String) group.get("userName"));
         try{

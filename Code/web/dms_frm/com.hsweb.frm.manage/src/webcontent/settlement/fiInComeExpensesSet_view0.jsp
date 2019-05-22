@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>收支项目</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/manage/settlement/js/fiInComeExpensesSet.js?v=2.1.0"></script>
+    <script src="<%=webPath + contextPath%>/manage/settlement/js/fiInComeExpensesSet.js?v=2.1.1"></script>
     <style type="text/css">
     body {
         margin: 0;

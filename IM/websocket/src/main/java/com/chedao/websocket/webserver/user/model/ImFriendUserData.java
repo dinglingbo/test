@@ -1,8 +1,11 @@
 package com.chedao.websocket.webserver.user.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ImFriendUserData {
+public class ImFriendUserData implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	public Long id;//分组ID
 	public String groupname;//好友分组Name
 	public List<ImFriendUserInfoData> list;//分组好友列表

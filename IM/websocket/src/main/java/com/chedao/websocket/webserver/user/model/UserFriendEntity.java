@@ -1,8 +1,11 @@
 package com.chedao.websocket.webserver.user.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class UserFriendEntity {
+public class UserFriendEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private Long id;
     private Long userid;
     private String username;

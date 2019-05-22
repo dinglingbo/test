@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
-Require-Bundle: com.hsapi.sales.data,com.primeton.eos.richweb,com.eos.
- foundation,com.eos.workflow
-eos-webCtxPath: svr
+Require-Bundle: com.eos.workflow,com.hsapi.repair.repairService,com.pr
+ imeton.eos.richweb,com.hsapi.sales.data,com.eos.foundation
 Bundle-Vendor: Administrator
+eos-webCtxPath: svr
 Bundle-Version: 1.0.0
 Bundle-Name: comhsapi.sales.svr
 Bundle-Description: 

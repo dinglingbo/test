@@ -141,7 +141,7 @@
 	</insert>
 	 
 	<update id="update" parameterType="com.chedao.websocket.webserver.user.model.UserInfoEntity">
-		update qiqiim.user_info
+		update user_info
 		<set>
 			<if test="uid != null">`uid` = #{uid}, </if>
 			<if test="deptid != null">`deptid` = #{deptid}, </if>
@@ -199,7 +199,7 @@
 		   	remark as remark,
 		   	profilephoto as profilephoto,
 		   	createdate as createdate
-		   from qiqiim.user_info
+		   from user_info
 		   where name like '%${name}%'
     </select>
 </mapper>

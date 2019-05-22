@@ -8,10 +8,13 @@
 -->
 <head>
 <title>采购订单查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrder/purchaseOrderSelect.js?v=2.0.1"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderQuery.js?v=1.0.19"></script>
+	    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
+
 <style type="text/css">
 .title {
-	width: 90px;
+	width: 90px; 
 	text-align: right;
 }
 
@@ -37,7 +40,26 @@
         <tr>
             <td style="white-space:nowrap;">
                 <label style="font-family:Verdana;">快速查询：</label>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)" id="type0">本日</a>
+
+
+                <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+
+                <ul id="popupMenuDate" class="nui-menu" style="display:none;">
+                    <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
+                    <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
+                    <li class="separator"></li>
+                    <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
+                    <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
+                    <li class="separator"></li>
+                    <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
+                    <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
+                    <li class="separator"></li>
+                    <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
+                    <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
+                </ul>
+
+
+                <!-- <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)" id="type0">本日</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)" id="type1">昨日</a>
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)" id="type2">本周</a>
@@ -48,33 +70,42 @@
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(10)" id="type10">本年</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(11)" id="type11">上年</a>
-                <span class="separator"></span>
+                <span class="separator"></span> -->
 				<label style="font-family:Verdana;">审核日期 从：</label>
                 <input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <label style="font-family:Verdana;">至</label>
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
-            </td>
-        </tr>
-        <tr>
-            <td style="white-space:nowrap;">
-				<label style="font-family:Verdana;">配件名称/拼音：</label>
-	            <input id="partNameAndPY" width="90px" class="nui-textbox"/>
-	            <label style="font-family:Verdana;">配件编码：</label>
-	            <input id="partCode" width="90px" class="nui-textbox"/>
-	            <label style="font-family:Verdana;">订单单号：</label>
-	            <input id="serviceId" width="90px" class="nui-textbox"/>
-	            <label style="font-family:Verdana;">供应商：</label>
+                <span class="separator"></span> 
+
+                <input id="partNameAndPY" width="100px" emptyText="配件名称/拼音" class="nui-textbox"/>
+                <!-- <label style="font-family:Verdana;">配件编码：</label> -->
+                <input id="partCode" width="100px" emptyText="配件编码" class="nui-textbox"/>
+                <!-- <label style="font-family:Verdana;">订单单号：</label> -->
+                <input id="serviceId" width="100px" emptyText="订单单号" class="nui-textbox"/>
+                <!-- <label style="font-family:Verdana;">供应商：</label> -->
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择供应商..."
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
-                <span class="separator"></span>
-                <!-- <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
-				<span class="separator"></span>
-
-                <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->
+				<input id="storeId"
+                           name="storeId"
+                           width="80px"
+                           class="nui-combobox"
+                           textField="name"
+                           valueField="id"
+                           emptyText="仓库"
+                           url=""
+                           valueFromSelect="true"
+                           allowInput="false"
+                           showNullItem="false"
+                           nullItemText="请选择..."/>
+			   <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
+				
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                <span class="separator"></span>
-                <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
+               <!--  <span class="separator"></span>
+                <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> -->
+
             </td>
         </tr>
     </table>
@@ -87,31 +118,34 @@
          ondrawcell="onDrawCell"
          sortMode="client"
          url=""
+         allowCellWrap = true
          pageSize="10000"
          sizeList="[1000,5000,10000]"
          showSummaryRow="true">
-        <div property="columns">
+        <div property="columns"> 
             <div type="indexcolumn">序号</div>
-            <div header="" headerAlign="center">
+            <div header="订单信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="serviceId" width="160" summaryType="count" headerAlign="center" header="订单单号"></div>
-                    <div field="guestFullName" width="210" headerAlign="center" header="供应商"></div>
-                    <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
-                    <div allowSort="true" field="orderDate" headerAlign="center" header="订货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div field="guestFullName" name="guestFullName"  width="160" headerAlign="center" header="供应商"></div>
+                    <div field="orderMan" name="orderMan"  width="60" headerAlign="center" header="采购员"></div>
+                    <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
+                    <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
+                    <div allowSort="true"  width="140" field="createDate" headerAlign="center" header="订货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div>
                     <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>
                     <div allowSort="true" field="settType" width="60" headerAlign="center" header="结算方式"></div>
                     <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div> -->
-                    <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
+                    <div allowSort="true" field="storeId" width="90" headerAlign="center" header="仓库"></div>
                 </div>
             </div>
-            <div header="订单信息" headerAlign="center">
+            <div header="配件信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
+                    <div allowSort="true" field="comPartCode" headerAlign="center" header="配件编码"></div>
                     <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
                     <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
-                    <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
-                    <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
+                    <div allowSort="true" field="partBrandId" width="80" headerAlign="center" header="品牌"></div>
+                    <div allowSort="true" field="applyCarModel" name="applyCarModel" width="120" headerAlign="center" header="品牌车型"></div>
                     <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
                 </div>
             </div>
@@ -123,7 +157,7 @@
                     <div allowSort="true" field="detailRemark" width="60" headerAlign="center" header="备注"></div>
                 </div>
             </div>
-            <div header="含税信息" headerAlign="center">
+            <!-- <div header="含税信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" type="checkboxcolumn" field="taxSign" width="40" headerAlign="center" header="是否含税" trueValue="1" falseValue="0"></div>
                     <div allowSort="true" field="taxRate" width="40" headerAlign="center" header="税点"></div>
@@ -136,20 +170,62 @@
                     <div field="noTaxPrice" width="60" headerAlign="center" header="不含税单价"></div>
                     <div field="noTaxAmt" width="60" headerAlign="center" summaryType="sum" header="不含税金额"></div>
                 </div>
-            </div>
+            </div> -->
             <div header="其他" headerAlign="center">
                 <div property="columns">
-                	<div allowSort="true" datatype="float" summaryType="sum" field="trueEnterQty" width="60" headerAlign="center" header="已入库数量"></div>
+                	<!-- <div allowSort="true" datatype="float" summaryType="sum" field="trueEnterQty" width="60" headerAlign="center" header="已入库数量"></div>
                     <div allowSort="true" datatype="float" summaryType="sum" field="notEnterQty" width="60" headerAlign="center" header="未入库数量"></div>
-                    <div allowSort="true" datatype="float" summaryType="sum" field="adjustQty" width="60" headerAlign="center" header="调整数量"></div>
+                    <div allowSort="true" datatype="float" summaryType="sum" field="adjustQty" width="60" headerAlign="center" header="调整数量"></div> -->
+                    <div allowSort="true" datatype="float" field="suggSellPrice" width="60" headerAlign="center" header="建议售价"></div>
                     <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
-                    <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-                    <div allowSort="true" field="partId" width="40" headerAlign="center" header="配件ID"></div>
+                    <div allowSort="true" width="140"  field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<div id="exportDiv"  style="display:none">  
+    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
+        <tr>  
+        	<td colspan="1" align="center"  rowspan="2">序号</td>
+            <td colspan="7" align="center" >订单信息</td>
+            <td colspan="6" align="center" >配件信息</td>
+            <td colspan="4" align="center" >数量单价</td>
+             <td colspan="4" align="center" >其他</td>
+        </tr>
+        <tr>
+        	 <td colspan="1" align="center" >订单单号</td>
+        	 <td colspan="1" align="center" >供应商</td>
+        	 <td colspan="1" align="center" >采购员</td>
+        	 <td colspan="1" align="center" >票据类型</td>
+        	 <td colspan="1" align="center" >结算方式</td>
+        	 <td colspan="1" align="center" >订货日期</td>
+        	 <td colspan="1" align="center" >仓库</td>
+        	 
+        	 <td colspan="1" align="center" >配件编码</td>
+        	 <td colspan="1" align="center" >配件名称</td>
+        	 <td colspan="1" align="center" >OEM码</td>
+        	 <td colspan="1" align="center" >品牌</td>
+        	 <td colspan="1" align="center" >品牌车型</td>
+        	 <td colspan="1" align="center" >单位</td>
+        	 
+        	 <td colspan="1" align="center" >订单数量</td>
+        	 <td colspan="1" align="center" >订单单价</td>
+        	 <td colspan="1" align="center" >订单金额</td>
+        	 <td colspan="1" align="center" >备注</td>
+        	 
+        	 <td colspan="1" align="center" >建议售价</td>
+        	 <td colspan="1" align="center" >审核人</td>
+        	 <td colspan="1" align="center" >审核日期</td>
+        	 <td colspan="1" align="center" >所属公司</td>
+        </tr>
+        <tbody id="tableExportContent">
+        </tbody>
+    </table> 
+    <a href="" id="tableExportA"></a>
+</div>  
 
 <div id="advancedSearchWin" class="nui-window"
      title="高级查询" style="width:416px;height:360px;"
@@ -180,13 +256,15 @@
             <tr>
                 <td class="title">审核日期:</td>
                 <td>
-                    <input name="sAuditDate"
+                    <input id="sAuditDate"
+                           name="sAuditDate"
                            width="100%"
                            class="nui-datepicker"/>
                 </td>
                 <td class="">至:</td>
                 <td>
-                    <input name="eAuditDate"
+                    <input id="eAuditDate"
+                           name="eAuditDate"
                            class="nui-datepicker"
                            format="yyyy-MM-dd"
                            timeFormat="H:mm:ss"
@@ -232,15 +310,6 @@
                 </td>
             </tr>
             <tr>
-                <td class="title">配件ID:</td>
-                <td colspan="3">
-                    <input id="partId"
-                           name="partId"
-                           class="nui-textbox" 
-                           width="100%"/>
-                </td>
-            </tr>
-            <tr>
                 <td class="title">采购员:</td>
                 <td colspan="3">
                     <input id="orderMan"
@@ -252,12 +321,16 @@
         </table>
         <div style="text-align:center;padding:10px;">
             <a class="nui-button" onclick="onAdvancedSearchOk" style="width:60px;margin-right:20px;">确定</a>
-            <a class="nui-button" onclick="onAdvancedSearchCancel" style="width:60px;">取消</a>
+            <a class="nui-button" onclick="onAdvancedSearchCancel" style="width:60px;margin-right:20px;">取消</a>
+            <a class="nui-button" onclick="ononAdvancedSearchClear" style="width:60px;">清除</a>
         </div>
     </div>
 </div>
 
+<script type="text/javascript">
+	nui.parse();
 
+</script>
 
 </body>
 </html>

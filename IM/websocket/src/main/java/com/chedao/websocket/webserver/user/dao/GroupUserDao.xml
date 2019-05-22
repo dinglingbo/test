@@ -16,7 +16,7 @@
     </resultMap>
 
     <insert id="addGroupUser" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
-		insert into qiqiim.group_user
+		insert into group_user
 		(
 			`user_id`,
 			`user_name`,
@@ -35,7 +35,7 @@
 	</insert>
 
 	<delete id="deleteGroup">
-		delete from qiqiim.group_user where user_id = #{userId} and group_id = #{groupId}
+		delete from group_user where user_id = #{userId} and group_id = #{groupId}
 	</delete>
 
 	<!-- 查询群聊下的所有成员 -->
@@ -46,7 +46,7 @@
 		   	user_name as userName,
 		   	group_id as groupId,
 		   	join_time as joinTime
-		   from qiqiim.group_user
+		   from group_user
 		   where group_id = #{groupId}
     </select>
 
@@ -58,14 +58,14 @@
 		   	user_name as userName,
 		   	group_id as groupId,
 		   	join_time as joinTime
-		   from qiqiim.group_user
+		   from group_user
 		   where user_id = #{userId}
     </select>
 	<!-- 查询群聊下的所有成员id -->
 	<select id="queryGroupUserId" resultType="java.lang.String">
 		  select
 		   	user_id as userId
-		   from qiqiim.group_user
+		   from group_user
 		   where group_id = #{groupId}
     </select>
 	<!-- 查询群聊下的所有成员信息 -->
@@ -75,8 +75,8 @@
 		    a.profilephoto as avatar,
 		   	a.name as username,
 		   	a.signature as sign
-		   from qiqiim.user_info a
-		   INNER JOIN qiqiim.group_user b on a.uid = b.user_id
+		   from user_info a
+		   INNER JOIN group_user b on a.uid = b.user_id
 		   where b.group_id = #{groupId}
     </select>
 	<!-- 查询昵称 -->
@@ -87,11 +87,11 @@
 		   	user_name as userName,
 		   	group_id as groupId,
 		   	join_time as joinTime
-		   from qiqiim.group_user
+		   from group_user
 		   where user_id = #{userId} and group_id= #{groupId}
     </select>
 	<update id="updateGroupName" parameterType="java.lang.String">
-		update qiqiim.group_user
+		update group_user
 		<set>
 			<if test="name != null">`user_name` = #{name} </if>
 		</set>

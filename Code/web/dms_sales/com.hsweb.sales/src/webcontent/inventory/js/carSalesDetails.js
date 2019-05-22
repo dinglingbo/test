@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/2/23.
  */
-var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + saleApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 //var leftGridUrl = baseUrl
 //		+ "com.hsapi.part.invoice.svr.queryPjPchsOrderMainList.biz.ext";
 var rightGridUrl = baseUrl
@@ -89,29 +89,29 @@ $(document).ready(function(v) {
 	sOrderDate = nui.get("sOrderDate");
 	eOrderDate = nui.get("eOrderDate");
 	
-	nui.get("orderMan").setValue(currEmpId);
-	nui.get("orderMan").setText(currUserName);
-	initMember("orderMan",function(){
+/*	nui.get("orderMan").setValue(currEmpId);
+	nui.get("orderMan").setText(currUserName);*/
+/*	initMember("orderMan",function(){
         memList = nui.get('orderMan').getData();
-    });
+    });*/
 
 
 	advancedTipWin = nui.get("advancedTipWin");
 	getArea();
 
-    $("#orderMan").bind("keydown", function (e) {
+/*    $("#orderMan").bind("keydown", function (e) {
         if (e.keyCode == 13) {
             var remark = nui.get("remark");
             remark.focus();
         }
-    });
+    });*/
 
     $("#remark").bind("keydown", function (e) {
 
     	if (e.keyCode == 13) {
             addNewRow(true);
         }
-   $("#planArriveDate").bind("keydown", function (e) {
+   $("#predictDeliveryDate").bind("keydown", function (e) {
         if (e.keyCode == 13) {
             addNewRow(true);
         }
@@ -194,14 +194,14 @@ $(document).ready(function(v) {
 	};
 
 	$("partTempId").focus(function(){
-		$("orderMan").css("background-color","#FFFFCC");
+/*		$("orderMan").css("background-color","#FFFFCC");*/
 		addNewRow(true);
 	});
 
 
 	// 绑定表单
 
-	var dictDefs ={"billTypeId":"DDT20130703000008", "settleTypeId":"DDT20130703000035"};
+	var dictDefs ={"billTypeId":"DDT20130703000008", "payMode":"DDT20130703000035"};
 	initDicts(dictDefs, function(){
 		getStorehouse(function(data) {
 			getAllPartBrand(function(data) {
@@ -293,8 +293,8 @@ function getParentStoreId(){
 }
 function loadMainAndDetailInfo(row) {
 	if (row) {
-		nui.get("orderMan").setText(row.orderMan);
-		row.orderMan=row.orderManId; 
+/*		nui.get("orderMan").setText(row.orderMan);*/
+/*		row.orderMan=row.orderManId; */
 		basicInfoForm.setData(row);
 		//bottomInfoForm.setData(row);
 		nui.get("guestId").setText(row.guestFullName);
@@ -396,16 +396,16 @@ function setEditable(flag) {
 	if (flag) {
 		document.getElementById("fd1").disabled = false;
 		nui.get('guestId').enabled=true;
-		nui.get('orderMan').enabled=true;
-		nui.get('settleTypeId').enabled=true;
-		nui.get('planArriveDate').enabled=true;
+/*		nui.get('orderMan').enabled=true;*/
+		nui.get('payMode').enabled=true;
+		nui.get('predictDeliveryDate').enabled=true;
 
 	} else {
 		document.getElementById("fd1").disabled = true;
 		nui.get('guestId').enabled=false;
-		nui.get('orderMan').enabled=false;
-		nui.get('settleTypeId').enabled=false;
-		nui.get('planArriveDate').enabled=false;
+/*		nui.get('orderMan').enabled=false;*/
+		nui.get('payMode').enabled=false;
+		nui.get('predictDeliveryDate').enabled=false;
 	}
 }
 function doSearch(params) {
@@ -427,8 +427,8 @@ function onComboValidation(e){
     	if(id == "billTypeId") {
     		nui.get("billTypeId").setValue(null);
     	}
-    	if(id == "settleTypeId") {
-    		nui.get("settleTypeId").setValue(null);
+    	if(id == "payMode") {
+    		nui.get("payMode").setValue(null);
     	}
         
     }
@@ -441,8 +441,8 @@ function add() {
 		return;
 	}
 
-	var orderMan=nui.get('orderMan').getText()
-	var orderManId=nui.get('orderMan').getValue();
+/*	var orderMan=nui.get('orderMan').getText()
+	var orderManId=nui.get('orderMan').getValue();*/
 	var formJsonThis = nui.encode(basicInfoForm.getData());
 	var len = rightGrid.getData().length;
 
@@ -469,9 +469,9 @@ function add() {
 //				nui.get("serviceId").setValue("新采购订单");
 				$('#bServiceId').text("订单号: 新采购订单");
 				nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
-				nui.get("createDate").setValue(new Date());
+/*				nui.get("createDate").setValue(new Date());*/
 				
-				if(!orderMan || orderMan==""){
+/*				if(!orderMan || orderMan==""){
 					for(var i=0;i<memList.length;i++){
 						if(currEmpId==memList[i].empId){
 							nui.get("orderMan").setValue(currEmpId);
@@ -482,7 +482,7 @@ function add() {
 				}else{
 					nui.get("orderMan").setValue(orderManId);
 					nui.get("orderMan").setText(orderMan);
-				}
+				}*/
 				
 				addNewRow();
 
@@ -510,9 +510,9 @@ function add() {
 
 		$('#bServiceId').text("订单号: 新采购订单");
 		nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
-		nui.get("createDate").setValue(new Date());
+/*		nui.get("createDate").setValue(new Date());*/
 		
-		if(!orderMan || orderMan==""){
+/*		if(!orderMan || orderMan==""){
 			for(var i=0;i<memList.length;i++){
 				if(currEmpId==memList[i].empId){
 					nui.get("orderMan").setValue(currEmpId);
@@ -523,7 +523,7 @@ function add() {
 		}else{
 			nui.get("orderMan").setValue(orderManId);
 			nui.get("orderMan").setText(orderMan);
-		}
+		}*/
 
 		addNewRow();
 
@@ -544,10 +544,10 @@ function getMainData() {
 	data.orderTypeId = 1;
 	data.isDiffOrder = 0;
 	
-	data.orderManId=nui.get('orderMan').getValue();
-	data.orderMan=nui.get('orderMan').getText();
-	if (data.planArriveDate) {
-		data.planArriveDate = format(data.planArriveDate, 'yyyy-MM-dd HH:mm:ss');
+/*	data.orderManId=nui.get('orderMan').getValue();*/
+/*	data.orderMan=nui.get('orderMan').getText();*/
+	if (data.predictDeliveryDate) {
+		data.predictDeliveryDate = format(data.predictDeliveryDate, 'yyyy-MM-dd HH:mm:ss');
 	}
     delete data.createDate;
     
@@ -597,13 +597,12 @@ var requiredField = {
 	guestId : "供应商",
 /*	orderMan : "采购员",*/
 	billTypeId : "票据类型",
-	settleTypeId : "结算方式",
-	planArriveDate :"预计到货日期",
-	planArriveDate :"预计发运日期",
-	planArriveDate :"预交定金",
+	payMode : "结算方式",
+	predictDeliveryDate :"预计到货日期",
+	advanceDepositAmt :"预交定金",
 };
 var saveUrl = baseUrl
-		+ "com.hsapi.part.invoice.crud.savePjPchsOrder.biz.ext";
+		+ "sales.inventory.savePjPchsOrder.biz.ext";
 function save() {
 	var data = basicInfoForm.getData();
 	for ( var key in requiredField) {
@@ -731,7 +730,7 @@ function selectSupplier(elId) {
 				if (elId == 'guestId') {
 
 					nui.get("billTypeId").setValue(billTypeIdV);
-					nui.get("settleTypeId").setValue(settTypeIdV);
+					nui.get("payMode").setValue(settTypeIdV);
 
 				}
 			}
@@ -1794,7 +1793,7 @@ function setGuestInfo(params) {
 					var settTypeIdV = data.settTypeId;
 
 					nui.get("billTypeId").setValue(billTypeIdV);
-					nui.get("settleTypeId").setValue(settTypeIdV);
+					nui.get("payMode").setValue(settTypeIdV);
 					nui.get('planArriveDate').focus();
 //					addNewRow(true);
 					
@@ -1843,7 +1842,7 @@ function addGuest(){
 						city:[],
 						supplierType:[],
 						billTypeId:nui.get("billTypeId").getData(),
-						settTypeId:nui.get("settleTypeId").getData(),
+						settTypeId:nui.get("payMode").getData(),
 						tgrade:[],
 						managerDuty:[]
 					});
@@ -2495,7 +2494,7 @@ function deleteState(){
 function setInitData(params){
 	if(params.id){
 		basicInfoForm.setData(params);
-		nui.get('orderMan').setText(params.orderMan);
+/*		nui.get('orderMan').setText(params.orderMan);*/
 		nui.get('orderMan').setValue(params.orderManId);
 		$('#bServiceId').text("订单号："+params.serviceId);
 		nui.get("guestId").setText(params.guestFullName);
@@ -2541,8 +2540,8 @@ var pushOrderUrl=baseUrl+"com.hsapi.part.invoice.partInterfaceDs.pushSupplierOrd
 function pushSupplierOrder(flagSign, flagStr, flagRtn){
 //	var payType = '';
 	var data = basicInfoForm.getData();
-	var settleType = nui.get('settleTypeId').getText();
-	var mem = nui.get('orderMan').getText();
+	var settleType = nui.get('payMode').getText();
+/*	var mem = nui.get('orderMan').getText();*/
 	if(!data.srmGuestId){
 		return;
 	}

@@ -4,6 +4,8 @@ import com.chedao.websocket.webserver.base.controller.BaseController;
 import com.chedao.websocket.webserver.user.model.GroupInfoEntity;
 import com.chedao.websocket.webserver.user.model.GroupUserEntity;
 import com.chedao.websocket.webserver.user.model.UserInfoEntity;
+import com.chedao.websocket.webserver.user.service.GroupInfoService;
+import com.chedao.websocket.webserver.user.service.GroupUserService;
 import com.chedao.websocket.webserver.user.service.impl.GroupInfoServiceImpl;
 import com.chedao.websocket.webserver.user.service.impl.GroupUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +24,9 @@ import java.util.Map;
 @RequestMapping("GroupUser")
 public class GroupUserController extends BaseController {
     @Autowired
-    private GroupUserServiceImpl groupUserServiceImpl;
+    private GroupUserService groupUserServiceImpl;
     @Autowired
-    private GroupInfoServiceImpl groupInfoService;
+    private GroupInfoService groupInfoService;
     /**
      * 删除群聊
      */

@@ -219,7 +219,7 @@
     </delete>
 
     <insert id="applyFriend" parameterType="com.chedao.websocket.webserver.user.model.UserFriendApplyEntity" useGeneratedKeys="true" keyProperty="id">
-		insert into qiqiim.user_friend_apply
+		insert into user_friend_apply
 		(
 			`uid`,
 			`from_id`,

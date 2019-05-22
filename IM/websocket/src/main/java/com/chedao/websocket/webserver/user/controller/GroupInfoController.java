@@ -6,6 +6,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.chedao.websocket.webserver.base.controller.BaseController;
 import com.chedao.websocket.webserver.user.model.GroupInfoEntity;
 import com.chedao.websocket.webserver.user.model.GroupUserEntity;
+import com.chedao.websocket.webserver.user.service.GroupInfoService;
+import com.chedao.websocket.webserver.user.service.GroupUserService;
 import com.chedao.websocket.webserver.user.service.impl.GroupInfoServiceImpl;
 import com.chedao.websocket.webserver.user.service.impl.GroupUserServiceImpl;
 import org.directwebremoting.json.types.JsonObject;
@@ -27,9 +29,9 @@ import static com.alibaba.fastjson.JSONObject.*;
 @RequestMapping("GroupInfo")
 public class GroupInfoController extends BaseController {
     @Autowired
-    private GroupInfoServiceImpl groupInfoServiceImpl;
+    private GroupInfoService groupInfoServiceImpl;
     @Autowired
-    private GroupUserServiceImpl groupUserServiceImpl;
+    private GroupUserService groupUserServiceImpl;
     /**
      * 创建群聊
      */

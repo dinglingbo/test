@@ -2,11 +2,11 @@ package com.chedao.websocket.webserver.user.controller;
 
 import com.chedao.websocket.constant.Constants;
 import com.chedao.websocket.webserver.base.controller.BaseController;
-import com.chedao.websocket.webserver.user.model.UserFriendApplyEntity;
-import com.chedao.websocket.webserver.user.model.UserInfoEntity;
+import com.chedao.websocket.webserver.user.model.*;
+import com.chedao.websocket.webserver.user.service.GroupInfoService;
+import com.chedao.websocket.webserver.user.service.UserFriendService;
 import com.chedao.websocket.webserver.user.service.UserInfoService;
 import com.chedao.websocket.webserver.util.Query;
-import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +29,10 @@ import java.util.Map;
 public class UserInfoController extends BaseController {
 	@Autowired
 	private UserInfoService userInfoServiceImpl;
+	@Autowired
+	private UserFriendService userFriendServiceImpl;
+	@Autowired
+	private GroupInfoService groupInfoService;
 	
 	/**
 	 * 页面
@@ -123,5 +127,29 @@ public class UserInfoController extends BaseController {
 		return map;
 	}
 
+	//查找好友
+	@RequestMapping(value="/queryUserFriendList", produces="application/json;charset=UTF-8", method = RequestMethod.POST)
+	@ResponseBody
+	public Object queryUserFriendList(@RequestBody Map<String,Object> params) {
+		String userId =(String)params.get("userId");
+		Long uid = Long.parseLong(userId);
+		List<UserFriendTEntity> userFriendList = userFriendServiceImpl.queryUserFriendList(userId);
 
+		List<GroupInfoTEntity> userGroupList = groupInfoService.queryUserGroupList(params);
+
+		UserInfoEntity userInfo = userInfoServiceImpl.queryByUid(uid);
+		ImFriendUserInfoData userWrapper = new ImFriendUserInfoData();
+		userWrapper.setId(userInfo.getUid());
+		userWrapper.setStatus("online");
+		userWrapper.setAvatar(userInfo.getProfilephoto());
+		userWrapper.setSign(userInfo.getSignature());
+		userWrapper.setUsername(userInfo.getNickname());
+
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("mine",userWrapper);
+		map.put("friend",userFriendList);
+		map.put("group",userGroupList);
+
+		return putMsgToJsonString(Constants.WebSite.SUCCESS, "", 0, map);
+	}
 }

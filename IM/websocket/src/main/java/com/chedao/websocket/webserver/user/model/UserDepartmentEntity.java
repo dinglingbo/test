@@ -3,6 +3,8 @@ package com.chedao.websocket.webserver.user.model;
 import com.chedao.websocket.webserver.base.model.BaseModel;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 
+import java.io.Serializable;
+
 
 /**
  * 部门
@@ -11,7 +13,7 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
  * @email 1044053532@qq.com
  * @date 2017-11-27 09:38:52
  */
-public class UserDepartmentEntity extends BaseModel {
+public class UserDepartmentEntity extends BaseModel implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
  

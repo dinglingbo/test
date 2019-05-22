@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="searchCsbCarModel" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="addCsbPDICarTemplate" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -17,8 +17,6 @@
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-      <process:return id="2" language="commonj.sdo.DataObject[]" name="list" type="query" valueType="Java">list</process:return>
-      <process:return id="3" language="com.eos.foundation.PageCond" name="page" type="query" valueType="DataObject">page</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -32,76 +30,69 @@
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="208" y="60"/>
+    <location x="165" y="60"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.sales.data.csb.CsbCarModel</process:from>
-      <process:to type="query">ct/_entity</process:to>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">data/recorder</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">true</process:from>
-      <process:to type="query">page/isCount</process:to>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">data/recordDate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">params/carBrandId</process:from>
-      <process:to type="query">ct/_expr[1]/carBrandId</process:to>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">data/modifier</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">params/carSeriesId</process:from>
-      <process:to type="query">ct/_expr[2]/carSeriesId</process:to>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">data/recordDate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">params/fullName</process:from>
-      <process:to type="query">ct/_expr[3]/fullName</process:to>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">data/orgid</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">like</process:from>
-      <process:to type="query">ct/_expr[3]/_op</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">params/isDisabled</process:from>
-      <process:to type="query">ct/_expr[4]/isDisabled</process:to>
+      <process:from type="query" pattern="reference">m:userObject/attributes/tenantId</process:from>
+      <process:to type="query">data/tenantId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="210" y="96"/>
+    <location x="167" y="96"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="运算逻辑" displayName="Query with page according to criteria entity" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="运算逻辑" displayName="Insert a record" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign1</targetNode>
     </sourceConnections>
-    <targetConnections>link1</targetConnections>
+    <targetConnections>link5</targetConnections>
     <location x="356" y="60"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.queryEntitiesByCriteriaEntityWithPage</process:partner>
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.insertEntity</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">sales</process:inputVariable>
-      <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">ct</process:inputVariable>
-      <process:inputVariable id="2" name="pagecond" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">page</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">data</process:inputVariable>
     </process:inputVariables>
-    <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java">list</process:outputVariable>
-    </process:outputVariables>
+    <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
     <location x="343" y="96"/>
     <figSize height="17" width="49"/>
     <node>invokePojo0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign1" name="赋值1" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>end0</targetNode>
@@ -110,6 +101,14 @@
     <location x="498" y="60"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">S</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">添加成功</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="496" y="96"/>
@@ -118,19 +117,14 @@
   </nodes>
   <topRuler/>
   <leftRuler/>
-  <process:info author="Administrator" createTime="2019-05-17 16:04:16" date="2019-05-17Z" description="" name="searchCsbCarModel" version="7.0.0.0"/>
-  <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="ct"/>
-  </process:variables>
+  <process:info author="Administrator" createTime="2019-05-21 12:07:23" date="2019-05-21Z" description="" name="addCsbCarModel" version="7.0.0.0"/>
+  <process:variables/>
   <process:inputs varArgs="false">
-    <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
-    <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.sales.data.csb.CsbPdiCarTemplate" name="data"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
-    <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="list"/>
-    <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

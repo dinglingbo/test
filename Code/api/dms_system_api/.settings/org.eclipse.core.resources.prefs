@@ -4,5 +4,6 @@ encoding//com.hsapi.system.basic/eosdebug/com/hsapi/system/basic/organization/sa
 encoding//com.hsapi.system.common/eosdebug/com/hsapi/system/employee/feedback/saveFeedBackInfo.bizx.eosdebug=UTF-8
 encoding//com.hsapi.system.dict/eosdebug/com/hsapi/system/dict/dictMgr/queryDict.bizx.eosdebug=UTF-8
 encoding//com.hsapi.system.dict/eosdebug/com/hsapi/system/dict/dictMgr/queryDictType.bizx.eosdebug=UTF-8
+encoding//com.hsapi.system.dict/eosdebug/com/hsapi/system/dict/dictMgr/queryDictTypeTree.bizx.eosdebug=UTF-8
 encoding//com.hsapi.system.dict/eosdebug/com/hsapi/system/dict/dictMgr/saveDictList.bizx.eosdebug=UTF-8
 encoding//com.hsapi.system.llq/eosdebug/com/hsweb/system/llq/call/doCall.bizx.eosdebug=UTF-8

@@ -4,7 +4,8 @@
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var gridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.queryGuestList.biz.ext";
 var treeUrl = baseUrl+"";
-
+var billTypeIdEl=null;
+var settleTypeIdEl=null;
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -25,6 +26,8 @@ $(document).ready(function(v)
 	grid = nui.get("datagrid1");
     grid.setUrl(gridUrl);
     nameEl = nui.get("name");
+    billTypeIdEl = nui.get("billTypeId");
+    settleTypeIdEl = nui.get("settType");
     grid.on("beforeload",function(e){
         e.data.token = token;
     });

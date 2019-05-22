@@ -49,7 +49,7 @@
 		  <!--AND D.BILL_STATUS_ID <> ''-->
 			GROUP BY
 				C.SOURCE_ID
-		) E ON E.SOURCE_ID = A.ID
+		) E ON E.SOURCE_ID = b.ID
 		WHERE 1 =1 
 			  AND A.AUDIT_SIGN = 1
 		      AND B.OUTABLE_QTY > 0

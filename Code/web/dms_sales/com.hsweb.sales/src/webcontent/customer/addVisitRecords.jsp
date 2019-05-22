@@ -73,6 +73,34 @@
     </table>
 </div>
 <fieldset style="border: solid 1px #aaa; position: relative; margin: 0px 0px 0px 0px;height:100%;width: 100%;">
+         <!-- <input name="specialCare"
+             id="specialCare"
+             class="nui-combobox"
+             textField="name"
+             valueField="id"
+             allowInput="true"
+             width="100%"
+             visable="false"
+            /> -->
+            <!-- <input id="specialCare" name="specialCare" class="nui-hidden"/> -->
+            <input name="specialCare"
+                 id="specialCare"
+                 class="nui-combobox"
+                 textField="name"
+                 valueField="id"
+                 allowInput="true"
+                 width="100%"
+                 visible="false"
+                />
+              <input name="intentLevel"
+                 id="intentLevel"
+                 class="nui-combobox"
+                 textField="name"
+                 valueField="id"
+                 allowInput="true"
+                 width="100%"
+                 visible="false"
+                />
 	<table class="nui-form-table" border=0>
 			<tr>
 				<!-- <td class="form_label">
@@ -92,8 +120,8 @@
 			  <label>来访方式：</label>
 				</td>
 				<td colspan="1">
-                  <input name="serviceTypeId"
-                         id="serviceTypeId"
+                  <input name="comeTypeId"
+                         id="comeTypeId"
                          class="nui-combobox"
                          textField="name"
                          valueField="id"
@@ -106,11 +134,11 @@
 			        <label>业务员：</label>
 		        </td>
 		        <td colspan="1">
-		            <input name="serviceTypeId"
-		             id="serviceTypeId"
+		            <input name="saleAdvisorId"
+		             id="saleAdvisorId"
 		             class="nui-combobox"
-		             textField="name"
-		             valueField="id"
+		             textField="empName"
+		             valueField="empId"
 		             allowInput="true"
 		             width="100%"
 		            />
@@ -133,8 +161,8 @@
 			     <label>客户性质：</label>
 		     </td>
 			<td>
-			  <input class="nui-combobox" id="billTypeId" emptyText="个人客户" name="billTypeId" data="[{billTypeId:5,text:'个人客户'},{billTypeId:0,text:'单位客户'}]"
-                width="100%"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="5"/>
+			  <input class="nui-combobox" id="guestProperty" emptyText="个人" name="guestProperty" data="[{guestProperty:013902,text:'个人'},{guestProperty:013901,text:'单位'},{guestProperty:013903,text:'个体户'}]"
+                width="100%"  onvaluechanged="onSearch" textField="text" valueField="guestProperty" value="013902"/>
 			</td>
 			</tr>
 			<tr>			    
@@ -186,9 +214,15 @@
 	         placeholder=""
 	         selectOnFocus="true" 
 	         allowInput="false"
-	         width="100%"
+	         width="50%"
 	        />
+	        <input id="carModelId" name="carModelId" class="nui-textbox" visible="false" style="width: 352px;"/>
+       <input id="carModelName" name="carModelName" class="nui-buttonedit" style="width: 352px;" onbuttonclick="onButtonEdit"/>
+        
         </td>
+        
+        
+        
         <td class="form_label">
 		 <label>预算金额：</label>
 	   </td>
@@ -206,7 +240,7 @@
     <tr>
         <td class="form_label"><label>关注重点：</label></td>
         <td colspan="5">
-            <div id="important" name="important" class="nui-checkboxlist" repeatItems="15" 
+            <div id="specialCareId" name="specialCareId" class="nui-checkboxlist" repeatItems="15" 
             repeatLayout="flow"  value="" 
             textField="text" valueField="id" ></div>
         </td>
@@ -215,7 +249,7 @@
     <tr>
         <td class="form_label"><label>意向级别：</label></td>
         <td colspan="5">
-            <div id="levelOfIntent" name="levelOfIntent" class="nui-checkboxlist" repeatItems="15" 
+            <div id="intentLevelId" name="intentLevelId" class="mini-radiobuttonlist" repeatItems="15" 
             repeatLayout="flow"  value="" 
             textField="text" valueField="id" ></div>
         </td>

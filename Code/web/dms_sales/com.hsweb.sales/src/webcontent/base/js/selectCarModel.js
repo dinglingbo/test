@@ -16,7 +16,11 @@ $(document).ready(function () {
     carSeriesId = nui.get('carSeriesId');
     fullName = nui.get('fullName');
     grid.setUrl(gridUrl);
-    grid.load();
+    grid.load({
+        params: {
+            isDisabled:0
+        }
+    });
     tree = nui.get("tree1"); 
     tree.setUrl(treeUrl);
 
@@ -36,6 +40,9 @@ $(document).ready(function () {
         //color: "DDT20130726000003"//车辆颜色
     },function () {});
 
+    grid.on('rowdblclick', function (e) {
+        CloseWindow("ok");
+    });
 
     grid.on('drawcell', function (e) {
         var value = e.value;
@@ -90,6 +97,10 @@ $(document).ready(function () {
     });
 });
 
+function getRow() {
+    return grid.getSelected();
+}
+
 function onBrandChanged(e) {
     var id = carBrandId.getValue();
     var mUrl = null;
@@ -100,12 +111,83 @@ function onBrandChanged(e) {
     }
 }
 
+function edit(e) {
+    var tit = null;
+    var row = {};
+    if (e == 1) {
+        tit = '新增';
+    } else if(e == 2){
+        tit = '修改';
+        row = grid.getSelected();
+    } else if (e == 3) {
+        tit = '复制';
+        row = grid.getSelected();
+        row.id = '';
+    }
+    nui.open({
+        url: webPath + contextPath + '/sales/base/sCarModelTypeDet.jsp',
+        title: tit,
+        width: 530,
+        height: 480,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(row,e);
+        },
+        ondestroy: function (action) {
+            grid.reload();
+        }
+    });
+}
+
+function isEnabled() {
+    var row = grid.getSelected();
+    var params = nui.clone(row);
+    var showTextS = null;
+    var showTextE = null;
+    if (row.isDisabled == 0) {
+        params.isDisabled = 1;
+        showTextS = '禁用成功';
+        showTextE = '禁用失败';
+    } else {
+        params.isDisabled = 0;
+        showTextS = '启用成功';
+        showTextE = '启用失败';
+    }
+    nui.ajax({
+        url: updateUrl,
+        type: 'post',
+        data: {
+            data:params
+        },
+        success:function (res) {
+            if (res.errCode == 'S') {
+                showMsg(showTextS, 'S');
+            } else {
+                showMsg(showTextE, 'E');
+            }
+            grid.reload();
+        }
+        
+    })
+}
+
 function search() {
     var params = {
         carBrandId:carBrandId.value,
         carSeriesId:carSeriesId.value,
-        fullName: fullName.value,
-        isDisabled:0
+        fullName:fullName.value
     }
     grid.load({ params: params, token: token });
+}
+
+
+function onCancel() {
+    CloseWindow("cancel");
+}
+
+function CloseWindow(action) {
+    if (window.CloseOwnerWindow)
+        return window.CloseOwnerWindow(action);
+    else
+        window.close();
 }

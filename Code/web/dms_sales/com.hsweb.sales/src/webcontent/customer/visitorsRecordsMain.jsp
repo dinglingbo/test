@@ -95,14 +95,12 @@
                     <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
                     <span class="separator"></span>
-                    <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;归档</a>
-                    <a class="nui-button" onclick="onCancel" plain="true"  style="width: 80px;"><span class="fa fa-remove fa-lg"></span>&nbsp;转销售</a>
-                    <a class="nui-button" onclick="onCancel" plain="true"  style="width: 80px;"><span class="fa fa-remove fa-lg"></span>&nbsp;客户档案</a>
+                    <a class="nui-button" onclick="onCancel" plain="true"  style="width: 80px;"><span class="fa fa-user-plus fa-lg"></span>&nbsp;客户档案&nbsp;</a>
                     <a class="nui-button" onclick="onCancel" plain="true"  style="width: 80px;"><span class="fa fa-search fa-lg"></span>&nbsp;库存查询</a>
                 </td>
             </tr>
         </table>
-    </div>
+    </div> 
     <div class="nui-fit">
           <input name="intentLevelId"
              id="intentLevelId"
@@ -148,7 +146,8 @@
               <div property="columns">
                   <div type="indexcolumn">序号</div>
                   <!-- <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div> -->
-                  
+                  <div field="id" name="id" width="160px" headerAlign="center" header="工单号" visible="false"></div>
+                  <div field="guestId" name="guestId" width="160px" headerAlign="center" header="工单号" visible="false"></div>
                   <div field="serviceCode" name="serviceCode" width="160px" headerAlign="center" header="工单号"></div>
                   <div field="status" name="status" width="70px" headerAlign="center" header="状态"></div>
                   <div field="fullName" name="fullName" width="70px" headerAlign="center" header="客户名称"></div>

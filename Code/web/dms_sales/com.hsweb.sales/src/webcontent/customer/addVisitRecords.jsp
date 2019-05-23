@@ -54,7 +54,7 @@
             <td class="btn">
                  
                 <label style="font-family:Verdana;">工单号:</label>
-                <label id="servieCodeEl" style="font-family:Verdana;"></label>
+                <label id="serviceCodeEl" style="font-family:Verdana;"></label>
                 <br>
                 <label style="font-family:Verdana;">客户名称:</label>
                 <label id="nameEl" style="font-family:Verdana;"></label>
@@ -65,7 +65,9 @@
             <td style="text-align:right;">
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" onclick="save()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;精品加装</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;归档</a>
+                <a class="nui-button" onclick="onCancel" plain="true"  style="width: 80px;"><span class="fa fa-mail-forward  fa-lg"></span>&nbsp;转销售</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-shopping-bag fa-lg"></span>&nbsp;精品加装</a>
                 <a class="nui-button" onclick="onCancel" plain="true"  style="width: 80px;"><span class="fa fa-dollar fa-lg"></span>&nbsp;购车预算</a>
                           
             </td>
@@ -269,12 +271,12 @@
     </tr>
     <tr>
 	<td class="form_label" align="right">备注:</td>
-    <td colspan="5"><input class="nui-TextArea" name="useRemark"
+    <td colspan="5"><input class="nui-TextArea" name="remark"
        style="width: 100%; height: 50px;" /></td>
 	</tr>
     <tr>
 	<td class="form_label">
-			<input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/><label>在</label>
+			<!-- <input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/><label>在</label> -->
 		</td>
     <td colspan="5">
        <input id="nextVisitDate" name="nextVisitDate" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="30%"/>

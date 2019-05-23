@@ -1,5 +1,6 @@
 var baseUrl = window._rootSysUrl || "http://127.0.0.1:8080/default/";
 var guestComeUrl = apiPath + saleApi +  "/sales.custormer.saveGuestCome.biz.ext";
+var queryUrl = apiPath + saleApi + "/sales.custormer.queryGuestComeAndGuest.biz.ext";
 var levelOfIntent = null;
 var important = null;
 var frameColorIdHash = {};
@@ -228,6 +229,12 @@ function save(){
 			}
 		}
 	}
+	if(guestCome.comeDate) {
+		guestCome.comeDate = format(guestCome.comeDate, 'yyyy-MM-dd HH:mm:ss');
+	}
+    if(guestCome.nextVisitDate) {
+    	guestCome.nextVisitDate = format(guestCome.nextVisitDate, 'yyyy-MM-dd HH:mm:ss');
+	}
 	guestCome.specialCare = strName;
 	var guest = {};
 	guest.fullName = guestCome.fullName;
@@ -256,9 +263,12 @@ function save(){
 		    	var guestCome = text.guestCome;
 		    	var guest = text.rguest;
 		    	guestComeForm.setData(guestCome);
-		    	$("#serviceCodeEl").html(guestComeForm.serviceCode);
-		    	$("#carModelNameEl").html(guestComeForm.carModelName);
+		    	$("#serviceCodeEl").html(guestCome.serviceCode);
+		    	$("#carModelNameEl").html(guestCome.carModelName);
 		    	$("#nameEl").html(guest.fullName);
+		    	showMsg("保存成功","S");
+		    }else{
+		    	showMsg("保存失败","E");
 		    }
 			nui.unmask(document.body);
 		}
@@ -266,36 +276,47 @@ function save(){
 }
 
 function add(){
-	var guestCome = guestComeForm.getData();
+	var guestCome = [];
+	guestComeForm.setData(guestCome);
 	nui.get("saleAdvisorId").setValue(currEmpId);
     nui.get("saleAdvisor").setValue(currUserName);
     nui.get("comeDate").setValue(now);
+    $("#serviceCodeEl").html("");
+	$("#carModelNameEl").html("");
+	$("#nameEl").html("");
 }
 
 function setInitData(params){
-    fserviceId = params.id;
+   // fserviceId = params.id;
     if(!params.id){
         add();
     }else{
+     var json = nui.encode({
+   		 guestCome:params,
+   		 token:token
+   	  });
 	  nui.mask({
 	     el: document.body,
 	     cls: 'mini-mask-loading',
 	     html: '数据加载中...'
 	  });
 	  nui.ajax({
-		url : guestComeUrl,
+		url : queryUrl,
 		type : 'POST',
 		data : json,
 		cache : false,
 		contentType : 'text/json',
 		success : function(text) {
 			if(text.errCode=="S"){
-		    	var guestCome = text.guestCome;
-		    	var guest = text.rguest;
+		    	var guestCome = text.data.guestCome;
+		    	var guest = text.data.guest;
 		    	guestComeForm.setData(guestCome);
-		    	$("#serviceCodeEl").html(guestComeForm.serviceCode);
-		    	$("#carModelNameEl").html(guestComeForm.carModelName);
+		    	$("#serviceCodeEl").html(guestCome.serviceCode);
+		    	$("#carModelNameEl").html(guestCome.carModelName);
 		    	$("#nameEl").html(guest.fullName);
+		    	nui.get("carModelId").setValue(guestCome.carModelId);
+		    	nui.get("carModelName").setValue(guestCome.carModelName);
+		    	nui.get("carModelName").setText(guestCome.carModelName);
 		    }
 			nui.unmask(document.body);
 		}

@@ -54,13 +54,13 @@
             <td class="btn">
                  
                 <label style="font-family:Verdana;">工单号:</label>
-                <label id="servieIdEl" style="font-family:Verdana;">fffffffffffffffffff</label>
+                <label id="servieCodeEl" style="font-family:Verdana;"></label>
                 <br>
                 <label style="font-family:Verdana;">客户名称:</label>
-                <label id="guestnameIdEl" style="font-family:Verdana;">fdgfdgdf</label>
+                <label id="nameEl" style="font-family:Verdana;"></label>
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 <label style="font-family:Verdana;">意向车型:</label>
-                <label id="gueIdEl" style="font-family:Verdana;">ddfdfdfdddd</label>
+                <label id="carModelNameEl" style="font-family:Verdana;"></label>
             </td>     
             <td style="text-align:right;">
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
@@ -72,17 +72,29 @@
         </tr>
     </table>
 </div>
-<fieldset style="border: solid 1px #aaa; position: relative; margin: 0px 0px 0px 0px;height:100%;width: 100%;">
-         <!-- <input name="specialCare"
-             id="specialCare"
-             class="nui-combobox"
-             textField="name"
-             valueField="id"
-             allowInput="true"
-             width="100%"
-             visable="false"
-            /> -->
-             <input id="id" name="id" class="nui-hidden"/>
+<fieldset style="border: solid 1px #aaa; position: relative; margin: 0px 0px 0px 0px;height:100%;width: 100%;" id="guestComeForm">
+            <!--  <input id="id" name="id" class="nui-hidden"/>
+            <input name="specialCare"
+                 id="specialCare"
+                 class="nui-combobox"
+                 textField="name"
+                 valueField="id"
+                 allowInput="true"
+                 width="100%"
+                 visible="false"
+                />
+              <input name="intentLevel"
+                 id="intentLevel"
+                 class="nui-combobox"
+                 textField="name"
+                 valueField="id"
+                 allowInput="true"
+                 width="100%"
+                 visible="false"
+                /> -->
+             <input id="saleAdvisor" name="saleAdvisor" class="nui-hidden"/>
+	        <input name="id" class="nui-hidden" id="mainId"/>
+	        <input id="guestId" name="guestId" class="nui-hidden"/>
             <input name="specialCare"
                  id="specialCare"
                  class="nui-combobox"
@@ -101,7 +113,8 @@
                  width="100%"
                  visible="false"
                 />
-	<table class="nui-form-table" border=0 id="guestComeForm">
+	<table class="nui-form-table" border=0 >
+	        
 			<tr>
 				<!-- <td class="form_label">
 					<label>单据编号：</label>
@@ -114,7 +127,7 @@
                   <label >来访时间：</label>
                 </td>
                 <td>
-                     <input width="100%" id="enterDate" name="enterDate" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
+                     <input width="100%" id="comeDate" name="comeDate" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
                </td>
 				<td class="form_label">
 			  <label>来访方式：</label>
@@ -197,8 +210,8 @@
 			 <label>是否试驾：</label>
 		  </td>
 		<td colspan="1">
-			<input class="nui-combobox" id="billTypeId" emptyText="是" name="billTypeId" data="[{billTypeId:1,text:'是'},{billTypeId:0,text:'否'}]"
-              width="98%"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="1"/>
+			<input class="nui-combobox" id="isTestDrive" emptyText="是" name="isTestDrive" data="[{isTestDrive:1,text:'是'},{isTestDrive:0,text:'否'}]"
+              width="98%"  textField="text" valueField="isTestDrive" value="1"/>
 		</td>			     
 	   </tr>
 	    <tr>
@@ -227,12 +240,12 @@
 		 <label>预算金额：</label>
 	   </td>
 	   <td colspan="1">
-		 <input class="nui-textbox" name="code" width="100%" maxlength="20"/>
+		 <input class="nui-textbox" name="expectPrice" width="100%" maxlength="20"/>
 	   </td>					    
 	    </tr>
 	   <tr>
 	     <td class="form_label" align="right">车型配置:</td>
-         <td colspan="5"><input class="nui-TextArea" name="useRemark"
+         <td colspan="5"><input class="nui-TextArea" name="configure"
        style="width: 100%; height: 50px;" />
        </td>
 	   </tr>
@@ -264,7 +277,7 @@
 			<input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/><label>在</label>
 		</td>
     <td colspan="5">
-       <input id="enterDate" name="enterDate" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="30%"/>
+       <input id="nextVisitDate" name="nextVisitDate" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="30%"/>
          进行售前潜客回访
        </td>
 	</tr>

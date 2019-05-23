@@ -1,6 +1,8 @@
 Manifest-Version: 1.0
-Require-Bundle: com.eos.workflow,com.hsapi.repair.repairService,com.pr
- imeton.eos.richweb,com.hsapi.sales.data,com.eos.foundation
+Require-Bundle: com.hsapi.repair.repairService,com.hsapi.repair.report
+ ,com.hsapi.repair.common,com.hsapi.repair.baseData,com.hsapi.repair.d
+ ata,com.hsapi.sales.data,com.primeton.eos.richweb,com.eos.foundation,
+ com.eos.workflow
 Bundle-Vendor: Administrator
 eos-webCtxPath: svr
 Bundle-Version: 1.0.0

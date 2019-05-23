@@ -13,7 +13,7 @@
         <title>编辑整车销售</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.07" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.08" type="text/javascript"></script>
 
     </head>
     <style type="text/css">
@@ -202,8 +202,8 @@
                         </div>
 
                         <div showCollapseButton="true">
-                            <div id="jpDetailGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="false" allowcellwrap="true" allowcelledit="true" showPager="false" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="data" showModified="false"
-                                onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true" allowCellWrap="true" url="">
+                            <div id="jpDetailGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="false" allowcelledit="true" showPager="false" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="data" showModified="false" onrowdblclick=""
+                                allowCellSelect="true" editNextOnEnterKey="true" allowCellWrap="true" url="">
                                 <div property="columns">
                                     <div type="indexcolumn">序号</div>
                                     <div field="giftName" name="giftName" width="100px" headerAlign="center" header="精品名称"></div>
@@ -289,7 +289,7 @@
                 <div title="费用信息">
                     <div class="mini-splitter" style="width:100%;height:100%;">
                         <div size="30%" showCollapseButton="true">
-                            <div id="costGrid" class="nui-datagrid" style="width:100%;height:100%;" multiSelect="true" selectOnLoad="true" showPager="false" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="list" showModified="false" onrowdblclick="" allowCellSelect="true"
+                            <div id="costGrid" class="nui-datagrid" style="width:100%;height:100%;" multiSelect="true" selectOnLoad="false" showPager="false" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="list" showModified="false" onrowdblclick="" allowCellSelect="true"
                                 editNextOnEnterKey="true" allowCellWrap="true" url="">
                                 <div property="columns">
                                     <div type="checkcolumn" width="10px">选择</div>
@@ -298,26 +298,34 @@
                             </div>
                         </div>
                         <div showCollapseButton="true">
-                            <div id="costDetailGrid" class="nui-datagrid" style="width:100%;height:50%;" selectOnLoad="true" showPager="false" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="list" showModified="false" onrowdblclick="" allowCellSelect="true"
-                                editNextOnEnterKey="true" allowCellWrap="true" url="">
+                            <div id="costDetailGrid" class="nui-datagrid" style="width:100%;height:50%;" allowcelledit="true" selectOnLoad="false" showPager="false" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="data" showModified="false" onrowdblclick=""
+                                allowCellSelect="true" editNextOnEnterKey="true" allowCellWrap="true" url="">
                                 <div property="columns">
                                     <div type="indexcolumn">序号</div>
-                                    <div field="auditSign" name="auditSign" width="100px" headerAlign="center" header="状态"></div>
+                                    <div field="auditSign" name="auditSign" width="100px" headerAlign="center" header="状态" renderer="onIsNotRenderer"></div>
                                     <div field="costName" name="costName" width="100px" headerAlign="center" header="费用名称"></div>
-                                    <div field="costAmt" name="costAmt" width="100px" headerAlign="center" header="报销金额"></div>
-                                    <div field="remark" name="remark" width="100px" headerAlign="center" header="备注"></div>
+                                    <div field="costAmt" name="costAmt" width="100px" headerAlign="center" header="报销金额">
+                                        <input class="nui-textarea" property="editor">
+                                    </div>
+                                    <div field="remark" name="remark" width="100px" headerAlign="center" header="备注">
+                                        <input class="nui-textarea" property="editor">
+                                    </div>
                                     <div field="modifier" name="modifier" width="100px" headerAlign="center" header="登记人"></div>
                                     <div field="modifyDate" name="modifyDate" width="100px" headerAlign="center" header="登记时间"></div>
                                 </div>
                             </div>
-                            <div id="costDetailGrid2" class="nui-datagrid" style="width:100%;height:50%;" selectOnLoad="true" showPager="false" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="list" showModified="false" onrowdblclick="" allowCellSelect="true"
-                                editNextOnEnterKey="true" allowCellWrap="true" url="">
+                            <div id="costDetailGrid2" class="nui-datagrid" style="width:100%;height:50%;" allowcelledit="true" selectOnLoad="false" showPager="false" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="data" showModified="false" onrowdblclick=""
+                                allowCellSelect="true" editNextOnEnterKey="true" allowCellWrap="true" url="">
                                 <div property="columns">
                                     <div type="indexcolumn">序号</div>
-                                    <div field="auditSign" name="auditSign" width="100px" headerAlign="center" header="状态"></div>
+                                    <div field="auditSign" name="auditSign" width="100px" headerAlign="center" header="状态" renderer="onIsNotRenderer"></div>
                                     <div field="costName" name="costName" width="100px" headerAlign="center" header="费用名称"></div>
-                                    <div field="costAmt" name="costAmt" width="100px" headerAlign="center" header="成本金额（报销金额）"></div>
-                                    <div field="remark" name="remark" width="100px" headerAlign="center" header="备注内容"></div>
+                                    <div field="costAmt" name="costAmt" width="100px" headerAlign="center" header="成本金额（报销金额）">
+                                        <input class="nui-textarea" property="editor">
+                                    </div>
+                                    <div field="remark" name="remark" width="100px" headerAlign="center" header="备注内容">
+                                        <input class="nui-textarea" property="editor">
+                                    </div>
                                     <div field="modifier" name="modifier" width="100px" headerAlign="center" header="登记人"></div>
                                     <div field="modifyDate" name="modifyDate" width="100px" headerAlign="center" header="登记时间"></div>
                                 </div>

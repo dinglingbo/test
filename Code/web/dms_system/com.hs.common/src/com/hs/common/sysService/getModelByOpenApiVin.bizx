@@ -261,9 +261,9 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="str" primitiveType="String"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="hp"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="httpStr" primitiveType="String"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params2"/>
     <process:variable description="配置文件的地址" historyStateLocation="client" isArray="false" name="maintenanceUrl" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="httpStr" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="vin" primitiveType="String"/>

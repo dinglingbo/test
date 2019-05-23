@@ -303,10 +303,10 @@ function loadMainAndDetailInfo(row) {
 		var data = basicInfoForm.getData();
 
 		var text=StatusHash[row.billStatusId];
-		nui.get('AbillStatusId').setValue(text);
+		/*nui.get('AbillStatusId').setValue(text);*/
 		if(StatusHash){
 			
-			nui.get('AbillStatusId').setValue(text);
+			/*nui.get('AbillStatusId').setValue(text);*/
 	    }
 		if(data.billStatusId && data.billStatusId !=0){
 			document.getElementById("fd1").disabled = true;
@@ -678,7 +678,7 @@ function save() {
 					row.billStatusId=0;
 					// 保存成功后重新加载数据
 					loadMainAndDetailInfo(row);
-					$('#bServiceId').text("订单号："+row.serviceId);
+					$('#bServiceId').text("订单号："+row.serviceCode);
 			
 				}
 			} else {
@@ -1403,7 +1403,7 @@ function auditOrderDirect(flagSign, flagStr, flagRtn){
 					// 保存成功后重新加载数据
 //					leftRow.billStatusId=2;
 					loadMainAndDetailInfo(leftRow);
-					$('#bServiceId').text("订单号："+leftRow.serviceId);
+					$('#bServiceId').text("订单号："+leftRow.serviceCode);
 
 				}
 			} else {
@@ -1517,7 +1517,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 								// 保存成功后重新加载数据
 //								leftRow.billStatusId=2;
 								loadMainAndDetailInfo(leftRow);
-								$('#bServiceId').text("订单号："+leftRow.serviceId);
+								$('#bServiceId').text("订单号："+leftRow.serviceCode);
 
 							}
 						} else {
@@ -1586,7 +1586,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 								// 保存成功后重新加载数据
 //								leftRow.billStatusId=2;
 								loadMainAndDetailInfo(leftRow);
-								$('#bServiceId').text("订单号："+leftRow.serviceId);
+								$('#bServiceId').text("订单号："+leftRow.serviceCode);
 								
 
 							}
@@ -2312,7 +2312,7 @@ function unAuditTrue(){
 				nui.get('auditSign').setValue('0');
 				var text=StatusHash[0];
 				if(StatusHash){
-					nui.get('AbillStatusId').setValue(text);
+					/*nui.get('AbillStatusId').setValue(text);*/
 			    }
 				document.getElementById("basicInfoForm").disabled = false;
 				setBtnable(true);
@@ -2496,14 +2496,14 @@ function setInitData(params){
 		basicInfoForm.setData(params);
 /*		nui.get('orderMan').setText(params.orderMan);*/
 		nui.get('orderMan').setValue(params.orderManId);
-		$('#bServiceId').text("订单号："+params.serviceId);
+		$('#bServiceId').text("订单号："+params.serviceCode);
 		nui.get("guestId").setText(params.guestFullName);
 		nui.get('storehouse').setValue(params.storeId);
 		
 		if(StatusHash)
 	       {
 				var text=StatusHash[params.billStatusId];
-				nui.get('AbillStatusId').setValue(text);
+				/*nui.get('AbillStatusId').setValue(text);*/
 	       }
 		
 		var mainId=params.id;

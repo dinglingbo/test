@@ -157,6 +157,10 @@
       <process:from type="query" pattern="reference">taxRate</process:from>
       <process:to type="query">enterMain/taxRate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">enterMain/enterDate</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="125" y="116"/>

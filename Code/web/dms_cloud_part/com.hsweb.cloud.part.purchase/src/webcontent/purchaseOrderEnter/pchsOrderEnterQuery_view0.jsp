@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购入库查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderEnter/pchsOrderEnterQuery.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderEnter/pchsOrderEnterQuery.js?v=1.0.1"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -76,6 +76,8 @@
 
                 <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
                 <span class="separator"></span>
                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
 

@@ -226,6 +226,7 @@
     <targetConnections>link31</targetConnections>
     <targetConnections>link32</targetConnections>
     <targetConnections>link33</targetConnections>
+    <targetConnections>link22</targetConnections>
     <location x="831" y="180"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
@@ -404,7 +405,7 @@
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess2</sourceNode>
-      <targetNode>assign5</targetNode>
+      <targetNode>subprocess3</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query"></process:leftOperand>
@@ -551,8 +552,8 @@
       <sourceNode>assign5</sourceNode>
       <targetNode>transactioncommit0</targetNode>
     </sourceConnections>
-    <targetConnections>link18</targetConnections>
-    <location x="1107" y="75"/>
+    <targetConnections>link21</targetConnections>
+    <location x="1155" y="75"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
     <process:copy>
@@ -565,9 +566,47 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="1105" y="111"/>
+    <location x="1153" y="111"/>
     <figSize height="17" width="32"/>
     <node>assign5</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess3" name="saveSaleCostLIst" displayName="saveSaleCostLIst" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess3</sourceNode>
+      <targetNode>assign5</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link22" name="link22" displayName="连接线" type="transition">
+      <sourceNode>subprocess3</sourceNode>
+      <targetNode>assign2</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">E</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link18</targetConnections>
+    <location x="1070" y="75"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess3label</nodeLabel>
+    <process:flow index="4" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.saveSaleCostLIst</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="addArr" type="query" value="com.hsapi.sales.data.css.CssSaleCostList[]" valueType="DataObject" pattern="reference">addArr</process:inputVariable>
+        <process:inputVariable id="1" name="editArr" type="query" value="com.hsapi.sales.data.css.CssSaleCostList[]" valueType="DataObject" pattern="reference">editArr</process:inputVariable>
+        <process:inputVariable id="2" name="deleteArr" type="query" value="com.hsapi.sales.data.css.CssSaleCostList[]" valueType="DataObject" pattern="reference">deleteArr</process:inputVariable>
+        <process:inputVariable id="3" name="serviceId" type="query" value="Int" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess3label" name="label" nodeType="label">
+    <location x="1035" y="110"/>
+    <figSize height="17" width="97"/>
+    <node>subprocess3</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -583,6 +622,9 @@
     <process:input description="" isArray="true" modelType="com.hsapi.sales.data.css.CssSaleGiftApply" name="jpDetailGridEdit"/>
     <process:input description="" isArray="true" modelType="com.hsapi.sales.data.css.CssSaleGiftApply" name="jpDetailGridDel"/>
     <process:input description="" isArray="false" modelType="com.hsapi.sales.data.css.CssSaleCalc" name="caCalculationData"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.sales.data.css.CssSaleCostList" name="addArr"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.sales.data.css.CssSaleCostList" name="editArr"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.sales.data.css.CssSaleCostList" name="deleteArr"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

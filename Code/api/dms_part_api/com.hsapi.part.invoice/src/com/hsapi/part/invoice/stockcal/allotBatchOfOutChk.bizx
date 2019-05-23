@@ -65,9 +65,9 @@
     <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
-      <targetNode>loopstart0</targetNode>
+      <targetNode>invokePojo7</targetNode>
     </sourceConnections>
     <targetConnections>link22</targetConnections>
     <location x="360" y="150"/>
@@ -1060,17 +1060,18 @@
     <figSize height="20" width="46"/>
     <node>invokePojo5</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo6" name="出主" displayName="insertEntity" grouped="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo6" name="修改出主" displayName="Update a record" grouped="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link47" name="link47" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo6</sourceNode>
       <targetNode>assign3</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link42</targetConnections>
     <location x="1656" y="179"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo6label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.insertEntity</process:partner>
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.updateEntity</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -1080,8 +1081,8 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo6label" name="label" nodeType="label">
-    <location x="1652" y="215"/>
-    <figSize height="20" width="31"/>
+    <location x="1637" y="215"/>
+    <figSize height="20" width="61"/>
     <node>invokePojo6</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值5" displayName="赋值" type="assign">
@@ -2017,6 +2018,30 @@
     <location x="225" y="185"/>
     <figSize height="20" width="142"/>
     <node>invokePojo13</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo7" name="出主1" displayName="出主" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo7</sourceNode>
+      <targetNode>loopstart0</targetNode>
+    </sourceConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="360" y="234"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo7label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.insertEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">outmain</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo7label" name="label" nodeType="label">
+    <location x="351" y="270"/>
+    <figSize height="20" width="40"/>
+    <node>invokePojo7</node>
   </nodes>
   <topRuler/>
   <leftRuler>

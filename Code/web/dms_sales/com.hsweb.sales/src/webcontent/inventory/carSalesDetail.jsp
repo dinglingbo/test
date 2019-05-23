@@ -16,7 +16,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <!-- <a class="nui-button" iconCls="icon-undo" plain="true" onclick="cancelEditInbound()" id="cancelEditEnterMainBtn">取消</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="auditToEnter()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;申请验车</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="salesCheck()" ><span class="fa fa-check fa-lg"></span>&nbsp;申请验车</a>
                 
                 <!-- <a class="nui-menubutton " menu="#popupMenuPrint" id="menuprint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
 
@@ -120,6 +120,12 @@
                                              id="predictDeliveryDate"
                                              width="100%"
                                              showTime="true"
+                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
+                                      <input name="recordDate"
+                                             id="recordDate"
+                                             width="100%"
+                                             showTime="true"
+                                             visible="false"
                                              class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
                                   </td>
 <!--                               	 <td class="title required" style="width:8%">

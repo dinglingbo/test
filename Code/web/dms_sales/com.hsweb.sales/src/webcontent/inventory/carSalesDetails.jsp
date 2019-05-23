@@ -8,7 +8,7 @@
 -->
 <head>
 <title>厂家订货详情</title>
-<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesDetails.js?v=1.1.0"></script>
+<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesDetails.js?v=1.1.2"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -53,8 +53,7 @@ body .mini-grid-row-selected{
 	                 textField="name"
 	                 valueField="id"
 	                 allowInput="true"
-	                 width="100%"
-	                 
+	                 width="100%"	                 
 	                />
    <input name="interialColorId"
 	                 id="interialColorId"

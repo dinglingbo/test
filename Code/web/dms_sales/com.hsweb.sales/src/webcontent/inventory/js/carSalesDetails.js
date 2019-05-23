@@ -1260,18 +1260,67 @@ function checkRightData() {
 	// }
 	return p;
 }
+var salesCheckCar = baseUrl+"sales.inventory.salesCheckCar.biz.ext";
+function salesCheck(){
+	var data = basicInfoForm.getData();
+	nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : '申请验车中...'
+	});
+
+	nui.ajax({
+		url : salesCheckCar,
+		type : "post",
+		data : JSON.stringify({
+			orderMain : data,
+			token: token
+		}),
+		success : function(data) {
+			nui.unmask(document.body);
+			data = data || {};
+			if (data.errCode == "S") {
+				showMsg("申请成功!","S");
+			} else {
+				showMsg(data.errMsg || "申请失败!","E");
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});	
+}
+var salesSubmitFinancial = baseUrl+"sales.inventory.salesSubmitFinancial.biz.ext";
 function audit(){
 	var data = basicInfoForm.getData();
-	var flagSign = 0; 
-	var flagStr = "提交中...";
-	var flagRtn = "提交成功!";
-	if(data.srmGuestId){
-		pushSupplierOrder(flagSign, flagStr, flagRtn);
-	}else{
-		auditOrder(flagSign, flagStr, flagRtn);
-	}
+	nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : '提交中...'
+	});
 
-	
+	nui.ajax({
+		url : salesSubmitFinancial,
+		type : "post",
+		data : JSON.stringify({
+			orderMain : data,
+			token: token
+		}),
+		success : function(data) {
+			nui.unmask(document.body);
+			data = data || {};
+			if (data.errCode == "S") {
+				showMsg("提交成功!","S");
+			} else {
+				showMsg(data.errMsg || "提交失败!","E");
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});	
 }
 function auditToEnter(){
 	//如果是内部订单，直接入库时需要判断 bill_status_id = 2（待收货）

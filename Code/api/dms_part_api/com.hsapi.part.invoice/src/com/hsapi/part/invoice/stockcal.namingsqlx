@@ -30,8 +30,8 @@
 				C.SOURCE_ID,
 				SUM(C.SELL_QTY) AS SellQty
 			FROM
-				PJ_OUT_DETAIL C
-			INNER JOIN PJ_OUT_MAIN D ON C.MAIN_ID = D.ID
+				PJ_OUT_DETAIL_CHK C
+			INNER JOIN PJ_OUT_MAIN_CHK D ON C.MAIN_ID = D.ID
 			WHERE 1 = 1 and D.AUDIT_SIGN = 0
 			
 			<isNotNull prepend = "" property = "orgid">

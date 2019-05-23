@@ -69,6 +69,7 @@
                     <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
                             class="fa fa-search fa-lg"></span>&nbsp;查找</a>
                     <!-- <span class="separator"></span> -->
+            <a class="nui-button" id="selectBtn" iconCls="" onclick="choose()" plain="true" visible="true"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
                 </div>
                 <div class="nui-fit">
                     <div id="grid1" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"

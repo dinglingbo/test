@@ -180,9 +180,10 @@
 			d.short_name as guestShortName
 		FROM
 			pj_enter_main_chk a
-		INNER JOIN wb_common.com_guest d ON a.guest_id = d.id
+		INNER JOIN pj_enter_detail_chk b ON a.id = b.main_id
+		INNER JOIN wb_common.com_guest d ON a.guest_id = d.id		
 		WHERE
-			a.audit_sign = 1
+			a.audit_sign = 1 and b.outable_qty >0
 				
 			<dynamic>
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
@@ -217,6 +218,7 @@
 			a.orgid as orgid,
 			a.enter_type_id as enterTypeId,
 			a.`code` as manualCode,
+			a.code_id as codeId,
 			a.enter_date as enterDate,
 			a.order_man as orderMan,
 			a.bill_type_id as billTypeId,
@@ -417,6 +419,7 @@
 			a.remark as mainRemark,
 			a.settle_type_id as settleTypeId,
 			a.`code` as `code`,
+			e.id as codeId,
 			b.id as detailId,
 			b.main_id as mainId,
 			b.source_id as sourceId,
@@ -471,6 +474,7 @@
 			 on b.part_id = c.id 
 		inner join wb_common.com_guest d 
 			 on a.guest_id = d.id
+		inner join pj_sell_order_main_chk e on a.code =e.service_id
 		where a.audit_sign = 1
 			  and a.enter_type_id = '050202'
 				
@@ -499,7 +503,7 @@
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="rtnableQty">(b.rtnable_qty &gt; 0)</isNotEmpty>
-            <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
+            <isNotEmpty prepend="order by" property="sortField">a.$sortField$ $sortOrder$</isNotEmpty>
         </dynamic>
     </select>
     <select id="queryPjPchsRtnMainDetailList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">

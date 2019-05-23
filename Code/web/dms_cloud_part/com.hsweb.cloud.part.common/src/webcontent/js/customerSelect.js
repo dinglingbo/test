@@ -74,6 +74,15 @@ $(document).ready(function(v)
     grid.on("drawcell",function(e){
     	onDrawCell(e);
     });
+    
+    document.onkeyup=function(event){
+	    var e=event||window.event;
+	    var keyCode=e.keyCode||e.which;
+	  
+	    if((keyCode==13))  {  //ESC
+	    	onSearch();
+        }
+	}
 });
 var cityList = [];
 var provinceEl = null;

@@ -13,7 +13,7 @@
         <title>购车计算</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%=request.getContextPath()%>/sales/sales/js/caCalculation.js?v=1.0.4"></script>
+            <script src="<%=request.getContextPath()%>/sales/sales/js/caCalculation.js?v=1.0.81"></script>
     </head>
     <style type="text/css">
         body {
@@ -80,7 +80,7 @@
                         购车方式：
                     </td>
                     <td>
-                        <input id="cmbDbxm" style="width: 100%" class="nui-combobox">
+                        <input id="saleType" name="saleType" style="width: 100%" class="nui-combobox" textField="name" valueField="customid" onvaluechanged="changeSaleType">
                     </td>
                     <td class="td_title">
                         车型销价：
@@ -100,13 +100,13 @@
                         外观颜色：
                     </td>
                     <td>
-                        <input id="frameColorId" name="frameColorId" style="width: 100%" class="nui-combobox">
+                        <input id="frameColorId" name="frameColorId" style="width: 100%" class="nui-combobox" textField="name" valueField="customid">
                     </td>
                     <td class="td_title">
                         内饰颜色：
                     </td>
                     <td>
-                        <input id="interialColorId" name="interialColorId" style="width: 100%" class="nui-combobox">
+                        <input id="interialColorId" name="interialColorId" style="width: 100%" class="nui-combobox" textField="name" valueField="customid">
                     </td>
                 </tr>
                 <tr>
@@ -114,7 +114,7 @@
                         贷款比例：
                     </td>
                     <td>
-                        <input id="loanPercent" name="loanPercent" style="width: 100%" class="nui-combobox">
+                        <input id="loanPercent" name="loanPercent" style="width: 100%" class="nui-combobox" data="loanPercentData">
                     </td>
                     <td class="td_title">
                         贷款金额：
@@ -142,19 +142,19 @@
                         贷款银行：
                     </td>
                     <td>
-                        <input id="signBillBank" name="signBillBank" style="width: 100%" class="nui-combobox">
+                        <input id="signBillBankId" name="signBillBankId" style="width: 100%" class="nui-combobox" textField="name" valueField="customid" onvaluechanged="getBankHandlingRate">
                     </td>
                     <td class="td_title">
                         贷款利率(%)：
                     </td>
                     <td>
-                        <input id="bankHandlingRate" name="bankHandlingRate" style="width: 100%" class="nui-combobox">
+                        <input id="bankHandlingRate" name="bankHandlingRate" style="width: 100%" class="nui-textbox" enabled="false">
                     </td>
                     <td class="td_title">
                         银行利息分摊：
                     </td>
                     <td>
-                        <input id="bankhandlingapportion" name="bankhandlingapportion" data="is_not" style="width: 100%" class="nui-combobox">
+                        <input id="bankHandlingApportion" name="bankHandlingApportion" data="is_not" style="width: 100%" class="nui-combobox">
                     </td>
                     <td class="td_title">
                         贷款利息：
@@ -301,19 +301,19 @@
                 id: 0,
                 text: ""
             }, {
-                id: 1,
+                id: 12,
                 text: "12期"
             }, {
-                id: 2,
+                id: 24,
                 text: "24期"
             }, {
-                id: 3,
+                id: 36,
                 text: "36期"
             }, {
-                id: 4,
+                id: 48,
                 text: "48期"
             }, {
-                id: 5,
+                id: 60,
                 text: "60期"
             }];
             var is_not = [{
@@ -322,6 +322,31 @@
             }, {
                 id: 1,
                 text: '否'
+            }];
+            var loanPercentData = [{
+                id: 0,
+                text: ""
+            }, {
+                id: 1,
+                text: "1成"
+            }, {
+                id: 2,
+                text: "2成"
+            }, {
+                id: 3,
+                text: "3成"
+            }, {
+                id: 4,
+                text: "4成"
+            }, {
+                id: 5,
+                text: "5成"
+            }, {
+                id: 6,
+                text: "6成"
+            }, {
+                id: 7,
+                text: "7成"
             }];
             nui.parse();
         </script>

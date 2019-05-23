@@ -3,6 +3,7 @@
 	<name>dms_sales_api</name>
 	<comment></comment>
 	<projects>
+		<project>dms_repair_api</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

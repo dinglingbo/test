@@ -1,15 +1,18 @@
 var baseUrl = apiPath + sysApi + "/";
-var gridUrl = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryDict.biz.ext"
+var gridUrl = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryDict.biz.ext";
+var saveUrl = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.saveDictList.biz.ext";
 var statusList = [{id:0,name:"启用"},{id:1,name:"禁用"}];
 var statusHash = { 0: "启用", 1: "禁用" };
 var mainTabs = null;
 var dgGrid = null;
 var DICTID = " ";//
 var nullMsg = "";
+
 $(document).ready(function() {
     mainTabs = nui.get("mainTabs");
     dgGrid = nui.get("dgGrid");
     dgGrid.setUrl(gridUrl);
+
 
     mainTabs.on("activechanged",function(e){
         showTabInfo();
@@ -62,7 +65,7 @@ function addShareUrl(){
     var newRow = {isDisabled:0};
     dgGrid.addRow(newRow);
 }
-var saveUrl = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.saveDictList.biz.ext";
+
 function save(){
 	var value = checkName();
 	if(!value){
@@ -132,7 +135,7 @@ function showTabInfo(){
     DICTID = '';
 	switch (name)
     {
-        case "PIDCheck"://PID检测类型
+        case "PDICheck"://PDI检测类型
             DICTID = '10361';
             tit = '分类名称';
             break;
@@ -211,6 +214,9 @@ function showTabInfo(){
             dgGrid.showColumn('property1');
             var colPro = dgGrid.getColumn('property1');
             dgGrid.updateColumn(colPro, { header: '贷款比例(%)'});
+            break;
+        case "visitType"://来访类型 
+            DICTID = 'DDT20130731000003';
             break;
         default:
             break;

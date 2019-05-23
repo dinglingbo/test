@@ -1,7 +1,11 @@
 package com.chedao.websocket.webserver.user.model;
 
 
-public class ImGroupUserData {
+import java.io.Serializable;
+
+public class ImGroupUserData implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	public Long id;//分组ID
 	public String groupname;//分组Name
 	public String avatar;//

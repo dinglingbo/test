@@ -13,6 +13,7 @@ var parentidEl = null;
 var itemTypeIdEl = null;
 var itemTypeIdList = null;
 var isPrimaryBusinessEl = null;
+var isSaleEl = null;
 var primaryBusinessList = null;
 
 $(document).ready(function(v) {
@@ -20,14 +21,14 @@ $(document).ready(function(v) {
 	parentidEl = nui.get("parentId");
 	itemTypeIdEl = nui.get("itemTypeId");
 	primaryBusinessEl = nui.get("isPrimaryBusiness");
-
+	isSaleEl = nui.get("isSale");
 
 	itemTypeIdList = [{ id: 1, name: "收入类" },{ id: -1, name: "支出类" },];
 	itemTypeIdEl.setData(itemTypeIdList);
 
 	primaryBusinessList = [{ id: 0, name: "否" },{ id: 1, name: "是" },];
 	primaryBusinessEl.setData(primaryBusinessList);
-
+	isSaleEl.setData(primaryBusinessList);
 	getInComeExpenses(function(data) {
 		listHash = data.list || [];
 		parentidEl.setData(listHash);

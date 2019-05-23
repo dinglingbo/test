@@ -7,7 +7,7 @@
 <head>
     <title>系统参数</title>
     <script src="<%=webPath + contextPath%>/sales/base/js/sellCarParamMgr.js?v=1.0.5"></script>
-        <link href="<%=webPath + contextPath%>/sales/base/css/botton.css" rel="stylesheet" type="text/css" />
+    <link href="<%=webPath + contextPath%>/sales/base/css/botton.css" rel="stylesheet" type="text/css" />
     <style>
 
         html,
@@ -53,7 +53,7 @@
                         <div style="float:left;height:750px;width:114px;">
                     <div id="mainTabs" class="nui-tabs" name="mainTabs" activeIndex="0" style="height:100%;"
                         plain="false" tabPosition="left" showBody="false">
-                        <div title="PID检查分类" id="PIDCheck" name="PIDCheck" url=""></div>
+                        <div title="PDI检查分类" id="PDICheck" name="PDICheck" url=""></div>
                         <div title="身份" id="ID" name="ID" url=""></div>
                         <div title="行业" id="work" name="work" url=""></div>
                         <div title="职务" id="dept" name="dept" url=""></div>
@@ -78,6 +78,7 @@
                         <div title="购车方式" id="buyCarType" name="buyCarType" url=""></div>
                         <div title="购车用途" id="buyCarUser" name="buyCarUser" url=""></div>
                         <div title="银行定义" id="bank" name="bank" url=""></div>
+                        <div title="来访类型" id="visitType" name="visitType" url=""></div>
 
                         <!--<div title="信息来源" id="infoSourceTab" name="infoSourceTab" url=""></div>
                         <div title="意向级别" id="purposeTypeTab" name="purposeTypeTab" url=""></div>

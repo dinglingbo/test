@@ -2,6 +2,7 @@ package com.chedao.websocket.webserver.user.service;
 
 import com.chedao.websocket.webserver.user.model.ImFriendUserData;
 import com.chedao.websocket.webserver.user.model.UserFriendEntity;
+import com.chedao.websocket.webserver.user.model.UserFriendTEntity;
 import com.chedao.websocket.webserver.user.model.UserInfoEntity;
 
 import java.util.List;
@@ -20,4 +21,7 @@ public interface UserFriendService {
     //查找我的好友
     //List<ImFriendUserData> queryListUser(UserInfoEntity user);
     List<ImFriendUserData> queryFriend(UserInfoEntity user);
+
+    //查找用户好友列表
+    List<UserFriendTEntity> queryUserFriendList(String userId);
 }

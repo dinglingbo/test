@@ -2,8 +2,12 @@ package com.chedao.websocket.webserver.user.model;
 
 import org.apache.commons.lang.StringUtils;
 
+import java.io.Serializable;
 
-public class ImFriendUserInfoData {
+
+public class ImFriendUserInfoData implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	public Long id;//好友ID
 	public String username;//好友昵称
 	public String avatar;//好友头像

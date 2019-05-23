@@ -117,15 +117,20 @@ pageEncoding="UTF-8" session="false" %>
 </div>
 <script type="text/javascript">
     nui.parse();
-    var saveUrl = apiPath + saleApi + "/sales.base.addCsbPDICarTemplate.biz.ext";
-    var updateUrl = apiPath + saleApi + "/sales.base.updateCsbPDICarTemplate.biz.ext";
+    var saveUrl = apiPath + saleApi + "/sales.base.saveCsbCarTemplate.biz.ext";
+    var gridUrl = apiPath + saleApi + "/sales.base.searchCsbPDICarDetail.biz.ext";
     var form = new nui.Form("form1");
     var grid =nui.get("grid1");
+    grid.setUrl(gridUrl);
 
 
 function setData(row) {
     form.setData(row);
     nui.get("carModelName").setText(row.carModelName);
+    var params = {
+        templateId:row.id
+    };
+    grid.load({params:params,token:token});
 }
 
     function edit() {
@@ -143,7 +148,20 @@ function setData(row) {
             var iframe = this.getIFrameEl();
             if(action == 'ok'){
                 var rows = iframe.contentWindow.getRows();
-                grid.addRows(rows);
+                var dataList = grid.getData();
+                for (var k = 0; k < rows.length; k++) {
+                    var temp = rows[k];
+                    var value = JSON.stringify(dataList).indexOf(temp.code);
+                    if(value == -1){
+                        grid.addRow(temp);
+                    }
+                    // for (let i = 0; i < dataList.length; i++) {
+                    //     var element = dataList[i];
+                        
+                    // }
+                    
+                }
+                
             }
         }
       });
@@ -173,18 +191,16 @@ function setData(row) {
 
 
     function save() {
+        var addArr = grid.getChanges('added');
+        var delArr = grid.getChanges('removed');
         var data = form.getData(true);
-        var turl = null;
-        if(data.id){
-            turl = updateUrl;
-        }else{
-            turl = saveUrl;
-        }
         nui.ajax({
-            url:turl,
+            url:saveUrl,
             type:'post',
             data:{
-                data:data
+                data:data,
+                addArr:addArr,
+                delArr:delArr
             },
             success:function(res){
                 if(res.errCode == 'S'){

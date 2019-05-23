@@ -2438,6 +2438,10 @@ function showPchsEnter(mainId,serviceId,guestId){
             };
             iframe.contentWindow.setInitData(params,function(data){
             	var row=rightGrid.getData();
+            	if(row.length==0){
+            		rightGrid.addRows(data);
+            		return;
+            	}
             	if(!row[row.length-1].comPartCode){
             		rightGrid.removeRow(row[row.length-1]);
             	}

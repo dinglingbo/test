@@ -374,3 +374,121 @@ function onDrawCell(e)
             break;
     }
 }
+
+function onPrint(){
+	var data=rightGrid.getSelected();
+	var params={
+			id : data.codeId,
+		auditSign:1,
+		guestId : data.guestId,
+		currUserName :currUserName,
+		currRepairSettorderPrintShow :currRepairSettorderPrintShow,
+		currCompAddress :currCompAddress,
+		currCompLogoPath : currCompLogoPath,
+		currCompTel :currCompTel,
+		currOrgName : currOrgName,
+		brandHash : partBrandIdHash,
+		storeHash : storehouseHash,
+		printName : "采购入库单"
+	};
+	var detailParams={
+			mainId :data.codeId
+	};
+	var openUrl = webPath + contextPath+"/purchase/purchaseOrderEnter/purchaseOrderEnterPrint.jsp";
+
+    nui.open({
+       url: openUrl,
+       width: "100%",
+       height: "100%",
+       showMaxButton: false,
+       allowResize: false,
+       showHeader: true,
+       onload: function() {
+           var iframe = this.getIFrameEl();
+           iframe.contentWindow.SetData(params,detailParams);
+       },
+   });
+}
+
+
+function onExport(){
+	var data = rightGrid.getData();
+	if(data && data.length > 0){
+		setInitExportData(data);
+	}
+}
+
+function setInitExportData(data){
+	var tds = '<td  colspan="1" align="left">[index]</td>' +
+    "<td  colspan='1' align='left'>[manualCode]</td>" +
+    "<td  colspan='1' align='left'>[guestFullName]</td>" +
+    "<td  colspan='1' align='left'>[orderMan]</td>" +
+    "<td  colspan='1' align='left'>[billTypeId]</td>" +
+    "<td  colspan='1' align='left'>[settleTypeId]</td>" +
+    "<td  colspan='1' align='left'>[enterDate]</td>" +
+    "<td  colspan='1' align='left'>[storeId]</td>" +
+    
+    "<td  colspan='1' align='left'>[comPartCode]</td>" +
+    "<td  colspan='1' align='left'>[comPartName]</td>" +
+    "<td  colspan='1' align='left'>[comOemCode]</td>" +
+    "<td  colspan='1' align='left'>[partBrandId]</td>" +
+    "<td  colspan='1' align='left'>[applyCarModel]</td>"+
+    "<td  colspan='1' align='left'>[enterUnitId]</td>"+
+    
+    "<td  colspan='1' align='left'>[enterQty]</td>"+
+    "<td  colspan='1' align='left'>[enterPrice]</td>"+      
+    "<td  colspan='1' align='left'>[enterAmt]</td>" +
+    "<td  colspan='1' align='left'>[outableQty]</td>" +
+    "<td  colspan='1' align='left'>[detailRemark]</td>" +
+    
+    "<td  colspan='1' align='left'>[suggSellPrice]</td>" +                     
+    "<td  colspan='1' align='left'>[auditor]</td>" +
+    "<td  colspan='1' align='left'>[auditDate]</td>" +
+    "<td  colspan='1' align='left'>[orgid]</td>";
+	
+	var tableExportContent = $("#tableExportContent");
+    tableExportContent.empty();
+    
+    for(var i = 0 , l = data.length; i < l ; i++){
+    	var row = data[i];
+    	var orgid = null;
+    	for(var j=0;j<currOrgList.length;j++){
+    		if(currOrgList[j].orgid==row.orgid){
+    			orgid = currOrgList[j].shortName || "";
+    		}
+    	}
+    	
+    	var tr = $("<tr></tr>");
+    	tr.append(tds.replace("[index]", i+1)
+                .replace("[manualCode]", row.manualCode || "")
+                .replace("[guestFullName]", row.guestFullName || "")
+                .replace("[orderMan]", row.orderMan  || "")
+                .replace("[billTypeId]", row.billTypeId?billTypeIdHash[row.billTypeId].name :"")
+                .replace("[settleTypeId]", row.settleTypeId?settTypeIdHash[row.settleTypeId].name :"")     
+                .replace("[enterDate]", nui.formatDate(row.enterDate?row.enterDate:"",'yyyy-MM-dd HH:mm') )
+                .replace("[storeId]", row.storeId?storehouseHash[row.storeId].name : "")
+                
+                .replace("[comPartCode]", row.comPartCode || "")                        
+                .replace("[comPartName]", row.comPartName || "")
+                .replace("[comOemCode]", row.comOemCode || "")
+                .replace("[partBrandId]", row.partBrandId?partBrandIdHash[row.partBrandId].name : "")
+                .replace("[applyCarModel]", row.applyCarModel || "")
+                .replace("[enterUnitId]", row.enterUnitId || "")
+                
+                .replace("[enterQty]", row.enterQty ||  0)
+                .replace("[enterPrice]", row.enterPrice || 0)
+                .replace("[enterAmt]", row.enterAmt || 0)         
+                .replace("[outableQty]", row.outableQty || 0)
+                .replace("[detailRemark]", row.detailRemark || "")
+                
+                .replace("[suggSellPrice]", row.suggSellPrice || 0)
+                .replace("[auditor]", row.auditor || "")    
+                .replace("[auditDate]", nui.formatDate(row.auditDate?row.auditDate:"",'yyyy-MM-dd HH:mm') )
+                .replace("[orgid]", orgid || ""));
+    			tableExportContent.append(tr);
+    }
+    var date = new Date();
+    var title = "采购入库明细表";
+    title = title + nui.formatDate(date,'yyyy-MM-dd HH:mm');
+    method5('tableExcel',title,'tableExportA');
+}

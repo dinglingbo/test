@@ -13,7 +13,7 @@
         <title>购车计算</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%=request.getContextPath()%>/sales/sales/js/caCalculation.js?v=1.0.7"></script>
+            <script src="<%=request.getContextPath()%>/sales/sales/js/caCalculation.js?v=1.0.81"></script>
     </head>
     <style type="text/css">
         body {
@@ -80,7 +80,7 @@
                         购车方式：
                     </td>
                     <td>
-                        <input id="saleType" name="saleType" style="width: 100%" class="nui-combobox" textField="name" valueField="customid">
+                        <input id="saleType" name="saleType" style="width: 100%" class="nui-combobox" textField="name" valueField="customid" onvaluechanged="changeSaleType">
                     </td>
                     <td class="td_title">
                         车型销价：

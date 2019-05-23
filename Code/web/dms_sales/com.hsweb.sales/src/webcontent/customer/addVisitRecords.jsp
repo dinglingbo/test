@@ -64,7 +64,7 @@
             </td>     
             <td style="text-align:right;">
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-                <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                <a class="nui-button" onclick="save()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;精品加装</a>
                 <a class="nui-button" onclick="onCancel" plain="true"  style="width: 80px;"><span class="fa fa-dollar fa-lg"></span>&nbsp;购车预算</a>
                           
@@ -82,7 +82,7 @@
              width="100%"
              visable="false"
             /> -->
-            <!-- <input id="specialCare" name="specialCare" class="nui-hidden"/> -->
+             <input id="id" name="id" class="nui-hidden"/>
             <input name="specialCare"
                  id="specialCare"
                  class="nui-combobox"
@@ -101,7 +101,7 @@
                  width="100%"
                  visible="false"
                 />
-	<table class="nui-form-table" border=0>
+	<table class="nui-form-table" border=0 id="guestComeForm">
 			<tr>
 				<!-- <td class="form_label">
 					<label>单据编号：</label>
@@ -149,13 +149,13 @@
 				<label>客户名称：</label>
 		    </td>
 			<td colspan="1">
-				<input class="nui-textbox" name="code" width="100%" maxlength="20"/>
+				<input class="nui-textbox" name="fullName" width="100%" maxlength="20"/>
 			</td>
 			<td class="form_label required">
 			    <label>手机号码：</label>
 			</td>
 			<td colspan="1">
-				<input class="nui-textbox" name="code" width="100%" maxlength="20"/>
+				<input class="nui-textbox" name="mobile" width="100%" maxlength="20"/>
 			</td>
 			<td class="form_label">
 			     <label>客户性质：</label>
@@ -206,7 +206,7 @@
 			<label>意向车型：</label>
 		</td>
 		<td colspan="3">
-         <input id="carModelTypeFullNmae"
+         <!-- <input id="carModelTypeFullNmae"
 	         name="carModelTypeFullNmae"
 	         class="nui-buttonedit"
 	         emptyText=""
@@ -215,9 +215,9 @@
 	         selectOnFocus="true" 
 	         allowInput="false"
 	         width="50%"
-	        />
-	        <input id="carModelId" name="carModelId" class="nui-textbox" visible="false" style="width: 352px;"/>
-       <input id="carModelName" name="carModelName" class="nui-buttonedit" style="width: 352px;" onbuttonclick="onButtonEdit"/>
+	        /> -->
+	        <input id="carModelId" name="carModelId" class="nui-textbox" visible="false" style="width: 552px;"/>
+           <input id="carModelName" name="carModelName" class="nui-buttonedit" style="width: 552px;" onbuttonclick="onButtonEdit"/>
         
         </td>
         

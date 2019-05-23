@@ -6,13 +6,14 @@ var saleAdvisorIdEl = null;
 var memList = [];
 var saleAdvisorList = [];
 var intentLevelList = []; 
+var guestComeForm = null;
 $(document).ready(function ()
 {
 	levelOfIntent = nui.get("levelOfIntent");
 	specialCareId = nui.get("specialCareId");
 	intentLevelId = nui.get("intentLevelId");
 	saleAdvisorIdEl = nui.get("saleAdvisorId");
-	
+	guestComeForm = new nui.Form("#guestComeForm");
 	//车身颜色
 	 initDicts({
 		 frameColorId:"DDT20130726000003",
@@ -153,7 +154,7 @@ function potentialCustomer(){
 	});
 }
 
-/*function chooseCarModelType(){
+function chooseCarModelType(){
 	nui.open({
         url: webPath + contextPath + "/sales/base/sCarModelType.jsp?token="+token,
         title: '选择意向车型',
@@ -171,9 +172,9 @@ function potentialCustomer(){
        	 
         }
     });
-}*/
+}
 
-function chooseCarModelType(e) {
+function onButtonEdit(e) {
 	nui.open({
 	url: webPath + contextPath + '/sales/base/selectCarModel.jsp',
 	title: '选择车型',
@@ -190,7 +191,22 @@ function chooseCarModelType(e) {
 	nui.get("carModelId").setValue(row.id);
 	nui.get("carModelName").setValue(row.name);
 	nui.get("carModelName").setText(row.name);
-	}
-	}
-	});
-	}
+	 }
+    }
+  });
+}
+var requiredField = {
+		fullName : "客户名称",
+		mobile : "手机号",
+		carModelId : "意向车型"
+	};
+function save(){
+	var data = guestComeForm.getData();
+	for ( var key in requiredField) {
+		if (!data[key] || $.trim(data[key]).length == 0) {
+            //nui.get(key).focus();
+            showMsg(requiredField[key] + "不能为空!","W");
+			return;
+		}
+    }
+}

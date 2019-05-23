@@ -8,7 +8,7 @@
 -->
 <head>
 <title>整车采购订单</title>
-<script src="<%=webPath + contextPath%>/sales/inventory/js/carSales.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/sales/inventory/js/carSales.js?v=1.0.1"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -126,22 +126,18 @@
         <div property="columns">
             <div type="indexcolumn" width="40">序号</div>
             <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
-                    <div field="" allowSort="true"  width="160" summaryType="count" headerAlign="center" header="订单单号"></div>
+                    <div field="serviceCode" name="serviceCode" allowSort="true"  width="160" summaryType="count" headerAlign="center" header="订单单号"></div>
                     <div field="guestFullName" name="guestFullName" width="220" headerAlign="center" header="供应商"></div>                    
-                    <div field="" width="90" name = "orderMan" headerAlign="center" header="采购员"></div>
                     <div allowSort="true" field="billTypeId"  name="billTypeId" width="90" headerAlign="center" header="票据类型"></div>
-                    <div allowSort="true" field="settleTypeId" name="settleTypeId" width="90" headerAlign="center" header="结算方式"></div>
-                    <div field="" allowSort="true"  width="130" headerAlign="center" header="订货日期" dateFormat="yyyy-MM-dd HH:mm" ></div> 
-                    <div field="" allowSort="true"   name="billTypeId" width="90" headerAlign="center" header="仓库"></div>                 
-                    <div field="" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="订单数量"></div>
-                    <div field="" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="订单金额"></div>
-                    <div allowSort="true" field="settleTypeId" name="settleTypeId" width="90" headerAlign="center" header="运输方式"></div>                                                                                                   
-                    <div field="" allowSort="true"  width="130" headerAlign="center" header="预计到货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-                    <div field="" allowSort="true"  width="80" headerAlign="center" header="备注"></div>
-                    <div field="" width="90" name="creator" headerAlign="center" header="创建人"></div>
-                    <div field="" allowSort="true"  width="130" headerAlign="center" header="创建日期" dateFormat="yyyy-MM-dd HH:mm" ></div>  
-                                        <div field="" width="90" name="creator" headerAlign="center" header="修改人"></div>
-                    <div field="" allowSort="true"  width="130" headerAlign="center" header="修改日期" dateFormat="yyyy-MM-dd HH:mm" ></div>  
+                    <div allowSort="true" field="payMode" name="payMode" width="90" headerAlign="center" header="结算方式"></div>
+                    <div field="recordDate" allowSort="true"  width="130" headerAlign="center" header="订货日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                 
+                    <div field="orderTotalAmt" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="订单金额"></div>                                                                                                  
+                    <div field="predictDeliveryDate" allowSort="true"  width="130" headerAlign="center" header="预计到货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div field="remark" allowSort="true"  width="80" headerAlign="center" header="备注"></div>
+                    <div field="recorder" width="90" name="creator" headerAlign="center" header="创建人"></div>
+                    <div field="recordDate" allowSort="true"  width="130" headerAlign="center" header="创建日期" dateFormat="yyyy-MM-dd HH:mm" ></div>  
+                    <div field="modifier" width="90" name="creator" headerAlign="center" header="修改人"></div>
+                    <div field="modifyDate" allowSort="true"  width="130" headerAlign="center" header="修改日期" dateFormat="yyyy-MM-dd HH:mm" ></div>  
         </div>
     </div> 
 </div>
@@ -158,19 +154,13 @@
        allowSortColumn="true">
       <div property="columns">
            <div headerAlign="center" type="indexcolumn" width="30">序号</div>
-           <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
-	       <div field="comPartName" headerAlign="center" header="配件名称"></div>
-	       <div field="comPartBrandId" id="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
-	       <div field="comUnit" name="comUnit" width="40" headerAlign="center" header="单位"></div>
-	       <div field="orderQty" name="orderQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="数量"></div>
-	       <div field="orderPrice" numberFormat="0.0000" width="60" headerAlign="center" header="单价"></div>
-	       <div field="orderAmt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center"header="金额" ></div>
-	       <div field="sellPrice" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center"header="建议售价" ></div>
-		   <div field="comOemCode" width="100" headerAlign="center" allowSort="true" header="OEM码"></div>
-		   <div field="comSpec" width="100" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>
-	   	   <div field="comApplyCarModel" id="comApplyCarModel" width="140" headerAlign="center" header="品牌车型"></div>
-		   <div field="storeId" width="100" headerAlign="center" allowSort="true" header="仓库"></div>
-		   <div field="storeShelf" width="100" headerAlign="center" allowSort="true" header="仓位"></div>
+           <div field="code" name="code" width="120" headerAlign="center" header="车型编码"></div>
+	       <div field="carModelName" headerAlign="center" width="150" header="车型名称"></div>
+	       <div field="frameColorId" name="frameColorId" width="40" headerAlign="center" header="车身颜色"></div>
+	       <div field="interialColorId" name="interialColorId"  headerAlign="center" header="内饰颜色"></div>
+	       <div field="orderQty"  summaryType="sum" width="60" headerAlign="center" header="订货数量"></div>
+	       <div field="orderPrice" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="单价"></div>
+	       <div field="orderAmt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额"></div>
 		   <div field="remark" width="220" headerAlign="center" allowSort="true" header="备注"></div>
       </div>
    </div>

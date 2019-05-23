@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="savePjPchsOrderAddOrUpdate" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="savePchsOrderAddOrUpdate" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、需要判断单据是否已经审核  根据auditSign&#xD;&#xA;2、需要判断单据是否在其他地方被修改  根据operateDate&#xD;&#xA;&#xD;&#xA;3.如果是新增，需要返回pjPchsOrderMainList，更新左边表格记录&#xD;&#xA;&#xD;&#xA;单据状态（0草稿、1待发货、2待收货、3部分入库、4全部入库、5已退回、6关闭）" title="Administrator&#x9;18-2-26 下午9:03">
     <location x="15" y="-165"/>
     <size height="181" width="391"/>
@@ -65,7 +65,7 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="updatePjPchsOrder" displayName="updatePjPchsOrder" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="updatePchsOrder" displayName="updatePchsOrder" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign2</targetNode>
@@ -80,12 +80,12 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link7</targetConnections>
+    <targetConnections>link0</targetConnections>
     <location x="555" y="180"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.updatePjPchsOrder</process:partner>
+      <process:partner type="literal">this.updatePchsOrder</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="pchsOrderMain" type="query" value="com.hsapi.sales.data.css.CssFactoryOrderMain" valueType="DataObject" pattern="reference">pchsOrderMain</process:inputVariable>
         <process:inputVariable id="1" name="pchsOrderDetailAdd" type="query" value="com.hsapi.sales.data.css.CssFactoryOrderDetail[]" valueType="DataObject" pattern="reference">pchsOrderDetailAdd</process:inputVariable>
@@ -100,11 +100,11 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="512" y="215"/>
-    <figSize height="17" width="113"/>
+    <location x="517" y="215"/>
+    <figSize height="17" width="103"/>
     <node>subprocess1</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="insertPjPchsOrder" displayName="insertPjPchsOrder" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="insertPchsOrder" displayName="updatePchsOrder" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess2</sourceNode>
       <targetNode>assign2</targetNode>
@@ -124,7 +124,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.insertPjPchsOrder</process:partner>
+      <process:partner type="literal">this.insertPchsOrder</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="pchsOrderMain" type="query" value="com.hsapi.sales.data.css.CssFactoryOrderMain" valueType="DataObject" pattern="reference">pchsOrderMain</process:inputVariable>
         <process:inputVariable id="1" name="pchsOrderDetail" type="query" value="com.hsapi.sales.data.css.CssFactoryOrderDetail[]" valueType="DataObject" pattern="reference">pchsOrderDetailAdd</process:inputVariable>
@@ -137,17 +137,12 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="382" y="109"/>
-    <figSize height="17" width="104"/>
+    <location x="387" y="109"/>
+    <figSize height="17" width="94"/>
     <node>subprocess2</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="getColumnIntValue" displayName="getColumnIntValue" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo0</sourceNode>
-      <targetNode>invokePojo1</targetNode>
-      <process:transitionCondition/>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link11" name="link11" displayName="连接线" type="transition">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="getColumnIntValue" displayName="" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" description="" id="link11" name="link11" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign4</targetNode>
       <process:transitionCondition>
@@ -157,20 +152,30 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>subprocess1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link13</targetConnections>
     <location x="291" y="180"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
-    <process:pojo methodType="static" synchronization="true" transactionType="join">
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
       <process:partner type="literal">com.hs.common.BillStateUtils.getColumnIntValue</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="conColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">id</process:inputVariable>
       <process:inputVariable id="1" name="conContent" type="query" value="int" valueType="Java" pattern="reference">pchsOrderMain/id</process:inputVariable>
-      <process:inputVariable id="2" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.part.data.pts.PjPchsOrderMainChk</process:inputVariable>
-      <process:inputVariable id="3" name="resColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">auditSign</process:inputVariable>
-      <process:inputVariable id="4" name="dataSource" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
+      <process:inputVariable id="2" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.sales.data.css.CssFactoryOrderMain</process:inputVariable>
+      <process:inputVariable id="3" name="resColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">isFinancial</process:inputVariable>
+      <process:inputVariable id="4" name="dataSource" type="literal" value="java.lang.String" valueType="Java" pattern="reference">sales</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
       <process:outputVariable id="0" name="out0" type="query" value="java.lang.Integer" valueType="Java">auditSign</process:outputVariable>
@@ -180,68 +185,6 @@
     <location x="247" y="216"/>
     <figSize height="17" width="111"/>
     <node>invokePojo0</node>
-  </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="getColumnDateValue" displayName="getColumnDateValue" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo1</sourceNode>
-      <targetNode>subprocess1</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link12" name="link12" displayName="连接线" type="transition">
-      <sourceNode>invokePojo1</sourceNode>
-      <targetNode>assign5</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NE">
-          <process:leftOperand type="query">pchsOrderMain/operateDate</process:leftOperand>
-          <process:rightOperand type="query">operateDate</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <targetConnections>link6</targetConnections>
-    <location x="424" y="180"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo1label</nodeLabel>
-    <process:pojo methodType="static" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hs.common.BillStateUtils.getColumnDateValue</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="conColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">id</process:inputVariable>
-      <process:inputVariable id="1" name="conContent" type="query" value="int" valueType="Java" pattern="reference">pchsOrderMain/id</process:inputVariable>
-      <process:inputVariable id="2" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.part.data.pts.PjPchsOrderMain</process:inputVariable>
-      <process:inputVariable id="3" name="resColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">operateDate</process:inputVariable>
-      <process:inputVariable id="4" name="dataSource" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="java.util.Date" valueType="Java">operateDate</process:outputVariable>
-    </process:outputVariables>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="374" y="216"/>
-    <figSize height="17" width="123"/>
-    <node>invokePojo1</node>
-  </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值4" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="link15" isDefault="true" type="transition">
-      <sourceNode>assign5</sourceNode>
-      <targetNode>end1</targetNode>
-    </sourceConnections>
-    <targetConnections>link12</targetConnections>
-    <location x="422" y="285"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign5label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">单据在其他地方被修改，请刷新数据</process:from>
-      <process:to type="query">errMsg</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">E</process:from>
-      <process:to type="query">errCode</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="420" y="321"/>
-    <figSize height="17" width="32"/>
-    <node>assign5</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值3" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="link65" isDefault="true" type="transition">
@@ -320,9 +263,8 @@
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
-    <targetConnections>link9</targetConnections>
     <targetConnections>link8</targetConnections>
-    <location x="422" y="365"/>
+    <location x="288" y="360"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
@@ -332,7 +274,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="420" y="401"/>
+    <location x="286" y="396"/>
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>

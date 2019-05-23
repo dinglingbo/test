@@ -23,7 +23,7 @@
       <process:return id="0" language="String" name="code" type="query" valueType="Primitive">code</process:return>
       <process:return id="1" language="String" name="msg" type="query" valueType="Primitive">msg</process:return>
       <process:return id="2" language="String" name="pages" type="query" valueType="Primitive">pages</process:return>
-      <process:return id="3" language="com.alibaba.fastjson.JSON[]" name="data" type="query" valueType="Java">data</process:return>
+      <process:return id="3" language="com.alibaba.fastjson.JSON" name="data" type="query" valueType="Java">data</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -40,6 +40,16 @@
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link6" name="link6" displayName="连接线" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>assign1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">userId</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="246" y="150"/>
@@ -99,6 +109,7 @@
       <targetNode>invokePojo2</targetNode>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
+    <targetConnections>link7</targetConnections>
     <location x="330" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
@@ -230,6 +241,25 @@
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="243" y="62"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/attributes/imCode</process:from>
+      <process:to type="query">userId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
+    <location x="241" y="98"/>
+    <figSize height="17" width="32"/>
+    <node>assign1</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-05-13 16:00:05" date="2019-05-13Z" description="" name="getHistoryMessage" version="7.0.0.0"/>
@@ -248,7 +278,7 @@
     <process:output description="" isArray="false" name="code" primitiveType="String"/>
     <process:output description="" isArray="false" name="msg" primitiveType="String"/>
     <process:output description="" isArray="false" name="pages" primitiveType="String"/>
-    <process:output anyType="com.alibaba.fastjson.JSON" description="" isArray="true" name="data"/>
+    <process:output anyType="com.alibaba.fastjson.JSON" description="" isArray="false" name="data"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

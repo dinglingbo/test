@@ -171,9 +171,9 @@ layui.use('layim', function(layim){
   //基础配置
   layim.config({
 
-    //初始化接口
+    //初始化接口  layim-v3.8.0/示例/json/getList.json 
     init: {
-      url: apiPath + sysApi + '/layim-v3.8.0/示例/json/getList.json'
+      url: apiPath + sysApi + '/com.hsapi.system.im.message.getUserFriendList.biz.ext?token='+token
       ,data: {}
     }
 

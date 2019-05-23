@@ -3,9 +3,10 @@ package com.chedao.websocket.webserver.user.model;
 import com.chedao.websocket.webserver.base.model.BaseModel;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public class UserFriendApplyEntity extends BaseModel {
+public class UserFriendApplyEntity extends BaseModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;

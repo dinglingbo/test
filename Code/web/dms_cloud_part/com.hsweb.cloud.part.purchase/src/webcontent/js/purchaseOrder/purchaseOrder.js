@@ -1721,7 +1721,7 @@ function addInsertRow(value,row) {
     rightGrid.beginEditCell(newRow, "comPartCode");*/
 
 
-    var params = {partCode:value};
+    var params = {partCode:value.replace(/\s+/g, "")};
 	var part = getPartInfo(params);
 
 	if(part){

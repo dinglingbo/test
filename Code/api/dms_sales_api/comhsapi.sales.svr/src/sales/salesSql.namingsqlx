@@ -138,4 +138,111 @@
               </isNotEmpty>
         </dynamic>  
 	</select>
+	
+    
+       <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
+    <select id="queryPchsOrderMainNotCheckList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+            SELECT DISTINCT
+                a.id as id,
+                a.tenant_id as tenantId,
+                a.orgid as orgid,
+                a.guest_id as guestId,
+                a.service_code as serviceCode,
+                a.bill_type_id as billTypeId,
+                a.pay_mode as payMode,
+                a.advance_deposit_date as advanceDepositDate,
+                a.payable_bala_date as payableBalaDate,
+                a.order_total_amt as orderTotalAmt,
+                a.advance_deposit_amt as advanceDepositAmt,
+                a.payable_bala_amt as payableBalaAmt,
+                a.predict_delivery_date as predictDeliveryDate,
+                a.status as status,
+                a.remark as remark,
+                a.recorder as recorder,
+                a.record_date as recordDate,
+                a.modifier as modifier,
+                a.modify_date as modifyDate,                    
+                b.FULL_NAME AS guestFullName,
+                b.SHORT_NAME AS guestShortName,
+                b.srm_guest_id as srmGuestId,    
+                c.order_price as orderPrice
+				<!--c.STORE_ID as storeId,
+                c.store_shelf as storeShelf  -->  
+                FROM
+                wb_sales.css_factory_order_main a
+                INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
+                LEFT JOIN wb_sales.css_factory_order_detail C ON A.ID = C.order_id        
+                where 1=1
+            <dynamic>
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="id"> 
+                    (a.id = #id#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isDiffOrder"> 
+                    (a.is_diff_order = #isDiffOrder#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isFinished"> 
+                    (A.IS_FINISHED = #isFinished#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="orderTypeId"> 
+                    (a.order_type_id = #orderTypeId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="billStatusId"> 
+                    (A.BILL_STATUS_ID = #billStatusId#)
+                </isNotEmpty>
+                <!--订货日期 -->
+                <isNotEmpty prepend="and" property="sOrderDate">  
+                    A.ORDER_DATE &gt;= #sOrderDate#
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eOrderDate">  
+                    (A.ORDER_DATE &lt; #eOrderDate#)
+                </isNotEmpty>
+                <!--创建日期 -->
+                <isNotEmpty prepend="and" property="sCreateDate">  
+                    (A.CREATE_DATE &gt;= #sCreateDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eCreateDate">  
+                    (A.CREATE_DATE &lt; #eCreateDate#)
+                </isNotEmpty>
+                <!--审核日期 -->
+                <isNotEmpty prepend="and" property="sAuditDate">  
+                    (A.AUDIT_DATE &gt;= #sAuditDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eAuditDate">  
+                    (A.AUDIT_DATE &lt; #eAuditDate#)
+                </isNotEmpty>
+                <!--本日 昨日 本周 上周 本月 下月 -->
+                <isNotEmpty prepend="and" property="startDate">  
+                    (A.CREATE_DATE &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (A.CREATE_DATE &lt; #endDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="partId">  
+                    (C.PART_ID = #partId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="storeId">  
+                    (C.store_ID = #storeId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="guestId">  
+                    (A.guest_id = #guestId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="guestName">  
+                    (B.FULL_NAME like '%$guestName$%' or B.SHORT_NAME like '%$guestName$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceId">  
+                    (a.service_id like '%$serviceId$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceIdList">  
+                    (A.service_id in ($serviceIdList$))
+                </isNotEmpty>
+            </dynamic>  
+		
+        ORDER BY A.record_date DESC
+        
+    </select>
+    
+ 
 </sqlMap>

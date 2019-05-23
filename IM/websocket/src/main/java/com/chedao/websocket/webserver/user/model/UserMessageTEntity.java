@@ -3,7 +3,9 @@ package com.chedao.websocket.webserver.user.model;
 import com.chedao.websocket.webserver.base.model.BaseModel;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 
-public class UserMessageTEntity {
+import java.io.Serializable;
+
+public class UserMessageTEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;

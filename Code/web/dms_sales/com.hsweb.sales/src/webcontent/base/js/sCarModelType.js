@@ -34,20 +34,7 @@ $(document).ready(function () {
         productionMode:'10390',//生产方式
 
         //color: "DDT20130726000003"//车辆颜色
-    },function () {
-        arr.levelArr = nui.get('level').getData();
-        arr.countryTypeArr = nui.get('countryType').getData();
-        arr.carSeriesIdArr = nui.get('carSeriesId').getData();
-        arr.carStructureTypeArr = nui.get('carStructureType').getData();
-        arr.outputVolumeArr = nui.get('outputVolume').getData();
-        arr.seatQtyArr = nui.get('seatQty').getData();
-        arr.inletTypeArr = nui.get('inletType').getData();
-        arr.powerTypeArr = nui.get('powerType').getData();
-        arr.driveModeArr = nui.get('driveMode').getData();
-        arr.gearBoxArr = nui.get('gearBox').getData();
-        arr.productionModeArr = nui.get('productionMode').getData();
-        
-    });
+    },function () {});
 
 
     grid.on('drawcell', function (e) {
@@ -113,71 +100,12 @@ function onBrandChanged(e) {
     }
 }
 
-function edit(e) {
-    var tit = null;
-    var row = {};
-    if (e == 1) {
-        tit = '新增';
-    } else if(e == 2){
-        tit = '修改';
-        row = grid.getSelected();
-    } else if (e == 3) {
-        tit = '复制';
-        row = grid.getSelected();
-        row.id = '';
-    }
-    nui.open({
-        url: webPath + contextPath + '/sales/base/sCarModelTypeDet.jsp',
-        title: tit,
-        width: 530,
-        height: 480,
-        onload: function () {
-            var iframe = this.getIFrameEl();
-            iframe.contentWindow.setData(row,e);
-        },
-        ondestroy: function (action) {
-            grid.reload();
-        }
-    });
-}
-
-function isEnabled() {
-    var row = grid.getSelected();
-    var params = nui.clone(row);
-    var showTextS = null;
-    var showTextE = null;
-    if (row.isDisabled == 0) {
-        params.isDisabled = 1;
-        showTextS = '禁用成功';
-        showTextE = '禁用失败';
-    } else {
-        params.isDisabled = 0;
-        showTextS = '启用成功';
-        showTextE = '启用失败';
-    }
-    nui.ajax({
-        url: updateUrl,
-        type: 'post',
-        data: {
-            data:params
-        },
-        success:function (res) {
-            if (res.errCode == 'S') {
-                showMsg(showTextS, 'S');
-            } else {
-                showMsg(showTextE, 'E');
-            }
-            grid.reload();
-        }
-        
-    })
-}
-
 function search() {
     var params = {
         carBrandId:carBrandId.value,
         carSeriesId:carSeriesId.value,
-        fullName:fullName.value
+        fullName: fullName.value,
+        isDisabled:0
     }
     grid.load({ params: params, token: token });
 }

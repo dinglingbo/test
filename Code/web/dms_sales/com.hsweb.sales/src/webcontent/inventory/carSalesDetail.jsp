@@ -72,7 +72,7 @@
                                              placeholder="请选择供应商"
                                              selectOnFocus="true" />
                                   </td>
-                                  <td class="title required" style="width:6%">
+                                  <td class="title required" style="width:8%">
                                       <label>票据类型：</label>
                                   </td>
                                   <td >
@@ -91,12 +91,12 @@
                                              nullItemText="请选择..."
                                              onvalidation="onComboValidation"/>
                                   </td>
-                                  <td class="title required" style="width:6%">
+                                  <td class="title required" style="width:8%">
                                       <label>结算方式：</label>
                                   </td>
                                   <td>
-                                      <input name="settleTypeId"
-                                             id="settleTypeId"
+                                      <input name="payMode"
+                                             id="payMode"
                                              class="nui-combobox width1"
                                              textField="name"
                                              valueField="customid"
@@ -116,13 +116,13 @@
                                       <label>预计到货日期：</label>
                                   </td>
                                   <td width="160">
-                                      <input name="planArriveDate"
-                                             id="planArriveDate"
+                                      <input name="predictDeliveryDate"
+                                             id="predictDeliveryDate"
                                              width="100%"
                                              showTime="true"
                                              class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
                                   </td>
-                              	 <td class="title required" style="width:8%">
+<!--                               	 <td class="title required" style="width:8%">
                                       <label>预计发运日期：</label>
                                   </td>
                                   <td width="160">
@@ -131,7 +131,7 @@
                                              width="100%"
                                              showTime="true"
                                              class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
-                                  </td> 
+                                  </td>  -->
 <!--                               	 <td class="title required">
                                       <label>运输方式：</label>
                                   </td>
@@ -142,8 +142,28 @@
                                       <label>预交定金：</label>
                                   </td>
                                   <td colspan="1" >
-										<input allowInput="false" class="nui-textbox" width="100%" id="" name=""/>
+										<input  class="nui-textbox" width="100%" id="advanceDepositAmt" name="advanceDepositAmt"/>
                                   </td>
+                                   <td class="title" >
+                                      <label>定金截止日期：</label>
+                                  </td>
+                                  <td width="160">
+                                      <input name="advanceDepositDate"
+                                             id="advanceDepositDate"
+                                             width="100%"
+                                             showTime="true"
+                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
+                                  </td>                                   
+                                  <td class="title">
+                                      <label>尾款截止日期：</label>
+                                  </td>
+                                  <td width="160">
+                                      <input name="payableBalaDate"
+                                             id="payableBalaDate"
+                                             width="100%"
+                                             showTime="true"
+                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
+                                  </td>                                 
 <!--                                   <td class="title required" >
                                       <label>采购员：</label>
                                   </td>
@@ -162,39 +182,6 @@
                                   </td>   -->                                                                                                                                    
                               </tr>                              
                               <tr>           
-<!--                                   <td class="title">
-                                      <label>创建日期：</label>
-                                  </td>
-                                  <td width="150">
-                                      <input name="createDate"
-                                             id="createDate"
-                                             width="100%"
-                                             showTime="true"
-                                             class="nui-datepicker" enabled="false" format="yyyy-MM-dd HH:mm"/>
-                                  </td>
-                                  <td class="title">
-                                      <label>状态：</label>
-                                  </td> -->
-                                  <td class="title" >
-                                      <label>定金截止日期：</label>
-                                  </td>
-                                  <td width="160">
-                                      <input name=""
-                                             id=""
-                                             width="100%"
-                                             showTime="true"
-                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
-                                  </td>                                   
-                                  <td class="title">
-                                      <label>尾款截止日期：</label>
-                                  </td>
-                                  <td width="160">
-                                      <input name=""
-                                             id=""
-                                             width="100%"
-                                             showTime="true"
-                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
-                                  </td>
                                   <td class="title">
                                       <label>备注：</label>
                                   </td>

@@ -212,7 +212,6 @@
                          dataField="pjPchsOrderDetailList"
                          idField="id"
                          showSummaryRow="true"
-                         ondrawcell="onRightGridDraw"
                          allowCellSelect="true"
                          allowCellEdit="true"
                          oncellcommitedit="onCellCommitEdit"
@@ -228,27 +227,28 @@
                         <div property="columns">
                             <div type="indexcolumn">序号</div>
                                     <div field="operateBtn" name="operateBtn" align="center" width="50" headerAlign="center" header="操作"></div>
-                                    <div field="comPartCode" name="comPartCode" width="120" headerAlign="center" header="车型编码">
+                                    <div field="carModelCode" name="carModelCode" width="120" headerAlign="center" header="车型编码">
                                         <input property="editor" class="nui-textbox" />
                                     </div>
-                                    <div field="" headerAlign="center" width="150" header="车型名称"></div>
-                                    <div field="" name="" width="40" headerAlign="center" header="车身颜色"></div>
-                                    <div field="" name="" summaryType="sum" numberFormat="0.00" width="40" headerAlign="center" header="内饰颜色">
-                                      <input property="editor" vtype="float" class="nui-textbox"/>
+                                    <div field="carModelName" headerAlign="center" width="150" header="车型名称"></div>
+                                    <div field="frameColorId" name="frameColorId" width="40" headerAlign="center" header="车身颜色">
+                                       <input class="nui-combobox" showNullItem="true" name="frameColorId"  valueField="id" id="frameColorId"
+                								 textField="name"  property="editor" data="frameColorIdList" emptyText="" />
                                     </div>
-                                    <div field="" numberFormat="0.0000" width="60" headerAlign="center" header="订货数量">
-                                      <input property="editor" vtype="float" class="nui-textbox"/>
+                                    <div field="interialColorId" name="interialColorId"  headerAlign="center" header="内饰颜色">
+                                       <input class="nui-combobox" showNullItem="true" name="interialColorId"  valueField="id" id="interialColorId"
+                								 textField="name"  property="editor" data="interialColorIdList" emptyText="" />
                                     </div>
-                                    <div field="" numberFormat="0.0000" width="60" headerAlign="center" header="单价">
+                                    <div field="orderQty"  summaryType="sum" width="60" headerAlign="center" header="订货数量">
+                                      <input property="editor" vtype="int" class="nui-textbox"/>
+                                    </div>
+                                    <div field="orderPrice" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="单价">
                                       <input property="editor" vtype="float" class="nui-textbox"/>
                                     </div>                                    
-                                    <div field="" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额">
-                                    <div field="" numberFormat="0.0000" width="60" headerAlign="center" header="到货数量">
-                                      <input property="editor" vtype="float" class="nui-textbox"/>
-                                    </div>                            
+                                    <div field="orderAmt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额">                           
                                       <input property="editor" vtype="float" class="nui-textbox"/>
                                     </div>
-                                    <div field="" width="100" headerAlign="center" allowSort="false">
+                                    <div field="remark" width="100" headerAlign="center" allowSort="false">
                        					 备注<input property="editor" class="nui-textbox"/>
                        				</div>
                             </div>

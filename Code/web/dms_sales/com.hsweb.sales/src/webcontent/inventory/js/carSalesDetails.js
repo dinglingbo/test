@@ -5,7 +5,7 @@ var baseUrl = apiPath + saleApi + "/";//window._rootUrl || "http://127.0.0.1:808
 //var leftGridUrl = baseUrl
 //		+ "com.hsapi.part.invoice.svr.queryPjPchsOrderMainList.biz.ext";
 var rightGridUrl = baseUrl
-		+ "com.hsapi.part.invoice.svr.queryPjPchsOrderDetailList.biz.ext";
+		+ "sales.inventory.queryPchsOrderDetailList.biz.ext";
 var storeShelf = baseUrl+"com.hsapi.part.baseDataCrud.crud.getSorehouseLocation.biz.ext";
 //var advancedSearchWin = null;
 var advancedMorePartWin = null;
@@ -40,6 +40,8 @@ var advancedTipWin = null;
 var autoNew = 0;
 var memList=[];
 var storeShelfList=[];
+var frameColorIdList = []//车身颜色
+var interialColorIdList = []//内饰颜色
 // 单据状态
 var AuditSignList = [ {
 	customid : '0',
@@ -119,7 +121,7 @@ $(document).ready(function(v) {
 
     	
 	});
-	
+
     morePartGrid.on("load", function(e) {
         var row = morePartGrid.getRow(0);
         if(row){
@@ -150,7 +152,22 @@ $(document).ready(function(v) {
         }
 
     });
-	
+	rightGrid.on('drawcell', function (e) {
+        var value = e.value;
+        var field = e.field;
+        if (field == 'frameColorId') {
+            e.cellHtml = setColVal('frameColorId', 'id', 'name', e.value);
+        } else if (field == 'interialColorId') {
+            e.cellHtml = setColVal('interialColorId', 'id', 'name', e.value);
+        } else if (field == 'isImported') {
+            e.cellHtml = (value == 0 ? '是' : '否');
+        }else if(field == 'operateBtn'){
+            e.cellHtml = //'<span class="fa fa-close fa-lg" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';
+            			'<span class="fa fa-plus" onClick="javascript:addNewRow(true)" title="添加行">&nbsp;&nbsp;</span>' +
+                        ' <span class="fa fa-close" onClick="javascript:deletePart()" title="删除行"></span>';
+        }
+        
+    });
 	document.ondragstart = function() {
 	    return false;
 	};
@@ -173,14 +190,14 @@ $(document).ready(function(v) {
 			addMorePart();
 		} 
 		 
-		if((keyCode==13))  {  //新建
+/*		if((keyCode==13))  {  //新建
             if(partShow == 1) {
 				var row = morePartGrid.getSelected();
 				if(row){
 					addSelectPart();
 				}
 			}
-        } 
+        } */
 
         if((keyCode==27))  {  //ESC
             if(partShow == 1){
@@ -201,7 +218,7 @@ $(document).ready(function(v) {
 
 	// 绑定表单
 
-	var dictDefs ={"billTypeId":"DDT20130703000008", "payMode":"DDT20130703000035"};
+	var dictDefs ={"billTypeId":"DDT20130703000008", "payMode":"DDT20130703000035",frameColorId:"DDT20130726000003",interialColorId:"10391"};
 	initDicts(dictDefs, function(){
 		getStorehouse(function(data) {
 			getAllPartBrand(function(data) {
@@ -209,7 +226,8 @@ $(document).ready(function(v) {
 				brandList.forEach(function(v) {
 					brandHash[v.id] = v;
 				});
-		
+		 	 	frameColorIdList = nui.get('frameColorId').getData();
+ 	 			interialColorIdList = nui.get('interialColorId').getData();
 				gsparams.billStatusId = 2;
 				gsparams.auditSign = 1;
 //				quickSearch(0);
@@ -219,6 +237,7 @@ $(document).ready(function(v) {
 			
 		});
 	});
+	
 	add();
 	
 });
@@ -239,16 +258,10 @@ function addNewRow(check){
         return;
     }
     
-    //电商平台的供应商，srmGuestId有值
-    var srmGuestId=data.srmGuestId;
-	if(srmGuestId){
-		return;
-	} 
-	
 	var rows = [];
 	if(check){
 		rows = rightGrid.findRows(function(row) {
-			if (row.partId == null || row.partId == "" || row.partId == undefined)
+			if (row.carModelId == null || row.carModelId == "" || row.carModelId == undefined)
 				return true;
 		});
 
@@ -268,7 +281,7 @@ function addNewRow(check){
 			var guestId = nui.get("guestId");
 			guestId.focus();
 		}else{
-			rightGrid.beginEditCell(row, "comPartCode");
+			rightGrid.beginEditCell(row, "carModelCode");
 		}
 		
 	}else{
@@ -277,7 +290,7 @@ function addNewRow(check){
 			var guestId = nui.get("guestId");
 			guestId.focus();
 		}else{
-			rightGrid.beginEditCell(newRow, "comPartCode");
+			rightGrid.beginEditCell(newRow, "carModelCode");
 		}
 		
 	}
@@ -345,10 +358,10 @@ function setBottomData(row){
 	var type = row.type;
 	document.getElementById("formIframe").contentWindow.setInitEmbedParams(row);
 }
-function loadRightGridData(mainId, auditSign) {
+function loadRightGridData(orderId, auditSign) {
 	editPartHash = {};
 	var params = {};
-	params.mainId = mainId;
+	params.orderId = orderId;
 	params.auditSign = auditSign;
 	rightGrid.load({
 		params : params,
@@ -537,15 +550,7 @@ function add() {
 function getMainData() {
 	var data = basicInfoForm.getData();
 	// 汇总明细数据到主表
-	data.isFinished = 0;
-	data.auditSign = 0;
-	data.billStatusId = 0;
-	data.printTimes = 0;
-	data.orderTypeId = 1;
 	data.isDiffOrder = 0;
-	
-/*	data.orderManId=nui.get('orderMan').getValue();*/
-/*	data.orderMan=nui.get('orderMan').getText();*/
 	if (data.predictDeliveryDate) {
 		data.predictDeliveryDate = format(data.predictDeliveryDate, 'yyyy-MM-dd HH:mm:ss');
 	}
@@ -559,9 +564,9 @@ function getMainData() {
 	}
 
 	rightGrid.findRow(function(row){
-		var partId = row.partId;
-		var partCode = row.comPartCode;
-		if(partId == null || partId == "" || partId == undefined || partCode == null || partCode == "" || partCode == undefined){
+		var carModelId = row.carModelId;
+		var partCode = row.carModelCode;
+		if(carModelId == null || carModelId == "" || carModelId == undefined || partCode == null || partCode == "" || partCode == undefined){
 			rightGrid.removeRow(row);
 		}
 	});
@@ -602,7 +607,7 @@ var requiredField = {
 	advanceDepositAmt :"预交定金",
 };
 var saveUrl = baseUrl
-		+ "sales.inventory.savePjPchsOrder.biz.ext";
+		+ "sales.inventory.savePchsOrder.biz.ext";
 function save() {
 	var data = basicInfoForm.getData();
 	for ( var key in requiredField) {
@@ -629,17 +634,17 @@ function save() {
 	//由于票据类型可能修改，所以除了新建和删除，其他都应该是修改
 	var detailData = rightGrid.getData();
 	
-	for(var i=0;i<detailData.length;i++){
-		var comPartCode=detailData[i].comPartCode;
+/*	for(var i=0;i<detailData.length;i++){
+		var carModelCode=detailData[i].carModelCode;
 		if(!detailData[i].orderQty || detailData[i].orderQty==="0" || detailData[i].orderQty==null){
-			showMsg("配件编码为"+comPartCode+"的数量不能为0","W");
+			showMsg("配件编码为"+carModelCode+"的数量不能为0","W");
 			return ;
 		}
 		if(!detailData[i].storeId){
-			showMsg("配件编码为"+comPartCode+"的仓库不能为空","W");
+			showMsg("配件编码为"+carModelCode+"的仓库不能为空","W");
 			return ;
 		}
-	}
+	}*/
 
 	var pchsOrderDetailAdd = rightGrid.getChanges("added");
 	var pchsOrderDetailUpdate = rightGrid.getChanges("modified");
@@ -737,31 +742,7 @@ function selectSupplier(elId) {
 		}
 	});
 }
-function onRightGridDraw(e) {
-	switch (e.field) {
-	case "comPartBrandId":
-		if (brandHash[e.value]) {
-			e.cellHtml = brandHash[e.value].name || "";
-		} else {
-			e.cellHtml = "";
-		}
-		break;
-	case "storeId" :
-		if (storeHash[e.value]) {
-			e.cellHtml = storeHash[e.value].name || "";
-		} else {
-			e.cellHtml = "";
-		}
-		break;
-	case "operateBtn":
-            e.cellHtml = //'<span class="fa fa-close fa-lg" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';
-            			'<span class="fa fa-plus" onClick="javascript:addNewRow(true)" title="添加行">&nbsp;&nbsp;</span>' +
-                        ' <span class="fa fa-close" onClick="javascript:deletePart()" title="删除行"></span>';
-            break;
-	default:
-		break;
-	}
-}
+
 function onCellEditEnter(e){
 	var record = e.record;
 	var cell = rightGrid.getCurrentCell();//行，列
@@ -776,8 +757,8 @@ function onCellEditEnter(e){
 			addNewKeyRow();
 		}else if(column.field == "remark"){
 			addNewKeyRow();
-		}else if(column.field == "comPartCode"){
-			var partCode = record.comPartCode||"";
+		}else if(column.field == "carModelCode"){
+			var partCode = record.carModelCode||"";
             partCode = partCode.replace(/\s+/g, "");
 			if(!partCode){
 				showMsg("请输入编码!","W");
@@ -788,9 +769,9 @@ function onCellEditEnter(e){
 			}else{
 				var rs = addInsertRow(partCode,record);
 				if(!rs){
-					var newRow = {comPartCode: ""};
+					var newRow = {carModelCode: ""};
 					rightGrid.updateRow(record, newRow);
-					rightGrid.beginEditCell(record, "comPartCode");
+					rightGrid.beginEditCell(record, "carModelCode");
 					return;
 				}else{
 					rightGrid.beginEditCell(record, "comUnit");
@@ -875,7 +856,7 @@ function onCellCommitEdit(e) {
 
 			//addNewKeyRow();
 
-		}else if(e.field == "comPartCode"){
+		}else if(e.field == "carModelCode"){
 			oldValue = e.oldValue;
 			oldRow = row;
 
@@ -885,13 +866,11 @@ function onCellCommitEdit(e) {
 		}
 	}
 }
-var partInfoUrl = baseUrl + "com.hsapi.part.invoice.paramcrud.queryBillPartChoose.biz.ext";
+var partInfoUrl = baseUrl + "sales.inventory.queryBillPartChoose.biz.ext";
 		//+ "com.hsapi.part.invoice.paramcrud.queryPartInfoByParam.biz.ext";
 function getPartInfo(params){
 	var part = null;
 	var page = {size:100,length:100};
-	params.sortField = "b.stock_qty";
-    params.sortOrder = "desc";
 	nui.ajax({
 		url : partInfoUrl,
 		type : "post",
@@ -901,7 +880,7 @@ function getPartInfo(params){
 			token: token
 		},
 		success : function(data) {
-			var partlist = data.parts;
+			var partlist = data.cars;
 			if(partlist && partlist.length>0){
 				//如果只返回一条数据，直接添加；否则切换到配件选择界面按输入的条件输出
 				if(partlist.length==1){
@@ -914,7 +893,7 @@ function getPartInfo(params){
 					
 				}
 				
-			}else{
+			}/*else{
 
 				showMsg("没有搜索到配件信息!","W");
 				var row = rightGrid.getSelected();
@@ -930,7 +909,7 @@ function getPartInfo(params){
 						return;
 					}
 					});
-			}
+			}*/
 
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -987,7 +966,7 @@ function addDetail(part) {
 						var data = iframe.contentWindow.getData();
 						var enterDetail = {};
 						enterDetail.partId = data.id;
-						enterDetail.comPartCode = data.code;
+						enterDetail.carModelCode = data.code;
 						enterDetail.comPartName = data.name;
 						enterDetail.comPartBrandId = data.partBrandId;
 						enterDetail.comApplyCarModel = data.applyCarModel;
@@ -1018,7 +997,7 @@ function addDetail(part) {
 				}
 			});
 }
-var partPriceUrl = baseUrl
+/*var partPriceUrl = baseUrl
 		+ "com.hsapi.part.invoice.pricemanage.getPchsDefaultPrice.biz.ext";
 function getPartPrice(params){
 	var price = 0;
@@ -1057,7 +1036,7 @@ function getPartPrice(params){
 	var dInfo = {price: price, shelf: shelf, sellPrice: sellPrice};
 
 	return dInfo;
-}
+}*/
 function addInsertRow(value,row) {    
 	
 	var data = basicInfoForm.getData();
@@ -1070,7 +1049,7 @@ function addInsertRow(value,row) {
 			return;
 		}
 	}
-    var params = {partCode:value};
+    var params = {code:value};
 	var part = getPartInfo(params);
 	var storeId = FStoreId;
 
@@ -1084,7 +1063,7 @@ function addInsertRow(value,row) {
 					
 		var newRow = {
 			partId : part.id,
-			comPartCode : part.code,
+			carModelCode : part.code,
 			comPartName : part.name,
 			comPartBrandId : part.partBrandId,
 			comApplyCarModel : part.applyCarModel,
@@ -1120,7 +1099,7 @@ function addInsertRow(value,row) {
 		var newRow = {};
 		if(row){
 			rightGrid.updateRow(row,newRow);
-			rightGrid.beginEditCell(row, "comPartCode");
+			rightGrid.beginEditCell(row, "carModelCode");
 		}
 		return true;
 	}
@@ -1158,7 +1137,7 @@ function addPart() {
 }
 function checkAddNewRow() {
 	var rows = rightGrid.findRows(function(row) {
-		if (row.comPartCode == ""||row.comPartCode == null||row.comPartCode == undefined)
+		if (row.carModelCode == ""||row.carModelCode == null||row.carModelCode == undefined)
 			return true;
 	});
 
@@ -1173,7 +1152,7 @@ function checkPartIDExists(partid) {
 	});
 
 	if (row) {
-		return "配件编码：" + row.comPartCode + "在采购订单列表中已经存在，是否继续？";
+		return "配件编码：" + row.carModelCode + "在采购订单列表中已经存在，是否继续？";
 	}
 
 	return null;
@@ -1208,7 +1187,7 @@ function deletePart() {
         rightGrid.removeRow(row);
         var newRow = {};
         rightGrid.addRow(newRow);
-        rightGrid.beginEditCell(newRow, "comPartCode");
+        rightGrid.beginEditCell(newRow, "carModelCode");
     }else{
         var row = rightGrid.getSelected();
         rightGrid.removeRow(row);
@@ -1223,39 +1202,39 @@ function checkRightData() {
 		if(row.partId){
 			if (row.orderQty) {
 				if (row.orderQty <= 0){
-					var newRow = {partCode: row.comPartCode};
+					var newRow = {partCode: row.carModelCode};
 					qtyArr.push(newRow);
 					return true;
 				}
 			} else {
 				if (row.orderQty <= 0){
-					var newRow = {partCode: row.comPartCode};
+					var newRow = {partCode: row.carModelCode};
 					qtyArr.push(newRow);
 					return true;
 				}
 			}
 			if (row.orderPrice) {
 				if (row.orderPrice <= 0){
-					var newRow = {partCode: row.comPartCode};
+					var newRow = {partCode: row.carModelCode};
 					priceArr.push(newRow);
 					return true;
 				}
 			} else {
 				if (row.orderPrice <= 0){
-					var newRow = {partCode: row.comPartCode};
+					var newRow = {partCode: row.carModelCode};
 					priceArr.push(newRow);
 					return true;
 				}
 			}
 			if (row.orderAmt) {
 				if (row.orderAmt <= 0){
-					var newRow = {partCode: row.comPartCode};
+					var newRow = {partCode: row.carModelCode};
 					priceArr.push(newRow);
 					return true;
 				}
 			} else {
 				if (row.orderAmt <= 0){
-					var newRow = {partCode: row.comPartCode};
+					var newRow = {partCode: row.carModelCode};
 					priceArr.push(newRow);
 					return true;
 				}
@@ -1355,17 +1334,17 @@ function auditOrderDirect(flagSign, flagStr, flagRtn){
         return;
     }
 
-	for(var i=0;i<detailData.length;i++){
-		var comPartCode=detailData[i].comPartCode;
+/*	for(var i=0;i<detailData.length;i++){
+		var carModelCode=detailData[i].carModelCode;
 		if(!detailData[i].orderQty || detailData[i].orderQty==="0" || detailData[i].orderQty==null){
-			showMsg("配件编码为"+comPartCode+"的数量不能为0","W");
+			showMsg("配件编码为"+carModelCode+"的数量不能为0","W");
 			return ;
 		}
 		if(!detailData[i].storeId){
-			showMsg("配件编码为"+comPartCode+"的仓库不能为空","W");
+			showMsg("配件编码为"+carModelCode+"的仓库不能为空","W");
 			return ;
 		}
-	}
+	}*/
 	
 	var pchsOrderDetailAdd = rightGrid.getChanges("added");
 	var pchsOrderDetailUpdate = rightGrid.getChanges("modified");
@@ -1440,18 +1419,18 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 		return;
 	}
 	
-	var detailData = rightGrid.getData();
+/*	var detailData = rightGrid.getData();
 	for(var i=0;i<detailData.length;i++){
-		var comPartCode=detailData[i].comPartCode;
+		var carModelCode=detailData[i].carModelCode;
 		if(!detailData[i].orderQty || detailData[i].orderQty==="0" || detailData[i].orderQty==null){
-			showMsg("配件编码为"+comPartCode+"的数量不能为0","W");
+			showMsg("配件编码为"+carModelCode+"的数量不能为0","W");
 			return ;
 		}
 		if(!detailData[i].storeId){
-			showMsg("配件编码为"+comPartCode+"的仓库不能为空","W");
+			showMsg("配件编码为"+carModelCode+"的仓库不能为空","W");
 			return ;
 		}
-	}
+	}*/
 
 	// 审核时，数量，单价，金额，仓库不能为空,单价可以为0，只需要提示
 	var p = checkRightData();
@@ -1954,32 +1933,11 @@ function addSelectPart(){
 	if(row){
 		var params = {partCode:row.code};
 		params.partId = row.id;
-		params.storeId = FStoreId;
-		var dInfo = getPartPrice(params);
-		var price = dInfo.price;
-		var shelf = dInfo.shelf;
-		var sellPrice = dInfo.sellPrice;
-					
+		params.storeId = FStoreId;					
 		var newRow = {
-			partId : row.id,
-			comPartCode : row.code,
-			comPartName : row.name,
-			comPartBrandId : row.partBrandId,
-			comApplyCarModel : row.applyCarModel,
-			comUnit : row.unit,
-			orderQty : 1,
-			orderPrice : price,
-			orderAmt : price,
-			storeId : FStoreId,
-			storeShelf : shelf,
-			comOemCode : row.oemCode,
-			comSpec : row.spec,
-			partCode : row.code,
-			partName : row.name,
+			carModelId : row.id,
+			carModelName : row.fullName,			
 			fullName : row.fullName,
-			systemUnitId : row.unit,
-			enterUnitId : row.unit,
-			sellPrice : sellPrice
 		};
 
 		advancedMorePartWin.hide();
@@ -1998,7 +1956,7 @@ function addSelectPart(){
 
 		
 	}else{
-		showMsg("请选择配件!","W");
+		showMsg("请选择车型!","W");
 		return;
 	}
 }
@@ -2007,9 +1965,9 @@ function onPartClose(){
 	morePartGrid.setData([]);
 	partShow = 0;
 
-	var newRow = {comPartCode: oldValue};
+	var newRow = {carModelCode: oldValue};
 	rightGrid.updateRow(oldRow, newRow);
-	rightGrid.beginEditCell(oldRow, "comPartCode");
+	rightGrid.beginEditCell(oldRow, "carModelCode");
 }
 function OnrpMainGridCellBeginEdit(e){
     var field=e.field; 
@@ -2024,7 +1982,7 @@ function OnrpMainGridCellBeginEdit(e){
 	}
     //选择的供应商是电商平台的
     if(data.srmGuestId){
-    	if(field =='comPartCode'|| field =='orderQty' || field =='orderPrice' || field =='orderAmt'){		
+    	if(field =='carModelCode'|| field =='orderQty' || field =='orderPrice' || field =='orderAmt'){		
     		e.cancel = true;
     	}
     }
@@ -2084,7 +2042,7 @@ function addOrEditPart(row)
 //            params.applyCarModelList=null;
             if(row)
             {
-                params.comPartCode= row.comPartCode;
+                params.carModelCode= row.carModelCode;
             }
             iframe.contentWindow.setData(params);
         },
@@ -2092,13 +2050,12 @@ function addOrEditPart(row)
         {
           	var iframe = this.getIFrameEl();
         	var data = iframe.contentWindow.getData();
-        	console.log(data);
         	var enterDetail={
-        		comPartCode : data.code
+        		carModelCode : data.code
         	};
             if(action == "ok")
             {	
-            	addInsertRow(enterDetail.comPartCode,row);
+            	addInsertRow(enterDetail.carModelCode,row);
             	
             }
         }
@@ -2186,7 +2143,7 @@ function addRtnList(partList){
 			var orderPrice = parseFloat(part.orderPrice);
 			var newRow = {
 				partId : part.partId,
-				comPartCode : part.partCode,
+				carModelCode : part.partCode,
 				comPartName : part.partName,
 				comPartBrandId : part.partBrandId,
 				comApplyCarModel : part.applyCarModel,
@@ -2236,7 +2193,7 @@ function addNewKeyRow(){
 
 		
 	}else{
-		var newRow = {comPartCode:""};
+		var newRow = {carModelCode:""};
 	    rightGrid.addRow(newRow);
 
 	    rightGrid.cancelEdit();
@@ -2375,7 +2332,7 @@ function addImportRtnList(partList,msg){
 			var orderPrice = parseFloat(part.orderPrice);
 			var newRow = {
 				partId : part.partId,
-				comPartCode : part.partCode,
+				carModelCode : part.partCode,
 				comPartName : part.partName,
 				comPartBrandId : part.partBrandId,
 				comApplyCarModel : part.applyCarModel,
@@ -2444,7 +2401,7 @@ function setInitExportData(main, detail){
 	document.getElementById("eServiceId").innerHTML = main.serviceId?main.serviceId:"";
 	document.getElementById("eGuestName").innerHTML = main.guestFullName?main.guestFullName:"";
 	document.getElementById("eRemark").innerHTML = main.remark?main.remark:"";
-    var tds = '<td  colspan="1" align="left">[comPartCode]</td>' +
+    var tds = '<td  colspan="1" align="left">[carModelCode]</td>' +
         "<td  colspan='1' align='left'>[comFullName]</td>" +
         "<td  colspan='1' align='left'>[comApplyCarModel]</td>" +
         "<td  colspan='1' align='left'>[comUnit]</td>" +
@@ -2463,7 +2420,7 @@ function setInitExportData(main, detail){
         var row = detail[i];
         if(row.partId){
             var tr = $("<tr></tr>");
-            tr.append(tds.replace("[comPartCode]", detail[i].comPartCode?detail[i].comPartCode:"")
+            tr.append(tds.replace("[carModelCode]", detail[i].carModelCode?detail[i].carModelCode:"")
                          .replace("[comFullName]", detail[i].comFullName?detail[i].comFullName:"")
                          .replace("[comApplyCarModel]", detail[i].comApplyCarModel?detail[i].comApplyCarModel:"")
                          .replace("[comUnit]", detail[i].comUnit?detail[i].comUnit:"")
@@ -2488,17 +2445,17 @@ function deleteState(){
 	for(var i=0;i<data.length;i++){
 		delete data[i]._state;
 	}	
-	console.log(data);
+	
 }
 
 function setInitData(params){
 	if(params.id){
 		basicInfoForm.setData(params);
 /*		nui.get('orderMan').setText(params.orderMan);*/
-		nui.get('orderMan').setValue(params.orderManId);
+/*		nui.get('orderMan').setValue(params.orderManId);*/
 		$('#bServiceId').text("订单号："+params.serviceCode);
 		nui.get("guestId").setText(params.guestFullName);
-		nui.get('storehouse').setValue(params.storeId);
+/*		nui.get('storehouse').setValue(params.storeId);*/
 		
 		if(StatusHash)
 	       {
@@ -2564,18 +2521,18 @@ function pushSupplierOrder(flagSign, flagStr, flagRtn){
 		return;
 	}
 	
-	var detailData = rightGrid.getData();
+/*	var detailData = rightGrid.getData();
 	for(var i=0;i<detailData.length;i++){
-		var comPartCode=detailData[i].comPartCode;
+		var carModelCode=detailData[i].carModelCode;
 		if(!detailData[i].orderQty || detailData[i].orderQty==="0" || detailData[i].orderQty==null){
-			showMsg("配件编码为"+comPartCode+"的数量不能为0","W");
+			showMsg("配件编码为"+carModelCode+"的数量不能为0","W");
 			return ;
 		}
 		if(!detailData[i].storeId){
-			showMsg("配件编码为"+comPartCode+"的仓库不能为空","W");
+			showMsg("配件编码为"+carModelCode+"的仓库不能为空","W");
 			return ;
 		}
-	}
+	}*/
 	
 	// 审核时，数量，单价，金额，仓库不能为空,单价可以为0，只需要提示
 	var p = checkRightData();
@@ -2619,7 +2576,6 @@ function pushSupplierOrder(flagSign, flagStr, flagRtn){
 			            nui.unmask(document.body);
 			            data = data || {};
 			            if (data.errCode == "S") {
-							console.log(data);
 							var data=data.data;
 							var orderCode =data.orderCode
 							nui.get('orderCode').setValue(orderCode);
@@ -2665,7 +2621,6 @@ function pushSupplierOrder(flagSign, flagStr, flagRtn){
 			            nui.unmask(document.body);
 			            data = data || {};
 			            if (data.errCode == "S") {
-							console.log(data);
 							var data=data.data;
 							var orderCode =data.orderCode
 							nui.get('orderCode').setValue(orderCode);
@@ -2706,7 +2661,6 @@ function updateOrderStatus(orderStatus,id){
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-				console.log(data);
 				if(orderStatus == "5"){
 					//不判断，直接入库
 					orderEnterDirect(id);	//电商先更改为收货状态,车道再入库
@@ -2765,7 +2719,6 @@ function getArea(){
             data = data || {};
             var list=data.data[0] || [];
             if (data.errCode == "S") {
-				console.log(data);
 				provinceName =list.provinceName;
 				cityName = list.cityName;
 				countyName = list.countyName;

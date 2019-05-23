@@ -9,6 +9,8 @@ var queryUrl = baseUrl + "com.hsapi.frm.frmService.crud.queryFibInComeExpenses.b
 var costGrid = null;
 var costDetailGrid = null;
 var costDetailGrid2 = null;
+var costDetailGridUrl = baseUrl + "sales.search.searchSaleCostList.biz.ext";
+var is_not = [{ id: 0, text: '未审' }, { id: 1, text: '已审' }];
 $(document).ready(function(v) {
     document.getElementById("caCalculation").src = webBaseUrl + "sales/sales/caCalculation.jsp";
     billForm = new nui.Form("#billForm");
@@ -20,10 +22,13 @@ $(document).ready(function(v) {
 
     costGrid = nui.get("costGrid");
     costGrid.setUrl(queryUrl);
-    costGrid.load();
+    var params = { isSale: 1 };
+    costGrid.load({ params: params });
 
     costDetailGrid = nui.get("costDetailGrid");
     costDetailGrid2 = nui.get("costDetailGrid2");
+    costDetailGrid.setUrl(costDetailGridUrl);
+    costDetailGrid2.setUrl(costDetailGridUrl);
 
     jpGrid.load();
     jpGrid.on("rowclick", function(e) {
@@ -51,6 +56,19 @@ $(document).ready(function(v) {
         }
     });
 
+    jpGrid.on("load", function(e) {
+        var data = jpDetailGrid.getData();
+        var data1 = jpGrid.getData();
+        for (var i = 0, l = data.length; i < l; i++) {
+            for (var j = 0, k = data1.length; j < k; j++) {
+                if (data[i].giftId == data1[j].id) {
+                    var row = jpGrid.getRow(j);
+                    jpGrid.select(row, false);
+                }
+            }
+        }
+    });
+
     jpDetailGrid.on("load", function(e) {
         var data = jpDetailGrid.getData();
         var data1 = jpGrid.getData();
@@ -66,35 +84,47 @@ $(document).ready(function(v) {
 
     costGrid.on("load", function(e) {
         var data = costGrid.getData();
-        for (var i = data.length - 1, l = -1; i > l; i--) {
-            var row = costGrid.getRow(i);
-            if (!row.parentId) {
-                costGrid.commitEdit();
-                costGrid.removeRow(row, false);
+        var data1 = costDetailGrid.getData();
+        var data2 = costDetailGrid2.getData();
+        var arr = data1.concat(data2);
+        if (arr.length > 0 && data.length > 0) {
+            for (var i = 0, l = data.length; i < l; i++) {
+                for (var j = 0, k = arr.length; j < k; j++) {
+                    if (data[i].id == arr[j].costId) {
+                        var row = costGrid.getRow(j);
+                        costGrid.select(row, false);
+                    }
+                }
             }
         }
     });
-    jpGrid.on("rowclick", function(e) {
-        var jpdata = jpGrid.getSelecteds();
-        var jpDetailData = jpDetailGrid.getData();
-        for (var i = 0, l = jpdata.length; i < l; i++) {
-            var msg = jpDetailData.find(jpDetailData => jpDetailData.giftId == jpdata[i].id);
-            if (!msg) {
-                var newRow = {
-                    giftId: jpdata[i].id,
-                    giftName: jpdata[i].name,
-                    billType: 2
-                };
-                jpDetailGrid.addRow(newRow, jpDetailData.length);
+
+    costDetailGrid.on("load", function(e) {
+        var costData = costGrid.getData();
+        var data = costDetailGrid.getData();
+        if (costData.length > 0 && data.length > 0) {
+            for (var i = 0, l = data.length; i < l; i++) {
+                for (var j = 0, k = costData.length; j < k; j++) {
+                    if (data[i].costId == costData[j].id) {
+                        var row = costGrid.getRow(j);
+                        costGrid.select(row, false);
+                    }
+                }
             }
         }
-        jpDetailData = jpDetailGrid.getData();
-        for (var i = 0, l = jpDetailData.length; i < l; i++) {
-            var row = jpDetailGrid.getRow(i);
-            var msg = jpdata.find(jpdata => jpdata.id == jpDetailData[i].giftId);
-            if (!msg) {
-                jpDetailGrid.commitEdit();
-                jpDetailGrid.removeRow(row, false);
+    });
+
+    costDetailGrid2.on("load", function(e) {
+        var costData = costGrid.getData();
+        var data = costDetailGrid2.getData();
+        if (costData.length > 0 && data.length > 0) {
+            for (var i = 0, l = data.length; i < l; i++) {
+                for (var j = 0, k = costData.length; j < k; j++) {
+                    if (data[i].costId == costData[j].id) {
+                        var row = costGrid.getRow(j);
+                        costGrid.select(row, false);
+                    }
+                }
             }
         }
     });
@@ -106,16 +136,19 @@ $(document).ready(function(v) {
         for (var i = 0, l = data.length; i < l; i++) {
             var newRow = {
                 costName: data[i].name,
-                costId: data[i].id
+                costId: data[i].id,
+                auditSign: 0
             };
-            if (data[i].itemTypeId == -1) {
+            if (data[i].name == "购置税" || data[i].name == "保险费") {
                 var msg = data1.find(data1 => data1.costId == data[i].id);
                 if (!msg) {
+                    newRow.type = 1;
                     costDetailGrid.addRow(newRow, costDetailGrid.length);
                 }
-            } else if (data[i].itemTypeId == 1) {
+            } else {
                 var msg = data2.find(data2 => data2.costId == data[i].id);
                 if (!msg) {
+                    newRow.type = 2;
                     costDetailGrid2.addRow(newRow, costDetailGrid2.length);
                 }
             }
@@ -139,6 +172,8 @@ $(document).ready(function(v) {
             }
         }
     });
+
+
 
     var dictDefs = { "billTypeId": "DDT20130703000008" };
     initDicts(dictDefs, function() {});
@@ -172,12 +207,24 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
     var jpDetailGridEdit = jpDetailGrid.getChanges("modified");
     var jpDetailGridDel = jpDetailGrid.getChanges("removed");
     caCalculationData.billType = 2;
-    caCalculationData.saleType = 1;
+    if(caCalculationData.saleType == "" || caCalculationData.saleType == null){
+    	showMsg("请选择购车方式后再保存","W");
+    	return;
+    }
     var saleExtend = caCalculationData;
     billFormData.saleAdvisor = nui.get("saleAdvisorId").text;
     if (e) { //0 草稿 、1提交（待审）、2已审、3作废
         billFormData.status = e;
     }
+    var addMsg = costDetailGrid.getChanges("added");
+    var editMsg = costDetailGrid.getChanges("modified");
+    var deleteMsg = costDetailGrid.getChanges("removed");
+    var addMs2 = costDetailGrid2.getChanges("added");
+    var editMsg2 = costDetailGrid2.getChanges("modified");
+    var deleteMsg2 = costDetailGrid2.getChanges("removed");
+    var addArr = addMsg.concat(addMs2);
+    var editArr = editMsg.concat(editMsg2);
+    var deleteArr = deleteMsg.concat(deleteMsg2);
     nui.ajax({
         url: baseUrl + "sales.save.saveSaleMain.biz.ext",
         data: {
@@ -186,7 +233,10 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
             jpDetailGridAdd: jpDetailGridAdd,
             jpDetailGridEdit: jpDetailGridEdit,
             jpDetailGridDel: jpDetailGridDel,
-            saleExtend: saleExtend
+            saleExtend: saleExtend,
+            addArr: addArr,
+            editArr: editArr,
+            deleteArr: deleteArr
         },
         cache: false,
         async: false,
@@ -196,6 +246,9 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
                 document.getElementById("caCalculation").contentWindow.SetDataMsg(serviceId);
                 searchSalesMain(serviceId);
                 jpDetailGrid.load({ billType: 2, serviceId: serviceId });
+                costDetailGrid.load({ serviceId: serviceId, type: 1 });
+                costDetailGrid2.load({ serviceId: serviceId, type: 2 });
+                showMsg(text.errMsg, "S");
             }
         }
     });
@@ -234,6 +287,8 @@ function setInitData(params) {
         document.getElementById("caCalculation").contentWindow.SetDataMsg(params.id);
         searchSalesMain(params.id);
         jpDetailGrid.load({ billType: 2, serviceId: params.id });
+        costDetailGrid.load({ serviceId: params.id, type: 1 });
+        costDetailGrid2.load({ serviceId: params.id, type: 2 });
     }
 }
 
@@ -257,4 +312,12 @@ function searchSalesMain(serviceId) { //查询主表信息
             }
         }
     });
+}
+
+function onIsNotRenderer(e) {
+    for (var i = 0, l = is_not.length; i < l; i++) {
+        var g = is_not[i];
+        if (g.id == e.value) return g.text;
+    }
+    return "";
 }

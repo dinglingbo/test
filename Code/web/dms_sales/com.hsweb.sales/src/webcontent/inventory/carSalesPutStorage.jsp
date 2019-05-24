@@ -7,7 +7,7 @@
   - Description:
 -->
 <head>
-<title>整车采购订单</title>
+<title>整车验车</title>
 <script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesPutStorage.js?v=1.0.2"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>

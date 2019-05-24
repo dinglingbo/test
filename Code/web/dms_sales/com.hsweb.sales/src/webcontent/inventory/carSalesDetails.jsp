@@ -47,23 +47,7 @@ body .mini-grid-row-selected{
 
 <body>
     <%@include file="/sales/inventory/carSalesDetail.jsp" %>
-   <input name="frameColorId"
-	                 id="frameColorId"
-	                 class="nui-combobox"
-	                 textField="name"
-	                 valueField="id"
-	                 allowInput="true"
-	                 width="100%"	                 
-	                />
-   <input name="interialColorId"
-	                 id="interialColorId"
-	                 class="nui-combobox"
-	                 textField="name"
-	                 valueField="id"
-	                 allowInput="true"
-	                 width="100%"
-	                 
-	                />
+
 
 <div id="advancedMorePartWin" class="nui-window"
      title="配件选择" style="width:900px;height:550px;"

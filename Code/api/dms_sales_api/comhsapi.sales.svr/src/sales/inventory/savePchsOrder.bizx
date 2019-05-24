@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="savePjPchsOrder" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="savePchsOrder" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、需要判断单据是否已经审核  根据auditSign&#xD;&#xA;2、需要判断单据是否在其他地方被修改  根据operateDate&#xD;&#xA;&#xD;&#xA;3.如果是新增，需要返回pjPchsOrderMainList，更新左边表格记录&#xD;&#xA;&#xD;&#xA;单据状态（0草稿、1待发货、2待收货、3部分入库、4全部入库、5已退回、6关闭）" title="Administrator&#x9;18-2-26 下午9:03">
     <location x="15" y="-165"/>
     <size height="181" width="391"/>
@@ -69,7 +69,7 @@
     <figSize height="17" width="49"/>
     <node>transactioncommit0</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="queryPjPchsOrderMainList" displayName="queryPjPchsOrderMainList" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="queryPchsOrderMainList" displayName="savePchsOrderAddOrUpdate" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>end1</targetNode>
@@ -79,7 +79,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.queryPjPchsOrderMainList</process:partner>
+      <process:partner type="literal">this.queryPchsOrderMainList</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="page" type="query" value="com.eos.foundation.PageCond" valueType="DataObject" pattern="reference">value</process:inputVariable>
         <process:inputVariable id="1" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">params</process:inputVariable>
@@ -91,8 +91,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="507" y="185"/>
-    <figSize height="17" width="153"/>
+    <location x="512" y="185"/>
+    <figSize height="17" width="143"/>
     <node>subprocess0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
@@ -131,7 +131,7 @@
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="updatePjPchsOrder" displayName="savePjPchsOrderAddOrUpdate" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="updatePchsOrder" displayName="savePchsOrderAddOrUpdate" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign2</targetNode>
@@ -151,7 +151,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.savePjPchsOrderAddOrUpdate</process:partner>
+      <process:partner type="literal">this.savePchsOrderAddOrUpdate</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="pchsOrderMain" type="query" value="com.hsapi.sales.data.css.CssFactoryOrderMain" valueType="DataObject" pattern="reference">pchsOrderMain</process:inputVariable>
         <process:inputVariable id="1" name="pchsOrderDetailAdd" type="query" value="com.hsapi.sales.data.css.CssFactoryOrderDetail[]" valueType="DataObject" pattern="reference">pchsOrderDetailAdd</process:inputVariable>
@@ -166,8 +166,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="212" y="109"/>
-    <figSize height="17" width="113"/>
+    <location x="217" y="109"/>
+    <figSize height="17" width="103"/>
     <node>subprocess1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign1" name="赋值1" displayName="赋值" type="assign">

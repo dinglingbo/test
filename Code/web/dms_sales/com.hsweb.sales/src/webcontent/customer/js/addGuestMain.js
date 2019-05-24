@@ -1,7 +1,7 @@
 var baseUrl = window._rootSysUrl || "http://127.0.0.1:8080/default/";
-
 $(document).ready(function ()
 {
+	
 	
 });
 

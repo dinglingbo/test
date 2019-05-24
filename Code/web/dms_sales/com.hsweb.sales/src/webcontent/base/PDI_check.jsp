@@ -57,10 +57,10 @@
                 <input property="editor" class="nui-textbox" />
         </div>
         <div field="code" headerAlign="center" allowSort="true" width="100px">项目编码
-                <input property="editor" class="nui-textbox" />
+                <!-- <input property="editor" class="nui-textbox" /> -->
         </div>
         <div field="pyCode" headerAlign="center" allowSort="true" width="150px">拼音码
-                <input property="editor" class="nui-textbox" />
+                <!-- <input property="editor" class="nui-textbox" /> -->
         </div>
         <div field="pdiTypeId" headerAlign="center" allowSort="true" width="150px">项目类型
                 <input property="editor" class="nui-textbox" />

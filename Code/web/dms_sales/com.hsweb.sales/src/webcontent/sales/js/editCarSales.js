@@ -82,6 +82,22 @@ $(document).ready(function(v) {
         }
     });
 
+    // jpDetailGrid.on("cellendedit", function(e) {
+    //     var row = e.row,
+    //         field = e.field;
+    //     if (field == "price" || field == "qty") {
+    //         var price = row.price || 0;
+    //         var qty = row.qty || 0;
+    //         var value = (price * qty).toFixed(2);
+    //         var newRow = { amt: value };
+    //         jpDetailGrid.updateRow(row, newRow);
+    //         //编辑完成后调用购车计算表将精品加装金额赋值上去
+    //         var data = jpDetailGrid.getBottomColumns();
+    //         var decrAmt = data.find(data => data.field == "amt").summaryValue;
+    //         document.getElementById("caCalculation").contentWindow.setDecrAmt(decrAmt);
+    //     }
+    // });
+
     costGrid.on("load", function(e) {
         var data = costGrid.getData();
         var data1 = costDetailGrid.getData();
@@ -173,8 +189,6 @@ $(document).ready(function(v) {
         }
     });
 
-
-
     var dictDefs = { "billTypeId": "DDT20130703000008" };
     initDicts(dictDefs, function() {});
 
@@ -202,14 +216,19 @@ function registration() {
 
 function save(e) { //保存（主表信息+精品加装+购车信息+费用信息）
     var billFormData = billForm.getData(true); //主表信息
-    var caCalculationData = document.getElementById("caCalculation").contentWindow.getValue(); //购车信息
+    var params = document.getElementById("caCalculation").contentWindow.getValue(); //购车信息
+    if (params.isValid == false) {
+        showMsg("购车信息填写有误，请检查后再保存", "W");
+        return;
+    }
+    var caCalculationData = params.data;
     var jpDetailGridAdd = jpDetailGrid.getChanges("added"); //精品加装
     var jpDetailGridEdit = jpDetailGrid.getChanges("modified");
     var jpDetailGridDel = jpDetailGrid.getChanges("removed");
     caCalculationData.billType = 2;
-    if(caCalculationData.saleType == "" || caCalculationData.saleType == null){
-    	showMsg("请选择购车方式后再保存","W");
-    	return;
+    if (caCalculationData.saleType == "" || caCalculationData.saleType == null) {
+        showMsg("请选择购车方式后再保存", "W");
+        return;
     }
     var saleExtend = caCalculationData;
     billFormData.saleAdvisor = nui.get("saleAdvisorId").text;
@@ -320,4 +339,14 @@ function onIsNotRenderer(e) {
         if (g.id == e.value) return g.text;
     }
     return "";
+}
+
+function onCellCommitEdit(e) {
+    var editor = e.editor;
+    if (e.field == "qty" || e.field == "price" || e.field == "costAmt") {
+        if (editor.isValid() == false) {
+            showMsg("请输入数字!", "W");
+            e.cancel = true;
+        }
+    }
 }

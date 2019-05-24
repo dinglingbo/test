@@ -93,7 +93,7 @@
 			b.loan_percent	AS	loanPercent,
 			b.loan_amt	AS	loanAmt,
 			b.loan_period	AS	loanPeriod,
-			b.sign_bill_bank	AS	signBillBank,
+			b.sign_bill_bank_id	AS	signBillBankId,
 			b.bank_handling_rate	AS	bankHandlingRate,
 			b.bank_handling_apportion	AS	bankHandlingApportion,
 			b.bank_handling_amt	AS	bankHandlingAmt,
@@ -125,7 +125,7 @@
                 (a.id= #id#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="status">
-                (a.status ($status$))
+                (a.status = #status#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="guestName">  
                 (a.guest_full_name like '%$guestName$%')
@@ -288,6 +288,48 @@
             FROM
             wb_sales.css_factory_order_detail A
                 where 1=1
+            <dynamic>
+                <isNotEmpty prepend="and" property="orderId">  
+                    (A.order_id = #orderId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="orderIds">  
+                    (A.order_id in ($orderIds$))
+                </isNotEmpty>
+            </dynamic>  
+           
+        
+        ORDER BY a.id asc
+    </select>
+    
+     <!-- 查询所有待验车辆 -->
+    <select id="queryCheckOrderDetailCheckList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT
+                A.id AS id,
+                A.order_id AS orderId,
+                A.car_model_code AS carModelCode,
+                A.car_model_id AS carModelId,
+                A.car_model_name AS carModelName,
+                A.frame_color_id AS frameColorId,
+                A.interial_color_id AS interialColorId,
+                A.order_qty AS orderQty,
+                A.order_price AS orderPrice,
+                A.order_amt AS orderAmt,
+                A.checking_qty AS checkingQty,
+                A.checked_qty AS checkedQty,
+                A.status AS status,
+                A.recorder AS recorder,
+                A.record_date AS recordDate,
+                A.modifier AS modifier,
+                A.modify_date AS modifyDate,
+                b.service_code as serviceCode,  
+                b.guest_full_name AS guestFullName,
+                b.guest_id as guestId 
+            FROM
+            wb_sales.css_factory_order_detail A
+            	left join wb_sales.css_factory_order_main b
+					on a.order_id = b.id and b.orgid = #orgid#
+                where b.status =1
             <dynamic>
                 <isNotEmpty prepend="and" property="orderId">  
                     (A.order_id = #orderId#)

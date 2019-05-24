@@ -13,7 +13,7 @@
         <title>购车计算</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%=request.getContextPath()%>/sales/sales/js/caCalculation.js?v=1.0.85"></script>
+            <script src="<%=request.getContextPath()%>/sales/sales/js/caCalculation.js?v=1.0.90"></script>
     </head>
     <style type="text/css">
         body {
@@ -86,7 +86,7 @@
                         车型销价：
                     </td>
                     <td>
-                        <input id="saleAmt" name="saleAmt" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="saleAmt" name="saleAmt" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" />
                     </td>
                     <td class="td_title">
                         预付款：
@@ -114,7 +114,7 @@
                         贷款比例：
                     </td>
                     <td>
-                        <input id="loanPercent" name="loanPercent" style="width: 100%" class="nui-combobox" data="loanPercentData" onvaluechanged="changeLoanPercent">
+                        <input id="loanPercent" name="loanPercent" style="width: 100%" class="nui-combobox" data="loanPercentData" onvaluechanged="changeValueMsg">
                     </td>
                     <td class="td_title">
                         贷款金额：
@@ -127,7 +127,7 @@
                         贷款期数：
                     </td>
                     <td>
-                        <input id="loanPeriod" name="loanPeriod" data="period" style="width: 100%" class="nui-combobox" />
+                        <input id="loanPeriod" name="loanPeriod" data="period" style="width: 100%" class="nui-combobox" onvaluechanged="changeValueMsg" />
                     </td>
                     <td class="td_title">
                         首付金额：
@@ -154,7 +154,7 @@
                         银行利息分摊：
                     </td>
                     <td>
-                        <input id="bankHandlingApportion" name="bankHandlingApportion" data="is_not" style="width: 100%" class="nui-combobox">
+                        <input id="bankHandlingApportion" name="bankHandlingApportion" data="is_not" style="width: 100%" class="nui-combobox" onvaluechanged="changeValueMsg">
                     </td>
                     <td class="td_title">
                         贷款利息：
@@ -277,7 +277,7 @@
 
                     </td>
                     <td class="td_title">
-                        <a class="nui-button" onclick="calculate()">开始计算</a>
+                        <a class="nui-button" onclick="changeValueMsg(1)">开始计算</a>
                     </td>
                 </tr>
                 <tr>

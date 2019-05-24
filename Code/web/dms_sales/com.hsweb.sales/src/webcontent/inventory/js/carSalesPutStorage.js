@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/2/1.
  */
 var statusList = [{id:"0",name:"联系人"},{id:"1",name:"联系电话"}];
-var partApiUrl  = apiPath + partApi + "/";
+var partApiUrl  = apiPath +saleApi + "/";
 var rightGridUrl = partApiUrl+"sales.inventory.queryPchsOrderMainList.biz.ext";
 var getDetailPartUrl=partApiUrl+"sales.inventory.queryPchsOrderDetailList.biz.ext";
 
@@ -425,7 +425,7 @@ function add(){
     var item={};
     item.id = "carSalesPutStorageDetails";
     item.text = "验车入库详情";
-    item.url = webPath + contextPath + "/com.hsweb.part.manage.carSalesPutStorageDetails.flow";
+    item.url = webPath + contextPath + "/inventory.carSalesPutStorageDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {};
@@ -437,7 +437,7 @@ function edit(){
     var item={};
     item.id = "carSalesPutStorageDetails";
     item.text = "验车入库详情";
-    item.url = webPath + contextPath + "/com.hsweb.part.manage.carSalesPutStorageDetails.flow";
+    item.url = webPath + contextPath + "/inventory.carSalesPutStorageDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {}; 
@@ -447,7 +447,7 @@ function carCheck(){
     var item={};
     item.id = "carSalesPutStorageDetails";
     item.text = "验车入库详情";
-    item.url = webPath + contextPath + "/com.hsweb.part.manage.carSalesPutStorageDetails.flow";
+    item.url = webPath + contextPath + "/inventory.carSalesPutStorageDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {}; 

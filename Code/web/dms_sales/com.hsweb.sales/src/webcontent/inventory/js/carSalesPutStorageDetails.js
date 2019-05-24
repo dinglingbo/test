@@ -42,43 +42,25 @@ $(document).ready(function(v) {
     });
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var requiredField = {
 	guestId : "供应商",
-	orderMan : "采购员",
-	createDate : "订货日期",
-	billTypeId : "票据类型",
-	settleTypeId : "结算方式"
+	procedureMan : "经手人",
+	orderPrice : "车价（成本）",
+	logisticCompId : "运输公司",
+	carModelId : "车型",
+	carFrameNo :"车架号（VIN）",
+	kilometers : "公里数",
+	carModelId : "车身颜色",
+	interialColorId :"内饰颜色"
+	
 };
 var salesCheckCarUrl = baseUrl
 		+ "sales.inventory.salesCheckCar.biz.ext";
 function save() {
-	var cssCheckEnter = dataform1.getData();
+	var data = dataform1.getData();
+	data.guestFullName = nui.get("guestId").getText();
 	var json = nui.encode({
-		cssCheckEnter:cssCheckEnter,
+		cssCheckEnter:data,
 		token:token
 	});
 	for ( var key in requiredField) {
@@ -201,6 +183,8 @@ function check() {
 			nui.get("carModelId").setValue(row.carModelId);
 			nui.get("carModelName").setValue(row.carModelName);
 			nui.get("carModelName").setText(row.carModelName);
+			nui.get("orderId").setValue(row.orderId);
+			nui.get("orderDetailId").setValue(row.id);
 			 }
 		}
 	});

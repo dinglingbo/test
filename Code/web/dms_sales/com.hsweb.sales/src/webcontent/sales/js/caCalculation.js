@@ -25,7 +25,7 @@ function getValue() {
         isValid: isValid
     };
     if (isValid) {
-        calculate();
+        changeValueMsg(1);
     }
     return params;
 }
@@ -50,6 +50,7 @@ function SetDataMsg(serviceId) {
                     nui.get("mortgageAmt").disable(); //按揭手续费
                     nui.get("riskAmt").disable(); //月供保证金
                     nui.get("familyAmt").disable(); //家访费
+                    nui.get("loanPercent").disable(); //贷款比例
                 }
             }
         }
@@ -59,13 +60,14 @@ function SetDataMsg(serviceId) {
 function getBankHandlingRate(e) { //改变贷款银行时触发
     var value = e.selected.property1 || 0;
     nui.get("bankHandlingRate").setValue(value);
-    calculate();
+    changeValueMsg(1);
 }
 
 function changeSaleType(e) { //改变购买方式时触发
     if (e.value == "1558580770894") { //全款
         nui.get("loanPeriod").disable(); //贷款期数
         nui.get("signBillBankId").disable(); //贷款银行
+        nui.get("loanPercent").disable(); //贷款比例
         nui.get("bankHandlingApportion").disable(); //银行利息分摊
         nui.get("mortgageAmt").disable(); //按揭手续费
         nui.get("riskAmt").disable(); //月供保证金
@@ -91,46 +93,41 @@ function changeSaleType(e) { //改变购买方式时触发
         nui.get("mortgageAmt").enable(); //按揭手续费
         nui.get("riskAmt").enable(); //月供保证金
         nui.get("familyAmt").enable(); //家访费
+        nui.get("loanPercent").enable(); //贷款比例
     }
 }
 
-function changeLoanPercent(e) { //贷款比例更改时触发
+function changeValueMsg(e) { //更改数据信息时触发  统一触发此函数
     var data = form.getData();
-    var saleAmt = data.saleAmt; //车辆销价
-    var loanPercent = data.loanPercent; //贷款比例
-    var loanAmt = parseFloat(saleAmt) * parseFloat(loanPercent) / 10; //贷款金额
-    loanAmt = Math.floor(loanAmt / 1000) * 1000;
-    data.loanAmt = loanAmt;
-    var downPaymentAmt = parseFloat(saleAmt) - loanAmt; //首付金额
-    if (data.bankHandlingApportion == 0) { //分摊利息
-        var bankHandlingAmt = parseFloat(data.bankHandlingAmt || 0); //银行利息
-        var loanPeriod = parseFloat(data.loanPeriod || 0); //分期数
-        var monthMoney = bankHandlingAmt / loanPeriod; // 每月利息
-        downPaymentAmt = downPaymentAmt + monthMoney;
-        data.downPaymentAmt = downPaymentAmt;
-        var monthPayAmt = (saleAmt - downPaymentAmt) / loanPeriod + monthMoney; //月供 = （车辆销价 - 首付）/分期数 + 每月利息
-        data.monthPayAmt = monthPayAmt;
-    } else { //利息不分期
-        var bankHandlingAmt = parseFloat(data.bankHandlingAmt || 0); //银行利息
-        downPaymentAmt = downPaymentAmt + bankHandlingAmt;
-        data.downPaymentAmt = downPaymentAmt;
-        var loanPeriod = parseFloat(data.loanPeriod || 0); //分期数
-        var monthPayAmt = (saleAmt - downPaymentAmt) / loanPeriod; //月供 = （车辆销价 - 首付）/分期数
-        data.monthPayAmt = monthPayAmt;
+    var saleAmt = parseFloat(data.saleAmt); //车辆销价
+    var loanPercent = parseFloat(data.loanPercent) / 10; //贷款比例
+    var loanAmt = parseFloat(data.loanAmt); //贷款金额
+    var loanPeriod = parseFloat(data.loanPeriod || 0); //贷款期数
+    var downPaymentAmt = parseFloat(data.downPaymentAmt || 0); //首付金额
+    var bankHandlingRate = parseFloat(data.bankHandlingRate || 0) / 100; //贷款利率
+    var bankHandlingApportion = data.bankHandlingApportion; //利息是否分摊  0是  1否
+    var bankHandlingAmt = parseFloat(data.bankHandlingAmt || 0); //银行利息
+    var monthMoneyRates = 0; //每月利息
+    var monthPayAmt = parseFloat(data.monthPayAmt || 0); //月供
+    loanAmt = Math.floor(saleAmt * loanPercent / 1000) * 1000; //贷款金额 = 车辆销价 * 贷款比例   舍去千位一下的金额 取整 如142222 变为142000
+    bankHandlingAmt = loanAmt * bankHandlingRate; //银行利息 = 贷款金额*贷款利率(%)
+    if (bankHandlingApportion == 0) { //如果利息分摊
+        monthMoneyRates = bankHandlingAmt / loanPeriod; // 每月利息 = 银行利息 / 贷款期数
+        monthPayAmt = loanAmt / loanPeriod + monthMoneyRates; // 月供 = 贷款金额 / 贷款期数 + 每月利息
+        downPaymentAmt = (saleAmt - loanAmt) + monthMoneyRates; // 首付 = （车辆销价 - 贷款金额）+ 每月利息
+    } else {
+        monthPayAmt = bankHandlingAmt; // 月供 = 贷款金额 / 贷款期数 + 每月利息
+        downPaymentAmt = (saleAmt - loanAmt) + bankHandlingAmt; // 首付 = （车辆销价 - 贷款金额）+ 每月利息
     }
-
-    form.setData(data);
-    calculate();
-}
-
-function calculate() { //开始计算
-    var data = form.getData();
-    var bankHandlingAmt = (parseFloat(data.loanAmt || 0) * parseFloat(data.bankHandlingRate || 0) / 100) || 0; //银行利息=贷款金额*贷款利率(%)
     var totalAmt = bankHandlingAmt + parseFloat(data.agentDeposit || 0) + parseFloat(data.riskAmt || 0) + parseFloat(data.familyAmt || 0) +
         parseFloat(data.contractGuaranteeAmt || 0) + parseFloat(data.gpsAmt || 0) + parseFloat(data.mortgageAmt || 0) +
         parseFloat(data.insuranceBudgetAmt || 0) + parseFloat(data.purchaseBudgetAmt || 0) + parseFloat(data.boardLotAmt || 0) +
         parseFloat(data.otherAmt || 0) + parseFloat(data.decrAmt || 0); //费用合计 = 银行手续费+续保押金+月供保证金+家访费+合同保证金+GPS费用+按揭服务费+保险费预算+购置税预算+上户上牌费+其它费用+精品加装
     var buyBudgetTotal = parseFloat(data.saleAmt || 0) + totalAmt; //购车预算合计= 车辆销价+费用合计
+
+    data.monthPayAmt = monthPayAmt;
+    data.loanAmt = loanAmt;
+    data.downPaymentAmt = downPaymentAmt;
     data.bankHandlingAmt = bankHandlingAmt;
     data.totalAmt = totalAmt;
     data.buyBudgetTotal = buyBudgetTotal;
@@ -139,5 +136,14 @@ function calculate() { //开始计算
 
 function setDecrAmt(value) { //设置精品加装的值
     nui.get("decrAmt").setValue(value);
-    calculate();
+    changeValueMsg(1);
+}
+
+function setReadOnlyMsg() {
+    var fields = form.getFields();
+    for (var i = 0, l = fields.length; i < l; i++) {
+        var c = fields[i];
+        if (c.setReadOnly) c.setReadOnly(true); //只读
+        if (c.setIsValid) c.setIsValid(true); //去除错误提示
+    }
 }

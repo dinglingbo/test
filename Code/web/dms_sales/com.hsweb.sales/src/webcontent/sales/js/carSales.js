@@ -71,7 +71,7 @@ $(document).ready(function(v) {
         }
     });
 
-    mainGrid2.on("drawcell", function(e) {
+    mainGrid3.on("drawcell", function(e) {
         var field = e.field,
             value = e.value;
         if (field == "submitTrueDate" || field == "submiPlanDate" || field == "financialEndDate") {

@@ -1,12 +1,25 @@
 /**
  * Created by Administrator on 2018/2/1.
  */
+var baseUrl = apiPath + saleApi + "/"; 
 var DateList = [{id:"0",name:"上市日期"},{id:"1",name:"入库日期"}];
 var statusList = [{id:"0",name:"联系人"},{id:"1",name:"联系电话"},{id:"2",name:"车架号（VIN）"}];
+var bearUrl  = apiPath +saleApi + "/";
+var rightGridUrl = bearUrl+"sales.inventory.queryCheckEnter.biz.ext";
+var rightGrid = null;
+var searchBeginDate = null;
+var searchEndDate = null;
 $(document).ready(function(v){
-
+	rightGrid = nui.get("rightGrid");
+    rightGrid.setUrl(rightGridUrl);
+    searchBeginDate = nui.get("beginDate");
+    searchEndDate = nui.get("endDate");
+    searchBeginDate.setValue(getMonthStartDate());
+    searchEndDate.setValue(getMonthEndDate());
+    rightGrid.load();
 });
 function getSearchParam(){
+
 
 }
 var currType = 2;
@@ -207,19 +220,58 @@ function upload() {
 	});
 }
 
+var saveUrl = baseUrl
++ "sales.inventory.saveCarLock.biz.ext";
 function edit() {
+	var row = rightGrid.getSelected();
+	nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : '保存中...'
+	});
 
+	nui.ajax({
+		url : saveUrl,
+		type : "post",
+		data : JSON.stringify({
+			cssCheckEnter: row
+		}),
+		success : function(data) {
+			nui.unmask(document.body);
+			data = data || {};
+			if (data.errCode == "S") {
+				showMsg("操作成功!","S");
+				
+			} else {
+				showMsg(data.errMsg || "操作异常!","W");
+			}
+		},
+		ondestroy: function() {
+			
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+
+function costAdjust(){
+	var row = rightGrid.getSelected();
+	if(!row){
+		showMsg("请选择一条单据","W");
+	}
 	nui.open({
 		url : webPath + contextPath
-				+ "/com.hsweb.part.manage.PDIdetection.flow?token="
+				+ "/sales/inventory/costAdjust.jsp?token="
 				+ token,
-		title : "设置",
-		width : 600,
-		height : 400,
+		title : "成本调整",
+		width : 300,
+		height : 250,
 		allowDrag : true,
 		allowResize : true,
 		onload : function() {
-
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(row);
 		},
 		ondestroy : function(action) {
 

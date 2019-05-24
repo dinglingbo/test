@@ -12,8 +12,8 @@
     <head>
         <title>车辆登记</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
         <%@include file="/common/commonRepair.jsp"%>
+        <script src="<%= request.getContextPath() %>/sales/sales/js/vehicleRegistration.js?v=1.00" type="text/javascript"></script>
     </head>
     <style type="text/css">
         body {

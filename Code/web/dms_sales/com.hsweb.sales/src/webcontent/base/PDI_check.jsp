@@ -83,7 +83,7 @@
   </div>
   <script type="text/javascript">
     nui.parse();
-    function edit(e) {
+/*     function edit(e) {
       var tit = null;
       if (e == 1) {
         tit = '新增';
@@ -103,7 +103,7 @@
           visitHis.reload();
         }
       });
-    }
+    } */
   </script>
 </body>
 

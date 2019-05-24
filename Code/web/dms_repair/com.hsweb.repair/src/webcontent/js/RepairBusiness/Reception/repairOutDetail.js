@@ -1197,7 +1197,8 @@ function  savepartOutRtn(data,childdata){
             paramsData.sourceId = data.id;
             paramsData.serviceId = mainRow.id;
             paramsData.serviceCode = mainRow.serviceCode;
-            paramsData.carNo = mainRow.carNO;
+            paramsData.carNo = mainRow.carNo;
+            paramsData.carId = mainRow.carId;
             paramsData.vin = mainRow.carVin;
             paramsData.partId = data.partId;
             paramsData.partCode = data.partCode;

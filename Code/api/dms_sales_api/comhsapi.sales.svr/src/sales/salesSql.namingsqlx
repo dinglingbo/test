@@ -93,7 +93,7 @@
 			b.loan_percent	AS	loanPercent,
 			b.loan_amt	AS	loanAmt,
 			b.loan_period	AS	loanPeriod,
-			b.sign_bill_bank	AS	signBillBank,
+			b.sign_bill_bank_id	AS	signBillBankId,
 			b.bank_handling_rate	AS	bankHandlingRate,
 			b.bank_handling_apportion	AS	bankHandlingApportion,
 			b.bank_handling_amt	AS	bankHandlingAmt,
@@ -125,7 +125,7 @@
                 (a.id= #id#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="status">
-                (a.status ($status$))
+                (a.status = #status#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="guestName">  
                 (a.guest_full_name like '%$guestName$%')
@@ -323,12 +323,72 @@
                 A.modifier AS modifier,
                 A.modify_date AS modifyDate,
                 b.service_code as serviceCode,  
-                b.guest_full_name AS guestFullName   
+                b.guest_full_name AS guestFullName,
+                b.guest_id as guestId 
             FROM
             wb_sales.css_factory_order_detail A
             	left join wb_sales.css_factory_order_main b
 					on a.order_id = b.id and b.orgid = #orgid#
                 where b.status =1
+            <dynamic>
+                <isNotEmpty prepend="and" property="orderId">  
+                    (A.order_id = #orderId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="orderIds">  
+                    (A.order_id in ($orderIds$))
+                </isNotEmpty>
+            </dynamic>  
+           
+        
+        ORDER BY a.id asc
+    </select>
+    
+         <!-- 查询所有已验车辆 -->
+    <select id="queryCheckEnter" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT
+                A.id AS id,
+                a.orgid as orgid,
+                A.order_id AS orderId,
+                a.order_detail_id as orderDetailId,
+                A.enter_date AS enterDate,
+                a.guest_full_name AS guestFullName,
+                a.guest_id as guestId,
+                a.logistic_comp_id as logisticCompId,
+                a.logistic_comp_name as logisticCompName,
+                a.receive_cost as receiveCost,
+                A.car_model_id AS carModelId,
+                A.car_model_name AS carModelName,
+                A.frame_color_id AS frameColorId,
+                a.car_frame_no as carFrameNo,
+                a.engine_no as engineNo,
+                a.kilometers as kilometers,
+                a.produce_date as produceDate,
+                a.frame_color_id as frameColorId,
+                A.interial_color_id AS interialColorId,
+                a.qty as qty,
+                a.unit_price as unitPrice,
+                a.amt as amt,
+                a.repackage_cost as repackageCost,
+                a.repackage_amt as repackageAmt,
+                a.car_goods as carGoods,
+                a.logistic_man as logisticMan,
+                a.procedure_man as procedureMan,
+                a.warehouse_man as warehouseMan,
+                a.hall_director as hallDirector,
+                a.bill_status as billStatus,
+                a.car_status as carStatus,
+                a.car_lock as carLock,
+                a.car_locker as carLocker,
+                a.car_lock_date as carLockDate,
+                a.remark as remark,              
+                A.recorder AS recorder,
+                A.record_date AS recordDate,
+                A.modifier AS modifier,
+                A.modify_date AS modifyDate  
+            FROM
+            wb_sales.css_check_enter A
+                where a.orgid = #orgid#
             <dynamic>
                 <isNotEmpty prepend="and" property="orderId">  
                     (A.order_id = #orderId#)

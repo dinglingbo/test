@@ -205,7 +205,7 @@ var requiredField = {
 		fullName : "客户名称",
 		mobile : "手机号",
 		carModelId : "意向车型"
-	};
+};
 function save(){
 	var guestCome = guestComeForm.getData("true");
 	var text = saleAdvisorIdEl.getText();

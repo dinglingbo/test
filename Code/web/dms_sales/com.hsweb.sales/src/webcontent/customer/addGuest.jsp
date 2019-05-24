@@ -12,7 +12,6 @@
 <head> 
     <title>添加员工</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/js/employeeEdit.js?v=1.1.9" type="text/javascript"></script>
   	<script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
   	<script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
  	<script src="<%= request.getContextPath() %>/common/qiniu/qiniu1.0.14.js" type="text/javascript"></script>
@@ -35,6 +34,7 @@
             </div>
         <div class="form" style="width:90%;height:90%;left:0;right:0;margin: 0 auto;" id="basicInfoForm">
             <input class="mini-hidden" id="empid" name="id" />
+            <input class="mini-hidden" id="guestId" name="guestId" />
             <fieldset id="fd1" style="width:800px;">
                 <legend><span>基本信息</span></legend>
                 <table >
@@ -47,7 +47,7 @@
                     <tr>
                         <td align="right" style="width:80px"><font color="red" >姓名：</font></td>
                         <td><input class="nui-textbox"  id="name" name="name"  width="100%"/></td>
-                        <td align="right" style="width:80px"><font color="red">性别：</td>
+                        <td align="right" style="width:80px"><font>性别：</td>
                         <td>
                            <input class="nui-combobox" id="sex" emptyText="" name="sex" data="[{sex:1,text:'男'},{sex:0,text:'女'}]"
                           width="100%"   textField="text" valueField="sex" value="1"/>
@@ -136,8 +136,8 @@
                 <td><input class="mini-textbox" id="tel" name="tel"   width="100%"/></td>
                 <td align="right" style="width:80px">婚姻状况：</td>
                  <td>
-                 <input class="nui-combobox" id="billTypeId" emptyText="" name="billTypeId" data="[{billTypeId:1,text:'已婚'},{billTypeId:2,text:'未婚'}]"
-                          width="100%"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value=""/>
+                 <input class="nui-combobox" id="maritalStatus" emptyText="" name="maritalStatus" data="[{maritalStatus:1,text:'已婚'},{maritalStatus:2,text:'未婚'}]"
+                          width="100%"   textField="text" valueField="maritalStatus" value=""/>
                             
                 </td>
             </tr>
@@ -212,7 +212,6 @@ $(document).ready(function (){
 
 var requiredField = {
 	name : "客户名称",
-	sex:"性别",
 	source:"客户来源",
 	nature:"特征",
 	buyCarStatus:"购车次数",
@@ -220,7 +219,7 @@ var requiredField = {
 	saleAdvisorId : "销售顾问",
 	identity:"身份"
 };
-var saveUrl = apiPath + saleApi +"/sales.custormer.saveGuestContactor.biz.ext";
+var saveUrl = apiPath + saleApi + "/sales.custormer.saveGuestContactor.biz.ext";
 function save(){
    var data = basicInfoForm.getData();
    for ( var key in requiredField) {
@@ -230,15 +229,20 @@ function save(){
 			return;
 		}
     }
+    
     var guest = {};
     var contactor = {};
+    var saleAdvisor = nui.get("saleAdvisorId").text;
+    data.saleAdvisor = saleAdvisor;
     guest.fullName = data.name;
     guest.shortName = data.name;
     guest.idCard = data.idNo,
     guest.mobile = data.mobile;
     guest.sex = data.sex;
+    guest.tel = data.tel;
     guest.birthdayType = data.birthdayType;
     guest.email = data.email;
+    guest.id = data.id;
     contactor = data;
    nui.mask({
         el: document.body,
@@ -272,6 +276,12 @@ function save(){
 			nui.unmask(document.body);
 		}
     }); 
+}
+function setData(row){
+    var data = {};
+    data = row;
+    data.id = row.guestId;
+    basicInfoForm.setData(data); 
 }
  
 </script>

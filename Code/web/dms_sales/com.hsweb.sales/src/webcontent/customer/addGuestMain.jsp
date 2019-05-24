@@ -60,21 +60,21 @@
                 <td>
                     <label style="font-family:Verdana;">快速查询：</label>
                     <!-- <label style="font-family:Verdana;">客户名称：</label> -->
-                    <input class="nui-textbox" id="carNo-search" emptyText="客户名称" width="120"  onenter="onenterSearch(this.value)"/>
+                    <input class="nui-textbox" id="name-search" emptyText="客户名称" width="120"  onenter="doSearch()"/>
                     <!-- <label style="font-family:Verdana;">手机号：</label> -->
-                    <input class="nui-textbox" id="carNo-search" emptyText="手机号" width="120"  onenter="onenterSearch(this.value)"/>
+                    <input class="nui-textbox" id="mobile-search" emptyText="手机号" width="120"  onenter="doSearch()"/>
                    <!--  <label style="font-family:Verdana;">销售顾问：</label> -->                 
-                    <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
-                        emptyText="销售顾问" url=""  allowInput="true" showNullItem="false" width="100" valueFromSelect="true"  onenter="onenterMtAdvisor(this.value)"/>
+                    <input name="saleAdvisorId" id="saleAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
+                        emptyText="销售顾问" url=""  allowInput="true" showNullItem="false" width="100" valueFromSelect="true"  onenter="doSearch()"/>
                     <label style="font-family:Verdana;">跟踪状态：</label>
-                    <input class="nui-combobox" id="billTypeId" emptyText="是" name="billTypeId" data="[{billTypeId:0,text:'继续跟进'},{billTypeId:1,text:'终止跟进'},{billTypeId:2,text:'重点跟进'},
-                         {billTypeId:1,text:'已来厂/已成交'},{billTypeId:1,text:'未跟进'}]" width="120"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="1"/>
+                    <input class="nui-combobox" id="scoutStatus" emptyText="" name="scoutStatus" data="[{scoutStatus:0,text:'继续跟进'},{scoutStatus:1,text:'终止跟进'},{scoutStatus:2,text:'重点跟进'},
+                         {scoutStatus:1,text:'已来厂/已成交'},{scoutStatus:1,text:'未跟进'}]" width="120"  onvaluechanged="onSearch" textField="text" valueField="scoutStatus" value="1"/>
                
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <span class="separator"></span>
                     <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-check fa-lg"></span>&nbsp;全选/反选</abbr></a>
+                   <!--  <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-check fa-lg"></span>&nbsp;全选/反选</abbr></a> -->
                      <span class="separator"></span>
                     <label style="font-family:Verdana;">将客户资料分配给：</label>
                     <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
@@ -85,6 +85,42 @@
         </table>
     </div>
     <div class="nui-fit">
+           <input name="identity"
+             id="identity"
+             class="nui-combobox"
+             textField="name"
+             valueField="id"
+             allowInput="true"
+             width="100%"
+             visible="false"
+           />
+            <input name="trade"
+             id="trade"
+             class="nui-combobox"
+             textField="name"
+             valueField="id"
+             allowInput="true"
+             width="100%"
+             visible="false"
+           />
+            <input name="source"
+             id="source"
+             class="nui-combobox"
+             textField="name"
+             valueField="id"
+             allowInput="true"
+             width="100%"
+             visible="false"
+           />
+           <input name="nature"
+             id="nature"
+             class="nui-combobox"
+             textField="name"
+             valueField="id"
+             allowInput="true"
+             width="100%"
+             visible="false"
+           />
           <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
                selectOnLoad="true"
                showPager="true"
@@ -98,21 +134,23 @@
                editNextOnEnterKey="true"
                onshowrowdetail="onShowRowDetail"
                allowCellWrap = "true"
+               multiSelect="true"
                url="">
               <div property="columns">
                 <div type="indexcolumn" width="50">序号</div>
                   <div header="选择" headerAlign="center">
                        <div property="columns" >
-                        <div field="mtAdvisor" name="mtAdvisor" width="50" headerAlign="center" allowsort="false" header="选择">
-                        <input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>
-                        </div>
+                        <!-- <div field="guestOptBtn" name="guestOptBtn" width="50" headerAlign="center" allowsort="false" header="选择">
+                         <input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>
+                        </div> -->
+                        <div type="checkcolumn" field="check" width="30"></div> 
                        </div>
                   </div>
                   <div header="基本信息" headerAlign="center">
                   	  <div property="columns" >
 	                  <div type="checkcolumn" name="checkcolumn" visible="false"></div>
 	                  <div field="guestId" name="guestId" visible="false"></div>
-	                  <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" allowsort="true" header="销售顾问"></div>
+	                  <div field="saleAdvisor" name="saleAdvisor" width="80" headerAlign="center" allowsort="true" header="销售顾问"></div>
 	                  <div field="name" name="name" width="80" headerAlign="center" allowsort="true" header="姓名"></div>
   	                  <div field="sex" name="sex" width="80" headerAlign="center" allowsort="true" header="性别"></div>
   	                  <div field="birthdayType" name="birthdayType" width="80" headerAlign="center" allowsort="true" header="生日类型"></div>
@@ -123,28 +161,28 @@
                   <div header="其他信息" headerAlign="center">
                   	  <div property="columns" >
 	                  <div type="checkcolumn" name="checkcolumn" visible="false"></div>
-	                  <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" allowsort="true" header="性格"></div>
-	                  <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" allowsort="true" header="行业"></div>
-  	                  <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" allowsort="true" header="群体"></div>
-  	                  <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" allowsort="true" header="特别关注"></div>
-	                  <div field="serviceTypeName" name="serviceTypeName" width="60" headerAlign="center" allowsort="true" header="婚姻状况"></div>
-	                  <div field="serviceTypeName" name="serviceTypeName" width="60" headerAlign="center" allowsort="true" header="客户来源"></div>
+	                  <div field="nature" name="nature" width="80" headerAlign="center" allowsort="true" header="特征"></div>
+	                  <div field="trade" name="trade" width="80" headerAlign="center" allowsort="true" header="行业"></div>
+  	                 <!--  <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" allowsort="true" header="群体"></div> -->
+  	                  <div field="specialCare" name="specialCare" width="80" headerAlign="center" allowsort="true" header="特别关注"></div>
+	                  <div field="maritalStatus" name="maritalStatus" width="60" headerAlign="center" allowsort="true" header="婚姻状况"></div>
+	                  <div field="source" name="source" width="60" headerAlign="center" allowsort="true" header="客户来源"></div>
 	                 </div>
                   </div>
                   <div header="详细信息" headerAlign="center">
                   	  <div property="columns" >
 	                  <div type="checkcolumn" name="checkcolumn" visible="false"></div>
-	                  <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" allowsort="true" header="身份证"></div>
-	                  <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" allowsort="true" header="发证地"></div>
-  	                  <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" allowsort="true" header="学历"></div>
-  	                  <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" allowsort="true" header="邮箱"></div>
-	                  <div field="serviceTypeName" name="serviceTypeName" width="60" headerAlign="center" allowsort="true" header="工作单位"></div>
+	                  <div field="idNo" name="idNo" width="80" headerAlign="center" allowsort="true" header="身份证"></div>
+	                  <div field="idAddress" name="idAddress" width="80" headerAlign="center" allowsort="true" header="发证地"></div>
+  	                  <!-- <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" allowsort="true" header="学历"></div> -->
+  	                  <div field="email" name="emali" width="80" headerAlign="center" allowsort="true" header="邮箱"></div>
+	                  <div field="workPlace" name="workPlace" width="60" headerAlign="center" allowsort="true" header="工作单位"></div>
 	                 </div>
                   </div>
                   <div header="操作信息" headerAlign="center">
                   <div property="columns" >
-                      <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" allowsort="false" header="修改人"></div>
-	                  <div field="outDate" name="outDate" width="120" headerAlign="center" allowsort="true" dateFormat="yyyy-MM-dd HH:mm" header="修改时间"></div>
+                      <div field="modifier" name="modifier" width="80" headerAlign="center" allowsort="false" header="修改人"></div>
+	                  <div field="modifyDate" name="modifyDate" width="120" headerAlign="center" allowsort="true" dateFormat="yyyy-MM-dd HH:mm" header="修改时间"></div>
                   </div>
                   </div>
                   </div>

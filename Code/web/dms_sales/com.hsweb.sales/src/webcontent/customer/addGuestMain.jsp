@@ -111,12 +111,13 @@
                   <div header="基本信息" headerAlign="center">
                   	  <div property="columns" >
 	                  <div type="checkcolumn" name="checkcolumn" visible="false"></div>
+	                  <div field="guestId" name="guestId" visible="false"></div>
 	                  <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" allowsort="true" header="销售顾问"></div>
-	                  <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" allowsort="true" header="姓名"></div>
-  	                  <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" allowsort="true" header="性别"></div>
-  	                  <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" allowsort="true" header="生日类型"></div>
-	                  <div field="outDate" name="outDate" width="120" headerAlign="center" allowsort="true" dateFormat="yyyy-MM-dd HH:mm" header="生日"></div>
-	                  <div field="serviceTypeName" name="serviceTypeName" width="60" headerAlign="center" allowsort="true" header="身份"></div>
+	                  <div field="name" name="name" width="80" headerAlign="center" allowsort="true" header="姓名"></div>
+  	                  <div field="sex" name="sex" width="80" headerAlign="center" allowsort="true" header="性别"></div>
+  	                  <div field="birthdayType" name="birthdayType" width="80" headerAlign="center" allowsort="true" header="生日类型"></div>
+	                  <div field="birthday" name="birthday" width="120" headerAlign="center" allowsort="true" dateFormat="yyyy-MM-dd HH:mm" header="生日"></div>
+	                  <div field="identity" name="identity" width="60" headerAlign="center" allowsort="true" header="身份"></div>
 	                 </div>
                   </div>
                   <div header="其他信息" headerAlign="center">

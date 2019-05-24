@@ -508,7 +508,8 @@
                 paramsData.serviceCode = mainRow.serviceCode;
                 paramsData.guestId = mainRow.guestId;
                 paramsData.guestName = mainRow.guestFullName;
-                paramsData.carNo = mainRow.carNO;
+                paramsData.carNo = mainRow.carNo;
+                paramsData.carId = mainRow.carId;
                 paramsData.vin = mainRow.carVin;
                 paramsData.partId = data[i].partId;
                 paramsData.partCode = data[i].partCode;

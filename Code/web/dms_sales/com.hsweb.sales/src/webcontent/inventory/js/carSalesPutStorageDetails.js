@@ -58,6 +58,7 @@ var salesCheckCarUrl = baseUrl
 		+ "sales.inventory.salesCheckCar.biz.ext";
 function save() {
 	var data = dataform1.getData();
+	data.guestFullName = nui.get("guestId").getText();
 	var json = nui.encode({
 		cssCheckEnter:data,
 		token:token
@@ -182,6 +183,8 @@ function check() {
 			nui.get("carModelId").setValue(row.carModelId);
 			nui.get("carModelName").setValue(row.carModelName);
 			nui.get("carModelName").setText(row.carModelName);
+			nui.get("orderId").setValue(row.orderId);
+			nui.get("orderDetailId").setValue(row.id);
 			 }
 		}
 	});

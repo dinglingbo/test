@@ -100,6 +100,67 @@ function onBrandChanged(e) {
     }
 }
 
+function edit(e) {
+    var tit = null;
+    var row = {};
+    if (e == 1) {
+        tit = '新增';
+    } else if(e == 2){
+        tit = '修改';
+        row = grid.getSelected();
+    } else if (e == 3) {
+        tit = '复制';
+        row = grid.getSelected();
+        row.id = '';
+    }
+    nui.open({
+        url: webPath + contextPath + '/sales/base/sCarModelTypeDet.jsp',
+        title: tit,
+        width: 540,
+        height: 510,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(row,e);
+        },
+        ondestroy: function (action) {
+            grid.reload();
+        }
+    });
+}
+
+function isEnabled() {
+    var row = grid.getSelected();
+    var params = nui.clone(row);
+    var showTextS = null;
+    var showTextE = null;
+    if (row.isDisabled == 0) {
+        params.isDisabled = 1;
+        showTextS = '禁用成功';
+        showTextE = '禁用失败';
+    } else {
+        params.isDisabled = 0;
+        showTextS = '启用成功';
+        showTextE = '启用失败';
+    }
+    nui.ajax({
+        url: updateUrl,
+        type: 'post',
+        data: {
+            data:params
+        },
+        success:function (res) {
+            if (res.errCode == 'S') {
+                showMsg(showTextS, 'S');
+            } else {
+                showMsg(showTextE, 'E');
+            }
+            grid.reload();
+        }
+        
+    })
+}
+
+
 function search() {
     var params = {
         carBrandId:carBrandId.value,

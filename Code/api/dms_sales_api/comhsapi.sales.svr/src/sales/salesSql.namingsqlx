@@ -323,7 +323,8 @@
                 A.modifier AS modifier,
                 A.modify_date AS modifyDate,
                 b.service_code as serviceCode,  
-                b.guest_full_name AS guestFullName   
+                b.guest_full_name AS guestFullName,
+                b.guest_id as guestId 
             FROM
             wb_sales.css_factory_order_detail A
             	left join wb_sales.css_factory_order_main b

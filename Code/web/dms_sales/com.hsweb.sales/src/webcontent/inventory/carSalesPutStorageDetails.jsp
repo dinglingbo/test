@@ -12,8 +12,16 @@
 
 				<head>
 					<title>验车入库添加</title>
-					<script src="<%=request.getContextPath()%>/sales/inventory/js/carSalesPutStorageDetails.js?v=1.0.4"></script>
+					<script src="<%=request.getContextPath()%>/sales/inventory/js/carSalesPutStorageDetails.js?v=1.0.5"></script>
 					<style type="text/css">
+						.title {
+							width: 90px;
+							text-align: right;
+						}
+						
+						.title.required {
+							color: red;
+						}
 						.btn .mini-buttonedit {
 							height: 39px;
 						}
@@ -62,12 +70,12 @@
 							<input class="nui-hidden" name="id" />
 							<table style="width: 100%; " class="nui-form-table">
 								<tr>
-									<td class="form_label" align="right">供应商:</td>
+									<td class="title required" align="right">供应商:</td>
 									<td colspan="3" style="width:38%">
 										<input id="guestId" name="guestId" class="nui-buttonedit" emptyText="请选择供应商..." onbuttonclick="selectSupplier('guestId')"
 										 onvaluechanged="onGuestValueChanged" width="100%" placeholder="请选择供应商" selectOnFocus="true" />
 									</td>
-									<td class="form_label" align="right">经手人:</td>
+									<td class="title required" align="right">经手人:</td>
 	                                  <td colspan="1" >
 	                                      <input class="nui-combobox" 
 	                                          id="procedureMan" 
@@ -80,13 +88,13 @@
 	                                      allowInput="true"
 	                                      valueFromSelect="false">
 	                                  </td>
-									<td class="form_label" align="right">车价（成本）:</td>
+									<td class="title required" align="right">车价（成本）:</td>
 									<td>
 										<input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"   allowNull="false" showButton="false" name="orderPrice" id="orderPrice" />
 									</td>
 								</tr>
 								<tr>
-									<td class="form_label" align="right">运输公司:</td>
+									<td class="title required" align="right">运输公司:</td>
 									<td colspan="3" style="width:38%">
 										<input id="logisticCompId" name="logisticCompId" class="nui-buttonedit" emptyText="请选择运输公司..." onbuttonclick="selectSupplier('logisticCompId')"
 										 onvaluechanged="onGuestValueChanged" width="100%" placeholder="请选择供应商" selectOnFocus="true" />
@@ -107,16 +115,16 @@
 							<input class="nui-hidden" name="id" />
 							<table style="width: 100%; " class="nui-form-table">
 								<tr>
-									<td class="form_label" align="right">车型:</td>
+									<td class="title required" align="right">车型:</td>
 									<td>
 										<input id="carModelId" name="carModelId" class="nui-textbox" visible="false" width="100%"/>
            								<input id="carModelName" name="carModelName" class="nui-buttonedit"  onbuttonclick="onButtonEdit" width="100%"/>      
 									</td>
-									<td class="form_label" align="right">车架号:</td>
+									<td class="title required" align="right">车架号（VIN）:</td>
 									<td>
 										<input class="nui-textbox" name="carFrameNo" id="carFrameNo"/>
 									</td>
-									<td class="form_label" align="right">公里数:</td>
+									<td class="title required" align="right">公里数:</td>
 									<td>
 										<input name="kilometers" id="kilometers" class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"   allowNull="false" showButton="false" />
 									</td>
@@ -125,12 +133,12 @@
 
 
 								<tr>
-									<td class="form_label" align="right">车身颜色:</td>
+									<td class="title required" align="right">车身颜色:</td>
 									<td>
 										<input name="frameColorId" id="frameColorId" class="nui-combobox" textField="name" valueField="id" allowInput="true" 
 										/>
 									</td>
-									<td class="form_label" align="right">内饰颜色:</td>
+									<td class="title required" align="right">内饰颜色:</td>
 									<td>
 										<input name="interialColorId" id="interialColorId" class="nui-combobox" textField="name" valueField="id" allowInput="true" />
 									</td>

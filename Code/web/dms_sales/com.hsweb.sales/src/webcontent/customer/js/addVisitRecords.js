@@ -236,6 +236,8 @@ function save(){
     	guestCome.nextVisitDate = format(guestCome.nextVisitDate, 'yyyy-MM-dd HH:mm:ss');
 	}
 	guestCome.specialCare = strName;
+	var saleAdvisor = nui.get("saleAdvisorId").text;
+	guestCome.saleAdvisor = saleAdvisor;
 	var guest = {};
 	guest.fullName = guestCome.fullName;
 	guest.shortName = guestCome.fullName;
@@ -284,6 +286,9 @@ function add(){
     $("#serviceCodeEl").html("");
 	$("#carModelNameEl").html("");
 	$("#nameEl").html("");
+	nui.get("carModelId").setValue("");
+	nui.get("carModelName").setValue("");
+	nui.get("carModelName").setText("");
 }
 
 function setInitData(params){
@@ -325,3 +330,26 @@ function setInitData(params){
     }
 }
 
+function buyCarCount(){
+	var main = guestComeForm.getData();
+	if(main.id !="" && main.id !=null){
+		nui.open({
+			url: webPath + contextPath + '/sales/sales/caCalculation.jsp',
+			title: '购车计算',
+			width: 1000,
+			height: 500,
+			onload: function () {
+			var iframe = this.getIFrameEl();
+			iframe.contentWindow.setShowSave(main.id);
+			},
+			ondestroy: function (action) {
+			var iframe = this.getIFrameEl();
+			
+		    }
+		 });
+	}else{
+		showMsg("请先保存来访登记!","W");
+		return;
+	}
+	
+}

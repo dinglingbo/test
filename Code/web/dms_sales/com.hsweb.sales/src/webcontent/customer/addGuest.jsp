@@ -283,6 +283,18 @@ function setData(row){
     data.id = row.guestId;
     basicInfoForm.setData(data); 
 }
+
+
+function CloseWindow(action)
+{
+	if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else window.close();
+}
+
+function onCancel() {
+	CloseWindow("cancel");
+}
  
 </script>
 </body>

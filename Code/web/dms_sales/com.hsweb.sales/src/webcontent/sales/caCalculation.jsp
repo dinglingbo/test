@@ -69,9 +69,20 @@
     </style>
 
     <body>
+       <div class="nui-toolbar" style="padding:0px;border-bottom:0;display:none" id="showSave">
+            <table style="width:100%;">
+                <tr>
+                    <td style="width:100%;">
+                        <a class="nui-button" onclick="saveCome()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                        <a class="nui-button" onclick="onCancel" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
         <form id="form1">
             <input class="nui-hidden" name="id" />
             <table style="line-height: 18px; padding-top: 10px;width: 100%">
+                <input class="mini-hidden" id="mainId" name="id" />
                 <tr>
                     <td colspan="8">请填写购车计算信息(按回车计算)</td>
                 </tr>

@@ -50,7 +50,7 @@
       <process:to type="query">ct/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">billType</process:from>
+      <process:from type="query" pattern="reference">params/billType</process:from>
       <process:to type="query">ct/_expr[1]/billType</process:to>
     </process:copy>
     <process:copy>
@@ -58,7 +58,7 @@
       <process:to type="query">ct/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">serviceId</process:from>
+      <process:from type="query" pattern="reference">params/serviceId</process:from>
       <process:to type="query">ct/_expr[2]/serviceId</process:to>
     </process:copy>
     <process:copy>
@@ -102,7 +102,7 @@
       <targetNode>assign0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -186,8 +186,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="ct"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" name="billType" primitiveType="Int"/>
-    <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>
+    <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

@@ -302,7 +302,7 @@
                         贷款银行：
                     </td>
                     <td>
-                        <input id="signBillBankId" name="signBillBankId" style="width: 100%" class="nui-combobox" textField="name" valueField="customid">
+                        <input id="signBillBankId" name="signBillBankId" style="width: 100%" class="nui-combobox" textField="name" valueField="customid" enabled="false">
                     </td>
                     <td class="td_title">
                         贷款利率(%)：
@@ -368,10 +368,10 @@
                         <input id="saleIncomeTotal" name="saleIncomeTotal" style="width: 100%" class="nui-textbox" vtype="float" enabled="false" />
                     </td>
                     <td class="td_title">
-                        销售提成(%)：
+                        销售提成：
                     </td>
                     <td>
-                        <input id="salesmanDeduct" name="salesmanDeduct" style="width: 98%" class="nui-textbox" vtype="float" />%
+                        <input id="salesmanDeduct" name="salesmanDeduct" style="width: 100%" class="nui-textbox" vtype="float" />
                     </td>
                     <td class="td_title">
                         佣金：

@@ -1,7 +1,7 @@
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + saleApi + "/";
 var form = null;
-var url = baseUrl + "sales.search.searchSalesMain.biz.ext";
+
 $(document).ready(function(v) {
     form = new nui.Form("#form1");
     initDicts({
@@ -10,8 +10,17 @@ $(document).ready(function(v) {
     });
 });
 
-function SetData(id) {
-    var params = { id: id };
+function SetData(serviceId, isSettle) {
+    var url = null;
+    var params = {};
+    if (isSettle == 0) { //未结算
+        url = baseUrl + "sales.search.searchSaleCalc.biz.ext";
+        params.billType = 2;
+        params.serviceId = serviceId;
+    } else { //结算
+        url = baseUrl + "sales.search.searchSalesMain.biz.ext";
+        params.id = serviceId;
+    }
     nui.ajax({
         url: url,
         data: {

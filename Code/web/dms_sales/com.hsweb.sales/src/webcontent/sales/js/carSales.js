@@ -181,10 +181,11 @@ function onSearch() {
         mainGrid.load({ params: param });
     }
     if (nui.get("typeMsg").value == 2) {
-        param.status = 1;
+        param.status = "1,2";
         mainGrid2.load({ params: param });
     }
     if (nui.get("typeMsg").value == 3) {
+        param.status = 2;
         mainGrid3.load({ params: param });
     }
 }

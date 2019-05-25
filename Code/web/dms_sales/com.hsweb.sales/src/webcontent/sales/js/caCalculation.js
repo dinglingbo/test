@@ -31,13 +31,13 @@ function getValue() {
 }
 
 function SetDataMsg(serviceId) {
+    var params = { billType: 2, serviceId: serviceId };
     nui.ajax({
         url: baseUrl + "sales.search.searchSaleCalc.biz.ext",
         type: "post",
         cache: false,
         data: {
-            billType: 2,
-            serviceId: serviceId
+            params: params
         },
         success: function(text) {
             if (text.errCode == "S") {

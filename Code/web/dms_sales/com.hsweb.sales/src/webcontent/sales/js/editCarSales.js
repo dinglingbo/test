@@ -309,7 +309,7 @@ function caseMsg() {
         height: "700px",
         onload: function() {
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(billFormData.id, billFormData.isSettle);
+            iframe.contentWindow.SetData(billFormData.id);
         },
         ondestroy: function(action) {
 

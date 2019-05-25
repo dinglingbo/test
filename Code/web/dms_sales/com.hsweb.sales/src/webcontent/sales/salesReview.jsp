@@ -13,7 +13,7 @@
         <title>销售结案审核</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%= request.getContextPath() %>/sales/sales/js/salesReview.js?v=1.000" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/sales/sales/js/salesReview.js?v=1.001" type="text/javascript"></script>
     </head>
     <style type="text/css">
         body {
@@ -44,6 +44,7 @@
 
     <body>
         <form id="form1">
+            <input class="nui-hidden" name="id" id="id" />
             <table style="line-height: 23px; padding-top: 10px;width: 100%" align="center">
                 <tr>
                     <td class="td_title">
@@ -82,13 +83,13 @@
                         购买成本：
                     </td>
                     <td>
-                        <input id="carCost" name="carCost" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="carCost" name="carCost" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" />
                     </td>
                     <td class="td_title">
                         运输费：
                     </td>
                     <td>
-                        <input id="handcartAmt" name="handcartAmt" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="handcartAmt" name="handcartAmt" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" />
                     </td>
                     <td class="td_title">
                         车辆毛利：
@@ -108,7 +109,7 @@
                         实际保险费：
                     </td>
                     <td>
-                        <input id="insuranceAmt" name="insuranceAmt" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="insuranceAmt" name="insuranceAmt" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" />
                     </td>
                     <td class="td_title">
                         保险差额：
@@ -134,7 +135,7 @@
                         实际购置税：
                     </td>
                     <td>
-                        <input id="purchaseAmt" name="purchaseAmt" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="purchaseAmt" name="purchaseAmt" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" />
                     </td>
                     <td class="td_title">
                         购置税差额：
@@ -160,7 +161,7 @@
                         上牌成本：
                     </td>
                     <td>
-                        <input id="boardLotCost" name="boardLotCost" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="boardLotCost" name="boardLotCost" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" />
                     </td>
                     <td class="td_title">
                         上牌毛利：
@@ -180,7 +181,7 @@
                         GPS成本：
                     </td>
                     <td>
-                        <input id="gpsCost" name="gpsCost" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="gpsCost" name="gpsCost" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" />
                     </td>
                     <td class="td_title">
                         GPS毛利：
@@ -200,7 +201,7 @@
                         按揭成本：
                     </td>
                     <td>
-                        <input id="mortgageCost" name="mortgageCost" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="mortgageCost" name="mortgageCost" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" />
                     </td>
                     <td class="td_title">
                         按揭毛利：
@@ -220,7 +221,7 @@
                         加装成本：
                     </td>
                     <td>
-                        <input id="decrCost" name="decrCost" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="decrCost" name="decrCost" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" />
                     </td>
                     <td class="td_title">
                         加装毛利：
@@ -240,7 +241,7 @@
                         家访成本：
                     </td>
                     <td>
-                        <input id="familyCost" name="familyCost" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="familyCost" name="familyCost" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" />
                     </td>
                     <td class="td_title">
                         家访毛利：
@@ -260,7 +261,7 @@
                         其他成本：
                     </td>
                     <td>
-                        <input id="otherCost" name="otherCost" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="otherCost" name="otherCost" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" />
                     </td>
                     <td class="td_title">
                         其他毛利：
@@ -287,7 +288,7 @@
                         贷款期数：
                     </td>
                     <td>
-                        <input id="loanPeriod" name="loanPeriod" data="period" style="width: 100%" class="nui-combobox" />
+                        <input id="loanPeriod" name="loanPeriod" data="period" style="width: 100%" class="nui-combobox" enabled="false" />
                     </td>
                     <td class="td_title">
                         首付金额：
@@ -368,7 +369,7 @@
                         <input id="saleIncomeTotal" name="saleIncomeTotal" style="width: 100%" class="nui-textbox" vtype="float" enabled="false" />
                     </td>
                     <td class="td_title">
-                        销售提成：
+                        销售提成(%)：
                     </td>
                     <td>
                         <input id="salesmanDeduct" name="salesmanDeduct" style="width: 100%" class="nui-textbox" vtype="float" />
@@ -494,10 +495,6 @@
                 text: '否'
             }];
             nui.parse();
-
-            function close() {
-                window.CloseOwnerWindow('');
-            }
         </script>
     </body>
 

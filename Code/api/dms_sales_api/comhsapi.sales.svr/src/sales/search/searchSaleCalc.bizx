@@ -8,6 +8,7 @@
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <location x="58" y="300"/>
     <size height="28" width="28"/>
@@ -92,9 +93,10 @@
       <sourceNode>assign2</sourceNode>
       <targetNode>assign1</targetNode>
       <process:transitionCondition>
-        <process:complexCondition>
-          <process:code>billType == 0 || serviceId == 0</process:code>
-        </process:complexCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">params/serviceId</process:leftOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
+        </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">

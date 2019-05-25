@@ -12,7 +12,7 @@
 
 				<head>
 					<title>验车入库添加</title>
-					<script src="<%=request.getContextPath()%>/sales/inventory/js/carSalesPutStorageDetails.js?v=1.0.5"></script>
+					<script src="<%=request.getContextPath()%>/sales/inventory/js/carSalesPutStorageDetails.js?v=1.0.6"></script>
 					<style type="text/css">
 						.title {
 							width: 90px;
@@ -67,7 +67,8 @@
 					<div id="dataform1" style="padding-top: 5px;">
 					<fieldset style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;">
 						<legend>入库单信息</legend>
-							<input class="nui-hidden" name="id" />
+							<input class="nui-hidden" name="orderId" id="orderId"/>
+							<input class="nui-hidden" name="orderDetailId" id="orderDetailId"/>
 							<table style="width: 100%; " class="nui-form-table">
 								<tr>
 									<td class="title required" align="right">供应商:</td>
@@ -105,14 +106,13 @@
 									</td>
 									<td class="form_label" align="right">运输费:</td>
 									<td>
-										<input name="logisticAmt" id="logisticAmt" class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"   allowNull="false" showButton="false" />
+										<input name="receiveCost" id="receiveCost" class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"   allowNull="false" showButton="false" />
 									</td>
 								</tr>
 							</table>
 					</fieldset>
 					<fieldset style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;">
 						<legend>车辆信息</legend>
-							<input class="nui-hidden" name="id" />
 							<table style="width: 100%; " class="nui-form-table">
 								<tr>
 									<td class="title required" align="right">车型:</td>

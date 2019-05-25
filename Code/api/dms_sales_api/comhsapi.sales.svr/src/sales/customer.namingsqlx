@@ -55,6 +55,57 @@
         </dynamic>  
 	</select>
 	
+	 <select id="queryGuestList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT 
+    	    a.id as id,
+    	    a.guest_id as guestId,
+			a.tenant_id	AS	tenantId,
+			a.orgid	AS	orgid,
+			a.name	AS	name,
+			a.identity as identity,
+			a.sex as sex,
+			a.birthday_type as birthdayType,
+			a.birthday as birthday,
+			a.mobile as mobile,
+			a.marital_status as maritalStatus,
+			a.id_no as idNo,
+			a.id_address as idAddress,
+			a.trade as trade,
+			a.duty as duty,
+			a.source as source,
+			a.nature as nature,
+			a.work_place as workPlace,
+			a.sale_advisor as saleAdvisor,
+			a.sale_advisor_id as saleAdvisorId,
+			b.email as email,
+			a.remark as remark,
+			a.buy_car_status as buyCarStatus,
+			a.special_care as specialCare,
+			a.modifier as modifier,
+			a.modify_date as modifyDate
+		FROM csb_contactor a 
+			INNER JOIN wb_common.com_guest  b ON a.guest_id = b.id
+		WHERE 1 = 1
+		<dynamic>
+			<isNotEmpty prepend="and" property="fullName">
+                (b.full_name like '%$fullName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">
+                (b.mobile like '%$mobile$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="saleAdvisorId">
+                (a.sale_advisor_id= #saleAdvisorId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="scoutStatus">
+                (a.scout_status = #scoutStatus# )
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="status">
+                (a.status = #status# )
+            </isNotEmpty>
+        </dynamic>  
+	</select>
+	
+	
     
        <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
     <select id="queryPchsOrderMainNotCheckList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">

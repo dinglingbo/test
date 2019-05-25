@@ -261,9 +261,7 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
     caCalculationData.billType = 2;
     var saleExtend = caCalculationData;
     billFormData.saleAdvisor = nui.get("saleAdvisorId").text;
-    if (e) { //0 草稿 、1提交（待审）、2已审、3作废
-        billFormData.status = e;
-    }
+    billFormData.status = e; //0 草稿 、1提交（待审）、2已审、3作废
     var addMsg = costDetailGrid.getChanges("added");
     var editMsg = costDetailGrid.getChanges("modified");
     var deleteMsg = costDetailGrid.getChanges("removed");
@@ -311,7 +309,7 @@ function caseMsg() {
         height: "700px",
         onload: function() {
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(billFormData.id);
+            iframe.contentWindow.SetData(billFormData.id, billFormData.isSettle);
         },
         ondestroy: function(action) {
 

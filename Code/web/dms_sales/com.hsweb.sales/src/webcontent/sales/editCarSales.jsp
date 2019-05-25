@@ -99,7 +99,7 @@
                             <span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
 
                         <ul id="popupMenuMore" class="nui-menu" style="display:none;">
-                            <li iconCls="" onclick="checkMsg(0)" id="unfinishBtn" style="display:none;">返单</li>
+                            <li iconCls="" onclick="checkMsg(0)" id="unfinishBtn">返单</li>
                             <li iconCls="" onclick="checkMsg(1)" id="auditno" style="display:none;">反审</li>
                             <li iconCls="" onclick="unfinish()" id="caseno" style="display:none;">反结案</li>
                             <li iconCls="" onclick="registration()" id="addBtn">车辆上牌</li>
@@ -112,6 +112,7 @@
         </div>
         <form id="billForm">
             <input class="nui-hidden" name="id" />
+            <input class="nui-hidden" name="isSettle" />
             <input class="nui-hidden" name="status" value="0" />
             <input class="nui-hidden" name="serviceCode" />
             <table cellpadding="0" cellspacing="0" style="line-height: 30px; padding-top: 4px; padding-left: 0px;width:100%">

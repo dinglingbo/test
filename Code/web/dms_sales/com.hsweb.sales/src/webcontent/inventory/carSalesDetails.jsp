@@ -8,7 +8,7 @@
 -->
 <head>
 <title>厂家订货详情</title>
-<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesDetails.js?v=1.1.2"></script>
+<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesDetails.js?v=1.1.3"></script>
 <style type="text/css">
 .title {
   width: 60px;

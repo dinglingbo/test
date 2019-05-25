@@ -147,3 +147,90 @@ function setReadOnlyMsg() {
         if (c.setIsValid) c.setIsValid(true); //去除错误提示
     }
 }
+
+var comeServiceIdF= null;
+var saveComeUrl = baseUrl + "sales.save.saveSaleCalc.biz.ext";
+function setShowSave(serviceId){
+	comeServiceIdF = serviceId;
+	var showSave =document.getElementById("showSave");
+	showSave.style.display="";
+	if(serviceId){
+		nui.ajax({
+	        url: baseUrl + "sales.search.searchSaleCalc.biz.ext",
+	        type: "post",
+	        cache: false,
+	        data: {
+	            billType: 1,
+	            serviceId: serviceId
+	        },
+	        success: function(text) {
+	            if (text.errCode == "S") {
+	            	if(text.data.length>0){
+	            		var data = text.data[0];
+		                form.setData(data);
+		                if (data.saleType == "1558580770894") { //全款
+		                    nui.get("loanPeriod").disable(); //贷款期数
+		                    nui.get("signBillBankId").disable(); //贷款银行
+		                    nui.get("bankHandlingApportion").disable(); //银行利息分摊
+		                    nui.get("mortgageAmt").disable(); //按揭手续费
+		                    nui.get("riskAmt").disable(); //月供保证金
+		                    nui.get("familyAmt").disable(); //家访费
+		                    nui.get("loanPercent").disable(); //贷款比例
+		                }
+	            	}
+	            }
+	        }
+	    });
+	}else{
+		showMsg("请先保存来访登记","W");
+		return;
+	}
+}
+//id没有返回
+function saveCome(){
+	var caCalculationData = form.getData();
+	if(comeServiceIdF && comeServiceIdF <0){
+		showMsg("请先保存来访登记","W");
+		return;
+	}else{
+		caCalculationData.billType = 1;//来访登记的预算
+		 var json = nui.encode({
+			 caCalculationData:caCalculationData,
+			 serviceId:comeServiceIdF,
+	   		 token:token
+	   	  });
+		  nui.mask({
+		     el: document.body,
+		     cls: 'mini-mask-loading',
+		     html: '保存中...'
+		  });
+		  nui.ajax({
+			url : saveComeUrl,
+			type : 'POST',
+			data : json,
+			cache : false,
+			contentType : 'text/json',
+			success : function(text) {
+				if(text.errCode=="S"){
+					var result = {}
+					result = text.caCalculationData;
+					var id = result.id;
+					nui.get("mainId").setValue(id);
+			    	showMsg("保存成功","S");
+			    }
+				nui.unmask(document.body);
+			}
+		  });
+	}
+}
+
+function CloseWindow(action)
+{
+	if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else window.close();
+}
+
+function onCancel(){
+	CloseWindow("cancel");
+}

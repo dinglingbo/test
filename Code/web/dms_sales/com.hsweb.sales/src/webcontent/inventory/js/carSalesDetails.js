@@ -2807,20 +2807,43 @@ function onOut(){
 	var partId = row.partId;
 	onOutRecord(partId);
 }
-function selectCar(callback, checkcallback) {
-	nui.open({
-		// targetWindow: window,,
-		url : webPath+contextPath+"/page/car/chexingkuanshi.jsp?token="+token,
-		title : "车辆选择",
-		width : 910,
-		height : 560,
-		allowDrag : true,
-		allowResize : true,
-		onload : function() {
-/*			var iframe = this.getIFrameEl();
-			iframe.contentWindow.setData({}, callback, checkcallback);*/
-		},
-		ondestroy : function(action) {
+
+function selectCar(e) {
+	var rows=rightGrid.getData();
+	for(var i=0;i<rows.length;i++){
+		if(!rows[i].code){
+			rightGrid.removeRow(rows[i]);
 		}
-	});
+	}
+	nui.open({
+	url: webPath + contextPath + '/sales/base/selectCarModel.jsp',
+	title: '选择车型',
+	width: 1000,
+	height: 500,
+	onload: function () {
+	var iframe = this.getIFrameEl();
+	//iframe.contentWindow.setData(row);
+	},
+	ondestroy: function (action) {
+	var iframe = this.getIFrameEl();
+	if(action == 'ok'){
+	var row = iframe.contentWindow.getRow();
+	if(row){
+		var params = {partCode:row.code};
+		params.partId = row.id;
+		params.storeId = FStoreId;					
+		var newRow = {
+			carModelId : row.id,
+			carModelName : row.fullName,			
+			fullName : row.fullName,
+			code : row.code
+		};
+		rightGrid.addRow(newRow);		
+	}else{
+		showMsg("请选择车型!","W");
+		return;
+	}
+	 }
+    }
+  });
 }

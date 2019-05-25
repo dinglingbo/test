@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveGuestCome.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、先根据手机号查询客户，有，取第一个，没有，先新增客户，再新增来访记录&#xD;&#xA;2.修改时不会根据手机号判断客户是否存在，因为客户手机号会有相同的&#xD;&#xA;3、新增客户拓展记录，新增时会先判断该客户有没有记录，有，不新增，没有新增" title="Administrator&#x9;19-5-22 下午4:45">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、先根据手机号查询客户，有，取第一个，没有，先新增客户，再新增来访记录&#xD;&#xA;2.修改时不会根据手机号判断客户是否存在，因为客户手机号会有相同的&#xD;&#xA;3、新增客户拓展记录，新增时会先判断该客户有没有记录，有，不新增，没有新增&#xD;&#xA;4、来访登记中，服务顾问修改了，csb_contactor也修改了" title="Administrator&#x9;19-5-22 下午4:45">
     <location x="77" y="480"/>
     <size height="166" width="404"/>
   </nodes>
@@ -242,6 +242,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">guestCome/saleAdvisorId</process:from>
       <process:to type="query">contactor/saleAdvisorId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">guestCome/saleAdvisor</process:from>
+      <process:to type="query">contactor/saleAdvisor</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">

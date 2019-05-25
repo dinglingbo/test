@@ -71,7 +71,7 @@
 	</select>
 
 	<select id="queryBoxUserInfoByUid"  parameterType="long" resultMap="userInfoForFriend">
-		select  <include refid="Base_Column_List" />  from user_info where uid = #{id}
+		select  uid , profilephoto, nickname, signature from user_info where uid = #{id}
 	</select>
 
 	<select id="queryList" resultType="com.chedao.websocket.webserver.user.model.UserInfoEntity">

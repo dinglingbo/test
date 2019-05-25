@@ -127,7 +127,7 @@
 	</delete>-->
 
 	<select id="isFriend" resultType="int">
-		select count(*) from user_friend
+		select count(1) from user_friend
 		where user_id=#{userId} and friend_id=#{friendId}
 	</select>
 

@@ -8,8 +8,7 @@ import java.util.Date;
 public class UserTypeEntity extends BaseModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    //用户id
-    private Long id;
+    //分组id
     //用户id
     private Long userid;
     //组别名称
@@ -27,10 +26,6 @@ public class UserTypeEntity extends BaseModel implements Serializable {
         this.buildtime = buildtime;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public void setUserid(Long userid) {
         this.userid = userid;
     }
@@ -43,9 +38,6 @@ public class UserTypeEntity extends BaseModel implements Serializable {
         this.buildtime = buildtime;
     }
 
-    public Long getId() {
-        return id;
-    }
 
     public Long getUserid() {
         return userid;

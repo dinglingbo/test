@@ -289,6 +289,7 @@ function add(){
 	nui.get("carModelId").setValue("");
 	nui.get("carModelName").setValue("");
 	nui.get("carModelName").setText("");
+	$("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
 }
 
 function setInitData(params){
@@ -332,6 +333,9 @@ function setInitData(params){
 
 function buyCarCount(){
 	var main = guestComeForm.getData();
+	/*if(){
+		
+	}*/
 	if(main.id !="" && main.id !=null){
 		nui.open({
 			url: webPath + contextPath + '/sales/sales/caCalculation.jsp',

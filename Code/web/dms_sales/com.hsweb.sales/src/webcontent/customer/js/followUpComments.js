@@ -1,15 +1,5 @@
 var baseUrl = window._rootSysUrl || "http://127.0.0.1:8080/default/";
-var guestComeUrl = apiPath + saleApi +  "/sales.custormer.saveGuestCome.biz.ext";
 var queryUrl = apiPath + saleApi + "/sales.custormer.queryGuestComeAndGuest.biz.ext";
-var levelOfIntent = null;
-var important = null;
-var frameColorIdHash = {};
-var saleAdvisorIdEl = null;
-var memList = [];
-var saleAdvisorList = [];
-var intentLevelList = []; 
-var guestComeForm = null;
-var asaleAdvisorHash = {};
 $(document).ready(function ()
 {
 	levelOfIntent = nui.get("levelOfIntent");

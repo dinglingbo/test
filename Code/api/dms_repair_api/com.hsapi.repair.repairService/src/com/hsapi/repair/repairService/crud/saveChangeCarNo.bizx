@@ -938,6 +938,14 @@
       <process:to type="query">cond11/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">tenantId</process:from>
+      <process:to type="query">cond11/_expr[2]/tenantId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond11/_expr[2]/_op</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">nCarNo</process:from>
       <process:to type="query">oldMaintain/carNo</process:to>
     </process:copy>

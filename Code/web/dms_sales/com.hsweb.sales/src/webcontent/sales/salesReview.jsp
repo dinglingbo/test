@@ -438,7 +438,10 @@
                 </tr>
             </table>
         </form>
-        <div class="nui-fit" style="float: right;width: 55%">
+        <div class="nui-fit" style="float: left;width: 50%">
+            <a class="nui-button" iconCls="" plain="true" onclick="approved()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核通过</a>
+        </div>
+        <div class="nui-fit" style="float: right;width: 50%">
             <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
             <a class="nui-button" iconCls="" plain="true" onclick="close()" id="addBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
         </div>

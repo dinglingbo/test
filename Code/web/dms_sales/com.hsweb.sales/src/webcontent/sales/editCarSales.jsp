@@ -13,7 +13,7 @@
         <title>编辑整车销售</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.090" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.093" type="text/javascript"></script>
 
     </head>
     <style type="text/css">
@@ -152,7 +152,7 @@
                     <td align="right">购车方式：
                     </td>
                     <td>
-                        <input class="nui-combobox" id="saleType" name="saleType" style="width: 100%;" textField="name" valueField="customid">
+                        <input class="nui-combobox" id="saleType" name="saleType" style="width: 100%;" textField="name" valueField="customid" onvaluechanged="changeSaleType">
                     </td>
                     <td align="right">合同号：
                     </td>
@@ -344,30 +344,32 @@
                     </div>
                 </div>
                 <div title="交车信息">
-                    <table>
-                        <tr>
-                            <td class="tbText">交车人：</td>
-                            <td class="tbInput">
-                                <input class="nui-combobox " id="" name="" style="width:100%" />
-                            </td>
-                            <td class="tbText">交车日期：</td>
-                            <td class="tbInput">
-                                <input class="nui-datepicker " id="" name="" style="width:100%" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tbText">钥匙数量：</td>
-                            <td class="tbInput">
-                                <input class="nui-textbox " id="" name="" vtype="int" style="width:100%" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tbText">交车备注：</td>
-                            <td class="tbInput" colspan="3">
-                                <input class="nui-textarea " id="" name="" style="width:100%;height:100px;" />
-                            </td>
-                        </tr>
-                    </table>
+                    <form>
+                        <table id="form1">
+                            <tr>
+                                <td class="tbText">交车人：</td>
+                                <td class="tbInput">
+                                    <input class="nui-combobox " id="submitCarMen" name="submitCarMen" style="width: 100%;" textField="empName" valueField="empId" />
+                                </td>
+                                <td class="tbText">交车日期：</td>
+                                <td class="tbInput">
+                                    <input class="nui-datepicker" id="submitTrueDate" name="submitTrueDate" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tbText">钥匙数量：</td>
+                                <td class="tbInput">
+                                    <input class="nui-textbox" id="submitCarKeyQty" name="submitCarKeyQty" vtype="int" style="width:100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tbText">交车备注：</td>
+                                <td class="tbInput" colspan="3">
+                                    <input class="nui-textarea" id="submitCarRemark" name="submitCarRemark" style="width:100%;height:100px;" />
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
                 </div>
             </div>
         </div>

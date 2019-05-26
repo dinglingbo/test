@@ -13,7 +13,7 @@
         <title>购车计算</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%=request.getContextPath()%>/sales/sales/js/caCalculation.js?v=1.0.90"></script>
+            <script src="<%=request.getContextPath()%>/sales/sales/js/caCalculation.js?v=1.0.92"></script>
     </head>
     <style type="text/css">
         body {
@@ -69,12 +69,12 @@
     </style>
 
     <body>
-       <div class="nui-toolbar" style="padding:0px;border-bottom:0;display:none" id="showSave">
+        <div class="nui-toolbar" style="padding:0px;border-bottom:0;display:none" id="showSave">
             <table style="width:100%;">
                 <tr>
                     <td style="width:100%;">
                         <a class="nui-button" onclick="saveCome()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                        <a class="nui-button" onclick="onCancel" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</a>
+                        <a class="nui-button" onclick="onCancel" plain="true" style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</a>
                     </td>
                 </tr>
             </table>
@@ -91,7 +91,7 @@
                         购车方式：
                     </td>
                     <td>
-                        <input id="saleType" name="saleType" style="width: 100%" class="nui-combobox" textField="name" valueField="customid" onvaluechanged="changeSaleType">
+                        <input id="saleType" name="saleType" style="width: 100%" class="nui-combobox" textField="name" valueField="customid" onvaluechanged="changeSaleType" enabled="false">
                     </td>
                     <td class="td_title">
                         车型销价：

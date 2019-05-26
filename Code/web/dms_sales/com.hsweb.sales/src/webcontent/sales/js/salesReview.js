@@ -11,10 +11,11 @@ $(document).ready(function(v) {
 });
 
 function SetData(serviceId) {
+    var params = { id: serviceId };
     nui.ajax({
-        url: baseUrl + "sales.search.searchSaleExtend.biz.ext",
+        url: baseUrl + "sales.search.searchSalesMain.biz.ext",
         data: {
-            serviceId: serviceId
+            params: params
         },
         cache: false,
         async: false,
@@ -83,9 +84,24 @@ function save() {
     });
 }
 
+function approved() { //审核通过   
+    var data = form.getData();
+    data.isSettle = 1;
+    nui.ajax({ //更改主表 isSettle为1 --- 已结算  未生成应收应付
+        url: baseUrl + "sales.save.updateSaleMainMsg.biz.ext",
+        data: {
+            data: data
+        },
+        cache: false,
+        async: false,
+        success: function(text) {
+            if (text.errCode == "S") {
 
+            };
+        }
+    });
 
-
+}
 
 function close() {
     window.CloseOwnerWindow('');

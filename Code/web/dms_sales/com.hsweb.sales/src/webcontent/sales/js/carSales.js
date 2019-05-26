@@ -125,7 +125,7 @@ function quickSearch(e) {
             queryname = "上年";
             break;
         case 12:
-            param.status = "0,1,2,3";
+            param.status = null;
             menubillstatus = "所有";
             break;
         case 13:
@@ -186,6 +186,7 @@ function onSearch() {
     }
     if (nui.get("typeMsg").value == 3) {
         param.status = 2;
+        param.isSettle = 1;
         mainGrid3.load({ params: param });
     }
 }

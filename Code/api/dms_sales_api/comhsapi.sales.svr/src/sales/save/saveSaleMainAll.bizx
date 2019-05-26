@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveSaleMain.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveSaleMainAll" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -180,7 +180,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link31" name="link31" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>subprocess2</targetNode>
       <process:transitionCondition>
@@ -213,13 +213,12 @@
     <figSize height="17" width="80"/>
     <node>subprocess1</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign2" name="赋值3" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值3" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>transactionrollback0</targetNode>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
-    <targetConnections>link19</targetConnections>
     <targetConnections>link28</targetConnections>
     <targetConnections>link29</targetConnections>
     <targetConnections>link30</targetConnections>
@@ -227,9 +226,18 @@
     <targetConnections>link33</targetConnections>
     <targetConnections>link22</targetConnections>
     <targetConnections>link24</targetConnections>
+    <targetConnections>link35</targetConnections>
     <location x="831" y="180"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">执行失败。</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="829" y="216"/>
@@ -392,48 +400,6 @@
     <figSize height="17" width="85"/>
     <node>invokePojo1</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="saveSaleCalc" displayName="saveSaleCalc" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" description="" id="link19" name="link19" displayName="连接线" isDefault="false" type="transition">
-      <sourceNode>subprocess2</sourceNode>
-      <targetNode>assign2</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">errCode</process:leftOperand>
-          <process:rightOperand type="literal">E</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess2</sourceNode>
-      <targetNode>subprocess3</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"/>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <targetConnections>link11</targetConnections>
-    <location x="964" y="75"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess2label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.saveSaleCalc</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="caCalculationData" type="query" value="com.hsapi.sales.data.css.CssSaleCalc" valueType="DataObject" pattern="reference">caCalculationData</process:inputVariable>
-        <process:inputVariable id="1" name="serviceId" type="query" value="Int" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="940" y="110"/>
-    <figSize height="17" width="75"/>
-    <node>subprocess2</node>
-  </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="运算逻辑2" displayName="Update a record" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link26" name="link26" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo3</sourceNode>
@@ -530,7 +496,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link18</targetConnections>
+    <targetConnections>link34</targetConnections>
     <location x="1070" y="75"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess3label</nodeLabel>
@@ -607,6 +573,43 @@
     <location x="643" y="111"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="saveSaleCalc" displayName="saveSaleCalc" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link34" name="link34" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess2</sourceNode>
+      <targetNode>subprocess3</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link35" name="link35" displayName="连接线" type="transition">
+      <sourceNode>subprocess2</sourceNode>
+      <targetNode>assign2</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">E</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link31</targetConnections>
+    <location x="942" y="75"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess2label</nodeLabel>
+    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.saveSaleCalc</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="caCalculationData" type="query" value="com.hsapi.sales.data.css.CssSaleCalc" valueType="DataObject" pattern="reference">caCalculationData</process:inputVariable>
+        <process:inputVariable id="1" name="serviceId" type="query" value="Int" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+        <process:outputVariable id="2" name="caCalculationData" type="query" value="com.hsapi.sales.data.css.CssSaleCalc" valueType="DataObject"/>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
+    <location x="918" y="110"/>
+    <figSize height="17" width="75"/>
+    <node>subprocess2</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

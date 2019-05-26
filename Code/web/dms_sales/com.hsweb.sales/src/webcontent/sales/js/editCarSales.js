@@ -10,11 +10,13 @@ var costGrid = null;
 var costDetailGrid = null;
 var costDetailGrid2 = null;
 var costDetailGridUrl = baseUrl + "sales.search.searchSaleCostList.biz.ext";
+var form = null;
 var is_not = [{ id: 0, text: '未审' }, { id: 1, text: '已审' }];
 $(document).ready(function(v) {
 
     document.getElementById("caCalculation").src = webBaseUrl + "sales/sales/caCalculation.jsp";
     billForm = new nui.Form("#billForm");
+    form = new nui.Form("#form1");
     jpGrid = nui.get("jpGrid");
     jpGrid.setUrl(jpUrl);
 
@@ -205,6 +207,10 @@ $(document).ready(function(v) {
         nui.get("saleAdvisorId").setText(currUserName);
     });
 
+    initMember("submitCarMen", function() {
+        nui.get("submitCarMen").setValue(currEmpId);
+        nui.get("submitCarMen").setText(currUserName);
+    });
 });
 
 function registration() {
@@ -223,6 +229,7 @@ function registration() {
 }
 
 function checkMsg(e) { //进行保存操作前进行验证
+    var billFormData = billForm.getData(true); //主表信息
     if (e == 2) { //审核 先判断费用是否审核完毕
         var data = costDetailGrid.getData();
         var data1 = costDetailGrid2.getData();
@@ -248,6 +255,10 @@ function checkMsg(e) { //进行保存操作前进行验证
         updateGridMsg(costDetailGrid, newRow);
         updateGridMsg(costDetailGrid2, newRow);
     }
+    if (e == 3 && billFormData.status != 0) {
+        showMsg("请返单后再作废！", "W");
+        return;
+    }
     save(e);
 }
 
@@ -262,6 +273,11 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
     var saleExtend = caCalculationData;
     billFormData.saleAdvisor = nui.get("saleAdvisorId").text;
     billFormData.status = e; //0 草稿 、1提交（待审）、2已审、3作废
+    var formData = form.getData();
+    billFormData.submitCarMen = formData.submitCarMen;
+    billFormData.submitTrueDate = formData.submitTrueDate;
+    billFormData.submitCarKeyQty = formData.submitCarKeyQty;
+    billFormData.submitCarRemark = formData.submitCarRemark;
     var addMsg = costDetailGrid.getChanges("added");
     var editMsg = costDetailGrid.getChanges("modified");
     var deleteMsg = costDetailGrid.getChanges("removed");
@@ -272,7 +288,7 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
     var editArr = editMsg.concat(editMsg2);
     var deleteArr = deleteMsg.concat(deleteMsg2);
     nui.ajax({
-        url: baseUrl + "sales.save.saveSaleMain.biz.ext",
+        url: baseUrl + "sales.save.saveSaleMainAll.biz.ext",
         data: {
             billFormData: billFormData,
             caCalculationData: caCalculationData,
@@ -355,14 +371,22 @@ function searchSalesMain(serviceId) { //查询主表信息
             if (text.errCode == "S") {
                 var data = text.data[0];
                 billForm.setData(data);
+                form.setData(data);
                 document.getElementById("serviceCode").innerHTML = data.serviceCode;
                 if (data.status != 0) {
                     setReadOnlyMsg();
                     document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
-                };
+                } else {
+                    setInputModel();
+                    document.getElementById("caCalculation").contentWindow.setInputModel();
+                }
             };
         }
     });
+}
+
+function changeSaleType(e) {
+    document.getElementById("caCalculation").contentWindow.setSaleType(e.value);
 }
 
 function updateGridMsg(grid, newRow) { //更新表格数据   传表格对象grid  需要修改的内容newRow  用于无条件全表格更新数据
@@ -373,13 +397,35 @@ function updateGridMsg(grid, newRow) { //更新表格数据   传表格对象gri
     };
 }
 
+function setInputModel() { //恢复表格为输入模式
+    var fields = billForm.getFields();
+    for (var i = 0, l = fields.length; i < l; i++) {
+        var c = fields[i];
+        if (c.setReadOnly) c.setReadOnly(false);
+    };
+    var fields = form.getFields();
+    for (var i = 0, l = fields.length; i < l; i++) {
+        var c = fields[i];
+        if (c.setReadOnly) c.setReadOnly(false);
+    };
+    jpGrid.setReadOnly(false);
+    jpDetailGrid.setReadOnly(false);
+    costGrid.setReadOnly(false);
+}
+
 function setReadOnlyMsg() { //设置表格信息为只读
     var fields = billForm.getFields();
     for (var i = 0, l = fields.length; i < l; i++) {
         var c = fields[i];
         if (c.setReadOnly) c.setReadOnly(true); //只读
         if (c.setIsValid) c.setIsValid(true); //去除错误提示
-    }
+    };
+    var fields = form.getFields();
+    for (var i = 0, l = fields.length; i < l; i++) {
+        var c = fields[i];
+        if (c.setReadOnly) c.setReadOnly(true); //只读
+        if (c.setIsValid) c.setIsValid(true); //去除错误提示
+    };
     jpGrid.setReadOnly(true);
     jpDetailGrid.setReadOnly(true);
     costGrid.setReadOnly(true);
@@ -389,7 +435,7 @@ function onIsNotRenderer(e) {
     for (var i = 0, l = is_not.length; i < l; i++) {
         var g = is_not[i];
         if (g.id == e.value) return g.text;
-    }
+    };
     return "";
 }
 
@@ -410,7 +456,7 @@ function OnModelCellBeginEdit(e) {
         if (billFormData.status != 1) {
             e.cancel = true;
         };
-    }
+    };
     if (field == "costAmt" || field == "remark") {
         if (billFormData.status != 0) {
             e.cancel = true;

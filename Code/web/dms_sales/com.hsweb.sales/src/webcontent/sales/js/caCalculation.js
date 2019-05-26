@@ -57,6 +57,11 @@ function SetDataMsg(serviceId) {
     });
 }
 
+function setSaleType(value) { //当主表更改购车方式时更改购车计算中的购车方式
+    nui.get("saleType").setValue(value);
+    changeSaleType(1);
+}
+
 function getBankHandlingRate(e) { //改变贷款银行时触发
     var value = e.selected.property1 || 0;
     nui.get("bankHandlingRate").setValue(value);
@@ -64,7 +69,8 @@ function getBankHandlingRate(e) { //改变贷款银行时触发
 }
 
 function changeSaleType(e) { //改变购买方式时触发
-    if (e.value == "1558580770894") { //全款
+    var value = nui.get("saleType").value;
+    if (value == "1558580770894") { //全款
         nui.get("loanPeriod").disable(); //贷款期数
         nui.get("signBillBankId").disable(); //贷款银行
         nui.get("loanPercent").disable(); //贷款比例
@@ -109,11 +115,11 @@ function changeValueMsg(e) { //更改数据信息时触发  统一触发此函�
     var bankHandlingAmt = parseFloat(data.bankHandlingAmt || 0); //银行利息
     var monthMoneyRates = 0; //每月利息
     var monthPayAmt = parseFloat(data.monthPayAmt || 0); //月供
-    loanAmt = Math.floor(saleAmt * loanPercent / 1000) * 1000; //贷款金额 = 车辆销价 * 贷款比例   舍去千位一下的金额 取整 如142222 变为142000
+    loanAmt = Math.floor(saleAmt * loanPercent / 1000 || 0) * 1000; //贷款金额 = 车辆销价 * 贷款比例   舍去千位一下的金额 取整 如142222 变为142000
     bankHandlingAmt = loanAmt * bankHandlingRate; //银行利息 = 贷款金额*贷款利率(%)
     if (bankHandlingApportion == 0) { //如果利息分摊
-        monthMoneyRates = bankHandlingAmt / loanPeriod; // 每月利息 = 银行利息 / 贷款期数
-        monthPayAmt = loanAmt / loanPeriod + monthMoneyRates; // 月供 = 贷款金额 / 贷款期数 + 每月利息
+        monthMoneyRates = bankHandlingAmt / loanPeriod || 0; // 每月利息 = 银行利息 / 贷款期数
+        monthPayAmt = loanAmt / loanPeriod || 0 + monthMoneyRates; // 月供 = 贷款金额 / 贷款期数 + 每月利息
         downPaymentAmt = (saleAmt - loanAmt) + monthMoneyRates; // 首付 = （车辆销价 - 贷款金额）+ 每月利息
     } else {
         monthPayAmt = bankHandlingAmt; // 月供 = 贷款金额 / 贷款期数 + 每月利息
@@ -145,92 +151,100 @@ function setReadOnlyMsg() {
         var c = fields[i];
         if (c.setReadOnly) c.setReadOnly(true); //只读
         if (c.setIsValid) c.setIsValid(true); //去除错误提示
+    };
+}
+
+function setInputModel() { //恢复表格为输入模式
+    var fields = form.getFields();
+    for (var i = 0, l = fields.length; i < l; i++) {
+        var c = fields[i];
+        if (c.setReadOnly) c.setReadOnly(false);
+    };
+}
+
+var comeServiceIdF = null;
+var saveComeUrl = baseUrl + "sales.save.saveSaleCalc.biz.ext";
+
+function setShowSave(serviceId) {
+    comeServiceIdF = serviceId;
+    var showSave = document.getElementById("showSave");
+    showSave.style.display = "";
+    if (serviceId) {
+        nui.ajax({
+            url: baseUrl + "sales.search.searchSaleCalc.biz.ext",
+            type: "post",
+            cache: false,
+            data: {
+                billType: 1,
+                serviceId: serviceId
+            },
+            success: function(text) {
+                if (text.errCode == "S") {
+                    if (text.data.length > 0) {
+                        var data = text.data[0];
+                        form.setData(data);
+                        if (data.saleType == "1558580770894") { //全款
+                            nui.get("loanPeriod").disable(); //贷款期数
+                            nui.get("signBillBankId").disable(); //贷款银行
+                            nui.get("bankHandlingApportion").disable(); //银行利息分摊
+                            nui.get("mortgageAmt").disable(); //按揭手续费
+                            nui.get("riskAmt").disable(); //月供保证金
+                            nui.get("familyAmt").disable(); //家访费
+                            nui.get("loanPercent").disable(); //贷款比例
+                        }
+                    }
+                }
+            }
+        });
+    } else {
+        showMsg("请先保存来访登记", "W");
+        return;
+    }
+}
+//id没有返回
+function saveCome() {
+    var caCalculationData = form.getData();
+    if (comeServiceIdF && comeServiceIdF < 0) {
+        showMsg("请先保存来访登记", "W");
+        return;
+    } else {
+        caCalculationData.billType = 1; //来访登记的预算
+        var json = nui.encode({
+            caCalculationData: caCalculationData,
+            serviceId: comeServiceIdF,
+            token: token
+        });
+        nui.mask({
+            el: document.body,
+            cls: 'mini-mask-loading',
+            html: '保存中...'
+        });
+        nui.ajax({
+            url: saveComeUrl,
+            type: 'POST',
+            data: json,
+            cache: false,
+            contentType: 'text/json',
+            success: function(text) {
+                if (text.errCode == "S") {
+                    var result = {}
+                    result = text.caCalculationData;
+                    var id = result.id;
+                    nui.get("mainId").setValue(id);
+                    showMsg("保存成功", "S");
+                }
+                nui.unmask(document.body);
+            }
+        });
     }
 }
 
-var comeServiceIdF= null;
-var saveComeUrl = baseUrl + "sales.save.saveSaleCalc.biz.ext";
-function setShowSave(serviceId){
-	comeServiceIdF = serviceId;
-	var showSave =document.getElementById("showSave");
-	showSave.style.display="";
-	if(serviceId){
-		nui.ajax({
-	        url: baseUrl + "sales.search.searchSaleCalc.biz.ext",
-	        type: "post",
-	        cache: false,
-	        data: {
-	            billType: 1,
-	            serviceId: serviceId
-	        },
-	        success: function(text) {
-	            if (text.errCode == "S") {
-	            	if(text.data.length>0){
-	            		var data = text.data[0];
-		                form.setData(data);
-		                if (data.saleType == "1558580770894") { //全款
-		                    nui.get("loanPeriod").disable(); //贷款期数
-		                    nui.get("signBillBankId").disable(); //贷款银行
-		                    nui.get("bankHandlingApportion").disable(); //银行利息分摊
-		                    nui.get("mortgageAmt").disable(); //按揭手续费
-		                    nui.get("riskAmt").disable(); //月供保证金
-		                    nui.get("familyAmt").disable(); //家访费
-		                    nui.get("loanPercent").disable(); //贷款比例
-		                }
-	            	}
-	            }
-	        }
-	    });
-	}else{
-		showMsg("请先保存来访登记","W");
-		return;
-	}
-}
-//id没有返回
-function saveCome(){
-	var caCalculationData = form.getData();
-	if(comeServiceIdF && comeServiceIdF <0){
-		showMsg("请先保存来访登记","W");
-		return;
-	}else{
-		caCalculationData.billType = 1;//来访登记的预算
-		 var json = nui.encode({
-			 caCalculationData:caCalculationData,
-			 serviceId:comeServiceIdF,
-	   		 token:token
-	   	  });
-		  nui.mask({
-		     el: document.body,
-		     cls: 'mini-mask-loading',
-		     html: '保存中...'
-		  });
-		  nui.ajax({
-			url : saveComeUrl,
-			type : 'POST',
-			data : json,
-			cache : false,
-			contentType : 'text/json',
-			success : function(text) {
-				if(text.errCode=="S"){
-					var result = {}
-					result = text.caCalculationData;
-					var id = result.id;
-					nui.get("mainId").setValue(id);
-			    	showMsg("保存成功","S");
-			    }
-				nui.unmask(document.body);
-			}
-		  });
-	}
+function CloseWindow(action) {
+    if (window.CloseOwnerWindow)
+        return window.CloseOwnerWindow(action);
+    else window.close();
 }
 
-function CloseWindow(action)
-{
-	if (window.CloseOwnerWindow)
-		return window.CloseOwnerWindow(action);
-	else window.close();
-}
-
-function onCancel(){
-	CloseWindow("cancel");
+function onCancel() {
+    CloseWindow("cancel");
 }

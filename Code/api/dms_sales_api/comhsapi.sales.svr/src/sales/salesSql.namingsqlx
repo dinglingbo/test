@@ -122,10 +122,10 @@
                 (a.service_code= #serviceCode#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="id">
-                (a.id in ($id$))
+                (a.id = #id#))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="status">
-                (a.status = #status#)
+                (a.status in ($status$))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="guestName">  
                 (a.guest_full_name like '%$guestName$%')

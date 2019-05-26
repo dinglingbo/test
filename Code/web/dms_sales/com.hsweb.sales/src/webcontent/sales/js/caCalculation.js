@@ -101,6 +101,7 @@ function changeSaleType(e) { //改变购买方式时触发
         nui.get("familyAmt").enable(); //家访费
         nui.get("loanPercent").enable(); //贷款比例
     }
+    changeValueMsg(1);
 }
 
 function changeValueMsg(e) { //更改数据信息时触发  统一触发此函数
@@ -115,14 +116,14 @@ function changeValueMsg(e) { //更改数据信息时触发  统一触发此函�
     var bankHandlingAmt = parseFloat(data.bankHandlingAmt || 0); //银行利息
     var monthMoneyRates = 0; //每月利息
     var monthPayAmt = parseFloat(data.monthPayAmt || 0); //月供
-    loanAmt = Math.floor(saleAmt * loanPercent / 1000 || 0) * 1000; //贷款金额 = 车辆销价 * 贷款比例   舍去千位一下的金额 取整 如142222 变为142000
+    loanAmt = Math.floor(saleAmt * loanPercent / 1000 || 0) * 1000; //贷款金额 = 车辆销价 * 贷款比例   舍去千位已下的金额 取整 如142222 变为142000
     bankHandlingAmt = loanAmt * bankHandlingRate; //银行利息 = 贷款金额*贷款利率(%)
     if (bankHandlingApportion == 0) { //如果利息分摊
         monthMoneyRates = bankHandlingAmt / loanPeriod || 0; // 每月利息 = 银行利息 / 贷款期数
-        monthPayAmt = loanAmt / loanPeriod || 0 + monthMoneyRates; // 月供 = 贷款金额 / 贷款期数 + 每月利息
+        monthPayAmt = (loanAmt / loanPeriod || 0) + monthMoneyRates; // 月供 = 贷款金额 / 贷款期数 + 每月利息
         downPaymentAmt = (saleAmt - loanAmt) + monthMoneyRates; // 首付 = （车辆销价 - 贷款金额）+ 每月利息
     } else {
-        monthPayAmt = bankHandlingAmt; // 月供 = 贷款金额 / 贷款期数 + 每月利息
+        monthPayAmt = (loanAmt / loanPeriod) || 0; // 月供 = 贷款金额 / 贷款期数 + 每月利息
         downPaymentAmt = (saleAmt - loanAmt) + bankHandlingAmt; // 首付 = （车辆销价 - 贷款金额）+ 每月利息
     }
     var totalAmt = bankHandlingAmt + parseFloat(data.agentDeposit || 0) + parseFloat(data.riskAmt || 0) + parseFloat(data.familyAmt || 0) +
@@ -130,13 +131,14 @@ function changeValueMsg(e) { //更改数据信息时触发  统一触发此函�
         parseFloat(data.insuranceBudgetAmt || 0) + parseFloat(data.purchaseBudgetAmt || 0) + parseFloat(data.boardLotAmt || 0) +
         parseFloat(data.otherAmt || 0) + parseFloat(data.decrAmt || 0); //费用合计 = 银行手续费+续保押金+月供保证金+家访费+合同保证金+GPS费用+按揭服务费+保险费预算+购置税预算+上户上牌费+其它费用+精品加装
     var buyBudgetTotal = parseFloat(data.saleAmt || 0) + totalAmt; //购车预算合计= 车辆销价+费用合计
-
+    var getCarTotal = downPaymentAmt + monthPayAmt;
     data.monthPayAmt = monthPayAmt;
     data.loanAmt = loanAmt;
     data.downPaymentAmt = downPaymentAmt;
     data.bankHandlingAmt = bankHandlingAmt;
     data.totalAmt = totalAmt;
     data.buyBudgetTotal = buyBudgetTotal;
+    data.getCarTotal = getCarTotal;
     form.setData(data);
 }
 

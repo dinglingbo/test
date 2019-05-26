@@ -13,7 +13,7 @@
         <title>车辆登记</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-        <script src="<%= request.getContextPath() %>/sales/sales/js/vehicleRegistration.js?v=1.00" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/sales/sales/js/vehicleRegistration.js?v=1.00" type="text/javascript"></script>
     </head>
     <style type="text/css">
         body {
@@ -146,22 +146,12 @@
                 <td>
                     <input id="sp_txtInsuranceNum1" class="nui-textbox" style="width: 100%" />
                 </td>
-                <td align="right">保险到期
-                </td>
-                <td>
-                    <input id="sp_dttInsuranceLastDate1" class="nui-datepicker" editable="false" style="width: 100%" />
-                </td>
             </tr>
             <tr>
                 <td colspan="1" align="right" style="width:95px;">商业险保险公司
                 </td>
                 <td colspan="3" align="left">
                     <input id="sp_cmbsyUnit" class="nui-combobox" editable="false" style="width: 100%" />
-                </td>
-                <td align="right">保险单号
-                </td>
-                <td>
-                    <input id="sp_txtInsuranceNum2" class="nui-textbox" style="width: 100%" />
                 </td>
                 <td align="right">保险到期
                 </td>

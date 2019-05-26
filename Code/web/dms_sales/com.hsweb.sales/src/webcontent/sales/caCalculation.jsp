@@ -13,7 +13,7 @@
         <title>购车计算</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%=request.getContextPath()%>/sales/sales/js/caCalculation.js?v=1.0.92"></script>
+            <script src="<%=request.getContextPath()%>/sales/sales/js/caCalculation.js?v=1.0.93"></script>
     </head>
     <style type="text/css">
         body {
@@ -277,7 +277,7 @@
                         提车合计：
                     </td>
                     <td>
-                        <input id="getCarTotal" name="getCarTotal" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="getCarTotal" name="getCarTotal" style="width: 100%" class="nui-textbox" vtype="float" enabled="false" />
 
                     </td>
                     <td class="td_title">

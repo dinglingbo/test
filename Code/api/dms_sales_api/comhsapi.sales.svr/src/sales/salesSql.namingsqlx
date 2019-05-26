@@ -122,7 +122,7 @@
                 (a.service_code= #serviceCode#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="id">
-                (a.id = #id#))
+                (a.id = #id#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="status">
                 (a.status in ($status$))

@@ -52,10 +52,10 @@ function getSearchParam() {
     var params = {};
     var saleAdvisorId = nui.get("saleAdvisorId").getValue();
     params.saleAdvisorId = saleAdvisorId;
-    var fullName = nui.get("name-search").getValue();
+   /* var fullName = nui.get("name-search").getValue();
     params.fullName = fullName;
     var mobile = nui.get("mobile-search").getValue();
-    params.mobile = mobile;
+    params.mobile = mobile;*/
     //scoutStatus,跟踪状态
     return params;
 }

@@ -68,7 +68,7 @@
                 <a class="nui-button" onclick="save()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;归档</a>
                 <a class="nui-button" onclick="onCancel" plain="true"  style="width: 80px;"><span class="fa fa-mail-forward  fa-lg"></span>&nbsp;转销售</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-shopping-bag fa-lg"></span>&nbsp;精品加装</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="addGift()" id="addBtn"><span class="fa fa-shopping-bag fa-lg"></span>&nbsp;精品加装</a>
                 <a class="nui-button" onclick="buyCarCount" plain="true"  style="width: 80px;"><span class="fa fa-dollar fa-lg"></span>&nbsp;购车预算</a>
                           
             </td>
@@ -98,6 +98,7 @@
             <input id="saleAdvisor" name="saleAdvisor" class="nui-hidden"/>
 	        <input name="id" class="nui-hidden" id="mainId"/>
 	        <input id="guestId" name="guestId" class="nui-hidden"/>
+	        <input class="mini-hidden" id="status" name="status" />
             <input name="specialCare"
                  id="specialCare"
                  class="nui-combobox"

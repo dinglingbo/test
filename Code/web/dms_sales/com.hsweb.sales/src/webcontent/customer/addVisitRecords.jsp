@@ -42,6 +42,7 @@
 	width: calc(100% - 20px) !important;
 }
 
+  .nvstatusview{color: #5a78a0;padding:3px 20px; border-radius:20px;border: 1px solid;}
 .required {
 	color: red;
 }
@@ -67,7 +68,7 @@
                 <a class="nui-button" onclick="save()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;归档</a>
                 <a class="nui-button" onclick="onCancel" plain="true"  style="width: 80px;"><span class="fa fa-mail-forward  fa-lg"></span>&nbsp;转销售</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-shopping-bag fa-lg"></span>&nbsp;精品加装</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="addGift()" id="addBtn"><span class="fa fa-shopping-bag fa-lg"></span>&nbsp;精品加装</a>
                 <a class="nui-button" onclick="buyCarCount" plain="true"  style="width: 80px;"><span class="fa fa-dollar fa-lg"></span>&nbsp;购车预算</a>
                           
             </td>
@@ -94,9 +95,10 @@
                  width="100%"
                  visible="false"
                 /> -->
-             <input id="saleAdvisor" name="saleAdvisor" class="nui-hidden"/>
+            <input id="saleAdvisor" name="saleAdvisor" class="nui-hidden"/>
 	        <input name="id" class="nui-hidden" id="mainId"/>
 	        <input id="guestId" name="guestId" class="nui-hidden"/>
+	        <input class="mini-hidden" id="status" name="status" />
             <input name="specialCare"
                  id="specialCare"
                  class="nui-combobox"
@@ -284,5 +286,50 @@
 	</tr>
 </table>
 </fieldset>
+<div style="background-color: #cfddee;position:absolute; top:90%;width:100%;height: 10%; z-index:900;">
+    <div id="statustable" style="float: left;height:100%;font-size:16px;color:#5a78a0;padding-left:20px;">
+    	<table  style='height: 100%'>
+    		<tbody>
+    			<tr>
+    				<tr>
+    					<td  style='height: 100%;font-size:18px'>
+					      <label style="font-family:Verdana;">服务进度:</label>
+					      <label style="font-family:Verdana;"><span id="addStatus" name="statusvi" class="nvstatusview">草稿</span></label>
+					      <label style="font-family:Verdana;">&nbsp;>&nbsp;</label>
+					      <label style="font-family:Verdana;"><span id="repairStatus" name="statusvi" class="nvstatusview">归档</span></label>
+					      <label style="font-family:Verdana;">&nbsp;>&nbsp;</label>
+					      <label style="font-family:Verdana;"><span id="finishStatus" name="statusvi" class="nvstatusview">转销售</span></label>
+    					</td>
+    				</tr>
+    		</tbody>
+    	</table>
+    </div>
+    <!-- <div id="sellForm" class="form"  style="float:right;height: 100%;padding-right: 20px;">
+    	<table style='height: 100%'>
+    		<tbody>
+    			<tr>
+    				<td  style='height: 100%'>
+			        <label>总金额：</label>
+			            <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalAmt" name="totalAmt"/>
+			        <label>优惠金额：</label>
+ 			          <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalPrefAmt" name="totalPrefAmt"/>        
+ 			        <label>小计金额：</label>
+ 			        <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalSubtotal" name="totalSubtotal"/>
+ 					<input class="nui-combobox" name="chanceType" id="chanceType" valueField="customid" textField="name"  visible="false" />
+                      <div style='display: none'>
+			          <input class="nui-hidden" enabled="false" id="packageSubtotal" name="packageSubtotal"/>
+			          <input class="nui-hidden" enabled="false" id="packagePrefAmt" name="packagePrefAmt"/>
+			          <input class="nui-hidden" enabled="false" id="itemSubtotal" name="itemSubtotal"/>
+			          <input class="nui-hidden" enabled="false" id="itemPrefAmt" name="itemPrefAmt"/>
+			          <input class="nui-hidden" enabled="false" id="partSubtotal" name="partSubtotal"/>
+			          <input class="nui-hidden" enabled="false" id="partPrefAmt" name="partPrefAmt"/>
+			          <input class="nui-hidden" enabled="false" id="ycAmt" name="ycAmt"/>
+			        </div>
+    				</td>
+    			</tr>
+    		</tbody>
+    	</table>
+    </div> -->
+</div>
 </body>
 </html>

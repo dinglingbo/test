@@ -59,19 +59,19 @@
 						<tr>
 							 <td style="width:100%;">
 				                <label style="font-family:Verdana;">快速查询：</label>
-				                <a class="nui-menubutton" plain="false" iconCls="" id="menunamedate" menu="#popupMenu" >本日</a>
+				                <a class="nui-menubutton" plain="false" iconCls="" id="menunamedate" menu="#popupMenu" >待今日跟进</a>
 				                <ul id="popupMenu" class="nui-menu" style="display:none;">
-				                    <li iconCls="" onclick="quickSearch(0)">本日</li>
-				                    <li iconCls="" onclick="quickSearch(1)">昨日</li>
-				                    <li iconCls="" onclick="quickSearch(2)">本周</li>
-				                    <li iconCls="" onclick="quickSearch(3)">上周</li>
+				                    <li iconCls="" onclick="quickSearch(0)">待今日跟进</li>
+				                    <li iconCls="" onclick="quickSearch(1)">今日归档</li>
+				                    <li iconCls="" onclick="quickSearch(2)">超期未跟进</li>
+				                   <!--  <li iconCls="" onclick="quickSearch(3)">上周</li>
 				                    <li iconCls="" onclick="quickSearch(4)">本月</li>
 				                    <li iconCls="" onclick="quickSearch(5)">上月</li>
 				                    <li iconCls="" onclick="quickSearch(6)">本年</li>
-				                    <li iconCls="" onclick="quickSearch(7)">上年</li>
+				                    <li iconCls="" onclick="quickSearch(7)">上年</li> -->
 				                </ul>
 				                <label style="font-family:Verdana;">销售顾问：</label>
-				                <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
+				                <input name="saleAdvisorId" id="saleAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
 				                    emptyText="销售顾问" url=""  allowInput="true" showNullItem="false" width="80" valueFromSelect="true"  onenter="onenterMtAdvisor(this.value)"/>
 				                <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 				                <span class="separator"></span>
@@ -105,9 +105,16 @@
 	                  <div field="comeTypeId" name="comeTypeId" width="60" headerAlign="center" allowsort="true" header="来访类型"></div>
 	                  <div field="status" name="status" width="60" headerAlign="center" allowsort="true" header="状态" summaryType="count"></div>
 	                  <!--回访备注  -->
-	                  <div field="scoutRemark" name="scoutRemark" width="170" headerAlign="center" allowsort="true" header="批示内容(可填写)" summaryType="count"></div>
+	                  <!-- <div field="scoutRemark" name="scoutRemark" width="170" headerAlign="center" allowsort="true" header="批示内容(可填写)" summaryType="count"></div> -->
 	                 </div>
                   </div>
+                  <div header="批注" headerAlign="center">
+                      <!--回访备注  -->
+                      <div property="columns" >
+	                  <div field="scoutRemark" name="scoutRemark" width="170" headerAlign="center" allowsort="false" header="批示内容(可填写)"></div>
+	                 </div>
+                  </div>
+                  
                   <div type="checkcolumn" name="checkcolumn" visible="false"></div>
                   <div header="客户信息" headerAlign="center">
 	                  <div property="columns" > 
@@ -119,8 +126,8 @@
                   </div>
                   <div header="意向信息" headerAlign="center">
 	                  <div property="columns" >	 
-	                      <div field="carModelName" name="carModelName" width="90" headerAlign="center" allowsort="true"  header="品牌"></div>
-	                  	  <div field="carModelId" name="carModelId" width="90" headerAlign="center" allowsort="true"  header="车型"></div>
+	                      <div field="carModelName" name="carModelName" width="90" headerAlign="center" allowsort="true"  header="车型名称"></div>
+	                  	  <!-- <div field="carModelId" name="carModelId" width="90" headerAlign="center" allowsort="true"  header="车型"></div> -->
   		                  <!-- <div field="packageAmt" name="packageAmt" width="90" headerAlign="center" allowsort="true"  header="规格"></div> -->
   		                  <div field="frameColorId" name="frameColorId" width="90" headerAlign="center" allowsort="true"  header="车身颜色"></div>
   		                  <div field="interialColorId" name="interialColorId" width="90" headerAlign="center" allowsort="true"  header="内饰颜色"></div>

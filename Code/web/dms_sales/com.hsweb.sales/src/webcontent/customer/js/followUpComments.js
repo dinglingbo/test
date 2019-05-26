@@ -1,22 +1,14 @@
 var baseUrl = window._rootSysUrl || "http://127.0.0.1:8080/default/";
-var guestComeUrl = apiPath + saleApi +  "/sales.custormer.saveGuestCome.biz.ext";
-var queryUrl = apiPath + saleApi + "/sales.custormer.queryGuestComeAndGuest.biz.ext";
-var levelOfIntent = null;
-var important = null;
-var frameColorIdHash = {};
-var saleAdvisorIdEl = null;
-var memList = [];
-var saleAdvisorList = [];
-var intentLevelList = []; 
-var guestComeForm = null;
-var asaleAdvisorHash = {};
+var queryUrl = apiPath + saleApi + "/sales.custormer.queryGuestList.biz.ext";
+var mainGrid = null;
 $(document).ready(function ()
 {
-	levelOfIntent = nui.get("levelOfIntent");
+	/*levelOfIntent = nui.get("levelOfIntent");
 	specialCareId = nui.get("specialCareId");
 	intentLevelId = nui.get("intentLevelId");
 	saleAdvisorIdEl = nui.get("saleAdvisorId");
-	guestComeForm = new nui.Form("#guestComeForm");
+	guestComeForm = new nui.Form("#guestComeForm");*/
+	mainGrid = nui.get("datagrid1");
 	 //车身颜色
 	 initDicts({
 		 frameColorId:"DDT20130726000003",
@@ -25,28 +17,60 @@ $(document).ready(function ()
 		 specialCare:"DDT20130703000049",
 		 intentLevel:"DDT20130703000050"
      },function(data){
-    	 asaleAdvisorList = nui.get('specialCare').getData();
-    	 intentLevelList = nui.get('intentLevel').getData();
-    	 //specialCareId.setData(asaleAdvisorList);
-    	 getServiceTypeList(asaleAdvisorList,function(data){
-    			specialCareId.setData(data);
-    			//levelOfIntent.setData(data);
-    	 });
-    	 getServiceTypeList(intentLevelList,function(data){
-    		 intentLevelId.setData(data);
- 			//levelOfIntent.setData(data);
- 	    });
      });
 	
 	initMember("saleAdvisorId",function(){
         memList = saleAdvisorIdEl.getData();
     });
-	/*saleAdvisorIdEl.on("valueChanged",function(e){
-        var text = saleAdvisorIdEl.getText();
-        nui.get("saleAdvisor").setValue(text);
-    });*/
+	
+	mainGrid.on('drawcell', function(e){
+	       var value = e.value;
+	       var field = e.field;
+	      if (field == 'sex') {
+	           e.cellHtml = (value == 0 ? '女' : '男');
+	       } else if (field == 'identity') {
+	           e.cellHtml = setColVal('identity', 'id', 'name', e.value);
+	       } else if (field == 'trade') {
+	           e.cellHtml = setColVal('trade', 'id', 'name', e.value);
+	       } else if (field == 'source') {
+	       	e.cellHtml = setColVal('source', 'id', 'name', e.value);
+	       } else if (field == 'nature') {
+	    	   e.cellHtml = setColVal('nature', 'id', 'name', e.value);
+	       } else if(e.field == "birthdayType"){
+	    	   e.cellHtml = (value == 0 ? '农历' : '阳历');
+	       }else if(e.field == "maritalStatus"){
+	    	   e.cellHtml = (value == 1 ? '已婚' : '未婚');
+	       }/*else if(e.field == "guestOptBtn"){
+	  		   s =  ' <a class="optbtn" href="javascript:deletItem(\'' + uid + '\')">删除</a>';
+	    	   s = '<input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>';
+	           e.cellHtml = s;
+	       }*/
+	});
+	
 	
 });
+
+
+
+function getSearchParam() {
+    var params = {};
+    var saleAdvisorId = nui.get("saleAdvisorId").getValue();
+    params.saleAdvisorId = saleAdvisorId;
+    var fullName = nui.get("name-search").getValue();
+    params.fullName = fullName;
+    var mobile = nui.get("mobile-search").getValue();
+    params.mobile = mobile;
+    //scoutStatus,跟踪状态
+    return params;
+}
+function doSearch() {
+    var gsparams = getSearchParam();
+    mainGrid.load({
+        token:token,
+        params: gsparams
+    });
+}
+
 
 
 var serviceTypeUrl = baseUrl + "com.hsapi.repair.common.common.getBusinessType.biz.ext";

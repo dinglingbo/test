@@ -289,6 +289,7 @@ function add(){
 	nui.get("carModelId").setValue("");
 	nui.get("carModelName").setValue("");
 	nui.get("carModelName").setText("");
+	$("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
 }
 
 function setInitData(params){
@@ -332,10 +333,19 @@ function setInitData(params){
 
 function buyCarCount(){
 	var main = guestComeForm.getData();
+	var status = main.status || 0;
+	if(status > 1){
+		showMsg("登记记录已归档，不能修改！","W");
+		return;
+	}
+	if(status == 2){
+		showMsg("登记记录已转销售，不能修改！","W");
+		return;
+	}
 	if(main.id !="" && main.id !=null){
 		nui.open({
 			url: webPath + contextPath + '/sales/sales/caCalculation.jsp',
-			title: '购车计算',
+			title: '购车预算',
 			width: 1000,
 			height: 500,
 			onload: function () {
@@ -352,4 +362,37 @@ function buyCarCount(){
 		return;
 	}
 	
+}
+//精品加装：sales/customer/guestComeGift.jsp
+
+function addGift(){
+	var main = guestComeForm.getData();
+	var status = main.status || 0;
+	if(status > 1){
+		showMsg("登记记录已归档，不能修改！","W");
+		return;
+	}
+	if(status == 2){
+		showMsg("登记记录已转销售，不能修改！","W");
+		return;
+	}
+	if(main.id !="" && main.id !=null){
+		nui.open({
+			url: webPath + contextPath + '/sales/customer/guestComeGift.jsp',
+			title: '精品加装',
+			width: 1200,
+			height: 500,
+			onload: function () {
+			var iframe = this.getIFrameEl();
+			//iframe.contentWindow.setShowSave(main.id);
+			},
+			ondestroy: function (action) {
+			var iframe = this.getIFrameEl();
+			
+		    }
+		 });
+	}else{
+		showMsg("请先保存来访登记!","W");
+		return;
+	}
 }

@@ -223,6 +223,15 @@ $(document).ready(function(v) {
 });
 
 function selectCar() { //点击选车时触发
+    var billFormData = billForm.getData(true);
+    if (billFormData.isSettle == 1) {
+        showMsg("当前订单已结算！", "W");
+        return;
+    }
+    if (billFormData.status != 2) {
+        showMsg("当前订单尚未审核！", "W");
+        return;
+    }
     nui.open({
         url: webPath + contextPath + "/sales/sales/selectCar.jsp?token=" + token,
         title: "选择库存车",

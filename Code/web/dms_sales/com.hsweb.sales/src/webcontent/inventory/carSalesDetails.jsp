@@ -8,7 +8,7 @@
 -->
 <head>
 <title>厂家订货详情</title>
-<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesDetails.js?v=1.0.3"></script>
+<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesDetails.js?v=1.1.3"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -47,11 +47,11 @@ body .mini-grid-row-selected{
 
 <body>
     <%@include file="/sales/inventory/carSalesDetail.jsp" %>
-   
-
+	<input name="frameColorId" id="frameColorId" class="nui-combobox" textField="name" valueField="id" allowInput="true" visible="false"/>
+    <input name="interialColorId" id="interialColorId" class="nui-combobox" textField="name" valueField="id" allowInput="true" visible="false"/>
 
 <div id="advancedMorePartWin" class="nui-window"
-     title="配件选择" style="width:700px;height:350px;"
+     title="配件选择" style="width:900px;height:550px;"
      showModal="true"
      showHeader="false"
      allowResize="false"
@@ -73,7 +73,7 @@ body .mini-grid-row-selected{
                showPager="false"
                dataField=""
                frozenStartColumn="0"
-               frozenEndColumn="1"
+               frozenEndColumn="4"
                onrowdblclick="addSelectPart"
                allowCellSelect="true"
                editNextOnEnterKey="true"
@@ -82,13 +82,25 @@ body .mini-grid-row-selected{
               <div property="columns">
                 <div type="indexcolumn">序号</div>
                 <div field="code" name="code" width="100" headerAlign="center" header="车型编码"></div>
-                <div field="name" name="name" width="100" headerAlign="center" header="车型名称"></div>
-                <div field="partBrandId" name="partBrandId" width="100" headerAlign="center" header="汽车品牌"></div>
-                <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="汽车类型"></div>
-                <div allowSort="true"  name="outableQty" field="outableQty"  width="60" headerAlign="center" header="车身颜色"></div>
-                <div allowSort="true"  field="orderQty"  width="60" headerAlign="center" header="车辆内饰"></div>
-                <div allowSort="true"  field="stockQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
-                <div allowSort="true"  field="onRoadQty" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>
+                <div field="fullName" name="fullName" width="150" headerAlign="center" header="车型名称"></div>
+                <div field="carBrandId" name="carBrandId" width="80" headerAlign="center" header="品牌"></div>
+                <div field="carSeriesId" name="carSeriesId" width="80" headerAlign="center" header="车系"></div>
+                <div field="fyear" name="fyear" width="60" headerAlign="center" header="年款"></div>
+                <div field="guidingPrice" name="guidingPrice" width="80" headerAlign="center" header="厂商指导价"></div>
+                <div field="outputVolume" name="outputVolume" width="60" headerAlign="center" header="排量"></div>    
+                <div field="engineModelNo" name="engineModelNo" width="100" headerAlign="center" header="发动机型号"></div>    
+                <div field="inletType" name="inletType" width="80" headerAlign="center" header="进气形式"></div>    
+<!--                 <div field="partBrandId" name="partBrandId" width="100" headerAlign="center" header="缸数"></div> -->
+                <div field="gearBox" name="gearBox" width="100" headerAlign="center" header="变速箱"></div>    
+                <div field="driveMode" name="driveMode" width="100" headerAlign="center" header="驱动方式"></div>
+                <div field="powerType" name="powerType" width="100" headerAlign="center" header="能源"></div>
+                <div field="carStructureType" name="carStructureType" width="100" headerAlign="center" header="规格"></div>
+                <div field="level" name="level" width="100" headerAlign="center" header="级别"></div>    
+                <div field="isImported" name="isImported" width="100" headerAlign="center" header="是否进口"></div>  
+                <div field="configure" name="configure" width="100" headerAlign="center" header="配置"></div>  
+                <div field="chargingTime" name="chargingTime" width="100" headerAlign="center" header="充电时间"></div>  
+                <div field="enduranceMileage" name="enduranceMileage" width="100" headerAlign="center" header="续航里程"></div>                                                                                 
+                <div allowSort="true"  field="stockQty" name="stockQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
               </div>
           </div>
     </div>

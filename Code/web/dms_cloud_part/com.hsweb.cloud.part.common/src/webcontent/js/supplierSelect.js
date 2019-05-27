@@ -63,6 +63,16 @@ $(document).ready(function(v)
             });
         }
     });
+    
+
+    document.onkeyup=function(event){
+	    var e=event||window.event;
+	    var keyCode=e.keyCode||e.which;
+	  
+	    if((keyCode==13))  {  //ESC
+	    	onSearch();
+        }
+	}
 });
 var cityList = [];
 var provinceEl = null;

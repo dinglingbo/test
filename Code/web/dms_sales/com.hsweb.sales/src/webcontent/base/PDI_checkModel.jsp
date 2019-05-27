@@ -87,11 +87,12 @@
 
         function edit(e) {
             var tit = null;
-            var row = grid.getSelected();
+            var row = null;
             if (e == 1) {
                 tit = '新增';
             } else {
                 tit = '修改';
+                row = grid.getSelected();
                 if(!row){
                     showMsg('请先选中要修改的数据','W');
                     return;
@@ -100,14 +101,14 @@
             nui.open({
                 url: webPath + contextPath + '/sales/base/PDI_checkModel_det.jsp',
                 title: tit,
-                width: 640,
+                width: 640, 
                 height: 450,
                 onload: function () {
                     var iframe = this.getIFrameEl();
-                    iframe.contentWindow.setData(row);
+                    iframe.contentWindow.setData(row,e);
                 },
                 ondestroy: function (action) {
-                    //visitHis.reload();
+                    grid.reload();
                 }
             });
         }

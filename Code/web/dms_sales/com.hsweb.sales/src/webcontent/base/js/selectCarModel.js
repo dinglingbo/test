@@ -191,3 +191,7 @@ function CloseWindow(action) {
     else
         window.close();
 }
+
+function choose(){
+	CloseWindow("ok");
+}

@@ -57,10 +57,10 @@
                 <input property="editor" class="nui-textbox" />
         </div>
         <div field="code" headerAlign="center" allowSort="true" width="100px">项目编码
-                <input property="editor" class="nui-textbox" />
+                <!-- <input property="editor" class="nui-textbox" /> -->
         </div>
         <div field="pyCode" headerAlign="center" allowSort="true" width="150px">拼音码
-                <input property="editor" class="nui-textbox" />
+                <!-- <input property="editor" class="nui-textbox" /> -->
         </div>
         <div field="pdiTypeId" headerAlign="center" allowSort="true" width="150px">项目类型
                 <input property="editor" class="nui-textbox" />
@@ -83,7 +83,7 @@
   </div>
   <script type="text/javascript">
     nui.parse();
-    function edit(e) {
+/*     function edit(e) {
       var tit = null;
       if (e == 1) {
         tit = '新增';
@@ -103,7 +103,7 @@
           visitHis.reload();
         }
       });
-    }
+    } */
   </script>
 </body>
 

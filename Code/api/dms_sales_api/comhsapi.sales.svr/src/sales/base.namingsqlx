@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="getTemplateDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    SELECT
+		b.`code`,
+		b.py_code pyCode,
+		b.`name`,
+		b.pdi_type_id pdiTypeId,
+		b.order_no orderNo,
+		b.remark,
+		b.is_enable_check isEnableCheck,
+		b.is_disabled isDisabled,
+		a.template_id templateId,
+		a.pdi_id pdiId,
+		a.recorder,
+		a.record_date recordDate,
+		a.modifier,
+		a.modify_date modifyDate,
+		a.id
+	FROM
+		csb_pdi_car_template_detail AS a
+	INNER JOIN csb_pdi AS b ON  b.id = a.pdi_id
+	WHERE 1=1
+        <isNotEmpty prepend="and" property="templateId">  
+       		 a.template_id = #templateId#
+    	</isNotEmpty>
+    </select>
+</sqlMap>

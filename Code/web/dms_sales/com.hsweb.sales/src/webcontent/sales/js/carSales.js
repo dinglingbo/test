@@ -71,7 +71,7 @@ $(document).ready(function(v) {
         }
     });
 
-    mainGrid2.on("drawcell", function(e) {
+    mainGrid3.on("drawcell", function(e) {
         var field = e.field,
             value = e.value;
         if (field == "submitTrueDate" || field == "submiPlanDate" || field == "financialEndDate") {
@@ -125,7 +125,7 @@ function quickSearch(e) {
             queryname = "上年";
             break;
         case 12:
-            param.status = "0,1,2,3";
+            param.status = null;
             menubillstatus = "所有";
             break;
         case 13:
@@ -181,10 +181,12 @@ function onSearch() {
         mainGrid.load({ params: param });
     }
     if (nui.get("typeMsg").value == 2) {
-        param.status = 1;
+        param.status = "1,2";
         mainGrid2.load({ params: param });
     }
     if (nui.get("typeMsg").value == 3) {
+        param.status = 2;
+        param.isSettle = 1;
         mainGrid3.load({ params: param });
     }
 }

@@ -164,8 +164,6 @@
 </div>
 <script type="text/javascript">
   nui.parse();
-
-
   function onChanged(e) {
     var isArtificer = nui.get("isArtificer").value;
     if(isArtificer == true){

@@ -55,6 +55,60 @@
 		<div size="70%" showCollapseButton="false">
 			<div class="nui-fit">
 				<div class="nui-toolbar" style="padding: 2px; height: 35px">
+					<input name="specialCare"
+		             id="specialCare"
+		             class="nui-combobox"
+		             textField="name"
+		             valueField="id"
+		             allowInput="true"
+		             width="100%"
+		             visible="false"
+		            />
+		          <input name="intentLevel"
+		             id="intentLevel"
+		             class="nui-combobox"
+		             textField="name"
+		             valueField="id"
+		             allowInput="true"
+		             width="100%"
+		             visible="false"
+		            />
+		            <input name="comeTypeId"
+	                 id="comeTypeId"
+	                 class="nui-combobox"
+	                 textField="name"
+	                 valueField="id"
+	                 allowInput="true"
+	                 width="100%"
+	                 visible="false"
+	                />
+	              <input name="interialColorId"
+	                 id="interialColorId"
+	                 class="nui-combobox"
+	                 textField="name"
+	                 valueField="id"
+	                 allowInput="true"
+	                 width="100%"
+	                 visible="false"
+	                />
+	                 <input name="frameColorId"
+	                 id="frameColorId"
+	                 class="nui-combobox"
+	                 textField="name"
+	                 valueField="id"
+	                 allowInput="true"
+	                 width="100%"
+	                 visible="false"
+	                />
+	                <input name="source"
+			         id="source"
+			         class="nui-combobox"
+			         textField="name"
+			         valueField="id"
+			         allowInput="true"
+			         width="100%"
+			         visible="false"
+			       />
 					<table id="table1">
 						<tr>
 							 <td style="width:100%;">
@@ -86,16 +140,34 @@
 					</table>
 				</div>
 				<div class="nui-fit">
-					<div id="datagrid1" dataField="data" class="nui-datagrid"
-						pageSize="500" onDrawCell="onDrawCell" 
-						sizeList="[1000,1000,2000]" sortMode="client"
+					 <div id="mainGrid" dataField="list" class="nui-datagrid"
+						pageSize="200" onDrawCell="onDrawCell" 
+						sizeList="[100,300,500]" sortMode="client"
 						onselectionchanged="selectionChanged" onrowclick=""
 						allowSortColumn="true" 
 						style="width: 100%; 
 						height: 100%;"
 						showSummaryRow = "true"
+						allowcelledit="true"
+						allowCellSelect="true"
+						allowCellWrap="true"
+						totalField="page.count"
 						>
-						<div property="columns">
+						<!-- <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
+				           selectOnLoad="true"
+				           showPager="true"
+				           pageSize="50"
+				           totalField="page.count"
+				           sizeList=[20,50,100,200]
+				           dataField="list"
+				           showModified="false"
+				           onrowdblclick=""
+				           allowCellSelect="true"
+				           editNextOnEnterKey="true"
+				           onshowrowdetail="onShowRowDetail"
+				           allowCellWrap = "true"
+				           url=""> -->
+				  <div property="columns">
                   <div type="indexcolumn">序号</div>
                   <div header="来访信息" headerAlign="center">
                   	 <div property="columns" >
@@ -111,7 +183,9 @@
                   <div header="批注" headerAlign="center">
                       <!--回访备注  -->
                       <div property="columns" >
-	                  <div field="scoutRemark" name="scoutRemark" width="170" headerAlign="center" allowsort="false" header="批示内容(可填写)"></div>
+	                  <div field="scoutRemark" name="scoutRemark" width="170" headerAlign="center" allowsort="false" header="批示内容(可填写)">
+	                     <input class="nui-textarea" property="editor">
+	                  </div>
 	                 </div>
                   </div>
                   
@@ -126,12 +200,12 @@
                   </div>
                   <div header="意向信息" headerAlign="center">
 	                  <div property="columns" >	 
-	                      <div field="carModelName" name="carModelName" width="90" headerAlign="center" allowsort="true"  header="车型名称"></div>
+	                      <div field="carModelName" name="carModelName" width="120" headerAlign="center" allowsort="true"  header="车型名称"></div>
 	                  	  <!-- <div field="carModelId" name="carModelId" width="90" headerAlign="center" allowsort="true"  header="车型"></div> -->
   		                  <!-- <div field="packageAmt" name="packageAmt" width="90" headerAlign="center" allowsort="true"  header="规格"></div> -->
-  		                  <div field="frameColorId" name="frameColorId" width="90" headerAlign="center" allowsort="true"  header="车身颜色"></div>
-  		                  <div field="interialColorId" name="interialColorId" width="90" headerAlign="center" allowsort="true"  header="内饰颜色"></div>
-  		                  <div field="expectPrice" name="expectPrice" width="90" headerAlign="center" allowsort="true"  header="预算金额"></div>
+  		                  <div field="frameColorId" name="frameColorId" width="60" headerAlign="center" allowsort="true"  header="车身颜色"></div>
+  		                  <div field="interialColorId" name="interialColorId" width="60" headerAlign="center" allowsort="true"  header="内饰颜色"></div>
+  		                  <div field="expectPrice" name="expectPrice" width="60" headerAlign="center" allowsort="true"  header="预算金额"></div>
   		                  <!-- <div field="expectPrice" name="packageAmt" width="90" headerAlign="center" allowsort="true"  header="零售价"></div> -->
 	                  	</div>
 		           </div>       
@@ -139,7 +213,7 @@
 	                  <div property="columns" >
 	                  	  <div field="remark" name="enterKilometers" width="150" headerAlign="center" header="备注"></div>
 		                  <div field="serviceCode" name="serviceCode" width="130" headerAlign="center"  header="工单号" allowsort="true"></div>
-		                  <div field="orgidName" name="orgidName" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
+		                  <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
 	                  </div>
                   </div>
               </div>	

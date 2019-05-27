@@ -131,6 +131,7 @@ public class ImWebSocketServerHandler   extends SimpleChannelInboundHandler<Mess
     	//设置消息来源为Websocket
     	wrapper.setSource(Constants.ImserverConfig.WEBSOCKET);
         if (wrapper.isConnect()) {
+            System.out.println("20190523连接成功...");
        	    connertor.connect(hander, wrapper); 
         } else if (wrapper.isClose()) {
         	connertor.close(hander,wrapper);

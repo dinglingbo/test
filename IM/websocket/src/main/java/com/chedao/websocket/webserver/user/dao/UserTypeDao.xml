@@ -46,7 +46,7 @@
 		select count(*) from user_info
 	</select>-->
 
-    <insert id="save" parameterType="com.chedao.websocket.webserver.user.model.UserTypeEntity" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.chedao.websocket.webserver.user.model.UserTypeEntity" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
 		insert into user_type
 		(
 			`user_id`,
@@ -72,7 +72,8 @@
 
 
     <delete id="delete">
-		delete from user_type where id = #{value}
+		delete from user_type
+		where id = #{value}
 	</delete>
 
     <!--<delete id="deleteBatch">

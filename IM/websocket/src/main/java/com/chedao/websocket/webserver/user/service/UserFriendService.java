@@ -24,4 +24,6 @@ public interface UserFriendService {
 
     //查找用户好友列表
     List<UserFriendTEntity> queryUserFriendList(String userId);
+
+    boolean refreshUserFriendListCache(String userId);
 }

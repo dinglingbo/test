@@ -71,12 +71,6 @@
     var crmApi   = "<%=crmApi%>";
     var frmApi   = "<%=frmApi%>";
     var wechatApi   = "<%=wechatApi%>";
-
-	$(function(){
-		nui.context='<%=contextPath %>';
-		nui.parse();
-
-	})
     
     <%
 	HttpSession session = request.getSession(false);
@@ -433,4 +427,5 @@
 	}
 
 </script>
+<script src="<%=webPath + contextPath%>/common/nui/jquery/jquery-1.6.2.min.js" type="text/javascript"></script>
 

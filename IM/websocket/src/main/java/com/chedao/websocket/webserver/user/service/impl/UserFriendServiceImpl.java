@@ -89,6 +89,8 @@ public class UserFriendServiceImpl implements UserFriendService {
     @Override
     public List<UserFriendTEntity> queryUserFriendList(String userId) {
         String key = getCacheKey(userId);
+        //1、修改，删除好友分组需要更新缓存
+        //2、修改，删除，移动好友需要更新缓存；删除好友需要更新自己和好友的缓存
         List<UserFriendTEntity> userFriendList = (List<UserFriendTEntity>)jedisCache.hashGet(cacheName,key);
         if (userFriendList == null || userFriendList.size() == 0) {
             System.out.println("缓存中没有数据，需要从数据库读取");
@@ -97,5 +99,12 @@ public class UserFriendServiceImpl implements UserFriendService {
             return userFriendList;
         }
         return userFriendList;
+    }
+
+    //刷新好友列表缓存
+    @Override
+    public boolean refreshUserFriendListCache(String userId) {
+        List<UserFriendTEntity> userFriendList = userFriendDao.queryUserFriendList(userId);
+        return saveUserFriend(userId, userFriendList);
     }
 }

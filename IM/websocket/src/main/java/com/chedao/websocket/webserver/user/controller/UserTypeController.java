@@ -1,8 +1,11 @@
 package com.chedao.websocket.webserver.user.controller;
 
+import com.chedao.websocket.constant.Constants;
 import com.chedao.websocket.webserver.base.controller.BaseController;
 import com.chedao.websocket.webserver.user.model.UserTypeEntity;
+import com.chedao.websocket.webserver.user.service.UserTypeService;
 import com.chedao.websocket.webserver.user.service.impl.UserTypeServiceImpl;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +17,7 @@ import java.util.Date;
 public class UserTypeController extends BaseController {
 
     @Autowired
-    private UserTypeServiceImpl userTypeServiceImpl;
+    private UserTypeService userTypeServiceImpl;
     /**, produces="text/html;charset=UTF-8", method = RequestMethod.POST
      * 保存@RequestParam("name") UserTypeEntity userType,这种请求需要每个属性都写出来,name表示属性，表示只接受name这个参数，如果不写@RequestParam("")这个注解，则传什么属性，接受什么属性
      * @RequestBody UserTypeEntity userType，这种请求是表示接受json格式的，或者接收的是键值对格式，参数不写在URL后面
@@ -23,53 +26,50 @@ public class UserTypeController extends BaseController {
     @RequestMapping(value="/save", produces="application/json;charset=UTF-8", method = RequestMethod.POST)
     @ResponseBody
     public Object save(@RequestBody UserTypeEntity userType){
-
-        userType.setBuildtime(new Date());
-        StringBuilder errCode = new StringBuilder();
-       // String errCode = "1";
-        try{
-            userTypeServiceImpl.save(userType);
-        }catch (Exception e){
-           errCode.append("E");
-           // errCode = "2";
-            return errCode;
+        String userId = userType.getUserid().toString();
+        if(StringUtils.isEmpty(userId)){
+            return putMsgToJsonString(Constants.WebSite.ERROR, "用户ID不能为空", 0, null);
         }
-        errCode.append("S");
-        return errCode;
+        userType.setBuildtime(new Date());
 
-       // return "pppp";
+        try{
+            userType = userTypeServiceImpl.save(userType);
+        }catch (Exception e){
+            return putMsgToJsonString(Constants.WebSite.ERROR, "保存分组信息失败", 0, null);
+        }
+
+        return putMsgToJsonString(Constants.WebSite.SUCCESS, "", 0, userType);
+
     }
 
     @RequestMapping(value="/update", produces="application/json;charset=UTF-8", method = RequestMethod.POST)
     @ResponseBody
     public Object update(@RequestBody UserTypeEntity userType){
-        System.out.print(userType);
         StringBuilder errCode = new StringBuilder();
+        String userId = userType.getUserid().toString();
+        if(StringUtils.isEmpty(userId)){
+            return putMsgToJsonString(Constants.WebSite.ERROR, "用户ID不能为空", 0, null);
+        }
         try{
             userTypeServiceImpl.update(userType);
         }catch (Exception e){
-            errCode.append("E");
-            return errCode;
+            return putMsgToJsonString(Constants.WebSite.ERROR, "保存分组信息失败", 0, userType);
         }
-        errCode.append("S");
-        return errCode;
-        // return "pppp";
+        return putMsgToJsonString(Constants.WebSite.SUCCESS, "", 0, userType);
     }
 
-    @RequestMapping(value="/delet/{id}", produces="application/json;charset=UTF-8", method = RequestMethod.POST)
+    @RequestMapping(value="/delet/{id}/{userId}", produces="application/json;charset=UTF-8", method = RequestMethod.POST)
     @ResponseBody
-    public Object delet(@PathVariable("id")  Long id){
-        System.out.print(id);
+    public Object delet(@PathVariable("id")  Long id, @PathVariable("userId")String userId){
+
         StringBuilder errCode = new StringBuilder();
         try{
-            userTypeServiceImpl.delete(id);
+            //需要判断该组下面有没有成员，接下来处理
+            userTypeServiceImpl.delete(id, userId);
         }catch (Exception e){
-            errCode.append("E");
-            return errCode;
+            return putMsgToJsonString(Constants.WebSite.ERROR, "删除分组信息失败", 0, null);
         }
-        errCode.append("S");
-        return errCode;
-        // return "pppp";
+        return putMsgToJsonString(Constants.WebSite.SUCCESS, "删除分组信息成功", 0, id);
     }
 
 

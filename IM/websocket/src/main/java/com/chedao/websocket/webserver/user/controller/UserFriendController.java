@@ -89,7 +89,7 @@ public class UserFriendController extends BaseController {
      */
     @ResponseBody
     @RequestMapping(value = "/isFriend", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
-    public Map<String,Object> updataGroupInfo(@RequestBody Map<String,Object> params){
+    public Map<String,Object> checkIsFriend(@RequestBody Map<String,Object> params){
         Map<String, Object> map = new HashMap<String, Object>();
         StringBuilder errCode= new StringBuilder();
         String userId = (String) params.get("userId");

@@ -74,8 +74,8 @@ public class ImWebsocketServer  {
             @Override
             public void initChannel(SocketChannel ch) throws Exception {
 	    		ChannelPipeline pipeline = ch.pipeline();
-	    		
-	    		 // HTTP请求的解码和编码
+
+                // HTTP请求的解码和编码
 	            pipeline.addLast(new HttpServerCodec());
 	            // 把多个消息转换为一个单一的FullHttpRequest或是FullHttpResponse，
 	            // 原因是HTTP解码器会在每个HTTP消息中生成多个消息对象HttpRequest/HttpResponse,HttpContent,LastHttpContent
@@ -113,8 +113,8 @@ public class ImWebsocketServer  {
 	            });
 	            // 协议包解码时指定Protobuf字节数实例化为CommonProtocol类型
 	            pipeline.addLast(decoder);
-	            pipeline.addLast(new IdleStateHandler(Constants.ImserverConfig.READ_IDLE_TIME,Constants.ImserverConfig.WRITE_IDLE_TIME,0));
-	            // 业务处理器
+                pipeline.addLast(new IdleStateHandler(Constants.ImserverConfig.READ_IDLE_TIME,Constants.ImserverConfig.WRITE_IDLE_TIME,0));
+                // 业务处理器
 	            pipeline.addLast(new ImWebSocketServerHandler(proxy,connertor));
 	    		 
             }

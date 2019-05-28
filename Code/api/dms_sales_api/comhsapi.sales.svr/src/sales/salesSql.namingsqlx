@@ -112,10 +112,14 @@
 			b.adjustment_amt	AS	adjustmentAmt,
 			b.adjustment_remark	AS	adjustmentRemark,
 			b.total_gross_profit	AS	totalGrossProfit,
-			b.total_gross_profit_rate	AS	totalGrossProfitRate		
+			b.total_gross_profit_rate	AS	totalGrossProfitRate,
+			c.contactor	AS contactor,
+			c.contactor_tel AS contactorTel
 		FROM css_sale_main a 
 			INNER JOIN css_sale_extend b
 				ON a.id = b.id
+			INNER JOIN wb_common.com_guest c
+				ON a.guest_id = c.id
 		WHERE 1 = 1
 		<dynamic>
 			<isNotEmpty prepend="and" property="serviceCode">
@@ -395,6 +399,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="orderIds">  
                     (A.order_id in ($orderIds$))
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="carModelId">  
+                    (A.car_model_id = #carModelId#)
                 </isNotEmpty>
             </dynamic>  
            

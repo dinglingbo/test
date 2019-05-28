@@ -13,7 +13,7 @@
         <title>编辑整车销售</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.096" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.100" type="text/javascript"></script>
 
     </head>
     <style type="text/css">
@@ -122,7 +122,7 @@
                     <td class="td_title">单据日期：
                     </td>
                     <td>
-                        <input id="orderDate" name="orderDate" class="nui-datepicker" style="width: 100%" />
+                        <input id="orderDate" name="orderDate" class="nui-datepicker" style="width: 100%" enabled="false" />
                     </td>
                     <td class="td_title">预交日期：
                     </td>
@@ -132,24 +132,24 @@
                     <td class="td_title">客户名称：
                     </td>
                     <td>
-                        <input class="nui-textbox" id="guestFullName" name="guestFullName" style="width: 100%;">
+                        <input class="nui-textbox" id="guestFullName" name="guestFullName" style="width: 100%;" enabled="false">
                     </td>
                     <td align="right" class="auto-style1">销售顾问：
                     </td>
                     <td class="auto-style1">
-                        <input class="nui-combobox" id="saleAdvisorId" name="saleAdvisorId" style="width: 100%;" textField="empName" valueField="empId">
+                        <input class="nui-combobox" id="saleAdvisorId" name="saleAdvisorId" style="width: 100%;" textField="empName" valueField="empId" enabled="false">
                     </td>
                     <td align="right" class="auto-style1">联系人：
                     </td>
                     <td class="auto-style1">
-                        <input id="txtLinkMan" style="width: 100%;" class="nui-textbox" />
+                        <input id="contactor" name="contactor" style="width: 100%;" class="nui-textbox" enabled="false" />
                     </td>
                 </tr>
                 <tr>
                     <td align="right" class="auto-style1">手机号码：
                     </td>
                     <td class="auto-style1">
-                        <input id="txtMovePhone" style="width: 100%;" class="nui-textbox" />
+                        <input id="contactorTel" name="contactorTel" style="width: 100%;" class="nui-textbox" enabled="false" />
                     </td>
                     <td align="right">购车方式：
                     </td>
@@ -257,7 +257,7 @@
                             </tr>
                             <tr>
                                 <td class="td_title">保费收取方式：</td>
-                                <td class=""><input class="nui-combobox" name="settleTypeId" id="settleTypeId" valueField="id" textField="name" dataField="settleTypeIdList" width="100%" /></td>
+                                <td class=""><input class="nui-combobox" name="settleTypeId" id="settleTypeId" valueField="id" textField="name" data="settleTypeIdList" dataField="settleTypeIdList" width="100%" /></td>
                                 <td class="td_title">其他成本：</td>
                                 <td><input class="nui-textbox" name="costAmt" id="costAmt" width="100%" vtype="float" onvaluechanged="changeCostAmt" /></td>
                                 <td class="td_title">其他成本说明：</td>
@@ -371,6 +371,7 @@
                 id: 1,
                 text: "否"
             }];
+
             nui.parse();
         </script>
     </body>

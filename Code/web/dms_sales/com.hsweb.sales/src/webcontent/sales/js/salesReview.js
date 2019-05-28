@@ -24,6 +24,7 @@ function SetData(serviceId) {
                 var data = text.data[0];
                 form.setData(data);
                 nui.get("id").setValue(serviceId);
+                changeValueMsg(1);
             };
         }
     });

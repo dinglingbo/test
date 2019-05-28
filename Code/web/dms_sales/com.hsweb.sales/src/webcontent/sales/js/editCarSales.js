@@ -1,5 +1,5 @@
 var webBaseUrl = webPath + contextPath + "/";
-var baseUrl = apiPath + saleApi + "/";
+var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var billForm = null;
 var jpGrid = null;
 var jpUrl = baseUrl + "sales.search.searchCsbGiftMsg.biz.ext";
@@ -14,6 +14,8 @@ var form = null;
 var is_not = [{ id: 0, text: '未审' }, { id: 1, text: '已审' }];
 var insuranceForm = null;
 var detailGrid = null;
+var detailGridUrl = baseUrl + "com.hsapi.repair.repairService.insurance.queryRpsInsuranceDetailList.biz.ext";
+var settleTypeIdList = [{ id: 1, name: "保司直收" }, { id: 2, name: "门店代收全款" }, { id: 3, name: "代收减返点" }];
 $(document).ready(function(v) {
 
     document.getElementById("caCalculation").src = webBaseUrl + "sales/sales/caCalculation.jsp";
@@ -28,6 +30,7 @@ $(document).ready(function(v) {
     };
     detailGrid = nui.get("detailGrid");
     detailGrid.setReadOnly(true);
+    detailGrid.setUrl(detailGridUrl);
 
     jpGrid = nui.get("jpGrid");
     jpGrid.setUrl(jpUrl);
@@ -219,6 +222,7 @@ $(document).ready(function(v) {
         nui.get("saleAdvisorId").setText(currUserName);
         var data = nui.get("saleAdvisorId").getData();
         nui.get("submitCarMen").setData(data);
+        nui.get("saleManIds").setData(data);
     });
 });
 
@@ -239,14 +243,18 @@ function selectCar() { //点击选车时触发
         height: "50%",
         onload: function() {
             var iframe = this.getIFrameEl();
+            iframe.contentWindow.SetData(billFormData.carModelId);
         },
         ondestroy: function(action) {
             if (action == "ok") {
                 var iframe = this.getIFrameEl();
                 var data = iframe.contentWindow.getSelectedValue();
                 var billFormData = billForm.getData(true); //主表信息
-                billFormData.carModelId = data.carModelId; //车型id
-                billFormData.carModelName = data.carModelName; //车型全称
+                var handcartAmt = data.receiveCost || 0; //运输成本
+                var carCost = data.unitPrice || 0; //购买成本
+                billForm.setData(billFormData);
+                document.getElementById("caCalculation").contentWindow.setSelectCarValue(handcartAmt, carCost);
+                save(2);
             }
         }
     });
@@ -313,6 +321,11 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
     billFormData.saleAdvisor = nui.get("saleAdvisorId").text;
     billFormData.status = e; //0 草稿 、1提交（待审）、2已审、3作废
     var formData = form.getData();
+    if (formData.isValid()) {
+        showMsg("交车信息有误，请检查后再保存！", "W");
+        return;
+    }
+
     billFormData.submitCarMen = formData.submitCarMen;
     billFormData.submitTrueDate = formData.submitTrueDate;
     billFormData.submitCarKeyQty = formData.submitCarKeyQty;
@@ -391,7 +404,9 @@ function setInitData(params) {
         jpDetailGrid.load({ billType: 2, serviceId: params.id });
         costDetailGrid.load({ serviceId: params.id, type: 1 });
         costDetailGrid2.load({ serviceId: params.id, type: 2 });
-        //读取保险信息
+    } else {
+        var date = new Date();
+        nui.get("orderDate").setValue(date);
     }
 }
 
@@ -422,6 +437,28 @@ function searchSalesMain(serviceId) { //查询主表信息
                     setInputModel();
                     document.getElementById("caCalculation").contentWindow.setInputModel();
                 }
+                if (data.guestId) {
+                    insuranceMsg(data.guestId)
+                }
+            };
+        }
+    });
+}
+
+function insuranceMsg(guestId) {
+    var params = { guestId: guestId };
+    nui.ajax({
+        url: baseUrl + "sales.search.searchInsuranceMsg.biz.ext",
+        data: {
+            params: params
+        },
+        cache: false,
+        success: function(text) {
+            if (text.errCode == "S") {
+                var list = text.list[0];
+                var data = text.data;
+                detailGrid.setData(data);
+                insuranceForm.setData(list);
             };
         }
     });

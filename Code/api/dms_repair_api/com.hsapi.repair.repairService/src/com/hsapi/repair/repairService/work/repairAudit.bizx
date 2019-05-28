@@ -530,14 +530,6 @@
       <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">itemTemp/finishDate</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
-      <process:to type="query">itemTemp/modifier</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">d</process:from>
-      <process:to type="query">itemTemp/modifyDate</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
     <location x="96" y="141"/>
@@ -595,7 +587,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
-    <location x="608" y="-41"/>
+    <location x="608" y="-15"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess3label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
@@ -610,7 +602,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess3label" name="label" nodeType="label">
-    <location x="555" y="-6"/>
+    <location x="555" y="20"/>
     <figSize height="17" width="132"/>
     <node>subprocess3</node>
   </nodes>

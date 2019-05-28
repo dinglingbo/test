@@ -9,11 +9,11 @@ import java.util.Map;
 public interface UserTypeService {
 
 
-    void save(UserTypeEntity userMessage);
+    UserTypeEntity save(UserTypeEntity userMessage);
 
     int update(UserTypeEntity userMessage);
 
-    int delete(Long id);
+    int delete(Long id, String userId);
 
     List<UserTypeEntity> queryList(Map<String, Object> map);
 

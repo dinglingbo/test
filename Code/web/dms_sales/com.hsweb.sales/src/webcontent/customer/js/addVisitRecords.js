@@ -92,54 +92,6 @@ function getServiceTypeList(data,callback){
 	}
 }
 
-
-function add2(){
-	/*nui.open({
-		url : webPath + contextPath + "/com.hsweb.repair.potentialCustomer.addVisitRecords.flow?token=" + token,
-		title : "新增来访记录",
-		width : 1000,
-		height : 560,
-		allowDrag : true,
-		allowResize : true,
-		onload : function() {
-			var iframe = this.getIFrameEl();
-            iframe.contentWindow.updatRowSetData(params);//显示该显示的功能
-           // iframe.contentWindow.setViewData(dock, dodelck, docck);
-		},
-		ondestroy : function(action) {
-			
-			
-		}
-	});*/
-	var part={};
-    part.id = "addVisitors";
-    part.text = "新增来访记录";
-    part.url = webPath + contextPath + "/com.hsweb.repair.potentialCustomer.addVisitRecords.flow?token="+token;
-    part.iconCls = "fa fa-file-text";
-    var params = {};
-    window.parent.activeTabAndInit(part,params);
-}
-
-function addFollowUpRecord(){
-	nui.open({
-		url : webPath + contextPath + "/com.hsweb.repair.potentialCustomer.FollowUpRecord.flow?token=" + token,
-		title : "新增跟进记录",
-		width : 600,
-		height : 360,
-		allowDrag : true,
-		allowResize : true,
-		onload : function() {
-			/*var iframe = this.getIFrameEl();
-            iframe.contentWindow.updatRowSetData(params);//显示该显示的功能
-           // iframe.contentWindow.setViewData(dock, dodelck, docck);
-*/		},
-		ondestroy : function(action) {
-			
-			
-		}
-	});
-}
-
 function potentialCustomer(){
 	nui.open({
 		url : webPath + contextPath + "/com.hsweb.repair.potentialCustomer.check.flow?token=" + token,
@@ -350,7 +302,7 @@ function buyCarCount(){
 			height: 500,
 			onload: function () {
 			var iframe = this.getIFrameEl();
-			iframe.contentWindow.setShowSave(main.id);
+			iframe.contentWindow.setData(main.id);
 			},
 			ondestroy: function (action) {
 			var iframe = this.getIFrameEl();
@@ -384,7 +336,7 @@ function addGift(){
 			height: 500,
 			onload: function () {
 			var iframe = this.getIFrameEl();
-			//iframe.contentWindow.setShowSave(main.id);
+			iframe.contentWindow.setData(main.id);
 			},
 			ondestroy: function (action) {
 			var iframe = this.getIFrameEl();

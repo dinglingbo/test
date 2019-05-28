@@ -187,40 +187,52 @@ $(document).ready(function (){
 };*/
 var saveUrl = apiPath + saleApi + "/sales.save.saveGiftApply.biz.ext";
 function save(){
-   var jpDetailGridAdd = jpDetailGrid.getChanges("added"); //精品加装
-   var jpDetailGridEdit = jpDetailGrid.getChanges("modified");
-   var jpDetailGridDel = jpDetailGrid.getChanges("removed");
-   nui.mask({
-        el: document.body,
-        cls: 'mini-mask-loading',
-        html: '保存中...'
-    });
-     var json = nui.encode({
-        serviceId:serviceIdF,
-   		jpDetailGridAdd:jpDetailGridAdd,
-   		jpDetailGridEdit:jpDetailGridEdit,
-   		jpDetailGridDel:jpDetailGridDel,
-   		token:token
-   	  });
-	nui.ajax({
-		url : saveUrl,
-		type : 'POST',
-		data : json,
-		cache : false,
-		contentType : 'text/json',
-		success : function(text) {
-			if(text.errCode=="S"){
-		    	showMsg("保存成功","S");
-		    }else{
-		    	showMsg("保存失败","E");
-		    }
-			nui.unmask(document.body);
-		}
-    }); 
+    if (serviceIdF && serviceIdF < 0) {
+        showMsg("请先保存来访登记", "W");
+        return;
+    }else if(statusF==1){
+    	showMsg("来访登记已归档不能修改!","W");
+    	return;
+    }else if(statusF==2){
+    	showMsg("来访登记已转销售不能修改!","W");
+    	return;
+    }else {
+       var jpDetailGridAdd = jpDetailGrid.getChanges("added"); //精品加装
+	   var jpDetailGridEdit = jpDetailGrid.getChanges("modified");
+	   var jpDetailGridDel = jpDetailGrid.getChanges("removed");
+	   nui.mask({
+	        el: document.body,
+	        cls: 'mini-mask-loading',
+	        html: '保存中...'
+	    });
+	     var json = nui.encode({
+	        serviceId:serviceIdF,
+	   		jpDetailGridAdd:jpDetailGridAdd,
+	   		jpDetailGridEdit:jpDetailGridEdit,
+	   		jpDetailGridDel:jpDetailGridDel,
+	   		token:token
+	   	  });
+		nui.ajax({
+			url : saveUrl,
+			type : 'POST',
+			data : json,
+			cache : false,
+			contentType : 'text/json',
+			success : function(text) {
+				if(text.errCode=="S"){
+			    	showMsg("保存成功","S");
+			    }else{
+			    	showMsg("保存失败","E");
+			    }
+				nui.unmask(document.body);
+			}
+	    }); 
+    }
 }
-
-function setData(id){
-    serviceIdF = id;
+var statusF = null;
+function setData(params){
+    serviceIdF = params.id;
+    statusF = params.status;
     jpDetailGrid.load({
         token:token,
         serviceId:serviceIdF,

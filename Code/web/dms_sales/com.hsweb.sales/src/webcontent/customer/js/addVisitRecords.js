@@ -45,7 +45,6 @@ $(document).ready(function ()
         var text = saleAdvisorIdEl.getText();
         nui.get("saleAdvisor").setValue(text);
     });*/
-	
 });
 
 
@@ -160,6 +159,10 @@ var requiredField = {
 };
 function save(){
 	var guestCome = guestComeForm.getData("true");
+	if(guestCome.status==1){
+		showMsg("来访登记已归档，不能修改","W");
+		return;
+	}
 	var text = saleAdvisorIdEl.getText();
 	guestCome.saleAdvisor = text;
 	for ( var key in requiredField) {
@@ -221,8 +224,9 @@ function save(){
 		    	$("#carModelNameEl").html(guestCome.carModelName);
 		    	$("#nameEl").html(guest.fullName);
 		    	showMsg("保存成功","S");
+		    	doSetStyle(guestCome.status);
 		    }else{
-		    	showMsg("保存失败","E");
+		    	showMsg(text.errMsg || "保存失败","E");
 		    }
 			nui.unmask(document.body);
 		}
@@ -275,6 +279,7 @@ function setInitData(params){
 		    	nui.get("carModelId").setValue(guestCome.carModelId);
 		    	nui.get("carModelName").setValue(guestCome.carModelName);
 		    	nui.get("carModelName").setText(guestCome.carModelName);
+		    	doSetStyle(guestCome.status);
 		    }
 			nui.unmask(document.body);
 		}
@@ -286,14 +291,14 @@ function setInitData(params){
 function buyCarCount(){
 	var main = guestComeForm.getData();
 	var status = main.status || 0;
-	if(status > 1){
-		showMsg("登记记录已归档，不能修改！","W");
+	/*if(status == 1){
+		showMsg("来访登记已归档，不能修改！","W");
 		return;
 	}
 	if(status == 2){
-		showMsg("登记记录已转销售，不能修改！","W");
+		showMsg("来访登记已转销售，不能修改！","W");
 		return;
-	}
+	}*/
 	if(main.id !="" && main.id !=null){
 		nui.open({
 			url: webPath + contextPath + '/sales/sales/caCalculation.jsp',
@@ -302,7 +307,7 @@ function buyCarCount(){
 			height: 500,
 			onload: function () {
 			var iframe = this.getIFrameEl();
-			iframe.contentWindow.setShowSave(main.id);
+			iframe.contentWindow.setShowSave(main);
 			},
 			ondestroy: function (action) {
 			var iframe = this.getIFrameEl();
@@ -336,7 +341,7 @@ function addGift(){
 			height: 500,
 			onload: function () {
 			var iframe = this.getIFrameEl();
-			iframe.contentWindow.setData(main.id);
+			iframe.contentWindow.setData(main);
 			},
 			ondestroy: function (action) {
 			var iframe = this.getIFrameEl();
@@ -346,5 +351,57 @@ function addGift(){
 	}else{
 		showMsg("请先保存来访登记!","W");
 		return;
+	}
+}
+//归档
+var statusUrl = apiPath + saleApi + "/sales.custormer.changStatus.biz.ext";
+function changStatus(){
+	var guestCome = guestComeForm.getData("true");
+	if(status == 1){
+		showMsg("来访登记已归档！","W");
+		return;
+	}
+	if(status == 2){
+		showMsg("来访登记已转销售！","W");
+		return;
+	}
+	var json = nui.encode({
+         id:guestCome.id,
+		 token:token
+	  });
+	nui.mask({
+       el: document.body,
+       cls: 'mini-mask-loading',
+       html: '保存中...'
+   });
+	nui.ajax({
+		url : statusUrl,
+		type : 'POST',
+		data : json,
+		cache : false,
+		contentType : 'text/json',
+		success : function(text) {
+			if(text.errCode=="S"){
+				showMsg("归档成功","S");
+				guestCome.status = 1;
+				guestComeForm.setData(guestCome);
+				doSetStyle(1);
+		    }else{
+		    	showMsg("归档失败","E");
+		    }
+			nui.unmask(document.body);
+		}
+	 });
+}
+
+function doSetStyle(status){
+	status = status||0;
+	$("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
+	if(status==0){
+		$("#addStatus").attr("class", "statusview");
+	}else if(status==1){
+		$("#repairStatus").attr("class", "statusview");
+	}else if(status==2){
+		$("#finishStatus").attr("class", "statusview");
 	}
 }

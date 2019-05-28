@@ -170,20 +170,23 @@ function setInputModel() { //恢复表格为输入模式
 }
 
 var comeServiceIdF = null;
+var statusF = null;
 var saveComeUrl = baseUrl + "sales.save.saveSaleCalc.biz.ext";
 var jpDetailGridUrl = baseUrl + "sales.search.searchSaleGiftApply.biz.ext";
-function setShowSave(serviceId) {
-    comeServiceIdF = serviceId;
+function setShowSave(params) {
+    comeServiceIdF = params.id;
+    statusF = params.status;
     var showSave = document.getElementById("showSave");
     showSave.style.display = "";
-    if (serviceId) {
+    nui.get("saleType").setEnabled(true);
+    if (comeServiceIdF) {
         nui.ajax({
             url: baseUrl + "sales.search.searchSaleCalc.biz.ext",
             type: "post",
             cache: false,
             data: {
                 billType: 1,
-                serviceId: serviceId
+                serviceId: comeServiceIdF
             },
             success: function(text) {
                 if (text.errCode == "S") {
@@ -240,7 +243,13 @@ function saveCome() {
     if (comeServiceIdF && comeServiceIdF < 0) {
         showMsg("请先保存来访登记", "W");
         return;
-    } else {
+    }else if(statusF==1){
+    	showMsg("来访登记已归档不能修改!","W");
+    	return;
+    }else if(statusF==2){
+    	showMsg("来访登记已转销售不能修改!","W");
+    	return;
+    }else {
         caCalculationData.billType = 1; //来访登记的预算
         var json = nui.encode({
             caCalculationData: caCalculationData,

@@ -30,7 +30,7 @@ function getValue() {
     return params;
 }
 
-function SetDataMsg(serviceId) {
+function SetDataMsg(serviceId, frameColorId, interialColorId) {
     var params = { billType: 2, serviceId: serviceId };
     nui.ajax({
         url: baseUrl + "sales.search.searchSaleCalc.biz.ext",
@@ -51,6 +51,12 @@ function SetDataMsg(serviceId) {
                     nui.get("riskAmt").disable(); //月供保证金
                     nui.get("familyAmt").disable(); //家访费
                     nui.get("loanPercent").disable(); //贷款比例
+                }
+                if (!data.frameColorId) { //没值则取销售主表的颜色
+                    nui.get("frameColorId").setValue(frameColorId);
+                }
+                if (!data.interialColorId) {
+                    nui.get("interialColorId").setValue(interialColorId);
                 }
             }
         }
@@ -173,6 +179,7 @@ var comeServiceIdF = null;
 var statusF = null;
 var saveComeUrl = baseUrl + "sales.save.saveSaleCalc.biz.ext";
 var jpDetailGridUrl = baseUrl + "sales.search.searchSaleGiftApply.biz.ext";
+
 function setShowSave(params) {
     comeServiceIdF = params.id;
     statusF = params.status;
@@ -204,7 +211,7 @@ function setShowSave(params) {
                         }
                     }
                 }
-              //查找精品加装费用
+                //查找精品加装费用
                 nui.ajax({
                     url: jpDetailGridUrl,
                     type: "post",
@@ -214,21 +221,21 @@ function setShowSave(params) {
                         serviceId: serviceId
                     },
                     success: function(text) {
-                        if (text.errCode == "S") {
-                        	var giftData = text.data;
-                        	var amt = 0;
-                            if (giftData.length > 0) {
-                              for(var i=0;i< giftData.length;i++){
-                            	  var  temp = giftData[i];
-                            	  amt = amt + temp.amt;
-                              } 
-                            }
-                            if(amt>0){
-                            	nui.get("decrAmt").setValue(amt);
+                            if (text.errCode == "S") {
+                                var giftData = text.data;
+                                var amt = 0;
+                                if (giftData.length > 0) {
+                                    for (var i = 0; i < giftData.length; i++) {
+                                        var temp = giftData[i];
+                                        amt = amt + temp.amt;
+                                    }
+                                }
+                                if (amt > 0) {
+                                    nui.get("decrAmt").setValue(amt);
+                                }
                             }
                         }
-                    }
-                    //查找精品加装费用
+                        //查找精品加装费用
                 });
             }
         });
@@ -243,13 +250,13 @@ function saveCome() {
     if (comeServiceIdF && comeServiceIdF < 0) {
         showMsg("请先保存来访登记", "W");
         return;
-    }else if(statusF==1){
-    	showMsg("来访登记已归档不能修改!","W");
-    	return;
-    }else if(statusF==2){
-    	showMsg("来访登记已转销售不能修改!","W");
-    	return;
-    }else {
+    } else if (statusF == 1) {
+        showMsg("来访登记已归档不能修改!", "W");
+        return;
+    } else if (statusF == 2) {
+        showMsg("来访登记已转销售不能修改!", "W");
+        return;
+    } else {
         caCalculationData.billType = 1; //来访登记的预算
         var json = nui.encode({
             caCalculationData: caCalculationData,

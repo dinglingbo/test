@@ -411,7 +411,6 @@ function setInitData(params) {
         document.getElementById("caseno").style.display = "";
     }
     if (params.id) {
-        document.getElementById("caCalculation").contentWindow.SetDataMsg(params.id);
         searchSalesMain(params.id);
         jpDetailGrid.load({ billType: 2, serviceId: params.id });
         costDetailGrid.load({ serviceId: params.id, type: 1 });
@@ -440,6 +439,8 @@ function searchSalesMain(serviceId) { //查询主表信息
                 billForm.setData(data);
                 form.setData(data);
                 document.getElementById("serviceCode").innerHTML = data.serviceCode;
+
+                document.getElementById("caCalculation").contentWindow.SetDataMsg(data.id, data.frameColorId, data.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
                 if (data.status != 0) {
                     nui.get("saveBtn").disable();
                     nui.get("submitBtn").disable();

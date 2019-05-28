@@ -42,10 +42,17 @@
 	width: calc(100% - 20px) !important;
 }
 
-  .nvstatusview{color: #5a78a0;padding:3px 20px; border-radius:20px;border: 1px solid;}
-.required {
-	color: red;
-}
+        .statusview{background:#78c800; color:#fff; padding:3px 20px; border-radius:20px;}
+
+        .nvstatusview{color: #5a78a0;padding:3px 20px; border-radius:20px;border: 1px solid;}
+
+        .bottomfont{font-size: 20px;}
+
+        .showhealthcss{color: #5a78a0;padding:3px 20px;border: 1px solid;}
+       
+		.required {
+			color: red;
+		}
 </style>
 </head>
 <body>
@@ -66,7 +73,7 @@
             <td style="text-align:right;">
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" onclick="save()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;归档</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="changStatus()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;归档</a>
                 <a class="nui-button" onclick="onCancel" plain="true"  style="width: 80px;"><span class="fa fa-mail-forward  fa-lg"></span>&nbsp;转销售</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="addGift()" id="addBtn"><span class="fa fa-shopping-bag fa-lg"></span>&nbsp;精品加装</a>
                 <a class="nui-button" onclick="buyCarCount" plain="true"  style="width: 80px;"><span class="fa fa-dollar fa-lg"></span>&nbsp;购车预算</a>
@@ -96,6 +103,7 @@
                  visible="false"
                 /> -->
             <input id="saleAdvisor" name="saleAdvisor" class="nui-hidden"/>
+            <input id="status" name="status" class="nui-hidden"/>
 	        <input name="id" class="nui-hidden" id="mainId"/>
 	        <input id="guestId" name="guestId" class="nui-hidden"/>
 	        <input class="mini-hidden" id="status" name="status" />
@@ -277,6 +285,7 @@
 	</tr>
     <tr>
 	<td class="form_label">
+	 在
 			<!-- <input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/><label>在</label> -->
 		</td>
     <td colspan="5">
@@ -293,7 +302,7 @@
     			<tr>
     				<tr>
     					<td  style='height: 100%;font-size:18px'>
-					      <label style="font-family:Verdana;">服务进度:</label>
+					      <label style="font-family:Verdana;color: color:#5a78a0">服务进度:</label>
 					      <label style="font-family:Verdana;"><span id="addStatus" name="statusvi" class="nvstatusview">草稿</span></label>
 					      <label style="font-family:Verdana;">&nbsp;>&nbsp;</label>
 					      <label style="font-family:Verdana;"><span id="repairStatus" name="statusvi" class="nvstatusview">归档</span></label>

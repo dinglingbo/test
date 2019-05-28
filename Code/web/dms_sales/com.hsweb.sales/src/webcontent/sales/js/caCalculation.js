@@ -170,20 +170,23 @@ function setInputModel() { //恢复表格为输入模式
 }
 
 var comeServiceIdF = null;
+var statusF = null;
 var saveComeUrl = baseUrl + "sales.save.saveSaleCalc.biz.ext";
-
-function setShowSave(serviceId) {
-    comeServiceIdF = serviceId;
+var jpDetailGridUrl = baseUrl + "sales.search.searchSaleGiftApply.biz.ext";
+function setShowSave(params) {
+    comeServiceIdF = params.id;
+    statusF = params.status;
     var showSave = document.getElementById("showSave");
     showSave.style.display = "";
-    if (serviceId) {
+    nui.get("saleType").setEnabled(true);
+    if (comeServiceIdF) {
         nui.ajax({
             url: baseUrl + "sales.search.searchSaleCalc.biz.ext",
             type: "post",
             cache: false,
             data: {
                 billType: 1,
-                serviceId: serviceId
+                serviceId: comeServiceIdF
             },
             success: function(text) {
                 if (text.errCode == "S") {
@@ -201,6 +204,32 @@ function setShowSave(serviceId) {
                         }
                     }
                 }
+              //查找精品加装费用
+                nui.ajax({
+                    url: jpDetailGridUrl,
+                    type: "post",
+                    cache: false,
+                    data: {
+                        billType: 1,
+                        serviceId: serviceId
+                    },
+                    success: function(text) {
+                        if (text.errCode == "S") {
+                        	var giftData = text.data;
+                        	var amt = 0;
+                            if (giftData.length > 0) {
+                              for(var i=0;i< giftData.length;i++){
+                            	  var  temp = giftData[i];
+                            	  amt = amt + temp.amt;
+                              } 
+                            }
+                            if(amt>0){
+                            	nui.get("decrAmt").setValue(amt);
+                            }
+                        }
+                    }
+                    //查找精品加装费用
+                });
             }
         });
     } else {
@@ -214,7 +243,13 @@ function saveCome() {
     if (comeServiceIdF && comeServiceIdF < 0) {
         showMsg("请先保存来访登记", "W");
         return;
-    } else {
+    }else if(statusF==1){
+    	showMsg("来访登记已归档不能修改!","W");
+    	return;
+    }else if(statusF==2){
+    	showMsg("来访登记已转销售不能修改!","W");
+    	return;
+    }else {
         caCalculationData.billType = 1; //来访登记的预算
         var json = nui.encode({
             caCalculationData: caCalculationData,

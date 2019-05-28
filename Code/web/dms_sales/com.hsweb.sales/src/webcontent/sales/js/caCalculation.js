@@ -166,7 +166,7 @@ function setInputModel() { //恢复表格为输入模式
 
 var comeServiceIdF = null;
 var saveComeUrl = baseUrl + "sales.save.saveSaleCalc.biz.ext";
-
+var jpDetailGridUrl = baseUrl + "sales.search.searchSaleGiftApply.biz.ext";
 function setShowSave(serviceId) {
     comeServiceIdF = serviceId;
     var showSave = document.getElementById("showSave");
@@ -196,6 +196,32 @@ function setShowSave(serviceId) {
                         }
                     }
                 }
+              //查找精品加装费用
+                nui.ajax({
+                    url: jpDetailGridUrl,
+                    type: "post",
+                    cache: false,
+                    data: {
+                        billType: 1,
+                        serviceId: serviceId
+                    },
+                    success: function(text) {
+                        if (text.errCode == "S") {
+                        	var giftData = text.data;
+                        	var amt = 0;
+                            if (giftData.length > 0) {
+                              for(var i=0;i< giftData.length;i++){
+                            	  var  temp = giftData[i];
+                            	  amt = amt + temp.amt;
+                              } 
+                            }
+                            if(amt>0){
+                            	nui.get("decrAmt").setValue(amt);
+                            }
+                        }
+                    }
+                    //查找精品加装费用
+                });
             }
         });
     } else {

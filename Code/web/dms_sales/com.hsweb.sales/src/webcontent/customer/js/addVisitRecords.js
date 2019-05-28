@@ -302,7 +302,7 @@ function buyCarCount(){
 			height: 500,
 			onload: function () {
 			var iframe = this.getIFrameEl();
-			iframe.contentWindow.setData(main.id);
+			iframe.contentWindow.setShowSave(main.id);
 			},
 			ondestroy: function (action) {
 			var iframe = this.getIFrameEl();

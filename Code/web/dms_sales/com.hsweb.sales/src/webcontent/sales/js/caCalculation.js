@@ -156,6 +156,11 @@ function setReadOnlyMsg() {
     };
 }
 
+function setSelectCarValue(handcartAmt, carCost) { //选车之后将成本、运费赋值上来
+    nui.get("handcartAmt").setValue(handcartAmt);
+    nui.get("carCost").setValue(carCost);
+}
+
 function setInputModel() { //恢复表格为输入模式
     var fields = form.getFields();
     for (var i = 0, l = fields.length; i < l; i++) {

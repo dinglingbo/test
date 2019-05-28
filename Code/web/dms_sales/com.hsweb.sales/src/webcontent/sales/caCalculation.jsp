@@ -13,7 +13,7 @@
         <title>购车计算</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%=request.getContextPath()%>/sales/sales/js/caCalculation.js?v=1.0.93"></script>
+            <script src="<%=request.getContextPath()%>/sales/sales/js/caCalculation.js?v=1.0.945"></script>
     </head>
     <style type="text/css">
         body {
@@ -80,9 +80,10 @@
             </table>
         </div>
         <form id="form1">
-            <input class="nui-hidden" name="id" />
+            <input class="nui-hidden" id="mainId" name="id" />
+            <input class="nui-hidden" id="handcartAmt" name="handcartAmt" />
+            <input class="nui-hidden" id="carCost" name="carCost" />
             <table style="line-height: 18px; padding-top: 10px;width: 100%">
-                <input class="mini-hidden" id="mainId" name="id" />
                 <tr>
                     <td colspan="8">请填写购车计算信息(按回车计算)</td>
                 </tr>

@@ -302,7 +302,7 @@ function buyCarCount(){
 			height: 500,
 			onload: function () {
 			var iframe = this.getIFrameEl();
-			iframe.contentWindow.setShowSave(main.id);
+			iframe.contentWindow.setData(main.id);
 			},
 			ondestroy: function (action) {
 			var iframe = this.getIFrameEl();
@@ -336,7 +336,7 @@ function addGift(){
 			height: 500,
 			onload: function () {
 			var iframe = this.getIFrameEl();
-			//iframe.contentWindow.setShowSave(main.id);
+			iframe.contentWindow.setData(main.id);
 			},
 			ondestroy: function (action) {
 			var iframe = this.getIFrameEl();

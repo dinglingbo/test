@@ -44,14 +44,19 @@
                         </div>
                      </div>
                  </div>
-
-                        <div showCollapseButton="true">
-                            <div id="jpDetailGrid" class="nui-datagrid" style="width:100%;height:100%;" oncellcommitedit="onCellCommitEdit" showSummaryRow="true" selectOnLoad="false" allowcelledit="true" showPager="false" pageSize="50" totalField="page.count" sizeList=[20,50,100,200]
+<!-- oncellcommitedit="onCellCommitEdit"
+ -->                        
+                    <div showCollapseButton="true">
+                    <div id="jpDetailGrid" class="nui-datagrid" style="width:100%;height:100%;"  showSummaryRow="true" selectOnLoad="false" allowcelledit="true" showPager="false" pageSize="50" totalField="page.count" sizeList=[20,50,100,200]
                     dataField="data" showModified="false" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true" allowCellWrap="true" url="">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
                         <div field="giftName" name="giftName" width="100px" headerAlign="center" header="精品名称"></div>
-                        <div field="receType" name="receType" width="100px" headerAlign="center" header="收费类型"></div>
+                        <div field="receType" name="receType" width="100px" headerAlign="center" header="收费类型">
+                        <input class="nui-combobox"  name="name"  valueField="id" id="name"
+                             textField="name"  property="editor" data="statusList" emptyText="" />
+          
+                        </div>
                         <div field="qty" name="qty" width="100px" headerAlign="center" header="数量">
                             <input class="nui-textbox" property="editor" vtype="float">
                         </div>
@@ -80,7 +85,8 @@ var baseUrl = apiPath + saleApi + "/";
 var jpUrl = baseUrl + "sales.search.searchCsbGiftMsg.biz.ext";
 var jpDetailGrid = null;
 var jpDetailGridUrl = baseUrl + "sales.search.searchSaleGiftApply.biz.ext";
-
+var serviceIdF = null;
+var statusList = [{id:"0",name:"免费"},{id:"1",name:"收费"}];
 $(document).ready(function (){
    jpGrid = nui.get("jpGrid");
    jpGrid.setUrl(jpUrl);
@@ -100,7 +106,7 @@ $(document).ready(function (){
                 var newRow = {
                     giftId: jpdata[i].id,
                     giftName: jpdata[i].name,
-                    billType: 2
+                    billType:1
                 };
                 jpDetailGrid.addRow(newRow, jpDetailData.length);
             };
@@ -154,6 +160,13 @@ $(document).ready(function (){
             document.getElementById("caCalculation").contentWindow.setDecrAmt(decrAmt); */
         };
     });
+    jpDetailGrid.on('drawcell', function (e) {
+      var value = e.value;
+      var field = e.field;
+      if (field == 'receType') {
+           e.cellHtml = (value == 0 ? '免费' : '收费');
+       } 
+    });
    document.onkeyup = function(event) {
         var e = event || window.event;
         var keyCode = e.keyCode || e.which;// 38向上 40向下
@@ -171,41 +184,23 @@ $(document).ready(function (){
 	mobile : "手机号",
 	saleAdvisorId : "销售顾问",
 	identity:"身份"
-};
-var saveUrl = apiPath + saleApi + "/sales.custormer.saveGuestContactor.biz.ext";
+};*/
+var saveUrl = apiPath + saleApi + "/sales.save.saveGiftApply.biz.ext";
 function save(){
-   var data = basicInfoForm.getData();
-   for ( var key in requiredField) {
-		if (!data[key] || $.trim(data[key]).length == 0) {
-            //nui.get(key).focus();
-            showMsg(requiredField[key] + "不能为空!","W");
-			return;
-		}
-    }
-    
-    var guest = {};
-    var contactor = {};
-    var saleAdvisor = nui.get("saleAdvisorId").text;
-    data.saleAdvisor = saleAdvisor;
-    guest.fullName = data.name;
-    guest.shortName = data.name;
-    guest.idCard = data.idNo,
-    guest.mobile = data.mobile;
-    guest.sex = data.sex;
-    guest.tel = data.tel;
-    guest.birthdayType = data.birthdayType;
-    guest.email = data.email;
-    guest.id = data.id;
-    contactor = data;
+   var jpDetailGridAdd = jpDetailGrid.getChanges("added"); //精品加装
+   var jpDetailGridEdit = jpDetailGrid.getChanges("modified");
+   var jpDetailGridDel = jpDetailGrid.getChanges("removed");
    nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
         html: '保存中...'
     });
      var json = nui.encode({
-   		 contactor:contactor,
-   		 guest:guest,
-   		 token:token
+        serviceId:serviceIdF,
+   		jpDetailGridAdd:jpDetailGridAdd,
+   		jpDetailGridEdit:jpDetailGridEdit,
+   		jpDetailGridDel:jpDetailGridDel,
+   		token:token
    	  });
 	nui.ajax({
 		url : saveUrl,
@@ -215,13 +210,6 @@ function save(){
 		contentType : 'text/json',
 		success : function(text) {
 			if(text.errCode=="S"){
-		    	var contactor1 = text.contactor;
-		    	var guest1 = text.guest;
-		    	var setData = {};
-		    	setData = contactor1;
-		    	setData.id = guest1.id;
-		    	setData.email = guest1.email;
-		    	basicInfoForm.setData(setData);
 		    	showMsg("保存成功","S");
 		    }else{
 		    	showMsg("保存失败","E");
@@ -230,12 +218,14 @@ function save(){
 		}
     }); 
 }
-*/
-function setData(row){
-    var data = {};
-    data = row;
-    data.id = row.guestId;
-    basicInfoForm.setData(data); 
+
+function setData(id){
+    serviceIdF = id;
+    jpDetailGrid.load({
+        token:token,
+        serviceId:serviceIdF,
+        billType:1
+    });
 }
 
 

@@ -13,7 +13,7 @@
         <title>选择库存车</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%=request.getContextPath()%>/sales/sales/js/selectCar.js?v=1.0.2"></script>
+            <script src="<%=request.getContextPath()%>/sales/sales/js/selectCar.js?v=1.0.4"></script>
     </head>
 
     <body>
@@ -21,12 +21,13 @@
             <a class="nui-button" iconCls="" plain="true" onclick="selectCar()" id="selectBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选车</a>
             <a class="nui-button" iconCls="" plain="true" onclick="close()" id="closeBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
         </div>
+        <input id="frameColorId" name="frameColorId" style="width: 100%" class="nui-combobox" textField="name" valueField="customid" visible="false">
+        <input id="interialColorId" name="interialColorId" style="width: 100%" class="nui-combobox" textField="name" valueField="customid" visible="false">
         <div id="grid" class="nui-datagrid" style="width:100%;height:100%;" showPager="true" dataField="cssCheckEnter" idField="detailId" sortMode="client" url="" totalField="page.count" pageSize="10000" sizeList="[1000,5000,10000]" selectOnLoad="true" allowCellWrap=t
             rue showSummaryRow="true">
             <div property="columns">
                 <div type="checkcolumn" width="40">选择</div>
                 <div field="carModelName" name="carModelName" width="220" headerAlign="center" header="车型名称"></div>
-                <div field="" width="90" name="orderMan" headerAlign="center" header="车辆类型"></div>
                 <div field="guestFullName" name="guestFullName" width="220" headerAlign="center" header="供应商"></div>
                 <div field="enterDate" allowSort="true" width="130" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                 <div field="frameColorId" allowSort="true" name="frameColorId" width="90" headerAlign="center" header="车身颜色"></div>

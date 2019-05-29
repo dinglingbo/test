@@ -88,7 +88,7 @@ public class GroupUserManager implements IGroupUserManager {
         List<UserInfoExtendEntity> groupUserList = (List<UserInfoExtendEntity>) jedisCache.hashGet(memCacheKey,key);
         if (groupUserList == null || groupUserList.size() == 0) {
             System.out.println("缓存中没有数据，需要从数据库读取");
-             groupUserList = groupUserDao.queryUserInfoExtend(groupId);
+            groupUserList = groupUserDao.queryUserInfoExtend(groupId);
             saveGroupMemeberList(groupId, groupUserList);
             return groupUserList;
         }

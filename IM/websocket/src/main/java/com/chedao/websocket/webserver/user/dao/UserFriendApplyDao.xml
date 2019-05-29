@@ -57,7 +57,7 @@
         <result property="read" column="rd"/>
         <result property="from" column="from_id"/>
         <result property="from_group" column="from_group"/>
-        <association property="user" select="com.chedao.websocket.webserver.user.dao.UserInfoDao.queryByUid"
+        <association property="user" select="com.chedao.websocket.webserver.user.dao.UserInfoDao.queryBoxUserInfoByUid"
                      column="from_id">
         </association>
     </resultMap>

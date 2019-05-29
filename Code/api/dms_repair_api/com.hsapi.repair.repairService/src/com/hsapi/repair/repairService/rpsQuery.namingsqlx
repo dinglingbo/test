@@ -2537,4 +2537,46 @@
         </dynamic> 
         ORDER BY parent_id asc
 	</select>
+	
+	
+	<select id="queryRpsItemList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT a.service_code as serviceCode, a.car_no as carNo, a.car_vin as carVin,
+    	       b.id as id, 
+       		   b.item_name as itemName, b.workers as workers, 
+       		   b.status as status, b.finish_auditor as finisher, b.finish_date as finishDate
+		from rps_maintain a
+		inner join rps_item b
+		on a.id = b.service_id
+		where 1 = 1
+		      and a.status = 1
+		      and a.orgid = #orgid#
+		      <dynamic>
+					<isNotEmpty prepend="and" property="status">
+		                (b.`status` = #status#)
+		            </isNotEmpty>
+		            
+		            <isNotEmpty prepend="and" property="carNo">  
+						a.car_no like '%$carNo$%'
+					</isNotEmpty>
+					
+					<isNotEmpty prepend="and" property="serviceCode">  
+						a.service_code like '%$serviceCode$%'
+					</isNotEmpty>
+		
+		
+	          </dynamic>
+		      
+		      and exists(select 1 from rps_item_workers c 
+		      			where b.id = c.main_id 
+		      			    <dynamic>
+								<isNotEmpty prepend="and" property="workerId">
+					                (c.worker_id = #workerId#)
+					            </isNotEmpty>
+					        </dynamic>  
+					        )
+		order by b.modify_date desc
+	
+	</select>
+	
+	
 </sqlMap>

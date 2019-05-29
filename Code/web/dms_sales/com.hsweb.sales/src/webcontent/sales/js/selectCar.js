@@ -2,11 +2,34 @@ var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + saleApi + "/";
 var gridUrl = baseUrl + "/sales.inventory.queryCheckEnter.biz.ext";
 var grid = null;
+var frameColorData = null;
+var interialColorData = null;
 $(document).ready(function(v) {
     grid = nui.get("grid");
     grid.setUrl(gridUrl);
-    grid.load();
+
+    initDicts({
+        frameColorId: "DDT20130726000003", //车辆颜色
+        interialColorId: "10391"
+    });
+
+    grid.on("drawcell", function(e) {
+        var field = e.field;
+        if (field == "frameColorId") {
+            frameColorData = nui.get("frameColorId").getData();
+            e.cellHtml = frameColorData.find(frameColorData => frameColorData.id == e.value).name;
+        }
+        if (field == "interialColorId") {
+            interialColorData = nui.get("interialColorId").getData();
+            e.cellHtml = interialColorData.find(interialColorData => interialColorData.id == e.value).name;
+        }
+    });
 });
+
+function SetData(carModelId) {
+    var params = { carModelId: carModelId };
+    grid.load({ params: params });
+}
 
 function getSelectedValue() {
     var data = grid.getSelected();
@@ -32,7 +55,6 @@ function selectCar() {
             }
         }
     });
-
 }
 
 function close() {

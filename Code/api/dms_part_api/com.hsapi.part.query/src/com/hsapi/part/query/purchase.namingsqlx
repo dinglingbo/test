@@ -1082,6 +1082,7 @@
 			a.sell_amt as sellAmt,
 			a.recorder as recorder,
 			a.car_no as carNo,
+			a.service_code as serviceCode,
 			a.pick_man as pickMan
 		FROM
 			pj_repair_out a			

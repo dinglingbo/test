@@ -10,6 +10,7 @@
     <select id="searchGuestCome" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT 
     	    a.id as id,
+    	    c.id as contactorId,
 			a.tenant_id	AS	tenantId,
 			a.orgid	AS	orgid,
 			a.service_code	AS	serviceCode,
@@ -27,14 +28,20 @@
 			a.intent_level_id as intentLevelId,
 			a.is_test_drive as isTestDrive,
 			a.sale_advisor as saleAdvisor,
+			a.sale_advisor_id as saleAdvisorId,
 			a.leave_date as leaveDate,
 			a.sale_id as saleId,
 			a.status as status,
 			a.remark as remark,
 			b.full_name as fullName,
-			b.mobile as mobile
+			b.mobile as mobile,
+			c.next_scout_date as nextScoutDate,
+			c.source as source,
+			a.next_visit_date as nextVisitDate,
+			c.scout_status as scoutStatus
 		FROM css_guest_come a 
 			INNER JOIN wb_common.com_guest  b ON a.guest_id = b.id
+			INNER JOIN csb_contactor  c ON c.guest_id = b.id
 		WHERE 1 = 1
 		<dynamic>
 			<isNotEmpty prepend="and" property="fullName">
@@ -51,7 +58,16 @@
               </isNotEmpty>
               <isNotEmpty prepend="and" property="comeDateEnd"> 
                 (a.come_date &lt; #comeDateEnd#)
-              </isNotEmpty>
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="nextScoutDateStart"> 
+                (c.next_scout_date &gt;= #nextScoutDateStart#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="nextScoutDateEnd"> 
+                (c.next_scout_date &lt; #nextScoutDateEnd#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="nextScoutDate"> 
+                (c.next_scout_date &lt; #nextScoutDate#)
+            </isNotEmpty>
         </dynamic>  
 	</select>
 	
@@ -82,11 +98,9 @@
 			a.buy_car_status as buyCarStatus,
 			a.special_care as specialCare,
 			a.modifier as modifier,
-			a.modify_date as modifyDate,
-			c.next_scout_date as nextScoutDate
+			a.modify_date as modifyDate
 		FROM csb_contactor a 
 			INNER JOIN wb_common.com_guest  b ON a.guest_id = b.id
-			INNER JOIN css_guest_come  c ON c.guest_id = b.id
 		WHERE 1 = 1
 		<dynamic>
 			<isNotEmpty prepend="and" property="fullName">

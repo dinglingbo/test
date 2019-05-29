@@ -93,8 +93,8 @@
                                       <label>结算方式：</label>
                                   </td>
                                   <td>
-                                      <input name="settleTypeId"
-                                             id="settleTypeId"
+                                      <input name="payMode"
+                                             id="payMode"
                                              class="nui-combobox width1"
                                              textField="name"
                                              valueField="customid"
@@ -115,15 +115,15 @@
                                       <label>运输方式：</label>
                                   </td>
                                   <td colspan="1" style="width:15%">
-										<input allowInput="false" class="nui-textbox" width="100%" id="" name=""/>
+										<input class="nui-textbox" width="100%" id="transportId" name="transportId"/>
                                   </td>          
                                   <td class="title required" >
                                       <label>退货员：</label>
                                   </td>
                                   <td colspan="1" style="width:15%">
                                       <input class="nui-combobox" 
-                                          id="orderMan" 
-                                          name="orderMan" 
+                                          id="returnMen" 
+                                          name="returnMen" 
                                           textField="empName"
                                       valueField="empId"
                                       emptyText="请选择..."
@@ -137,8 +137,8 @@
                                       <label>退货日期：</label>
                                   </td>
                                   <td width="150">
-                                      <input name="createDate"
-                                             id="createDate"
+                                      <input name="returnDate"
+                                             id="returnDate"
                                              width="100%"
                                              showTime="true"
                                              class="nui-datepicker" enabled="false" format="yyyy-MM-dd HH:mm"/>
@@ -191,26 +191,22 @@
                         <div property="columns">
                             <div type="indexcolumn">序号</div>
                                     <div field="operateBtn" name="operateBtn" align="center" width="50" headerAlign="center" header="操作"></div>
-                                    <div field="comPartCode" name="comPartCode" width="180" headerAlign="center" header="车型编码">
+                                    <div field="code" name="code" width="180" headerAlign="center" header="车型编码">
                                         <input property="editor" class="nui-textbox" />
                                     </div>
-                                    <div field="" headerAlign="center" header="车型名称"></div>
-                                    <div field="" id="" width="60" headerAlign="center" header="汽车品牌"></div>
-                                    <div field="" id="" width="60" headerAlign="center" header="车辆类型"></div>
-                                    <div field="" name="" width="40" headerAlign="center" header="车身颜色"></div>
-                                    <div field="" name="" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="内饰颜色">
+                                    <div field="carModelName" headerAlign="center" header="车型名称"></div>
+                                    <div field="frameColorId" name="frameColorId" width="40" headerAlign="center" header="车身颜色"></div>
+                                    <div field="interialColorId" name="interialColorId" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="内饰颜色">
                                       <input property="editor" vtype="float" class="nui-textbox"/>
                                     </div>
-                                    <div field="" numberFormat="0.0000" width="60" headerAlign="center" header="进价">
+                                    <div field="vin" name="vin" width="40" headerAlign="center" header="车架号（VIN）"></div>
+                                    <div field="orderPrice" numberFormat="0.0000" width="60" headerAlign="center" header="进价">
                                       <input property="editor" vtype="float" class="nui-textbox"/>
-                                    </div>                                  
-                                    <div field=""  width="60" headerAlign="center" header="入库仓库">
+                                    </div> 
+                                     <div field="returnAmt" numberFormat="0.0000" width="60" headerAlign="center" header="退货金额">
                                       <input property="editor" vtype="float" class="nui-textbox"/>
-                                    </div>                                   
-                                    <div field=""  width="60" headerAlign="center" header="车架号（VIN）">
-                                      <input property="editor" vtype="float" class="nui-textbox"/>
-                                    </div>   								                                                                                                                                                                                                                                                                                                                                                                                                                         
-                                    <div field="" width="100" headerAlign="center" allowSort="false">
+                                    </div>                                                                                                        								                                                                                                                                                                                                                                                                                                                                                                                                                         
+                                    <div field="remark" width="100" headerAlign="center" allowSort="false">
                        					 退货备注<input property="editor" class="nui-textbox"/>
                        				</div>
                             </div>

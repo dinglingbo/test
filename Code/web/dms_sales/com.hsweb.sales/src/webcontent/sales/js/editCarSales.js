@@ -120,6 +120,13 @@ $(document).ready(function(v) {
         };
     });
 
+    // jpGrid.on("beforedeselect", function(e) {
+    //     var billFormData = billForm.getData(true); //主表信息
+    //     if (billFormData.status != 0) {
+    //         e.cancel = true;
+    //     }
+    // })
+
     costGrid.on("load", function(e) {
         var data = costGrid.getData();
         var data1 = costDetailGrid.getData();
@@ -136,6 +143,13 @@ $(document).ready(function(v) {
             };
         };
     });
+
+    // costGrid.on("beforedeselect", function(e) {
+    //     var billFormData = billForm.getData(true); //主表信息
+    //     if (billFormData.status != 0) {
+    //         e.cancel = true;
+    //     }
+    // })
 
     costDetailGrid.on("load", function(e) {
         var costData = costGrid.getData();

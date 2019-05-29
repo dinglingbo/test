@@ -13,7 +13,7 @@
         <title>编辑整车销售</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.105" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.1068" type="text/javascript"></script>
 
     </head>
     <style type="text/css">

@@ -79,7 +79,7 @@ $(document).ready(function (v) {
     init();
     query();
     
-    initM800(connect);
+    //initM800(connect);
 });
 
 function init(){

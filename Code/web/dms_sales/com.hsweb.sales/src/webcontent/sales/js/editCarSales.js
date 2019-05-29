@@ -280,8 +280,8 @@ function registration() {
     nui.open({
         url: webPath + contextPath + "/sales/sales/vehicleRegistration.jsp?token=" + token,
         title: "车辆上牌",
-        width: "880px",
-        height: "290px",
+        width: "550px",
+        height: "490px",
         onload: function() {
             var iframe = this.getIFrameEl();
         },

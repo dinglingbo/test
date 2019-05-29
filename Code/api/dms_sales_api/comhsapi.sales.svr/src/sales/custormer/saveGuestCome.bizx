@@ -769,7 +769,7 @@
       <targetNode>assign3</targetNode>
     </sourceConnections>
     <targetConnections>link37</targetConnections>
-    <location x="377" y="105"/>
+    <location x="387" y="105"/>
     <size height="28" width="28"/>
     <nodeLabel>assign20label</nodeLabel>
     <process:copy>
@@ -790,7 +790,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign20label" name="label" nodeType="label">
-    <location x="372" y="141"/>
+    <location x="382" y="141"/>
     <figSize height="17" width="39"/>
     <node>assign20</node>
   </nodes>
@@ -913,7 +913,7 @@
       <targetNode>assign8</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

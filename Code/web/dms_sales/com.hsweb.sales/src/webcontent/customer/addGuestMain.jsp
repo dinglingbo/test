@@ -10,7 +10,7 @@
 -->
 <head>
 <title>客户资料</title>
-<script src="<%=webPath + contextPath%>/sales/customer/js/addGuestMain.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/sales/customer/js/addGuestMain.js?v=1.0.2"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -66,19 +66,26 @@
                    <!--  <label style="font-family:Verdana;">销售顾问：</label> -->                 
                     <input name="saleAdvisorId" id="saleAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
                         emptyText="销售顾问" url=""  allowInput="true" showNullItem="false" width="100" valueFromSelect="true"  onenter="doSearch()"/>
-                    <label style="font-family:Verdana;">跟踪状态：</label>
-                    <input class="nui-combobox" id="scoutStatus" emptyText="" name="scoutStatus" data="[{scoutStatus:0,text:'继续跟进'},{scoutStatus:1,text:'终止跟进'},{scoutStatus:2,text:'重点跟进'},
+                    <label style="font-family:Verdana;">跟进状态：</label>
+                    <!-- <input class="nui-combobox" id="scoutStatus" emptyText="" name="scoutStatus" data="[{scoutStatus:0,text:'继续跟进'},{scoutStatus:1,text:'终止跟进'},{scoutStatus:2,text:'重点跟进'},
                          {scoutStatus:1,text:'已来厂/已成交'},{scoutStatus:1,text:'未跟进'}]" width="120"  onvaluechanged="onSearch" textField="text" valueField="scoutStatus" value="1"/>
-               
-                    <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                -->
+                    <input name="status"
+			         id="status"
+			         class="nui-combobox"
+			         textField="name"
+			         valueField="id"
+			         allowInput="true"
+			         /> 
+                    <a class="nui-button" iconCls="" plain="true" onclick="doSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <span class="separator"></span>
                     <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
                    <!--  <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-check fa-lg"></span>&nbsp;全选/反选</abbr></a> -->
                      <span class="separator"></span>
                     <label style="font-family:Verdana;">将客户资料分配给：</label>
-                    <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
-                        emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="80" valueFromSelect="true"  onenter="onenterMtAdvisor(this.value)"/>
+                    <input name="emp" id="emp" class="nui-combobox width1" textField="empName" valueField="empId"
+                        emptyText="销售顾问" url=""  allowInput="true" showNullItem="false" width="80" valueFromSelect="true"  onenter=""/>
                     <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-check fa-lg"></span>&nbsp;确定</abbr></a>
                 </td>
             </tr>

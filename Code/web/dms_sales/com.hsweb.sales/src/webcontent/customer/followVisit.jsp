@@ -84,15 +84,6 @@ a.optbtn {
             </tr>
         </table>
     </div>
-     <input name="source"
-             id="source"
-             class="nui-combobox"
-             textField="name"
-             valueField="id"
-             allowInput="true"
-             width="100%"
-             visible="false"
-            />
           <input name="interialColorId"
              id="interialColorId"
              class="nui-combobox"

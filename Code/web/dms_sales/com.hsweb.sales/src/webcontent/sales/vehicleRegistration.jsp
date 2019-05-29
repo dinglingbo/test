@@ -80,7 +80,7 @@
             </tr>
         </table>
     </div>
-    <table style="width: 100%; line-height: 23px; padding-top: 10px; padding-left: 5px;">
+    <table style="width: 100%; line-height: 30px; padding-top: 10px; padding-left: 5px;">
         <tr>
             <td class="td_title">车牌号码
             </td>
@@ -167,6 +167,9 @@
         function save() {
             var data = form.getData(true);
             var params = data;
+            params.mainId = '';
+            params.guestId = '1';
+            params.guestName = '12';
             nui.ajax({
                 url:saveUrl,
                 type:'post',

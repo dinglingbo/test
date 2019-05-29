@@ -11,7 +11,7 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link10</targetConnections>
-    <location x="645" y="240"/>
+    <location x="377" y="271"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -25,7 +25,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="647" y="276"/>
+    <location x="379" y="307"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -216,7 +216,7 @@
       <targetNode>invokePojo4</targetNode>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
-    <location x="262" y="240"/>
+    <location x="277" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -229,17 +229,17 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="227" y="276"/>
+    <location x="242" y="186"/>
     <figSize height="17" width="92"/>
     <node>invokePojo3</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo4" name="添加rbpCon" displayName="添加rbpCar" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo4</sourceNode>
-      <targetNode>assign3</targetNode>
+      <targetNode>assign4</targetNode>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
-    <location x="353" y="240"/>
+    <location x="379" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo4label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -253,7 +253,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo4label" name="label" nodeType="label">
-    <location x="330" y="276"/>
+    <location x="356" y="186"/>
     <figSize height="17" width="69"/>
     <node>invokePojo4</node>
   </nodes>
@@ -263,7 +263,7 @@
       <targetNode>invokePojo3</targetNode>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
-    <location x="157" y="240"/>
+    <location x="158" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
@@ -312,7 +312,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="155" y="276"/>
+    <location x="156" y="186"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
@@ -322,7 +322,7 @@
       <targetNode>transactioncommit0</targetNode>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
-    <location x="461" y="240"/>
+    <location x="162" y="271"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
@@ -335,7 +335,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="459" y="276"/>
+    <location x="160" y="307"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
@@ -360,14 +360,73 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
-    <location x="559" y="240"/>
+    <location x="273" y="271"/>
     <size height="28" width="28"/>
     <nodeLabel>transactioncommit0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactioncommit0label" name="label" nodeType="label">
-    <location x="549" y="276"/>
+    <location x="263" y="307"/>
     <figSize height="17" width="49"/>
     <node>transactioncommit0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>invokePojo5</targetNode>
+    </sourceConnections>
+    <targetConnections>link12</targetConnections>
+    <location x="466" y="150"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign4label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/mainId</process:from>
+      <process:to type="query">checkEnter/id</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/carNo</process:from>
+      <process:to type="query">checkEnter/carNo</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rbpCar/id</process:from>
+      <process:to type="query">checkEnter/carId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">checkEnter/modifier</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">checkEnter/recordDate</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <location x="464" y="186"/>
+    <figSize height="17" width="32"/>
+    <node>assign4</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="更新库存表" displayName="Update a record" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo5</sourceNode>
+      <targetNode>assign3</targetNode>
+    </sourceConnections>
+    <targetConnections>link13</targetConnections>
+    <location x="571" y="150"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo5label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.updateEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">sales</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">checkEnter</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
+    <location x="552" y="186"/>
+    <figSize height="17" width="61"/>
+    <node>invokePojo5</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -377,6 +436,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.sales.data.com.RpbContactor" name="con"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.sales.data.com.RpbCar" name="rbpCar"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.sales.data.com.RpbCarExtend" name="rbpCarExt"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.sales.data.css.CssCheckEnter" name="checkEnter"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>

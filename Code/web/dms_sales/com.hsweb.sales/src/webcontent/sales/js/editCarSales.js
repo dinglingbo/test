@@ -252,6 +252,8 @@ function selectCar() { //点击选车时触发
                 var billFormData = billForm.getData(true); //主表信息
                 var handcartAmt = data.receiveCost || 0; //运输成本
                 var carCost = data.unitPrice || 0; //购买成本
+                var enterId = data.id;
+                billFormData.enterId = enterId;
                 billForm.setData(billFormData);
                 document.getElementById("caCalculation").contentWindow.setSelectCarValue(handcartAmt, carCost);
                 save(2);
@@ -297,11 +299,6 @@ function checkMsg(e) { //进行保存操作前进行验证
         showMsg("请选择购车方式后再保存", "W");
         return;
     }
-    if (e == 1 || e == 0) { //返单 待审  或者  反审  将费用全部状态修改为待审
-        var newRow = { auditSign: 0 };
-        updateGridMsg(costDetailGrid, newRow);
-        updateGridMsg(costDetailGrid2, newRow);
-    }
     if (e == 3 && billFormData.status != 0) {
         showMsg("请返单后再作废！", "W");
         return;
@@ -314,6 +311,10 @@ function checkMsg(e) { //进行保存操作前进行验证
         showMsg("当前工单尚未审核！", "W");
         return;
     }
+    if (e == 6 && billFormData.isSubmitCar == 1) {
+        showMsg("当前工单已交车！", "W");
+        return;
+    }
     save(e);
 }
 
@@ -323,6 +324,17 @@ function submitCar() { //交车
 
 function save(e) { //保存（主表信息+精品加装+购车信息+费用信息）
     var billFormData = billForm.getData(true); //主表信息
+    if (e == 1 || e == 0) { //返单 待审  或者  反审  将费用全部状态修改为待审
+        var newRow = { auditSign: 0 };
+        updateGridMsg(costDetailGrid, newRow);
+        updateGridMsg(costDetailGrid2, newRow);
+    }
+    if (e == 0) {
+        updateCheckEnter(billFormData.enterId);
+        billFormData.enterId = 0;
+        billFormData.isSubmitCar = 0;
+        billFormData.isSettle = 0;
+    }
     var params = document.getElementById("caCalculation").contentWindow.getValue(); //购车信息
     var caCalculationData = params.data;
     var jpDetailGridAdd = jpDetailGrid.getChanges("added"); //精品加装
@@ -445,32 +457,69 @@ function searchSalesMain(serviceId) { //查询主表信息
                     nui.get("saveBtn").disable();
                     nui.get("submitBtn").disable();
                     setReadOnlyMsg();
+                    setReadOnlySubmitCar(1);
                     document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
                 } else {
                     nui.get("saveBtn").enable();
                     setInputModel();
+                    setReadOnlySubmitCar(0)
                     document.getElementById("caCalculation").contentWindow.setInputModel();
                 }
                 if (data.guestId) {
                     insuranceMsg(data.guestId)
                 }
-                if (data.status != 2 && data.isSettle != 1) {
-                    var fields = form.getFields();
-                    for (var i = 0, l = fields.length; i < l; i++) {
-                        var c = fields[i];
-                        if (c.setReadOnly) c.setReadOnly(true); //只读
-                        if (c.setIsValid) c.setIsValid(true); //去除错误提示
-                    };
+                if (data.isSubmitCar == 1) {
+                    setReadOnlySubmitCar(1);
                 } else {
-                    var fields = form.getFields();
-                    for (var i = 0, l = fields.length; i < l; i++) {
-                        var c = fields[i];
-                        if (c.setReadOnly) c.setReadOnly(false);
-                    };
+                    if (data.status == 2 && data.isSettle == 0) { //已审未交车
+                        setReadOnlySubmitCar(0);
+                    } else {
+                        setReadOnlySubmitCar(1);
+                    }
                 }
             };
         }
     });
+}
+
+function updateCheckEnter(enterId) { //返单 修改库存表车辆状态
+    var data = {
+        id: enterId,
+        billStatus: 0
+    };
+    nui.ajax({
+        url: baseUrl + "sales.save.updateCheckEnter.biz.ext",
+        data: {
+            data: data
+        },
+        cache: false,
+        async: false,
+        success: function(text) {
+            if (text.errCode == "S") {
+                showMsg(text.errMsg, "S");
+                window.CloseOwnerWindow('ok');
+            } else {
+                showMsg(text.errMsg, "W");
+            }
+        }
+    });
+}
+
+function setReadOnlySubmitCar(e) { //交车信息  编辑/只读
+    if (e == 1) {
+        var fields = form.getFields();
+        for (var i = 0, l = fields.length; i < l; i++) {
+            var c = fields[i];
+            if (c.setReadOnly) c.setReadOnly(true); //只读
+            if (c.setIsValid) c.setIsValid(true); //去除错误提示
+        };
+    } else {
+        var fields = form.getFields();
+        for (var i = 0, l = fields.length; i < l; i++) {
+            var c = fields[i];
+            if (c.setReadOnly) c.setReadOnly(false);
+        };
+    }
 }
 
 function insuranceMsg(guestId) {
@@ -510,11 +559,6 @@ function setInputModel() { //恢复表格为输入模式
         var c = fields[i];
         if (c.setReadOnly) c.setReadOnly(false);
     };
-    var fields = form.getFields();
-    for (var i = 0, l = fields.length; i < l; i++) {
-        var c = fields[i];
-        if (c.setReadOnly) c.setReadOnly(false);
-    };
     jpGrid.setReadOnly(false);
     jpDetailGrid.setReadOnly(false);
     costGrid.setReadOnly(false);
@@ -522,12 +566,6 @@ function setInputModel() { //恢复表格为输入模式
 
 function setReadOnlyMsg() { //设置表格信息为只读
     var fields = billForm.getFields();
-    for (var i = 0, l = fields.length; i < l; i++) {
-        var c = fields[i];
-        if (c.setReadOnly) c.setReadOnly(true); //只读
-        if (c.setIsValid) c.setIsValid(true); //去除错误提示
-    };
-    var fields = form.getFields();
     for (var i = 0, l = fields.length; i < l; i++) {
         var c = fields[i];
         if (c.setReadOnly) c.setReadOnly(true); //只读

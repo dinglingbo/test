@@ -13,7 +13,7 @@
         <title>编辑整车销售</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.104" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.105" type="text/javascript"></script>
 
     </head>
     <style type="text/css">
@@ -114,6 +114,7 @@
         <form id="billForm">
             <input class="nui-hidden" name="id" />
             <input class="nui-hidden" name="isSettle" />
+            <input class="nui-hidden" name="enterId" />
             <input class="nui-hidden" name="status" />
             <input class="nui-hidden" name="serviceCode" />
             <input class="nui-hidden" name="carModelName" />

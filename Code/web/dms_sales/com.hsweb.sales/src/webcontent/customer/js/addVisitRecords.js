@@ -1,6 +1,7 @@
 var baseUrl = window._rootSysUrl || "http://127.0.0.1:8080/default/";
 var guestComeUrl = apiPath + saleApi +  "/sales.custormer.saveGuestCome.biz.ext";
 var queryUrl = apiPath + saleApi + "/sales.custormer.queryGuestComeAndGuest.biz.ext";
+var saleUrl = apiPath + saleApi + "/sales.custormer.insSaleMain.biz.ext";
 var levelOfIntent = null;
 var important = null;
 var frameColorIdHash = {};
@@ -404,4 +405,43 @@ function doSetStyle(status){
 	}else if(status==2){
 		$("#finishStatus").attr("class", "statusview");
 	}
+}
+
+function saveSaleMain(){
+	var guestCome = guestComeForm.getData("true");
+	if(status == 0){
+		showMsg("来访登记未归档,不能转销售","W");
+		return;
+	}
+	if(status == 2){
+		showMsg("来访登记已转销售！","W");
+		return;
+	}
+	var json = nui.encode({
+		 guestCome:guestCome,
+		 token:token
+	  });
+	nui.mask({
+       el: document.body,
+       cls: 'mini-mask-loading',
+       html: '保存中...'
+   });
+	nui.ajax({
+		url : saleUrl,
+		type : 'POST',
+		data : json,
+		cache : false,
+		contentType : 'text/json',
+		success : function(text) {
+			if(text.errCode=="S"){
+				showMsg(text.errMsg || "转销售成功","S");
+				guestCome.status=2;
+				guestComeForm.setData(guestCome);
+				doSetStyle(2);
+		    }else{
+		    	showMsg(text.errMsg || "转销售失败","E");
+		    }
+			nui.unmask(document.body);
+		}
+	 });
 }

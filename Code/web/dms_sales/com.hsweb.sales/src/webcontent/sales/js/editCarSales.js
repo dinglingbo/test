@@ -120,12 +120,19 @@ $(document).ready(function(v) {
         };
     });
 
-    // jpGrid.on("beforedeselect", function(e) {
-    //     var billFormData = billForm.getData(true); //主表信息
-    //     if (billFormData.status != 0) {
-    //         e.cancel = true;
-    //     }
-    // })
+    jpGrid.on("beforedeselect", function(e) {
+        var billFormData = billForm.getData(true); //主表信息
+        if (billFormData.status != 0) {
+            e.cancel = true;
+        }
+    });
+
+    jpGrid.on("beforeselect", function(e) {
+        var billFormData = billForm.getData(true); //主表信息
+        if (billFormData.status != 0) {
+            e.cancel = true;
+        }
+    });
 
     costGrid.on("load", function(e) {
         var data = costGrid.getData();
@@ -144,12 +151,19 @@ $(document).ready(function(v) {
         };
     });
 
-    // costGrid.on("beforedeselect", function(e) {
-    //     var billFormData = billForm.getData(true); //主表信息
-    //     if (billFormData.status != 0) {
-    //         e.cancel = true;
-    //     }
-    // })
+    costGrid.on("beforedeselect", function(e) {
+        var billFormData = billForm.getData(true); //主表信息
+        if (billFormData.status != 0) {
+            e.cancel = true;
+        }
+    });
+
+    costGrid.on("beforeselect", function(e) {
+        var billFormData = billForm.getData(true); //主表信息
+        if (billFormData.status != 0) {
+            e.cancel = true;
+        }
+    });
 
     costDetailGrid.on("load", function(e) {
         var costData = costGrid.getData();
@@ -464,7 +478,7 @@ function searchSalesMain(serviceId) { //查询主表信息
                 var data = text.data[0];
                 billForm.setData(data);
                 form.setData(data);
-                document.getElementById("serviceCode").innerHTML = data.serviceCode;
+                document.getElementById("serviceCode").innerHTML = data.nice型;
 
                 document.getElementById("caCalculation").contentWindow.SetDataMsg(data.id, data.frameColorId, data.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
                 if (data.status != 0) {

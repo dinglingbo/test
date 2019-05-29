@@ -15,10 +15,15 @@ $(document).ready(function ()
 	  identity:"DDT20171016000001",
 	  trade:"10363",
 	  source:GUEST_SOURCE,
-	  nature:10181
+	  nature:10181,
+	  status:"DDT20130703000081"
 	  },function(data){
    });
-
+    initMember("saleAdvisorId",function(){
+    	 initMember("emp",function(){
+    	    });
+    });
+   
 	mainGrid.on('drawcell', function (e) {
        var value = e.value;
        var field = e.field;
@@ -52,9 +57,9 @@ function getSearchParam() {
     var params = {};
     var saleAdvisorId = nui.get("saleAdvisorId").getValue();
     params.saleAdvisorId = saleAdvisorId;
-   /* var fullName = nui.get("name-search").getValue();
-    params.fullName = fullName;
-    var mobile = nui.get("mobile-search").getValue();
+    var scoutStatus = nui.get("status").getValue();
+    params.scoutStatus = scoutStatus;
+    /*var mobile = nui.get("mobile-search").getValue();
     params.mobile = mobile;*/
     //scoutStatus,跟踪状态
     return params;

@@ -38,7 +38,8 @@
 			c.next_scout_date as nextScoutDate,
 			c.source as source,
 			a.next_visit_date as nextVisitDate,
-			c.scout_status as scoutStatus
+			c.scout_status as scoutStatus,
+			a.scout_remark as scoutRemark
 		FROM css_guest_come a 
 			INNER JOIN wb_common.com_guest  b ON a.guest_id = b.id
 			INNER JOIN csb_contactor  c ON c.guest_id = b.id
@@ -52,6 +53,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="status">
                 (a.status = #status# )
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="statusList">
+                (a.status in (0,1) )
             </isNotEmpty>
             <isNotEmpty prepend="and" property="comeDateStart"> 
                 (a.come_date &gt;= #comeDateStart#)
@@ -98,7 +102,8 @@
 			a.buy_car_status as buyCarStatus,
 			a.special_care as specialCare,
 			a.modifier as modifier,
-			a.modify_date as modifyDate
+			a.modify_date as modifyDate,
+			a.scout_status as scoutStatus
 		FROM csb_contactor a 
 			INNER JOIN wb_common.com_guest  b ON a.guest_id = b.id
 		WHERE 1 = 1

@@ -229,10 +229,10 @@
             <tbody>
                 <tr>
                     <td height="50" valign="top" style="padding:8px" id="guestDesc">
-                                                       购车人
+                            购车人
                     </td>
                       <td height="50" valign="top" style="padding: 8px;" id="faultPhen">
-                                                       张三
+                            <span id="guestFullName"></span>
                     </td>
                      <td height="50" valign="top" style="padding: 8px;" id="solveMethod">
                                                        购车方式
@@ -246,13 +246,13 @@
                                                        购买车型
                     </td>
                       <td height="50" valign="top" style="padding: 8px;" id="">
-                                                       丰田 汉兰达 2017款 两驱精英版 5座
+                            <span id="carModelName"></span>
                     </td>
                      <td height="50" valign="top" style="padding: 8px;" id="">
                                                        车价（元）
                     </td>
                      <td height="50" valign="top" style="padding: 8px;" id="">
-                                                      200000
+                            <span id="saleAmt"></span>
                     </td>
                 </tr>
                 <tr>
@@ -287,13 +287,13 @@
                                 保险预算费
                         </td>
                           <td height="50" valign="top" style="padding: 8px;" id="">
-                                10000
+                                <span id="insuranceBudgetAmt"></span>
                         </td>
                          <td height="50" valign="top" style="padding: 8px;" id="">
                                 上牌费
                         </td>
                          <td height="50" valign="top" style="padding: 8px;" id="">
-                                500
+                                <span id="boardLotAmt"></span>
                         </td>
                     </tr>
                 <tr>
@@ -301,13 +301,13 @@
                                 购置税预算
                         </td>
                           <td height="50" valign="top" style="padding: 8px;" id="">
-                                17095
+                                <span id="purchaseBudgetAmt"></span>
                         </td>
                          <td height="50" valign="top" style="padding: 8px;" id="">
                                 精品加装
                         </td>
                          <td height="50" valign="top" style="padding: 8px;" id="">
-                                2000
+                                <span id="decrAmt"></span>
                         </td>
                     </tr>
                 <tr>
@@ -315,13 +315,13 @@
                                 GPS费
                         </td>
                           <td height="50" valign="top" style="padding: 8px;" id="">
-                                3000
+                                <span id="gpsAmt"></span>
                         </td>
                          <td height="50" valign="top" style="padding: 8px;" id="">
                                 其它费用
                         </td>
                          <td height="50" valign="top" style="padding: 8px;" id="">
-                                0
+                                <span id="otherAmt"></span>
                         </td>
                     </tr>
                 <tr>
@@ -329,7 +329,7 @@
                                 提车合计
                         </td>
                           <td height="50" valign="top" style="padding: 8px;" id="" colspan="3">
-                                <span style="width:95px;display: inline-block;">3232595</span>&nbsp;&nbsp;<span >大写（人民币）：叁佰贰拾叁万贰仟伍佰玖拾伍元整元</span>
+                                <span id="getCarTotal" style="width:95px;display: inline-block;"></span>&nbsp;&nbsp;<span >大写（人民币）：叁佰贰拾叁万贰仟伍佰玖拾伍元整</span>
                         </td>
                     </tr>
                 <tr>
@@ -337,7 +337,7 @@
                                 购车预算合计
                         </td >
                           <td height="50" valign="top" style="padding: 8px;" id="" colspan="3">
-                                <span style="width:95px;display: inline-block;">0</span>&nbsp;&nbsp;<span >大写（人民币）：元</span>
+                                <span id="buyBudgetTotal" style="width:95px;display: inline-block;"></span>&nbsp;&nbsp;<span >大写（人民币）：元</span>
                         </td>
                     </tr>
                 <tr>
@@ -350,14 +350,14 @@
                     <tr style=height:100px;>
                             <td height="100" valign="top" style="padding: 8px;" id="" colspan="4">
                                 <div>
-                                    <div style="float:left;width:200px;">销售顾问：李二</div>
+                                    <div style="float:left;width:200px;">销售顾问：<span ></span></div>
                                     <div style="float:right;width:200px;">客户（签字）：<br>
                                     年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日
                                     </div>
                                     <div style="clear:both"></div>
                                     <div style="height:50px;width:100%"></div>
                                     <div style="width:100%;height:20px;">
-                                        <span>特别声明：贷款年限、金额，以银行最终审批为准，客户签字后本购车计算表与购车合同起同等法律效力。</span>
+                                        <span>特别声明：客户签字后本购车计算表与购车合同起同等法律效力。</span>
                                     </div>
 
                                 </div>     
@@ -365,10 +365,6 @@
                         </tr>
             </tbody>
         </table>
-        <p>办理贷款购车所需提供的资料</p>
-        <p>1、夫妻双方身份证复印件2、户口本复印件3、结婚证（或未婚证明、离婚证）复印件</p>
-        <p>4、收入证明原件5、公司或个体户经营者提供营业执照复印件</p>
-        <p>6、打印银行最近6个月的流水原件7、房产证复印件（土地使用证或购房合同）</p>
     </div>
 	<script type="text/javascript">
 		$("#print").click(function () {
@@ -379,11 +375,21 @@
         }); 
         getTableData() ;
         function getTableData() {
-            var url = 'http://127.0.0.1:8080/default/sales.search.searchSalesMain.biz.ext?params/id=24';
+            var url = 'http://127.0.0.1:8080/default/sales.search.searchSaleCalc.biz.ext?billType=2&serviceId=24';
             $.post(url,function(res){
                 if(res.data.length > 0){
                     var temp = res.data[0];
-                    alert(1);
+                    //document.getElementById("guestFullName").innerHTML = temp.guestFullName;
+                    //document.getElementById("carModelName").innerHTML = temp.carModelName;
+                    document.getElementById("saleAmt").innerHTML = temp.saleAmt;//车价（元）
+                    document.getElementById("insuranceBudgetAmt").innerHTML = temp.insuranceBudgetAmt;//保险预算费
+                    document.getElementById("boardLotAmt").innerHTML = temp.boardLotAmt;//上牌费
+                    document.getElementById("purchaseBudgetAmt").innerHTML = temp.purchaseBudgetAmt;//购置税预算	
+                    document.getElementById("decrAmt").innerHTML = temp.decrAmt;//精品加装	
+                    document.getElementById("gpsAmt").innerHTML = temp.gpsAmt;//GPS费
+                    document.getElementById("otherAmt").innerHTML = temp.otherAmt;//其它费用
+                    document.getElementById("getCarTotal").innerHTML = temp.getCarTotal;//提车合计
+                    document.getElementById("buyBudgetTotal").innerHTML = temp.buyBudgetTotal;//购车预算合计
                 }
             });
 

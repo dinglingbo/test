@@ -55,7 +55,6 @@ function selectCar() {
             }
         }
     });
-
 }
 
 function close() {

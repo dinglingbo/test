@@ -176,12 +176,7 @@ function save(){
 			contentType : 'text/json',
 			success : function(text) {
 				if(text.errCode=="S"){
-			    	var guestCome = text.guestCome;
-			    	var guest = text.rguest;
-			    	guestComeForm.setData(guestCome);
-			    	$("#serviceCodeEl").html(guestCome.serviceCode);
-			    	$("#carModelNameEl").html(guestCome.carModelName);
-			    	$("#nameEl").html(guest.fullName);
+					doSearch();
 			    	showMsg("保存成功","S");
 			    }else{
 			    	showMsg("保存失败","E");

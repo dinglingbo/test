@@ -144,7 +144,7 @@
 				                    <li iconCls="" onclick="quickSearch(0)">待今日跟进</li>
 				                    <li iconCls="" onclick="quickSearch(1)">今日归档</li>
 				                    <li iconCls="" onclick="quickSearch(2)">超期未跟进</li>
-				                    <li iconCls="" onclick="quickSearch(3)">所有跟进</li>
+				                    <li iconCls="" onclick="quickSearch(3)">所有需跟进</li>
 				                   <!--  <li iconCls="" onclick="quickSearch(3)">上周</li>
 				                    <li iconCls="" onclick="quickSearch(4)">本月</li>
 				                    <li iconCls="" onclick="quickSearch(5)">上月</li>
@@ -222,7 +222,7 @@
 	                 	  <div field="fullName" name="fullName" width="100" headerAlign="center"  allowsort="true" header="客户名称" allowsort="ture"></div> 
 		                  <div field="source" name="source" width="80" headerAlign="center" header="客户来源" allowsort="true"></div>
 		                  <div field="leaveDate" name="leaveDate" width="120" headerAlign="center" allowsort="true" dateFormat="yyyy-MM-dd HH:mm" header="离店时间"></div>
-		                  <div field="nextVisitDate" name="nextVisitDate" width="120" headerAlign="center" allowsort="true" dateFormat="yyyy-MM-dd HH:mm" header="下次跟踪"></div>
+		                  <div field="nextScoutDate" name="nextScoutDate" width="120" headerAlign="center" allowsort="true" dateFormat="yyyy-MM-dd HH:mm" header="下次跟踪"></div>
 	                  </div>
                   </div>
                   <div header="意向信息" headerAlign="center">

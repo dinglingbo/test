@@ -80,7 +80,7 @@ a.optbtn {
                     <!-- <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
 	                <a class="nui-button" onclick="onCancel" plain="true"  style="width: 80px;"><span class="fa fa-dollar fa-lg"></span>&nbsp;购车预算</a>
 	                <a class="nui-button" onclick="onCancel" plain="true"  style="width: 80px;"><span class="fa fa-remove fa-lg"></span>&nbsp;客户资料</a> -->
-	                <a class="nui-button" onclick="saveBath()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+	                <a class="nui-button" onclick="save()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
 	                <a class="nui-button" onclick="guestInfo" plain="true"  style="width: 100px;"><span class="fa fa-user-plus fa-lg"></span>&nbsp;客户资料</a>
 	                <a class="nui-button" iconCls="" plain="true" onclick="giftInfo()" id="addBtn"><span class="fa fa-shopping-bag fa-lg"></span>&nbsp;精品信息</a>
 	                <a class="nui-button" onclick="buyCarCount" plain="true"  style="width: 80px;"><span class="fa fa-dollar fa-lg"></span>&nbsp;购车预算</a>

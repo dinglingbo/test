@@ -125,15 +125,25 @@ function getSearchParam() {
 
 function doSearch() {
     var gsparams = getSearchParam();
-    gsparams.statusList = 1;
+    
     if(status==0){//待今日跟进
+    	gsparams.statusList = 1;
 		gsparams.nextScoutDateStart = nui.formatDate(new Date(), 'yyyy-MM-dd');
 		gsparams.nextScoutDateEnd = addDate(gsparams.nextScoutDateStart,1);
 		gsparams.nextScoutDateStart = gsparams.nextScoutDateStart + ' 00:00:00';
 		gsparams.nextScoutDateEnd = gsparams.nextScoutDateEnd + ' 00:00:00';
     }else if(status==2){//超期未跟进
+    	gsparams.statusList = 1;
     	gsparams.nextScoutDate = nui.formatDate(new Date(), 'yyyy-MM-dd');
     	gsparams.nextScoutDate = gsparams.nextScoutDate + ' 00:00:00';
+    }else if(status==1){//今日归档，查询修改日期是今天的，并且status是等于1的
+    	gsparams.modifyDateStart = nui.formatDate(new Date(), 'yyyy-MM-dd');
+		gsparams.modifyDateEnd = addDate(gsparams.modifyDateEnd,1);
+		gsparams.modifyDateStart = gsparams.modifyDateStart + ' 00:00:00';
+		gsparams.modifyDateEnd = gsparams.modifyDateEnd + ' 00:00:00';
+		gsparams.status = 1;
+    }else if(status==3){//所有需跟进
+    	gsparams.scoutStatus = "DIT20130705000163";
     }
     mainGrid.load({
         token:token,
@@ -155,6 +165,11 @@ function quickSearch(type) {
         case 2:
             status = 2;  //施工
             queryname = "超期未跟进";
+            //document.getElementById("advancedMore").style.display='block';
+            break;
+        case 3:
+            status = 3;  //施工
+            queryname = "所有需跟进";
             //document.getElementById("advancedMore").style.display='block';
             break;
         default:

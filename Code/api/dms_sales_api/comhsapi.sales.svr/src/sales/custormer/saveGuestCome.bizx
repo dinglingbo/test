@@ -261,6 +261,10 @@
       <process:from type="query" pattern="reference">guestCome/nextVisitDate</process:from>
       <process:to type="query">contactor/nextScoutDate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">guest/fullName</process:from>
+      <process:to type="query">contactor/name</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
     <location x="505" y="300"/>
@@ -528,8 +532,8 @@
     <location x="765" y="181"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess4label</nodeLabel>
-    <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hs.common.unify.saveEntity</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.saveEntity</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="dsName" type="literal" value="String" valueType="Primitive" pattern="reference">sales</process:inputVariable>
         <process:inputVariable id="1" name="data" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">guestCome</process:inputVariable>

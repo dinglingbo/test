@@ -291,6 +291,7 @@ function selectCar() { //点击选车时触发
 }
 
 function registration() {
+    var billFormData = billForm.getData(true); //主表信息
     nui.open({
         url: webPath + contextPath + "/sales/sales/vehicleRegistration.jsp?token=" + token,
         title: "车辆上牌",
@@ -298,6 +299,7 @@ function registration() {
         height: "490px",
         onload: function() {
             var iframe = this.getIFrameEl();
+            iframe.contentWindow.SetData(billFormData.id, billFormData.guestId, billFormData.guestFullName);
         },
         ondestroy: function(action) {
 

@@ -120,6 +120,7 @@
             <input class="nui-hidden" name="carModelName" />
             <input class="nui-hidden" name="carModelId" />
             <input class="nui-hidden" name="isSubmitCar" />
+            <input class="nui-hidden" name="guestId" />
             <table cellpadding="0" cellspacing="0" style="line-height: 30px; padding-top: 4px; padding-left: 0px;width:100%">
                 <tr>
                     <td class="td_title">单据日期：

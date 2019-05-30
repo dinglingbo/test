@@ -1,10 +1,9 @@
 /**
  * Created by Administrator on 2018/2/1.
  */
-var baseUrl = apiPath + saleApi + "/"; 
+var bearUrl = apiPath + saleApi + "/"; 
 var DateList = [{id:"0",name:"上市日期"},{id:"1",name:"入库日期"}];
 var statusList = [{id:"0",name:"联系人"},{id:"1",name:"联系电话"},{id:"2",name:"车架号（VIN）"}];
-var bearUrl  = apiPath +saleApi + "/";
 var rightGridUrl = bearUrl+"sales.inventory.queryCheckEnter.biz.ext";
 var rightGrid = null;
 var searchBeginDate = null;
@@ -181,10 +180,13 @@ function selectSupplier(elId)
 
 
 function detection() {
-
+	var row = rightGrid.getSelected();
+	if(!row){		
+		showMsg("请选择单据","W");
+	}
 	nui.open({
 		url : webPath + contextPath
-				+ "/com.hsweb.part.manage.PDIdetection.flow?token="
+				+ "/sales/inventory/PDIdetection.jsp?token="
 				+ token,
 		title : "PDI检测",
 		width : 800,
@@ -192,7 +194,8 @@ function detection() {
 		allowDrag : true,
 		allowResize : true,
 		onload : function() {
-
+			var iframe = this.getIFrameEl();
+			iframe.contentWindow.setData(row);
 		},
 		ondestroy : function(action) {
 

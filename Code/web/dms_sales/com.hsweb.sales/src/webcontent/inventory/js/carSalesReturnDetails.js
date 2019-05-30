@@ -2845,6 +2845,8 @@ function addProcurement(){
                     nui.unmask(document.body);
                     data = data || {};
                     var list=data.cssCheckEnter[0] || [];
+                    list.orderPrice = list.unitPrice;
+                    list.returnAmt = list.amt;
                     rightGrid.addRow(list);	
                 },
                 error : function(jqXHR, textStatus, errorThrown) {

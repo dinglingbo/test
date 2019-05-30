@@ -357,6 +357,7 @@ function addGift(){
 var statusUrl = apiPath + saleApi + "/sales.custormer.changStatus.biz.ext";
 function changStatus(){
 	var guestCome = guestComeForm.getData("true");
+	var status = guestCome.status;
 	if(status == 1){
 		showMsg("来访登记已归档！","W");
 		return;
@@ -382,12 +383,12 @@ function changStatus(){
 		contentType : 'text/json',
 		success : function(text) {
 			if(text.errCode=="S"){
-				showMsg("归档成功","S");
+				showMsg(text.errMsg || "归档成功","S");
 				guestCome.status = 1;
 				guestComeForm.setData(guestCome);
 				doSetStyle(1);
 		    }else{
-		    	showMsg("归档失败","E");
+		    	showMsg(text.errMsg ||"归档失败","E");
 		    }
 			nui.unmask(document.body);
 		}

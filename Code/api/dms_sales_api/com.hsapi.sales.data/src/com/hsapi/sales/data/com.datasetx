@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model:DataSetDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://www.primeton.com/datamodel" name="com" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" displayName="com" author="Administrator">
   <nodes xsi:type="model:PEntityNode" id="node0" name="ComGuest" nodeType="table" displayName="ComGuest" author="Administrator" instanceClass="" table="com_guest" genStrategy="native">
-    <location x="15" y="0"/>
+    <location x="60" y="60"/>
     <size height="1146" width="150"/>
     <figSize height="20" width="150"/>
     <columnProperty id="property0" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
@@ -4112,7 +4112,7 @@
     </columnProperty>
   </nodes>
   <nodes xsi:type="model:PEntityNode" id="node1" name="RpbCar" nodeType="table" displayName="RpbCar" author="Administrator" instanceClass="" table="rpb_car" genStrategy="assigned">
-    <location x="195" y="0"/>
+    <location x="60" y="1266"/>
     <size height="768" width="150"/>
     <figSize height="20" width="150"/>
     <columnProperty id="property62" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
@@ -6872,7 +6872,7 @@
     </columnProperty>
   </nodes>
   <nodes xsi:type="model:PEntityNode" id="node2" name="RpbCarExtend" nodeType="table" displayName="RpbCarExtend" author="Administrator" instanceClass="" table="rpb_car_extend" genStrategy="assigned">
-    <location x="555" y="0"/>
+    <location x="60" y="2094"/>
     <size height="732" width="150"/>
     <figSize height="20" width="150"/>
     <columnProperty id="property103" name="carId" displayName="carId" columnName="car_id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
@@ -9486,7 +9486,7 @@
     </columnProperty>
   </nodes>
   <nodes xsi:type="model:PEntityNode" id="node3" name="RpbContactor" nodeType="table" displayName="RpbContactor" author="Administrator" instanceClass="" table="rpb_contactor" genStrategy="assigned">
-    <location x="390" y="0"/>
+    <location x="60" y="2886"/>
     <size height="840" width="150"/>
     <figSize height="20" width="150"/>
     <columnProperty id="property142" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">

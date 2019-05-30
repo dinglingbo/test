@@ -277,11 +277,40 @@ function save(){
 		}
     }); 
 }
+
 function setData(row){
     var data = {};
     data = row;
     data.id = row.guestId;
     basicInfoForm.setData(data); 
+}
+var queryUrl = apiPath + saleApi + "/sales.custormer.queryGuestAndContactor.biz.ext";
+function queryData(guestId){
+    if(guestId){
+       var json = nui.encode({
+   		 guestId:guestId,
+   		 token:token
+   	  });
+	  nui.ajax({
+		url : queryUrl,
+		type : 'POST',
+		data : json,
+		cache : false,
+		contentType : 'text/json',
+		success : function(text) {
+			if(text.errCode=="S"){
+		    	var contactor1 = text.contactor;
+		    	var guest1 = text.guest;
+		    	var setData = {};
+		    	setData = contactor1;
+		    	setData.id = guest1.id;
+		    	setData.email = guest1.email;
+		    	basicInfoForm.setData(setData);
+		    }
+			nui.unmask(document.body);
+		}
+    }); 
+    }
 }
 
 

@@ -86,7 +86,7 @@
                     <label style="font-family:Verdana;">将客户资料分配给：</label>
                     <input name="emp" id="emp" class="nui-combobox width1" textField="empName" valueField="empId"
                         emptyText="销售顾问" url=""  allowInput="true" showNullItem="false" width="80" valueFromSelect="true"  onenter=""/>
-                    <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-check fa-lg"></span>&nbsp;确定</abbr></a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="changSaleAdvisor()" id="deletBtn"><span class="fa fa-check fa-lg"></span>&nbsp;确定</abbr></a>
                 </td>
             </tr>
         </table>
@@ -159,10 +159,10 @@
 	                  <div field="guestId" name="guestId" visible="false"></div>
 	                  <div field="saleAdvisor" name="saleAdvisor" width="80" headerAlign="center" allowsort="true" header="销售顾问"></div>
 	                  <div field="name" name="name" width="80" headerAlign="center" allowsort="true" header="姓名"></div>
-  	                  <div field="sex" name="sex" width="80" headerAlign="center" allowsort="true" header="性别"></div>
-  	                  <div field="birthdayType" name="birthdayType" width="80" headerAlign="center" allowsort="true" header="生日类型"></div>
-	                  <div field="birthday" name="birthday" width="120" headerAlign="center" allowsort="true" dateFormat="yyyy-MM-dd HH:mm" header="生日"></div>
-	                  <div field="identity" name="identity" width="60" headerAlign="center" allowsort="true" header="身份"></div>
+  	                  <div field="sex" name="sex" width="40" headerAlign="center" allowsort="true" header="性别"></div>
+  	                  <div field="birthdayType" name="birthdayType" width="60" headerAlign="center" allowsort="true" header="生日类型"></div>
+	                  <div field="birthday" name="birthday" width="80" headerAlign="center" allowsort="true" dateFormat="yyyy-MM-dd" header="生日"></div>
+	                  <div field="identity" name="identity" width="100" headerAlign="center" allowsort="true" header="身份"></div>
 	                 </div>
                   </div>
                   <div header="其他信息" headerAlign="center">
@@ -173,7 +173,7 @@
   	                 <!--  <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" allowsort="true" header="群体"></div> -->
   	                  <div field="specialCare" name="specialCare" width="80" headerAlign="center" allowsort="true" header="特别关注"></div>
 	                  <div field="maritalStatus" name="maritalStatus" width="60" headerAlign="center" allowsort="true" header="婚姻状况"></div>
-	                  <div field="source" name="source" width="60" headerAlign="center" allowsort="true" header="客户来源"></div>
+	                  <div field="source" name="source" width="80" headerAlign="center" allowsort="true" header="客户来源"></div>
 	                 </div>
                   </div>
                   <div header="详细信息" headerAlign="center">
@@ -228,14 +228,14 @@
                 <td class="">至:</td>
                 <td>
                     <input id="eRecordDate"
-                           name="eRecordDate"
-                           class="nui-datepicker"
-                           format="yyyy-MM-dd"
-                           timeFormat="H:mm:ss"
-                           showTime="false"
-                           showOkButton="false"
-                           width="100%"
-                           showClearButton="false"/>
+                       name="eRecordDate"
+                       class="nui-datepicker"
+                       format="yyyy-MM-dd"
+                       timeFormat="H:mm:ss"
+                       showTime="false"
+                       showOkButton="false"
+                       width="100%"
+                       showClearButton="false"/>
                 </td>
             </tr>
             <tr>

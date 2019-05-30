@@ -72,6 +72,16 @@
             <isNotEmpty prepend="and" property="nextScoutDate"> 
                 (c.next_scout_date &lt; #nextScoutDate#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="modifyDateStart"> 
+                (a.modify_date &gt;= #modifyDateStart#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="modifyDateEnd"> 
+                (a.modify_date &lt; #modifyDateEnd#)
+            </isNotEmpty>
+            <!--终止跟进-->
+             <isNotEmpty prepend="and" property="scoutStatus">
+                (c.scout_status = #scoutStatus#)
+            </isNotEmpty>
         </dynamic>  
 	</select>
 	

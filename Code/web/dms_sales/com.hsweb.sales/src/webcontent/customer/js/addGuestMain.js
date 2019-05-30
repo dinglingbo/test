@@ -1,5 +1,6 @@
 var baseUrl = window._rootSysUrl || "http://127.0.0.1:8080/default/";
 var queryUrl = apiPath + saleApi + "/sales.custormer.queryGuestList.biz.ext";
+var changeBathUrl = apiPath + saleApi + "/sales.custormer.changeSaleAdvisor.biz.ext";
 var mainGrid = null;
 var statusHash = {
 	"0":"草稿",
@@ -149,4 +150,50 @@ function potentialCustomer(){
 			
 		}
 	});
+}
+
+function changSaleAdvisor(){
+	//var d = mainGrid.getChanges("modified");
+	//获取到选中的值服务顾问
+	var saleAdvisorId = nui.get("emp").getValue();
+	if(!saleAdvisorId){
+		showMsg("请选择销售顾问!","W");
+		return;
+	}
+	var saleAdvisor = nui.get("emp").text;
+	var dataList = mainGrid.getSelecteds();
+	if(dataList.length>0){
+		var json = nui.encode({
+			contactorList:dataList,
+			saleAdvisor:saleAdvisor,
+			saleAdvisorId:saleAdvisorId,
+		    token:token
+	    });
+		nui.mask({
+		   el: document.body,
+		   cls: 'mini-mask-loading',
+		   html: '保存中...'
+		});
+		nui.ajax({
+			url : changeBathUrl,
+			type : 'POST',
+			data : json,
+			cache : false,
+			contentType : 'text/json',
+			success : function(text) {
+				if(text.errCode=="S"){
+					doSearch();
+					showMsg(text.errMsg || "保存成功!","S");
+				}else{
+					showMsg(text.errMsg || "保存失败!","E");
+				}
+				nui.unmask(document.body);
+			}
+		}); 
+	}else{
+		showMsg("请选择客户!","W");
+	}
+	
+		
+	
 }

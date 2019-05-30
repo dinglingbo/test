@@ -45,6 +45,12 @@ $(document).ready(function ()
         	e.cellHtml ='<a href="##" onclick="edit('+e.record._uid+')">'+e.record.serviceCode+'</a>';
         }
 	});
+	mainGrid.on("select",function(e){
+    	var row = e.record;
+    	if(row.status>0){
+    		nui.get("deletBtn").disable();
+    	}
+    });
 	quickSearch(0);
 });
 
@@ -262,4 +268,84 @@ function edit(row_uid){
     part.iconCls = "fa fa-file-text";
     var params = {};
     window.parent.activeTabAndInit(part,row);
+}
+
+function guestInfo(){
+	var row = mainGrid.getSelected();
+	if(row){
+		nui.open({
+			url : webPath + contextPath + "/sales/customer/addGuest.jsp?token=" + token,
+			title : "编辑客户资料",
+			width : 900,
+			height : 460,
+			allowDrag : true,
+			allowResize : true,
+			onload : function() {
+				var iframe = this.getIFrameEl();
+	            iframe.contentWindow.queryData(row.guestId);//显示该显示的功能
+			},
+			ondestroy : function(action) {
+				doSearch();
+			}
+		});
+	}else{
+		showMsg("请选择一条记录!","W");
+		return;
+	}
+	  
+}
+
+function queryCar(){
+	var part={};
+    part.id = "3223";
+    part.text = "库存管理";
+    part.url = webPath + contextPath + "/inventory.carSalesInventory.flow?token="+token;
+    part.iconCls = "fa fa-file-text";
+    var params = {};
+    window.parent.activeTabAndInit(part,params);
+}
+
+var statusUrl = apiPath + saleApi + "/sales.custormer.changStatus.biz.ext";
+function del(){
+	var row = mainGrid.getSelected();
+	if(row){
+		var status = row.status;
+		if(status == 1){
+			showMsg("来访登记已归档！","W");
+			return;
+		}
+		if(status == 2){
+			showMsg("来访登记已转销售！","W");
+			return;
+		}
+		var json = nui.encode({
+	         id:row.id,
+	         action:"delete",
+			 token:token
+		  });
+		nui.mask({
+	       el: document.body,
+	       cls: 'mini-mask-loading',
+	       html: '保存中...'
+	   });
+		nui.ajax({
+			url : statusUrl,
+			type : 'POST',
+			data : json,
+			cache : false,
+			contentType : 'text/json',
+			success : function(text) {
+				if(text.errCode=="S"){
+					showMsg("作废成功!","S");
+			    }else{
+			    	showMsg("作废失败!","E");
+			    }
+				nui.unmask(document.body);
+				doSearch();
+			}
+		 });
+	}else{
+		showMsg("请选择一条记录！","W");
+		return;
+	}
 }

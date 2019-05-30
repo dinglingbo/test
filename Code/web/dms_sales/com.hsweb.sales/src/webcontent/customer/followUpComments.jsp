@@ -158,10 +158,10 @@
 				                <span class="separator"></span>
 				               <!--  <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a> -->
 				                <a class="nui-button" onclick="saveBath()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-				                <a class="nui-button" onclick="onCancel" plain="true"  style="width: 100px;"><span class="fa fa-user-plus fa-lg"></span>&nbsp;客户资料</a>
-				                <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-shopping-bag fa-lg"></span>&nbsp;精品信息</a>
-				                <a class="nui-button" onclick="onCancel" plain="true"  style="width: 80px;"><span class="fa fa-dollar fa-lg"></span>&nbsp;购车预算</a>
-				                <a class="nui-button" onclick="onCancel" plain="true"  style="width: 80px;"><span class="fa fa-check fa-lg"></span>&nbsp;导出</a>
+				                <a class="nui-button" onclick="guestInfo" plain="true"  style="width: 100px;"><span class="fa fa-user-plus fa-lg"></span>&nbsp;客户资料</a>
+				                <a class="nui-button" iconCls="" plain="true" onclick="giftInfo()" id="addBtn"><span class="fa fa-shopping-bag fa-lg"></span>&nbsp;精品信息</a>
+				                <a class="nui-button" onclick="buyCarCount" plain="true"  style="width: 80px;"><span class="fa fa-dollar fa-lg"></span>&nbsp;购车预算</a>
+				               <!--  <a class="nui-button" onclick="onCancel" plain="true"  style="width: 80px;"><span class="fa fa-check fa-lg"></span>&nbsp;导出</a> -->
 				            </td>
 						</tr>
 					</table>
@@ -170,7 +170,7 @@
 					 <div id="mainGrid" dataField="list" class="nui-datagrid"
 						pageSize="200" onDrawCell="onDrawCell" 
 						sizeList="[100,300,500]" sortMode="client"
-						onselectionchanged="selectionChanged" onrowclick=""
+						 onrowclick=""
 						allowSortColumn="true" 
 						style="width: 100%; 
 						height: 100%;"

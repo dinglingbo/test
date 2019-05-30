@@ -309,16 +309,16 @@ function registration() {
 
 function checkMsg(e) { //进行保存操作前进行验证
     var billFormData = billForm.getData(true); //主表信息
-    if (e == 2) { //审核 先判断费用是否审核完毕
-        var data = costDetailGrid.getData();
-        var data1 = costDetailGrid2.getData();
-        var arr = data.concat(data1);
-        var msg = arr.find(arr => arr.auditSign == 0);
-        if (msg) {
-            showMsg("费用尚未审核完，请审核完费用后再进行操作！", "W");
-            return;
-        }
-    }
+    // if (e == 2) { //审核 先判断费用是否审核完毕
+    //     var data = costDetailGrid.getData();
+    //     var data1 = costDetailGrid2.getData();
+    //     var arr = data.concat(data1);
+    //     var msg = arr.find(arr => arr.auditSign == 0);
+    //     if (msg) {
+    //         showMsg("费用尚未审核完，请审核完费用后再进行操作！", "W");
+    //         return;
+    //     }
+    // }
     var params = document.getElementById("caCalculation").contentWindow.getValue(); //购车信息
     if (params.isValid == false) {
         showMsg("购车信息填写有误，请检查后再保存", "W");
@@ -480,7 +480,7 @@ function searchSalesMain(serviceId) { //查询主表信息
                 var data = text.data[0];
                 billForm.setData(data);
                 form.setData(data);
-                document.getElementById("serviceCode").innerHTML = data.nice型;
+                document.getElementById("serviceCode").innerHTML = data.serviceCode;
 
                 document.getElementById("caCalculation").contentWindow.SetDataMsg(data.id, data.frameColorId, data.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
                 if (data.status != 0) {
@@ -515,7 +515,7 @@ function searchSalesMain(serviceId) { //查询主表信息
 function updateCheckEnter(enterId) { //返单 修改库存表车辆状态
     var data = {
         id: enterId,
-        billStatus: 0
+        carStatus: 0
     };
     nui.ajax({
         url: baseUrl + "sales.save.updateCheckEnter.biz.ext",

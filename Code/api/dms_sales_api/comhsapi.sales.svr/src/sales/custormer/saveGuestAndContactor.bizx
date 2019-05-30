@@ -251,6 +251,10 @@
       <process:from type="query" pattern="reference">guest/sex</process:from>
       <process:to type="query">contactor/sex</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">DIT20130705000162</process:from>
+      <process:to type="query">contactor/scoutStatus</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
     <location x="358" y="186"/>

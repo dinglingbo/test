@@ -1011,13 +1011,13 @@
     <node>assign16</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo11" name="updateEntity" displayName="updateEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link38" name="link38" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo11</sourceNode>
-      <targetNode>invokePojo10</targetNode>
-    </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link44" name="link44" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo11</sourceNode>
       <targetNode>assign18</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link62" name="link62" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo11</sourceNode>
+      <targetNode>transactioncommit0</targetNode>
     </sourceConnections>
     <targetConnections>link37</targetConnections>
     <location x="1330" y="247"/>
@@ -1043,7 +1043,7 @@
       <sourceNode>transactioncommit0</sourceNode>
       <targetNode>assign17</targetNode>
     </sourceConnections>
-    <targetConnections>link52</targetConnections>
+    <targetConnections>link62</targetConnections>
     <location x="1425" y="247"/>
     <size height="28" width="28"/>
     <nodeLabel>transactioncommit0label</nodeLabel>
@@ -1086,7 +1086,6 @@
     <targetConnections>link43</targetConnections>
     <targetConnections>link44</targetConnections>
     <targetConnections>link48</targetConnections>
-    <targetConnections>link53</targetConnections>
     <location x="1163" y="442"/>
     <size height="28" width="28"/>
     <nodeLabel>assign18label</nodeLabel>
@@ -1178,34 +1177,6 @@
     <location x="1203" y="281"/>
     <figSize height="17" width="96"/>
     <node>invokePojo12</node>
-  </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo10" name="updateEntity1" displayName="updateEntity" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link52" name="link52" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo10</sourceNode>
-      <targetNode>transactioncommit0</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" id="link53" name="link53" displayName="连接线" lineType="note" type="exception">
-      <sourceNode>invokePojo10</sourceNode>
-      <targetNode>assign18</targetNode>
-    </sourceConnections>
-    <targetConnections>link38</targetConnections>
-    <location x="1380" y="251"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo10label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.updateEntity</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">sales</process:inputVariable>
-      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">contactor</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables/>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo10label" name="label" nodeType="label">
-    <location x="1351" y="287"/>
-    <figSize height="17" width="80"/>
-    <node>invokePojo10</node>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign21" name="赋值22" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link55" name="link55" displayName="连接线" isDefault="true" type="transition">
@@ -1408,7 +1379,7 @@
       <targetNode>invokePojo9</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

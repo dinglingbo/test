@@ -28002,9 +28002,9 @@
       </viewField>
     </columnProperty>
   </nodes>
-  <nodes xsi:type="model:PEntityNode" id="node19" name="CssCheckPdiMain" nodeType="table" displayName="CssCheckPdiMain" author="Administrator" instanceClass="" table="css_check_pdi_main" genStrategy="assigned">
-    <location x="60" y="10054"/>
-    <size height="336" width="150"/>
+  <nodes xsi:type="model:PEntityNode" id="node19" name="CssCheckPdiMain" nodeType="table" displayName="CssCheckPdiMain" author="Administrator" allUseViewModel="true" table="css_check_pdi_main" genStrategy="assigned">
+    <location x="60" y="10050"/>
+    <size height="358" width="150"/>
     <figSize height="20" width="150"/>
     <columnProperty id="property460" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -28071,7 +28071,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property461" name="tenantId" displayName="tenantId" columnName="tenant_id" nullAble="true" PK="false" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
+    <columnProperty id="property461" name="tenantId" displayName="tenantId" columnName="tenant_id" nullAble="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="tenantId" entityField="tenantId" id="tenantId" label="tenantId" name="tenantId" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>
@@ -28136,7 +28136,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property462" name="orgid" displayName="orgid" columnName="orgid" nullAble="true" PK="false" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
+    <columnProperty id="property462" name="orgid" displayName="orgid" columnName="orgid" nullAble="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="orgid" entityField="orgid" id="orgid" label="orgid" name="orgid" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>
@@ -28201,7 +28201,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property463" name="enterId" displayName="enterId" columnName="enter_id" nullAble="true" PK="false" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
+    <columnProperty id="property463" name="enterId" displayName="enterId" columnName="enter_id" nullAble="true" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
       <comment>车辆入库ID</comment>
       <viewField dict="false" dictTypeId="" displayName="enterId" entityField="enterId" id="enterId" label="enterId" name="enterId" userDefined="true">
         <fieldView showAllAttr="false">
@@ -28267,7 +28267,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property464" name="pdiDetectionDate" displayName="pdiDetectionDate" columnName="pdi_detection_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
+    <columnProperty id="property464" name="pdiDetectionDate" displayName="pdiDetectionDate" columnName="pdi_detection_date" nullAble="true" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="pdiDetectionDate" entityField="pdiDetectionDate" id="pdiDetectionDate" label="pdiDetectionDate" name="pdiDetectionDate" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>
@@ -28337,7 +28337,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property465" name="pdiDetectioner" displayName="pdiDetectioner" columnName="pdi_detectioner" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+    <columnProperty id="property465" name="pdiDetectioner" displayName="pdiDetectioner" columnName="pdi_detectioner" nullAble="true" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="pdiDetectioner" entityField="pdiDetectioner" id="pdiDetectioner" label="pdiDetectioner" name="pdiDetectioner" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>
@@ -28402,7 +28402,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property466" name="carModelId" displayName="carModelId" columnName="car_model_id" nullAble="true" PK="false" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
+    <columnProperty id="property466" name="carModelId" displayName="carModelId" columnName="car_model_id" nullAble="true" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
       <comment>车型ID</comment>
       <viewField dict="false" dictTypeId="" displayName="carModelId" entityField="carModelId" id="carModelId" label="carModelId" name="carModelId" userDefined="true">
         <fieldView showAllAttr="false">
@@ -28468,7 +28468,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property467" name="carModelName" displayName="carModelName" columnName="car_model_name" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="100" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+    <columnProperty id="property467" name="carModelName" displayName="carModelName" columnName="car_model_name" nullAble="true" columnType="VARCHAR" eosDataType="String" length="100" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="carModelName" entityField="carModelName" id="carModelName" label="carModelName" name="carModelName" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>
@@ -28533,7 +28533,38 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property468" name="engineno" displayName="engineno" columnName="engineNo" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="100" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+    <columnProperty id="property468" name="vin" displayName="vin" columnName="vin" nullAble="true" columnType="VARCHAR" eosDataType="String" length="100" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+      <comment>车架号</comment>
+      <viewField dict="false" displayName="vin" id="vin" label="vin" name="vin" userDefined="true">
+        <fieldView>
+          <type name="write"/>
+          <attr name="formatPattern"/>
+          <attr name="srcFormatPattern"/>
+          <attr name="maxLength"/>
+          <attr attrValue="" defaultValue="" name="filter"/>
+          <attr attrValue="" defaultValue="" name="maxLengthString"/>
+          <attr name="value"/>
+        </fieldView>
+        <fieldEdit>
+          <type name="text"/>
+          <attr attrValue="nui-textbox" defaultValue="nui-textbox" name="class"/>
+          <attr attrValue="" defaultValue="" name="emptyText"/>
+          <attr attrValue="" defaultValue="" name="inputStyle"/>
+          <attr attrValue="false" defaultValue="false" name="required"/>
+          <attr attrValue="" defaultValue="" name="borderStyle"/>
+          <attr attrValue="" defaultValue="" name="cls"/>
+          <attr attrValue="true" defaultValue="true" name="enabled"/>
+          <attr attrValue="" defaultValue="" name="height"/>
+          <attr attrValue="" defaultValue="" name="id"/>
+          <attr attrValue="" defaultValue="" name="name"/>
+          <attr attrValue="" defaultValue="" name="style"/>
+          <attr attrValue="" defaultValue="" name="tooltip"/>
+          <attr attrValue="true" defaultValue="true" name="visible"/>
+          <attr attrValue="" defaultValue="" name="width"/>
+        </fieldEdit>
+      </viewField>
+    </columnProperty>
+    <columnProperty id="property469" name="engineno" displayName="engineno" columnName="engineNo" nullAble="true" columnType="VARCHAR" eosDataType="String" length="100" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <comment>发动机型号</comment>
       <viewField dict="false" dictTypeId="" displayName="engineno" entityField="engineno" id="engineno" label="engineno" name="engineno" userDefined="true">
         <fieldView showAllAttr="false">
@@ -28599,7 +28630,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property469" name="ignitionKeyCode" displayName="ignitionKeyCode" columnName="ignition_key_code" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="100" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+    <columnProperty id="property470" name="ignitionKeyCode" displayName="ignitionKeyCode" columnName="ignition_key_code" nullAble="true" columnType="VARCHAR" eosDataType="String" length="100" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <comment>点火钥匙号</comment>
       <viewField dict="false" dictTypeId="" displayName="ignitionKeyCode" entityField="ignitionKeyCode" id="ignitionKeyCode" label="ignitionKeyCode" name="ignitionKeyCode" userDefined="true">
         <fieldView showAllAttr="false">
@@ -28665,7 +28696,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property470" name="ignitionKeyNumber" displayName="ignitionKeyNumber" columnName="ignition_key_number" nullAble="true" PK="false" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
+    <columnProperty id="property471" name="ignitionKeyNumber" displayName="ignitionKeyNumber" columnName="ignition_key_number" nullAble="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>点火钥匙数量</comment>
       <viewField dict="false" dictTypeId="" displayName="ignitionKeyNumber" entityField="ignitionKeyNumber" id="ignitionKeyNumber" label="ignitionKeyNumber" name="ignitionKeyNumber" userDefined="true">
         <fieldView showAllAttr="false">
@@ -28731,7 +28762,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property471" name="transmittersNumber" displayName="transmittersNumber" columnName="transmitters_number" nullAble="true" PK="false" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
+    <columnProperty id="property472" name="transmittersNumber" displayName="transmittersNumber" columnName="transmitters_number" nullAble="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>发送器数量</comment>
       <viewField dict="false" dictTypeId="" displayName="transmittersNumber" entityField="transmittersNumber" id="transmittersNumber" label="transmittersNumber" name="transmittersNumber" userDefined="true">
         <fieldView showAllAttr="false">
@@ -28797,7 +28828,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property472" name="remark" displayName="remark" columnName="remark" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="100" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+    <columnProperty id="property473" name="remark" displayName="remark" columnName="remark" nullAble="true" columnType="VARCHAR" eosDataType="String" length="100" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <comment>备注</comment>
       <viewField dict="false" dictTypeId="" displayName="remark" entityField="remark" id="remark" label="remark" name="remark" userDefined="true">
         <fieldView showAllAttr="false">
@@ -28863,7 +28894,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property473" name="recorder" displayName="recorder" columnName="recorder" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+    <columnProperty id="property474" name="recorder" displayName="recorder" columnName="recorder" nullAble="true" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="recorder" entityField="recorder" id="recorder" label="recorder" name="recorder" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>
@@ -28928,7 +28959,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property474" name="recordDate" displayName="recordDate" columnName="record_date" nullAble="false" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
+    <columnProperty id="property475" name="recordDate" displayName="recordDate" columnName="record_date" nullAble="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="recordDate" entityField="recordDate" id="recordDate" label="recordDate" name="recordDate" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>
@@ -28998,7 +29029,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property475" name="modifier" displayName="modifier" columnName="modifier" nullAble="true" PK="false" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+    <columnProperty id="property476" name="modifier" displayName="modifier" columnName="modifier" nullAble="true" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="modifier" entityField="modifier" id="modifier" label="modifier" name="modifier" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>
@@ -29063,7 +29094,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property476" name="modifyDate" displayName="modifyDate" columnName="modify_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
+    <columnProperty id="property477" name="modifyDate" displayName="modifyDate" columnName="modify_date" nullAble="true" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="modifyDate" entityField="modifyDate" id="modifyDate" label="modifyDate" name="modifyDate" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>

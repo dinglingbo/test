@@ -50,9 +50,6 @@ $(document).ready(function(v)
 	comPartCode = nui.get("partCode");
 	comServiceId = nui.get("serviceId");
 	comSearchGuestId = nui.get("searchGuestId");
-
-    innerPartGrid = nui.get("innerPartGrid");
-    innerPartGrid.setUrl(getDetailPartUrl);
     editFormDetail = document.getElementById("editFormDetail");
 //    advancedSearchForm = new nui.Form("#advancedSearchWin");
     //console.log("xxx");

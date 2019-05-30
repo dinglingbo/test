@@ -8,7 +8,7 @@
 -->
 <head>
 <title>整车验车</title>
-<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesPutStorage.js?v=1.0.2"></script>
+<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesPutStorageChoose.js?v=1.0.3"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -38,69 +38,16 @@
     <table style="width:100%;">
         <tr>
             <td style="white-space:nowrap;">
-                 <label style="font-family:Verdana;">快速查询：</label>
-                <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
-
-                <ul id="popupMenuDate" class="nui-menu" style="display:none;">
-                    <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
-                    <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
-                    <li class="separator"></li>
-                    <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
-                    <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
-                    <li class="separator"></li>
-                    <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
-                    <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
-                    <li class="separator"></li>
-                    <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
-                    <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
-                </ul>
-                
-				<a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">所有</a>
-
-                <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
-                	<li iconCls="" onclick="quickSearch()" id="type">所有</li>
-                    <li iconCls="" onclick="quickSearch(12)" id="type12">草稿</li>
-                    <li iconCls="" onclick="quickSearch(13)" id="type13">待发货</li>
-                    <li iconCls="" onclick="quickSearch(14)" id="type14">待收货</li>
-                    <li iconCls="" onclick="quickSearch(15)" id="type15">已入库</li>
-                </ul> 
-
-
 				<label style="font-family:Verdana;">订货日期 从：</label>
                 <input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <label style="font-family:Verdana;">至</label>
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <span class="separator"></span> 
                 <input id="serviceId" width="120px" emptyText="订单单号" class="nui-textbox"/>
-                <!-- <label style="font-family:Verdana;">供应商：</label> -->
-                <input id="searchGuestId" class="nui-buttonedit"
-                       emptyText="请选择供应商..."
-                       onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
-                <!-- <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
-                <span class="separator"></span>
-
-                <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->
-<!--                 <input id="storeId"
-                           name="storeId"
-                           class="nui-combobox"
-                           textField="name"
-                           valueField="id"
-                           emptyText="仓库"
-                           url="" width="80"
-                           valueFromSelect="true"
-                           allowInput="false"
-                           showNullItem="false"
-                           nullItemText="请选择..."/> -->
-<!--                 <input id="" name="" width="80px" emptyText="经办人" class="nui-textbox"/>
-                <input id="" name="" width="80px" emptyText="组织机构" class="nui-textbox"/> -->
-                <input id="" name="" width="80px" emptyText="车型名称" class="nui-textbox"/>
-<!--                 <input class="nui-combobox" id="search-type" width="80px" textField="name" valueField="id" value="0" data="statusList" allowInput="false" />
-	            <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="80px" onenter="search()" /> -->
+     
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-				<a class="nui-button" iconCls="" plain="true" onclick="carCheck()" ><span class="fa fa-automobile fa-lg"></span>&nbsp;验车</a>
-      <!--           <a class="nui-button" iconCls="" plain="true" onclick="add()" ><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a> -->
-               <!--  <a class="nui-button" iconCls="" plain="true" onclick="edit()" ><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a> -->
-                <a class="nui-button" iconCls="" plain="true" onclick="del()" ><span class="fa fa-remove fa-lg"></span>&nbsp;取消验车</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="choose()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="CloseWindow('cancle')" id="addBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
 
             </td>
         </tr>

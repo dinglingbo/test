@@ -9,7 +9,7 @@
 -->
 <head>
 <title>PDI检测</title>
-    
+    <script src="<%=webPath + contextPath%>/sales/inventory/js/PDIdetection.js?v=1.0.5"></script>
 </head>
 <body>
 	     <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
@@ -27,44 +27,31 @@
 		<div id="advancedSearchForm" class="form">
 			<table style="width: 100%;">
 				<tr>
-				
-					<td class="title">
-						<label>检测单号:</label>
-					</td>
-					<td colspan="1">
-						<input name="" width="100%" class="nui-textbox" />
-					</td>
 					<td class="title">
 						<label>检测日期:</label>
 					</td>
 					<td>
-						<input name="" class="nui-datepicker" format="yyyy-MM-dd" timeFormat="H:mm:ss" showTime="false" showOkButton="false" width="100%" showClearButton="false" />
+						<input name="recordDate" id="recordDate" class="nui-datepicker" format="yyyy-MM-dd" timeFormat="H:mm:ss" showTime="false" showOkButton="false" width="100%" showClearButton="false" />
 					</td>
 					<td class="title">
 						<label>检测人:</label>
 					</td>
 					<td>
-						<input name="" width="100%" class="nui-textbox" />
+						<input name="recorder" id="recorder" width="100%" class="nui-textbox" />
 					</td>										
 				</tr>
 				<tr>
-					<td class="title">
-						<label>检测车辆:</label>
-					</td>
-					<td>
-						<input name="" width="100%" class="nui-textbox" />
-					</td>
 					<td class="">
 						<label>车型名称:</label>
 					</td>
 					<td colspan="3">
-						<input name="" class="nui-textbox" width="100%" />
+						<input name="carModelName" id="carModelName" class="nui-textbox" width="100%" />
 					</td>
 				</tr>
 				<tr>
 				
 					<td class="title">
-						<label>模板名称:</label>
+						<label>检测模板:</label>
 					</td>
 					<td colspan="3">
 						<input name="" width="100%" class="nui-textbox" />

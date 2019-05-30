@@ -1,9 +1,146 @@
 var statusList = [{id:"0",name:"联系人"},{id:"1",name:"联系电话"},{id:"2",name:"车架号（VIN）"}];
+var saleApiUrl  = apiPath + saleApi + "/";
+var rightGridUrl = saleApiUrl+"sales.inventory.queryFactoryReturnList.biz.ext";
+
+var basicInfoForm = null;
+var rightGrid = null;
+var searchBeginDate = null;
+var searchEndDate = null;
+var comPartNameAndPY = null;
+var comPartCode = null;
+var comServiceId = null;
+var comSearchGuestId = null;
+
+var storehouseHash = {};
+var billTypeIdHash = {};
+var settTypeIdHash = {};
+var enterTypeIdHash = {};
+var partBrandIdHash = {};
+var StatusHash = {
+		"0" : "草稿",
+		"1" : "待发货",
+		"2" : "待收货",
+		"4" : "已入库",
+	};
 $(document).ready(function(v){
-	
+	rightGrid = nui.get("rightGrid");
+    rightGrid.setUrl(rightGridUrl);
+    rightGrid.on("load", function () {
+        rightGrid.mergeColumns(["serviceId"]);
+    });
+    searchBeginDate = nui.get("beginDate");
+    searchEndDate = nui.get("endDate");
+ 	comPartNameAndPY = nui.get("partNameAndPY");
+	comPartCode = nui.get("partCode");
+	comServiceId = nui.get("serviceId");
+	comSearchGuestId = nui.get("searchGuestId");
+    editFormDetail = document.getElementById("editFormDetail");
+//    advancedSearchForm = new nui.Form("#advancedSearchWin");
+    //console.log("xxx");
+    
+    
+    
+    rightGrid.on("rowdblclick", function(e) {
+		var row = rightGrid.getSelected();
+		var rowc = nui.clone(row);
+		if (!rowc)
+			return;
+		edit();
+
+	});
+    
+
+
+    
+    document.ondragstart = function() {
+        return false;
+    };
+	document.onkeyup = function(event) {
+		var e = event || window.event;
+		var keyCode = e.keyCode || e.which;// 38向上 40向下
+		
+
+		if ((keyCode == 13)) { // F9
+			onSearch();
+		}
+	}
+    
+    getAllPartBrand(function(data)
+    {
+        var partBrandList = data.brand;
+        partBrandList.forEach(function(v)
+        {
+            partBrandIdHash[v.id] = v;
+        });
+    });
+    getStorehouse(function(data)
+    {
+        var dictIdList = [];
+        dictIdList.push('DDT20130703000008');//票据类型
+        dictIdList.push('DDT20130703000035');//结算方式
+        dictIdList.push('DDT20130703000064');//入库类型
+        getDictItems(dictIdList,function(data)
+        {
+            if(data && data.dataItems)
+            {
+                var dataItems = data.dataItems||[];
+                var billTypeIdList = dataItems.filter(function(v)
+                {
+                    if(v.dictid == "DDT20130703000008")
+                    {
+                        billTypeIdHash[v.customid] = v;
+                        return true;
+                    }
+                });
+                var settTypeIdList = dataItems.filter(function(v)
+                {
+                    if(v.dictid == "DDT20130703000035")
+                    {
+                        settTypeIdHash[v.customid] = v;
+                        return true;
+                    }
+                });
+                var enterTypeIdList = dataItems.filter(function(v)
+                {
+                    if(v.dictid == "DDT20130703000064")
+                    {
+                        enterTypeIdHash[v.customid] = v;
+                        return true;
+                    }
+                });
+                quickSearch(currType);
+            }
+        });
+    });
 });
 function getSearchParam(){
-
+    var params = {};
+    /*var outableQtyGreaterThanZero = nui.get("outableQtyGreaterThanZero").getValue();
+    if(outableQtyGreaterThanZero == 1)
+    {
+        params.outableQtyGreaterThanZero = 1;
+    }*/
+    params.serviceId = comServiceId.getValue();
+     
+    
+    params.auditSign=nui.get('auditSign').getValue();
+    params.billStatusId=nui.get('billStatusId').getValue();
+    if(params.auditSign===""){
+    	params.auditSign=-1;
+    }
+//	params.partCode = comPartCode.getValue();
+//	params.partNameAndPY = comPartNameAndPY.getValue();
+//	params.guestId = comSearchGuestId.getValue();
+	if(typeof comSearchGuestId.getValue() !== 'number'){
+    	params.guestId=null;
+    	params.guestName = comSearchGuestId.getValue();
+    }else{
+    	params.guestId = comSearchGuestId.getValue();
+    }
+	params.endDate = addDate(searchEndDate.getValue(),1);
+	params.startDate = searchBeginDate.getFormValue();
+	params.isDiffOrder = 0;
+    return params;
 }
 var currType = 2;
 function quickSearch(type){
@@ -120,10 +257,22 @@ function quickSearch(type){
     doSearch(params);
 }
 function onSearch(){
+	var params = getSearchParam();
 
+    doSearch(params);
 }
-function doSearch(params){
-
+function doSearch(params)
+{
+	params.sortField = "audit_date";
+    params.sortOrder = "desc";
+    params.orderTypeId = 1;
+//    params.isFinished = 0;
+    rightGrid.load({
+        params:params,
+        token:token
+    },function(){
+        rightGrid.mergeColumns(["serviceId"]);
+    });
 }
 
 var supplier = null;

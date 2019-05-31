@@ -107,9 +107,9 @@ pageEncoding="UTF-8" session="false" %>
               <div property="columns">
                     <div type="checkcolumn" class="mini-radiobutton" width="60px">选择</div>
                     <div field="orderNo" headerAlign="center" width="60px">序号</div>
-                    <div field="code" headerAlign="center" allowSort="true" width="150px">项目编号</div>
-                    <div field="pdiTypeId" headerAlign="center" allowSort="true" width="150px">项目类型</div>
                     <div field="name" headerAlign="center" allowSort="true" width="150px">项目名称</div>
+                    <div field="pdiTypeId" headerAlign="center" allowSort="true" width="150px">项目类型</div>
+                    <div field="code" headerAlign="center" allowSort="true" width="150px">项目编号</div>
                 <!-- <div field="" headerAlign="center" allowSort="true" width="150px">拼音码</div> -->
               </div>
             </div>

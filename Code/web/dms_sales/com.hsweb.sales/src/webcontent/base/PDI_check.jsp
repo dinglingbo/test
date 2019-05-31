@@ -34,6 +34,9 @@
       项目名称：<input id="name" class="nui-textbox" style="width: 110px" />
       项目类型： <input id="pdiTypeId" name="pdiTypeId" class="nui-combobox" style="width: 150px"
       valueField="customid" textField="name" allowInput="false"/>
+      <input name="pdiTypeId" id="pdiTypeId" class="nui-combobox " textField="name" valueField="customid"   
+      emptyText="请选择..." showNullItem="false" nullItemText="请选择..." 
+      allowInput="true" valueFromSelect="true" style="width: 120px" />
       状态：<input id="isDisabled" name="isDisabled" class="nui-combobox" data="isDisArr" 
             textField="text" valueField="id"  allowInput="false" style="width:90px"/>
       <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span

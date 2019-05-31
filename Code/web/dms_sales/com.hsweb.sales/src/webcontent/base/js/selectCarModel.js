@@ -175,7 +175,8 @@ function search() {
     var params = {
         carBrandId:carBrandId.value,
         carSeriesId:carSeriesId.value,
-        fullName:fullName.value
+        fullName: fullName.value,
+        code:nui.get("code").value
     }
     grid.load({ params: params, token: token });
 }

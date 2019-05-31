@@ -14,7 +14,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%=webPath + contextPath%>/sales/base/js/sCarModelType.js?v=1.1.2"></script>
+    <script src="<%=webPath + contextPath%>/sales/base/js/sCarModelType.js?v=1.1.3"></script>
     <style>
         html,
         body {
@@ -38,7 +38,7 @@
     <input id="carStructureType" name="carStructureType"  class="nui-combobox" visible="false" dataField="data" valueField="id" textField="name"/>
     <input id="outputVolume" name="outputVolume"  class="nui-combobox" visible="false" dataField="data" valueField="id" textField="name"/>
     <input id="seatQty" name="seatQty"  class="nui-combobox" visible="false" dataField="data" valueField="id" textField="name"/>
-    <input id="inletType" name="inletType"  class="nui-combobox" visible="false" dataField="data" valueField="id" textField="name"/>
+             <input id="inletType" name="inletType"  class="nui-combobox" visible="false" dataField="data" valueField="id" textField="name"/>
     <input id="powerType" name="powerType"  class="nui-combobox" visible="false" dataField="data" valueField="id" textField="name"/>
     <input id="driveMode" name="driveMode"  class="nui-combobox" visible="false" dataField="data" valueField="id" textField="name"/>
     <input id="gearBox" name="gearBox"  class="nui-combobox" visible="false" dataField="data" valueField="id" textField="name"/>
@@ -66,6 +66,9 @@
                     textField="nodeName" valueField="nodeId"  allowInput="false"  
                      style="width:150px"/>
                     车型名称：<input id="fullName" name="fullName" class="nui-textbox" type="text" style="width: 110px" />
+                    <input id="code" name="code" class="nui-textbox" visible="false" />
+                    状态：<input id="isDisabled" name="isDisabled" class="nui-combobox" data="isDisArr" 
+                    textField="text" valueField="id"  allowInput="false" style="width:90px"/>
                     <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
                             class="fa fa-search fa-lg"></span>&nbsp;查找</a>
                     <span class="separator"></span>

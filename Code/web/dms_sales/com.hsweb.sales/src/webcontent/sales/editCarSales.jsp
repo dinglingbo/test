@@ -13,7 +13,7 @@
         <title>编辑整车销售</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.1069" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.1073" type="text/javascript"></script>
 
     </head>
     <style type="text/css">
@@ -76,15 +76,70 @@
         .tbInput {
             width: 30%;
         }
+        
+        .btn .mini-buttonedit {
+            height: 36px;
+        }
+        
+        .btn .aa {
+            height: 36px;
+            width: 300px;
+        }
+        
+        .btn .mini-buttonedit .mini-corner-all {
+            height: 33px;
+            background: #368bf447;
+        }
+        
+        .btn .aa .mini-corner-all {
+            height: 33px;
+        }
+        
+        .mini-corner-all .nui-textbox {
+            height: 30px;
+        }
+        
+        .btn .mini-corner-all .mini-buttonedit-input {
+            font-size: 16px;
+            margin-top: 8px;
+        }
+        
+        .btn .mini-corner-all .mini-textbox-input {
+            font-size: 14px;
+            margin-top: 8px;
+        }
+        
+        a.optbtn {
+            width: 52px;
+            /* height: 26px; */
+            border: 1px #d2d2d2 solid;
+            background: #f2f6f9;
+            text-align: center;
+            display: inline-block;
+            /* line-height: 26px; */
+            margin: 0 4px;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 5px;
+        }
     </style>
 
     <body>
         <input class="nui-hidden" id="type">
-        <div class="nui-toolbar" style="padding:2px;height:35px;position: relative;">
+        <div class="nui-toolbar" style="padding:2px;position: relative;">
             <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
                 <tr>
-                    <td>
-                        工单号：<span id="serviceCode"></span>
+                    <td class="btn">
+                        <div class="nui-autocomplete" emptyText="未匹配到数据...(输入的内容长度要求大于或是等于2)" style="width:380px;height: 50px !important;" popupWidth="600" textField="text" valueField="id" searchField="key" multiSelect="false" id="search_key" dataField="data" placeholder="请输入...">
+                            <div property="columns">
+                                <div header="客户名称" field="fullName" width="30" headerAlign="center"></div>
+                                <div header="客户手机" field="mobile" width="60" headerAlign="center"></div>
+                            </div>
+                        </div>
+                        <input id="search_name" name="search_name" class="nui-textbox aa" emptyText="客户名称/手机号" visible="false" enabled="false" showClose="false" allowInput="true" />
+                        <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn">新增客户</a>
+                        <label style="font-family:Verdana;">工单号:</label>
+                        <label id="servieIdEl" style="font-family:Verdana;"></label>
                     </td>
                     <td style="text-align:right;">
                         <a class="nui-button" iconCls="" plain="true" onclick="checkMsg(0)" id="saveBtn" visible="false"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
@@ -104,7 +159,6 @@
                             <li iconCls="" onclick="checkMsg(1)" id="auditno" style="display:none;">反审</li>
                             <li iconCls="" onclick="unfinish()" id="caseno" style="display:none;">反结案</li>
                             <li iconCls="" onclick="registration()" id="addBtn">车辆上牌</li>
-                            <li iconCls="" onclick="upload()" id="ExpenseAccount1">车辆图片</li>
                         </ul>
                     </td>
                 </tr>
@@ -158,7 +212,7 @@
                     <td align="right">购车方式：
                     </td>
                     <td>
-                        <input class="nui-combobox" id="saleType" name="saleType" style="width: 100%;" textField="name" valueField="customid" onvaluechanged="changeSaleType">
+                        <input class="nui-combobox" id="saleType" name="saleType" style="width: 100%;" textField="name" valueField="customid">
                     </td>
                     <td align="right">合同号：
                     </td>
@@ -302,9 +356,7 @@
                                 dataField="data" showModified="false" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true" allowCellWrap="true" url="">
                                 <div property="columns">
                                     <div type="indexcolumn">序号</div>
-                                    <div field="auditSign" name="auditSign" width="100px" headerAlign="center" header="状态" renderer="onIsNotRenderer">
-                                        <input class="nui-combobox" property="editor" data="is_not">
-                                    </div>
+                                    <div field="auditSign" name="auditSign" width="100px" headerAlign="center" header="状态" renderer="onIsNotRenderer" data="is_not"></div>
                                     <div field="costName" name="costName" width="100px" headerAlign="center" header="费用名称"></div>
                                     <div field="costAmt" name="costAmt" width="100px" headerAlign="center" header="报销金额">
                                         <input class="nui-textarea" property="editor" vtype="float">
@@ -314,15 +366,14 @@
                                     </div>
                                     <div field="modifier" name="modifier" width="100px" headerAlign="center" header="登记人"></div>
                                     <div field="modifyDate" name="modifyDate" width="100px" headerAlign="center" header="登记时间"></div>
+                                    <div field="action" name="action" width="100px" headerAlign="center" header="操作" visible="false"></div>
                                 </div>
                             </div>
                             <div id="costDetailGrid2" class="nui-datagrid" style="width:100%;height:50%;" oncellbeginedit="OnModelCellBeginEdit" oncellcommitedit="onCellCommitEdit" allowcelledit="true" selectOnLoad="false" showPager="false" pageSize="50" totalField="page.count"
                                 sizeList=[20,50,100,200] dataField="data" showModified="false" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true" allowCellWrap="true" url="">
                                 <div property="columns">
                                     <div type="indexcolumn">序号</div>
-                                    <div field="auditSign" name="auditSign" width="100px" headerAlign="center" header="状态" renderer="onIsNotRenderer">
-                                        <input class="nui-combobox" property="editor" data="is_not">
-                                    </div>
+                                    <div field="auditSign" name="auditSign" width="100px" headerAlign="center" header="状态" renderer="onIsNotRenderer" data="is_not"></div>
                                     <div field="costName" name="costName" width="100px" headerAlign="center" header="费用名称"></div>
                                     <div field="costAmt" name="costAmt" width="100px" headerAlign="center" header="成本金额（报销金额）">
                                         <input class="nui-textarea" property="editor" vtype="float">
@@ -332,6 +383,7 @@
                                     </div>
                                     <div field="modifier" name="modifier" width="100px" headerAlign="center" header="登记人"></div>
                                     <div field="modifyDate" name="modifyDate" width="100px" headerAlign="center" header="登记时间"></div>
+                                    <div field="action" name="action" width="100px" headerAlign="center" header="操作" visible="false"></div>
                                 </div>
                             </div>
                         </div>

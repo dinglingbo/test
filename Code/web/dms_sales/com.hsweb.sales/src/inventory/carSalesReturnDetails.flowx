@@ -4,6 +4,8 @@
     <sourceConnections xsi:type="process:tActionLink" id="link0" name="link0" lineType="reference" isDefault="true" type="action" actionName="action0">
       <sourceNode>start0</sourceNode>
       <targetNode>view0</targetNode>
+      <process:validateRules/>
+      <process:inputParameters/>
     </sourceConnections>
     <location x="100" y="150"/>
     <size height="28" width="28"/>
@@ -14,6 +16,8 @@
     <location x="400" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
+    <process:inputVariables/>
+    <process:returns/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
     <location x="102" y="186"/>
@@ -29,6 +33,8 @@
     <sourceConnections xsi:type="process:tActionLink" id="link1" name="link1" lineType="reference" isDefault="true" type="action" actionName="action1">
       <sourceNode>view0</sourceNode>
       <targetNode>end0</targetNode>
+      <process:validateRules/>
+      <process:inputParameters/>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="243" y="150"/>
@@ -45,4 +51,5 @@
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-05-06 09:33:09" date="2019-05-06Z" description="" name="carSalesReturnDetails" version="7.0.0.0"/>
+  <process:inputParameters/>
 </process:tPageFlow>

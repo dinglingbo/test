@@ -13,7 +13,7 @@
         <title>编辑整车销售</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.105" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.1069" type="text/javascript"></script>
 
     </head>
     <style type="text/css">
@@ -120,6 +120,7 @@
             <input class="nui-hidden" name="carModelName" />
             <input class="nui-hidden" name="carModelId" />
             <input class="nui-hidden" name="isSubmitCar" />
+            <input class="nui-hidden" name="guestId" />
             <table cellpadding="0" cellspacing="0" style="line-height: 30px; padding-top: 4px; padding-left: 0px;width:100%">
                 <tr>
                     <td class="td_title">单据日期：

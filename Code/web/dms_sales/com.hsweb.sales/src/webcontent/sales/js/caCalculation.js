@@ -112,9 +112,9 @@ function changeSaleType(e) { //改变购买方式时触发
 
 function changeValueMsg(e) { //更改数据信息时触发  统一触发此函数
     var data = form.getData();
-    var saleAmt = parseFloat(data.saleAmt); //车辆销价
-    var loanPercent = parseFloat(data.loanPercent) / 10; //贷款比例
-    var loanAmt = parseFloat(data.loanAmt); //贷款金额
+    var saleAmt = parseFloat(data.saleAmt || 0); //车辆销价
+    var loanPercent = parseFloat(data.loanPercent || 0) / 10; //贷款比例
+    var loanAmt = parseFloat(data.loanAmt || 0); //贷款金额
     var loanPeriod = parseFloat(data.loanPeriod || 0); //贷款期数
     var downPaymentAmt = parseFloat(data.downPaymentAmt || 0); //首付金额
     var bankHandlingRate = parseFloat(data.bankHandlingRate || 0) / 100; //贷款利率
@@ -184,16 +184,19 @@ function setShowSave(params) {
     comeServiceIdF = params.id;
     statusF = params.status;
     var showSave = document.getElementById("showSave");
+    var frameColorId = params.frameColorId;
+    var interialColorId = params.interialColorId;
     showSave.style.display = "";
     nui.get("saleType").setEnabled(true);
     if (comeServiceIdF) {
+        var params = { billType: 1, serviceId: comeServiceIdF };
         nui.ajax({
             url: baseUrl + "sales.search.searchSaleCalc.biz.ext",
             type: "post",
             cache: false,
+            async: false,
             data: {
-                billType: 1,
-                serviceId: comeServiceIdF
+                params: params
             },
             success: function(text) {
                 if (text.errCode == "S") {
@@ -211,33 +214,47 @@ function setShowSave(params) {
                         }
                     }
                 }
-                //查找精品加装费用
-                nui.ajax({
-                    url: jpDetailGridUrl,
-                    type: "post",
-                    cache: false,
-                    data: {
-                        billType: 1,
-                        serviceId: serviceId
-                    },
-                    success: function(text) {
-                            if (text.errCode == "S") {
-                                var giftData = text.data;
-                                var amt = 0;
-                                if (giftData.length > 0) {
-                                    for (var i = 0; i < giftData.length; i++) {
-                                        var temp = giftData[i];
-                                        amt = amt + temp.amt;
-                                    }
-                                }
-                                if (amt > 0) {
-                                    nui.get("decrAmt").setValue(amt);
-                                }
-                            }
-                        }
-                        //查找精品加装费用
-                });
+                //颜色设置
+                /*if(frameColorId){
+                	//nui.get("frameColorId").setEnabled(false);
+                	nui.get("frameColorId").setValue(frameColorId);
+                }*/
+                //有点问题
+                /*if (frameColorId) { //没值则取销售主表的颜色
+                    nui.get("frameColorId").setValue(frameColorId);
+                }
+                if (interialColorId) {
+                    nui.get("interialColorId").setValue(interialColorId);
+                }*/
+
             }
+        });
+        //查找精品加装费用
+        nui.ajax({
+            url: jpDetailGridUrl,
+            type: "post",
+            cache: false,
+            async: false,
+            data: {
+                billType: 1,
+                serviceId: comeServiceIdF
+            },
+            success: function(text) {
+                if (text.errCode == "S") {
+                    var giftData = text.data;
+                    var amt = 0;
+                    if (giftData.length > 0) {
+                        for (var i = 0; i < giftData.length; i++) {
+                            var temp = giftData[i];
+                            amt = amt + temp.amt;
+                        }
+                    }
+                    if (amt > 0) {
+                        nui.get("decrAmt").setValue(amt);
+                    }
+                }
+            }
+
         });
     } else {
         showMsg("请先保存来访登记", "W");

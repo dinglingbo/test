@@ -288,9 +288,6 @@
                         <input id="buyBudgetTotal" name="buyBudgetTotal" style="width: 100%" class="nui-textbox" enabled="false" vtype="float" />
 
                     </td>
-                    <td class="td_title">
-                        <a class="nui-button" onclick="changeValueMsg(1)">开始计算</a>
-                    </td>
                 </tr>
                 <tr>
                     <td align="right">备注：

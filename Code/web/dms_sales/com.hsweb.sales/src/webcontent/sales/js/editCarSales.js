@@ -120,6 +120,20 @@ $(document).ready(function(v) {
         };
     });
 
+    jpGrid.on("beforedeselect", function(e) {
+        var billFormData = billForm.getData(true); //主表信息
+        if (billFormData.status != 0) {
+            e.cancel = true;
+        }
+    });
+
+    jpGrid.on("beforeselect", function(e) {
+        var billFormData = billForm.getData(true); //主表信息
+        if (billFormData.status != 0) {
+            e.cancel = true;
+        }
+    });
+
     costGrid.on("load", function(e) {
         var data = costGrid.getData();
         var data1 = costDetailGrid.getData();
@@ -135,6 +149,20 @@ $(document).ready(function(v) {
                 };
             };
         };
+    });
+
+    costGrid.on("beforedeselect", function(e) {
+        var billFormData = billForm.getData(true); //主表信息
+        if (billFormData.status != 0) {
+            e.cancel = true;
+        }
+    });
+
+    costGrid.on("beforeselect", function(e) {
+        var billFormData = billForm.getData(true); //主表信息
+        if (billFormData.status != 0) {
+            e.cancel = true;
+        }
     });
 
     costDetailGrid.on("load", function(e) {
@@ -263,6 +291,7 @@ function selectCar() { //点击选车时触发
 }
 
 function registration() {
+    var billFormData = billForm.getData(true); //主表信息
     nui.open({
         url: webPath + contextPath + "/sales/sales/vehicleRegistration.jsp?token=" + token,
         title: "车辆上牌",
@@ -270,6 +299,7 @@ function registration() {
         height: "490px",
         onload: function() {
             var iframe = this.getIFrameEl();
+            iframe.contentWindow.SetData(billFormData.id, billFormData.guestId, billFormData.guestFullName);
         },
         ondestroy: function(action) {
 
@@ -279,16 +309,16 @@ function registration() {
 
 function checkMsg(e) { //进行保存操作前进行验证
     var billFormData = billForm.getData(true); //主表信息
-    if (e == 2) { //审核 先判断费用是否审核完毕
-        var data = costDetailGrid.getData();
-        var data1 = costDetailGrid2.getData();
-        var arr = data.concat(data1);
-        var msg = arr.find(arr => arr.auditSign == 0);
-        if (msg) {
-            showMsg("费用尚未审核完，请审核完费用后再进行操作！", "W");
-            return;
-        }
-    }
+    // if (e == 2) { //审核 先判断费用是否审核完毕
+    //     var data = costDetailGrid.getData();
+    //     var data1 = costDetailGrid2.getData();
+    //     var arr = data.concat(data1);
+    //     var msg = arr.find(arr => arr.auditSign == 0);
+    //     if (msg) {
+    //         showMsg("费用尚未审核完，请审核完费用后再进行操作！", "W");
+    //         return;
+    //     }
+    // }
     var params = document.getElementById("caCalculation").contentWindow.getValue(); //购车信息
     if (params.isValid == false) {
         showMsg("购车信息填写有误，请检查后再保存", "W");
@@ -485,7 +515,7 @@ function searchSalesMain(serviceId) { //查询主表信息
 function updateCheckEnter(enterId) { //返单 修改库存表车辆状态
     var data = {
         id: enterId,
-        billStatus: 0
+        carStatus: 0
     };
     nui.ajax({
         url: baseUrl + "sales.save.updateCheckEnter.biz.ext",

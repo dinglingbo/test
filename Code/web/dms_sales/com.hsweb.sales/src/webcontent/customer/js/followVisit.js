@@ -176,12 +176,7 @@ function save(){
 			contentType : 'text/json',
 			success : function(text) {
 				if(text.errCode=="S"){
-			    	var guestCome = text.guestCome;
-			    	var guest = text.rguest;
-			    	guestComeForm.setData(guestCome);
-			    	$("#serviceCodeEl").html(guestCome.serviceCode);
-			    	$("#carModelNameEl").html(guestCome.carModelName);
-			    	$("#nameEl").html(guest.fullName);
+					doSearch();
 			    	showMsg("保存成功","S");
 			    }else{
 			    	showMsg("保存失败","E");
@@ -203,4 +198,85 @@ function addScout(){
     nui.get("scoutDate").setValue(now);
     nui.get("recorder").setValue(currUserName);
     nui.get("scoutRemark").setValue(row.scoutRemark);
+}
+
+
+function guestInfo(){
+	var row = mainGrid.getSelected();
+	if(row){
+		nui.open({
+			url : webPath + contextPath + "/sales/customer/addGuest.jsp?token=" + token,
+			title : "编辑客户资料",
+			width : 900,
+			height : 460,
+			allowDrag : true,
+			allowResize : true,
+			onload : function() {
+				var iframe = this.getIFrameEl();
+	            iframe.contentWindow.queryData(row.guestId);//显示该显示的功能
+			},
+			ondestroy : function(action) {
+				doSearch();
+			}
+		});
+	}else{
+		showMsg("请选择一条记录!","W");
+		return;
+	}
+	  
+}
+
+function giftInfo(){
+	var row = mainGrid.getSelected();
+	if(row){
+		if(row.id !="" && row.id !=null){
+			nui.open({
+				url: webPath + contextPath + '/sales/customer/guestComeGift.jsp',
+				title: '精品加装',
+				width: 1200,
+				height: 500,
+				onload: function () {
+				var iframe = this.getIFrameEl();
+				iframe.contentWindow.setData(row);
+				},
+				ondestroy: function (action) {
+				var iframe = this.getIFrameEl();
+				
+			    }
+			 });
+		}else{
+			showMsg("请先保存来访登记!","W");
+			return;
+		}
+	}else{
+		showMsg("请选择一条记录!","W");
+		return;
+	}
+}
+
+function buyCarCount(){
+	var row = mainGrid.getSelected();
+	if(row){
+		if(row.id !="" && row.id !=null){
+			nui.open({
+				url: webPath + contextPath + '/sales/sales/caCalculation.jsp',
+				title: '购车预算',
+				width: 1000,
+				height: 500,
+				onload: function () {
+				   var iframe = this.getIFrameEl();
+				   iframe.contentWindow.setShowSave(row);
+				},
+				ondestroy: function (action) {
+				   var iframe = this.getIFrameEl();
+			    }
+			 });
+		}else{
+			showMsg("请先保存来访登记!","W");
+			return;
+		}
+	}else{
+		showMsg("请选择一条记录!","W");
+		return;
+	}
 }

@@ -322,18 +322,17 @@ function buyCarCount(){
 	
 }
 //精品加装：sales/customer/guestComeGift.jsp
-
 function addGift(){
 	var main = guestComeForm.getData();
 	var status = main.status || 0;
-	if(status > 1){
+	/*if(status > 1){
 		showMsg("登记记录已归档，不能修改！","W");
 		return;
 	}
 	if(status == 2){
 		showMsg("登记记录已转销售，不能修改！","W");
 		return;
-	}
+	}*/
 	if(main.id !="" && main.id !=null){
 		nui.open({
 			url: webPath + contextPath + '/sales/customer/guestComeGift.jsp',
@@ -358,6 +357,7 @@ function addGift(){
 var statusUrl = apiPath + saleApi + "/sales.custormer.changStatus.biz.ext";
 function changStatus(){
 	var guestCome = guestComeForm.getData("true");
+	var status = guestCome.status;
 	if(status == 1){
 		showMsg("来访登记已归档！","W");
 		return;
@@ -383,12 +383,12 @@ function changStatus(){
 		contentType : 'text/json',
 		success : function(text) {
 			if(text.errCode=="S"){
-				showMsg("归档成功","S");
+				showMsg(text.errMsg || "归档成功","S");
 				guestCome.status = 1;
 				guestComeForm.setData(guestCome);
 				doSetStyle(1);
 		    }else{
-		    	showMsg("归档失败","E");
+		    	showMsg(text.errMsg ||"归档失败","E");
 		    }
 			nui.unmask(document.body);
 		}
@@ -409,6 +409,7 @@ function doSetStyle(status){
 
 function saveSaleMain(){
 	var guestCome = guestComeForm.getData("true");
+	var status = guestCome.status;
 	if(status == 0){
 		showMsg("来访登记未归档,不能转销售","W");
 		return;

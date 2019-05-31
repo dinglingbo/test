@@ -1,6 +1,10 @@
-var statusList = [{id:"0",name:"联系人"},{id:"1",name:"联系电话"},{id:"2",name:"车架号（VIN）"}];
-var saleApiUrl  = apiPath + saleApi + "/";
-var rightGridUrl = saleApiUrl+"sales.inventory.queryFactoryReturnList.biz.ext";
+/**
+ * Created by Administrator on 2018/2/1.
+ */
+var statusList = [{id:"0",name:"联系人"},{id:"1",name:"联系电话"}];
+var partApiUrl  = apiPath + saleApi + "/";
+var rightGridUrl = partApiUrl+"sales.inventory.queryPchsOrderMainList.biz.ext";
+var getDetailPartUrl=partApiUrl+"sales.inventory.queryPchsOrderDetailList.biz.ext";
 
 var basicInfoForm = null;
 var rightGrid = null;
@@ -9,20 +13,31 @@ var searchEndDate = null;
 var comPartNameAndPY = null;
 var comPartCode = null;
 var comServiceId = null;
-var comSearchGuestId = null;
 
 var storehouseHash = {};
 var billTypeIdHash = {};
 var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
+//var billStatusHash = {
+//    "0":"未审",
+//    "1":"已审",
+//    "2":"已过账",
+//    "3":"已取消"
+//};
+
 var StatusHash = {
 		"0" : "草稿",
 		"1" : "待发货",
 		"2" : "待收货",
 		"4" : "已入库",
 	};
-$(document).ready(function(v){
+var headerHash = [{ name: '草稿', id: '0' }, { name: '待发货', id: '1' }, {name: '待收货' , id: '2' }, {name: '未结算' , id: '3' }, {name: '已入库' , id: '4' }];
+var innerPartGrid=null;
+var editFormDetail = null;
+
+$(document).ready(function(v)
+{
 	rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
     rightGrid.on("load", function () {
@@ -33,7 +48,9 @@ $(document).ready(function(v){
  	comPartNameAndPY = nui.get("partNameAndPY");
 	comPartCode = nui.get("partCode");
 	comServiceId = nui.get("serviceId");
-	comSearchGuestId = nui.get("searchGuestId");
+
+    innerPartGrid = nui.get("innerPartGrid");
+    innerPartGrid.setUrl(getDetailPartUrl);
     editFormDetail = document.getElementById("editFormDetail");
 //    advancedSearchForm = new nui.Form("#advancedSearchWin");
     //console.log("xxx");
@@ -51,6 +68,32 @@ $(document).ready(function(v){
     
 
 
+    innerPartGrid.on("drawcell", function (e) {
+        var grid = e.sender;
+        var record = e.record;
+        var uid = record._uid;
+        var rowIndex = e.rowIndex;
+        
+        switch (e.field) {
+            case "comPartBrandId":
+            	if(partBrandIdHash[e.value])
+                {
+//                    e.cellHtml = partBrandIdHash[e.value].name||"";
+                	if(partBrandIdHash[e.value].imageUrl){
+                		
+                		e.cellHtml = "<img src='"+ partBrandIdHash[e.value].imageUrl+ "'alt='配件图片' height='25px' weight=' '/><br> "+partBrandIdHash[e.value].name||"";
+                	}else{
+                		e.cellHtml =partBrandIdHash[e.value].name||"";
+                	}
+                }
+                else{
+                    e.cellHtml = "";
+                }
+                break;
+            default:
+                break;
+        }
+    });
     
     document.ondragstart = function() {
         return false;
@@ -127,15 +170,6 @@ function getSearchParam(){
     params.billStatusId=nui.get('billStatusId').getValue();
     if(params.auditSign===""){
     	params.auditSign=-1;
-    }
-//	params.partCode = comPartCode.getValue();
-//	params.partNameAndPY = comPartNameAndPY.getValue();
-//	params.guestId = comSearchGuestId.getValue();
-	if(typeof comSearchGuestId.getValue() !== 'number'){
-    	params.guestId=null;
-    	params.guestName = comSearchGuestId.getValue();
-    }else{
-    	params.guestId = comSearchGuestId.getValue();
     }
 	params.endDate = addDate(searchEndDate.getValue(),1);
 	params.startDate = searchBeginDate.getFormValue();
@@ -246,14 +280,7 @@ function quickSearch(type){
     nui.get('auditSign').setValue(params.auditSign);
     nui.get('billStatusId').setValue(params.billStatusId);
     currType = type;
-    if(querysign == 1){
-    	var menunamedate = nui.get("menunamedate");
-    	menunamedate.setText(queryname); 	
-    }
-    else if(querysign == 2){
-    	var menubillstatus = nui.get("menubillstatus");
-		menubillstatus.setText(querystatusname);
-    }
+
     doSearch(params);
 }
 function onSearch(){
@@ -312,27 +339,99 @@ function selectSupplier(elId)
 }
 
 
-function add(){
-    var item={};
-    item.id = "carSalesReturnDetails";
-    item.text = "采购退货详情";
-    item.url = webPath + contextPath + "/inventory.carSalesReturnDetails.flow";
-    item.iconCls = "fa fa-file-text";
-    //window.parent.activeTab(item);
-    var params = {};
-    window.parent.activeTabAndInit(item,params);
-
+function onDrawCell(e)
+{
+    switch (e.field)
+    {	
+    	case "serviceId":
+    		e.cellHtml ='<a href="##" onclick="edit()">'+e.value+'</a>';
+    		break;
+	    case "partBrandId":
+	    	if(partBrandIdHash[e.value])
+            {
+//                e.cellHtml = partBrandIdHash[e.value].name||"";
+            	if(partBrandIdHash[e.value].imageUrl){
+            		
+            		e.cellHtml = "<img src='"+ partBrandIdHash[e.value].imageUrl+ "'alt='配件图片' height='25px' weight=' '/><br> "+partBrandIdHash[e.value].name||"";
+            	}else{
+            		e.cellHtml =partBrandIdHash[e.value].name||"";
+            	}
+            }
+            else{
+                e.cellHtml = "";
+            }
+            break;
+//	    case "billStatus":
+//	        if(billStatusHash && billStatusHash[e.value])
+//	        {
+//	            e.cellHtml = billStatusHash[e.value];
+//	        }
+//	        break;
+        case "enterTypeId":
+            if(enterTypeIdHash && enterTypeIdHash[e.value])
+            {
+                e.cellHtml = enterTypeIdHash[e.value].name;
+            }
+            break;
+        case "billTypeId":
+            if(billTypeIdHash && billTypeIdHash[e.value])
+            {
+                e.cellHtml = billTypeIdHash[e.value].name;
+            }
+            break;
+        case "payMode":
+            if(settTypeIdHash && settTypeIdHash[e.value])
+            {
+                e.cellHtml = settTypeIdHash[e.value].name;
+            }
+            break;
+    	case "billStatusId":
+			if (StatusHash && StatusHash[e.value]) {
+				e.cellHtml = StatusHash[e.value];
+			}
+			break;
+        case "enterDayCount":
+            var row = e.record;
+            var enterTime = (new Date(row.enterDate)).getTime();
+            var nowTime = (new Date()).getTime();
+            var dayCount = parseInt((nowTime - enterTime) / 1000 / 60 / 60 / 24);
+            e.cellHtml = dayCount+1;
+            break;
+        default:
+            break;
+    }
 }
 
-function edit(){
-    var row = rightGrid.getSelected();
-    if(!row) return; 
-    var item={};
-    item.id = "carSalesReturnDetails";
-    item.text = "采购退货详情";
-    item.url = webPath + contextPath + "/inventory.carSalesReturnDetails.flow";
-    item.iconCls = "fa fa-file-text";
-    //window.parent.activeTab(item);
-    var params = row; 
-    window.parent.activeTabAndInit(item,params);
+function onShowRowDetail(e) {
+    var row = e.record;
+    
+    //将editForm元素，加入行详细单元格内
+    var td = rightGrid.getRowDetailCellEl(row);
+    td.appendChild(editFormDetail);
+    editFormDetail.style.display = "";
+    innerPartGrid.setData([]);
+    var mainId = row.id;
+    var params={
+    		orderId:mainId,
+    	token:token
+    };
+    innerPartGrid.load({params:params});
+    
 }
+
+function choose(){
+	CloseWindow("ok");
+}
+
+function CloseWindow(action) {
+    if (window.CloseOwnerWindow)
+        return window.CloseOwnerWindow(action);
+    else
+        window.close();
+}
+
+function getRow() {
+    return rightGrid.getSelected();
+}
+
+

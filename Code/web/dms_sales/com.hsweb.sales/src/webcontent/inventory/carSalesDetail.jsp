@@ -254,9 +254,6 @@
                                     <div field="orderAmt" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="金额">                           
                                       <input property="editor" vtype="float" class="nui-textbox"/>
                                     </div>
-                                    <div field="remark" width="100" headerAlign="center" allowSort="false">
-                       					 备注<input property="editor" class="nui-textbox"/>
-                       				</div>
                             </div>
                     	</div>
                     </div>

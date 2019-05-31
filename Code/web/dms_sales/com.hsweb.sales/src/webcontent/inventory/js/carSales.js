@@ -5,9 +5,8 @@ var statusList = [{id:"0",name:"联系人"},{id:"1",name:"联系电话"}];
 var partApiUrl  = apiPath + saleApi + "/";
 var rightGridUrl = partApiUrl+"sales.inventory.queryPchsOrderMainList.biz.ext";
 var getDetailPartUrl=partApiUrl+"sales.inventory.queryPchsOrderDetailList.biz.ext";
-
+var innerPartGrid = null;
 var basicInfoForm = null;
-var rightGrid = null;
 var searchBeginDate = null;
 var searchEndDate = null;
 var comPartNameAndPY = null;
@@ -20,6 +19,8 @@ var billTypeIdHash = {};
 var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
+var frameColorIdList = [];//车身颜色
+var interialColorIdList = [];//内饰颜色
 //var billStatusHash = {
 //    "0":"未审",
 //    "1":"已审",
@@ -41,6 +42,8 @@ $(document).ready(function(v)
 {
 	rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
+    innerPartGrid = nui.get("innerPartGrid");
+    innerPartGrid.setUrl(getDetailPartUrl);
     rightGrid.on("load", function () {
         rightGrid.mergeColumns(["serviceId"]);
     });
@@ -65,34 +68,17 @@ $(document).ready(function(v)
 
 	});
     
-
-
-    innerPartGrid.on("drawcell", function (e) {
-        var grid = e.sender;
-        var record = e.record;
-        var uid = record._uid;
-        var rowIndex = e.rowIndex;
-        
-        switch (e.field) {
-            case "comPartBrandId":
-            	if(partBrandIdHash[e.value])
-                {
-//                    e.cellHtml = partBrandIdHash[e.value].name||"";
-                	if(partBrandIdHash[e.value].imageUrl){
-                		
-                		e.cellHtml = "<img src='"+ partBrandIdHash[e.value].imageUrl+ "'alt='配件图片' height='25px' weight=' '/><br> "+partBrandIdHash[e.value].name||"";
-                	}else{
-                		e.cellHtml =partBrandIdHash[e.value].name||"";
-                	}
-                }
-                else{
-                    e.cellHtml = "";
-                }
-                break;
-            default:
-                break;
+    innerPartGrid.on('drawcell', function (e) {
+        var value = e.value;
+        var field = e.field;
+        if (field == 'frameColorId') {
+            e.cellHtml = setColVal('frameColorId', 'customid', 'name', e.value);
+        } else if (field == 'interialColorId') {
+            e.cellHtml = setColVal('interialColorId', 'customid', 'name', e.value);
         }
+        
     });
+
     
     document.ondragstart = function() {
         return false;
@@ -115,6 +101,17 @@ $(document).ready(function(v)
             partBrandIdHash[v.id] = v;
         });
     });
+	var dictDefs ={frameColorId:"DDT20130726000003",interialColorId:"10391"};
+	initDicts(dictDefs, function(){
+		getStorehouse(function(data) {
+			getAllPartBrand(function(data) {
+		 	 	frameColorIdList = nui.get('frameColorId').getData();
+ 	 			interialColorIdList = nui.get('interialColorId').getData();
+				nui.unmask();
+			});
+			
+		});
+	});
     getStorehouse(function(data)
     {
         var dictIdList = [];

@@ -51,7 +51,7 @@ $(document).ready(function ()
     		nui.get("deletBtn").disable();
     	}
     });
-	quickSearch(0);
+	quickSearch(2);
 });
 
 function quickSearch(type){

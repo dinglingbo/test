@@ -185,8 +185,8 @@ function setData(row,e) {
           if(action == 'ok'){
             var row = iframe.contentWindow.getRow();
             nui.get("carModelId").setValue(row.id);
-            nui.get("carModelName").setValue(row.name);
-            nui.get("carModelName").setText(row.name);
+            nui.get("carModelName").setValue(row.fullName);
+            nui.get("carModelName").setText(row.fullName);
           }
         }
       });

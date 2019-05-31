@@ -39,7 +39,8 @@
 			c.source as source,
 			a.next_visit_date as nextVisitDate,
 			c.scout_status as scoutStatus,
-			a.scout_remark as scoutRemark
+			a.scout_remark as scoutRemark,
+			c.relationship as relationship
 		FROM css_guest_come a 
 			INNER JOIN wb_common.com_guest  b ON a.guest_id = b.id
 			INNER JOIN csb_contactor  c ON c.guest_id = b.id
@@ -81,6 +82,14 @@
             <!--终止跟进-->
              <isNotEmpty prepend="and" property="scoutStatus">
                 (c.scout_status != #scoutStatus#)
+            </isNotEmpty>
+            <!--重点跟进-->
+            <isNotEmpty prepend="and" property="zdscoutStatus">
+                (c.scout_status = #zdscoutStatus#)
+            </isNotEmpty>
+             <!--战败客户-->
+            <isNotEmpty prepend="and" property="zzscoutStatus">
+                (c.scout_status = #zzscoutStatus#)
             </isNotEmpty>
         </dynamic>  
 	</select>

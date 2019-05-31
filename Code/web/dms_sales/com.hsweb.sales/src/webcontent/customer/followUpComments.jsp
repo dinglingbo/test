@@ -58,7 +58,7 @@
 		             id="specialCare"
 		             class="nui-combobox"
 		             textField="name"
-		             valueField="id"
+		             valueField="customid"
 		             allowInput="true"
 		             width="100%"
 		             visible="false"
@@ -67,7 +67,7 @@
 		             id="intentLevel"
 		             class="nui-combobox"
 		             textField="name"
-		             valueField="id"
+		             valueField="customid"
 		             allowInput="true"
 		             width="100%"
 		             visible="false"
@@ -76,7 +76,7 @@
 	                 id="comeTypeId"
 	                 class="nui-combobox"
 	                 textField="name"
-	                 valueField="id"
+	                 valueField="customid"
 	                 allowInput="true"
 	                 width="100%"
 	                 visible="false"
@@ -85,7 +85,7 @@
 	                 id="interialColorId"
 	                 class="nui-combobox"
 	                 textField="name"
-	                 valueField="id"
+	                 valueField="customid"
 	                 allowInput="true"
 	                 width="100%"
 	                 visible="false"
@@ -94,7 +94,7 @@
 	                 id="frameColorId"
 	                 class="nui-combobox"
 	                 textField="name"
-	                 valueField="id"
+	                 valueField="customid"
 	                 allowInput="true"
 	                 width="100%"
 	                 visible="false"
@@ -103,7 +103,7 @@
 			         id="source"
 			         class="nui-combobox"
 			         textField="name"
-			         valueField="id"
+			         valueField="customid"
 			         allowInput="true"
 			         width="100%"
 			         visible="false"
@@ -112,7 +112,7 @@
 			         id="scoutModeId"
 			         class="nui-combobox"
 			         textField="name"
-			         valueField="id"
+			         valueField="customid"
 			         allowInput="true"
 			         width="100%"
 			         visible="false"
@@ -121,7 +121,7 @@
 			         id="status"
 			         class="nui-combobox"
 			         textField="name"
-			         valueField="id"
+			         valueField="customid"
 			         allowInput="true"
 			         width="100%"
 			         visible="false"
@@ -130,7 +130,7 @@
 			         id="isUsabled"
 			         class="nui-combobox"
 			         textField="name"
-			         valueField="id"
+			         valueField="customid"
 			         allowInput="true"
 			         width="100%"
 			         visible="false"
@@ -248,11 +248,7 @@
 						<div field="isUsabled" headerAlign="isUsabled" allowSort="true" width="60px" dataType="float">关系阶段</div>
 						<div field="scoutContent" headerAlign="scoutContent" allowSort="true" width="120px" dataType="float">需求内容
 						</div>
-						<!-- <div field="recorder" headerAlign="center" allowSort="true" width="80px">行动内容
-						</div>
-						<div field="recorder" headerAlign="center" allowSort="true" width="80px">后续措施
-						</div> -->
-						<div field="failReasonId" headerAlign="center" allowSort="true" width="120px">战败原因
+				    	<div field="failReasonId" headerAlign="center" allowSort="true" width="120px">战败原因
 						</div>
 						<!-- <div field="recordDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:ss" width="110px">消费日期</div> -->	
 						<div field="nextOrderDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:ss" width="60px">下次跟进日期</div>						

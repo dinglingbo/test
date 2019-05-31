@@ -79,7 +79,7 @@
 				             id="nature"
 				             class="nui-combobox"
 				             textField="name"
-				             valueField="id"
+				             valueField="customid"
 				             allowInput="true"
 				             width="100%"
 				            />
@@ -126,7 +126,7 @@
 		             id="identity"
 		             class="nui-combobox"
 		             textField="name"
-		             valueField="id"
+		             valueField="customid"
 		             allowInput="true"
 		             width="100%"
 		             visible="true"
@@ -163,7 +163,7 @@
 		             id="trade"
 		             class="nui-combobox"
 		             textField="name"
-		             valueField="id"
+		             valueField="customid"
 		             allowInput="true"
 		             width="100%"
 		            />

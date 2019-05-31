@@ -408,7 +408,7 @@
         
         ORDER BY a.id asc
     </select>
-    
+	   
            
     <select id="queryFactoryReturnList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
             SELECT DISTINCT
@@ -519,4 +519,82 @@
         
         ORDER BY a.id asc
     </select>
-</sqlMap>
+	<select id="searchGuest" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT 
+			id	AS	id	,
+			tenant_id	AS	tenantId	,
+			orgid	AS	orgid	,
+			code	AS	code	,
+			full_name	AS	fullName	,
+			short_name	AS	shortName	,
+			card_no	AS	cardNo	,
+			py_name	AS	pyName	,
+			guest_type	AS	guestType	,
+			is_supplier	AS	isSupplier	,
+			is_client	AS	isClient	,
+			contactor	AS	contactor	,
+			contactor_tel	AS	contactorTel	,
+			manager	AS	manager	,
+			manager_duty	AS	managerDuty	,
+			province_id	AS	provinceId	,
+			area_id	AS	areaId	,
+			city_id	AS	cityId	,
+			addr	AS	addr	,
+			postal_code	AS	postalCode	,
+			website	AS	website	,
+			tel	AS	tel	,
+			mobile	AS	mobile	,
+			fax	AS	fax	,
+			email	AS	email	,
+			supplier_type	AS	supplierType	,
+			advantage_carbrand_id	AS	advantageCarbrandId	,
+			instant_msg	AS	instantMsg	,
+			mem_car_no	AS	memCarNo	,
+			mem_level_id	AS	memLevelId	,
+			taxpayer_code	AS	taxpayerCode	,
+			taxpayer_name	AS	taxpayerName	,
+			manage_addr	AS	manageAddr	,
+			taxpayer_tel	AS	taxpayerTel	,
+			account_bank	AS	accountBank	,
+			account_bank_no	AS	accountBankNo	,
+			sex	AS	sex	,
+			birthday_type	AS	birthdayType	,
+			birthday	AS	birthday	,
+			bill_type_id	AS	billTypeId	,
+			sett_type_id	AS	settTypeId	,
+			tgrade	AS	tgrade	,
+			credit_limit	AS	creditLimit	,
+			is_disabled	AS	isDisabled	,
+			remark	AS	remark	,
+			is_internal	AS	isInternal	,
+			is_internal_id	AS	isInternalId	,
+			is_need_pack	AS	isNeedPack	,
+			order_index	AS	orderIndex	,
+			srm_guest_id	AS	srmGuestId	,
+			recorder	AS	recorder	,
+			record_date	AS	recordDate	,
+			modifier	AS	modifier	,
+			modify_date	AS	modifyDate	,
+			default_logistics_id	AS	defaultLogisticsId	,
+			default_logistics	AS	defaultLogistics	,
+			guest_property	AS	guestProperty	,
+			property_features	AS	propertyFeatures	,
+			license_code	AS	licenseCode	,
+			id_card	AS	idCard	,
+			license_url	AS	licenseUrl	,
+			id_card_url	AS	idCardUrl	
+
+		FROM wb_common.com_guest 
+		WHERE 1 = 1
+		<dynamic>
+			<isNotEmpty prepend="and" property="fullName">
+                (full_name like '%$fullName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">
+                (mobile like '%$mobile$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isDisabled">
+                (is_disabled = #isDisabled#)
+            </isNotEmpty>
+        </dynamic>  
+	</select></sqlMap>

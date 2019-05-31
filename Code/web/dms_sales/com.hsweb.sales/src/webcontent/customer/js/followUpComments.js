@@ -143,6 +143,7 @@ function doSearch() {
 		gsparams.modifyDateEnd = gsparams.modifyDateEnd + ' 00:00:00';
 		gsparams.status = 1;
     }else if(status==3){//所有需跟进
+    	gsparams.statusList = 1;
     	gsparams.scoutStatus = "DIT20130705000163";
     }
     mainGrid.load({

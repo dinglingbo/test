@@ -14,8 +14,13 @@ var form = null;
 var is_not = [{ id: 0, text: '未审' }, { id: 1, text: '已审' }];
 var insuranceForm = null;
 var detailGrid = null;
+var searchKeyEl = null;
+var searchNameEl = null;
 var detailGridUrl = baseUrl + "com.hsapi.repair.repairService.insurance.queryRpsInsuranceDetailList.biz.ext";
+var guestInfoUrl = baseUrl + "sales.search.searchGuest.biz.ext";
 var settleTypeIdList = [{ id: 1, name: "保司直收" }, { id: 2, name: "门店代收全款" }, { id: 3, name: "代收减返点" }];
+var costList = [{ id: 0, name: "免费" }, { id: 1, name: "收费" }];
+
 $(document).ready(function(v) {
 
     document.getElementById("caCalculation").src = webBaseUrl + "sales/sales/caCalculation.jsp";
@@ -89,6 +94,13 @@ $(document).ready(function(v) {
                 };
             };
         };
+    });
+
+    jpDetailGrid.on("drawcell", function(e) {
+        var field = e.field;
+        if (field == "receType") {
+            e.cellHtml = costList.find(costList => costList.id == e.value).name;
+        }
     });
 
     jpDetailGrid.on("load", function(e) {
@@ -180,6 +192,30 @@ $(document).ready(function(v) {
         };
     });
 
+    costDetailGrid.on("drawcell", function(e) {
+        var field = e.field;
+        var row = e.row;
+        if (field == "action") {
+            if (row.auditSign == 0) {
+                e.cellHtml = '<a class="optbtn" iconCls="" onclick="checkCost(costDetailGrid,1)"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>';
+            } else {
+                e.cellHtml = '<a class="optbtn" iconCls="" onclick="checkCost(costDetailGrid,0)"><span class="fa fa-close fa-lg"></span>&nbsp;反审</a>';
+            }
+        }
+    });
+
+    costDetailGrid2.on("drawcell", function(e) {
+        var field = e.field;
+        var row = e.row;
+        if (field == "action") {
+            if (row.auditSign == 0) {
+                e.cellHtml = '<a class="optbtn" iconCls="" onclick="checkCost(costDetailGrid2,1)"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>';
+            } else {
+                e.cellHtml = '<a class="optbtn" iconCls="" onclick="checkCost(costDetailGrid2,0)"><span class="fa fa-close fa-lg"></span>&nbsp;反审</a>';
+            }
+        }
+    });
+
     costDetailGrid2.on("load", function(e) {
         var costData = costGrid.getData();
         var data = costDetailGrid2.getData();
@@ -252,73 +288,69 @@ $(document).ready(function(v) {
         nui.get("submitCarMen").setData(data);
         nui.get("saleManIds").setData(data);
     });
-});
 
-function selectCar() { //点击选车时触发
-    var billFormData = billForm.getData(true);
-    if (billFormData.isSettle == 1) {
-        showMsg("当前订单已结算！", "W");
-        return;
-    }
-    if (billFormData.status != 2) {
-        showMsg("当前订单尚未审核！", "W");
-        return;
-    }
-    nui.open({
-        url: webPath + contextPath + "/sales/sales/selectCar.jsp?token=" + token,
-        title: "选择库存车",
-        width: "70%",
-        height: "50%",
-        onload: function() {
-            var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(billFormData.carModelId);
-        },
-        ondestroy: function(action) {
-            if (action == "ok") {
-                var iframe = this.getIFrameEl();
-                var data = iframe.contentWindow.getSelectedValue();
-                var billFormData = billForm.getData(true); //主表信息
-                var handcartAmt = data.receiveCost || 0; //运输成本
-                var carCost = data.unitPrice || 0; //购买成本
-                var enterId = data.id;
-                billFormData.enterId = enterId;
-                billForm.setData(billFormData);
-                document.getElementById("caCalculation").contentWindow.setSelectCarValue(handcartAmt, carCost);
-                save(2);
+    searchKeyEl = nui.get("search_key");
+    searchNameEl = nui.get("search_name");
+    searchKeyEl.setUrl(guestInfoUrl);
+
+    searchKeyEl.on("beforeload", function(e) {
+        var data = {};
+        var params = {};
+        var value = e.data.key;
+        value = value.replace(/\s+/g, "");
+        params.isDisabled = 0;
+        if (value.length < 2) {
+            e.cancel = true;
+            return;
+        } else {
+            var reg = /^[0-9]*$/; //纯数字
+            if (reg.test(value)) {
+                params.mobile = value;
+
+                data.params = params;
+                e.data = data;
+                return;
+            }
+
+            //包含中文
+            var reg = /[\u4E00-\u9FA5\uF900-\uFA2D]/;
+            if (reg.test(value)) {
+                params.fullName = value;
+
+                data.params = params;
+                e.data = data;
+                return;
             }
         }
+
     });
-}
 
-function registration() {
-    var billFormData = billForm.getData(true); //主表信息
-    nui.open({
-        url: webPath + contextPath + "/sales/sales/vehicleRegistration.jsp?token=" + token,
-        title: "车辆上牌",
-        width: "550px",
-        height: "490px",
-        onload: function() {
-            var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(billFormData.id, billFormData.guestId, billFormData.guestFullName);
-        },
-        ondestroy: function(action) {
-
+    searchKeyEl.on("itemclick", function(e) {
+        var item = e.item;
+        var fullName = item.fullName || "";
+        var mobile = item.mobile || "";
+        var msg = fullName + "/" + mobile
+        if (fullName && mobile) {
+            searchNameEl.setValue(msg);
         }
+        if (fullName && !mobile) {
+            searchNameEl.setValue(fullName);
+        }
+        if (mobile && !fullName) {
+            searchNameEl.setValue(mobile);
+        }
+        searchNameEl.setEnabled(false);
+        searchNameEl.setVisible(true);
+        var sk = document.getElementById("search_key");
+        sk.style.display = "none";
+        var billFormData = billForm.getData(true); //主表信息
+        billFormData.guestId = item.id;
+        billForm.setData(billFormData);
     });
-}
+});
 
 function checkMsg(e) { //进行保存操作前进行验证
     var billFormData = billForm.getData(true); //主表信息
-    // if (e == 2) { //审核 先判断费用是否审核完毕
-    //     var data = costDetailGrid.getData();
-    //     var data1 = costDetailGrid2.getData();
-    //     var arr = data.concat(data1);
-    //     var msg = arr.find(arr => arr.auditSign == 0);
-    //     if (msg) {
-    //         showMsg("费用尚未审核完，请审核完费用后再进行操作！", "W");
-    //         return;
-    //     }
-    // }
     var params = document.getElementById("caCalculation").contentWindow.getValue(); //购车信息
     if (params.isValid == false) {
         showMsg("购车信息填写有误，请检查后再保存", "W");
@@ -360,7 +392,9 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
         updateGridMsg(costDetailGrid2, newRow);
     }
     if (e == 0) {
-        updateCheckEnter(billFormData.enterId);
+        if (billFormData.enterId != 0 && billFormData.enterId != "") {
+            updateCheckEnter(billFormData.enterId);
+        }
         billFormData.enterId = 0;
         billFormData.isSubmitCar = 0;
         billFormData.isSettle = 0;
@@ -421,24 +455,7 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
     });
 }
 
-function caseMsg() {
-    var billFormData = billForm.getData(true); //主表信息
-    nui.open({
-        url: webPath + contextPath + "/sales/sales/salesReview.jsp?token=" + token,
-        title: "销售结案审核",
-        width: "880px",
-        height: "700px",
-        onload: function() {
-            var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(billFormData.id);
-        },
-        ondestroy: function(action) {
-
-        }
-    });
-}
-
-function setInitData(params) {
+function setInitData(params) { //初始化
     if (params.typeMsg == 1) {
         nui.get("saveBtn").setVisible(true);
         nui.get("submitBtn").setVisible(true);
@@ -463,7 +480,37 @@ function setInitData(params) {
     }
 }
 
+function updateCheckEnter(enterId) { //返单 修改库存表车辆状态
+    var data = {
+        id: enterId,
+        carStatus: 0
+    };
+    nui.ajax({
+        url: baseUrl + "sales.save.updateCheckEnter.biz.ext",
+        data: {
+            data: data
+        },
+        cache: false,
+        async: false,
+        success: function(text) {
+            if (text.errCode == "S") {
+                showMsg(text.errMsg, "S");
+            } else {
+                showMsg(text.errMsg, "W");
+            }
+        }
+    });
+}
 
+function checkCost(grid, value) { //费用信息  审核反审
+    var row = grid.getSelected();
+    var newRow = {
+        auditSign: value
+    };
+    grid.updateRow(row, newRow);
+}
+
+/////////////////////////////////////////////////////////////////////////////////数据读取
 function searchSalesMain(serviceId) { //查询主表信息
     var params = {
         id: serviceId
@@ -480,7 +527,7 @@ function searchSalesMain(serviceId) { //查询主表信息
                 var data = text.data[0];
                 billForm.setData(data);
                 form.setData(data);
-                document.getElementById("serviceCode").innerHTML = data.serviceCode;
+                $("#servieIdEl").html(data.serviceCode);
 
                 document.getElementById("caCalculation").contentWindow.SetDataMsg(data.id, data.frameColorId, data.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
                 if (data.status != 0) {
@@ -489,6 +536,15 @@ function searchSalesMain(serviceId) { //查询主表信息
                     setReadOnlyMsg();
                     setReadOnlySubmitCar(1);
                     document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
+                    if (data.isSettle == 0) {
+                        if (data.status == 1 || data.status == 2) {
+                            costDetailGrid.showColumn("action");
+                            costDetailGrid2.showColumn("action");
+                        } else {
+                            costDetailGrid.hideColumn("action");
+                            costDetailGrid2.hideColumn("action");
+                        }
+                    }
                 } else {
                     nui.get("saveBtn").enable();
                     setInputModel();
@@ -507,52 +563,26 @@ function searchSalesMain(serviceId) { //查询主表信息
                         setReadOnlySubmitCar(1);
                     }
                 }
+                var msg = (data.contactor || "") + "/" + (data.contactorTel || "");
+                if (data.contactor && data.contactorTel) {
+                    searchNameEl.setValue(msg);
+                }
+                if (!data.contactor && data.contactorTel) {
+                    searchNameEl.setValue(data.contactorTel);
+                }
+                if (data.contactor && !data.contactorTel) {
+                    searchNameEl.setValue(data.contactor);
+                }
+                searchNameEl.setEnabled(false);
+                searchNameEl.setVisible(true);
+                var sk = document.getElementById("search_key");
+                sk.style.display = "none";
             };
         }
     });
 }
 
-function updateCheckEnter(enterId) { //返单 修改库存表车辆状态
-    var data = {
-        id: enterId,
-        carStatus: 0
-    };
-    nui.ajax({
-        url: baseUrl + "sales.save.updateCheckEnter.biz.ext",
-        data: {
-            data: data
-        },
-        cache: false,
-        async: false,
-        success: function(text) {
-            if (text.errCode == "S") {
-                showMsg(text.errMsg, "S");
-                window.CloseOwnerWindow('ok');
-            } else {
-                showMsg(text.errMsg, "W");
-            }
-        }
-    });
-}
-
-function setReadOnlySubmitCar(e) { //交车信息  编辑/只读
-    if (e == 1) {
-        var fields = form.getFields();
-        for (var i = 0, l = fields.length; i < l; i++) {
-            var c = fields[i];
-            if (c.setReadOnly) c.setReadOnly(true); //只读
-            if (c.setIsValid) c.setIsValid(true); //去除错误提示
-        };
-    } else {
-        var fields = form.getFields();
-        for (var i = 0, l = fields.length; i < l; i++) {
-            var c = fields[i];
-            if (c.setReadOnly) c.setReadOnly(false);
-        };
-    }
-}
-
-function insuranceMsg(guestId) {
+function insuranceMsg(guestId) { //获取保险信息
     var params = { guestId: guestId };
     nui.ajax({
         url: baseUrl + "sales.search.searchInsuranceMsg.biz.ext",
@@ -560,6 +590,7 @@ function insuranceMsg(guestId) {
             params: params
         },
         cache: false,
+        async: false,
         success: function(text) {
             if (text.errCode == "S") {
                 var list = text.list[0];
@@ -570,11 +601,100 @@ function insuranceMsg(guestId) {
         }
     });
 }
+/////////////////////////////////////////////////////////////////////////////////////////////
 
-function changeSaleType(e) {
-    document.getElementById("caCalculation").contentWindow.setSaleType(e.value);
+/////////////////////////////////////////////////////////////////////////////////////////弹窗
+function addGuest() { //新增客户资料
+    nui.open({
+        url: webPath + contextPath + "/sales/customer/addGuest.jsp?token=" + token,
+        title: "新增客户资料",
+        width: 900,
+        height: 460,
+        allowDrag: true,
+        allowResize: true,
+        onload: function() {
+            var iframe = this.getIFrameEl();
+            // iframe.contentWindow.setViewData(dock, dodelck, docck);
+        },
+        ondestroy: function(action) {
+
+
+        }
+    });
 }
 
+function selectCar() { //点击选车时触发
+    var billFormData = billForm.getData(true);
+    if (billFormData.isSettle == 1) {
+        showMsg("当前订单已结算！", "W");
+        return;
+    }
+    if (billFormData.status != 2) {
+        showMsg("当前订单尚未审核！", "W");
+        return;
+    }
+    nui.open({
+        url: webPath + contextPath + "/sales/sales/selectCar.jsp?token=" + token,
+        title: "选择库存车",
+        width: "70%",
+        height: "50%",
+        onload: function() {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.SetData(billFormData.carModelId);
+        },
+        ondestroy: function(action) {
+            if (action == "ok") {
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getSelectedValue();
+                var billFormData = billForm.getData(true); //主表信息
+                var handcartAmt = data.receiveCost || 0; //运输成本
+                var carCost = data.unitPrice || 0; //购买成本
+                var enterId = data.id;
+                billFormData.enterId = enterId;
+                billForm.setData(billFormData);
+                document.getElementById("caCalculation").contentWindow.setSelectCarValue(handcartAmt, carCost);
+                save(2);
+            }
+        }
+    });
+}
+
+function registration() { //车辆上牌
+    var billFormData = billForm.getData(true); //主表信息
+    nui.open({
+        url: webPath + contextPath + "/sales/sales/vehicleRegistration.jsp?token=" + token,
+        title: "车辆上牌",
+        width: "550px",
+        height: "490px",
+        onload: function() {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.SetData(billFormData.id, billFormData.guestId, billFormData.guestFullName);
+        },
+        ondestroy: function(action) {
+
+        }
+    });
+}
+
+function caseMsg() { //销售结案审核
+    var billFormData = billForm.getData(true); //主表信息
+    nui.open({
+        url: webPath + contextPath + "/sales/sales/salesReview.jsp?token=" + token,
+        title: "销售结案审核",
+        width: "880px",
+        height: "700px",
+        onload: function() {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.SetData(billFormData.id);
+        },
+        ondestroy: function(action) {
+
+        }
+    });
+}
+/////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////表格控制/数据处理
 function updateGridMsg(grid, newRow) { //更新表格数据   传表格对象grid  需要修改的内容newRow  用于无条件全表格更新数据
     var data = grid.getData();
     for (var i = 0, l = data.length; i < l; i++) {
@@ -606,6 +726,23 @@ function setReadOnlyMsg() { //设置表格信息为只读
     costGrid.setReadOnly(true);
 }
 
+function setReadOnlySubmitCar(e) { //交车信息  编辑/只读
+    if (e == 1) {
+        var fields = form.getFields();
+        for (var i = 0, l = fields.length; i < l; i++) {
+            var c = fields[i];
+            if (c.setReadOnly) c.setReadOnly(true); //只读
+            if (c.setIsValid) c.setIsValid(true); //去除错误提示
+        };
+    } else {
+        var fields = form.getFields();
+        for (var i = 0, l = fields.length; i < l; i++) {
+            var c = fields[i];
+            if (c.setReadOnly) c.setReadOnly(false);
+        };
+    }
+}
+
 function onIsNotRenderer(e) {
     for (var i = 0, l = is_not.length; i < l; i++) {
         var g = is_not[i];
@@ -627,14 +764,10 @@ function onCellCommitEdit(e) {
 function OnModelCellBeginEdit(e) {
     var field = e.field;
     var billFormData = billForm.getData(true); //主表信息
-    if (field == "auditSign") {
-        if (billFormData.status != 1) {
-            e.cancel = true;
-        };
-    };
     if (field == "costAmt" || field == "remark") {
         if (billFormData.status != 0) {
             e.cancel = true;
         };
     };
 };
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////

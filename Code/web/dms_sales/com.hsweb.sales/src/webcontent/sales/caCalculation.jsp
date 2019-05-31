@@ -13,7 +13,7 @@
         <title>购车计算</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%=request.getContextPath()%>/sales/sales/js/caCalculation.js?v=1.0.946"></script>
+            <script src="<%=request.getContextPath()%>/sales/sales/js/caCalculation.js?v=1.0.947"></script>
     </head>
     <style type="text/css">
         body {
@@ -92,7 +92,7 @@
                         购车方式：
                     </td>
                     <td>
-                        <input id="saleType" name="saleType" style="width: 100%" class="nui-combobox" textField="name" valueField="customid" onvaluechanged="changeSaleType" enabled="false">
+                        <input id="saleType" name="saleType" style="width: 100%" class="nui-combobox" textField="name" valueField="customid" onvaluechanged="changeSaleType">
                     </td>
                     <td class="td_title">
                         车型销价：
@@ -188,21 +188,21 @@
                         按揭手续费：
                     </td>
                     <td>
-                        <input id="mortgageAmt" name="mortgageAmt" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="mortgageAmt" name="mortgageAmt" style="width: 100%" class="nui-textbox" vtype="float"  onvaluechanged="changeValueMsg"/>
 
                     </td>
                     <td class="td_title">
                         合同保证金：
                     </td>
                     <td>
-                        <input id="contractGuaranteeAmt" name="contractGuaranteeAmt" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="contractGuaranteeAmt" name="contractGuaranteeAmt" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg"/>
 
                     </td>
                     <td class="td_title">
                         续保押金：
                     </td>
                     <td>
-                        <input id="agentDeposit" name="agentDeposit" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="agentDeposit" name="agentDeposit" style="width: 100%" class="nui-textbox" vtype="float"  onvaluechanged="changeValueMsg"/>
 
                     </td>
                 </tr>
@@ -211,28 +211,28 @@
                         月供保证金：
                     </td>
                     <td>
-                        <input id="riskAmt" name="riskAmt" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="riskAmt" name="riskAmt" style="width: 100%" class="nui-textbox" vtype="float"  onvaluechanged="changeValueMsg"/>
 
                     </td>
                     <td class="td_title">
                         家访费：
                     </td>
                     <td>
-                        <input id="familyAmt" name="familyAmt" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="familyAmt" name="familyAmt" style="width: 100%" class="nui-textbox" vtype="float"  onvaluechanged="changeValueMsg"/>
 
                     </td>
                     <td class="td_title">
                         精品加装：
                     </td>
                     <td>
-                        <input id="decrAmt" name="decrAmt" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="decrAmt" name="decrAmt" style="width: 100%" class="nui-textbox" vtype="float"  onvaluechanged="changeValueMsg"/>
 
                     </td>
                     <td class="td_title">
                         其它费用：
                     </td>
                     <td>
-                        <input id="otherAmt" name="otherAmt" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="otherAmt" name="otherAmt" style="width: 100%" class="nui-textbox" vtype="float"  onvaluechanged="changeValueMsg" />
 
                     </td>
                 </tr>
@@ -241,28 +241,28 @@
                         保险费预算：
                     </td>
                     <td>
-                        <input id="insuranceBudgetAmt" name="insuranceBudgetAmt" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="insuranceBudgetAmt" name="insuranceBudgetAmt" style="width: 100%" class="nui-textbox" vtype="float"  onvaluechanged="changeValueMsg"/>
 
                     </td>
                     <td class="td_title">
                         购置税预算：
                     </td>
                     <td>
-                        <input id="purchaseBudgetAmt" name="purchaseBudgetAmt" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="purchaseBudgetAmt" name="purchaseBudgetAmt" style="width: 100%" class="nui-textbox" vtype="float"  onvaluechanged="changeValueMsg"/>
 
                     </td>
                     <td class="td_title">
                         GPS费用：
                     </td>
                     <td>
-                        <input id="gpsAmt" name="gpsAmt" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="gpsAmt" name="gpsAmt" style="width: 100%" class="nui-textbox" vtype="float"  onvaluechanged="changeValueMsg"/>
 
                     </td>
                     <td class="td_title">
                         上牌费：
                     </td>
                     <td>
-                        <input id="boardLotAmt" name="boardLotAmt" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="boardLotAmt" name="boardLotAmt" style="width: 100%" class="nui-textbox" vtype="float"  onvaluechanged="changeValueMsg"/>
 
                     </td>
                 </tr>

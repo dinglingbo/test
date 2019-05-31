@@ -42,20 +42,25 @@
 	width: calc(100% - 20px) !important;
 }
 
-        .statusview{background:#78c800; color:#fff; padding:3px 20px; border-radius:20px;}
+.statusview{background:#78c800; color:#fff; padding:3px 20px; border-radius:20px;}
 
-        .nvstatusview{color: #5a78a0;padding:3px 20px; border-radius:20px;border: 1px solid;}
+.nvstatusview{color: #5a78a0;padding:3px 20px; border-radius:20px;border: 1px solid;}
 
-        .bottomfont{font-size: 20px;}
+.bottomfont{font-size: 20px;}
 
-        .showhealthcss{color: #5a78a0;padding:3px 20px;border: 1px solid;}
+.showhealthcss{color: #5a78a0;padding:3px 20px;border: 1px solid;}
        
-		.required {
-			color: red;
-		}
+.required {
+	color: red;
+ }
+.btn .aa{
+height:36px;
+width: 300px;
+}
 </style>
 </head>
 <body>
+<div class="nui-fit">
 <div class="nui-toolbar" style="padding:2px;height:48px;position: relative;">
     <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
         <tr>            
@@ -68,7 +73,7 @@
                 <label id="nameEl" style="font-family:Verdana;"></label>
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 <label style="font-family:Verdana;">意向车型:</label>
-                <label id="carModelNameEl" style="font-family:Verdana;"></label>
+                <label id="carModelNameEl" style="font-family:Verdana;"></label> 
             </td>     
             <td style="text-align:right;">
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
@@ -81,26 +86,8 @@
         </tr>
     </table>
 </div>
-<fieldset style="border: solid 1px #aaa; position: relative; margin: 0px 0px 0px 0px;height:100%;width: 100%;" id="guestComeForm">
-            <!--  <input id="id" name="id" class="nui-hidden"/>
-            <input name="specialCare"
-                 id="specialCare"
-                 class="nui-combobox"
-                 textField="name"
-                 valueField="id"
-                 allowInput="true"
-                 width="100%"
-                 visible="false"
-                />
-              <input name="intentLevel"
-                 id="intentLevel"
-                 class="nui-combobox"
-                 textField="name"
-                 valueField="id"
-                 allowInput="true"
-                 width="100%"
-                 visible="false"
-                /> -->
+<div class="nui-fit">
+<fieldset style="border: solid 1px #aaa; position: relative; margin: 0px 0px 0px 0px;width: 100%;" id="guestComeForm">
             <input id="saleAdvisor" name="saleAdvisor" class="nui-hidden"/>
             <input id="status" name="status" class="nui-hidden"/>
 	        <input name="id" class="nui-hidden" id="mainId"/>
@@ -124,7 +111,7 @@
                  width="100%"
                  visible="false"
                 />
-	<table class="nui-form-table" border=0 >
+	<table class="nui-form-table" border=0 style="line-height:50px " >
 	        
 			<tr>
 				<!-- <td class="form_label">
@@ -294,6 +281,9 @@
 	</tr>
 </table>
 </fieldset>
+</div>
+<div style="height: 10%;"></div>
+</div>
 <div style="background-color: #cfddee;position:absolute; top:90%;width:100%;height: 10%; z-index:900;">
     <div id="statustable" style="float: left;height:100%;font-size:16px;color:#5a78a0;padding-left:20px;">
     	<table  style='height: 100%'>
@@ -312,32 +302,6 @@
     		</tbody>
     	</table>
     </div>
-    <!-- <div id="sellForm" class="form"  style="float:right;height: 100%;padding-right: 20px;">
-    	<table style='height: 100%'>
-    		<tbody>
-    			<tr>
-    				<td  style='height: 100%'>
-			        <label>总金额：</label>
-			            <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalAmt" name="totalAmt"/>
-			        <label>优惠金额：</label>
- 			          <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalPrefAmt" name="totalPrefAmt"/>        
- 			        <label>小计金额：</label>
- 			        <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalSubtotal" name="totalSubtotal"/>
- 					<input class="nui-combobox" name="chanceType" id="chanceType" valueField="customid" textField="name"  visible="false" />
-                      <div style='display: none'>
-			          <input class="nui-hidden" enabled="false" id="packageSubtotal" name="packageSubtotal"/>
-			          <input class="nui-hidden" enabled="false" id="packagePrefAmt" name="packagePrefAmt"/>
-			          <input class="nui-hidden" enabled="false" id="itemSubtotal" name="itemSubtotal"/>
-			          <input class="nui-hidden" enabled="false" id="itemPrefAmt" name="itemPrefAmt"/>
-			          <input class="nui-hidden" enabled="false" id="partSubtotal" name="partSubtotal"/>
-			          <input class="nui-hidden" enabled="false" id="partPrefAmt" name="partPrefAmt"/>
-			          <input class="nui-hidden" enabled="false" id="ycAmt" name="ycAmt"/>
-			        </div>
-    				</td>
-    			</tr>
-    		</tbody>
-    	</table>
-    </div> -->
 </div>
 </body>
 </html>

@@ -44,13 +44,7 @@ function SetDataMsg(serviceId, frameColorId, interialColorId) {
                 var data = text.data[0];
                 form.setData(data);
                 if (data.saleType == "1558580770894") { //全款
-                    nui.get("loanPeriod").disable(); //贷款期数
-                    nui.get("signBillBankId").disable(); //贷款银行
-                    nui.get("bankHandlingApportion").disable(); //银行利息分摊
-                    nui.get("mortgageAmt").disable(); //按揭手续费
-                    nui.get("riskAmt").disable(); //月供保证金
-                    nui.get("familyAmt").disable(); //家访费
-                    nui.get("loanPercent").disable(); //贷款比例
+                    changeSaleType(1);
                 }
                 if (!data.frameColorId) { //没值则取销售主表的颜色
                     nui.get("frameColorId").setValue(frameColorId);
@@ -61,11 +55,6 @@ function SetDataMsg(serviceId, frameColorId, interialColorId) {
             }
         }
     });
-}
-
-function setSaleType(value) { //当主表更改购车方式时更改购车计算中的购车方式
-    nui.get("saleType").setValue(value);
-    changeSaleType(1);
 }
 
 function getBankHandlingRate(e) { //改变贷款银行时触发

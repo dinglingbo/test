@@ -47,15 +47,15 @@ $(document).ready(function ()
 	      if (field == 'sex') {
 	           e.cellHtml = (value == 0 ? '女' : '男');
 	       } else if (field == 'comeTypeId') {
-	           e.cellHtml = setColVal('comeTypeId', 'id', 'name', e.value);
+	           e.cellHtml = setColVal('comeTypeId', 'customid', 'name', e.value);
 	       } else if (field == 'frameColorId') {
-	           e.cellHtml = setColVal('frameColorId', 'id', 'name', e.value);
+	           e.cellHtml = setColVal('frameColorId', 'customid', 'name', e.value);
 	       } else if (field == 'interialColorId') {
-	       	   e.cellHtml = setColVal('interialColorId', 'id', 'name', e.value);
+	       	   e.cellHtml = setColVal('interialColorId', 'customid', 'name', e.value);
 	       } else if (field == 'status') {
 	           e.cellHtml =statusHash[e.value];
 	       }else if (field == 'source') {
-	          	e.cellHtml = setColVal('source', 'id', 'name', e.value);
+	          	e.cellHtml = setColVal('source', 'customid', 'name', e.value);
 	       }else if(e.field == "orgid"){
 	        	for(var i=0;i<currOrgList.length;i++){
 	        		if(currOrgList[i].orgid==e.value){
@@ -142,8 +142,9 @@ function doSearch() {
 		gsparams.modifyDateStart = gsparams.modifyDateStart + ' 00:00:00';
 		gsparams.modifyDateEnd = gsparams.modifyDateEnd + ' 00:00:00';
 		gsparams.status = 1;
-    }else if(status==3){//所有需跟进
-    	gsparams.scoutStatus = "DIT20130705000163";
+    }else if(status==3){//所有需跟进，查询不是终止跟进的记录
+    	gsparams.statusList = 1;
+    	gsparams.scoutStatus = "060702";
     }
     mainGrid.load({
         token:token,

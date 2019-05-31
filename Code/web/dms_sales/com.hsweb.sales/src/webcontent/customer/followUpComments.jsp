@@ -58,7 +58,7 @@
 		             id="specialCare"
 		             class="nui-combobox"
 		             textField="name"
-		             valueField="id"
+		             valueField="customid"
 		             allowInput="true"
 		             width="100%"
 		             visible="false"
@@ -67,7 +67,7 @@
 		             id="intentLevel"
 		             class="nui-combobox"
 		             textField="name"
-		             valueField="id"
+		             valueField="customid"
 		             allowInput="true"
 		             width="100%"
 		             visible="false"
@@ -76,7 +76,7 @@
 	                 id="comeTypeId"
 	                 class="nui-combobox"
 	                 textField="name"
-	                 valueField="id"
+	                 valueField="customid"
 	                 allowInput="true"
 	                 width="100%"
 	                 visible="false"
@@ -85,7 +85,7 @@
 	                 id="interialColorId"
 	                 class="nui-combobox"
 	                 textField="name"
-	                 valueField="id"
+	                 valueField="customid"
 	                 allowInput="true"
 	                 width="100%"
 	                 visible="false"
@@ -94,7 +94,7 @@
 	                 id="frameColorId"
 	                 class="nui-combobox"
 	                 textField="name"
-	                 valueField="id"
+	                 valueField="customid"
 	                 allowInput="true"
 	                 width="100%"
 	                 visible="false"
@@ -103,7 +103,7 @@
 			         id="source"
 			         class="nui-combobox"
 			         textField="name"
-			         valueField="id"
+			         valueField="customid"
 			         allowInput="true"
 			         width="100%"
 			         visible="false"
@@ -112,7 +112,7 @@
 			         id="scoutModeId"
 			         class="nui-combobox"
 			         textField="name"
-			         valueField="id"
+			         valueField="customid"
 			         allowInput="true"
 			         width="100%"
 			         visible="false"
@@ -121,7 +121,7 @@
 			         id="status"
 			         class="nui-combobox"
 			         textField="name"
-			         valueField="id"
+			         valueField="customid"
 			         allowInput="true"
 			         width="100%"
 			         visible="false"
@@ -130,7 +130,7 @@
 			         id="isUsabled"
 			         class="nui-combobox"
 			         textField="name"
-			         valueField="id"
+			         valueField="customid"
 			         allowInput="true"
 			         width="100%"
 			         visible="false"
@@ -145,11 +145,6 @@
 				                    <li iconCls="" onclick="quickSearch(1)">今日归档</li>
 				                    <li iconCls="" onclick="quickSearch(2)">超期未跟进</li>
 				                    <li iconCls="" onclick="quickSearch(3)">所有需跟进</li>
-				                   <!--  <li iconCls="" onclick="quickSearch(3)">上周</li>
-				                    <li iconCls="" onclick="quickSearch(4)">本月</li>
-				                    <li iconCls="" onclick="quickSearch(5)">上月</li>
-				                    <li iconCls="" onclick="quickSearch(6)">本年</li>
-				                    <li iconCls="" onclick="quickSearch(7)">上年</li> -->
 				                </ul>
 				                <label style="font-family:Verdana;">销售顾问：</label>
 				                <input name="saleAdvisorId" id="saleAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
@@ -180,20 +175,6 @@
 						allowCellWrap="true"
 						totalField="page.count"
 						>
-						<!-- <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
-				           selectOnLoad="true"
-				           showPager="true"
-				           pageSize="50"
-				           totalField="page.count"
-				           sizeList=[20,50,100,200]
-				           dataField="list"
-				           showModified="false"
-				           onrowdblclick=""
-				           allowCellSelect="true"
-				           editNextOnEnterKey="true"
-				           onshowrowdetail="onShowRowDetail"
-				           allowCellWrap = "true"
-				           url=""> -->
 				  <div property="columns">
                   <div type="indexcolumn">序号</div>
                   <div header="来访信息" headerAlign="center">
@@ -259,22 +240,18 @@
 					allowSortColumn="true" showPager="false" allowCellWrap=true>
 					 <div property="columns">
 						<div type="indexcolumn" headerAlign="center" width="30">序号</div>
-						<div field="recorder" headerAlign="center" allowSort="true" width="70px">跟进人</div>
-						<div field="recordDate" headerAlign="center" allowSort="true" width="220px">跟进日期</div>
+						<div field="recorder" headerAlign="center" allowSort="true" width="60px">跟进人</div>
+						<div field="recordDate" headerAlign="center" allowSort="true" width="60px">跟进日期</div>
 						<div field="scoutModeId" name = "scoutModeId" headerAlign="center" allowSort="true" width="60px">跟进方式</div>
 						<div field="status" headerAlign="status" allowSort="true" width="60px">跟进状态</div>
 						<div field="serviceCode" headerAlign="center" allowSort="true" width="120px">跟进结果</div>
 						<div field="isUsabled" headerAlign="isUsabled" allowSort="true" width="60px" dataType="float">关系阶段</div>
-						<div field="scoutContent" headerAlign="scoutContent" allowSort="true" width="60px" dataType="float">需求内容
+						<div field="scoutContent" headerAlign="scoutContent" allowSort="true" width="120px" dataType="float">需求内容
 						</div>
-						<!-- <div field="recorder" headerAlign="center" allowSort="true" width="80px">行动内容
-						</div>
-						<div field="recorder" headerAlign="center" allowSort="true" width="80px">后续措施
-						</div> -->
-						<div field="failReasonId" headerAlign="center" allowSort="true" width="80px">战败原因
+				    	<div field="failReasonId" headerAlign="center" allowSort="true" width="120px">战败原因
 						</div>
 						<!-- <div field="recordDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:ss" width="110px">消费日期</div> -->	
-						<div field="nextOrderDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:ss" width="110px">下次跟进日期</div>						
+						<div field="nextOrderDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:ss" width="60px">下次跟进日期</div>						
 					 </div>
 				 </div>
 			    </div>

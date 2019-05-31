@@ -52,27 +52,27 @@ $(document).ready(function () {
         } else if (field == 'isDisabled') {
             e.cellHtml = (value == 0 ? '启用' : '禁用');
         } else if (field == 'level') {
-            e.cellHtml = setColVal('level', 'id', 'name', e.value);
+            e.cellHtml = setColVal('level', 'customid', 'name', e.value);
         } else if (field == 'countryType') {
-            e.cellHtml = setColVal('countryType', 'id', 'name', e.value);
+            e.cellHtml = setColVal('countryType', 'customid', 'name', e.value);
         } else if (field == 'carBrandId') {
             e.cellHtml = setColVal('carBrandId', 'nodeId', 'nodeName', e.value);
         } else if (field == 'carStructureType') {
-            e.cellHtml = setColVal('carStructureType', 'id', 'name', e.value);
+            e.cellHtml = setColVal('carStructureType', 'customid', 'name', e.value);
         } else if (field == 'outputVolume') {
-            e.cellHtml = setColVal('outputVolume', 'id', 'name', e.value);
+            e.cellHtml = setColVal('outputVolume', 'customid', 'name', e.value);
         } else if (field == 'seatQty') {
-            e.cellHtml = setColVal('seatQty', 'id', 'name', e.value);
+            e.cellHtml = setColVal('seatQty', 'customid', 'name', e.value);
         } else if (field == 'inletType') {
-            e.cellHtml = setColVal('inletType', 'id', 'name', e.value);
+            e.cellHtml = setColVal('inletType', 'customid', 'name', e.value);
         } else if (field == 'powerType') {
-            e.cellHtml = setColVal('powerType', 'id', 'name', e.value);
+            e.cellHtml = setColVal('powerType', 'customid', 'name', e.value);
         } else if (field == 'driveMode') {
-            e.cellHtml = setColVal('driveMode', 'id', 'name', e.value);
+            e.cellHtml = setColVal('driveMode', 'customid', 'name', e.value);
         } else if (field == 'gearBox') {
-            e.cellHtml = setColVal('gearBox', 'id', 'name', e.value);
+            e.cellHtml = setColVal('gearBox', 'customid', 'name', e.value);
         } else if (field == 'productionMode') {
-            e.cellHtml = setColVal('productionMode', 'id', 'name', e.value);
+            e.cellHtml = setColVal('productionMode', 'customid', 'name', e.value);
         } else if (field == 'isImported') {
             e.cellHtml = (value == 0 ? '是' : '否');
         }
@@ -195,4 +195,9 @@ function CloseWindow(action) {
 
 function choose(){
 	CloseWindow("ok");
+}
+
+function setData(params){
+	nui.get("code").setValue(params.carModelCode);
+	search();
 }

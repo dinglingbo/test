@@ -8,7 +8,7 @@
 -->
 <head>
 <title>整车采购订单</title>
-<script src="<%=webPath + contextPath%>/sales/inventory/js/carSales.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/sales/inventory/js/carSales.js?v=1.0.6"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -55,15 +55,13 @@
                     <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                 </ul>
                 
-				<a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">所有</a>
+<!-- 				<a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">所有</a>
 
-                <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
+                 <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
                 	<li iconCls="" onclick="quickSearch()" id="type">所有</li>
                     <li iconCls="" onclick="quickSearch(12)" id="type12">草稿</li>
-                    <li iconCls="" onclick="quickSearch(13)" id="type13">待发货</li>
-                    <li iconCls="" onclick="quickSearch(14)" id="type14">待收货</li>
-                    <li iconCls="" onclick="quickSearch(15)" id="type15">已入库</li>
-                </ul> 
+                    <li iconCls="" onclick="quickSearch(13)" id="type13">待验车</li>
+                </ul>   -->
 
 
 				<label style="font-family:Verdana;">订货日期 从：</label>
@@ -93,14 +91,14 @@
                            nullItemText="请选择..."/> -->
 <!--                 <input id="" name="" width="80px" emptyText="经办人" class="nui-textbox"/>
                 <input id="" name="" width="80px" emptyText="组织机构" class="nui-textbox"/> -->
-                <input id="" name="" width="80px" emptyText="车型名称" class="nui-textbox"/>
+<!--                 <input id="" name="" width="80px" emptyText="车型名称" class="nui-textbox"/> -->
 <!--                 <input class="nui-combobox" id="search-type" width="80px" textField="name" valueField="id" value="0" data="statusList" allowInput="false" />
 	            <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="80px" onenter="search()" /> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 <!--                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
+<!--                 <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a> -->
 
             </td>
         </tr>
@@ -126,10 +124,12 @@
         <div property="columns">
             <div type="indexcolumn" width="40">序号</div>
             <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
+            		<div allowSort="true" field="status" name="payMode" width="90" headerAlign="center" header="状态"></div>
                     <div field="serviceCode" name="serviceCode" allowSort="true"  width="160" summaryType="count" headerAlign="center" header="订单单号"></div>
                     <div field="guestFullName" name="guestFullName" width="220" headerAlign="center" header="供应商"></div>                    
                     <div allowSort="true" field="billTypeId"  name="billTypeId" width="90" headerAlign="center" header="票据类型"></div>
                     <div allowSort="true" field="payMode" name="payMode" width="90" headerAlign="center" header="结算方式"></div>
+                    <div allowSort="true" field="isFinancial" name="isFinancial" width="90" headerAlign="center" header="是否提交"></div>
                     <div field="recordDate" allowSort="true"  width="130" headerAlign="center" header="订货日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                 
                     <div field="orderTotalAmt" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="订单金额"></div>                                                                                                  
                     <div field="predictDeliveryDate" allowSort="true"  width="130" headerAlign="center" header="预计到货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
@@ -142,26 +142,26 @@
     </div> 
 </div>
 
-
+	<input name="frameColorId" id="frameColorId" class="nui-combobox" dataFied="frameColorIdList" textField="name" valueField="customid" allowInput="true" visible="false"/>
+    <input name="interialColorId" id="interialColorId" class="nui-combobox" dataFied="interialColorIdList" textField="name" valueField="customid" allowInput="true" visible="false"/>
 <div id="editFormDetail" style="display:none;padding:5px;position:relative;">
 
    <div id="innerPartGrid"
        dataField="pjPchsOrderDetailList"
-       allowCellWrap = true
+       allowCellWrap = "true"
        class="nui-datagrid"
        style="width: 100%; height: 100px;"
        showPager="false"
        allowSortColumn="true">
       <div property="columns">
            <div headerAlign="center" type="indexcolumn" width="30">序号</div>
-           <div field="code" name="code" width="120" headerAlign="center" header="车型编码"></div>
-	       <div field="carModelName" headerAlign="center" width="150" header="车型名称"></div>
+           <div field="carModelCode" name="carModelCode" width="120" headerAlign="center"  header="车型编码"></div>
+	       <div field="carModelName" headerAlign="center" width="150" headerAlign="center" header="车型名称"></div>
 	       <div field="frameColorId" name="frameColorId" width="40" headerAlign="center" header="车身颜色"></div>
-	       <div field="interialColorId" name="interialColorId"  headerAlign="center" header="内饰颜色"></div>
-	       <div field="orderQty"  summaryType="sum" width="60" headerAlign="center" header="订货数量"></div>
-	       <div field="orderPrice" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="单价"></div>
-	       <div field="orderAmt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额"></div>
-		   <div field="remark" width="220" headerAlign="center" allowSort="true" header="备注"></div>
+	       <div field="interialColorId" name="interialColorId" width="40" headerAlign="center" header="内饰颜色"></div>
+	       <div field="orderQty"  summaryType="sum" width="40" headerAlign="center" header="订货数量"></div>
+	       <div field="orderPrice" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="单价"></div>
+	       <div field="orderAmt" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="金额"></div>
       </div>
    </div>
 </div>

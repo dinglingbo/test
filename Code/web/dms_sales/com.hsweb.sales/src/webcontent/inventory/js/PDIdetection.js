@@ -74,3 +74,39 @@ function ValueChanged(e) {
     
    
 }
+var saveCssCheckPdiMainUrl = bearUrl+"sales.inventory.saveCssCheckPdiMain.biz.ext";
+
+function onOk(){
+	var cssCheckPdiMain = advancedSearchForm.getData();
+	var cssCheckPdiDetail = morePartGrid.getSelecteds();
+    nui.ajax({
+        url: saveCssCheckPdiMainUrl,
+        type:"post",
+        async: false,
+        data:{
+        	cssCheckPdiMain:cssCheckPdiMain,
+        	cssCheckPdiDetail : cssCheckPdiDetail,
+        	token:token
+        },
+        cache: false,
+        success: function (text) {
+            var list = text.list;
+            if(text.errCode=="S"){
+            	showMsg("保存成功","S");
+            }else{
+            	showMsg("保存异常","W");
+            }
+        }
+    });
+}
+
+function onCancel(){
+	CloseWindow("ok");
+}
+
+function CloseWindow(action) {
+    if (window.CloseOwnerWindow)
+        return window.CloseOwnerWindow(action);
+    else
+        window.close();
+}

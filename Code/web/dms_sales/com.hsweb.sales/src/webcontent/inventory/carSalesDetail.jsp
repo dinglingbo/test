@@ -208,7 +208,7 @@
 			    </ul>
    				
                   <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-                    <a class="nui-button" plain="true" iconCls="" id="addPartBtn" onclick="selectCar()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加车辆</a>
+                    <a class="nui-button" plain="true" iconCls="" id="addPartBtn" onclick="getPartInfo()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加车辆</a>
                     </div>
                     <div class="nui-fit">
                     <div id="rightGrid" class="nui-datagrid" 
@@ -238,25 +238,22 @@
                                     </div>
                                     <div field="carModelName" headerAlign="center" width="150" header="车型名称"></div>
                                     <div field="frameColorId" name="frameColorId" width="40" headerAlign="center" header="车身颜色">
-                                       <input class="nui-combobox" showNullItem="true" name="frameColorId"  valueField="id" id="frameColorId"
+                                       <input class="nui-combobox" showNullItem="true" name="frameColorId"  valueField="customid" id="frameColorId"
                 								 textField="name"  property="editor" data="frameColorIdList" emptyText="" />
                                     </div>
                                     <div field="interialColorId" name="interialColorId"  headerAlign="center" header="内饰颜色">
-                                       <input class="nui-combobox" showNullItem="true" name="interialColorId"  valueField="id" id="interialColorId"
+                                       <input class="nui-combobox" showNullItem="true" name="interialColorId"  valueField="customid" id="interialColorId"
                 								 textField="name"  property="editor" data="interialColorIdList" emptyText="" />
                                     </div>
                                     <div field="orderQty"  summaryType="sum" width="60" headerAlign="center" header="订货数量">
                                       <input property="editor" vtype="int" class="nui-textbox"/>
                                     </div>
-                                    <div field="orderPrice" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="单价">
+                                    <div field="orderPrice" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="单价">
                                       <input property="editor" vtype="float" class="nui-textbox"/>
                                     </div>                                    
-                                    <div field="orderAmt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额">                           
+                                    <div field="orderAmt" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="金额">                           
                                       <input property="editor" vtype="float" class="nui-textbox"/>
                                     </div>
-                                    <div field="remark" width="100" headerAlign="center" allowSort="false">
-                       					 备注<input property="editor" class="nui-textbox"/>
-                       				</div>
                             </div>
                     	</div>
                     </div>

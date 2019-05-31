@@ -31,13 +31,13 @@ $(document).ready(function ()
       if (field == 'sex') {
            e.cellHtml = (value == 0 ? '女' : '男');
        } else if (field == 'identity') {
-           e.cellHtml = setColVal('identity', 'id', 'name', e.value);
+           e.cellHtml = setColVal('identity', 'customid', 'name', e.value);
        } else if (field == 'trade') {
-           e.cellHtml = setColVal('trade', 'id', 'name', e.value);
+           e.cellHtml = setColVal('trade', 'customid', 'name', e.value);
        } else if (field == 'source') {
-       	e.cellHtml = setColVal('source', 'id', 'name', e.value);
+       	e.cellHtml = setColVal('source', 'customid', 'name', e.value);
        } else if (field == 'nature') {
-    	   e.cellHtml = setColVal('nature', 'id', 'name', e.value);
+    	   e.cellHtml = setColVal('nature', 'customid', 'name', e.value);
        } else if(e.field == "birthdayType"){
     	   e.cellHtml = (value == 0 ? '农历' : '阳历');
        }else if(e.field == "maritalStatus"){

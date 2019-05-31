@@ -80,7 +80,7 @@
             </isNotEmpty>
             <!--终止跟进-->
              <isNotEmpty prepend="and" property="scoutStatus">
-                (c.scout_status = #scoutStatus#)
+                (c.scout_status != #scoutStatus#)
             </isNotEmpty>
         </dynamic>  
 	</select>

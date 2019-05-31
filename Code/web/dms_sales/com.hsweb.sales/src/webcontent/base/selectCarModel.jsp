@@ -61,11 +61,12 @@
                     品牌：<input name="carBrandId" id="carBrandId" class="nui-combobox width2" textField="nodeName"
                     valueField="nodeId" dataField="list"  emptyText="请选择..." url=""  onValuechanged="onBrandChanged"
                     showNullItem="false" nullItemText="请选择..." allowInput="true" valueFromSelect="true"
-                    style="width: 150px" />
+                    style="width: 120px" />
                     车系：<input id="carSeriesId" name="carSeriesId"class="nui-combobox" dataField="list" allowUnselec="true"
                     textField="nodeName" valueField="nodeId"  allowInput="false"  
-                     style="width:150px"/>
-                    车型名称：<input id="fullName" name="fullName" class="nui-textbox" type="text" style="width: 110px" />
+                     style="width:120px"/>
+                    车型名称：<input id="fullName" name="fullName" class="nui-textbox" style="width: 110px" />
+                    车型编码：<input id="code" name="code" class="nui-textbox" style="width: 110px" />
                     <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
                             class="fa fa-search fa-lg"></span>&nbsp;查找</a>
                     <!-- <span class="separator"></span> -->

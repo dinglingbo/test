@@ -2,7 +2,8 @@
 var baseUrl = apiPath + saleApi + "/";
 var gridUrl = apiPath + saleApi + "/sales.base.searchCsbCarModel.biz.ext";
 var updateUrl = apiPath + saleApi + "/sales.base.updateCsbCarModel.biz.ext";
-var treeUrl = apiPath + repairApi +"/com.hsapi.repair.common.svr.queryCarBrandSeriesTree.biz.ext";
+var treeUrl = apiPath + repairApi + "/com.hsapi.repair.common.svr.queryCarBrandSeriesTree.biz.ext";
+var isDisArr = [{id:'',text:'全部'},{id:0,text:'启用'},{id:1,text:'禁用'}];
 var grid = null;
 var tree = null;
 var carBrandId = null;
@@ -166,7 +167,8 @@ function search() {
         carBrandId:carBrandId.value,
         carSeriesId:carSeriesId.value,
         fullName: fullName.value,
-        isDisabled:0
+        isDisabled: nui.get('isDisabled').value,
+        code:nui.get('code').value
     }
     grid.load({ params: params, token: token });
 }

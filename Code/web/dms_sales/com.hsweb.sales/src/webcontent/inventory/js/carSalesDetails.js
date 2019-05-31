@@ -156,9 +156,9 @@ $(document).ready(function(v) {
         var value = e.value;
         var field = e.field;
         if (field == 'frameColorId') {
-            e.cellHtml = setColVal('frameColorId', 'id', 'name', e.value);
+            e.cellHtml = setColVal('frameColorId', 'customid', 'name', e.value);
         } else if (field == 'interialColorId') {
-            e.cellHtml = setColVal('interialColorId', 'id', 'name', e.value);
+            e.cellHtml = setColVal('interialColorId', 'customid', 'name', e.value);
         } else if (field == 'isImported') {
             e.cellHtml = (value == 0 ? '是' : '否');
         }else if(field == 'operateBtn'){

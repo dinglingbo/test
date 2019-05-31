@@ -14,7 +14,7 @@
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <%@include file="/common/commonRepair.jsp"%>
-  <script src="<%=webPath + contextPath%>/sales/base/js/PDI_check.js?v=1.1.6"></script>
+  <script src="<%=webPath + contextPath%>/sales/base/js/PDI_check.js?v=1.1.7"></script>
   <style>
     html,
     body {
@@ -33,7 +33,9 @@
       项目编码：<input id="code" class="nui-textbox" style="width: 110px" />
       项目名称：<input id="name" class="nui-textbox" style="width: 110px" />
       项目类型： <input id="pdiTypeId" name="pdiTypeId" class="nui-combobox" style="width: 150px"
-      valueField="id" textField="name" allowInput="false"/>
+      valueField="customid" textField="name" allowInput="false"/>
+      状态：<input id="isDisabled" name="isDisabled" class="nui-combobox" data="isDisArr" 
+            textField="text" valueField="id"  allowInput="false" style="width:90px"/>
       <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
         class="fa fa-search fa-lg"></span>&nbsp;查找</a>
     <a class="nui-button" plain="true" onclick="edit(1)" id="" plain="false"><span
@@ -64,7 +66,7 @@
         <div field="pdiTypeId" headerAlign="center" allowSort="true" width="150px">项目类型
                 <!-- <input property="editor" class="nui-combobox" valueField="id" textField="name" allowInput="false"/> -->
         </div>
-        <div field="remark" headerAlign="center" allowSort="true" width="150px">备注
+        <div field="remark" headerAlign="center" allowSort="true" width="250px">备注
             <!-- <input property="editor" class="nui-textbox" /> -->
         </div>
         <div field="isEnableCheck" headerAlign="center" allowSort="true" width="80px">勾选/描述

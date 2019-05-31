@@ -32,17 +32,17 @@
 </head>
 
 <body>
-    <input id="level" name="level"  class="nui-combobox" visible="false" dataField="data" valueField="id" textField="name"/>
-    <input id="countryType" name="countryType"  class="nui-combobox" visible="false" dataField="data" valueField="id" textField="name"/>
-    <input id="carSeriesId" name="carSeriesId"  class="nui-combobox" visible="false" dataField="data" valueField="id" textField="name"/>
-    <input id="carStructureType" name="carStructureType"  class="nui-combobox" visible="false" dataField="data" valueField="id" textField="name"/>
-    <input id="outputVolume" name="outputVolume"  class="nui-combobox" visible="false" dataField="data" valueField="id" textField="name"/>
-    <input id="seatQty" name="seatQty"  class="nui-combobox" visible="false" dataField="data" valueField="id" textField="name"/>
-             <input id="inletType" name="inletType"  class="nui-combobox" visible="false" dataField="data" valueField="id" textField="name"/>
-    <input id="powerType" name="powerType"  class="nui-combobox" visible="false" dataField="data" valueField="id" textField="name"/>
-    <input id="driveMode" name="driveMode"  class="nui-combobox" visible="false" dataField="data" valueField="id" textField="name"/>
-    <input id="gearBox" name="gearBox"  class="nui-combobox" visible="false" dataField="data" valueField="id" textField="name"/>
-    <input id="productionMode" name="productionMode"  class="nui-combobox" visible="false" dataField="data" valueField="id" textField="name"/>
+    <input id="level" name="level"  class="nui-combobox" visible="false" dataField="data" valueField="customid" textField="name"/>
+    <input id="countryType" name="countryType"  class="nui-combobox" visible="false" dataField="data" valueField="customid" textField="name"/>
+    <input id="carSeriesId" name="carSeriesId"  class="nui-combobox" visible="false" dataField="data" valueField="customid" textField="name"/>
+    <input id="carStructureType" name="carStructureType"  class="nui-combobox" visible="false" dataField="data" valueField="customid" textField="name"/>
+    <input id="outputVolume" name="outputVolume"  class="nui-combobox" visible="false" dataField="data" valueField="customid" textField="name"/>
+    <input id="seatQty" name="seatQty"  class="nui-combobox" visible="false" dataField="data" valueField="customid" textField="name"/>
+             <input id="inletType" name="inletType"  class="nui-combobox" visible="false" dataField="data" valueField="customid" textField="name"/>
+    <input id="powerType" name="powerType"  class="nui-combobox" visible="false" dataField="data" valueField="customid" textField="name"/>
+    <input id="driveMode" name="driveMode"  class="nui-combobox" visible="false" dataField="data" valueField="customid" textField="name"/>
+    <input id="gearBox" name="gearBox"  class="nui-combobox" visible="false" dataField="data" valueField="customid" textField="name"/>
+    <input id="productionMode" name="productionMode"  class="nui-combobox" visible="false" dataField="data" valueField="customid" textField="name"/>
     <div class="nui-fit">
         <div class="nui-splitter" style="width:100%;height:100%;">
             <div  style="border:0;" size="15%" showCollapseButton="true">

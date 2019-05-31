@@ -238,11 +238,11 @@
                                     </div>
                                     <div field="carModelName" headerAlign="center" width="150" header="车型名称"></div>
                                     <div field="frameColorId" name="frameColorId" width="40" headerAlign="center" header="车身颜色">
-                                       <input class="nui-combobox" showNullItem="true" name="frameColorId"  valueField="id" id="frameColorId"
+                                       <input class="nui-combobox" showNullItem="true" name="frameColorId"  valueField="customid" id="frameColorId"
                 								 textField="name"  property="editor" data="frameColorIdList" emptyText="" />
                                     </div>
                                     <div field="interialColorId" name="interialColorId"  headerAlign="center" header="内饰颜色">
-                                       <input class="nui-combobox" showNullItem="true" name="interialColorId"  valueField="id" id="interialColorId"
+                                       <input class="nui-combobox" showNullItem="true" name="interialColorId"  valueField="customid" id="interialColorId"
                 								 textField="name"  property="editor" data="interialColorIdList" emptyText="" />
                                     </div>
                                     <div field="orderQty"  summaryType="sum" width="60" headerAlign="center" header="订货数量">

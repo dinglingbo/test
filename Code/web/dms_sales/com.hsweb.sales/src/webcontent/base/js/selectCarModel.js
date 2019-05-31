@@ -196,3 +196,8 @@ function CloseWindow(action) {
 function choose(){
 	CloseWindow("ok");
 }
+
+function setData(params){
+	nui.get("code").setValue(params.carModelCode);
+	search();
+}

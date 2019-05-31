@@ -208,7 +208,7 @@
 			    </ul>
    				
                   <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-                    <a class="nui-button" plain="true" iconCls="" id="addPartBtn" onclick="selectCar()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加车辆</a>
+                    <a class="nui-button" plain="true" iconCls="" id="addPartBtn" onclick="getPartInfo()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加车辆</a>
                     </div>
                     <div class="nui-fit">
                     <div id="rightGrid" class="nui-datagrid" 
@@ -248,10 +248,10 @@
                                     <div field="orderQty"  summaryType="sum" width="60" headerAlign="center" header="订货数量">
                                       <input property="editor" vtype="int" class="nui-textbox"/>
                                     </div>
-                                    <div field="orderPrice" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="单价">
+                                    <div field="orderPrice" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="单价">
                                       <input property="editor" vtype="float" class="nui-textbox"/>
                                     </div>                                    
-                                    <div field="orderAmt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额">                           
+                                    <div field="orderAmt" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="金额">                           
                                       <input property="editor" vtype="float" class="nui-textbox"/>
                                     </div>
                                     <div field="remark" width="100" headerAlign="center" allowSort="false">

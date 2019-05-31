@@ -144,7 +144,7 @@ body .mini-grid-row-selected{
     <div class="nui-fit">
           <div id="morePartGrid" class="nui-datagrid" style="width:100%;height:95%;"
                selectOnLoad="true"
-               showPager="false"
+               showPager="false" multiSelect="true"
                dataField=""
                frozenStartColumn="0"
                onrowdblclick="addSelectPart"

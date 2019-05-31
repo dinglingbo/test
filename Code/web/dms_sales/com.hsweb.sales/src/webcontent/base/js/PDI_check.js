@@ -1,5 +1,6 @@
 var saveUrl = apiPath + saleApi + "/sales.base.addCsbPDI.biz.ext";
-var gridUrl = apiPath + saleApi + "/sales.base.searchCsbPDI.biz.ext"
+var gridUrl = apiPath + saleApi + "/sales.base.searchCsbPDI.biz.ext";
+var isDisArr = [{id:'',text:'全部'},{id:0,text:'启用'},{id:1,text:'禁用'}];
 var checkList = [{id:0,name:"勾选"},{id:1,name:"描述"}];
 var statusList = [{id:0,name:"启用"},{id:1,name:"禁用"}];
 var statusHash = {0:"启用",1:"禁用"};
@@ -25,7 +26,7 @@ $(document).ready(function(v) {
                     e.cellHtml = (e.value == 0?'勾选':'描述');
 				break;
             case "pdiTypeId":
-                    e.cellHtml = setColVal('pdiTypeId', 'id', 'name', e.value);
+                    e.cellHtml = setColVal('pdiTypeId', 'customid', 'name', e.value);
 				break;
             default:
                 break;
@@ -62,7 +63,9 @@ $(document).ready(function(v) {
 function search() {
     var params = {
         name: nui.get('name').value,
-        code: nui.get('code').value
+        code: nui.get('code').value,
+        pdiTypeId: nui.get('pdiTypeId').value,
+        isDisabled: nui.get('isDisabled').value,
     };
     dgGrid.load({ params: params });
 }

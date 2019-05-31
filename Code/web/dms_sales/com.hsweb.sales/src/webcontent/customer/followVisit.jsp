@@ -69,7 +69,7 @@ a.optbtn {
                  <td>
                     <label style="font-family:Verdana;">快速查询：</label>
                      <input class="nui-combobox" id="qscoutstatus" emptyText="" name="qscoutstatus" data="[{qscoutstatus:0,text:'待今日跟进'},{qscoutstatus:1,text:'超期未跟进'},{qscoutstatus:2,text:'所有需跟进'},
-                         {qscoutstatus:3,text:'所有重点跟进'},{qscoutstatus:3,text:'战败客户'}]" width="120"  onvaluechanged="doSearch" textField="text" valueField="qscoutstatus" value="0"/>
+                         {qscoutstatus:3,text:'所有重点跟进'},{qscoutstatus:4,text:'战败客户'}]" width="120"  onvaluechanged="doSearch" textField="text" valueField="qscoutstatus" value="0"/>
                    <!--  <label style="font-family:Verdana;">客户名称：</label> -->
                     <input class="nui-textbox" id="fullName-search" emptyText="客户名称" width="120"  onenter="doSearch"/>
                     <!-- <label style="font-family:Verdana;">手机号：</label> -->
@@ -88,7 +88,7 @@ a.optbtn {
              id="interialColorId"
              class="nui-combobox"
              textField="name"
-             valueField="id"
+             valueField="customid"
              allowInput="true"
              width="100%"
              visible="false"
@@ -97,7 +97,7 @@ a.optbtn {
              id="frameColorId"
              class="nui-combobox"
              textField="name"
-             valueField="id"
+             valueField="customid"
              allowInput="true"
              width="100%"
              visible="false"
@@ -106,7 +106,7 @@ a.optbtn {
 	         id="source"
 	         class="nui-combobox"
 	         textField="name"
-	         valueField="id"
+	         valueField="customid"
 	         allowInput="true"
 	         width="100%"
 	         visible="false"
@@ -189,7 +189,7 @@ a.optbtn {
 				 <div title="跟进内容">
 				    <fieldset id="form" style="width:635px;height:100%">
 				    <input name="id" class="nui-hidden" id="mainId"/>
-				    <table>
+				    <table style="line-height:30px " >
 				        <tr>
 				            <td align="right" style="width:80px">关系阶段：</td>
 				            <td>
@@ -197,7 +197,7 @@ a.optbtn {
 						         id="relationship"
 						         class="nui-combobox"
 						         textField="name"
-						         valueField="id"
+						         valueField="customid"
 						         allowInput="true"
 						         width="100%"
 						       />       
@@ -255,7 +255,7 @@ a.optbtn {
 						         id="scoutModeId"
 						         class="nui-combobox"
 						         textField="name"
-						         valueField="id"
+						         valueField="customid"
 						         allowInput="true"
 						         width="100%"
 						       />       
@@ -266,9 +266,10 @@ a.optbtn {
 						         id="status"
 						         class="nui-combobox"
 						         textField="name"
-						         valueField="id"
+						         valueField="customid"
 						         allowInput="true"
 						         width="100%"
+						         onvaluechanged="showfailReason"
 						       />      
 				            </td>
 				            <td align="right" style="width:90px">下次跟进时间：</td>
@@ -277,17 +278,17 @@ a.optbtn {
 				            </td>
 				            
 				        </tr>
-				        <tr>
+				        <tr id = "show" style = "display :none">
 				            <td  align="right" style="width:80px">战败原因：</td>
 				            <td colspan="5">
 				                 <input name="failReasonId"
 						         id="failReasonId"
 						         class="nui-combobox"
 						         textField="name"
-						         valueField="id"
+						         valueField="customid"
 						         allowInput="true"
 						         width="100%"
-						       />     
+						         />     
 				            </td>
 				        </tr>
 				        <tr>
@@ -297,7 +298,7 @@ a.optbtn {
 						         id="isUsabled"
 						         class="nui-combobox"
 						         textField="name"
-						         valueField="id"
+						         valueField="customid"
 						         allowInput="true"
 						         width="100%"
 						       />  

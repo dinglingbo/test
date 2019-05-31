@@ -74,7 +74,7 @@
 			         id="status"
 			         class="nui-combobox"
 			         textField="name"
-			         valueField="id"
+			         valueField="customid"
 			         allowInput="true"
 			         /> 
                     <a class="nui-button" iconCls="" plain="true" onclick="doSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
@@ -96,7 +96,7 @@
              id="identity"
              class="nui-combobox"
              textField="name"
-             valueField="id"
+             valueField="customid"
              allowInput="true"
              width="100%"
              visible="false"
@@ -105,7 +105,7 @@
              id="trade"
              class="nui-combobox"
              textField="name"
-             valueField="id"
+             valueField="customid"
              allowInput="true"
              width="100%"
              visible="false"
@@ -114,7 +114,7 @@
              id="source"
              class="nui-combobox"
              textField="name"
-             valueField="id"
+             valueField="customid"
              allowInput="true"
              width="100%"
              visible="false"
@@ -123,7 +123,7 @@
              id="nature"
              class="nui-combobox"
              textField="name"
-             valueField="id"
+             valueField="customid"
              allowInput="true"
              width="100%"
              visible="false"
@@ -210,13 +210,13 @@
                 id="carBrandId" visible="false"
                 class="nui-combobox"
                 textField="name"
-                valueField="id"/>
+                valueField="customid"/>
                 
            <input name="serviceTypeId"
                 id="serviceTypeId" visible="false"
                 class="nui-combobox"
                 textField="name"
-                valueField="id"/>
+                valueField="customid"/>
             <tr>
                 <td class="title" width="800px">开单日期:</td>
                 <td>

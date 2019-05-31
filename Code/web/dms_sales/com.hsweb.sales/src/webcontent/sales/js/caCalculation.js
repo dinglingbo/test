@@ -209,12 +209,12 @@ function setShowSave(params) {
                 	nui.get("frameColorId").setValue(frameColorId);
                 }*/
                 //有点问题
-                /*if (frameColorId) { //没值则取销售主表的颜色
+                if (frameColorId) { //没值则取销售主表的颜色
                     nui.get("frameColorId").setValue(frameColorId);
                 }
                 if (interialColorId) {
                     nui.get("interialColorId").setValue(interialColorId);
-                }*/
+                }
 
             }
         });
@@ -241,6 +241,7 @@ function setShowSave(params) {
                     if (amt > 0) {
                         nui.get("decrAmt").setValue(amt);
                     }
+                    nui.get("decrAmt").setEnabled(false);
                 }
             }
 

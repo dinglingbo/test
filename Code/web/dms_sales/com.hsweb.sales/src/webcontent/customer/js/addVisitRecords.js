@@ -85,7 +85,7 @@ function getServiceTypeList(data,callback){
 	if (list && list.length>0) {
 		for(var i=0; i<list.length; i++){
             var type = list[i];
-            var serviceTypeObj = {id:type.id, text:type.name};
+            var serviceTypeObj = {customid:type.customid, text:type.name};
             serviceTypeList.push(serviceTypeObj);
             callback && callback(serviceTypeList);
         }

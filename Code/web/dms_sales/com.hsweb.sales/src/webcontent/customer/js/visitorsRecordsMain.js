@@ -34,11 +34,11 @@ $(document).ready(function ()
         } else if (field == 'sex') {
             e.cellHtml = (value == 0 ? '女' : '男');
         } else if (field == 'intentLevelId') {
-            e.cellHtml = setColVal('intentLevelId', 'id', 'name', e.value);
+            e.cellHtml = setColVal('intentLevelId', 'customid', 'name', e.value);
         } else if (field == 'frameColorId') {
-            e.cellHtml = setColVal('frameColorId', 'id', 'name', e.value);
+            e.cellHtml = setColVal('frameColorId', 'customid', 'name', e.value);
         } else if (field == 'interialColorId') {
-        	e.cellHtml = setColVal('interialColorId', 'id', 'name', e.value);
+        	e.cellHtml = setColVal('interialColorId', 'customid', 'name', e.value);
         } else if (field == 'status') {
             e.cellHtml =statusHash[e.value];
         } else if(e.field == "serviceCode"){

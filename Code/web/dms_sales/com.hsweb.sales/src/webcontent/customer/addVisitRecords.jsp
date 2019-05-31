@@ -97,7 +97,7 @@ width: 300px;
                  id="specialCare"
                  class="nui-combobox"
                  textField="name"
-                 valueField="id"
+                 valueField="customid"
                  allowInput="true"
                  width="100%"
                  visible="false"
@@ -106,7 +106,7 @@ width: 300px;
                  id="intentLevel"
                  class="nui-combobox"
                  textField="name"
-                 valueField="id"
+                 valueField="customid"
                  allowInput="true"
                  width="100%"
                  visible="false"
@@ -135,7 +135,7 @@ width: 300px;
                          id="comeTypeId"
                          class="nui-combobox"
                          textField="name"
-                         valueField="id"
+                         valueField="customid"
                          allowInput="true"
                          width="100%"
                          
@@ -185,7 +185,7 @@ width: 300px;
 	                 id="frameColorId"
 	                 class="nui-combobox"
 	                 textField="name"
-	                 valueField="id"
+	                 valueField="customid"
 	                 allowInput="true"
 	                 width="100%"
 	                 
@@ -198,7 +198,7 @@ width: 300px;
 	                 id="interialColorId"
 	                 class="nui-combobox"
 	                 textField="name"
-	                 valueField="id"
+	                 valueField="customid"
 	                 allowInput="true"
 	                 width="100%"
 	                 
@@ -252,7 +252,7 @@ width: 300px;
         <td colspan="5">
             <div id="specialCareId" name="specialCareId" class="nui-checkboxlist" repeatItems="15" 
             repeatLayout="flow"  value="" 
-            textField="text" valueField="id" ></div>
+            textField="text" valueField="customid" ></div>
         </td>
     </tr>
     
@@ -261,7 +261,7 @@ width: 300px;
         <td colspan="5">
             <div id="intentLevelId" name="intentLevelId" class="mini-radiobuttonlist" repeatItems="15" 
             repeatLayout="flow"  value="" 
-            textField="text" valueField="id" ></div>
+            textField="text" valueField="customid" ></div>
         </td>
     </tr>
     <tr>

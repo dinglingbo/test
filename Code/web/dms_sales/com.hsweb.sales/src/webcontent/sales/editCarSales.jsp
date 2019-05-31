@@ -13,7 +13,7 @@
         <title>编辑整车销售</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.1073" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.1075" type="text/javascript"></script>
 
     </head>
     <style type="text/css">
@@ -150,7 +150,13 @@
                         <a class="nui-button" iconCls="" plain="true" onclick="submitCar()" id="submitCarBtn" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;交车</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="caseMsg()" id="case" visible="false"><span class="fa fa-dollar fa-lg"></span>&nbsp;结案</a>
 
-                        <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="onPrint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+                        <a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint">
+                            <span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+
+                        <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
+                            <li iconCls="" onclick="salesOnPrint(1)" id="type11">打印现款购车计算表</li>
+                            <li iconCls="" onclick="salesOnPrint(2)" id="type11">打印贷款购车计算表</li>
+                        </ul>
                         <a class="nui-menubutton" plain="true" menu="#popupMenuMore" id="menuMore">
                             <span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
 

@@ -99,7 +99,9 @@ $(document).ready(function(v) {
     jpDetailGrid.on("drawcell", function(e) {
         var field = e.field;
         if (field == "receType") {
-            e.cellHtml = costList.find(costList => costList.id == e.value).name;
+            if (e.value) {
+                e.cellHtml = costList.find(costList => costList.id == e.value).name;
+            }
         }
     });
 
@@ -683,6 +685,32 @@ function caseMsg() { //销售结案审核
         title: "销售结案审核",
         width: "880px",
         height: "700px",
+        onload: function() {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.SetData(billFormData.id);
+        },
+        ondestroy: function(action) {
+
+        }
+    });
+}
+
+function salesOnPrint(p) {
+    var billFormData = billForm.getData(true); //主表信息
+    var url = webPath + contextPath;
+    switch (p) {
+        case 1:
+            url = url + "/sales/sales/print/cashPurchases.jsp";
+            break;
+        case 2:
+            url = url + "/sales/sales/print/printLoanDetail .jsp";
+            break;
+    }
+    nui.open({
+        url: url,
+        title: "打印",
+        width: "100%",
+        height: "100%",
         onload: function() {
             var iframe = this.getIFrameEl();
             iframe.contentWindow.SetData(billFormData.id);

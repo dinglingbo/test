@@ -10,7 +10,7 @@
 -->
 
         <head>
-            <title>贷款购车计算表</title>
+            <title></title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
             <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/jquery-1.8.3.min.js" type="text/javascript"></script>
             <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js" type="text/javascript"></script>
@@ -153,7 +153,6 @@
                 <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
                 <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
             </div>
-            <input id="saleType1" name="saleType1" style="width: 100%" class="nui-combobox" textField="name" valueField="customid">
 
             <div style="margin: 0 10px;" class="printny">
                 <div class="company-info">
@@ -169,9 +168,9 @@
                                     <div style="font-size: 14px;padding-left: 10px; "><span id="slogan1">一次选择 终生服务</span></div>
                                 </td>
                                 <td rowspan="2" style="">
-                                    <div style="font-size: 20px; font-family: 华文中宋;padding-top: 5px;"><b><span id="spstorename">贷款购车计算表</span></b></div>
-                                    <div style="font-size: 14px;padding-left: 10px; "><span id="slogan1">Loan Detail</span> </div>
-                                    <div style="font-size: 14px;padding-left: 10px; "><span id="date"></span></div>
+                                    <div style="font-size: 20px; font-family: 华文中宋;padding-top: 5px;"><b><span id="spstorename">现款购车计算表</span></b></div>
+                                    <div style="font-size: 14px;padding-left: 10px; "><span id="slogan1">Loan Detail</span></div>
+                                    <div style="font-size: 14px;padding-left: 10px; ">打印日期：<span id="date"></span></div>
                                 </td>
                             </tr>
                         </tbody>
@@ -181,75 +180,44 @@
                     <tbody>
                         <tr>
                             <td height="50" valign="top" style="padding:8px" id="guestDesc">
-                                购车人：
+                                购车人
                             </td>
                             <td height="50" valign="top" style="padding: 8px;" id="faultPhen">
                                 <span id="guestFullName"></span>
                             </td>
                             <td height="50" valign="top" style="padding: 8px;" id="solveMethod">
-                                车价（元）：
+                                购车方式
                             </td>
-                            <td height="50" valign="top" style="padding: 8px;" id="saleAmt">
-
+                            <td height="50" valign="top" style="padding: 8px;" id="">
+                                现款
                             </td>
                         </tr>
                         <tr>
                             <td height="50" valign="top" style="padding: 8px;" id="">
-                                购买车型：
+                                购买车型
                             </td>
                             <td height="50" valign="top" style="padding: 8px;" id="">
-
                                 <span id="carModelName"></span>
                             </td>
                             <td height="50" valign="top" style="padding: 8px;" id="">
-                                首付金额（元）：
+                                车价（元）
                             </td>
                             <td height="50" valign="top" style="padding: 8px;" id="">
-                                <span id="downPaymentAmt"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td height="50" valign="top" style="padding: 8px;" id="">
-                                贷款方式：
-                            </td>
-                            <td height="50" valign="top" style="padding: 8px;" id="">
-                                <span id="saleType"></span>
-                            </td>
-                            <td height="50" valign="top" style="padding: 8px;" id="">
-                                贷款金额（元）：
-                            </td>
-                            <td height="50" valign="top" style="padding: 8px;" id="">
-                                <span id="loanAmt"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td height="50" valign="top" style="padding: 8px;" id="">
-                                利息支付方式：
-                            </td>
-                            <td height="50" valign="top" style="padding: 8px;" id="">
-                                <span id="bankHandlingApportion"></span>
-                            </td>
-                            <td height="50" valign="top" style="padding: 8px;" id="">
-                                月供金额（元）：
-                            </td>
-                            <td height="50" valign="top" style="padding: 8px;" id="">
-                                <span id="monthPayAmt"></span>
+                                <span id="saleAmt"></span>
                             </td>
                         </tr>
                         <tr>
                             <td height="50" valign="top" style="padding: 8px;" id="" colspan="2">
-                                本明细表所列费用为办理按揭购车所需缴纳的所有费用
+                                本明细表所列费用为购车的所有费用
                             </td>
                             <td height="50" valign="top" style="padding: 8px;" id="">
-                                厂商指导价（元）：
+                                厂商指导价（元）
                             </td>
                             <td height="50" valign="top" style="padding: 8px;" id="">
-
+                                239800
                             </td>
                         </tr>
                     </tbody>
-                </table>
-                <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk" style="line-height:32px;">
                     <tbody>
                         <tr>
                             <td height="50" valign="top" style="padding: 8px;" id="">
@@ -267,41 +235,13 @@
                         </tr>
                         <tr>
                             <td height="50" valign="top" style="padding: 8px;" id="">
-                                按揭手续费：
+                                保险预算费
                             </td>
                             <td height="50" valign="top" style="padding: 8px;" id="">
-                                <span id="mortgageAmt"></span>
+                                <span id="insuranceBudgetAmt"></span>
                             </td>
                             <td height="50" valign="top" style="padding: 8px;" id="">
-                                购置税预算：
-                            </td>
-                            <td height="50" valign="top" style="padding: 8px;" id="">
-                                <span id="purchaseBudgetAmt"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td height="50" valign="top" style="padding: 8px;" id="">
-                                合同保证金：
-                            </td>
-                            <td height="50" valign="top" style="padding: 8px;" id="">
-                                <span id="contractGuaranteeAmt"></span>
-                            </td>
-                            <td height="50" valign="top" style="padding: 8px;" id="">
-                                GPS费：
-                            </td>
-                            <td height="50" valign="top" style="padding: 8px;" id="">
-                                <span id="gpsAmt"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td height="50" valign="top" style="padding: 8px;" id="">
-                                月供保证金：
-                            </td>
-                            <td height="50" valign="top" style="padding: 8px;" id="">
-                                <span id="riskAmt"></span>
-                            </td>
-                            <td height="50" valign="top" style="padding: 8px;" id="">
-                                上牌费：
+                                上牌费
                             </td>
                             <td height="50" valign="top" style="padding: 8px;" id="">
                                 <span id="boardLotAmt"></span>
@@ -309,27 +249,13 @@
                         </tr>
                         <tr>
                             <td height="50" valign="top" style="padding: 8px;" id="">
-                                家访费：
+                                购置税预算
                             </td>
                             <td height="50" valign="top" style="padding: 8px;" id="">
-                                <span id="familyAmt"></span>
+                                <span id="purchaseBudgetAmt"></span>
                             </td>
                             <td height="50" valign="top" style="padding: 8px;" id="">
-                                贷款利息：
-                            </td>
-                            <td height="50" valign="top" style="padding: 8px;" id="">
-                                <span id="bankHandlingAmt"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td height="50" valign="top" style="padding: 8px;" id="">
-                                续保押金：
-                            </td>
-                            <td height="50" valign="top" style="padding: 8px;" id="">
-                                <span id="agentDeposit"></span>
-                            </td>
-                            <td height="50" valign="top" style="padding: 8px;" id="">
-                                精品加装费：
+                                精品加装
                             </td>
                             <td height="50" valign="top" style="padding: 8px;" id="">
                                 <span id="decrAmt"></span>
@@ -337,13 +263,13 @@
                         </tr>
                         <tr>
                             <td height="50" valign="top" style="padding: 8px;" id="">
-                                保险费预算：
+                                GPS费
                             </td>
                             <td height="50" valign="top" style="padding: 8px;" id="">
-                                <span id="insuranceBudgetAmt"></span>
+                                <span id="gpsAmt"></span>
                             </td>
                             <td height="50" valign="top" style="padding: 8px;" id="">
-                                其它费用：
+                                其它费用
                             </td>
                             <td height="50" valign="top" style="padding: 8px;" id="">
                                 <span id="otherAmt"></span>
@@ -351,12 +277,27 @@
                         </tr>
                         <tr>
                             <td height="50" valign="top" style="padding: 8px;" id="">
-                                备注：
+                                提车合计
+                            </td>
+                            <td height="50" valign="top" style="padding: 8px;" id="" colspan="3">
+                                <span id="getCarTotal" style="width:95px;display: inline-block;"></span>&nbsp;&nbsp;<span>大写（人民币）：叁佰贰拾叁万贰仟伍佰玖拾伍元整</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="50" valign="top" style="padding: 8px;" id="">
+                                购车预算合计
+                            </td>
+                            <td height="50" valign="top" style="padding: 8px;" id="" colspan="3">
+                                <span id="buyBudgetTotal" style="width:95px;display: inline-block;"></span>&nbsp;&nbsp;<span>大写（人民币）：元</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="50" valign="top" style="padding: 8px;" id="">
+                                备注
                             </td>
                             <td height="50" valign="top" style="padding: 8px;" id="remark" colspan="3">
                             </td>
                         </tr>
-
                         <tr style=height:100px;>
                             <td height="100" valign="top" style="padding: 8px;" id="" colspan="4">
                                 <div>
@@ -366,7 +307,7 @@
                                     <div style="clear:both"></div>
                                     <div style="height:50px;width:100%"></div>
                                     <div style="width:100%;height:20px;">
-                                        <span>特别声明：贷款年限、金额，以银行最终审批为准，客户签字后本购车计算表与购车合同起同等法律效力。</span>
+                                        <span>特别声明：客户签字后本购车计算表与购车合同起同等法律效力。</span>
                                     </div>
 
                                 </div>
@@ -374,15 +315,10 @@
                         </tr>
                     </tbody>
                 </table>
-                <p>办理贷款购车所需提供的资料</p>
-                <p>1、夫妻双方身份证复印件2、户口本复印件3、结婚证（或未婚证明、离婚证）复印件</p>
-                <p>4、收入证明原件5、公司或个体户经营者提供营业执照复印件</p>
-                <p>6、打印银行最近6个月的流水原件7、房产证复印件（土地使用证或购房合同）</p>
             </div>
             <script type="text/javascript">
                 var webBaseUrl = webPath + contextPath + "/";
                 var baseUrl = apiPath + saleApi + "/";
-
                 $("#print").click(function() {
                     $(".print_btn").hide();
                     $(".print_hide").hide();
@@ -391,9 +327,6 @@
                 });
 
                 function SetData(serviceId) {
-                    initDicts({
-                        saleType1: '10392' //购车方式
-                    });
                     document.getElementById("comp").innerHTML = currRepairSettorderPrintShow;
                     var url = baseUrl + 'sales.search.searchSaleCalc.biz.ext?params/billType=2&params/serviceId=' + serviceId;
                     var date = new Date();
@@ -402,25 +335,15 @@
                         if (res.data.length > 0) {
                             var temp = res.data[0];
                             document.getElementById("saleAmt").innerHTML = temp.saleAmt || 0; //车价（元）
-                            document.getElementById("mortgageAmt").innerHTML = temp.mortgageAmt || 0; //按揭手续费
-                            document.getElementById("purchaseBudgetAmt").innerHTML = temp.purchaseBudgetAmt || 0; //购置税预算
-                            document.getElementById("contractGuaranteeAmt").innerHTML = temp.contractGuaranteeAmt || 0; //合同保证金
-                            document.getElementById("gpsAmt").innerHTML = temp.gpsAmt || 0; //GPS费
-                            document.getElementById("riskAmt").innerHTML = temp.riskAmt || 0; //月供保证
+                            document.getElementById("insuranceBudgetAmt").innerHTML = temp.insuranceBudgetAmt || 0; //保险预算费
                             document.getElementById("boardLotAmt").innerHTML = temp.boardLotAmt || 0; //上牌费
-                            document.getElementById("familyAmt").innerHTML = temp.familyAmt || 0; //家访费
-                            document.getElementById("bankHandlingAmt").innerHTML = temp.bankHandlingAmt || 0; //贷款利息
-                            document.getElementById("agentDeposit").innerHTML = temp.agentDeposit || 0; //续保押金
-                            document.getElementById("decrAmt").innerHTML = temp.decrAmt || 0; //精品加装
-                            document.getElementById("insuranceBudgetAmt").innerHTML = temp.insuranceBudgetAmt || 0; //保险预算费 
+                            document.getElementById("purchaseBudgetAmt").innerHTML = temp.purchaseBudgetAmt || 0; //购置税预算	
+                            document.getElementById("decrAmt").innerHTML = temp.decrAmt || 0; //精品加装	
+                            document.getElementById("gpsAmt").innerHTML = temp.gpsAmt || 0; //GPS费
                             document.getElementById("otherAmt").innerHTML = temp.otherAmt || 0; //其它费用
+                            document.getElementById("getCarTotal").innerHTML = temp.getCarTotal || 0; //提车合计
+                            document.getElementById("buyBudgetTotal").innerHTML = temp.buyBudgetTotal || 0; //购车预算合计
                             document.getElementById("remark").innerHTML = temp.remark || "";
-                            document.getElementById("downPaymentAmt").innerHTML = temp.downPaymentAmt || 0; //首付
-                            document.getElementById("loanAmt").innerHTML = temp.loanAmt || 0; //贷款金额
-                            document.getElementById("monthPayAmt").innerHTML = temp.monthPayAmt || 0; //月供
-                            document.getElementById("bankHandlingApportion").innerHTML = temp.bankHandlingApportion == 0 ? "利息分摊" : "利息不分摊";
-                            nui.get("saleType1").setValue(temp.saleType);
-                            document.getElementById("saleType").innerHTML = nui.get("saleType1").text || ""; //贷款方式
                         }
                     });
 
@@ -429,6 +352,7 @@
                             var temp = res.data[0];
                             document.getElementById("guestFullName").innerHTML = temp.guestFullName || "";
                             document.getElementById("carModelName").innerHTML = temp.carModelName || "";
+
                         }
                     });
                 }

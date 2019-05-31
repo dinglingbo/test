@@ -79,15 +79,15 @@ $(document).ready(function(v) {
     });
 
     mainGrid.on("rowdblclick", function(e) {
-        onSearch();
+        addAndEdit(2);
     });
 
     mainGrid2.on("rowdblclick", function(e) {
-        onSearch();
+        addAndEdit(2);
     });
 
     mainGrid3.on("rowdblclick", function(e) {
-        onSearch();
+        addAndEdit(2);
     });
 
 });

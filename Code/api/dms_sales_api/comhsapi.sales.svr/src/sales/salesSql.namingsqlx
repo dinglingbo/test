@@ -408,8 +408,118 @@
         
         ORDER BY a.id asc
     </select>
+	   
+           
+    <select id="queryFactoryReturnList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+            SELECT DISTINCT
+                a.id as id,
+                a.tenant_id as tenantId,
+                a.orgid as orgid,
+                a.guest_id as guestId,
+                a.service_code as serviceCode,
+                a.bill_type_id as billTypeId,
+                a.pay_mode as payMode,
+                a.transport_id as transportId,
+                a.return_men as returnMen,
+                a.return_date as returnDate,
+                a.return_amt as returnAmt,
+                a.status as status,
+                a.remark as remark,
+                a.recorder as recorder,
+                a.record_date as recordDate,
+                a.modifier as modifier,
+                a.modify_date as modifyDate,                    
+                b.FULL_NAME AS guestFullName,
+                b.SHORT_NAME AS guestShortName,
+                b.srm_guest_id as srmGuestId
+                FROM
+                wb_sales.css_factory_return_main a
+                INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID     
+                where 1=1
+            <dynamic>
+            	<isNotEmpty prepend="and" property="status"> 
+                    (a.status = #status#)
+                </isNotEmpty>
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="id"> 
+                    (a.id = #id#)
+                </isNotEmpty>
+                <!--订货日期 -->
+                <isNotEmpty prepend="and" property="sOrderDate">  
+                    A.record_date &gt;= #sOrderDate#
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eOrderDate">  
+                    (A.record_date &lt; #eOrderDate#)
+                </isNotEmpty>
+                <!--创建日期 -->
+                <isNotEmpty prepend="and" property="sCreateDate">  
+                    (A.record_date &gt;= #sCreateDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eCreateDate">  
+                    (A.record_date &lt; #eCreateDate#)
+                </isNotEmpty>
+                <!--本日 昨日 本周 上周 本月 下月 -->
+                <isNotEmpty prepend="and" property="startDate">  
+                    (A.record_date &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (A.record_date &lt; #endDate#)
+                </isNotEmpty>
+
+                <isNotEmpty prepend="and" property="guestId">  
+                    (A.guest_id = #guestId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="guestName">  
+                    (B.FULL_NAME like '%$guestName$%' or B.SHORT_NAME like '%$guestName$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceId">  
+                    (a.service_code like '%$serviceId$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceIdList">  
+                    (A.service_code in ($serviceIdList$))
+                </isNotEmpty>
+            </dynamic>  
+		
+        ORDER BY A.record_date DESC
+        
+    </select>
     
-    <select id="searchGuest" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+         <!-- 根据主表ID查询 -->
+    <select id="queryFactoryReturnDetailList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT
+                A.id AS id,
+                A.order_id AS orderId,
+                A.enter_id AS enterId,
+                A.car_model_id AS carModelId,
+                A.car_model_name AS carModelName,
+                A.frame_color_id AS frameColorId,
+                A.interial_color_id AS interialColorId,
+                A.vin AS vin,
+                A.order_price AS orderPrice,
+                A.return_amt AS returnAmt,
+                A.recorder AS recorder,
+                A.record_date AS recordDate,
+                A.modifier AS modifier,
+                A.modify_date AS modifyDate      
+            FROM
+            wb_sales.css_factory_return_detail A
+                where 1=1
+            <dynamic>
+                <isNotEmpty prepend="and" property="orderId">  
+                    (A.order_id = #orderId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="orderIds">  
+                    (A.order_id in ($orderIds$))
+                </isNotEmpty>
+            </dynamic>  
+           
+        
+        ORDER BY a.id asc
+    </select>
+	<select id="searchGuest" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT 
 			id	AS	id	,
 			tenant_id	AS	tenantId	,
@@ -487,5 +597,4 @@
                 (is_disabled = #isDisabled#)
             </isNotEmpty>
         </dynamic>  
-	</select>
-</sqlMap>
+	</select></sqlMap>

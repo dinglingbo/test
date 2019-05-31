@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveGuestCome.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、先根据手机号查询客户，有，取第一个，没有，先新增客户，再新增来访记录&#xD;&#xA;2.修改时不会根据手机号判断客户是否存在，因为客户手机号会有相同的&#xD;&#xA;3、新增客户拓展记录，新增时会先判断该客户有没有记录，有，不新增，没有新增&#xD;&#xA;4、来访登记中，服务顾问修改了，csb_contactor也修改了，下次跟进时间也修改了，上次跟进时间是否需要赋值" title="Administrator&#x9;19-5-22 下午4:45">
-    <location x="77" y="480"/>
-    <size height="166" width="404"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、先根据手机号查询客户，有，取第一个，没有，先新增客户，再新增来访记录&#xD;&#xA;2.修改时不会根据手机号判断客户是否存在，因为客户手机号会有相同的&#xD;&#xA;3、新增客户拓展记录，新增时会先判断该客户有没有记录，有，不新增，没有新增&#xD;&#xA;4、来访登记中，服务顾问修改了，csb_contactor也修改了，下次跟进时间也修改了，上次跟进时间是否需要赋值&#xD;&#xA;5，联系人表里面的跟进状态：scout_status，每次新增一条来访记录都赋默认值为继续跟踪" title="Administrator&#x9;19-5-22 下午4:45">
+    <location x="77" y="450"/>
+    <size height="196" width="404"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
@@ -260,6 +260,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">guestCome/nextVisitDate</process:from>
       <process:to type="query">contactor/nextScoutDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">guest/fullName</process:from>
+      <process:to type="query">contactor/name</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
@@ -528,8 +532,8 @@
     <location x="765" y="181"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess4label</nodeLabel>
-    <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hs.common.unify.saveEntity</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.saveEntity</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="dsName" type="literal" value="String" valueType="Primitive" pattern="reference">sales</process:inputVariable>
         <process:inputVariable id="1" name="data" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">guestCome</process:inputVariable>

@@ -245,7 +245,6 @@ pageEncoding="UTF-8" session="false" %>
     initDicts({
         level:'10383',//级别
         countryType:'10384',//国别
-        carSeriesId:'',//车系
         carStructureType:'10385',//结构
         outputVolume:'DDT20130703000044',//排量
         seatQty:'10386',//座位数
@@ -264,9 +263,9 @@ pageEncoding="UTF-8" session="false" %>
     function setData(row,e) {
         type = e;
         if(e == 2 || e == 3){
+            var mUrl = modelUrl + "?nodeId=" + row.carBrandId;
+            carSeriesId.setUrl(mUrl);
             form.setData(row);
-            nui.get("carBrandId").doValueChanged();
-            carSeriesId.setValue(row.carSeriesId);
             driveMode.doValueChanged();
         }
         
@@ -328,6 +327,7 @@ pageEncoding="UTF-8" session="false" %>
         if(id){
             mUrl = modelUrl + "?nodeId=" + id;
             carSeriesId.setUrl(mUrl);
+            //alert(1);
         }
     }
 

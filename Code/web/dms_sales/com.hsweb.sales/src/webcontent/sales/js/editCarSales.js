@@ -705,6 +705,9 @@ function salesOnPrint(p) {
         case 2:
             url = url + "/sales/sales/print/printLoanDetail .jsp";
             break;
+        case 3:
+            url = url + "/sales/sales/print/printJCDetail.jsp";
+            break;
     }
     nui.open({
         url: url,

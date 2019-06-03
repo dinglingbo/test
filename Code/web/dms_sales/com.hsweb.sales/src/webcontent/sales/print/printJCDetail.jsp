@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-    <%-- <%@include file="/common/sysCommon.jsp"%> --%>
+    <%@include file="/common/sysCommon.jsp"%>
         <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
         <html>
         <!-- 
@@ -12,10 +12,8 @@
         <head>
             <title>交车确认单</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
             <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/jquery-1.8.3.min.js" type="text/javascript"></script>
-            <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js" type="text/javascript">
-            </script>
+            <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js" type="text/javascript"></script>
             <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/numberFormat.js" type="text/javascript"></script>
             <link href="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/mian.css" rel="stylesheet" type="text/css" />
 
@@ -155,7 +153,8 @@
                 <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
                 <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
             </div>
-
+            <input id="frameColorId1" name="frameColorId1" style="width: 100%" class="nui-combobox" textField="name" valueField="customid" visible="false">
+            <input id="interialColorId1" name="interialColorId1" style="width: 100%" class="nui-combobox" textField="name" valueField="customid" visible="false">
             <div style="margin: 0 10px;" class="printny">
                 <div class="company-info">
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -181,16 +180,16 @@
                 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk" style="line-height:32px;margin-top:5px;">
                     <tbody>
                         <tr>
-                            <td height="50" valign="top" style="padding:8px" id="guestDesc">
+                            <td height="50" valign="top" style="padding:8px" id="">
                                 销售合同号
                             </td>
                             <td height="50" valign="top" style="padding:  8px;" id="faultPhen">
-                                <span id="guestFullName"></span>
-                            </td>
-                            <td height="50" valign="top" style="padding:  8px;" id="solveMethod">
-                                车顾客名称/单位
+                                <span id="contractNo"></span>
                             </td>
                             <td height="50" valign="top" style="padding:  8px;" id="">
+                                车顾客名称/单位
+                            </td>
+                            <td height="50" valign="top" style="padding:  8px;" id="guestFullName">
 
                             </td>
                         </tr>
@@ -206,7 +205,7 @@
                                 电话
                             </td>
                             <td height="50" valign="top" style="padding:  8px;" id="">
-                                <span id="saleAmt"></span>
+                                <span id="contactorTel"></span>
                             </td>
                         </tr>
                         <tr>
@@ -214,13 +213,13 @@
                                 车身颜色
                             </td>
                             <td height="50" valign="top" style="padding:  8px;" id="">
-                                <span id=""></span>
+                                <span id="frameColorId"></span>
                             </td>
                             <td height="50" valign="top" style="padding:  8px;" id="">
                                 内饰颜色
                             </td>
                             <td height="50" valign="top" style="padding:  8px;" id="">
-                                <span id=""></span>
+                                <span id="interialColorId"></span>
                             </td>
                         </tr>
                         <tr>
@@ -234,7 +233,7 @@
                                 提车时间
                             </td>
                             <td height="50" valign="top" style="padding:  8px;" id="">
-                                <span id=""></span>
+                                <span id="submitTrueDate"></span>
                             </td>
                         </tr>
                     </tbody>
@@ -352,28 +351,42 @@
 
                     window.print();
                 });
-                getTableData();
 
                 function SetData(serviceId) {
+                    initDicts({
+                        frameColorId1: "DDT20130726000003", //车辆颜色
+                        interialColorId1: "10391"
+                    });
+                    $.ajaxSetup({
+                        async: false
+                    });
                     var url = baseUrl + 'sales.search.searchSalesMain.biz.ext?params/id=' + serviceId;
                     $.post(url, function(res) {
                         if (res.data.length > 0) {
                             var temp = res.data[0];
-                            //document.getElementById("guestFullName").innerHTML = temp.guestFullName;
-                            //document.getElementById("carModelName").innerHTML = temp.carModelName;
-                            document.getElementById("saleAmt").innerHTML = temp.saleAmt; //车价（元）
-                            document.getElementById("insuranceBudgetAmt").innerHTML = temp.insuranceBudgetAmt; //保险预算费
-                            document.getElementById("boardLotAmt").innerHTML = temp.boardLotAmt; //上牌费
-                            document.getElementById("purchaseBudgetAmt").innerHTML = temp.purchaseBudgetAmt; //购置税预算	
-                            document.getElementById("decrAmt").innerHTML = temp.decrAmt; //精品加装	
-                            document.getElementById("gpsAmt").innerHTML = temp.gpsAmt; //GPS费
-                            document.getElementById("otherAmt").innerHTML = temp.otherAmt; //其它费用
-                            document.getElementById("getCarTotal").innerHTML = temp.getCarTotal; //提车合计
-                            document.getElementById("buyBudgetTotal").innerHTML = temp.buyBudgetTotal; //购车预算合计
+                            var contractNo = temp.contractNo || "";
+                            var guestFullName = temp.guestFullName || "";
+                            var contactorTel = temp.contactorTel || "";
+                            var carModelName = temp.carModelName || "";
+                            var frameColorId = temp.frameColorId || "";
+                            var interialColorId = temp.interialColorId || "";
+                            var submitTrueDate = temp.submitTrueDate || "";
+                            document.getElementById("contractNo").innerHTML = contractNo;
+                            document.getElementById("guestFullName").innerHTML = guestFullName;
+                            document.getElementById("carModelName").innerHTML = carModelName;
+                            document.getElementById("carModelName").innerHTML = format(submitTrueDate, 'yyyy-MM-dd HH:mm:ss');
+                            nui.get("frameColorId1").setValue(frameColorId);
+                            nui.get("interialColorId1").setValue(interialColorId);
+                            document.getElementById("frameColorId").innerHTML = nui.get("frameColorId1").text;
+                            document.getElementById("interialColorId").innerHTML = nui.get("interialColorId1").text;
+                            document.getElementById("contactorTel").innerHTML = contactorTel;
                         }
                     });
+                }
 
-
+                function CloseWindow(action) {
+                    if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+                    else window.close();
                 }
             </script>
         </body>

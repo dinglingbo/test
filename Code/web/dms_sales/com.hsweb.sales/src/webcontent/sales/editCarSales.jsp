@@ -13,7 +13,7 @@
         <title>编辑整车销售</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.1075" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.1076" type="text/javascript"></script>
 
     </head>
     <style type="text/css">
@@ -156,6 +156,7 @@
                         <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
                             <li iconCls="" onclick="salesOnPrint(1)" id="type11">打印现款购车计算表</li>
                             <li iconCls="" onclick="salesOnPrint(2)" id="type11">打印贷款购车计算表</li>
+                            <li iconCls="" onclick="salesOnPrint(3)" id="type11">打印交车确认单</li>
                         </ul>
                         <a class="nui-menubutton" plain="true" menu="#popupMenuMore" id="menuMore">
                             <span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>

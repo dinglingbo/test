@@ -209,7 +209,7 @@
                                    
                                     <div field="carModel" name="carModel" width="250" headerAlign="center"allowSort="true" dataType="string">品牌车型</div>
                                     <div field="vin" width="150" headerAlign="center" allowSort="true" dataType="string">车架号(VIN)</div>
-                                    <div field="firstRegDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true" dataType="date">上牌日期</div>
+                                    <div field="firstRegDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true" dataType="date">注册日期</div>
                                     <div field="annualInspectionDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true" dataType="date">商业险到期</div>
                                     <div field="insureDueDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true" dataType="date">交强险到期</div>
                                     <div field="annualVerificationDueDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true" dataType="date">车辆年检到期</div>

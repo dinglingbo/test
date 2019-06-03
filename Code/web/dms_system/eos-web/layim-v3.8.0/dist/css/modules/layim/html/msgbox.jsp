@@ -40,7 +40,7 @@
 <textarea title="消息模版" id="LAY_tpl" style="display:none;">
 {{# layui.each(d.data, function(index, item){
   if(item.from){ }}
-    <li data-uid="{{ item.from }}" data-fromGroup="{{ item.from_group }}">
+    <li data-uid="{{ item.from }}" data-fromGroup="{{ item.from_group }}" data-id="{{ item.id }}">
       <a href="/u/{{ item.from }}/" target="_blank">
         <img src="{{ item.user.avatar }}" class="layui-circle layim-msgbox-avatar">
       </a>
@@ -130,8 +130,9 @@ layui.use(['layim', 'flow'], function(){
     //同意
     agree: function(othis){
       var li = othis.parents('li')
+      ,id = li.data('id')
       ,uid = li.data('uid')
-      ,from_group = li.data('fromGroup')
+      ,from_group = li.data('fromgroup')
       ,user = cache[uid];
 
       //选择分组
@@ -143,7 +144,7 @@ layui.use(['layim', 'flow'], function(){
         ,submit: function(group, index){
           
           //将好友追加到主面板
-          parent.layui.layim.addList({
+          /* parent.layui.layim.addList({
             type: 'friend'
             ,avatar: user.avatar //好友头像
             ,username: user.username //好友昵称
@@ -152,53 +153,100 @@ layui.use(['layim', 'flow'], function(){
             ,sign: user.sign //好友签名
           });
           parent.layer.close(index);
-          othis.parent().html('已同意');
-        
-        
-          //实际部署时，请开启下述注释，并改成你的接口地址
-          /*
-          $.post('/im/agreeFriend', {
-            uid: uid //对方用户ID
-            ,from_group: from_group //对方设定的好友分组
-            ,group: group //我设定的好友分组
-          }, function(res){
-            if(res.code != 0){
-              return layer.msg(res.msg);
-            }
+          othis.parent().html('已同意'); */
 
-            //将好友追加到主面板
-            parent.layui.layim.addList({
-              type: 'friend'
-              ,avatar: user.avatar //好友头像
-              ,username: user.username //好友昵称
-              ,groupid: group //所在的分组id
-              ,id: uid //好友ID
-              ,sign: user.sign //好友签名
-            });
-            parent.layer.close(index);
-            othis.parent().html('已同意');
+		  var data = {
+	            keyId:id
+	            ,uid: uid //对方用户ID
+	            ,username: user.username
+	            ,from_group: from_group //对方设定的好友分组
+	            ,group: group //我设定的好友分组
+	            ,id:currImCode
+	            ,type:"agree"
+            }
+          //实际部署时，请开启下述注释，并改成你的接口地址
+          $.ajax({
+          	type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            cache: false,
+            async: false,
+            data: JSON.stringify({
+            	params:data,token:token
+            }),
+            url: apiPath + sysApi + "/com.hsapi.system.im.message.editUserFriend.biz.ext",
+            success: function (res) {
+            	if(res.code != 0){
+					return layer.msg(res.msg);
+				}
+	            //将好友追加到主面板
+	            parent.layui.layim.addList({
+	              type: 'friend'
+	              ,avatar: user.avatar //好友头像
+	              ,username: user.username //好友昵称
+	              ,groupid: group //所在的分组id
+	              ,id: uid //好友ID
+	              ,sign: user.sign //好友签名
+	            });
+	            parent.layer.close(index);
+	            othis.parent().html('已同意');
+            }
           });
-          */
           
-        }
-      });
+          }
+          
+          
+      });  
     }
 
     //拒绝
     ,refuse: function(othis){
       var li = othis.parents('li')
-      ,uid = li.data('uid');
+      ,id = li.data('id')
+      ,uid = li.data('uid')
+      ,from_group = li.data('fromgroup')
+      ,user = cache[uid];
 
       layer.confirm('确定拒绝吗？', function(index){
-        $.post('/im/refuseFriend', {
-          uid: uid //对方用户ID
-        }, function(res){
-          if(res.code != 0){
-            return layer.msg(res.msg);
-          }
-          layer.close(index);
-          othis.parent().html('<em>已拒绝</em>');
-        });
+      
+      		var data = {
+      		    keyId:id
+	            ,uid: uid //对方用户ID
+	            ,username: user.username
+	            ,from_group: from_group //对方设定的好友分组
+	            ,group: "" //我设定的好友分组
+	            ,id:currImCode
+	            ,type:"refuse"
+            }
+	          //实际部署时，请开启下述注释，并改成你的接口地址
+	          $.ajax({
+	          	type: 'post',
+	            dataType: 'json',
+	            contentType: 'application/json',
+	            cache: false,
+	            async: false,
+	            data: JSON.stringify({
+	            	params:data,token:token
+	            }),
+	            url: apiPath + sysApi + "/com.hsapi.system.im.message.editUserFriend.biz.ext",
+	            success: function (res) {
+                      if(res.code != 0){
+			            return layer.msg(res.msg);
+			          }
+			          layer.close(index);
+			          othis.parent().html('<em>已拒绝</em>');
+                 }
+	          });
+      
+	        /* $.post('/im/refuseFriend', {
+	          uid: uid //对方用户ID
+	        }, function(res){
+	          if(res.code != 0){
+	            return layer.msg(res.msg);
+	          }
+	          layer.close(index);
+	          othis.parent().html('<em>已拒绝</em>');
+	        }); */
       });
     }
   };

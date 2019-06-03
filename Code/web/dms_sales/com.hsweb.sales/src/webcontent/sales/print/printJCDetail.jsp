@@ -164,7 +164,7 @@
                                     <img alt="" src="http://qxy60.7xdr.com/Fv1sKmBhuP9apHjTtFsNG5fKTlV7" id="showImg" height="60px">
                                 </td>
                                 <td style="width:55%">
-                                    <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><span id="comp">车道东莞测试12店</span></div>
+                                    <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><span id="comp"></span></div>
                                     <div style="font-size: 14px;padding-left: 10px; "><span id="slogan1">您身边的车管家</span></div>
                                     <div style="font-size: 14px;padding-left: 10px; "><span id="slogan1">一次选择 终生服务</span></div>
                                 </td>
@@ -353,13 +353,16 @@
                 });
 
                 function SetData(serviceId) {
+                    $.ajaxSetup({
+                        async: false
+                    });
                     initDicts({
                         frameColorId1: "DDT20130726000003", //车辆颜色
                         interialColorId1: "10391"
                     });
-                    $.ajaxSetup({
-                        async: false
-                    });
+                    var date = new Date();
+                    document.getElementById("date").innerHTML = format(date, "yyyy-MM-dd HH:mm");
+                    document.getElementById("comp").innerHTML = currRepairSettorderPrintShow;
                     var url = baseUrl + 'sales.search.searchSalesMain.biz.ext?params/id=' + serviceId;
                     $.post(url, function(res) {
                         if (res.data.length > 0) {
@@ -374,7 +377,7 @@
                             document.getElementById("contractNo").innerHTML = contractNo;
                             document.getElementById("guestFullName").innerHTML = guestFullName;
                             document.getElementById("carModelName").innerHTML = carModelName;
-                            document.getElementById("carModelName").innerHTML = format(submitTrueDate, 'yyyy-MM-dd HH:mm:ss');
+                            document.getElementById("submitTrueDate").innerHTML = format(submitTrueDate, 'yyyy-MM-dd HH:mm:ss');
                             nui.get("frameColorId1").setValue(frameColorId);
                             nui.get("interialColorId1").setValue(interialColorId);
                             document.getElementById("frameColorId").innerHTML = nui.get("frameColorId1").text;

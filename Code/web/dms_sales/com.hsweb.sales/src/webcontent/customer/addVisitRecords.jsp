@@ -82,6 +82,12 @@ width: 300px;
                 <a class="nui-button" onclick="buyCarCount" plain="true"  style="width: 80px;"><span class="fa fa-dollar fa-lg"></span>&nbsp;购车预算</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="changStatus()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;归档</a>
                 <a class="nui-button" onclick="saveSaleMain()" plain="true"  style="width: 80px;"><span class="fa fa-mail-forward  fa-lg"></span>&nbsp;转销售</a>
+                <a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint">
+                <span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+                <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
+                  <li iconCls="" onclick="salesOnPrint(1)" id="type11">打印现款购车计算表</li>
+                  <li iconCls="" onclick="salesOnPrint(2)" id="type11">打印贷款购车计算表</li>
+               </ul>
             </td>
         </tr>
     </table>

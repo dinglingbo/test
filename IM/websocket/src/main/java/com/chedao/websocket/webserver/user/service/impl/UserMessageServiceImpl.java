@@ -94,4 +94,6 @@ public class UserMessageServiceImpl implements UserMessageService {
 	public int updateuserdate(Map<String, Object> map) {
 		return userMessageDao.updateuserdate(map);
 	}
+
+
 }

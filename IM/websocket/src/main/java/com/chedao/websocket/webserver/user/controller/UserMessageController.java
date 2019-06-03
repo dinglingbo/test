@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.chedao.websocket.constant.Constants;
 import com.chedao.websocket.webserver.base.controller.BaseController;
 import com.chedao.websocket.webserver.user.model.*;
+import com.chedao.websocket.webserver.user.service.UserInfoService;
 import com.chedao.websocket.webserver.user.service.UserMessageService;
 import com.chedao.websocket.webserver.user.service.impl.GroupUserManager;
 import com.chedao.websocket.webserver.user.service.impl.UserFriendApplyServiceImpl;
@@ -14,10 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.crypto.MacSpi;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author qiqiim
@@ -33,6 +32,8 @@ public class UserMessageController extends BaseController {
     private GroupUserManager groupUserManager;
     @Autowired
     private UserFriendApplyServiceImpl userFriendApplyServiceImpl;
+    @Autowired
+    private UserInfoService userInfoServiceImpl;
     /**
      * 页面
      */
@@ -86,6 +87,7 @@ public class UserMessageController extends BaseController {
 
         int total = userMessageServiceImpl.queryBoxTotal(params);
         PageBean<UserMessageEntity> page = new PageBean<UserMessageEntity>(Integer.parseInt(params.get("page").toString()), 10, total);
+
         return putPageMsgToJsonString(Constants.WebSite.SUCCESS, "", page, messageList);
     }
 
@@ -103,13 +105,44 @@ public class UserMessageController extends BaseController {
         return putPageMsgToJsonString(Constants.WebSite.SUCCESS, "", page, chatList);
     }
 
+    /**
+     * 首页提醒消息数量：
+     *        1、统计未读的好友申请的反馈结果（判断条件isread=0）；
+     *        2、统计最近一周未读的系统消息（
+     *                    if(lastoffdate=null)  查询最近一周的系统消息
+     *                    else 查询 lastoffdate 到现在 的数据）
+     * 消息盒子内容
+     */
     @RequestMapping(value = "/offlist", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
     @ResponseBody
     public Object offlist(@RequestBody Map<String, Object> params) {
+        UserInfoEntity userInfoEntity = userInfoServiceImpl.queryByUid(Long.parseLong(params.get("receiveuser").toString()));
+        params.put("isread",0);
+        params.put("type",2);
+        int i = userMessageServiceImpl.queryTotal(params); //1、统计未读的好友申请的反馈结果（判断条件isread=0）；
+        String lastoffdate = userInfoEntity.getLastoffdate();
+        params.remove("isread");
+        params.remove("receiveuser");
+        params.put("type",3);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String day = dateFormat.format(new Date());
+        if(lastoffdate==null || lastoffdate=="") {
+            Calendar c = Calendar.getInstance();
+            c.setTime(new Date());
+            c.add(Calendar.DATE, - 7);
+            Date d = c.getTime();
+            params.put("screatedate",dateFormat.format(d));
+            params.put("ecreatedate",day);
+        }else {
+            params.put("screatedate",lastoffdate);
+            params.put("ecreatedate",day);
+        }
+        int j = userMessageServiceImpl.queryTotal(params);
+
         List<MessageInfoEntity> list = userMessageServiceImpl.getOfflineMessageList(params);
         List<MessageInfoEntity> grouplist = userMessageServiceImpl.getOfflineGroupMessageList(params);
         list.addAll(grouplist);
-        return putMsgToJsonString(Constants.WebSite.SUCCESS, "", 0, list);
+        return putMsgToJsonString(Constants.WebSite.SUCCESS, "", i + j, list);
         //return JSONArray.toJSON(list);
     }
 

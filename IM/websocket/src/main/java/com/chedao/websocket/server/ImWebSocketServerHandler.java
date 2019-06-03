@@ -7,6 +7,7 @@
 package com.chedao.websocket.server;
 
 import com.chedao.websocket.constant.Constants;
+import com.chedao.websocket.server.connertor.ImConnertor;
 import com.chedao.websocket.server.connertor.impl.ImConnertorImpl;
 import com.chedao.websocket.server.model.MessageWrapper;
 import com.chedao.websocket.server.model.proto.MessageProto;
@@ -27,11 +28,11 @@ public class ImWebSocketServerHandler   extends SimpleChannelInboundHandler<Mess
 
 	private final static Logger log = LoggerFactory.getLogger(ImWebSocketServerHandler.class);
     @Autowired
-	private ImConnertorImpl connertor = null;
+	private ImConnertor connertor = null;
     @Autowired
     private MessageProxy proxy = null;
 
-    public ImWebSocketServerHandler(MessageProxy proxy, ImConnertorImpl connertor) {
+    public ImWebSocketServerHandler(MessageProxy proxy, ImConnertor connertor) {
         this.connertor = connertor;
         this.proxy = proxy;
     }

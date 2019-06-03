@@ -16,25 +16,35 @@
         </association>
     </resultMap>
 
+    <resultMap type="com.chedao.websocket.webserver.user.model.UserFriendApplyEntity" id="uEntity">
+        <result property="from" column="from_id"/>
+        <result property="from_group" column="from_group_id"/>
+        <result property="username" column="user_name"/>
+        <result property="applyDate" column="apply_date"/>
+        <result property="updateDate" column="update_date"/>
+    </resultMap>
     <sql id="Base_Column_List" >
   	  	id,
         uid,
+        username,
         from_id,
-        from_group_id ,
+        from_name,
+        from_group_id,
         apply_date,
         `status`,
+        update_date,
         remark
     </sql>
 
-    <select id="queryObject" resultType="com.chedao.websocket.webserver.user.model.UserFriendApplyEntity">
+    <select id="queryObject" resultMap="uEntity">
         select  <include refid="Base_Column_List" />  from user_friend_apply where id = #{value}
     </select>
 
-    <select id="queryByUid"  parameterType="long" resultType="com.chedao.websocket.webserver.user.model.UserFriendApplyEntity">
+    <select id="queryByUid"  parameterType="long" resultMap="uEntity">
         select  <include refid="Base_Column_List" />  from user_friend_apply where uid = #{id}
     </select>
 
-    <select id="queryList" resultType="com.chedao.websocket.webserver.user.model.UserFriendApplyEntity">
+    <select id="queryList" resultMap="uEntity">
         select  <include refid="Base_Column_List" />  from user_friend_apply
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
@@ -63,7 +73,7 @@
     </resultMap>
     <select id="queryBoxList" resultMap="userMessageTMap">
         select id, uid, from_id, apply_date, `status`, remark, '申请添加你为好友' as content,
-                0 as from_group, 1 as tp, 1 as rd,
+                from_group_id as from_group, 1 as tp, 1 as rd,
         CASE
         WHEN TIMESTAMPDIFF(DAY, apply_date,NOW()) &gt; 0
         THEN CONCAT(TIMESTAMPDIFF(DAY, apply_date,NOW()),'天前')
@@ -134,6 +144,38 @@
         where a.uid = #{uid}
     </select>
 
+    <resultMap type="com.chedao.websocket.webserver.user.model.UserFriendApplyEntity" id="userFriendApplyTEntity">
+        <result property="id" column="id"/>
+        <result property="uid" column="uid"/>
+        <result property="username" column="username"/>
+        <result property="from" column="from_id"/>
+        <result property="from_name" column="from_name"/>
+        <result property="from_group" column="from_group_id"/>
+        <result property="applyDate" column="apply_date"/>
+        <result property="status" column="status"/>
+        <result property="remark" column="remark"/>
+        <result property="updateDate" column="update_date"/>
+    </resultMap>
+    <select id="getUserFriendApply" resultMap="userFriendApplyTEntity" >
+        SELECT
+        a.id,
+        a.uid,
+        a.username,
+        a.from_id,
+        a.from_name,
+        a.from_group_id,
+        a.apply_date,
+        a.`status`,
+        a.update_date,
+        a.remark
+        FROM
+        user_friend_apply AS a
+        where a.uid = #{uid} and a.from_id= #{fromId}
+        <if test="status != null">
+            and a.`status` = #{status}
+        </if>
+    </select>
+
     <insert id="save" parameterType="com.chedao.websocket.webserver.user.model.UserFriendApplyEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into user_info
 		(
@@ -184,25 +226,8 @@
     <update id="update" parameterType="com.chedao.websocket.webserver.user.model.UserFriendApplyEntity">
         update user_friend_apply
         <set>
-            <if test="uid != null">`uid` = #{uid}, </if>
-            <if test="deptid != null">`deptid` = #{deptid}, </if>
-            <if test="name != null">`name` = #{name}, </if>
-            <if test="nickname != null">`nickname` = #{nickname}, </if>
-            <if test="sex != null">`sex` = #{sex}, </if>
-            <if test="birthday != null">`birthday` = #{birthday}, </if>
-            <if test="cardid != null">`cardid` = #{cardid}, </if>
-            <if test="signature != null">`signature` = #{signature}, </if>
-            <if test="school != null">`school` = #{school}, </if>
-            <if test="education != null">`education` = #{education}, </if>
-            <if test="address != null">`address` = #{address}, </if>
-            <if test="phone != null">`phone` = #{phone}, </if>
-            <if test="email != null">`email` = #{email}, </if>
-            <if test="remark != null">`remark` = #{remark}, </if>
-            <if test="profilephoto != null">`profilephoto` = #{profilephoto}, </if>
-            <if test="createdate != null">`createdate` = #{createdate}, </if>
-            <if test="createuser != null">`createuser` = #{createuser}, </if>
-            <if test="updatedate != null">`updatedate` = #{updatedate}, </if>
-            <if test="updateuser != null">`updateuser` = #{updateuser}</if>
+            <if test="updateDate != null">`update_date` = #{updateDate}, </if>
+            <if test="status != null">`status` = #{status}</if>
         </set>
         where id = #{id}
     </update>
@@ -222,7 +247,9 @@
 		insert into user_friend_apply
 		(
 			`uid`,
+			`username`,
 			`from_id`,
+			`from_name`,
 			`from_group_id`,
 			`apply_date`,
 			`status`,
@@ -231,10 +258,12 @@
 		values
 		(
 			#{uid},
+			#{username},
 			#{from},
+			#{from_name},
 			#{from_group},
 			NOW(),
-			#{status},
+			0,
 			#{remark}
 		)
 	</insert>

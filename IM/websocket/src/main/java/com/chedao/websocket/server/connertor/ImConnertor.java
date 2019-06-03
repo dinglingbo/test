@@ -22,6 +22,13 @@ public interface ImConnertor {
 	  * @throws RuntimeException
 	  */
 	 void pushMessage(MessageWrapper wrapper) throws RuntimeException;
+
+	/**
+	 * 获取好友申请同意/拒绝后发送消息
+	 * @param sessionId
+	 * @throws RuntimeException
+	 */
+	 void pushFriendSettleMessage(String sessionId, String reSessionId, String content, Integer saveSign)throws RuntimeException;
 	 /**
 	  * 发送组消息
 	  * @param wrapper

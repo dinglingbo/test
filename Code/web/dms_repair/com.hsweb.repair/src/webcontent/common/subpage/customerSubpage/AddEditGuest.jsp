@@ -11,9 +11,9 @@
 -->
 <head>
     <title>新增客户档案</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.90"></script>
-      	<script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
-  	    <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.2.4"></script>
+    <script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
+  	<script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
  	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
  	<script src="<%= request.getContextPath() %>/common/qiniu/qiniu1.0.14.js" type="text/javascript"></script>
   	<script src="https://cdn.staticfile.org/plupload/2.1.9/moxie.js"></script>
@@ -267,7 +267,7 @@ cursor: pointer;
                                         生产日期
                                     </div>
                                     <div field="firstRegDate" allowSort="true" dateFormat="yyyy-MM-dd" align="left" headerAlign="center" width="">
-                                        上牌日期
+                                        注册日期
                                     </div>
                                     <div field="issuingDate" allowSort="true" dateFormat="yyyy-MM-dd" align="left" headerAlign="center" width="">
                                         发证日期

@@ -19,6 +19,10 @@
 
   </sql>
 
+    <select id="queryListById" resultType="com.chedao.websocket.webserver.user.model.UserTypeEntity" parameterType="map">
+        select  <include refid="Base_Column_List" />  from user_type where id = #{id}
+    </select>
+
    <!-- 查找该用户所有分组-->
     <select id="queryList" resultType="com.chedao.websocket.webserver.user.model.UserTypeEntity" parameterType="map">
         select  <include refid="Base_Column_List" />  from user_type where user_id = #{userid}

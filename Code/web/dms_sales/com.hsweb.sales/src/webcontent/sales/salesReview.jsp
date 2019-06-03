@@ -13,7 +13,7 @@
         <title>销售结案审核</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%= request.getContextPath() %>/sales/sales/js/salesReview.js?v=1.001" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/sales/sales/js/salesReview.js?v=1.002" type="text/javascript"></script>
     </head>
     <style type="text/css">
         body {
@@ -83,13 +83,13 @@
                         购买成本：
                     </td>
                     <td>
-                        <input id="carCost" name="carCost" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" />
+                        <input id="carCost" name="carCost" style="width: 100%" class="nui-textbox" vtype="float" enabled="false" />
                     </td>
                     <td class="td_title">
                         运输费：
                     </td>
                     <td>
-                        <input id="handcartAmt" name="handcartAmt" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" />
+                        <input id="handcartAmt" name="handcartAmt" style="width: 100%" class="nui-textbox" vtype="float" enabled="false" />
                     </td>
                     <td class="td_title">
                         车辆毛利：

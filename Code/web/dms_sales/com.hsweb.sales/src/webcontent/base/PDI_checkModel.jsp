@@ -46,16 +46,16 @@
     <div class="nui-fit">
         <div id="grid1" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" multiSelect="false"
             pageSize="20" pageList='[10,20,50,100]' showPageInfo="true" selectOnLoad="true" onDrawCell=""
-            onselectionchanged="" allowSortColumn="false" totalField="page.count" fitColumns="false">
+            onselectionchanged="" allowSortColumn="false" totalField="page.count" fitColumns="true">
             <div property="columns">
                 <div type="indexcolumn" headerAlign="center" width="60px">序号</div>
                 <!-- <div type="checkcolumn" class="mini-radiobutton" width="60px">选择</div> -->
-                <div field="code" headerAlign="center" allowSort="true" width="150px">模板编号</div>
-                <div field="pyCode" headerAlign="center" allowSort="true" width="150px">拼音码</div>
                 <div field="name" headerAlign="center" allowSort="true" width="150px">模板名称</div>
                 <div field="carModelName" headerAlign="center" allowSort="true" width="150px">车型名称</div>
                 <div field="isDefault" headerAlign="center" allowSort="true" width="150px">是否车型默认模板</div>
                 <div field="remark" headerAlign="center" allowSort="true" width="300px">备注</div>
+                <div field="code" headerAlign="center" allowSort="true" width="150px">模板编号</div>
+                <div field="pyCode" headerAlign="center" allowSort="true" width="150px">拼音码</div>
                 <div field="isDisabled" headerAlign="center" allowSort="true" width="100px">状态</div>
             </div>
         </div>

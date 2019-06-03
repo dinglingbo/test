@@ -13,7 +13,7 @@
         <title>编辑整车销售</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.096" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.1075" type="text/javascript"></script>
 
     </head>
     <style type="text/css">
@@ -76,15 +76,70 @@
         .tbInput {
             width: 30%;
         }
+        
+        .btn .mini-buttonedit {
+            height: 36px;
+        }
+        
+        .btn .aa {
+            height: 36px;
+            width: 300px;
+        }
+        
+        .btn .mini-buttonedit .mini-corner-all {
+            height: 33px;
+            background: #368bf447;
+        }
+        
+        .btn .aa .mini-corner-all {
+            height: 33px;
+        }
+        
+        .mini-corner-all .nui-textbox {
+            height: 30px;
+        }
+        
+        .btn .mini-corner-all .mini-buttonedit-input {
+            font-size: 16px;
+            margin-top: 8px;
+        }
+        
+        .btn .mini-corner-all .mini-textbox-input {
+            font-size: 14px;
+            margin-top: 8px;
+        }
+        
+        a.optbtn {
+            width: 52px;
+            /* height: 26px; */
+            border: 1px #d2d2d2 solid;
+            background: #f2f6f9;
+            text-align: center;
+            display: inline-block;
+            /* line-height: 26px; */
+            margin: 0 4px;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 5px;
+        }
     </style>
 
     <body>
         <input class="nui-hidden" id="type">
-        <div class="nui-toolbar" style="padding:2px;height:35px;position: relative;">
+        <div class="nui-toolbar" style="padding:2px;position: relative;">
             <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
                 <tr>
-                    <td>
-                        工单号：<span id="serviceCode"></span>
+                    <td class="btn">
+                        <div class="nui-autocomplete" emptyText="未匹配到数据...(输入的内容长度要求大于或是等于2)" style="width:380px;height: 50px !important;" popupWidth="600" textField="text" valueField="id" searchField="key" multiSelect="false" id="search_key" dataField="data" placeholder="请输入...">
+                            <div property="columns">
+                                <div header="客户名称" field="fullName" width="30" headerAlign="center"></div>
+                                <div header="客户手机" field="mobile" width="60" headerAlign="center"></div>
+                            </div>
+                        </div>
+                        <input id="search_name" name="search_name" class="nui-textbox aa" emptyText="客户名称/手机号" visible="false" enabled="false" showClose="false" allowInput="true" />
+                        <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn">新增客户</a>
+                        <label style="font-family:Verdana;">工单号:</label>
+                        <label id="servieIdEl" style="font-family:Verdana;"></label>
                     </td>
                     <td style="text-align:right;">
                         <a class="nui-button" iconCls="" plain="true" onclick="checkMsg(0)" id="saveBtn" visible="false"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
@@ -92,9 +147,16 @@
                         <a class="nui-button" iconCls="" plain="true" onclick="checkMsg(3)" id="invalidBtn" visible="false"><span class="fa fa-close fa-lg"></span>&nbsp;作废</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="checkMsg(2)" id="audit" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="selectCar()" id="selectBtn" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;选车</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="submitCar()" id="submitCarBtn" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;交车</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="caseMsg()" id="case" visible="false"><span class="fa fa-dollar fa-lg"></span>&nbsp;结案</a>
 
-                        <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="onPrint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+                        <a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint">
+                            <span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+
+                        <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
+                            <li iconCls="" onclick="salesOnPrint(1)" id="type11">打印现款购车计算表</li>
+                            <li iconCls="" onclick="salesOnPrint(2)" id="type11">打印贷款购车计算表</li>
+                        </ul>
                         <a class="nui-menubutton" plain="true" menu="#popupMenuMore" id="menuMore">
                             <span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
 
@@ -103,7 +165,6 @@
                             <li iconCls="" onclick="checkMsg(1)" id="auditno" style="display:none;">反审</li>
                             <li iconCls="" onclick="unfinish()" id="caseno" style="display:none;">反结案</li>
                             <li iconCls="" onclick="registration()" id="addBtn">车辆上牌</li>
-                            <li iconCls="" onclick="upload()" id="ExpenseAccount1">车辆图片</li>
                         </ul>
                     </td>
                 </tr>
@@ -113,16 +174,19 @@
         <form id="billForm">
             <input class="nui-hidden" name="id" />
             <input class="nui-hidden" name="isSettle" />
+            <input class="nui-hidden" name="enterId" />
             <input class="nui-hidden" name="status" />
             <input class="nui-hidden" name="serviceCode" />
             <input class="nui-hidden" name="carModelName" />
             <input class="nui-hidden" name="carModelId" />
+            <input class="nui-hidden" name="isSubmitCar" />
+            <input class="nui-hidden" name="guestId" />
             <table cellpadding="0" cellspacing="0" style="line-height: 30px; padding-top: 4px; padding-left: 0px;width:100%">
                 <tr>
                     <td class="td_title">单据日期：
                     </td>
                     <td>
-                        <input id="orderDate" name="orderDate" class="nui-datepicker" style="width: 100%" />
+                        <input id="orderDate" name="orderDate" class="nui-datepicker" style="width: 100%" enabled="false" />
                     </td>
                     <td class="td_title">预交日期：
                     </td>
@@ -132,29 +196,29 @@
                     <td class="td_title">客户名称：
                     </td>
                     <td>
-                        <input class="nui-textbox" id="guestFullName" name="guestFullName" style="width: 100%;">
+                        <input class="nui-textbox" id="guestFullName" name="guestFullName" style="width: 100%;" enabled="false">
                     </td>
                     <td align="right" class="auto-style1">销售顾问：
                     </td>
                     <td class="auto-style1">
-                        <input class="nui-combobox" id="saleAdvisorId" name="saleAdvisorId" style="width: 100%;" textField="empName" valueField="empId">
+                        <input class="nui-combobox" id="saleAdvisorId" name="saleAdvisorId" style="width: 100%;" textField="empName" valueField="empId" enabled="false">
                     </td>
                     <td align="right" class="auto-style1">联系人：
                     </td>
                     <td class="auto-style1">
-                        <input id="txtLinkMan" style="width: 100%;" class="nui-textbox" />
+                        <input id="contactor" name="contactor" style="width: 100%;" class="nui-textbox" enabled="false" />
                     </td>
                 </tr>
                 <tr>
                     <td align="right" class="auto-style1">手机号码：
                     </td>
                     <td class="auto-style1">
-                        <input id="txtMovePhone" style="width: 100%;" class="nui-textbox" />
+                        <input id="contactorTel" name="contactorTel" style="width: 100%;" class="nui-textbox" enabled="false" />
                     </td>
                     <td align="right">购车方式：
                     </td>
                     <td>
-                        <input class="nui-combobox" id="saleType" name="saleType" style="width: 100%;" textField="name" valueField="customid" onvaluechanged="changeSaleType">
+                        <input class="nui-combobox" id="saleType" name="saleType" style="width: 100%;" textField="name" valueField="customid">
                     </td>
                     <td align="right">合同号：
                     </td>
@@ -257,7 +321,7 @@
                             </tr>
                             <tr>
                                 <td class="td_title">保费收取方式：</td>
-                                <td class=""><input class="nui-combobox" name="settleTypeId" id="settleTypeId" valueField="id" textField="name" dataField="settleTypeIdList" width="100%" /></td>
+                                <td class=""><input class="nui-combobox" name="settleTypeId" id="settleTypeId" valueField="id" textField="name" data="settleTypeIdList" dataField="settleTypeIdList" width="100%" /></td>
                                 <td class="td_title">其他成本：</td>
                                 <td><input class="nui-textbox" name="costAmt" id="costAmt" width="100%" vtype="float" onvaluechanged="changeCostAmt" /></td>
                                 <td class="td_title">其他成本说明：</td>
@@ -298,9 +362,7 @@
                                 dataField="data" showModified="false" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true" allowCellWrap="true" url="">
                                 <div property="columns">
                                     <div type="indexcolumn">序号</div>
-                                    <div field="auditSign" name="auditSign" width="100px" headerAlign="center" header="状态" renderer="onIsNotRenderer">
-                                        <input class="nui-combobox" property="editor" data="is_not">
-                                    </div>
+                                    <div field="auditSign" name="auditSign" width="100px" headerAlign="center" header="状态" renderer="onIsNotRenderer" data="is_not"></div>
                                     <div field="costName" name="costName" width="100px" headerAlign="center" header="费用名称"></div>
                                     <div field="costAmt" name="costAmt" width="100px" headerAlign="center" header="报销金额">
                                         <input class="nui-textarea" property="editor" vtype="float">
@@ -310,15 +372,14 @@
                                     </div>
                                     <div field="modifier" name="modifier" width="100px" headerAlign="center" header="登记人"></div>
                                     <div field="modifyDate" name="modifyDate" width="100px" headerAlign="center" header="登记时间"></div>
+                                    <div field="action" name="action" width="100px" headerAlign="center" header="操作" visible="false"></div>
                                 </div>
                             </div>
                             <div id="costDetailGrid2" class="nui-datagrid" style="width:100%;height:50%;" oncellbeginedit="OnModelCellBeginEdit" oncellcommitedit="onCellCommitEdit" allowcelledit="true" selectOnLoad="false" showPager="false" pageSize="50" totalField="page.count"
                                 sizeList=[20,50,100,200] dataField="data" showModified="false" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true" allowCellWrap="true" url="">
                                 <div property="columns">
                                     <div type="indexcolumn">序号</div>
-                                    <div field="auditSign" name="auditSign" width="100px" headerAlign="center" header="状态" renderer="onIsNotRenderer">
-                                        <input class="nui-combobox" property="editor" data="is_not">
-                                    </div>
+                                    <div field="auditSign" name="auditSign" width="100px" headerAlign="center" header="状态" renderer="onIsNotRenderer" data="is_not"></div>
                                     <div field="costName" name="costName" width="100px" headerAlign="center" header="费用名称"></div>
                                     <div field="costAmt" name="costAmt" width="100px" headerAlign="center" header="成本金额（报销金额）">
                                         <input class="nui-textarea" property="editor" vtype="float">
@@ -328,6 +389,7 @@
                                     </div>
                                     <div field="modifier" name="modifier" width="100px" headerAlign="center" header="登记人"></div>
                                     <div field="modifyDate" name="modifyDate" width="100px" headerAlign="center" header="登记时间"></div>
+                                    <div field="action" name="action" width="100px" headerAlign="center" header="操作" visible="false"></div>
                                 </div>
                             </div>
                         </div>
@@ -371,6 +433,7 @@
                 id: 1,
                 text: "否"
             }];
+
             nui.parse();
         </script>
     </body>

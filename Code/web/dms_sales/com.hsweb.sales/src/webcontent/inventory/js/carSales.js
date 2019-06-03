@@ -2,12 +2,11 @@
  * Created by Administrator on 2018/2/1.
  */
 var statusList = [{id:"0",name:"联系人"},{id:"1",name:"联系电话"}];
-var partApiUrl  = apiPath + partApi + "/";
+var partApiUrl  = apiPath + saleApi + "/";
 var rightGridUrl = partApiUrl+"sales.inventory.queryPchsOrderMainList.biz.ext";
 var getDetailPartUrl=partApiUrl+"sales.inventory.queryPchsOrderDetailList.biz.ext";
-
+var innerPartGrid = null;
 var basicInfoForm = null;
-var rightGrid = null;
 var searchBeginDate = null;
 var searchEndDate = null;
 var comPartNameAndPY = null;
@@ -20,6 +19,8 @@ var billTypeIdHash = {};
 var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
+var frameColorIdList = [];//车身颜色
+var interialColorIdList = [];//内饰颜色
 //var billStatusHash = {
 //    "0":"未审",
 //    "1":"已审",
@@ -33,7 +34,7 @@ var StatusHash = {
 		"2" : "待收货",
 		"4" : "已入库",
 	};
-var headerHash = [{ name: '草稿', id: '0' }, { name: '待发货', id: '1' }, {name: '待收货' , id: '2' }, {name: '未结算' , id: '3' }, {name: '已入库' , id: '4' }];
+var headerHash = [{ name: '草稿', id: '0' }, { name: '待验车', id: '1' }, {name: '待收货' , id: '2' }, {name: '未结算' , id: '3' }, {name: '已入库' , id: '4' }];
 var innerPartGrid=null;
 var editFormDetail = null;
 
@@ -41,6 +42,8 @@ $(document).ready(function(v)
 {
 	rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
+    innerPartGrid = nui.get("innerPartGrid");
+    innerPartGrid.setUrl(getDetailPartUrl);
     rightGrid.on("load", function () {
         rightGrid.mergeColumns(["serviceId"]);
     });
@@ -50,9 +53,6 @@ $(document).ready(function(v)
 	comPartCode = nui.get("partCode");
 	comServiceId = nui.get("serviceId");
 	comSearchGuestId = nui.get("searchGuestId");
-
-    innerPartGrid = nui.get("innerPartGrid");
-    innerPartGrid.setUrl(getDetailPartUrl);
     editFormDetail = document.getElementById("editFormDetail");
 //    advancedSearchForm = new nui.Form("#advancedSearchWin");
     //console.log("xxx");
@@ -67,35 +67,32 @@ $(document).ready(function(v)
 		edit();
 
 	});
-    
+    rightGrid.on('drawcell', function (e) {
+        var value = e.value;
+        var field = e.field;
+        if (field == 'status') {
+            e.cellHtml = headerHash[value].name;
+        } else if (field == 'isFinancial') {
+        	if(value==0){
+                e.cellHtml = "否";
+        	}else{
+        		e.cellHtml = "是";
+        	}
 
-
-    innerPartGrid.on("drawcell", function (e) {
-        var grid = e.sender;
-        var record = e.record;
-        var uid = record._uid;
-        var rowIndex = e.rowIndex;
-        
-        switch (e.field) {
-            case "comPartBrandId":
-            	if(partBrandIdHash[e.value])
-                {
-//                    e.cellHtml = partBrandIdHash[e.value].name||"";
-                	if(partBrandIdHash[e.value].imageUrl){
-                		
-                		e.cellHtml = "<img src='"+ partBrandIdHash[e.value].imageUrl+ "'alt='配件图片' height='25px' weight=' '/><br> "+partBrandIdHash[e.value].name||"";
-                	}else{
-                		e.cellHtml =partBrandIdHash[e.value].name||"";
-                	}
-                }
-                else{
-                    e.cellHtml = "";
-                }
-                break;
-            default:
-                break;
         }
+        
     });
+    innerPartGrid.on('drawcell', function (e) {
+        var value = e.value;
+        var field = e.field;
+        if (field == 'frameColorId') {
+            e.cellHtml = setColVal('frameColorId', 'customid', 'name', e.value);
+        } else if (field == 'interialColorId') {
+            e.cellHtml = setColVal('interialColorId', 'customid', 'name', e.value);
+        }
+        
+    });
+
     
     document.ondragstart = function() {
         return false;
@@ -118,6 +115,17 @@ $(document).ready(function(v)
             partBrandIdHash[v.id] = v;
         });
     });
+	var dictDefs ={frameColorId:"DDT20130726000003",interialColorId:"10391"};
+	initDicts(dictDefs, function(){
+		getStorehouse(function(data) {
+			getAllPartBrand(function(data) {
+		 	 	frameColorIdList = nui.get('frameColorId').getData();
+ 	 			interialColorIdList = nui.get('interialColorId').getData();
+				nui.unmask();
+			});
+			
+		});
+	});
     getStorehouse(function(data)
     {
         var dictIdList = [];
@@ -187,7 +195,7 @@ function getSearchParam(){
 	params.isDiffOrder = 0;
     return params;
 }
-var currType = 2;
+var currType = 4;
 function quickSearch(type){
     var params = getSearchParam();
     var querysign = 1;

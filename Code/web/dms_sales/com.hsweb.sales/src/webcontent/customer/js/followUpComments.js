@@ -1,6 +1,16 @@
 var baseUrl = window._rootSysUrl || "http://127.0.0.1:8080/default/";
-var queryUrl = apiPath + saleApi + "/sales.custormer.queryGuestList.biz.ext";
+//var queryUrl = apiPath + saleApi + "/sales.custormer.queryGuestList.biz.ext";
+var queryUrl = apiPath + saleApi +"/sales.custormer.queryGuestCome.biz.ext";
+var saveBathUrl = apiPath + saleApi + "/sales.custormer.saveGuestComeBath.biz.ext";
+var queryScoutUrl = apiPath + saleApi + "/sales.custormer.queryScoutList.biz.ext";
 var mainGrid = null;
+var datagrid = null;
+var statusHash = {
+		"0":"草稿",
+	    "1":"归档",
+	    "2":"转销售",
+	    "3":"作废"
+}
 $(document).ready(function ()
 {
 	/*levelOfIntent = nui.get("levelOfIntent");
@@ -8,19 +18,27 @@ $(document).ready(function ()
 	intentLevelId = nui.get("intentLevelId");
 	saleAdvisorIdEl = nui.get("saleAdvisorId");
 	guestComeForm = new nui.Form("#guestComeForm");*/
-	mainGrid = nui.get("datagrid1");
+	mainGrid = nui.get("mainGrid");
+	datagrid = nui.get("datagrid");
+	mainGrid.setUrl(queryUrl);
 	 //车身颜色
 	 initDicts({
 		 frameColorId:"DDT20130726000003",
 		 interialColorId:"10391",
 		 comeTypeId:'DDT20130731000003',
 		 specialCare:"DDT20130703000049",
-		 intentLevel:"DDT20130703000050"
+		 intentLevel:"DDT20130703000050",
+		 source:GUEST_SOURCE,
+		 scoutModeId :"DDT20130703000021",//跟进方式
+	     status:"DDT20130703000081",//跟进状态,scout_status
+		 source:GUEST_SOURCE,
+		 isUsabled:"DDT20130703000022" 
      },function(data){
      });
 	
 	initMember("saleAdvisorId",function(){
-        memList = saleAdvisorIdEl.getData();
+		nui.get("saleAdvisorId").setValue(currEmpId);
+	    //nui.get("saleAdvisor").setValue(currUserName);
     });
 	
 	mainGrid.on('drawcell', function(e){
@@ -28,352 +46,257 @@ $(document).ready(function ()
 	       var field = e.field;
 	      if (field == 'sex') {
 	           e.cellHtml = (value == 0 ? '女' : '男');
-	       } else if (field == 'identity') {
-	           e.cellHtml = setColVal('identity', 'id', 'name', e.value);
-	       } else if (field == 'trade') {
-	           e.cellHtml = setColVal('trade', 'id', 'name', e.value);
-	       } else if (field == 'source') {
-	       	e.cellHtml = setColVal('source', 'id', 'name', e.value);
-	       } else if (field == 'nature') {
-	    	   e.cellHtml = setColVal('nature', 'id', 'name', e.value);
-	       } else if(e.field == "birthdayType"){
-	    	   e.cellHtml = (value == 0 ? '农历' : '阳历');
-	       }else if(e.field == "maritalStatus"){
-	    	   e.cellHtml = (value == 1 ? '已婚' : '未婚');
-	       }/*else if(e.field == "guestOptBtn"){
-	  		   s =  ' <a class="optbtn" href="javascript:deletItem(\'' + uid + '\')">删除</a>';
-	    	   s = '<input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>';
-	           e.cellHtml = s;
-	       }*/
+	       } else if (field == 'comeTypeId') {
+	           e.cellHtml = setColVal('comeTypeId', 'customid', 'name', e.value);
+	       } else if (field == 'frameColorId') {
+	           e.cellHtml = setColVal('frameColorId', 'customid', 'name', e.value);
+	       } else if (field == 'interialColorId') {
+	       	   e.cellHtml = setColVal('interialColorId', 'customid', 'name', e.value);
+	       } else if (field == 'status') {
+	           e.cellHtml =statusHash[e.value];
+	       }else if (field == 'source') {
+	          	e.cellHtml = setColVal('source', 'customid', 'name', e.value);
+	       }else if(e.field == "orgid"){
+	        	for(var i=0;i<currOrgList.length;i++){
+	        		if(currOrgList[i].orgid==e.value){
+	        			e.cellHtml = currOrgList[i].shortName;
+	        		}
+	        	}
+	     }
 	});
 	
 	
+	mainGrid.on("select",function(e){
+    	var row = e.record;
+    	if(row.id){
+    		var json = nui.encode({
+   			 comeId:row.id,
+   			 token:token
+   		    });
+    		nui.mask({
+    	        el: document.body,
+    	        cls: 'mini-mask-loading',
+    	        html: '加载中...'
+    	    });
+    		nui.ajax({
+    			url : queryScoutUrl,
+    			type : 'POST',
+    			data : json,
+    			cache : false,
+    			contentType : 'text/json',
+    			success : function(text) {
+    				datagrid.setData(text.list);
+    				nui.unmask(document.body);
+    			}
+    		 });
+    	}
+    });
+	
+	datagrid.on('drawcell', function (e) {
+	       var value = e.value;
+	       var field = e.field;
+	       var record = e.record;
+	       var uid = record._uid;
+	       if (field == 'scoutModeId') {
+	           e.cellHtml = setColVal('scoutModeId', 'id', 'name', e.value);
+	       } else if (field == 'status') {
+	           e.cellHtml = setColVal('status', 'id', 'name', e.value);
+	       } else if (field == 'source') {
+	       	e.cellHtml = setColVal('source', 'id', 'name', e.value);
+	       } else if (field == 'isUsabled') {
+	    	   e.cellHtml = setColVal('isUsabled', 'id', 'name', e.value);
+	       } 
+		});
+	
+	doSearch();
 });
-
-
 
 function getSearchParam() {
     var params = {};
     var saleAdvisorId = nui.get("saleAdvisorId").getValue();
     params.saleAdvisorId = saleAdvisorId;
-    var fullName = nui.get("name-search").getValue();
+   /* var fullName = nui.get("name-search").getValue();
     params.fullName = fullName;
     var mobile = nui.get("mobile-search").getValue();
-    params.mobile = mobile;
+    params.mobile = mobile;*/
     //scoutStatus,跟踪状态
     return params;
 }
+
 function doSearch() {
     var gsparams = getSearchParam();
+    
+    if(status==0){//待今日跟进
+    	gsparams.statusList = 1;
+		gsparams.nextScoutDateStart = nui.formatDate(new Date(), 'yyyy-MM-dd');
+		gsparams.nextScoutDateEnd = addDate(gsparams.nextScoutDateStart,1);
+		gsparams.nextScoutDateStart = gsparams.nextScoutDateStart + ' 00:00:00';
+		gsparams.nextScoutDateEnd = gsparams.nextScoutDateEnd + ' 00:00:00';
+    }else if(status==2){//超期未跟进
+    	gsparams.statusList = 1;
+    	gsparams.nextScoutDate = nui.formatDate(new Date(), 'yyyy-MM-dd');
+    	gsparams.nextScoutDate = gsparams.nextScoutDate + ' 00:00:00';
+    }else if(status==1){//今日归档，查询修改日期是今天的，并且status是等于1的
+    	gsparams.modifyDateStart = nui.formatDate(new Date(), 'yyyy-MM-dd');
+		gsparams.modifyDateEnd = addDate(gsparams.modifyDateEnd,1);
+		gsparams.modifyDateStart = gsparams.modifyDateStart + ' 00:00:00';
+		gsparams.modifyDateEnd = gsparams.modifyDateEnd + ' 00:00:00';
+		gsparams.status = 1;
+    }else if(status==3){//所有需跟进，查询不是终止跟进的记录
+    	gsparams.statusList = 1;
+    	gsparams.scoutStatus = "060702";
+    }
     mainGrid.load({
         token:token,
         params: gsparams
     });
 }
-
-
-
-var serviceTypeUrl = baseUrl + "com.hsapi.repair.common.common.getBusinessType.biz.ext";
-function getServiceTypeList(data,callback){
-	var serviceTypeList = [];
-	var list = data;
-    /*var params = {sortField:'id',sortOrder:'asc',isDisabled:0};
-    nui.ajax({
-		url : serviceTypeUrl,
-        type : "post",
-        async:false,
-		data : JSON.stringify({
-			params : params,
-			token: token
-		}),
-		success : function(data) {
-			nui.unmask(document.body);
-            data = data || {};
-            var list = data.list;
-			if (list && list.length>0) {
-				for(var i=0; i<list.length; i++){
-                    var type = list[i];
-                    var serviceTypeObj = {id:(i+1), text:type.name};
-                    serviceTypeList.push(serviceTypeObj);
-                    callback && callback(serviceTypeList);
-                }
-			} else {
-				parent.showMsg("工单设置信息读取失败,请联系管理员!","W");
-			}
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			// nui.alert(jqXHR.responseText);
-			console.log(jqXHR.responseText);
-		}
-	});*/
-	if (list && list.length>0) {
-		for(var i=0; i<list.length; i++){
-            var type = list[i];
-            var serviceTypeObj = {id:type.id, text:type.name};
-            serviceTypeList.push(serviceTypeObj);
-            callback && callback(serviceTypeList);
-        }
-	}
-}
-
-
-function add2(){
-	/*nui.open({
-		url : webPath + contextPath + "/com.hsweb.repair.potentialCustomer.addVisitRecords.flow?token=" + token,
-		title : "新增来访记录",
-		width : 1000,
-		height : 560,
-		allowDrag : true,
-		allowResize : true,
-		onload : function() {
-			var iframe = this.getIFrameEl();
-            iframe.contentWindow.updatRowSetData(params);//显示该显示的功能
-           // iframe.contentWindow.setViewData(dock, dodelck, docck);
-		},
-		ondestroy : function(action) {
-			
-			
-		}
-	});*/
-	var part={};
-    part.id = "addVisitors";
-    part.text = "新增来访记录";
-    part.url = webPath + contextPath + "/com.hsweb.repair.potentialCustomer.addVisitRecords.flow?token="+token;
-    part.iconCls = "fa fa-file-text";
-    var params = {};
-    window.parent.activeTabAndInit(part,params);
-}
-
-function addFollowUpRecord(){
-	nui.open({
-		url : webPath + contextPath + "/com.hsweb.repair.potentialCustomer.FollowUpRecord.flow?token=" + token,
-		title : "新增跟进记录",
-		width : 600,
-		height : 360,
-		allowDrag : true,
-		allowResize : true,
-		onload : function() {
-			/*var iframe = this.getIFrameEl();
-            iframe.contentWindow.updatRowSetData(params);//显示该显示的功能
-           // iframe.contentWindow.setViewData(dock, dodelck, docck);
-*/		},
-		ondestroy : function(action) {
-			
-			
-		}
-	});
-}
-
-function potentialCustomer(){
-	nui.open({
-		url : webPath + contextPath + "/com.hsweb.repair.potentialCustomer.check.flow?token=" + token,
-		title : "审核",
-		width : 600,
-		height : 360,
-		allowDrag : true,
-		allowResize : true,
-		onload : function() {
-			/*var iframe = this.getIFrameEl();
-            iframe.contentWindow.updatRowSetData(params);//显示该显示的功能
-           // iframe.contentWindow.setViewData(dock, dodelck, docck);
-*/		},
-		ondestroy : function(action) {
-			
-			
-		}
-	});
-}
-
-function chooseCarModelType(){
-	nui.open({
-        url: webPath + contextPath + "/sales/base/sCarModelType.jsp?token="+token,
-        title: '选择意向车型',
-        width: 1200, height: 700,
-        onload: function () {
-            var iframe = this.getIFrameEl();
-            var params = {};	
-            params.guestId=guestId;
-            iframe.contentWindow.setData(params);
-        },
-        ondestroy: function (action)
-        {
-       	 var iframe = this.getIFrameEl();
-       	 var row = iframe.contentWindow.getData();
-       	 
-        }
-    });
-}
-
-function onButtonEdit(e) {
-	nui.open({
-	url: webPath + contextPath + '/sales/base/selectCarModel.jsp',
-	title: '选择车型',
-	width: 1000,
-	height: 500,
-	onload: function () {
-	var iframe = this.getIFrameEl();
-	//iframe.contentWindow.setData(row);
-	},
-	ondestroy: function (action) {
-	var iframe = this.getIFrameEl();
-	if(action == 'ok'){
-	var row = iframe.contentWindow.getRow();
-	nui.get("carModelId").setValue(row.id);
-	nui.get("carModelName").setValue(row.name);
-	nui.get("carModelName").setText(row.name);
-	 }
+var status = 0;
+function quickSearch(type) {
+    var queryname = "待今日跟进";
+    switch (type) {
+        case 0:
+    	   status = 0;  //报价
+          queryname = "待今日跟进";
+          break;
+        case 1:
+            status = 1;  //报价
+            queryname = "今日归档";
+            break;
+        case 2:
+            status = 2;  //施工
+            queryname = "超期未跟进";
+            //document.getElementById("advancedMore").style.display='block';
+            break;
+        case 3:
+            status = 3;  //施工
+            queryname = "所有需跟进";
+            //document.getElementById("advancedMore").style.display='block';
+            break;
+        default:
+            break;
     }
-  });
+    var menunamestatus = nui.get("menunamedate");
+    menunamestatus.setText(queryname);
+    doSearch();
 }
-var requiredField = {
-		fullName : "客户名称",
-		mobile : "手机号",
-		carModelId : "意向车型"
-};
-function save(){
-	var guestCome = guestComeForm.getData("true");
-	var text = saleAdvisorIdEl.getText();
-	guestCome.saleAdvisor = text;
-	for ( var key in requiredField) {
-		if (!guestCome[key] || $.trim(guestCome[key]).length == 0) {
-            //nui.get(key).focus();
-            showMsg(requiredField[key] + "不能为空!","W");
+
+function saveBath(){
+   var saveList = mainGrid.getChanges("modified");
+   for(var i = 0;i<saveList.length;i++){
+	   if(saveList[i].nextVisitDate){
+		   saveList[i].nextVisitDate = format(saveList[i].nextVisitDate, 'yyyy-MM-dd HH:mm:ss');
+	   }
+	   if(saveList[i].comeDate){
+		   saveList[i].comeDate = format(saveList[i].comeDate, 'yyyy-MM-dd HH:mm:ss');
+	   }
+   }
+   if(saveList.length>0){
+	   var json = nui.encode({
+           guestComeList:saveList,
+		    token:token
+	    });
+		nui.mask({
+		   el: document.body,
+		   cls: 'mini-mask-loading',
+		   html: '保存中...'
+		});
+		nui.ajax({
+			url : saveBathUrl,
+			type : 'POST',
+			data : json,
+			cache : false,
+			contentType : 'text/json',
+			success : function(text) {
+				if(text.errCode=="S"){
+					doSearch();
+					showMsg("保存成功!","S");
+				}else{
+					showMsg("保存失败!","E");
+				}
+				nui.unmask(document.body);
+			}
+		}); 
+   } 
+}
+
+function guestInfo(){
+	var row = mainGrid.getSelected();
+	if(row){
+		nui.open({
+			url : webPath + contextPath + "/sales/customer/addGuest.jsp?token=" + token,
+			title : "编辑客户资料",
+			width : 900,
+			height : 460,
+			allowDrag : true,
+			allowResize : true,
+			onload : function() {
+				var iframe = this.getIFrameEl();
+	            iframe.contentWindow.queryData(row.guestId);//显示该显示的功能
+			},
+			ondestroy : function(action) {
+				doSearch();
+			}
+		});
+	}else{
+		showMsg("请选择一条记录!","W");
+		return;
+	}
+	  
+}
+
+function giftInfo(){
+	var row = mainGrid.getSelected();
+	if(row){
+		if(row.id !="" && row.id !=null){
+			nui.open({
+				url: webPath + contextPath + '/sales/customer/guestComeGift.jsp',
+				title: '精品加装',
+				width: 1200,
+				height: 500,
+				onload: function () {
+				var iframe = this.getIFrameEl();
+				iframe.contentWindow.setData(row);
+				},
+				ondestroy: function (action) {
+				var iframe = this.getIFrameEl();
+				
+			    }
+			 });
+		}else{
+			showMsg("请先保存来访登记!","W");
 			return;
 		}
-    }
- //获取到关注重点的name
-	var list = nui.get("specialCareId").O0ll00;
-	var strName = "";
-	if(list.length>0){
-		for(var i = 0;i<list.length;i++){
-			if(strName==""){
-				strName = list[i].text;
-			}else{
-				strName = strName +","+list[i].text;
-			}
-		}
+	}else{
+		showMsg("请选择一条记录!","W");
+		return;
 	}
-	if(guestCome.comeDate) {
-		guestCome.comeDate = format(guestCome.comeDate, 'yyyy-MM-dd HH:mm:ss');
-	}
-    if(guestCome.nextVisitDate) {
-    	guestCome.nextVisitDate = format(guestCome.nextVisitDate, 'yyyy-MM-dd HH:mm:ss');
-	}
-	guestCome.specialCare = strName;
-	var saleAdvisor = nui.get("saleAdvisorId").text;
-	guestCome.saleAdvisor = saleAdvisor;
-	var guest = {};
-	guest.fullName = guestCome.fullName;
-	guest.shortName = guestCome.fullName;
-	guest.guestProperty = guestCome.guestProperty;
-	guest.mobile = guestCome.mobile;
-	guest.id = guestCome.guestId;
-	var json = nui.encode({
-		 guest:guest,
-		 guestCome:guestCome,
-		 token:token
-	  });
-	nui.mask({
-        el: document.body,
-        cls: 'mini-mask-loading',
-        html: '保存中...'
-    });
-	nui.ajax({
-		url : guestComeUrl,
-		type : 'POST',
-		data : json,
-		cache : false,
-		contentType : 'text/json',
-		success : function(text) {
-			if(text.errCode=="S"){
-		    	var guestCome = text.guestCome;
-		    	var guest = text.rguest;
-		    	guestComeForm.setData(guestCome);
-		    	$("#serviceCodeEl").html(guestCome.serviceCode);
-		    	$("#carModelNameEl").html(guestCome.carModelName);
-		    	$("#nameEl").html(guest.fullName);
-		    	showMsg("保存成功","S");
-		    }else{
-		    	showMsg("保存失败","E");
-		    }
-			nui.unmask(document.body);
-		}
-	 });
-}
-
-function add(){
-	var guestCome = [];
-	guestComeForm.setData(guestCome);
-	nui.get("saleAdvisorId").setValue(currEmpId);
-    nui.get("saleAdvisor").setValue(currUserName);
-    nui.get("comeDate").setValue(now);
-    $("#serviceCodeEl").html("");
-	$("#carModelNameEl").html("");
-	$("#nameEl").html("");
-	nui.get("carModelId").setValue("");
-	nui.get("carModelName").setValue("");
-	nui.get("carModelName").setText("");
-}
-
-function setInitData(params){
-   // fserviceId = params.id;
-    if(!params.id){
-        add();
-    }else{
-     var json = nui.encode({
-   		 guestCome:params,
-   		 token:token
-   	  });
-	  nui.mask({
-	     el: document.body,
-	     cls: 'mini-mask-loading',
-	     html: '数据加载中...'
-	  });
-	  nui.ajax({
-		url : queryUrl,
-		type : 'POST',
-		data : json,
-		cache : false,
-		contentType : 'text/json',
-		success : function(text) {
-			if(text.errCode=="S"){
-		    	var guestCome = text.data.guestCome;
-		    	var guest = text.data.guest;
-		    	guestComeForm.setData(guestCome);
-		    	$("#serviceCodeEl").html(guestCome.serviceCode);
-		    	$("#carModelNameEl").html(guestCome.carModelName);
-		    	$("#nameEl").html(guest.fullName);
-		    	nui.get("carModelId").setValue(guestCome.carModelId);
-		    	nui.get("carModelName").setValue(guestCome.carModelName);
-		    	nui.get("carModelName").setText(guestCome.carModelName);
-		    }
-			nui.unmask(document.body);
-		}
-	  });
-	  
-    }
 }
 
 function buyCarCount(){
-	var main = guestComeForm.getData();
-	if(main.id !="" && main.id !=null){
-		nui.open({
-			url: webPath + contextPath + '/sales/sales/caCalculation.jsp',
-			title: '购车计算',
-			width: 1000,
-			height: 500,
-			onload: function () {
-			var iframe = this.getIFrameEl();
-			iframe.contentWindow.setShowSave(main.id);
-			},
-			ondestroy: function (action) {
-			var iframe = this.getIFrameEl();
-			
-		    }
-		 });
+	var row = mainGrid.getSelected();
+	if(row){
+		if(row.id !="" && row.id !=null){
+			nui.open({
+				url: webPath + contextPath + '/sales/sales/caCalculation.jsp',
+				title: '购车预算',
+				width: 1000,
+				height: 500,
+				onload: function () {
+				   var iframe = this.getIFrameEl();
+				   iframe.contentWindow.setShowSave(row);
+				},
+				ondestroy: function (action) {
+				   var iframe = this.getIFrameEl();
+			    }
+			 });
+		}else{
+			showMsg("请先保存来访登记!","W");
+			return;
+		}
 	}else{
-		showMsg("请先保存来访登记!","W");
+		showMsg("请选择一条记录!","W");
 		return;
 	}
-	
 }
+

@@ -8,7 +8,7 @@
 -->
 <head>
 <title>整车采购退货详情</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/carSalesReturnDetails.js?v=1.0.3"></script>
+<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesReturnDetails.js?v=1.0.6"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -46,7 +46,7 @@ body .mini-grid-row-selected{
 </style>
 
 <body>
-    <%@include file="/manage/inOutManage/purchaseOrder/carSalesReturnDetail.jsp" %>
+    <%@include file="/sales/inventory/carSalesReturnDetail.jsp" %>
    
 
 

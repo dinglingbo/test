@@ -10,7 +10,7 @@
 -->
 <head>
 <title>客户资料</title>
-<script src="<%=webPath + contextPath%>/sales/customer/js/addGuestMain.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/sales/customer/js/addGuestMain.js?v=1.0.2"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -66,20 +66,27 @@
                    <!--  <label style="font-family:Verdana;">销售顾问：</label> -->                 
                     <input name="saleAdvisorId" id="saleAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
                         emptyText="销售顾问" url=""  allowInput="true" showNullItem="false" width="100" valueFromSelect="true"  onenter="doSearch()"/>
-                    <label style="font-family:Verdana;">跟踪状态：</label>
-                    <input class="nui-combobox" id="scoutStatus" emptyText="" name="scoutStatus" data="[{scoutStatus:0,text:'继续跟进'},{scoutStatus:1,text:'终止跟进'},{scoutStatus:2,text:'重点跟进'},
+                    <label style="font-family:Verdana;">跟进状态：</label>
+                    <!-- <input class="nui-combobox" id="scoutStatus" emptyText="" name="scoutStatus" data="[{scoutStatus:0,text:'继续跟进'},{scoutStatus:1,text:'终止跟进'},{scoutStatus:2,text:'重点跟进'},
                          {scoutStatus:1,text:'已来厂/已成交'},{scoutStatus:1,text:'未跟进'}]" width="120"  onvaluechanged="onSearch" textField="text" valueField="scoutStatus" value="1"/>
-               
-                    <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                -->
+                    <input name="status"
+			         id="status"
+			         class="nui-combobox"
+			         textField="name"
+			         valueField="customid"
+			         allowInput="true"
+			         /> 
+                    <a class="nui-button" iconCls="" plain="true" onclick="doSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <span class="separator"></span>
                     <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
                    <!--  <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-check fa-lg"></span>&nbsp;全选/反选</abbr></a> -->
                      <span class="separator"></span>
                     <label style="font-family:Verdana;">将客户资料分配给：</label>
-                    <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
-                        emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="80" valueFromSelect="true"  onenter="onenterMtAdvisor(this.value)"/>
-                    <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-check fa-lg"></span>&nbsp;确定</abbr></a>
+                    <input name="emp" id="emp" class="nui-combobox width1" textField="empName" valueField="empId"
+                        emptyText="销售顾问" url=""  allowInput="true" showNullItem="false" width="80" valueFromSelect="true"  onenter=""/>
+                    <a class="nui-button" iconCls="" plain="true" onclick="changSaleAdvisor()" id="deletBtn"><span class="fa fa-check fa-lg"></span>&nbsp;确定</abbr></a>
                 </td>
             </tr>
         </table>
@@ -89,7 +96,7 @@
              id="identity"
              class="nui-combobox"
              textField="name"
-             valueField="id"
+             valueField="customid"
              allowInput="true"
              width="100%"
              visible="false"
@@ -98,7 +105,7 @@
              id="trade"
              class="nui-combobox"
              textField="name"
-             valueField="id"
+             valueField="customid"
              allowInput="true"
              width="100%"
              visible="false"
@@ -107,7 +114,7 @@
              id="source"
              class="nui-combobox"
              textField="name"
-             valueField="id"
+             valueField="customid"
              allowInput="true"
              width="100%"
              visible="false"
@@ -116,7 +123,7 @@
              id="nature"
              class="nui-combobox"
              textField="name"
-             valueField="id"
+             valueField="customid"
              allowInput="true"
              width="100%"
              visible="false"
@@ -152,10 +159,10 @@
 	                  <div field="guestId" name="guestId" visible="false"></div>
 	                  <div field="saleAdvisor" name="saleAdvisor" width="80" headerAlign="center" allowsort="true" header="销售顾问"></div>
 	                  <div field="name" name="name" width="80" headerAlign="center" allowsort="true" header="姓名"></div>
-  	                  <div field="sex" name="sex" width="80" headerAlign="center" allowsort="true" header="性别"></div>
-  	                  <div field="birthdayType" name="birthdayType" width="80" headerAlign="center" allowsort="true" header="生日类型"></div>
-	                  <div field="birthday" name="birthday" width="120" headerAlign="center" allowsort="true" dateFormat="yyyy-MM-dd HH:mm" header="生日"></div>
-	                  <div field="identity" name="identity" width="60" headerAlign="center" allowsort="true" header="身份"></div>
+  	                  <div field="sex" name="sex" width="40" headerAlign="center" allowsort="true" header="性别"></div>
+  	                  <div field="birthdayType" name="birthdayType" width="60" headerAlign="center" allowsort="true" header="生日类型"></div>
+	                  <div field="birthday" name="birthday" width="80" headerAlign="center" allowsort="true" dateFormat="yyyy-MM-dd" header="生日"></div>
+	                  <div field="identity" name="identity" width="100" headerAlign="center" allowsort="true" header="身份"></div>
 	                 </div>
                   </div>
                   <div header="其他信息" headerAlign="center">
@@ -166,7 +173,7 @@
   	                 <!--  <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" allowsort="true" header="群体"></div> -->
   	                  <div field="specialCare" name="specialCare" width="80" headerAlign="center" allowsort="true" header="特别关注"></div>
 	                  <div field="maritalStatus" name="maritalStatus" width="60" headerAlign="center" allowsort="true" header="婚姻状况"></div>
-	                  <div field="source" name="source" width="60" headerAlign="center" allowsort="true" header="客户来源"></div>
+	                  <div field="source" name="source" width="80" headerAlign="center" allowsort="true" header="客户来源"></div>
 	                 </div>
                   </div>
                   <div header="详细信息" headerAlign="center">
@@ -203,13 +210,13 @@
                 id="carBrandId" visible="false"
                 class="nui-combobox"
                 textField="name"
-                valueField="id"/>
+                valueField="customid"/>
                 
            <input name="serviceTypeId"
                 id="serviceTypeId" visible="false"
                 class="nui-combobox"
                 textField="name"
-                valueField="id"/>
+                valueField="customid"/>
             <tr>
                 <td class="title" width="800px">开单日期:</td>
                 <td>
@@ -221,14 +228,14 @@
                 <td class="">至:</td>
                 <td>
                     <input id="eRecordDate"
-                           name="eRecordDate"
-                           class="nui-datepicker"
-                           format="yyyy-MM-dd"
-                           timeFormat="H:mm:ss"
-                           showTime="false"
-                           showOkButton="false"
-                           width="100%"
-                           showClearButton="false"/>
+                       name="eRecordDate"
+                       class="nui-datepicker"
+                       format="yyyy-MM-dd"
+                       timeFormat="H:mm:ss"
+                       showTime="false"
+                       showOkButton="false"
+                       width="100%"
+                       showClearButton="false"/>
                 </td>
             </tr>
             <tr>

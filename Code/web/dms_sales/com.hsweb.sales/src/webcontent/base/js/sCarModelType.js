@@ -2,7 +2,8 @@
 var baseUrl = apiPath + saleApi + "/";
 var gridUrl = apiPath + saleApi + "/sales.base.searchCsbCarModel.biz.ext";
 var updateUrl = apiPath + saleApi + "/sales.base.updateCsbCarModel.biz.ext";
-var treeUrl = apiPath + repairApi +"/com.hsapi.repair.common.svr.queryCarBrandSeriesTree.biz.ext";
+var treeUrl = apiPath + repairApi + "/com.hsapi.repair.common.svr.queryCarBrandSeriesTree.biz.ext";
+var isDisArr = [{id:'',text:'全部'},{id:0,text:'启用'},{id:1,text:'禁用'}];
 var grid = null;
 var tree = null;
 var carBrandId = null;
@@ -45,27 +46,27 @@ $(document).ready(function () {
         } else if (field == 'isDisabled') {
             e.cellHtml = (value == 0 ? '启用' : '禁用');
         } else if (field == 'level') {
-            e.cellHtml = setColVal('level', 'id', 'name', e.value);
+            e.cellHtml = setColVal('level', 'customid', 'name', e.value);
         } else if (field == 'countryType') {
-            e.cellHtml = setColVal('countryType', 'id', 'name', e.value);
+            e.cellHtml = setColVal('countryType', 'customid', 'name', e.value);
         } else if (field == 'carBrandId') {
             e.cellHtml = setColVal('carBrandId', 'nodeId', 'nodeName', e.value);
         } else if (field == 'carStructureType') {
-            e.cellHtml = setColVal('carStructureType', 'id', 'name', e.value);
+            e.cellHtml = setColVal('carStructureType', 'customid', 'name', e.value);
         } else if (field == 'outputVolume') {
-            e.cellHtml = setColVal('outputVolume', 'id', 'name', e.value);
+            e.cellHtml = setColVal('outputVolume', 'customid', 'name', e.value);
         } else if (field == 'seatQty') {
-            e.cellHtml = setColVal('seatQty', 'id', 'name', e.value);
+            e.cellHtml = setColVal('seatQty', 'customid', 'name', e.value);
         } else if (field == 'inletType') {
-            e.cellHtml = setColVal('inletType', 'id', 'name', e.value);
+            e.cellHtml = setColVal('inletType', 'customid', 'name', e.value);
         } else if (field == 'powerType') {
-            e.cellHtml = setColVal('powerType', 'id', 'name', e.value);
+            e.cellHtml = setColVal('powerType', 'customid', 'name', e.value);
         } else if (field == 'driveMode') {
-            e.cellHtml = setColVal('driveMode', 'id', 'name', e.value);
+            e.cellHtml = setColVal('driveMode', 'customid', 'name', e.value);
         } else if (field == 'gearBox') {
-            e.cellHtml = setColVal('gearBox', 'id', 'name', e.value);
+            e.cellHtml = setColVal('gearBox', 'customid', 'name', e.value);
         } else if (field == 'productionMode') {
-            e.cellHtml = setColVal('productionMode', 'id', 'name', e.value);
+            e.cellHtml = setColVal('productionMode', 'customid', 'name', e.value);
         } else if (field == 'isImported') {
             e.cellHtml = (value == 0 ? '是' : '否');
         }
@@ -166,7 +167,8 @@ function search() {
         carBrandId:carBrandId.value,
         carSeriesId:carSeriesId.value,
         fullName: fullName.value,
-        isDisabled:0
+        isDisabled: nui.get('isDisabled').value,
+        code:nui.get('code').value
     }
     grid.load({ params: params, token: token });
 }

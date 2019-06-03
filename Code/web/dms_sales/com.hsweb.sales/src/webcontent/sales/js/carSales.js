@@ -44,7 +44,6 @@ $(document).ready(function(v) {
                 mainGrid.updateRow(row, newRow);
             }
         }
-
     });
 
     mainGrid.on("drawcell", function(e) {
@@ -78,6 +77,19 @@ $(document).ready(function(v) {
             e.cellHtml = format(value, 'yyyy-MM-dd HH:mm:ss');
         }
     });
+
+    mainGrid.on("rowdblclick", function(e) {
+        addAndEdit(2);
+    });
+
+    mainGrid2.on("rowdblclick", function(e) {
+        addAndEdit(2);
+    });
+
+    mainGrid3.on("rowdblclick", function(e) {
+        addAndEdit(2);
+    });
+
 });
 
 function quickSearch(e) {

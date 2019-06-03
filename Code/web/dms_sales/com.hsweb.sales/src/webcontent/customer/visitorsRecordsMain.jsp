@@ -10,7 +10,7 @@
 -->
 <head>
 <title>来访记录</title>
-<script src="<%=webPath + contextPath%>/sales/customer/js/visitorsRecordsMain.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/sales/customer/js/visitorsRecordsMain.js?v=1.0.2"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -59,7 +59,7 @@
             <tr>
                 <td>
                     <label style="font-family:Verdana;">快速查询：</label>
-                    <a class="nui-menubutton" plain="false" iconCls="" id="menunamedate" menu="#popupMenu" >本日</a>
+                    <a class="nui-menubutton" plain="false" iconCls="" id="menunamedate" menu="#popupMenu" >本周</a>
                     <ul id="popupMenu" class="nui-menu" style="display:none;">
                         <li iconCls="" onclick="quickSearch(0)">本日</li>
                         <li iconCls="" onclick="quickSearch(1)">昨日</li>
@@ -95,8 +95,8 @@
                     <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
                     <span class="separator"></span>
-                    <a class="nui-button" onclick="onCancel" plain="true"  style="width: 100px;"><span class="fa fa-user-plus fa-lg"></span>&nbsp;客户档案&nbsp;</a>
-                    <a class="nui-button" onclick="onCancel" plain="true"  style="width: 80px;"><span class="fa fa-search fa-lg"></span>&nbsp;库存查询</a>
+                    <a class="nui-button" onclick="guestInfo" plain="true"  style="width: 100px;"><span class="fa fa-user-plus fa-lg"></span>&nbsp;客户档案&nbsp;</a>
+                    <a class="nui-button" onclick="queryCar" plain="true"  style="width: 80px;"><span class="fa fa-search fa-lg"></span>&nbsp;库存查询</a>
                 </td>
             </tr>
         </table>
@@ -106,7 +106,7 @@
              id="intentLevelId"
              class="nui-combobox"
              textField="name"
-             valueField="id"
+             valueField="customid"
              allowInput="true"
              width="100%"
              visible="false"
@@ -115,7 +115,7 @@
              id="frameColorId"
              class="nui-combobox"
              textField="name"
-             valueField="id"
+             valueField="customid"
              allowInput="true"
              width="100%"
              visible="false"
@@ -124,7 +124,7 @@
              id="interialColorId"
              class="nui-combobox"
              textField="name"
-             valueField="id"
+             valueField="customid"
              allowInput="true"
              width="100%"
              visible="false"

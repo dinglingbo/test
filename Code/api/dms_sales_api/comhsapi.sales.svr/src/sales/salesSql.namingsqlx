@@ -112,10 +112,14 @@
 			b.adjustment_amt	AS	adjustmentAmt,
 			b.adjustment_remark	AS	adjustmentRemark,
 			b.total_gross_profit	AS	totalGrossProfit,
-			b.total_gross_profit_rate	AS	totalGrossProfitRate		
+			b.total_gross_profit_rate	AS	totalGrossProfitRate,
+			c.full_name	AS contactor,
+			c.mobile AS contactorTel
 		FROM css_sale_main a 
 			INNER JOIN css_sale_extend b
 				ON a.id = b.id
+			INNER JOIN wb_common.com_guest c
+				ON a.guest_id = c.id
 		WHERE 1 = 1
 		<dynamic>
 			<isNotEmpty prepend="and" property="serviceCode">
@@ -156,6 +160,9 @@
                 a.advance_deposit_amt as advanceDepositAmt,
                 a.payable_bala_amt as payableBalaAmt,
                 a.predict_delivery_date as predictDeliveryDate,
+                a.is_financial as isFinancial,
+                a.is_financial_date as isFinancialDate,
+                a.is_financialer as isFinancialer,
                 a.status as status,
                 a.remark as remark,
                 a.recorder as recorder,
@@ -396,9 +403,201 @@
                 <isNotEmpty prepend="and" property="orderIds">  
                     (A.order_id in ($orderIds$))
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="carModelId">  
+                    (A.car_model_id = #carModelId#)
+                </isNotEmpty>
             </dynamic>  
            
         
         ORDER BY a.id asc
     </select>
-</sqlMap>
+	   
+           
+    <select id="queryFactoryReturnList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+            SELECT DISTINCT
+                a.id as id,
+                a.tenant_id as tenantId,
+                a.orgid as orgid,
+                a.guest_id as guestId,
+                a.service_code as serviceCode,
+                a.bill_type_id as billTypeId,
+                a.pay_mode as payMode,
+                a.transport_id as transportId,
+                a.return_men as returnMen,
+                a.return_date as returnDate,
+                a.return_amt as returnAmt,
+                a.status as status,
+                a.remark as remark,
+                a.recorder as recorder,
+                a.record_date as recordDate,
+                a.modifier as modifier,
+                a.modify_date as modifyDate,                    
+                b.FULL_NAME AS guestFullName,
+                b.SHORT_NAME AS guestShortName,
+                b.srm_guest_id as srmGuestId
+                FROM
+                wb_sales.css_factory_return_main a
+                INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID     
+                where 1=1
+            <dynamic>
+            	<isNotEmpty prepend="and" property="status"> 
+                    (a.status = #status#)
+                </isNotEmpty>
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="id"> 
+                    (a.id = #id#)
+                </isNotEmpty>
+                <!--订货日期 -->
+                <isNotEmpty prepend="and" property="sOrderDate">  
+                    A.record_date &gt;= #sOrderDate#
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eOrderDate">  
+                    (A.record_date &lt; #eOrderDate#)
+                </isNotEmpty>
+                <!--创建日期 -->
+                <isNotEmpty prepend="and" property="sCreateDate">  
+                    (A.record_date &gt;= #sCreateDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eCreateDate">  
+                    (A.record_date &lt; #eCreateDate#)
+                </isNotEmpty>
+                <!--本日 昨日 本周 上周 本月 下月 -->
+                <isNotEmpty prepend="and" property="startDate">  
+                    (A.record_date &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (A.record_date &lt; #endDate#)
+                </isNotEmpty>
+
+                <isNotEmpty prepend="and" property="guestId">  
+                    (A.guest_id = #guestId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="guestName">  
+                    (B.FULL_NAME like '%$guestName$%' or B.SHORT_NAME like '%$guestName$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceId">  
+                    (a.service_code like '%$serviceId$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceIdList">  
+                    (A.service_code in ($serviceIdList$))
+                </isNotEmpty>
+            </dynamic>  
+		
+        ORDER BY A.record_date DESC
+        
+    </select>
+    
+         <!-- 根据主表ID查询 -->
+    <select id="queryFactoryReturnDetailList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT
+                A.id AS id,
+                A.order_id AS orderId,
+                A.enter_id AS enterId,
+                A.car_model_id AS carModelId,
+                A.car_model_name AS carModelName,
+                A.frame_color_id AS frameColorId,
+                A.interial_color_id AS interialColorId,
+                A.vin AS vin,
+                A.order_price AS orderPrice,
+                A.return_amt AS returnAmt,
+                A.recorder AS recorder,
+                A.record_date AS recordDate,
+                A.modifier AS modifier,
+                A.modify_date AS modifyDate      
+            FROM
+            wb_sales.css_factory_return_detail A
+                where 1=1
+            <dynamic>
+                <isNotEmpty prepend="and" property="orderId">  
+                    (A.order_id = #orderId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="orderIds">  
+                    (A.order_id in ($orderIds$))
+                </isNotEmpty>
+            </dynamic>  
+           
+        
+        ORDER BY a.id asc
+    </select>
+	<select id="searchGuest" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT 
+			id	AS	id	,
+			tenant_id	AS	tenantId	,
+			orgid	AS	orgid	,
+			code	AS	code	,
+			full_name	AS	fullName	,
+			short_name	AS	shortName	,
+			card_no	AS	cardNo	,
+			py_name	AS	pyName	,
+			guest_type	AS	guestType	,
+			is_supplier	AS	isSupplier	,
+			is_client	AS	isClient	,
+			contactor	AS	contactor	,
+			contactor_tel	AS	contactorTel	,
+			manager	AS	manager	,
+			manager_duty	AS	managerDuty	,
+			province_id	AS	provinceId	,
+			area_id	AS	areaId	,
+			city_id	AS	cityId	,
+			addr	AS	addr	,
+			postal_code	AS	postalCode	,
+			website	AS	website	,
+			tel	AS	tel	,
+			mobile	AS	mobile	,
+			fax	AS	fax	,
+			email	AS	email	,
+			supplier_type	AS	supplierType	,
+			advantage_carbrand_id	AS	advantageCarbrandId	,
+			instant_msg	AS	instantMsg	,
+			mem_car_no	AS	memCarNo	,
+			mem_level_id	AS	memLevelId	,
+			taxpayer_code	AS	taxpayerCode	,
+			taxpayer_name	AS	taxpayerName	,
+			manage_addr	AS	manageAddr	,
+			taxpayer_tel	AS	taxpayerTel	,
+			account_bank	AS	accountBank	,
+			account_bank_no	AS	accountBankNo	,
+			sex	AS	sex	,
+			birthday_type	AS	birthdayType	,
+			birthday	AS	birthday	,
+			bill_type_id	AS	billTypeId	,
+			sett_type_id	AS	settTypeId	,
+			tgrade	AS	tgrade	,
+			credit_limit	AS	creditLimit	,
+			is_disabled	AS	isDisabled	,
+			remark	AS	remark	,
+			is_internal	AS	isInternal	,
+			is_internal_id	AS	isInternalId	,
+			is_need_pack	AS	isNeedPack	,
+			order_index	AS	orderIndex	,
+			srm_guest_id	AS	srmGuestId	,
+			recorder	AS	recorder	,
+			record_date	AS	recordDate	,
+			modifier	AS	modifier	,
+			modify_date	AS	modifyDate	,
+			default_logistics_id	AS	defaultLogisticsId	,
+			default_logistics	AS	defaultLogistics	,
+			guest_property	AS	guestProperty	,
+			property_features	AS	propertyFeatures	,
+			license_code	AS	licenseCode	,
+			id_card	AS	idCard	,
+			license_url	AS	licenseUrl	,
+			id_card_url	AS	idCardUrl	
+
+		FROM wb_common.com_guest 
+		WHERE 1 = 1
+		<dynamic>
+			<isNotEmpty prepend="and" property="fullName">
+                (full_name like '%$fullName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">
+                (mobile like '%$mobile$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isDisabled">
+                (is_disabled = #isDisabled#)
+            </isNotEmpty>
+        </dynamic>  
+	</select></sqlMap>

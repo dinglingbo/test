@@ -30,7 +30,7 @@ function getValue() {
     return params;
 }
 
-function SetDataMsg(serviceId) {
+function SetDataMsg(serviceId, frameColorId, interialColorId) {
     var params = { billType: 2, serviceId: serviceId };
     nui.ajax({
         url: baseUrl + "sales.search.searchSaleCalc.biz.ext",
@@ -44,22 +44,17 @@ function SetDataMsg(serviceId) {
                 var data = text.data[0];
                 form.setData(data);
                 if (data.saleType == "1558580770894") { //全款
-                    nui.get("loanPeriod").disable(); //贷款期数
-                    nui.get("signBillBankId").disable(); //贷款银行
-                    nui.get("bankHandlingApportion").disable(); //银行利息分摊
-                    nui.get("mortgageAmt").disable(); //按揭手续费
-                    nui.get("riskAmt").disable(); //月供保证金
-                    nui.get("familyAmt").disable(); //家访费
-                    nui.get("loanPercent").disable(); //贷款比例
+                    changeSaleType(1);
+                }
+                if (!data.frameColorId) { //没值则取销售主表的颜色
+                    nui.get("frameColorId").setValue(frameColorId);
+                }
+                if (!data.interialColorId) {
+                    nui.get("interialColorId").setValue(interialColorId);
                 }
             }
         }
     });
-}
-
-function setSaleType(value) { //当主表更改购车方式时更改购车计算中的购车方式
-    nui.get("saleType").setValue(value);
-    changeSaleType(1);
 }
 
 function getBankHandlingRate(e) { //改变贷款银行时触发
@@ -106,9 +101,9 @@ function changeSaleType(e) { //改变购买方式时触发
 
 function changeValueMsg(e) { //更改数据信息时触发  统一触发此函数
     var data = form.getData();
-    var saleAmt = parseFloat(data.saleAmt); //车辆销价
-    var loanPercent = parseFloat(data.loanPercent) / 10; //贷款比例
-    var loanAmt = parseFloat(data.loanAmt); //贷款金额
+    var saleAmt = parseFloat(data.saleAmt || 0); //车辆销价
+    var loanPercent = parseFloat(data.loanPercent || 0) / 10; //贷款比例
+    var loanAmt = parseFloat(data.loanAmt || 0); //贷款金额
     var loanPeriod = parseFloat(data.loanPeriod || 0); //贷款期数
     var downPaymentAmt = parseFloat(data.downPaymentAmt || 0); //首付金额
     var bankHandlingRate = parseFloat(data.bankHandlingRate || 0) / 100; //贷款利率
@@ -156,6 +151,11 @@ function setReadOnlyMsg() {
     };
 }
 
+function setSelectCarValue(handcartAmt, carCost) { //选车之后将成本、运费赋值上来
+    nui.get("handcartAmt").setValue(handcartAmt);
+    nui.get("carCost").setValue(carCost);
+}
+
 function setInputModel() { //恢复表格为输入模式
     var fields = form.getFields();
     for (var i = 0, l = fields.length; i < l; i++) {
@@ -165,20 +165,27 @@ function setInputModel() { //恢复表格为输入模式
 }
 
 var comeServiceIdF = null;
+var statusF = null;
 var saveComeUrl = baseUrl + "sales.save.saveSaleCalc.biz.ext";
+var jpDetailGridUrl = baseUrl + "sales.search.searchSaleGiftApply.biz.ext";
 
-function setShowSave(serviceId) {
-    comeServiceIdF = serviceId;
+function setShowSave(params) {
+    comeServiceIdF = params.id;
+    statusF = params.status;
     var showSave = document.getElementById("showSave");
+    var frameColorId = params.frameColorId;
+    var interialColorId = params.interialColorId;
     showSave.style.display = "";
-    if (serviceId) {
+    nui.get("saleType").setEnabled(true);
+    if (comeServiceIdF) {
+        var params = { billType: 1, serviceId: comeServiceIdF };
         nui.ajax({
             url: baseUrl + "sales.search.searchSaleCalc.biz.ext",
             type: "post",
             cache: false,
+            async: false,
             data: {
-                billType: 1,
-                serviceId: serviceId
+                params: params
             },
             success: function(text) {
                 if (text.errCode == "S") {
@@ -196,7 +203,48 @@ function setShowSave(serviceId) {
                         }
                     }
                 }
+                //颜色设置
+                /*if(frameColorId){
+                	//nui.get("frameColorId").setEnabled(false);
+                	nui.get("frameColorId").setValue(frameColorId);
+                }*/
+                //有点问题
+                if (frameColorId) { //没值则取销售主表的颜色
+                    nui.get("frameColorId").setValue(frameColorId);
+                }
+                if (interialColorId) {
+                    nui.get("interialColorId").setValue(interialColorId);
+                }
+
             }
+        });
+        //查找精品加装费用
+        nui.ajax({
+            url: jpDetailGridUrl,
+            type: "post",
+            cache: false,
+            async: false,
+            data: {
+                billType: 1,
+                serviceId: comeServiceIdF
+            },
+            success: function(text) {
+                if (text.errCode == "S") {
+                    var giftData = text.data;
+                    var amt = 0;
+                    if (giftData.length > 0) {
+                        for (var i = 0; i < giftData.length; i++) {
+                            var temp = giftData[i];
+                            amt = amt + temp.amt;
+                        }
+                    }
+                    if (amt > 0) {
+                        nui.get("decrAmt").setValue(amt);
+                    }
+                    nui.get("decrAmt").setEnabled(false);
+                }
+            }
+
         });
     } else {
         showMsg("请先保存来访登记", "W");
@@ -208,6 +256,12 @@ function saveCome() {
     var caCalculationData = form.getData();
     if (comeServiceIdF && comeServiceIdF < 0) {
         showMsg("请先保存来访登记", "W");
+        return;
+    } else if (statusF == 1) {
+        showMsg("来访登记已归档不能修改!", "W");
+        return;
+    } else if (statusF == 2) {
+        showMsg("来访登记已转销售不能修改!", "W");
         return;
     } else {
         caCalculationData.billType = 1; //来访登记的预算

@@ -24,6 +24,7 @@ function SetData(serviceId) {
                 var data = text.data[0];
                 form.setData(data);
                 nui.get("id").setValue(serviceId);
+                changeValueMsg(1);
             };
         }
     });
@@ -96,8 +97,10 @@ function approved() { //审核通过
         async: false,
         success: function(text) {
             if (text.errCode == "S") {
-
-            };
+                showMsg(text.errMsg, "S");
+            } else {
+                showMsg(text.errMsg, "W");
+            }
         }
     });
 

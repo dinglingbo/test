@@ -181,7 +181,7 @@
                   	 <div property="columns" >
 	                  <div type="checkcolumn" name="checkcolumn" visible="false"></div>
 	                  <div field="saleAdvisor" name="saleAdvisor" width="80" headerAlign="center" allowsort="true" header="销售顾问"></div>
-	                  <div field="comeDate" name="comeDate" width="120" headerAlign="center" allowsort="true" dateFormat="yyyy-MM-dd HH:mm" header="来访时间"></div>
+	                  <div field="comeDate" name="comeDate" width="120" headerAlign="center" allowsort="true"  dateFormat="yyyy-MM-dd HH:mm" header="来访时间"></div>
 	                  <div field="comeTypeId" name="comeTypeId" width="60" headerAlign="center" allowsort="true" header="来访类型"></div>
 	                  <div field="status" name="status" width="60" headerAlign="center" allowsort="true" header="状态" summaryType="count"></div>
 	                  <!--回访备注  -->
@@ -237,21 +237,23 @@
 				 <div title="跟踪列表">
 				   <div  id="datagrid" dataField="list" class="nui-datagrid" 
 					style="width: 100%; height: 100%;"  sortMode="client"
-					allowSortColumn="true" showPager="false" allowCellWrap=true>
+					allowSortColumn="true" showPager="false" allowCellWrap=true
+					
+					>
 					 <div property="columns">
 						<div type="indexcolumn" headerAlign="center" width="30">序号</div>
 						<div field="recorder" headerAlign="center" allowSort="true" width="60px">跟进人</div>
-						<div field="recordDate" headerAlign="center" allowSort="true" width="60px">跟进日期</div>
+						<div field="recordDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" width="60px">跟进日期</div>
 						<div field="scoutModeId" name = "scoutModeId" headerAlign="center" allowSort="true" width="60px">跟进方式</div>
 						<div field="status" headerAlign="status" allowSort="true" width="60px">跟进状态</div>
-						<div field="serviceCode" headerAlign="center" allowSort="true" width="120px">跟进结果</div>
-						<div field="isUsabled" headerAlign="isUsabled" allowSort="true" width="60px" dataType="float">关系阶段</div>
+						<!-- <div field="serviceCode" headerAlign="center" allowSort="true" width="120px">跟进结果</div> -->
+						<div field="isUsabled" headerAlign="isUsabled" allowSort="true" width="60px" dataType="float">跟进结果</div>
 						<div field="scoutContent" headerAlign="scoutContent" allowSort="true" width="120px" dataType="float">需求内容
 						</div>
 				    	<div field="failReasonId" headerAlign="center" allowSort="true" width="120px">战败原因
 						</div>
 						<!-- <div field="recordDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:ss" width="110px">消费日期</div> -->	
-						<div field="nextOrderDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:ss" width="60px">下次跟进日期</div>						
+						<div field="nextOrderDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="60px">下次跟进日期</div>						
 					 </div>
 				 </div>
 			    </div>

@@ -98,13 +98,13 @@ $(document).ready(function ()
 	       var record = e.record;
 	       var uid = record._uid;
 	       if (field == 'scoutModeId') {
-	           e.cellHtml = setColVal('scoutModeId', 'id', 'name', e.value);
+	           e.cellHtml = setColVal('scoutModeId', 'customid', 'name', e.value);
 	       } else if (field == 'status') {
-	           e.cellHtml = setColVal('status', 'id', 'name', e.value);
+	           e.cellHtml = setColVal('status', 'customid', 'name', e.value);
 	       } else if (field == 'source') {
-	       	e.cellHtml = setColVal('source', 'id', 'name', e.value);
+	       	e.cellHtml = setColVal('source', 'customid', 'name', e.value);
 	       } else if (field == 'isUsabled') {
-	    	   e.cellHtml = setColVal('isUsabled', 'id', 'name', e.value);
+	    	   e.cellHtml = setColVal('isUsabled', 'customid', 'name', e.value);
 	       } 
 		});
 	
@@ -281,7 +281,7 @@ function buyCarCount(){
 				url: webPath + contextPath + '/sales/sales/caCalculation.jsp',
 				title: '购车预算',
 				width: 1000,
-				height: 500,
+				height: 600,
 				onload: function () {
 				   var iframe = this.getIFrameEl();
 				   iframe.contentWindow.setShowSave(row);

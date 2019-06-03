@@ -153,7 +153,7 @@
                 <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
                 <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
             </div>
-            <input id="saleType1" name="saleType1" style="width: 100%" class="nui-combobox" textField="name" valueField="customid">
+            <input id="saleType1" name="saleType1" style="width: 100%" class="nui-combobox" textField="name" valueField="customid" visible="false">
 
             <div style="margin: 0 10px;" class="printny">
                 <div class="company-info">
@@ -397,7 +397,7 @@
                         saleType1: '10392' //购车方式
                     });
                     document.getElementById("comp").innerHTML = currRepairSettorderPrintShow;
-                    var url = baseUrl + 'sales.search.searchSaleCalc.biz.ext?params/billType='+billType+'&params/serviceId=' + serviceId;
+                    var url = baseUrl + 'sales.search.searchSaleCalc.biz.ext?params/billType=' + billType + '&params/serviceId=' + serviceId;
                     var date = new Date();
                     document.getElementById("date").innerHTML = format(date, "yyyy-MM-dd HH:mm");
                     $.post(url, function(res) {
@@ -426,19 +426,19 @@
                         }
                     });
 
-                    if(billType==2){
-	                     $.post(baseUrl + "sales.search.searchSalesMain.biz.ext?params/id=" + serviceId, function(res) {
-	                        if (res.data.length > 0) {
-	                            var temp = res.data[0];
-	                            document.getElementById("guestFullName").innerHTML = temp.guestFullName || "";
-	                            document.getElementById("carModelName").innerHTML = temp.carModelName || "";
-	                        }
-	                    });
-                    }else if(billType==1){
-                         document.getElementById("guestFullName").innerHTML = params.guestFullName || "";
-	                     document.getElementById("carModelName").innerHTML = params.carModelName || "";
+                    if (billType == 2) {
+                        $.post(baseUrl + "sales.search.searchSalesMain.biz.ext?params/id=" + serviceId, function(res) {
+                            if (res.data.length > 0) {
+                                var temp = res.data[0];
+                                document.getElementById("guestFullName").innerHTML = temp.guestFullName || "";
+                                document.getElementById("carModelName").innerHTML = temp.carModelName || "";
+                            }
+                        });
+                    } else if (billType == 1) {
+                        document.getElementById("guestFullName").innerHTML = params.guestFullName || "";
+                        document.getElementById("carModelName").innerHTML = params.carModelName || "";
                     }
-                   
+
                 }
 
                 function CloseWindow(action) {

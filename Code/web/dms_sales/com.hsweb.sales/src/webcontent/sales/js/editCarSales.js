@@ -705,6 +705,12 @@ function salesOnPrint(p) {
         case 2:
             url = url + "/sales/sales/print/printLoanDetail .jsp";
             break;
+        case 3:
+            url = url + "/sales/sales/print/printJCDetail.jsp";
+            break;
+        case 4:
+            url = url + "/sales/sales/print/printSalesContract.jsp";
+            break;
     }
     nui.open({
         url: url,
@@ -713,7 +719,17 @@ function salesOnPrint(p) {
         height: "100%",
         onload: function() {
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(billFormData.id);
+            var serviceId = billFormData.id;
+            if (p == 1) {
+                var params = {
+                    serviceId: serviceId,
+                    billType: 2
+                };
+                iframe.contentWindow.SetData(params);
+            } else {
+                iframe.contentWindow.SetData(serviceId);
+            }
+
         },
         ondestroy: function(action) {
 

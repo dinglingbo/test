@@ -89,11 +89,12 @@ public class MessageProxyImpl implements MessageProxy {
     
  
     @Override
-	public void saveOnlineMessageToDB(MessageWrapper message) {
+	public void saveOnlineMessageToDB(MessageWrapper message, Integer type) {
     	try{
     		UserMessageEntity  userMessage = convertMessageWrapperToBean(message);
     		if(userMessage!=null){
     			userMessage.setIsread(1);
+    			userMessage.setType(type);
             	userMessageServiceImpl.save(userMessage);
     		}
     	}catch(Exception e){
@@ -117,12 +118,13 @@ public class MessageProxyImpl implements MessageProxy {
 	}
     
     @Override
-	public void saveOfflineMessageToDB(MessageWrapper message) {
+	public void saveOfflineMessageToDB(MessageWrapper message, Integer type) {
     	try{
     		 
     		UserMessageEntity userMessage = convertMessageWrapperToBean(message);
     		if(userMessage!=null){
     			userMessage.setIsread(0);
+    			userMessage.setType(type);
             	userMessageServiceImpl.save(userMessage);
     		}
     	}catch(Exception e){
@@ -169,7 +171,6 @@ public class MessageProxyImpl implements MessageProxy {
 	}
 
 
-
 	@Override
 	public MessageProto.Model getOffLineStateMsg(String sessionId) {
 		MessageProto.Model.Builder  result = MessageProto.Model.newBuilder();
@@ -191,7 +192,19 @@ public class MessageProxyImpl implements MessageProxy {
 	}
 
 
-	
+	@Override
+	public MessageWrapper  getFriendApplyMsg(String sessionId, String reSessionId, String content) {
+		MessageProto.Model.Builder  result = MessageProto.Model.newBuilder();
+		result.setTimeStamp(DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
+		result.setSender(sessionId);
+		result.setReceiver(reSessionId);//存入接收人sessionId
+		result.setCmd(Constants.CmdType.FRIENDMESSAGE);
+
+		MessageBodyProto.MessageBody.Builder  msg =  MessageBodyProto.MessageBody.newBuilder();
+		msg.setContent(content);
+		result.setContent(msg.build().toByteString());
+		return  new MessageWrapper(MessageWrapper.MessageProtocol.SEND, sessionId, reSessionId, result.build());
+	}
     
     
 }

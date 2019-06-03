@@ -81,6 +81,15 @@ public class Constants {
 	   	 byte OFFLINE = 4; //下线 
 	   	 byte MESSAGE = 5; //消息
 	   	 byte RECON = 6; //重连
+		 byte FRIENDMESSAGE = 7; //好友申请同意/拒绝后的消息
+		 byte SYSMESSAGE = 8; //系统公告消息
 	}
-  
+
+	public static interface MessageType{
+		//0 单聊消息  1 群消息  2好友申请同意/拒绝  3系统公告
+		int SINGLE = 0; //单聊消息
+		int GROUP = 1; //群消息
+		int APPLY = 2; //好友申请同意/拒绝
+		int SYS = 3; //系统公告
+	}
 }

@@ -41,4 +41,6 @@ public interface UserFriendApplyDao extends BaseDao<UserFriendApplyEntity> {
      * @return
      */
     int applyFriend(UserFriendApplyEntity friend);
+
+    List<UserFriendApplyEntity> getUserFriendApply(Map<String, Object> map);
 }

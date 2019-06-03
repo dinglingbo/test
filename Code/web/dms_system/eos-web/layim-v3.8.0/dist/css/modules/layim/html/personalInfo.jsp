@@ -25,12 +25,24 @@
 <div >
 
 <form class="layui-form" action="">
-  
+ 
   <div class="layui-form-item" style="margin-top: 20px;" >
     <div class="layui-inline">
     <label class="layui-form-label" >昵称</label>
      <input type="text" name="nickname" id="nickname" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input" style="width: 200px;">
     </div>
+    
+    <div class="layui-inline">
+    <label class="layui-form-label" >头像</label>
+     <input type="text" name="profilephoto" id="profilephoto" required  lay-verify="required" placeholder="请上传图片" autocomplete="off" class="layui-input" style="width: 150px;">
+    
+    </div>
+    <div class="layui-inline">
+    <button type="button" class="layui-btn layui-btn-primary" id="LAY_avatarUpload">
+                  <i class="layui-icon"></i>上传图片
+                </button>
+    </div>
+    
  </div>
  
  <div class="layui-form-item" style="margin-top: 20px;">
@@ -105,8 +117,8 @@
    <div class="layui-form-item">
     <div class="layui-input-block" >
       <button class="layui-btn" lay-submit lay-filter="formDemo" >保存</button>
-      <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
-      <!-- <button class="layui-btn"  lay-filter="find" style="width: 80px;" >确定</button> -->
+      <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+      <button class="layui-btn"  lay-filter="find" style="width: 80px;" >确定</button> -->
     </div>
   </div>
     
@@ -135,7 +147,7 @@ layui.use(['form', 'upload'], function(){
     var province = 0;
     var city = 0;
     var area = 0;
-   paramsy.id = dataSys.id;
+   paramsy.userid = dataSys.userid;
    $.ajax({
         type:'post',
         dataType:'json',
@@ -146,10 +158,10 @@ layui.use(['form', 'upload'], function(){
 		        	token:dataSys.token,
 		        	edit:"query"
 		      }),
-        url:dataSys.baseUrl + "com.hs.common.env.upateUserInfo.biz.ext",
+        url:dataSys.baseUrl + "com.hsapi.system.im.message.getUserInfo.biz.ext",
         async:false, 
         success:function(data){
-        	if(data.errCode==0){
+        	if(data.code==0){
         	  var user = data.data;
         	  //给表单赋值
         	 // $('#birthday').val(user.birthday);
@@ -157,6 +169,7 @@ layui.use(['form', 'upload'], function(){
         	  $('#address').val(user.address);
         	  $('#nickname').val(user.nickname);
         	  $('#signature').val(user.signature);
+        	  $('#profilephoto').val(user.profilephoto);
         	  $('#email').val(user.email);
         	  $("#sex0").attr("checked", user.sex == 0 ? true : false);
               $("#sex1").attr("checked", user.sex == 1 ? true : false);
@@ -171,7 +184,7 @@ layui.use(['form', 'upload'], function(){
 			    value:user.birthday
 			  });
         	}else{
-        	   showMsg("查询失败","E");
+        	   //showMsg("查询失败","E");
         	}
         	pca.init('select[name=province]', 'select[name=city]', 'select[name=area]', province,city,area);
         	form.render();
@@ -186,8 +199,7 @@ layui.use(['form', 'upload'], function(){
     var temp = data.field;
      //查询
     var params = temp;
-    params.id=dataSys.id,
-    params.updateuser = dataSys.id;
+    params.uid=dataSys.userid;
 	/* var city  = $('#city').val();
 	params.city = city;
 	var area = $("#area").val();
@@ -201,16 +213,16 @@ layui.use(['form', 'upload'], function(){
 		        	params:params,
 		        	token:dataSys.token
 		      }),
-        url:dataSys.baseUrl + "com.hs.common.env.upateUserInfo.biz.ext",
+        url:dataSys.baseUrl + "com.hsapi.system.im.message.upateUserInfo.biz.ext",
         async:false, 
         success:function(data){
-        	if(data.errCode=="S"){
+        	if(data.code=="0"){
         	    var index = parent.layer.getFrameIndex(window.name);  
                 parent.layer.close(index);//关闭当前页  
                // window.parent.location.replace(location.href)//刷新父级页面  
                // window.parent.location.reload(); 
         	}else{
-        	   showMsg("保存失败","E");
+        	   //showMsg("保存失败","E");
         	}
         	return false;
         }
@@ -232,6 +244,10 @@ layui.use('laydate', function(){
 //http://127.0.0.1:8080/default/com.hs.common.region.getRegin.biz.ext
 function setDataSys(params){
    dataSys = params;  
+}
+
+function onSubmit(){
+    $form.submit();   
 }
    /*  var areaData = Area;
     var $form;

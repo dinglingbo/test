@@ -3,6 +3,7 @@ package com.chedao.websocket.webserver.user.controller;
 import com.chedao.websocket.constant.Constants;
 import com.chedao.websocket.webserver.base.controller.BaseController;
 import com.chedao.websocket.webserver.user.model.*;
+import com.chedao.websocket.webserver.user.service.UserFriendService;
 import com.chedao.websocket.webserver.user.service.impl.GroupInfoServiceImpl;
 import com.chedao.websocket.webserver.user.service.impl.UserFriendServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import java.util.Map;
 @RequestMapping("/userfriend")
 public class UserFriendController extends BaseController {
     @Autowired
-    private UserFriendServiceImpl userFriendServiceImpl;
+    private UserFriendService userFriendServiceImpl;
 
 
     //添加好友，新增两条数据,添加好友时，要确定是在那个分组下的好友
@@ -57,15 +58,12 @@ public class UserFriendController extends BaseController {
     @ResponseBody
     public Object update(@RequestBody UserFriendEntity userFriend){
 
-        StringBuilder errCode = new StringBuilder();
         try{
             userFriendServiceImpl.update(userFriend);
         }catch (Exception e){
-            errCode.append("E");
-            return errCode;
+            return putMsgToJsonString(Constants.WebSite.ERROR, "操作失败", 0, userFriend);
         }
-        errCode.append("S");
-        return errCode;
+        return putMsgToJsonString(Constants.WebSite.SUCCESS, "", 0, userFriend);
     }
 
     //删除好友，删除两条数据
@@ -76,14 +74,28 @@ public class UserFriendController extends BaseController {
         StringBuilder errCode = new StringBuilder();
         try{
             userFriendServiceImpl.delete(userFriend);
+
+            return putMsgToJsonString(Constants.WebSite.SUCCESS, "操作成功", 0, userFriend);
         }catch (Exception e){
-            errCode.append("E");
-            return errCode;
+            return putMsgToJsonString(Constants.WebSite.ERROR, "删除好友失败", 0, userFriend);
         }
-        errCode.append("S");
-        return errCode;
-        // return "pppp";
     }
+
+    @RequestMapping(value="/friendinfo", produces="application/json;charset=UTF-8", method = RequestMethod.POST)
+    @ResponseBody
+    public Object queryUserFriend(@RequestBody UserFriendEntity userFriend){
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("userid",userFriend.getUserid());
+        map.put("friendid",userFriend.getFriendid());
+        try{
+            UserInfoEntity userInfoEntity = userFriendServiceImpl.queryUserFriend(map);
+
+            return putMsgToJsonString(Constants.WebSite.SUCCESS, "操作成功", 0, userInfoEntity);
+        }catch (Exception e){
+            return putMsgToJsonString(Constants.WebSite.ERROR, "删除好友失败", 0, userFriend);
+        }
+    }
+
     /**
      * 判断是否为好友
      */

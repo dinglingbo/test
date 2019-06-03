@@ -58,7 +58,10 @@
   	  	     updateuser,
   	  	     province,
   	  	     city,
-  	  	     area
+  	  	     area,
+  	  	     lastondate,
+  	  	     lastoffdate,
+  	  	     lastupdatedate
   	  
   </sql>
 
@@ -165,7 +168,7 @@
 			<if test="city != null">`city` = #{city}, </if>
 			<if test="area != null">`area` = #{area}</if>
 		</set>
-		where uid = #{id}
+		where uid = #{uid}
 	</update>
 	
 	<delete id="delete">

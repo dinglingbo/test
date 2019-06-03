@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getOffLineMsg" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getUserInfo" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="获取离线消息&#xD;&#xA;http://127.0.0.1:8089/usermessage/offlist" title="Administrator&#x9;19-5-13 下午4:00">
     <location x="82" y="-60"/>
     <size height="100" width="526"/>
@@ -22,9 +22,7 @@
     <process:returns>
       <process:return id="0" language="String" name="code" type="query" valueType="Primitive">code</process:return>
       <process:return id="1" language="String" name="msg" type="query" valueType="Primitive">msg</process:return>
-      <process:return id="2" language="String" name="pages" type="query" valueType="Primitive">pages</process:return>
-      <process:return id="3" language="com.alibaba.fastjson.JSON[]" name="data" type="query" valueType="Java">data</process:return>
-      <process:return id="4" language="String" name="count" type="query" valueType="Primitive">count</process:return>
+      <process:return id="2" language="com.alibaba.fastjson.JSON" name="data" type="query" valueType="Java">data</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -104,16 +102,20 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">usermessage/offlist</process:from>
+      <process:from type="literal" pattern="reference">userinfo/queryByUid/</process:from>
+      <process:to type="query">apiName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/userid</process:from>
+      <process:to type="query">userid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">apiName+userid</process:from>
       <process:to type="query">apiName</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">httpStr+apiName</process:from>
       <process:to type="query">httpStr</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">receiveuser</process:from>
-      <process:to type="query">params/receiveuser</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -195,16 +197,8 @@
       <process:to type="query">msg</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">result/pages</process:from>
-      <process:to type="query">pages</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">result/data</process:from>
       <process:to type="query">data</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">result/count</process:from>
-      <process:to type="query">count</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
@@ -222,7 +216,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
+      <process:from type="literal" pattern="reference">-1</process:from>
       <process:to type="query">code</process:to>
     </process:copy>
     <process:copy>
@@ -242,19 +236,17 @@
     <process:variable description="表示用哪个环境" historyStateLocation="client" isArray="false" name="serverType" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="httpStr" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="apiName" primitiveType="String"/>
-    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="retData" primitiveType="String"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="result"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="userid" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" name="receiveuser" primitiveType="String"/>
+    <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="code" primitiveType="String"/>
     <process:output description="" isArray="false" name="msg" primitiveType="String"/>
-    <process:output description="" isArray="false" name="pages" primitiveType="String"/>
-    <process:output anyType="com.alibaba.fastjson.JSON" description="" isArray="true" name="data"/>
-    <process:output description="" isArray="false" name="count" primitiveType="String"/>
+    <process:output anyType="com.alibaba.fastjson.JSON" description="" isArray="false" name="data"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

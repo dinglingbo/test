@@ -13,7 +13,11 @@ public class UserFriendApplyEntity extends BaseModel implements Serializable {
 
     private Long uid;
 
+    private  String username;
+
     private Long from;
+
+    private String from_name;
 
     private Long from_group;
 
@@ -22,6 +26,20 @@ public class UserFriendApplyEntity extends BaseModel implements Serializable {
     private String applyDate;
 
     private String remark;
+
+    private String updateDate;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(String updateDate) {
+        this.updateDate = updateDate;
+    }
 
     private Map user;
 
@@ -57,6 +75,23 @@ public class UserFriendApplyEntity extends BaseModel implements Serializable {
 
     public void setFrom_group(Long from_group) {
         this.from_group = from_group;
+    }
+
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getFrom_name() {
+        return from_name;
+    }
+
+    public void setFrom_name(String from_name) {
+        this.from_name = from_name;
     }
 
     public Integer getStatus() {

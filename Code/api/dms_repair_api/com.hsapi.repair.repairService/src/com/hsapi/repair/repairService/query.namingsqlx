@@ -966,13 +966,24 @@
 			AND a.mt_advisor_id = #mtAdvisorId#
 	</select>
 	<select id="throughQuantity" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-
-			SELECT 
+		SELECT count(1) as throughQuantity
+		from rps_maintain a
+		inner join rps_item b
+		on a.id = b.service_id
+		where 1 = 1
+		      and a.status = 1
+		      and a.orgid = #orgid#
+		      and b.`status` = 0
+		      and exists(select 1 from rps_item_workers c 
+		      		where b.id = c.main_id and (c.worker_id = #mtAdvisorId#)
+			)
+		
+			<!--SELECT 
 				count(1) as throughQuantity
 			FROM 
 				wb_repair.rps_maintain a
 			where a.is_disabled = 0 and a.orgid = #orgid# 
-			      and a.status = 1 AND a.mt_advisor_id = #mtAdvisorId#
+			      and a.status = 1 AND a.mt_advisor_id = #mtAdvisorId#-->
 	</select>
 	<select id="throughCheckQuantity" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 

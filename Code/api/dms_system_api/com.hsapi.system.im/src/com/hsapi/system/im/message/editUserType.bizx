@@ -177,9 +177,9 @@
       <sourceNode>assign1</sourceNode>
       <targetNode>assign7</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="OBJEQ">
+        <process:simpleCondition operator="OBJNE">
           <process:leftOperand type="query">edit</process:leftOperand>
-          <process:rightOperand type="literal">add</process:rightOperand>
+          <process:rightOperand type="literal">delet</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -197,7 +197,7 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="update" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>invokePojo1</targetNode>
@@ -216,8 +216,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="135" y="96"/>
-    <figSize height="17" width="32"/>
+    <location x="130" y="96"/>
+    <figSize height="17" width="42"/>
     <node>assign2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
@@ -230,15 +230,27 @@
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">http://localhost:8089/usertype/delet/</process:from>
-      <process:to type="query">httpStr</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">params/id</process:from>
+      <process:from type="query" pattern="reference">params/userid</process:from>
       <process:to type="query">userid</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">httpStr + userid</process:from>
+      <process:from type="query" pattern="reference">params/id</process:from>
+      <process:to type="query">id</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">usertype/delet/</process:from>
+      <process:to type="query">apiName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">apiName+id</process:from>
+      <process:to type="query">apiName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">apiName+'/'+userid</process:from>
+      <process:to type="query">apiName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">httpStr+apiName</process:from>
       <process:to type="query">httpStr</process:to>
     </process:copy>
   </nodes>
@@ -253,7 +265,7 @@
       <targetNode>assign0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

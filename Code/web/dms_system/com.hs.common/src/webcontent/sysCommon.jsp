@@ -443,7 +443,7 @@
 <script src="<%=webPath + contextPath%>/common/js/init.js?v=1.9.4" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/jsCryptoJS.js?v=1.0" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/settleCenter.js?v=1.1" type="text/javascript"></script>
-<script src="<%=webPath + contextPath%>/common/js/date.js?v=1.7" type="text/javascript"></script>
+<script src="<%=webPath + contextPath%>/common/js/date.js?v=1.9" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/clipboard.min.js?v=1.7" type="text/javascript"></script>
 <link href="<%=webPath + contextPath%>/common/nui/themes/cupertino/skin.css" rel="stylesheet"	type="text/css" />
 <%--  <link href="<%=webPath + contextPath%>/common/nui/themes/bootstrap/skin.css" rel="stylesheet"	type="text/css" />   --%>

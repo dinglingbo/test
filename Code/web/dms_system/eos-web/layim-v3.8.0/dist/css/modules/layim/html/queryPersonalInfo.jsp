@@ -27,6 +27,7 @@
 <form class="layui-form" action="">
   
   <div class="layui-form-item" style="margin-top: 20px;" >
+  
     <div class="layui-inline">
     <label class="layui-form-label" >昵称</label>
      <input type="text" name="nickname" id="nickname" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input" style="width: 200px;">
@@ -124,21 +125,23 @@ layui.use(['form', 'upload'], function(){
     var province = 0;
     var city = 0;
     var area = 0;
-   paramsy.id = dataSys.id;
+    var data = {
+    	userid:dataSys.userid,
+    	friendid:dataSys.friendid 
+    };
    $.ajax({
         type:'post',
         dataType:'json',
         contentType:'application/json',
         cache : false,
         data: JSON.stringify({
-		        	params:paramsy,
-		        	token:dataSys.token,
-		        	edit:"query"
+		        	params:data,
+		        	token:dataSys.token
 		      }),
-        url:dataSys.baseUrl + "com.hs.common.env.upateUserInfo.biz.ext",
+        url:dataSys.baseUrl + "com.hsapi.system.im.message.getFriendInfo.biz.ext",
         async:false, 
         success:function(data){
-        	if(data.errCode==0){
+        	if(data.code==0){
         	  var user = data.data;
         	  //给表单赋值
         	 // $('#birthday').val(user.birthday);
@@ -150,6 +153,7 @@ layui.use(['form', 'upload'], function(){
         	  $("#sex0").attr("checked", user.sex == 0 ? true : false);
               $("#sex1").attr("checked", user.sex == 1 ? true : false);
         	  $('#phone').val(user.phone);
+        	  //$('#profilephoto').src(user.profilephoto);
         	  province = user.province;
         	  city = user.city;
         	  area = user.area;

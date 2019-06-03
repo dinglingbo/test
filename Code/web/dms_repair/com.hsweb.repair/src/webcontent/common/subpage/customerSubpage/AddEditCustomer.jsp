@@ -310,7 +310,7 @@ cursor: pointer;
                                     <input name="produceDate" allowInput="true" class="nui-datepicker" width="100%"/>
                                 </td>
                                 <td class="form_label">
-                                    <label>上牌日期：</label>
+                                    <label>注册日期：</label>
                                 </td>
                                 <td>
                                     <input name="firstRegDate" allowInput="true" class="nui-datepicker" width="100%"/>

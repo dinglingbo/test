@@ -339,11 +339,11 @@ function getMonths(date1 , date2){
 function dateDiff(date1, date2) {
             var type1 = typeof date1, type2 = typeof date2;
             if (type1 == 'string')
-                date1 = stringToTime(date1);
+                date1 = new Date(date1);//stringToTime(date1);
             else if (date1.getTime)
                 date1 = date1.getTime();
             if (type2 == 'string')
-                date2 = stringToTime(date2);
+                date2 = new Date(date2);//stringToTime(date2);
             else if (date2.getTime)
                 date2 = date2.getTime();
             //alert((date1 - date2) / (1000*60*60)); 

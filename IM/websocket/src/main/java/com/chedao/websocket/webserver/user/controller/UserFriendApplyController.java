@@ -5,6 +5,7 @@ import com.chedao.websocket.webserver.base.controller.BaseController;
 import com.chedao.websocket.webserver.user.model.UserFriendApplyEntity;
 import com.chedao.websocket.webserver.user.model.UserMessageEntity;
 import com.chedao.websocket.webserver.user.model.UserMessageTEntity;
+import com.chedao.websocket.webserver.user.service.UserFriendApplyService;
 import com.chedao.websocket.webserver.user.service.impl.UserFriendApplyServiceImpl;
 import com.chedao.websocket.webserver.util.PageBean;
 import com.github.pagehelper.PageHelper;
@@ -22,7 +23,7 @@ import java.util.Map;
 @RequestMapping("userfriendapply")
 public class UserFriendApplyController extends BaseController {
     @Autowired
-    private UserFriendApplyServiceImpl userFriendApplyServiceImpl;
+    private UserFriendApplyService userFriendApplyServiceImpl;
 
     /**
      * 列表
@@ -54,14 +55,37 @@ public class UserFriendApplyController extends BaseController {
      */
     @ResponseBody
     @RequestMapping(value = "/applyFriend", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
-    public String applyFriend(@RequestBody UserFriendApplyEntity friend) {
-        StringBuilder errCode= new StringBuilder();
+    public Object applyFriend(@RequestBody UserFriendApplyEntity friend) {
         try{
-            userFriendApplyServiceImpl.applyFriend(friend);
+            friend.setStatus(0);
+            Map map = userFriendApplyServiceImpl.applyFriend(friend);
+            return map;
         }catch (Exception e){
-            errCode.append("E");
+            return putMsgToJsonString(Constants.WebSite.ERROR, "添加好友申请异常", 0, null);
         }
-        errCode.append("S");
-        return errCode.toString();
+    }
+
+    /**
+     * 列表
+     */
+    @RequestMapping(value = "/friendApplySettle", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
+    @ResponseBody
+    public Object agree(@RequestBody Map<String, Object> params) {
+        Long uid = Long.parseLong(params.get("uid").toString()); //对方用户ID
+        Long id = Long.parseLong(params.get("id").toString());  //我的用户ID
+        Long keyId = Long.parseLong(params.get("keyId").toString());  //主键ID
+        String type = params.get("type").toString();
+        Map<String, Object> map;
+        if(type.equals("agree")) {
+            Long from_group = Long.parseLong(params.get("from_group").toString()); //对方分组ID
+            Long group = Long.parseLong(params.get("group").toString());  //我的分组ID
+            map = userFriendApplyServiceImpl.agreeFriend(uid, from_group, group, id, keyId);
+            return putMsgToJsonString(Constants.WebSite.SUCCESS, map.get("msg").toString(), 0, null);
+        }else if(type.equals("refuse")){
+            map = userFriendApplyServiceImpl.refuseFriend(uid, id, keyId);
+            return putMsgToJsonString(Constants.WebSite.SUCCESS, map.get("msg").toString(), 0, null);
+        }else{
+            return putMsgToJsonString(Constants.WebSite.ERROR, "好友申请处理失败", 0, null);
+        }
     }
 }

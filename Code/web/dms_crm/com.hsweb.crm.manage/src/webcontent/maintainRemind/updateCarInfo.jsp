@@ -201,7 +201,7 @@ pageEncoding="UTF-8" session="false" %>
                             </tr>
                             <tr>
                                     <td class="form_label"> 
-                                            <label>上牌日期：</label>
+                                            <label>注册日期：</label>
                                         </td>
                                         <td>
                                             <input  id="firstRegDate" name="firstRegDate"  allowInput="true" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />

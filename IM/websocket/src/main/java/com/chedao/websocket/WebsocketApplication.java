@@ -5,10 +5,12 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.util.Properties;
 
 @SpringBootApplication(scanBasePackages="com.chedao.websocket")
+@EnableTransactionManagement(proxyTargetClass=true)
 @MapperScan({"com.chedao.websocket.webserver.base.dao","com.chedao.websocket.webserver.user.dao","com.chedao.websocket.webserver.sys.dao"})
 public class WebsocketApplication {
 

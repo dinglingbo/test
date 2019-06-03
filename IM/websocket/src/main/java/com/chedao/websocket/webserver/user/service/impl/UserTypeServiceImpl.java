@@ -1,6 +1,7 @@
 package com.chedao.websocket.webserver.user.service.impl;
 
 import com.chedao.websocket.webserver.user.dao.UserTypeDao;
+import com.chedao.websocket.webserver.user.model.UserFriendTEntity;
 import com.chedao.websocket.webserver.user.model.UserTypeEntity;
 import com.chedao.websocket.webserver.user.service.UserFriendService;
 import com.chedao.websocket.webserver.user.service.UserTypeService;
@@ -52,6 +53,9 @@ public class UserTypeServiceImpl implements UserTypeService {
     }
 
 
-
+    @Override
+    public List<UserTypeEntity> queryListById(Map<String, Object> map) {
+        return userTypeDao.queryListById(map);
+    }
 
 }

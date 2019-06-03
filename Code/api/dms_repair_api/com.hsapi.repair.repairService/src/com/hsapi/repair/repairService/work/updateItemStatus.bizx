@@ -56,6 +56,16 @@
       <sourceNode>loopend0</sourceNode>
       <targetNode>assign2</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link19" name="link19" displayName="连接线" type="transition">
+      <sourceNode>loopend0</sourceNode>
+      <targetNode>assign7</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="OBJEQ">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">E</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link12</targetConnections>
     <targetConnections>link17</targetConnections>
     <targetConnections>link18</targetConnections>
@@ -183,16 +193,6 @@
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>invokePojo1</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link19" name="link19" displayName="连接线" type="transition">
-      <sourceNode>assign2</sourceNode>
-      <targetNode>assign7</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="OBJEQ">
-          <process:leftOperand type="query">errCode</process:leftOperand>
-          <process:rightOperand type="literal">E</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
     <location x="614" y="142"/>
@@ -371,6 +371,10 @@
     <location x="613" y="45"/>
     <size height="28" width="28"/>
     <nodeLabel>assign7label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
     <location x="611" y="81"/>

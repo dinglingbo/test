@@ -67,4 +67,5 @@ public interface UserMessageService {
 	List<MessageInfoEntity> getIMHistoryMessageList(Map<String, Object> map);
 
 	int updateuserdate(Map<String, Object> map);
+
 }

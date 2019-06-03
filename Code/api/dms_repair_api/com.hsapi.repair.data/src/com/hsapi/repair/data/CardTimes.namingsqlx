@@ -212,6 +212,7 @@
          a.use_amt useAmt,
          a.bala_amt balaAmt,
          a.refund_amt refundAmt,
+         a.sales_deduct_value as salesDeductValue,
          a.package_rate packageRate,
          a.item_rate itemRate,
          a.part_rate partRate,

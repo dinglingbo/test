@@ -90,6 +90,8 @@ html,body {
 								allowSort="true" summaryType="sum" dataType="float">已退款金额</div>									
 							<div field="saleMan" name="saleMan" headerAlign="center" align="center"
 								allowSort="true">销售员</div>
+							<div field="salesDeductValue" headerAlign="center" align="center"
+								allowSort="true" summaryType="sum" dataType="float">提成金额</div>
 							<div field="recordDate"  align="center"
 								headerAlign="center" dateFormat="yyyy-MM-dd HH:ss" allowSort="true">充值日期</div>
 						</div>

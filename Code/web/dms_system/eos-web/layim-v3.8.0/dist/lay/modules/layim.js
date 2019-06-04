@@ -727,7 +727,7 @@ layui.define(['layer', 'laytpl', 'upload'], function (exports) {
 		      groupInfo.name = str.*/
             groupId = othis[0].id;
             var groupId1 = groupId.substring(11, groupId.length);
-            var html = '<ul data-id="' + othis[0].id + '" data-index="' + othis.data('index') + '"><li layim-event="editGroupChat" data-type="add">发起群聊</li><li layim-event="editGroupChat" id="' + groupId1 + '" data-type="updat">修改群资料</li><li layim-event="editGroupChat" id="' + groupId1 + '" data-type="updateName">修改群昵称</li><li layim-event="editGroupChat" id="' + groupId1 + '" data-type="delete">退出群聊</li></ul>';
+            var html = '<ul data-id="' + othis[0].id + '" data-index="' + othis.data('index') + '"><li layim-event="editGroupChat" data-type="add">发起群聊</li><li layim-event="editGroupChat" id="' + groupId1 + '" data-type="updat">修改群资料</li><li layim-event="editGroupChat" id="' + groupId1 + '" data-type="updateName">修改我在本群昵称</li><li layim-event="editGroupChat" id="' + groupId1 + '" data-type="delete">退出群聊</li></ul>';
 
             if (othis.hasClass('layim-null')) return;
 
@@ -1756,7 +1756,7 @@ layui.define(['layer', 'laytpl', 'upload'], function (exports) {
                     });
                 }
                 //编辑资料
-                , editUserInfo: function () {
+                , editUserInfo: function (othis) {
                     var params = {};
                     params.userid=currImCode;
                     params.token=token;
@@ -1774,7 +1774,9 @@ layui.define(['layer', 'laytpl', 'upload'], function (exports) {
                             // 获取子页面的iframe
                             var iframe = window['layui-layer-iframe' + index];
                             // 向子页面的全局函数child传参
-                            iframe.setDataSys(params);
+                            iframe.setDataSys(params,function(data) {
+                            	othis.context.innerText = data.nickname;
+                            });
                         }
                     });
                 }
@@ -2377,7 +2379,7 @@ layui.define(['layer', 'laytpl', 'upload'], function (exports) {
                             		var friendList = group.list;
                             		for(var j=0; j<friendList.length; j++) {
                             			var friend = friendList[j];
-                            			if(friend.id == friendid) {
+                            			if(friend.id == friendid && group.id != type) {
                             				addList({
                             					exType:'move'
                                         		,type: 'friend'
@@ -2797,23 +2799,23 @@ layui.define(['layer', 'laytpl', 'upload'], function (exports) {
                         area: ['600px', '500px'],
                         maxmin: true,
                         success: function (layero, index) {
-                                // 获取子页面的iframe
-                                var iframe = window['layui-layer-iframe' + index];
-                                // 向子页面的全局函数child传参
-                                //iframe.setData(groupTemp);
-                            },
-                            end: function () {
-                                var group = {
-                                    avatar: "http://tva3.sinaimg.cn/crop.64.106.361.361.50/7181dbb3jw8evfbtem8edj20ci0dpq3a.jpg",
-                                    groupname: "华胜古天乐粉丝群",
-                                    historyTime: 1558335578328,
-                                    id: "12333333",
-                                    members: 0,
-                                    name: "华胜古天乐粉丝群",
-                                    type: "group",
-                                }
-                                popchat(group);
-                            }
+                            // 获取子页面的iframe
+                            var iframe = window['layui-layer-iframe' + index];
+                            // 向子页面的全局函数child传参
+                            iframe.setData(layui.layim.cache().friend,updateGroupList);
+                        },
+                        end: function () {
+                           /* var group = {
+                                avatar: "http://tva3.sinaimg.cn/crop.64.106.361.361.50/7181dbb3jw8evfbtem8edj20ci0dpq3a.jpg",
+                                groupname: "华胜古天乐粉丝群",
+                                historyTime: 1558335578328,
+                                id: "12333333",
+                                members: 0,
+                                name: "华胜古天乐粉丝群",
+                                type: "group",
+                            }*/
+                            //popchat(group);
+                        }
                     });
                 } else if (type === 'delete') {
                     layer.confirm('确定退出此群聊吗？', {
@@ -2864,8 +2866,33 @@ layui.define(['layer', 'laytpl', 'upload'], function (exports) {
                 } else if (type === 'updateName') {
                     layer.open({
                         type: 2,
-                        title: '修改群昵称',
+                        title: '修改我在本群昵称',
                         content: editGroupName, //这里content是一个普通的String
+                        btn: ['确定','取消'],
+                        yes: function(index, layero) {
+                        	var body = layer.getChildFrame('body', index);
+	          	          	var uid = id;
+	          	          	var name = body.find('input').val();
+	          	          	if(name == null || name.replace(/\s+/g,"") == "") {
+	          	            	layer.msg('请输入群昵称', {
+	          	                   icon: 7,
+	          	                   time: 2000
+	          	                });
+	          	                return;
+	          	            } 
+	          	            
+	          	            var data = {
+	          	            	userId:currImCode,
+	          	            	groupId:editGroupChatId,
+	                      		name:name,
+	                      		token:token
+	                      	} 
+	          	            updateUserGroupName(layer, index, JSON.stringify(data));
+                        	
+                        },
+                        btn2: function(index, layero) {
+                        	layer.close(index);
+                        },
                         area: ['400px', '200px'],
                         maxmin: true,
                         success: function (layero, index) {
@@ -2960,6 +2987,53 @@ layui.define(['layer', 'laytpl', 'upload'], function (exports) {
             	
             }
         });
+    }
+    
+    function updateUserGroupName(layer, index, json) {
+    	$.ajax({
+            type:'post',
+            dataType:'json',
+            contentType:'application/json',
+            cache : false,
+            data: json, 
+            url:apiPath + sysApi + "/com.hsapi.system.im.message.updateGroupName.biz.ext",
+            async:false, 
+            success:function(data){ 
+            	if(data.code=="0"){
+            		layer.close(index);
+
+            		layer.msg('修改成功', {
+                        icon: 1,
+                        time: 1000
+                    });
+            	}else{
+            		layer.msg('操作异常', {
+                        icon: 7,
+                        time: 2000
+                    });
+            	}
+            	
+            }
+        });
+    }
+    
+    function updateGroupList(group) {
+    	addList({
+            type: 'group',
+            groupname: group.groupName,
+            id: group.id,
+            avatar: group.avatar
+        });
+    	
+    	var data = {
+	        avatar: group.avatar,
+	        groupname: group.groupName,
+	        id: group.id,
+	        members: 0,
+	        name: group.groupName,
+	        type: "group",
+	    }
+	    popchat(data);
     }
 
     //暴露接口

@@ -205,6 +205,20 @@ public class MessageProxyImpl implements MessageProxy {
 		result.setContent(msg.build().toByteString());
 		return  new MessageWrapper(MessageWrapper.MessageProtocol.SEND, sessionId, reSessionId, result.build());
 	}
+
+	@Override
+	public MessageWrapper  getCreateGroupMsg(String sessionId, String reSessionId, String content) {
+		MessageProto.Model.Builder  result = MessageProto.Model.newBuilder();
+		result.setTimeStamp(DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
+		result.setSender(sessionId);
+		result.setReceiver(reSessionId);//存入接收人sessionId
+		result.setCmd(Constants.CmdType.CREATEGROUPMESSAGE);
+
+		MessageBodyProto.MessageBody.Builder  msg =  MessageBodyProto.MessageBody.newBuilder();
+		msg.setContent(content);
+		result.setContent(msg.build().toByteString());
+		return  new MessageWrapper(MessageWrapper.MessageProtocol.SEND, sessionId, reSessionId, result.build());
+	}
     
     
 }

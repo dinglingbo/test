@@ -186,6 +186,29 @@ public class ImConnertorImpl implements ImConnertor {
 	    }  
 	    
 	}
+    @Override
+    public void pushCreateGroupMessage(String sessionId, List<String> reSessionIdList, String content) throws RuntimeException {
+        try {
+            ///取得接收人 给接收人写入消息
+            for(int i=0; i<reSessionIdList.size(); i++) {
+                String reSessionId = reSessionIdList.get(i);
+
+                MessageWrapper wrapper = proxy.getCreateGroupMsg(sessionId, reSessionId, content);
+                Session responseSession = sessionManager.getSession(wrapper.getReSessionId());
+                if (responseSession != null && responseSession.isConnected() ) {
+                    responseSession.write(wrapper.getBody());
+                }
+            }
+
+        } catch (PushException e) {
+            log.error("connector send occur PushFriendSettleException.", e);
+
+            throw new RuntimeException(e.getCause());
+        } catch (Exception e) {
+            log.error("connector send occur Exception.", e);
+            throw new RuntimeException(e.getCause());
+        }
+    }
 	@Override  
     public boolean validateSession(MessageWrapper wrapper) throws RuntimeException {
         try {

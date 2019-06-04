@@ -15,6 +15,7 @@ public interface GroupUserDao {
     List<GroupUserEntity> queryGroupInfo(int UserId);
     List<String > queryGroupUserId(String groupId);
     List<UserInfoExtendEntity> queryUserInfoExtend(String groupId);
+    UserInfoExtendEntity queryGroupUserInfoExtend(@Param("groupId") String groupId, @Param("userId") String userId);
     List<GroupUserEntity> queryGroupName(@Param("userId") String userId, @Param("groupId") String groupId);
     int updateGroupName(@Param("userId") String userId, @Param("groupId") String groupId,@Param("name") String name);
 }

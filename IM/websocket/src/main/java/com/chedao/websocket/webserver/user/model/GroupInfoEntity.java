@@ -38,7 +38,8 @@ public class GroupInfoEntity implements Serializable {
 
     @Override
     public String toString() {
-        return null;
+        return "GroupInfoEntity [id=" + id + ", groupName=" + groupName + ", avatar="
+               + avatar + "]";
     }
 
     public static long getSerialVersionUID() {

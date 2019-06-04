@@ -83,6 +83,7 @@ public class Constants {
 	   	 byte RECON = 6; //重连
 		 byte FRIENDMESSAGE = 7; //好友申请同意/拒绝后的消息
 		 byte SYSMESSAGE = 8; //系统公告消息
+		 byte CREATEGROUPMESSAGE = 9; //系统公告消息
 	}
 
 	public static interface MessageType{

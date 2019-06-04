@@ -92,7 +92,7 @@ layui.use('layim', function(layim){
 	    message.setSender(currentsession);
 	    message.setReceiver(receiver);//好友ID
 	    content.setContent(msg);
-	    content.setType(0)
+	    content.setType(0);
 	    message.setContent(content.serializeBinary())
 	    socket.send(message.serializeBinary()); 
 	};
@@ -177,6 +177,18 @@ layui.use('layim', function(layim){
 	       }else if(msg.getCmd()==7) {
 	    	   if(msg.getSender()!=currentsession){
 	    		   parent.layui.layim.msgbox(1);
+	    	   } 
+	       }else if(msg.getCmd()==9) {
+	    	   if(msg.getSender()!=currentsession){
+	    		   var msgCon =  proto.MessageBody.deserializeBinary(msg.getContent()); 
+	    		   var group = JSON.parse(msgCon.getContent());
+	    		   console.log(msgCon.getContent());
+	    		   layui.layim.addList({
+	    	            type: 'group',
+	    	            groupname: group.groupName,
+	    	            id: group.id,
+	    	            avatar: group.avatar
+	    	        });
 	    	   } 
 	       }
 	  }else {
@@ -463,12 +475,12 @@ layui.use('layim', function(layim){
       //layim.setChatStatus('<span style="color:#FF5722;">在线</span>');
     } else if(type === 'group'){
       //模拟系统消息
-      layim.getMessage({
+      /*layim.getMessage({
         system: true
         ,id: res.data.id
         ,type: "group"
         ,content: '模拟群员'+(Math.random()*100|0) + '加入群聊'
-      });
+      });*/
     }
   });
   

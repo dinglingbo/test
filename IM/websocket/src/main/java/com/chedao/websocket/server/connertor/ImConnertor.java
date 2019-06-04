@@ -9,6 +9,8 @@ package com.chedao.websocket.server.connertor;
 import com.chedao.websocket.server.model.MessageWrapper;
 import io.netty.channel.ChannelHandlerContext;
 
+import java.util.List;
+
 public interface ImConnertor {
 	 /**
 	  * 发送心跳检测 到客户端
@@ -35,6 +37,12 @@ public interface ImConnertor {
 	  * @throws RuntimeException
 	  */
 	 void pushGroupMessage(MessageWrapper wrapper) throws RuntimeException;
+	/**
+	 * 发送组消息
+	 * @param
+	 * @throws RuntimeException
+	 */
+	void pushCreateGroupMessage(String sessionId, List<String> reSessionIdList, String content) throws RuntimeException;
 	 /**
 	  * 验证session
 	  * @param wrapper

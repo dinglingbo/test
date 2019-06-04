@@ -56,5 +56,14 @@ public interface MessageProxy {
      * @return
      */
     MessageWrapper  getFriendApplyMsg(String sessionId, String reSessionId, String content);
+
+    /**
+     * 获取创建群聊后的消息
+     * @param sessionId
+     * @param reSessionId
+     * @param content
+     * @return
+     */
+    MessageWrapper  getCreateGroupMsg(String sessionId, String reSessionId, String content);
 }
 

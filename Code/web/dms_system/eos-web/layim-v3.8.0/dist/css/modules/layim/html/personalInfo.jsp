@@ -133,6 +133,7 @@ var form;
 var $; */
 var dataSys = {};
 var areaData = Area;
+var tcallback=null;
 var $form;
 var form;
 var $;
@@ -221,6 +222,7 @@ layui.use(['form', 'upload'], function(){
                 parent.layer.close(index);//关闭当前页  
                // window.parent.location.replace(location.href)//刷新父级页面  
                // window.parent.location.reload(); 
+               tcallback(params);
         	}else{
         	   //showMsg("保存失败","E");
         	}
@@ -242,8 +244,9 @@ layui.use('laydate', function(){
 }); 
 
 //http://127.0.0.1:8080/default/com.hs.common.region.getRegin.biz.ext
-function setDataSys(params){
+function setDataSys(params,callback){
    dataSys = params;  
+   tcallback = callback;
 }
 
 function onSubmit(){

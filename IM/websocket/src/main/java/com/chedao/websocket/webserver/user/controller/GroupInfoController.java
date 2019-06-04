@@ -3,6 +3,8 @@ package com.chedao.websocket.webserver.user.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.chedao.websocket.constant.Constants;
+import com.chedao.websocket.server.connertor.ImConnertor;
 import com.chedao.websocket.webserver.base.controller.BaseController;
 import com.chedao.websocket.webserver.user.model.GroupInfoEntity;
 import com.chedao.websocket.webserver.user.model.GroupUserEntity;
@@ -32,12 +34,14 @@ public class GroupInfoController extends BaseController {
     private GroupInfoService groupInfoServiceImpl;
     @Autowired
     private GroupUserService groupUserServiceImpl;
+    @Autowired
+    private ImConnertor connertor;
     /**
      * 创建群聊
      */
     @ResponseBody
     @RequestMapping(value = "/addGroupInfo", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
-    public String addGroupInfo(@RequestBody Map<String,Object> params){
+    public Object addGroupInfo(@RequestBody Map<String,Object> params){
         StringBuilder errCode= new StringBuilder();
 
         List<Map<String,Object>> userList = (ArrayList<Map<String,Object>>)params.get("groupUser");
@@ -59,18 +63,25 @@ public class GroupInfoController extends BaseController {
         groupInfo.setModifierId(groupManId);
         groupInfo.setModifier(groupMan);
         try{
-          Integer groupInfoId =  groupInfoServiceImpl.addGroupInfo(groupInfo);
+            Integer groupInfoId =  groupInfoServiceImpl.addGroupInfo(groupInfo);
+            List<String> reSessionIdList = new ArrayList<String>();
             for(int i=0;i<userList.size();i++) {
                 Map<String, Object> map = userList.get(i);
+                String uid = map.get("userId").toString();
+                if(!uid.equals(id)) {
+                    reSessionIdList.add(uid);
+                }
                 map.put("groupId", groupInfoId);
             }
-             groupUserServiceImpl.addGroupUser(userList);
+            groupUserServiceImpl.addGroupUser(userList);
+            groupInfo.setId(groupInfoId);
+
+            connertor.pushCreateGroupMessage(id, reSessionIdList, JSONObject.toJSONString(groupInfo));
+
         }catch (Exception e){
-            errCode.append("E");
-            return errCode.toString();
+            return putMsgToJsonString(Constants.WebSite.ERROR, "创建群聊失败", 0, null);
         }
-        errCode.append("S");
-        return errCode.toString();
+        return putMsgToJsonString(Constants.WebSite.SUCCESS, "创建群聊成功", 0, groupInfo);
     }
 
     /**

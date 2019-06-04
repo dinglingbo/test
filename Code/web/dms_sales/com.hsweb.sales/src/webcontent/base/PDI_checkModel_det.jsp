@@ -74,7 +74,7 @@ pageEncoding="UTF-8" session="false" %>
            </td>
            <td colspan="3">
                <input id="carModelId" name="carModelId" class="nui-textbox" required="true"  visible="false"  style="width: 352px;"/>
-               <input id="carModelName" name="carModelName" class="nui-buttonedit" required="true" style="width: 352px;" onbuttonclick="onButtonEdit"/>
+               <input id="carModelName" name="carModelName" class="nui-buttonedit" allowInput="false" required="true" style="width: 352px;" onbuttonclick="onButtonEdit"/>
                <div id="isDefault" name="isDefault" class="nui-checkbox"  text="车型默认模板" trueValue="1" falseValue="0"></div>
            </td>
        </tr>
@@ -197,6 +197,11 @@ function setData(row,e) {
         var addArr = grid.getChanges('added');
         var delArr = grid.getChanges('removed');
         var data = form.getData(true);
+        nui.mask({
+            el : document.body,
+            cls : 'mini-mask-loading',
+            html : '保存中...'
+        });
         nui.ajax({
             url:saveUrl,
             type:'post',
@@ -206,9 +211,11 @@ function setData(row,e) {
                 delArr:delArr
             },
             success:function(res){
+                nui.unmask(document.body);
                 if(res.errCode == 'S'){
                     showMsg('保存成功','S');
-                    grid.reload();
+                    //grid.reload();
+                    CloseWindow("ok");
                 }else{
                     showMsg('保存失败','E');
                 }

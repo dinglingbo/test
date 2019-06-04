@@ -6,7 +6,7 @@
 
 <head>
     <title>系统参数</title>
-    <script src="<%=webPath + contextPath%>/sales/base/js/sellCarParamMgr.js?v=1.0.5"></script>
+    <script src="<%=webPath + contextPath%>/sales/base/js/sellCarParamMgr.js?v=1.0.6"></script>
     <link href="<%=webPath + contextPath%>/sales/base/css/botton.css" rel="stylesheet" type="text/css" />
     <style>
 
@@ -77,7 +77,7 @@
                         <div title="意向级别" id="IntentionLevel" name="IntentionLevel" url=""></div>
                         <div title="购车方式" id="buyCarType" name="buyCarType" url=""></div>
                         <div title="购车用途" id="buyCarUser" name="buyCarUser" url=""></div>
-                        <div title="银行定义" id="bank" name="bank" url=""></div>
+                        <div title="开户银行" id="bank" name="bank" url=""></div>
                         <div title="来访类型" id="visitType" name="visitType" url=""></div>
 
                         <!--<div title="信息来源" id="infoSourceTab" name="infoSourceTab" url=""></div>
@@ -105,6 +105,9 @@
                                 <a class="nui-button" plain="true" onclick="addShareUrl" id="addStationBtn">
                                     <span class="fa fa-plus fa-lg"></span>&nbsp;新增
                                 </a>
+                                <!-- <a class="nui-button" plain="true" onclick="del()" id="" plain="false"><span
+                                    class="fa fa-close fa-lg"></span>&nbsp;删除
+                                </a> -->
                                 <a class="nui-button" plain="true" onclick="save()" id="addStationBtn">
                                     <span class="fa fa-save fa-lg"></span>&nbsp;保存
                                 </a>

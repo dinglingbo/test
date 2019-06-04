@@ -1,5 +1,5 @@
-var saveUrl = apiPath + saleApi + "/sales.base.addCsbRebate.biz.ext";
-var gridUrl = apiPath + saleApi + "/sales.base.searchCsbRebate.biz.ext";
+var saveUrl = apiPath + saleApi + "/sales.base.addCsbGift.biz.ext";
+var gridUrl = apiPath + saleApi + "/sales.base.searchCsbGift.biz.ext";
 var isDisArr = [{id:'',text:'全部'},{id:0,text:'启用'},{id:1,text:'禁用'}];
 var statusList = [{id:0,name:"启用"},{id:1,name:"禁用"}];
 var statusHash = {0:"启用",1:"禁用"};
@@ -36,18 +36,18 @@ $(document).ready(function(v) {
 	// 		e.cancel = true;
 	// 	}
     // });
-	dgGrid.on("cellcommitedit",function(e){
-		var field = e.field; 
-        var value = e.value; 
-        var editor = e.editor;
-        if (field == 'rebateAmt') {
-            if (editor.isValid() == false) {
-                showMsg("请输入有效数字！","W");
-                e.cancel = true;
-            }
-        }
+	// dgGrid.on("cellcommitedit",function(e){
+	// 	var field = e.field; 
+    //     var value = e.value; 
+    //     var editor = e.editor;
+    //     if (field == 'rebateAmt') {
+    //         if (editor.isValid() == false) {
+    //             showMsg("请输入有效数字！","W");
+    //             e.cancel = true;
+    //         }
+    //     }
 
-    });
+    // });
     
 });
 

@@ -53,6 +53,10 @@
       <process:to type="query">ct/_expr[1]/code</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">like</process:from>
+      <process:to type="query">ct/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">params/carModelName</process:from>
       <process:to type="query">ct/_expr[2]/carModelName</process:to>
     </process:copy>

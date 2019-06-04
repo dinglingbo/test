@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="addCsbRebate" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="addCsbGift" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -354,12 +354,12 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-05-21 12:07:23" date="2019-05-21Z" description="" name="addCsbCarModel" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.sales.data.csb.CsbRebate" name="f"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.sales.data.csb.CsbGift" name="f"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="true" modelType="com.hsapi.sales.data.csb.CsbRebate" name="addList"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.sales.data.csb.CsbRebate" name="updateList"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.sales.data.csb.CsbRebate" name="removeList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.sales.data.csb.CsbGift" name="addList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.sales.data.csb.CsbGift" name="updateList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.sales.data.csb.CsbGift" name="removeList"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

@@ -32,8 +32,8 @@
     <div class="nui-toolbar">
       项目编码：<input id="code" class="nui-textbox" style="width: 110px" />
       项目名称：<input id="name" class="nui-textbox" style="width: 110px" />
-      项目类型： <input id="pdiTypeId" name="pdiTypeId" class="nui-combobox" style="width: 150px"
-      valueField="customid" textField="name" allowInput="false"/>
+       项目类型： <!--<input id="pdiTypeId" name="pdiTypeId" class="nui-combobox" style="width: 150px"
+      valueField="customid" textField="name" allowInput="false"/> -->
       <input name="pdiTypeId" id="pdiTypeId" class="nui-combobox " textField="name" valueField="customid"   
       emptyText="请选择..." showNullItem="false" nullItemText="请选择..." 
       allowInput="true" valueFromSelect="true" style="width: 120px" />
@@ -60,7 +60,7 @@
       <div property="columns">
         <!-- <div type="indexcolumn" headerAlign="center" width="60px">序号</div>
         <div type="checkcolumn" class="mini-radiobutton" width="60px">选择</div> -->
-        <div field="orderNo" headerAlign="center" allowSort="true" width="100px">序号
+        <div field="orderNo" headerAlign="center" allowSort="true" width="70px">序号
                 <!-- <input property="editor" class="nui-textbox" /> -->
         </div>
         <div field="name" headerAlign="center" allowSort="true" width="150px">项目名称
@@ -78,7 +78,7 @@
         <div field="pyCode" headerAlign="center" allowSort="true" width="150px">拼音码
             <!-- <input property="editor" class="nui-textbox" /> -->
         </div>
-        <div field="code" headerAlign="center" allowSort="true" width="100px">项目编码
+        <div field="code" headerAlign="center" allowSort="true" width="130px">项目编码
             <!-- <input property="editor" class="nui-textbox" /> -->
         </div>
         <div field="isDisabled" headerAlign="center" allowSort="true" width="80px">状态

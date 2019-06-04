@@ -41,6 +41,10 @@ public class GroupUserManager implements IGroupUserManager {
         return memCacheKey + groupId;
     }
 
+    private String getGroupMemCacheKey(String groupId, String userId){
+        return memCacheKey + groupId +'_'+userId;
+    }
+
     //将某个组的用户id存入缓存  key=》list
     @Override
     public boolean saveGroupMemeberIds(String groupId, List<String> userIds) {
@@ -58,6 +62,15 @@ public class GroupUserManager implements IGroupUserManager {
         return true;
     }
 
+    //将某个组的某个用户信息存入缓存  key=》list
+    @Override
+    public boolean saveGroupMemeber(String groupId, String userId, UserInfoExtendEntity groupUser) {
+
+        String key = getGroupMemCacheKey(groupId, userId);
+        jedisCache.hashSet(cacheName,key,groupUser);
+        return true;
+    }
+
     @Override
     public List<String> getGroupMembers(String groupId){
         String key = getCacheKey(groupId);
@@ -68,17 +81,6 @@ public class GroupUserManager implements IGroupUserManager {
             saveGroupMemeberIds(groupId, groupList);
             return groupList;
         }
-/*        Integer groupId = Integer.valueOf(id);
-        if (groupList == null || groupList.size() == 0) {
-            System.out.println("缓存中没有数据，需要从数据库读取");
-            List<GroupUserEntity> mm = groupUserDao.queryGroupUsers(groupId);
-            for(int i=0;i<mm.size();i++) {
-                GroupUserEntity groupUserEntity = mm.get(i);
-                groupList.add(groupUserEntity.getId().toString());
-            }
-            saveGroupMemeberIds(id, groupList);
-            return groupList;
-        }*/
         return groupList;
     }
 
@@ -93,5 +95,30 @@ public class GroupUserManager implements IGroupUserManager {
             return groupUserList;
         }
         return groupUserList;
+    }
+
+    @Override
+    public UserInfoExtendEntity getGroupMember(String groupId, String userId) {
+        String key = getGroupMemCacheKey(groupId,userId);
+        UserInfoExtendEntity groupUser = (UserInfoExtendEntity) jedisCache.hashGet(memCacheKey,key);
+        if (groupUser == null) {
+            System.out.println("缓存中没有数据，需要从数据库读取");
+            groupUser = groupUserDao.queryGroupUserInfoExtend(groupId, userId);
+            saveGroupMemeber(groupId, userId, groupUser);
+            return groupUser;
+        }
+        return groupUser;
+    }
+
+    @Override
+    public void refreshGroupMemberListCache(String groupId) {
+        List<UserInfoExtendEntity> groupUserList = groupUserDao.queryUserInfoExtend(groupId);
+        saveGroupMemeberList(groupId, groupUserList);
+    }
+
+    @Override
+    public void refreshGroupMemberCache(String groupId, String userId) {
+        UserInfoExtendEntity groupUser = groupUserDao.queryGroupUserInfoExtend(groupId, userId);
+        saveGroupMemeber(groupId, userId, groupUser);
     }
 }

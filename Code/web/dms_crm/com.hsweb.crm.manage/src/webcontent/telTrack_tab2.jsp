@@ -105,7 +105,7 @@ pageEncoding="UTF-8" session="false" %>
                             allowInput="false"
                             showNullItem="false"
                             nullItemText="请选择..."/></td>          
-                            <td><span class="title title-width1">上牌日期：</span></td>
+                            <td><span class="title title-width1">注册日期：</span></td>
                             <td><input id="firstRegDate" 
                                 name="firstRegDate" 
                                 class="nui-datepicker width2" 

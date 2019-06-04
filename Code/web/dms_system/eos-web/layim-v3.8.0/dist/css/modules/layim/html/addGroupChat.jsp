@@ -24,8 +24,10 @@
 	<div id="layui-layim" class="layui-layer-content" style="width: 100%; height: 450px;">
 		<div class="layui-layim-main" style=" top: 0px !important;  width: 49%; height: 380px; border: 1px solid black; border-top: none; border-bottom: none; border-left: none; float: left;">
 
-			<ul class="layui-unselect layim-tab-content layim-list-friend layui-show" style="height: 380px !important;">
-				<li class="layim-list-friend-group">
+			<ul id="u" class="layui-unselect layim-tab-content layim-list-friend layui-show" style="height: 380px !important;">
+			
+				
+				<!-- <li class="layim-list-friend-group">
 					<h5 layim-event="spread" lay-type="false" id="1">
 						<i class="layui-icon"></i> <span>前端码屌</span> <em>(<cite class="layim-count"> 5</cite>)
 						</em>
@@ -115,7 +117,7 @@
 							src="http://tp4.sinaimg.cn/1345566427/180/5730976522/0"><span>佟丽娅</span>
 						<p>我也爱贤心吖吖啊</p>
 							<span class="layim-msg-status">new</span></li>
-					</ul></li>
+					</ul></li> -->
 			</ul>
 		</div>
 		<div class="layui-layim-main" style=" top: 0px !important;  width: 49%; height: 450px; float: left;">
@@ -129,18 +131,60 @@
 					</ul>
 				</li>
 			</ul>
-			<div class="layui-form-item">
+			<!-- <div class="layui-form-item">
 			    <div class="layui-input-block" >
 			      <button class=" layui-btn-xs " id="createChat" lay-submit lay-filter="createChat"  style="margin-left: 90px;margin-top: 0px;">确认</button>
 			      <button  id="cancel"  lay-submit lay-filter="cancel" class=" layui-btn-xs" >取消</button>
 			    </div>
+ 		    </div> -->
+			<div class="layui-layer-btn layui-layer-btn-">
+		      <a class="layui-layer-btn0" id="createChat" lay-submit lay-filter="createChat" >确认</button>
+		      <a id="cancel"  lay-submit lay-filter="cancel" class="layui-layer-btn1" >取消</button>
  		    </div>
 		</div>
 	</div>
 
-    <script src="<%=request.getContextPath()%>/layim-v3.8.0/dist/layui.js?v=1.0.1"></script>
-	<script>
+<script src="<%=request.getContextPath()%>/layim-v3.8.0/dist/layui.js?v=1.0.1"></script>
+<script>
 	var baseUrl = apiPath + sysApi + "/";
+	var userHash = {};
+	var userList = [];
+	var tcallback = null;
+	
+	function setData(friend,callback){
+		var htmlStr = "";
+		for(var i=0; i<friend.length; i++) {
+			htmlStr+='<li class="layim-list-friend-group">';
+
+			htmlStr+='<h5 layim-event="spread" lay-type="false" id="'+(i+1)+'">';
+
+			htmlStr+='<i class="layui-icon"></i> <span>'+friend[i].groupname+'</span> <em>(<cite class="layim-count"> '+friend[i].list.length+'</cite>)</em>';
+
+			htmlStr+='</h5>';
+
+			htmlStr+='<ul class="layui-layim-list ">';
+
+			for(var j=0; j<friend[i].list.length; j++) {
+				htmlStr+='<li layim-event="chat" data-type="friend" data-index="0" onclick="addMembers(this)" id='+friend[i].list[j].id+' name='+friend[i].list[j].username+' class="layim-friend3 "> ';
+				htmlStr+='<img src="'+friend[i].list[j].avatar+'"><span>'+friend[i].list[j].username+'</span>';
+				htmlStr+='<p>'+friend[i].list[j].sign+'</p><span class="layim-msg-status">new</span></li>';
+			}
+
+
+			htmlStr+='</ul>';
+			
+			htmlStr+='</li>';
+		}
+		var li = document.createElement("li");
+		li.innerHTML=htmlStr;
+		var ul=document.getElementById("u");
+		ul.appendChild(li);
+		
+		tcallback = callback;
+	}
+	
+	
+	
 	layui.define(['layer','form', 'laytpl', 'upload'], function(exports){
 	  var v = '3.8.0';
 	  var $ = layui.$;
@@ -186,30 +230,30 @@
   	exports('layim', new LAYIM());
  	//监听申请按钮
   	form.on('submit(createChat)', function(data){
-  			var groupManager = {
-  				    userId:currImCode,
-      				userName : "张三"
+  			if(userList.length==0) {
+  				parent.layer.msg('请选择群聊成员', {
+                    icon: 7,
+                    time: 1000
+                });
+  				return;
   			}
-      		var members =[
-	      		{
-	  			    userId:currImCode,
-	      			userName : "张三"
-	  			},
-      			{
-      				userId:4,
-      				userName : "李四"
-      			},
-      			 {
-      				userId:5,
-      				userName : "王五"
-      			},
-      			{
-      				userId:6,
-      				userName : "赵六"
-      			},
-      		]; 
-			    //创建群聊
-			    
+  			var mine = parent.layui.layim.cache().mine;
+  			var groupManager = {
+  				userId: mine.id,
+      			userName : mine.username
+  			}
+  			var groupName = mine.username;
+  			if(userList.length > 2) {
+  				groupName += ","+userList[0].userName;
+  				groupName += ","+userList[1].userName+"...";
+  			}else {
+  				for(var i=0; i<userList.length; i++){
+  				 groupName += ","+userList[i].userName;
+  				}
+  			}
+  			userList.push(groupManager);
+  			
+			//创建群聊
 		    $.ajax({
 		        type:'post',
 		        dataType:'json',
@@ -217,45 +261,77 @@
 		        cache : false,
 		        async:false, 
 		        data: JSON.stringify({
-		        	members:members,
-		        	name : "华胜古天乐粉丝群",
+		        	members: userList,
+		        	name : groupName,
 		        	groupManager :  groupManager       	
 		        }),
-		        url:baseUrl + "com.hs.common.env.AddCreateChat.biz.ext",
+		        url:baseUrl + "com.hsapi.system.im.message.createChat.biz.ext",
 		        success:function(data){
-		        	if(data.errCode=="S"){
+		        	if(data.code=="0"){
 						var index = parent.layer.getFrameIndex(window.name); 
 						parent.layer.close(index);//关闭当前页  
-					    parent.layer.msg('创建成功！',{icon: 1,time: 2000});
+					    //parent.layer.msg('创建成功！',{icon: 1,time: 2000});
+					    tcallback(data.data); 
 		        	}else{
-		        		parent.layer.msg('创建异常',{icon: 7,time: 2000});
+		        		parent.layer.msg('创建异常',{icon: 7,time: 1000});
 		        	}
 		        }
 		    });
 
-     });cancel
-  //监听取消按钮
-  form.on('submit(cancel)', function(data){
-		var index = parent.layer.getFrameIndex(window.name); 
-		parent.layer.close(index);//关闭当前页  
      });
-}).addcss(
-  'modules/layim/layim.css?v=3.8.0'
-  ,'skinlayimcss'
-);
+    //监听取消按钮
+    form.on('submit(cancel)', function(data){
+			var index = parent.layer.getFrameIndex(window.name); 
+			parent.layer.close(index);//关闭当前页  
+	     });
+	}).addcss(
+	  'modules/layim/layim.css?v=3.8.0'
+	  ,'skinlayimcss'
+	);
+	
+	function addMembers(obj){
+		if(userHash[obj.id]) return; 
+	    var eList = obj.children;
+	    var imgSrc = eList[0].src;
+	    var p = eList[2].innerText;
+	    var name = obj.getAttribute("name");
+	    var user = {
+	    	userId:obj.id,
+	    	userName:name
+	    };
+		htmlStr = "";
+		htmlStr+='<li layim-event="chat" data-type="friend" data-index="0" id='+obj.id+' name='+name+' class="layim-friend3" onclick="delMembers(this)">';
+		htmlStr+='	<img src='+imgSrc+'>'; 
+		htmlStr+='	<span>'+name+'</span>';
+		htmlStr+='  <p>'+p+'</p>';
+		htmlStr+='	<span class="layim-msg-status">new</span>';
+		htmlStr+='</li>';
+		
+		var li = document.createElement("li");
+		li.innerHTML=htmlStr;
+		var ul=document.getElementById("Members");
+		ul.appendChild(li);
+		
+		userHash[obj.id] = user;
+		userList.push(user);
+	
+		//$("#Members").html(htmlStr);
+	}
+	
+	function delMembers(obj) {
+		obj.parentElement.remove();
+		var id = obj.id;
+		for(var i=0;i<userList.length;i++) {
+			var u = userList[i];
+			if(id==u.userId) {
+				userList.splice(i,1);
+			}
+		}
+		
+		delete userHash[id];
+		
+	}
 
-function addMembers(){
-	htmlStr = "";
-	htmlStr+='<li layim-event="chat" data-type="friend" data-index="0" id="" class="layim-friend3 ">';
-	htmlStr+='	<img src="http://tp1.sinaimg.cn/1571889140/180/40030060651/1">';
-	htmlStr+='	<span>贤心</span>';
-	htmlStr+='  <p>这些都是测试数据，实际使用请严格按照该格式返回</p>';
-	htmlStr+='	<span class="layim-msg-status">new</span>';
-	htmlStr+='	<span class="layim-msg-status">new</span>';
-	htmlStr+='</li>';
-
-	$("#Members").html(htmlStr);
-}
-	</script>
+</script>
 </body>
 </html>

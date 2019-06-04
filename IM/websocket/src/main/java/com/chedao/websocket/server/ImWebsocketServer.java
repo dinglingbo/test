@@ -7,6 +7,7 @@
 package com.chedao.websocket.server;
 
 import com.chedao.websocket.constant.Constants;
+import com.chedao.websocket.server.connertor.ImConnertor;
 import com.chedao.websocket.server.connertor.impl.ImConnertorImpl;
 import com.chedao.websocket.server.model.proto.MessageProto;
 import com.chedao.websocket.server.proxy.MessageProxy;
@@ -51,7 +52,7 @@ public class ImWebsocketServer  {
     @Autowired
     private MessageProxy proxy = null;
     @Autowired
-    private ImConnertorImpl connertor;
+    private ImConnertor connertor;
     @Autowired
     private OnLineUserManager onLineUserManager;
     @Value("${imWebsocketServer.port}")

@@ -305,7 +305,7 @@ function buyCarCount(){
 			url: webPath + contextPath + '/sales/sales/caCalculation.jsp',
 			title: '购车预算',
 			width: 1000,
-			height: 500,
+			height: 600,
 			onload: function () {
 			var iframe = this.getIFrameEl();
 			iframe.contentWindow.setShowSave(main);
@@ -445,4 +445,36 @@ function saveSaleMain(){
 			nui.unmask(document.body);
 		}
 	 });
+}
+
+
+function salesOnPrint(p) {
+    var billFormData = guestComeForm.getData(true); //主表信息
+    var params = {};
+    params.serviceId = billFormData.id;
+    params.billType = 1;
+    params.guestFullName = billFormData.fullName;
+    params.carModelName	= billFormData.carModelName; 
+    var url = webPath + contextPath;
+    switch (p) {
+        case 1:
+            url = url + "/sales/sales/print/cashPurchases.jsp";
+            break;
+        case 2:
+            url = url + "/sales/sales/print/printLoanDetail .jsp";
+            break;
+    }
+    nui.open({
+        url: url,
+        title: "打印",
+        width: "100%",
+        height: "100%",
+        onload: function() {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.SetData(params);
+        },
+        ondestroy: function(action) {
+
+        }
+    });
 }

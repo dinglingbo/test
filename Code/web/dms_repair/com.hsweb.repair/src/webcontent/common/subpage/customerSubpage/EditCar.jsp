@@ -149,10 +149,10 @@
                                 <input name="engineNo" class="nui-textbox" width="100%" />
                             </td>
                             <td class="form_label">
-                                <label>年审到期：</label>
+                                <label>生产日期：</label>
                             </td>
                             <td>
-                                <input name="annualVerificationDueDate" format="yyyy-MM-dd" allowInput="true" class="nui-datepicker" width="100%" />
+                                <input name="produceDate" allowInput="true" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
                             </td>
                         </tr>
 
@@ -210,40 +210,24 @@
                                 <input name="lastComeKilometers" class="nui-textbox" width="100%" />
                             </td>
                             <td class="form_label">
-                                <label>下次保养里程：</label>
-                            </td>
-                            <td>
-                                <input name="careDueMileage" class="nui-textbox" width="100%" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="form_label">
-                                <label>下次保养时间：</label>
-                            </td>
-                            <td>
-                                <input name="careDueDate" allowInput="true" format="yyyy-MM-dd" timeFormat="H:mm:ss" class="nui-datepicker" width="100%"
-                                    showTime="false" />
-                            </td>
-                            <td class="form_label">
-                                <label>生产日期：</label>
-                            </td>
-                            <td>
-                                <input name="produceDate" allowInput="true" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td class="form_label">
-                                <label>上牌日期：</label>
-                            </td>
-                            <td>
-                                <input name="firstRegDate" allowInput="true" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
-                            </td>
-                            <td class="form_label">
                                 <label>发证日期：</label>
                             </td>
                             <td>
                                 <input id="issuingDate" name="issuingDate" format="yyyy-MM-dd" allowInput="true" class="nui-datepicker" width="100%" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="form_label">
+                                <label>注册日期：</label>
+                            </td>
+                            <td>
+                                <input name="firstRegDate" id="firstRegDate" allowInput="true" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
+                            </td>
+                            <td class="form_label">
+                                <label>年审到期：</label>
+                            </td>
+                            <td>
+                                <input name="annualVerificationDueDate" id="annualVerificationDueDate" format="yyyy-MM-dd" allowInput="true" class="nui-datepicker" width="100%" />
                             </td>
 
                             <!--   <td class="form_label" >
@@ -254,6 +238,22 @@
                                data="[{id:1,text:'是'},{id:0,text:'否'}]"
                                class="nui-combobox" width="100%"/>
                     </td> -->
+
+                        </tr>
+                        <tr>
+                            <td class="form_label">
+                                <label>下次保养时间：</label>
+                            </td>
+                            <td>
+                                <input name="careDueDate" allowInput="true" format="yyyy-MM-dd" timeFormat="H:mm:ss" class="nui-datepicker" width="100%"
+                                    showTime="false" />
+                            </td>
+                            <td class="form_label">
+                                <label>下次保养里程：</label>
+                            </td>
+                            <td>
+                                <input name="careDueMileage" class="nui-textbox" width="100%" />
+                            </td>
 
                         </tr>
                         <tr>

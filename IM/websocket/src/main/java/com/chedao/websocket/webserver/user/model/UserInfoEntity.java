@@ -33,7 +33,7 @@ public class UserInfoEntity extends BaseModel implements Serializable {
 	//身份证
 	private String cardid;
 	//签名
-	private String signature;
+	private String signature="";
 	//毕业院校
 	private String school;
 	//学历
@@ -52,6 +52,38 @@ public class UserInfoEntity extends BaseModel implements Serializable {
 	private String  province;
 	private String city;
 	private String area;
+
+	private String lastondate;
+	private String lastoffdate;
+	private String lastupdatedate;
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public String getLastondate() {
+		return lastondate;
+	}
+
+	public void setLastondate(String lastondate) {
+		this.lastondate = lastondate;
+	}
+
+	public String getLastoffdate() {
+		return lastoffdate;
+	}
+
+	public void setLastoffdate(String lastoffdate) {
+		this.lastoffdate = lastoffdate;
+	}
+
+	public String getLastupdatedate() {
+		return lastupdatedate;
+	}
+
+	public void setLastupdatedate(String lastupdatedate) {
+		this.lastupdatedate = lastupdatedate;
+	}
 
 	public String getProvince() {
 		return province;
@@ -80,15 +112,6 @@ public class UserInfoEntity extends BaseModel implements Serializable {
 	/**
 	 * 设置：
 	 */
-	public void setId(Long id) {
-		this.id = id;
-	}
-	/**
-	 * 获取：
-	 */
-	public Long getId() {
-		return id;
-	}
 	/**
 	 * 设置：用户id
 	 */
@@ -267,7 +290,7 @@ public class UserInfoEntity extends BaseModel implements Serializable {
 	 * 获取：个人头像
 	 */
 	public String getProfilephoto() {
-		return   StringUtils.isNotEmpty(profilephoto)?profilephoto:"layui/images/0.jpg";//profilephoto;
+		return   profilephoto;//profilephoto;
 	}
 	 
 	@Override

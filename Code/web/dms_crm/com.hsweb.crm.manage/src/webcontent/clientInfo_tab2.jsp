@@ -67,7 +67,7 @@
                             enabled="true" emptyText="请选择日期" alwaysView="true"/></td>
     </tr>
     <tr>
-                <td><span class="title title-width2">上牌日期：</span></td>
+                <td><span class="title title-width2">注册日期：</span></td>
                 <td><input id="firstRegDate"
                             name="firstRegDate"
                             class="nui-datepicker width2"

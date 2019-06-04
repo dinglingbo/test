@@ -7,10 +7,12 @@ import com.chedao.websocket.webserver.user.service.UserFriendService;
 import com.chedao.websocket.webserver.util.JedisCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service("userFriendServiceImpl")
 public class UserFriendServiceImpl implements UserFriendService {
@@ -37,6 +39,17 @@ public class UserFriendServiceImpl implements UserFriendService {
         return true;
     }
 
+    @Transactional
+    @Override
+    public void saveBatch(List<UserFriendEntity> list) {
+        userFriendDao.saveBatch(list);
+        for(int i=0; i<list.size(); i++) {
+            UserFriendEntity userFriendEntity = list.get(i);
+            String userId = userFriendEntity.getUserid().toString();
+            refreshUserFriendListCache(userId);
+        }
+    }
+
     @Override
     public void save(UserFriendEntity userFriend) {
         userFriendDao.save(userFriend);
@@ -44,17 +57,28 @@ public class UserFriendServiceImpl implements UserFriendService {
 
     @Override
     public int update(UserFriendEntity userFriend) {
-        return userFriendDao.update(userFriend);
+        int i = userFriendDao.update(userFriend);
+        refreshUserFriendListCache(userFriend.getUserid().toString());
+        return i;
     }
 
     @Override
     public int delete(Long id) {
-        return userFriendDao.delete(id);
+        int i = userFriendDao.delete(id);
+        UserFriendEntity userFriendEntity = (UserFriendEntity)userFriendDao.queryObject(id);
+        refreshUserFriendListCache(userFriendEntity.getUserid().toString());
+        return i;
     }
 
 
     @Override
     public int delete(UserFriendEntity userFriend) {
+        //删除好友需要删除自己的好友数据，也需要删除对方的好友数据，并刷新缓存
+        int i = userFriendDao.delete(userFriend);
+
+        refreshUserFriendListCache(userFriend.getUserid().toString());
+        refreshUserFriendListCache(userFriend.getFriendid().toString());
+
         return userFriendDao.delete(userFriend);
     }
 
@@ -106,5 +130,13 @@ public class UserFriendServiceImpl implements UserFriendService {
     public boolean refreshUserFriendListCache(String userId) {
         List<UserFriendTEntity> userFriendList = userFriendDao.queryUserFriendList(userId);
         return saveUserFriend(userId, userFriendList);
+    }
+
+    @Override
+    public List<ImFriendUserInfoData> queryListUser(Long typeId) {return userFriendDao.queryListUser(typeId);}
+
+    @Override
+    public UserInfoEntity queryUserFriend(Map<String, Object> map) {
+        return userFriendDao.queryUserFriend(map);
     }
 }

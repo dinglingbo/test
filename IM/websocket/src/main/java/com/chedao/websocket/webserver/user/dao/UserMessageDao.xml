@@ -223,6 +223,12 @@
 				#{id}
 			</foreach>
 		</if>
+		<if test="screatedate != null ">
+			and createdate &gt;= #{screatedate}
+		</if>
+		<if test="ecreatedate != null ">
+			and createdate &lt; #{ecreatedate}
+		</if>
 	</select>
 
 	<select id="queryBoxTotal" resultType="int">
@@ -240,11 +246,16 @@
 		<if test="groupid != null ">
 			and groupid =#{groupid}
 		</if>
-		<if test="type != null ">
-			and type =#{type}
-		</if>
 		)
-		or type = 3
+		or (type = 3
+
+			<if test="screatedate != null ">
+				and createdate &gt;= #{screatedate}
+			</if>
+			<if test="ecreatedate != null ">
+				and createdate &lt; #{ecreatedate}
+			</if>
+		)
 	</select>
 	 
 	<insert id="save" parameterType="com.chedao.websocket.webserver.user.model.UserMessageEntity" useGeneratedKeys="true" keyProperty="id">

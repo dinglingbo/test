@@ -92,7 +92,7 @@ layui.use('layim', function(layim){
 	    message.setSender(currentsession);
 	    message.setReceiver(receiver);//好友ID
 	    content.setContent(msg);
-	    content.setType(0)
+	    content.setType(0);
 	    message.setContent(content.serializeBinary())
 	    socket.send(message.serializeBinary()); 
 	};
@@ -105,6 +105,10 @@ layui.use('layim', function(layim){
 		    async : true,
 		    success : function(text){ 
 			  var dataObj=text.data;
+			  var count=text.count||0;
+			  if(count>0) {
+				  layim.msgbox(count);
+			  }
 		      if(dataObj!=null&&dataObj.length>0){
 		    	  for(var i =0;i<dataObj.length;i++){
 		    		  layim.getMessage({
@@ -117,14 +121,14 @@ layui.use('layim', function(layim){
 			 	       }); 
 		    	  }   
 		    	  
-		    	  layim.getMessage({
+		    	  /*layim.getMessage({
 			 	        username: "前端群"
 			 	        ,avatar: "http://tp2.sinaimg.cn/2211874245/180/40050524279/0"
 			 	        ,id: 101
 			 	        ,type: "group"
 			 	        ,content: "ok.........."
 			 	        ,timestamp: ""
-			 	       }); 
+			 	       }); */
 				  } 
 			 }
 		}); 
@@ -169,6 +173,22 @@ layui.use('layim', function(layim){
 	    		   } else {
 	    		   	 reGroupMsg(msg.getGroupid(),msg.getTimestamp(),msgCon.getContent());
 	    		   }
+	    	   } 
+	       }else if(msg.getCmd()==7) {
+	    	   if(msg.getSender()!=currentsession){
+	    		   parent.layui.layim.msgbox(1);
+	    	   } 
+	       }else if(msg.getCmd()==9) {
+	    	   if(msg.getSender()!=currentsession){
+	    		   var msgCon =  proto.MessageBody.deserializeBinary(msg.getContent()); 
+	    		   var group = JSON.parse(msgCon.getContent());
+	    		   console.log(msgCon.getContent());
+	    		   layui.layim.addList({
+	    	            type: 'group',
+	    	            groupname: group.groupName,
+	    	            id: group.id,
+	    	            avatar: group.avatar
+	    	        });
 	    	   } 
 	       }
 	  }else {
@@ -304,7 +324,22 @@ layui.use('layim', function(layim){
   
   //监听签名修改
   layim.on('sign', function(value){
-    //console.log(value);
+	 var data = {
+		params:{
+			uid:currImCode,
+			signature:value
+		},
+		token:token
+	 }
+	 nui.ajax({
+		type : "post",
+	    url : baseUrl + "com.hsapi.system.im.message.upateUserInfo.biz.ext",
+	    data:data,
+	    async : true,
+	    success : function(text){ 
+		  var dataObj=text.data;
+	    }
+	 }); 
   });
 
   //监听自定义工具栏点击，以添加代码为例
@@ -324,7 +359,7 @@ layui.use('layim', function(layim){
 
     //console.log(res.mine);
     
-    layim.msgbox(5); //模拟消息盒子有新消息，实际使用时，一般是动态获得
+    //layim.msgbox(5); //模拟消息盒子有新消息，实际使用时，一般是动态获得
   
     //添加好友（如果检测到该socket）
     /*0523layim.addList({
@@ -353,7 +388,7 @@ layui.use('layim', function(layim){
         ,content: "临时："+ new Date().getTime()
       });
       
-      layim.getMessage({
+      layim.getMessage({ 
         username: "贤心"
         ,avatar: "http://tp1.sinaimg.cn/1571889140/180/40030060651/1"
         ,id: "100001"
@@ -440,12 +475,12 @@ layui.use('layim', function(layim){
       //layim.setChatStatus('<span style="color:#FF5722;">在线</span>');
     } else if(type === 'group'){
       //模拟系统消息
-      layim.getMessage({
+      /*layim.getMessage({
         system: true
         ,id: res.data.id
         ,type: "group"
         ,content: '模拟群员'+(Math.random()*100|0) + '加入群聊'
-      });
+      });*/
     }
   });
   

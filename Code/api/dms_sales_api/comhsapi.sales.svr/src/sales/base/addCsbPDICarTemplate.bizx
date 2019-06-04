@@ -214,7 +214,7 @@
       <process:partner type="literal">this.getIndex</process:partner>
       <process:inputVariables/>
       <process:outputVariables>
-        <process:outputVariable id="0" name="str" type="query" value="String" valueType="Primitive">f/code</process:outputVariable>
+        <process:outputVariable id="0" name="str" type="query" value="String" valueType="Primitive">data/code</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>

@@ -277,7 +277,7 @@ function buyCarCount(){
 				url: webPath + contextPath + '/sales/sales/caCalculation.jsp',
 				title: '购车预算',
 				width: 1000,
-				height: 500,
+				height: 600,
 				onload: function () {
 				   var iframe = this.getIFrameEl();
 				   iframe.contentWindow.setShowSave(row);

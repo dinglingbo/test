@@ -17,4 +17,5 @@ public interface UserTypeService {
 
     List<UserTypeEntity> queryList(Map<String, Object> map);
 
+    List<UserTypeEntity> queryListById(Map<String, Object> map);
 }

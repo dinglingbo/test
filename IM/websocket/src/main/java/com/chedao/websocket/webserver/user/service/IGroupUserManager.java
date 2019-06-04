@@ -10,7 +10,15 @@ public interface IGroupUserManager {
 
     boolean saveGroupMemeberList(String groupId, List<UserInfoExtendEntity> userIds);
 
+    boolean saveGroupMemeber(String groupId, String userId, UserInfoExtendEntity groupUser);
+
     List<String> getGroupMembers(String groupId);
 
     List<UserInfoExtendEntity> getGroupMemberList(String groupId);
+
+    UserInfoExtendEntity getGroupMember(String groupId, String userId);
+
+    void refreshGroupMemberListCache(String groupId);
+
+    void refreshGroupMemberCache(String groupId, String userId);
 }

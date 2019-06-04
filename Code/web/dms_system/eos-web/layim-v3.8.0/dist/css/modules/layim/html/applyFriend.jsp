@@ -34,7 +34,7 @@
   </div>
   <div class="layui-form-item">
     <label class="layui-form-label" style="width: 75px">选择分组：</label>
-    <div class="layui-input-block" >
+    <div class="layui-input-block friendGroup" id="friendGroup">
       <select name="city"   >
         <option value=""></option>
         <option value="0">北京</option>
@@ -51,12 +51,12 @@
       <textarea name="remark" id="remark" placeholder="请输入验证信息" class="layui-textarea" ></textarea>
     </div>
   </div>
-  <div class="layui-form-item">
+  <!-- <div class="layui-form-item">
     <div class="layui-input-block" >
       <button class=" layui-btn-xs " id="apply" lay-submit lay-filter="apply"  style="margin-left: 130px;margin-top: 120px;">发送申请</button>
       <button  id="cancel"  lay-submit lay-filter="cancel" class=" layui-btn-xs" >取消</button>
     </div>
-  </div>
+  </div> -->
 </form>
 
          
@@ -98,7 +98,7 @@ layui.use(['form', 'upload'], function(){  //如果只加载一个模块，可�
 		        }
 		    });
 
-     });cancel
+     });
   //监听取消按钮
   form.on('submit(cancel)', function(data){
 		var index = parent.layer.getFrameIndex(window.name); 
@@ -106,11 +106,22 @@ layui.use(['form', 'upload'], function(){  //如果只加载一个模块，可�
      });
      
   });
- function child(apply) {
- applyFriend = apply;
-  $('#name').val(applyFriend.name);
-  $('#remark').val("我是"+currUserName);
-}
+ function child(apply, friendGroup, username) {
+ 	applyFriend = apply;
+  	$('#name').val(applyFriend.name);
+  	$('#remark').val("我是"+username);
+  	
+  	var htmlStr = "";
+  	htmlStr+='<select name="city"   >';
+  	htmlStr+='	<option value=""></option>';
+  	for(var i=0; i<friendGroup.length; i++) {
+		htmlStr+='<option value='+friendGroup[i].id+'>'+friendGroup[i].groupname+'</option>';
+  	}
+  	htmlStr+='</select>';
+  	$(".friendGroup").html("");
+    $(".friendGroup").html(htmlStr);
+  	
+ }
 
 </script>
 </body>

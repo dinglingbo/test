@@ -24,6 +24,7 @@
       <process:return id="1" language="String" name="msg" type="query" valueType="Primitive">msg</process:return>
       <process:return id="2" language="String" name="pages" type="query" valueType="Primitive">pages</process:return>
       <process:return id="3" language="com.alibaba.fastjson.JSON[]" name="data" type="query" valueType="Java">data</process:return>
+      <process:return id="4" language="String" name="count" type="query" valueType="Primitive">count</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -201,6 +202,10 @@
       <process:from type="query" pattern="reference">result/data</process:from>
       <process:to type="query">data</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">result/count</process:from>
+      <process:to type="query">count</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="613" y="186"/>
@@ -249,6 +254,7 @@
     <process:output description="" isArray="false" name="msg" primitiveType="String"/>
     <process:output description="" isArray="false" name="pages" primitiveType="String"/>
     <process:output anyType="com.alibaba.fastjson.JSON" description="" isArray="true" name="data"/>
+    <process:output description="" isArray="false" name="count" primitiveType="String"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

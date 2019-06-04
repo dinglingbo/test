@@ -114,7 +114,8 @@
 			b.total_gross_profit	AS	totalGrossProfit,
 			b.total_gross_profit_rate	AS	totalGrossProfitRate,
 			c.full_name	AS contactor,
-			c.mobile AS contactorTel
+			c.mobile AS contactorTel,
+			c.id_card AS idCard
 		FROM css_sale_main a 
 			INNER JOIN css_sale_extend b
 				ON a.id = b.id
@@ -160,6 +161,9 @@
                 a.advance_deposit_amt as advanceDepositAmt,
                 a.payable_bala_amt as payableBalaAmt,
                 a.predict_delivery_date as predictDeliveryDate,
+                a.is_financial as isFinancial,
+                a.is_financial_date as isFinancialDate,
+                a.is_financialer as isFinancialer,
                 a.status as status,
                 a.remark as remark,
                 a.recorder as recorder,

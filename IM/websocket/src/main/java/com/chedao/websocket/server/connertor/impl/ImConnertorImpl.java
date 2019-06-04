@@ -14,6 +14,7 @@ import com.chedao.websocket.server.model.MessageWrapper;
 import com.chedao.websocket.server.model.Session;
 import com.chedao.websocket.server.model.proto.MessageProto;
 import com.chedao.websocket.server.proxy.MessageProxy;
+import com.chedao.websocket.server.session.SessionManager;
 import com.chedao.websocket.server.session.impl.SessionManagerImpl;
 import com.chedao.websocket.webserver.user.service.impl.GroupUserManager;
 import io.netty.channel.Channel;
@@ -34,7 +35,7 @@ public class ImConnertorImpl implements ImConnertor {
 	private final static Logger log = LoggerFactory.getLogger(ImConnertorImpl.class);
 
 	@Autowired
-    private SessionManagerImpl sessionManager;
+    private SessionManager sessionManager;
 	@Autowired
     private MessageProxy proxy;
 	@Autowired
@@ -93,7 +94,7 @@ public class ImConnertorImpl implements ImConnertor {
 
 		  //ImChannelGroup.broadcast(wrapper.getBody());
 		  //DwrUtil.sedMessageToAll((MessageProto.Model)wrapper.getBody());
-		  proxy.saveOnlineMessageToDB(wrapper);
+		  proxy.saveOnlineMessageToDB(wrapper,Constants.MessageType.GROUP);
 	}
 
 	@Override  
@@ -118,7 +119,39 @@ public class ImConnertorImpl implements ImConnertor {
             throw new RuntimeException(e.getCause());
         }
     }
-	
+
+	@Override
+	public void pushFriendSettleMessage(String sessionId, String reSessionId, String content, Integer saveSign) throws RuntimeException {
+		try {
+            ///取得接收人 给接收人写入消息
+            MessageWrapper wrapper = proxy.getFriendApplyMsg(sessionId, reSessionId, content);
+            Session responseSession = sessionManager.getSession(wrapper.getReSessionId());
+            if (responseSession != null && responseSession.isConnected() ) {
+                boolean result = responseSession.write(wrapper.getBody());
+                if(saveSign==-1) {
+                    return;
+                }
+                if(result){
+                    proxy.saveOnlineMessageToDB(wrapper,Constants.MessageType.APPLY);
+                }else{
+                    proxy.saveOfflineMessageToDB(wrapper,Constants.MessageType.APPLY);
+                }
+                return;
+            }else{
+                if(saveSign==-1) {
+                    return;
+                }
+                proxy.saveOfflineMessageToDB(wrapper,Constants.MessageType.APPLY);
+            }
+        } catch (PushException e) {
+            log.error("connector send occur PushFriendSettleException.", e);
+
+            throw new RuntimeException(e.getCause());
+        } catch (Exception e) {
+            log.error("connector send occur Exception.", e);
+            throw new RuntimeException(e.getCause());
+        }
+    }
     
 	@Override    
 	public void pushMessage(String sessionId,MessageWrapper wrapper) throws RuntimeException{
@@ -135,13 +168,13 @@ public class ImConnertorImpl implements ImConnertor {
 	  		if (responseSession != null && responseSession.isConnected() ) {
 	  			boolean result = responseSession.write(wrapper.getBody());
 	  			if(result){
-	  				proxy.saveOnlineMessageToDB(wrapper);
+	  				proxy.saveOnlineMessageToDB(wrapper,Constants.MessageType.SINGLE);
 	  			}else{
-	  				proxy.saveOfflineMessageToDB(wrapper);
+	  				proxy.saveOfflineMessageToDB(wrapper,Constants.MessageType.SINGLE);
 	  			}
 	  			return;
 	  		}else{
-	  			proxy.saveOfflineMessageToDB(wrapper);
+	  			proxy.saveOfflineMessageToDB(wrapper,Constants.MessageType.SINGLE);
 	  		}
 	    } catch (PushException e) {
 	    	log.error("connector send occur PushException.", e);
@@ -153,6 +186,29 @@ public class ImConnertorImpl implements ImConnertor {
 	    }  
 	    
 	}
+    @Override
+    public void pushCreateGroupMessage(String sessionId, List<String> reSessionIdList, String content) throws RuntimeException {
+        try {
+            ///取得接收人 给接收人写入消息
+            for(int i=0; i<reSessionIdList.size(); i++) {
+                String reSessionId = reSessionIdList.get(i);
+
+                MessageWrapper wrapper = proxy.getCreateGroupMsg(sessionId, reSessionId, content);
+                Session responseSession = sessionManager.getSession(wrapper.getReSessionId());
+                if (responseSession != null && responseSession.isConnected() ) {
+                    responseSession.write(wrapper.getBody());
+                }
+            }
+
+        } catch (PushException e) {
+            log.error("connector send occur PushFriendSettleException.", e);
+
+            throw new RuntimeException(e.getCause());
+        } catch (Exception e) {
+            log.error("connector send occur Exception.", e);
+            throw new RuntimeException(e.getCause());
+        }
+    }
 	@Override  
     public boolean validateSession(MessageWrapper wrapper) throws RuntimeException {
         try {

@@ -18,12 +18,12 @@ public interface MessageProxy {
      * 保存在线消息
      * @param message
      */
-    void  saveOnlineMessageToDB(MessageWrapper message);
+    void  saveOnlineMessageToDB(MessageWrapper message, Integer type);
     /**
      * 保存离线消息
      * @param message
      */
-    void  saveOfflineMessageToDB(MessageWrapper message);
+    void  saveOfflineMessageToDB(MessageWrapper message, Integer type);
     /**
      * 获取上线状态消息
      * @param sessionId
@@ -49,5 +49,21 @@ public interface MessageProxy {
      * @param map
      */
     void updateUserDate(Map<String, Object> map);
+
+    /**
+     * 获取好友申请同意/拒绝后的消息
+     * @param sessionId
+     * @return
+     */
+    MessageWrapper  getFriendApplyMsg(String sessionId, String reSessionId, String content);
+
+    /**
+     * 获取创建群聊后的消息
+     * @param sessionId
+     * @param reSessionId
+     * @param content
+     * @return
+     */
+    MessageWrapper  getCreateGroupMsg(String sessionId, String reSessionId, String content);
 }
 

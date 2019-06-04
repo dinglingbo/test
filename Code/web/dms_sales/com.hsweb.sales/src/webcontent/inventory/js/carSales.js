@@ -34,7 +34,7 @@ var StatusHash = {
 		"2" : "待收货",
 		"4" : "已入库",
 	};
-var headerHash = [{ name: '草稿', id: '0' }, { name: '待发货', id: '1' }, {name: '待收货' , id: '2' }, {name: '未结算' , id: '3' }, {name: '已入库' , id: '4' }];
+var headerHash = [{ name: '草稿', id: '0' }, { name: '待验车', id: '1' }, {name: '待收货' , id: '2' }, {name: '未结算' , id: '3' }, {name: '已入库' , id: '4' }];
 var innerPartGrid=null;
 var editFormDetail = null;
 
@@ -67,7 +67,21 @@ $(document).ready(function(v)
 		edit();
 
 	});
-    
+    rightGrid.on('drawcell', function (e) {
+        var value = e.value;
+        var field = e.field;
+        if (field == 'status') {
+            e.cellHtml = headerHash[value].name;
+        } else if (field == 'isFinancial') {
+        	if(value==0){
+                e.cellHtml = "否";
+        	}else{
+        		e.cellHtml = "是";
+        	}
+
+        }
+        
+    });
     innerPartGrid.on('drawcell', function (e) {
         var value = e.value;
         var field = e.field;
@@ -181,7 +195,7 @@ function getSearchParam(){
 	params.isDiffOrder = 0;
     return params;
 }
-var currType = 2;
+var currType = 4;
 function quickSearch(type){
     var params = getSearchParam();
     var querysign = 1;

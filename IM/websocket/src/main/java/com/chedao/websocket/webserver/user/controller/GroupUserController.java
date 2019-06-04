@@ -1,5 +1,6 @@
 package com.chedao.websocket.webserver.user.controller;
 
+import com.chedao.websocket.constant.Constants;
 import com.chedao.websocket.webserver.base.controller.BaseController;
 import com.chedao.websocket.webserver.user.model.GroupInfoEntity;
 import com.chedao.websocket.webserver.user.model.GroupUserEntity;
@@ -122,7 +123,7 @@ public class GroupUserController extends BaseController {
      */
     @ResponseBody
     @RequestMapping(value = "/updateGroupName", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
-    public Map<String,Object> updateGroupName(@RequestBody Map<String,Object> params){
+    public Object updateGroupName(@RequestBody Map<String,Object> params){
         Map<String, Object> map = new HashMap<String, Object>();
         StringBuilder errCode= new StringBuilder();
         String userId = (String) params.get("userId");
@@ -133,11 +134,8 @@ public class GroupUserController extends BaseController {
         try{
               groupUserServiceImpl.updateGroupName(userId,groupId,name);
         }catch (Exception e){
-            errCode.append("E");
-            map.put("errCode", errCode);
+            return putMsgToJsonString(Constants.WebSite.ERROR, "修改失败", 0, null);
         }
-        errCode.append("S");
-        map.put("errCode", errCode);
-        return map;
+        return putMsgToJsonString(Constants.WebSite.SUCCESS, "修改成功", 0, params);
     }
 }

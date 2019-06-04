@@ -24,6 +24,9 @@
   	  	     buildtime
   </sql>
 
+	<select id="queryObject" resultType="com.chedao.websocket.webserver.user.model.UserFriendEntity">
+		select  <include refid="Base_Column_List" />  from user_friend where id = #{id}
+	</select>
 	<!--<select id="queryObject" resultType="com.chedao.websocket.webserver.user.model.UserInfoEntity">
 		select  <include refid="Base_Column_List" />  from user_info where id = #{value}
 	</select>
@@ -73,6 +76,22 @@
 		)
 	</insert>
 
+	<!-- 批量增加 -->
+	<insert id="saveBatch" parameterType="List">
+		insert into user_friend
+		(
+		`user_id`,
+		`user_name`,
+		`friend_id`,
+		`friend_name`,
+		`type_id`,
+		`build_time`
+		)
+		values
+		<foreach collection="list" item="friend" index="index" separator=",">
+			(#{friend.userid},#{friend.username},#{friend.friendid},#{friend.friendname},#{friend.typeid},now())
+		</foreach>
+	</insert>
 
 	<update id="update" parameterType="com.chedao.websocket.webserver.user.model.UserFriendEntity">
 		update user_friend
@@ -156,6 +175,41 @@
             SELECT id, name, 2 as  online
 			from user_type
 			where user_id = #{userId}
+    </select>
+
+    <!-- 查找该用户某分组下的好友-->
+    <select id="queryUserFriend" resultType="com.chedao.websocket.webserver.user.model.UserInfoEntity" >
+           SELECT
+            b.id,
+            b.uid,
+            b.deptid,
+            b.`name`,
+            a.friend_name AS nickname,
+            b.sex,
+            b.birthday,
+            b.cardid,
+            b.signature,
+            b.school,
+            b.education,
+            b.province,
+            b.city,
+            b.area,
+            b.address,
+            b.phone,
+            b.email,
+            b.remark,
+            b.profilephoto,
+            b.createdate,
+            b.createuser,
+            b.updatedate,
+            b.updateuser,
+            b.lastondate,
+            b.lastoffdate,
+            b.lastupdatedate
+          from user_friend a
+          inner join user_info b
+          on a.friend_id = b.uid
+          where a.user_id = #{userid} and a.friend_id = #{friendid}
     </select>
 
 </mapper>

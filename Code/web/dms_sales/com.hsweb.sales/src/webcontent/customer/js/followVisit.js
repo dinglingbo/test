@@ -38,19 +38,21 @@ $(document).ready(function ()
       if (field == 'sex') {
            e.cellHtml = (value == 0 ? '女' : '男');
        } else if (field == 'relationship') {
-           e.cellHtml = setColVal('relationship', 'id', 'name', e.value);
+           e.cellHtml = setColVal('relationship', 'customid', 'name', e.value);
        } else if (field == 'scoutStatus') {
-           e.cellHtml = setColVal('status', 'id', 'name', e.value);
+           e.cellHtml = setColVal('status', 'customid', 'name', e.value);
        } else if (field == 'source') {
-       	e.cellHtml = setColVal('source', 'id', 'name', e.value);
+       	e.cellHtml = setColVal('source', 'customid', 'name', e.value);
        } else if (field == 'frameColorId') {
-    	   e.cellHtml = setColVal('frameColorId', 'id', 'name', e.value);
+    	   e.cellHtml = setColVal('frameColorId', 'customid', 'name', e.value);
        } else if(e.field == "interialColorId"){
-    	   e.cellHtml = setColVal('interialColorId', 'id', 'name', e.value);
+    	   e.cellHtml = setColVal('interialColorId', 'customid', 'name', e.value);
        }else if(e.field == "isUsabled"){
-    	   e.cellHtml = setColVal('isUsabled', 'id', 'name', e.value);
+    	   e.cellHtml = setColVal('isUsabled', 'customid', 'name', e.value);
        }else if(e.field == "addOptBtn"){
     	   e.cellHtml = '<a href="javascript:addScout()" class="optbtn" >跟踪登记</a>'; 
+       }else if(e.field == "relationship"){
+    	   e.cellHtml = setColVal('relationship', 'customid', 'name', e.value);
        }
 	});
 	
@@ -87,13 +89,13 @@ $(document).ready(function ()
 	       var record = e.record;
 	       var uid = record._uid;
 	       if (field == 'scoutModeId') {
-	           e.cellHtml = setColVal('scoutModeId', 'id', 'name', e.value);
+	           e.cellHtml = setColVal('scoutModeId', 'customid', 'name', e.value);
 	       } else if (field == 'status') {
-	           e.cellHtml = setColVal('status', 'id', 'name', e.value);
+	           e.cellHtml = setColVal('status', 'customid', 'name', e.value);
 	       } else if (field == 'source') {
-	       	e.cellHtml = setColVal('source', 'id', 'name', e.value);
+	       	e.cellHtml = setColVal('source', 'customid', 'name', e.value);
 	       } else if (field == 'isUsabled') {
-	    	   e.cellHtml = setColVal('isUsabled', 'id', 'name', e.value);
+	    	   e.cellHtml = setColVal('isUsabled', 'customid', 'name', e.value);
 	       } 
 		});
 	mainGrid.on("rowdblclick",function(e){
@@ -116,18 +118,25 @@ function getSearchParam() {
     var mobile = nui.get("mobile-search").getValue();
     params.mobile = mobile;
     var status = nui.get("qscoutstatus").getValue();
-    if(status==0){//待今日跟进
+    if(status==0){//待今日跟进,草稿，归档状态的单子
+    	params.statusList = 1;
     	params.nextScoutDateStart = nui.formatDate(new Date(), 'yyyy-MM-dd');
     	params.nextScoutDateEnd = addDate(params.nextScoutDateStart,1);
     	params.nextScoutDateStart = params.nextScoutDateStart + ' 00:00:00';
     	params.nextScoutDateEnd = params.nextScoutDateEnd + ' 00:00:00';
     }else if(status==1){//超期未跟进
+    	params.statusList = 1;
     	params.nextScoutDate = nui.formatDate(new Date(), 'yyyy-MM-dd');
     	params.nextScoutDate = params.nextScoutDate + ' 00:00:00';
-    }else if(status==2){//所有需要跟进(有疑问)
-    	//params.nextScoutDate = 
-    }else if(status==2){//重点跟进
-    	params.scoutStatus = "DIT20130705000164";
+    }else if(status==2){//所有需要跟进，不等于终止跟进的单子
+    	params.statusList = 1;
+    	params.scoutStatus = "060702";
+    }else if(status==3){//重点跟进
+    	params.statusList = 1;
+    	params.zdscoutStatus = "060703";
+    }else if(status==4){//战败客户,查询终止客户
+    	params.statusList = 1;
+    	params.zzscoutStatus = "060702";
     }
     //scoutStatus,跟踪状态
     return params;
@@ -163,6 +172,12 @@ function save(){
 			 comeId:comeId,
 			 token:token
 		  });
+		if(data.status=="060702"){
+			if(!data.failReasonId){
+				showMsg("请选择战败原因!","W");
+				return;
+			}
+		}
 		nui.mask({
 	        el: document.body,
 	        cls: 'mini-mask-loading',
@@ -262,7 +277,7 @@ function buyCarCount(){
 				url: webPath + contextPath + '/sales/sales/caCalculation.jsp',
 				title: '购车预算',
 				width: 1000,
-				height: 500,
+				height: 600,
 				onload: function () {
 				   var iframe = this.getIFrameEl();
 				   iframe.contentWindow.setShowSave(row);
@@ -279,4 +294,13 @@ function buyCarCount(){
 		showMsg("请选择一条记录!","W");
 		return;
 	}
+}
+function showfailReason(e){
+	if(e.value=="060702"){
+		document.getElementById("show").style.display = "";
+	}else{
+		document.getElementById("show").style.display='none';
+
+	}
+	
 }

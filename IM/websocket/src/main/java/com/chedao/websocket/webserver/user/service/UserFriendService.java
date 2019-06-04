@@ -1,13 +1,13 @@
 package com.chedao.websocket.webserver.user.service;
 
-import com.chedao.websocket.webserver.user.model.ImFriendUserData;
-import com.chedao.websocket.webserver.user.model.UserFriendEntity;
-import com.chedao.websocket.webserver.user.model.UserFriendTEntity;
-import com.chedao.websocket.webserver.user.model.UserInfoEntity;
+import com.chedao.websocket.webserver.user.model.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserFriendService {
+    void saveBatch(List<UserFriendEntity> list);
+
     void save(UserFriendEntity userFriend);
 
     int update(UserFriendEntity userFriend);
@@ -26,4 +26,9 @@ public interface UserFriendService {
     List<UserFriendTEntity> queryUserFriendList(String userId);
 
     boolean refreshUserFriendListCache(String userId);
+
+    //根据分组ID查询好友
+    List<ImFriendUserInfoData> queryListUser(Long typeId);
+
+    UserInfoEntity queryUserFriend(Map<String, Object> map);
 }

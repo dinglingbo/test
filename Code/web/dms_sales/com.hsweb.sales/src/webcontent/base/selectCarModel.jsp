@@ -14,7 +14,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%=webPath + contextPath%>/sales/base/js/selectCarModel.js?v=1.1.1"></script>
+    <script src="<%=webPath + contextPath%>/sales/base/js/selectCarModel.js?v=1.1.2"></script>
     <style>
         html,
         body {
@@ -68,7 +68,7 @@
                     车型名称：<input id="fullName" name="fullName" class="nui-textbox" style="width: 110px" />
                     车型编码：<input id="code" name="code" class="nui-textbox" style="width: 110px" />
                     <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
-                            class="fa fa-search fa-lg"></span>&nbsp;查找</a>
+                            class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <!-- <span class="separator"></span> -->
             <a class="nui-button" id="selectBtn" iconCls="" onclick="choose()" plain="true" visible="true"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
                 </div>

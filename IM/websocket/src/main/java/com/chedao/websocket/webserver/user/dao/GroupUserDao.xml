@@ -73,11 +73,22 @@
 		  select
 		   	a.uid as id,
 		    a.profilephoto as avatar,
-		   	a.name as username,
+		   	b.user_name as username,
 		   	a.signature as sign
 		   from user_info a
 		   INNER JOIN group_user b on a.uid = b.user_id
 		   where b.group_id = #{groupId}
+    </select>
+	<!-- 查询群聊下的某个成员的信息 -->
+	<select id="queryGroupUserInfoExtend" resultType="com.chedao.websocket.webserver.user.model.UserInfoExtendEntity">
+		  select
+		   	a.uid as id,
+		    a.profilephoto as avatar,
+		   	b.user_name as username,
+		   	a.signature as sign
+		   from user_info a
+		   INNER JOIN group_user b on a.uid = b.user_id
+		   where b.group_id = #{groupId} and b.user_id = #{userId}
     </select>
 	<!-- 查询昵称 -->
 	<select id="queryGroupName" resultType="com.chedao.websocket.webserver.user.model.GroupUserEntity">

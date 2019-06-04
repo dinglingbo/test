@@ -65,6 +65,9 @@
                         </div>
                         <div field="amt" name="amt" width="100px" headerAlign="center" header="金额" summaryType="sum">
                         </div>
+                        <div field="costPrice" name="costPrice" width="100px" headerAlign="center" header="成本单价">
+                            <input class="nui-textbox" property="editor" vtype="float">
+                        </div>
                         <div field="costAmt" name="costAmt" width="100px" headerAlign="center" header="成本金额">
                             <input class="nui-textbox" property="editor" vtype="float">
                         </div>
@@ -148,11 +151,15 @@ $(document).ready(function (){
     jpDetailGrid.on("cellendedit", function(e) {
         var row = e.row,
             field = e.field;
-        if (field == "price" || field == "qty") {
+        if (field == "price" || field == "qty"  || field == "costPrice") {
             var price = row.price || 0;
             var qty = row.qty || 0;
+            var costPrice = row.costPrice;
             var value = (price * qty).toFixed(2);
-            var newRow = { amt: value };
+            var value2 = (costPrice * qty).toFixed(2);
+            var newRow = { amt: value ,
+                           costAmt:value2
+                  };
             jpDetailGrid.updateRow(row, newRow);
             //编辑完成后调用购车计算表将精品加装金额赋值上去,需要在购车预算里面计算这个的值
             /* var data = jpDetailGrid.getBottomColumns();

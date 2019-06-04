@@ -8,7 +8,7 @@
 -->
 <head>
 <title>验车</title>
-    <script src="<%=webPath + contextPath%>/sales/inventory/js/carCheck.js?v=1.0.0"></script>
+    <script src="<%=webPath + contextPath%>/sales/inventory/js/carCheck.js?v=1.0.1"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -59,7 +59,6 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn" width="40">序号</div>
-            <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
             		<div field="serviceCode" allowSort="true"  width="100" summaryType="count" headerAlign="center" header="单号"></div>
             		<div field="guestFullName" allowSort="true"  width="100" summaryType="count" headerAlign="center" header="供应商"></div>
                     <div field="carModelName" name="guestFullName" width="100" headerAlign="center" header="车型"></div>

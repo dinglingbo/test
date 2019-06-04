@@ -5,6 +5,9 @@ $(document).ready(function(v){
 	rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
      rightGrid.load({
+    	 params:{
+    		 checkingQty : 0 
+    	 },
         token:token
     });
 });

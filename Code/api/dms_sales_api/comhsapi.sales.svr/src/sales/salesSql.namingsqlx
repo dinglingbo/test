@@ -344,6 +344,9 @@
                 <isNotEmpty prepend="and" property="orderIds">  
                     (A.order_id in ($orderIds$))
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="checkingQty">  
+                    (A.checking_qty &gt; #checkingQty#)
+                </isNotEmpty>
             </dynamic>  
            
         
@@ -366,7 +369,6 @@
                 a.receive_cost as receiveCost,
                 A.car_model_id AS carModelId,
                 A.car_model_name AS carModelName,
-                A.frame_color_id AS frameColorId,
                 a.car_frame_no as carFrameNo,
                 a.engine_no as engineNo,
                 a.kilometers as kilometers,
@@ -392,9 +394,11 @@
                 A.recorder AS recorder,
                 A.record_date AS recordDate,
                 A.modifier AS modifier,
-                A.modify_date AS modifyDate  
+                A.modify_date AS modifyDate,  
+                b.service_code as serviceCode
             FROM
             wb_sales.css_check_enter A
+            INNER JOIN wb_sales.css_factory_order_main B ON A.order_id = B.ID 
                 where a.orgid = #orgid#
             <dynamic>
                 <isNotEmpty prepend="and" property="orderId">  
@@ -406,6 +410,31 @@
                 <isNotEmpty prepend="and" property="carModelId">  
                     (A.car_model_id = #carModelId#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="billStatus">  
+                    (A.bill_status = #billStatus#)
+                </isNotEmpty>  
+                <isNotEmpty prepend="and" property="guestId">  
+                    (A.guest_id = #guestId#)
+                </isNotEmpty> 
+                <isNotEmpty prepend="and" property="guestFullName">  
+                    (A.guest_full_name = #guestFullName#)
+                </isNotEmpty> 
+                <isNotEmpty prepend="and" property="guestFullName">  
+                    (A.guest_full_name like '%$guestName$%')
+                </isNotEmpty>    
+                <!--本日 昨日 本周 上周 本月 下月 -->
+                <isNotEmpty prepend="and" property="startDate">  
+                    (A.record_date &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (A.record_date &lt; #endDate#)
+                </isNotEmpty> 
+                <isNotEmpty prepend="and" property="serviceId">  
+                    (b.service_code like '%$serviceId$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="carModelName">  
+                    (A.car_model_name like '%$carModelName$%')
+                </isNotEmpty>                                                          
             </dynamic>  
            
         

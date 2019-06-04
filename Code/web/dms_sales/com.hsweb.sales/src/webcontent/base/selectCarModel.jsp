@@ -45,7 +45,7 @@
     <input id="productionMode" name="productionMode"  class="nui-combobox" visible="false" dataField="data" valueField="customid"textField="name"/>
     <div class="nui-fit">
         <div class="nui-splitter" style="width:100%;height:100%;">
-            <div  style="border:0;" size="15%" showCollapseButton="true">
+            <div  style="border:0;" size="17%" showCollapseButton="true">
                 <div class="nui-fit">
                     <div class="mini-panel" title="品牌-车系" style="width:100%;height:100%;" bodyStyle="padding:0;">
                         <ul id="tree1" class="nui-tree"

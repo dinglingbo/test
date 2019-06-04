@@ -6,7 +6,7 @@ var mainForm = null;
 var costAdjust = {};
 $(document).ready(function(v) {
 	mainForm = new nui.Form("#editForm");
-
+	
 });
 function setData(row){
 	costAdjust = row;
@@ -36,7 +36,7 @@ function save(type){
 			data = data || {};
 			if (data.errCode == "S") {
 				showMsg("调整成功!","S");
-				
+				onClose();
 			} else {
 				showMsg(data.errMsg || "调整异常!","W");
 			}

@@ -9,7 +9,7 @@ pageEncoding="UTF-8" session="false" %>
 -->
 <head>
 <title>成本调整</title>
-<script src="<%=webPath + contextPath%>/sales/inventory/js/costAdjust.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/sales/inventory/js/costAdjust.js?v=1.0.1"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -70,20 +70,22 @@ pageEncoding="UTF-8" session="false" %>
             </div>
 	        <table class="tmargin">
 	            <tr class="htr">
-	                <td class=" right fwidtha required">车型:</td>
-	                <td ><input id="carModelName" name="carModelName" width="100%" class="nui-textbox" ></td>
+	                <td class=" right fwidtha ">车型:</td>
+	                <td ><input id="carModelName" name="carModelName" width="100%" class="nui-textbox"  readonly="true"></td>
 	            </tr>
 	            <tr class="htr">
-	                <td class=" right fwidtha required">供应商:</td>
-	                <td ><input id="guestFullName" name="guestFullName" width="100%" class="nui-textbox" ></td>
+	                <td class=" right fwidtha">供应商:</td>
+	                <td ><input id="guestFullName" name="guestFullName" width="100%" class="nui-textbox"  readonly="true"></td>
 	            </tr>
 	            <tr class="htr">
-	                <td class=" right fwidtha required">原成本:</td>
-	                <td ><input id="unitPrice" name="unitPrice" width="100%" class="nui-textbox" ></td>
+	                <td class=" right fwidtha">原成本:</td>
+	                <td ><input id="unitPrice" name="unitPrice" width="100%" class="nui-textbox"  readonly="true"></td>
 	            </tr>	            
 	            <tr class="htr">
 	                <td class=" right fwidtha required">现成本:</td>
-	                <td ><input id="xunitPrice" name="xunitPrice" width="100%" class="nui-textbox" ></td>
+	                <td >
+	                <input name="xunitPrice" id="xunitPrice" class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"   allowNull="false" showButton="false" />
+	                </td>
 	            </tr>
 
 	        </table>

@@ -12,7 +12,7 @@
 
 				<head>
 					<title>验车入库添加</title>
-					<script src="<%=request.getContextPath()%>/sales/inventory/js/carSalesPutStorageDetails.js?v=1.0.6"></script>
+					<script src="<%=request.getContextPath()%>/sales/inventory/js/carSalesPutStorageDetails.js?v=1.0.7"></script>
 					<style type="text/css">
 						.title {
 							width: 90px;
@@ -58,8 +58,10 @@
 								<td align="right">
 									<a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn">
 										<span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-									<a class="nui-button" onclick="save()" plain="true">
-										<span class="fa fa-automobile fa-lg"></span>&nbsp;验车入库</a>
+									<a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn">
+										<span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+									<a class="nui-button" onclick="carPutInStorage()" plain="true">
+										<span class="fa fa-automobile fa-lg"></span>&nbsp;入库</a>
 								</td>
 							</tr>
 						</table>
@@ -67,8 +69,7 @@
 					<div id="dataform1" style="padding-top: 5px;">
 					<fieldset style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;">
 						<legend>入库单信息</legend>
-							<input class="nui-hidden" name="orderId" id="orderId"/>
-							<input class="nui-hidden" name="orderDetailId" id="orderDetailId"/>
+							<input class="nui-hidden" name="id" id="id"/>
 							<table style="width: 100%; " class="nui-form-table">
 								<tr>
 									<td class="title required" align="right">供应商:</td>
@@ -91,7 +92,7 @@
 	                                  </td>
 									<td class="title required" align="right">车价（成本）:</td>
 									<td>
-										<input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"   allowNull="false" showButton="false" name="orderPrice" id="orderPrice" />
+										<input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"   allowNull="false" showButton="false" name="unitPrice" id="unitPrice" />
 									</td>
 								</tr>
 								<tr>
@@ -124,7 +125,7 @@
 									<td>
 										<input class="nui-textbox" name="carFrameNo" id="carFrameNo"/>
 									</td>
-									<td class="title required" align="right">公里数:</td>
+									<td class="title" align="right">公里数:</td>
 									<td>
 										<input name="kilometers" id="kilometers" class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"   allowNull="false" showButton="false" />
 									</td>
@@ -135,16 +136,16 @@
 								<tr>
 									<td class="title required" align="right">车身颜色:</td>
 									<td>
-										<input name="frameColorId" id="frameColorId" class="nui-combobox" textField="name" valueField="id" allowInput="true" 
+										<input name="frameColorId" id="frameColorId" class="nui-combobox" textField="name" valueField="customid" allowInput="true" 
 										/>
 									</td>
 									<td class="title required" align="right">内饰颜色:</td>
 									<td>
-										<input name="interialColorId" id="interialColorId" class="nui-combobox" textField="name" valueField="id" allowInput="true" />
+										<input name="interialColorId" id="interialColorId" class="nui-combobox" textField="name" valueField="customid" allowInput="true" />
 									</td>
 									<td class="form_label" align="right">生产日期:</td>
 									<td>
-										<input name="produce_date" id="produce_date" showTime="true" class="nui-datepicker" format="yyyy-MM-dd HH:mm" />
+										<input name="produceDate" id="produceDate" showTime="true" class="nui-datepicker" format="yyyy-MM-dd HH:mm" />
 									</td>
 								</tr>
 								<tr>

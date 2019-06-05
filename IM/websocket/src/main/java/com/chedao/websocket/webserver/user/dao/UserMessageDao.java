@@ -81,4 +81,13 @@ public interface UserMessageDao extends BaseDao<UserMessageEntity> {
 	 * @return
 	 */
 	int updateuserdate(Map<String, Object> map);
+
+	/**
+	 * 查询群聊天记录
+	 * @param map
+	 * @return
+	 */
+	List<MessageInfoEntity> getGroupHistoryMessageList(Map<String, Object> map);
+
+	int getGroupHistoryMessageCount(Map<String, Object> map);
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
+<%@include file="/common/sysVarCommon.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -13,6 +14,9 @@
   <link href="<%=request.getContextPath()%>/layim-v3.8.0/dist/css/layui.css?v=1.0.11" rel="stylesheet" type="text/css" />
     <script src="<%=request.getContextPath()%>/layim-v3.8.0/dist/layui.js?v=1.0.0"></script>
     <script src="<%=request.getContextPath()%>/layim-v3.8.0/dist/css/modules/layim/html/area.js?v=1.0.0"></script>
+ 	<script src="<%= request.getContextPath() %>/common/qiniu/qiniu1.0.14.js" type="text/javascript"></script>
+  	<script src="https://cdn.staticfile.org/plupload/2.1.9/moxie.js"></script>
+ 	<script src="https://cdn.staticfile.org/plupload/2.1.9/plupload.dev.js"></script>  
     <style type="text/css">
     	.yuan{width:80px;height:80px;border-radius:80px}
     		.layui-textarea{
@@ -26,23 +30,36 @@
 
 <form class="layui-form" action="">
  
-  <div class="layui-form-item" style="margin-top: 20px;" >
+  <div class="layui-form-item" style="margin-top: 10px;" >
+    
+    <div class="layui-inline">
+    	<label class="layui-form-label" >头像</label>
+	    <div class="layui-input-block" id="btn-uploader">
+	      <img id="profilephoto" src=""  style="width: 100px;height:100px"></img>
+			
+		    <div class="layui-inline" style="margin-top: 5px;">
+		    	<button type="button" class="layui-btn layui-btn-primary" id="LAY_avatarUpload">
+		                  <i class="layui-icon"></i>上传图片
+		        </button>
+		    </div>
+	    </div>
+    </div>
+    
+    
+    
+   <!--  <div class="layui-inline">
+    <button type="button" class="layui-btn layui-btn-primary" id="LAY_avatarUpload">
+                  <i class="layui-icon"></i>上传图片
+                </button>
+    </div> -->
+    
+ </div>
+ 
+ <div class="layui-form-item" style="margin-top: 10px;">
     <div class="layui-inline">
     <label class="layui-form-label" >昵称</label>
      <input type="text" name="nickname" id="nickname" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input" style="width: 200px;">
     </div>
-    
-    <div class="layui-inline">
-    <label class="layui-form-label" >头像</label>
-     <input type="text" name="profilephoto" id="profilephoto" required  lay-verify="required" placeholder="请上传图片" autocomplete="off" class="layui-input" style="width: 150px;">
-    
-    </div>
-    <div class="layui-inline">
-    <button type="button" class="layui-btn layui-btn-primary" id="LAY_avatarUpload">
-                  <i class="layui-icon"></i>上传图片
-                </button>
-    </div>
-    
  </div>
  
  <div class="layui-form-item" style="margin-top: 20px;">
@@ -96,20 +113,19 @@
   <div class="layui-form-item">
         <label class="layui-form-label" >详细地址</label>
         <div class="layui-input-block" style="">
-            <input type="text" name="address"  id="address"  placeholder="" autocomplete="off" class="layui-input" style="width: 480px;">
+            <input type="text" name="address"  id="address"  placeholder="" autocomplete="off" class="layui-input" style="width: 600px;">
         </div>
     </div>
  
  <div class="layui-form-item layui-form-text"  >
     <label class="layui-form-label" >个性签名</label>
-    <div class="layui-input-block" style="width:480px;">
+    <div class="layui-input-inline" style="width:240px;">
       <textarea placeholder="请输入内容" class="layui-textarea" name="signature" id="signature"></textarea>
     </div>
-  </div>
-  
-  <div class="layui-form-item layui-form-text">
+    
+    
     <label class="layui-form-label" >个人说明</label>
-    <div class="layui-input-block" style="margin-top: 20px;width: 480px;">
+    <div class="layui-input-inline" style="width: 240px;">
       <textarea placeholder="请输入内容" class="layui-textarea" name="remark" id="remark"></textarea>
     </div>
   </div>
@@ -170,7 +186,7 @@ layui.use(['form', 'upload'], function(){
         	  $('#address').val(user.address);
         	  $('#nickname').val(user.nickname);
         	  $('#signature').val(user.signature);
-        	  $('#profilephoto').val(user.profilephoto);
+        	  $('#profilephoto').attr("src",user.profilephoto);
         	  $('#email').val(user.email);
         	  $("#sex0").attr("checked", user.sex == 0 ? true : false);
               $("#sex1").attr("checked", user.sex == 1 ? true : false);
@@ -201,6 +217,7 @@ layui.use(['form', 'upload'], function(){
      //查询
     var params = temp;
     params.uid=dataSys.userid;
+    params.profilephoto = $('#profilephoto')[0].src;
 	/* var city  = $('#city').val();
 	params.city = city;
 	var area = $("#area").val();
@@ -231,6 +248,61 @@ layui.use(['form', 'upload'], function(){
     });
     
   });  
+  
+  
+  
+  uploader = Qiniu.uploader({
+		    runtimes: 'html5,flash,html4',
+		    browse_button: 'LAY_avatarUpload',//上传按钮的ID
+		    container: 'btn-uploader',//上传按钮的上级元素ID
+		    drop_element: 'btn-uploader',
+		    max_file_size: '100mb',//最大文件限制
+		    //flash_swf_url: '/static/js/plupload/Moxie.swf',
+		    dragdrop: false,
+		    chunk_size: '4mb',//分块大小
+		    uptoken_url: webPath + sysDomain + "/com.hs.common.login.getQNAccessToken.biz.ext",//设置请求qiniu-token的url
+		    //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
+		    // uptoken : '<Your upload token>',
+		    //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
+		    unique_names: false,
+		    // 默认 false，key为文件名。若开启该选项，SDK会为每个文件自动生成key（文件名）
+		    // save_key: true,
+		    // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
+		    domain: getCompanyLogoUrl(),//自己的七牛云存储空间域名
+		    multi_selection: false,//是否允许同时选择多文件
+		    //文件类型过滤，这里限制为图片类型
+		    filters: {
+		        mime_types: [
+		            {title: "Image files", extensions: "jpg,jpeg,gif,png"}
+		        ]
+		    },
+		    auto_start: true,
+		    init: {
+		        'FilesAdded': function (up, files) {
+		            //do something
+		        },
+		        'BeforeUpload': function (up, file) {
+		            //do something
+		        },
+		        'UploadProgress': function (up, file) {
+		            //可以在这里控制上传进度的显示
+		            //可参考七牛的例子
+		        },
+		        'UploadComplete': function () {
+		            //do something
+		        },
+		        'FileUploaded': function (up, file, info) {
+		            var domain = up.getOption('domain');
+		            var info1 = JSON.parse(info);
+		            $("#profilephoto").attr("src",domain + "/" + info1.hash);
+		        },
+		        'Error': function (up, err, errTip) {
+		            alert(errTip);
+		        },
+		        'Key': function (up, file) {
+		        }
+		    }
+		});
   
 });
 var laydate = null;

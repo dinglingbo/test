@@ -77,7 +77,7 @@ public class GroupUserManager implements IGroupUserManager {
         List<String> groupList = (List<String>)jedisCache.hashGet(cacheName,key);
         if (groupList == null || groupList.size() == 0) {
             System.out.println("缓存中没有数据，需要从数据库读取");
-             groupList = groupUserDao.queryGroupUserId(groupId);
+            groupList = groupUserDao.queryGroupUserId(groupId);
             saveGroupMemeberIds(groupId, groupList);
             return groupList;
         }
@@ -102,12 +102,20 @@ public class GroupUserManager implements IGroupUserManager {
         String key = getGroupMemCacheKey(groupId,userId);
         UserInfoExtendEntity groupUser = (UserInfoExtendEntity) jedisCache.hashGet(memCacheKey,key);
         if (groupUser == null) {
-            System.out.println("缓存中没有数据，需要从数据库读取");
+            //1、修改个人资料时更新所有群里面的缓存信息 groupId + userId；
+            //2、修改我在本群的昵称时更新本群里面的缓存信息  groupId + userId;
+            //3、添加到群聊时更新本群里面的缓存信息，因为不存在会自动处理，所以不需要单独处理
             groupUser = groupUserDao.queryGroupUserInfoExtend(groupId, userId);
             saveGroupMemeber(groupId, userId, groupUser);
             return groupUser;
         }
         return groupUser;
+    }
+
+    @Override
+    public void refreshGroupMembersCache(String groupId) {
+        List<String> groupList = groupUserDao.queryGroupUserId(groupId);
+        saveGroupMemeberIds(groupId, groupList);
     }
 
     @Override

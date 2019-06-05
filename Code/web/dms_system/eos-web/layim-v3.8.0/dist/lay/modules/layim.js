@@ -346,9 +346,9 @@ layui.define(['layer', 'laytpl', 'upload'], function (exports) {
           ,'{{# if(d.base && d.base.uploadFile){ }}'
           ,'<span class="layui-icon layim-tool-image" title="发送文件" layim-event="image" data-type="file">&#xe61d;<input type="file" name="file"></span>'
            ,'{{# }; }}'
-           ,'{{# if(d.base && d.base.uploadFile){ }}'
-           ,'<span class="layui-icon layim-tool-image" title="添加好友" layim-event="addFriend" id="addFriend">&#xe770;</span>'
-           ,'{{# }; }}'
+           //,'{{# if(d.base && d.base.uploadFile){ }}'
+           //,'<span class="layui-icon layim-tool-image" title="添加好友" layim-event="addFriend" id="addFriend">&#xe770;</span>'
+           //,'{{# }; }}'
            ,'{{# if(d.base && d.base.isAudio){ }}'
           ,'<span class="layui-icon layim-tool-audio" title="发送网络音频" layim-event="media" data-type="audio">&#xe6fc;</span>'
            ,'{{# }; }}'
@@ -1626,12 +1626,11 @@ layui.define(['layer', 'laytpl', 'upload'], function (exports) {
             } else if (data.type === 'group') {
                 layui.each(cache.group, function (index, item) {
                     if (data.id == item.id) {
-                        listElem.find('>li').eq(index).remove();
-                        cache.group.splice(index, 1); //从cache的group里面也删除掉数据
-                        //如果一个群组都没了
-                        if (cache.group.length === 0) {
-                            listElem.html('<li class="layim-null">暂无群组</li>');
-                        }
+                        listElem.find('>li').eq(index).find('span').eq(0).text(data.groupname);
+                        listElem.find('>li').eq(index).find('img').eq(0).attr("src", data.avatar);
+                        cache["group"][index].groupname = data.groupname;
+                        cache["group"][index].avatar = data.avatar;
+                        
                         return true;
                     }
                 });
@@ -1776,6 +1775,9 @@ layui.define(['layer', 'laytpl', 'upload'], function (exports) {
                             // 向子页面的全局函数child传参
                             iframe.setDataSys(params,function(data) {
                             	othis.context.innerText = data.nickname;
+                            	parent.layui.layim.cache().mine.avatar = data.profilephoto;
+                            	parent.layui.layim.cache().mine.sign=data.signature;
+                            	parent.layui.layim.cache().mine.username=data.nickname;
                             });
                         }
                     });
@@ -2761,33 +2763,30 @@ layui.define(['layer', 'laytpl', 'upload'], function (exports) {
                 var addGroupChatUrl = webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/addGroupChat.jsp";
                 var editGroupName = webPath + contextPath + "/layim-v3.8.0/dist/css/modules/layim/html/editGroupName.jsp";
                 var groupTemp = {};
-                /*0523for(var i = 0;i<groupInfo.length;i++){
-			    	  if(groupInfo[i].id==editGroupChatId){
-			    	 	 groupTemp.id = groupInfo[i].id;
-			    	 	 groupTemp.groupName = groupInfo[i].groupname;
-			    	 	 groupTemp.avatar = groupInfo[i].avatar;
-			    	 	 groupTemp.remark = groupInfo[i].remark;
-			    	  }
-			      }*/
                 if (type === 'updat') {
-
-                    /*    	  groupTemp = {
-			    			  "id" : 1,
-			    		    "groupName":"华胜古天乐粉丝群1群",
-			    		    "avatar":"",
-			    			"remark":"华胜古天乐粉丝1群"
-			    	  }*/
+                	var params = {
+                		groupId: editGroupChatId
+                	}
                     layer.open({
                         type: 2,
                         title: '修改群资料',
                         content: editGroupChatUrl, //这里content是一个普通的String
-                        area: ['400px', '400px'],
+                        area: ['400px', '410px'],
                         maxmin: true,
                         success: function (layero, index) {
                             // 获取子页面的iframe
                             var iframe = window['layui-layer-iframe' + index];
                             // 向子页面的全局函数child传参
-                            iframe.setData(groupTemp);
+                            iframe.setData(params,function(data) {
+                            	upateList({
+        	                        type: 'group',
+        	                        groupname: data.groupName,
+        	                        avatar: data.avatar,
+        	                        id: data.id
+        	                    });
+                            });
+                            
+                            
                         }
                     });
 
@@ -2838,15 +2837,20 @@ layui.define(['layer', 'laytpl', 'upload'], function (exports) {
                             async: false,
                             data: JSON.stringify({
                                 userId: currImCode,
-                                groupId: groupTemp.id,
+                                groupId: editGroupChatId,
                                 token:token
                             }),
                             url: baseUrl + "com.hsapi.system.im.message.deleteGroup.biz.ext",
                             success: function (data) {
                                 if (data.errCode == "S") {
+                                	removeList({
+                                        type: 'group',
+                                        id: editGroupChatId
+                                    });
+                                	
                                     layer.msg('退出群聊成功！', {
                                         icon: 1,
-                                        time: 2000
+                                        time: 1000
                                     });
                                 } else {
                                     layer.msg('退出异常', {

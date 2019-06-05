@@ -85,7 +85,7 @@ public class UserTypeController extends BaseController {
             if(userType==null){
 
             }else {
-                if(userType.size()<=0) {
+                if(userType.size()<=1) {
                     return putMsgToJsonString(Constants.WebSite.ERROR, "此分组不能删除", 0, map);
                 }else {
                     userTypeServiceImpl.delete(id, userId);

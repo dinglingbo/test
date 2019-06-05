@@ -31,4 +31,6 @@ public interface UserFriendService {
     List<ImFriendUserInfoData> queryListUser(Long typeId);
 
     UserInfoEntity queryUserFriend(Map<String, Object> map);
+
+    boolean refreshUserFriendCache(String userId, String friendId);
 }

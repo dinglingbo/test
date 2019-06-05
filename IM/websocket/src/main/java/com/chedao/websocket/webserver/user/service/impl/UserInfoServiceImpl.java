@@ -1,15 +1,16 @@
 package com.chedao.websocket.webserver.user.service.impl;
 
 import com.chedao.websocket.webserver.user.dao.UserInfoDao;
-import com.chedao.websocket.webserver.user.model.UserFriendTEntity;
-import com.chedao.websocket.webserver.user.model.UserInfoEntity;
-import com.chedao.websocket.webserver.user.model.UserInfoExtendEntity;
+import com.chedao.websocket.webserver.user.model.*;
+import com.chedao.websocket.webserver.user.service.IGroupUserManager;
+import com.chedao.websocket.webserver.user.service.UserFriendService;
 import com.chedao.websocket.webserver.user.service.UserInfoService;
 import com.chedao.websocket.webserver.util.JedisCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +23,12 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Autowired
 	private JedisCache jedisCache;
+	@Autowired
+    private UserFriendService userFriendServiceImpl;
+	@Autowired
+	private  GroupInfoServiceImpl groupInfoServiceImpl;
+	@Autowired
+	private IGroupUserManager groupUserManager;
 
 	private static final String cacheName = "LAYIM_USERINFO";
 	private static final String cacheKey = "USERID_";
@@ -65,13 +72,44 @@ public class UserInfoServiceImpl implements UserInfoService {
 		userInfoDao.save(userInfo);
 
 		refreshUserInfoCache(userInfo.getUid().toString());
+
+        List<UserFriendTEntity> list = userFriendServiceImpl.queryUserFriendList(userInfo.getUid().toString());
+        for(int i=0; i<list.size(); i++) {
+            UserFriendTEntity user = list.get(i);
+            List<ImFriendUserInfoData> friendList = user.getList();
+            for(int j=0; j<friendList.size(); j++) {
+				ImFriendUserInfoData friend = friendList.get(j);
+				String friendId = friend.getId().toString();
+				userFriendServiceImpl.refreshUserFriendCache(friendId, userInfo.getUid().toString());
+			}
+        }
 	}
 	
 	@Override
 	public int update(UserInfoEntity userInfo){
-		int i = userInfoDao.update(userInfo);
+		int u = userInfoDao.update(userInfo);
 		refreshUserInfoCache(userInfo.getUid().toString());
-		return i;
+
+		List<UserFriendTEntity> list = userFriendServiceImpl.queryUserFriendList(userInfo.getUid().toString());
+		for(int i=0; i<list.size(); i++) {
+			UserFriendTEntity user = list.get(i);
+			List<ImFriendUserInfoData> friendList = user.getList();
+			for(int j=0; j<friendList.size(); j++) {
+				ImFriendUserInfoData friend = friendList.get(j);
+				String friendId = friend.getId().toString();
+				userFriendServiceImpl.refreshUserFriendListCache(friendId);
+				userFriendServiceImpl.refreshUserFriendCache(friendId, userInfo.getUid().toString());
+			}
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userId",userInfo.getUid().toString());
+		List<GroupInfoTEntity> userGroupList = groupInfoServiceImpl.queryUserGroupList(map);
+		for(int m=0; m<userGroupList.size(); m++) {
+			GroupInfoTEntity group = userGroupList.get(m);
+			groupUserManager.refreshGroupMemberCache(group.getId(), userInfo.getUid().toString());
+		}
+
+		return u;
 	}
 	
 	@Override

@@ -12,7 +12,7 @@ var dataform1 = null;
 var provinceName =null;
 var cityName =null;
 var countyName = null;
-
+var cssCheckEnter = {};//列表界面传过来或者返回保存的
 $(document).ready(function(v) {
 	
 	dataform1 = new nui.Form("#dataform1");
@@ -45,11 +45,11 @@ $(document).ready(function(v) {
 var requiredField = {
 	guestId : "供应商",
 	procedureMan : "经手人",
-	orderPrice : "车价（成本）",
+	unitPrice : "车价（成本）",
 	logisticCompId : "运输公司",
 	carModelId : "车型",
 	carFrameNo :"车架号（VIN）",
-	kilometers : "公里数",
+/*	kilometers : "公里数",*/
 	carModelId : "车身颜色",
 	interialColorId :"内饰颜色"
 	
@@ -57,8 +57,13 @@ var requiredField = {
 var salesCheckCarUrl = baseUrl
 		+ "sales.inventory.salesCheckCar.biz.ext";
 function save() {
+	if(cssCheckEnter.billStatus==1){
+		showMsg("单据已入库!","W");
+		return;
+	}
 	var data = dataform1.getData();
 	data.guestFullName = nui.get("guestId").getText();
+	data.logisticCompName = nui.get("logisticCompId").getText();
 	var json = nui.encode({
 		cssCheckEnter:data,
 		token:token
@@ -68,7 +73,6 @@ function save() {
 			showMsg(requiredField[key] + "不能为空!","W");
 			//如果检测到有必填字段未填写，切换到主表界面
 //			mainTabs.activeTab(billmainTab);
-
 			return;
 		}
 	}
@@ -87,7 +91,8 @@ function save() {
 			nui.unmask(document.body);
 			data = data || {};
 			if (data.errCode == "S") {
-				showMsg("保存成功!","S");			
+				showMsg("保存成功!","S");	
+				cssCheckEnter = data.cssCheckEnter;
 			} else {
 				showMsg(data.errMsg || "保存失败!","E");
 			}
@@ -209,4 +214,73 @@ function onButtonEdit(e) {
 	 }
     }
   });
+}
+//验车入库
+
+function carPutInStorage(){
+	if(cssCheckEnter.billStatus==1){
+		showMsg("单据已入库!","W");
+		return;
+	}
+	if(cssCheckEnter.billStatus!=0){
+		showMsg("请先保存单据!","W");
+		return;
+	}
+	var json = nui.encode({
+		cssCheckEnter:cssCheckEnter,
+		token:token
+	});
+	var carPutInStorageUrl = baseUrl
+	+ "sales.inventory.carPutInStorage.biz.ext";
+	nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : '入库中...'
+	});
+	nui.ajax({
+		url : carPutInStorageUrl,
+		type : "post",
+		data : json,
+		success : function(data) {
+			nui.unmask(document.body);
+			data = data || {};
+			if (data.errCode == "S") {
+				showMsg("入库成功!","S");	
+				cssCheckEnter = data.cssCheckEnter;
+				document.getElementById("basicInfoForm").disabled = false;
+			} else {
+				showMsg(data.errMsg || "入库异常!","E");
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+
+function add(){
+	dataform1.setData({});
+	nui.get("guestId").setText("");
+	nui.get("logisticCompId").setText("");
+	nui.get("code").setText("");
+	nui.get("code").setVisible(true);
+	nui.get("carModelName").setValue("");
+	nui.get("carModelName").setText("");
+	cssCheckEnter = {};
+}
+
+function setInitData(params){
+	if(params.id){
+		cssCheckEnter = params;
+		dataform1.setData(params);
+		nui.get("guestId").setText(params.guestFullName);
+		nui.get("logisticCompId").setText(params.logisticCompName);	
+		nui.get("carModelId").setValue(params.carModelId);
+		nui.get("carModelName").setValue(params.carModelName);
+		nui.get("carModelName").setText(params.carModelName);
+		
+	}else{
+		add();	
+	}
 }

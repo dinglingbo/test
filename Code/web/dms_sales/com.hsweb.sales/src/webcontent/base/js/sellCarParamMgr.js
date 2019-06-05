@@ -66,15 +66,42 @@ function addShareUrl(){
     dgGrid.addRow(newRow);
 }
 
-function save(){
-	var value = checkName();
-	if(!value){
-		parent.showMsg(nullMsg,"W");
-		return;
-	}
-    var addList = dgGrid.getChanges("added");
-	var updateList = dgGrid.getChanges("modified");
+// function del() {
+//     var row = dgGrid.getSelected();
+//     if (!row) {
+//         showMsg('请先选中需要删除的数据', 'W');
+//         return;
+//     }
+//     if (row.name) {
+//         nui.confirm('是否删除【' + row.name + '】', '删除', function (action) {
+//             if (action == 'ok') {
+//                 dgGrid.removeRow(row);
+//             } else {
+//                 return;
+//             }
+//         });
+//     } else {
+//         dgGrid.removeRow(row);
+//     }
+// }
 
+function save(){
+    var addList = dgGrid.getChanges("added");
+    var updateList = dgGrid.getChanges("modified");
+    for (var k = 0; k < updateList.length; k++) {
+        var uptemp = updateList[k];
+        if (uptemp.name == null || uptemp.name == "" || uptemp.name == undefined) {
+            parent.showMsg('修改行的'+nullMsg,"W");
+            return;
+        }
+    }
+    var addArr = [];
+    for (var i = 0; i < addList.length; i++) {
+        var temp = addList[i];
+        if (temp.name) {
+            addArr.push(temp)
+        }
+    }
     nui.mask({
 		el : document.body,
 		cls : 'mini-mask-loading',
@@ -85,7 +112,7 @@ function save(){
 		url : saveUrl,
 		type : "post",
 		data : JSON.stringify({
-			addList : addList,
+			addList : addArr,
 			updateList : updateList,
 			dictid : DICTID,
 			token: token
@@ -109,16 +136,16 @@ function save(){
 }
 
 
-function checkName(){
-	var rows = dgGrid.findRows(function(row) {
-		if (row.name == null || row.name == "" || row.name == undefined)
-			return true;
-	});
-	if(rows && rows.length>0){
-		return false;
-	}
-	return true;
-}
+// function checkName(){
+// 	var rows = dgGrid.findRows(function(row) {
+// 		if (row.name == null || row.name == "" || row.name == undefined)
+// 			return true;
+// 	});
+// 	if(rows && rows.length>0){
+// 		return false;
+// 	}
+// 	return true;
+// }
 
 //hideColumn ( column )		隐藏列	
 //showColumn ( column )
@@ -160,8 +187,8 @@ function showTabInfo(){
         case "character"://性格
             DICTID = 'DDT20130703000078';
             break;
-        case "contact"://联系状态
-            DICTID = '10382';
+        case "contact"://联系状态  DDT20130703000081    10382
+            DICTID = 'DDT20130703000081';
             break;
         case "carLevel"://车辆级别
             DICTID = '10383';

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>PDI检测</title>
-    <script src="<%=webPath + contextPath%>/sales/inventory/js/PDIdetection.js?v=1.0.7"></script>
+    <script src="<%=webPath + contextPath%>/sales/inventory/js/PDIdetection.js?v=1.1.0"></script>
     <style type="text/css">
 .title {
   width: 90px;
@@ -60,6 +60,8 @@ body .mini-grid-row-selected{
  	<fieldset style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;">
 		<legend> 基本信息</legend>       
 		<div id="advancedSearchForm" class="form">
+			<input class="nui-hidden" name="enterId" id="enterId"/>
+			<input class="nui-hidden" name="carModelId"/>
 			<table style="width: 100%;">
 				<tr>
 					<td class="title required" >
@@ -74,7 +76,7 @@ body .mini-grid-row-selected{
 						<label>车架号（VIN）:</label>
 					</td>
 					<td>
-						<input name="carFrameNo" id="carFrameNo" width="100%" disabled="disabled" class="nui-textbox" />
+						<input name="vin" id="vin" width="100%" disabled="disabled" class="nui-textbox" />
 					</td>
 					<td class="title required">
 						<label>发动机型号:</label>
@@ -109,7 +111,7 @@ body .mini-grid-row-selected{
 						<label>钥匙数量:</label>
 					</td>
 					<td>
-						<input name="" class="nui-textbox" width="100%" />
+						<input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"   allowNull="false" showButton="false" name="ignitionKeyNumber" id="ignitionKeyNumber" />
 					</td>
 				</tr>
 				<tr>
@@ -117,12 +119,12 @@ body .mini-grid-row-selected{
 						<label>发送器数量:</label>
 					</td>
 					<td>
-						<input name="ignitionKeyNumber" id="ignitionKeyNumber" width="100%" class="nui-textbox" />
+						<input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"   allowNull="false" showButton="false" name="transmittersNumber" id="transmittersNumber" />
 					</td>				
 					<td class="title required">
 						<label>检测模板:</label>
 					</td>
-					<td colspan="3">
+					<td colspan="1">
 						   <input class="nui-combobox tabwidth"  id="pdiTemplateId" name="pdiTemplateId" 
                     			dataField="list" valueField="id" textField="name" onvaluechanged="ValueChanged" style="width:100%"/>
 					</td>				

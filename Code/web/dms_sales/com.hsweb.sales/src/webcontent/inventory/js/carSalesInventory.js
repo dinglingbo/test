@@ -2,24 +2,58 @@
  * Created by Administrator on 2018/2/1.
  */
 var bearUrl = apiPath + saleApi + "/"; 
-var DateList = [{id:"0",name:"上市日期"},{id:"1",name:"入库日期"}];
+/*var DateList = [{id:"0",name:"上市日期"},{id:"1",name:"入库日期"}];*/
 var statusList = [{id:"0",name:"联系人"},{id:"1",name:"联系电话"},{id:"2",name:"车架号（VIN）"}];
+var inventory = [{id:"0",name:"否"},{id:"1",name:"是"}];
 var rightGridUrl = bearUrl+"sales.inventory.queryCheckEnter.biz.ext";
 var rightGrid = null;
 var searchBeginDate = null;
 var searchEndDate = null;
+var comSearchGuestId = null;
+var frameColorIdList = []//车身颜色
+var interialColorIdList = []//内饰颜色
 $(document).ready(function(v){
 	rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
     searchBeginDate = nui.get("beginDate");
     searchEndDate = nui.get("endDate");
+    comSearchGuestId = nui.get("searchGuestId");
     searchBeginDate.setValue(getMonthStartDate());
     searchEndDate.setValue(getMonthEndDate());
-    rightGrid.load();
+	var dictDefs ={"frameColorId":"DDT20130726000003","interialColorId":"10391"};
+	initDicts(dictDefs, function(){
+		getStorehouse(function(data) {
+			getAllPartBrand(function(data) {
+		 	 	frameColorIdList = nui.get('frameColorId').getData();
+ 	 			interialColorIdList = nui.get('interialColorId').getData();
+ 	 			quickSearch(4);
+			});
+			
+		});
+	});
+    rightGrid.on("drawcell", function (e) {      
+        switch (e.field) {
+            case "carLock":
+            	 e.cellHtml = inventory[e.value].name;
+                break;
+            case "frameColorId":
+            	e.cellHtml = setColVal('frameColorId', 'customid', 'name', e.value);
+               break;
+            case "interialColorId":
+            	e.cellHtml = setColVal('interialColorId', 'customid', 'name', e.value);
+               break;
+            default:
+                break;
+        }
+    });
 });
 function getSearchParam(){
-
-
+    var params = {};
+    params.carModelName = nui.get("carModelName").getValue();
+	params.endDate = addDate(searchEndDate.getValue(),1);
+	params.startDate = searchBeginDate.getFormValue();
+	params.billStatus = 1;
+    return params;
 }
 var currType = 2;
 function quickSearch(type){
@@ -122,24 +156,23 @@ function quickSearch(type){
     
     searchBeginDate.setValue(params.startDate);
     searchEndDate.setValue(addDate(params.endDate,-1));
-    nui.get('auditSign').setValue(params.auditSign);
-    nui.get('billStatusId').setValue(params.billStatusId);
     currType = type;
-    if(querysign == 1){
-    	var menunamedate = nui.get("menunamedate");
-    	menunamedate.setText(queryname); 	
-    }
-    else if(querysign == 2){
-    	var menubillstatus = nui.get("menubillstatus");
-		menubillstatus.setText(querystatusname);
-    }
     doSearch(params);
 }
 function onSearch(){
+	var params = getSearchParam();
 
+    doSearch(params);
 }
-function doSearch(params){
+function doSearch(params)
+{
 
+    rightGrid.load({
+        params:params,
+        token:token
+    },function(){
+        rightGrid.mergeColumns(["serviceId"]);
+    });
 }
 
 var supplier = null;
@@ -198,7 +231,7 @@ function detection() {
 			iframe.contentWindow.setData(row);
 		},
 		ondestroy : function(action) {
-
+			quickSearch(4);
 		}
 	});
 }
@@ -223,7 +256,7 @@ function upload() {
 	});
 }
 
-var saveUrl = baseUrl
+var saveUrl = bearUrl
 + "sales.inventory.saveCarLock.biz.ext";
 function edit() {
 	var row = rightGrid.getSelected();
@@ -244,7 +277,7 @@ function edit() {
 			data = data || {};
 			if (data.errCode == "S") {
 				showMsg("操作成功!","S");
-				
+				quickSearch(4);
 			} else {
 				showMsg(data.errMsg || "操作异常!","W");
 			}
@@ -261,7 +294,7 @@ function edit() {
 function costAdjust(){
 	var row = rightGrid.getSelected();
 	if(!row){
-		showMsg("请选择一条单据","W");
+		showMsg("请选择一条库存","W");
 	}
 	nui.open({
 		url : webPath + contextPath
@@ -277,7 +310,7 @@ function costAdjust(){
             iframe.contentWindow.setData(row);
 		},
 		ondestroy : function(action) {
-
+			quickSearch(4);
 		}
 	});
 }

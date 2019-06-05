@@ -26,6 +26,9 @@ function setData(row){
 	nui.get("pdiDetectioner").setValue(currEmpId);
 	nui.get("pdiDetectioner").setText(currUserName);
 	nui.get("pdiDetectionDate").setValue(new Date());
+	nui.get("vin").setValue(row.carFrameNo);
+	nui.get("enterId").setValue(row.id);
+	
 /*	nui.ajax({
 		url : searchCsbPDICarTemplateUrl,
 		type : "post",
@@ -79,6 +82,9 @@ var saveCssCheckPdiMainUrl = bearUrl+"sales.inventory.saveCssCheckPdiMain.biz.ex
 function onOk(){
 	var cssCheckPdiMain = advancedSearchForm.getData();
 	var cssCheckPdiDetail = morePartGrid.getSelecteds();
+	for(var i = 0;i<cssCheckPdiDetail.length;i++){
+		cssCheckPdiDetail[i].pdiItemName = cssCheckPdiDetail[i].name;
+	}
     nui.ajax({
         url: saveCssCheckPdiMainUrl,
         type:"post",
@@ -93,6 +99,7 @@ function onOk(){
             var list = text.list;
             if(text.errCode=="S"){
             	showMsg("保存成功","S");
+            	onCancel();
             }else{
             	showMsg("保存异常","W");
             }

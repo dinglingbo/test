@@ -3,30 +3,29 @@ var beginDateEl = null;
 var endDateEl = null;
 var mainGrid = null;
 var form = null;
-var queryUrl = apiPath + saleApi +"/sales.custormer.queryGuestCome.biz.ext";
+var queryUrl = apiPath + saleApi + "/sales.custormer.queryGuestCome.biz.ext";
 //状态：0草稿，1归档，2转销售，3作废
 var statusHash = {
-		"0":"草稿",
-	    "1":"归档",
-	    "2":"转销售",
-	    "3":"作废"
+    "0": "草稿",
+    "1": "归档",
+    "2": "转销售",
+    "3": "作废"
 }
-$(document).ready(function ()
-{
-	beginDateEl = nui.get("sEnterDate");
-	endDateEl = nui.get("eEnterDate");
-	mainGrid = nui.get("mainGrid");
-	form=new nui.Form("#form1");
-	
-	initMember("saleAdvisorId",function(){
+$(document).ready(function () {
+    beginDateEl = nui.get("sEnterDate");
+    endDateEl = nui.get("eEnterDate");
+    mainGrid = nui.get("mainGrid");
+    form = new nui.Form("#form1");
+
+    initMember("saleAdvisorId", function () {
     });
-	initDicts({
-		 interialColorId:"10391",
-		 frameColorId:"DDT20130726000003",
-		 intentLevelId:"DDT20130703000050"
+    initDicts({
+        interialColorId: "10391",
+        frameColorId: "DDT20130726000003",
+        intentLevelId: "DDT20130703000050"
     });
-	mainGrid.setUrl(queryUrl);
-	mainGrid.on('drawcell', function (e) {
+    mainGrid.setUrl(queryUrl);
+    mainGrid.on('drawcell', function (e) {
         var value = e.value;
         var field = e.field;
         if (field == 'launchDate') {
@@ -38,28 +37,27 @@ $(document).ready(function ()
         } else if (field == 'frameColorId') {
             e.cellHtml = setColVal('frameColorId', 'customid', 'name', e.value);
         } else if (field == 'interialColorId') {
-        	e.cellHtml = setColVal('interialColorId', 'customid', 'name', e.value);
+            e.cellHtml = setColVal('interialColorId', 'customid', 'name', e.value);
         } else if (field == 'status') {
-            e.cellHtml =statusHash[e.value];
-        } else if(e.field == "serviceCode"){
-        	e.cellHtml ='<a href="##" onclick="edit('+e.record._uid+')">'+e.record.serviceCode+'</a>';
+            e.cellHtml = statusHash[e.value];
+        } else if (e.field == "serviceCode") {
+            e.cellHtml = '<a href="##" onclick="edit(' + e.record._uid + ')">' + e.record.serviceCode + '</a>';
         }
-	});
-	mainGrid.on("select",function(e){
-    	var row = e.record;
-    	if(row.status>0){
-    		nui.get("deletBtn").disable();
-    	}
     });
-	quickSearch(2);
+    mainGrid.on("select", function (e) {
+        var row = e.record;
+        if (row.status > 0) {
+            nui.get("deletBtn").disable();
+        }
+    });
+    quickSearch(2);
 });
 
-function quickSearch(type){
+function quickSearch(type) {
     var params = getSearchParam();
     var querysign = 1;
     var queryname = "本日";
-    switch (type)
-    {
+    switch (type) {
         case 0:
             params.today = 1;
             params.sOutDate = getNowStartDate();
@@ -116,18 +114,18 @@ function quickSearch(type){
             querysign = 1;
             queryname = "上年";
             break;
-       
+
         default:
             break;
     }
-    
+
     beginDateEl.setValue(params.sOutDate);
-    endDateEl.setValue(addDate(params.eOutDate,-1));
-    if(querysign == 1){
-    	var menunamedate = nui.get("menunamedate");
-    	menunamedate.setText(queryname); 	
+    endDateEl.setValue(addDate(params.eOutDate, -1));
+    if (querysign == 1) {
+        var menunamedate = nui.get("menunamedate");
+        menunamedate.setText(queryname);
     }
-    
+
     doSearch(params);
 }
 
@@ -136,9 +134,9 @@ function quickSearch2(type) {
     var queryname = "草稿";
     switch (type) {
         case 0:
-    	   status = 0;  //报价
-          queryname = "草稿";
-          break;
+            status = 0;  //报价
+            queryname = "草稿";
+            break;
         case 1:
             status = 1;  //报价
             queryname = "归档";
@@ -165,14 +163,13 @@ function quickSearch2(type) {
 }
 
 
-function onSearch()
-{
+function onSearch() {
     doSearch();
 }
 function doSearch() {
     var gsparams = getSearchParam();
-    if(status!=4){
-    	gsparams.status = status;
+    if (status != 4) {
+        gsparams.status = status;
     }
     /*if(gsparams.billTypeIds && gsparams.billTypeIds==5){
     	gsparams.billTypeIds = "0,2,4,6";
@@ -184,18 +181,18 @@ function doSearch() {
     	gsparams.isSettle = 1;
     	gsparams.isCollectMoney=1;
     }*/
-   // gsparams.billTypeId = 0;
+    // gsparams.billTypeId = 0;
     //gsparams.isDisabled = 0;
 
     mainGrid.load({
-        token:token,
+        token: token,
         params: gsparams
     });
 }
 function getSearchParam() {
     var params = {};
     params.comeDateStart = nui.get("sEnterDate").getValue();
-    params.comeDateEnd = addDate(endDateEl.getValue(),1); 
+    params.comeDateEnd = addDate(endDateEl.getValue(), 1);
     var saleAdvisorId = nui.get("saleAdvisorId").getValue();
     params.saleAdvisorId = saleAdvisorId;
     var fullName = nui.get("fullName").getValue();
@@ -203,149 +200,149 @@ function getSearchParam() {
     return params;
 }
 
-function add(){
-	var part={};
+function add() {
+    var part = {};
     part.id = "addVisitors";
     part.text = "来访记录详情";
-    part.url = webPath + contextPath + "/customer.addVisitRecords.flow?token="+token;
+    part.url = webPath + contextPath + "/customer.addVisitRecords.flow?token=" + token;
     part.iconCls = "fa fa-file-text";
     var params = {};
-    window.parent.activeTabAndInit(part,params);
+    window.parent.activeTabAndInit(part, params);
 }
 
-function addFollowUpRecord(){
-	nui.open({
-		url : webPath + contextPath + "/com.hsweb.repair.potentialCustomer.FollowUpRecord.flow?token=" + token,
-		title : "来访记录详情",
-		width : 600,
-		height : 360,
-		allowDrag : true,
-		allowResize : true,
-		onload : function() {
+function addFollowUpRecord() {
+    nui.open({
+        url: webPath + contextPath + "/com.hsweb.repair.potentialCustomer.FollowUpRecord.flow?token=" + token,
+        title: "来访记录详情",
+        width: 600,
+        height: 360,
+        allowDrag: true,
+        allowResize: true,
+        onload: function () {
 			/*var iframe = this.getIFrameEl();
             iframe.contentWindow.updatRowSetData(params);//显示该显示的功能
            // iframe.contentWindow.setViewData(dock, dodelck, docck);
 */		},
-		ondestroy : function(action) {
-			
-			
-		}
-	});
+        ondestroy: function (action) {
+
+
+        }
+    });
 }
 
-function potentialCustomer(){
-	nui.open({
-		url : webPath + contextPath + "/com.hsweb.repair.potentialCustomer.check.flow?token=" + token,
-		title : "审核",
-		width : 600,
-		height : 360,
-		allowDrag : true,
-		allowResize : true,
-		onload : function() {
+function potentialCustomer() {
+    nui.open({
+        url: webPath + contextPath + "/com.hsweb.repair.potentialCustomer.check.flow?token=" + token,
+        title: "审核",
+        width: 600,
+        height: 360,
+        allowDrag: true,
+        allowResize: true,
+        onload: function () {
 			/*var iframe = this.getIFrameEl();
             iframe.contentWindow.updatRowSetData(params);//显示该显示的功能
            // iframe.contentWindow.setViewData(dock, dodelck, docck);
 */		},
-		ondestroy : function(action) {
-			
-			
-		}
-	});
+        ondestroy: function (action) {
+
+
+        }
+    });
 }
 
 
-function edit(row_uid){
-	if(!row_uid){
-		var row = mainGrid.getSelected();
-	}else{
-		var row = mainGrid.getRowByUID(row_uid);
-	}
-    if(!row) return;
-    var part={};
+function edit(row_uid) {
+    if (!row_uid) {
+        var row = mainGrid.getSelected();
+    } else {
+        var row = mainGrid.getRowByUID(row_uid);
+    }
+    if (!row) return;
+    var part = {};
     part.id = "addVisitors";
     part.text = "来访记录详情";
-    part.url = webPath + contextPath + "/customer.addVisitRecords.flow?token="+token;
+    part.url = webPath + contextPath + "/customer.addVisitRecords.flow?token=" + token;
     part.iconCls = "fa fa-file-text";
     var params = {};
-    window.parent.activeTabAndInit(part,row);
+    window.parent.activeTabAndInit(part, row);
 }
 
-function guestInfo(){
-	var row = mainGrid.getSelected();
-	if(row){
-		nui.open({
-			url : webPath + contextPath + "/sales/customer/addGuest.jsp?token=" + token,
-			title : "编辑客户资料",
-			width : 900,
-			height : 460,
-			allowDrag : true,
-			allowResize : true,
-			onload : function() {
-				var iframe = this.getIFrameEl();
-	            iframe.contentWindow.queryData(row.guestId);//显示该显示的功能
-			},
-			ondestroy : function(action) {
-				doSearch();
-			}
-		});
-	}else{
-		showMsg("请选择一条记录!","W");
-		return;
-	}
-	  
+function guestInfo() {
+    var row = mainGrid.getSelected();
+    if (row) {
+        nui.open({
+            url: webPath + contextPath + "/sales/customer/addGuest.jsp?token=" + token,
+            title: "编辑客户资料",
+            width: 900,
+            height: 460,
+            allowDrag: true,
+            allowResize: true,
+            onload: function () {
+                var iframe = this.getIFrameEl();
+                iframe.contentWindow.queryData(row.guestId);//显示该显示的功能
+            },
+            ondestroy: function (action) {
+                doSearch();
+            }
+        });
+    } else {
+        showMsg("请选择一条记录!", "W");
+        return;
+    }
+
 }
 
-function queryCar(){
-	var part={};
+function queryCar() {
+    var part = {};
     part.id = "3223";
     part.text = "库存管理";
-    part.url = webPath + contextPath + "/inventory.carSalesInventory.flow?token="+token;
+    part.url = webPath + contextPath + "/inventory.carSalesInventory.flow?token=" + token;
     part.iconCls = "fa fa-file-text";
     var params = {};
-    window.parent.activeTabAndInit(part,params);
+    window.parent.activeTabAndInit(part, params);
 }
 
 var statusUrl = apiPath + saleApi + "/sales.custormer.changStatus.biz.ext";
-function del(){
-	var row = mainGrid.getSelected();
-	if(row){
-		var status = row.status;
-		if(status == 1){
-			showMsg("来访登记已归档！","W");
-			return;
-		}
-		if(status == 2){
-			showMsg("来访登记已转销售！","W");
-			return;
-		}
-		var json = nui.encode({
-	         id:row.id,
-	         action:"delete",
-			 token:token
-		  });
-		nui.mask({
-	       el: document.body,
-	       cls: 'mini-mask-loading',
-	       html: '保存中...'
-	   });
-		nui.ajax({
-			url : statusUrl,
-			type : 'POST',
-			data : json,
-			cache : false,
-			contentType : 'text/json',
-			success : function(text) {
-				if(text.errCode=="S"){
-					showMsg("作废成功!","S");
-			    }else{
-			    	showMsg("作废失败!","E");
-			    }
-				nui.unmask(document.body);
-				doSearch();
-			}
-		 });
-	}else{
-		showMsg("请选择一条记录！","W");
-		return;
-	}
+function del() {
+    var row = mainGrid.getSelected();
+    if (row) {
+        var status = row.status;
+        if (status == 1) {
+            showMsg("来访登记已归档！", "W");
+            return;
+        }
+        if (status == 2) {
+            showMsg("来访登记已转销售！", "W");
+            return;
+        }
+        var json = nui.encode({
+            id: row.id,
+            action: "delete",
+            token: token
+        });
+        nui.mask({
+            el: document.body,
+            cls: 'mini-mask-loading',
+            html: '保存中...'
+        });
+        nui.ajax({
+            url: statusUrl,
+            type: 'POST',
+            data: json,
+            cache: false,
+            contentType: 'text/json',
+            success: function (text) {
+                if (text.errCode == "S") {
+                    showMsg("作废成功!", "S");
+                } else {
+                    showMsg("作废失败!", "E");
+                }
+                nui.unmask(document.body);
+                doSearch();
+            }
+        });
+    } else {
+        showMsg("请选择一条记录！", "W");
+        return;
+    }
 }

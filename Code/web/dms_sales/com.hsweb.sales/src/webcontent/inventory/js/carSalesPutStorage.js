@@ -2,9 +2,9 @@
  * Created by Administrator on 2018/2/1.
  */
 var statusList = [{id:"0",name:"联系人"},{id:"1",name:"联系电话"}];
-var partApiUrl  = apiPath +saleApi + "/";
-var rightGridUrl = partApiUrl+"sales.inventory.queryPchsOrderMainList.biz.ext";
-var getDetailPartUrl=partApiUrl+"sales.inventory.queryPchsOrderDetailList.biz.ext";
+var saleApiUrl  = apiPath +saleApi + "/";
+var rightGridUrl = saleApiUrl+"sales.inventory.queryCheckEnter.biz.ext";
+var getDetailPartUrl=saleApiUrl+"sales.inventory.queryPchsOrderDetailList.biz.ext";
 
 var basicInfoForm = null;
 var rightGrid = null;
@@ -26,14 +26,15 @@ var partBrandIdHash = {};
 //    "2":"已过账",
 //    "3":"已取消"
 //};
-
+var frameColorIdList = []//车身颜色
+var interialColorIdList = []//内饰颜色
 var StatusHash = {
 		"0" : "草稿",
 		"1" : "待发货",
 		"2" : "待收货",
 		"4" : "已入库",
 	};
-var headerHash = [{ name: '草稿', id: '0' }, { name: '待发货', id: '1' }, {name: '待收货' , id: '2' }, {name: '未结算' , id: '3' }, {name: '已入库' , id: '4' }];
+var headerHash = [{ name: '草稿', id: '0' }, { name: '已入库', id: '1' }];
 var innerPartGrid=null;
 var editFormDetail = null;
 
@@ -70,28 +71,17 @@ $(document).ready(function(v)
     
 
 
-    innerPartGrid.on("drawcell", function (e) {
-        var grid = e.sender;
-        var record = e.record;
-        var uid = record._uid;
-        var rowIndex = e.rowIndex;
-        
+    rightGrid.on("drawcell", function (e) {      
         switch (e.field) {
-            case "comPartBrandId":
-            	if(partBrandIdHash[e.value])
-                {
-//                    e.cellHtml = partBrandIdHash[e.value].name||"";
-                	if(partBrandIdHash[e.value].imageUrl){
-                		
-                		e.cellHtml = "<img src='"+ partBrandIdHash[e.value].imageUrl+ "'alt='配件图片' height='25px' weight=' '/><br> "+partBrandIdHash[e.value].name||"";
-                	}else{
-                		e.cellHtml =partBrandIdHash[e.value].name||"";
-                	}
-                }
-                else{
-                    e.cellHtml = "";
-                }
+            case "billStatus":
+            	 e.cellHtml = headerHash[e.value].name;
                 break;
+            case "frameColorId":
+            	e.cellHtml = setColVal('frameColorId', 'customid', 'name', e.value);
+               break;
+            case "interialColorId":
+            	e.cellHtml = setColVal('interialColorId', 'customid', 'name', e.value);
+               break;
             default:
                 break;
         }
@@ -118,64 +108,22 @@ $(document).ready(function(v)
             partBrandIdHash[v.id] = v;
         });
     });
-    getStorehouse(function(data)
-    {
-        var dictIdList = [];
-        dictIdList.push('DDT20130703000008');//票据类型
-        dictIdList.push('DDT20130703000035');//结算方式
-        dictIdList.push('DDT20130703000064');//入库类型
-        getDictItems(dictIdList,function(data)
-        {
-            if(data && data.dataItems)
-            {
-                var dataItems = data.dataItems||[];
-                var billTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000008")
-                    {
-                        billTypeIdHash[v.customid] = v;
-                        return true;
-                    }
-                });
-                var settTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000035")
-                    {
-                        settTypeIdHash[v.customid] = v;
-                        return true;
-                    }
-                });
-                var enterTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000064")
-                    {
-                        enterTypeIdHash[v.customid] = v;
-                        return true;
-                    }
-                });
-                quickSearch(currType);
-            }
-        });
-    });
+	var dictDefs ={"frameColorId":"DDT20130726000003","interialColorId":"10391"};
+	initDicts(dictDefs, function(){
+		getStorehouse(function(data) {
+			getAllPartBrand(function(data) {
+		 	 	frameColorIdList = nui.get('frameColorId').getData();
+ 	 			interialColorIdList = nui.get('interialColorId').getData();
+ 	 			quickSearch(4);
+			});
+			
+		});
+	});
 });
 function getSearchParam(){
     var params = {};
-    /*var outableQtyGreaterThanZero = nui.get("outableQtyGreaterThanZero").getValue();
-    if(outableQtyGreaterThanZero == 1)
-    {
-        params.outableQtyGreaterThanZero = 1;
-    }*/
     params.serviceId = comServiceId.getValue();
-     
-    
-    params.auditSign=nui.get('auditSign').getValue();
-    params.billStatusId=nui.get('billStatusId').getValue();
-    if(params.auditSign===""){
-    	params.auditSign=-1;
-    }
-//	params.partCode = comPartCode.getValue();
-//	params.partNameAndPY = comPartNameAndPY.getValue();
-//	params.guestId = comSearchGuestId.getValue();
+    params.carModelName = nui.get("carModelName").getValue();
 	if(typeof comSearchGuestId.getValue() !== 'number'){
     	params.guestId=null;
     	params.guestName = comSearchGuestId.getValue();
@@ -184,10 +132,9 @@ function getSearchParam(){
     }
 	params.endDate = addDate(searchEndDate.getValue(),1);
 	params.startDate = searchBeginDate.getFormValue();
-	params.isDiffOrder = 0;
     return params;
 }
-var currType = 2;
+var currType = 4;
 function quickSearch(type){
     var params = getSearchParam();
     var querysign = 1;
@@ -288,8 +235,6 @@ function quickSearch(type){
     
     searchBeginDate.setValue(params.startDate);
     searchEndDate.setValue(addDate(params.endDate,-1));
-    nui.get('auditSign').setValue(params.auditSign);
-    nui.get('billStatusId').setValue(params.billStatusId);
     currType = type;
     if(querysign == 1){
     	var menunamedate = nui.get("menunamedate");
@@ -308,11 +253,7 @@ function onSearch(){
 }
 function doSearch(params)
 {
-	params.sortField = "audit_date";
-    params.sortOrder = "desc";
-    params.orderTypeId = 1;
-    params.status = 1;//可以验车
-//    params.isFinished = 0;
+
     rightGrid.load({
         params:params,
         token:token
@@ -421,26 +362,19 @@ function onDrawCell(e)
     }
 }
 
-function add(){
-    var item={};
-    item.id = "carSalesPutStorageDetails";
-    item.text = "验车入库详情";
-    item.url = webPath + contextPath + "/inventory.carSalesPutStorageDetails.flow";
-    item.iconCls = "fa fa-file-text";
-    //window.parent.activeTab(item);
-    var params = {};
-    window.parent.activeTabAndInit(item,params);
-
-}
 
 function edit(){
+	var row = rightGrid.getSelected();
+	if(!row){
+		showMsg("请选择单据","W");
+	}
     var item={};
     item.id = "carSalesPutStorageDetails";
     item.text = "验车入库详情";
     item.url = webPath + contextPath + "/inventory.carSalesPutStorageDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
-    var params = {}; 
+    var params = row; 
     window.parent.activeTabAndInit(item,params);
 }
 function carCheck(){

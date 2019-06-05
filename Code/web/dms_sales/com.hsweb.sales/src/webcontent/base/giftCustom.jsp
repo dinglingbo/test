@@ -10,11 +10,11 @@
 -->
 
 <head>
-  <title>返利政策</title>
+  <title>精品定义</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <%@include file="/common/commonRepair.jsp"%>
-  <script src="<%=webPath + contextPath%>/sales/base/js/sRebate.js?v=1.1.3"></script>
+  <script src="<%=webPath + contextPath%>/sales/base/js/giftCustom.js?v=1.1.3"></script>
   <style>
     html,
     body {
@@ -30,7 +30,7 @@
 
 <body>
     <div class="nui-toolbar">
-            返利政策:<input id="name" name="name" class="nui-textbox" type="text" style="width: 150px" />
+        精品名称:<input id="name" name="name" class="nui-textbox" type="text" style="width: 150px" />
             状态：<input id="isDisabled" name="isDisabled" class="nui-combobox" data="isDisArr" 
             textField="text" valueField="id"  allowInput="false" style="width:90px"/>
       <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
@@ -57,11 +57,8 @@
         <div type="indexcolumn" headerAlign="center" width="100px">序号</div>
         <!-- <div type="checkcolumn" class="mini-radiobutton" width="100px">选择</div> -->
    
-        <div field="name" headerAlign="center" allowSort="true" width="350px">返利政策
+        <div field="name" headerAlign="center" allowSort="true" width="350px">精品名称
                 <input property="editor" class="nui-textbox" />
-        </div>
-        <div field="rebateAmt" headerAlign="center" allowSort="true" width="200px">返利金额（元）
-                <input property="editor" class="nui-textbox" vtype="float"/>
         </div>
         <div field="remark" headerAlign="center" allowSort="true" width="300px">备注
                 <input property="editor" class="nui-textbox" />

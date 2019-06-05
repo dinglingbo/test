@@ -6,29 +6,31 @@
  */
 package com.chedao.websocket.server.connertor.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.chedao.websocket.constant.Constants;
 import com.chedao.websocket.server.connertor.ImConnertor;
 import com.chedao.websocket.server.exception.PushException;
 import com.chedao.websocket.server.group.ImChannelGroup;
 import com.chedao.websocket.server.model.MessageWrapper;
 import com.chedao.websocket.server.model.Session;
+import com.chedao.websocket.server.model.proto.MessageBodyProto;
 import com.chedao.websocket.server.model.proto.MessageProto;
 import com.chedao.websocket.server.proxy.MessageProxy;
 import com.chedao.websocket.server.session.SessionManager;
 import com.chedao.websocket.server.session.impl.SessionManagerImpl;
+import com.chedao.websocket.webserver.user.model.UserInfoExtendEntity;
+import com.chedao.websocket.webserver.user.model.UserMessageEntity;
 import com.chedao.websocket.webserver.user.service.impl.GroupUserManager;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service("connertor")
 public class ImConnertorImpl implements ImConnertor {
@@ -64,26 +66,40 @@ public class ImConnertorImpl implements ImConnertor {
         String groupId = message.getGroupId();
         String senduser = message.getSender();
 
-        //群聊，需要遍历该群组里的所有人
-        //第一次从缓存中取userId，否则，从数据库中取在存到缓存中
-        List<String> users =  groupUserManager.getGroupMembers(groupId);
-        if(users == null) {
-            users = new ArrayList<>();
-            users.add("3");
-            users.add("9");
-            users.add("10");
-            //return;
-        }
-        for (String userid : users) {
-            //遍历发送消息 自己过滤，不给自己发送(发送人id和群成员内的某个id相同)
-            if (!senduser.equals(userid)) {
-                ///取得接收人 给接收人写入消息
-                Session responseSession = sessionManager.getSession(userid);
-                if (responseSession != null && responseSession.isConnected() ) {
-                    boolean result = responseSession.write(wrapper.getBody());
-                }
-            }
-        }
+		try{
+			MessageBodyProto.MessageBody  msgContent =  MessageBodyProto.MessageBody.parseFrom(message.getContent());
+			String content = msgContent.getContent();
+			UserInfoExtendEntity user = groupUserManager.getGroupMember(groupId, senduser);
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("id", senduser);
+			map.put("username", user.getUsername());
+			map.put("avatar", user.getAvatar());
+			map.put("content", content);
+
+			MessageProto.Model.Builder  resultm = MessageProto.Model.newBuilder();
+			resultm.setTimeStamp(DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
+			resultm.setSender(wrapper.getSessionId());
+			resultm.setCmd(Constants.CmdType.MESSAGE);
+			resultm.setGroupId(groupId);
+			MessageBodyProto.MessageBody.Builder  msg =  MessageBodyProto.MessageBody.newBuilder();
+			msg.setContent(JSONObject.toJSONString(map));
+			resultm.setContent(msg.build().toByteString());
+
+			wrapper = new MessageWrapper(MessageWrapper.MessageProtocol.SEND, wrapper.getSessionId(), wrapper.getReSessionId(), resultm.build());
+
+			//群聊，需要遍历该群组里的所有人
+			//第一次从缓存中取userId，否则，从数据库中取在存到缓存中
+			List<String> users =  groupUserManager.getGroupMembers(groupId);
+			for (String userid : users) {
+				//遍历发送消息 自己过滤，不给自己发送(发送人id和群成员内的某个id相同)
+				if (!senduser.equals(userid)) {
+					///取得接收人 给接收人写入消息
+					Session responseSession = sessionManager.getSession(userid);
+					if (responseSession != null && responseSession.isConnected() ) {
+						boolean result = responseSession.write(wrapper.getBody());
+					}
+				}
+			}
 
 		/*  Session[] session = sessionManager.getSessions();
 		  for(int i=0; i<session.length; i++) {
@@ -92,9 +108,15 @@ public class ImConnertorImpl implements ImConnertor {
 		  	pushMessage(uid, wrapper);
 		  }*/
 
-		  //ImChannelGroup.broadcast(wrapper.getBody());
-		  //DwrUtil.sedMessageToAll((MessageProto.Model)wrapper.getBody());
-		  proxy.saveOnlineMessageToDB(wrapper,Constants.MessageType.GROUP);
+			//ImChannelGroup.broadcast(wrapper.getBody());
+			//DwrUtil.sedMessageToAll((MessageProto.Model)wrapper.getBody());
+			proxy.saveOnlineMessageToDB(wrapper,Constants.MessageType.GROUP);
+		}catch(Exception e){
+			throw new RuntimeException(e.getCause());
+		}
+
+
+
 	}
 
 	@Override  

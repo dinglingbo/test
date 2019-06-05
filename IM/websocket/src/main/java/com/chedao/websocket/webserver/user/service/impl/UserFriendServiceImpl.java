@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +40,20 @@ public class UserFriendServiceImpl implements UserFriendService {
         return true;
     }
 
+    //每个组存一个
+    private String getUserFriendCacheKey(String userId, String friendId){
+
+        return "USERID_" + userId + "FRIEND_" + friendId;
+    }
+
+    //将某个用户的好友信息存入缓存  key=》list  用于查询好友信息；用于发消息时获取好友的昵称，标签，头像
+    public boolean saveUserFriend(String userId, String friendId, UserInfoEntity userFriend) {
+
+        String key = getUserFriendCacheKey(userId, friendId);
+        jedisCache.hashSet(cacheName,key,userFriend);
+        return true;
+    }
+
     @Transactional
     @Override
     public void saveBatch(List<UserFriendEntity> list) {
@@ -47,6 +62,8 @@ public class UserFriendServiceImpl implements UserFriendService {
             UserFriendEntity userFriendEntity = list.get(i);
             String userId = userFriendEntity.getUserid().toString();
             refreshUserFriendListCache(userId);
+
+            refreshUserFriendCache(userId, userFriendEntity.getFriendid().toString());
         }
     }
 
@@ -59,6 +76,9 @@ public class UserFriendServiceImpl implements UserFriendService {
     public int update(UserFriendEntity userFriend) {
         int i = userFriendDao.update(userFriend);
         refreshUserFriendListCache(userFriend.getUserid().toString());
+
+        refreshUserFriendCache(userFriend.getUserid().toString(), userFriend.getFriendid().toString());
+
         return i;
     }
 
@@ -67,6 +87,8 @@ public class UserFriendServiceImpl implements UserFriendService {
         int i = userFriendDao.delete(id);
         UserFriendEntity userFriendEntity = (UserFriendEntity)userFriendDao.queryObject(id);
         refreshUserFriendListCache(userFriendEntity.getUserid().toString());
+
+        refreshUserFriendCache(userFriendEntity.getUserid().toString(), id.toString());
         return i;
     }
 
@@ -135,8 +157,36 @@ public class UserFriendServiceImpl implements UserFriendService {
     @Override
     public List<ImFriendUserInfoData> queryListUser(Long typeId) {return userFriendDao.queryListUser(typeId);}
 
+    /**
+     * 1、用于查看联系人信息
+     * 2、用于发消息时获取好友的昵称，标签，头像
+     * @param map
+     * @return
+     */
     @Override
     public UserInfoEntity queryUserFriend(Map<String, Object> map) {
-        return userFriendDao.queryUserFriend(map);
+        String userId = map.get("userid").toString();
+        String friendId = map.get("friendid").toString();
+        String key = getUserFriendCacheKey(userId,friendId);
+        //1、修改个人资料时更新所有好友的缓存信息  friendId + userId 查询好友的信息；
+        //2、修改好友昵称时更新对应好友的缓存信息  userId + friendId 查询好友的信息；
+        //3、添加好友时更新对应好友的缓存信息 userId + friendId，friendId + userId
+        UserInfoEntity userFriend = (UserInfoEntity)jedisCache.hashGet(cacheName,key);
+        if (userFriend == null) {
+            userFriend = userFriendDao.queryUserFriend(map);
+            saveUserFriend(userId, friendId, userFriend);
+            return userFriend;
+        }
+        return userFriend;
+    }
+
+    //刷新用户好友信息缓存
+    @Override
+    public boolean refreshUserFriendCache(String userId, String friendId) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("userid",userId);
+        map.put("friendid",friendId);
+        UserInfoEntity userFriend = userFriendDao.queryUserFriend(map);
+        return saveUserFriend(userId, friendId, userFriend);
     }
 }

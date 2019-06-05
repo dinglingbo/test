@@ -41,6 +41,10 @@ public class GroupUserServiceImpl implements GroupUserService {
     @Override
     public int deleteGroup(Integer userId,Integer groupId) {
         groupUserDao.deleteGroup(userId,groupId);
+        groupInfoServiceImpl.refreshUserGroupCache(userId);
+        groupUserManager.refreshGroupMemberListCache(groupId.toString());
+        groupUserManager.refreshGroupMemberCache(groupId.toString(), userId.toString());
+        groupUserManager.refreshGroupMembersCache(groupId.toString());
         return 0;
     }
 

@@ -95,5 +95,15 @@ public class UserMessageServiceImpl implements UserMessageService {
 		return userMessageDao.updateuserdate(map);
 	}
 
+    @Override
+    public List<MessageInfoEntity> getGroupHistoryMessageList(Map<String, Object> map) {
+	    //groupid   jointime
+        return userMessageDao.getGroupHistoryMessageList(map);
+    }
+
+    @Override
+    public int getGroupHistoryMessageCount(Map<String, Object> map) {
+        return userMessageDao.getGroupHistoryMessageCount(map);
+    }
 
 }

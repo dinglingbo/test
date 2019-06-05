@@ -9,12 +9,12 @@
       <sourceNode>start0</sourceNode>
       <targetNode>invokePojo1</targetNode>
     </sourceConnections>
-    <location x="83" y="170"/>
+    <location x="-33" y="170"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" nodeType="label">
-    <location x="85" y="206"/>
+    <location x="-31" y="206"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -40,10 +40,21 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="获取http" displayName="获取http" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="link2" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
-      <targetNode>assign0</targetNode>
+      <targetNode>assign4</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link12" name="link12" displayName="连接线" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>assign5</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">type</process:leftOperand>
+          <process:rightOperand type="literal">group</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
-    <location x="266" y="170"/>
+    <location x="150" y="170"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -61,7 +72,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="253" y="206"/>
+    <location x="137" y="206"/>
     <figSize height="17" width="48"/>
     <node>invokePojo0</node>
   </nodes>
@@ -72,7 +83,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
-    <location x="170" y="170"/>
+    <location x="54" y="170"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -90,7 +101,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="145" y="206"/>
+    <location x="29" y="206"/>
     <figSize height="17" width="73"/>
     <node>invokePojo1</node>
   </nodes>
@@ -109,30 +120,11 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link5</targetConnections>
+    <targetConnections>link11</targetConnections>
+    <targetConnections>link13</targetConnections>
     <location x="350" y="170"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">usermessage/chatlist</process:from>
-      <process:to type="query">apiName</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">httpStr+apiName</process:from>
-      <process:to type="query">httpStr</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">senduser</process:from>
-      <process:to type="query">params/senduser</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">receiveuser</process:from>
-      <process:to type="query">params/receiveuser</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">page</process:from>
-      <process:to type="query">params/page</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="352" y="206"/>
@@ -273,6 +265,76 @@
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <targetConnections>link5</targetConnections>
+    <location x="255" y="170"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign4label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">id</process:from>
+      <process:to type="query">params/receiveuser</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">usermessage/chatlist</process:from>
+      <process:to type="query">apiName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">httpStr+apiName</process:from>
+      <process:to type="query">httpStr</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">senduser</process:from>
+      <process:to type="query">params/senduser</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">page</process:from>
+      <process:to type="query">params/page</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <location x="253" y="206"/>
+    <figSize height="17" width="32"/>
+    <node>assign4</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <targetConnections>link12</targetConnections>
+    <location x="254" y="260"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign5label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">usermessage/groupchatlist</process:from>
+      <process:to type="query">apiName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">httpStr+apiName</process:from>
+      <process:to type="query">httpStr</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">id</process:from>
+      <process:to type="query">params/receiveuser</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">senduser</process:from>
+      <process:to type="query">params/senduser</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">page</process:from>
+      <process:to type="query">params/page</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
+    <location x="252" y="296"/>
+    <figSize height="17" width="32"/>
+    <node>assign5</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-05-14 16:57:25" date="2019-05-14Z" description="" name="getChatList" version="7.0.0.0"/>
@@ -286,8 +348,9 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="senduser" primitiveType="String"/>
-    <process:input description="" isArray="false" name="receiveuser" primitiveType="String"/>
+    <process:input description="" isArray="false" name="id" primitiveType="String"/>
     <process:input description="" isArray="false" name="page" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="type" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="code" primitiveType="String"/>

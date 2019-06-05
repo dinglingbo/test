@@ -39,6 +39,12 @@ public class GroupInfoServiceImpl implements GroupInfoService {
     }
 
     @Override
+    public GroupInfoEntity queryObject(Long id){
+        return groupInfoDao.queryObject(id);
+    }
+
+
+    @Override
     public int addGroupInfo(GroupInfoEntity groupInfo) {
         //创建群聊时，不需要初始化缓存（缓存的参数为用户ID），第一次读数据会从缓存取
         int i = groupInfoDao.addGroupInfo(groupInfo);

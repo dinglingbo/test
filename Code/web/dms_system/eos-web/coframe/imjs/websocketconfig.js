@@ -62,8 +62,29 @@ function reconnect(callbak) {
 layui.use('layim', function(layim){
 	//回复消息
 	var reMsg=function(sender,time,msg){
+		var groupList = parent.layui.layim.cache().friend;
+		var rtnSign = false;
+		for(var i=0; i<groupList.length; i++) {
+			var group = groupList[i];
+			var list = group.list;
+			if(list && list.length>0) {
+				for(var j=0; j<list.length; j++) {
+					var friend = list[j];
+					if(sender == friend.id) {
+						layim.getMessage({
+							username: friend.username
+							,avatar: friend.avatar
+							,id: sender
+							,type: "friend"
+							,content: msg
+						});
+						return;
+					}
+				}
+			}
+		}
 		layim.getMessage({
-			username: "Hi"
+			username: "佚名"
 			,avatar: ""
 			,id: sender
 			,type: "friend"
@@ -72,12 +93,13 @@ layui.use('layim', function(layim){
 	};
 			  
 	var reGroupMsg=function(sender,time,msg){
+		var groupMsg = JSON.parse(msg);
 		layim.getMessage({
-			username: "Hi"
-			,avatar: ""
+			username: groupMsg.username||"佚名"
+			,avatar: groupMsg.avatar||""
 			,id: sender
 			,type: "group"
-			,content: msg
+			,content: groupMsg.content
 		});
 	};
 			
@@ -261,16 +283,16 @@ layui.use('layim', function(layim){
     }*/
     
     //上传图片接口
-    ,uploadImage: {
-      url: '/upload/image' //（返回的数据格式见下文）
-      ,type: '' //默认post
-    } 
+    //,uploadImage: {
+    //  url: '/upload/image' //（返回的数据格式见下文）
+    //  ,type: '' //默认post
+    //} 
     
     //上传文件接口
-    ,uploadFile: {
-      url: '/upload/file' //（返回的数据格式见下文）
-      ,type: '' //默认post
-    }
+    //,uploadFile: {
+    //  url: '/upload/file' //（返回的数据格式见下文）
+    //  ,type: '' //默认post
+    //}
     
     ,isAudio: false //开启聊天工具栏音频
     ,isVideo: false //开启聊天工具栏视频

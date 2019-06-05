@@ -21,4 +21,6 @@ public interface IGroupUserManager {
     void refreshGroupMemberListCache(String groupId);
 
     void refreshGroupMemberCache(String groupId, String userId);
+
+    void refreshGroupMembersCache(String groupId);
 }

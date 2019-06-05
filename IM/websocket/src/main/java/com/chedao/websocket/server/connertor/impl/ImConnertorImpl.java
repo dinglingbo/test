@@ -85,7 +85,7 @@ public class ImConnertorImpl implements ImConnertor {
 			msg.setContent(JSONObject.toJSONString(map));
 			resultm.setContent(msg.build().toByteString());
 
-			wrapper = new MessageWrapper(MessageWrapper.MessageProtocol.SEND, wrapper.getSessionId(), wrapper.getReSessionId(), resultm.build());
+			MessageWrapper wrappert = new MessageWrapper(MessageWrapper.MessageProtocol.SEND, wrapper.getSessionId(), wrapper.getReSessionId(), resultm.build());
 
 			//群聊，需要遍历该群组里的所有人
 			//第一次从缓存中取userId，否则，从数据库中取在存到缓存中
@@ -96,7 +96,7 @@ public class ImConnertorImpl implements ImConnertor {
 					///取得接收人 给接收人写入消息
 					Session responseSession = sessionManager.getSession(userid);
 					if (responseSession != null && responseSession.isConnected() ) {
-						boolean result = responseSession.write(wrapper.getBody());
+						boolean result = responseSession.write(wrappert.getBody());
 					}
 				}
 			}

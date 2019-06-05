@@ -1,6 +1,7 @@
 //var websocketurl="ws://192.168.122.68:2048/ws";   //ws://{ip}:{端口}/{java后端websocket配置的上下文}
-var websocketurl="ws://127.0.0.1:2048/ws";
-//var websocketurl="wss://192.168.111.60:2048/ws";   
+var websocketurl="ws://127.0.0.1:8090/ws";
+//var websocketurl="ws://192.168.111.60:8090/ws";   
+//var websocketurl="wss://qxy60.hszb.harsons.cn/ws";
 var reconnectflag = false;//避免重复连接
 var socket; 
 var currentsession= currImCode;
@@ -309,7 +310,7 @@ layui.use('layim', function(layim){
     //,title: 'WebIM' //自定义主面板最小化时的标题
     //,right: '100px' //主面板相对浏览器右侧距离
     //,minRight: '90px' //聊天面板最小化时相对浏览器右侧距离
-    ,initSkin: '5.jpg' //1-5 设置初始背景
+    ,initSkin: '2.jpg' //1-5 设置初始背景
     //,skin: ['aaa.jpg'] //新增皮肤
     //,isfriend: false //是否开启好友 
     //,isgroup: false //是否开启群组
@@ -446,7 +447,12 @@ layui.use('layim', function(layim){
 	    	 }else{
 	    		 sendMsg(message,null,receiver)
 	    	 }   
-	     }   
+	     } else {
+	    	 layer.msg('当前聊天服务已断开，请重新登录', {
+                 icon: 7,
+                 time: 2000
+             });
+	     }  
 	 }
  
     /* var To = data.to;

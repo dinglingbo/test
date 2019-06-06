@@ -161,7 +161,7 @@
 									<label>手机号码：</label>
 								</td>
 								<td colspan="1">
-									<input class="nui-textbox" name="mobile" width="100%" maxlength="20" />
+									<input class="nui-textbox" name="mobile" width="100%" maxlength="20" onvalidation="onMobileValidation" />
 								</td>
 								<td class="form_label">
 									<label>客户性质：</label>
@@ -218,7 +218,7 @@
 									<label>预算金额：</label>
 								</td>
 								<td colspan="1">
-									<input class="nui-textbox" name="expectPrice" width="100%" maxlength="20" />
+									<input class="nui-textbox" name="expectPrice" width="100%" maxlength="20" vtype="float"/>
 								</td>
 							</tr>
 							<tr>

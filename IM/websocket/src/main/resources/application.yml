@@ -41,7 +41,7 @@ server:
   port: 8089
 
 imWebsocketServer:
-  port: 2048
+  port: 8090
 
 imServer:
   port: 2000

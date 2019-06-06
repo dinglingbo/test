@@ -60,6 +60,7 @@ public class GroupInfoController extends BaseController {
         GroupInfoEntity groupInfo = new GroupInfoEntity();
         groupManager.get("userId");
         groupInfo.setGroupNum("111");
+        groupInfo.setAvatar("http://qxy60.7xdr.com//FjAU4wgdXUFkFDk2_PYecIDoH684");
         groupInfo.setGroupName(name);
         groupInfo.setGroupManId(groupManId);
         groupInfo.setGroupMan(groupMan);

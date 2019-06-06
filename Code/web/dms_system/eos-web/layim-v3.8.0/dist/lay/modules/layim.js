@@ -720,14 +720,8 @@ layui.define(['layer', 'laytpl', 'upload'], function (exports) {
 
         layimMain.find('.layim-list-group').on('contextmenu', 'li', function (e) {
             var othis = $(this);
-            /* var str = othis[0].textContent.lastIndexOf("(");
-		
-		      var arr = str.split("(");
-		     
-		      groupInfo.name = str.*/
-            groupId = othis[0].id;
-            var groupId1 = groupId.substring(11, groupId.length);
-            var html = '<ul data-id="' + othis[0].id + '" data-index="' + othis.data('index') + '"><li layim-event="editGroupChat" data-type="add">发起群聊</li><li layim-event="editGroupChat" id="' + groupId1 + '" data-type="updat">修改群资料</li><li layim-event="editGroupChat" id="' + groupId1 + '" data-type="updateName">修改我在本群昵称</li><li layim-event="editGroupChat" id="' + groupId1 + '" data-type="delete">退出群聊</li></ul>';
+            var groupId1 = othis.data("id");
+            var html = '<ul data-id="' + othis[0].id + '" data-index="' + othis.data('index') + '"><li layim-event="editGroupChat" data-type="add">发起群聊</li><li layim-event="editGroupChat" id="' + groupId1 + '" data-type="addMem">添加群聊成员</li><li layim-event="editGroupChat" id="' + groupId1 + '" data-type="updat">修改群资料</li><li layim-event="editGroupChat" id="' + groupId1 + '" data-type="updateName">修改我在本群昵称</li><li layim-event="editGroupChat" id="' + groupId1 + '" data-type="delete">退出群聊</li></ul>';
 
             if (othis.hasClass('layim-null')) return;
 
@@ -2801,7 +2795,7 @@ layui.define(['layer', 'laytpl', 'upload'], function (exports) {
                             // 获取子页面的iframe
                             var iframe = window['layui-layer-iframe' + index];
                             // 向子页面的全局函数child传参
-                            iframe.setData(layui.layim.cache().friend,updateGroupList);
+                            iframe.setData(null, layui.layim.cache().friend,updateGroupList);
                         },
                         end: function () {
                            /* var group = {
@@ -2816,7 +2810,33 @@ layui.define(['layer', 'laytpl', 'upload'], function (exports) {
                             //popchat(group);
                         }
                     });
-                } else if (type === 'delete') {
+                } else if (type === 'addMem') {
+                    layer.open({
+                        type: 2,
+                        title: '添加群聊成员',
+                        content: addGroupChatUrl, //这里content是一个普通的String
+                        area: ['600px', '500px'],
+                        maxmin: true,
+                        success: function (layero, index) {
+                            // 获取子页面的iframe
+                            var iframe = window['layui-layer-iframe' + index];
+                            // 向子页面的全局函数child传参
+                            iframe.setData(editGroupChatId, layui.layim.cache().friend,updateGroupList);
+                        },
+                        end: function () {
+                           /* var group = {
+                                avatar: "http://tva3.sinaimg.cn/crop.64.106.361.361.50/7181dbb3jw8evfbtem8edj20ci0dpq3a.jpg",
+                                groupname: "华胜古天乐粉丝群",
+                                historyTime: 1558335578328,
+                                id: "12333333",
+                                members: 0,
+                                name: "华胜古天乐粉丝群",
+                                type: "group",
+                            }*/
+                            //popchat(group);
+                        }
+                    });
+                }else if (type === 'delete') {
                     layer.confirm('确定退出此群聊吗？', {
                         btn: ['确定', '取消'] //可以无限个按钮
                         ,

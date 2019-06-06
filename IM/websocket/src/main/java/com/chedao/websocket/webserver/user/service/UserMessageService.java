@@ -68,4 +68,8 @@ public interface UserMessageService {
 
 	int updateuserdate(Map<String, Object> map);
 
+	List<MessageInfoEntity> getGroupHistoryMessageList(Map<String, Object> map);
+
+	int getGroupHistoryMessageCount(Map<String, Object> map);
+
 }

@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.chedao.websocket.constant.Constants;
 import com.chedao.websocket.webserver.base.controller.BaseController;
 import com.chedao.websocket.webserver.user.model.*;
+import com.chedao.websocket.webserver.user.service.GroupUserService;
 import com.chedao.websocket.webserver.user.service.UserInfoService;
 import com.chedao.websocket.webserver.user.service.UserMessageService;
 import com.chedao.websocket.webserver.user.service.impl.GroupUserManager;
@@ -34,6 +35,8 @@ public class UserMessageController extends BaseController {
     private UserFriendApplyServiceImpl userFriendApplyServiceImpl;
     @Autowired
     private UserInfoService userInfoServiceImpl;
+    @Autowired
+    private GroupUserService groupUserServiceImpl;
     /**
      * 页面
      */
@@ -103,6 +106,32 @@ public class UserMessageController extends BaseController {
         int total = userMessageServiceImpl.getHistoryMessageCount(params);
         PageBean<UserMessageEntity> page = new PageBean<UserMessageEntity>(Integer.parseInt(params.get("page").toString()), 10, total);
         return putPageMsgToJsonString(Constants.WebSite.SUCCESS, "", page, chatList);
+    }
+
+    @RequestMapping(value = "/groupchatlist", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
+    @ResponseBody
+    public Object groupchatlist(@RequestBody Map<String, Object> params) {
+        Integer pageIndex = Integer.parseInt(params.get("page").toString());
+        String userid = params.get("senduser").toString();
+        String groupid = params.get("receiveuser").toString();
+
+        List<GroupUserEntity> groupUser = groupUserServiceImpl.queryGroupName(userid, groupid);
+        if(groupUser!=null && groupUser.size()>0) {
+            String jointime = groupUser.get(0).getJoinTime();
+
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("groupid",groupid);
+            map.put("jointime",jointime);
+
+            PageHelper.startPage(pageIndex, 10);
+            List<MessageInfoEntity> chatList = userMessageServiceImpl.getGroupHistoryMessageList(map);
+            int total = userMessageServiceImpl.getGroupHistoryMessageCount(map);
+            PageBean<UserMessageEntity> page = new PageBean<UserMessageEntity>(Integer.parseInt(params.get("page").toString()), 10, total);
+            return putPageMsgToJsonString(Constants.WebSite.SUCCESS, "", page, chatList);
+        }else {
+            return putPageMsgToJsonString(Constants.WebSite.ERROR, "", null, null);
+        }
+
     }
 
     /**

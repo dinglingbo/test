@@ -59,8 +59,8 @@ layui.use(['layim', 'laypage'], function(){
   
   //请求消息
   var renderMsg = function(page, callback){
-    $.get(apiPath + sysApi + "/com.hsapi.system.im.message.getChatList.biz.ext", {
-      page: page || 1, receiveuser: 9, senduser: 3
+    $.get(apiPath + sysApi + "/com.hsapi.system.im.message.getChatList.biz.ext"+ location.search, {
+      page: page || 1, senduser: currImCode
     }, function(res){
       callback && callback(res.data, res.count);
     });

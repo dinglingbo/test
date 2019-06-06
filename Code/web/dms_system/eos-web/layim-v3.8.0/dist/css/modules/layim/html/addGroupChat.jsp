@@ -150,8 +150,10 @@
 	var userHash = {};
 	var userList = [];
 	var tcallback = null;
+	var groupId = null;
 	
-	function setData(friend,callback){
+	function setData(id, friend,callback){
+		groupId = id;
 		var htmlStr = "";
 		for(var i=0; i<friend.length; i++) {
 			htmlStr+='<li class="layim-list-friend-group">';
@@ -237,46 +239,49 @@
                 });
   				return;
   			}
-  			var mine = parent.layui.layim.cache().mine;
-  			var groupManager = {
-  				userId: mine.id,
-      			userName : mine.username
-  			}
-  			var groupName = mine.username;
-  			if(userList.length > 2) {
-  				groupName += ","+userList[0].userName;
-  				groupName += ","+userList[1].userName+"...";
-  			}else {
-  				for(var i=0; i<userList.length; i++){
-  				 groupName += ","+userList[i].userName;
-  				}
-  			}
-  			userList.push(groupManager);
   			
-			//创建群聊
-		    $.ajax({
-		        type:'post',
-		        dataType:'json',
-		        contentType:'application/json',
-		        cache : false,
-		        async:false, 
-		        data: JSON.stringify({
-		        	members: userList,
-		        	name : groupName,
-		        	groupManager :  groupManager       	
-		        }),
-		        url:baseUrl + "com.hsapi.system.im.message.createChat.biz.ext",
-		        success:function(data){
-		        	if(data.code=="0"){
-						var index = parent.layer.getFrameIndex(window.name); 
-						parent.layer.close(index);//关闭当前页  
-					    //parent.layer.msg('创建成功！',{icon: 1,time: 2000});
-					    tcallback(data.data); 
-		        	}else{
-		        		parent.layer.msg('创建异常',{icon: 7,time: 1000});
-		        	}
-		        }
-		    });
+  			if(!groupId) {
+	  			var mine = parent.layui.layim.cache().mine;
+	  			var groupManager = {
+	  				userId: mine.id,
+	      			userName : mine.username
+	  			}
+	  			var groupName = mine.username;
+	  			if(userList.length > 2) {
+	  				groupName += ","+userList[0].userName;
+	  				groupName += ","+userList[1].userName+"...";
+	  			}else {
+	  				for(var i=0; i<userList.length; i++){
+	  				 groupName += ","+userList[i].userName;
+	  				}
+	  			}
+	  			userList.push(groupManager);
+	  			
+				//创建群聊
+			    $.ajax({
+			        type:'post',
+			        dataType:'json',
+			        contentType:'application/json',
+			        cache : false,
+			        async:false, 
+			        data: JSON.stringify({
+			        	members: userList,
+			        	name : groupName,
+			        	groupManager :  groupManager       	
+			        }),
+			        url:baseUrl + "com.hsapi.system.im.message.createChat.biz.ext",
+			        success:function(data){
+			        	if(data.code=="0"){
+							var index = parent.layer.getFrameIndex(window.name); 
+							parent.layer.close(index);//关闭当前页  
+						    //parent.layer.msg('创建成功！',{icon: 1,time: 2000});
+						    tcallback(data.data); 
+			        	}else{
+			        		parent.layer.msg('创建异常',{icon: 7,time: 1000});
+			        	}
+			        }
+			    });
+		    }
 
      });
     //监听取消按钮

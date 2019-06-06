@@ -21,20 +21,13 @@ var enterTypeIdHash = {};
 var partBrandIdHash = {};
 var frameColorIdList = [];//车身颜色
 var interialColorIdList = [];//内饰颜色
-//var billStatusHash = {
-//    "0":"未审",
-//    "1":"已审",
-//    "2":"已过账",
-//    "3":"已取消"
-//};
-
 var StatusHash = {
 		"0" : "草稿",
 		"1" : "待发货",
 		"2" : "待收货",
 		"4" : "已入库",
 	};
-var headerHash = [{ name: '草稿', id: '0' }, { name: '待验车', id: '1' }, {name: '待收货' , id: '2' }, {name: '未结算' , id: '3' }, {name: '已入库' , id: '4' }];
+var headerHash = [{ name: '草稿', id: '0' }, { name: '在验车', id: '1' }, {name: '已入库' , id: '2' }];
 var innerPartGrid=null;
 var editFormDetail = null;
 

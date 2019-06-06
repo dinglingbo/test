@@ -19,6 +19,8 @@ var billTypeIdHash = {};
 var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
+var frameColorIdList = [];//车身颜色
+var interialColorIdList = [];//内饰颜色
 //var billStatusHash = {
 //    "0":"未审",
 //    "1":"已审",
@@ -66,35 +68,28 @@ $(document).ready(function(v)
 
 	});
     
-
-
-    innerPartGrid.on("drawcell", function (e) {
-        var grid = e.sender;
-        var record = e.record;
-        var uid = record._uid;
-        var rowIndex = e.rowIndex;
-        
-        switch (e.field) {
-            case "comPartBrandId":
-            	if(partBrandIdHash[e.value])
-                {
-//                    e.cellHtml = partBrandIdHash[e.value].name||"";
-                	if(partBrandIdHash[e.value].imageUrl){
-                		
-                		e.cellHtml = "<img src='"+ partBrandIdHash[e.value].imageUrl+ "'alt='配件图片' height='25px' weight=' '/><br> "+partBrandIdHash[e.value].name||"";
-                	}else{
-                		e.cellHtml =partBrandIdHash[e.value].name||"";
-                	}
-                }
-                else{
-                    e.cellHtml = "";
-                }
-                break;
-            default:
-                break;
+    innerPartGrid.on('drawcell', function (e) {
+        var value = e.value;
+        var field = e.field;
+        if (field == 'frameColorId') {
+            e.cellHtml = setColVal('frameColorId', 'customid', 'name', e.value);
+        } else if (field == 'interialColorId') {
+            e.cellHtml = setColVal('interialColorId', 'customid', 'name', e.value);
         }
+        
     });
-    
+
+	var dictDefs ={frameColorId:"DDT20130726000003",interialColorId:"10391"};
+	initDicts(dictDefs, function(){
+		getStorehouse(function(data) {
+			getAllPartBrand(function(data) {
+		 	 	frameColorIdList = nui.get('frameColorId').getData();
+ 	 			interialColorIdList = nui.get('interialColorId').getData();
+				nui.unmask();
+			});
+			
+		});
+	});
     document.ondragstart = function() {
         return false;
     };

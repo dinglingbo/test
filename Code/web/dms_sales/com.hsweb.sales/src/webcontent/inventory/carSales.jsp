@@ -144,24 +144,22 @@
 
 	<input name="frameColorId" id="frameColorId" class="nui-combobox" dataFied="frameColorIdList" textField="name" valueField="customid" allowInput="true" visible="false"/>
     <input name="interialColorId" id="interialColorId" class="nui-combobox" dataFied="interialColorIdList" textField="name" valueField="customid" allowInput="true" visible="false"/>
-<div id="editFormDetail" style="display:none;padding:5px;position:relative;">
-
-   <div id="innerPartGrid"
+<div id="editFormDetail" style="display:none;padding:5px;">
+   <div class="nui-datagrid" id="innerPartGrid"
        dataField="pjPchsOrderDetailList"
        allowCellWrap = "true"
-       class="nui-datagrid"
-       style="width: 100%; height: 100px;"
+       style="height: 100px;"
        showPager="false"
        allowSortColumn="true">
       <div property="columns">
-           <div headerAlign="center" type="indexcolumn" width="30">序号</div>
-           <div field="carModelCode" name="carModelCode" width="120" headerAlign="center"  header="车型编码"></div>
-	       <div field="carModelName" headerAlign="center" width="150" headerAlign="center" header="车型名称"></div>
-	       <div field="frameColorId" name="frameColorId" width="40" headerAlign="center" header="车身颜色"></div>
-	       <div field="interialColorId" name="interialColorId" width="40" headerAlign="center" header="内饰颜色"></div>
-	       <div field="orderQty"  summaryType="sum" width="40" headerAlign="center" header="订货数量"></div>
-	       <div field="orderPrice" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="单价"></div>
-	       <div field="orderAmt" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="金额"></div>
+           <div type="indexcolumn" width="10">序号</div>
+           <div field="carModelCode" name="carModelCode" width="50"   header="车型编码"></div>
+	       <div field="carModelName"  width="60"  header="车型名称"></div>
+	       <div field="frameColorId" name="frameColorId" width="20"  header="车身颜色"></div>
+	       <div field="interialColorId" name="interialColorId" width="20"  header="内饰颜色"></div>
+	       <div field="orderQty"  summaryType="sum" width="20"  header="订货数量"></div>
+	       <div field="orderPrice" summaryType="sum" numberFormat="0.00" width="20"  header="单价"></div>
+	       <div field="orderAmt" summaryType="sum" numberFormat="0.00" width="20"  header="金额"></div>
       </div>
    </div>
 </div>

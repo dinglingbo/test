@@ -8,7 +8,7 @@
 -->
 <head>
 <title>整车采购订单</title>
-<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesChoose.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesChoose.js?v=1.0.2"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">

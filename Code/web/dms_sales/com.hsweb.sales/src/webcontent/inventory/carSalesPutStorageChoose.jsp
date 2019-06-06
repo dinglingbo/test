@@ -8,7 +8,7 @@
 -->
 <head>
 <title>整车验车</title>
-<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesPutStorageChoose.js?v=1.0.3"></script>
+<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesPutStorageChoose.js?v=1.0.4"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -58,7 +58,7 @@
 	<input class="nui-hidden" name="billStatusId" id="billStatusId"/>
     <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
          showPager="true"
-         dataField="pjPchsOrderMainList"
+         dataField="cssCheckEnter"
          idField="detailId"
          ondrawcell="onDrawCell"
          sortMode="client"
@@ -72,24 +72,20 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn" width="40">序号</div>
-            <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
-                    <div field="serviceCode" name="serviceCode" allowSort="true"  width="160" summaryType="count" headerAlign="center" header="订单单号"></div>
-                    <div field="guestFullName" name="guestFullName" width="220" headerAlign="center" header="供应商"></div>                    
-                    <div allowSort="true" field="billTypeId"  name="billTypeId" width="90" headerAlign="center" header="票据类型"></div>
-                    <div allowSort="true" field="payMode" name="payMode" width="90" headerAlign="center" header="结算方式"></div>
-                    <div field="recordDate" allowSort="true"  width="130" headerAlign="center" header="订货日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                 
-                    <div field="orderTotalAmt" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="订单金额"></div>                                                                                                  
-                    <div field="predictDeliveryDate" allowSort="true"  width="130" headerAlign="center" header="预计到货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-                    <div field="remark" allowSort="true"  width="80" headerAlign="center" header="备注"></div>
-                    <div field="recorder" width="90" name="creator" headerAlign="center" header="创建人"></div>
-                    <div field="recordDate" allowSort="true"  width="130" headerAlign="center" header="创建日期" dateFormat="yyyy-MM-dd HH:mm" ></div>  
-                    <div field="modifier" width="90" name="creator" headerAlign="center" header="修改人"></div>
-                    <div field="modifyDate" allowSort="true"  width="130" headerAlign="center" header="修改日期" dateFormat="yyyy-MM-dd HH:mm" ></div>  
+                    <div field="guestFullName" name="guestFullName" width="200" headerAlign="center" header="供应商"></div>                    
+            		<div field="carModelName" name="carModelName" width="200" headerAlign="center" header="车型名称"></div>  
+                    <div field="frameColorId" name="frameColorId" width="60" headerAlign="center" header="车身颜色"></div>
+                    <div field="interialColorId" name="interialColorId"  width="60" headerAlign="center" header="内饰颜色"></div>
+                    <div field="carFrameNo" name="carFrameNo" width="150" headerAlign="center" header="车架号（VIN）"></div>
+                    <div field="engineNo" name="engineNo" width="150" headerAlign="center" header="发动机号"></div>
+                    <div field="unitPrice" numberFormat="0.00" width="80" headerAlign="center" header="进价"></div>                                                                                                       								                                                                                                                                                                                                                                                                                                                                                                                                                         
+                    <div field="remark" width="100" headerAlign="center" allowSort="false" header="备注"></div>
         </div>
     </div> 
 </div>
 
-
+	<input name="frameColorId" id="frameColorId" class="nui-combobox" dataFied="frameColorIdList" textField="name" valueField="customid" allowInput="true" visible="false"/>
+    <input name="interialColorId" id="interialColorId" class="nui-combobox" dataFied="interialColorIdList" textField="name" valueField="customid" allowInput="true" visible="false"/>
 <div id="editFormDetail" style="display:none;padding:5px;position:relative;">
 
    <div id="innerPartGrid"

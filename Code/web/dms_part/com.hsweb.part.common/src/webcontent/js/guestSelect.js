@@ -174,10 +174,11 @@ function setGuestData(data){
         if(data.expense && data.expense == 1){
         	nameEl.setValue(data.guestName);
         	if(data.guestName){
-        		onSearch();
+        		//onSearch();
         	}
         	
         }
+        onSearch();
     }
      
     //onSearch();

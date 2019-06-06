@@ -3,7 +3,7 @@
  */
 var statusList = [{id:"0",name:"联系人"},{id:"1",name:"联系电话"}];
 var partApiUrl  = apiPath +saleApi + "/";
-var rightGridUrl = partApiUrl+"sales.inventory.queryPchsOrderMainList.biz.ext";
+var rightGridUrl = partApiUrl+"sales.inventory.queryCheckEnter.biz.ext";
 
 var basicInfoForm = null;
 var rightGrid = null;
@@ -18,7 +18,8 @@ var billTypeIdHash = {};
 var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
-
+var frameColorIdList = [];//车身颜色
+var interialColorIdList = [];//内饰颜色
 var StatusHash = {
 		"0" : "草稿",
 		"1" : "待发货",
@@ -74,6 +75,27 @@ $(document).ready(function(v)
         {
             partBrandIdHash[v.id] = v;
         });
+    });
+	var dictDefs ={frameColorId:"DDT20130726000003",interialColorId:"10391"};
+	initDicts(dictDefs, function(){
+		getStorehouse(function(data) {
+			getAllPartBrand(function(data) {
+		 	 	frameColorIdList = nui.get('frameColorId').getData();
+ 	 			interialColorIdList = nui.get('interialColorId').getData();
+				nui.unmask();
+			});
+			
+		});
+	});
+	rightGrid.on('drawcell', function (e) {
+        var value = e.value;
+        var field = e.field;
+        if (field == 'frameColorId') {
+            e.cellHtml = setColVal('frameColorId', 'customid', 'name', e.value);
+        } else if (field == 'interialColorId') {
+            e.cellHtml = setColVal('interialColorId', 'customid', 'name', e.value);
+        }
+        
     });
     getStorehouse(function(data)
     {
@@ -240,7 +262,7 @@ function onSearch(){
 function doSearch(params)
 {
     params.sortOrder = "desc";
-//  params.status = 1;//可以验车
+  params.billStatus = 1;//已入库
 //    params.isFinished = 0;
     rightGrid.load({
         params:params,

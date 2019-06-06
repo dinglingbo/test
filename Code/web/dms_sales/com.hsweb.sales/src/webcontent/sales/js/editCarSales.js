@@ -58,7 +58,7 @@ $(document).ready(function(v) {
         var billFormData = billForm.getData(true); //主表信息
         if (billFormData.status != 0) {
             return;
-        }
+        } 
         var jpdata = jpGrid.getSelecteds();
         var jpDetailData = jpDetailGrid.getData();
         for (var i = 0, l = jpdata.length; i < l; i++) {

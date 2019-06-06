@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model:DataSetDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://www.primeton.com/datamodel" name="css" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" displayName="css" author="Administrator">
-  <nodes xsi:type="model:PEntityNode" id="node4" name="CssFactoryRebateDetail" nodeType="table" displayName="CssFactoryRebateDetail" author="Administrator" allUseViewModel="true" instanceClass="" table="css_factory_rebate_detail" genStrategy="assigned">
+  <nodes xsi:type="model:PEntityNode" id="node4" name="CssFactoryRebateDetail" nodeType="table" displayName="CssFactoryRebateDetail" author="Administrator" allUseViewModel="true" instanceClass="" table="css_factory_rebate_detail" genStrategy="native">
     <location x="60" y="60"/>
     <size height="300" width="150"/>
     <figSize height="20" width="150"/>
@@ -1001,7 +1001,7 @@
       </viewField>
     </columnProperty>
   </nodes>
-  <nodes xsi:type="model:PEntityNode" id="node5" name="CssFactoryRebateMain" nodeType="table" displayName="CssFactoryRebateMain" author="Administrator" allUseViewModel="true" instanceClass="" table="css_factory_rebate_main" genStrategy="assigned">
+  <nodes xsi:type="model:PEntityNode" id="node5" name="CssFactoryRebateMain" nodeType="table" displayName="CssFactoryRebateMain" author="Administrator" allUseViewModel="true" instanceClass="" table="css_factory_rebate_main" genStrategy="native">
     <location x="60" y="420"/>
     <size height="318" width="150"/>
     <figSize height="20" width="150"/>
@@ -2076,7 +2076,7 @@
   <nodes xsi:type="model:PEntityNode" id="node6" name="CssFactoryReturnDetail" nodeType="table" displayName="CssFactoryReturnDetail" author="Administrator" allUseViewModel="true" instanceClass="" table="css_factory_return_detail" genStrategy="assigned">
     <location x="60" y="798"/>
     <size height="300" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="170"/>
     <columnProperty id="property117" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -3077,7 +3077,7 @@
   <nodes xsi:type="model:PEntityNode" id="node7" name="CssFactoryReturnMain" nodeType="table" displayName="CssFactoryReturnMain" author="Administrator" allUseViewModel="true" instanceClass="" table="css_factory_return_main" genStrategy="assigned">
     <location x="60" y="1158"/>
     <size height="354" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="170"/>
     <columnProperty id="property132" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -4280,7 +4280,7 @@
   <nodes xsi:type="model:PEntityNode" id="node8" name="CssGuestCome" nodeType="table" displayName="CssGuestCome" author="Administrator" instanceClass="" table="css_guest_come" genStrategy="assigned">
     <location x="60" y="1572"/>
     <size height="552" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="178"/>
     <columnProperty id="property150" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -6184,7 +6184,7 @@
   <nodes xsi:type="model:PEntityNode" id="node10" name="CssSaleCalc" nodeType="table" displayName="CssSaleCalc" author="Administrator" allUseViewModel="true" table="css_sale_calc" genStrategy="assigned">
     <location x="60" y="2184"/>
     <size height="714" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="228"/>
     <columnProperty id="property195" name="id" displayName="内码" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="内码" entityField="id" id="id" label="内码" name="id" userDefined="true">
@@ -8702,7 +8702,7 @@
   <nodes xsi:type="model:PEntityNode" id="node13" name="CssSaleGiftApply" nodeType="table" displayName="CssSaleGiftApply" author="Administrator" allUseViewModel="true" table="css_sale_gift_apply" genStrategy="assigned">
     <location x="60" y="2958"/>
     <size height="318" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="170"/>
     <columnProperty id="property315" name="id" displayName="内码" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="内码" entityField="id" id="id" label="内码" name="id" userDefined="true">
@@ -9768,7 +9768,7 @@
   <nodes xsi:type="model:PEntityNode" id="node14" name="CssSaleGiftOutItem" nodeType="table" displayName="CssSaleGiftOutItem" author="Administrator" table="css_sale_gift_out_item" genStrategy="assigned">
     <location x="60" y="3336"/>
     <size height="372" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="152"/>
     <columnProperty id="property331" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" displayName="id" id="id" label="id" name="id" userDefined="true">
@@ -10361,7 +10361,7 @@
   <nodes xsi:type="model:PEntityNode" id="node15" name="CssSaleGiftOutMain" nodeType="table" displayName="CssSaleGiftOutMain" author="Administrator" table="css_sale_gift_out_main" genStrategy="assigned">
     <location x="60" y="3768"/>
     <size height="426" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="163"/>
     <columnProperty id="property350" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" displayName="id" id="id" label="id" name="id" userDefined="true">
         <fieldView>
@@ -11046,7 +11046,7 @@
   <nodes xsi:type="model:PEntityNode" id="node16" name="CssSaleMain" nodeType="table" displayName="CssSaleMain" author="Administrator" allUseViewModel="true" table="css_sale_main" genStrategy="assigned">
     <location x="60" y="4254"/>
     <size height="822" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="199"/>
     <columnProperty id="property372" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -13989,7 +13989,7 @@
   <nodes xsi:type="model:PEntityNode" id="node17" name="CssSaleReturn" nodeType="table" displayName="CssSaleReturn" author="Administrator" instanceClass="" table="css_sale_return" genStrategy="assigned">
     <location x="60" y="5136"/>
     <size height="408" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="170"/>
     <columnProperty id="property416" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -16357,7 +16357,7 @@
   <nodes xsi:type="model:PEntityNode" id="node2" name="CssFactoryOrderDetail" nodeType="table" displayName="CssFactoryOrderDetail" author="Administrator" allUseViewModel="true" instanceClass="" table="css_factory_order_detail" genStrategy="native">
     <location x="60" y="6342"/>
     <size height="336" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="170"/>
     <columnProperty id="property50" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -17490,7 +17490,7 @@
   <nodes xsi:type="model:PEntityNode" id="node3" name="CssFactoryOrderMain" nodeType="table" displayName="CssFactoryOrderMain" author="Administrator" allUseViewModel="true" instanceClass="" table="css_factory_order_main" genStrategy="assigned">
     <location x="60" y="6738"/>
     <size height="444" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="223"/>
     <columnProperty id="property67" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -19037,7 +19037,7 @@
   <nodes xsi:type="model:PEntityNode" id="node12" name="CssSaleExtend" nodeType="table" displayName="CssSaleExtend" author="Administrator" allUseViewModel="true" table="css_sale_extend" genStrategy="assigned">
     <location x="60" y="7242"/>
     <size height="1236" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="228"/>
     <columnProperty id="property249" name="id" displayName="id" columnName="id" nullAble="false" PK="true" defaultValue="0" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="0">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -23397,7 +23397,7 @@
   <nodes xsi:type="model:PEntityNode" id="node0" name="CssCheckEnter" nodeType="table" displayName="CssCheckEnter" author="Administrator" allUseViewModel="true" instanceClass="" table="css_check_enter" genStrategy="assigned">
     <location x="60" y="8538"/>
     <size height="768" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="183"/>
     <columnProperty id="property0" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -26126,7 +26126,7 @@
   <nodes xsi:type="model:PEntityNode" id="node1" name="CssCheckPdiDetail" nodeType="table" displayName="CssCheckPdiDetail" author="Administrator" allUseViewModel="true" table="css_check_pdi_detail" genStrategy="assigned">
     <location x="60" y="9366"/>
     <size height="246" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="170"/>
     <columnProperty id="property37" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <comment>内码</comment>
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -26929,7 +26929,7 @@
   <nodes xsi:type="model:PEntityNode" id="node9" name="CssGuestScout" nodeType="table" displayName="CssGuestScout" author="Administrator" instanceClass="" table="css_guest_scout" genStrategy="assigned">
     <location x="60" y="9672"/>
     <size height="336" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="189"/>
     <columnProperty id="property179" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">
@@ -28071,7 +28071,7 @@
   <nodes xsi:type="model:PEntityNode" id="node19" name="CssCheckPdiMain" nodeType="table" displayName="CssCheckPdiMain" author="Administrator" allUseViewModel="true" table="css_check_pdi_main" genStrategy="assigned">
     <location x="60" y="10068"/>
     <size height="358" width="150"/>
-    <figSize height="20" width="150"/>
+    <figSize height="20" width="204"/>
     <columnProperty id="property460" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
         <fieldView showAllAttr="false">

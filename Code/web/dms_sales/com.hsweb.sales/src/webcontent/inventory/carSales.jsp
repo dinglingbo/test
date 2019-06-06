@@ -15,7 +15,7 @@
 .title {
 	width: 90px;
 	text-align: right;
-}
+} 
 
 .title.required {
 	color: red;
@@ -148,18 +148,18 @@
    <div class="nui-datagrid" id="innerPartGrid"
        dataField="pjPchsOrderDetailList"
        allowCellWrap = "true"
-       style="height: 100px;"
+       style="height: 100px;width:80%"
        showPager="false"
        allowSortColumn="true">
       <div property="columns">
-           <div type="indexcolumn" width="10">序号</div>
-           <div field="carModelCode" name="carModelCode" width="50"   header="车型编码"></div>
-	       <div field="carModelName"  width="60"  header="车型名称"></div>
-	       <div field="frameColorId" name="frameColorId" width="20"  header="车身颜色"></div>
-	       <div field="interialColorId" name="interialColorId" width="20"  header="内饰颜色"></div>
-	       <div field="orderQty"  summaryType="sum" width="20"  header="订货数量"></div>
-	       <div field="orderPrice" summaryType="sum" numberFormat="0.00" width="20"  header="单价"></div>
-	       <div field="orderAmt" summaryType="sum" numberFormat="0.00" width="20"  header="金额"></div>
+           <div type="indexcolumn" width="10px">序号</div>
+           <div field="carModelCode" name="carModelCode" width="50px"   header="车型编码"></div>
+	       <div field="carModelName"  width="80px"  header="车型名称"></div>
+	       <div field="frameColorId" name="frameColorId" width="50px"  header="车身颜色"></div>
+	       <div field="interialColorId" name="interialColorId" width="50px"  header="内饰颜色"></div>
+	       <div field="orderQty"  summaryType="sum" width="50px"  header="订货数量"></div>
+	       <div field="orderPrice" summaryType="sum" numberFormat="0.00" width="50px"  header="单价"></div>
+	       <div field="orderAmt" summaryType="sum" numberFormat="0.00" width="50px"  header="金额"></div>
       </div>
    </div>
 </div>

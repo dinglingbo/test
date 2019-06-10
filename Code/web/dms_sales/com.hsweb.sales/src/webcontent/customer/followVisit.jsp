@@ -251,7 +251,9 @@
 											<input width="100%" id="nextOrderDate" name="nextOrderDate"
 												class="nui-datepicker" value="" nullValue="null"
 												format="yyyy-MM-dd HH:mm" showTime="true" showOkButton="false"
-												showClearButton="true" timeFormat="HH:mm:ss" width="100%" />
+												showClearButton="true" timeFormat="HH:mm:ss" width="100%" 
+												ondrawdate="onDrawDate"
+												/>
 										</td>
 
 									</tr>

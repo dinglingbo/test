@@ -12,7 +12,7 @@
         <title>整车销售</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%=request.getContextPath()%>/sales/sales/js/carSales.js?v=1.0.8"></script>
+            <script src="<%=request.getContextPath()%>/sales/sales/js/carSales.js?v=1.0.9"></script>
     </head>
     <style type="text/css">
         body {
@@ -89,7 +89,7 @@
                     <div field="guestFullName" name="guestFullName" width="100px" headerAlign="center" header="客户名称"></div>
                     <div field="orderDate" name="orderDate" width="100px" headerAlign="center" header="订车日期"></div>
                     <div field="carModelName" name="carModelName" width="100px" headerAlign="center" header="车型名称"></div>
-                    <div field="submiPlanDate" name="submiPlanDate" width="100px" headerAlign="center" header="预交车日期"></div>
+                    <div field="submitPlanDate" name="submitPlanDate" width="100px" headerAlign="center" header="预交车日期"></div>
                     <div field="saleAdvisor" name="saleAdvisor" width="100px" headerAlign="center" header="销售顾问"></div>
                     <div field="saleAmt" name="saleAmt" width="100px" headerAlign="center" header="车辆销价"></div>
                     <div field="advanceChargeAmt" name="advanceChargeAmt" width="100px" headerAlign="center" header="应收定金"></div>
@@ -103,7 +103,7 @@
                     <div type="indexcolumn">序号</div>
                     <div field="guestFullName" name="guestFullName" width="100px" headerAlign="center" header="客户名称"></div>
                     <div field="carModelName" name="carModelName" width="100px" headerAlign="center" header="车型"></div>
-                    <div field="submiPlanDate" name="submiPlanDate" width="100px" headerAlign="center" header="预交车日期"></div>
+                    <div field="submitPlanDate" name="submitPlanDate" width="100px" headerAlign="center" header="预交车日期"></div>
                     <div field="serviceCode" name="serviceCode" width="100px" headerAlign="center" header="工单号"></div>
                     <div field="status" name="status" width="100px" headerAlign="center" header="单据状态"></div>
                 </div>
@@ -116,7 +116,7 @@
                     <div field="guestFullName" name="guestFullName" width="100px" headerAlign="center" header="客户名称"></div>
                     <div field="carModelName" name="carModelName" width="100px" headerAlign="center" header="车型"></div>
                     <div field="submitTrueDate" name="submitTrueDate" width="100px" headerAlign="center" header="销售日期"></div>
-                    <div field="submiPlanDate" name="submiPlanDate" width="100px" headerAlign="center" header="交车日期"></div>
+                    <div field="submitPlanDate" name="submitPlanDate" width="100px" headerAlign="center" header="交车日期"></div>
                     <div field="financialEndDate" name="financialEndDate" width="100px" headerAlign="center" header="结案日期"></div>
                     <div field="financialEndMan" name="financialEndMan" width="100px" headerAlign="center" header="结案人"></div>
                     <div field="serviceCode" name="serviceCode" width="100px" headerAlign="center" header="工单号"></div>

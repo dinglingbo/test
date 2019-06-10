@@ -116,6 +116,9 @@
                             <td height="20" id="guestId">客户：</td>
                         </tr>
                         <tr>
+                            <td height="20" id="contactName">联系人：</td>
+                        </tr>
+                        <tr>
                             <td height="20" id="mtAdvisor">服务顾问：</td>
                         </tr>
                         <tr>
@@ -211,7 +214,7 @@
     </table>
 	<script type="text/javascript">
     	nui.parse();
-		
+		var contactorId = null;
 		$(document).ready(function (){
 			$("#print").click(function () {
 	            $(".print_btn").hide();
@@ -251,6 +254,7 @@
                    if(text.errCode == "S"){
                    		var mtAdvisor = maintain.mtAdvisor || "";
                    		var guestId = maintain.guestId || "";
+                   		contactorId = maintain.contactorId;
                    		var carNo = maintain.carNo || "";
                    		var outDate = maintain.outDate || "";
                    		if(outDate){
@@ -274,17 +278,21 @@
                 url: params.baseUrl+"com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext",
                 type : "post",
                 data : {
-                	guestId : guestId,
+                	    guestId : guestId,
+                	    contactorId:contactorId,
 	                	token : params.token
                 },
                 async: false,
                 success: function (text) {
                 	var guest = nui.decode(text.guest);
+                	var contact = nui.decode(text.contactor);
                    if(text.errCode == "S"){
                    		var fullName = guest.fullName || "";
                    		var mobile = guest.mobile || "";
+                   		var contactName = contact.name;
                    		phones = mobile;
                    		document.getElementById("guestId").innerHTML =  guestName.replace(/[0-9]/ig,"") + fullName;
+                   		document.getElementById("contactName").innerHTML =  document.getElementById("contactName").innerHTML + contactName;
                    		if(currRepairBillMobileFlag==1){
 	        	            document.getElementById("guestId").innerHTML = document.getElementById("guestId").innerHTML + 
 	        	            "<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ phones;

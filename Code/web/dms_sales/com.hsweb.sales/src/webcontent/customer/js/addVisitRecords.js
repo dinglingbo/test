@@ -147,8 +147,8 @@ function onButtonEdit(e) {
 	if(action == 'ok'){
 	var row = iframe.contentWindow.getRow();
 	nui.get("carModelId").setValue(row.id);
-	nui.get("carModelName").setValue(row.name);
-	nui.get("carModelName").setText(row.name);
+	nui.get("carModelName").setValue(row.fullName);
+	nui.get("carModelName").setText(row.fullName);
 	 }
     }
   });
@@ -164,6 +164,10 @@ function save(){
 	if (guestComeForm.isValid() == false) return;
 	if(guestCome.status==1){
 		showMsg("来访登记已归档，不能修改","W");
+		return;
+	}
+	if(guestCome.status==2){
+		showMsg("来访登记已转销售，不能修改","W");
 		return;
 	}
 	var text = saleAdvisorIdEl.getText();
@@ -489,6 +493,62 @@ function onMobileValidation(e)
             e.errorText = "必须输入正确的手机号码";
             e.isValid = false;
         }
+    }
+}
+
+function onDrawDate(e) {
+    var date = e.date;
+    var d = new Date();
+    if (date.getTime() < (d.getTime() - 24*60*60*1000)) {
+    	e.allowSelect = false;
+        
+    }
+}
+var queryGuestListUrl =  apiPath + saleApi + "/sales.custormer.queryCustomerListByMobile.biz.ext";
+var mobileF = null;
+var n = 1;
+function queryByMobile(e){
+	var mobile = e.value;
+	mobile = mobile.replace(/\s*/g,"");
+	if(mobileF == mobile && n==0){
+		return;
+	}else{
+		mobileF = mobile;
+		n = 0;
+	}
+	var params = 
+	      {
+	        "mobile":mobile
+	      };
+	if(mobile.length==11){
+		nui.mask({
+	        el : document.body,
+		    cls : 'mini-mask-loading',
+		    html : '加载中...'
+	    });
+		nui.ajax({
+			url : queryGuestListUrl,
+			type : "post",
+			data : JSON.stringify({
+				params:params,
+				token: token
+			}),
+		success:function(data) {
+			nui.unmask(document.body);
+			var list = data.list;
+			if(list.length){
+				var guestCome = guestComeForm.getData("true");
+				var temp = list[0];
+				guestCome.fullName = temp.fullName;
+				guestCome.guestId = temp.id;
+				guestComeForm.setData(guestCome);
+			  }
+			 },
+			error:function(jqXHR, textStatus, errorThrown) {
+				nui.unmask(document.body);
+				console.log(jqXHR.responseText);
+			}
+	  });
     }
 }
 

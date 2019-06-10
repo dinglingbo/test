@@ -49,8 +49,10 @@ $(document).ready(function(v) {
     mainGrid.on("drawcell", function(e) {
         var field = e.field,
             value = e.value;
-        if (field == "submiPlanDate" || field == "orderDate") {
-            e.cellHtml = format(value, 'yyyy-MM-dd HH:mm:ss');
+        if (field == "submitPlanDate" || field == "orderDate") {
+            if (value) {
+                e.cellHtml = format(value, 'yyyy-MM-dd');
+            }
         }
         if (field == "status") {
             var value1 = value == 0 ? "草稿" : (value == 1 ? "待审" : (value == 2 ? "已审" : (value == 3 ? "作废" : "")));
@@ -61,8 +63,10 @@ $(document).ready(function(v) {
     mainGrid2.on("drawcell", function(e) {
         var field = e.field,
             value = e.value;
-        if (field == "submiPlanDate") {
-            e.cellHtml = format(value, 'yyyy-MM-dd HH:mm:ss');
+        if (field == "submitPlanDate") {
+            if (value) {
+                e.cellHtml = format(value, 'yyyy-MM-dd');
+            }
         }
         if (field == "status") {
             var value1 = value == 0 ? "草稿" : (value == 1 ? "待审" : (value == 2 ? "已审" : (value == 3 ? "作废" : "")));
@@ -73,8 +77,10 @@ $(document).ready(function(v) {
     mainGrid3.on("drawcell", function(e) {
         var field = e.field,
             value = e.value;
-        if (field == "submitTrueDate" || field == "submiPlanDate" || field == "financialEndDate") {
-            e.cellHtml = format(value, 'yyyy-MM-dd HH:mm:ss');
+        if (field == "submitTrueDate" || field == "submitPlanDate" || field == "financialEndDate") {
+            if (value) {
+                e.cellHtml = format(value, 'yyyy-MM-dd');
+            }
         }
     });
 
@@ -223,13 +229,12 @@ function openPage(params) {
     item.text = text;
     item.url = webPath + contextPath + "/sales/sales/editCarSales.jsp";
     item.iconCls = "fa fa-file-text";
+    params.typeMsg = nui.get("typeMsg").value;
     window.parent.activeTabAndInit(item, params);
 }
 
 function addAndEdit(e) {
-    var params = {
-        typeMsg: nui.get("typeMsg").value
-    };
+    var params = {};
     if (e == 2) {
         var row = mainGrid.getSelected() || mainGrid2.getSelected() || mainGrid3.getSelected();
         params.id = row.id;

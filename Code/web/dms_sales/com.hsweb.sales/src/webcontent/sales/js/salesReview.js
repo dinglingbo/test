@@ -87,11 +87,11 @@ function save() {
 
 function approved() { //审核通过   
     var data = form.getData();
-    data.isSettle = 1;
     nui.ajax({ //更改主表 isSettle为1 --- 已结算  未生成应收应付
-        url: baseUrl + "sales.save.updateSaleMainMsg.biz.ext",
+        url: baseUrl + "sales.save.settlement.biz.ext",
         data: {
-            data: data
+            saleMain: data,
+            saleExtend: data
         },
         cache: false,
         async: false,

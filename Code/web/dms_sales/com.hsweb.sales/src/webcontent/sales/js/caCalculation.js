@@ -4,7 +4,7 @@ var form = null;
 $(document).ready(function(v) {
     form = new nui.Form("#form1");
     var calculate = "银行利息=贷款金额*贷款利率(%)" +
-        "\r\n费用合计= 银行手续费+续保押金+月供保证金+家访费+合同保证金+GPS费用+按揭服务费+保险费预算+购置税预算+上户上牌费+其它费用+精品加装" +
+        "\r\n费用合计= 续保押金+月供保证金+家访费+合同保证金+GPS费用+按揭手续费+保险费预算+购置税预算+上牌费+其它费用+精品加装" +
         "\r\n购车预算合计= 车辆销价+费用合计"
     nui.get("calculate").setValue(calculate);
 
@@ -30,6 +30,13 @@ function getValue() {
     return params;
 }
 
+function setSaleType(value) {
+    var data = form.getData();
+    data.saleType = value;
+    form.setData(data);
+    changeSaleType(1);
+}
+
 function SetDataMsg(serviceId, frameColorId, interialColorId) {
     var params = { billType: 2, serviceId: serviceId };
     nui.ajax({
@@ -52,6 +59,7 @@ function SetDataMsg(serviceId, frameColorId, interialColorId) {
                 if (!data.interialColorId) {
                     nui.get("interialColorId").setValue(interialColorId);
                 }
+                changeSaleType(1);
             }
         }
     });
@@ -73,6 +81,7 @@ function changeSaleType(e) { //改变购买方式时触发
         nui.get("mortgageAmt").disable(); //按揭手续费
         nui.get("riskAmt").disable(); //月供保证金
         nui.get("familyAmt").disable(); //家访费
+        nui.get("contractGuaranteeAmt").disable(); //合同保证金
 
         nui.get("loanPercent").setValue(0); //贷款利率
         nui.get("loanAmt").setValue(0); //贷款金额
@@ -87,6 +96,7 @@ function changeSaleType(e) { //改变购买方式时触发
         nui.get("mortgageAmt").setValue(0); //按揭手续费
         nui.get("riskAmt").setValue(0); //月供保证金
         nui.get("familyAmt").setValue(0); //家访费
+        nui.get("contractGuaranteeAmt").setValue(0); //合同保证金
     } else {
         nui.get("loanPeriod").enable(); //贷款期数
         nui.get("signBillBankId").enable(); //贷款银行
@@ -95,8 +105,10 @@ function changeSaleType(e) { //改变购买方式时触发
         nui.get("riskAmt").enable(); //月供保证金
         nui.get("familyAmt").enable(); //家访费
         nui.get("loanPercent").enable(); //贷款比例
+        nui.get("contractGuaranteeAmt").enable(); //合同保证金
     }
     changeValueMsg(1);
+    parent.showPrint(value);
 }
 
 function changeValueMsg(e) { //更改数据信息时触发  统一触发此函数
@@ -116,17 +128,21 @@ function changeValueMsg(e) { //更改数据信息时触发  统一触发此函�
     if (bankHandlingApportion == 0) { //如果利息分摊
         monthMoneyRates = bankHandlingAmt / loanPeriod || 0; // 每月利息 = 银行利息 / 贷款期数
         monthPayAmt = (loanAmt / loanPeriod || 0) + monthMoneyRates; // 月供 = 贷款金额 / 贷款期数 + 每月利息
-        downPaymentAmt = (saleAmt - loanAmt) + monthMoneyRates; // 首付 = （车辆销价 - 贷款金额）+ 每月利息
+        downPaymentAmt = (saleAmt - loanAmt); // 首付 = 车辆销价 - 贷款金额
     } else {
         monthPayAmt = (loanAmt / loanPeriod) || 0; // 月供 = 贷款金额 / 贷款期数 + 每月利息
-        downPaymentAmt = (saleAmt - loanAmt) + bankHandlingAmt; // 首付 = （车辆销价 - 贷款金额）+ 每月利息
+        downPaymentAmt = saleAmt - loanAmt + bankHandlingAmt; // 首付 = （车辆销价 - 贷款金额）+ 每月利息
     }
-    var totalAmt = bankHandlingAmt + parseFloat(data.agentDeposit || 0) + parseFloat(data.riskAmt || 0) + parseFloat(data.familyAmt || 0) +
+    var totalAmt = parseFloat(data.agentDeposit || 0) + parseFloat(data.riskAmt || 0) + parseFloat(data.familyAmt || 0) +
         parseFloat(data.contractGuaranteeAmt || 0) + parseFloat(data.gpsAmt || 0) + parseFloat(data.mortgageAmt || 0) +
         parseFloat(data.insuranceBudgetAmt || 0) + parseFloat(data.purchaseBudgetAmt || 0) + parseFloat(data.boardLotAmt || 0) +
-        parseFloat(data.otherAmt || 0) + parseFloat(data.decrAmt || 0); //费用合计 = 银行手续费+续保押金+月供保证金+家访费+合同保证金+GPS费用+按揭服务费+保险费预算+购置税预算+上户上牌费+其它费用+精品加装
+        parseFloat(data.otherAmt || 0) + parseFloat(data.decrAmt || 0); //费用合计 = 续保押金+月供保证金+家访费+合同保证金+GPS费用+按揭服务费+保险费预算+购置税预算+上户上牌费+其它费用+精品加装
     var buyBudgetTotal = parseFloat(data.saleAmt || 0) + totalAmt; //购车预算合计= 车辆销价+费用合计
-    var getCarTotal = downPaymentAmt + monthPayAmt;
+    var getCarTotal = downPaymentAmt + totalAmt;
+    if (nui.get("saleType").value == "1558580770894") { //全款
+        downPaymentAmt = 0;
+        getCarTotal = buyBudgetTotal;
+    }
     data.monthPayAmt = monthPayAmt;
     data.loanAmt = loanAmt;
     data.downPaymentAmt = downPaymentAmt;

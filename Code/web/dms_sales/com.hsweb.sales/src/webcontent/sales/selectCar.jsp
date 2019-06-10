@@ -13,7 +13,7 @@
         <title>选择库存车</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%=request.getContextPath()%>/sales/sales/js/selectCar.js?v=1.0.4"></script>
+            <script src="<%=request.getContextPath()%>/sales/sales/js/selectCar.js?v=1.0.5"></script>
     </head>
 
     <body>
@@ -23,8 +23,7 @@
         </div>
         <input id="frameColorId" name="frameColorId" style="width: 100%" class="nui-combobox" textField="name" valueField="customid" visible="false">
         <input id="interialColorId" name="interialColorId" style="width: 100%" class="nui-combobox" textField="name" valueField="customid" visible="false">
-        <div id="grid" class="nui-datagrid" style="width:100%;height:100%;" showPager="true" dataField="cssCheckEnter" idField="detailId" sortMode="client" url="" totalField="page.count" pageSize="10000" sizeList="[1000,5000,10000]" selectOnLoad="true" allowCellWrap=t
-            rue showSummaryRow="true">
+        <div id="grid" class="nui-datagrid" style="width:100%;height:100%;" showPager="true" dataField="cssCheckEnter" sortMode="client" url="" totalField="page.count" pageSize="10000" sizeList="[1000,5000,10000]" selectOnLoad="true" allowCellWrap=true showSummaryRow="true">
             <div property="columns">
                 <div type="checkcolumn" width="40">选择</div>
                 <div field="carModelName" name="carModelName" width="220" headerAlign="center" header="车型名称"></div>

@@ -624,19 +624,31 @@ function save() {
 
 	//由于票据类型可能修改，所以除了新建和删除，其他都应该是修改
 	var detailData = rightGrid.getData();
-	
-/*	for(var i=0;i<detailData.length;i++){
+	//总金额，订单金额
+	var totalAmt = 0;
+	for(var i=0;i<detailData.length;i++){
+		totalAmt = totalAmt+detailData[i].orderAmt;
 		var carModelCode=detailData[i].carModelCode;
+		if(!detailData[i].frameColorId){
+			showMsg("车型编码："+carModelCode+"的车身颜色不能为空","W");
+			return ;
+		}
+		if(!detailData[i].interialColorId){
+			showMsg("车型编码："+carModelCode+"的内饰颜色不能为空","W");
+			return ;
+		}
 		if(!detailData[i].orderQty || detailData[i].orderQty==="0" || detailData[i].orderQty==null){
-			showMsg("配件编码为"+carModelCode+"的数量不能为0","W");
+			showMsg("车型编码："+carModelCode+"的数量不能为0","W");
 			return ;
 		}
-		if(!detailData[i].storeId){
-			showMsg("配件编码为"+carModelCode+"的仓库不能为空","W");
+		if(!detailData[i].orderPrice  || detailData[i].orderPrice==null){
+			showMsg("车型编码："+carModelCode+"的单价不能为空","W");
 			return ;
 		}
-	}*/
-
+	}
+	//工单主表的未付，总金额赋值
+	data.orderTotalAmt = totalAmt;
+	data.payableBalaAmt = totalAmt-data.advanceDepositAmt;
 	var pchsOrderDetailAdd = rightGrid.getChanges("added");
 	var pchsOrderDetailUpdate = rightGrid.getChanges("modified");
 	var pchsOrderDetailDelete = rightGrid.getChanges("removed");
@@ -1187,6 +1199,10 @@ function checkRightData() {
 }
 var salesCheckCar = baseUrl+"sales.inventory.applyCheckCar.biz.ext";
 function salesCheck(){
+	if (isFinancial == 0) {
+		showMsg("请先提交!","W");
+		return;
+	}
 	var data = basicInfoForm.getData();
 	nui.mask({
 		el : document.body,
@@ -1246,7 +1262,7 @@ function audit(){
 			data = data || {};
 			if (data.errCode == "S") {
 				showMsg("提交成功!","S");
-				document.getElementById("basicInfoForm").disabled = false;
+				document.getElementById("fd1").disabled = true;
 				isFinancial = 1;//提交后靠这个变量控制是否能编辑
 			} else {
 				showMsg(data.errMsg || "提交失败!","E");

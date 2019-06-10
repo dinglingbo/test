@@ -68,26 +68,6 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
-      <process:to type="query">orderMain/isFinancial</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">new Date()</process:from>
-      <process:to type="query">orderMain/isFinancialDate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
-      <process:to type="query">orderMain/isFinancialer</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">new Date()</process:from>
-      <process:to type="query">orderMain/modifyDate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
-      <process:to type="query">orderMain/modifier</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>
@@ -141,7 +121,7 @@
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">orderMain</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo6label" name="label" nodeType="label">
@@ -206,6 +186,14 @@
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">orderMain/status</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">orderMain/modifyDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">orderMain/modifier</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">

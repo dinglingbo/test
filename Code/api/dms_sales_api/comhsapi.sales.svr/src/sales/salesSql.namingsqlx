@@ -370,7 +370,7 @@
                 a.receive_cost as receiveCost,
                 A.car_model_id AS carModelId,
                 A.car_model_name AS carModelName,
-                a.car_frame_no as carFrameNo,
+                a.vin as vin,
                 a.engine_no as engineNo,
                 a.kilometers as kilometers,
                 a.produce_date as produceDate,
@@ -399,7 +399,7 @@
                 b.service_code as serviceCode
             FROM
             wb_sales.css_check_enter A
-            INNER JOIN wb_sales.css_factory_order_main B ON A.order_id = B.ID 
+            left JOIN wb_sales.css_factory_order_main B ON A.order_id = B.ID 
                 where a.orgid = #orgid#
             <dynamic>
                 <isNotEmpty prepend="and" property="orderId">  

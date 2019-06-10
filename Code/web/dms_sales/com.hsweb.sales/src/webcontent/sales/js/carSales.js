@@ -49,7 +49,7 @@ $(document).ready(function(v) {
     mainGrid.on("drawcell", function(e) {
         var field = e.field,
             value = e.value;
-        if (field == "submiPlanDate" || field == "orderDate") {
+        if (field == "submitPlanDate" || field == "orderDate") {
             if (value) {
                 e.cellHtml = format(value, 'yyyy-MM-dd');
             }
@@ -63,7 +63,7 @@ $(document).ready(function(v) {
     mainGrid2.on("drawcell", function(e) {
         var field = e.field,
             value = e.value;
-        if (field == "submiPlanDate") {
+        if (field == "submitPlanDate") {
             if (value) {
                 e.cellHtml = format(value, 'yyyy-MM-dd');
             }
@@ -77,7 +77,7 @@ $(document).ready(function(v) {
     mainGrid3.on("drawcell", function(e) {
         var field = e.field,
             value = e.value;
-        if (field == "submitTrueDate" || field == "submiPlanDate" || field == "financialEndDate") {
+        if (field == "submitTrueDate" || field == "submitPlanDate" || field == "financialEndDate") {
             if (value) {
                 e.cellHtml = format(value, 'yyyy-MM-dd');
             }
@@ -234,7 +234,7 @@ function openPage(params) {
 }
 
 function addAndEdit(e) {
-	var params = {};
+    var params = {};
     if (e == 2) {
         var row = mainGrid.getSelected() || mainGrid2.getSelected() || mainGrid3.getSelected();
         params.id = row.id;

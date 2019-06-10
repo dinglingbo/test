@@ -249,18 +249,15 @@
         <div style="padding-top: 10px;">
             <table  width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk">
                 <tr>
-                    <td height="24" width="33%" id="guestFullName">&nbsp;客户名称：</td>
-                    <td width="33%" id="mtAdvisor">&nbsp;服务顾问：</td>
+                    <td height="24" width="25%" id="guestFullName">&nbsp;客户名称：</td>
+                    <td height="24" width="28%" id="contactName">&nbsp;联系人名称：</td>
+                    <td width="25%" id="mtAdvisor">&nbsp;服务顾问：</td>
                     <td >&nbsp;进厂里程：<span id="enterKilometers"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;油量：<span id="enterOilMass"></span></td>
                 </tr>
                 <tr>
                     <td height="24" id="carNo">&nbsp;车牌号：</td>
                     <td id="carModel">&nbsp;品牌车型： </td>
-                    <td id="carVin">&nbsp;车架号(VIN)：</td>
-                </tr>
-                <tr>
-                    
-                    
+                    <td id="carVin" colspan="2">&nbsp;车架号(VIN)：</td>
                 </tr>
             </table>
         </div>
@@ -569,6 +566,7 @@
 	        		var carNo = list.carNo || "";
 	        		var carVin = list.carVin || "";
 	        		var carId = list.carId;
+	        		var contactName = list.contactName;
 	        		infoData.mobile = mobile;
 	        		infoData.carNo = carNo;
 	        		infoData.carId = carId;
@@ -631,7 +629,7 @@
 	        			guestMobile = list.guestTel || "";
 	        			//contactMobile = list.contactorTel || "";
 	        			carNo = list.carNo || "";
-	        			//contactName = list.contactorName || "";
+	        			contactName = list.contactorName || "";
 	        			mtAdvisor = list.mtAdvisor || "";
 	        		}
 	        		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML + serviceCode;
@@ -639,6 +637,8 @@
 	        		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
 	        		document.getElementById("enterDate").innerHTML = enterDate;
 	        		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
+	        		document.getElementById("contactName").innerHTML = document.getElementById("contactName").innerHTML + contactName;
+	        		
 	        		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
 	        		document.getElementById("enterOilMass").innerHTML = document.getElementById("enterOilMass").innerHTML + enterOilMass;
 	        		document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + mtAdvisor;

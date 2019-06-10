@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="doCallV2" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
-    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
-      <targetNode>assign0</targetNode>
-      <process:transitionCondition/>
+      <targetNode>invokePojo6</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link9" name="link9" displayName="连接线" type="transition">
-      <sourceNode>start0</sourceNode>
-      <targetNode>assign1</targetNode>
-      <process:transitionCondition>
-        <process:complexCondition>
-          <process:code>1==1</process:code>
-        </process:complexCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <location x="60" y="134"/>
+    <location x="-90" y="134"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
@@ -31,7 +21,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="62" y="170"/>
+    <location x="-88" y="170"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -119,6 +109,10 @@
     <location x="208" y="134"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">httpStr+url</process:from>
+      <process:to type="query">url</process:to>
+    </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">10967a34826f415790ee748028b6d222</process:from>
       <process:to type="query">params/securityKey</process:to>
@@ -231,7 +225,7 @@
     <figSize height="17" width="83"/>
     <node>invokePojo1</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign1" name="不需账号" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="不需账号" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link10" name="link10" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>invokePojo0</targetNode>
@@ -247,26 +241,104 @@
       <targetNode>invokePojo3</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
-    <location x="263" y="240"/>
+    <location x="353" y="240"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">httpStr+url</process:from>
+      <process:to type="query">url</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="253" y="276"/>
+    <location x="343" y="276"/>
     <figSize height="17" width="49"/>
     <node>assign1</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="获取http" displayName="获取http" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" description="" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo5</sourceNode>
+      <targetNode>assign0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link9" name="link9" displayName="连接线" isDefault="false" type="transition">
+      <sourceNode>invokePojo5</sourceNode>
+      <targetNode>assign1</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>1==1</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link13</targetConnections>
+    <location x="111" y="134"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo5label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.Env.getContributionConfig</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="ctrName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.vplus.login</process:inputVariable>
+      <process:inputVariable id="1" name="module" type="literal" value="java.lang.String" valueType="Java" pattern="reference">cfg</process:inputVariable>
+      <process:inputVariable id="2" name="group" type="literal" value="java.lang.String" valueType="Java" pattern="reference">LLQ</process:inputVariable>
+      <process:inputVariable id="3" name="key" type="query" value="java.lang.String" valueType="Java" pattern="reference">serverType</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java">httpStr</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
+    <location x="98" y="170"/>
+    <figSize height="17" width="48"/>
+    <node>invokePojo5</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo6" name="获取环境变量" displayName="获取环境变量" collapsed="false" type="invoke" index="4" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="link19" isDefault="true" type="transition">
+      <sourceNode>invokePojo6</sourceNode>
+      <targetNode>invokePojo5</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link14</targetConnections>
+    <location x="15" y="134"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo6label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.Env.getContributionConfig</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="ctrName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.vplus.login</process:inputVariable>
+      <process:inputVariable id="1" name="module" type="literal" value="java.lang.String" valueType="Java" pattern="reference">cfg</process:inputVariable>
+      <process:inputVariable id="2" name="group" type="literal" value="java.lang.String" valueType="Java" pattern="reference">LLQ</process:inputVariable>
+      <process:inputVariable id="3" name="key" type="literal" value="java.lang.String" valueType="Java" pattern="reference">serverType</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java">serverType</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo6label" name="label" nodeType="label">
+    <location x="-10" y="170"/>
+    <figSize height="17" width="73"/>
+    <node>invokePojo6</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Guine" createTime="2018-01-24 12:21:46" date="2018-01-24Z" description="" name="doCall" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="msg" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="serverType" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="httpStr" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="url" primitiveType="String"/>

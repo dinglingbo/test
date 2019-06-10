@@ -5,7 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
 <link href="<%=webPath + contextPath %>/common/nui/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-<script src="<%=webPath + contextPath %>/common/date.js" type="text/javascript"></script>
+<script src="<%=webPath + contextPath %>/common/js/date.js" type="text/javascript"></script>
 <script type="text/javascript">
 	<%
 		IMUODataContext muo = DataContextManager.current().getMUODataContext();

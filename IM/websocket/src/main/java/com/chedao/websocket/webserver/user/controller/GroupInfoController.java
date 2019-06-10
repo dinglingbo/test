@@ -3,9 +3,12 @@ package com.chedao.websocket.webserver.user.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.chedao.websocket.constant.Constants;
+import com.chedao.websocket.server.connertor.ImConnertor;
 import com.chedao.websocket.webserver.base.controller.BaseController;
 import com.chedao.websocket.webserver.user.model.GroupInfoEntity;
 import com.chedao.websocket.webserver.user.model.GroupUserEntity;
+import com.chedao.websocket.webserver.user.model.UserInfoEntity;
 import com.chedao.websocket.webserver.user.service.GroupInfoService;
 import com.chedao.websocket.webserver.user.service.GroupUserService;
 import com.chedao.websocket.webserver.user.service.impl.GroupInfoServiceImpl;
@@ -13,10 +16,7 @@ import com.chedao.websocket.webserver.user.service.impl.GroupUserServiceImpl;
 import org.directwebremoting.json.types.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,12 +32,21 @@ public class GroupInfoController extends BaseController {
     private GroupInfoService groupInfoServiceImpl;
     @Autowired
     private GroupUserService groupUserServiceImpl;
+    @Autowired
+    private ImConnertor connertor;
+
+    @RequestMapping(value = "/queryById/{id}", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
+    @ResponseBody
+    public Object queryByUid(@PathVariable("id") Long id) {
+        GroupInfoEntity groupInfo = groupInfoServiceImpl.queryObject(id);
+        return putMsgToJsonString(Constants.WebSite.SUCCESS, "", 0, groupInfo);
+    }
     /**
      * 创建群聊
      */
     @ResponseBody
     @RequestMapping(value = "/addGroupInfo", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
-    public String addGroupInfo(@RequestBody Map<String,Object> params){
+    public Object addGroupInfo(@RequestBody Map<String,Object> params){
         StringBuilder errCode= new StringBuilder();
 
         List<Map<String,Object>> userList = (ArrayList<Map<String,Object>>)params.get("groupUser");
@@ -51,6 +60,7 @@ public class GroupInfoController extends BaseController {
         GroupInfoEntity groupInfo = new GroupInfoEntity();
         groupManager.get("userId");
         groupInfo.setGroupNum("111");
+        groupInfo.setAvatar("http://qxy60.7xdr.com//FjAU4wgdXUFkFDk2_PYecIDoH684");
         groupInfo.setGroupName(name);
         groupInfo.setGroupManId(groupManId);
         groupInfo.setGroupMan(groupMan);
@@ -59,18 +69,25 @@ public class GroupInfoController extends BaseController {
         groupInfo.setModifierId(groupManId);
         groupInfo.setModifier(groupMan);
         try{
-          Integer groupInfoId =  groupInfoServiceImpl.addGroupInfo(groupInfo);
+            Integer groupInfoId =  groupInfoServiceImpl.addGroupInfo(groupInfo);
+            List<String> reSessionIdList = new ArrayList<String>();
             for(int i=0;i<userList.size();i++) {
                 Map<String, Object> map = userList.get(i);
+                String uid = map.get("userId").toString();
+                if(!uid.equals(id)) {
+                    reSessionIdList.add(uid);
+                }
                 map.put("groupId", groupInfoId);
             }
-             groupUserServiceImpl.addGroupUser(userList);
+            groupUserServiceImpl.addGroupUser(userList);
+            groupInfo.setId(groupInfoId);
+
+            connertor.pushCreateGroupMessage(id, reSessionIdList, JSONObject.toJSONString(groupInfo));
+
         }catch (Exception e){
-            errCode.append("E");
-            return errCode.toString();
+            return putMsgToJsonString(Constants.WebSite.ERROR, "创建群聊失败", 0, null);
         }
-        errCode.append("S");
-        return errCode.toString();
+        return putMsgToJsonString(Constants.WebSite.SUCCESS, "创建群聊成功", 0, groupInfo);
     }
 
     /**

@@ -8,7 +8,7 @@
 -->
 <head>
 <title>整车采购退货</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/carSalesReturn.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesReturn.js?v=1.0.5"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -38,7 +38,7 @@
     <table style="width:100%;">
         <tr>
             <td style="white-space:nowrap;">
-                 <label style="font-family:Verdana;">快速查询：</label>
+<!--                  <label style="font-family:Verdana;">快速查询：</label>
                 <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
 
                 <ul id="popupMenuDate" class="nui-menu" style="display:none;">
@@ -63,7 +63,7 @@
                     <li iconCls="" onclick="quickSearch(13)" id="type13">待发货</li>
                     <li iconCls="" onclick="quickSearch(14)" id="type14">待收货</li>
                     <li iconCls="" onclick="quickSearch(15)" id="type15">已入库</li>
-                </ul> 
+                </ul>  -->
 
 
 				<label style="font-family:Verdana;">退货日期 从：</label>
@@ -93,7 +93,7 @@
                            nullItemText="请选择..."/> -->
 <!--                 <input id="" name="" width="80px" emptyText="经办人" class="nui-textbox"/>
                 <input id="" name="" width="80px" emptyText="组织机构" class="nui-textbox"/> -->
-                <input id="" name="" width="80px" emptyText="车型名称" class="nui-textbox"/>
+<!--                 <input id="" name="" width="80px" emptyText="车型名称" class="nui-textbox"/> -->
 <!--                 <input class="nui-combobox" id="search-type" width="100px" textField="name" valueField="id" value="0" data="statusList" allowInput="false" />
 	            <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="80px" onenter="search()" /> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
@@ -111,7 +111,7 @@
 	<input class="nui-hidden" name="billStatusId" id="billStatusId"/>
     <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
          showPager="true"
-         dataField="pjPchsOrderMainList"
+         dataField="cssFactoryReturn"
          idField="detailId"
          ondrawcell="onDrawCell"
          sortMode="client"
@@ -126,21 +126,20 @@
         <div property="columns">
             <div type="indexcolumn" width="40">序号</div>
             <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
-            <div field="" width="90" name = "orderMan" headerAlign="center" header="状态"></div> 
-                    <div field="" allowSort="true"  width="160" summaryType="count" headerAlign="center" header="退货单号"></div>
-                    <div field="" name="" width="220" headerAlign="center" header="供应商"></div>                    
-                    <div field="" width="90" name = "orderMan" headerAlign="center" header="采购员"></div>                     
+            <div field="status" width="90" name = "orderMan" headerAlign="center" header="状态"></div> 
+                    <div field="serviceCode" allowSort="true"  width="160" summaryType="count" headerAlign="center" header="退货单号"></div>
+                    <div field="guestFullName" name="guestFullName" width="220" headerAlign="center" header="供应商"></div>                    
+                    <div field="returnMen" width="90" name = "returnMen" headerAlign="center" >退货员</div>                     
                     <div allowSort="true" field="billTypeId"  name="billTypeId" width="90" headerAlign="center" header="票据类型"></div>   
-                    <div allowSort="true" field="settleTypeId" name="settleTypeId" width="90" headerAlign="center" header="结算方式"></div>
-                    <div allowSort="true" field="settleTypeId" name="settleTypeId" width="90" headerAlign="center" header="运输方式"></div>                                                                                                
-                    <div field="" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="退货数量"></div>
-                    <div field="" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="退货金额"></div>
-                    <div field="" allowSort="true"  width="130" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                    
-                    <div field="" allowSort="true"  width="220" headerAlign="center" header="备注"></div>
-                    <div field="" width="90" name="creator" headerAlign="center" header="创建人"></div>
-                    <div field="" allowSort="true"  width="130" headerAlign="center" header="创建日期" dateFormat="yyyy-MM-dd HH:mm" ></div>  
-                    <div field="" width="90" name="creator" headerAlign="center" header="修改人"></div>
-                    <div field="" allowSort="true"  width="130" headerAlign="center" header="修改日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                      
+                    <div allowSort="true" field="payMode" name="payMode" width="90" headerAlign="center" header="结算方式"></div>
+                    <div allowSort="true" field="transportId" name="transportId" width="90" headerAlign="center" header="运输方式"></div>                                                                                                
+                    <div field="returnAmt" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="退货金额"></div>
+                    <div field="returnDate" allowSort="true"  width="130" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                    
+                    <div field="remark" allowSort="true"  width="220" headerAlign="center" header="备注"></div>
+                    <div field="recorder" width="90" name="recorder" headerAlign="center" header="创建人"></div>
+                    <div field="recordDate" allowSort="true"  width="130" headerAlign="center" header="创建日期" dateFormat="yyyy-MM-dd HH:mm" ></div>  
+                    <div field="modifier" width="90" name="modifier" headerAlign="center" header="修改人"></div>
+                    <div field="modifyDate" allowSort="true"  width="130" headerAlign="center" header="修改日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                      
         </div>
     </div> 
 </div>

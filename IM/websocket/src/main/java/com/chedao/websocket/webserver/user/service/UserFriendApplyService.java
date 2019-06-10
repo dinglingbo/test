@@ -39,5 +39,19 @@ public interface UserFriendApplyService {
 
     List<UserMessageTEntity> queryBoxList(Map<String, Object> map);
 
-    int applyFriend(UserFriendApplyEntity friend);
+    Map<String, Object> applyFriend(UserFriendApplyEntity friend);
+
+    /**
+     * 同意好友申请，需要更新好友申请数据，插入两条好友数据，并发消息给对方
+     * @param
+     * @return
+     */
+    Map<String, Object> agreeFriend(Long friendUid, Long from_group, Long group, Long uid, Long keyId);
+
+    /**
+     * 拒绝好友申请，需要更新好友申请数据，并发消息给对方
+     * @param
+     * @return
+     */
+    Map<String, Object> refuseFriend(Long friendUid, Long uid, Long keyId);
 }

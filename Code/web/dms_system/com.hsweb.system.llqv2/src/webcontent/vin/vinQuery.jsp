@@ -14,7 +14,7 @@
     <%@include file="/common/sysCommon2.jsp" %>
     <link href="<%=contextPath%>/llqv2/brand/css/cloud.css?v=1.3" rel="stylesheet" type="text/css" />
     
-    <script src="<%=contextPath%>/llqv2/common/llqCommon.js?v=1.3" type="text/javascript"></script>
+    <script src="<%=contextPath%>/llqv2/common/llqCommon.js?v=1.4" type="text/javascript"></script>
     <script src="<%=contextPath%>/llqv2/vin/js/vinQuery.js?v=1.3" type="text/javascript"></script>
     <style>
         .search-result-list-item-content-img{

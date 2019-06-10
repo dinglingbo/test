@@ -69,6 +69,22 @@
 		inner JOIN user_info b ON b.uid=a.senduser
 		where (a.senduser =#{senduser} AND a.receiveuser =#{receiveuser} )
 		       OR  (a.senduser =#{receiveuser} AND a.receiveuser =#{senduser}  )
+		       and type = 0
+		ORDER BY a.createdate desc
+
+	</select>
+
+	<select id="getGroupHistoryMessageList" resultMap="messageTMap" >
+		SELECT
+			  a.senduser as id,
+			  c.user_name as username,
+			  ifnull(b.profilephoto,'layui/images/0.jpg') avatar,
+			  a.content,
+              UNIX_TIMESTAMP(a.createdate)*1000 as tt
+		FROM  user_message  a
+		inner JOIN user_info b ON b.uid=a.senduser
+		inner join group_user c on b.uid = c.user_id and c.group_id = a.groupid
+		where a.groupid = #{groupid} and a.createdate &gt; #{jointime}
 		ORDER BY a.createdate desc
 
 	</select>
@@ -77,6 +93,14 @@
 		   select  count(1)
 			from  user_message  a 
 		   where (a.senduser =#{senduser} AND a.receiveuser =#{receiveuser} )  OR  (a.senduser =#{receiveuser} AND a.receiveuser =#{senduser}  )      
+	</select>
+
+	<select id="getGroupHistoryMessageCount" resultType="int" >
+		   select  count(1)
+			FROM  user_message  a
+			inner JOIN user_info b ON b.uid=a.senduser
+			inner join group_user c on b.uid = c.user_id  and c.group_id = a.groupid
+			where a.groupid = #{groupid} and a.createdate &gt; #{jointime}
 	</select>
 
 	<select id="getOfflineMessageList" resultMap="messageTMap" >
@@ -223,6 +247,12 @@
 				#{id}
 			</foreach>
 		</if>
+		<if test="screatedate != null ">
+			and createdate &gt;= #{screatedate}
+		</if>
+		<if test="ecreatedate != null ">
+			and createdate &lt; #{ecreatedate}
+		</if>
 	</select>
 
 	<select id="queryBoxTotal" resultType="int">
@@ -240,11 +270,16 @@
 		<if test="groupid != null ">
 			and groupid =#{groupid}
 		</if>
-		<if test="type != null ">
-			and type =#{type}
-		</if>
 		)
-		or type = 3
+		or (type = 3
+
+			<if test="screatedate != null ">
+				and createdate &gt;= #{screatedate}
+			</if>
+			<if test="ecreatedate != null ">
+				and createdate &lt; #{ecreatedate}
+			</if>
+		)
 	</select>
 	 
 	<insert id="save" parameterType="com.chedao.websocket.webserver.user.model.UserMessageEntity" useGeneratedKeys="true" keyProperty="id">

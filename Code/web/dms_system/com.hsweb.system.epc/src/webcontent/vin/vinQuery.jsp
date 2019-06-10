@@ -15,7 +15,7 @@
     <%@include file="/common/commonCloudPart.jsp"%>
     <link href="<%=contextPath%>/epc/brand/css/cloud.css?v=1.0" rel="stylesheet" type="text/css" />
     
-    <script src="<%=contextPath%>/epc/common/llqCommon.js?v=1.12" type="text/javascript"></script>
+    <script src="<%=contextPath%>/epc/common/llqCommon.js?v=1.0.2" type="text/javascript"></script>
     <script src="<%=contextPath%>/epc/vin/js/vinQuery.js?v=1.68" type="text/javascript"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -74,7 +74,7 @@
                       -->
                       <tr class="">
                             <td >
-                                输入VIN(全部品牌)<input class="" width="350px"  id="vin" name="vin"  list="vin" enabled="true" emptyText="请输入17VIN"/>
+                                输入VIN(全部品牌)<input class="nui-textbox" width="200px"  id="vin" name="vin"  list="vin" enabled="true" emptyText="请输入17VIN"/>
                                 <a class="nui-button" onclick="queryVin" style="width:100px" >目录查询</a>
                             </td>
                             <td width="350px" style="padding-left:5%">

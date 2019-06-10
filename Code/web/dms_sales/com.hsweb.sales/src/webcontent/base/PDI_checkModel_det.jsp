@@ -51,13 +51,13 @@ pageEncoding="UTF-8" session="false" %>
                编号：&nbsp;
            </td>
            <td>
-               <input id="code" name="code" value="自动编号" style="width: 150px" disabled class="nui-textbox" />
+               <input id="code" name="code"  style="width: 150px" enabled="false" class="nui-textbox" />
            </td>
            <td style="text-align: right ;width:60px;">
                拼音码：&nbsp;
            </td>
            <td>
-               <input id="pyCode" name="pyCode" style="width: 140px" class="nui-textbox" />
+               <input id="pyCode" name="pyCode" style="width: 140px" class="nui-textbox" enabled="false"/>
            </td>
        </tr>
        <tr>
@@ -73,9 +73,9 @@ pageEncoding="UTF-8" session="false" %>
                车型：&nbsp;
            </td>
            <td colspan="3">
-               <input id="carModelId" name="carModelId" class="nui-textbox" visible="false"  style="width: 352px;"/>
-               <input id="carModelName" name="carModelName" class="nui-buttonedit"  style="width: 352px;" onbuttonclick="onButtonEdit"/>
-               <div id="isDefault" name="isDefault" class="nui-checkbox" readOnly="false" text="车型默认模板" trueValue="1" falseValue="0"></div>
+               <input id="carModelId" name="carModelId" class="nui-textbox" required="true"  visible="false"  style="width: 352px;"/>
+               <input id="carModelName" name="carModelName" class="nui-buttonedit" allowInput="false" required="true" style="width: 352px;" onbuttonclick="onButtonEdit"/>
+               <div id="isDefault" name="isDefault" class="nui-checkbox"  text="车型默认模板" trueValue="1" falseValue="0"></div>
            </td>
        </tr>
        <tr>
@@ -84,8 +84,8 @@ pageEncoding="UTF-8" session="false" %>
            </td>
            <td colspan="3">
                <input id="remark" name="remark" class="nui-textarea" style="width: 352px;height:40px" />
-               <div id="isDisabled" name="isDisabled" class="nui-checkbox" readOnly="false" text="启用" trueValue="0" falseValue="1"></div>
-           </td>
+               <div id="isDisabled" name="isDisabled" class="nui-checkbox" text="禁用" trueValue="1" falseValue="0"></div>
+           </td>        
        </tr>
    </table>
    <div class="nui-toolbar" style="padding:0px;">
@@ -107,9 +107,9 @@ pageEncoding="UTF-8" session="false" %>
               <div property="columns">
                     <div type="checkcolumn" class="mini-radiobutton" width="60px">选择</div>
                     <div field="orderNo" headerAlign="center" width="60px">序号</div>
-                    <div field="code" headerAlign="center" allowSort="true" width="150px">项目编号</div>
-                    <div field="pdiTypeId" headerAlign="center" allowSort="true" width="150px">项目类型</div>
                     <div field="name" headerAlign="center" allowSort="true" width="150px">项目名称</div>
+                    <div field="pdiTypeId" headerAlign="center" allowSort="true" width="150px">项目类型</div>
+                    <div field="code" headerAlign="center" allowSort="true" width="150px">项目编号</div>
                 <!-- <div field="" headerAlign="center" allowSort="true" width="150px">拼音码</div> -->
               </div>
             </div>
@@ -117,15 +117,24 @@ pageEncoding="UTF-8" session="false" %>
 </div>
 <script type="text/javascript">
     nui.parse();
-    var saveUrl = apiPath + saleApi + "/sales.base.addCsbPDICarTemplate.biz.ext";
-    var updateUrl = apiPath + saleApi + "/sales.base.updateCsbPDICarTemplate.biz.ext";
+    var saveUrl = apiPath + saleApi + "/sales.base.saveCsbCarTemplate.biz.ext";
+    var gridUrl = apiPath + saleApi + "/sales.base.searchCsbPDICarDetail.biz.ext";
     var form = new nui.Form("form1");
     var grid =nui.get("grid1");
+    grid.setUrl(gridUrl);
 
 
-function setData(row) {
-    form.setData(row);
-    nui.get("carModelName").setText(row.carModelName);
+function setData(row,e) {
+    if(e == 1){
+        nui.get("isDisabled").setValue(0);
+    }else{
+        form.setData(row);
+        nui.get("carModelName").setText(row.carModelName);
+        var params = {
+            templateId:row.id 
+        };
+        grid.load({params:params,token:token});
+    }
 }
 
     function edit() {
@@ -143,7 +152,19 @@ function setData(row) {
             var iframe = this.getIFrameEl();
             if(action == 'ok'){
                 var rows = iframe.contentWindow.getRows();
-                grid.addRows(rows);
+                var dataList = grid.getData();
+                for (var k = 0; k < rows.length; k++) {
+                    var temp = rows[k];
+                    var value = JSON.stringify(dataList).indexOf('"code":"'+temp.code+'"');
+                    if(value == -1){
+                        grid.addRow(temp);
+                    }
+                    // for (let i = 0; i < dataList.length; i++) {
+                    //     var element = dataList[i];
+                        
+                    // }
+                    
+                }
             }
         }
       });
@@ -164,8 +185,8 @@ function setData(row) {
           if(action == 'ok'){
             var row = iframe.contentWindow.getRow();
             nui.get("carModelId").setValue(row.id);
-            nui.get("carModelName").setValue(row.name);
-            nui.get("carModelName").setText(row.name);
+            nui.get("carModelName").setValue(row.fullName);
+            nui.get("carModelName").setText(row.fullName);
           }
         }
       });
@@ -173,22 +194,28 @@ function setData(row) {
 
 
     function save() {
+        var addArr = grid.getChanges('added');
+        var delArr = grid.getChanges('removed');
         var data = form.getData(true);
-        var turl = null;
-        if(data.id){
-            turl = updateUrl;
-        }else{
-            turl = saveUrl;
-        }
+        nui.mask({
+            el : document.body,
+            cls : 'mini-mask-loading',
+            html : '保存中...'
+        });
         nui.ajax({
-            url:turl,
+            url:saveUrl,
             type:'post',
             data:{
-                data:data
+                data:data,
+                addArr:addArr,
+                delArr:delArr
             },
             success:function(res){
+                nui.unmask(document.body);
                 if(res.errCode == 'S'){
                     showMsg('保存成功','S');
+                    //grid.reload();
+                    CloseWindow("ok");
                 }else{
                     showMsg('保存失败','E');
                 }

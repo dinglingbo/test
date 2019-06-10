@@ -6,7 +6,7 @@
 
 <head>
     <title>系统参数</title>
-    <script src="<%=webPath + contextPath%>/sales/base/js/sellCarParamMgr.js?v=1.0.5"></script>
+    <script src="<%=webPath + contextPath%>/sales/base/js/sellCarParamMgr.js?v=1.0.6"></script>
     <link href="<%=webPath + contextPath%>/sales/base/css/botton.css" rel="stylesheet" type="text/css" />
     <style>
 
@@ -33,14 +33,14 @@
         height: 1px;
     }
 .test-1::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
-        // border-radius: 10px;
+        /* border-radius: 10px; */
         box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
         background: #7fccde;
     }
 .test-1::-webkit-scrollbar-track {/*滚动条里面轨道*/
-        //box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-        // border-radius: 10px;
-        //background: #EDEDED;
+        /* box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        border-radius: 10px;
+        background: #EDEDED; */
     }
     </style>
 </head>
@@ -48,9 +48,9 @@
 <body>
     <div class="nui-fit">
         <div style="width:100%; height:calc(100% - 2px);">
-                <div style="float:left;height:100%;width:114px;overflow: scroll;" class="test-1">
+                <div style="float:left;height:100%;width:105px;overflow: scroll;" class="test-1">
                         <!--<a href="#" class="btn-two green large">Button</a>-->
-                        <div style="float:left;height:750px;width:114px;">
+                        <div style="float:left;height:770px;width:105px;">
                     <div id="mainTabs" class="nui-tabs" name="mainTabs" activeIndex="0" style="height:100%;"
                         plain="false" tabPosition="left" showBody="false">
                         <div title="PDI检查分类" id="PDICheck" name="PDICheck" url=""></div>
@@ -77,7 +77,7 @@
                         <div title="意向级别" id="IntentionLevel" name="IntentionLevel" url=""></div>
                         <div title="购车方式" id="buyCarType" name="buyCarType" url=""></div>
                         <div title="购车用途" id="buyCarUser" name="buyCarUser" url=""></div>
-                        <div title="银行定义" id="bank" name="bank" url=""></div>
+                        <div title="开户银行" id="bank" name="bank" url=""></div>
                         <div title="来访类型" id="visitType" name="visitType" url=""></div>
 
                         <!--<div title="信息来源" id="infoSourceTab" name="infoSourceTab" url=""></div>
@@ -100,11 +100,14 @@
                     </div>
                 </div>
                 </div>
-                <div style="float:right;height:100%;width:calc(100% - 114px);">
+                <div style="float:right;height:100%;width:calc(100% - 105px);">
                         <div class="nui-toolbar">
                                 <a class="nui-button" plain="true" onclick="addShareUrl" id="addStationBtn">
                                     <span class="fa fa-plus fa-lg"></span>&nbsp;新增
                                 </a>
+                                <!-- <a class="nui-button" plain="true" onclick="del()" id="" plain="false"><span
+                                    class="fa fa-close fa-lg"></span>&nbsp;删除
+                                </a> -->
                                 <a class="nui-button" plain="true" onclick="save()" id="addStationBtn">
                                     <span class="fa fa-save fa-lg"></span>&nbsp;保存
                                 </a>

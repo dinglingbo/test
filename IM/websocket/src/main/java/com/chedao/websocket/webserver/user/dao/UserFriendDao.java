@@ -4,9 +4,11 @@ import com.chedao.websocket.webserver.base.dao.BaseDao;
 import com.chedao.websocket.webserver.user.model.ImFriendUserInfoData;
 import com.chedao.websocket.webserver.user.model.UserFriendEntity;
 import com.chedao.websocket.webserver.user.model.UserFriendTEntity;
+import com.chedao.websocket.webserver.user.model.UserInfoEntity;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserFriendDao<T> extends BaseDao<UserFriendEntity> {
     //判断是否是好友
@@ -15,4 +17,6 @@ public interface UserFriendDao<T> extends BaseDao<UserFriendEntity> {
     List<ImFriendUserInfoData> queryListUser(Long typeid);
     //查找用户好友列表
     List<UserFriendTEntity> queryUserFriendList(@Param("userId")String userId);
+
+    UserInfoEntity queryUserFriend(Map<String, Object> map);
 }

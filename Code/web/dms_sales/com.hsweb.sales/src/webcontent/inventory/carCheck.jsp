@@ -8,7 +8,7 @@
 -->
 <head>
 <title>验车</title>
-<%-- <script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/carSalesReturn.js?v=1.0.0"></script> --%>
+    <script src="<%=webPath + contextPath%>/sales/inventory/js/carCheck.js?v=1.0.1"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -37,15 +37,15 @@
         <table style="width:100%;">
             <tr>
                 <td style="width:100%;">
-                    <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="choose()" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onClose()" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
                 </td>
             </tr>
         </table>
     </div>
     <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
          showPager="true"
-         dataField="pjPchsOrderMainList"
+         dataField="checkOrderDetailList"
          idField="detailId"
          ondrawcell="onDrawCell"
          sortMode="client"
@@ -59,12 +59,11 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn" width="40">序号</div>
-            <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
-            		<div field="" allowSort="true"  width="100" summaryType="count" headerAlign="center" header="单号"></div>
-            		<div field="" allowSort="true"  width="100" summaryType="count" headerAlign="center" header="供应商"></div>
-                    <div field="" name="guestFullName" width="100" headerAlign="center" header="车型"></div>
-                    <div field="" name="guestFullName" width="60" headerAlign="center" header="待验"></div>
-                     <div field="" name="guestFullName" width="60" headerAlign="center" header="已验"></div>
+            		<div field="serviceCode" allowSort="true"  width="100" summaryType="count" headerAlign="center" header="单号"></div>
+            		<div field="guestFullName" allowSort="true"  width="100" summaryType="count" headerAlign="center" header="供应商"></div>
+                    <div field="carModelName" name="guestFullName" width="100" headerAlign="center" header="车型"></div>
+                    <div field="checkingQty" name="guestFullName" width="60" headerAlign="center" header="待验"></div>
+                     <div field="checkedQty" name="guestFullName" width="60" headerAlign="center" header="已验"></div>
                                                       
         </div>
     </div> 

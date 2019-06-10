@@ -125,7 +125,7 @@ layui.use('layim', function(layim){
 		   var message = new proto.Model();
 		   var browser=BrowserUtil.info();
 	       message.setVersion("1.0");
-	       message.setDeviceid("")
+	       message.setDeviceid("");
 	       message.setCmd(1);
 	       message.setSender(currentsession);
 	       message.setMsgtype(1); 
@@ -178,10 +178,10 @@ layui.use('layim', function(layim){
     }
 
     //查看群员接口
-    ,members: {
-      url: apiPath + sysApi + '/coframe/imjs/getMembers.json'
+    /*0523,members: {
+      url: apiPath + sysApi + '/com.hsapi.system.im.message.queryGroupUserInfo.biz.ext?token='+token
       ,data: {}
-    }
+    }*/
     
     //上传图片接口
     ,uploadImage: {
@@ -270,7 +270,7 @@ layui.use('layim', function(layim){
     layim.msgbox(5); //模拟消息盒子有新消息，实际使用时，一般是动态获得
   
     //添加好友（如果检测到该socket）
-    layim.addList({
+    /*0523layim.addList({
       type: 'group'
       ,avatar: "http://tva3.sinaimg.cn/crop.64.106.361.361.50/7181dbb3jw8evfbtem8edj20ci0dpq3a.jpg"
       ,groupname: 'Angular开发'
@@ -284,7 +284,7 @@ layui.use('layim', function(layim){
       ,groupid: 2
       ,id: "1233333312121212"
       ,remark: "本人冲田杏梨将结束AV女优的工作"
-    });
+    });*/
     
     /*setTimeout(function(){
       //接受消息（如果检测到该socket）

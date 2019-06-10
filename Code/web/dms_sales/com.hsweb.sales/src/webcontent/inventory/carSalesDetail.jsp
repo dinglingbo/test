@@ -8,15 +8,17 @@
 <div class="nui-toolbar" style="padding:2px;position: relative;">
     <table style="width:100%;">
         <tr>
-            <td style="width:100%;white-space:nowrap;">
-<!--                 <span class="separator"></span> -->
-        <span  id="bServiceId" style="">订单号：新采购订单</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <td style="white-space:nowrap;">
+<!--            <span class="separator"></span> -->
+        		<span  id="bServiceId" style="">订单号：新采购订单</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        	</td>
+       		 <td style="text-align:right;">
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <!-- <a class="nui-button" iconCls="icon-edit" plain="true" onclick="editInbound()" id="editEnterMainBtn">修改</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <!-- <a class="nui-button" iconCls="icon-undo" plain="true" onclick="cancelEditInbound()" id="cancelEditEnterMainBtn">取消</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="auditToEnter()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;申请验车</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="salesCheck()" ><span class="fa fa-check fa-lg"></span>&nbsp;申请验车</a>
                 
                 <!-- <a class="nui-menubutton " menu="#popupMenuPrint" id="menuprint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
 
@@ -121,6 +123,12 @@
                                              width="100%"
                                              showTime="true"
                                              class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
+                                      <input name="recordDate"
+                                             id="recordDate"
+                                             width="100%"
+                                             showTime="true"
+                                             visible="false"
+                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
                                   </td>
 <!--                               	 <td class="title required" style="width:8%">
                                       <label>预计发运日期：</label>
@@ -202,7 +210,7 @@
 			    </ul>
    				
                   <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-                    <a class="nui-button" plain="true" iconCls="" id="addPartBtn" onclick="selectCar()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加车辆</a>
+                    <a class="nui-button" plain="true" iconCls="" id="addPartBtn" onclick="getPartInfo()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加车辆</a>
                     </div>
                     <div class="nui-fit">
                     <div id="rightGrid" class="nui-datagrid" 
@@ -212,7 +220,6 @@
                          dataField="pjPchsOrderDetailList"
                          idField="id"
                          showSummaryRow="true"
-                         ondrawcell="onRightGridDraw"
                          allowCellSelect="true"
                          allowCellEdit="true"
                          oncellcommitedit="onCellCommitEdit"
@@ -228,29 +235,27 @@
                         <div property="columns">
                             <div type="indexcolumn">序号</div>
                                     <div field="operateBtn" name="operateBtn" align="center" width="50" headerAlign="center" header="操作"></div>
-                                    <div field="comPartCode" name="comPartCode" width="120" headerAlign="center" header="车型编码">
+                                    <div field="carModelCode" name="carModelCode" width="120" headerAlign="center" header="车型编码">
                                         <input property="editor" class="nui-textbox" />
                                     </div>
-                                    <div field="" headerAlign="center" width="150" header="车型名称"></div>
-                                    <div field="" name="" width="40" headerAlign="center" header="车身颜色"></div>
-                                    <div field="" name="" summaryType="sum" numberFormat="0.00" width="40" headerAlign="center" header="内饰颜色">
-                                      <input property="editor" vtype="float" class="nui-textbox"/>
+                                    <div field="carModelName" headerAlign="center" width="150" header="车型名称"></div>
+                                    <div field="frameColorId" name="frameColorId" width="40" headerAlign="center" header="车身颜色">
+                                       <input class="nui-combobox" showNullItem="true" name="frameColorId"  valueField="customid" id="frameColorId"
+                								 textField="name"  property="editor" data="frameColorIdList" emptyText="" />
                                     </div>
-                                    <div field="" numberFormat="0.0000" width="60" headerAlign="center" header="订货数量">
-                                      <input property="editor" vtype="float" class="nui-textbox"/>
+                                    <div field="interialColorId" name="interialColorId"  headerAlign="center" header="内饰颜色">
+                                       <input class="nui-combobox" showNullItem="true" name="interialColorId"  valueField="customid" id="interialColorId"
+                								 textField="name"  property="editor" data="interialColorIdList" emptyText="" />
                                     </div>
-                                    <div field="" numberFormat="0.0000" width="60" headerAlign="center" header="单价">
+                                    <div field="orderQty"  summaryType="sum" width="60" headerAlign="center" header="订货数量">
+                                      <input property="editor" vtype="int" class="nui-textbox"/>
+                                    </div>
+                                    <div field="orderPrice" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="单价">
                                       <input property="editor" vtype="float" class="nui-textbox"/>
                                     </div>                                    
-                                    <div field="" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额">
-                                    <div field="" numberFormat="0.0000" width="60" headerAlign="center" header="到货数量">
-                                      <input property="editor" vtype="float" class="nui-textbox"/>
-                                    </div>                            
+                                    <div field="orderAmt" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="金额">                           
                                       <input property="editor" vtype="float" class="nui-textbox"/>
                                     </div>
-                                    <div field="" width="100" headerAlign="center" allowSort="false">
-                       					 备注<input property="editor" class="nui-textbox"/>
-                       				</div>
                             </div>
                     	</div>
                     </div>

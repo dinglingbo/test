@@ -49,6 +49,7 @@
 	response.addCookie(cookie);
     String currentLanguage = request.getLocale().getLanguage().toLowerCase();
 %>
+<script src="<%=webPath + contextPath%>/common/nui/jquery/jquery-1.6.2.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 
 
@@ -71,12 +72,6 @@
     var crmApi   = "<%=crmApi%>";
     var frmApi   = "<%=frmApi%>";
     var wechatApi   = "<%=wechatApi%>";
-
-	$(function(){
-		nui.context='<%=contextPath %>';
-		nui.parse();
-
-	})
     
     <%
 	HttpSession session = request.getSession(false);
@@ -431,6 +426,30 @@
 		
  		
 	}
+	
+	function getCompanyLogoUrl(){
+	  var url="";
+	  $.ajax({
+		    url:webPath + sysDomain +"/com.hs.common.login.getCompanyLogoUrl.biz.ext",
+		    type:"post",
+		    data:{},
+		    async:false,
+		    success:function(data)
+		    {
+		        data = data||{};
+		        if(data.errCode && data.errCode == 'S'){
+		      	  url =  data.companyLogoUrl;
+		        }else{
+		            showMsg(data.errMsg,"W");
+		        }
+		        
+		    },
+		    error:function(jqXHR, textStatus, errorThrown){
+		    }
+		});
+		return url;
+	};
 
 </script>
+
 

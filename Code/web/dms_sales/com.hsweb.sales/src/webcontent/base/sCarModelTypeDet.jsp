@@ -60,13 +60,13 @@ pageEncoding="UTF-8" session="false" %>
                 <td class="td_title">车型编号：
                 </td>
                 <td>
-                    <input id="code" name="code" class="nui-textbox" type="text" style="width: 150px" value="自动编号"
+                    <input id="code" name="code" class="nui-textbox" type="text" style="width: 150px" enabled="false"
                         disabled="disabled" />
                 </td>
                 <td class="td_title">拼音码：
                 </td>
                 <td>
-                    <input id="pyCode" name="pyCode" class="nui-textbox" type="text" style="width: 150px" />
+                    <input id="pyCode" name="pyCode" class="nui-textbox" type="text" style="width: 150px" enabled="false"/>
                 </td>
             </tr>
             <tr>
@@ -245,7 +245,6 @@ pageEncoding="UTF-8" session="false" %>
     initDicts({
         level:'10383',//级别
         countryType:'10384',//国别
-        carSeriesId:'',//车系
         carStructureType:'10385',//结构
         outputVolume:'DDT20130703000044',//排量
         seatQty:'10386',//座位数
@@ -264,9 +263,9 @@ pageEncoding="UTF-8" session="false" %>
     function setData(row,e) {
         type = e;
         if(e == 2 || e == 3){
+            var mUrl = modelUrl + "?nodeId=" + row.carBrandId;
+            carSeriesId.setUrl(mUrl);
             form.setData(row);
-            nui.get("carBrandId").doValueChanged();
-            carSeriesId.setValue(row.carSeriesId);
             driveMode.doValueChanged();
         }
         
@@ -282,6 +281,7 @@ pageEncoding="UTF-8" session="false" %>
         var turl = null;
         if(type == 1 || type == 3){
             turl = addUrl;
+            data.code = getIndex();
         }else if(type == 2){
             turl = updateUrl
         }
@@ -327,18 +327,32 @@ pageEncoding="UTF-8" session="false" %>
         if(id){
             mUrl = modelUrl + "?nodeId=" + id;
             carSeriesId.setUrl(mUrl);
+            //alert(1);
         }
     }
-        function onCancel() {
-            CloseWindow("cancel");
-        }
 
-        function CloseWindow(action) {
-            if (window.CloseOwnerWindow)
-                return window.CloseOwnerWindow(action);
-            else
-                window.close();
+    function getIndex() {
+        var myDate = new Date();
+        var str = nui.formatDate(myDate,'yyyyMMddHHmmss');
+        var rand = "";
+        for(var i = 0; i < 3; i++){//获取随机三位数 如032  234 015
+            var r = Math.floor(Math.random() * 10);
+            rand += r;
         }
+        return ''+str+rand;
+    }
+
+
+    function onCancel() {
+        CloseWindow("cancel");
+    }
+
+    function CloseWindow(action) {
+        if (window.CloseOwnerWindow)
+            return window.CloseOwnerWindow(action);
+        else
+            window.close();
+    }
     </script>
 </body>
 

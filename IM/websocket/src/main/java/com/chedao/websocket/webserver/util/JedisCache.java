@@ -57,6 +57,9 @@ public class JedisCache {
             byte[] keyBytes = SerializerUtil.serializeKey(keyNamingPolicy.getKeyName(key));
             byte[] fieldBytes = SerializerUtil.serializeKey(field);
             byte[] valueBytes = client.hget(keyBytes, fieldBytes);
+            if(valueBytes==null) {
+                return null;
+            }
             return SerializerUtil.deserializeValue(valueBytes);
         } finally {
             returnJedis(client);

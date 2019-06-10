@@ -77,7 +77,7 @@
 										客户电话</div>
 									<div field="车牌号" headerAlign="center" allowSort="true" width="80px">
 										*车牌号</div>
-									<div field="车架号（VIN）" headerAlign="center" allowSort="true" width="120px">
+									<div field="车架号VIN" headerAlign="center" allowSort="true" width="120px">
 										车架号(VIN)</div>
 									<div field="项目金额" headerAlign="center" allowSort="true" width="60px">
 										项目金额</div>

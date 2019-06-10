@@ -12,8 +12,9 @@
     <head>
         <title>车辆登记</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
         <%@include file="/common/commonRepair.jsp"%>
+            <script src="<%= request.getContextPath() %>/sales/sales/js/vehicleRegistration.js?v=1.00" type="text/javascript">
+            </script>
     </head>
     <style type="text/css">
         body {
@@ -64,141 +65,146 @@
         }
         
         .textbox .textbox-text {
-            white-space: pre-wrap!important;
+            white-space: pre-wrap !important;
         }
     </style>
 
-    <body>
-        <table style="width: 100%; line-height: 23px; padding-top: 10px; padding-left: 5px;">
+    <body id="form1">
+        <div class="nui-toolbar" style="padding:0px;">
+            <table style="width:80%;">
+                <tr>
+                    <td style="width:80%;">
+                        <a class="nui-button" iconCls="" plain="true" onclick="save()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <table style="width: 100%; line-height: 30px; padding-top: 10px; padding-left: 5px;">
             <tr>
-                <td class="td_title">销售单号
-                </td>
-                <td>
-                    <input id="sp_SailNo" style="width: 100%" disabled class="nui-textbox" />
-                </td>
                 <td class="td_title">车牌号码
                 </td>
                 <td>
-                    <input id="sp_CarNo" style="width: 100%" class="nui-textbox" />
-                </td>
-                <td class="td_title">车牌颜色
-                </td>
-                <td>
-                    <input class="nui-combobox" id="CarNumColor" style="width: 100%;" editable="false" />
-                </td>
-                <td class="td_title">档案编号
-                </td>
-                <td>
-                    <input id="sp_DocumentNo" style="width: 100%" class="nui-textbox" />
-                </td>
-            </tr>
-            <tr>
-                <td align="right">驾驶员
-                </td>
-                <td>
-                    <input id="sp_CarMan" style="width: 100%" class="nui-textbox" />
-                </td>
-                <td align="right">驾驶证号
-                </td>
-                <td>
-                    <input id="sp_CarManNo" style="width: 100%" class="nui-textbox" />
-                </td>
-                <td align="right">驾证类型
-                </td>
-                <td>
-                    <select id="sp_CarManKind" class="nui-combobox" style="width: 100%;" editable="false">
-                            <option value="A照">A照</option>
-                            <option value="B照">B照</option>
-                            <option value="C照" selected="selected">C照</option>
-                        </select>
+                    <input id="carNo" name="carNo" style="width: 100%" class="nui-textbox" />
                 </td>
                 <td align="right">出生日期
-                </td>
-                <td>
-                    <input id="sp_BirthDate" style="width: 100%" editable="false" class="nui-datepicker" />
-                </td>
+                    <td>
+                        <input id="birthday" name="birthday" style="width: 100%" class="nui-textbox" />
+                    </td>
             </tr>
             <tr>
                 <td align="right">手机号码
                 </td>
                 <td>
-                    <input id="sp_Phone" style="width: 100%" class="nui-textbox" />
+                    <input id="mobile" name="mobile" style="width: 100%" class="nui-textbox" />
                 </td>
                 <td align="right">联系电话
                 </td>
                 <td>
-                    <input id="sp_LinkWay" style="width: 100%" class="nui-textbox" />
-                </td>
-                <td align="right">联系地址
-                </td>
-                <td colspan="3">
-                    <input id="sp_LinkAddress" style="width: 100%" class="nui-textbox" />
+                    <input id="tel" name="tel" style="width: 100%" class="nui-textbox" />
                 </td>
             </tr>
             <tr>
-                <td colspan="1" align="right" style="width:95px;">交强险保险公司
+
+                <td align="right" style="width:95px;">商业险保险公司
                 </td>
-                <td colspan="3">
-                    <input id="sp_cmbqxUnit" class="nui-combobox" editable="false" style="width: 100%" />
+                <td align="left">
+                    <input id="annualInspectionCompCode" name="annualInspectionCompCode" class="nui-combobox" editable="false" style="width: 100%" />
                 </td>
-                <td align="right">保险单号
-                </td>
-                <td>
-                    <input id="sp_txtInsuranceNum1" class="nui-textbox" style="width: 100%" />
-                </td>
-                <td align="right">保险到期
+
+
+                <td align="right" style="width:95px;">交强险保险公司
                 </td>
                 <td>
-                    <input id="sp_dttInsuranceLastDate1" class="nui-datepicker" editable="false" style="width: 100%" />
+                    <input id="insureCompCode" name="insureCompCode" class="nui-combobox" editable="false" style="width: 100%" />
                 </td>
             </tr>
             <tr>
-                <td colspan="1" align="right" style="width:95px;">商业险保险公司
-                </td>
-                <td colspan="3" align="left">
-                    <input id="sp_cmbsyUnit" class="nui-combobox" editable="false" style="width: 100%" />
-                </td>
-                <td align="right">保险单号
+                <td align="right">商业险到期
                 </td>
                 <td>
-                    <input id="sp_txtInsuranceNum2" class="nui-textbox" style="width: 100%" />
+                    <input id="annualInspectionDate" name="annualInspectionDate" class="nui-datepicker" editable="false" style="width: 100%" />
                 </td>
-                <td align="right">保险到期
+                <td align="right">交强险到期
                 </td>
                 <td>
-                    <input id="sp_dttInsuranceLastDate2" class="nui-datepicker" editable="false" style="width: 100%" />
+                    <input id="insureDueDate" name="insureDueDate" class="nui-datepicker" editable="false" style="width: 100%" />
                 </td>
+
             </tr>
             <tr>
                 <td align="right" style="width:95px;">车辆年审日期
                 </td>
                 <td>
-                    <input id="sp_CLNSDate" style="width: 100%" class="nui-datepicker" editable="false" />
+                    <input id="annualVerificationDueDate" name="annualVerificationDueDate" style="width: 100%" class="nui-datepicker" editable="false" />
                 </td>
+
                 <td align="right" style="width:95px;">驾证年审日期
                 </td>
                 <td>
-                    <input id="sp_JZNSDate" style="width: 100%" class="nui-datepicker" editable="false" />
+                    <input id="licenseOverDate" name="licenseOverDate" style="width: 100%" class="nui-datepicker" editable="false" />
                 </td>
+            </tr>
+
+            <tr>
                 <td align="right" style="width:95px;">下次保养日期
                 </td>
                 <td>
-                    <input id="sp_XCBYDate" style="width: 100%" class="nui-datepicker" editable="false" />
+                    <input id="careDueDate" name="careDueDate" style="width: 100%" class="nui-datepicker" editable="false" />
                 </td>
                 <td align="right" style="width:95px;">下次保养里程
                 </td>
                 <td>
-                    <input id="sp_XCBYLC" numbertype="Integer" min="0" class="nui-textbox usernumber" onchange="CommonJSNumberChange(this)" style="width: 70px;" value="1" />公里
-                </td>
-            </tr>
-            <tr>
-                <td align="right" style="padding-right: 13px" colspan="8">
-                    <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="js"><span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
+                    <input id="careDueMileage" name="careDueMileage" min="0" class="nui-textbox usernumber" style="width: 70px;" />公里
                 </td>
             </tr>
         </table>
         <script type="text/javascript">
             nui.parse();
+            var saveUrl = apiPath + saleApi + '/sales.save.saveCarGuest.biz.ext';
+            var form = new nui.Form("form1");
+            var mainId = null;
+            var guestId = null;
+            var guestFullName = null;
+
+            function SetData(mainId, guestId, guestFullName) {
+                mainId = mainId;
+                guestId = guestId;
+                guestFullName = guestFullName;
+            }
+
+            function save() {
+                var data = form.getData(true);
+                var params = data;
+                params.mainId = '';
+                params.guestId = '1';
+                params.guestName = '12';
+                nui.ajax({
+                    url: saveUrl,
+                    type: 'post',
+                    data: {
+                        params: params
+                    },
+                    success: function(res) {
+                        if (res.errCode == 'S') {
+                            showMsg('保存成功', 'S');
+                        } else {
+                            showMsg('保存失败', "E")
+                        }
+                    }
+                })
+            }
+
+            function onCancel() {
+                CloseWindow("cancel");
+            }
+
+            function CloseWindow(action) {
+                if (window.CloseOwnerWindow)
+                    return window.CloseOwnerWindow(action);
+                else
+                    window.close();
+            }
         </script>
     </body>
 

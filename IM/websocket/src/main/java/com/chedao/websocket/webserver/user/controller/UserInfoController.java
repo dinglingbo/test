@@ -90,17 +90,13 @@ public class UserInfoController extends BaseController {
 		String str = sdf.format(new Date());
 		userInfo.setUpdatedate(str);
 		int result = 0;
-		StringBuilder errCode = new StringBuilder();
 		try {
 			result = userInfoServiceImpl.update(userInfo);
 		}catch (Exception e){
 
-			//return putMsgToJsonString(result,"",0,"");
-			return errCode.append("E");
+			return putMsgToJsonString(Constants.WebSite.ERROR, "操作异常", 0, userInfo);
 		}
-		//int result = userInfoServiceImpl.update(userInfo);
-		//return putMsgToJsonString(result,"",0,"");
-		return errCode.append("S");
+		return putMsgToJsonString(Constants.WebSite.SUCCESS, "操作成功", 0, userInfo);
 	}
 	
 	/**

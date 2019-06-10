@@ -50,6 +50,27 @@
 		)
 	</insert>
 
+	<select id="queryObject" resultType="com.chedao.websocket.webserver.user.model.GroupInfoEntity">
+		SELECT
+		a.id as id,
+		a.group_num as groupNum,
+		a.group_name as groupName,
+		a.avatar as avatar,
+		a.group_man_id as groupManId,
+		a.group_man as groupMan,
+		a.`status` as status,
+		a.remark as remark,
+		a.recorder_id as recorderId,
+		a.recorder as recorder,
+		a.record_date as recordDate,
+		a.modifier_id as modifierId,
+		a.modifier as modifier,
+		a.modify_date as modifyDate
+		FROM
+		group_info AS a
+		where id = #{value}
+	</select>
+
 	<!-- 查找该用户所有群组-->
 	<select id="queryUserGroupList" resultType="com.chedao.websocket.webserver.user.model.GroupInfoTEntity" >
            SELECT a.id, a.group_name as groupname, a.avatar
@@ -65,6 +86,7 @@
 			<if test="avatar != null">`avatar` = #{avatar}, </if>
 			<if test="modifierId != null">`modifier_id` = #{modifierId}, </if>
 			<if test="modifier != null">`modifier` = #{modifier}, </if>
+			<if test="remark != null">`remark` = #{remark}, </if>
 			`modify_date` = NOW()
 		</set>
 		where id = #{id}

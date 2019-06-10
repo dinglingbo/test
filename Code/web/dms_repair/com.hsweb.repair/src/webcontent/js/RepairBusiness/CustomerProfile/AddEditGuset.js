@@ -25,6 +25,7 @@ var  index = 0;//汽车图片的下标
 var photos = [];//汽车图片
 var isOpen = true;
 var carIdForPhoto = null;
+var firstRegDateEl = null;
 $(document).ready(function()
 {
 	carview = nui.get("carview");
@@ -36,6 +37,7 @@ $(document).ready(function()
 	carInfoFrom = new nui.Form("#carInfoFrom");
 	contactInfoForm = new nui.Form("#contactInfoForm");
 	basicInfoForm = new nui.Form("#basicInfoForm");
+	firstRegDateEl = nui.get("firstRegDate");
 	//nui.get("name").focus();
 	
 	if(currRepairBillCmodelFlag == "1"){
@@ -54,6 +56,21 @@ $(document).ready(function()
             
         }
       };
+      
+      firstRegDateEl.on("valuechanged",function(e){
+    	  var value = e.value;
+    	  var obj = getDiffYmdBetweenDate(format(value, 'yyyy-MM-dd'),format(now, 'yyyy-MM-dd'));
+    	  var y = obj.y, m = obj.m, d = obj.d;
+    	  if(y<6 || (y==6&&m==0&&d==0)){
+    		  var d = null;
+    		  if(y==1) {
+    			  d = format(value.setFullYear(value.getFullYear()+2),'yyyy-MM-dd');
+    		  }else {
+    			  d = format(value.setFullYear(value.getFullYear() + y + 1),'yyyy-MM-dd'); 
+    		  }
+    		  nui.get("annualVerificationDueDate").setValue(d);
+    	  }
+      });
       
 		uploader = Qiniu.uploader({
 		    runtimes: 'html5,flash,html4',

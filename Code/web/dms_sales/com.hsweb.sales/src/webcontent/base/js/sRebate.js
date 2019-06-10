@@ -1,5 +1,6 @@
 var saveUrl = apiPath + saleApi + "/sales.base.addCsbRebate.biz.ext";
-var gridUrl = apiPath + saleApi + "/sales.base.searchCsbRebate.biz.ext"
+var gridUrl = apiPath + saleApi + "/sales.base.searchCsbRebate.biz.ext";
+var isDisArr = [{id:'',text:'全部'},{id:0,text:'启用'},{id:1,text:'禁用'}];
 var statusList = [{id:0,name:"启用"},{id:1,name:"禁用"}];
 var statusHash = {0:"启用",1:"禁用"};
 var dgGrid = null;
@@ -52,7 +53,8 @@ $(document).ready(function(v) {
 
 function search() {
     var params = {
-        name: nui.get('name').value
+        name: nui.get('name').value,
+        isDisabled: nui.get('isDisabled').value
     };
     dgGrid.load({ params: params });
 }
@@ -62,14 +64,34 @@ function addShareUrl(){
     dgGrid.addRow(newRow);
 }
 
-function save(){
+function del() {
+    var row = dgGrid.getSelected();
+    if (!row) {
+        showMsg('请先选中需要删除的数据', 'W');
+        return;
+    }
+    if (row.name) {
+        nui.confirm('是否删除【' + row.name+'】', '删除',function (action) {
+            if (action == 'ok') {
+                dgGrid.removeRow(row);
+            } else {
+                return;
+            }
+        })
+    } else {
+        dgGrid.removeRow(row);
+    }
+}
+
+function save() {
 	var value = checkName();
 	if(!value){
-		parent.showMsg(nullMsg,"W");
+        parent.showMsg(nullMsg,"W");
 		return;
 	}
     var addList = dgGrid.getChanges("added");
 	var updateList = dgGrid.getChanges("modified");
+    var delArr = dgGrid.getChanges('removed');
 
     nui.mask({
 		el : document.body,
@@ -82,7 +104,8 @@ function save(){
 		type : "post",
 		data : JSON.stringify({
 			addList : addList,
-			updateList : updateList,
+            updateList: updateList,
+            removeList:delArr,
 			token: token
 		}),
 		success : function(data) {

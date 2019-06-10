@@ -927,10 +927,7 @@ function finish(){
                     var isSettle = data.isSettle||0;
                     doSetStyle(status, isSettle);
                     var p1 = {
-                            interType: "package",
-                            data:{
-                                serviceId: serviceId
-                            }
+                            
                         };
                         var p2 = {
                             interType: "item",

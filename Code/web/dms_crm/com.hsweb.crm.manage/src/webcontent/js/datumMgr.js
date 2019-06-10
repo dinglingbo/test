@@ -1,7 +1,14 @@
 var queryForm; //查询表单
 var dgGrid; //列表
 var baseUrl = apiPath + crmApi + "/"; 
-var queryDatumMgrListUrl = baseUrl+"com.hsapi.crm.telsales.crmTelsales.getDatumMgrList.biz.ext";
+var queryDatumMgrListUrl = baseUrl + "com.hsapi.crm.telsales.crmTelsales.getDatumMgrList.biz.ext";
+var visStatus = [
+    {customid: "060706", name: "今日跟进" },
+    {customid: "060701", name: "继续跟踪" },
+    {customid:"060702",name:"终止跟踪"},
+    {customid:"060703",name:"重点跟踪"},
+    {customid:"060704",name:"已来厂/已成交"},
+    {customid:"060705",name:"未跟进"}];
 var tracker;
 var tree1;
 var tree2;
@@ -97,11 +104,10 @@ function init(){
     //initInsureComp("insureCompCode");//保险公司
     initDicts({
         //isCome: "DDT20150303000004",//来厂状态
-        visitStatus: "DDT20130703000081",//跟踪状态
+        //visitStatus: "DDT20130703000081",//跟踪状态
         color: "DDT20130726000003"//车辆颜色
     });
-
-    
+    nui.get("visitStatus").setData(visStatus);
 }
 /*
  *查询

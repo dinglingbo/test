@@ -8,7 +8,7 @@
 -->
 <head>
 <title>整车库存</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/carSalesInventory.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesInventory.js?v=1.1.1"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -66,38 +66,51 @@
                 </ul> -->
 
 
-				<input class="nui-combobox" id="search-type" width="100px" textField="name" valueField="id" value="0" data="DateList" allowInput="false" />
+				<label style="font-family:Verdana;">入库日期 从：</label>
                 <input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <label style="font-family:Verdana;">至</label>
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <span class="separator"></span> 
-                <input id="serviceId" width="120px" emptyText="车型名称" class="nui-textbox"/>	
-                <input id="serviceId" width="120px" emptyText="品牌名称" class="nui-textbox"/>				 
-<!--                 <input id="" name="" width="80px" emptyText="车体结构" class="nui-textbox"/>
-                <input id="" name="" width="80px" emptyText="车身色" class="nui-textbox"/> 			        
-                <input class="nui-combobox" id="search-type" width="100px" textField="name" valueField="id" value="0" data="statusList" allowInput="false" />
-	            <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="80px" onenter="search()" />
-	            <input id="" name="" width="80px" emptyText="内饰色" class="nui-textbox"/>
-	            <input id="" name="" width="80px" emptyText="车辆级别" class="nui-textbox"/>
-	            <input id="" name="" width="80px" emptyText="车辆状态" class="nui-textbox"/>
-	            <input id="" name="" width="80px" emptyText="单据编号" class="nui-textbox"/> -->
+                <input id="searchGuestId" class="nui-buttonedit"
+                       emptyText="请选择供应商..."
+                       onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
+                <!-- <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
+                <span class="separator"></span>
+
+                <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->
+<!--                 <input id="storeId"
+                           name="storeId"
+                           class="nui-combobox"
+                           textField="name"
+                           valueField="id"
+                           emptyText="仓库"
+                           url="" width="80"
+                           valueFromSelect="true"
+                           allowInput="false"
+                           showNullItem="false"
+                           nullItemText="请选择..."/> -->
+<!--                 <input id="" name="" width="80px" emptyText="经办人" class="nui-textbox"/>
+                <input id="" name="" width="80px" emptyText="组织机构" class="nui-textbox"/> -->
+                <input id="carModelName" name="carModelName" width="150px" emptyText="车型名称" class="nui-textbox"/>
+<!--                 <input class="nui-combobox" id="search-type" width="80px" textField="name" valueField="id" value="0" data="statusList" allowInput="false" />
+	            <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="80px" onenter="search()" /> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="" ><span class="fa fa-cny fa-lg"></span>&nbsp;成本调整</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="" ><span class="fa fa-lock fa-lg"></span>&nbsp;锁库</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="costAdjust()" ><span class="fa fa-cny fa-lg"></span>&nbsp;成本调整</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="edit" ><span class="fa fa-lock fa-lg"></span>&nbsp;锁库/解锁</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="detection()" ><span class="fa fa-plus fa-lg"></span>&nbsp;PDI检测</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="upload()" ><span class="fa fa-arrow-up fa-lg"></span>&nbsp;图片上传</a>
+<!--                 <a class="nui-button" iconCls="" plain="true" onclick="upload()" ><span class="fa fa-arrow-up fa-lg"></span>&nbsp;图片上传</a> -->
 <!--                <a class="nui-button" iconCls="" plain="true" onclick="edit()" ><span class="fa fa-gear fa-lg"></span>&nbsp;设置</a>-->
 
             </td>
         </tr>
     </table>
 </div>
+	<input name="frameColorId" id="frameColorId" class="nui-combobox" textField="name" valueField="id" allowInput="true" visible="false"/>
+    <input name="interialColorId" id="interialColorId" class="nui-combobox" textField="name" valueField="id" allowInput="true" visible="false"/>
 <div class="nui-fit">
-	<input class="nui-hidden" name="auditSign" id="auditSign"/>
-	<input class="nui-hidden" name="billStatusId" id="billStatusId"/>
     <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
          showPager="true"
-         dataField="pjPchsOrderMainList"
+         dataField="cssCheckEnter"
          idField="detailId"
          ondrawcell="onDrawCell"
          sortMode="client"
@@ -110,49 +123,28 @@
          allowCellWrap = true
          showSummaryRow="true">
         <div property="columns">
-            <div type="indexcolumn" width="40">序号</div>
-            <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
-            		<div field="" allowSort="true"  width="160" summaryType="count" headerAlign="center" header="查看图片"></div>
-                    <div field="" allowSort="true"  width="160" summaryType="count" headerAlign="center" header="车型编号"></div>                   
-                    <div field="" name="guestFullName" width="220" headerAlign="center" header="车型名称"></div>
-                    <div field="" width="90" name = "orderMan" headerAlign="center" header="车辆状态"></div>
-                    <div field="" name="guestFullName" width="220" headerAlign="center" header="汽车品牌"></div>
-                    <div field="" width="90" name = "orderMan" headerAlign="center" header="车辆类型"></div>                    
-                    <div field="" name="" width="100" headerAlign="center" header="供应商编号"></div>                     
-                    <div field="" name="" width="220" headerAlign="center" header="供应商"></div>    
-                     <div field="" allowSort="true"  width="130" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                 
-                    <div field="" allowSort="true"   name="" width="90" headerAlign="center" header="库龄（天）"></div>
-                    <div field="" allowSort="true"  name="" width="90" headerAlign="center" header="车身颜色"></div>
-                    <div allowSort="true" field=""  name="" width="90" headerAlign="center" header="内饰颜色"></div>
-                    <div allowSort="true" field=""  name="" width="90" headerAlign="center" header="PDI检测"></div>    
-                    <div allowSort="true" field="" name="" width="90" headerAlign="center" header="进价"></div>
-                    <div allowSort="true" field="" name="" width="90" headerAlign="center" header="运费"></div>                                                                                                
-                    <div field="" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="指导销价"></div>
-                    <div field="" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="公司限价"></div>
-                    <div field="" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="购车订金"></div>
-                    <div field="" allowSort="true"   width="60" headerAlign="center" header="车架号（VIN）"></div>  
-                    <div field="" allowSort="true"   width="60" headerAlign="center" header="发动机号"></div>  
-                    <div field="" allowSort="true"   width="60" headerAlign="center" header="合格证号"></div>  
-                    <div field="" allowSort="true"   width="60" headerAlign="center" header="商检单号"></div>  
-                    <div field="" allowSort="true"   width="60" headerAlign="center" header="关单号"></div>  
-                    <div field="" allowSort="true"   width="60" headerAlign="center" header="钥匙号"></div>  
-                     <div field="" allowSort="true"  width="130" headerAlign="center" header="出厂日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                       
-                    <div field="" allowSort="true"   width="60" headerAlign="center" header="入库仓库"></div>  
-                    <div field="" allowSort="true"   width="60" headerAlign="center" header="货位"></div>  
-                	<div field="" allowSort="true"   width="60" headerAlign="center" header="提单号"></div>
-                    <div field="" allowSort="true"  width="130" headerAlign="center" header="生产日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                	
-                	<div field="" allowSort="true"   width="60" headerAlign="center" header="拼音码"></div>
-                	<div field="" allowSort="true"   width="60" headerAlign="center" header="产地"></div>
-                    <div field="" allowSort="true"  width="130" headerAlign="center" header="上市日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                  	
+            <div type="indexcolumn" width="40">序号</div>                
+                    <div field="carModelName" name="carModelName" width="220" headerAlign="center" header="车型名称"></div>                                      
+                    <div field="guestFullName" name="guestFullName" width="200" headerAlign="center" header="供应商"></div>    
+                     <div field="enterDate" allowSort="true"  width="120" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                 
+                    <div field="carFrameNo" allowSort="true"   width="150" headerAlign="center" header="车架号（VIN）"></div>  
+                    <div field="engineNo" allowSort="true"   width="150" headerAlign="center" header="发动机号"></div>
+                    <div field="frameColorId" allowSort="true"  name="frameColorId" width="60" headerAlign="center" header="车身颜色"></div>
+                    <div allowSort="true" field="interialColorId"  name="interialColorId" width="60" headerAlign="center" header="内饰颜色"></div>
+<!--                     <div allowSort="true" field=""  name="" width="90" headerAlign="center" header="PDI检测"></div>  -->   
+                    <div allowSort="true" field="unitPrice" name="unitPrice" width="60" headerAlign="center" header="进价"></div>
+                    <div allowSort="true" field="receiveCost" name="receiveCost" width="60" headerAlign="center" header="运费"></div>                                                                                                
+                    <div field="carLock" allowSort="true"   width="60" headerAlign="center" header="是否锁库"></div>   
+                    <div field="produceDate" allowSort="true"  width="120" headerAlign="center" header="生产日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                	
+<!--                     <div field="" allowSort="true"  width="130" headerAlign="center" header="上市日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                  	
                 	<div field="" allowSort="true"   width="60" headerAlign="center" header="车体结构"></div>
-                	<div field="" allowSort="true"   width="60" headerAlign="center" header="车辆级别"></div>
-                	<div field="" allowSort="true"   width="60" headerAlign="center" header="变速箱"></div>
+                	<div field="" allowSort="true"   width="60" headerAlign="center" header="车辆级别"></div> -->
+<!--                 	<div field="" allowSort="true"   width="60" headerAlign="center" header="变速箱"></div>
                 	<div field="" allowSort="true"   width="60" headerAlign="center" header="排量"></div>
                 	<div field="" allowSort="true"   width="60" headerAlign="center" header="驱动方式"></div>
                 	<div field="" allowSort="true"   width="60" headerAlign="center" header="是否进口"></div>              	
-                    <div field="" width="90" name="creator" headerAlign="center" header="座位数"></div>
-                    <div field="" allowSort="true"  width="220" headerAlign="center" header="车型备注"></div>
-                    <div field="" allowSort="true"  width="220" headerAlign="center" header="入库备注"></div>
+                    <div field="" width="90" name="creator" headerAlign="center" header="座位数"></div> -->
+                    <div field="remark" allowSort="true"  width="220" headerAlign="center" header="车况备注"></div>
         </div>
     </div> 
 </div>

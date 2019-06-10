@@ -1,13 +1,59 @@
 /**
  * Created by Administrator on 2018/2/1.
  */
-var DateList = [{id:"0",name:"上市日期"},{id:"1",name:"入库日期"}];
+var bearUrl = apiPath + saleApi + "/"; 
+/*var DateList = [{id:"0",name:"上市日期"},{id:"1",name:"入库日期"}];*/
 var statusList = [{id:"0",name:"联系人"},{id:"1",name:"联系电话"},{id:"2",name:"车架号（VIN）"}];
+var inventory = [{id:"0",name:"否"},{id:"1",name:"是"}];
+var rightGridUrl = bearUrl+"sales.inventory.queryCheckEnter.biz.ext";
+var rightGrid = null;
+var searchBeginDate = null;
+var searchEndDate = null;
+var comSearchGuestId = null;
+var frameColorIdList = []//车身颜色
+var interialColorIdList = []//内饰颜色
 $(document).ready(function(v){
-
+	rightGrid = nui.get("rightGrid");
+    rightGrid.setUrl(rightGridUrl);
+    searchBeginDate = nui.get("beginDate");
+    searchEndDate = nui.get("endDate");
+    comSearchGuestId = nui.get("searchGuestId");
+    searchBeginDate.setValue(getMonthStartDate());
+    searchEndDate.setValue(getMonthEndDate());
+	var dictDefs ={"frameColorId":"DDT20130726000003","interialColorId":"10391"};
+	initDicts(dictDefs, function(){
+		getStorehouse(function(data) {
+			getAllPartBrand(function(data) {
+		 	 	frameColorIdList = nui.get('frameColorId').getData();
+ 	 			interialColorIdList = nui.get('interialColorId').getData();
+ 	 			quickSearch(4);
+			});
+			
+		});
+	});
+    rightGrid.on("drawcell", function (e) {      
+        switch (e.field) {
+            case "carLock":
+            	 e.cellHtml = inventory[e.value].name;
+                break;
+            case "frameColorId":
+            	e.cellHtml = setColVal('frameColorId', 'customid', 'name', e.value);
+               break;
+            case "interialColorId":
+            	e.cellHtml = setColVal('interialColorId', 'customid', 'name', e.value);
+               break;
+            default:
+                break;
+        }
+    });
 });
 function getSearchParam(){
-
+    var params = {};
+    params.carModelName = nui.get("carModelName").getValue();
+	params.endDate = addDate(searchEndDate.getValue(),1);
+	params.startDate = searchBeginDate.getFormValue();
+	params.billStatus = 1;
+    return params;
 }
 var currType = 2;
 function quickSearch(type){
@@ -110,24 +156,23 @@ function quickSearch(type){
     
     searchBeginDate.setValue(params.startDate);
     searchEndDate.setValue(addDate(params.endDate,-1));
-    nui.get('auditSign').setValue(params.auditSign);
-    nui.get('billStatusId').setValue(params.billStatusId);
     currType = type;
-    if(querysign == 1){
-    	var menunamedate = nui.get("menunamedate");
-    	menunamedate.setText(queryname); 	
-    }
-    else if(querysign == 2){
-    	var menubillstatus = nui.get("menubillstatus");
-		menubillstatus.setText(querystatusname);
-    }
     doSearch(params);
 }
 function onSearch(){
+	var params = getSearchParam();
 
+    doSearch(params);
 }
-function doSearch(params){
+function doSearch(params)
+{
 
+    rightGrid.load({
+        params:params,
+        token:token
+    },function(){
+        rightGrid.mergeColumns(["serviceId"]);
+    });
 }
 
 var supplier = null;
@@ -168,10 +213,13 @@ function selectSupplier(elId)
 
 
 function detection() {
-
+	var row = rightGrid.getSelected();
+	if(!row){		
+		showMsg("请选择单据","W");
+	}
 	nui.open({
 		url : webPath + contextPath
-				+ "/com.hsweb.part.manage.PDIdetection.flow?token="
+				+ "/sales/inventory/PDIdetection.jsp?token="
 				+ token,
 		title : "PDI检测",
 		width : 800,
@@ -179,10 +227,11 @@ function detection() {
 		allowDrag : true,
 		allowResize : true,
 		onload : function() {
-
+			var iframe = this.getIFrameEl();
+			iframe.contentWindow.setData(row);
 		},
 		ondestroy : function(action) {
-
+			quickSearch(4);
 		}
 	});
 }
@@ -207,22 +256,61 @@ function upload() {
 	});
 }
 
+var saveUrl = bearUrl
++ "sales.inventory.saveCarLock.biz.ext";
 function edit() {
+	var row = rightGrid.getSelected();
+	nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : '保存中...'
+	});
 
+	nui.ajax({
+		url : saveUrl,
+		type : "post",
+		data : JSON.stringify({
+			cssCheckEnter: row
+		}),
+		success : function(data) {
+			nui.unmask(document.body);
+			data = data || {};
+			if (data.errCode == "S") {
+				showMsg("操作成功!","S");
+				quickSearch(4);
+			} else {
+				showMsg(data.errMsg || "操作异常!","W");
+			}
+		},
+		ondestroy: function() {
+			
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+
+function costAdjust(){
+	var row = rightGrid.getSelected();
+	if(!row){
+		showMsg("请选择一条库存","W");
+	}
 	nui.open({
 		url : webPath + contextPath
-				+ "/com.hsweb.part.manage.PDIdetection.flow?token="
+				+ "/sales/inventory/costAdjust.jsp?token="
 				+ token,
-		title : "设置",
-		width : 600,
-		height : 400,
+		title : "成本调整",
+		width : 300,
+		height : 250,
 		allowDrag : true,
 		allowResize : true,
 		onload : function() {
-
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(row);
 		},
 		ondestroy : function(action) {
-
+			quickSearch(4);
 		}
 	});
 }

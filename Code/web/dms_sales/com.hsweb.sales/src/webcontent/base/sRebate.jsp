@@ -14,7 +14,7 @@
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <%@include file="/common/commonRepair.jsp"%>
-  <script src="<%=webPath + contextPath%>/sales/base/js/sRebate.js?v=1.1.1"></script>
+  <script src="<%=webPath + contextPath%>/sales/base/js/sRebate.js?v=1.1.3"></script>
   <style>
     html,
     body {
@@ -31,10 +31,14 @@
 <body>
     <div class="nui-toolbar">
             返利政策:<input id="name" name="name" class="nui-textbox" type="text" style="width: 150px" />
+            状态：<input id="isDisabled" name="isDisabled" class="nui-combobox" data="isDisArr" 
+            textField="text" valueField="id"  allowInput="false" style="width:90px"/>
       <a class="nui-button" plain="true" onclick="search()" id="" enabled="true"><span
         class="fa fa-search fa-lg"></span>&nbsp;查找</a>
     <a class="nui-button" plain="true" onclick="addShareUrl()" id="" plain="false"><span
         class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+    <a class="nui-button" plain="true" onclick="del()" id="" plain="false"><span
+        class="fa fa-close fa-lg"></span>&nbsp;删除</a>
                 <a class="nui-button" plain="true" onclick="save()" id="addStationBtn">
             <span class="fa fa-save fa-lg"></span>&nbsp;保存
         </a>

@@ -12,7 +12,7 @@
     <title>零件号查询</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>
-    <script src="<%=contextPath%>/epc/common/llqCommon.js?v=1.0" type="text/javascript"></script>
+    <script src="<%=contextPath%>/epc/common/llqCommon.js?v=1.0.2" type="text/javascript"></script>
     <script src="<%=contextPath%>/epc/part/js/partQuery.js?v=1.2" type="text/javascript"></script>
     <style type="text/css">
     body {

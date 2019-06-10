@@ -19,6 +19,10 @@
 
   </sql>
 
+    <select id="queryListById" resultType="com.chedao.websocket.webserver.user.model.UserTypeEntity" parameterType="map">
+        select  <include refid="Base_Column_List" />  from user_type where id = #{id}
+    </select>
+
    <!-- 查找该用户所有分组-->
     <select id="queryList" resultType="com.chedao.websocket.webserver.user.model.UserTypeEntity" parameterType="map">
         select  <include refid="Base_Column_List" />  from user_type where user_id = #{userid}
@@ -46,7 +50,7 @@
 		select count(*) from user_info
 	</select>-->
 
-    <insert id="save" parameterType="com.chedao.websocket.webserver.user.model.UserTypeEntity" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.chedao.websocket.webserver.user.model.UserTypeEntity" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
 		insert into user_type
 		(
 			`user_id`,
@@ -72,7 +76,8 @@
 
 
     <delete id="delete">
-		delete from user_type where id = #{value}
+		delete from user_type
+		where id = #{value}
 	</delete>
 
     <!--<delete id="deleteBatch">

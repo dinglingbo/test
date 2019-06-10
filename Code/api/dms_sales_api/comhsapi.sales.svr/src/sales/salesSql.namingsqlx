@@ -30,7 +30,7 @@
 			a.bill_no	AS	billNo	,
 			a.bill_title	AS	billTitle	,
 			a.order_date	AS	orderDate	,
-			a.submi_plan_date	AS	submiPlanDate	,
+			a.submit_plan_date	AS	submitPlanDate	,
 			a.submit_true_date	AS	submitTrueDate	,
 			a.submit_car_men	AS	submitCarMen	,
 			a.submit_car_remark	AS	submitCarRemark	,
@@ -370,7 +370,7 @@
                 a.receive_cost as receiveCost,
                 A.car_model_id AS carModelId,
                 A.car_model_name AS carModelName,
-                a.car_frame_no as carFrameNo,
+                a.vin as vin,
                 a.engine_no as engineNo,
                 a.kilometers as kilometers,
                 a.produce_date as produceDate,
@@ -407,6 +407,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="orderIds">  
                     (A.order_id in ($orderIds$))
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="carLock">  
+                    (a.car_lock = #carLock#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="carModelId">  
                     (A.car_model_id = #carModelId#)

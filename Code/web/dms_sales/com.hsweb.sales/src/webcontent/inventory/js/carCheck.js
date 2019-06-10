@@ -30,3 +30,7 @@ function CloseWindow(action) {
 function choose(){
 	CloseWindow("ok");
 }
+
+function onClose(){
+	CloseWindow("close");
+}

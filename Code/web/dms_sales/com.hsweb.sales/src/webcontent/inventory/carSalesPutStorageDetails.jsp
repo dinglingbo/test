@@ -70,6 +70,8 @@
 					<fieldset style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;">
 						<legend>入库单信息</legend>
 							<input class="nui-hidden" name="id" id="id"/>
+							<input class="nui-hidden" name="orderId" id="orderId"/>
+							<input class="nui-hidden" name="orderDetailId" id="orderDetailId"/>
 							<table style="width: 100%; " class="nui-form-table">
 								<tr>
 									<td class="title required" align="right">供应商:</td>

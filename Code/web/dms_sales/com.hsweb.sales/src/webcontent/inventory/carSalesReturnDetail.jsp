@@ -10,7 +10,7 @@
         <tr>
             <td style="width:100%;">
 <!--                 <span class="separator"></span> -->
-        <span  id="bServiceId" style="">订单号：新采购订单</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span  id="bServiceId" style="">订单号：新退货单</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <!-- <a class="nui-button" iconCls="icon-edit" plain="true" onclick="editInbound()" id="editEnterMainBtn">修改</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
@@ -38,7 +38,7 @@
                   <div class="fieldset-body">
                   
                       <div id="basicInfoForm" class="form" contenteditable="false">
-                          <input class="nui-hidden" name="id"/>
+                          <input class="nui-hidden" name="id" id="id"/>
                           <input class="nui-hidden" name="operateDate"/>
                           <input class="nui-hidden" name="versionNo"/>
                           <input class="nui-hidden" name="storeId" id="storeId"/>
@@ -109,7 +109,7 @@
                                   
                               </tr>                             
                               <tr>   
-                                  <td class="title required" style="width:6%;">
+                                  <td class="title" style="width:6%;">
                                       <label>运输方式：</label>
                                   </td>
                                   <td colspan="1" style="width:15%">
@@ -159,7 +159,8 @@
 			        <li name="enterBtn" iconCls="icon-add" onclick="onEnter">入库记录</li>
 				    <li name="outBtn" iconCls="icon-edit" onclick="onOut">出库记录</li>        
 			    </ul>
-   				
+  	<input name="frameColorId" id="frameColorId" class="nui-combobox" dataFied="frameColorIdList" textField="name" valueField="customid" allowInput="true" visible="false"/>
+    <input name="interialColorId" id="interialColorId" class="nui-combobox" dataFied="interialColorIdList" textField="name" valueField="customid" allowInput="true" visible="false"/> 				
                   <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
                     <a class="nui-button" plain="true" iconCls="" id="addPartBtn" onclick="addProcurement()"><span class="fa fa-plus fa-lg"></span>&nbsp;选择采购订单</a>
                     <a class="nui-button" plain="true" iconCls="" id="addPartBtn" onclick="addPutStorage()"><span class="fa fa-plus fa-lg"></span>&nbsp;选择入库单</a>
@@ -173,7 +174,6 @@
                          dataField="cssFactoryReturnDetail"
                          idField="id"
                          showSummaryRow="true"
-                         ondrawcell="onRightGridDraw"
                          allowCellSelect="true"
                          allowCellEdit="true"
                          oncellcommitedit="onCellCommitEdit"
@@ -189,15 +189,16 @@
                         <div property="columns">
                             <div type="indexcolumn">序号</div>
                                     <div field="operateBtn" name="operateBtn" align="center" width="50" headerAlign="center" header="操作"></div>
-                                    <div field="code" name="code" width="180" headerAlign="center" header="车型编码">
+<!--                                     <div field="code" name="code" width="180" headerAlign="center" header="车型编码">
                                         <input property="editor" class="nui-textbox" />
-                                    </div>
+                                    </div> -->
                                     <div field="carModelName" headerAlign="center" header="车型名称"></div>
-                                    <div field="frameColorId" name="frameColorId" width="40" headerAlign="center" header="车身颜色"></div>
-                                    <div field="interialColorId" name="interialColorId" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="内饰颜色">
-                                      <input property="editor" vtype="float" class="nui-textbox"/>
+                                    <div field="frameColorId" name="frameColorId" width="40" headerAlign="center" header="车身颜色">
+                                    </div>
+                                    <div field="interialColorId" name="interialColorId"  width="60" headerAlign="center" header="内饰颜色">
                                     </div>
                                     <div field="vin" name="vin" width="40" headerAlign="center" header="车架号（VIN）"></div>
+                                    <div field="engineNo" name="engineNo" width="40" headerAlign="center" header="发动机号"></div>
                                     <div field="orderPrice" numberFormat="0.0000" width="60" headerAlign="center" header="进价">
                                       <input property="editor" vtype="float" class="nui-textbox"/>
                                     </div> 

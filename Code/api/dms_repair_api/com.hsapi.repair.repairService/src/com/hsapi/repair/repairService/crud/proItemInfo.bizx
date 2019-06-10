@@ -417,6 +417,10 @@
       <process:to type="query">updateItemTemp/id</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">tmp/serviceId</process:from>
+      <process:to type="query">updateItemTemp/serviceId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
       <process:to type="query">updateItemTemp/modifier</process:to>
     </process:copy>
@@ -713,6 +717,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">tmp/id</process:from>
       <process:to type="query">updateItemTemp/id</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/serviceId</process:from>
+      <process:to type="query">updateItemTemp/serviceId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>

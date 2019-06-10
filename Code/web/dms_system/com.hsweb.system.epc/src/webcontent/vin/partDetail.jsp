@@ -13,7 +13,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>    
     
-    <script src="<%=contextPath%>/epc/common/llqCommon.js?v=1.2" type="text/javascript"></script>
+    <script src="<%=contextPath%>/epc/common/llqCommon.js?v=1.0.2" type="text/javascript"></script>
     <script src="<%=contextPath%>/epc/vin/js/partDetail.js?v=1.24" type="text/javascript"></script>
 </head>
 <body>

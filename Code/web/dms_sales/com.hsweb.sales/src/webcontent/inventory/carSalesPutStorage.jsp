@@ -64,7 +64,7 @@
                     <li iconCls="" onclick="quickSearch(14)" id="type14">待收货</li>
                     <li iconCls="" onclick="quickSearch(15)" id="type15">已入库</li>
                 </ul> 
-
+ 
 
 				<label style="font-family:Verdana;">创建日期 从：</label>
                 <input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>

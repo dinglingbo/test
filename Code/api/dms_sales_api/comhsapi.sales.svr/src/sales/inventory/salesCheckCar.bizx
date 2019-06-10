@@ -34,18 +34,13 @@
     <node>assign12</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="insertMain" displayName="insertMain" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo0</sourceNode>
-      <targetNode>invokePojo3</targetNode>
-      <process:transitionCondition/>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" lineType="note" type="exception">
+    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" lineType="note" isDefault="false" type="exception">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign12</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link11" name="link11" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
-      <targetNode>transactioncommit1</targetNode>
+      <targetNode>invokePojo3</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="NULLOREMPTY">
           <process:leftOperand type="query">cssCheckEnter/orderDetailId</process:leftOperand>
@@ -54,7 +49,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
-    <location x="540" y="90"/>
+    <location x="570" y="90"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -68,7 +63,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="520" y="126"/>
+    <location x="550" y="126"/>
     <figSize height="17" width="62"/>
     <node>invokePojo0</node>
   </nodes>
@@ -203,14 +198,14 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="expandEntity" displayName="expandEntity" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo3</sourceNode>
-      <targetNode>assign3</targetNode>
+      <targetNode>invokePojo6</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>assign13</targetNode>
     </sourceConnections>
-    <targetConnections>link6</targetConnections>
-    <location x="693" y="150"/>
+    <targetConnections>link11</targetConnections>
+    <location x="646" y="121"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -219,14 +214,14 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">sales</process:inputVariable>
-      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">orderDetail</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cssCheckEnter</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="667" y="186"/>
+    <location x="620" y="157"/>
     <figSize height="17" width="75"/>
     <node>invokePojo3</node>
   </nodes>
@@ -236,7 +231,7 @@
       <targetNode>invokePojo1</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <targetConnections>link12</targetConnections>
+    <targetConnections>link6</targetConnections>
     <location x="690" y="208"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
@@ -278,6 +273,7 @@
     <targetConnections>link16</targetConnections>
     <targetConnections>link18</targetConnections>
     <targetConnections>link9</targetConnections>
+    <targetConnections>link24</targetConnections>
     <location x="824" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign13label</nodeLabel>
@@ -366,7 +362,6 @@
     <targetConnections>link20</targetConnections>
     <targetConnections>link19</targetConnections>
     <targetConnections>link22</targetConnections>
-    <targetConnections>link23</targetConnections>
     <location x="1200" y="100"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
@@ -381,25 +376,14 @@
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>
-  <nodes xsi:type="process:tTransactionCommit" id="transactioncommit1" name="事务提交1" displayName="事务提交" type="transactioncommit">
-    <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>transactioncommit1</sourceNode>
-      <targetNode>end1</targetNode>
-    </sourceConnections>
-    <targetConnections>link11</targetConnections>
-    <location x="690" y="90"/>
-    <size height="28" width="28"/>
-    <nodeLabel>transactioncommit1label</nodeLabel>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="transactioncommit1label" name="label" nodeType="label">
-    <location x="676" y="126"/>
-    <figSize height="17" width="56"/>
-    <node>transactioncommit1</node>
-  </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo4" name="expandEntity1" displayName="expandEntity" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo4</sourceNode>
       <targetNode>transactioncommit0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="连接线" lineType="note" type="exception">
+      <sourceNode>invokePojo4</sourceNode>
+      <targetNode>assign13</targetNode>
     </sourceConnections>
     <targetConnections>link15</targetConnections>
     <targetConnections>link5</targetConnections>
@@ -415,7 +399,7 @@
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cssCheckEnter</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo4label" name="label" nodeType="label">
@@ -474,8 +458,35 @@
     <figSize height="17" width="61"/>
     <node>invokePojo5</node>
   </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo6" name="expandEntity2" displayName="expandEntity" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo6</sourceNode>
+      <targetNode>assign3</targetNode>
+    </sourceConnections>
+    <targetConnections>link12</targetConnections>
+    <location x="585" y="172"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo6label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.expandEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">sales</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">orderDetail</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo6label" name="label" nodeType="label">
+    <location x="555" y="208"/>
+    <figSize height="17" width="82"/>
+    <node>invokePojo6</node>
+  </nodes>
   <topRuler>
     <guides position="1003" horizontal="true"/>
+    <guides position="795" horizontal="true"/>
   </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-05-23 18:23:37" date="2019-05-23Z" description="" name="salesSubmitFinancial" version="7.0.0.0"/>

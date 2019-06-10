@@ -43,6 +43,7 @@ var storeShelfList=[];
 var frameColorIdList = []//车身颜色
 var interialColorIdList = []//内饰颜色
 var isFinancial = 0;//是否提交财务
+var cssCheckEnter=[];//保存成功返回过来的完整单据
 // 单据状态
 var AuditSignList = [ {
 	customid : '0',
@@ -462,7 +463,7 @@ function add() {
 
 	var formJsonThis = nui.encode(basicInfoForm.getData());
 	var len = rightGrid.getData().length;
-
+	cssCheckEnter = [];
 	if (formJson != formJsonThis && len > 0) {// 
 		nui.confirm("您正在编辑数据,是否要继续?", "友情提示", function(action) {
 			if (action == "ok") {
@@ -664,6 +665,7 @@ function save() {
 				showMsg("保存成功!","S");
 				// onLeftGridRowDblClick({});
 				var pjPchsOrderMainList = data.pjPchsOrderMainList;
+				cssCheckEnter = pjPchsOrderMainList;
 				if (pjPchsOrderMainList && pjPchsOrderMainList.length > 0) {
 //					var leftRow = pjPchsOrderMainList[0];
 //					var row = leftGrid.getSelected();
@@ -704,7 +706,8 @@ function selectSupplier(elId) {
             //     guestType:'01020202'
 			// };
 			var params = {
-                isSupplier: 1
+                isSupplier: 1,
+                guestType :"01020201"
             };
             iframe.contentWindow.setGuestData(params);
 		},
@@ -1215,6 +1218,15 @@ function salesCheck(){
 }
 var salesSubmitFinancial = baseUrl+"sales.inventory.salesSubmitFinancial.biz.ext";
 function audit(){
+	if (isFinancial == 1) {
+		showMsg("此单已提交!","W");
+		return;
+	}
+
+	if(cssCheckEnter.length==0){
+		showMsg("请先保存单据!","W");
+		return;
+	}
 	var data = basicInfoForm.getData();
 	nui.mask({
 		el : document.body,
@@ -2419,10 +2431,12 @@ function setInitData(params){
 		var mainId=params.id;
 		if(params.id){		
 			loadRightGridData(mainId, params.isFinancial);	
-		}		
+		}
+		cssCheckEnter[0] = params;
+		isFinancial = params.isFinancial;
 		if(params.isFinancial != 0){			
 			document.getElementById("fd1").disabled = true;
-			isFinancial = 1;
+
 			nui.get("guestId").disable();
 		}
 	}else{

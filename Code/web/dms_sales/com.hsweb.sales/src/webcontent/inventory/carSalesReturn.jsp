@@ -8,7 +8,7 @@
 -->
 <head>
 <title>整车采购退货</title>
-<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesReturn.js?v=1.0.3"></script>
+<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesReturn.js?v=1.0.5"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -38,7 +38,7 @@
     <table style="width:100%;">
         <tr>
             <td style="white-space:nowrap;">
-                 <label style="font-family:Verdana;">快速查询：</label>
+<!--                  <label style="font-family:Verdana;">快速查询：</label>
                 <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
 
                 <ul id="popupMenuDate" class="nui-menu" style="display:none;">
@@ -63,7 +63,7 @@
                     <li iconCls="" onclick="quickSearch(13)" id="type13">待发货</li>
                     <li iconCls="" onclick="quickSearch(14)" id="type14">待收货</li>
                     <li iconCls="" onclick="quickSearch(15)" id="type15">已入库</li>
-                </ul> 
+                </ul>  -->
 
 
 				<label style="font-family:Verdana;">退货日期 从：</label>
@@ -93,7 +93,7 @@
                            nullItemText="请选择..."/> -->
 <!--                 <input id="" name="" width="80px" emptyText="经办人" class="nui-textbox"/>
                 <input id="" name="" width="80px" emptyText="组织机构" class="nui-textbox"/> -->
-                <input id="" name="" width="80px" emptyText="车型名称" class="nui-textbox"/>
+<!--                 <input id="" name="" width="80px" emptyText="车型名称" class="nui-textbox"/> -->
 <!--                 <input class="nui-combobox" id="search-type" width="100px" textField="name" valueField="id" value="0" data="statusList" allowInput="false" />
 	            <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="80px" onenter="search()" /> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>

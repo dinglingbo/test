@@ -18,9 +18,7 @@ var enterTypeIdHash = {};
 var partBrandIdHash = {};
 var StatusHash = {
 		"0" : "草稿",
-		"1" : "待发货",
-		"2" : "待收货",
-		"4" : "已入库",
+		"1" : "已退货"
 	};
 $(document).ready(function(v){
 	rightGrid = nui.get("rightGrid");
@@ -108,7 +106,7 @@ $(document).ready(function(v){
                         return true;
                     }
                 });
-                quickSearch(currType);
+                quickSearch(4);
             }
         });
     });
@@ -246,14 +244,14 @@ function quickSearch(type){
     nui.get('auditSign').setValue(params.auditSign);
     nui.get('billStatusId').setValue(params.billStatusId);
     currType = type;
-    if(querysign == 1){
+/*    if(querysign == 1){
     	var menunamedate = nui.get("menunamedate");
     	menunamedate.setText(queryname); 	
     }
     else if(querysign == 2){
     	var menubillstatus = nui.get("menubillstatus");
 		menubillstatus.setText(querystatusname);
-    }
+    }*/
     doSearch(params);
 }
 function onSearch(){
@@ -335,4 +333,30 @@ function edit(){
     //window.parent.activeTab(item);
     var params = row; 
     window.parent.activeTabAndInit(item,params);
+}
+
+function onDrawCell(e)
+{
+    switch (e.field)
+    {	
+        case "billTypeId":
+            if(billTypeIdHash && billTypeIdHash[e.value])
+            {
+                e.cellHtml = billTypeIdHash[e.value].name;
+            }
+            break;
+        case "payMode":
+            if(settTypeIdHash && settTypeIdHash[e.value])
+            {
+                e.cellHtml = settTypeIdHash[e.value].name;
+            }
+            break;
+    	case "status":
+			if (StatusHash && StatusHash[e.value]) {
+				e.cellHtml = StatusHash[e.value];
+			}
+			break;
+        default:
+            break;
+    }
 }

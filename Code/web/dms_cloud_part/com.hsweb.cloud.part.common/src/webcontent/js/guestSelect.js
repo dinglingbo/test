@@ -169,7 +169,7 @@ function setGuestData(data){
 
     }
 
-    //onSearch();
+    onSearch();
 }
 function onSearch(){
     search();

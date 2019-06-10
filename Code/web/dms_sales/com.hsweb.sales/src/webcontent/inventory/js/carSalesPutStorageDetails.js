@@ -13,6 +13,7 @@ var provinceName =null;
 var cityName =null;
 var countyName = null;
 var cssCheckEnter = {};//列表界面传过来或者返回保存的
+var orderDetailId = null;//防止id覆盖入库单id,采购明细id
 $(document).ready(function(v) {
 	
 	dataform1 = new nui.Form("#dataform1");
@@ -178,7 +179,10 @@ function check() {
 		ondestroy : function(action) {
 			var iframe = this.getIFrameEl();
 			if(action == 'ok'){
+				add();
 			var row = iframe.contentWindow.getRow();
+			orderDetailId = row.id;
+			row.id=null;//防止id覆盖入库单id
 			dataform1.setData(row);
 			nui.get("guestId").setText(row.guestFullName);
 			nui.get("code").setText(row.serviceCode);
@@ -189,7 +193,7 @@ function check() {
 			nui.get("carModelName").setValue(row.carModelName);
 			nui.get("carModelName").setText(row.carModelName);
 			nui.get("orderId").setValue(row.orderId);
-			nui.get("orderDetailId").setValue(row.id);
+			nui.get("orderDetailId").setValue(orderDetailId);
 			 }
 		}
 	});

@@ -79,7 +79,7 @@
                 <div  field="groupName" name="groupName" width="60" headerAlign="center" header="业务类型"></div>
                 <div  field="partName" name="partName" width="60" headerAlign="center" header="配件名称"></div> 
                 <div  field="qty" width="60" headerAlign="center" summaryType="sum" header="数量"></div>
-                <div  field="partTrueCost" width="60" headerAlign="center" summaryType="sum" header="成本"></div>
+                <div  field="trueUnitPrice" width="60" headerAlign="center" summaryType="sum" header="成本"></div>
                 <div  field="amt" width="60" headerAlign="center" summaryType="sum" header="销售金额 "></div>
                 <div  field="discountAmt" width="60" headerAlign="center" summaryType="sum" header="优惠金额"></div>
                 <div  field="subtotal" width="60" headerAlign="center" summaryType="sum" header="配件小计"></div>

@@ -203,7 +203,7 @@ $(document).ready(function(v) {
         var field = e.field;
         var row = e.row;
         if (field == "action") {
-            if (nui.get("typeMsg").value == 3) {
+            if (nui.get("typeMsg").value == 2) {
                 if (row.auditSign == 0) {
                     e.cellHtml = '<a class="optbtn" iconCls="" onclick="checkCost(costDetailGrid,1)"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>';
                 } else {
@@ -217,7 +217,7 @@ $(document).ready(function(v) {
         var field = e.field;
         var row = e.row;
         if (field == "action") {
-            if (nui.get("typeMsg").value == 3) {
+            if (nui.get("typeMsg").value == 2) {
                 if (row.auditSign == 0) {
                     e.cellHtml = '<a class="optbtn" iconCls="" onclick="checkCost(costDetailGrid2,1)"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>';
                 } else {
@@ -387,6 +387,16 @@ $(document).ready(function(v) {
 
 function checkMsg(e) { //保存操作前进行验证
     var billFormData = billForm.getData(true); //主表信息
+    if (e == 3) {
+        if (billFormData.status == "") {
+            showMsg("当前工单尚未保存，无需作废！", "W");
+            return;
+        }
+        if (billFormData.status != 0) {
+            showMsg("请返单后再作废！", "W");
+            return;
+        }
+    }
     if (!billFormData.guestId) {
         showMsg("客户信息不能为空！", "W");
         return;
@@ -405,28 +415,35 @@ function checkMsg(e) { //保存操作前进行验证
         showMsg("请选择购车计算表中的购车方式后再保存", "W");
         return;
     }
-    if (e == 3 && billFormData.status != 0) {
-        showMsg("请返单后再作废！", "W");
-        return;
+    if (e == 6) {
+        if (billFormData.status != 2) {
+            showMsg("当前工单尚未审核！", "W");
+            return;
+        }
+        if (billFormData.isSubmitCar == 1) {
+            showMsg("当前工单已交车！", "W");
+            return;
+        }
+        if (billFormData.enterId == 0) {
+            showMsg("当前工单尚未选库存车！", "W");
+            return;
+        }
+        if (nui.get("submitTrueDate").value == "") {
+            showMsg("请填写交车时间后再进行交车！", "W");
+            return;
+        }
+        if (form.isValid() == false) {
+            showMsg("交车信息有误，请检查后再保存！", "W");
+            return;
+        }
     }
-    if (form.isValid() == false) {
-        showMsg("交车信息有误，请检查后再保存！", "W");
-        return;
-    }
-    if (e == 6 && billFormData.status != 2) {
-        showMsg("当前工单尚未审核！", "W");
-        return;
-    }
-    if (e == 6 && billFormData.isSubmitCar == 1) {
-        showMsg("当前工单已交车！", "W");
-        return;
-    }
-    if (e == 6 && nui.get("submitTrueDate").value == "") {
-        showMsg("请填写交车时间后再进行交车！", "W");
-        return;
-    }
+
     if (e == 2 && billFormData.status == 2) {
         showMsg("当前工单已审核！", "W");
+        return;
+    }
+    if (e == 1 && nui.get("carModelName").value == "") {
+        showMsg("意向车型尚未选择！", "W");
         return;
     }
     save(e);
@@ -679,8 +696,8 @@ function searchSalesMain(serviceId) { //查询主表信息
                     nui.get("submitBtn").disable();
                     setReadOnlyMsg();
                     document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
-                    if (nui.get("typeMsg").value == 3) {
-                        if (data.isSettle == 0) {
+                    if (nui.get("typeMsg").value == 2) {
+                        if (data.isSubmitCar == 0) {
                             if (data.status == 1 || data.status == 2) {
                                 costDetailGrid.showColumn("action");
                                 costDetailGrid2.showColumn("action");
@@ -700,6 +717,8 @@ function searchSalesMain(serviceId) { //查询主表信息
                 } else {
                     if (data.enterId && data.isSettle != 1) {
                         setReadOnlySubmitCar(0);
+                    } else {
+                        setReadOnlySubmitCar(1);
                     }
                 }
                 var msg = (data.contactor || "") + "/" + (data.contactorTel || "");

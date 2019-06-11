@@ -112,7 +112,7 @@
 									<label>项目编码：</label>
 								</td>
 								<td colspan="1">
-									<input class="nui-textbox" name="code" width="100%" maxlength="20"/>
+									<input class="nui-textbox" name="code" width="100%" maxlength="20" readonly="readonly" emptyText="系统自动分配"/>
 								</td>
 							
 							</tr>

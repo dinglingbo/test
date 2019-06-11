@@ -5,7 +5,7 @@ var mainGridUrl = baseUrl+"com.hsapi.repair.repairService.query.queryExpenseDeta
 var beginDateEl = null;
 var endDateEl = null;
 var typeIdHash = {};
-//var plist = [];
+var plist = [];
 var mtAdvisorIdEl = null;
 $(document).ready(function ()
 {
@@ -18,6 +18,16 @@ $(document).ready(function ()
 	initMember("mtAdvisorId",function(){
     });
 	
+	/*var params = {isMain:0};
+	svrInComeExpenses(params,function(data) {
+	    var list = data.list||{};
+		list.forEach(function(v) {
+			plist.push(v);
+			typeIdHash[v.id] = v;
+        });
+		nui.get("billTypeList").setData(plist);
+		quickSearch(4);
+    });*/
 	mainGrid.on("drawcell",function(e){
 		if(e.field=="typeId"){
 			var num = parseInt(e.value);
@@ -136,7 +146,8 @@ function getSearchParams()
     params.sRecordDate = beginDateEl.getFormValue();
     params.eRecordDate = addDate(endDateEl.getFormValue(),1);
     params.dc = nui.get("typeList").getValue();
-    params.typeId = typeId;
+    params.typeId = nui.get("billTypeList").getValue();
+    //params.typeId = typeId;
     params.mtAdvisorId = nui.get("mtAdvisorId").getValue();
     params.remark = nui.get("remark").getValue();
     var type = nui.get("search-type").getValue();
@@ -160,8 +171,9 @@ function doSearch(params) {
         params: params
     });
 }
-var typeId = null;
+
 function setInitData(data){
+	var typeId = null;
 	beginDateEl.setValue(data.sRecordDate);
 	endDateEl.setValue(addDate(data.eRecordDate,-1));
 	var params=getSearchParams();
@@ -171,11 +183,77 @@ function setInitData(data){
 	svrInComeExpenses(params2,function(data) {
 	    var list = data.list||{};
 		list.forEach(function(v) {
-			//plist.push(v);
+			plist.push(v);
 			typeIdHash[v.id] = v;
         });
-		//nui.get("billTypeList").setData(plist);
+		nui.get("billTypeList").setData(plist);
+		nui.get("billTypeList").setValue(typeId)
 		doSearch(params);
     });
 	
+}
+
+function onExport(){
+	
+	//var billTypeIdHash = [{name:"综合",id:"0"},{name:"检查",id:"1"},{name:"洗美",id:"2"},{name:"销售",id:"3"},{name:"理赔",id:"4"},{name:"退货",id:"5"}];
+
+	var detail = mainGrid.getData();
+	
+	for(var i=0;i<detail.length;i++){
+		for(var j=0;j<plist.length;j++){
+			if(detail[i].typeId==plist[j].id){
+				detail[i].typeId=plist[j].name;
+			}
+			if(detail[i].typeId==1){
+				detail[i].dc="应收";
+			}else{
+				detail[i].dc="应付";	
+			}
+		}
+	}
+		
+	if(detail && detail.length > 0){
+		setInitExportData(detail);
+	}
+}
+
+function setInitExportData( detail){
+
+    var tds = '<td  colspan="1" align="left">[serviceCode]</td>' +
+        "<td  colspan='1' align='left'>[contactName]</td>" +
+        "<td  colspan='1' align='left'>[carNo]</td>" +
+        "<td  colspan='1' align='left'>[outDate]</td>" +
+        "<td  colspan='1' align='left'>[mtAdvisor]</td>" +
+        
+        "<td  colspan='1' align='left'>[dc]</td>" +
+        "<td  colspan='1' align='left'>[typeId]</td>" +
+        "<td  colspan='1' align='left'>[guestName]</td>" +
+        "<td  colspan='1' align='left'>[amt]</td>" +
+        "<td  colspan='1' align='left'>[remark]</td>";
+        
+       
+        
+    var tableExportContent = $("#tableExportContent");
+    tableExportContent.empty();
+    for (var i = 0; i < detail.length; i++) {
+        var row = detail[i];
+        if(row.id){
+            var tr = $("<tr></tr>");
+            tr.append(tds.replace("[serviceCode]", detail[i].serviceCode?detail[i].serviceCode:"")
+                         .replace("[contactName]", detail[i].contactName?detail[i].contactName:"")
+                         .replace("[carNo]", detail[i].carNo?detail[i].carNo:"")
+                         .replace("[outDate]", nui.formatDate(detail[i].outDate?detail[i].outDate:"",'yyyy-MM-dd HH:mm'))
+                         
+                         .replace("[mtAdvisor]", detail[i].mtAdvisor?detail[i].mtAdvisor:"")                        
+                         .replace("[dc]", detail[i].dc?detail[i].dc:"")
+                         .replace("[typeId]", detail[i].typeId?detail[i].typeId:"")                       
+                         .replace("[guestName]", detail[i].guestName?detail[i].guestName:"")
+                         
+                         .replace("[amt]", detail[i].amt?detail[i].amt:0)                        
+                         .replace("[remark]", detail[i].remark?detail[i].remark:"") );
+                         
+            tableExportContent.append(tr);
+        }
+    }
+    method5('tableExcel',"费用明细表导出",'tableExportA');
 }

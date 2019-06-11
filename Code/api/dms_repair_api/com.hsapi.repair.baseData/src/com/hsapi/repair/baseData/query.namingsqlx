@@ -257,6 +257,19 @@
 		where ((a.is_share=1 and a.tenant_id = #tenantId#) or (a.orgid = #orgid#) )  and a.name = #name#
 
 	</select>
-	
+	<select id="queryItemCode" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		select max(CONVERT(substring(code,3,6),SIGNED))  as code
+		from rpb_item 
+			where 1 =1
+		<dynamic>
+			<isNotEmpty prepend="and" property="tenantId">  
+                (tenant_id =#tenantId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="code">  
+                (code like '$code$%')
+            </isNotEmpty>
+        </dynamic>  
+
+	</select>	
 
 </sqlMap>

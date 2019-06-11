@@ -298,9 +298,21 @@ function buyCarCount(){
 function showfailReason(e){
 	if(e.value=="060702"){
 		document.getElementById("show").style.display = "";
+		//下次来访时间不可填写
+		nui.get("nextOrderDate").setValue("");
+		nui.get("nextOrderDate").disable();
 	}else{
 		document.getElementById("show").style.display='none';
-
+		nui.get("nextOrderDate").enable();
 	}
 	
+}
+
+function onDrawDate(e) {
+    var date = e.date;
+    var d = new Date();
+    if (date.getTime() < (d.getTime() - 24*60*60*1000)) {
+    	e.allowSelect = false;
+        
+    }
 }

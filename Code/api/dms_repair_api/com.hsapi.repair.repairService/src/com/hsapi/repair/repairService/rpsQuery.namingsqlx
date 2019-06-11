@@ -2113,6 +2113,7 @@
        
        <select id="queryExpenseDetailList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
        	SELECT
+       	b.id id,
        	b.type_code typeCode,
        	b.type_id typeId,
        	b.dc dc,

@@ -43,6 +43,8 @@
             </tr>
         </table>
     </div>
+    	<input name="frameColorId" id="frameColorId" class="nui-combobox" textField="name" valueField="id" allowInput="true" visible="false"/>
+    <input name="interialColorId" id="interialColorId" class="nui-combobox" textField="name" valueField="id" allowInput="true" visible="false"/>
     <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
          showPager="true"
          dataField="checkOrderDetailList"
@@ -62,6 +64,9 @@
             		<div field="serviceCode" allowSort="true"  width="100" summaryType="count" headerAlign="center" header="单号"></div>
             		<div field="guestFullName" allowSort="true"  width="100" summaryType="count" headerAlign="center" header="供应商"></div>
                     <div field="carModelName" name="guestFullName" width="100" headerAlign="center" header="车型"></div>
+                    <div field="frameColorId" allowSort="true"  name="frameColorId" width="60" headerAlign="center" header="车身颜色"></div>
+                    <div allowSort="true" field="interialColorId"  name="interialColorId" width="60" headerAlign="center" header="内饰颜色"></div>  
+                    <div allowSort="true" field="orderPrice" name="orderPrice" width="60" headerAlign="center" header="单价"></div>
                     <div field="checkingQty" name="guestFullName" width="60" headerAlign="center" header="待验"></div>
                      <div field="checkedQty" name="guestFullName" width="60" headerAlign="center" header="已验"></div>
                                                       

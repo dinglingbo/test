@@ -154,7 +154,7 @@ $(document).ready(function (){
         if (field == "price" || field == "qty"  || field == "costPrice") {
             var price = row.price || 0;
             var qty = row.qty || 0;
-            var costPrice = row.costPrice;
+            var costPrice = row.costPrice || 0;
             var value = (price * qty).toFixed(2);
             var value2 = (costPrice * qty).toFixed(2);
             var newRow = { amt: value ,

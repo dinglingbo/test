@@ -49,7 +49,7 @@ var requiredField = {
 	unitPrice : "车价（成本）",
 	logisticCompId : "运输公司",
 	carModelId : "车型",
-	carFrameNo :"车架号（VIN）",
+	vin :"车架号（VIN）",
 /*	kilometers : "公里数",*/
 	carModelId : "车身颜色",
 	interialColorId :"内饰颜色"
@@ -61,7 +61,18 @@ function save() {
 	if(cssCheckEnter.billStatus==1){
 		showMsg("单据已入库!","W");
 		return;
+	}else if(cssCheckEnter.billStatus==2){
+		showMsg("单据已退货!","W");
+		return;
 	}
+	
+    var carVinData = validation(nui.get("vin").getValue());
+    if(carVinData.isNo){
+    	nui.get("vin").setValue(carVinData.vin);
+    }else{
+    	showMsg("VIN不规范，请确认！","W");
+    	return;
+    }
 	var data = dataform1.getData();
 	data.guestFullName = nui.get("guestId").getText();
 	data.logisticCompName = nui.get("logisticCompId").getText();
@@ -122,7 +133,8 @@ function selectSupplier(elId) {
             //     guestType:'01020202'
 			// };
 			var params = {
-                isSupplier: 1
+	                isSupplier: 1,
+	                guestType :"01020201"
             };
             iframe.contentWindow.setGuestData(params);
 		},
@@ -183,6 +195,7 @@ function check() {
 			var row = iframe.contentWindow.getRow();
 			orderDetailId = row.id;
 			row.id=null;//防止id覆盖入库单id
+			row.unitPrice  = row.orderPrice;//入库单与订单明细单价字段不一样
 			dataform1.setData(row);
 			nui.get("guestId").setText(row.guestFullName);
 			nui.get("code").setText(row.serviceCode);

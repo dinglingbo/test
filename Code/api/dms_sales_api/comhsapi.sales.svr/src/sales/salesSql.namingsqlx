@@ -30,7 +30,7 @@
 			a.bill_no	AS	billNo	,
 			a.bill_title	AS	billTitle	,
 			a.order_date	AS	orderDate	,
-			a.submi_plan_date	AS	submiPlanDate	,
+			a.submit_plan_date	AS	submitPlanDate	,
 			a.submit_true_date	AS	submitTrueDate	,
 			a.submit_car_men	AS	submitCarMen	,
 			a.submit_car_remark	AS	submitCarRemark	,
@@ -399,7 +399,7 @@
                 b.service_code as serviceCode
             FROM
             wb_sales.css_check_enter A
-            INNER JOIN wb_sales.css_factory_order_main B ON A.order_id = B.ID 
+            left JOIN wb_sales.css_factory_order_main B ON A.order_id = B.ID 
                 where a.orgid = #orgid#
             <dynamic>
                 <isNotEmpty prepend="and" property="orderId">  

@@ -26,6 +26,7 @@
       <process:return id="2" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
       <process:return id="3" language="commonj.sdo.DataObject[]" name="list" type="query" valueType="Java">list</process:return>
       <process:return id="4" language="commonj.sdo.DataObject[]" name="data" type="query" valueType="Java">data</process:return>
+      <process:return id="5" language="Int" name="grossProfit" type="query" valueType="Primitive">grossProfit</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -39,6 +40,16 @@
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="queryRpsInsuranceMainList" displayName="queryRpsInsuranceMainList" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" description="" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>assign1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link1" name="link1" displayName="连接线" isDefault="false" type="transition">
       <bendPoint heightToEnd="0" heightToStart="-104" widthToEnd="-138" widthToStart="-1"/>
       <sourceNode>subprocess0</sourceNode>
@@ -47,16 +58,6 @@
         <process:complexCondition>
           <process:code>list.length == 0</process:code>
         </process:complexCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess0</sourceNode>
-      <targetNode>assign1</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link10" name="link10" displayName="连接线" type="transition">
@@ -122,6 +123,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">list/id</process:from>
       <process:to type="query">serviceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">list/grossProfit</process:from>
+      <process:to type="query">grossProfit</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -229,9 +234,9 @@
       <sourceNode>assign4</sourceNode>
       <targetNode>end0</targetNode>
     </sourceConnections>
-    <targetConnections>link10</targetConnections>
     <targetConnections>link11</targetConnections>
     <targetConnections>link12</targetConnections>
+    <targetConnections>link10</targetConnections>
     <location x="626" y="90"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
@@ -265,6 +270,7 @@
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
     <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="list"/>
     <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="data"/>
+    <process:output description="" isArray="false" name="grossProfit" primitiveType="Int"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

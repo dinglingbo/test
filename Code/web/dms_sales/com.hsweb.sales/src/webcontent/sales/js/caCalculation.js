@@ -108,7 +108,6 @@ function changeSaleType(e) { //改变购买方式时触发
         nui.get("contractGuaranteeAmt").enable(); //合同保证金
     }
     changeValueMsg(1);
-    parent.showPrint(value);
 }
 
 function changeValueMsg(e) { //更改数据信息时触发  统一触发此函数
@@ -126,11 +125,20 @@ function changeValueMsg(e) { //更改数据信息时触发  统一触发此函�
     loanAmt = Math.floor(saleAmt * loanPercent / 1000 || 0) * 1000; //贷款金额 = 车辆销价 * 贷款比例   舍去千位已下的金额 取整 如142222 变为142000
     bankHandlingAmt = loanAmt * bankHandlingRate; //银行利息 = 贷款金额*贷款利率(%)
     if (bankHandlingApportion == 0) { //如果利息分摊
-        monthMoneyRates = bankHandlingAmt / loanPeriod || 0; // 每月利息 = 银行利息 / 贷款期数
-        monthPayAmt = (loanAmt / loanPeriod || 0) + monthMoneyRates; // 月供 = 贷款金额 / 贷款期数 + 每月利息
+        if (loanPeriod == 0) {
+            monthMoneyRates = 0;
+            monthPayAmt = 0;
+        } else {
+            monthMoneyRates = bankHandlingAmt / loanPeriod || 0; // 每月利息 = 银行利息 / 贷款期数
+            monthPayAmt = (loanAmt / loanPeriod || 0) + monthMoneyRates; // 月供 = 贷款金额 / 贷款期数 + 每月利息
+        }
         downPaymentAmt = (saleAmt - loanAmt); // 首付 = 车辆销价 - 贷款金额
     } else {
-        monthPayAmt = (loanAmt / loanPeriod) || 0; // 月供 = 贷款金额 / 贷款期数 + 每月利息
+        if (loanPeriod == 0) {
+            monthPayAmt = 0;
+        } else {
+            monthPayAmt = (loanAmt / loanPeriod) || 0; // 月供 = 贷款金额 / 贷款期数 + 每月利息
+        }
         downPaymentAmt = saleAmt - loanAmt + bankHandlingAmt; // 首付 = （车辆销价 - 贷款金额）+ 每月利息
     }
     var totalAmt = parseFloat(data.agentDeposit || 0) + parseFloat(data.riskAmt || 0) + parseFloat(data.familyAmt || 0) +

@@ -42,7 +42,7 @@ function getSelectedValue() {
 
 function selectCar() {
     var data = grid.getSelected();
-    data.billStatus = 1;
+    data.carStatus = 1;
     nui.ajax({
         url: baseUrl + "sales.save.updateCheckEnter.biz.ext",
         data: {

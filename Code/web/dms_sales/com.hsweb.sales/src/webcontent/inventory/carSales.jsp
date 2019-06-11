@@ -64,7 +64,7 @@
                 </ul>   -->
 
 
-				<label style="font-family:Verdana;">订货日期 从：</label>
+				<label style="font-family:Verdana;">创建日期 从：</label>
                 <input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <label style="font-family:Verdana;">至</label>
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
@@ -129,8 +129,7 @@
                     <div field="guestFullName" name="guestFullName" width="220" headerAlign="center" header="供应商"></div>                    
                     <div allowSort="true" field="billTypeId"  name="billTypeId" width="90" headerAlign="center" header="票据类型"></div>
                     <div allowSort="true" field="payMode" name="payMode" width="90" headerAlign="center" header="结算方式"></div>
-                    <div allowSort="true" field="isFinancial" name="isFinancial" width="90" headerAlign="center" header="是否提交"></div>
-                    <div field="recordDate" allowSort="true"  width="130" headerAlign="center" header="订货日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                 
+                    <div allowSort="true" field="isFinancial" name="isFinancial" width="90" headerAlign="center" header="是否提交"></div>                 
                     <div field="orderTotalAmt" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="订单金额"></div>                                                                                                  
                     <div field="predictDeliveryDate" allowSort="true"  width="130" headerAlign="center" header="预计到货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div field="remark" allowSort="true"  width="80" headerAlign="center" header="备注"></div>

@@ -34,7 +34,7 @@ var StatusHash = {
 		"2" : "待收货",
 		"4" : "已入库",
 	};
-var headerHash = [{ name: '草稿', id: '0' }, { name: '已入库', id: '1' }];
+var headerHash = [{ name: '草稿', id: '0' }, { name: '已入库', id: '1' },{ name: '已退货', id: '2' }];
 var innerPartGrid=null;
 var editFormDetail = null;
 
@@ -276,8 +276,8 @@ function selectSupplier(elId)
         {
             var iframe = this.getIFrameEl();
             var params = {
-                isSupplier: 1,
-                guestType:'01020202'
+                    isSupplier: 1,
+                    guestType :"01020201"
             };
             iframe.contentWindow.setGuestData(params);
         },

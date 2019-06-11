@@ -243,7 +243,7 @@
                                        <input class="nui-combobox" showNullItem="true" name="frameColorId"  valueField="customid" id="frameColorId"
                 								 textField="name"  property="editor" data="frameColorIdList" emptyText="" />
                                     </div>
-                                    <div field="interialColorId" name="interialColorId"  headerAlign="center" header="内饰颜色">
+                                    <div field="interialColorId" name="interialColorId" width="40" headerAlign="center" header="内饰颜色">
                                        <input class="nui-combobox" showNullItem="true" name="interialColorId"  valueField="customid" id="interialColorId"
                 								 textField="name"  property="editor" data="interialColorIdList" emptyText="" />
                                     </div>

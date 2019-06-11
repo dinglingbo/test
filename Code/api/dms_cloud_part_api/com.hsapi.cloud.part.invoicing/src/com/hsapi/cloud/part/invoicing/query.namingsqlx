@@ -162,7 +162,7 @@
         </dynamic>
     </select>
     <select id="queryPjPchsEnterMainList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
-		SELECT
+		SELECT DISTINCT
 			a.id as id,
 			a.service_id as serviceId,
 			a.orgid as orgid,
@@ -209,6 +209,7 @@
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
         </dynamic>
+    
     </select>
     <select id="queryPjPchsEnterMainDetailList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
 		SELECT

@@ -8,7 +8,7 @@
 -->
 <head>
 <title>整车验车</title>
-<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesPutStorage.js?v=1.0.7"></script>
+<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesPutStorage.js?v=1.0.8"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -162,8 +162,8 @@
                     <div field="serviceCode" name="serviceCode" allowSort="true"  width="160" summaryType="count" headerAlign="center" header="订单单号"></div>
                     <div field="guestFullName" name="guestFullName" width="220" headerAlign="center" header="供应商"></div>    
                     <div field="carModelName" name="carModelName" width="150" headerAlign="center" header="车型名称"></div> 
-                    <div field="carFrameNo" name="carFrameNo" width="150" headerAlign="center" header="车架号"></div> 
-                    <div field="engineNo" name="engineNo" width="150" headerAlign="center" header="发动机号"></div> 
+                    <div field="vin" name="vin" width="150" headerAlign="center" header="车架号"></div> 
+<!--                     <div field="engineNo" name="engineNo" width="150" headerAlign="center" header="发动机号"></div>  -->
                     <div field="kilometers" name="kilometers" width="70" headerAlign="center" header="公里数"></div> 
                     <div field="frameColorId" name="frameColorId" width="60" headerAlign="center" header="车身颜色"></div>   
                     <div field="interialColorId" name="interialColorId" width="60" headerAlign="center" header="内饰颜色"></div>  

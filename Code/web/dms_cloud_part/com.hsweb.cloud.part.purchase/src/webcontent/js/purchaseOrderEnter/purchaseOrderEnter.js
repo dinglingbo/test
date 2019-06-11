@@ -1802,8 +1802,9 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 	var orderAmt =data.orderAmt;
 	var rightRow = rightGrid.getData();
 	if(data.orderAmt===""){
+		orderAmt=0;
 		for(var i=0;i<rightRow.length;i++){
-			orderAmt+=rightRow[i].orderAmt;
+			orderAmt=parseFloat(rightRow[i].orderAmt)+parseFloat(orderAmt);
 		}
 	}
 

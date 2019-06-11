@@ -7,7 +7,7 @@
 
 		<head>
 			<title>编辑来访记录</title>
-			<script src="<%= request.getContextPath() %>/sales/customer/js/addVisitRecords.js?v=1.0.0"></script>
+			<script src="<%= request.getContextPath() %>/sales/customer/js/addVisitRecords.js?v=1.0.1"></script>
 			<style type="text/css">
 				.dtable {
 					table-layout: fixed;
@@ -133,7 +133,7 @@
 								</td>
 								<td>
 									<input width="100%" id="comeDate" name="comeDate" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd HH:mm"
-									 showTime="true" showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%" />
+									 showTime="true" showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"   />
 								</td>
 								<td class="form_label">
 									<label>来访方式：</label>
@@ -151,17 +151,17 @@
 								</td>
 							</tr>
 							<tr>
+							    <td class="form_label required">
+									<label>手机号码：</label>
+								</td>
+								<td colspan="1">
+									<input class="nui-textbox" name="mobile" width="100%" maxlength="20" onvalidation="onMobileValidation" onvaluechanged="queryByMobile"/>
+								</td>
 								<td class="form_label required">
 									<label>客户名称：</label>
 								</td>
 								<td colspan="1">
 									<input class="nui-textbox" name="fullName" width="100%" maxlength="20" />
-								</td>
-								<td class="form_label required">
-									<label>手机号码：</label>
-								</td>
-								<td colspan="1">
-									<input class="nui-textbox" name="mobile" width="100%" maxlength="20" onvalidation="onMobileValidation" />
 								</td>
 								<td class="form_label">
 									<label>客户性质：</label>
@@ -260,7 +260,7 @@
 								</td>
 								<td colspan="5">
 									<input id="nextVisitDate" name="nextVisitDate" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd HH:mm"
-									 showTime="true" showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="30%" /> 进行售前潜客回访
+									 showTime="true" showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="30%"  ondrawdate="onDrawDate"  allowInput="false"/> 进行售前潜客回访
 								</td>
 							</tr>
 						</table>

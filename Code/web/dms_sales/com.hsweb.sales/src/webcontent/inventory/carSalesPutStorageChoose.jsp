@@ -8,7 +8,7 @@
 -->
 <head>
 <title>整车验车</title>
-<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesPutStorageChoose.js?v=1.0.4"></script>
+<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesPutStorageChoose.js?v=1.0.7"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -76,8 +76,8 @@
             		<div field="carModelName" name="carModelName" width="200" headerAlign="center" header="车型名称"></div>  
                     <div field="frameColorId" name="frameColorId" width="60" headerAlign="center" header="车身颜色"></div>
                     <div field="interialColorId" name="interialColorId"  width="60" headerAlign="center" header="内饰颜色"></div>
-                    <div field="carFrameNo" name="carFrameNo" width="150" headerAlign="center" header="车架号（VIN）"></div>
-                    <div field="engineNo" name="engineNo" width="150" headerAlign="center" header="发动机号"></div>
+                    <div field="vin" name="vin" width="150" headerAlign="center" header="车架号（VIN）"></div>
+                    <!-- <div field="engineNo" name="engineNo" width="150" headerAlign="center" header="发动机号"></div> -->
                     <div field="unitPrice" numberFormat="0.00" width="80" headerAlign="center" header="进价"></div>                                                                                                       								                                                                                                                                                                                                                                                                                                                                                                                                                         
                     <div field="remark" width="100" headerAlign="center" allowSort="false" header="备注"></div>
         </div>

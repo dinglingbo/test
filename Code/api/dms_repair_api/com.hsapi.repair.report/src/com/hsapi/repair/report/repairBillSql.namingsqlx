@@ -284,47 +284,50 @@
 	<select id="queryPartSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT  
     <isEqual  prepend=""  property="groupByType"   compareValue="0">
-        DATE_FORMAT(b.out_date,'%Y-%m-%d')  as groupName,
+        DATE_FORMAT(c.out_date,'%Y-%m-%d')  as groupName,
      </isEqual>
         
      
       <isEqual  prepend="" property="groupByType"  compareValue="1">
-	     	 b.service_type_id as groupName,
+	     	 c.service_type_id as groupName,
 	    </isEqual> 
 	     
 	   <isEqual  prepend="" property="groupByType"  compareValue="2">
-	     	 a.part_code as groupName,
-	     	 a.part_name as partName,
+	     	 b.part_code as groupName,
+	     	 b.part_name as partName,
 	    </isEqual>  	       
-    	
-    	  	sum(a.qty) as qty,
-    	  	sum(c.part_true_cost) as partTrueCost,
-       		sum(a.amt) as amt, 
-       		sum(a.discount_amt) as discountAmt,
-       		sum(a.subtotal) as subtotal
-		from wb_repair.rps_part a
-		inner join wb_repair.rps_maintain b on a.service_id = b.id 
-		inner join rps_settlement c on (b.id =  c.service_id)
-		where b.is_settle = 1 and b.orgid = #orgid#
-		and b.bill_type_id in (0,2,4)
+    		a.main_id as mainId,
+ 			SUM(a.true_unit_price) as trueUnitPrice,
+			SUM(b.subtotal) as subtotal,
+			SUM(b.qty) as qty,
+ 			SUM(b.discount_amt) as discountAmt,
+ 			SUM(b.amt) as amt
+ 			
+       		
+       		FROM wb_part.pj_repair_out a
+			INNER JOIN wb_repair.rps_part b on a.main_id = b.id
+			inner join wb_repair.rps_maintain c on b.service_id = c.id 
+			where c.is_settle = 1 and c.orgid = #orgid#
+			and c.bill_type_id in (0,2,4)
+			
 		
             <isNotEmpty prepend="and" property="startDate">  
-                (b.out_date &gt;= #startDate#)
+                (c.out_date &gt;= #startDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="endDate">  
-                (b.out_date &lt; #endDate#)
+                (c.out_date &lt; #endDate#)
             </isNotEmpty>
  
         <isEqual  prepend="" property="groupByType"   compareValue="0">
-	        GROUP BY DATE_FORMAT(b.out_date,'%Y-%m-%d')
+	        GROUP BY DATE_FORMAT(c.out_date,'%Y-%m-%d')
 	   </isEqual>
 	   
         <isEqual  prepend="" property="groupByType"  compareValue="1">
-	     	group by b.service_type_id
+	     	group by c.service_type_id
 	    </isEqual>
 	    
 	    <isEqual  prepend="" property="groupByType"  compareValue="2">
-	     	group by a.part_code , a.part_name
+	     	group by b.part_code , b.part_name
 	    </isEqual>  
 	    	
 	</select>

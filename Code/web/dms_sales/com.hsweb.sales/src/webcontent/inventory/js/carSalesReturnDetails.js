@@ -688,13 +688,10 @@ function selectSupplier(elId) {
 		allowResize : true,
 		onload : function() {
 			var iframe = this.getIFrameEl();
-			// var params = {
-            //     isSupplier: 1,
-            //     guestType:'01020202'
-			// };
-			var params = {
-                isSupplier: 1
-            };
+			 var params = {
+                 isSupplier: 1,
+                 guestType:'01020201'
+			 };
             iframe.contentWindow.setGuestData(params);
 		},
 		ondestroy : function(action) {

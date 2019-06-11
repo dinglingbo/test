@@ -288,6 +288,11 @@ function saveCome() {
         showMsg("来访登记已转销售不能修改!", "W");
         return;
     } else {
+    	var advanceChargeAmt = caCalculationData.advanceChargeAmt;//预付款
+    	var saleAmt = caCalculationData.saleAmt;//车型销价
+    	if(advanceChargeAmt>saleAmt){
+    		showMsg("预付款金额不能大于车型销价金额！","W");
+    	}
         caCalculationData.billType = 1; //来访登记的预算
         var json = nui.encode({
             caCalculationData: caCalculationData,

@@ -46,11 +46,7 @@ $(document).ready(function(v)
     
     
     rightGrid.on("rowdblclick", function(e) {
-		var row = rightGrid.getSelected();
-		var rowc = nui.clone(row);
-		if (!rowc)
-			return;
-		edit();
+    	choose();
 
 	});
     

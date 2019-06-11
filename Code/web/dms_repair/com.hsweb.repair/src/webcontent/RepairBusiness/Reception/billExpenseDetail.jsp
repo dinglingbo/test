@@ -75,9 +75,10 @@ a.optbtn {
 							<div field="amt" width="60" headerAlign="center" header="收入金额">
 								<input property="editor" vtype="float" class="nui-textbox"  />
 							</div>
-							<div field="guestName"  width="120" headerAlign="center" header="往来单位">
+							<!-- <div field="guestName"  width="120" headerAlign="center" header="往来单位">
+							     <a href="javascript:selectGuest()" title="选择往来单位" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
 					             <input property="editor" class="nui-textbox" id="guestId"/>
-					           <!--   <input id="contactorName"
+					             <input id="contactorName"
 	                         name="contactorName"
 	                         class="nui-buttonedit"
 	                         emptyText=""
@@ -85,8 +86,13 @@ a.optbtn {
 	                         placeholder="请选择联系人"
 	                         selectOnFocus="true" 
 	                         allowInput="false"
-	                         /> -->
-							</div>
+	                         />
+							</div> -->
+							<div field="guestName" headerAlign="center"
+                     allowSort="false" visible="true" width="120" header="" align="center" name="guestName">
+                                           往来单位 <a href="javascript:selectGuest()" title="选择往来单位" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
+                    <input class="nui-textbox" property="editor" id="guestId"/> 
+                </div>
 							<div field="guestId"  width="120" headerAlign="center" header="往来单位id" visible="false">
 							</div>
 							<div field="remark" width="80" headerAlign="center" header="备注">
@@ -121,9 +127,14 @@ a.optbtn {
 							<div field="amt" width="60" summaryType="sum" headerAlign="center" header="支出金额">
 								<input property="editor" vtype="float" class="nui-textbox"/>
 							</div>
-							<div field="guestName"  width="120" headerAlign="center" header="往来单位">
+							<!-- <div field="guestName"  width="120" headerAlign="center" header="往来单位">
 					             <input property="editor" class="nui-textbox" id="guestId1" />
-							</div>
+							</div> -->
+							<div field="guestName" headerAlign="center"
+                     allowSort="false" visible="true" width="120" header="" align="center" name="guestName">
+                                           往来单位 <a href="javascript:selectGuest1()" title="选择往来单位" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
+                    <input class="nui-textbox" property="editor" id="guestId1"/> 
+                </div>
 							<div field="guestId"  width="120" headerAlign="center" header="往来单位id" visible="false">
 							</div> 
 							<div field="remark" width="80" headerAlign="center" header="备注">

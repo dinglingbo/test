@@ -12,7 +12,7 @@
 
 				<head>
 					<title>验车入库添加</title>
-					<script src="<%=request.getContextPath()%>/sales/inventory/js/carSalesPutStorageDetails.js?v=1.0.9"></script>
+					<script src="<%=request.getContextPath()%>/sales/inventory/js/carSalesPutStorageDetails.js?v=1.1.1"></script>
 					<style type="text/css">
 						.title {
 							width: 90px;
@@ -100,7 +100,7 @@
 								<tr>
 									<td class="title required" align="right">运输公司:</td>
 									<td colspan="3" style="width:38%">
-										<input id="logisticCompId" name="logisticCompId" class="nui-buttonedit" emptyText="请选择运输公司..." onbuttonclick="selectSupplier('logisticCompId')"
+										<input id="logisticCompId" name="logisticCompId" class="nui-buttonedit" emptyText="请选择运输公司..." onbuttonclick="selectTransport('logisticCompId')"
 										 onvaluechanged="onGuestValueChanged" width="100%" placeholder="请选择供应商" selectOnFocus="true" />
 									</td>
 									<td class="form_label" align="right">物流专员:</td>

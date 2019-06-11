@@ -105,6 +105,7 @@ function save() {
 			if (data.errCode == "S") {
 				showMsg("保存成功!","S");	
 				cssCheckEnter = data.cssCheckEnter;
+				nui.get("id").setValue(cssCheckEnter.id);
 			} else {
 				showMsg(data.errMsg || "保存失败!","E");
 			}
@@ -135,6 +136,52 @@ function selectSupplier(elId) {
 			var params = {
 	                isSupplier: 1,
 	                guestType :"01020201"
+            };
+            iframe.contentWindow.setGuestData(params);
+		},
+		ondestroy : function(action) {
+			if (action == 'ok') {
+				var iframe = this.getIFrameEl();
+				var data = iframe.contentWindow.getData();
+
+				supplier = data.supplier;
+				var value = supplier.id;
+				var text = supplier.fullName;
+				var billTypeIdV = supplier.billTypeId;
+				var settTypeIdV = supplier.settTypeId;
+				var el = nui.get(elId);
+				el.setValue(value);
+				el.setText(text);
+
+				if (elId == 'guestId') {
+
+					nui.get("billTypeId").setValue(billTypeIdV);
+					nui.get("settleTypeId").setValue(settTypeIdV);
+
+				}
+			}
+		}
+	});
+}
+function selectTransport(elId) {
+	supplier = null;
+	nui.open({
+		// targetWindow: window,,
+		url : webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+		title : "运输公司资料",
+		width : 980,
+		height : 560,
+		allowDrag : true,
+		allowResize : true,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			// var params = {
+            //     isSupplier: 1,
+            //     guestType:'01020202'
+			// };
+			var params = {
+	                isSupplier: 1,
+	                guestType :"01020204"
             };
             iframe.contentWindow.setGuestData(params);
 		},
@@ -301,3 +348,4 @@ function setInitData(params){
 		add();	
 	}
 }
+

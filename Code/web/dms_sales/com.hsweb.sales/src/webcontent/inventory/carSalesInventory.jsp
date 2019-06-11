@@ -127,8 +127,8 @@
                     <div field="carModelName" name="carModelName" width="220" headerAlign="center" header="车型名称"></div>                                      
                     <div field="guestFullName" name="guestFullName" width="200" headerAlign="center" header="供应商"></div>    
                      <div field="enterDate" allowSort="true"  width="120" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                 
-                    <div field="carFrameNo" allowSort="true"   width="150" headerAlign="center" header="车架号（VIN）"></div>  
-                    <div field="engineNo" allowSort="true"   width="150" headerAlign="center" header="发动机号"></div>
+                    <div field="vin" allowSort="true"   width="150" headerAlign="center" header="车架号（VIN）"></div>  
+                    <!-- <div field="engineNo" allowSort="true"   width="150" headerAlign="center" header="发动机号"></div> -->
                     <div field="frameColorId" allowSort="true"  name="frameColorId" width="60" headerAlign="center" header="车身颜色"></div>
                     <div allowSort="true" field="interialColorId"  name="interialColorId" width="60" headerAlign="center" header="内饰颜色"></div>
 <!--                     <div allowSort="true" field=""  name="" width="90" headerAlign="center" header="PDI检测"></div>  -->   

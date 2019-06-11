@@ -304,8 +304,8 @@
  			SUM(b.amt) as amt
  			
        		
-       		FROM wb_part.pj_repair_out a
-			INNER JOIN wb_repair.rps_part b on a.main_id = b.id
+       		FROM wb_repair.rps_part b 
+			INNER JOIN  wb_part.pj_repair_out a on a.main_id = b.id
 			inner join wb_repair.rps_maintain c on b.service_id = c.id 
 			where c.is_settle = 1 and c.orgid = #orgid#
 			and c.bill_type_id in (0,2,4)
@@ -319,17 +319,16 @@
             </isNotEmpty>
  
         <isEqual  prepend="" property="groupByType"   compareValue="0">
-	        GROUP BY DATE_FORMAT(c.out_date,'%Y-%m-%d')
+	        GROUP BY DATE_FORMAT(c.out_date,'%Y-%m-%d'), a.main_id
 	   </isEqual>
 	   
         <isEqual  prepend="" property="groupByType"  compareValue="1">
-	     	group by c.service_type_id
+	     	group by c.service_type_id, a.main_id
 	    </isEqual>
 	    
 	    <isEqual  prepend="" property="groupByType"  compareValue="2">
-	     	group by b.part_code , b.part_name
+	     	group by b.part_code , b.part_name , a.main_id
 	    </isEqual>  
-	    	
 	</select>
 	
 	

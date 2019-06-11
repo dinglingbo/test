@@ -292,7 +292,6 @@ function saveCome() {
     	var saleAmt = caCalculationData.saleAmt;//车型销价
     	if(advanceChargeAmt>saleAmt){
     		showMsg("预付款金额不能大于车型销价金额！","W");
-    		return;
     	}
         caCalculationData.billType = 1; //来访登记的预算
         var json = nui.encode({

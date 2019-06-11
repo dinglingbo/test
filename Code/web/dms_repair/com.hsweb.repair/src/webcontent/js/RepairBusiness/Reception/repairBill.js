@@ -5233,6 +5233,7 @@ function saveItem(callback){
                 var item = {};
                 item.id = row.id;
                 item.remark = row.remark;
+                //row.serviceId,可能会获取不到值，接口里面会重新赋值
                 item.serviceId = row.serviceId;
                 item.amt = row.amt;
                 item.subtotal = row.subtotal;

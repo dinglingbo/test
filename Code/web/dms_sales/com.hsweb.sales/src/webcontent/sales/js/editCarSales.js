@@ -416,16 +416,8 @@ function checkMsg(e) { //保存操作前进行验证
         return;
     }
     if (e == 6) {
-        if (billFormData.status != 2) {
-            showMsg("当前工单尚未审核！", "W");
-            return;
-        }
         if (billFormData.isSubmitCar == 1) {
             showMsg("当前工单已交车！", "W");
-            return;
-        }
-        if (billFormData.enterId == 0) {
-            showMsg("当前工单尚未选库存车！", "W");
             return;
         }
         if (nui.get("submitTrueDate").value == "") {
@@ -485,6 +477,8 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
         billFormData.submitCarKeyQty = formData.submitCarKeyQty;
         billFormData.submitCarRemark = formData.submitCarRemark;
         billFormData.isSubmitCar = 1;
+        saleExtend.handcartAmt = billFormData.handcartAmt;
+        saleExtend.carCost = billFormData.carCost;
     }
     var addMsg = costDetailGrid.getChanges("added");
     var editMsg = costDetailGrid.getChanges("modified");
@@ -496,10 +490,6 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
     var editArr = editMsg.concat(editMsg2);
     var deleteArr = deleteMsg.concat(deleteMsg2);
     if (e == 11) {
-        billFormData.status = 0;
-        billFormData.isSubmitCar = 0;
-        billFormData.enterId = 0;
-
         nui.ajax({
             url: baseUrl + "sales.save.backSingle.biz.ext",
             data: {
@@ -513,6 +503,9 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
                 };
             }
         });
+        billFormData.status = 0;
+        billFormData.isSubmitCar = 0;
+        billFormData.enterId = 0;
     }
     nui.ajax({
         url: baseUrl + "sales.save.saveSaleMainAll.biz.ext",
@@ -539,7 +532,9 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
                 costDetailGrid2.load({ serviceId: serviceId, type: 2 });
                 showMsg(text.errMsg, "S");
 
-            };
+            } else {
+                showMsg(text.errMsg, "W");
+            }
         }
     });
 }
@@ -682,6 +677,8 @@ function searchSalesMain(serviceId) { //查询主表信息
                 var data = text.data[0];
                 billForm.setData(data);
                 form.setData(data);
+
+                document.getElementById("caCalculation").contentWindow.setSelectCarValue(data.handcartAmt, data.carCost);
                 nui.get("carModelName").setValue(data.carModelName);
                 nui.get("carModelName").setText(data.carModelName);
                 $("#servieIdEl").html(data.serviceCode);
@@ -706,6 +703,7 @@ function searchSalesMain(serviceId) { //查询主表信息
                     }
                 } else {
                     nui.get("saveBtn").enable();
+                    nui.get("submitBtn").enable();
                     setInputModel();
                     document.getElementById("caCalculation").contentWindow.setInputModel();
                 }
@@ -715,7 +713,7 @@ function searchSalesMain(serviceId) { //查询主表信息
                 if (nui.get("typeMsg").value != 1) {
                     setReadOnlySubmitCar(1);
                 } else {
-                    if (data.enterId && data.isSettle != 1) {
+                    if (data.enterId && data.isSettle != 1 && data.isSubmitCar == 0) {
                         setReadOnlySubmitCar(0);
                     } else {
                         setReadOnlySubmitCar(1);
@@ -1041,5 +1039,23 @@ function OnModelCellBeginEdit(e) {
 function changeValueMsg(e) {
     var saleType = nui.get("saleType").value;
     document.getElementById("caCalculation").contentWindow.setSaleType(saleType);
+}
+
+function onDrawDate(e) {
+    var date = e.date;
+    var d = new Date();
+
+    if (date.getTime() < d.getTime()) {
+        e.allowSelect = false;
+    }
+}
+
+function onDrawSubmitTrueDate(e) {
+    var date = e.date;
+    var d = new Date(nui.get("submitPlanDate").value);
+
+    if (date.getTime() < d.getTime()) {
+        e.allowSelect = false;
+    }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

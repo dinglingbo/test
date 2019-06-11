@@ -13,7 +13,7 @@
         <title>销售结案审核</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%= request.getContextPath() %>/sales/sales/js/salesReview.js?v=1.003" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/sales/sales/js/salesReview.js?v=1.004" type="text/javascript"></script>
     </head>
     <style type="text/css">
         body {
@@ -427,13 +427,13 @@
                         开票价格：
                     </td>
                     <td>
-                        <input id="" name="" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="billAmt" name="billAmt" style="width: 100%" class="nui-textbox" vtype="float" />
                     </td>
                     <td class="td_title">
                         发票抬头：
                     </td>
                     <td colspan="5">
-                        <input id="" name="" style="width: 100%" class="nui-textbox" />
+                        <input id="billTitle" name="billTitle" style="width: 100%" class="nui-textbox" />
                     </td>
                 </tr>
                 <tr>

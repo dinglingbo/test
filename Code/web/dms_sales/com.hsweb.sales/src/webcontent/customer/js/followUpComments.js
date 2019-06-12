@@ -44,6 +44,7 @@ $(document).ready(function ()
 	mainGrid.on('drawcell', function(e){
 	       var value = e.value;
 	       var field = e.field;
+	       var record = e.record;
 	      if (field == 'sex') {
 	           e.cellHtml = (value == 0 ? '女' : '男');
 	       } else if (field == 'comeTypeId') {
@@ -62,7 +63,9 @@ $(document).ready(function ()
 	        			e.cellHtml = currOrgList[i].shortName;
 	        		}
 	        	}
-	     }
+	     }/*else if(e.field == "scoutRemark"){
+	    	 mainGrid.beginEditRow(record);
+	     }*/
 	});
 	
 	
@@ -149,6 +152,10 @@ function doSearch() {
     mainGrid.load({
         token:token,
         params: gsparams
+    },function(){
+    	var row = mainGrid.findRow(function(row){
+    		mainGrid.beginEditRow(row);
+        });
     });
 }
 var status = 0;

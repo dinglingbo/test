@@ -192,8 +192,9 @@ var comeServiceIdF = null;
 var statusF = null;
 var saveComeUrl = baseUrl + "sales.save.saveSaleCalc.biz.ext";
 var jpDetailGridUrl = baseUrl + "sales.search.searchSaleGiftApply.biz.ext";
-
+var mainF = null
 function setShowSave(params) {
+	mainF = params;
     comeServiceIdF = params.id;
     statusF = params.status;
     var showSave = document.getElementById("showSave");
@@ -259,14 +260,19 @@ function setShowSave(params) {
                     if (giftData.length > 0) {
                         for (var i = 0; i < giftData.length; i++) {
                             var temp = giftData[i];
-                            amt = amt + temp.amt;
+                            if(temp.receType==1){
+                            	amt = amt + temp.amt;
+                            }
+                            
                         }
                     }
                     if (amt > 0) {
                         nui.get("decrAmt").setValue(amt);
                     }
                     nui.get("decrAmt").setEnabled(false);
+                    changeValueMsg();
                 }
+                
             }
 
         });
@@ -316,12 +322,57 @@ function saveCome() {
                     result = text.caCalculationData;
                     var id = result.id;
                     nui.get("mainId").setValue(id);
-                    showMsg("保存成功", "S");
+                    //弹出打印界面
+                    nui.confirm("是否打印购车预算", "友情提示",function(action){
+             	       if(action == "ok"){
+             	    	  var saleType = caCalculationData.saleType;
+             	    	   if(saleType=="1558580770894"){
+             	    		  salesOnPrint(1);
+             	    	   }else{
+             	    		  salesOnPrint(2);
+             	    	   }
+             	       }
+                    });
+                    //showMsg("保存成功", "S");
                 }
                 nui.unmask(document.body);
             }
         });
     }
+}
+
+function getSaleType(){
+	 var caCalculationData = form.getData();
+	 return caCalculationData;
+}
+function salesOnPrint(p){
+    var params = {};
+    params.serviceId = mainF.id;
+    params.billType = 1;
+    params.guestFullName = mainF.fullName;
+    params.carModelName	= mainF.carModelName; 
+    var url = webPath + contextPath;
+    switch (p) {
+        case 1:
+            url = url + "/sales/sales/print/cashPurchases.jsp";
+            break;
+        case 2:
+            url = url + "/sales/sales/print/printLoanDetail .jsp";
+            break;
+    }
+    nui.open({
+        url: url,
+        title: "打印",
+        width: "100%",
+        height: "100%",
+        onload: function() {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.SetData(params);
+        },
+        ondestroy: function(action) {
+
+        }
+    });
 }
 
 function CloseWindow(action) {

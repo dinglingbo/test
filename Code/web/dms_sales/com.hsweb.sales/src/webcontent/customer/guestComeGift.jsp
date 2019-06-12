@@ -65,12 +65,12 @@
                         </div>
                         <div field="amt" name="amt" width="100px" headerAlign="center" header="金额" summaryType="sum">
                         </div>
-                        <div field="costPrice" name="costPrice" width="100px" headerAlign="center" header="成本单价">
+                        <!-- <div field="costPrice" name="costPrice" width="100px" headerAlign="center" header="成本单价">
                             <input class="nui-textbox" property="editor" vtype="float">
                         </div>
                         <div field="costAmt" name="costAmt" width="100px" headerAlign="center" header="成本金额">
                             <input class="nui-textbox" property="editor" vtype="float">
-                        </div>
+                        </div> -->
                         <div field="remark" name="remark" width="100px" headerAlign="center" header="备注内容">
                             <input class="nui-textarea" property="editor">
                         </div>
@@ -123,56 +123,14 @@ $(document).ready(function (){
     		e.cancel = true;
     		return;
     	}
-        var jpdata = jpGrid.getSelecteds();
-        var jpDetailData = jpDetailGrid.getData();
-        for (var i = 0, l = jpdata.length; i < l; i++) {
-            var msg = jpDetailData.find(jpDetailData => jpDetailData.giftId == jpdata[i].id);
-            if (!msg) {
-                var newRow = {
-                    giftId: jpdata[i].id,
-                    giftName: jpdata[i].name,
-                    billType:1
-                };
-                jpDetailGrid.addRow(newRow, jpDetailData.length);
-            };
-        }
-        jpDetailData = jpDetailGrid.getData();
-        for (var i = 0, l = jpDetailData.length; i < l; i++) {
-            var row = jpDetailGrid.getRow(i);
-            var msg = jpdata.find(jpdata => jpdata.id == jpDetailData[i].giftId);
-            if (!msg) {
-                jpDetailGrid.commitEdit();
-                jpDetailGrid.removeRow(row, false);
-            };
-        };
+        selectJpGrid();
     });
     jpGrid.on("deselect", function(e) {
         if(statusF>0){
     		e.cancel = true;
     		return;
     	}
-        var jpdata = jpGrid.getSelecteds();
-        var jpDetailData = jpDetailGrid.getData();
-        for (var i = 0, l = jpdata.length; i < l; i++) {
-            var msg = jpDetailData.find(jpDetailData => jpDetailData.giftId == jpdata[i].id);
-            if (!msg) {
-                var newRow = {
-                    giftId: jpdata[i].id,
-                    giftName: jpdata[i].name,
-                    billType:1
-                };
-                jpDetailGrid.addRow(newRow, jpDetailData.length);
-            };
-        }
-        jpDetailData = jpDetailGrid.getData();
-        for (var i = 0, l = jpDetailData.length; i < l; i++) {
-            var row = jpDetailGrid.getRow(i);
-            var msg = jpdata.find(jpdata => jpdata.id == jpDetailData[i].giftId);
-            if (!msg) {
-                jpDetailGrid.commitEdit();
-                jpDetailGrid.removeRow(row, false);
-            };
-        };
+       selectJpGrid();
     });
      jpGrid.on("load", function(e) {
         var data = jpDetailGrid.getData();
@@ -201,14 +159,13 @@ $(document).ready(function (){
     jpDetailGrid.on("cellendedit", function(e) {
         var row = e.row,
             field = e.field;
-        if (field == "price" || field == "qty"  || field == "costPrice") {
+        if (field == "price" || field == "qty" ) {
             var price = row.price || 0;
             var qty = row.qty || 0;
-            var costPrice = row.costPrice || 0;
+            //var costPrice = row.costPrice || 0;
             var value = (price * qty).toFixed(2);
-            var value2 = (costPrice * qty).toFixed(2);
-            var newRow = { amt: value ,
-                           costAmt:value2
+            //var value2 = (costPrice * qty).toFixed(2);
+            var newRow = { amt: value 
                   };
             jpDetailGrid.updateRow(row, newRow);
             //编辑完成后调用购车计算表将精品加装金额赋值上去,需要在购车预算里面计算这个的值
@@ -233,6 +190,31 @@ $(document).ready(function (){
      }  
 });
 
+function selectJpGrid(){
+        var jpdata = jpGrid.getSelecteds();
+        var jpDetailData = jpDetailGrid.getData();
+        for (var i = 0, l = jpdata.length; i < l; i++) {
+            var msg = jpDetailData.find(jpDetailData => jpDetailData.giftId == jpdata[i].id);
+            if (!msg) {
+                var newRow = {
+                    giftId: jpdata[i].id,
+                    giftName: jpdata[i].name,
+                    billType:1
+                };
+                jpDetailGrid.addRow(newRow, jpDetailData.length);
+            };
+        }
+        jpDetailData = jpDetailGrid.getData();
+        for (var i = 0, l = jpDetailData.length; i < l; i++) {
+            var row = jpDetailGrid.getRow(i);
+            var msg = jpdata.find(jpdata => jpdata.id == jpDetailData[i].giftId);
+            if (!msg) {
+                jpDetailGrid.commitEdit();
+                jpDetailGrid.removeRow(row, false);
+            };
+        };
+
+}
 /* var requiredField = {
 	name : "客户名称",
 	source:"客户来源",

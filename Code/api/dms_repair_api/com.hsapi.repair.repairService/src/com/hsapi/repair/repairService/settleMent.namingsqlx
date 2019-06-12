@@ -241,9 +241,10 @@
 	</select>
 	
 	<select id="getNullServiceTypeItem" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-		SELECT id, service_type_id as serviceTypeId, sales_deduct_origin_value as salesDeductOriginValue, 
-		       tech_deduct_origin_value AS techDeductOriginValue, 
-		       advisor_deduct_origin_value AS advisorDeductOriginValue
+		SELECT id, service_type_id as serviceTypeId, sales_deduct_type as salesDeductType,
+		       sales_deduct_origin_value as salesDeductOriginValue, 
+		       tech_deduct_type as techDeductType, tech_deduct_origin_value AS techDeductOriginValue, 
+		       advisor_deduct_type as advisorDeductType, advisor_deduct_origin_value AS advisorDeductOriginValue
 		from rps_item 
 		where service_id = #serviceId# and service_type_id > 0 and (sales_deduct_origin_value is null 
 		      or tech_deduct_origin_value is null 

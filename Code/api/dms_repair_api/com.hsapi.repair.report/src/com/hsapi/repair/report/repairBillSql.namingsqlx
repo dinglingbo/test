@@ -284,7 +284,19 @@
 	<select id="queryPartSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT  
 <isNotEmpty prepend="" property="groupByQuery">
-	        #groupByQuery#      
+	       <isEqual  prepend=""  property="groupByType"   compareValue="0">
+        DATE_FORMAT(c.out_date,'%Y-%m-%d')  as groupName,
+     </isEqual>
+        
+     
+      <isEqual  prepend="" property="groupByType"  compareValue="1">
+	     	 b.service_type_id as groupName,
+	    </isEqual> 
+	     
+	   <isEqual  prepend="" property="groupByType"  compareValue="2">
+	     	 b.part_code as groupName,
+	     	 b.part_name as partName,
+	    </isEqual>       
 	        </isNotEmpty>
  			SUM(a.true_cost) as trueCost,
 			SUM(b.subtotal) as subtotal,
@@ -309,9 +321,17 @@
                 (c.out_date &lt; #endDate#)
             </isNotEmpty>
  			
-<isNotEmpty prepend="" property="groupByType">
-	        #groupByType#      
-	        </isNotEmpty>
+		<isEqual  prepend="" property="groupByType"   compareValue="0">
+	        GROUP BY DATE_FORMAT(c.out_date,'%Y-%m-%d')
+	   </isEqual>
+	   
+        <isEqual  prepend="" property="groupByType"  compareValue="1">
+	     	group by b.service_type_id
+	    </isEqual>
+	    
+	    <isEqual  prepend="" property="groupByType"  compareValue="2">
+	     	group by b.part_code , b.part_name
+	    </isEqual>
 	</select>
 	
 	

@@ -191,6 +191,10 @@
       <process:to type="query">m:userObject/attributes/headPortrait</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">member/imDisabled</process:from>
+      <process:to type="query">m:userObject/attributes/imDisabled</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">member/imCode</process:from>
       <process:to type="query">m:userObject/attributes/imCode</process:to>
     </process:copy>

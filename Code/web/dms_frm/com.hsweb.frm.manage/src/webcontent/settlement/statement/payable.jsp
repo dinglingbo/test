@@ -250,14 +250,14 @@
 							<td width="200" height="58">
 								车辆：
 								
-								<span style="padding-top: 2px;"  id="carNo" name="carNo">></span>
+								<span style="padding-top: 2px;"  id="carNo" name="carNo"></span>
 							</td>
 							<td align="center">
-								客户：
+								往来单位：
 								
 									<span style="padding-top: 2px;" id="guest" name="guest"></span>
 								
-								&nbsp;&nbsp;
+								
 								<span name="mobile" id="mobile"></span>
 							</td>
 							<td align="center" style="padding-left: 10px;">

@@ -12,7 +12,7 @@
 <head>
     <title>员工管理</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />	
-    <script src="<%=webPath + contextPath%>/common/js/employeeQuery.js?v=2.1.12" type="text/javascript"></script>    
+    <script src="<%=webPath + contextPath%>/common/js/employeeQuery.js?v=2.1.18" type="text/javascript"></script>    
 </head>
 <body>
 	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
@@ -46,6 +46,8 @@
 					<a class="nui-button" plain="true" id="selectComBtn" name="selectComBtn" iconCls="" onclick="selectCom()" ><span class="fa fa-check fa-lg"></span>&nbsp;新增兼职公司</a>
 					<a class="nui-button" plain="true" id="lookComBtn" name="lookComBtn" iconCls="" onclick="lookCom()" ><span class="fa fa-search fa-lg"></span>&nbsp;查看兼职公司</a>
 					<a class="nui-button" plain="true" iconCls="" onclick="importGuest()"  visible="false" id="importGuestBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
+					<span class="separator"></span>
+					<a class="nui-button" plain="true" id="btnisIM" name="btnisIM" iconCls="" onclick="stoporstartIM()" ><span class="fa fa-key"></span>&nbsp;开通IM</a>
 				</td>
 			</tr>
 		</table>
@@ -75,6 +77,7 @@
 						<div id="tel" field="tel" headerAlign="center" allowSort="true" visible="true" width="60px">电话</div>
 						<div id="isDimission" field="isDimission" headerAlign="center" allowSort="true" visible="true" width="40px">是否离职</div>
 						<div id="isOpenAccount" field="isOpenAccount" headerAlign="center" allowSort="true" visible="true" width="50px">是否开通系统</div>
+						<div id="imCode" field="imCode" headerAlign="center" allowSort="true" visible="true" width="50px">是否开通IM</div>
 						<div id="systemAccount" field="systemAccount" headerAlign="center" allowSort="true" visible="true" width="50px">登陆账号</div>
 						<div id="recorder" field="recorder" headerAlign="center" allowSort="true" visible="true" width="60px">建档人</div>
 						<div id="recordDate" field="recordDate" headerAlign="center" allowSort="true" visible="true" width="60px" dateFormat="yyyy-MM-dd HH:mm">建档日期</div>

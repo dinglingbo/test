@@ -66,6 +66,18 @@ public class UserAccountController extends BaseController {
 		userAccountServiceImpl.save(userAccount);
 		return putMsgToJsonString(Constants.WebSite.SUCCESS,"",0,userAccount);
 	}
+
+	/**
+	 * 保存
+	 */
+	@RequestMapping(value="/ins", produces="application/json;charset=UTF-8", method = RequestMethod.POST)
+	@ResponseBody
+	public Object ins(@RequestBody UserAccountEntity userAccount){
+		userAccount.setDisablestate(0);
+		userAccount.setIsdel(0);
+		userAccountServiceImpl.save(userAccount);
+		return putMsgToJsonString(Constants.WebSite.SUCCESS,"",0,userAccount);
+	}
 	
 	/**
 	 * 修改

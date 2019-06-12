@@ -54,33 +54,12 @@ $(document).ready(function(v) {
     costDetailGrid2.setUrl(costDetailGridUrl);
 
     jpGrid.load();
-    jpGrid.on("rowclick", function(e) {
-        var billFormData = billForm.getData(true); //主表信息
-        if (billFormData.status != 0) {
-            return;
-        }
-        var jpdata = jpGrid.getSelecteds();
-        var jpDetailData = jpDetailGrid.getData();
-        for (var i = 0, l = jpdata.length; i < l; i++) {
-            var msg = jpDetailData.find(jpDetailData => jpDetailData.giftId == jpdata[i].id);
-            if (!msg) {
-                var newRow = {
-                    giftId: jpdata[i].id,
-                    giftName: jpdata[i].name,
-                    billType: 2
-                };
-                jpDetailGrid.addRow(newRow, jpDetailData.length);
-            };
-        }
-        jpDetailData = jpDetailGrid.getData();
-        for (var i = 0, l = jpDetailData.length; i < l; i++) {
-            var row = jpDetailGrid.getRow(i);
-            var msg = jpdata.find(jpdata => jpdata.id == jpDetailData[i].giftId);
-            if (!msg) {
-                jpDetailGrid.commitEdit();
-                jpDetailGrid.removeRow(row, false);
-            };
-        };
+    jpGrid.on("select", function(e) {
+        selectJPGrid();
+    });
+
+    jpGrid.on("deselect", function(e) {
+        selectJPGrid();
     });
 
     jpGrid.on("load", function(e) {
@@ -264,51 +243,13 @@ $(document).ready(function(v) {
         }
     });
 
-    costGrid.on("rowclick", function(e) {
-        var billFormData = billForm.getData(true); //主表信息
-        if (billFormData.status == 2 && nui.get("typeMsg").value == 1) {
-            var data = costGrid.getSelecteds();
-            var data1 = costDetailGrid.getData();
-            var data2 = costDetailGrid2.getData();
-            for (var i = 0, l = data.length; i < l; i++) {
-                var newRow = {
-                    costName: data[i].name,
-                    costId: data[i].id,
-                    auditSign: 0
-                };
-                if (data[i].name == "购置税" || data[i].name == "保险费") {
-                    var msg = data1.find(data1 => data1.costId == data[i].id);
-                    if (!msg) {
-                        newRow.type = 1;
-                        costDetailGrid.addRow(newRow, costDetailGrid.length);
-                    };
-                } else {
-                    var msg = data2.find(data2 => data2.costId == data[i].id);
-                    if (!msg) {
-                        newRow.type = 2;
-                        costDetailGrid2.addRow(newRow, costDetailGrid2.length);
-                    };
-                };
-            }
-            data1 = costDetailGrid.getData();
-            for (var i = 0, l = data1.length; i < l; i++) {
-                var row = costDetailGrid.getRow(i);
-                var msg = data.find(data => data.id == data1[i].costId);
-                if (!msg) {
-                    costDetailGrid.commitEdit();
-                    costDetailGrid.removeRow(row, false);
-                };
-            }
-            data2 = costDetailGrid2.getData();
-            for (var i = 0, l = data2.length; i < l; i++) {
-                var row = costDetailGrid2.getRow(i);
-                var msg = data.find(data => data.id == data2[i].costId);
-                if (!msg) {
-                    costDetailGrid2.commitEdit();
-                    costDetailGrid2.removeRow(row, false);
-                };
-            };
-        }
+
+    costGrid.on("select", function(e) {
+        selectCostGrid();
+    });
+
+    costGrid.on("deselect", function(e) {
+        selectCostGrid();
     });
 
     var dictDefs = { "billTypeId": "DDT20130703000008", "saleType": 10392 };
@@ -387,6 +328,9 @@ $(document).ready(function(v) {
 
 function checkMsg(e) { //保存操作前进行验证
     var billFormData = billForm.getData(true); //主表信息
+    if (billFormData.id) {
+        searchSalesMain(billFormData.id);
+    }
     if (e == 3) {
         if (billFormData.status == "") {
             showMsg("当前工单尚未保存，无需作废！", "W");
@@ -1039,6 +983,82 @@ function OnModelCellBeginEdit(e) {
 function changeValueMsg(e) {
     var saleType = nui.get("saleType").value;
     document.getElementById("caCalculation").contentWindow.setSaleType(saleType);
+}
+
+function selectJPGrid() {
+    var billFormData = billForm.getData(true); //主表信息
+    if (billFormData.status != 0) {
+        return;
+    }
+    var jpdata = jpGrid.getSelecteds();
+    var jpDetailData = jpDetailGrid.getData();
+    for (var i = 0, l = jpdata.length; i < l; i++) {
+        var msg = jpDetailData.find(jpDetailData => jpDetailData.giftId == jpdata[i].id);
+        if (!msg) {
+            var newRow = {
+                giftId: jpdata[i].id,
+                giftName: jpdata[i].name,
+                billType: 2
+            };
+            jpDetailGrid.addRow(newRow, jpDetailData.length);
+        };
+    }
+    jpDetailData = jpDetailGrid.getData();
+    for (var i = 0, l = jpDetailData.length; i < l; i++) {
+        var row = jpDetailGrid.getRow(i);
+        var msg = jpdata.find(jpdata => jpdata.id == jpDetailData[i].giftId);
+        if (!msg) {
+            jpDetailGrid.commitEdit();
+            jpDetailGrid.removeRow(row, false);
+        };
+    };
+}
+
+function selectCostGrid() {
+    var billFormData = billForm.getData(true); //主表信息
+    if (billFormData.status == 2 && nui.get("typeMsg").value == 1) {
+        var data = costGrid.getSelecteds();
+        var data1 = costDetailGrid.getData();
+        var data2 = costDetailGrid2.getData();
+        for (var i = 0, l = data.length; i < l; i++) {
+            var newRow = {
+                costName: data[i].name,
+                costId: data[i].id,
+                auditSign: 0
+            };
+            if (data[i].name == "购置税" || data[i].name == "保险费") {
+                var msg = data1.find(data1 => data1.costId == data[i].id);
+                if (!msg) {
+                    newRow.type = 1;
+                    costDetailGrid.addRow(newRow, costDetailGrid.length);
+                };
+            } else {
+                var msg = data2.find(data2 => data2.costId == data[i].id);
+                if (!msg) {
+                    newRow.type = 2;
+                    costDetailGrid2.addRow(newRow, costDetailGrid2.length);
+                };
+            };
+        }
+        data1 = costDetailGrid.getData();
+        for (var i = 0, l = data1.length; i < l; i++) {
+            var row = costDetailGrid.getRow(i);
+            var msg = data.find(data => data.id == data1[i].costId);
+            if (!msg) {
+                costDetailGrid.commitEdit();
+                costDetailGrid.removeRow(row, false);
+            };
+        }
+        data2 = costDetailGrid2.getData();
+        for (var i = 0, l = data2.length; i < l; i++) {
+            var row = costDetailGrid2.getRow(i);
+            var msg = data.find(data => data.id == data2[i].costId);
+            if (!msg) {
+                costDetailGrid2.commitEdit();
+                costDetailGrid2.removeRow(row, false);
+            };
+        };
+    }
 }
 
 function onDrawDate(e) {

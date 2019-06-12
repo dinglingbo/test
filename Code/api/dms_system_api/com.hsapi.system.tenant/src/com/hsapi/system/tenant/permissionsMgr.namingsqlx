@@ -113,6 +113,8 @@
 			a.modifier as modifier,
 			a.modify_date as modifyDate,
 			a.background_color as backgroundColor,
+			a.im_code as imCode,
+			a.im_disabled as imDisabled,
 			a.is_can_below_cost as isCanBelowCost,
 			b.`code` as compCode,
 			b.`name` as compName,

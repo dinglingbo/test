@@ -12,7 +12,7 @@
 
 				<head>
 					<title>验车入库添加</title>
-					<script src="<%=request.getContextPath()%>/sales/inventory/js/carSalesPutStorageDetails.js?v=1.0.7"></script>
+					<script src="<%=request.getContextPath()%>/sales/inventory/js/carSalesPutStorageDetails.js?v=1.1.1"></script>
 					<style type="text/css">
 						.title {
 							width: 90px;
@@ -100,7 +100,7 @@
 								<tr>
 									<td class="title required" align="right">运输公司:</td>
 									<td colspan="3" style="width:38%">
-										<input id="logisticCompId" name="logisticCompId" class="nui-buttonedit" emptyText="请选择运输公司..." onbuttonclick="selectSupplier('logisticCompId')"
+										<input id="logisticCompId" name="logisticCompId" class="nui-buttonedit" emptyText="请选择运输公司..." onbuttonclick="selectTransport('logisticCompId')"
 										 onvaluechanged="onGuestValueChanged" width="100%" placeholder="请选择供应商" selectOnFocus="true" />
 									</td>
 									<td class="form_label" align="right">物流专员:</td>
@@ -123,19 +123,6 @@
 										<input id="carModelId" name="carModelId" class="nui-textbox" visible="false" width="100%"/>
            								<input id="carModelName" name="carModelName" class="nui-buttonedit"  onbuttonclick="onButtonEdit" width="100%"/>      
 									</td>
-									<td class="title required" align="right">车架号（VIN）:</td>
-									<td>
-										<input class="nui-textbox" name="carFrameNo" id="carFrameNo"/>
-									</td>
-									<td class="title" align="right">公里数:</td>
-									<td>
-										<input name="kilometers" id="kilometers" class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"   allowNull="false" showButton="false" />
-									</td>
-								</tr>
-
-
-
-								<tr>
 									<td class="title required" align="right">车身颜色:</td>
 									<td>
 										<input name="frameColorId" id="frameColorId" class="nui-combobox" textField="name" valueField="customid" allowInput="true" 
@@ -144,6 +131,19 @@
 									<td class="title required" align="right">内饰颜色:</td>
 									<td>
 										<input name="interialColorId" id="interialColorId" class="nui-combobox" textField="name" valueField="customid" allowInput="true" />
+									</td>
+								</tr>
+
+
+
+								<tr>
+									<td class="title required" align="right">车架号（VIN）:</td>
+									<td>
+										<input class="nui-textbox" name="vin" id="vin" width="100%" />
+									</td>
+									<td class="title" align="right">公里数:</td>
+									<td>
+										<input name="kilometers" id="kilometers" class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"   allowNull="false" showButton="false" />
 									</td>
 									<td class="form_label" align="right">生产日期:</td>
 									<td>

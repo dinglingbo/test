@@ -16,18 +16,22 @@ $(document).ready(function(v) {
     grid.on("drawcell", function(e) {
         var field = e.field;
         if (field == "frameColorId") {
-            frameColorData = nui.get("frameColorId").getData();
-            e.cellHtml = frameColorData.find(frameColorData => frameColorData.id == e.value).name;
+            if (e.value) {
+                frameColorData = nui.get("frameColorId").getData();
+                e.cellHtml = frameColorData.find(frameColorData => frameColorData.customid == e.value).name;
+            }
         }
         if (field == "interialColorId") {
-            interialColorData = nui.get("interialColorId").getData();
-            e.cellHtml = interialColorData.find(interialColorData => interialColorData.id == e.value).name;
+            if (e.value) {
+                interialColorData = nui.get("interialColorId").getData();
+                e.cellHtml = interialColorData.find(interialColorData => interialColorData.customid == e.value).name;
+            }
         }
     });
 });
 
 function SetData(carModelId) {
-    var params = { carModelId: carModelId };
+    var params = { carModelId: carModelId, carLock: 0 };
     grid.load({ params: params });
 }
 
@@ -38,7 +42,7 @@ function getSelectedValue() {
 
 function selectCar() {
     var data = grid.getSelected();
-    data.billStatus = 1;
+    data.carStatus = 1;
     nui.ajax({
         url: baseUrl + "sales.save.updateCheckEnter.biz.ext",
         data: {

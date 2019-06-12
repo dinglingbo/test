@@ -162,9 +162,9 @@
   	<input name="frameColorId" id="frameColorId" class="nui-combobox" dataFied="frameColorIdList" textField="name" valueField="customid" allowInput="true" visible="false"/>
     <input name="interialColorId" id="interialColorId" class="nui-combobox" dataFied="interialColorIdList" textField="name" valueField="customid" allowInput="true" visible="false"/> 				
                   <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-                    <a class="nui-button" plain="true" iconCls="" id="addPartBtn" onclick="addProcurement()"><span class="fa fa-plus fa-lg"></span>&nbsp;选择采购订单</a>
+                    <!-- <a class="nui-button" plain="true" iconCls="" id="addPartBtn" onclick="addProcurement()"><span class="fa fa-plus fa-lg"></span>&nbsp;选择采购订单</a> -->
                     <a class="nui-button" plain="true" iconCls="" id="addPartBtn" onclick="addPutStorage()"><span class="fa fa-plus fa-lg"></span>&nbsp;选择入库单</a>
-                    <a class="nui-button" plain="true" iconCls="" id="addPartBtn" onclick="addPart()"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
+<!--                     <a class="nui-button" plain="true" iconCls="" id="addPartBtn" onclick="addPart()"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a> -->
                     </div>
                     <div class="nui-fit">
                     <div id="rightGrid" class="nui-datagrid" 
@@ -198,7 +198,7 @@
                                     <div field="interialColorId" name="interialColorId"  width="60" headerAlign="center" header="内饰颜色">
                                     </div>
                                     <div field="vin" name="vin" width="40" headerAlign="center" header="车架号（VIN）"></div>
-                                    <div field="engineNo" name="engineNo" width="40" headerAlign="center" header="发动机号"></div>
+                                    <!-- <div field="engineNo" name="engineNo" width="40" headerAlign="center" header="发动机号"></div> -->
                                     <div field="orderPrice" numberFormat="0.0000" width="60" headerAlign="center" header="进价">
                                       <input property="editor" vtype="float" class="nui-textbox"/>
                                     </div> 

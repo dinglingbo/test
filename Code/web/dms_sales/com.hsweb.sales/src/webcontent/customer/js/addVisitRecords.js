@@ -147,8 +147,8 @@ function onButtonEdit(e) {
 	if(action == 'ok'){
 	var row = iframe.contentWindow.getRow();
 	nui.get("carModelId").setValue(row.id);
-	nui.get("carModelName").setValue(row.name);
-	nui.get("carModelName").setText(row.name);
+	nui.get("carModelName").setValue(row.fullName);
+	nui.get("carModelName").setText(row.fullName);
 	 }
     }
   });
@@ -164,6 +164,10 @@ function save(){
 	if (guestComeForm.isValid() == false) return;
 	if(guestCome.status==1){
 		showMsg("来访登记已归档，不能修改","W");
+		return;
+	}
+	if(guestCome.status==2){
+		showMsg("来访登记已转销售，不能修改","W");
 		return;
 	}
 	var text = saleAdvisorIdEl.getText();
@@ -291,6 +295,7 @@ function setInitData(params){
     }
 }
 
+var saleTypeF = null;
 function buyCarCount(){
 	var main = guestComeForm.getData();
 	var status = main.status || 0;
@@ -313,8 +318,8 @@ function buyCarCount(){
 			iframe.contentWindow.setShowSave(main);
 			},
 			ondestroy: function (action) {
-			var iframe = this.getIFrameEl();
-			
+			 var iframe = this.getIFrameEl();
+			 saleTypeF = iframe.contentWindow.getSaleType();
 		    }
 		 });
 	}else{
@@ -450,35 +455,45 @@ function saveSaleMain(){
 }
 
 
-function salesOnPrint(p) {
-    var billFormData = guestComeForm.getData(true); //主表信息
-    var params = {};
-    params.serviceId = billFormData.id;
-    params.billType = 1;
-    params.guestFullName = billFormData.fullName;
-    params.carModelName	= billFormData.carModelName; 
-    var url = webPath + contextPath;
-    switch (p) {
-        case 1:
-            url = url + "/sales/sales/print/cashPurchases.jsp";
-            break;
-        case 2:
-            url = url + "/sales/sales/print/printLoanDetail .jsp";
-            break;
-    }
-    nui.open({
-        url: url,
-        title: "打印",
-        width: "100%",
-        height: "100%",
-        onload: function() {
-            var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(params);
-        },
-        ondestroy: function(action) {
+function salesOnPrint(){
+	var p = null;
+	if(saleTypeF){
+		if(saleTypeF.saleType=="1558580770894"){
+			p=1;
+		}else{
+			p=2;
+		}
+		var billFormData = guestComeForm.getData(true); //主表信息
+	    var params = {};
+	    params.serviceId = billFormData.id;
+	    params.billType = 1;
+	    params.guestFullName = billFormData.fullName;
+	    params.carModelName	= billFormData.carModelName; 
+	    var url = webPath + contextPath;
+	    switch (p) {
+	        case 1:
+	            url = url + "/sales/sales/print/cashPurchases.jsp";
+	            break;
+	        case 2:
+	            url = url + "/sales/sales/print/printLoanDetail .jsp";
+	            break;
+	    }
+	    nui.open({
+	        url: url,
+	        title: "打印",
+	        width: "100%",
+	        height: "100%",
+	        onload: function() {
+	            var iframe = this.getIFrameEl();
+	            iframe.contentWindow.SetData(params);
+	        },
+	        ondestroy: function(action) {
 
-        }
-    });
+	        }
+	    });
+	}else{
+		return;
+	}
 }
 
 function onMobileValidation(e)
@@ -489,6 +504,62 @@ function onMobileValidation(e)
             e.errorText = "必须输入正确的手机号码";
             e.isValid = false;
         }
+    }
+}
+
+function onDrawDate(e) {
+    var date = e.date;
+    var d = new Date();
+    if (date.getTime() < (d.getTime() - 24*60*60*1000)) {
+    	e.allowSelect = false;
+        
+    }
+}
+var queryGuestListUrl =  apiPath + saleApi + "/sales.custormer.queryCustomerListByMobile.biz.ext";
+var mobileF = null;
+var n = 1;
+function queryByMobile(e){
+	var mobile = e.value;
+	mobile = mobile.replace(/\s*/g,"");
+	if(mobileF == mobile && n==0){
+		return;
+	}else{
+		mobileF = mobile;
+		n = 0;
+	}
+	var params = 
+	      {
+	        "mobile":mobile
+	      };
+	if(mobile.length==11){
+		nui.mask({
+	        el : document.body,
+		    cls : 'mini-mask-loading',
+		    html : '加载中...'
+	    });
+		nui.ajax({
+			url : queryGuestListUrl,
+			type : "post",
+			data : JSON.stringify({
+				params:params,
+				token: token
+			}),
+		success:function(data) {
+			nui.unmask(document.body);
+			var list = data.list;
+			if(list.length){
+				var guestCome = guestComeForm.getData("true");
+				var temp = list[0];
+				guestCome.fullName = temp.fullName;
+				guestCome.guestId = temp.id;
+				guestComeForm.setData(guestCome);
+			  }
+			 },
+			error:function(jqXHR, textStatus, errorThrown) {
+				nui.unmask(document.body);
+				console.log(jqXHR.responseText);
+			}
+	  });
     }
 }
 

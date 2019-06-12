@@ -2,9 +2,9 @@
  * Created by Administrator on 2018/2/1.
  */
 var statusList = [{id:"0",name:"联系人"},{id:"1",name:"联系电话"}];
-var partApiUrl  = apiPath + saleApi + "/";
-var rightGridUrl = partApiUrl+"sales.inventory.queryPchsOrderMainList.biz.ext";
-var getDetailPartUrl=partApiUrl+"sales.inventory.queryPchsOrderDetailList.biz.ext";
+var saleApiUrl  = apiPath + saleApi + "/";
+var rightGridUrl = saleApiUrl+"sales.inventory.queryPchsOrderMainList.biz.ext";
+var getDetailPartUrl=saleApiUrl+"sales.inventory.queryPchsOrderDetailList.biz.ext";
 var innerPartGrid = null;
 var basicInfoForm = null;
 var searchBeginDate = null;

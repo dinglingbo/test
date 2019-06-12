@@ -439,6 +439,16 @@
                         document.getElementById("carModelName").innerHTML = params.carModelName || "";
                     }
 
+                  //查询厂商指导价,根据carModelId查询
+                  
+                 /*  $.post(baseUrl + "sales.search.searchSalesMain.biz.ext?params/id=" + serviceId, function(res) {
+                    if (res.data.length > 0) {
+                        var temp = res.data[0];
+                        document.getElementById("guestFullName").innerHTML = temp.guestFullName || "";
+                        document.getElementById("carModelName").innerHTML = temp.carModelName || "";
+                    }
+                 });
+                  */
                 }
 
                 function CloseWindow(action) {

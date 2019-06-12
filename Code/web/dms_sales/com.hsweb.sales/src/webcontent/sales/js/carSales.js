@@ -49,32 +49,30 @@ $(document).ready(function(v) {
     mainGrid.on("drawcell", function(e) {
         var field = e.field,
             value = e.value;
-        if (field == "submiPlanDate" || field == "orderDate") {
-            e.cellHtml = format(value, 'yyyy-MM-dd HH:mm:ss');
-        }
-        if (field == "status") {
-            var value1 = value == 0 ? "草稿" : (value == 1 ? "待审" : (value == 2 ? "已审" : (value == 3 ? "作废" : "")));
-            e.cellHtml = value1;
+        if (field == "submitPlanDate" || field == "orderDate") {
+            if (value) {
+                e.cellHtml = format(value, 'yyyy-MM-dd HH:ss');
+            }
         }
     });
 
     mainGrid2.on("drawcell", function(e) {
         var field = e.field,
             value = e.value;
-        if (field == "submiPlanDate") {
-            e.cellHtml = format(value, 'yyyy-MM-dd HH:mm:ss');
-        }
-        if (field == "status") {
-            var value1 = value == 0 ? "草稿" : (value == 1 ? "待审" : (value == 2 ? "已审" : (value == 3 ? "作废" : "")));
-            e.cellHtml = value1;
+        if (field == "submitPlanDate") {
+            if (value) {
+                e.cellHtml = format(value, 'yyyy-MM-dd HH:ss');
+            }
         }
     });
 
     mainGrid3.on("drawcell", function(e) {
         var field = e.field,
             value = e.value;
-        if (field == "submitTrueDate" || field == "submiPlanDate" || field == "financialEndDate") {
-            e.cellHtml = format(value, 'yyyy-MM-dd HH:mm:ss');
+        if (field == "submitTrueDate" || field == "submitPlanDate" || field == "financialEndDate") {
+            if (value) {
+                e.cellHtml = format(value, 'yyyy-MM-dd HH:ss');
+            }
         }
     });
 
@@ -190,16 +188,16 @@ function onSearch() {
             break;
     }
     if (nui.get("typeMsg").value == 1) {
-        mainGrid.load({ params: param });
+        mainGrid.load({ params: param, type: 1 });
     }
     if (nui.get("typeMsg").value == 2) {
         param.status = "1,2";
-        mainGrid2.load({ params: param });
+        mainGrid2.load({ params: param, type: 1 });
     }
     if (nui.get("typeMsg").value == 3) {
         param.status = 2;
         param.isSettle = 1;
-        mainGrid3.load({ params: param });
+        mainGrid3.load({ params: param, type: 1 });
     }
 }
 
@@ -223,13 +221,12 @@ function openPage(params) {
     item.text = text;
     item.url = webPath + contextPath + "/sales/sales/editCarSales.jsp";
     item.iconCls = "fa fa-file-text";
+    params.typeMsg = nui.get("typeMsg").value;
     window.parent.activeTabAndInit(item, params);
 }
 
 function addAndEdit(e) {
-    var params = {
-        typeMsg: nui.get("typeMsg").value
-    };
+    var params = {};
     if (e == 2) {
         var row = mainGrid.getSelected() || mainGrid2.getSelected() || mainGrid3.getSelected();
         params.id = row.id;

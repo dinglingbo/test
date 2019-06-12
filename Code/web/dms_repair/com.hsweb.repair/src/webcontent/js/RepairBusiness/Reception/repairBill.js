@@ -1116,8 +1116,8 @@ function save(){
 	partF = "S";
 	//判断里程
 	var last =  $("#lastComeKilometers").text() || 0;
-	var enterKilometers = nui.get("enterKilometers").getValue();
-	if(enterKilometers < last){
+	var enterKilometers = nui.get("enterKilometers").getValue() || 0;
+	if(enterKilometers>0 && enterKilometers < last){
 		showMsg("进厂里程不能小于上次里程","W");
 		return;
 	}
@@ -1375,14 +1375,13 @@ function saveNoshowMsg(callback){
         
     });
 }
-
+/*enterOilMass : "进厂油量",
+enterKilometers : "进厂里程",*/
 var requiredField = {
     carNo : "车牌号",
     serviceTypeId : "业务类型",
     mtAdvisorId : "服务顾问",
     guestId : "客户",
-    enterOilMass : "进厂油量",
-    enterKilometers : "进厂里程",
     planFinishDate : "预计交车"
 };
 var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
@@ -1483,6 +1482,12 @@ function sureMT(){
         });
     }
 }
+
+
+var requiredField2 = {
+	enterOilMass : "进厂油量",
+	enterKilometers : "进厂里程"
+};
 function finish(){
     var data = billForm.getData();
     var serviceId = data.id || 0;
@@ -1499,49 +1504,107 @@ function finish(){
             showMsg("工单未施工!","W"); 
             return;
         }
+        //判断里程,进厂油量是否填写
+        var desData = describeForm.getData(true);
+        for(var v in desData){
+            data[v] = desData[v];
+        }
+    	for ( var key in requiredField2) {
+    		if (!data[key] || $.trim(data[key]).length == 0) {
+                nui.get(key).focus();
+                showMsg(requiredField2[key] + "不能为空!","W");
+    			return;
+    		}
+        }
+    	var last =  $("#lastComeKilometers").text() || 0;
+    	var enterKilometers = nui.get("enterKilometers").getValue();
+    	if(enterKilometers < last){
+    		showMsg("进厂里程不能小于上次里程","W");
+    		return;
+    	}
+    	//保存工单
+	    var data = billForm.getData(true);
+	    if(data.planFinishDate) {
+			data.planFinishDate = format(data.planFinishDate, 'yyyy-MM-dd HH:mm:ss');
+		}
+	    if(data.enterDate) {
+			data.enterDate = format(data.enterDate, 'yyyy-MM-dd HH:mm:ss');
+		}
+    	data.lastEnterKilometers = $("#lastComeKilometers").text() || 0;
         var params = {
-            serviceId:data.id||0
+            data:{
+                maintain:data
+            }
         };
-        doFinishWork(params, function(data){
-            data = data||{};
-            if(data.action){
-                var action = data.action||"";
-                if(action == 'ok'){
-                    billForm.setData([]);
-                    data.carModel = carModel;
-                    billForm.setData(data);
-                    var status = data.status||0;
-                    var isSettle = data.isSettle||0;
-                    doSetStyle(status, isSettle);
-                    var p1 = {
-                            interType: "package",
-                            data:{
-                                serviceId: serviceId
-                            }
-                        };
-                        var p2 = {
-                            interType: "item",
-                            data:{
-                                serviceId: serviceId
-                            }
-                        };
-                        var p3 = {
-                            interType: "part",
-                            data:{
-                                serviceId: serviceId
-                            }
-                        };
-                        loadDetail(p1, p2, p3,status);
-                        showMsg("完工成功!","S");
-                }else{
-                    if(data.errCode){
-                        showMsg("完工失败!","E");
-                        return;
+        nui.mask({
+	        el: document.body,
+	        cls: 'mini-mask-loading',
+	        html: '加载中...'
+	    });
+        svrSaveMaintain(params, function(text){
+          var errCode = text.errCode||"";
+          if(errCode == "S") {
+        	//工单保存成功之后,设置表单的值
+        	var main = text.data||{};
+            //fserviceId = main.id||0;
+        	var carModel = nui.get("carModel").value || "";
+        	if(carModel != ""){
+        		main.carModel = carModel;
+        	}
+        	billForm.setData(main);
+        	nui.unmask(document.body);
+            //保存成功打开完工界面
+        	var params = {
+                    serviceId:data.id||0
+                };
+            doFinishWork(params, function(data){
+                data = data||{};
+                if(data.action){
+                    var action = data.action||"";
+                    if(action == 'ok'){
+                        billForm.setData([]);
+                        data.carModel = carModel;
+                        billForm.setData(data);
+                        var status = data.status||0;
+                        var isSettle = data.isSettle||0;
+                        doSetStyle(status, isSettle);
+                        var p1 = {
+                                interType: "package",
+                                data:{
+                                    serviceId: serviceId
+                                }
+                            };
+                            var p2 = {
+                                interType: "item",
+                                data:{
+                                    serviceId: serviceId
+                                }
+                            };
+                            var p3 = {
+                                interType: "part",
+                                data:{
+                                    serviceId: serviceId
+                                }
+                            };
+                            loadDetail(p1, p2, p3,status);
+                            showMsg("完工成功!","S");
+                    }else{
+                        if(data.errCode){
+                            showMsg("完工失败!","E");
+                            return;
+                        }
                     }
                 }
+             });
+            } else {
+            	nui.unmask(document.body);
+                showMsg(data.errMsg || "保存单据失败","E");
             }
-        });
-    }
+        }, function(){
+        	nui.unmask(document.body);
+        })
+        
+   }
 }
 function unfinish(){
     var data = billForm.getData();
@@ -3327,11 +3390,11 @@ function chooseItem(){
 	 }
 	//判断进厂里程
 	var last =  $("#lastComeKilometers").text() || 0;
-    var enterKilometers = nui.get("enterKilometers").getValue();
-    if(enterKilometers < last){
-  	  showMsg("进厂里程不能小于上次里程","W");
-  	  return;
-  	}
+	var enterKilometers = nui.get("enterKilometers").getValue() || 0;
+	if(enterKilometers>0 && enterKilometers < last){
+		showMsg("进厂里程不能小于上次里程","W");
+		return;
+	}
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
@@ -3412,11 +3475,11 @@ function choosePackage(){
 	 }
 	//判断进厂里程
 	var last =  $("#lastComeKilometers").text() || 0;
-    var enterKilometers = nui.get("enterKilometers").getValue();
-    if(enterKilometers < last){
-  	  showMsg("进厂里程不能小于上次里程","W");
-  	  return;
-  	}
+	var enterKilometers = nui.get("enterKilometers").getValue() || 0;
+	if(enterKilometers>0 && enterKilometers < last){
+		showMsg("进厂里程不能小于上次里程","W");
+		return;
+	}
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
@@ -5170,6 +5233,7 @@ function saveItem(callback){
                 var item = {};
                 item.id = row.id;
                 item.remark = row.remark;
+                //row.serviceId,可能会获取不到值，接口里面会重新赋值
                 item.serviceId = row.serviceId;
                 item.amt = row.amt;
                 item.subtotal = row.subtotal;

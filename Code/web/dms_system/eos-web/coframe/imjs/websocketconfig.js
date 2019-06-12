@@ -61,6 +61,8 @@ function reconnect(callbak) {
  
 
 layui.use('layim', function(layim){
+	if(currImDisabled != "0" || currImCode == "") return;
+
 	//回复消息
 	var reMsg=function(sender,time,msg){
 		var groupList = parent.layui.layim.cache().friend;
@@ -251,8 +253,10 @@ layui.use('layim', function(layim){
 	    console.log("error");
 	  }; 
   };
-	  
-  createWebSocket(websocketurl,initEventHandle);  
+
+  if(currImDisabled == "0" && currImCode != "") {
+	  createWebSocket(websocketurl,initEventHandle);  
+  }
       
   
   //演示自动回复

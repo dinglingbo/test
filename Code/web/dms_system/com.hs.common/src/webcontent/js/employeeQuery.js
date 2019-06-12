@@ -7,6 +7,7 @@ var companyUrl = baseUrl+"com.hsapi.system.basic.organization.getCompanyAll.biz.
 var grid;
 var btnisDimission;
 var btnisOpenAccount;
+var btnisIM;
 var orgidsEl = null;
 nui.parse();
 
@@ -25,6 +26,7 @@ $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
     btnisDimission = nui.get("btnisDimission");
     btnisOpenAccount = nui.get("btnisOpenAccount");
+    btnisIM = nui.get("btnisIM");
 	grid.setUrl(gridUrl);
 	orgidsEl = nui.get("orgids");
     if(currIsMaster==0){
@@ -96,6 +98,13 @@ function onDrawCell(e)  {
         case "isDimission":
             if(SignHash && SignHash[e.value]) {
                 e.cellHtml = SignHash[e.value];
+            }
+            break;
+        case "imCode":
+            if(e.record.imCode != null && e.record.imCode != null && e.record.imDisabled == 0) {
+                e.cellHtml = "是";
+            }else {
+            	e.cellHtml = "否";
             }
             break;
         case "sex":
@@ -361,6 +370,12 @@ function changebutton(){
         	btnisDimission.setText("<span class='fa fa-user'></span>&nbsp;复职");
         	btnisOpenAccount.setVisible(false);
         }
+        
+        if (((s.imCode=="" || s.imCode == null) && s.imDisabled == 0) || s.imDisabled == 1){
+        	btnisIM.setText("<span class='fa fa-key'></span>&nbsp;开通IM");
+        }else{
+        	btnisIM.setText("<span class='fa fa-key'></span>&nbsp;关闭IM");
+        }
 	}
 }
 function importGuest(){
@@ -465,4 +480,53 @@ function lookCom(){
     }else{
         nui.alert("请选中一条记录！");
     }
+}
+
+function stoporstartIM() {
+	var emp = {};
+	var type = "";
+    var row = grid.getSelected();
+    if (!row) {
+        showMsg("请选中一条记录!","W");
+        return;
+    }
+    
+    if(row.imCode == null || row.imCode == "" || row.imDisabled == 1) {
+    	type = "open";
+    }else {
+    	type = "close";
+    }
+    
+    nui.mask({
+        el : document.body,
+        cls : 'mini-mask-loading',
+        html : '处理中...'
+    });
+    nui.ajax({
+        url: baseUrl + "com.hsapi.system.tenant.employee.openOrCloseIM.biz.ext",
+        type: 'post',
+        async:false,
+        data: nui.encode({
+            empId: row.empid,
+            type: type,
+            token: token
+        }),
+        cache: false,
+        success: function (data) {
+            if (data.errCode == "S"){
+                nui.unmask(document.body);
+                showMsg("操作成功!","S");
+                
+                search();
+
+            }else {
+                nui.unmask(document.body);
+                showMsg("操作失败!","W");
+            }
+
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
+    });
 }

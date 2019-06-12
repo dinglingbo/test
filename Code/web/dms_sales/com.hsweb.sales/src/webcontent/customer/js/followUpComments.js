@@ -44,6 +44,7 @@ $(document).ready(function ()
 	mainGrid.on('drawcell', function(e){
 	       var value = e.value;
 	       var field = e.field;
+	       var record = e.record;
 	      if (field == 'sex') {
 	           e.cellHtml = (value == 0 ? '女' : '男');
 	       } else if (field == 'comeTypeId') {
@@ -62,10 +63,14 @@ $(document).ready(function ()
 	        			e.cellHtml = currOrgList[i].shortName;
 	        		}
 	        	}
+	     }else if(e.field == "scoutRemark"){
+	     
+         	e.cellStyle = "background:rgb(54, 244, 226)";
+         
 	     }
 	});
 	
-	
+	//rgb(54, 209, 244)
 	mainGrid.on("select",function(e){
     	var row = e.record;
     	if(row.id){
@@ -247,7 +252,9 @@ function guestInfo(){
 
 function giftInfo(){
 	var row = mainGrid.getSelected();
+	
 	if(row){
+		row.show = 1;
 		if(row.id !="" && row.id !=null){
 			nui.open({
 				url: webPath + contextPath + '/sales/customer/guestComeGift.jsp',
@@ -276,6 +283,7 @@ function giftInfo(){
 function buyCarCount(){
 	var row = mainGrid.getSelected();
 	if(row){
+		row.show = 1;
 		if(row.id !="" && row.id !=null){
 			nui.open({
 				url: webPath + contextPath + '/sales/sales/caCalculation.jsp',

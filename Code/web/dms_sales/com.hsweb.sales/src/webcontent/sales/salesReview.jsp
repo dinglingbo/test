@@ -13,7 +13,7 @@
         <title>销售结案审核</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%= request.getContextPath() %>/sales/sales/js/salesReview.js?v=1.002" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/sales/sales/js/salesReview.js?v=1.004" type="text/javascript"></script>
     </head>
     <style type="text/css">
         body {
@@ -43,6 +43,13 @@
     </style>
 
     <body>
+        <div class="nui-toolbar">
+            <div align="right">
+                <a class="nui-button" iconCls="" plain="true" onclick="approved()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核通过</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="close()" id="addBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+            </div>
+        </div>
         <form id="form1">
             <input class="nui-hidden" name="id" id="id" />
             <table style="line-height: 23px; padding-top: 10px;width: 100%" align="center">
@@ -109,7 +116,7 @@
                         实际保险费：
                     </td>
                     <td>
-                        <input id="insuranceAmt" name="insuranceAmt" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" />
+                        <input id="insuranceAmt" name="insuranceAmt" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" enabled="false" />
                     </td>
                     <td class="td_title">
                         保险差额：
@@ -135,7 +142,7 @@
                         实际购置税：
                     </td>
                     <td>
-                        <input id="purchaseAmt" name="purchaseAmt" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" />
+                        <input id="purchaseAmt" name="purchaseAmt" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" enabled="false" />
                     </td>
                     <td class="td_title">
                         购置税差额：
@@ -161,7 +168,7 @@
                         上牌成本：
                     </td>
                     <td>
-                        <input id="boardLotCost" name="boardLotCost" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" />
+                        <input id="boardLotCost" name="boardLotCost" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" enabled="false" />
                     </td>
                     <td class="td_title">
                         上牌毛利：
@@ -181,7 +188,7 @@
                         GPS成本：
                     </td>
                     <td>
-                        <input id="gpsCost" name="gpsCost" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" />
+                        <input id="gpsCost" name="gpsCost" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" enabled="false" />
                     </td>
                     <td class="td_title">
                         GPS毛利：
@@ -201,7 +208,7 @@
                         按揭成本：
                     </td>
                     <td>
-                        <input id="mortgageCost" name="mortgageCost" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" />
+                        <input id="mortgageCost" name="mortgageCost" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" enabled="false" />
                     </td>
                     <td class="td_title">
                         按揭毛利：
@@ -221,7 +228,7 @@
                         加装成本：
                     </td>
                     <td>
-                        <input id="decrCost" name="decrCost" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" />
+                        <input id="decrCost" name="decrCost" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" enabled="false" />
                     </td>
                     <td class="td_title">
                         加装毛利：
@@ -241,7 +248,7 @@
                         家访成本：
                     </td>
                     <td>
-                        <input id="familyCost" name="familyCost" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" />
+                        <input id="familyCost" name="familyCost" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" enabled="false" />
                     </td>
                     <td class="td_title">
                         家访毛利：
@@ -261,7 +268,7 @@
                         其他成本：
                     </td>
                     <td>
-                        <input id="otherCost" name="otherCost" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" />
+                        <input id="otherCost" name="otherCost" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" enabled="false" />
                     </td>
                     <td class="td_title">
                         其他毛利：
@@ -369,7 +376,7 @@
                         <input id="saleIncomeTotal" name="saleIncomeTotal" style="width: 100%" class="nui-textbox" vtype="float" enabled="false" />
                     </td>
                     <td class="td_title">
-                        销售提成(%)：
+                        销售提成：
                     </td>
                     <td>
                         <input id="salesmanDeduct" name="salesmanDeduct" style="width: 100%" class="nui-textbox" vtype="float" />
@@ -378,7 +385,7 @@
                         佣金：
                     </td>
                     <td>
-                        <input id="commissionDeduct" name="commissionDeduct" style="width: 100%" class="nui-textbox" vtype="float" enabled="false" />
+                        <input id="commissionDeduct" name="commissionDeduct" style="width: 100%" class="nui-textbox" vtype="float" />
                     </td>
                 </tr>
                 <tr>
@@ -398,7 +405,7 @@
                         调整说明：
                     </td>
                     <td colspan="3">
-                        <input id="adjustmentRemark" name="adjustmentRemark" style="width: 100%" class="nui-textbox" vtype="float" enabled="false" />
+                        <input id="adjustmentRemark" name="adjustmentRemark" style="width: 100%" class="nui-textbox" vtype="float" />
                     </td>
                 </tr>
                 <tr>
@@ -420,13 +427,13 @@
                         开票价格：
                     </td>
                     <td>
-                        <input id="" name="" style="width: 100%" class="nui-textbox" vtype="float" enabled="false" />
+                        <input id="billAmt" name="billAmt" style="width: 100%" class="nui-textbox" vtype="float" />
                     </td>
                     <td class="td_title">
                         发票抬头：
                     </td>
                     <td colspan="5">
-                        <input id="" name="" style="width: 100%" class="nui-textbox" vtype="float" enabled="false" />
+                        <input id="billTitle" name="billTitle" style="width: 100%" class="nui-textbox" />
                     </td>
                 </tr>
                 <tr>
@@ -438,13 +445,7 @@
                 </tr>
             </table>
         </form>
-        <div class="nui-fit" style="float: left;width: 50%">
-            <a class="nui-button" iconCls="" plain="true" onclick="approved()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核通过</a>
-        </div>
-        <div class="nui-fit" style="float: right;width: 50%">
-            <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-            <a class="nui-button" iconCls="" plain="true" onclick="close()" id="addBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
-        </div>
+
         <script type="text/javascript">
             var period = [{
                 id: 0,

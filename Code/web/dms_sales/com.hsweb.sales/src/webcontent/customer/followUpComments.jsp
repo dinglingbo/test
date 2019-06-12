@@ -202,7 +202,7 @@
 	                  <div property="columns" > 
 	                 	  <div field="fullName" name="fullName" width="100" headerAlign="center"  allowsort="true" header="客户名称" allowsort="ture"></div> 
 		                  <div field="source" name="source" width="80" headerAlign="center" header="客户来源" allowsort="true"></div>
-		                  <div field="leaveDate" name="leaveDate" width="120" headerAlign="center" allowsort="true" dateFormat="yyyy-MM-dd HH:mm" header="离店时间"></div>
+		                  <!-- <div field="leaveDate" name="leaveDate" width="120" headerAlign="center" allowsort="true" dateFormat="yyyy-MM-dd HH:mm" header="离店时间"></div> -->
 		                  <div field="nextScoutDate" name="nextScoutDate" width="120" headerAlign="center" allowsort="true" dateFormat="yyyy-MM-dd HH:mm" header="下次跟踪"></div>
 	                  </div>
                   </div>
@@ -233,7 +233,7 @@
 		<!-- 下 -->
 		<div showCollapseButton="false">
 			<div class="nui-fit">
-			   <div class="nui-tabs" activeIndex="0"  style="width:100%;height:100%;" plain="false">
+			   <!-- <div class="nui-tabs" activeIndex="0"  style="width:100%;height:100%;" plain="false">
 				 <div title="跟踪列表">
 				   <div  id="datagrid" dataField="list" class="nui-datagrid" 
 					style="width: 100%; height: 100%;"  sortMode="client"
@@ -246,18 +246,18 @@
 						<div field="recordDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" width="60px">跟进日期</div>
 						<div field="scoutModeId" name = "scoutModeId" headerAlign="center" allowSort="true" width="60px">跟进方式</div>
 						<div field="status" headerAlign="status" allowSort="true" width="60px">跟进状态</div>
-						<!-- <div field="serviceCode" headerAlign="center" allowSort="true" width="120px">跟进结果</div> -->
+						<div field="serviceCode" headerAlign="center" allowSort="true" width="120px">跟进结果</div>
 						<div field="isUsabled" headerAlign="isUsabled" allowSort="true" width="60px" dataType="float">跟进结果</div>
 						<div field="scoutContent" headerAlign="scoutContent" allowSort="true" width="120px" dataType="float">需求内容
 						</div>
 				    	<div field="failReasonId" headerAlign="center" allowSort="true" width="120px">战败原因
 						</div>
-						<!-- <div field="recordDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:ss" width="110px">消费日期</div> -->	
+						<div field="recordDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:ss" width="110px">消费日期</div>	
 						<div field="nextOrderDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="60px">下次跟进日期</div>						
 					 </div>
 				 </div>
 			    </div>
-			  <!--   <div title="其他意向车型" id="deductTab" name="deductTab" >
+			    <div title="其他意向车型" id="deductTab" name="deductTab" >
 			    <div  id="datagrid2" dataField="data" class="nui-datagrid" 
 					style="width: 100%; height: 100%;"  sortMode="client"
 					allowSortColumn="true" showPager="false" allowCellWrap=true>
@@ -266,9 +266,31 @@
 						<div field="carNo" headerAlign="center" allowSort="true" width="70px">车型信息</div>
 					 </div>
 				 </div>
-			    </div> -->
+			    </div>
 			 </div>
 			</div>
+		</div> -->
+		<div  id="datagrid" dataField="list" class="nui-datagrid" 
+			style="width: 100%; height: 100%;"  sortMode="client"
+			allowSortColumn="true" showPager="false" allowCellWrap=true
+			
+			>
+			 <div property="columns">
+				<div type="indexcolumn" headerAlign="center" width="30">序号</div>
+				<div field="recorder" headerAlign="center" allowSort="true" width="60px">跟进人</div>
+				<div field="recordDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" width="60px">跟进日期</div>
+				<div field="scoutModeId" name = "scoutModeId" headerAlign="center" allowSort="true" width="60px">跟进方式</div>
+				<div field="status" headerAlign="status" allowSort="true" width="60px">跟进状态</div>
+				<!-- <div field="serviceCode" headerAlign="center" allowSort="true" width="120px">跟进结果</div> -->
+				<div field="isUsabled" headerAlign="isUsabled" allowSort="true" width="60px" dataType="float">跟进结果</div>
+				<div field="scoutContent" headerAlign="scoutContent" allowSort="true" width="120px" dataType="float">需求内容
+				</div>
+		    	<div field="failReasonId" headerAlign="center" allowSort="true" width="120px">战败原因
+				</div>
+				<!-- <div field="recordDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:ss" width="110px">消费日期</div> -->	
+				<div field="nextOrderDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="60px">下次跟进日期</div>						
+			 </div>
+		 </div>
 		</div>
 	</div>
 </body>

@@ -295,6 +295,7 @@ function setInitData(params){
     }
 }
 
+var saleTypeF = null;
 function buyCarCount(){
 	var main = guestComeForm.getData();
 	var status = main.status || 0;
@@ -317,8 +318,8 @@ function buyCarCount(){
 			iframe.contentWindow.setShowSave(main);
 			},
 			ondestroy: function (action) {
-			var iframe = this.getIFrameEl();
-			
+			 var iframe = this.getIFrameEl();
+			 saleTypeF = iframe.contentWindow.getSaleType();
 		    }
 		 });
 	}else{
@@ -454,35 +455,45 @@ function saveSaleMain(){
 }
 
 
-function salesOnPrint(p) {
-    var billFormData = guestComeForm.getData(true); //主表信息
-    var params = {};
-    params.serviceId = billFormData.id;
-    params.billType = 1;
-    params.guestFullName = billFormData.fullName;
-    params.carModelName	= billFormData.carModelName; 
-    var url = webPath + contextPath;
-    switch (p) {
-        case 1:
-            url = url + "/sales/sales/print/cashPurchases.jsp";
-            break;
-        case 2:
-            url = url + "/sales/sales/print/printLoanDetail .jsp";
-            break;
-    }
-    nui.open({
-        url: url,
-        title: "打印",
-        width: "100%",
-        height: "100%",
-        onload: function() {
-            var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(params);
-        },
-        ondestroy: function(action) {
+function salesOnPrint(){
+	var p = null;
+	if(saleTypeF){
+		if(saleTypeF.saleType=="1558580770894"){
+			p=1;
+		}else{
+			p=2;
+		}
+		var billFormData = guestComeForm.getData(true); //主表信息
+	    var params = {};
+	    params.serviceId = billFormData.id;
+	    params.billType = 1;
+	    params.guestFullName = billFormData.fullName;
+	    params.carModelName	= billFormData.carModelName; 
+	    var url = webPath + contextPath;
+	    switch (p) {
+	        case 1:
+	            url = url + "/sales/sales/print/cashPurchases.jsp";
+	            break;
+	        case 2:
+	            url = url + "/sales/sales/print/printLoanDetail .jsp";
+	            break;
+	    }
+	    nui.open({
+	        url: url,
+	        title: "打印",
+	        width: "100%",
+	        height: "100%",
+	        onload: function() {
+	            var iframe = this.getIFrameEl();
+	            iframe.contentWindow.SetData(params);
+	        },
+	        ondestroy: function(action) {
 
-        }
-    });
+	        }
+	    });
+	}else{
+		return;
+	}
 }
 
 function onMobileValidation(e)

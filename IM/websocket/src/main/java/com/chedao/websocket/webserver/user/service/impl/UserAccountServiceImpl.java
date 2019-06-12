@@ -3,12 +3,15 @@ package com.chedao.websocket.webserver.user.service.impl;
 import com.chedao.websocket.webserver.user.dao.UserAccountDao;
 import com.chedao.websocket.webserver.user.model.UserAccountEntity;
 import com.chedao.websocket.webserver.user.model.UserInfoEntity;
+import com.chedao.websocket.webserver.user.model.UserTypeEntity;
 import com.chedao.websocket.webserver.user.service.UserAccountService;
 import com.chedao.websocket.webserver.user.service.UserInfoService;
+import com.chedao.websocket.webserver.user.service.UserTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +24,8 @@ public class UserAccountServiceImpl implements UserAccountService {
 	private UserAccountDao userAccountDao;
 	@Autowired
 	private UserInfoService userInfoServiceImpl;
+	@Autowired
+    private UserTypeService userTypeServiceImpl;
 	
 	@Override
 	public UserAccountEntity queryObject(Long id){
@@ -50,6 +55,13 @@ public class UserAccountServiceImpl implements UserAccountService {
 				UserInfoEntity userInfo = userAccount.getUserInfo();
 				userInfo.setUid(userAccount.getId());
 				userInfoServiceImpl.save(userInfo);
+
+				//生成默认分组：我的好友
+                UserTypeEntity userTypeEntity = new UserTypeEntity();
+                userTypeEntity.setBuildtime(new Date());
+                userTypeEntity.setName("我的好友");
+                userTypeEntity.setUserid(userAccount.getId());
+                userTypeServiceImpl.save(userTypeEntity);
 			}
 		} 
 	}

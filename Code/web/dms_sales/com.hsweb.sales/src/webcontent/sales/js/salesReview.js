@@ -25,7 +25,9 @@ function SetData(serviceId) {
                 form.setData(data);
                 nui.get("id").setValue(serviceId);
                 changeValueMsg(1);
-            };
+            } else {
+                showMsg(text.errCode, "W");
+            }
         }
     });
 }

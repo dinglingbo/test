@@ -30,6 +30,24 @@
 			</isNotNull>
 	</update>
 	
+	<update id="updatePchsOrderQty" parameterClass="java.util.HashMap" >
+		UPDATE pj_pchs_order_detail_chk
+			SET true_enter_qty = #trueEnterQty#,
+			 not_enter_qty =#notEnterQty#,
+			 is_finished = #isFinished#,
+			 finish_date = #finishDate#
+		 WHERE 1=1
+			<isNotNull prepend = "and" property = "id">
+					id = #id#					
+			</isNotNull>
+	</update>
+	
+	<update id="updatePchsMainFinish" parameterClass="java.util.HashMap" >
+		UPDATE pj_pchs_order_main_chk
+		SET	 is_finished = #isFinished#
+		 WHERE 	id = #id#					
+	</update>
+	
 	<update id="updateSellRtnOriginId" parameterClass="java.util.HashMap" >
 		update pj_enter_detail_chk set origin_id = id 
 		where IFNULL(origin_id,0) = 0

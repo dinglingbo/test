@@ -254,15 +254,18 @@ function addStatement()
             getSellDetails();
             if(pjSellOrderDetailList){
             	var innerPchsRtnGridRow=innerPchsRtnGrid.getSelecteds();
-            	var mainId = innerPchsRtnGridRow[0].mainId;
-            	for(var i=0;i<pjSellOrderDetailList.length;i++){
-            		if(pjSellOrderDetailList[i].mainId==mainId){   					
-            			pjSellOrderDetailList.splice(i--, 1);
-    				}
+            	if(innerPchsRtnGridRow.length>0){
+            		var mainId = innerPchsRtnGridRow[0].mainId;
+                	for(var i=0;i<pjSellOrderDetailList.length;i++){
+                		if(pjSellOrderDetailList[i].mainId==mainId){   					
+                			pjSellOrderDetailList.splice(i--, 1);
+        				}
+                	}
+                	for(var i=0;i<innerPchsRtnGridRow.length;i++){			
+                		pjSellOrderDetailList.push(innerPchsRtnGridRow[i]);
+        			}
             	}
-            	for(var i=0;i<innerPchsRtnGridRow.length;i++){			
-            		pjSellOrderDetailList.push(innerPchsRtnGridRow[i]);
-    			}
+            	
             }
             callback(pjSellOrderDetailList);
             CloseWindow("ok");

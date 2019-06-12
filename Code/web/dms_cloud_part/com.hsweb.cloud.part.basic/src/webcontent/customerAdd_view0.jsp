@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%=webPath + contextPath%>/basic/js/customerAdd.js?v=1.0.80"></script>
+<script src="<%=webPath + contextPath%>/basic/js/customerAdd.js?v=1.0.88"></script>
 <script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
 <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
 <script src="<%= request.getContextPath() %>/common/qiniu/qiniu1.0.14.js" type="text/javascript"></script>
@@ -109,8 +109,8 @@
                       <input id="modifyDate" name="modifyDate" width="100%" class="nui-hidden" >
                       <table class="tmargin">
                           <tr class="htr">
-                              <td class=" right fwidtha required">客户编码:</td>
-                              <td ><input id="code" name="code" width="100%" class="nui-textbox" ></td>
+                              <td class=" right fwidtha required" style="display:none;">客户编码:</td>
+                              <td  style="display:none;"><input id="code" name="code" width="100%" class="nui-textbox" ></td>
                               <td class=" right fwidtha required">客户属性:</td>
                               <td ><input id="guestProperty"
                                           allowInput="false" 
@@ -122,6 +122,21 @@
                                           valueField="customid"
                               			  emptyText="请选择客户属性...">
                   			  </td>
+                  			  <td class=" right fwidtha required">结算方式:</td>
+                              <td >
+                                  <input id="settTypeId"
+                                 name="settTypeId"
+                                 onvaluechanged="onSettTypeIdChange"
+                                 class="nui-combobox width2"
+                                 textField="name"
+                                 valueField="customid"
+                                 emptyText="请选择..."
+                                 url=""
+                                 width="100%"
+                                 allowInput="true"
+                                 showNullItem="false"
+                                 nullItemText="请选择..."/>
+                              </td>
                           </tr>
                           
                           <tr class="htr" style="display :none;" id="lince">
@@ -153,23 +168,7 @@
                           <tr class="htr">
                           	  <td class=" right fwidthb required">客户简称:</td>
                               <td ><input id="shortName" name="shortName" width="100%" class="nui-textbox"  ></td>
-                              <td class=" right fwidtha required">客户全称:</td>
-                              <td colspan="1">
-                                  <input name="fullName"
-                                 id="fullName"
-                                 class="nui-textbox" width="100%"/>
-                                  <input name="fullName1" class="nui-buttonedit width3" width="100%"
-                                         id="fullName1"
-                                         emptyText="请选择公司..."
-                                         allowInput="false"
-                                         onbuttonclick="selectOrg('fullName1','code')" selectOnFocus="true"
-                                         visible="false"/>
-                              </td>
-                          </tr>
-                          </tr>
-                          
-                          <tr class="htr" >
-                              <td class=" right fwidthb required">票据类型:</td>
+                           	  <td class=" right fwidthb required">票据类型:</td>
                               <td >
                                   <input id="billTypeId"
                                  name="billTypeId"
@@ -183,20 +182,25 @@
                                  showNullItem="false"
                                  nullItemText="请选择..."/>
                               </td>
-                              <td class=" right fwidtha required">结算方式:</td>
-                              <td >
-                                  <input id="settTypeId"
-                                 name="settTypeId"
-                                 class="nui-combobox width2"
-                                 textField="name"
-                                 valueField="customid"
-                                 emptyText="请选择..."
-                                 url=""
-                                 width="100%"
-                                 allowInput="true"
-                                 showNullItem="false"
-                                 nullItemText="请选择..."/>
+                            
+                          </tr>
+                          </tr>                         
+                          <tr class="htr" >
+                          
+                          	 <td class=" right fwidtha required">客户全称:</td>
+                             <td colspan="4">
+                                  <input name="fullName"
+                                 id="fullName"
+                                 class="nui-textbox" width="100%"/>
+                                  <input name="fullName1" class="nui-buttonedit width3" width="100%"
+                                         id="fullName1"
+                                         emptyText="请选择公司..."
+                                         allowInput="false"
+                                         onbuttonclick="selectOrg('fullName1','code')" selectOnFocus="true"
+                                         visible="false"/>
                               </td>
+                             
+                              
                           </tr>
                           <tr class="htr">
                               <td class=" right fwidthb required">联系人:</td>
@@ -328,6 +332,17 @@
                               <td ><input id="memLevel" name="memLevel" width="100%" class="nui-textbox" ></td>
                               <td class=" right fwidtha">信誉额度:</td>
                               <td ><input id="creditLimit" name="creditLimit" width="100%" class="nui-textbox" ></td>
+                          </tr>  
+                          <tr class="htr" style="display :none;" id="otherPicture">
+                              <td class=" right fwidthb">上传其他图片:</td>
+                      	      <td  colspan="" class="tabwidth" >
+				                <div class="page-header" id="other-uploader">
+					                	<div class="div1" id="other" >
+								            <img id="otherImg" style="width: 80px;height: 80px" src="<%=contextPath%>/common/images/upload.png"/>
+								        </div>
+							        </div>
+							        <input  class="nui-textbox" id="otherPictueUrl" name="otherPictueUrl"  style="display:none" >
+							  </td>
                           </tr>                     
                       </table>
 

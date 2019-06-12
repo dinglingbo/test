@@ -1498,4 +1498,88 @@
             <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
         </dynamic>
     </select>
+    
+    <select id="queryNotFinishOrder" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id as id,
+			b.service_id as serviceId,
+		  	a.main_id as mainId,
+			a.store_id as storeId,
+			a.part_code as partCode,
+			a.part_name as partName,
+			a.order_qty as orderQty,
+			a.true_enter_qty as trueEnterQty,
+			a.adjust_qty as adjustQty,
+			a.is_finished as isFinished,
+			b.create_date as createDate
+		FROM
+			pj_pchs_order_detail_chk a
+			INNER JOIN pj_pchs_order_main_chk b on b.id =a.main_id
+		WHERE
+			a.is_finished = 0
+		AND (
+			a.order_qty - a.true_enter_qty - a.adjust_qty
+		) > 0
+		<dynamic>
+           	<isNotEmpty prepend="and" property="orgid">
+           		(b.orgid = #orgid#)
+           	</isNotEmpty>
+            <isNotEmpty prepend="and" property="sOrderDate">
+            	b.CREATE_DATE &gt;= #sOrderDate#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="sOrderDate">
+            	(b.CREATE_DATE &lt; #eOrderDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceId">
+            	(b.service_id = #serviceId#)
+            </isNotEmpty>
+            order by  b.create_date DESC
+        </dynamic>
+        
+    </select>
+    
+     <select id="queryTrueEnterQty" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT
+			sum(true_enter_qty) trueEnterQty
+		FROM
+			pj_pchs_order_detail_chk
+		WHERE
+			1=1 
+		<dynamic>
+           	<isNotEmpty prepend="and" property="sourceDetailId">
+           		source_detail_id = #sourceDetailId#
+           	</isNotEmpty>
+        </dynamic>
+        
+    </select>
+    
+     <select id="queryNeedQty" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">   	
+		SELECT
+			(order_qty-adjust_qty) as needQty,
+			order_qty as orderQty
+		FROM
+			pj_pchs_order_detail_chk
+		WHERE 1=1
+		<dynamic>
+           	<isNotEmpty prepend="and" property="id">
+           		id = #id#
+           	</isNotEmpty>
+        </dynamic>
+        
+    </select>
+    
+    <select id="queryMainIsFinish" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">   	
+		SELECT
+			id
+		FROM
+			pj_pchs_order_detail_chk
+		WHERE
+			is_finished = 0
+		<dynamic>
+           	<isNotEmpty prepend="and" property="mainId">
+           		main_id = #mainId#
+           	</isNotEmpty>
+        </dynamic>
+        
+    </select>
 </sqlMap>

@@ -193,15 +193,19 @@ var statusF = null;
 var saveComeUrl = baseUrl + "sales.save.saveSaleCalc.biz.ext";
 var jpDetailGridUrl = baseUrl + "sales.search.searchSaleGiftApply.biz.ext";
 var mainF = null
-
 function setShowSave(params) {
-    mainF = params;
+	mainF = params;
     comeServiceIdF = params.id;
     statusF = params.status;
     var showSave = document.getElementById("showSave");
     var frameColorId = params.frameColorId;
     var interialColorId = params.interialColorId;
     showSave.style.display = "";
+    if(params.show && params.show==1){
+    	document.getElementById("saveCome").style.display = "none";
+     }else{
+    	  document.getElementById("saveCome").style.display = "";
+     }
     nui.get("saleType").setEnabled(true);
     if (comeServiceIdF) {
         var params = { billType: 1, serviceId: comeServiceIdF };
@@ -261,10 +265,10 @@ function setShowSave(params) {
                     if (giftData.length > 0) {
                         for (var i = 0; i < giftData.length; i++) {
                             var temp = giftData[i];
-                            if (temp.receType == 1) {
-                                amt = amt + temp.amt;
+                            if(temp.receType==1){
+                            	amt = amt + temp.amt;
                             }
-
+                            
                         }
                     }
                     if (amt > 0) {
@@ -273,7 +277,7 @@ function setShowSave(params) {
                     nui.get("decrAmt").setEnabled(false);
                     changeValueMsg();
                 }
-
+                
             }
 
         });
@@ -324,17 +328,17 @@ function saveCome() {
                     var id = result.id;
                     nui.get("mainId").setValue(id);
                     //弹出打印界面
-                    nui.confirm("是否打印购车预算", "友情提示", function(action) {
-                        if (action == "ok") {
-                            var saleType = caCalculationData.saleType;
-                            if (saleType == "1558580770894") {
-                                salesOnPrint(1);
-                            } else {
-                                salesOnPrint(2);
-                            }
-                        }
+                    nui.confirm("是否打印购车预算", "友情提示",function(action){
+             	       if(action == "ok"){
+             	    	  var saleType = caCalculationData.saleType;
+             	    	   if(saleType=="1558580770894"){
+             	    		  salesOnPrint(1);
+             	    	   }else{
+             	    		  salesOnPrint(2);
+             	    	   }
+             	       }
                     });
-                    //showMsg("保存成功", "S");
+                    showMsg("保存成功", "S");
                 }
                 nui.unmask(document.body);
             }
@@ -342,17 +346,17 @@ function saveCome() {
     }
 }
 
-function getSaleType() {
-    var caCalculationData = form.getData();
-    return caCalculationData;
+function getSaleType(){
+	 var caCalculationData = form.getData();
+	 return caCalculationData;
 }
-
-function salesOnPrint(p) {
+function salesOnPrint(p){
     var params = {};
     params.serviceId = mainF.id;
     params.billType = 1;
     params.guestFullName = mainF.fullName;
-    params.carModelName = mainF.carModelName;
+    params.carModelName	= mainF.carModelName; 
+    params.carModelId = mainF.carModelId;
     var url = webPath + contextPath;
     switch (p) {
         case 1:

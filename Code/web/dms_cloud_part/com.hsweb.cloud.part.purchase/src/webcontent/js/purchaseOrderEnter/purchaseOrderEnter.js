@@ -2751,7 +2751,9 @@ function getOrderDetail(params)
 							noTaxAmt : parseFloat(row.orderQty) * parseFloat(row.noTaxPrice),
 							noTaxPrice : row.noTaxPrice,
 							taxAmt : parseFloat(row.orderQty) * parseFloat(row.taxPrice),
-							taxPrice : row.taxPrice
+							taxPrice : row.taxPrice,
+							sourceMainId : row.mainId,
+							sourceDetailId : row.id
 						};
                    
                         rightGrid.addRow(enterDetail);
@@ -2884,3 +2886,5 @@ function addOrEditPart(row)
     });
 
 }
+
+

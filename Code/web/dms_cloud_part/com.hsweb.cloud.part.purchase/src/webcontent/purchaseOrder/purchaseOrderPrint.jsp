@@ -56,22 +56,14 @@ table#tbody{
         background-color: transparent;
         table-layout:fixed;
 }
-table,td#tbody{
-		font-family: Tahoma, Geneva, sans-serif;
-        font-size: 12px;
-        color: #000;
-       word-wrap:break-word; 
-		white-space:nowrap; 
-		overflow:hidden;
-		text-overflow:ellipsis;
 
-}
 table, td {
         font-family: Tahoma, Geneva, sans-serif;
         font-size: 12px;
         color: #000;
-        word-wrap:break-word; 
-        white-space:nowrap; 
+        word-wrap:break-word;
+        /**white-space:nowrap; */
+        white-space:break-all;  
 		overflow:hidden;
 		text-overflow:ellipsis;
     }
@@ -179,11 +171,11 @@ table#ybk td{
 #comApplyCarModel{
 	width:10%;
 }
-#CarModel{
+/**#CarModel{
 	white-space:nowrap; 
 	overflow:hidden;
 	text-overflow:ellipsis;
-}
+}*/
 #comSpec{
 	width:8%;
 }

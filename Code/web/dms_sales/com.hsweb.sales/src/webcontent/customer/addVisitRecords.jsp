@@ -97,12 +97,14 @@
 									<span class="fa fa-check fa-lg"></span>&nbsp;归档</a>
 								<a class="nui-button" onclick="saveSaleMain()" plain="true" style="width: 80px;">
 									<span class="fa fa-mail-forward  fa-lg"></span>&nbsp;转销售</a>
-								<a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint">
+								<!--<a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint">
 									<span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
-								<ul id="popupMenuPrint" class="nui-menu" style="display:none;">
+								 <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
 									<li iconCls="" onclick="salesOnPrint(1)" id="type11">打印现款购车计算表</li>
 									<li iconCls="" onclick="salesOnPrint(2)" id="type11">打印贷款购车计算表</li>
-								</ul>
+								</ul> -->
+								<a class="nui-button" onclick="salesOnPrint()" plain="true" style="width: 80px;">
+									<span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
 							</td>
 						</tr>
 					</table>

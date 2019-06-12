@@ -119,7 +119,7 @@
 		SELECT a.id, a.service_id as serviceId, a.guest_id as guestId, b.short_name as shortName,
 		       a.orgid, a.plan_arrive_date as dueDate, a.order_man_id as orderManId,
 		       a.order_man as orderMan, a.auditor_id as auditorId, a.auditor, a.audit_date as auditDate
-		from pj_pchs_order_main_chk a 
+		from wb_part.pj_pchs_order_main_chk a 
 		inner join wb_common.com_guest b
 		on a.guest_id = b.id
 		where is_finished = 0 

@@ -105,6 +105,7 @@
     String slogan1 = "";
     String slogan2 = "";
     String imCode = "";
+    String imDisabled = "";
 	Map attr=new HashMap();
 	Object billParamsObj = null;
 	Map billParams = new HashMap();
@@ -219,6 +220,9 @@
                 if(attr.get("imCode") != null){
                 	imCode = attr.get("imCode").toString();
                 }
+                if(attr.get("imDisabled") != null){
+                	imDisabled = attr.get("imDisabled").toString();
+                }
                 
                 if(attr.get("billParams") != null){
                 	billParamsObj = attr.get("billParams");
@@ -301,6 +305,7 @@
     var currEmpTel = "<%=empTel %>";
     var token = "<%=token %>";
     var currImCode = "<%=imCode %>";
+    var currImDisabled = "<%=imDisabled %>";
     var currCompAddress = "<%=compAddress %>";
     var currCompTel = "<%=compTel %>";
     var currCompLogoPath = "<%=compLogoPath %>";

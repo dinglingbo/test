@@ -48,16 +48,7 @@ function load(e){
     
     var data= form.getData();
 	data.endDate = formatDate(data.endDate) +" 23:59:59";
-	if(e==0){
-		data.groupByQuery = "DATE_FORMAT(c.out_date,'%Y-%m-%d')  as groupName,"
-		data.groupByType = "GROUP BY DATE_FORMAT(c.out_date,'%Y-%m-%d')";
-	}else if(e==1){
-		data.groupByQuery = "c.service_type_id as groupName,"
-	    data.groupByType = "group by c.service_type_id";
-	}else if(e==2){
-		data.groupByQuery = "b.part_code as groupName,b.part_name as partName,"
-	    data.groupByType = "group by b.part_name, b.part_code ";
-	}
+	data.groupByType = cType;
     updateGridColoumn(cType);
     grid1.load({params:data,token :token});
 }

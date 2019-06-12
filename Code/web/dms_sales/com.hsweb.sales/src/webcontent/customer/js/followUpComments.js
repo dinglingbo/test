@@ -63,12 +63,14 @@ $(document).ready(function ()
 	        			e.cellHtml = currOrgList[i].shortName;
 	        		}
 	        	}
-	     }/*else if(e.field == "scoutRemark"){
-	    	 mainGrid.beginEditRow(record);
-	     }*/
+	     }else if(e.field == "scoutRemark"){
+	     
+         	e.cellStyle = "background:rgb(54, 244, 226)";
+         
+	     }
 	});
 	
-	
+	//rgb(54, 209, 244)
 	mainGrid.on("select",function(e){
     	var row = e.record;
     	if(row.id){
@@ -152,10 +154,6 @@ function doSearch() {
     mainGrid.load({
         token:token,
         params: gsparams
-    },function(){
-    	var row = mainGrid.findRow(function(row){
-    		mainGrid.beginEditRow(row);
-        });
     });
 }
 var status = 0;
@@ -254,7 +252,9 @@ function guestInfo(){
 
 function giftInfo(){
 	var row = mainGrid.getSelected();
+	
 	if(row){
+		row.show = 1;
 		if(row.id !="" && row.id !=null){
 			nui.open({
 				url: webPath + contextPath + '/sales/customer/guestComeGift.jsp',
@@ -283,6 +283,7 @@ function giftInfo(){
 function buyCarCount(){
 	var row = mainGrid.getSelected();
 	if(row){
+		row.show = 1;
 		if(row.id !="" && row.id !=null){
 			nui.open({
 				url: webPath + contextPath + '/sales/sales/caCalculation.jsp',

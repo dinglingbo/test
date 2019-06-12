@@ -73,7 +73,7 @@
             <table style="width:100%;">
                 <tr>
                     <td style="width:100%;">
-                        <a class="nui-button" onclick="saveCome()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                        <a class="nui-button" onclick="saveCome()" plain="true" style="width: 60px;" id="saveCome"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                         <a class="nui-button" onclick="onCancel" plain="true" style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</a>
                     </td>
                 </tr>

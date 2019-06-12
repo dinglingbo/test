@@ -96,11 +96,61 @@ $(document).ready(function (){
    jpDetailGrid = nui.get("jpDetailGrid");
    jpDetailGrid.setUrl(jpDetailGridUrl);
    jpGrid.load();
-   jpGrid.on("rowclick", function(e) {
+   /* jpGrid.on("beforeselect",function(e){
+    	if(statusF>0){
+    		e.cancel = true;
+    		return;
+    	}
+    });  */
+    jpGrid.on("beforedeselect", function(e) {
+        if(statusF>0){
+    		e.cancel = true;
+    		return;
+    	}
+    });
+    jpGrid.on("beforeselect", function(e) {
+        if(statusF>0){
+    		e.cancel = true;
+    		return;
+    	}
+    });
+   jpGrid.on("select", function(e) {
         /* var billFormData = billForm.getData(true); //主表信息
         if (billFormData.status != 0) {
             return;
         } */
+        if(statusF>0){
+    		e.cancel = true;
+    		return;
+    	}
+        var jpdata = jpGrid.getSelecteds();
+        var jpDetailData = jpDetailGrid.getData();
+        for (var i = 0, l = jpdata.length; i < l; i++) {
+            var msg = jpDetailData.find(jpDetailData => jpDetailData.giftId == jpdata[i].id);
+            if (!msg) {
+                var newRow = {
+                    giftId: jpdata[i].id,
+                    giftName: jpdata[i].name,
+                    billType:1
+                };
+                jpDetailGrid.addRow(newRow, jpDetailData.length);
+            };
+        }
+        jpDetailData = jpDetailGrid.getData();
+        for (var i = 0, l = jpDetailData.length; i < l; i++) {
+            var row = jpDetailGrid.getRow(i);
+            var msg = jpdata.find(jpdata => jpdata.id == jpDetailData[i].giftId);
+            if (!msg) {
+                jpDetailGrid.commitEdit();
+                jpDetailGrid.removeRow(row, false);
+            };
+        };
+    });
+    jpGrid.on("deselect", function(e) {
+        if(statusF>0){
+    		e.cancel = true;
+    		return;
+    	}
         var jpdata = jpGrid.getSelecteds();
         var jpDetailData = jpDetailGrid.getData();
         for (var i = 0, l = jpdata.length; i < l; i++) {

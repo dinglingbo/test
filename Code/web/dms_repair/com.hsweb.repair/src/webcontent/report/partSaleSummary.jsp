@@ -10,7 +10,7 @@
     <title>配件销售汇总表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
-  <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/partSaleSummary.js?v=1.0.3"></script>
+  <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/partSaleSummary.js?v=1.0.5"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -79,7 +79,7 @@
                 <div  field="groupName" name="groupName" width="60" headerAlign="center" header="业务类型"></div>
                 <div  field="partName" name="partName" width="60" headerAlign="center" header="配件名称"></div> 
                 <div  field="qty" width="60" headerAlign="center" summaryType="sum" header="数量"></div>
-                <div  field="partTrueCost" width="60" headerAlign="center" summaryType="sum" header="成本"></div>
+                <div  field="trueCost" width="60" headerAlign="center" summaryType="sum" header="成本"></div>
                 <div  field="amt" width="60" headerAlign="center" summaryType="sum" header="销售金额 "></div>
                 <div  field="discountAmt" width="60" headerAlign="center" summaryType="sum" header="优惠金额"></div>
                 <div  field="subtotal" width="60" headerAlign="center" summaryType="sum" header="配件小计"></div>

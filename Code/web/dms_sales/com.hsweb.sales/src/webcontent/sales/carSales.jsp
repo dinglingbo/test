@@ -12,7 +12,7 @@
         <title>整车销售</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%=request.getContextPath()%>/sales/sales/js/carSales.js?v=1.0.9"></script>
+            <script src="<%=request.getContextPath()%>/sales/sales/js/carSales.js?v=1.1.0"></script>
     </head>
     <style type="text/css">
         body {
@@ -80,7 +80,7 @@
             </table>
         </div>
         <div class="nui-fit">
-            <div id="mainGrid" class="nui-datagrid" visible="false" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="data" showModified="false" onrowdblclick="" allowCellSelect="true"
+            <div id="mainGrid" class="nui-datagrid" visible="false" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"  totalField="page.size" sizeList=[20,50,100,200] dataField="data" showModified="false" onrowdblclick="" allowCellSelect="true"
                 editNextOnEnterKey="true" allowCellWrap="true" url="">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>

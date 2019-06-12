@@ -132,7 +132,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link40</targetConnections>
-    <location x="655" y="114"/>
+    <location x="655" y="105"/>
     <size height="28" width="28"/>
     <nodeLabel>assign17label</nodeLabel>
     <process:copy>
@@ -145,7 +145,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign17label" name="label" nodeType="label">
-    <location x="650" y="150"/>
+    <location x="650" y="141"/>
     <figSize height="17" width="39"/>
     <node>assign17</node>
   </nodes>
@@ -180,6 +180,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">updateItemTemp/modifyDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">serviceId</process:from>
+      <process:to type="query">updateItemTemp/serviceId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign19label" name="label" nodeType="label">
@@ -284,9 +288,9 @@
       <sourceNode>assign9</sourceNode>
       <targetNode>assign10</targetNode>
     </sourceConnections>
-    <targetConnections>link21</targetConnections>
     <targetConnections>link60</targetConnections>
     <targetConnections>link71</targetConnections>
+    <targetConnections>link21</targetConnections>
     <location x="529" y="96"/>
     <size height="28" width="28"/>
     <nodeLabel>assign9label</nodeLabel>
@@ -417,7 +421,7 @@
       <process:to type="query">updateItemTemp/id</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">tmp/serviceId</process:from>
+      <process:from type="query" pattern="reference">serviceId</process:from>
       <process:to type="query">updateItemTemp/serviceId</process:to>
     </process:copy>
     <process:copy>
@@ -719,7 +723,7 @@
       <process:to type="query">updateItemTemp/id</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">tmp/serviceId</process:from>
+      <process:from type="query" pattern="reference">serviceId</process:from>
       <process:to type="query">updateItemTemp/serviceId</process:to>
     </process:copy>
     <process:copy>

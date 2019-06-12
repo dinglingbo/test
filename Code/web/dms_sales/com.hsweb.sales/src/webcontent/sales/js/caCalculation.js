@@ -3,9 +3,9 @@ var baseUrl = apiPath + saleApi + "/";
 var form = null;
 $(document).ready(function(v) {
     form = new nui.Form("#form1");
-    var calculate = "银行利息=贷款金额*贷款利率(%)" +
-        "\r\n费用合计= 续保押金+月供保证金+家访费+合同保证金+GPS费用+按揭手续费+保险费预算+购置税预算+上牌费+其它费用+精品加装" +
-        "\r\n购车预算合计= 车辆销价+费用合计"
+    var calculate = "贷款利息=贷款金额*贷款利率(%)" +
+        "\r\n费用合计= 按揭手续费+合同保证金+月供保证金+家访费+续保押金+GPS费用+上牌费+精品加装+其它费用+保险费预算+购置税预算" +
+        "\r\n购车预算合计= 车型销价+费用合计"
     nui.get("calculate").setValue(calculate);
 
     initDicts({
@@ -288,6 +288,11 @@ function saveCome() {
         showMsg("来访登记已转销售不能修改!", "W");
         return;
     } else {
+        var advanceChargeAmt = caCalculationData.advanceChargeAmt; //预付款
+        var saleAmt = caCalculationData.saleAmt; //车型销价
+        if (advanceChargeAmt > saleAmt) {
+            showMsg("预付款金额不能大于车型销价金额！", "W");
+        }
         caCalculationData.billType = 1; //来访登记的预算
         var json = nui.encode({
             caCalculationData: caCalculationData,

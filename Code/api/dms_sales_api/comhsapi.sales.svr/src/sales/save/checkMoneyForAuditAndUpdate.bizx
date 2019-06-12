@@ -540,7 +540,7 @@
       <process:to type="query">params/BillAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
+      <process:from type="literal" pattern="reference">-1</process:from>
       <process:to type="query">params/dc</process:to>
     </process:copy>
     <process:copy>

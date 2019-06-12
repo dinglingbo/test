@@ -359,7 +359,7 @@
                     </div>
                 </div>
                 <div title="费用信息">
-                    <div class="nui-toolbar">
+                    <div class="nui-toolbar" id="toolbar">
                         <div align="right">
                             <a class="nui-button" iconCls="" plain="true" onclick="costMsg()" id="costBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                         </div>

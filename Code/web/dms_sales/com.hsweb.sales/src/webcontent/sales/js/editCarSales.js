@@ -387,6 +387,9 @@ $(document).ready(function(v) {
 
 function checkMsg(e) { //保存操作前进行验证
     var billFormData = billForm.getData(true); //主表信息
+    if (billFormData.id) {
+        searchSalesMain(billFormData.id);
+    }
     if (e == 3) {
         if (billFormData.status == "") {
             showMsg("当前工单尚未保存，无需作废！", "W");

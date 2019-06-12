@@ -580,6 +580,10 @@ function updateCheckEnter(enterId) { //返单 修改库存表车辆状态
 
 function checkCost(grid, value) { //费用信息  审核反审
     var billFormData = billForm.getData(true);
+    if (billFormData.status != 2) {
+        showMsg("工单尚未审核！", "W");
+        return;
+    }
     var row = grid.getSelected();
     var newRow = {
         auditSign: value
@@ -779,6 +783,7 @@ function registration() { //车辆上牌
 }
 
 function caseMsg() { //销售结案审核
+    searchSalesMain(billFormData.id);
     var billFormData = billForm.getData(true); //主表信息
     if (!billFormData.enterId || billFormData.enterId == 0) {
         showMsg("当前工单尚未选车！", "W");

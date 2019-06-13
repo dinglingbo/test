@@ -33,7 +33,7 @@ package com.chedao.websocket;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-public class QiQiImServer {
+public class ImServer {
 
     public static void main(String[] args) {
         ApplicationContext context = new FileSystemXmlApplicationContext(new String[]{"classpath:spring-config.xml"});

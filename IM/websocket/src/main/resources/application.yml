@@ -3,7 +3,7 @@
 spring:
   datasource:
     name: datasource
-    url: jdbc:mysql://192.168.111.60:3306/qiqiim?characterEncoding=UTF-8&amp;characterSetResults=UTF-8&amp;zeroDateTimeBehavior=convertToNull&useSSL=false
+    url: jdbc:mysql://192.168.111.60:3306/wb_im?characterEncoding=UTF-8&amp;characterSetResults=UTF-8&amp;zeroDateTimeBehavior=convertToNull&useSSL=false
     username: root
     password: '000000'
     driverClassName: com.mysql.jdbc.Driver

@@ -42,9 +42,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Sharable
-public class QiQiImClientHandler extends ChannelInboundHandlerAdapter {
+public class ImClientHandler extends ChannelInboundHandlerAdapter {
 
-    private final static Logger logger = LoggerFactory.getLogger(QiQiImClientHandler.class);
+    private final static Logger logger = LoggerFactory.getLogger(ImClientHandler.class);
 
     
     

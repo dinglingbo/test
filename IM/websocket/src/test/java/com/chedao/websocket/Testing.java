@@ -22,7 +22,7 @@ public class Testing {
 							int x = (int)(Math.random()*90000+10000);
 			                String currentuser = x+UUID.randomUUID().toString().replaceAll("-", "");
 			                //链接socket服务
-			                new QiQiImClient().connect(new MessageData().generateConnect(currentuser));
+			                new ImClient().connect(new MessageData().generateConnect(currentuser));
 			                  
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -37,7 +37,7 @@ public class Testing {
 	 
 	public static void main(String[] args) {
 		
-	  //注意 请先修改QiQiImClient 里面的链接ip
+	  //注意 请先修改ImClient 里面的链接ip
 		
 	  //模拟用户链接测试
       ExecutorService exec = Executors.newCachedThreadPool();

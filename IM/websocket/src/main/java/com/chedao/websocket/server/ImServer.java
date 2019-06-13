@@ -52,7 +52,7 @@ public class ImServer  {
 
     @PostConstruct
     public void init() throws Exception {
-        log.info("start qiqiim server ...");
+        log.info("start im server ...");
 
         // Server 服务启动
         ServerBootstrap bootstrap = new ServerBootstrap();
@@ -75,7 +75,7 @@ public class ImServer  {
         // 可选参数
     	bootstrap.childOption(ChannelOption.TCP_NODELAY, true);
         // 绑定接口，同步等待成功
-        log.info("start qiqiim server at port[" + port + "].");
+        log.info("start im server at port[" + port + "].");
         ChannelFuture future = bootstrap.bind(port).sync();
     	channel = future.channel();
         future.addListener(new ChannelFutureListener() {
@@ -93,14 +93,14 @@ public class ImServer  {
 
     @PreDestroy
     public void destroy() {
-        log.info("destroy qiqiim server ...");
+        log.info("destroy im server ...");
         // 释放线程池资源
         if (channel != null) {
 			channel.close();
 		}
         bossGroup.shutdownGracefully();
         workerGroup.shutdownGracefully();
-        log.info("destroy qiqiim server complate.");
+        log.info("destroy iim server complate.");
     }
     
  

@@ -1,8 +1,8 @@
 /**
  * Created by steven on 2018/1/31.
  */
-baseUrl = apiPath + sysApi + "/";;
-var gridUrl = baseUrl + "com.primeton.tenant.comTenant.comTenantQuery.biz.ext";
+baseUrl = apiPath + sysApi + "/";             
+var gridUrl = baseUrl + "com.primeton.tenant.comTenant.comTenantQueryBySql.biz.ext";
 var timeUrl = baseUrl + "com.hsapi.system.employee.comCompany.getTime.biz.ext";
 var grid;
 var time;
@@ -29,20 +29,20 @@ $(document).ready(function(v) {
 	
 	grid = nui.get("datagrid1");
 	grid.setUrl(gridUrl);
-    var request = {
+    /*var request = {
     		"params":{
     			
     		}
-    };   
-    grid.load(request,function(){
+    }; */  
+    /*grid.load(request,function(){
         //成功;
        // nui.alert("数据成功！");
     },function(){
         //失败;
         nui.alert("数据失败！");
-    });
+    });*/
 	   getProvince(function(data) {
-	        list = data.rs;
+	        var  list = data.rs;
 	        nui.get("provinceId").setData(list);
 
 	    });
@@ -57,10 +57,11 @@ $(document).ready(function(v) {
     	 cityList.forEach(function(v) {
     			cityHash[v.code] = v;
     		});
-    	 });
+    	 });*/
     grid.on("drawcell", function (e){
     	onDrawCell(e);
-    });*/
+    });
+	   search();
 });
 
 
@@ -70,17 +71,23 @@ function onDrawCell(e)
 switch (e.field)
 {
 	case "provinceId":
-    if(provinceHash && provinceHash[e.value])
-    {
-        e.cellHtml = provinceHash[e.value].name;
-    }  
+		if(provinceHash && provinceHash[e.value])
+		{
+		    e.cellHtml = provinceHash[e.value].name;
+		}  
     break;
 	case "cityId":
-    if(cityHash && cityHash[e.value])
-    {
-        e.cellHtml = cityHash[e.value].name;
-    }  
+	    if(cityHash && cityHash[e.value])
+	    {
+	        e.cellHtml = cityHash[e.value].name;
+	    }  
     break;
+	case "isDisabled":
+		e.cellHtml = e.value?0:"在用","停用";
+		break;
+	case "isPay":
+		e.cellHtml = e.value?0:"免费","付费";
+		break;
 	default:
     break;
 }
@@ -106,6 +113,20 @@ function search() {
 	   param.endDates = nui.formatDate(new Date(), 'yyyy-MM-dd');
 	   param.endDates = param.endDates + ' 00:00:00';
 	   param.endDatee = addDate(param.endDates,30);
+   }
+   
+   if(param.startDatet==1){//本周
+	   param.startDates = getWeekStartDate();
+	   param.startDatee = addDate(getWeekEndDate(), 1);
+   }else if(param.startDatet==2){//本月
+	   param.startDates = getMonthStartDate();
+	   param.startDatee =addDate(getMonthEndDate(), 1);
+   }else if(param.startDatet==3){//本年
+	   param.startDates = getYearStartDate();
+	   param.startDatee =getYearEndDate();
+   }else if(param.startDatet==4){//上年
+	   param.startDates = getPrevYearStartDate();
+	   param.startDatee = getPrevYearEndDate();
    }
     doSearch(param);
 }
@@ -157,11 +178,11 @@ function quickSearch(type) {
         case 0:
             params.isDisabled = 0;
             queryname = "停用";
-            isDisabled = 0;
+            isDisabled = 1;
             break;
         case 1:
         	params.isDisabled =1;
-        	isDisabled = 1;
+        	isDisabled = 0;
             queryname = "在用";
             break;
         case 2:
@@ -171,11 +192,11 @@ function quickSearch(type) {
         default:
             break;
     }
-    var menunamedate = nui.get("menunamedate1");
+    var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);
     doSearch(params);
 }
-	
+
 var getProvinceAndCityUrl = window._rootUrl
 + "com.hsapi.part.common.svr.getProvinceAndCity.biz.ext";
 function getProvinceAndCity(callback) {
@@ -341,12 +362,13 @@ function ViewType(e){
         tit="查看发票";
     }
     if(e == 5){
-        tit="修改产品";
+        tit="修改用户";
         var view_w = 580;
-        var view_d = 280;
-    	s=grid.getSelected ();
+        var view_d = 380;
+    	s=grid.getSelected();
     	if(s==undefined){
-    		nui.alert("请选中一行")
+    		//nui.alert("请选中一行")
+    		showMsg("请选中一行","W");
     		return;
     	}
     
@@ -364,14 +386,16 @@ function ViewType(e){
         ondestroy: function (action) {  //弹出页面关闭前
        
            	    var params;
-                nui.alert("修改成功！");
-                grid.load(params,function(){
+           	    search();
+               // nui.alert("修改成功！");
+               /* grid.load(params,function(){
                     //成功;
                    // nui.alert("数据成功！");
                 },function(){
                     //失败;
                     nui.alert("数据失败！");
-                });
+                });*/
+           	    
             
         }
     });

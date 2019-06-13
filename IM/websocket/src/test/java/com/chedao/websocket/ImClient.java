@@ -21,7 +21,7 @@ import io.netty.handler.timeout.IdleStateHandler;
 import java.util.Scanner;
 import java.util.UUID;
 
-public class QiQiImClient {
+public class ImClient {
 
     public  String host = "127.0.0.1";
     public  int port = 2000;
@@ -46,7 +46,7 @@ public class QiQiImClient {
                 pipeline.addLast("frameEncoder", new ProtobufVarint32LengthFieldPrepender());
                 pipeline.addLast(new IdleStateHandler(Constants.ImserverConfig.READ_IDLE_TIME, Constants.ImserverConfig.WRITE_IDLE_TIME, 0));
                 pipeline.addLast("encoder", new ProtobufEncoder());
-                pipeline.addLast("handler", new QiQiImClientHandler());
+                pipeline.addLast("handler", new ImClientHandler());
             }
         });
         return b;
@@ -75,7 +75,7 @@ public class QiQiImClient {
     		 //String currentuser = "abc";
     		 String currentuser = UUID.randomUUID().toString().replaceAll("-", "");
     		 //链接socket服务
-             new QiQiImClient().connect(new MessageData().generateConnect(currentuser));
+             new ImClient().connect(new MessageData().generateConnect(currentuser));
              Scanner sc = new Scanner(System.in); 
         	 System.out.println("输入聊天用户SessionId：");
         	 String reuser=sc.next();
@@ -83,7 +83,7 @@ public class QiQiImClient {
         	 sc.nextLine(); 
              while (true) { 
                      String line = sc.nextLine(); 
-                     new QiQiImClient().connect(new MessageData().generateSend(currentuser, reuser,line));
+                     new ImClient().connect(new MessageData().generateSend(currentuser, reuser, line));
                      if (line.equals("exit")) break; 
              } 
         	

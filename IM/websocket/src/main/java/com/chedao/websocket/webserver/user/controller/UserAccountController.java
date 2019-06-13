@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * 用户帐号
  * 
- * @author qiqiim
+ * @author im
  * @email 1044053532@qq.com
  * @date 2017-11-27 14:56:08
  */

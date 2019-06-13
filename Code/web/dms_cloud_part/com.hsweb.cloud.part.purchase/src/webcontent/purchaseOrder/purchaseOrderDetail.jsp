@@ -76,6 +76,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="addMorePart()" id="fastEnterBtn"><span class="fa fa-hand-o-right fa-lg"></span>&nbsp;快速录入配件</a>
                 <a class="nui-button" plain="true" iconCls="" onclick="importPart()" id="importPartBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="adjustOrderQty()" id="exportBtn"><span class="fa fa-adjust fa-lg"></span>&nbsp;订单数量调整</a>
 <!--                 <a class="nui-button" iconCls="" plain="true" onclick="loadPartPrice()" id="exportBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;设置价格</a> -->
                 <span id="status"></span>
             </td>
@@ -267,6 +268,7 @@
                          showColumnsMenu="true"
                          onselectionchanged=""
                          editNextOnEnterKey="true"
+                         allowCellWrap = true
                          url="">
                         <div property="columns">
                             <div type="indexcolumn">序号</div>
@@ -276,10 +278,11 @@
                                     <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码">
                                         <input property="editor" class="nui-textbox" />
                                     </div>
-                                    <div field="comPartName" headerAlign="center" header="配件名称">
+                                    <div field="comPartName" visible="false" headerAlign="center" header="配件名称">
                                         <!-- <input property="editor" class="nui-textbox" data="codeList" valueField="code" textField="code"/> -->
                                     </div>
-                                    <div field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
+                                    <div field="fullName" headerAlign="center" header="配件全称"></div>
+                                    <div field="comPartBrandId" visible="false" width="60" headerAlign="center" header="品牌"></div>
                                     <div field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
                                     <div field="comUnit" name="comUnit" width="40" headerAlign="center" header="单位"></div>
                                 </div>

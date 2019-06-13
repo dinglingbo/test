@@ -54,33 +54,12 @@ $(document).ready(function(v) {
     costDetailGrid2.setUrl(costDetailGridUrl);
 
     jpGrid.load();
-    jpGrid.on("rowclick", function(e) {
-        var billFormData = billForm.getData(true); //主表信息
-        if (billFormData.status != 0) {
-            return;
-        }
-        var jpdata = jpGrid.getSelecteds();
-        var jpDetailData = jpDetailGrid.getData();
-        for (var i = 0, l = jpdata.length; i < l; i++) {
-            var msg = jpDetailData.find(jpDetailData => jpDetailData.giftId == jpdata[i].id);
-            if (!msg) {
-                var newRow = {
-                    giftId: jpdata[i].id,
-                    giftName: jpdata[i].name,
-                    billType: 2
-                };
-                jpDetailGrid.addRow(newRow, jpDetailData.length);
-            };
-        }
-        jpDetailData = jpDetailGrid.getData();
-        for (var i = 0, l = jpDetailData.length; i < l; i++) {
-            var row = jpDetailGrid.getRow(i);
-            var msg = jpdata.find(jpdata => jpdata.id == jpDetailData[i].giftId);
-            if (!msg) {
-                jpDetailGrid.commitEdit();
-                jpDetailGrid.removeRow(row, false);
-            };
-        };
+    jpGrid.on("select", function(e) {
+        selectJPGrid();
+    });
+
+    jpGrid.on("deselect", function(e) {
+        selectJPGrid();
     });
 
     jpGrid.on("load", function(e) {
@@ -264,51 +243,13 @@ $(document).ready(function(v) {
         }
     });
 
-    costGrid.on("rowclick", function(e) {
-        var billFormData = billForm.getData(true); //主表信息
-        if (billFormData.status == 2 && nui.get("typeMsg").value == 1) {
-            var data = costGrid.getSelecteds();
-            var data1 = costDetailGrid.getData();
-            var data2 = costDetailGrid2.getData();
-            for (var i = 0, l = data.length; i < l; i++) {
-                var newRow = {
-                    costName: data[i].name,
-                    costId: data[i].id,
-                    auditSign: 0
-                };
-                if (data[i].name == "购置税" || data[i].name == "保险费") {
-                    var msg = data1.find(data1 => data1.costId == data[i].id);
-                    if (!msg) {
-                        newRow.type = 1;
-                        costDetailGrid.addRow(newRow, costDetailGrid.length);
-                    };
-                } else {
-                    var msg = data2.find(data2 => data2.costId == data[i].id);
-                    if (!msg) {
-                        newRow.type = 2;
-                        costDetailGrid2.addRow(newRow, costDetailGrid2.length);
-                    };
-                };
-            }
-            data1 = costDetailGrid.getData();
-            for (var i = 0, l = data1.length; i < l; i++) {
-                var row = costDetailGrid.getRow(i);
-                var msg = data.find(data => data.id == data1[i].costId);
-                if (!msg) {
-                    costDetailGrid.commitEdit();
-                    costDetailGrid.removeRow(row, false);
-                };
-            }
-            data2 = costDetailGrid2.getData();
-            for (var i = 0, l = data2.length; i < l; i++) {
-                var row = costDetailGrid2.getRow(i);
-                var msg = data.find(data => data.id == data2[i].costId);
-                if (!msg) {
-                    costDetailGrid2.commitEdit();
-                    costDetailGrid2.removeRow(row, false);
-                };
-            };
-        }
+
+    costGrid.on("select", function(e) {
+        selectCostGrid();
+    });
+
+    costGrid.on("deselect", function(e) {
+        selectCostGrid();
     });
 
     var dictDefs = { "billTypeId": "DDT20130703000008", "saleType": 10392 };
@@ -387,6 +328,9 @@ $(document).ready(function(v) {
 
 function checkMsg(e) { //保存操作前进行验证
     var billFormData = billForm.getData(true); //主表信息
+    if (billFormData.id) {
+        searchSalesMain(billFormData.id, 1);
+    }
     if (e == 3) {
         if (billFormData.status == "") {
             showMsg("当前工单尚未保存，无需作废！", "W");
@@ -416,16 +360,8 @@ function checkMsg(e) { //保存操作前进行验证
         return;
     }
     if (e == 6) {
-        if (billFormData.status != 2) {
-            showMsg("当前工单尚未审核！", "W");
-            return;
-        }
         if (billFormData.isSubmitCar == 1) {
             showMsg("当前工单已交车！", "W");
-            return;
-        }
-        if (billFormData.enterId == 0) {
-            showMsg("当前工单尚未选库存车！", "W");
             return;
         }
         if (nui.get("submitTrueDate").value == "") {
@@ -485,6 +421,8 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
         billFormData.submitCarKeyQty = formData.submitCarKeyQty;
         billFormData.submitCarRemark = formData.submitCarRemark;
         billFormData.isSubmitCar = 1;
+        saleExtend.handcartAmt = billFormData.handcartAmt;
+        saleExtend.carCost = billFormData.carCost;
     }
     var addMsg = costDetailGrid.getChanges("added");
     var editMsg = costDetailGrid.getChanges("modified");
@@ -496,10 +434,6 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
     var editArr = editMsg.concat(editMsg2);
     var deleteArr = deleteMsg.concat(deleteMsg2);
     if (e == 11) {
-        billFormData.status = 0;
-        billFormData.isSubmitCar = 0;
-        billFormData.enterId = 0;
-
         nui.ajax({
             url: baseUrl + "sales.save.backSingle.biz.ext",
             data: {
@@ -513,6 +447,9 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
                 };
             }
         });
+        billFormData.status = 0;
+        billFormData.isSubmitCar = 0;
+        billFormData.enterId = 0;
     }
     nui.ajax({
         url: baseUrl + "sales.save.saveSaleMainAll.biz.ext",
@@ -533,19 +470,22 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
             if (text.errCode == "S") {
                 var serviceId = text.serviceId;
                 document.getElementById("caCalculation").contentWindow.SetDataMsg(serviceId);
-                searchSalesMain(serviceId);
+                searchSalesMain(serviceId, 0);
                 jpDetailGrid.load({ billType: 2, serviceId: serviceId });
                 costDetailGrid.load({ serviceId: serviceId, type: 1 });
                 costDetailGrid2.load({ serviceId: serviceId, type: 2 });
                 showMsg(text.errMsg, "S");
 
-            };
+            } else {
+                showMsg(text.errMsg, "W");
+            }
         }
     });
 }
 
 function costMsg() { //保存费用信息
     var billFormData = billForm.getData(true); //主表信息
+    searchSalesMain(billFormData.id, 0);
     if (billFormData.isSettle == 1) {
         showMsg("当前工单已结算！", "W");
         return;
@@ -556,10 +496,6 @@ function costMsg() { //保存费用信息
     }
     if (billFormData.status != 2) {
         showMsg("当前工单尚未审核！", "W");
-        return;
-    }
-    if (nui.get("typeMsg").value != 1) {
-        showMsg("请在销售管理界面进行编辑保存！", "W");
         return;
     }
     var addMsg = costDetailGrid.getChanges("added");
@@ -607,7 +543,7 @@ function setInitData(params) { //初始化
         nui.get("case").setVisible(true);
     }
     if (params.id) {
-        searchSalesMain(params.id);
+        searchSalesMain(params.id, 0);
         jpDetailGrid.load({ billType: 2, serviceId: params.id });
         costDetailGrid.load({ serviceId: params.id, type: 1 });
         costDetailGrid2.load({ serviceId: params.id, type: 2 });
@@ -641,6 +577,10 @@ function updateCheckEnter(enterId) { //返单 修改库存表车辆状态
 
 function checkCost(grid, value) { //费用信息  审核反审
     var billFormData = billForm.getData(true);
+    if (billFormData.status != 2) {
+        showMsg("工单尚未审核！", "W");
+        return;
+    }
     var row = grid.getSelected();
     var newRow = {
         auditSign: value
@@ -666,7 +606,7 @@ function checkCost(grid, value) { //费用信息  审核反审
 }
 
 /////////////////////////////////////////////////////////////////////////////////数据读取
-function searchSalesMain(serviceId) { //查询主表信息
+function searchSalesMain(serviceId, type) { //查询主表信息
     var params = {
         id: serviceId
     };
@@ -680,8 +620,22 @@ function searchSalesMain(serviceId) { //查询主表信息
         success: function(text) {
             if (text.errCode == "S") {
                 var data = text.data[0];
-                billForm.setData(data);
-                form.setData(data);
+                if (!type) {
+                    billForm.setData(data);
+                    form.setData(data);
+                    document.getElementById("caCalculation").contentWindow.setSelectCarValue(data.handcartAmt, data.carCost);
+                    document.getElementById("caCalculation").contentWindow.SetDataMsg(data.id, data.frameColorId, data.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
+                } else {
+                    var billFormData = billForm.getData(true);
+                    billFormData.isSettle = data.isSettle;
+                    billFormData.enterId = data.enterId;
+                    billFormData.status = data.status;
+                    billFormData.carModelId = data.carModelId;
+                    billFormData.isSubmitCar = data.isSubmitCar;
+                    billFormData.handcartAmt = data.handcartAmt;
+                    billFormData.carCost = data.carCost;
+                    billForm.setData(billFormData);
+                }
                 nui.get("carModelName").setValue(data.carModelName);
                 nui.get("carModelName").setText(data.carModelName);
                 $("#servieIdEl").html(data.serviceCode);
@@ -690,7 +644,7 @@ function searchSalesMain(serviceId) { //查询主表信息
                 } else {
                     nui.get("submitCarBtn").enable();
                 }
-                document.getElementById("caCalculation").contentWindow.SetDataMsg(data.id, data.frameColorId, data.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
+
                 if (data.status != 0) {
                     nui.get("saveBtn").disable();
                     nui.get("submitBtn").disable();
@@ -706,6 +660,7 @@ function searchSalesMain(serviceId) { //查询主表信息
                     }
                 } else {
                     nui.get("saveBtn").enable();
+                    nui.get("submitBtn").enable();
                     setInputModel();
                     document.getElementById("caCalculation").contentWindow.setInputModel();
                 }
@@ -714,8 +669,9 @@ function searchSalesMain(serviceId) { //查询主表信息
                 }
                 if (nui.get("typeMsg").value != 1) {
                     setReadOnlySubmitCar(1);
+                    nui.get("toolbar").setVisible(false);
                 } else {
-                    if (data.enterId && data.isSettle != 1) {
+                    if (data.enterId && data.isSettle != 1 && data.isSubmitCar == 0) {
                         setReadOnlySubmitCar(0);
                     } else {
                         setReadOnlySubmitCar(1);
@@ -838,6 +794,7 @@ function registration() { //车辆上牌
 
 function caseMsg() { //销售结案审核
     var billFormData = billForm.getData(true); //主表信息
+    searchSalesMain(billFormData.id, 0);
     if (!billFormData.enterId || billFormData.enterId == 0) {
         showMsg("当前工单尚未选车！", "W");
         return;
@@ -1041,5 +998,99 @@ function OnModelCellBeginEdit(e) {
 function changeValueMsg(e) {
     var saleType = nui.get("saleType").value;
     document.getElementById("caCalculation").contentWindow.setSaleType(saleType);
+}
+
+function selectJPGrid() {
+    var billFormData = billForm.getData(true); //主表信息
+    if (billFormData.status != 0) {
+        return;
+    }
+    var jpdata = jpGrid.getSelecteds();
+    var jpDetailData = jpDetailGrid.getData();
+    for (var i = 0, l = jpdata.length; i < l; i++) {
+        var msg = jpDetailData.find(jpDetailData => jpDetailData.giftId == jpdata[i].id);
+        if (!msg) {
+            var newRow = {
+                giftId: jpdata[i].id,
+                giftName: jpdata[i].name,
+                billType: 2
+            };
+            jpDetailGrid.addRow(newRow, jpDetailData.length);
+        };
+    }
+    jpDetailData = jpDetailGrid.getData();
+    for (var i = 0, l = jpDetailData.length; i < l; i++) {
+        var row = jpDetailGrid.getRow(i);
+        var msg = jpdata.find(jpdata => jpdata.id == jpDetailData[i].giftId);
+        if (!msg) {
+            jpDetailGrid.commitEdit();
+            jpDetailGrid.removeRow(row, false);
+        };
+    };
+}
+
+function selectCostGrid() {
+    var billFormData = billForm.getData(true); //主表信息
+    if (billFormData.status == 2 && nui.get("typeMsg").value == 1) {
+        var data = costGrid.getSelecteds();
+        var data1 = costDetailGrid.getData();
+        var data2 = costDetailGrid2.getData();
+        for (var i = 0, l = data.length; i < l; i++) {
+            var newRow = {
+                costName: data[i].name,
+                costId: data[i].id,
+                auditSign: 0
+            };
+            if (data[i].name == "购置税" || data[i].name == "保险费") {
+                var msg = data1.find(data1 => data1.costId == data[i].id);
+                if (!msg) {
+                    newRow.type = 1;
+                    costDetailGrid.addRow(newRow, costDetailGrid.length);
+                };
+            } else {
+                var msg = data2.find(data2 => data2.costId == data[i].id);
+                if (!msg) {
+                    newRow.type = 2;
+                    costDetailGrid2.addRow(newRow, costDetailGrid2.length);
+                };
+            };
+        }
+        data1 = costDetailGrid.getData();
+        for (var i = 0, l = data1.length; i < l; i++) {
+            var row = costDetailGrid.getRow(i);
+            var msg = data.find(data => data.id == data1[i].costId);
+            if (!msg) {
+                costDetailGrid.commitEdit();
+                costDetailGrid.removeRow(row, false);
+            };
+        }
+        data2 = costDetailGrid2.getData();
+        for (var i = 0, l = data2.length; i < l; i++) {
+            var row = costDetailGrid2.getRow(i);
+            var msg = data.find(data => data.id == data2[i].costId);
+            if (!msg) {
+                costDetailGrid2.commitEdit();
+                costDetailGrid2.removeRow(row, false);
+            };
+        };
+    }
+}
+
+function onDrawDate(e) {
+    var date = e.date;
+    var d = new Date();
+
+    if (date.getTime() < d.getTime()) {
+        e.allowSelect = false;
+    }
+}
+
+function onDrawSubmitTrueDate(e) {
+    var date = e.date;
+    var d = new Date(nui.get("submitPlanDate").value);
+
+    if (date.getTime() < d.getTime()) {
+        e.allowSelect = false;
+    }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

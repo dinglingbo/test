@@ -13,7 +13,7 @@
         <title>编辑整车销售</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.1081" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.1083" type="text/javascript"></script>
 
     </head>
     <style type="text/css">
@@ -182,17 +182,19 @@
             <input class="nui-hidden" name="carModelId" />
             <input class="nui-hidden" name="isSubmitCar" />
             <input class="nui-hidden" name="guestId" />
+            <input class="nui-hidden" id="handcartAmt" name="handcartAmt" />
+            <input class="nui-hidden" id="carCost" name="carCost" />
             <table cellpadding="0" cellspacing="0" style="line-height: 30px; padding-top: 4px; padding-left: 0px;width:100%">
                 <tr>
                     <td class="td_title">单据日期：
                     </td>
                     <td>
-                        <input id="orderDate" name="orderDate" class="nui-datepicker" style="width: 100%" enabled="false" />
+                        <input id="orderDate" name="orderDate" class="nui-datepicker" style="width: 100%" enabled="false" format="yyyy-MM-dd HH:mm:ss" timeFormat="H:mm:ss" showTime="true" />
                     </td>
                     <td class="td_title">预交日期：
                     </td>
                     <td>
-                        <input id="submitPlanDate" name="submitPlanDate" class="nui-datepicker" style="width: 100%" />
+                        <input id="submitPlanDate" name="submitPlanDate" class="nui-datepicker" style="width: 100%" format="yyyy-MM-dd HH:mm:ss" timeFormat="H:mm:ss" showTime="true" ondrawdate="onDrawDate" />
                     </td>
                     <td class="td_title">客户名称：
                     </td>
@@ -357,7 +359,7 @@
                     </div>
                 </div>
                 <div title="费用信息">
-                    <div class="nui-toolbar">
+                    <div class="nui-toolbar" id="toolbar">
                         <div align="right">
                             <a class="nui-button" iconCls="" plain="true" onclick="costMsg()" id="costBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                         </div>
@@ -422,7 +424,7 @@
                                 </td>
                                 <td class="tbText">交车日期：</td>
                                 <td class="tbInput">
-                                    <input class="nui-datepicker" id="submitTrueDate" name="submitTrueDate" style="width:100%" />
+                                    <input class="nui-datepicker" id="submitTrueDate" name="submitTrueDate" style="width:100%" format="yyyy-MM-dd HH:mm:ss" timeFormat="HH:mm:ss" showTime="true" ondrawdate="onDrawSubmitTrueDate" />
                                 </td>
                             </tr>
                             <tr>

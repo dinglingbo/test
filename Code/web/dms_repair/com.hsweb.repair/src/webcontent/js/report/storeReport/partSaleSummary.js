@@ -48,7 +48,7 @@ function load(e){
     
     var data= form.getData();
 	data.endDate = formatDate(data.endDate) +" 23:59:59";
-    data.groupByType = cType;
+	data.groupByType = cType;
     updateGridColoumn(cType);
     grid1.load({params:data,token :token});
 }

@@ -56,22 +56,14 @@ table#tbody{
         background-color: transparent;
         table-layout:fixed;
 }
-table,td#tbody{
-		font-family: Tahoma, Geneva, sans-serif;
-        font-size: 12px;
-        color: #000;
-       word-wrap:break-word; 
-		white-space:nowrap; 
-		overflow:hidden;
-		text-overflow:ellipsis;
 
-}
 table, td {
         font-family: Tahoma, Geneva, sans-serif;
         font-size: 12px;
         color: #000;
         word-wrap:break-word; 
-        white-space:nowrap; 
+        /**white-space:nowrap; */
+        white-space:break-all;  
 		overflow:hidden;
 		text-overflow:ellipsis;
     }
@@ -179,11 +171,7 @@ table#ybk td{
 #comApplyCarModel{
 	width:10%;
 }
-#CarModel{
-	white-space:nowrap; 
-	overflow:hidden;
-	text-overflow:ellipsis;
-}
+
 #comSpec{
 	width:8%;
 }
@@ -225,7 +213,10 @@ hr {
         border-bottom: 1px solid #ffffff;
     }
 #currUserName{
-	width:28%;
+	width:20%;
+}
+#dueAmt{
+	width:20%;
 }
 </style>
 <title>销售订单打印</title>
@@ -328,17 +319,18 @@ hr {
 				  </tr>
 				</table>
 				<table>
-				  <tr><td  colspan="4"><hr id="se"/></td></tr>
+				  <tr><td  colspan="5"><hr id="se"/></td></tr>
 				  <tr id="border2">
+				  	<td id="dueAmt">客户欠款金额:</td>
 				    <td id="currUserName" >打印人：系统管理员</td>
 				     <td id="checkMan" >检货：</td>
 				    <td id="giveMan" >送货：</td>
 				    <td id="getMan" width="" align="center">收货：</td>
 				  </tr>
 				  <hr id="se"/>
-				  <tr><td  colspan="4"><hr id="se"/></td></tr>
+				  <tr><td  colspan="5"><hr id="se"/></td></tr>
 				  <tr> <td id="orderRemark" >备注：</td></tr>
-				  <tr><td  colspan="4"><hr id="se"/></td></tr>
+				  <tr><td  colspan="5"><hr id="se"/></td></tr>
 				  <tr id=""> <td id="currCloudSellOrderPrintContent" ></td></tr>
 				</table>
             </div>
@@ -411,10 +403,43 @@ hr {
             if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
             else window.close();
         }
+        
+        function getDueAmt(params){
+			var dueAmt =0;
+			nui.ajax({
+		        url : baseUrl+ "com.hsapi.cloud.part.settle.svr.queryBillsDue.biz.ext",
+		        type : "post",
+		        data : {params: params, token: token},
+		        async: false,
+		        success : function(data) {
+		            nui.unmask(document.body);
+		            data = data || {};
+		            if (data.errCode == "S") {
+		                dueAmt =data.dueAmt;
+		                
+		            } else {
+		                showMsg(data.errMsg ,"W");
+		            }
+		        },
+		        error : function(jqXHR, textStatus, errorThrown) {
+		            // nui.alert(jqXHR.responseText);
+		            console.log(jqXHR.responseText);
+		        }
+		    });
+			return dueAmt;
+		}
     	function SetData(params,detailParms){
+    		var p ={
+				guestId : params.guestId,
+				orgid : currOrgId,
+				billDc : -1,
+				isDisabled :0
+		   }
+    		var dueAmt = getDueAmt(p);
     		$('#currOrgName').text(params.currRepairSettorderPrintShow||params.currOrgName);
     		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
     		$('#currUserName').text("制单:"+params.currUserName);
+    		$('#dueAmt').text("客户欠款金额:"+dueAmt+"元");
     		$('#currCloudSellOrderPrintContent').text(params.currCloudSellOrderPrintContent);
     		document.getElementById("spstorename").innerHTML = "销售订单";
     		document.getElementById("guestAddr").innerHTML = "地址："+params.currCompAddress;

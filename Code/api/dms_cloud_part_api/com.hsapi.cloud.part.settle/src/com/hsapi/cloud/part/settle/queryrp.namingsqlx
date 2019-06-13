@@ -536,4 +536,31 @@
 				
 	</select>
 	
+	<!--查询客户欠款 -->
+	<select id="queryBillsDue" parameterClass="java.util.HashMap"  resultClass="java.util.HashMap">
+		SELECT
+			sum(no_char_off_amt) as dueAmt
+		FROM
+			fi_rp_bill
+		WHERE 1=1				
+			<dynamic>
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (orgid = #orgid#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="guestId">  
+                    (guest_id = #guestId#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="billDc"> 
+                    (bill_dc = #billDc#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isDisabled"> 
+                    (is_disabled = #isDisabled#)
+                </isNotEmpty>
+                               
+            </dynamic> 
+				
+	</select>
+	
 </sqlMap>

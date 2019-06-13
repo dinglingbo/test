@@ -32,15 +32,20 @@ $(document).ready(function(v) {
                 e.cellHtml = interialColorData.find(interialColorData => interialColorData.customid == e.value).name;
             }
         }
+        if (field == "carLock") {
+            e.cellHtml = e.value == 0 ? "否" : "是";
+        }
     });
 });
+
 
 function SetData(carModelId, isUpdateParam) {
     isUpdate = isUpdateParam;
     var params = {
         carModelId: carModelId,
         carModelName: nui.get("carModelName").value,
-        carLock: 0
+        carLock: 0,
+		carStatus: 0 
     };
     grid.load({ params: params });
 }
@@ -52,6 +57,7 @@ function getSelectedValue() {
 
 function selectCar() {
     var data = grid.getSelected();
+
     if (!data) {
         showMsg('请先选择一条数据', 'W');
         return;
@@ -75,6 +81,7 @@ function selectCar() {
                     showMsg(text.errMsg, "W");
                 }
             }
+ 
         });
     }
 }

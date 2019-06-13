@@ -47,6 +47,15 @@ $(document).ready(function(v) {
 			
 			e.cellHtml = s;
         }
+        /*if(e.field == "guestName"){
+        	var s = '<a href="javascript:onGuestValueChanged()" title="批量设置施工员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>';
+        	if(e.value){
+        		e.cellHtml = e.value + s;
+        	}else{
+        		e.cellHtml =  s;
+        	}
+        	
+        }*/
 	});
 	payGrid.on("drawcell",function(e)
     {
@@ -60,6 +69,7 @@ $(document).ready(function(v) {
 			
 			e.cellHtml = s;
         }
+       
 	});
 	
 	receiveGrid.on("cellcommitedit",function(e){
@@ -365,7 +375,8 @@ function setGuestInfo(params)
 
 function onGuestValueChanged(e)
 {
-	var record = e.record;
+	
+    var record = e.record;
     //供应商中直接输入名称加载供应商信息
     var params = {};
     params.guestName = record.guestName;
@@ -373,12 +384,42 @@ function onGuestValueChanged(e)
     record.type = 1;
     selectSupplier(params,record);
 }
+
+function selectGuest(){
+	var row = receiveGrid.getSelected();
+	if(row){
+		var params = {};
+	    params.guestName = row.guestName;
+	    params.expense = 1;
+	    row.type = 1;
+	    selectSupplier(params,row);
+	}else{
+		showMsg("请选择一条记录!","W");
+		return;
+	}
+}
+
+function selectGuest1(){
+	var row = payGrid.getSelected();
+	if(row){
+		var params = {};
+	    params.guestName = row.guestName;
+	    params.expense = 1;
+	    row.type = 2;
+	    selectSupplier(params,row);
+	}else{
+		showMsg("请选择一条记录!","W");
+		return;
+	}
+}
+
 function onGuestValueChanged1(e)
 {
 	var record = e.record;
     //供应商中直接输入名称加载供应商信息
     var params = {};
     params.guestName = record.guestName;
+    //控制供应商选择界面根据输入的值查询
     params.expense = 1;
     record.type = 2;
     selectSupplier(params,record);

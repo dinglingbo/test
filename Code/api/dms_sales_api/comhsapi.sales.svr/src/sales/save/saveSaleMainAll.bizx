@@ -57,7 +57,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值1" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
-      <targetNode>subprocess5</targetNode>
+      <targetNode>subprocess6</targetNode>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
     <location x="182" y="465"/>
@@ -74,6 +74,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">billFormData/id</process:from>
       <process:to type="query">params/id</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">type</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -689,60 +693,7 @@
     <figSize height="17" width="39"/>
     <node>assign10</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess5" name="searchSalesMain" displayName="searchSalesMain" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" description="" id="link16" name="交车" displayName="连接线" isDefault="false" type="transition">
-      <sourceNode>subprocess5</sourceNode>
-      <targetNode>assign7</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">billFormData/isSubmitCar</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess5</sourceNode>
-      <targetNode>assign8</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link39" name="结案" displayName="连接线" type="transition">
-      <sourceNode>subprocess5</sourceNode>
-      <targetNode>assign10</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">billFormData/isSettle</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <targetConnections>link13</targetConnections>
-    <location x="267" y="465"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess5label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">sales.search.searchSalesMain</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">params</process:inputVariable>
-        <process:inputVariable id="1" name="page" type="query" value="com.eos.foundation.PageCond" valueType="DataObject" pattern="reference">page</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="data" type="query" value="commonj.sdo.DataObject[]" valueType="Java">data</process:outputVariable>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess5label" name="label" nodeType="label">
-    <location x="231" y="500"/>
-    <figSize height="17" width="98"/>
-    <node>subprocess5</node>
-  </nodes>
-  <nodes xsi:type="process:tAssign" id="assign7" name="赋值8" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值8" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link36" name="link36" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>assign7</sourceNode>
       <targetNode>assign12</targetNode>
@@ -768,7 +719,7 @@
       <targetNode>assign9</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -844,6 +795,61 @@
     <figSize height="17" width="39"/>
     <node>assign13</node>
   </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess6" name="searchSalesMain1" displayName="searchSalesMain" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" description="" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess6</sourceNode>
+      <targetNode>assign8</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link39" name="结案" displayName="连接线" isDefault="false" type="transition">
+      <sourceNode>subprocess6</sourceNode>
+      <targetNode>assign10</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">billFormData/isSettle</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link16" name="交车" displayName="连接线" isDefault="false" type="transition">
+      <sourceNode>subprocess6</sourceNode>
+      <targetNode>assign7</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">billFormData/isSubmitCar</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link13</targetConnections>
+    <location x="255" y="465"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess6label</nodeLabel>
+    <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">sales.search.searchSalesMain</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">params</process:inputVariable>
+        <process:inputVariable id="1" name="page" type="query" value="com.eos.foundation.PageCond" valueType="DataObject" pattern="reference">page</process:inputVariable>
+        <process:inputVariable id="2" name="type" type="query" value="Int" valueType="Primitive" pattern="reference">type</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+        <process:outputVariable id="2" name="data" type="query" value="commonj.sdo.DataObject[]" valueType="Java">data</process:outputVariable>
+        <process:outputVariable id="3" name="page" type="query" value="com.eos.foundation.PageCond" valueType="DataObject">page</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess6label" name="label" nodeType="label">
+    <location x="216" y="500"/>
+    <figSize height="17" width="105"/>
+    <node>subprocess6</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-05-21 11:14:17" date="2019-05-21Z" description="" name="saveSaleMain" version="7.0.0.0"/>
@@ -854,6 +860,7 @@
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.sales.data.css.CssSaleMain" name="data"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="type" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.sales.data.css.CssSaleMain" name="billFormData"/>

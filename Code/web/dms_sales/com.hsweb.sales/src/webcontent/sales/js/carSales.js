@@ -51,12 +51,8 @@ $(document).ready(function(v) {
             value = e.value;
         if (field == "submitPlanDate" || field == "orderDate") {
             if (value) {
-                e.cellHtml = format(value, 'yyyy-MM-dd');
+                e.cellHtml = format(value, 'yyyy-MM-dd HH:ss');
             }
-        }
-        if (field == "status") {
-            var value1 = value == 0 ? "草稿" : (value == 1 ? "待审" : (value == 2 ? "已审" : (value == 3 ? "作废" : "")));
-            e.cellHtml = value1;
         }
     });
 
@@ -65,12 +61,8 @@ $(document).ready(function(v) {
             value = e.value;
         if (field == "submitPlanDate") {
             if (value) {
-                e.cellHtml = format(value, 'yyyy-MM-dd');
+                e.cellHtml = format(value, 'yyyy-MM-dd HH:ss');
             }
-        }
-        if (field == "status") {
-            var value1 = value == 0 ? "草稿" : (value == 1 ? "待审" : (value == 2 ? "已审" : (value == 3 ? "作废" : "")));
-            e.cellHtml = value1;
         }
     });
 
@@ -79,7 +71,7 @@ $(document).ready(function(v) {
             value = e.value;
         if (field == "submitTrueDate" || field == "submitPlanDate" || field == "financialEndDate") {
             if (value) {
-                e.cellHtml = format(value, 'yyyy-MM-dd');
+                e.cellHtml = format(value, 'yyyy-MM-dd HH:ss');
             }
         }
     });
@@ -196,16 +188,16 @@ function onSearch() {
             break;
     }
     if (nui.get("typeMsg").value == 1) {
-        mainGrid.load({ params: param });
+        mainGrid.load({ params: param, type: 1 });
     }
     if (nui.get("typeMsg").value == 2) {
         param.status = "1,2";
-        mainGrid2.load({ params: param });
+        mainGrid2.load({ params: param, type: 1 });
     }
     if (nui.get("typeMsg").value == 3) {
         param.status = 2;
         param.isSettle = 1;
-        mainGrid3.load({ params: param });
+        mainGrid3.load({ params: param, type: 1 });
     }
 }
 

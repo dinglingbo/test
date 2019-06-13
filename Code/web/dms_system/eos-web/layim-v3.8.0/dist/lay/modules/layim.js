@@ -290,6 +290,11 @@ layui.define(['layer', 'laytpl', 'upload'], function (exports) {
       ,'</ul>'
       ,'<ul class="layui-unselect layim-tab-content {{# if(!d.base.isfriend && d.base.isgroup){ }}layui-show{{# } }}">'
       ,'<li>'
+      	,'{{# if(d.group.length === 0){ }}'
+	    ,'<ul class="layui-unselect layui-show">'
+	    ,'<li class="layui-icon layim-tool-find" layim-event="editGroupChat" title="发起群聊" data-type="add" style="text-align:right;margin-right:10px;">&#xe608;</li>' 
+	    ,'</ul>'
+	    ,'{{# } }}'
         ,'<ul class="layui-layim-list layui-show layim-list-group">'
         ,listTpl({
           type: 'group'

@@ -223,6 +223,82 @@ $(document).ready(function(v)
 	        }
 	    }
 	});
+    
+    uploader = Qiniu.uploader({
+	    runtimes: 'html5,flash,html4',
+	    browse_button: 'other',//上传按钮的ID
+	    container: 'other-uploader',//上传按钮的上级元素ID
+	    drop_element: 'other-uploader',
+	    max_file_size: '100mb',//最大文件限制
+	    //flash_swf_url: '/static/js/plupload/Moxie.swf',
+	    dragdrop: false,
+	    chunk_size: '4mb',//分块大小
+	    uptoken_url: webPath + sysDomain + "/com.hs.common.login.getQNAccessToken.biz.ext",//设置请求qiniu-token的url
+	    //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
+	    // uptoken : '<Your upload token>',
+	    //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
+	    unique_names: false,
+	    // 默认 false，key为文件名。若开启该选项，SDK会为每个文件自动生成key（文件名）
+	    // save_key: true,
+	    // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
+	    domain: getCompanyLogoUrl(),//自己的七牛云存储空间域名
+	    multi_selection: false,//是否允许同时选择多文件
+	    //文件类型过滤，这里限制为图片类型
+	    filters: {
+	        mime_types: [
+	            {title: "Image files", extensions: "jpg,jpeg,gif,png"}
+	        ]
+	    },
+	    auto_start: true,
+	    init: {
+	        'FilesAdded': function (up, files) {
+	            //do something
+	        },
+	        'BeforeUpload': function (up, file) {
+	            //do something
+	        },
+	        'UploadProgress': function (up, file) {
+	            //可以在这里控制上传进度的显示
+	            //可参考七牛的例子
+	        },
+	        'UploadComplete': function () {
+	            //do something
+	        },
+	        'FileUploaded': function (up, file, info) {
+	            //每个文件上传成功后,处理相关的事情
+	            //其中 info 是文件上传成功后，服务端返回的json，形式如
+	            //{
+	            //  "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
+	            //  "key": "gogopher.jpg"
+	            //}
+	            var domain = up.getOption('domain');
+	            //var sourceLink = domain + res.key;//获取上传文件的链接地址
+	            var info1 = JSON.parse(info);
+	            $("#otherImg").attr("src",qiNiuUrl + info1.hash);
+	            nui.get("otherPictueUrl").setValue(qiNiuUrl+ info1.hash);
+	            var imgPath=qiNiuUrl+ info1.hash;
+	        },
+	        'Error': function (up, err, errTip) {
+	            alert(errTip);
+	        },
+	        'Key': function (up, file) {
+	            //当save_key和unique_names设为false时，该方法将被调用
+	            /* var key = "";
+	             $.ajax({
+	             url: '/getToken',
+	             type: 'post',
+	             async: false,//这里应设置为同步的方式
+	             success: function(data) {
+	             var ext = Qiniu.getFileExtension(file.name);
+	             key = data + '.' + ext;
+	             },
+	             cache: false
+	             });
+	             return key;*/
+	        }
+	    }
+	});
+    
 });
 
 var address=null;
@@ -459,6 +535,7 @@ function CloseWindow(action) {
 function onCancel(e) {
     CloseWindow("cancel");
 }
+//非个人且非现结
 var requiredField2 = {
 	    code:"客户编码",
 	    guestProperty :"客户属性",
@@ -475,12 +552,25 @@ var requiredField2 = {
 	    provinceId:"省份",
 	    cityId:"城市"
 	};
-
+//个人且非现结
 var requiredField = {
 	    code:"客户编码",
 	    guestProperty :"客户属性",
 	    idCardUrl :"身份证图片",
 	    idCard :"身份证",
+	    shortName:"客户简称",
+	    fullName:"客户全称",
+	    billTypeId:"票据类型",
+	    settTypeId:"结算方式",
+	    manager:"联系人",
+	    mobile:"联系人手机",
+	    provinceId:"省份",
+	    cityId:"城市"
+	};
+//现结
+var requiredField3 = {
+	    code:"客户编码",
+	    guestProperty :"客户属性",
 	    shortName:"客户简称",
 	    fullName:"客户全称",
 	    billTypeId:"票据类型",
@@ -523,8 +613,21 @@ function onOk()
     else{
         data.isInternalId = "";
     }
+    var settleId = nui.get('settTypeId').value;
     var guestProperty=nui.get("guestProperty").getValue();
-    if(guestProperty=='013902'){
+    //现结
+    if(settleId =='020501'){
+    	for(var key in requiredField3)
+    	{
+    		if(!data[key] || data[key].trim().length==0)
+    		{
+    			parent.showMsg(requiredField[key]+"不能为空","W");
+    			return;
+    		}
+    	}
+    }
+    //个人且不是现结
+	if(guestProperty=='013902' && settleId !='020501'){
     	
     	for(var key in requiredField)
     	{
@@ -534,7 +637,9 @@ function onOk()
     			return;
     		}
     	}
-    }else{
+    }
+    //非个人且不是现结
+	else if(guestProperty!='013902' && settleId !='020501'){
     	for(var key in requiredField2)
     	{
     		if(!data[key] || data[key].trim().length==0)
@@ -883,13 +988,41 @@ function onStreetChange(e){
 }
 
 function onGuestPropertyChange(e){
+	var settleId = nui.get('settTypeId').value;
 	var guestProperty =nui.get('guestProperty').getValue();
-	if(guestProperty=='013902'){
+	//个人且不是现结
+	if(guestProperty=='013902' && settleId !='020501'){
 		$('#idNo').show();
 		$('#lince').css("display","none");
-	}else{
+		$('#otherPicture').show();
+	//不是个人且不是现结
+	}else if(guestProperty !='013902' && settleId !='020501'){
 		$('#idNo').show();
 		$('#lince').show();
+		$('#otherPicture').show();
+	}
+}
+
+function onSettTypeIdChange(e){
+	var settleId = nui.get('settTypeId').value;
+	var guestProperty =nui.get('guestProperty').getValue();
+	//现结
+	if(settleId == '020501'){
+		$('#idNo').css("display","none");
+		$('#lince').css("display","none");
+		$('#otherPicture').css("display","none");
+	}
+	//月结且个人
+	if(settleId == '020502' && guestProperty=='013902'){
+		$('#idNo').show();
+		$('#lince').css("display","none");
+		$('#otherPicture').show();
+	}
+	//月结且非个人
+	if(settleId == '020502' && guestProperty!='013902'){
+		$('#idNo').show();
+		$('#lince').show();
+		$('#otherPicture').show();
 	}
 }
 function setAddress() {

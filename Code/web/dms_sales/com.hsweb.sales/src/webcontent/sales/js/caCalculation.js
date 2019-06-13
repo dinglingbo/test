@@ -3,9 +3,9 @@ var baseUrl = apiPath + saleApi + "/";
 var form = null;
 $(document).ready(function(v) {
     form = new nui.Form("#form1");
-    var calculate = "银行利息=贷款金额*贷款利率(%)" +
-        "\r\n费用合计= 续保押金+月供保证金+家访费+合同保证金+GPS费用+按揭手续费+保险费预算+购置税预算+上牌费+其它费用+精品加装" +
-        "\r\n购车预算合计= 车辆销价+费用合计"
+    var calculate = "贷款利息=贷款金额*贷款利率(%)" +
+        "\r\n费用合计= 按揭手续费+合同保证金+月供保证金+家访费+续保押金+GPS费用+上牌费+精品加装+其它费用+保险费预算+购置税预算" +
+        "\r\n购车预算合计= 车型销价+费用合计"
     nui.get("calculate").setValue(calculate);
 
     initDicts({
@@ -151,6 +151,7 @@ function changeValueMsg(e) { //更改数据信息时触发  统一触发此函�
         downPaymentAmt = 0;
         getCarTotal = buyBudgetTotal;
     }
+    monthPayAmt = monthPayAmt.toFixed(2);
     data.monthPayAmt = monthPayAmt;
     data.loanAmt = loanAmt;
     data.downPaymentAmt = downPaymentAmt;
@@ -192,14 +193,20 @@ var comeServiceIdF = null;
 var statusF = null;
 var saveComeUrl = baseUrl + "sales.save.saveSaleCalc.biz.ext";
 var jpDetailGridUrl = baseUrl + "sales.search.searchSaleGiftApply.biz.ext";
-
+var mainF = null
 function setShowSave(params) {
+	mainF = params;
     comeServiceIdF = params.id;
     statusF = params.status;
     var showSave = document.getElementById("showSave");
     var frameColorId = params.frameColorId;
     var interialColorId = params.interialColorId;
     showSave.style.display = "";
+    if(params.show && params.show==1){
+    	document.getElementById("saveCome").style.display = "none";
+     }else{
+    	  document.getElementById("saveCome").style.display = "";
+     }
     nui.get("saleType").setEnabled(true);
     if (comeServiceIdF) {
         var params = { billType: 1, serviceId: comeServiceIdF };
@@ -259,14 +266,19 @@ function setShowSave(params) {
                     if (giftData.length > 0) {
                         for (var i = 0; i < giftData.length; i++) {
                             var temp = giftData[i];
-                            amt = amt + temp.amt;
+                            if(temp.receType==1){
+                            	amt = amt + temp.amt;
+                            }
+                            
                         }
                     }
                     if (amt > 0) {
                         nui.get("decrAmt").setValue(amt);
                     }
                     nui.get("decrAmt").setEnabled(false);
+                    changeValueMsg();
                 }
+                
             }
 
         });
@@ -288,6 +300,11 @@ function saveCome() {
         showMsg("来访登记已转销售不能修改!", "W");
         return;
     } else {
+        var advanceChargeAmt = caCalculationData.advanceChargeAmt; //预付款
+        var saleAmt = caCalculationData.saleAmt; //车型销价
+        if (advanceChargeAmt > saleAmt) {
+            showMsg("预付款金额不能大于车型销价金额！", "W");
+        }
         caCalculationData.billType = 1; //来访登记的预算
         var json = nui.encode({
             caCalculationData: caCalculationData,
@@ -311,12 +328,58 @@ function saveCome() {
                     result = text.caCalculationData;
                     var id = result.id;
                     nui.get("mainId").setValue(id);
+                    //弹出打印界面
+                    nui.confirm("是否打印购车预算", "友情提示",function(action){
+             	       if(action == "ok"){
+             	    	  var saleType = caCalculationData.saleType;
+             	    	   if(saleType=="1558580770894"){
+             	    		  salesOnPrint(1);
+             	    	   }else{
+             	    		  salesOnPrint(2);
+             	    	   }
+             	       }
+                    });
                     showMsg("保存成功", "S");
                 }
                 nui.unmask(document.body);
             }
         });
     }
+}
+
+function getSaleType(){
+	 var caCalculationData = form.getData();
+	 return caCalculationData;
+}
+function salesOnPrint(p){
+    var params = {};
+    params.serviceId = mainF.id;
+    params.billType = 1;
+    params.guestFullName = mainF.fullName;
+    params.carModelName	= mainF.carModelName; 
+    params.carModelId = mainF.carModelId;
+    var url = webPath + contextPath;
+    switch (p) {
+        case 1:
+            url = url + "/sales/sales/print/cashPurchases.jsp";
+            break;
+        case 2:
+            url = url + "/sales/sales/print/printLoanDetail .jsp";
+            break;
+    }
+    nui.open({
+        url: url,
+        title: "打印",
+        width: "100%",
+        height: "100%",
+        onload: function() {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.SetData(params);
+        },
+        ondestroy: function(action) {
+
+        }
+    });
 }
 
 function CloseWindow(action) {

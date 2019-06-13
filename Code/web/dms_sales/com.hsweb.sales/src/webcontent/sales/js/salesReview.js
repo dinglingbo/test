@@ -25,7 +25,9 @@ function SetData(serviceId) {
                 form.setData(data);
                 nui.get("id").setValue(serviceId);
                 changeValueMsg(1);
-            };
+            } else {
+                showMsg(text.errCode, "W");
+            }
         }
     });
 }
@@ -91,6 +93,11 @@ function save() {
 
 function approved() { //审核通过   
     var data = form.getData();
+    var isValid = form.isValid();
+    if (isValid == false) {
+        showMsg("请输入正确的数字后再保存！", "W");
+        return;
+    }
     nui.ajax({ //更改主表 isSettle为1 --- 已结算  未生成应收应付
         url: baseUrl + "sales.save.settlement.biz.ext",
         data: {

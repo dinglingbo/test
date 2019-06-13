@@ -24,7 +24,7 @@
 	    <table style="width:100%;">
 	        <tr>
 	            <td style="width:100%;">
-	                <a class="nui-button" onclick="save()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+	                <a class="nui-button" onclick="save()" plain="true" style="width:60px;display:none" id="save"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
 	                <a class="nui-button" onclick="onCancel()" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</a>
 	            </td>
 	        </tr>
@@ -65,12 +65,12 @@
                         </div>
                         <div field="amt" name="amt" width="100px" headerAlign="center" header="金额" summaryType="sum">
                         </div>
-                        <div field="costPrice" name="costPrice" width="100px" headerAlign="center" header="成本单价">
+                        <!-- <div field="costPrice" name="costPrice" width="100px" headerAlign="center" header="成本单价">
                             <input class="nui-textbox" property="editor" vtype="float">
                         </div>
                         <div field="costAmt" name="costAmt" width="100px" headerAlign="center" header="成本金额">
                             <input class="nui-textbox" property="editor" vtype="float">
-                        </div>
+                        </div> -->
                         <div field="remark" name="remark" width="100px" headerAlign="center" header="备注内容">
                             <input class="nui-textarea" property="editor">
                         </div>
@@ -96,33 +96,41 @@ $(document).ready(function (){
    jpDetailGrid = nui.get("jpDetailGrid");
    jpDetailGrid.setUrl(jpDetailGridUrl);
    jpGrid.load();
-   jpGrid.on("rowclick", function(e) {
+   /* jpGrid.on("beforeselect",function(e){
+    	if(statusF>0){
+    		e.cancel = true;
+    		return;
+    	}
+    });  */
+    jpGrid.on("beforedeselect", function(e) {
+        if(statusF>0){
+    		e.cancel = true;
+    		return;
+    	}
+    });
+    jpGrid.on("beforeselect", function(e) {
+        if(statusF>0){
+    		e.cancel = true;
+    		return;
+    	}
+    });
+   jpGrid.on("select", function(e) {
         /* var billFormData = billForm.getData(true); //主表信息
         if (billFormData.status != 0) {
             return;
         } */
-        var jpdata = jpGrid.getSelecteds();
-        var jpDetailData = jpDetailGrid.getData();
-        for (var i = 0, l = jpdata.length; i < l; i++) {
-            var msg = jpDetailData.find(jpDetailData => jpDetailData.giftId == jpdata[i].id);
-            if (!msg) {
-                var newRow = {
-                    giftId: jpdata[i].id,
-                    giftName: jpdata[i].name,
-                    billType:1
-                };
-                jpDetailGrid.addRow(newRow, jpDetailData.length);
-            };
-        }
-        jpDetailData = jpDetailGrid.getData();
-        for (var i = 0, l = jpDetailData.length; i < l; i++) {
-            var row = jpDetailGrid.getRow(i);
-            var msg = jpdata.find(jpdata => jpdata.id == jpDetailData[i].giftId);
-            if (!msg) {
-                jpDetailGrid.commitEdit();
-                jpDetailGrid.removeRow(row, false);
-            };
-        };
+        if(statusF>0){
+    		e.cancel = true;
+    		return;
+    	}
+        selectJpGrid();
+    });
+    jpGrid.on("deselect", function(e) {
+        if(statusF>0){
+    		e.cancel = true;
+    		return;
+    	}
+       selectJpGrid();
     });
      jpGrid.on("load", function(e) {
         var data = jpDetailGrid.getData();
@@ -151,14 +159,13 @@ $(document).ready(function (){
     jpDetailGrid.on("cellendedit", function(e) {
         var row = e.row,
             field = e.field;
-        if (field == "price" || field == "qty"  || field == "costPrice") {
+        if (field == "price" || field == "qty" ) {
             var price = row.price || 0;
             var qty = row.qty || 0;
-            var costPrice = row.costPrice || 0;
+            //var costPrice = row.costPrice || 0;
             var value = (price * qty).toFixed(2);
-            var value2 = (costPrice * qty).toFixed(2);
-            var newRow = { amt: value ,
-                           costAmt:value2
+            //var value2 = (costPrice * qty).toFixed(2);
+            var newRow = { amt: value 
                   };
             jpDetailGrid.updateRow(row, newRow);
             //编辑完成后调用购车计算表将精品加装金额赋值上去,需要在购车预算里面计算这个的值
@@ -183,6 +190,31 @@ $(document).ready(function (){
      }  
 });
 
+function selectJpGrid(){
+        var jpdata = jpGrid.getSelecteds();
+        var jpDetailData = jpDetailGrid.getData();
+        for (var i = 0, l = jpdata.length; i < l; i++) {
+            var msg = jpDetailData.find(jpDetailData => jpDetailData.giftId == jpdata[i].id);
+            if (!msg) {
+                var newRow = {
+                    giftId: jpdata[i].id,
+                    giftName: jpdata[i].name,
+                    billType:1
+                };
+                jpDetailGrid.addRow(newRow, jpDetailData.length);
+            };
+        }
+        jpDetailData = jpDetailGrid.getData();
+        for (var i = 0, l = jpDetailData.length; i < l; i++) {
+            var row = jpDetailGrid.getRow(i);
+            var msg = jpdata.find(jpdata => jpdata.id == jpDetailData[i].giftId);
+            if (!msg) {
+                jpDetailGrid.commitEdit();
+                jpDetailGrid.removeRow(row, false);
+            };
+        };
+
+}
 /* var requiredField = {
 	name : "客户名称",
 	source:"客户来源",
@@ -238,6 +270,11 @@ function save(){
 }
 var statusF = null;
 function setData(params){
+    if(params.show && params.show==1){
+      document.getElementById("save").style.display = "none";
+    }else{
+     document.getElementById("save").style.display = "";
+    }
     serviceIdF = params.id;
     statusF = params.status;
     jpDetailGrid.load({

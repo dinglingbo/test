@@ -2,8 +2,9 @@ var partApiUrl  = apiPath + saleApi + "/";
 var rightGridUrl=partApiUrl+"sales.inventory.queryCheckOrderDetailList.biz.ext";
 var rightGrid = null;
 $(document).ready(function(v){
-	
-	var dictDefs ={carGoods:"DDT20130801000004",frameColorId:"DDT20130726000003",interialColorId:"10391"};
+	rightGrid = nui.get("rightGrid");
+    rightGrid.setUrl(rightGridUrl);
+	var dictDefs ={frameColorId:"DDT20130726000003",interialColorId:"10391"};
 	initDicts(dictDefs, function(){
 		getStorehouse(function(data) {
 			getAllPartBrand(function(data) {
@@ -22,8 +23,23 @@ $(document).ready(function(v){
 			
 		});
 	});
-	rightGrid = nui.get("rightGrid");
-    rightGrid.setUrl(rightGridUrl);
+	
+    rightGrid.on("drawcell", function (e) {      
+        switch (e.field) {
+            case "carLock":
+            	 e.cellHtml = inventory[e.value].name;
+                break;
+            case "frameColorId":
+            	e.cellHtml = setColVal('frameColorId', 'customid', 'name', e.value);
+               break;
+            case "interialColorId":
+            	e.cellHtml = setColVal('interialColorId', 'customid', 'name', e.value);
+               break;
+            default:
+                break;
+        }
+    });
+
      rightGrid.load({
     	 params:{
     		 checkingQty : 0 

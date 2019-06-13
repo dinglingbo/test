@@ -16,10 +16,8 @@
 </head>
 
 <body>
-    <div class="nui-toolbar" style="padding:2px;height:48px;position: relative;">
-        <table style="width:100%;">
-            <tr>
-                <td style="white-space:nowrap;">
+    <div class="nui-toolbar" >
+     
                     <label style="font-family:Verdana;">快速查询：</label>
                     <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本月</a>
 
@@ -36,14 +34,14 @@
                         <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
                         <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                     </ul>
-                    <a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">所有</a>
+                    <!-- <a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">所有</a>
                     <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
                         <li iconCls="" onclick="quickSearch(12)" id="type">所有</li>
                         <li iconCls="" onclick="quickSearch(13)" id="type12">草稿</li>
                         <li iconCls="" onclick="quickSearch(14)" id="type12">待审</li>
                         <li iconCls="" onclick="quickSearch(15)" id="type12">已审</li>
                         <li iconCls="" onclick="quickSearch(16)" id="type12">作废</li>
-                    </ul>
+                    </ul> -->
                     <input class="nui-combobox" id="searchType" width="100" textField="name" valueField="id" value="0"
                         data="statusList" allowInput="false" />
                     <input class="nui-textbox" id="textValue" emptyText="输入查询条件" width="120"
@@ -54,18 +52,16 @@
 
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span
                             class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-
+                            <li class="separator"></li>
                     <a class="nui-button" iconCls="" plain="true" onclick="selectCar()" id="selectBtn"><span
                             class="fa fa-check fa-lg"></span>&nbsp;选车</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="close()" id="closeBtn"><span
                             class="fa fa-close fa-lg"></span>&nbsp;取消</a>
-                </td>
-            </tr>
-        </table>
+
     </div>
-    <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" showPager="true" dataField="cssCheckEnter"
-        sortMode="client" url="" totalField="page.count" pageSize="10000" sizeList="[1000,5000,10000]"
-        selectOnLoad="true" allowCellWrap=true showSummaryRow="true">
+    <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" showPager="true" dataField="data"
+        sortMode="client" url="" totalField="page.count" pageSize="10000" sizeList="[20,50,100]"
+        selectOnLoad="false" allowCellWrap=true showSummaryRow="true" showModified="false" >
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <div field="serviceCode" name="serviceCode" width="100px" headerAlign="center" header="工单号"></div>
@@ -83,13 +79,13 @@
         </div>
     </div>
     <script type="text/javascript">
-        nui.parse();
         var statusList = [{ id: "0", name: "订单单号" }, { id: "1", name: "客户名称" }];
+        nui.parse();
         var mainGridUrl = apiPath + saleApi + "/sales.search.searchSalesMain.biz.ext";
         var param = {};
         var mainGrid = nui.get("mainGrid");
         mainGrid.setUrl(mainGridUrl);
-
+        onSearch();
         mainGrid.on("load", function (e) {
             var data = e.text.data;
             if (data.length > 0) {
@@ -107,6 +103,10 @@
             }
         });
 
+        mainGrid.on('rowdblclick', function (e) {
+            CloseWindow("ok");
+        });
+
         mainGrid.on("drawcell", function (e) {
             var field = e.field,
                 value = e.value;
@@ -121,6 +121,19 @@
                 e.cellHtml = value1;
             }
         });
+
+        function getRow() {
+            return mainGrid.getSelected();
+        }
+
+        function selectCar() {
+            var row = mainGrid.getSelected();
+            if(!row){
+                showMsg('请先选择一条数据','W');
+                return;
+            }
+            CloseWindow('ok');
+        }
 
         function quickSearch(e) {
             var queryname = null;
@@ -221,6 +234,18 @@
                 params: param
             });
         }
+
+
+        function onCancel() {
+    CloseWindow("cancel");
+}
+
+function CloseWindow(action){
+    if (window.CloseOwnerWindow) 
+        return window.CloseOwnerWindow(action);
+    else 
+        window.close();
+}
     </script>
 </body>
 

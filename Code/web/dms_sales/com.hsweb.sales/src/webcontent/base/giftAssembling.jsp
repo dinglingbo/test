@@ -13,7 +13,7 @@
         <title>精品加装</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-        <script src="<%=webPath + contextPath%>/sales/base/js/giftAssembling.js?v=1.1.0"></script>
+        <script src="<%=webPath + contextPath%>/sales/base/js/giftAssembling.js?v=1.1.3"></script>
     </head>
     <style type="text/css">
         body {
@@ -74,7 +74,7 @@
 
                         <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-close fa-lg"></span>&nbsp;反审</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
@@ -90,15 +90,18 @@
                         allowCellWrap="true" url="">
                         <div property="columns">
                             <div type="indexcolumn">序号</div>
-                            <div field="" name="" width="100px" headerAlign="center" header="状态"></div>
-                            <div field="" name="" width="100px" headerAlign="center" header="客户名称"></div>
-                            <div field="" name="" width="100px" headerAlign="center" header="车架号(VIN)"></div>
+                            <div field="status" name="" width="100px" headerAlign="center" header="状态"></div>
+                            <div field="guestName" name="" width="100px" headerAlign="center" header="客户名称"></div>
+                            <div field="vin" name="" width="100px" headerAlign="center" header="车架号(VIN)"></div>
+                            <div field="sellType" name="" width="100px" headerAlign="center" header="销售类型"></div>
                         </div>
                     </div>
                 </div>
-                <div showCollapseButton="true">
+                <div showCollapseButton="true" id="form1">
                     <fieldset id="fd9" style="width:99%;">
                         <legend><span>基本信息：</span></legend>
+                        <input id="id" name="id" class="nui-textbox" allowInput="false" visible="false"/>
+                        <input id="status" name="status" class="nui-textbox" allowInput="false" visible="false"/>
                         <table style="line-height: 23px; padding-top: 10px;width: 100%">
                             <tr>
                                 <td class="td_title">
@@ -112,17 +115,16 @@
                                     销售单编码：
                                 </td>
                                 <td>
-                                    <!-- <input id="saleId" name="saleId" class="nui-buttonedit" 
-                                    allowInput="false" required="true" style="width: 130px;" onbuttonclick="onButtonEdit" /> -->
-                                    <input id="carModelName" name="carModelName" class="nui-textbox" allowInput="false" required="true" style="width: 100%"/>
+                                    <input id="serviceCode" name="serviceCode" class="nui-buttonedit" 
+                                    allowInput="false" required="true" style="width: 100%" onbuttonclick="onSaleEdit" />
+                                    <input id="saleId" name="saleId" class="nui-textbox" allowInput="false" visible="false" style="width: 100%"/>
                                 </td>
                                 <td class="td_title" style="width:;">
-                                    库存车编码：
+                                    库存车ID：
                                 </td>
                                 <td>
-                                    <!-- <input id="saleId" name="saleId" class="nui-buttonedit" 
-                                    allowInput="false" required="true" style="width: 130px;" onbuttonclick="onButtonEdit" /> -->
-                                    <input id="carModelName" name="carModelName" class="nui-textbox" allowInput="false" required="true" style="width: 100%"/>
+                                    <input id="enterId" name="enterId" class="nui-buttonedit" 
+                                    allowInput="false" required="true" style="width: 100%;" onbuttonclick="onEnterIdEdit" />
                                 </td>
                             </tr>
                             <tr>
@@ -130,42 +132,28 @@
                                     车架号(VIN)：
                                 </td>
                                 <td>
-                                    <input id="db_AgentitemId" style="width: 100%" class="nui-textbox" />
+                                    <input id="vin"name="vin" style="width: 100%" class="nui-textbox" enabled="false"/>
                                 </td>
                          
                                 <td class="td_title">
                                     车型全称：
                                 </td>
-                                <td colspan="3">
-                                    <input id="db_AgentitemId" style="width: 100%" class="nui-textbox" />
-                                </td>
-                     
-                            </tr>
-                            <tr>
-                                <td class="td_title">
-                                    应收金额：
-                                </td>
-                                <td>
-                                    <input id="db_AgentitemId" style="width: 100%" class="nui-textbox" />
-                                </td>
-                                <td class="td_title">
-                                    实收金额：
-                                </td>
-                                <td>
-                                    <input id="db_AgentitemId" style="width: 100%" class="nui-textbox" />
+                                <td colspan="1" style="width:250px;">
+                                    <input id="carModelName" name="carModelName"  style="width: 100%" class="nui-textbox" enabled="false"/>
                                 </td>
                                 <td class="td_title">
                                     客户名称：
                                 </td>
                                 <td>
-                                    <input id="db_AgentitemId" style="width: 100%" class="nui-textbox" />
+                                    <input id="guestId" name="guestId" style="width: 100%" class="nui-textbox" enabled="false" visible="false"/>
+                                    <input id="guestFullName" name="guestFullName" style="width: 100%" class="nui-textbox" enabled="false"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td align="right">备注：
                                 </td>
                                 <td colspan="5">
-                                    <input id="db_Remark" style="width: 100%;height:100px" class="nui-textarea" multiline="true" />
+                                    <input id="remark"name="remark" style="width: 100%;height:80px" class="nui-textarea" multiline="true" />
                                 </td>
                             </tr>
                         </table>
@@ -185,7 +173,7 @@
                                     </table>
                                 </div>
                                 <div class="nui-fit">
-                                    <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="list" showModified="false" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true"
+                                    <div id="itemGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="list" showModified="false" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true"
                                         allowCellWrap="true" url="">
                                         <div property="columns">
                                             <div type="indexcolumn">序号</div>

@@ -151,6 +151,7 @@ function changeValueMsg(e) { //更改数据信息时触发  统一触发此函�
         downPaymentAmt = 0;
         getCarTotal = buyBudgetTotal;
     }
+    monthPayAmt = monthPayAmt.toFixed(2);
     data.monthPayAmt = monthPayAmt;
     data.loanAmt = loanAmt;
     data.downPaymentAmt = downPaymentAmt;

@@ -4,6 +4,7 @@ var gridUrl = baseUrl + "/sales.inventory.queryCheckEnter.biz.ext";
 var grid = null;
 var frameColorData = null;
 var interialColorData = null;
+var isUpdate = null;//选完之后是否 锁定该车 不传 默认更新  传1 不更新
 $(document).ready(function(v) {
     grid = nui.get("grid");
     grid.setUrl(gridUrl);
@@ -11,6 +12,10 @@ $(document).ready(function(v) {
     initDicts({
         frameColorId: "DDT20130726000003", //车辆颜色
         interialColorId: "10391"
+    });
+
+    grid.on('rowdblclick', function (e) {
+        window.CloseOwnerWindow('ok');
     });
 
     grid.on("drawcell", function(e) {
@@ -33,8 +38,15 @@ $(document).ready(function(v) {
     });
 });
 
-function SetData(carModelId) {
-    var params = { carModelId: carModelId, carLock: 0, billStatus: 1, carStatus: 0 };
+
+function SetData(carModelId, isUpdateParam) {
+    isUpdate = isUpdateParam;
+    var params = {
+        carModelId: carModelId,
+        carModelName: nui.get("carModelName").value,
+        carLock: 0,
+		carStatus: 0 
+    };
     grid.load({ params: params });
 }
 
@@ -45,23 +57,33 @@ function getSelectedValue() {
 
 function selectCar() {
     var data = grid.getSelected();
-    data.carStatus = 1;
-    nui.ajax({
-        url: baseUrl + "sales.save.updateCheckEnter.biz.ext",
-        data: {
-            data: data
-        },
-        cache: false,
-        async: false,
-        success: function(text) {
-            if (text.errCode == "S") {
-                showMsg(text.errMsg, "S");
-                window.CloseOwnerWindow('ok');
-            } else {
-                showMsg(text.errMsg, "W");
+
+    if (!data) {
+        showMsg('请先选择一条数据', 'W');
+        return;
+    }
+    if (isUpdate == 1) {
+        window.CloseOwnerWindow('ok');
+    } else {
+        data.carStatus = 1;
+        nui.ajax({
+            url: baseUrl + "sales.save.updateCheckEnter.biz.ext",
+            data: {
+                data: data
+            },
+            cache: false,
+            async: false,
+            success: function(text) {
+                if (text.errCode == "S") {
+                    showMsg(text.errMsg, "S");
+                    window.CloseOwnerWindow('ok');
+                } else {
+                    showMsg(text.errMsg, "W");
+                }
             }
-        }
-    });
+ 
+        });
+    }
 }
 
 function close() {

@@ -469,6 +469,7 @@ function salesOnPrint(){
 	    params.billType = 1;
 	    params.guestFullName = billFormData.fullName;
 	    params.carModelName	= billFormData.carModelName; 
+	    params.carModelId = billFormData.carModelId;
 	    var url = webPath + contextPath;
 	    switch (p) {
 	        case 1:

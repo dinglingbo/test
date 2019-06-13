@@ -243,7 +243,7 @@
                             <td height="50" valign="top" style="padding: 8px;" id="">
                                 厂商指导价（元）：
                             </td>
-                            <td height="50" valign="top" style="padding: 8px;" id="">
+                            <td height="50" valign="top" style="padding: 8px;" id="sellPrice">
 
                             </td>
                         </tr>
@@ -440,15 +440,14 @@
                     }
 
                   //查询厂商指导价,根据carModelId查询
-                  
-                 /*  $.post(baseUrl + "sales.search.searchSalesMain.biz.ext?params/id=" + serviceId, function(res) {
-                    if (res.data.length > 0) {
-                        var temp = res.data[0];
-                        document.getElementById("guestFullName").innerHTML = temp.guestFullName || "";
-                        document.getElementById("carModelName").innerHTML = temp.carModelName || "";
+                  var carModelId = params.carModelId;
+                  $.post(baseUrl + "sales.custormer.queryCarSellPrice.biz.ext?carModelId=" + carModelId, function(res) {
+                    if (res.errCode == "S") {
+                        var sellPrice = res.carModel.sellPrice || 0;
+                        document.getElementById("sellPrice").innerHTML = sellPrice;
                     }
                  });
-                  */
+                  
                 }
 
                 function CloseWindow(action) {

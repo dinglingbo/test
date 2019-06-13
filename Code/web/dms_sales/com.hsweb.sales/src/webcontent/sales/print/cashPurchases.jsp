@@ -213,7 +213,7 @@
                             <td height="50" valign="top" style="padding: 8px;" id="">
                                 厂商指导价（元）
                             </td>
-                            <td height="50" valign="top" style="padding: 8px;" id="">
+                            <td height="50" valign="top" style="padding: 8px;" id="sellPrice">
                                 239800
                             </td>
                         </tr>
@@ -362,6 +362,14 @@
                          document.getElementById("guestFullName").innerHTML = params.guestFullName || "";
 	                     document.getElementById("carModelName").innerHTML = params.carModelName || "";
                     }
+                    //查询厂商指导价,根据carModelId查询
+                  var carModelId = params.carModelId;
+                  $.post(baseUrl + "sales.custormer.queryCarSellPrice.biz.ext?carModelId=" + carModelId, function(res) {
+                    if (res.errCode == "S") {
+                        var sellPrice = res.carModel.sellPrice || 0;
+                        document.getElementById("sellPrice").innerHTML = sellPrice;
+                    }
+                 });
                 }
 
                 function CloseWindow(action) {

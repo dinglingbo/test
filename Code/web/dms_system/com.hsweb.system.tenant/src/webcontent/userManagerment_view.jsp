@@ -87,21 +87,24 @@ style="width:100%;height:100%;display:none" bodyStyle="padding:0;border:0;" allo
     <div field="" name="" headeralign="center" align="center" width="70">收件人电话</div>
 </div>
 </div>
-<div id="form1" class="nui-form" style="width:500px;height:auto;left:0;right:0;margin:0 auto;display: none;">
+<div class="nui-toolbar" style="padding:0px;border-bottom:0;display:none" id="showSave">
+    <table style="width:100%;">
+        <tr>
+            <td style="width:100%;">
+                <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;" id="onOk"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                <a class="nui-button" onclick="onCancel" plain="true" style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</a>
+            </td>
+        </tr>
+    </table>
+</div>
+  <div id="form1" class="nui-form" style="width:500px;height:auto;left:0;right:0;margin:0 auto;display: none;">
     <table style="margin-top:15px;">
+         <input id="tenantId" name="tenantId" class="nui-hidden" />
         <tr>
             <td class="tbtext">租户名称：</td>
             <td colspan="3"><input class="nui-textbox" style="width:100%" name="tenantName"  id="tenantName" /></td>
 			<td><input class="nui-textbox" style="width:100%" name="tenantId"  id="tenantId" visible="false" /></td>
 	        </tr>
-	
-        <tr>
-            <td class="tbtext">省份：</td>
-            <td><input class="nui-combobox" style="width: 150px;" id="provinceId" name="provinceId"/></td>
-            <td class="tbtext">城市：</td>
-            <td><input class="nui-combobox" style="width: 150px;" id="cityId" name="cityId"/></td>
-
-        </tr>
         <tr>
             <td class="tbtext">管理员：</td>
             <td colspan="3"><input class="nui-textbox" style="width:100%" id="manager" name="manager" /></td>
@@ -116,25 +119,75 @@ style="width:100%;height:100%;display:none" bodyStyle="padding:0;border:0;" allo
             </tr>        
             <tr>
             <td class="tbtext">业务员：</td>
-            <td colspan="3"><input class="nui-textbox" style="width:100%" id="salesManId" name="salesManId"/></td>
-            </tr>         
-            <tr>
+            <td colspan=""><input class="nui-textbox" style="width:100%" id="salesMan" name="salesMan"/></td>
             <td class="tbtext">推荐员：</td>
-            <td colspan="3"><input class="nui-textbox" style="width:100%" id="referee" name="referee" /></td>
+            <td colspan=""><input class="nui-textbox" style="width:100%" id="referee" name="referee" /></td>
+            </tr>  
+            <tr>
+            <td class="tbtext">省份：</td>
+            <td><input class="nui-combobox" style="width: 150px;" id="provinceId" name="provinceId" onvaluechanged="onProvinceChange" textField="name" valueField="code" width="100%" popupHeight="100%"/></td>
+            <td class="tbtext">城市：</td>
+            <td><input class="nui-combobox" style="width: 150px;" id="cityId" name="cityId" textField="name"  valueField="code" width="100%" popupHeight="100%"/></td>
+           </tr>       
+            <tr>
+             <td class="tbtext">开通时间：</td>
+            <td>
+              <input width="100%" id="startDate" name="startDate" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd HH:mm"
+									 showTime="true" showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"   />
+            
+            </td>
+            <td class="tbtext">结束时间：</td>
+            <td>
+                <input width="100%" id="endDate" name="endDate" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd HH:mm"
+									 showTime="true" showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"   />
+	        </td>
+         
             </tr>
+            
+            <tr>
+            
+            <td class="tbtext">首次付费金额：</td>
+            <td>
+                <input class="nui-textbox" name="firstPayAmt" width="100%" maxlength="20" vtype="float"/>
+	        </td>
+            <td class="tbtext">是否付费：</td>
+            <td>
+             <input name="isPay" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>
+            </td>
+            </tr>
+            
+            <tr>
+             <td class="tbtext">下次续费时间：</td>
+            <td>
+              <input width="100%" id="nextRenewDate" name="nextRenewDate" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd HH:mm"
+									 showTime="true" showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"   />
+            
+            </td>
+            <td class="tbtext">下次续费金额：</td>
+            <td>
+                <input class="nui-textbox" name="nextRenewAmt" width="100%" maxlength="20" vtype="float"/>
+	        </td>
+         
+            </tr>
+            
         </table> 
 
-        <div style="text-align: center; padding: 10px;">
+        <!-- <div style="text-align: center; padding: 10px;">
             <a class="nui-button" onclick="onOk()" style="margin-right: 20px;"><i class="fa fa-save"></i>&nbsp;保存</a> 
             <a class="nui-button" onclick="onCancel()"><i class="fa fa-times"></i>&nbsp;取消</a>
-        </div>
+        </div> -->
     </div>
 </div >
 <script type="text/javascript">
   nui.parse();
   var form1;
-  $(document).ready(function(v) {
-	
+  var provinceCode;
+$(document).ready(function(v) {
+	getProvince(function(data) {
+        var list = data.rs;
+        nui.get("provinceId").setData(list);
+
+	});
 
 });
   function ShowGrid(e){
@@ -156,40 +209,76 @@ style="width:100%;height:100%;display:none" bodyStyle="padding:0;border:0;" allo
     }
     if(e == 5){
         document.getElementById("form1").style.display = "block";
+        document.getElementById("showSave").style.display = "block";
         nui.layout();
     }
 }
 
 function SetInitData(data) {
-	        var form = new nui.Form("#form1");
-            form.setData(data);   
+    var form = new nui.Form("#form1");
+    form.setData(data);   
 }
 var baseUrl = apiPath + sysApi + "/";
 var updateUrl=baseUrl + "com.primeton.tenant.comTenant.updateComTenant.biz.ext";
 function onOk(){
      var form = new nui.Form("#form1");
      var s=form.getData();
-	nui.ajax({
-            url: updateUrl,
-            type: 'post',
-            data: nui.encode({
-            	params:s
-            }),
-            cache: false,
-            success: function (data) {
-                if (data.errCode == "S"){
-               	 closeWindow("ok");
-                    }else {
-                
-                    nui.alert("失败！");
-                }
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                nui.alert(jqXHR.responseText);
+     if(s.startDate) {
+		s.startDate = format(s.startDate, 'yyyy-MM-dd HH:mm:ss');
+	}
+    if(s.endDate) {
+    	s.endDate = format(s.endDate, 'yyyy-MM-dd HH:mm:ss');
+	}
+	if(s.nextRenewDate) {
+    	s.nextRenewDate = format(s.nextRenewDate, 'yyyy-MM-dd HH:mm:ss');
+	}
+	 nui.ajax({
+        url: updateUrl,
+        type: 'post',
+        data: nui.encode({
+        	params:s
+        }),
+        cache: false,
+        success: function (data) {
+            if (data.errCode == "S"){
+           	 closeWindow("ok");
+             }else {
+            showMsg("修改失败","E");
+                /* nui.alert("失败！"); */
             }
-    	});
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            nui.alert(jqXHR.responseText);
+        }
+	});
 }
+function onProvinceChange(e){
+    var se = e.selected;
+    provinceCode = se.code;
+    getProvince(function(data) {
+    	  nui.get("cityId").setData(data.rs);
+    });
+}
+var queryUrl = baseUrl + "com.hs.common.region.getRegin.biz.ext";
+function getProvince(callback) {
 
+    nui.ajax({
+        url : queryUrl,
+        data : {
+        	parentId:provinceCode,
+            token: token
+        },
+        type : "post",
+        success : function(data) {
+            if (data && data.rs) {
+                callback && callback(data);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+           console.log(jqXHR.responseText);
+        }
+    });
+}
 </script>
 </body>
 </html>

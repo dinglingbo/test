@@ -88,6 +88,25 @@ switch (e.field)
 
 function search() {
     var param = getSearchParam();
+    if(isPay==1){
+    	param.isPay = 1;
+    }else if(isPay == 0){
+    	param.isPay = 0;
+    }
+   if(isDisabled==1){
+    	param.isDisabled = 1;
+    }else if(isDisabled == 0){
+    	param.isDisabled = 0;
+    }
+   if(param.endDatet==1){//一周内
+	   param.endDates = nui.formatDate(new Date(), 'yyyy-MM-dd');
+	   param.endDates = param.endDates + ' 00:00:00';
+	   param.endDatee = addDate(param.endDates,7);
+   }else if(param.endDatet==2){//一个月内,按照三十天算
+	   param.endDates = nui.formatDate(new Date(), 'yyyy-MM-dd');
+	   param.endDates = param.endDates + ' 00:00:00';
+	   param.endDatee = addDate(param.endDates,30);
+   }
     doSearch(param);
 }
 
@@ -104,6 +123,58 @@ function doSearch(params) {
 }
 
 
+var isPay = 2;
+function quickSearch1(type) {
+    var params = getSearchParam();
+    var queryname = "所有";
+    switch (type) {
+        case 0:
+            params.isPay = 0;
+            queryname = "免费";
+            isPay = 0;
+            break;
+        case 1:
+        	params.isPay =1;
+        	isPay = 1;
+            queryname = "付费";
+            break;
+        case 2:
+            queryname = "所有";
+            isPay = 2;
+            break;
+        default:
+            break;
+    }
+    var menunamedate = nui.get("menunamedate1");
+    menunamedate.setText(queryname);
+    doSearch(params);
+}
+var isDisabled = 2;
+function quickSearch(type) {
+    var params = getSearchParam();
+    var queryname = "所有";
+    switch (type) {
+        case 0:
+            params.isDisabled = 0;
+            queryname = "停用";
+            isDisabled = 0;
+            break;
+        case 1:
+        	params.isDisabled =1;
+        	isDisabled = 1;
+            queryname = "在用";
+            break;
+        case 2:
+            queryname = "所有";
+            isDisabled = 2;
+            break;
+        default:
+            break;
+    }
+    var menunamedate = nui.get("menunamedate1");
+    menunamedate.setText(queryname);
+    doSearch(params);
+}
 	
 var getProvinceAndCityUrl = window._rootUrl
 + "com.hsapi.part.common.svr.getProvinceAndCity.biz.ext";

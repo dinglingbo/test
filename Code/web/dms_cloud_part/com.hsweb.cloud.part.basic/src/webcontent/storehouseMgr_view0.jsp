@@ -9,7 +9,7 @@
 -->
 <head>
 <title>仓库定义</title>
-<script src="<%=webPath + contextPath%>/basic/js/storehouseMgr.js?v=1.1.23"></script>
+<script src="<%=webPath + contextPath%>/basic/js/storehouseMgr.js?v=1.1.29"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -46,6 +46,10 @@
         </div>
     </div>
     <div showCollapseButton="false">
+    
+     <div  class="nui-splitter"  vertical="true" style="width:100%;height:100%;" allowResize="true">
+        <!-- 上 -->
+        <div size="50%" showCollapseButton="false">
         <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
             <table style="width:100%;">
                 <tr>
@@ -83,6 +87,45 @@
                 </div>
             </div>
         </div>
+    </div>
+    	
+    	 <div  showCollapseButton="false">
+	        	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+		            <table style="width:100%;">
+		                <tr>
+		                    <td style="white-space:nowrap;">
+		                    	 <label style="font-family:Verdana;">员工配置:</label>
+		                        <a class="nui-button" plain="true" iconCls="" onclick="addStoreMem()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加员工</a>
+		                        <a class="nui-button" plain="true" iconCls="" onclick="delStoreMem()"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
+		                    </td>
+		                </tr>
+		            </table>
+		        </div>
+		        <div class="nui-fit">
+		            <div id="memGrid" class="nui-datagrid" style="width:100%;height:100%;"
+		                 showPager="false"
+		                 dataField="data"
+		                 idField="id"
+		                 allowCellEdit="true"
+		                 allowCellSelect="true"
+		                 ondrawcell="onDrawCell"
+		                 selectOnLoad="true"
+		                 sortMode="client"
+		                 multiSelect="true"
+		                 url="">
+		                <div property="columns">
+		                    <div type="indexcolumn">序号</div>
+		                    <div type="checkcolumn" field="check" width="20"></div>
+		                    <div field="empName" name="empName" headerAlign="center" allowSort="true">员工名称
+		                    </div>
+		                    <div field="recorder" width="60" headerAlign="center" allowSort="true">建档人</div>
+		                    <div field="recordDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm">建档时间</div>
+		                </div>
+		            </div>
+		        </div>
+	        </div>
+        </div>
+    
     </div>
 </div>
 

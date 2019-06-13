@@ -201,6 +201,11 @@ function setShowSave(params) {
     var frameColorId = params.frameColorId;
     var interialColorId = params.interialColorId;
     showSave.style.display = "";
+    if(params.show && params.show==1){
+    	document.getElementById("saveCome").style.display = "none";
+     }else{
+    	  document.getElementById("saveCome").style.display = "";
+     }
     nui.get("saleType").setEnabled(true);
     if (comeServiceIdF) {
         var params = { billType: 1, serviceId: comeServiceIdF };
@@ -333,7 +338,7 @@ function saveCome() {
              	    	   }
              	       }
                     });
-                    //showMsg("保存成功", "S");
+                    showMsg("保存成功", "S");
                 }
                 nui.unmask(document.body);
             }
@@ -351,6 +356,7 @@ function salesOnPrint(p){
     params.billType = 1;
     params.guestFullName = mainF.fullName;
     params.carModelName	= mainF.carModelName; 
+    params.carModelId = mainF.carModelId;
     var url = webPath + contextPath;
     switch (p) {
         case 1:

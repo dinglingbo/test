@@ -27,11 +27,14 @@ $(document).ready(function(v) {
                 e.cellHtml = interialColorData.find(interialColorData => interialColorData.customid == e.value).name;
             }
         }
+        if (field == "carLock") {
+            e.cellHtml = e.value == 0 ? "否" : "是";
+        }
     });
 });
 
 function SetData(carModelId) {
-    var params = { carModelId: carModelId, carLock: 0 };
+    var params = { carModelId: carModelId, carLock: 0, billStatus: 1, carStatus: 0 };
     grid.load({ params: params });
 }
 

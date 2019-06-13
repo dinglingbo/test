@@ -348,6 +348,15 @@ function loadMainAndDetailInfo(row)
        }else if(auditSign==1){
     	   $('#status').text("已出库");
        }
+       
+       var params ={
+   			guestId : row.guestId,
+   			orgid : currOrgId,
+   			billDc : -1,
+   			isDisabled :0
+   	   }
+   	   var dueAmt = getDueAmt(params);
+   	   $('#dueAmt').text("客户欠款: "+dueAmt);
        //bottomInfoForm.setData(row);
        nui.get("guestId").setText(row.guestFullName);
 
@@ -2532,4 +2541,29 @@ function packOut(){
     }else{
         return;
     }
+}
+
+function getDueAmt(params){
+	var dueAmt =0;
+	nui.ajax({
+        url : baseUrl+ "com.hsapi.cloud.part.settle.svr.queryBillsDue.biz.ext",
+        type : "post",
+        data : {params: params, token: token},
+        async: false,
+        success : function(data) {
+            nui.unmask(document.body);
+            data = data || {};
+            if (data.errCode == "S") {
+                dueAmt =data.dueAmt;
+                
+            } else {
+                showMsg(data.errMsg ,"W");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+	return dueAmt;
 }

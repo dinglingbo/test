@@ -329,7 +329,7 @@ $(document).ready(function(v) {
 function checkMsg(e) { //保存操作前进行验证
     var billFormData = billForm.getData(true); //主表信息
     if (billFormData.id) {
-        searchSalesMain(billFormData.id);
+        searchSalesMain(billFormData.id, 1);
     }
     if (e == 3) {
         if (billFormData.status == "") {
@@ -470,7 +470,7 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
             if (text.errCode == "S") {
                 var serviceId = text.serviceId;
                 document.getElementById("caCalculation").contentWindow.SetDataMsg(serviceId);
-                searchSalesMain(serviceId);
+                searchSalesMain(serviceId, 0);
                 jpDetailGrid.load({ billType: 2, serviceId: serviceId });
                 costDetailGrid.load({ serviceId: serviceId, type: 1 });
                 costDetailGrid2.load({ serviceId: serviceId, type: 2 });
@@ -485,6 +485,7 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
 
 function costMsg() { //保存费用信息
     var billFormData = billForm.getData(true); //主表信息
+    searchSalesMain(billFormData.id, 0);
     if (billFormData.isSettle == 1) {
         showMsg("当前工单已结算！", "W");
         return;
@@ -495,10 +496,6 @@ function costMsg() { //保存费用信息
     }
     if (billFormData.status != 2) {
         showMsg("当前工单尚未审核！", "W");
-        return;
-    }
-    if (nui.get("typeMsg").value != 1) {
-        showMsg("请在销售管理界面进行编辑保存！", "W");
         return;
     }
     var addMsg = costDetailGrid.getChanges("added");
@@ -546,7 +543,7 @@ function setInitData(params) { //初始化
         nui.get("case").setVisible(true);
     }
     if (params.id) {
-        searchSalesMain(params.id);
+        searchSalesMain(params.id, 0);
         jpDetailGrid.load({ billType: 2, serviceId: params.id });
         costDetailGrid.load({ serviceId: params.id, type: 1 });
         costDetailGrid2.load({ serviceId: params.id, type: 2 });
@@ -609,7 +606,7 @@ function checkCost(grid, value) { //费用信息  审核反审
 }
 
 /////////////////////////////////////////////////////////////////////////////////数据读取
-function searchSalesMain(serviceId) { //查询主表信息
+function searchSalesMain(serviceId, type) { //查询主表信息
     var params = {
         id: serviceId
     };
@@ -623,10 +620,22 @@ function searchSalesMain(serviceId) { //查询主表信息
         success: function(text) {
             if (text.errCode == "S") {
                 var data = text.data[0];
-                billForm.setData(data);
-                form.setData(data);
-
-                document.getElementById("caCalculation").contentWindow.setSelectCarValue(data.handcartAmt, data.carCost);
+                if (!type) {
+                    billForm.setData(data);
+                    form.setData(data);
+                    document.getElementById("caCalculation").contentWindow.setSelectCarValue(data.handcartAmt, data.carCost);
+                    document.getElementById("caCalculation").contentWindow.SetDataMsg(data.id, data.frameColorId, data.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
+                } else {
+                    var billFormData = billForm.getData(true);
+                    billFormData.isSettle = data.isSettle;
+                    billFormData.enterId = data.enterId;
+                    billFormData.status = data.status;
+                    billFormData.carModelId = data.carModelId;
+                    billFormData.isSubmitCar = data.isSubmitCar;
+                    billFormData.handcartAmt = data.handcartAmt;
+                    billFormData.carCost = data.carCost;
+                    billForm.setData(billFormData);
+                }
                 nui.get("carModelName").setValue(data.carModelName);
                 nui.get("carModelName").setText(data.carModelName);
                 $("#servieIdEl").html(data.serviceCode);
@@ -635,7 +644,7 @@ function searchSalesMain(serviceId) { //查询主表信息
                 } else {
                     nui.get("submitCarBtn").enable();
                 }
-                document.getElementById("caCalculation").contentWindow.SetDataMsg(data.id, data.frameColorId, data.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
+
                 if (data.status != 0) {
                     nui.get("saveBtn").disable();
                     nui.get("submitBtn").disable();
@@ -660,6 +669,7 @@ function searchSalesMain(serviceId) { //查询主表信息
                 }
                 if (nui.get("typeMsg").value != 1) {
                     setReadOnlySubmitCar(1);
+                    nui.get("toolbar").setVisible(false);
                 } else {
                     if (data.enterId && data.isSettle != 1 && data.isSubmitCar == 0) {
                         setReadOnlySubmitCar(0);
@@ -783,8 +793,8 @@ function registration() { //车辆上牌
 }
 
 function caseMsg() { //销售结案审核
-    searchSalesMain(billFormData.id);
     var billFormData = billForm.getData(true); //主表信息
+    searchSalesMain(billFormData.id, 0);
     if (!billFormData.enterId || billFormData.enterId == 0) {
         showMsg("当前工单尚未选车！", "W");
         return;

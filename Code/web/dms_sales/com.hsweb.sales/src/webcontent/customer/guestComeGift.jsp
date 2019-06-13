@@ -24,7 +24,7 @@
 	    <table style="width:100%;">
 	        <tr>
 	            <td style="width:100%;">
-	                <a class="nui-button" onclick="save()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+	                <a class="nui-button" onclick="save()" plain="true" style="width:60px;display:none" id="save"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
 	                <a class="nui-button" onclick="onCancel()" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</a>
 	            </td>
 	        </tr>
@@ -270,6 +270,11 @@ function save(){
 }
 var statusF = null;
 function setData(params){
+    if(params.show && params.show==1){
+      document.getElementById("save").style.display = "none";
+    }else{
+     document.getElementById("save").style.display = "";
+    }
     serviceIdF = params.id;
     statusF = params.status;
     jpDetailGrid.load({

@@ -552,6 +552,9 @@
                  <isNotEmpty prepend="and" property="carLock">  
                     (a.car_lock = #carLock#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="carStatus">  
+                    (a.car_status = #carStatus#)
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="carModelId">  
                     (A.car_model_id = #carModelId#)
                 </isNotEmpty>

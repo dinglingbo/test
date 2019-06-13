@@ -118,6 +118,7 @@
 			b.adjustment_remark	AS	adjustmentRemark,
 			b.total_gross_profit	AS	totalGrossProfit,
 			b.total_gross_profit_rate	AS	totalGrossProfitRate,
+			b.remark	AS	remarka	,
 			c.full_name	AS contactor,
 			c.mobile AS contactorTel,
 			c.id_card AS idCard

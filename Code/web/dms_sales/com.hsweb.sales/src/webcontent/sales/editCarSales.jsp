@@ -13,7 +13,7 @@
         <title>编辑整车销售</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.1083" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.1084" type="text/javascript"></script>
 
     </head>
     <style type="text/css">
@@ -144,12 +144,12 @@
                         <label id="servieIdEl" style="font-family:Verdana;"></label>
                     </td>
                     <td style="text-align:right;">
-                        <a class="nui-button" iconCls="" plain="true" onclick="checkMsg(0)" id="saveBtn" visible="false"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="checkMsg(1)" id="submitBtn" visible="false"><span class="fa fa-save fa-lg"></span>&nbsp;提交</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="checkMsg(3)" id="invalidBtn" visible="false"><span class="fa fa-close fa-lg"></span>&nbsp;作废</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="checkMsg(2)" id="audit" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="save(0)" id="saveBtn" visible="false"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="save(1)" id="submitBtn" visible="false"><span class="fa fa-save fa-lg"></span>&nbsp;提交</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="save(3)" id="invalidBtn" visible="false"><span class="fa fa-close fa-lg"></span>&nbsp;作废</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="save(2)" id="audit" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="selectCar()" id="selectBtn" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;选车</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="submitCar()" id="submitCarBtn" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;交车</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="save(6)" id="submitCarBtn" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;交车</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="caseMsg()" id="case" visible="false"><span class="fa fa-dollar fa-lg"></span>&nbsp;结案</a>
 
                         <a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint">
@@ -165,7 +165,7 @@
                             <span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
 
                         <ul id="popupMenuMore" class="nui-menu" style="display:none;">
-                            <li iconCls="" onclick="checkMsg(11)" id="unfinishBtn">返单</li>
+                            <li iconCls="" onclick="save(11)" id="unfinishBtn">返单</li>
                             <li iconCls="" onclick="registration()" id="addBtn">车辆上牌</li>
                         </ul>
                     </td>
@@ -184,6 +184,8 @@
             <input class="nui-hidden" name="guestId" />
             <input class="nui-hidden" id="handcartAmt" name="handcartAmt" />
             <input class="nui-hidden" id="carCost" name="carCost" />
+            <input id="frameColorId" name="frameColorId" style="width: 100%" class="nui-combobox" textField="name" valueField="customid" visible="false">
+            <input id="interialColorId" name="interialColorId" style="width: 100%" class="nui-combobox" textField="name" valueField="customid" visible="false">
             <table cellpadding="0" cellspacing="0" style="line-height: 30px; padding-top: 4px; padding-left: 0px;width:100%">
                 <tr>
                     <td class="td_title">单据日期：

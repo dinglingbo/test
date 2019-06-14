@@ -326,7 +326,7 @@ $(document).ready(function(v) {
 
 function checkMsg(e) { //统一数据验证  
     //0为草稿  1为提交  2为审核  3为作废  11为返单    
-    //4为结案按钮  5为费用信息保存 6为交车按钮 7为费用信息审核反审 8为车辆上牌
+    //4为结案按钮  5为费用信息保存 6为交车按钮 7为费用信息审核反审 8为车辆上牌  9为选车
     var boolean = false;
     var billFormData = billForm.getData(true); //主表信息
     if (billFormData.id) {
@@ -339,6 +339,10 @@ function checkMsg(e) { //统一数据验证
     if (!billFormData.guestId) {
         showMsg("客户信息不能为空！", "W");
         return boolean;
+    }
+    if (billFormData.isSettle == 1) {
+        showMsg("当前工单已结算！", "W");
+        return;
     }
     var params = document.getElementById("caCalculation").contentWindow.getValue(); //购车信息
     if (params.isValid == false) {
@@ -379,12 +383,6 @@ function checkMsg(e) { //统一数据验证
             return boolean;
         }
     }
-    if (e == 5) {
-        if (billFormData.isSettle == 1) {
-            showMsg("当前工单已结算！", "W");
-            return boolean;
-        }
-    }
     if (e == 6) {
         if (nui.get("submitTrueDate").value == "") {
             showMsg("请填写交车时间后再进行交车！", "W");
@@ -395,13 +393,19 @@ function checkMsg(e) { //统一数据验证
             return boolean;
         }
     }
-    if (e == 5 || e == 6 || e == 7) {
+    if (e == 5 || e == 6 || e == 7 || e == 9) {
         if (billFormData.status != 2) {
             showMsg("当前工单尚未审核！", "W");
             return boolean;
         }
         if (billFormData.isSubmitCar == 1) {
             showMsg("当前工单已交车！", "W");
+            return boolean;
+        }
+    }
+    if (e == 9) {
+        if (billFormData.enterId) {
+            showMsg("当前工单已选车！", "W");
             return boolean;
         }
     }
@@ -414,6 +418,9 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
         return;
     }
     var billFormData = billForm.getData(true); //主表信息
+    if (e == 9) {
+        e = 2;
+    }
     if (e == 0) {
         if (billFormData.enterId != 0 && billFormData.enterId != "") {
             updateCheckEnter(billFormData.enterId);
@@ -754,19 +761,11 @@ function addGuest() { //新增客户资料
 }
 
 function selectCar() { //点击选车时触发
+    var boolean = checkMsg(9);
+    if (!boolean) {
+        return;
+    }
     var billFormData = billForm.getData(true);
-    if (billFormData.isSettle == 1) {
-        showMsg("当前订单已结算！", "W");
-        return;
-    }
-    if (billFormData.status != 2) {
-        showMsg("当前订单尚未审核！", "W");
-        return;
-    }
-    if (billFormData.enterId != 0) {
-        showMsg("当前订单已选车！", "W");
-        return;
-    }
     nui.open({
         url: webPath + contextPath + "/sales/sales/selectCar.jsp?token=" + token,
         title: "选择库存车",
@@ -787,7 +786,7 @@ function selectCar() { //点击选车时触发
                 billFormData.enterId = enterId;
                 billForm.setData(billFormData);
                 document.getElementById("caCalculation").contentWindow.setSelectCarValue(handcartAmt, carCost);
-                save(2);
+                save(9);
             }
         }
     });

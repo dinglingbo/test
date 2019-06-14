@@ -11,7 +11,7 @@
 
 <head>
 	<title>应付结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/payableForCar.js?v=1.0.4"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/payableForCar.js?v=1.1.1"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -279,12 +279,11 @@
 
 			</div>
 					<div class="pay_list">
-						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">单据定金抵扣</span></h2>
+						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">本单预付款抵扣</span></h2>
 						<div class="pay_tcbk zffs" id="csdiv" style="background: #f8f8f8;">
 							<div class="guazhangbz">
-						<div class="pay_jshj_list">
 							<div class="pay_js_left">
-								<a href="javascript:;" class="xz">储值卡抵扣</a>
+								<a href="javascript:;" class="xz">预付款抵扣</a>
 							</div>
 							<div class="pay_js_right">
 								<table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -300,28 +299,53 @@
 										</tr>
 										<tr>
 											<td width="15%">
-												<span>金额：</span>
+												<span>抵扣金额：</span>
 
 											</td>
 											<td height="40" class="line24">
 												<input class="nui-textbox" id="balaAmt" name="balaAmt" enabled="false"  style="width: 100px; float: left;">
 											</td>
-											<td width="10%">
-												<span>抵扣金额：</span>
-
-											</td>
-											<td height="40" class="line24">
-												<input class="mini-spinner" id="deductionAmt" name="deductionAmt" width="100px" minValue="0" maxValue="1000000" showbutton="false" changeOnMousewheel="false"
-												 allowNull="false" onvaluechanged="onChanged" />
-											</td>
 										</tr>
 									</tbody>
 								</table>
 							</div>
-						</div>
-							</div>
-						</div>
 					</div>
+				</div>
+			</div>
+			<div class="pay_list">
+				<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">预付款抵扣</span></h2>
+				<div class="pay_tcbk zffs" id="csdiv" style="background: #f8f8f8;">
+          <div class="nui-fit">
+                <div id="qRightGrid" class="nui-datagrid" style="height:200px;"
+                     showPager="false"
+                      allowCellEdit="true"
+                     dataField="detailList"
+                     idField="detailId"
+                     ondrawcell="onDrawCell"
+                     oncellclick="onPGridbeforeselect" 
+                     sortMode="client"
+                     url=""
+                     multiSelect="true"
+                     onshowrowdetail="onShowRowDetail"
+                     showSummaryRow="false">
+                    <div property="columns">
+                        <div type="indexcolumn">序号</div>
+                        <div type="checkcolumn" width="20"></div>
+                        <div field="guestName" width="150" headerAlign="center" header="来往单位"></div>
+                        <div field="remark" width="120" headerAlign="center" header="业务备注"></div>
+                        <div field="amt" width="60" headerAlign="center" header="金额"></div>
+                        <div field="deductionAmt" width="60" headerAlign="center" header="已抵扣金额"></div>
+                        <div field="balaAmt" width="60" headerAlign="center" header="剩余金额">
+                        	<input property="editor" class="nui-textbox" />
+                        </div>
+                         <div field="nowAmt" width="60" headerAlign="center" header="抵扣金额">
+                        	<input property="editor" class="nui-textbox" />
+                        </div>
+                    </div>
+                </div>
+          </div>
+				</div>
+			</div>
 
 					<div class="pay_list">
 						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">付款方式</span></h2>

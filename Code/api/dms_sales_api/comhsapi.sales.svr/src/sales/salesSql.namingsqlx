@@ -516,6 +516,7 @@
                 A.car_model_id AS carModelId,
                 A.car_model_name AS carModelName,
                 a.vin as vin,
+                a.car_no as carNo,
                 a.engine_no as engineNo,
                 a.kilometers as kilometers,
                 a.produce_date as produceDate,
@@ -549,6 +550,9 @@
             <dynamic>
                 <isNotEmpty prepend="and" property="orderId">  
                     (A.order_id = #orderId#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="id">  
+                    (A.id = #id#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="orderIds">  
                     (A.order_id in ($orderIds$))

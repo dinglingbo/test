@@ -102,4 +102,84 @@
 		ORDER BY
 			record_date DESC
 	</select>
+	
+	<select id="queryComTenant" parameterClass="HashMap" resultClass="com.primeton.tenant.tenant.ComTenant">
+     SELECT
+     	a.tenant_id as tenantId,  
+		a.register_id as registerId,
+		a.code as code,
+		a.tenant_name as tenantName,
+		a.mobile as mobile,
+		a.province_id as provinceId,
+		a.area_id as areaId,
+		a.city_id as cityId,
+		a.addr as addr,
+		a.address as address,
+		a.manager as manager,
+		a.org_qty as orgQty,
+		a.audit_date as auditDate,
+		a.audit_man as auditMan,
+		a.start_date as startDate,
+		a.end_date as endDate,
+		a.sales_man as salesMan,
+		a.referee as referee,
+		a.Invitation_number as InvitationNumber,
+		a.largess_month as largessMonth,
+		a.max_user_qty as maxUserQty,
+		a.first_pay_amt as firstPayAmt,
+		a.next_renew_date as nextRenewDate,
+		a.next_renew_amt as nextRenewAmt,
+		a.is_pay as isPay,
+		a.is_disabled as isDisabled,
+		a.remark as remark,
+		a.recorder as recorder ,
+		a.record_date as recordDate,
+		a.modifier as modifier,
+		a.modify_date as modifyDate
+		FROM com_tenant a
+		WHERE 1=1
+		<isNotNull property="code">
+			AND a.code=#code#
+		</isNotNull>
+		<isNotNull property="tenantName">
+			AND a.tenant_name like '%$tenantName$%'
+		</isNotNull>
+		<isNotNull property="provinceId">
+			AND a.province_id=#provinceId#
+		</isNotNull>
+		<isNotNull property="cityId">
+			AND a.city_id=#cityId#
+		</isNotNull>
+		<isNotNull property="isDisabled">
+			AND a.is_disabled = #isDisabled#
+		</isNotNull>
+		<isNotNull property="isPay">
+			AND a.is_pay = #isPay#
+		</isNotNull>
+		<isNotNull property="mobile">
+			AND a.mobile like '%$mobile$%'
+		</isNotNull>
+		<isNotNull property="salesMan">
+			AND a.sales_man like '%$salesMan$%'
+		</isNotNull>
+		<isNotNull property="referee">
+			AND a.referee like '%$referee$%'
+		</isNotNull>
+		<isNotEmpty prepend="and" property="endDates">  
+              a.end_date &gt;= #endDates#
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="endDatee">  
+             a.end_date &lt; #endDatee#
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="startDates">  
+              a.start_date &gt;= #startDates#
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="startDatee">  
+              a.start_date &lt; #startDatee#
+        </isNotEmpty>
+		
+	 </select>
+	
+	
+	
 </sqlMap>

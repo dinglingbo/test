@@ -46,10 +46,11 @@
 			a.next_visit_date	AS	nextVisitDate	,
 			CASE WHEN a.status = 0 then '草稿' ELSE 
 			CASE WHEN a.status = 1 then '待审' ELSE 
+			CASE WHEN a.status = 3 then '作废' ELSE 
 			CASE WHEN a.enter_id = 0 AND a.status = 2 then '已审未选车' ELSE 				
 			CASE WHEN a.is_submit_car = 0 AND a.status = 2 THEN '已审未交车' ELSE 
 			CASE WHEN a.is_settle = 0 AND a.status = 2 THEN '未结算' ELSE 
-			CASE WHEN a.is_settle = 1 AND a.status = 2 THEN '已结算' ELSE a.status END END END END END END as status,
+			CASE WHEN a.is_settle = 1 AND a.status = 2 THEN '已结算' ELSE a.status END END END END END END END as status,
 			a.is_out_stock	AS	isOutStock	,
 			a.is_submit_car	AS	isSubmitCar	,
 			a.is_settle	AS	isSettle	,
@@ -118,6 +119,7 @@
 			b.adjustment_remark	AS	adjustmentRemark,
 			b.total_gross_profit	AS	totalGrossProfit,
 			b.total_gross_profit_rate	AS	totalGrossProfitRate,
+			b.remark	AS	remarka	,
 			c.full_name	AS contactor,
 			c.mobile AS contactorTel,
 			c.id_card AS idCard
@@ -553,6 +555,9 @@
                 </isNotEmpty>
                  <isNotEmpty prepend="and" property="carLock">  
                     (a.car_lock = #carLock#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="carStatus">  
+                    (a.car_status = #carStatus#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="carModelId">  
                     (A.car_model_id = #carModelId#)

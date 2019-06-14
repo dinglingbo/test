@@ -1695,7 +1695,7 @@ function setInitExportData(detail){
 function openOrderDetail(){
 	var row = rRightGrid.getSelected();
 	if(row){
-		if(row.billTypeId==103||row.billTypeId==106||row.billTypeId==108){		
+		if(row.billTypeId==103||row.billTypeId==106||row.billTypeId==108 ||row.billTypeId== 119){		
 			var data={};
 			data.id=row.billMainId;
 

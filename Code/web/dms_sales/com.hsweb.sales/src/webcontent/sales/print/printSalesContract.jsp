@@ -196,9 +196,9 @@
                 </div>
                 <div class="divHeight">
                     <div style="width:50%;display: inline-block;">身份证号：<span style="text-decoration: underline;" id="idCard"></span></div>
-                    <div style="width:49%;display: inline-block;">服务热线：<span>400-0734-885</span></div>
+                    <div style="width:49%;display: inline-block;">服务热线：<span></span></div>
                 </div>
-                <div style="margin-top:10px;">一、标的 </div>
+                <div style="margin-top:10px;">一、车辆信息 </div>
 
                 <table border="0" cellpadding="0" cellspacing="0" class="ybk" style="line-height:32px;margin-top:5px;margin-left:28px;width:calc(100% - 28px);">
                     <tbody>
@@ -240,23 +240,23 @@
                     </tbody>
                 </table>
                 <div style="margin-top:10px;">二、购买方式：
-                    <input type="checkbox" name="" value="" />&nbsp;全款&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="" value="" />&nbsp;银行按揭&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="" value="" />&nbsp;金融公司&nbsp;&nbsp;&nbsp;&nbsp;把&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="checkbox" name="" value="" />&nbsp;厂家金额&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span id="select1">☐</span>&nbsp;全款&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span id="select2">☐</span>&nbsp;银行按揭&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span id="select3">☐</span>&nbsp;金融公司&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span id="select4">☐</span>&nbsp;厂家金额&nbsp;&nbsp;&nbsp;&nbsp;
                 </div>
                 <div style="margin-top:10px;">
                     <p>三、车辆价格￥：
-                        <span>1213</span>元（大写）叁佰贰拾叁万贰仟伍佰玖拾伍元整</p>
-                    <p>&emsp;&emsp;预付款￥：<span>3212</span>元（大写）叁佰贰拾叁万贰仟伍佰玖拾伍元整</p>
-                    <p>&emsp;&emsp;银行按揭：审核贷款通过后，买方按购车计算表提车首付款金额（￥
-                        <span style="text-decoration: underline">456</span>元）支付给卖方，待银行将贷款金额（￥
-                        <span style="text-decoration: underline">456</span>元）打入卖方账户并且到账后，买方办理提车。</p>
+                        <span id="saleAmt"></span>元（大写）<span id="saleAmtB"></span></p>
+                    <p>&emsp;&emsp;预付款￥：<span id="advanceChargeAmt"></span>元（大写）<span id="advanceChargeAmtB"></span></p>
+                    <p id="saleType">&emsp;&emsp;银行按揭：审核贷款通过后，买方按购车计算表提车首付款金额（￥
+                        <span style="text-decoration: underline" id="downPaymentAmt"></span>元）支付给卖方，待银行将贷款金额（￥
+                        <span style="text-decoration: underline" id="loanAmt"></span>元）打入卖方账户并且到账后，买方办理提车。</p>
 
                 </div>
                 <div style="margin-top:10px;">四、交车时间、地点：
-                    <p>&emsp;&emsp;交车时间：<span style="text-decoration: underline" id="submitTrueDate"> </span>（全款到账提车）</p>
-                    <p>&emsp;&emsp;交车地点：<span style="text-decoration: underline">本公司</span></p>
+                    <p>&emsp;&emsp;交车时间：<span style="text-decoration: underline" id="submitPlanDate"> </span>（全款到账提车）</p>
+                    <p>&emsp;&emsp;交车地点：<span style="text-decoration: underline" id="address"></span></p>
                 </div>
                 <div style="margin-top:10px;">五、本合同价款包含：
                     <p>&emsp;&emsp;<span>钥匙扣、手机支架、大屏导航仪</span></p>
@@ -266,9 +266,10 @@
 
                 </div>
                 <div style="margin-top:10px;">
-                    <div style="margin-left:28px;width:calc(100% - 28px);">
+                    <div style="margin-left:28px;width:calc(100% - 28px);height: 40;">
                         <div style="width:50%;display: inline-block;"></div>
-                        <div style="width:49%;display: inline-block;">销售顾问：<span></span></div>
+                        <p style="display: inline-block">销售顾问：</p>
+                        <p style="border-bottom:1px solid black;width:200px;display: inline-block"></p>
                     </div>
                     <div style="margin-left:28px;width:calc(100% - 28px);">
                         <div style="width:50%;display: inline-block;">
@@ -283,8 +284,8 @@
                     <div style="margin-left:28px;width:calc(100% - 28px);">
                         <div style="width:50%;display: inline-block;"></div>
                         <div style="width:49%;display: inline-block;">
-                            <p style="display: inline-block">&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;</p>
-                            <p style="border-bottom:1px solid black;width:200px;display: inline-block">&emsp;</p>
+                            <p style="display: none">&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;</p>
+                            <p style="border-bottom:1px solid black;width:200px;display: none">&emsp;</p>
                         </div>
                     </div>
 
@@ -333,10 +334,11 @@
                         interialColorId1: "10391"
                     });
                     var date = new Date();
-                    document.getElementById("date").innerHTML = format(date, "yyyy-MM-dd HH:mm");
+                    document.getElementById("date").innerHTML = format(date, "yyyy-MM-dd HH:mm:ss");
                     document.getElementById("currRepairSettorderPrintShow").innerHTML = currRepairSettorderPrintShow;
                     document.getElementById("currCompTel").innerHTML = currCompTel;
                     document.getElementById("currCompAddress").innerHTML = currCompAddress;
+                    document.getElementById("address").innerHTML = currCompAddress;
                     document.getElementById("currBankName").innerHTML = currBankName;
                     document.getElementById("currBankAccountNumber").innerHTML = currBankAccountNumber;
                     document.getElementById("comp").innerHTML = currRepairSettorderPrintShow;
@@ -348,14 +350,16 @@
                             var contractNo = temp.contractNo || "";
                             var guestFullName = temp.guestFullName || "";
                             var contactorTel = temp.contactorTel || "";
-                            var submitTrueDate = temp.submitTrueDate || "";
+                            var submitPlanDate = temp.submitPlanDate || "";
                             var idCard = temp.idCard || "";
                             var carModelName = temp.carModelName || "";
                             var frameColorId = temp.frameColorId || "";
                             var interialColorId = temp.interialColorId || "";
                             document.getElementById("contractNo").innerHTML = contractNo;
                             document.getElementById("guestFullName").innerHTML = guestFullName;
-                            document.getElementById("submitTrueDate").innerHTML = format(submitTrueDate, 'yyyy-MM-dd HH:mm:ss');
+                            if (submitPlanDate) {
+                                document.getElementById("submitPlanDate").innerHTML = format(submitPlanDate, 'yyyy-MM-dd HH:mm:ss');
+                            }
                             document.getElementById("contactorTel").innerHTML = contactorTel;
                             document.getElementById("idCard").innerHTML = idCard;
                             nui.get("frameColorId1").setValue(frameColorId);
@@ -363,6 +367,32 @@
                             document.getElementById("frameColorId").innerHTML = nui.get("frameColorId1").text;
                             document.getElementById("interialColorId").innerHTML = nui.get("interialColorId1").text;
                             document.getElementById("carModelName").innerHTML = carModelName;
+                        }
+                    });
+                    var url = baseUrl + 'sales.search.searchSaleCalc.biz.ext?params/billType=2&params/serviceId=' + serviceId;
+                    $.post(url, function(res) {
+                        if (res.data.length > 0) {
+                            var temp = res.data[0];
+                            document.getElementById("saleAmt").innerHTML = temp.saleAmt || 0; //车价（元）
+                            document.getElementById("saleAmtB").innerHTML = transform(temp.saleAmt + "");
+                            document.getElementById("advanceChargeAmt").innerHTML = temp.advanceChargeAmt || 0; //预付款
+                            document.getElementById("advanceChargeAmtB").innerHTML = transform(temp.advanceChargeAmt + "");
+                            var saleType = temp.saleType;
+                            if (saleType && saleType == "1558580770894") {
+                                document.getElementById("saleType").style.display = "none";
+                            } else {
+                                document.getElementById("downPaymentAmt").innerHTML = temp.downPaymentAmt || 0;
+                                document.getElementById("loanAmt").innerHTML = temp.loanAmt || 0;
+                            }
+                            if (saleType == "1558580770894") {
+                                document.getElementById("select1").innerHTML = "☑";
+                            } else if (saleType == "1558078347480") {
+                                document.getElementById("select2").innerHTML = "☑";
+                            } else if (saleType == "1558580770897") {
+                                document.getElementById("select3").innerHTML = "☑";
+                            } else if (saleType == "1558580770896") {
+                                document.getElementById("select4").innerHTML = "☑";
+                            }
                         }
                     });
                 }

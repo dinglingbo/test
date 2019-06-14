@@ -28,16 +28,16 @@
 	<script src="<%=request.getContextPath()%>/coframe/imjs/message.js"></script>
 	<script src="<%=request.getContextPath()%>/coframe/imjs/messagebody.js"></script>
 	<script src="<%=request.getContextPath()%>/layim-v3.8.0/dist/layui.js"></script>
-	<script src="<%=request.getContextPath()%>/coframe/imjs/websocketconfig.js?v=1.1.6"></script>
+	<script src="<%=request.getContextPath()%>/coframe/imjs/websocketconfig.js?v=1.1.7"></script>
     <style type="text/css">
 	a {
-	cursor: pointer;
-	 color:black;
-}
-  .groupSize{
-    max-height: 200px;
-    overflow: auto;
-}
+		cursor: pointer;
+		color:black;
+	}
+	.groupSize{
+	    max-height: 200px;
+	    overflow: auto;
+	}
 
 
     #_sys_tip_msg_ {
@@ -184,7 +184,7 @@
                      <li><a href="javascript:myMessage();"><i class="fa fa-comments-o"></i> 我的消息</a></li>
                      <li><a href="javascript:updateEmployee();"><i class="fa fa-pencil-square-o"></i> 个人设置</a></li> 
                      <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li>
-                     <li><a href="javascript:resetIM();"><i class="fa fa-pencil-square-o"></i> 登录IM</a></li>
+                     <!-- <li><a href="javascript:resetIM();"><i class="fa fa-pencil-square-o"></i> 登录IM</a></li> -->
                      <!-- <li><a href="javascript:updateSkin();"><i class="fa fa-pencil-square-o"></i> 皮肤中心</a></li> -->
                     <!-- <li><a href="#"><i class="fa fa-eye "></i> 用户信息</a></li> -->
                     <li><a href="<%=request.getContextPath()%>/coframe/auth/login/logout.jsp"><i class="fa fa-user"></i> 退出登录</a></li>

@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * 用户帐号
  * 
- * @author qiqiim
+ * @author im
  * @email 1044053532@qq.com
  * @date 2017-11-27 14:56:08
  */
@@ -61,6 +61,18 @@ public class UserAccountController extends BaseController {
 	@RequestMapping(value="/save", produces="text/html;charset=UTF-8", method = RequestMethod.POST)
 	@ResponseBody
 	public Object save(@ModelAttribute UserAccountEntity userAccount){
+		userAccount.setDisablestate(0);
+		userAccount.setIsdel(0);
+		userAccountServiceImpl.save(userAccount);
+		return putMsgToJsonString(Constants.WebSite.SUCCESS,"",0,userAccount);
+	}
+
+	/**
+	 * 保存
+	 */
+	@RequestMapping(value="/ins", produces="application/json;charset=UTF-8", method = RequestMethod.POST)
+	@ResponseBody
+	public Object ins(@RequestBody UserAccountEntity userAccount){
 		userAccount.setDisablestate(0);
 		userAccount.setIsdel(0);
 		userAccountServiceImpl.save(userAccount);

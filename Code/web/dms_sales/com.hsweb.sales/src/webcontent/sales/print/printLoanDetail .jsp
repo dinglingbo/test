@@ -243,7 +243,7 @@
                             <td height="50" valign="top" style="padding: 8px;" id="">
                                 厂商指导价（元）：
                             </td>
-                            <td height="50" valign="top" style="padding: 8px;" id="">
+                            <td height="50" valign="top" style="padding: 8px;" id="sellPrice">
 
                             </td>
                         </tr>
@@ -393,6 +393,7 @@
                 function SetData(params) {
                     var serviceId = params.serviceId;
                     var billType = params.billType;
+                    var carModelId = params.carModelId;
                     initDicts({
                         saleType1: '10392' //购车方式
                     });
@@ -439,6 +440,14 @@
                         document.getElementById("carModelName").innerHTML = params.carModelName || "";
                     }
 
+                    if (carModelId) {
+                        $.post(baseUrl + "sales.base.searchCsbCarModel.biz.ext?params/id=" + carModelId, function(res) {
+                            if (res.list.length > 0) {
+                                var temp = res.list[0];
+                                document.getElementById("sellPrice").innerHTML = temp.sellPrice;
+                            }
+                        });
+                    }
                 }
 
                 function CloseWindow(action) {

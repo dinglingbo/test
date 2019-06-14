@@ -244,6 +244,7 @@ function guestInfo(){
 function giftInfo(){
 	var row = mainGrid.getSelected();
 	if(row){
+		row.show = 1;
 		if(row.id !="" && row.id !=null){
 			nui.open({
 				url: webPath + contextPath + '/sales/customer/guestComeGift.jsp',
@@ -272,6 +273,7 @@ function giftInfo(){
 function buyCarCount(){
 	var row = mainGrid.getSelected();
 	if(row){
+		row.show = 1;
 		if(row.id !="" && row.id !=null){
 			nui.open({
 				url: webPath + contextPath + '/sales/sales/caCalculation.jsp',

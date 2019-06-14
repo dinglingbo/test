@@ -39,7 +39,7 @@
 		from rpb_car_extend a
 		inner join rpb_car b
 		on a.car_id = b.id
-		where DATEDIFF(now(),b.annual_verification_due_date) = #ln#
+		where DATEDIFF(now(),b.annual_verification_due_date) = #ln# and a.last_orgid = #orgid#
 	</select>
 	
 	<!--商业险到期  （暂时没用到）TIMESTAMPDIFF(DAY , NOW(), b.annual_inspection_date) = #ln#-->
@@ -49,7 +49,7 @@
 		from rpb_car_extend a
 		inner join rpb_car b
 		on a.car_id = b.id
-		where DATEDIFF(now(),b.annual_inspection_date) = #ln#
+		where DATEDIFF(now(),b.annual_inspection_date) = #ln# and a.last_orgid = #orgid#
 	</select>
 	<!--商业险到期  TIMESTAMPDIFF(DAY , NOW() , b.annual_inspection_date) = #ln#-->
 	<update id="updateAnnualRemind" parameterClass="java.util.HashMap">
@@ -64,11 +64,11 @@
 	<!--交强险到期 （暂时没用到） TIMESTAMPDIFF(DAY, NOW(), b.insure_due_date) = #ln#-->
 	<select id="getInsureDueDate" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT a.last_orgid as orgid, b.guest_id as guestId, a.car_id as carId, b.car_no as carNo, b.vin as carVin, 
-		       b.mt_advisor_id as mtAdvisorId, b.mt_advisor_name as mtAdvisorName, DATE_FORMAT(b.insure_due_date,'%Y-%m-%d') as dueDate
+		       a.mt_advisor_id as mtAdvisorId, a.mt_advisor_name as mtAdvisorName, DATE_FORMAT(b.insure_due_date,'%Y-%m-%d') as dueDate
 		from rpb_car_extend a
 		inner join rpb_car b
 		on a.car_id = b.id
-		where DATEDIFF(now(),b.insure_due_date) = #ln#
+		where DATEDIFF(now(),b.insure_due_date) = #ln# and a.last_orgid = #orgid#
 	</select>
 	<!--交强险到期  TIMESTAMPDIFF(DAY, NOW(), b.insure_due_date) = #ln#-->
 	<update id="updateInsureRemind" parameterClass="java.util.HashMap">
@@ -98,7 +98,7 @@
 				SELECT orgid, guest_id as guestId, name as fullName, DATE_FORMAT(birthday,'%m-%d') as dueDate,
 			   '' as mtAdvisorId, recorder as mtAdvisorName
 		from rpb_contactor
-		where datediff(( DATE_FORMAT(birthday, '%m%d')+0),( DATE_FORMAT(curdate(), '%m%d')+0)) = #ln# 
+		where orgid = #orgid# and datediff(( DATE_FORMAT(birthday, '%m%d')+0),( DATE_FORMAT(curdate(), '%m%d')+0)) = #ln# 
 	</select>
 	<!--客户生日  按月日提醒-->
 	<update id="updateGuestBirthdayRemind" parameterClass="java.util.HashMap">
@@ -119,11 +119,11 @@
 		SELECT a.id, a.service_id as serviceId, a.guest_id as guestId, b.short_name as shortName,
 		       a.orgid, a.plan_arrive_date as dueDate, a.order_man_id as orderManId,
 		       a.order_man as orderMan, a.auditor_id as auditorId, a.auditor, a.audit_date as auditDate
-		from pj_pchs_order_main_chk a 
+		from wb_part.pj_pchs_order_main_chk a 
 		inner join wb_common.com_guest b
 		on a.guest_id = b.id
 		where is_finished = 0 
-		and TIMESTAMPDIFF(HOUR, NOW(), plan_arrive_date) = #ln#
+		and TIMESTAMPDIFF(HOUR, NOW(), plan_arrive_date) = #ln# and a.orgid = #orgid#
 	</select>
 	
 	<!--员工生日  按月日提醒-->

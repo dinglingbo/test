@@ -4,6 +4,7 @@ import com.chedao.websocket.webserver.user.dao.UserMessageDao;
 import com.chedao.websocket.webserver.user.model.MessageInfoEntity;
 import com.chedao.websocket.webserver.user.model.UserMessageEntity;
 import com.chedao.websocket.webserver.user.model.UserMessageTEntity;
+import com.chedao.websocket.webserver.user.service.UserInfoService;
 import com.chedao.websocket.webserver.user.service.UserMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ public class UserMessageServiceImpl implements UserMessageService {
 
 	@Resource
 	private UserMessageDao userMessageDao;
+
+	@Autowired
+	private UserInfoServiceImpl userInfoServiceImpl;
 	
 	@Override
 	public UserMessageEntity queryObject(Long id){
@@ -92,7 +96,9 @@ public class UserMessageServiceImpl implements UserMessageService {
 
 	@Override
 	public int updateuserdate(Map<String, Object> map) {
-		return userMessageDao.updateuserdate(map);
+		int i = userMessageDao.updateuserdate(map);
+		userInfoServiceImpl.refreshUserInfoCache(map.get("uid").toString());
+		return i;
 	}
 
     @Override

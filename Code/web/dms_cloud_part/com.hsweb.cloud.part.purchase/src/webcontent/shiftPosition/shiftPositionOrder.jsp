@@ -215,6 +215,7 @@
                            oncellbeginedit="OnrpMainGridCellBeginEdit"
                            showModified="false"
                            editNextOnEnterKey="true"
+                           allowCellWrap = true
                            url="">
                           <div property="columns">
                               <div type="indexcolumn">序号</div>
@@ -224,8 +225,9 @@
                                       <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码">
                                           <input property="editor" class="nui-textbox" />
                                       </div>
-                                      <div field="comPartName" headerAlign="center" header="配件名称"></div>
-                                      <div field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
+                                      <div field="comPartName" visible="false" headerAlign="center" header="配件名称"></div>
+                                      <div field="fullName" headerAlign="center" header="配件全称"></div>
+                                      <div field="comPartBrandId" visible="false" width="60" headerAlign="center" header="品牌"></div>
                                       <div field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
                                       <div field="comUnit" name="comUnit" width="40" headerAlign="center" header="单位"></div>
                                   </div>

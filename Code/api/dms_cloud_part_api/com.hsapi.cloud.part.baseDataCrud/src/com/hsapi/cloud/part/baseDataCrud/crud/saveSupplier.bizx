@@ -394,7 +394,7 @@
       <targetNode>assign3</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="NULLOREMPTY">
-          <process:leftOperand type="query">orgid</process:leftOperand>
+          <process:leftOperand type="query">supplier/orgid</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

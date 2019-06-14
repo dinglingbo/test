@@ -33,7 +33,7 @@
 </head>
 <body>
 <div class="nui-fit">
-     <div class="nui-toolbar" >
+     <div class="nui-toolbar" height="50px">
         <table style="width:100%;">
             <tr>
                 <td style="width:100%;">
@@ -45,7 +45,7 @@
     </div>
     	<input name="frameColorId" id="frameColorId" class="nui-combobox" textField="name" valueField="id" allowInput="true" visible="false"/>
     <input name="interialColorId" id="interialColorId" class="nui-combobox" textField="name" valueField="id" allowInput="true" visible="false"/>
-    <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
+    <div id="rightGrid" class="nui-datagrid" style="width:100%;height:480px"
          showPager="true"
          dataField="checkOrderDetailList"
          idField="detailId"
@@ -67,6 +67,7 @@
                     <div field="frameColorId" allowSort="true"  name="frameColorId" width="60" headerAlign="center" header="车身颜色"></div>
                     <div allowSort="true" field="interialColorId"  name="interialColorId" width="60" headerAlign="center" header="内饰颜色"></div>  
                     <div allowSort="true" field="orderPrice" name="orderPrice" width="60" headerAlign="center" header="单价"></div>
+                    <div allowSort="true" field="orderQty" name="orderQty" width="60" headerAlign="center" header="订货数量"></div>
                     <div field="checkingQty" name="guestFullName" width="60" headerAlign="center" header="待验"></div>
                      <div field="checkedQty" name="guestFullName" width="60" headerAlign="center" header="已验"></div>
                                                       

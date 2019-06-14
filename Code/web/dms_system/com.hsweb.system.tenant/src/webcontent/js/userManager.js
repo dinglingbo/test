@@ -83,10 +83,10 @@ switch (e.field)
 	    }  
     break;
 	case "isDisabled":
-		e.cellHtml = e.value?0:"在用","停用";
+		e.cellHtml = e.value==0?"在用":"停用";
 		break;
 	case "isPay":
-		e.cellHtml = e.value?0:"免费","付费";
+		e.cellHtml = e.value==0?"免费":"付费";
 		break;
 	default:
     break;

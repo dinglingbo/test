@@ -125,7 +125,7 @@
             <div type="indexcolumn" width="40">序号</div>
             <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
             		<div allowSort="true" field="status" name="payMode" width="90" headerAlign="center" header="状态"></div>
-                    <div field="serviceCode" name="serviceCode" allowSort="true"  width="160" summaryType="count" headerAlign="center" header="订单单号"></div>
+                    <div field="serviceCode" name="serviceCode" allowSort="true"  width="165" summaryType="count" headerAlign="center" header="订单单号"></div>
                     <div field="guestFullName" name="guestFullName" width="220" headerAlign="center" header="供应商"></div>                    
                     <div allowSort="true" field="billTypeId"  name="billTypeId" width="90" headerAlign="center" header="票据类型"></div>
                     <div allowSort="true" field="payMode" name="payMode" width="90" headerAlign="center" header="结算方式"></div>

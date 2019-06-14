@@ -11,7 +11,7 @@
     <title>用户管理</title>
     <%@include file="/common/sysCommon.jsp"%>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	 <script src="<%= request.getContextPath() %>/tenant/js/userManager.js?v=1.9.9"
+	 <script src="<%= request.getContextPath() %>/tenant/js/userManager.js?v=1.9.10"
 	type="text/javascript"></script>
     <style type="text/css">
     body {
@@ -114,7 +114,7 @@
                 <div field="startDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm" >开通时间</div>
                 <div field="endDate" width="80" headerAlign="center" align="center"dateFormat="yyyy-MM-dd HH:mm" >结束时间</div>
                 <div field="auditMan" width="80" headerAlign="center" align="center">审核人</div>
-                <div field="salesManId" width="80" headerAlign="center" align="center">业务员</div>
+                <div field="salesMan" width="80" headerAlign="center" align="center">业务员</div>
                 <div field="referee" width="80" headerAlign="center" align="center">推荐人</div>
                 <div field="InvitationNumber" width="80" headerAlign="center" align="center">邀请号</div>
                 <div field="isDisabled" width="80" headerAlign="center" align="center">是否在用</div>

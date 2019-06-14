@@ -481,7 +481,7 @@ function add() {
 					auditSign : 0
 				};
 
-				$('#bServiceId').text("订单号: 新采购订单");
+				$('#bServiceId').text("订单号: 新厂家订货单");
 				nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票				
 				addNewRow();
 				var guestId = nui.get("guestId");
@@ -506,7 +506,7 @@ function add() {
 		};
 
 
-		$('#bServiceId').text("订单号: 新采购订单");
+		$('#bServiceId').text("订单号: 新厂家订货单");
 		nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
 /*		nui.get("createDate").setValue(new Date());*/
 		

@@ -147,8 +147,9 @@
               </isNotEmpty>
               <isNotEmpty prepend="and" property="recordEndDate"> 
                 (a.record_date &lt; #recordEndDate#)
-              </isNotEmpty>
-        </dynamic>  
+              </isNotEmpty>             
+        </dynamic> 
+        
 	</select>
 	
 	<select id="searchSalesMainDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
@@ -286,6 +287,7 @@
                 (a.record_date &lt; #recordEndDate#)
               </isNotEmpty>
         </dynamic>  
+        order by  a.record_date desc 
 	</select>
     
        <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->

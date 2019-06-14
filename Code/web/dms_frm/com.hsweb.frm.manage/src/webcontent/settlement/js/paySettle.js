@@ -964,6 +964,10 @@ function checkSettleRow() {
 					return "请选择相同结算单位的单据!";
 				}
 			}
+			//厂家购车款单条结算
+			if(s>1&&row.billTypeId==251){
+				return "厂家购车款只能单条结算!";
+			}
 		}
 
 		for (var i = 0; i < s; i++) {
@@ -1116,20 +1120,38 @@ function doSettle() {
 			showMsg(rtn.errMsg || "结算数据填写有问题!", "W");
 			return;
 		}
-		nui.open({
-	        url: webPath + contextPath +"/com.hsweb.frm.manage.payable.flow?token="+token,
-	         width: "100%", height: "100%", 
-	        onload: function () {
-	            var iframe = this.getIFrameEl();
-	            iframe.contentWindow.setData(rows);
-	        },
-			ondestroy : function(action) {// 弹出页面关闭前
-				if (action == "saveSuccess") {
-					showMsg("结算成功!", "S");
-					pRightGrid.reload();
+		if(rows[0].billTypeId==251){
+			nui.open({
+		        url: webPath + contextPath +"/com.hsweb.frm.manage.payableForCar.flow?token="+token,
+		         width: "100%", height: "100%", 
+		        onload: function () {
+		            var iframe = this.getIFrameEl();
+		            iframe.contentWindow.setData(rows);
+		        },
+				ondestroy : function(action) {// 弹出页面关闭前
+					if (action == "saveSuccess") {
+						showMsg("结算成功!", "S");
+						pRightGrid.reload();
+					}
 				}
-			}
-	    });
+		    });
+		}else{
+			nui.open({
+		        url: webPath + contextPath +"/com.hsweb.frm.manage.payable.flow?token="+token,
+		         width: "100%", height: "100%", 
+		        onload: function () {
+		            var iframe = this.getIFrameEl();
+		            iframe.contentWindow.setData(rows);
+		        },
+				ondestroy : function(action) {// 弹出页面关闭前
+					if (action == "saveSuccess") {
+						showMsg("结算成功!", "S");
+						pRightGrid.reload();
+					}
+				}
+		    });
+		}
+
 	} else {
 		showMsg("请选择单据!", "W");
 		return;

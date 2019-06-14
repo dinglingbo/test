@@ -11,7 +11,7 @@
 
 <head>
 	<title>应付结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/payable.js?v=1.2.5"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/payableForCar.js?v=1.0.4"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -241,7 +241,7 @@
 	<div style="position: relative;">
 		<div class="fw">
 			<div class="fw_top" style="text-align: center; background: #dcdcdc; font-size: 25px; line-height: 64px;">
-				付款结账
+				厂家购车款结账
 			</div>
 			<div class="pay_top">
 				<table width="1000" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -278,7 +278,50 @@
 				
 
 			</div>
+					<div class="pay_list">
+						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">单据定金抵扣</span></h2>
+						<div class="pay_tcbk zffs" id="csdiv" style="background: #f8f8f8;">
+							<div class="guazhangbz">
+						<div class="pay_jshj_list">
+							<div class="pay_js_left">
+								<a href="javascript:;" class="xz">储值卡抵扣</a>
+							</div>
+							<div class="pay_js_right">
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									<tbody>
+										<tr>
+											<td width="15%">
+												<span>单据编号：</span>
 
+											</td>
+											<td height="40" class="line24">
+												<input class="nui-textbox" id="code" name="code" enabled="false"  style="width: 200px; float: left;">
+											</td>
+										</tr>
+										<tr>
+											<td width="15%">
+												<span>金额：</span>
+
+											</td>
+											<td height="40" class="line24">
+												<input class="nui-textbox" id="balaAmt" name="balaAmt" enabled="false"  style="width: 100px; float: left;">
+											</td>
+											<td width="10%">
+												<span>抵扣金额：</span>
+
+											</td>
+											<td height="40" class="line24">
+												<input class="mini-spinner" id="deductionAmt" name="deductionAmt" width="100px" minValue="0" maxValue="1000000" showbutton="false" changeOnMousewheel="false"
+												 allowNull="false" onvaluechanged="onChanged" />
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+							</div>
+						</div>
+					</div>
 
 					<div class="pay_list">
 						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">付款方式</span></h2>

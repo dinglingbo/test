@@ -296,7 +296,7 @@
       <process:to type="query">params/ServiceId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">orderMain/id</process:from>
+      <process:from type="query" pattern="reference">fisRpAdvance/id</process:from>
       <process:to type="query">params/BillMainId</process:to>
     </process:copy>
     <process:copy>
@@ -578,6 +578,18 @@
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">fisRpAdvance/status</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderMain/id</process:from>
+      <process:to type="query">fisRpAdvance/codeid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">-2</process:from>
+      <process:to type="query">fisRpAdvance/billDc</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderMain/advanceDepositAmt</process:from>
+      <process:to type="query">fisRpAdvance/balaAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">

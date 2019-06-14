@@ -305,10 +305,13 @@ function saveCome() {
         showMsg("请先保存来访登记", "W");
         return;
     } else if (statusF == 1) {
-        showMsg("来访登记已归档不能修改!", "W");
+        showMsg("来访登记已归档不能修改", "W");
         return;
     } else if (statusF == 2) {
-        showMsg("来访登记已转销售不能修改!", "W");
+        showMsg("来访登记已转销售不能修改", "W");
+        return;
+    } else if (statusF == 3) {
+        showMsg("来访登记已作废不能修改", "W");
         return;
     } else {
         var advanceChargeAmt = caCalculationData.advanceChargeAmt; //预付款

@@ -504,11 +504,36 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
                 jpDetailGrid.load({ billType: 2, serviceId: serviceId });
                 costDetailGrid.load({ serviceId: serviceId, type: 1 });
                 costDetailGrid2.load({ serviceId: serviceId, type: 2 });
+                if (e == 1) {
+                    var billFormData = billForm.getData(true); //主表信息
+                    var params = document.getElementById("caCalculation").contentWindow.getValue(); //购车信息
+                    var caCalculationData = params.data;
+                    showAdvanceChargeAmt(billFormData, caCalculationData);
+                }
                 showMsg(text.errMsg, "S");
 
             } else {
                 showMsg(text.errMsg, "W");
             }
+        }
+    });
+}
+
+function showAdvanceChargeAmt(billFormData, caCalculationData) {
+    nui.ajax({
+        url: baseUrl + "sales.save.generatingAdvancePayment.biz.ext",
+        data: {
+            billFormData: billFormData,
+            caCalculationData: caCalculationData
+        },
+        cache: false,
+        async: false,
+        success: function(text) {
+            if (text.errCode == "S") {
+                showMsg(text.errMsg, "S");
+            } else {
+                showMsg(text.errMsg, "W");
+            };
         }
     });
 }
@@ -831,16 +856,24 @@ function salesOnPrint(p) {
     var billFormData = billForm.getData(true); //主表信息
     searchSalesMain(billFormData.id, 1);
     var billFormData = billForm.getData(true); //主表信息
+    if (billFormData.status == 3) {
+        showMsg("当前工单已作废！", "W");
+        return;
+    }
     if (p == 3 && billFormData.isSubmitCar == 1) {
-        showMsg("工单尚未交车，暂时无法打印！", "W");
+        showMsg("当前工单尚未交车，暂时无法打印！", "W");
         return;
     }
     if (p == 4 && billFormData.status != 2) {
-        showMsg("工单尚未审核，暂时无法打印！", "W");
+        showMsg("当前工单尚未审核，暂时无法打印！", "W");
         return;
     }
     if (!billFormData.id) {
         showMsg("请保存后再进行打印操作！", "W");
+        return;
+    }
+    if (p == 5 && billFormData.isSubmitCar != 1) {
+        showMsg("当前工单尚未交车！", "W");
         return;
     }
     var url = webPath + contextPath;
@@ -856,6 +889,9 @@ function salesOnPrint(p) {
             break;
         case 4:
             url = url + "/sales/sales/print/printSalesContract.jsp";
+            break;
+        case 5:
+            url = url + "/sales/sales/print/printOutstore.jsp";
             break;
     }
     nui.open({
@@ -908,14 +944,6 @@ function onButtonEdit(e) {
 /////////////////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////////////////表格控制/数据处理
-function updateGridMsg(grid, newRow) { //更新表格数据   传表格对象grid  需要修改的内容newRow  用于无条件全表格更新数据
-    var data = grid.getData();
-    for (var i = 0, l = data.length; i < l; i++) {
-        var row = grid.getRow(i);
-        grid.updateRow(row, newRow);
-    };
-}
-
 function setInputModel() { //恢复表格为输入模式
     var fields = billForm.getFields();
     for (var i = 0, l = fields.length; i < l; i++) {

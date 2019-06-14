@@ -160,6 +160,7 @@
                             <li iconCls="" onclick="salesOnPrint(2)" id="loan">打印贷款购车计算表</li>
                             <li iconCls="" onclick="salesOnPrint(3)" id="confirm">打印交车确认单</li>
                             <li iconCls="" onclick="salesOnPrint(4)" id="contract">打印车辆销售合同</li>
+                            <li iconCls="" onclick="salesOnPrint(5)" id="contract">打印出库放行条</li>
                         </ul>
                         <a class="nui-menubutton" plain="true" menu="#popupMenuMore" id="menuMore">
                             <span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
@@ -179,6 +180,7 @@
             <input class="nui-hidden" name="enterId" value="0" />
             <input class="nui-hidden" name="status" />
             <input class="nui-hidden" name="serviceCode" />
+            <input class="nui-hidden" name="billTypeId" />
             <input class="nui-hidden" name="carModelId" />
             <input class="nui-hidden" name="isSubmitCar" />
             <input class="nui-hidden" name="guestId" />

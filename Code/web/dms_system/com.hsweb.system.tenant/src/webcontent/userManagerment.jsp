@@ -11,7 +11,7 @@
     <title>用户管理</title>
     <%@include file="/common/sysCommon.jsp"%>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	 <script src="<%= request.getContextPath() %>/tenant/js/userManager.js?v=1.9.10"
+	 <script src="<%= request.getContextPath() %>/tenant/js/userManager.js?v=1.9.11"
 	type="text/javascript"></script>
     <style type="text/css">
     body {
@@ -74,14 +74,14 @@
          <label style="font-family:Verdana;">开通时间：</label>
         <input class="nui-combobox" id="startDatet" emptyText="" name="startDatet" data="[{startDatet:0,text:''},{startDatet:1,text:'本周'},{startDatet:2,text:'本月'},{startDatet:3,text:'本年'},{startDatet:4,text:'上年'}]"
                           width="60px"   textField="text" valueField="startDatet" value=""/>
-           <input  class="nui-textbox" emptytext="输入租户ID"  width="125px" style="margin-right:0px;" name="code" />
-           <input  class="nui-textbox" emptytext="输入租户名称"  width="125px" style="margin-right:0px;" name="tenantName" />
+           <input  class="nui-textbox" emptytext="输入租户ID"  width="125px" style="margin-right:0px;" name="code" onenter="search()"/>
+           <input  class="nui-textbox" emptytext="输入租户名称"  width="125px" style="margin-right:0px;" name="tenantName" onenter="search()"/>
            <input  class="nui-textbox" emptytext="输入租户Id"  width="125px" style="margin-right:0px;" name="tenantId" visible="false"/>
-           <input  class="nui-textbox" emptytext="租户手机号"  width="125px" style="margin-right:0px;" name="mobile" />
+           <input  class="nui-textbox" emptytext="租户手机号"  width="125px" style="margin-right:0px;" name="mobile" onenter="search()"/>
            <input  class="nui-combobox" emptytext="选择省份"  width="125px" style="margin-right:0px;"id="provinceId" name="provinceId" textField="name"  valueField="code" onvaluechanged="onProvinceChange" />
            <input  class="nui-combobox" emptytext="选择城市"  width="125px" style="margin-right:0px;"  id="cityId" name="cityId" textField="name"  valueField="code"/>
-           <input  class="nui-textbox" emptytext="业务员"  width="125px" style="margin-right:0px;" name="salesMan" id="salesMan"/>
-           <input  class="nui-textbox" emptytext="推荐人"  width="125px" style="margin-right:0px;" name="referee" id="referee"/>
+           <input  class="nui-textbox" emptytext="业务员"  width="125px" style="margin-right:0px;" name="salesMan" id="salesMan" onenter="search()"/>
+           <input  class="nui-textbox" emptytext="推荐人"  width="125px" style="margin-right:0px;" name="referee" id="referee" onenter="search()"/>
             <a class="nui-button" onclick="search()" plain="false" enabled=""><i class="fa fa-search"></i>&nbsp;查询(<u>Q</u>)</a>
             <span style="display:inline-block;">
                 <a class="nui-button " style="" iconcls="" plain="false" onclick="ViewType(5)"><i class="fa fa-pencil"></i>&nbsp;修改</a>
@@ -97,13 +97,15 @@
         <div class="nui-fit">
             <div id="datagrid1" class="nui-datagrid gridborder" style="width: 100%; height:100%;"
             bodyStyle="padding:0;border:0;" url="" idField="id" allowResize="true" dataField="rs"  totalField="page.count"
-            sizeList="[20,30,50,100]"  frozenStartColumn="0" frozenEndColumn="3" pageSize="20" showPageInfo="true">
+            sizeList="[20,30,50,100]"  frozenStartColumn="0" frozenEndColumn="3" pageSize="20" showPageInfo="true"
+             allowCellWrap = "true"
+            >
             <div property="columns">
             	<div type="checkcolumn" >选择</div>
             	
             	 <div field="tenantId" width="80" headerAlign="center" align="center" visible="false">租户ID</div>
                 <div field="code" width="80" headerAlign="center" align="center">租户ID</div>
-                <div field="tenantName" width="80" headerAlign="center" align="center">租户名称</div>
+                <div field="tenantName" width="120" headerAlign="center" align="center">租户名称</div>
                 <div field="provinceId" width="80" headerAlign="center" align="center">省份</div>
                 <div field="cityId" width="80" headerAlign="center" align="center">城市</div>
                 <div field="manager" width="80" headerAlign="center" align="center">管理员</div>

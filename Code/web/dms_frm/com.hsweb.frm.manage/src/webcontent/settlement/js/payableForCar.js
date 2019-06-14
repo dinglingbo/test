@@ -70,6 +70,29 @@ function setData(data){
                 console.log(jqXHR.responseText);
             }
         });
+    	var json = {
+    			params:{
+    				codeId : data[0].billMainId,
+    				guestId : data[0].guestId,
+    				billDc : -2
+    			},
+    			token : token
+    		}
+    		
+    		nui.ajax({
+    			url : apiPath + repairApi + "/com.hsapi.frm.frmService.rpsettle.queryPayCarByGuestId.biz.ext" ,
+    			type : "post",
+    			data : json,
+    			success : function(data) {
+    				var fisRpAdvance = data.fisRpAdvance;
+    				var fisRpAdvanceList = data.fisRpAdvanceList;
+    				nui.get("code").setValue(fisRpAdvance[0].code); 
+    				nui.get("balaAmt").setValue("￥"+fisRpAdvance[0].balaAmt); 
+    			},
+    			error : function(jqXHR, textStatus, errorThrown) {
+    				console.log(jqXHR.responseText);
+    			}
+    		});
     }
 
 	

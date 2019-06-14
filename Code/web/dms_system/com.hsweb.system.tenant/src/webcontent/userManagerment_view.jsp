@@ -182,11 +182,14 @@ style="width:100%;height:100%;display:none" bodyStyle="padding:0;border:0;" allo
   nui.parse();
   var form1;
   var provinceCode;
+  var listHash = {};
 $(document).ready(function(v) {
 	getProvince(function(data) {
         var list = data.rs;
         nui.get("provinceId").setData(list);
-
+        /* list.forEach(function(v) {
+            listHash[v.code] = v;
+        }); */
 	});
 
 });
@@ -217,6 +220,11 @@ $(document).ready(function(v) {
 function SetInitData(data) {
     var form = new nui.Form("#form1");
     form.setData(data);   
+    //设置城市的值
+    provinceCode = data.provinceId;
+    getProvince(function(data) {
+    	  nui.get("cityId").setData(data.rs);
+    });
 }
 var baseUrl = apiPath + sysApi + "/";
 var updateUrl=baseUrl + "com.primeton.tenant.comTenant.updateComTenant.biz.ext";
@@ -279,6 +287,17 @@ function getProvince(callback) {
         }
     });
 }
+
+function CloseWindow(action) {
+    if (window.CloseOwnerWindow)
+        return window.CloseOwnerWindow(action);
+    else window.close();
+}
+
+function onCancel() {
+    CloseWindow("cancel");
+}
+
 </script>
 </body>
 </html>

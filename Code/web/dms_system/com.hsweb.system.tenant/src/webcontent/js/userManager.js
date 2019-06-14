@@ -39,14 +39,14 @@ $(document).ready(function(v) {
        // nui.alert("数据成功！");
     },function(){
         //失败;
-        nui.alert("数据失败！");
+        nui.alert("数据失败！"); 
     });*/
 	   getProvince(function(data) {
 	        var  list = data.rs;
 	        nui.get("provinceId").setData(list);
 
 	    });
-/*    initProvince('provinceId',function(){
+   initProvince('provinceId',function(){
     	provinceList=nui.get('provinceId').getData();
     	 provinceList.forEach(function(v) {
     			provinceHash[v.code] = v;
@@ -57,7 +57,7 @@ $(document).ready(function(v) {
     	 cityList.forEach(function(v) {
     			cityHash[v.code] = v;
     		});
-    	 });*/
+    	 });
     grid.on("drawcell", function (e){
     	onDrawCell(e);
     });
@@ -175,13 +175,13 @@ function quickSearch(type) {
     var params = getSearchParam();
     var queryname = "所有";
     switch (type) {
-        case 0:
-            params.isDisabled = 0;
+        case 1:
+            params.isDisabled = 1;
             queryname = "停用";
             isDisabled = 1;
             break;
-        case 1:
-        	params.isDisabled =1;
+        case 0:
+        	params.isDisabled =0;
         	isDisabled = 0;
             queryname = "在用";
             break;
@@ -280,16 +280,25 @@ function stoporstart(){
 	
     	var row = grid.getSelected();
     	if (!row) {
-    		alert("请选中一条记录");
+    		//alert("请选中一条记录");
+    		showMsg("请选中一条记录","W");
     		return;
     		
     	}
+    	if(row.isDisabled == 0){
+    		nui.mask({
+    	        el : document.body,
+    	        cls : 'mini-mask-loading',
+    	        html : '禁用中...'
+    	    });
+    	}else{
+    		nui.mask({
+    	        el : document.body,
+    	        cls : 'mini-mask-loading',
+    	        html : '启用中...'
+    	    });
+    	}
     	
-    	nui.mask({
-	        el : document.body,
-	        cls : 'mini-mask-loading',
-	        html : '禁用中...'
-	    });
         nui.ajax({
             url: stoporstartUrl,
             type: 'post',
@@ -300,11 +309,21 @@ function stoporstart(){
             success: function (data) {
                 if (data.errCode == "S"){
                 	nui.unmask(document.body);
-                	nui.alert("禁用成功！");
+                	//nui.alert("禁用成功！");
+                	if(row.isDisabled == 0){
+                		showMsg("禁用成功","S");
+                	}else{
+                		showMsg("启用成功","S");
+                	}
                 	grid.reload();
                     }else {
                     nui.unmask(document.body);
-                    nui.alert("禁用失败！");
+                    //nui.alert("禁用失败！");
+                    if(row.isDisabled == 0){
+                		showMsg("禁用成功","S");
+                	}else{
+                		showMsg("启用成功","S");
+                	}
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {

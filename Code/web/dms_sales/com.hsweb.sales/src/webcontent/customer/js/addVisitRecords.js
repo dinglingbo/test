@@ -170,6 +170,10 @@ function save(){
 		showMsg("来访登记已转销售，不能修改","W");
 		return;
 	}
+	if(guestCome.status==3){
+		showMsg("来访登记已作废，不能修改","W");
+		return;
+	}
 	var text = saleAdvisorIdEl.getText();
 	guestCome.saleAdvisor = text;
 	for ( var key in requiredField) {
@@ -373,6 +377,10 @@ function changStatus(){
 		showMsg("来访登记已转销售！","W");
 		return;
 	}
+	if(guestCome.status==3){
+		showMsg("来访登记已作废，不能归档","W");
+		return;
+	}
 	var json = nui.encode({
          id:guestCome.id,
 		 token:token
@@ -422,7 +430,11 @@ function saveSaleMain(){
 		return;
 	}
 	if(status == 2){
-		showMsg("来访登记已转销售！","W");
+		showMsg("来访登记已转销售","W");
+		return;
+	}
+	if(status == 3){
+		showMsg("来访登记已作废,不能转销售","W");
 		return;
 	}
 	var json = nui.encode({

@@ -176,9 +176,9 @@
             function save() {
                 var data = form.getData(true);
                 var params = data;
-                params.mainId = '';
-                params.guestId = '1';
-                params.guestName = '12';
+                params.mainId = mainId;
+                params.guestId = guestId;
+                params.guestName = guestFullName;
                 nui.ajax({
                     url: saveUrl,
                     type: 'post',

@@ -210,6 +210,14 @@
       <process:from type="query" pattern="reference">pchsOrderMain/id</process:from>
       <process:to type="query">mainId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">pchsOrderMain/modifier</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">pchsOrderMain/modifyDate</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
     <location x="-70" y="95"/>
@@ -312,6 +320,18 @@
     <process:copy>
       <process:from type="query" pattern="reference">operateDate</process:from>
       <process:to type="query">tmp/modifyDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/orderQty</process:from>
+      <process:to type="query">tmp/checkingQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/orderAmt</process:from>
+      <process:to type="query">nowAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">totalAmt+nowAmt</process:from>
+      <process:to type="query">totalAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
@@ -430,6 +450,14 @@
     <location x="574" y="56"/>
     <size height="28" width="28"/>
     <nodeLabel>assign16label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">totalAmt</process:from>
+      <process:to type="query">pchsOrderMain/orderTotalAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">totalAmt-advanceDepositAmt</process:from>
+      <process:to type="query">pchsOrderMain/payableBalaAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign16label" name="label" nodeType="label">
     <location x="572" y="92"/>
@@ -543,6 +571,18 @@
       <process:from type="query" pattern="reference">pchsOrderMain/id</process:from>
       <process:to type="query">tmp/orderId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/orderQty</process:from>
+      <process:to type="query">tmp/checkingQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/orderAmt</process:from>
+      <process:to type="query">nowAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">totalAmt+nowAmt</process:from>
+      <process:to type="query">totalAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="148" y="92"/>
@@ -561,6 +601,9 @@
     <process:variable description="010101 收据 010102 普票 010103 增票" historyStateLocation="client" isArray="false" name="billTypeId" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.com.ComGuest" name="guest"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
+    <process:variable description="订货总金额" historyStateLocation="client" isArray="false" name="totalAmt" primitiveType="Float"/>
+    <process:variable description="单条金额" historyStateLocation="client" isArray="false" name="nowAmt" primitiveType="Float"/>
+    <process:variable description="定金" historyStateLocation="client" isArray="false" name="advanceDepositAmt" primitiveType="Float"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.sales.data.css.CssFactoryOrderMain" name="pchsOrderMain"/>

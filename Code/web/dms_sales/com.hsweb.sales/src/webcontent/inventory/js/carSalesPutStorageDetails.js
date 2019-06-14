@@ -254,6 +254,9 @@ function check() {
 			nui.get("carModelName").setText(row.carModelName);
 			nui.get("orderId").setValue(row.orderId);
 			nui.get("orderDetailId").setValue(orderDetailId);
+			$('#guestId').attr("readonly",true);
+			$('#carModelName').attr("readonly",true);
+			$('#unitPrice').attr("readonly",true);
 			 }
 		}
 	});

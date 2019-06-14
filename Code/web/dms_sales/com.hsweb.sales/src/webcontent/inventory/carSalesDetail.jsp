@@ -10,7 +10,7 @@
         <tr>
             <td style="white-space:nowrap;">
 <!--            <span class="separator"></span> -->
-        		<span  id="bServiceId" style="">订单号：新采购订单</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        		<span  id="bServiceId" style="">订单号：新厂家订货单</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         	</td>
        		 <td style="text-align:right;">
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
@@ -40,7 +40,7 @@
 </div>
 
               <fieldset id="fd1" style="width:99.5%;">
-                  <legend><span>整车采购订单信息</span></legend>
+                  <legend><span>厂家订货单信息</span></legend>
                   <div class="fieldset-body">
                   
                       <div id="basicInfoForm" class="form" contenteditable="false">
@@ -122,12 +122,6 @@
                                              id="predictDeliveryDate"
                                              width="100%"
                                              showTime="true"
-                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
-                                      <input name="recordDate"
-                                             id="recordDate"
-                                             width="100%"
-                                             showTime="true"
-                                             visible="false"
                                              class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
                                   </td>
 <!--                               	 <td class="title required" style="width:8%">

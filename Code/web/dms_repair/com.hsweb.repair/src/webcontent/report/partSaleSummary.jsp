@@ -69,7 +69,7 @@
  <div class="nui-fit">
     <div id="grid1" class="nui-datagrid" style="width:100%;height:100%;"
     dataField="data"
-    idField="detailId"
+    idField="detailId" totalField='page.count'
     ondrawcell=""
     sortMode="client"
     url=""

@@ -404,7 +404,7 @@ function checkMsg(e) { //统一数据验证
         }
     }
     if (e == 9) {
-        if (billFormData.enterId) {
+        if (billFormData.enterId != 0) {
             showMsg("当前工单已选车！", "W");
             return boolean;
         }
@@ -413,12 +413,14 @@ function checkMsg(e) { //统一数据验证
 }
 
 function save(e) { //保存（主表信息+精品加装+购车信息+费用信息）
-    var boolean = checkMsg(e);
-    if (!boolean) {
-        return;
+    if (e != 10) { //关闭选车界面后，不再刷新表格，因为选车后enterId还没保存到主表，刷新后enterId为0
+        var boolean = checkMsg(e);
+        if (!boolean) {
+            return;
+        }
     }
     var billFormData = billForm.getData(true); //主表信息
-    if (e == 9) {
+    if (e == 9 || e == 10) {
         e = 2;
     }
     if (e == 0) {
@@ -811,7 +813,7 @@ function selectCar() { //点击选车时触发
                 billFormData.enterId = enterId;
                 billForm.setData(billFormData);
                 document.getElementById("caCalculation").contentWindow.setSelectCarValue(handcartAmt, carCost);
-                save(9);
+                save(10); //避免 enterId赋值 导致触发表格验证判断
             }
         }
     });
@@ -836,10 +838,16 @@ function registration() { //车辆上牌
 }
 
 function caseMsg() { //销售结案审核
-    var boolean = checkMsg(4);
-    if (!boolean) {
-        return;
+    var type = 1;
+    var billFormData = billForm.getData(true);
+    if (billFormData.isSettle != 1) {
+        var boolean = checkMsg(4);
+        if (!boolean) {
+            return;
+        }
+        type = 2;
     }
+    var billFormData = billForm.getData(true); //主表信息
     nui.open({
         url: webPath + contextPath + "/sales/sales/salesReview.jsp?token=" + token,
         title: "销售结案审核",
@@ -847,7 +855,11 @@ function caseMsg() { //销售结案审核
         height: "700px",
         onload: function() {
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(billFormData.id);
+            iframe.contentWindow.SetData(billFormData.id, type);
+        },
+        ondestroy: function(action) {
+            var billFormData = billForm.getData(true);
+            searchSalesMain(billFormData.id, 0);
         }
     });
 }
@@ -860,9 +872,11 @@ function salesOnPrint(p) {
         showMsg("当前工单已作废！", "W");
         return;
     }
-    if (p == 3 && billFormData.isSubmitCar == 1) {
-        showMsg("当前工单尚未交车，暂时无法打印！", "W");
-        return;
+    if (p == 3 || p == 5) {
+        if (billFormData.isSubmitCar != 1) {
+            showMsg("当前工单尚未交车，暂时无法打印！", "W");
+            return;
+        }
     }
     if (p == 4 && billFormData.status != 2) {
         showMsg("当前工单尚未审核，暂时无法打印！", "W");
@@ -870,10 +884,6 @@ function salesOnPrint(p) {
     }
     if (!billFormData.id) {
         showMsg("请保存后再进行打印操作！", "W");
-        return;
-    }
-    if (p == 5 && billFormData.isSubmitCar != 1) {
-        showMsg("当前工单尚未交车！", "W");
         return;
     }
     var url = webPath + contextPath;

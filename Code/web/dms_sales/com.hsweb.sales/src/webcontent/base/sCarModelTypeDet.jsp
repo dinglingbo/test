@@ -140,12 +140,12 @@ pageEncoding="UTF-8" session="false" %>
                 <td class="td_title">能源：
                 </td>
                 <td>
-                    <input id="powerType" name="powerType" class="nui-combobox"  dataField="data" valueField="id" textField="name"style="width: 150px" />
+                    <input id="powerType" name="powerType" class="nui-combobox"  dataField="data" valueField="id" textField="name"style="width: 150px" onValuechanged="onPowerTypeChanged"/>
                 </td>
                 <td class="td_title">驱动方式：
                 </td>
                 <td>
-                    <input id="driveMode" name="driveMode" class="nui-combobox"  dataField="data" valueField="id" textField="name"style="width: 150px" onValuechanged="onDriveModeChanged"/>
+                    <input id="driveMode" name="driveMode" class="nui-combobox"  dataField="data" valueField="id" textField="name"style="width: 150px" />
                 </td>
             </tr>
             <tr>
@@ -303,8 +303,9 @@ pageEncoding="UTF-8" session="false" %>
         
     }
 
-    function onDriveModeChanged(e) {
-        if(e.value == "1558429420826"){
+    function onPowerTypeChanged(e) {
+        //1558404416989油电混动  1559621209341纯电动   1559621209342插电式混动
+        if(e.value == "1558404416989" ||e.value == "1559621209341" ||e.value == "1559621209342"){
             nui.get('enduranceMileage').enable();
             nui.get('electricMotor').enable();
             nui.get('chargingTime').enable();

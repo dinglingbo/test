@@ -45,7 +45,7 @@ pageEncoding="UTF-8" session="false" %>
         <a href="##" iconCls="" plain="true" onclick="quickSearch(1)">我接待的车辆</a>
         <a href="##" iconCls="" plain="true" onclick="quickSearch(2)">所有维修车辆</a> -->
         <input id="mtAdvisorId" name="mtAdvisorId" class="nui-combobox " allowInput="true" textField="empName" 
-        valueField="empId" emptyText="维系顾问"nullItemText="请选择..." >
+        valueField="empId" emptyText="服务顾问"nullItemText="请选择..." >
         <input class="nui-textbox" name="tcarNo" id="tcarNo" style="width:90px;" emptyText="车牌号">
         <input class="nui-textbox" name="mobile" id="mobile" style="width:110px;" emptyText="手机号">
         <input class="nui-combobox" name="level" id="level" style="width: 125px;"  required="false" multiSelect="true"

@@ -13,7 +13,7 @@
         <title>购车计算</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%=request.getContextPath()%>/sales/sales/js/caCalculation.js?v=1.0.954"></script>
+            <script src="<%=request.getContextPath()%>/sales/sales/js/caCalculation.js?v=1.0.955"></script>
     </head>
     <style type="text/css">
         body {
@@ -80,7 +80,7 @@
             </table>
         </div>
         <div class="nui-fit">
-            <div class="form" style="width:99%;height:98%;left:0;right:0;margin: 0 auto;" id="form1">
+            <div class="form" style="width:99%;height:99%;left:0;right:0;margin: 0 auto;" id="form1">
                 <input class="nui-hidden" id="mainId" name="id" />
                 <input class="nui-hidden" id="handcartAmt" name="handcartAmt" />
                 <input class="nui-hidden" id="carCost" name="carCost" />
@@ -316,7 +316,7 @@
                             <td align="right">计算公式：
                             </td>
                             <td colspan="7">
-                                <input id="calculate" style="width: 100%;height:100px" class="nui-textarea" multiline="true" enabled="false" />
+                                <input id="calculate" style="width: 100%;height:150px" class="nui-textarea" multiline="true" enabled="false" />
                             </td>
                         </tr>
                     </table>

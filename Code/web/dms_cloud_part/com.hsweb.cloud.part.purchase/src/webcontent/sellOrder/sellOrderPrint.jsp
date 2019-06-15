@@ -62,8 +62,6 @@ table, td {
         font-size: 12px;
         color: #000;
         word-wrap:break-word; 
-        /**white-space:nowrap; */
-        white-space:break-all;  
 		overflow:hidden;
 		text-overflow:ellipsis;
     }
@@ -429,6 +427,7 @@ hr {
 			return dueAmt;
 		}
     	function SetData(params,detailParms){
+    		
     		var p ={
 				guestId : params.guestId,
 				orgid : currOrgId,
@@ -535,6 +534,11 @@ hr {
 				            window.print();
 					    },100);
 				});
+				if(currIsNeedNewLine == 1){				
+					$("table td").css("white-space","break-all");
+				}else{
+					$("table td").css("white-space","nowrap");
+				}
 			}
     	}
     </script>

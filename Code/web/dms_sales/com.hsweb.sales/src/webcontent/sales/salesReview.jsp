@@ -13,7 +13,7 @@
         <title>销售结案审核</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%= request.getContextPath() %>/sales/sales/js/salesReview.js?v=1.004" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/sales/sales/js/salesReview.js?v=1.005" type="text/javascript"></script>
     </head>
     <style type="text/css">
         body {
@@ -43,7 +43,7 @@
     </style>
 
     <body>
-        <div class="nui-toolbar">
+        <div class="nui-toolbar" id="toolbar">
             <div align="right">
                 <a class="nui-button" iconCls="" plain="true" onclick="approved()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核通过</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>

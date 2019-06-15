@@ -532,7 +532,7 @@
       <process:to type="query">params/BillMainId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
+      <process:from type="literal" pattern="reference">2</process:from>
       <process:to type="query">params/BillTypeId</process:to>
     </process:copy>
     <process:copy>
@@ -651,7 +651,7 @@
       <targetNode>assign12</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -747,12 +747,12 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link17</targetConnections>
-    <location x="972" y="491"/>
+    <location x="1035" y="491"/>
     <size height="28" width="28"/>
     <nodeLabel>assign12label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">
-    <location x="967" y="527"/>
+    <location x="1030" y="527"/>
     <figSize height="17" width="39"/>
     <node>assign12</node>
   </nodes>
@@ -772,12 +772,12 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link18</targetConnections>
-    <location x="928" y="491"/>
+    <location x="941" y="491"/>
     <size height="28" width="28"/>
     <nodeLabel>assign13label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign13label" name="label" nodeType="label">
-    <location x="923" y="527"/>
+    <location x="936" y="527"/>
     <figSize height="17" width="39"/>
     <node>assign13</node>
   </nodes>

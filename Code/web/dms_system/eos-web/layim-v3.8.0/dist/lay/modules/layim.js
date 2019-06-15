@@ -769,7 +769,7 @@ layui.define(['layer', 'laytpl', 'upload'], function (exports) {
             anim: 2,
             offset: 'rb',
             resize: false,
-            content: '<img src="' + (cache.mine.avatar || (layui.cache.dir + 'css/pc/layim/skin/logo.jpg')) + '"><span>' + (content || cache.base.title || '我的LayIM') + '</span>',
+            content: '<img src="' + (cache.mine.avatar || (layui.cache.dir + 'css/pc/layim/skin/logo.jpg')) + '"><span>' + (content || cache.base.title || '我的秘书') + '</span>',
             move: '#layui-layim-close img',
             success: function (layero, index) {
                 layimClose = layero;
@@ -2372,6 +2372,8 @@ layui.define(['layer', 'laytpl', 'upload'], function (exports) {
                             url: baseUrl + "com.hsapi.system.im.message.editUserFriend.biz.ext",
                             async: false,
                             success: function (data) {
+                            	//控制分组显示的标志位需要设置为true，要不然需要点击多一次才会展示分组
+                            	isShow = true;
                             	//如果成功，需要从当前分组中移走，并移入到另外一个分组
                             	var groupList = parent.layui.layim.cache().friend;
                             	var checkMove = false;

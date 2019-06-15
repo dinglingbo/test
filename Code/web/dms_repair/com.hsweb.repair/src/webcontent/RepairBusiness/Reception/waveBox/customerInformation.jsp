@@ -45,6 +45,10 @@
 					</table>
 				</div>
 				<div class="form" id="basicInfoForm">
+					<input class="nui-hidden" name="carModel" id="carModel" />
+                    <input class="nui-hidden" name="carBrandId" id="carBrandId" valueField="id" textField="name"
+                        width="100%"  onvaluechanged="getModel"/>
+                        <input class="nui-hidden" id="carNo" name="carNo" width="100%" />
 					<table class="nui-form-table" style="width:99%">
 						<tr>
 							<td class="form_label required">
@@ -60,30 +64,15 @@
 							<td>
 								<input class="nui-textbox" id="mobile" name="mobile1" width="100%" emptyText="请输入手机号查询" />
 							</td>
-							<td  align="right"style="width:100px">
-                                <label>车型：</label>
-                            </td>
-                            <td class="" colspan="1">
-                            	<input class="nui-hidden" name="carModel" id="carModel" />
-                                <input class="nui-combobox" name="carBrandId" id="carBrandId" valueField="id" textField="name"
-                                    width="100%"  onvaluechanged="getModel"/>
-                            </td>
-						</tr>
-						<tr>
-							<td class="form_label">
+                            	<td class="form_label">
 								<label>性别：</label>
 							</td>
-							<td colspan="2">
+							<td colspan="1">
 								<input class="nui-combobox" data="[{value:'0',text:'男',},{value:'1',text:'女'},]" textField="text" valueField="value" name="sex"
 								 value="0" width="100%" />
 							</td>
-							<td class="form_label " >
-								<label>车牌号：</label>
-							</td>
-							<td colspan="2">
-								<input class="nui-textbox" id="carNo" name="carNo" width="100%" />
-							</td>
 						</tr>
+						
 						<tr>
 							<td class="form_label">
 								<label>生日类型：</label>

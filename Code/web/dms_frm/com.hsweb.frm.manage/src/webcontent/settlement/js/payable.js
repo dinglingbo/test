@@ -283,7 +283,12 @@ function settleOK() {
 				accountDetail.billMainId = guestData[i].billMainId;
 				accountDetail.billServiceId = guestData[i].billServiceId;
 				accountDetail.billTypeId = guestData[i].billTypeId;
-				accountDetail.rpDc = -1;
+				//预付账款typeUrl==3，不考虑别的
+				if(typeUrl==3){
+					accountDetail.rpDc = -2;
+				}else{				
+					accountDetail.rpDc = -1;
+				}
 				accountDetailList.push(accountDetail);
 			}
 
@@ -293,10 +298,14 @@ function settleOK() {
 				return;
 			}
 
-			
-
-			account.rpDc = -1;
-			account.settleType = "应付";
+			//预付账款typeUrl==3，不考虑别的
+			if(typeUrl==3){
+				account.rpDc = -2;
+				account.settleType = "预付";
+			}else{				
+				account.rpDc = -1;
+				account.settleType = "应付";
+			}
 			account.voidAmt = pVoidAmt;
 			account.trueCharOffAmt = pTrueAmt;
 			account.charOffAmt = pVoidAmt + pTrueAmt;

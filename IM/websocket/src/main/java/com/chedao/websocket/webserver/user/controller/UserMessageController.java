@@ -149,6 +149,9 @@ public class UserMessageController extends BaseController {
         params.put("isread",0);
         params.put("type",2);
         int i = userMessageServiceImpl.queryTotal(params); //1、统计未读的好友申请的反馈结果（判断条件isread=0）；
+        params.put("status",0);
+        int k = userFriendApplyServiceImpl.queryTotal(params);
+
         String lastoffdate = userInfoEntity.getLastoffdate();
         List<MessageInfoEntity> list = userMessageServiceImpl.getOfflineMessageList(params);
         params.remove("isread");
@@ -171,7 +174,7 @@ public class UserMessageController extends BaseController {
 
         List<MessageInfoEntity> grouplist = userMessageServiceImpl.getOfflineGroupMessageList(params);
         list.addAll(grouplist);
-        return putMsgToJsonString(Constants.WebSite.SUCCESS, "", i + j, list);
+        return putMsgToJsonString(Constants.WebSite.SUCCESS, "", i + j + k, list);
         //return JSONArray.toJSON(list);
     }
 

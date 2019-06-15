@@ -9,7 +9,7 @@
 -->
 <head>
 <title>PDI检测</title>
-    <script src="<%=webPath + contextPath%>/sales/inventory/js/PDIdetection.js?v=1.1.0"></script>
+    <script src="<%=webPath + contextPath%>/sales/inventory/js/PDIdetection.js?v=1.1.4"></script>
     <style type="text/css">
 .title {
   width: 90px;
@@ -78,12 +78,12 @@ body .mini-grid-row-selected{
 					<td>
 						<input name="vin" id="vin" width="100%" disabled="disabled" class="nui-textbox" />
 					</td>
-					<td class="title required">
+<!-- 					<td class="title required">
 						<label>发动机型号:</label>
 					</td>
 					<td>
 						<input name="engineNo" id="engineNo" disabled="disabled" width="100%" class="nui-textbox" />
-					</td>	
+					</td>	 -->
 				</tr>
 				<tr>
 					<td class="title required">
@@ -148,18 +148,24 @@ body .mini-grid-row-selected{
                selectOnLoad="true"
                showPager="false" multiSelect="true"
                dataField=""
-               frozenStartColumn="0"
+               frozenStartColumn="0" allowCellEdit="true"
                onrowdblclick="addSelectPart"
                allowCellSelect="true"
                editNextOnEnterKey="true"
                allowCellWrap = true
                url="">
               <div property="columns">
-                <div type="indexcolumn">序号</div>
-                <div type="checkcolumn" width="20"></div>
-                <div field="code" name="code" width="100" headerAlign="center" header="编码"></div>
-                <div field="name" name="name" width="100" headerAlign="center" header="PDI项目"></div>
-                <div field="remark" name="remark" width="100" headerAlign="center" header="PDI项目备注"></div>
+                <div type="indexcolumn" width="30px">序号</div>
+                <div field="name" name="name" width="80px" headerAlign="center" header="PDI项目名称"></div>
+                <div field="code" name="code" width="60px" headerAlign="center" header="编码"></div>
+                <div field="checkRemark" name="checkRemark" width="140px" headerAlign="center" header="PDI项目说明"></div>
+                <div field="remark" name="remark" width="140px" headerAlign="center" header="备注">
+               	 <input property="editor"  class="nui-textbox"/>
+                </div>
+                <div type="checkboxcolumn" field="status" name="status" trueValue="1" falseValue="0"  width="50px" headerAlign="center" align="center" value="1">
+                	<strong>正常&nbsp;<a title="批量设置为正常" plain="true" onclick="setNormal()"><span class="fa fa-edit fa-lg"></span></a></strong>
+                </div>
+        		<div type="checkboxcolumn" field="nostatus" name="nostatus" trueValue="1" falseValue="0"  width="50px" headerAlign="center" align="center"><strong>异常</strong></div>
               </div>
           </div>
     </div>					

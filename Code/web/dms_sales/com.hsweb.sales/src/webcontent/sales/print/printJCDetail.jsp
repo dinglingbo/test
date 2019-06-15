@@ -377,7 +377,9 @@
                             document.getElementById("contractNo").innerHTML = contractNo;
                             document.getElementById("guestFullName").innerHTML = guestFullName;
                             document.getElementById("carModelName").innerHTML = carModelName;
-                            document.getElementById("submitTrueDate").innerHTML = format(submitTrueDate, 'yyyy-MM-dd HH:mm:ss');
+                            if (submitTrueDate) {
+                                document.getElementById("submitTrueDate").innerHTML = format(submitTrueDate, 'yyyy-MM-dd HH:mm:ss');
+                            }
                             nui.get("frameColorId1").setValue(frameColorId);
                             nui.get("interialColorId1").setValue(interialColorId);
                             document.getElementById("frameColorId").innerHTML = nui.get("frameColorId1").text;

@@ -13,7 +13,7 @@
         <title>购车计算</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%=request.getContextPath()%>/sales/sales/js/caCalculation.js?v=1.0.953"></script>
+            <script src="<%=request.getContextPath()%>/sales/sales/js/caCalculation.js?v=1.0.954"></script>
     </head>
     <style type="text/css">
         body {
@@ -115,13 +115,13 @@
                                 外观颜色：
                             </td>
                             <td>
-                                <input id="frameColorId" name="frameColorId" style="width: 100%" class="nui-combobox" textField="name" valueField="customid">
+                                <input id="frameColorId" name="frameColorId" style="width: 100%" class="nui-combobox" textField="name" valueField="customid" onvaluechanged="changeFrameColorId">
                             </td>
                             <td class="td_title">
                                 内饰颜色：
                             </td>
                             <td>
-                                <input id="interialColorId" name="interialColorId" style="width: 100%" class="nui-combobox" textField="name" valueField="customid">
+                                <input id="interialColorId" name="interialColorId" style="width: 100%" class="nui-combobox" textField="name" valueField="customid" onvaluechanged="changeInterialColorId">
                             </td>
                         </tr>
                     </table>

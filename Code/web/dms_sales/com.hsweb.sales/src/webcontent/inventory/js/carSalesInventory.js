@@ -223,7 +223,7 @@ function detection() {
 				+ token,
 		title : "PDI检测",
 		width : 800,
-		height : 400,
+		height : 500,
 		allowDrag : true,
 		allowResize : true,
 		onload : function() {

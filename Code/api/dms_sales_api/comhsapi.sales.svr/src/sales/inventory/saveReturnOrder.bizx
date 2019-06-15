@@ -706,7 +706,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign19label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">XX</process:from>
+      <process:from type="literal" pattern="reference">QBD</process:from>
       <process:to type="query">billNoPreFix</process:to>
     </process:copy>
   </nodes>

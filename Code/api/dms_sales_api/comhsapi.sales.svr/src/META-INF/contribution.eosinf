@@ -30,8 +30,7 @@
 			<configValue key="default">default</configValue>
 			<configValue key="sales">DB11_MYSQL_WB_SALES</configValue>
 			<configValue key="common">DB02_ORA_WB_COMMON</configValue>
-			<configValue key="sales">DB11_MYSQL_WB_SALES</configValue>
-			<configValue key="DB02_ORA_WB_COMMON">DB02_ORA_WB_COMMON</configValue>
+			<configValue key="frm">DB06_ORA_WB_FRM</configValue>
 			
 		</group>
 	</module>

@@ -49,6 +49,9 @@
 			<isNotEmpty prepend="and" property="fullName">
                 (b.full_name like '%$fullName$%')
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgid">
+                (a.orgid= #orgid#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="saleAdvisorId">
                 (a.sale_advisor_id= #saleAdvisorId#)
             </isNotEmpty>
@@ -91,7 +94,8 @@
             <isNotEmpty prepend="and" property="zzscoutStatus">
                 (c.scout_status = #zzscoutStatus#)
             </isNotEmpty>
-        </dynamic>  
+        </dynamic> 
+         ORDER BY a.modify_date DESC 
 	</select>
 	
 	 <select id="queryGuestList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
@@ -125,7 +129,7 @@
 			a.scout_status as scoutStatus
 		FROM csb_contactor a 
 			INNER JOIN wb_common.com_guest  b ON a.guest_id = b.id
-		WHERE 1 = 1
+		WHERE b.tenant_id = #tenantId#
 		<dynamic>
 			<isNotEmpty prepend="and" property="fullName">
                 (b.full_name like '%$fullName$%')

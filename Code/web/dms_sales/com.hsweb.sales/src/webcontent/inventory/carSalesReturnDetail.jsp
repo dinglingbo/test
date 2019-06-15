@@ -8,9 +8,11 @@
 <div class="nui-toolbar" style="padding:2px;">
     <table style="width:100%;">
         <tr>
-            <td style="width:100%;">
+            <td style="white-space:nowrap;">
 <!--                 <span class="separator"></span> -->
         <span  id="bServiceId" style="">订单号：新退货单</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+			<td align="right">
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <!-- <a class="nui-button" iconCls="icon-edit" plain="true" onclick="editInbound()" id="editEnterMainBtn">修改</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>

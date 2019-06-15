@@ -70,6 +70,7 @@ function changeValueMsg(e) { //值改变事件，统一触发此函数
 
 function save() {
     var data = form.getData();
+    data.remark = data.remarka;
     var isValid = form.isValid();
     if (isValid == false) {
         showMsg("请输入正确的数字后再保存！", "W");

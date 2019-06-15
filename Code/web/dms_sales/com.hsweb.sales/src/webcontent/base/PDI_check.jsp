@@ -63,11 +63,11 @@
         <div field="orderNo" headerAlign="center" allowSort="true" width="70px">序号
                 <!-- <input property="editor" class="nui-textbox" /> -->
         </div>
-        <div field="name" headerAlign="center" allowSort="true" width="150px">项目名称
-                <!-- <input property="editor" class="nui-textbox" /> -->
-        </div>
         <div field="pdiTypeId" headerAlign="center" allowSort="true" width="150px">项目类型
                 <!-- <input property="editor" class="nui-combobox" valueField="id" textField="name" allowInput="false"/> -->
+        </div>
+        <div field="name" headerAlign="center" allowSort="true" width="150px">项目名称
+                <!-- <input property="editor" class="nui-textbox" /> -->
         </div>
         <div field="remark" headerAlign="center" allowSort="true" width="250px">备注
             <!-- <input property="editor" class="nui-textbox" /> -->

@@ -13,12 +13,17 @@
         <title>选择库存车</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%=request.getContextPath()%>/sales/sales/js/selectCar.js?v=1.0.6"></script>
+            <script src="<%=request.getContextPath()%>/sales/sales/js/selectCar.js?v=1.0.8"></script>
     </head>
 
     <body>
-        <div class="nui-toolbar" style="padding:2px;height:35px;position: relative;">
-            <a class="nui-button" iconCls="" plain="true" onclick="selectCar()" id="selectBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选车</a>
+        <div class="nui-toolbar" >
+            车型名称：<input id="carModelName" name="carModelName" class="nui-textbox" style="width: 130px"/>
+            <input id="carModelId" name="carModelId" class="nui-textbox" style="width: 110px" visible="false"/>
+            <a class="nui-button" iconCls="" plain="true" onclick="SetData()"><span
+                class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+            <li class="separator"></li>
+            <a class="nui-button" iconCls="" plain="true" onclick="selectCar()" id="selectBtn"><span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
             <a class="nui-button" iconCls="" plain="true" onclick="close()" id="closeBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
         </div>
         <input id="frameColorId" name="frameColorId" style="width: 100%" class="nui-combobox" textField="name" valueField="customid" visible="false">
@@ -33,7 +38,7 @@
                 <div allowSort="true" field="interialColorId" name="interialColorId" width="90" headerAlign="center" header="内饰颜色"></div>
                 <div allowSort="true" field="unitPrice" name="unitPrice" width="90" headerAlign="center" header="进价"></div>
                 <div allowSort="true" field="receiveCost" name="receiveCost" width="90" headerAlign="center" header="运费"></div>
-                <div field="carFrameNo" allowSort="true" width="120" headerAlign="center" header="车架号（VIN）"></div>
+                <div field="vin" allowSort="true" width="120" headerAlign="center" header="车架号（VIN）"></div>
                 <div field="engineNo" allowSort="true" width="120" headerAlign="center" header="发动机号"></div>
                 <div field="carLock" allowSort="true" width="60" headerAlign="center" header="是否锁库"></div>
                 <div field="produceDate" allowSort="true" width="130" headerAlign="center" header="生产日期" dateFormat="yyyy-MM-dd HH:mm"></div>

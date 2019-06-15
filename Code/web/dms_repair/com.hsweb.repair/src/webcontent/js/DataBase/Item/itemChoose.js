@@ -128,6 +128,7 @@ $(document).ready(function()
 		params.type = customid;
 		doSearch(params);
 	});
+	//标准工时
 	itemGrid.on("rowdblclick",function(e){
 		var row = e.row;
 		if(WechatShow==1){
@@ -136,12 +137,15 @@ $(document).ready(function()
 		  CloseWindow("ok");
 		}else if(updatRow && updatRow.item==1){
 			replaceItem(row);
+		}else if(giftItem==1){
+			resultData = row;
+			 CloseWindow("ok");
 		}else{
 			selectStdItem(row);
 		}
 	});
 	
-	//右边区域
+	//右边区域，本地工时
 	rightGrid = nui.get("rightGrid");
 	rightGrid.setUrl(rightGridUrl);
 	rightGrid.on("rowdblclick",function(e){
@@ -152,6 +156,9 @@ $(document).ready(function()
 		  CloseWindow("ok");
 		}else if(updatRow && updatRow.item==1){
 			replaceItem(row);
+		}else if(giftItem==1){
+			resultData = row;
+			 CloseWindow("ok");
 		}else{
 			onOk();
 		}
@@ -422,13 +429,25 @@ function edit(){
 
 var resultData = {};
 var list = [];
+var giftItem = 0;
 function getData()
 {
 	return resultData;
 }
 
+//精品加装时调用
+function giftSetData(data){
+	onSearch();
+	giftItem = data;
+	document.getElementById("tempGrid").style.display="none";
+	rightGrid.setWidth("99%");
+	itemGrid.setWidth("99%");
+}
+
+//微信设置项目时调用
 function wechatSetData(data){
 	WechatShow = data.WechatShow;
+	//微信需要跟进本店的机构id查询项目
 	WechatOrgid = data.WechatOrgid;
 	var params = {};
 	if(data.serviceTypeId){
@@ -440,6 +459,8 @@ function wechatSetData(data){
 	itemGrid.setWidth("99%");
 	doSearch(params);
 }
+
+//更换项目时调用的方法
 var updatRow = {}
 function updatRowSetData(data){
 	onSearch();
@@ -565,6 +586,18 @@ function choose() {
 	}else {
 		onOk();
 	}
+	if(giftItem==1){
+		var row = rightGrid.getSelected();
+		if(row)
+		{
+			resultData = row;
+			return;
+		}
+		else{
+			showMsg("请选择一个项目", "W");
+		}
+	}
+	
 }
 
 function getWechatData(){

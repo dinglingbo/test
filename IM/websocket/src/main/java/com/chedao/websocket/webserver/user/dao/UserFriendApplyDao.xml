@@ -99,10 +99,17 @@
     </select>
 
     <select id="queryTotal" resultType="int">
-		select count(1) from user_friend_apply
+		select count(1)
+        from user_friend_apply
         where 1 = 1
-        <if test="uid != null">
-            and uid = #{uid}
+        <if test="senduser != null ">
+            and from_id =#{senduser}
+        </if>
+        <if test="receiveuser != null ">
+            and uid =#{receiveuser}
+        </if>
+        <if test="status != null ">
+            and status =#{status}
         </if>
 	</select>
 

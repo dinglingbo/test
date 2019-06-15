@@ -221,7 +221,7 @@
                               <div type="indexcolumn">序号</div>
                               <div header="配件信息" headerAlign="center">
                                   <div property="columns">
-                                    <div field="operateBtn" name="operateBtn" width="50" headerAlign="center" header="删除"></div>
+                                    <div field="operateBtn" name="operateBtn" width="20" headerAlign="center" header="操作"></div>
                                       <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码">
                                           <input property="editor" class="nui-textbox" />
                                       </div>

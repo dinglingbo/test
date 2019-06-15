@@ -3,16 +3,20 @@ var basicInfoForm = null;
 var swithBatchFlag=null;
 var repairSettorderPrintShow =null;
 var cloudSellOrderPrintContent =null;
+var isNeedNewLine = null;
 var radioList = [{id:1,text:"开启"},{id:0,text:"关闭"}];
 $(document).ready(function(v) {
 	 basicInfoForm = new nui.Form("#basicInfoForm");
 	 swithBatchFlag =nui.get("swithBatchFlag");
 	 repairSettorderPrintShow =nui.get('repairSettorderPrintShow');
 	 cloudSellOrderPrintContent = nui.get('cloudSellOrderPrintContent');
+	 isNeedNewLine =nui.get('isNeedNewLine'); 
+	 isOpenCredit = nui.get('isOpenCredit');
 	 swithBatchFlag.setData(radioList);
+	 isNeedNewLine.setData(radioList);
+	 isOpenCredit.setData(radioList);
 	 getComParamsList();
-	 
-	
+	 	
 	 
 });
 function doSearch()

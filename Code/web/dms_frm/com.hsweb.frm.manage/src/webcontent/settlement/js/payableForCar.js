@@ -10,8 +10,12 @@ var typeList = {};
 var zongAmt = 0;//实时填写的结算金额
 var guestData = null;
 var deductible = 0;
+var qRightGrid = null;
+var fisRpAdvance = [];//本单定金
+var fisRpAdvanceList = [];//全部定金
 var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryFrmAccount.biz.ext";
 $(document).ready(function (){
+	qRightGrid = nui.get("qRightGrid");
 	$("body").on("blur","input[name='amount']",function(){
 		onChanged();
 	});
@@ -84,10 +88,13 @@ function setData(data){
     			type : "post",
     			data : json,
     			success : function(data) {
-    				var fisRpAdvance = data.fisRpAdvance;
-    				var fisRpAdvanceList = data.fisRpAdvanceList;
-    				nui.get("code").setValue(fisRpAdvance[0].code); 
-    				nui.get("balaAmt").setValue("￥"+fisRpAdvance[0].balaAmt); 
+    				 fisRpAdvance = data.fisRpAdvance;
+    				 fisRpAdvanceList = data.fisRpAdvanceList;
+    				 if(fisRpAdvance.length>0){ 					 
+    					 nui.get("code").setValue(fisRpAdvance[0].code||""); 
+    					 nui.get("balaAmt").setValue("￥"+fisRpAdvance[0].balaAmt||0);
+    				 }
+    				qRightGrid.addRows(fisRpAdvanceList);
     			},
     			error : function(jqXHR, textStatus, errorThrown) {
     				console.log(jqXHR.responseText);
@@ -103,6 +110,24 @@ function onChanged() {
 	var count = scount();
 	if(parseFloat(count) > netInAmt){
 		showMsg("收款大于应收金额，请重新填写","W");
+		return;
+	}
+	var amt = 0;
+	var rows = qRightGrid.getSelecteds();
+	for(i=0;i<rows.length;i++){
+		amt = parseFloat(amt) + parseFloat(rows[i].balaAmt);
+	}
+	var balaAmt = nui.get("balaAmt").getValue();
+	if(balaAmt!=0){
+		balaAmt = (balaAmt.split("￥"))[1];
+	}
+	amt = parseFloat(amt) + parseFloat(balaAmt);
+	if( parseFloat(amt)+ parseFloat(count) > netInAmt){
+		showMsg("预付款+收款金额大于应收金额，请重新填写","W");
+/*		nui.get("deductible").setValue(0);
+		deductible=0;
+		nui.get("PrefAmt").setValue(0);*/
+		//document.getElementById('amount').innerHTML=netInAmt;
 		return;
 	}
 /*	var amount = parseFloat(netInAmt)-parseFloat(count);
@@ -196,10 +221,10 @@ function remove(id){
 	onChanged();
 }
 
-var settleAuditUrl = frmUrl+ "com.hsapi.frm.frmService.rpsettle.rpAccountSettle.biz.ext";
+var settleAuditUrl = frmUrl+ "com.hsapi.frm.frmService.rpsettle.salesCarSettle.biz.ext";
 function settleOK() {
 	var accountTypeList =[];
-	
+	var fisRpAdvanceSelect = {};//全部抵扣定金
 	var count = scount();
 	for(var i = 0;i<tableNum+1;i++){
 		var  Sel=document.getElementById("optaccount"+i);
@@ -219,8 +244,23 @@ function settleOK() {
 			}
 		}
 	}
-
-
+	var amt = 0;//总抵扣金额
+	var rows = qRightGrid.getSelecteds();
+	fisRpAdvanceSelect = fisRpAdvance;
+	for(var i=0;i<rows.length;i++){	
+		fisRpAdvanceSelect.push(rows[i]);
+		amt = parseFloat(amt) + parseFloat(rows[i].balaAmt);
+	}
+for(var i = 0;i<fisRpAdvanceSelect.length;i++){
+	var list={balaTypeCode:1,charOffAmt:fisRpAdvanceSelect[i].balaAmt,settAccountId:1,settAccountName:1};
+	accountTypeList.push(list);
+}
+	var balaAmt = nui.get("balaAmt").getValue();
+	if(balaAmt!=0){
+		balaAmt = (balaAmt.split("￥"))[1];
+	}
+	amt = parseFloat(amt) + parseFloat(balaAmt);
+	count = (count+amt).toFixed(2);
 		
 		if(count!=zongAmt){
 			showMsg("付款金额和应付金额不一致，请重新确认！","W");
@@ -351,6 +391,7 @@ function settleOK() {
 							type : "post",
 							data : JSON.stringify({
 								account : account,
+								fisRpAdvance : fisRpAdvance,
 								accountDetailList : accountDetailList,
 								accountTypeList : accountTypeList,
 								token : token
@@ -511,4 +552,59 @@ function print(accountDetailList,netInAmt){
 			 }
 		 }); 
 
+}
+function onDrawCell(e) {
+	switch (e.field) {
+	case "billTypeId":
+		if (enterTypeIdHash && enterTypeIdHash[e.value]) {
+			e.cellHtml = enterTypeIdHash[e.value].name;
+		}
+		break;
+	case "billStatus":
+		if (billStatusHash && billStatusHash[e.value]) {
+			e.cellHtml = billStatusHash[e.value];
+		}
+		break;
+	case "settleTypeId":
+		if (settTypeIdHash && settTypeIdHash[e.value]) {
+			e.cellHtml = settTypeIdHash[e.value].name;
+		}
+		break;
+	case "storeId":
+		if (storehouseHash && storehouseHash[e.value]) {
+			e.cellHtml = storehouseHash[e.value].name;
+		}
+		break;
+	case "enterDayCount":
+		var row = e.record;
+		var enterTime = (new Date(row.enterDate)).getTime();
+		var nowTime = (new Date()).getTime();
+		var dayCount = parseInt((nowTime - enterTime) / 1000 / 60 / 60 / 24);
+		e.cellHtml = dayCount + 1;
+		break;
+	case "settleStatus":
+		if (settleStatusHash && settleStatusHash[e.value]) {
+			e.cellHtml = settleStatusHash[e.value];
+		}
+		break;
+	case "nowAmt":
+		e.cellStyle = 'background-color:#90EE90';
+		break;
+	case "nowVoidAmt":
+		e.cellStyle = 'background-color:#90EE90';
+		break;
+	default:
+		break;
+	}
+}
+
+function onPGridbeforeselect(e) {
+	var row = e.row;
+		var row = e.row;
+		var billDc = row.billDc;
+		var newRow = {
+			nowAmt : row.balaAmt
+		};
+		qRightGrid.updateRow(row, newRow);
+		onChanged();
 }

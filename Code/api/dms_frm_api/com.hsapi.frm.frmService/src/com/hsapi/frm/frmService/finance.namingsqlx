@@ -285,6 +285,7 @@
 	<select id="querySalesCar" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	
             SELECT a.tenant_id as tenantId, 
+            	   a.id as id,
 		           a.orgid as orgid, 
 		           a.codeId as codeId, 
 			       a.code as code,

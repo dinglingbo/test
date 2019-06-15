@@ -10,7 +10,15 @@ $(document).ready(function(v) {
     });
 });
 
-function SetData(serviceId) {
+function SetData(serviceId, type) {
+    if (type == 1) { //已结算
+        document.getElementById("toolbar").style.display = "none";
+        var fields = form.getFields();
+        for (var i = 0, l = fields.length; i < l; i++) {
+            var c = fields[i];
+            if (c.setReadOnly) c.setReadOnly(true); //只读
+        };
+    }
     var params = { id: serviceId };
     nui.ajax({
         url: baseUrl + "sales.search.searchSalesMain.biz.ext",
@@ -51,6 +59,8 @@ function changeValueMsg(e) { //值改变事件，统一触发此函数
     var receTotal = parseFloat(data.saleAmt || 0) + parseFloat(data.insuranceAmt || 0) + parseFloat(data.purchaseAmt || 0) +
         parseFloat(data.boardLotAmt || 0) + parseFloat(data.gpsAmt || 0) + parseFloat(data.mortgageAmt || 0) + parseFloat(data.decrAmt || 0) +
         parseFloat(data.familyAmt || 0) + parseFloat(data.otherAmt || 0); //购车总费用 = 车辆销价 + 实际保险费 + 实际购置税 + 上牌费 + GPS费 + 按揭手续费 + 加装费 + 家访费 + 其他费
+    var totalGrossProfitRate = (totalCost / receTotal).toFixed(2);
+    data.totalGrossProfitRate = totalGrossProfitRate;
     data.saleGrossProfit = saleGrossProfit;
     data.insuranceDifferAmt = insuranceDifferAmt;
     data.agentGrossProfit = agentGrossProfit;
@@ -102,7 +112,6 @@ function approved() { //审核通过
     nui.ajax({ //更改主表 isSettle为1 --- 已结算  未生成应收应付
         url: baseUrl + "sales.save.settlement.biz.ext",
         data: {
-            saleMain: data,
             saleExtend: data
         },
         cache: false,
@@ -110,6 +119,7 @@ function approved() { //审核通过
         success: function(text) {
             if (text.errCode == "S") {
                 showMsg(text.errMsg, "S");
+                close();
             } else {
                 showMsg(text.errMsg, "W");
             }

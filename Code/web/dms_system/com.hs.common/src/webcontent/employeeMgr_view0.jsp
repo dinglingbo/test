@@ -12,7 +12,7 @@
 <head>
     <title>员工管理</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />	
-    <script src="<%=webPath + contextPath%>/common/js/employeeQuery.js?v=2.1.18" type="text/javascript"></script>    
+    <script src="<%=webPath + contextPath%>/common/js/employeeQuery.js?v=2.1.21" type="text/javascript"></script>    
 </head>
 <body>
 	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
@@ -47,7 +47,7 @@
 					<a class="nui-button" plain="true" id="lookComBtn" name="lookComBtn" iconCls="" onclick="lookCom()" ><span class="fa fa-search fa-lg"></span>&nbsp;查看兼职公司</a>
 					<a class="nui-button" plain="true" iconCls="" onclick="importGuest()"  visible="false" id="importGuestBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
 					<span class="separator"></span>
-					<a class="nui-button" plain="true" id="btnisIM" name="btnisIM" iconCls="" onclick="stoporstartIM()" ><span class="fa fa-key"></span>&nbsp;开通IM</a>
+					<a class="nui-button" plain="true" id="btnisIM" name="btnisIM" iconCls="" onclick="stoporstartIM()" ><span class="fa fa-key"></span>&nbsp;开通聊天</a>
 				</td>
 			</tr>
 		</table>

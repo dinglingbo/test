@@ -135,7 +135,8 @@
 		a.recorder as recorder ,
 		a.record_date as recordDate,
 		a.modifier as modifier,
-		a.modify_date as modifyDate
+		a.modify_date as modifyDate,
+		a.stores_qty as storesQty
 		FROM com_tenant a
 		WHERE 1=1
 		<isNotNull property="code">

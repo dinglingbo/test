@@ -144,7 +144,7 @@
 </div>
 <div id="toolData" class="sidebar" >
 	<div id="tu" style="overflow-y:auto;overflow-x:auto; width:800px; height:50px;">
-    	<a><img class="icon" id="icon" src="<%=webPath + contextPath%>/coframe/auth/images/icon.jpg" style="background-color: #fff;"/></a>
+    	<a><img class="icon" id="icon" src="<%=webPath + contextPath%>/coframe/auth/house/images/icon.png" style="background-color: #fff;"/></a>
     </div>
     <div id="mainMenu" style="overflow:auto; width:800px;">
     	
@@ -153,7 +153,7 @@
 
 <div class="container">
     <div class="navbar" id="skin">
-        <div class="navbar-brand" id="systemName">车道商户版管理系统</div>
+        <div class="navbar-brand" id="systemName">仓先生管理系统</div>
         <ul class="nav navbar-nav navbar-right">
             <!-- <li><a href="#"><i class="fa fa-paper-plane"></i> 代办事项</a></li>
             <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li> -->

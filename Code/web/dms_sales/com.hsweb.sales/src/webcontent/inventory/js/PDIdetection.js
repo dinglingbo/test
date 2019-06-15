@@ -19,6 +19,36 @@ $(document).ready(function(v){
             remark.focus();
         }
     });
+    morePartGrid.on("cellendedit",function(e){
+        var field = e.field;
+        var record = e.record;
+        var column = e.column;
+        var row={status:-1,nosettleType :1,settleType :1};
+        var nrow={status:1,nostatus:-1,nosettleType :0,settleType:-1};
+        var row2={status:0,nosettleType :0,settleType :-1};
+        var nrow2={status:0,settleType :-1};
+        
+        var row3={status:-1,nostatus:1,settleType:1};
+        var nrow3 ={status:-1,nostatus:1,nosettleType :0};
+        var row4={status:-1,nostatus:1,settleType:0};
+        var nrow4 ={status:-1,nostatus:1,nosettleType :1};
+        var nrow5 ={status:1,settleType :-1 ,nosettleType :0}
+        if(field == "status"){
+            if(record.status == 1){
+            	morePartGrid.updateRow(record,nrow);
+            }else{
+            	morePartGrid.updateRow(record,nrow2);
+            }
+        }
+        if(field == "nostatus"){
+            if(record.nostatus == 1){
+            	morePartGrid.updateRow(record,row);
+            }else{
+            	morePartGrid.updateRow(record,row2);
+            }
+        }
+    });
+    
 });
 
 function setData(row){
@@ -26,7 +56,7 @@ function setData(row){
 	nui.get("pdiDetectioner").setValue(currEmpId);
 	nui.get("pdiDetectioner").setText(currUserName);
 	nui.get("pdiDetectionDate").setValue(new Date());
-	nui.get("vin").setValue(row.carFrameNo);
+	nui.get("vin").setValue(row.vin);
 	nui.get("enterId").setValue(row.id);
 	
 /*	nui.ajax({
@@ -58,12 +88,12 @@ function ValueChanged(e) {
         cache: false,
         success: function (text) {
             var list = text.list;
-/*            if(list && list.length>0){
+            if(list && list.length>0){
             	for(var i=0;i<list.length;i++){
             		list[i].checkRemark=list[i].remark;
             		list[i].remark=null;
             	}
-            }*/
+            }
             morePartGrid.clearRows();
         	morePartGrid.setData(list);
         	if(list.length==0){
@@ -81,9 +111,17 @@ var saveCssCheckPdiMainUrl = bearUrl+"sales.inventory.saveCssCheckPdiMain.biz.ex
 
 function onOk(){
 	var cssCheckPdiMain = advancedSearchForm.getData();
-	var cssCheckPdiDetail = morePartGrid.getSelecteds();
+	var cssCheckPdiDetail = morePartGrid.getData();
 	for(var i = 0;i<cssCheckPdiDetail.length;i++){
 		cssCheckPdiDetail[i].pdiItemName = cssCheckPdiDetail[i].name;
+		cssCheckPdiDetail[i].pdiItemId = cssCheckPdiDetail[i].id;
+		cssCheckPdiDetail[i].pdiItemTypeId = cssCheckPdiDetail[i].pdiTypeId;
+		cssCheckPdiDetail[i].pdiTemplateId = cssCheckPdiMain.pdiTemplateId;
+		if(cssCheckPdiDetail[i].status==1){
+			cssCheckPdiDetail[i].isNormal = 0;
+		}else if(cssCheckPdiDetail[i].nostatus==1){
+			cssCheckPdiDetail[i].isNormal = 1;
+		}
 	}
     nui.ajax({
         url: saveCssCheckPdiMainUrl,
@@ -116,4 +154,25 @@ function CloseWindow(action) {
         return window.CloseOwnerWindow(action);
     else
         window.close();
+}
+
+function setNormal(){
+	var data=morePartGrid.getData();
+	var nrow={status:1,nostatus:-1,nosettleType :0,settleType:-1};
+	var row2={status:0,nosettleType :0,settleType :-1};
+	var count=0;
+		for(var i=0;i<data.length;i++){
+			if(data[i].status==1){
+				count++;
+			}
+		}
+		for(var i=0;i<data.length;i++){
+			if(count==data.length){
+				morePartGrid.updateRow(data[i],row2) ;
+			}				
+			else{
+				morePartGrid.updateRow(data[i],nrow) ;
+			}
+				
+		}
 }

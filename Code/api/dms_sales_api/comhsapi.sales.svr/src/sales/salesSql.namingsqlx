@@ -46,10 +46,11 @@
 			a.next_visit_date	AS	nextVisitDate	,
 			CASE WHEN a.status = 0 then '草稿' ELSE 
 			CASE WHEN a.status = 1 then '待审' ELSE 
+			CASE WHEN a.status = 3 then '作废' ELSE 
 			CASE WHEN a.enter_id = 0 AND a.status = 2 then '已审未选车' ELSE 				
 			CASE WHEN a.is_submit_car = 0 AND a.status = 2 THEN '已审未交车' ELSE 
 			CASE WHEN a.is_settle = 0 AND a.status = 2 THEN '未结算' ELSE 
-			CASE WHEN a.is_settle = 1 AND a.status = 2 THEN '已结算' ELSE a.status END END END END END END as status,
+			CASE WHEN a.is_settle = 1 AND a.status = 2 THEN '已结算' ELSE a.status END END END END END END END as status,
 			a.is_out_stock	AS	isOutStock	,
 			a.is_submit_car	AS	isSubmitCar	,
 			a.is_settle	AS	isSettle	,
@@ -146,8 +147,9 @@
               </isNotEmpty>
               <isNotEmpty prepend="and" property="recordEndDate"> 
                 (a.record_date &lt; #recordEndDate#)
-              </isNotEmpty>
-        </dynamic>  
+              </isNotEmpty>             
+        </dynamic> 
+        
 	</select>
 	
 	<select id="searchSalesMainDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
@@ -285,6 +287,7 @@
                 (a.record_date &lt; #recordEndDate#)
               </isNotEmpty>
         </dynamic>  
+        order by  a.record_date desc 
 	</select>
     
        <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
@@ -513,6 +516,7 @@
                 A.car_model_id AS carModelId,
                 A.car_model_name AS carModelName,
                 a.vin as vin,
+                a.car_no as carNo,
                 a.engine_no as engineNo,
                 a.kilometers as kilometers,
                 a.produce_date as produceDate,
@@ -546,6 +550,9 @@
             <dynamic>
                 <isNotEmpty prepend="and" property="orderId">  
                     (A.order_id = #orderId#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="id">  
+                    (A.id = #id#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="orderIds">  
                     (A.order_id in ($orderIds$))

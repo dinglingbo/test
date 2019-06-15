@@ -210,11 +210,11 @@
                             <td height="50" valign="top" style="padding: 8px;" id="" colspan="2">
                                 本明细表所列费用为购车的所有费用
                             </td>
-                            <td height="50" valign="top" style="padding: 8px;" id="">
+                            <td height="50" valign="top" style="padding: 8px;">
                                 厂商指导价（元）
                             </td>
                             <td height="50" valign="top" style="padding: 8px;" id="sellPrice">
-                                239800
+
                             </td>
                         </tr>
                     </tbody>
@@ -280,7 +280,7 @@
                                 提车合计
                             </td>
                             <td height="50" valign="top" style="padding: 8px;" id="" colspan="3">
-                                <span id="getCarTotal" style="width:95px;display: inline-block;"></span>&nbsp;&nbsp;<span>大写（人民币）：叁佰贰拾叁万贰仟伍佰玖拾伍元整</span>
+                                <span id="getCarTotal" style="width:95px;display: inline-block;"></span>&nbsp;&nbsp;大写（人民币）：<span id="money"></span>
                             </td>
                         </tr>
                         <tr>
@@ -288,7 +288,7 @@
                                 购车预算合计
                             </td>
                             <td height="50" valign="top" style="padding: 8px;" id="" colspan="3">
-                                <span id="buyBudgetTotal" style="width:95px;display: inline-block;"></span>&nbsp;&nbsp;<span>大写（人民币）：元</span>
+                                <span id="buyBudgetTotal" style="width:95px;display: inline-block;"></span>&nbsp;&nbsp;大写（人民币）：元<span id="money1"></span>
                             </td>
                         </tr>
                         <tr>
@@ -329,10 +329,11 @@
                 function SetData(params) {
                     var serviceId = params.serviceId;
                     var billType = params.billType;
+                    var carModelId = params.carModelId;
                     document.getElementById("comp").innerHTML = currRepairSettorderPrintShow;
-                    var url = baseUrl + 'sales.search.searchSaleCalc.biz.ext?params/billType='+billType+'&params/serviceId=' + serviceId;
+                    var url = baseUrl + 'sales.search.searchSaleCalc.biz.ext?params/billType=' + billType + '&params/serviceId=' + serviceId;
                     var date = new Date();
-                    document.getElementById("date").innerHTML = format(date, "yyyy-MM-dd HH:mm");
+                    document.getElementById("date").innerHTML = format(date, "yyyy-MM-dd HH:mm:ss");
                     $.post(url, function(res) {
                         if (res.data.length > 0) {
                             var temp = res.data[0];
@@ -346,30 +347,33 @@
                             document.getElementById("getCarTotal").innerHTML = temp.getCarTotal || 0; //提车合计
                             document.getElementById("buyBudgetTotal").innerHTML = temp.buyBudgetTotal || 0; //购车预算合计
                             document.getElementById("remark").innerHTML = temp.remark || "";
+                            document.getElementById("money").innerHTML = transform(temp.getCarTotal + "");
+                            document.getElementById("money1").innerHTML = transform(temp.buyBudgetTotal + "");
                         }
                     });
 
-                   if(billType==2){
-	                    $.post(baseUrl + "sales.search.searchSalesMain.biz.ext?params/id=" + serviceId, function(res) {
-	                        if (res.data.length > 0) {
-	                            var temp = res.data[0];
-	                            document.getElementById("guestFullName").innerHTML = temp.guestFullName || "";
-	                            document.getElementById("carModelName").innerHTML = temp.carModelName || "";
-	
-	                        }
-	                    });
-                    }else if(billType==1){
-                         document.getElementById("guestFullName").innerHTML = params.guestFullName || "";
-	                     document.getElementById("carModelName").innerHTML = params.carModelName || "";
+                    if (billType == 2) {
+                        $.post(baseUrl + "sales.search.searchSalesMain.biz.ext?params/id=" + serviceId, function(res) {
+                            if (res.data.length > 0) {
+                                var temp = res.data[0];
+                                document.getElementById("guestFullName").innerHTML = temp.guestFullName || "";
+                                document.getElementById("carModelName").innerHTML = temp.carModelName || "";
+
+                            }
+                        });
+                    } else if (billType == 1) {
+                        document.getElementById("guestFullName").innerHTML = params.guestFullName || "";
+                        document.getElementById("carModelName").innerHTML = params.carModelName || "";
                     }
-                    //查询厂商指导价,根据carModelId查询
-                  var carModelId = params.carModelId;
-                  $.post(baseUrl + "sales.custormer.queryCarSellPrice.biz.ext?carModelId=" + carModelId, function(res) {
-                    if (res.errCode == "S") {
-                        var sellPrice = res.carModel.sellPrice || 0;
-                        document.getElementById("sellPrice").innerHTML = sellPrice;
+
+                    if (carModelId) {
+                        $.post(baseUrl + "sales.base.searchCsbCarModel.biz.ext?params/id=" + carModelId, function(res) {
+                            if (res.list.length > 0) {
+                                var temp = res.list[0];
+                                document.getElementById("sellPrice").innerHTML = temp.sellPrice;
+                            }
+                        });
                     }
-                 });
                 }
 
                 function CloseWindow(action) {

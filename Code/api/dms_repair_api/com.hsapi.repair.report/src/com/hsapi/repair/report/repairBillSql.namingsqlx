@@ -283,28 +283,23 @@
 	<!--配件销售汇总表-->
 	<select id="queryPartSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT  
-<isNotEmpty prepend="" property="groupByQuery">
-	       <isEqual  prepend=""  property="groupByType"   compareValue="0">
+	   <isEqual  prepend=""  property="groupByType"   compareValue="0">
         DATE_FORMAT(c.out_date,'%Y-%m-%d')  as groupName,
-     </isEqual>
-        
-     
+     </isEqual>   
       <isEqual  prepend="" property="groupByType"  compareValue="1">
-	     	 b.service_type_id as groupName,
+	     	 c.service_type_id as groupName,
 	    </isEqual> 
 	     
 	   <isEqual  prepend="" property="groupByType"  compareValue="2">
 	     	 b.part_code as groupName,
 	     	 b.part_name as partName,
 	    </isEqual>       
-	        </isNotEmpty>
  			SUM(a.true_cost) as trueCost,
 			SUM(b.subtotal) as subtotal,
 			SUM(b.qty) as qty,
  			SUM(b.discount_amt) as discountAmt,
  			SUM(b.amt) as amt
- 			
-       		
+ 			      		
        		FROM wb_repair.rps_part b 
 			INNER JOIN  (
 				select sum(a.true_cost) as true_cost ,a.main_id as main_id from wb_part.pj_repair_out a 
@@ -326,14 +321,45 @@
 	   </isEqual>
 	   
         <isEqual  prepend="" property="groupByType"  compareValue="1">
-	     	group by b.service_type_id
+	     	group by c.service_type_id
 	    </isEqual>
 	    
 	    <isEqual  prepend="" property="groupByType"  compareValue="2">
 	     	group by b.part_code , b.part_name
 	    </isEqual>
 	</select>
-	
+	<!--配件销售汇总表-->
+	<select id="queryPartSummaryBy2" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT  	     
+	   <isEqual  prepend="" property="groupByType"  compareValue="2">
+	     	 b.part_code as groupName,
+	     	 b.part_name as partName,
+	    </isEqual>       
+ 			SUM(a.true_cost) as trueCost,
+			SUM(b.subtotal) as subtotal,
+			SUM(b.qty) as qty,
+ 			SUM(b.discount_amt) as discountAmt,
+ 			SUM(b.amt) as amt
+ 			      		
+       		FROM wb_repair.rps_part b 
+			INNER JOIN  (
+				select sum(a.true_cost) as true_cost ,a.main_id as main_id from wb_part.pj_repair_out a 
+					where a.orgid = #orgid# and  a.return_sign = 0 GROUP BY a.main_id) a on a.main_id = b.id
+			inner join wb_repair.rps_maintain c on b.service_id = c.id 
+			where c.is_settle = 1 and c.orgid = #orgid#
+			and c.bill_type_id in (0,2,4)
+			
+		
+            <isNotEmpty prepend="and" property="startDate">  
+                (c.out_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (c.out_date &lt; #endDate#)
+            </isNotEmpty>				    
+	    <isEqual  prepend="" property="groupByType"  compareValue="2">
+	     	group by b.part_code , b.part_name
+	    </isEqual>
+	</select>
 	
 		<!--应付汇总表 -->
 	<select id="queryPaySummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">

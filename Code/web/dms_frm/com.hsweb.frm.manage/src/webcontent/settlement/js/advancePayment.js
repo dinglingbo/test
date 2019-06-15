@@ -71,6 +71,10 @@ var settleStatusHash = {
 	"1" : "部分付款",
 	"2" : "已付款"
 };
+var auditSignHash = {
+		"0" : "未审核",
+		"1" : "已审核"
+	};
 var headerHash = [{ name: '未付款', id: '0' }, { name: '部分付款', id: '1' }, { name: '已付款', id: '2' }];
 var balanceList = [ {
 	id : 0,
@@ -360,7 +364,7 @@ function doSearch(params) {
 	switch (name) {
 
 	case "pRightTab":
-		params.billDc = -1;
+		params.billDc = -2;
 		pRightGrid.load({
 			params : params,
 			token : token
@@ -515,6 +519,11 @@ function onDrawCell(e) {
 		var nowTime = (new Date()).getTime();
 		var dayCount = parseInt((nowTime - enterTime) / 1000 / 60 / 60 / 24);
 		e.cellHtml = dayCount + 1;
+		break;
+	case "auditSign":
+		if (auditSignHash && auditSignHash[e.value]) {
+			e.cellHtml = auditSignHash[e.value];
+		}
 		break;
 	case "settleStatus":
 		if (settleStatusHash && settleStatusHash[e.value]) {
@@ -964,10 +973,6 @@ function checkSettleRow() {
 					return "请选择相同结算单位的单据!";
 				}
 			}
-			//厂家购车款单条结算
-			if(s>1&&row.billTypeId==251){
-				return "厂家购车款只能单条结算!";
-			}
 		}
 
 		for (var i = 0; i < s; i++) {
@@ -1112,6 +1117,16 @@ function doSettle() {
 	}
 
 	var rows = rightGrid.getSelecteds();
+	for(var i =0;i<rows.length;i++){
+		if(rows[i].settleStatus==2){
+			showMsg(rows[i].billServiceId+"已结算", "W");
+			return;
+		}
+		if(rows[i].auditSign==0){
+			showMsg("请先审核单据："+rows[i].billServiceId, "W");
+			return;
+		}
+	}
 	var s = rows.length;
 	if (s > 0) {
 		var rtn = getSettleAmount(rows);
@@ -1120,38 +1135,21 @@ function doSettle() {
 			showMsg(rtn.errMsg || "结算数据填写有问题!", "W");
 			return;
 		}
-		if(rows[0].billTypeId==251){
-			nui.open({
-		        url: webPath + contextPath +"/com.hsweb.frm.manage.payableForCar.flow?token="+token,
-		         width: "100%", height: "100%", 
-		        onload: function () {
-		            var iframe = this.getIFrameEl();
-		            iframe.contentWindow.setData(rows);
-		        },
-				ondestroy : function(action) {// 弹出页面关闭前
-					if (action == "saveSuccess") {
-						showMsg("结算成功!", "S");
-						pRightGrid.reload();
-					}
+		nui.open({
+	        url: webPath + contextPath +"/com.hsweb.frm.manage.payable.flow?token="+token,
+	         width: "100%", height: "100%", 
+	        onload: function () {
+	            var iframe = this.getIFrameEl();
+	            rows[0].typeUrl = 3;
+	            iframe.contentWindow.setData(rows);
+	        },
+			ondestroy : function(action) {// 弹出页面关闭前
+				if (action == "saveSuccess") {
+					showMsg("结算成功!", "S");
+					pRightGrid.reload();
 				}
-		    });
-		}else{
-			nui.open({
-		        url: webPath + contextPath +"/com.hsweb.frm.manage.payable.flow?token="+token,
-		         width: "100%", height: "100%", 
-		        onload: function () {
-		            var iframe = this.getIFrameEl();
-		            iframe.contentWindow.setData(rows);
-		        },
-				ondestroy : function(action) {// 弹出页面关闭前
-					if (action == "saveSuccess") {
-						showMsg("结算成功!", "S");
-						pRightGrid.reload();
-					}
-				}
-		    });
-		}
-
+			}
+	    });
 	} else {
 		showMsg("请选择单据!", "W");
 		return;
@@ -1811,4 +1809,52 @@ function setInitExportData(detail){
     }
 
     method5('tableExcel',"应付账款管理",'tableExportA');
+}
+
+var doAuditUrl = baseUrl+"com.hsapi.frm.frmService.rpsettle.advanceAudit.biz.ext";
+function doAudit(){
+	var rows = pRightGrid.getSelecteds();
+	if(rows.length<1){
+		showMsg("请选择单据", "W");
+		return;
+	}
+	for(var i =0;i<rows.length;i++){
+		if(rows[i].auditSign==1){
+			showMsg(rows[i].billServiceId+"已审核", "W");
+			return;
+		}
+/*		if(rows[i].nowAmt>rows[0].noCharOffAmt){
+			showMsg("结算金额不能大于应结金额", "W");
+			return;
+		}*/
+	}
+	
+	nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : '数据处理中...'
+	});
+
+	nui.ajax({
+		url : doAuditUrl,
+		type : "post",
+		data : JSON.stringify({
+
+			rpBill : rows
+		}),
+		success : function(data) {
+			nui.unmask(document.body);
+			data = data || {};
+			if (data.errCode == "S") {
+				showMsg("审核成功!", "S");
+				onSearch();
+
+			} else {
+				showMsg(data.errMsg || "审核失败!", "W");
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+		}
+	});
 }

@@ -393,6 +393,7 @@
                 function SetData(params) {
                     var serviceId = params.serviceId;
                     var billType = params.billType;
+                    var carModelId = params.carModelId;
                     initDicts({
                         saleType1: '10392' //购车方式
                     });
@@ -439,15 +440,14 @@
                         document.getElementById("carModelName").innerHTML = params.carModelName || "";
                     }
 
-                  //查询厂商指导价,根据carModelId查询
-                  var carModelId = params.carModelId;
-                  $.post(baseUrl + "sales.custormer.queryCarSellPrice.biz.ext?carModelId=" + carModelId, function(res) {
-                    if (res.errCode == "S") {
-                        var sellPrice = res.carModel.sellPrice || 0;
-                        document.getElementById("sellPrice").innerHTML = sellPrice;
+                    if (carModelId) {
+                        $.post(baseUrl + "sales.base.searchCsbCarModel.biz.ext?params/id=" + carModelId, function(res) {
+                            if (res.list.length > 0) {
+                                var temp = res.list[0];
+                                document.getElementById("sellPrice").innerHTML = temp.sellPrice;
+                            }
+                        });
                     }
-                 });
-                  
                 }
 
                 function CloseWindow(action) {

@@ -11,7 +11,7 @@
     <title>用户管理</title>
     <%@include file="/common/sysCommon.jsp"%>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	 <script src="<%= request.getContextPath() %>/tenant/js/userManager.js?v=1.9.11"
+	 <script src="<%= request.getContextPath() %>/tenant/js/userManager.js?v=1.9.12"
 	type="text/javascript"></script>
     <style type="text/css">
     body {
@@ -54,14 +54,14 @@
    <div class="nui-toolbar">
 	<div class="nui-form" id="queryForm" style="height: 100%">
        <label style="font-family:Verdana;">是否付费：</label>
-        <a class="nui-menubutton" plain="false" iconCls="" id="menunamedate1" menu="#popupMenu1" >所有</a>
+        <a class="nui-menubutton" plain="false" iconCls="" id="menunamedate1" menu="#popupMenu1" >付费</a>
         <ul id="popupMenu1" class="nui-menu" style="display:none;">
             <li iconCls="" onclick="quickSearch1(1)">付费</li>
             <li iconCls="" onclick="quickSearch1(0)">免费</li>
             <li iconCls="" onclick="quickSearch1(2)">所有</li>
         </ul>
         <label style="font-family:Verdana;">是否在用：</label>
-        <a class="nui-menubutton" plain="false" iconCls="" id="menunamedate" menu="#popupMenu" >所有</a>
+        <a class="nui-menubutton" plain="false" iconCls="" id="menunamedate" menu="#popupMenu" >在用</a>
         <ul id="popupMenu" class="nui-menu" style="display:none;">
             <li iconCls="" onclick="quickSearch(1)">停用</li>
             <li iconCls="" onclick="quickSearch(0)">在用</li>
@@ -99,11 +99,13 @@
             bodyStyle="padding:0;border:0;" url="" idField="id" allowResize="true" dataField="rs"  totalField="page.count"
             sizeList="[20,30,50,100]"  frozenStartColumn="0" frozenEndColumn="3" pageSize="20" showPageInfo="true"
              allowCellWrap = "true"
-            >
+            >  
+           
             <div property="columns">
             	<div type="checkcolumn" >选择</div>
-            	
-            	 <div field="tenantId" width="80" headerAlign="center" align="center" visible="false">租户ID</div>
+            	<div type="checkboxcolumn" trueValue="1" falseValue="0" field="isPay" name="isPay"  width="60" headerAlign="center" header="是否付费" allowsort="true"></div>
+            	<div type="checkboxcolumn" trueValue="0" falseValue="1" field="isDisabled" name="isDisabled"  width="60" headerAlign="center" header="是否在用" allowsort="true"></div>
+            	<div field="tenantId" width="80" headerAlign="center" align="center" visible="false">租户ID</div>
                 <div field="code" width="80" headerAlign="center" align="center">租户ID</div>
                 <div field="tenantName" width="120" headerAlign="center" align="center">租户名称</div>
                 <div field="provinceId" width="80" headerAlign="center" align="center">省份</div>
@@ -119,11 +121,12 @@
                 <div field="salesMan" width="80" headerAlign="center" align="center">业务员</div>
                 <div field="referee" width="80" headerAlign="center" align="center">推荐人</div>
                 <div field="InvitationNumber" width="80" headerAlign="center" align="center">邀请号</div>
-                <div field="isDisabled" width="80" headerAlign="center" align="center">是否在用</div>
-                <div field="isPay" width="80" headerAlign="center" align="center">是否付费</div>
+                <!-- <div field="isDisabled" width="80" headerAlign="center" align="center">是否在用</div>
+                <div field="isPay" width="80" headerAlign="center" align="center">是否付费</div> -->
                  <div field="firstPayAmt" width="80" headerAlign="center" align="center">首次付费金额</div>
                 <div field="nextRenewDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm">下次续费时间</div>
-                <div field="nextRenewAmt" width="80" headerAlign="center" align="center">下次续费金额</div>
+               <div field="nextRenewAmt" width="80" headerAlign="center" align="center">下次续费金额</div>
+               <div field=" storesQty" width="80" headerAlign="center" align="center">门店数量</div>
             </div>
         </div>
     </div>

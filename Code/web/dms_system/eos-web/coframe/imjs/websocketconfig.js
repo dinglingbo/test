@@ -2,6 +2,7 @@
 var websocketurl="ws://127.0.0.1:8090/ws";
 //var websocketurl="ws://192.168.111.60:8090/ws";   
 //var websocketurl="wss://qxy60.hszb.harsons.cn/ws";
+//var websocketurl="wss://qxy.cloud.7xdr.com/ws";
 var reconnectflag = false;//避免重复连接
 var socket; 
 var currentsession= currImCode;

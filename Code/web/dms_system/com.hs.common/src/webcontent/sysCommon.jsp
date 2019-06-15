@@ -129,6 +129,8 @@
 	String swithBatchFlag ="";
 	String srmUserId = "";
 	String cloudSellOrderPrintContent ="";
+	String isNeedNewLine = "";
+	String isOpenCredit = "";
 	
 	if (session == null || session.getAttribute("userObject") == null) {
 		%>backToLogin();<%
@@ -264,6 +266,14 @@
                     if(billParams.get("cloudSellOrderPrintContent") != null){
 	                	cloudSellOrderPrintContent = billParams.get("cloudSellOrderPrintContent").toString();
 	                }
+	                //打印单是否换行
+	                if(billParams.get("isNeedNewLine") != null){
+	                	isNeedNewLine = billParams.get("isNeedNewLine").toString();
+	                }
+	                //是否开启信誉额度管理
+	                if(billParams.get("isOpenCredit") != null){
+	                	isOpenCredit = billParams.get("isOpenCredit").toString();
+	                }
                 }
               
                 
@@ -337,6 +347,8 @@
 	var currOrgList = JSON.parse(currOrgJsonStr);
 	var currSrmUserId = "<%=srmUserId %>";
 	var currCloudSellOrderPrintContent = "<%=cloudSellOrderPrintContent %>";
+	var currIsNeedNewLine = "<%=isNeedNewLine %>";
+	var currIsOpenCredit ="<%=isOpenCredit %>"
     //alert("token=" + token);
     
     /* var _sysMsg_;

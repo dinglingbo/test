@@ -61,9 +61,7 @@ table, td {
         font-family: Tahoma, Geneva, sans-serif;
         font-size: 12px;
         color: #000;
-        word-wrap:break-word; 
-        /**white-space:nowrap; */
-        white-space:break-all; 
+        word-wrap:break-word;  
 		overflow:hidden;
 		text-overflow:ellipsis;
     }
@@ -506,6 +504,11 @@ hr {
 				            window.print();
 					    },100);
 				});
+				if(currIsNeedNewLine == 1){				
+					$("table td").css("white-space","break-all");
+				}else{
+					$("table td").css("white-space","nowrap");
+				}  
 			}
     	}
     </script>

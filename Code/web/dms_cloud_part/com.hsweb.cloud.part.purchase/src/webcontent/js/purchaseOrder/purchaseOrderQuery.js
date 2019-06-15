@@ -373,3 +373,23 @@ function onDrawCell(e)
             break;
     }
 }
+
+function adjustOrderQty(){
+	nui.open({
+        // targetWindow: window,
+        url: webPath + contextPath + "/com.hsweb.cloud.part.purchase.adjustQty.flow?token=" + token,
+        title: "调整订单数量",
+        width: 900, height: 400,
+        allowDrag:true,
+        allowResize:false,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+           
+        },
+        ondestroy: function (action)
+        {
+          
+        }
+    });
+}

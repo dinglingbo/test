@@ -1107,6 +1107,9 @@ function getMainData()
 
     return data;
 }
+
+
+
 //新增单据时，取单据ID
 var saveAddUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.saveAddSellOrder.biz.ext";
 function getSellOrderBillNO(callback){
@@ -1142,6 +1145,48 @@ var requiredField = {
 	billTypeId : "票据类型",
     settleTypeId : "结算方式"
 };
+
+var updateCreditUrl= baseUrl +"com.hsapi.cloud.part.invoicing.settle.updateGuestCredit.biz.ext";
+function beforeSave(){
+	var flag = false;
+	var row =rightGrid.getData();
+	var amt =0;
+	for(var i=0;i<row.length;i++){
+		if(row[i].orderAmt){
+			amt = parseFloat(row[i].orderAmt)+parseFloat(amt);
+		}
+		
+	}
+	var data = basicInfoForm.getData();
+	var guestId = data.guestId;
+	nui.ajax({
+		url : updateCreditUrl,
+		type : "post",
+		async : false,
+		data : JSON.stringify({
+			guestId : guestId,
+			mainId : data.id,
+			amt : amt,
+            token : token
+		}),
+		success : function(data) {
+            nui.unmask(document.body);
+			data = data || {};
+			if (data.errCode == "S") {
+				flag =true;
+			} else {
+                showMsg(data.errMsg || "保存失败!","E");
+                flag = false;
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+		
+	});
+	return flag;
+}
 var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.crud.savePjSellOrder.biz.ext";
 function save() {
 	var data = basicInfoForm.getData();
@@ -1161,7 +1206,14 @@ function save() {
     }else{
         return;
     }
-    
+    //开启额度管理
+    if(currIsOpenCredit ==1){
+    	 var flag = beforeSave();
+    	    if(flag ==false){
+    	    	return;
+    	    }
+    }
+   
 
     data = getMainData();
    
@@ -1764,6 +1816,15 @@ function audit()
         showMsg("销售明细为空，不能出库!","W");
         return;
     }
+    
+  //开启额度管理
+    if(currIsOpenCredit ==1){
+    	 var flag = beforeSave();
+    	    if(flag ==false){
+    	    	return;
+    	    }
+    }
+    
     sellOrderDetailList = removeChanges(sellOrderDetailAdd, sellOrderDetailUpdate, sellOrderDetailDelete, sellOrderDetailList);
 
 

@@ -150,6 +150,89 @@
         </dynamic>  
 	</select>
 	
+	<!--选择界面使用 -->
+	    <select id="searchSalesMainB" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT 
+			a.id	AS	id	,
+			a.tenant_id	AS	tenantId	,
+			a.orgid	AS	orgid	,
+			a.sale_type	AS	saleType	,
+			a.service_code	AS	serviceCode	,
+			a.contract_no	AS	contractNo	,
+			a.come_id	AS	comeId	,
+			a.guest_id	AS	guestId	,
+			a.guest_full_name	AS	guestFullName	,
+			a.sale_advisor	AS	saleAdvisor	,
+			a.sale_advisor_id	AS	saleAdvisorId	,
+			a.car_model_id	AS	carModelId	,
+			a.car_model_name	AS	carModelName	,
+			a.frame_color_id	AS	frameColorId	,
+			a.interial_color_id	AS	interialColorId	,
+			a.bill_sign	AS	billSign	,
+			a.bill_type_id	AS	billTypeId	,
+			a.bill_amt	AS	billAmt	,
+			a.bill_no	AS	billNo	,
+			a.bill_title	AS	billTitle	,
+			a.order_date	AS	orderDate	,
+			a.submit_plan_date	AS	submitPlanDate	,
+			a.submit_true_date	AS	submitTrueDate	,
+			a.submit_car_men	AS	submitCarMen	,
+			a.submit_car_remark	AS	submitCarRemark	,
+			a.submit_car_key_qty	AS	submitCarKeyQty	,
+			a.submit_rpaccounts	AS	submitRpaccounts	,
+			a.submit_man	AS	submitMan	,
+			a.submit_date	AS	submitDate	,
+			a.enter_id	AS	enterId	,
+			a.financial_end_date	AS	financialEndDate	,
+			a.financial_end_man	AS	financialEndMan	,
+			a.visit_man	AS	visitMan	,
+			a.visit_sign	AS	visitSign	,
+			a.next_visit_date	AS	nextVisitDate	,
+			CASE WHEN a.status = 0 then '草稿' ELSE 
+			CASE WHEN a.status = 1 then '待审' ELSE 
+			CASE WHEN a.enter_id = 0 AND a.status = 2 then '已审未选车' ELSE 				
+			CASE WHEN a.is_submit_car = 0 AND a.status = 2 THEN '已审未交车' ELSE 
+			CASE WHEN a.is_settle = 0 AND a.status = 2 THEN '未结算' ELSE 
+			CASE WHEN a.is_settle = 1 AND a.status = 2 THEN '已结算' ELSE a.status END END END END END END as status,
+			a.is_out_stock	AS	isOutStock	,
+			a.is_submit_car	AS	isSubmitCar	,
+			a.is_settle	AS	isSettle	,
+			a.remark	AS	remark	,
+			a.recorder	AS	recorder	,
+			a.record_date	AS	recordDate	,
+			a.modifier	AS	modifier	,
+			a.modify_date	AS	modifyDate	,	
+			c.full_name	AS contactor,
+			c.mobile AS contactorTel,
+			c.id_card AS idCard,
+			d.vin,
+			d.car_no carNo
+		FROM css_sale_main a 
+			INNER JOIN wb_common.com_guest c
+				ON a.guest_id = c.id
+				left join css_check_enter d on d.id = a.enter_id
+		WHERE 1 = 1
+		<dynamic>
+			<isNotEmpty prepend="and" property="serviceCode">
+                (a.service_code= #serviceCode#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="id">
+                (a.id = #id#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="status">
+                (a.status in ($status$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestName">  
+                (a.guest_full_name like '%$guestName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="recordStartDate"> 
+                (a.record_date &gt;= #recordStartDate#)
+              </isNotEmpty>
+              <isNotEmpty prepend="and" property="recordEndDate"> 
+                (a.record_date &lt; #recordEndDate#)
+              </isNotEmpty>
+        </dynamic>  
+	</select>
 	<select id="searchSalesMainDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT 
 			a.id	AS	id	,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="searchCssGiftOutMain" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="searchCssGiftOutItem" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -41,7 +41,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.sales.data.css.CssSaleGiftOutMain</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.sales.data.css.CssSaleGiftOutItem</process:from>
       <process:to type="query">ct/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -49,20 +49,8 @@
       <process:to type="query">page/isCount</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
-      <process:to type="query">ct/_expr[1]/recordDate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">params/startDate</process:from>
-      <process:to type="query">ct/_expr[1]/_min</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">params/endDate</process:from>
-      <process:to type="query">ct/_expr[1]/_max</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">between</process:from>
-      <process:to type="query">ct/_expr[1]/_op</process:to>
+      <process:from type="query" pattern="reference">params/serviceId</process:from>
+      <process:to type="query">ct/_expr[1]/serviceId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -97,7 +85,7 @@
     <figSize height="17" width="49"/>
     <node>invokePojo0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign1" name="赋值1" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>end0</targetNode>
@@ -106,6 +94,10 @@
     <location x="498" y="60"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">S</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="496" y="96"/>

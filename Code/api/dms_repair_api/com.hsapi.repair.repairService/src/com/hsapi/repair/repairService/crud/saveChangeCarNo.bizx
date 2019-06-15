@@ -1704,7 +1704,7 @@
     <figSize height="17" width="91"/>
     <node>invokePojo18</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign20" name="赋值20" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign20" name="赋值20" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link65" name="link65" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign20</sourceNode>
       <targetNode>transactioncommit0</targetNode>

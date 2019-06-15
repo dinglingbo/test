@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="repairOutRtn" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="维修出库领料&#xD;&#xA;销售出库领料&#xD;&#xA;耗材出库领料&#xD;&#xA;&#xD;&#xA;只区别是维修领料  还是耗材出库&#xD;&#xA;050206 维修出库， 工单领料    050106 维修归库&#xD;&#xA;050207 耗材出库                    050107 耗材归库&#xD;&#xA;&#xD;&#xA;耗材出库需要生成单号；判断数量有没有超数，更新已领料数量" title="Administrator&#x9;18-9-12 上午9:27">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="维修出库领料&#xD;&#xA;销售出库领料&#xD;&#xA;耗材出库领料&#xD;&#xA;&#xD;&#xA;只区别是维修领料  还是耗材出库&#xD;&#xA;050206 维修出库， 工单领料    050106 维修归库&#xD;&#xA;050207 耗材出库                    050107 耗材归库&#xD;&#xA;050208 精品出库                    050108 精品归库&#xD;&#xA;耗材出库需要生成单号；判断数量有没有超数，更新已领料数量" title="Administrator&#x9;18-9-12 上午9:27">
     <location x="675" y="-165"/>
     <size height="181" width="496"/>
   </nodes>
@@ -144,6 +144,16 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link11" name="link11" displayName="连接线" type="transition">
+      <sourceNode>transactionbegin0</sourceNode>
+      <targetNode>assign1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">billTypeId</process:leftOperand>
+          <process:rightOperand type="literal">050208</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link3</targetConnections>
     <location x="945" y="158"/>
     <size height="28" width="28"/>
@@ -209,6 +219,7 @@
       <targetNode>subprocess0</targetNode>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
+    <targetConnections>link11</targetConnections>
     <location x="1065" y="15"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>

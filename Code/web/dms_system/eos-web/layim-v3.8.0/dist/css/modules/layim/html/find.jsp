@@ -84,7 +84,7 @@ layui.use(['form', 'upload'], function(){  //如果只加载一个模块，可�
         data: JSON.stringify({
         	params:paramst
         }),
-        url:baseUrl + "com.hs.common.env.queryUserInfo.biz.ext",
+        url:baseUrl + "com.hsapi.system.im.message.queryUserInfo.biz.ext",
         success:function(data){
         	friendList = data.result;
         	var htmlStr = "";

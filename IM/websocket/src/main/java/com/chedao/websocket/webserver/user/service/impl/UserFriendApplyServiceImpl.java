@@ -27,8 +27,8 @@ public class UserFriendApplyServiceImpl implements UserFriendApplyService {
 
     @Autowired
     private UserFriendService userFriendServiceImpl;
-    @Autowired
-    private UserInfoService userInfoServiceImpl;
+    //@Autowired
+    //private UserInfoService userInfoServiceImpl;
     @Autowired
     private ImConnertor connertor;
 
@@ -123,7 +123,7 @@ public class UserFriendApplyServiceImpl implements UserFriendApplyService {
             }
             //4、发消息
             String content = friend.getFrom_name() + "申请添加您为好友";
-            //connertor.pushFriendSettleMessage(friend.getFrom().toString(), friend.getUid().toString(), content, 0);
+            connertor.pushFriendSettleMessage(friend.getFrom().toString(), friend.getUid().toString(), content, -1);
             return map;
         }catch (Exception e){
             System.out.println(e);

@@ -372,9 +372,9 @@ function changebutton(){
         }
         
         if (((s.imCode=="" || s.imCode == null) && s.imDisabled == 0) || s.imDisabled == 1){
-        	btnisIM.setText("<span class='fa fa-key'></span>&nbsp;开通IM");
+        	btnisIM.setText("<span class='fa fa-key'></span>&nbsp;开通聊天");
         }else{
-        	btnisIM.setText("<span class='fa fa-key'></span>&nbsp;关闭IM");
+        	btnisIM.setText("<span class='fa fa-key'></span>&nbsp;关闭聊天");
         }
 	}
 }
@@ -503,7 +503,7 @@ function stoporstartIM() {
         html : '处理中...'
     });
     nui.ajax({
-        url: baseUrl + "com.hsapi.system.tenant.employee.openOrCloseIM.biz.ext",
+        url: apiPath + sysDomain + "/com.hsapi.system.tenant.employee.openOrCloseIM.biz.ext",
         type: 'post',
         async:false,
         data: nui.encode({

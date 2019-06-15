@@ -769,7 +769,7 @@ layui.define(['layer', 'laytpl', 'upload'], function (exports) {
             anim: 2,
             offset: 'rb',
             resize: false,
-            content: '<img src="' + (cache.mine.avatar || (layui.cache.dir + 'css/pc/layim/skin/logo.jpg')) + '"><span>' + (content || cache.base.title || '我的LayIM') + '</span>',
+            content: '<img src="' + (cache.mine.avatar || (layui.cache.dir + 'css/pc/layim/skin/logo.jpg')) + '"><span>' + (content || cache.base.title || '我的秘书') + '</span>',
             move: '#layui-layim-close img',
             success: function (layero, index) {
                 layimClose = layero;

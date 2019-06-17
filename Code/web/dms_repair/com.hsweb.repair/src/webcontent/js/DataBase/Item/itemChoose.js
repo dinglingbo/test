@@ -437,6 +437,7 @@ function getData()
 
 //精品加装时调用
 function giftSetData(data){
+	onSearch();
 	giftItem = data;
 	document.getElementById("tempGrid").style.display="none";
 	rightGrid.setWidth("99%");

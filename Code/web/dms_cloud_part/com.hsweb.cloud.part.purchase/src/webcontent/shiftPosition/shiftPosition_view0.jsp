@@ -230,7 +230,7 @@
                                 <div field="sellQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="移仓数量">
                                 	<input property="editor" vtype="float" class="nui-textbox"/>
                                 </div>
-                                <div field="remark" width="80" headerAlign="center" allowSort="true">
+                                <div field="remark" width="40" headerAlign="center" allowSort="true">
 					        	备注<input property="editor" class="nui-textbox"/>
 					        	</div>
                             </div>
@@ -256,8 +256,8 @@
                         </div>
                         <div header="不含税成本信息" headerAlign="center">
                             <div property="columns">
-                                <div field="noTaxPrice" width="50" headerAlign="center" header="单价"></div>
-                                <div field="noTaxAmt" summaryType="sum" numberFormat="0.0000" width="50" headerAlign="center" header="金额"></div>
+                                <div field="noTaxPrice" width="90" headerAlign="center" header="单价"></div>
+                                <div field="noTaxAmt" summaryType="sum" numberFormat="0.0000" width="95" headerAlign="center" header="金额"></div>
                             </div>
                         </div>
                         <div header="含税成本信息" headerAlign="center">

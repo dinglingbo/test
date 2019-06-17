@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveBillParams.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="1001    结算单打印内容&#xD;&#xA;1002    报价单打印内容&#xD;&#xA;1003    结算单打印抬头显示&#xD;&#xA;1004    默认仓库&#xD;&#xA;1006    完工、结算配件必须出库&#xD;&#xA;1007    小票、结算单显示结算二维码&#xD;&#xA;或微信公众号二维码&#xD;&#xA;1008    微信车主端服务详细直接结算&#xD;&#xA;1009    车型可自由填写&#xD;&#xA;1011    哪些类别工时开单不能改价&#xD;&#xA;1014    工单服务性质对车主微信端不开放&#xD;&#xA;1017    采购退货供应商一致才可退货&#xD;&#xA;&#xD;&#xA;1006完工、结算配件必须出库，默认是开启的（逻辑流控制）  已加&#xD;&#xA;1007小票、结算单显示结算二维码&#xD;&#xA;或微信公众号二维码，默认是开启的，需要读取（前端传参）&#xD;&#xA;1009车型可自由填写，默认是关闭的（前端传参）  已加&#xD;&#xA;1011哪些类别工时开单不能改价，暂不确定怎么应用&#xD;&#xA;1003结算单打印抬头（前端传参） &#xD;&#xA;1001结算单打印内容（前端传参）  已加&#xD;&#xA;1002报价单打印内容（前端传参）  已加&#xD;&#xA;1017采购退货供应商一致才可退货（前端传参）&#xD;&#xA;1004默认仓库（前端传参）&#xD;&#xA;1023汽配销售单销售出库单打印内容" title="Administrator&#x9;18-11-17 下午3:26">
+  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="1001    结算单打印内容&#xD;&#xA;1002    报价单打印内容&#xD;&#xA;1003    结算单打印抬头显示&#xD;&#xA;1004    默认仓库&#xD;&#xA;1006    完工、结算配件必须出库&#xD;&#xA;1007    小票、结算单显示结算二维码&#xD;&#xA;或微信公众号二维码&#xD;&#xA;1008    微信车主端服务详细直接结算&#xD;&#xA;1009    车型可自由填写&#xD;&#xA;1011    哪些类别工时开单不能改价&#xD;&#xA;1014    工单服务性质对车主微信端不开放&#xD;&#xA;1017    采购退货供应商一致才可退货&#xD;&#xA;&#xD;&#xA;1006完工、结算配件必须出库，默认是开启的（逻辑流控制）  已加&#xD;&#xA;1007小票、结算单显示结算二维码&#xD;&#xA;或微信公众号二维码，默认是开启的，需要读取（前端传参）&#xD;&#xA;1009车型可自由填写，默认是关闭的（前端传参）  已加&#xD;&#xA;1011哪些类别工时开单不能改价，暂不确定怎么应用&#xD;&#xA;1003结算单打印抬头（前端传参） &#xD;&#xA;1001结算单打印内容（前端传参）  已加&#xD;&#xA;1002报价单打印内容（前端传参）  已加&#xD;&#xA;1017采购退货供应商一致才可退货（前端传参）&#xD;&#xA;1004默认仓库（前端传参）&#xD;&#xA;1023汽配销售单销售出库单打印内容&#xD;&#xA;1024打印单是否换行(汽配)&#xD;&#xA;1025是否开启客户信誉额度管理" title="Administrator&#x9;18-11-17 下午3:26">
     <location x="-275" y="-394"/>
     <size height="516" width="232"/>
   </nodes>
@@ -84,6 +84,8 @@
     <chidren>assign18</chidren>
     <chidren>invokePojo4</chidren>
     <chidren>assign26</chidren>
+    <chidren>assign27</chidren>
+    <chidren>assign28</chidren>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
     <location x="49" y="277"/>
@@ -313,6 +315,26 @@
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query">paramObj/keyidId</process:leftOperand>
           <process:rightOperand type="literal">cloudSellOrderPrintContent</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="1024" id="link33" name="1024" displayName="连接线" type="transition">
+      <sourceNode>loopstart0</sourceNode>
+      <targetNode>assign27</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">paramObj/keyidId</process:leftOperand>
+          <process:rightOperand type="literal">isNeedNewLine</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link42" name="1025" displayName="连接线" type="transition">
+      <sourceNode>loopstart0</sourceNode>
+      <targetNode>assign28</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">paramObj/keyidId</process:leftOperand>
+          <process:rightOperand type="literal">isOpenCredit</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -564,6 +586,8 @@
     <targetConnections>link52</targetConnections>
     <targetConnections>link55</targetConnections>
     <targetConnections>link32</targetConnections>
+    <targetConnections>link41</targetConnections>
+    <targetConnections>link43</targetConnections>
     <location x="359" y="137"/>
     <size height="28" width="28"/>
     <nodeLabel>assign11label</nodeLabel>
@@ -814,6 +838,7 @@
     <sourceConnections xsi:type="process:tLink" id="link52" name="link52" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign23</sourceNode>
       <targetNode>assign11</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link47</targetConnections>
     <location x="169" y="550"/>
@@ -1089,6 +1114,46 @@
     <location x="258" y="534"/>
     <figSize height="20" width="49"/>
     <node>assign26</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign27" name="赋值27" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link41" name="link41" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign27</sourceNode>
+      <targetNode>assign11</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link33</targetConnections>
+    <location x="235" y="550"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign27label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1024</process:from>
+      <process:to type="query">keyidId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign27label" name="label" nodeType="label">
+    <location x="225" y="586"/>
+    <figSize height="20" width="49"/>
+    <node>assign27</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign28" name="赋值28" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link43" name="link43" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign28</sourceNode>
+      <targetNode>assign11</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link42</targetConnections>
+    <location x="287" y="553"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign28label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1025</process:from>
+      <process:to type="query">keyidId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign28label" name="label" nodeType="label">
+    <location x="277" y="589"/>
+    <figSize height="20" width="49"/>
+    <node>assign28</node>
   </nodes>
   <topRuler>
     <guides position="-300" horizontal="true"/>

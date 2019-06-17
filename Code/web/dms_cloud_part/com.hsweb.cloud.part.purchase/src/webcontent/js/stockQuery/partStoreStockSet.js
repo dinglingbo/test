@@ -26,7 +26,7 @@ var billStatusHash = {
     "2":"已过账",
     "3":"已取消"
 };
-
+var UpOrDownList=[{id:1,"name" :"低于下限"},{id:2,"name" :"高于上限"}];
 $(document).ready(function(v)
 {
 	rightGrid = nui.get("rightGrid");
@@ -95,6 +95,8 @@ $(document).ready(function(v)
     });
 });
 function getSearchParam(){
+	var date =new Date();
+	var mongth = date.getMonth()+1;
     var params = {};
     /*var outableQtyGreaterThanZero = nui.get("outableQtyGreaterThanZero").getValue();
     if(outableQtyGreaterThanZero == 1)
@@ -103,10 +105,28 @@ function getSearchParam(){
     }*/
   
     var showZero = nui.get("showAll").getValue();
+    var upOrDown=nui.get('upOrDown').getValue();
     if(showZero == 0){
         params.notShowAll = 1;
     }
    
+    if(upOrDown == 2){
+    	//夏(4-9)
+    	if(mongth>= 4 && mongth<=9){
+    		params.showUp = 1;
+    	}else{
+    		params.showUpWinter = 1;
+    	}
+        
+    }
+    if(upOrDown ==1){
+    	//夏(4-9)
+    	if(mongth>= 4 && mongth<=9){
+    		params.showDown = 1;
+    	}else{
+    		params.showDownWinter = 1;
+    	}
+    }
     params.partNameAndPY = nui.get("comPartNameAndPY").getValue();
 	params.partCode = (nui.get("comPartCode").getValue()).replace(/\s+/g, "");
 	params.partBrandId = nui.get("partBrandId").getValue();
@@ -209,6 +229,18 @@ function onDrawCell(e)
 {
     switch (e.field)
     {
+	    case "wain" :
+			if( e.record.upLimit){
+				if(e.record.stockQty>e.record.upLimit){
+	    			e.cellHtml = "<span style='color : red'>高<span>";
+	    		}
+			}
+			if(e.record.downLimit){
+				if(e.record.stockQty<e.record.downLimit){
+	    			e.cellHtml = "<span style='color : orange'>低<span>";
+	    		}
+			}	
+			break;
 	    case "partBrandId":
 	        if(partBrandIdHash[e.value])
 	        {
@@ -253,7 +285,8 @@ function onCellCommitEdit(e) {
         e.cancel = true;
     } else {
         var newRow = {};
-        if (e.field == "upLimit" || e.field == "downLimit" || e.field == "minOrderQty" || e.field == "minPackQty") {
+        if (e.field == "upLimit" || e.field == "downLimit" ||e.field == "upLimitWinter" || e.field == "downLimitWinter"
+        	|| e.field == "minOrderQty" || e.field == "minPackQty") {
             var qty = e.value;
            
 
@@ -278,6 +311,8 @@ function save(){
             newObj.shelf = gridData[i].shelf;
             newObj.upLimit = gridData[i].upLimit;
             newObj.downLimit = gridData[i].downLimit;
+            newObj.upLimitWinter = gridData[i].upLimitWinter;
+            newObj.downLimitWinter = gridData[i].downLimitWinter;
             newObj.minOrderQty = gridData[i].minOrderQty;
             newObj.minPackQty = gridData[i].minPackQty;
             data.push(newObj);

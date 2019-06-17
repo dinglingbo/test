@@ -58,6 +58,7 @@
         <result column="guestFullName" javaType="string" property="guestFullName"/>
         <result column="guestShortName" javaType="string" property="guestShortName"/>
         <result column="versionNo" javaType="java.sql.Timestamp" property="versionNo"/>
+        <result column="sourceType" javaType="int" property="int"/>
     </resultMap>
     <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
     <select id="queryPjPchsOrderMainList" parameterClass="java.util.HashMap" resultMap="pjPchsOrderMainList">
@@ -107,6 +108,7 @@
             M.operator,
             M.operateDate,
             M.settleTypeId,
+            M.sourceType,
             M.billStatusId,
             M.guestFullName,
             M.guestShortName,
@@ -157,6 +159,7 @@
                 A.OPERATOR as operator,
                 A.OPERATE_DATE as operateDate,
                 A.SETTLE_TYPE_ID as settleTypeId,
+                A.source_type as sourceType,
                 A.BILL_STATUS_ID as billStatusId,
                 B.FULL_NAME AS guestFullName,
                 B.SHORT_NAME AS guestShortName,
@@ -280,6 +283,7 @@
                 A.OPERATOR as operator,
                 A.OPERATE_DATE as operateDate,
                 A.SETTLE_TYPE_ID as settleTypeId,
+                A.source_type as sourceType,
                 A.BILL_STATUS_ID as billStatusId,
                 B.FULL_NAME AS guestFullName,
                 B.SHORT_NAME AS guestShortName,
@@ -1128,6 +1132,7 @@
                 A.SOURCE_MAIN_ID AS sourceMainId,
                 A.SOURCE_BILL_TYPE_ID AS sourceBillTypeId,
                 A.REMARK AS remark,
+                (a.ORDER_QTY-a.TRUE_ENTER_QTY- a.ADJUST_QTY) as canInQty,
 				c.shelf as shelf,
                 B.CODE AS comPartCode,
                 B.NAME AS comPartName,
@@ -1389,6 +1394,7 @@
                 a.state_man as stateMan,
                 a.state_sign as stateSign,
                 a.state_date as stateDate,
+                a.source_type as sourceType,
                 a.rtn_reason_id as rtnReasonId,
                 B.FULL_NAME AS guestFullName,
                 B.SHORT_NAME AS guestShortName,
@@ -1524,6 +1530,7 @@
                 a.state_man as stateMan,
                 a.state_sign as stateSign,
                 a.state_date as stateDate,
+                a.source_type as sourceType,
                 a.rtn_reason_id as rtnReasonId,
                 B.FULL_NAME AS guestFullName,
                 B.SHORT_NAME AS guestShortName,

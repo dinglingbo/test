@@ -44,6 +44,7 @@
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
             <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
             <isNotEmpty prepend="and" property="billStatusId">(a.bill_status_id = #billStatusId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="billStatusIdList">(a.bill_status_id in ($billStatusIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="notFinished">(a.is_finished = #notFinished#)</isNotEmpty>
             <isNotEmpty prepend="and" property="orderTypeId">(a.order_type_id = #orderTypeId#)</isNotEmpty>
             <!--订货日期 -->
@@ -746,6 +747,8 @@
 			a.order_qty as orderQty,
 			a.up_limit as upLimit,
 			a.down_limit as downLimit,
+			a.up_limit_winter as upLimitWinter,
+			a.down_limit_winter as downLimitWinter,
 			a.min_order_qty as minOrderQty,
 			a.min_pack_qty as minPackQty,
 			b.code as comPartCode,
@@ -786,6 +789,11 @@
             <isNotEmpty prepend="and" property="storeShelf">(a.shelf = #storeShelf#)</isNotEmpty>
             <!--库存查询默认查询库存大于0 -->
             <isNotEmpty prepend="and" property="notShowAll">(a.stock_qty &gt; 0)</isNotEmpty>
+            <isNotEmpty prepend="and" property="zeroStock">(a.stock_qty = 0)</isNotEmpty>
+            <isNotEmpty prepend="and" property="showUp">(a.stock_qty &gt; a.up_limit)</isNotEmpty>
+            <isNotEmpty prepend="and" property="showDown">(a.stock_qty &lt;a.down_limit)</isNotEmpty>
+            <isNotEmpty prepend="and" property="showUpWinter">(a.stock_qty &gt; a.up_limit_winter)</isNotEmpty>
+            <isNotEmpty prepend="and" property="showDownWinter">(a.stock_qty &lt;a.down_limit_winter)</isNotEmpty>
             <isNotEmpty prepend="and" property="partId">(a.PART_ID = #partId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(b.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(b.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>

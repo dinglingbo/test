@@ -82,12 +82,12 @@ switch (e.field)
 	        e.cellHtml = cityHash[e.value].name;
 	    }  
     break;
-	case "isDisabled":
+	/*case "isDisabled":
 		e.cellHtml = e.value==0?"在用":"停用";
 		break;
 	case "isPay":
 		e.cellHtml = e.value==0?"免费":"付费";
-		break;
+		break;*/
 	default:
     break;
 }
@@ -144,10 +144,10 @@ function doSearch(params) {
 }
 
 
-var isPay = 2;
+var isPay = 1;
 function quickSearch1(type) {
     var params = getSearchParam();
-    var queryname = "所有";
+    var queryname = "付费";
     switch (type) {
         case 0:
             params.isPay = 0;
@@ -170,10 +170,10 @@ function quickSearch1(type) {
     menunamedate.setText(queryname);
     doSearch(params);
 }
-var isDisabled = 2;
+var isDisabled = 0;
 function quickSearch(type) {
     var params = getSearchParam();
-    var queryname = "所有";
+    var queryname = "在用";
     switch (type) {
         case 1:
             params.isDisabled = 1;

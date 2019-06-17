@@ -1,354 +1,351 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
 	<%@include file="/common/sysCommon.jsp"%>
-			<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<!-- 
+		<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+		<html>
+		<!-- 
   - Author(s): Administrator
   - Date: 2018-10-10 11:22:57
   - Description:
 -->
 
-<head>
-	<title>应付结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/payableForCar.js?v=1.1.1"></script>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<style>
-		html {
-			overflow-x: hidden;
-			overflow-y: auto;
-			color: #555;
-		}
+		<head>
+			<title>应付结算</title>
+			<script src="<%=webPath + contextPath%>/manage/settlement/js/payableForCar.js?v=1.1.1"></script>
+			<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+			<style>
+				html {
+					overflow-x: hidden;
+					overflow-y: auto;
+					color: #555;
+				}
 
-		element.style {
-			background-color: #cfddee;
-			position: absolute;
-			top: 90%;
-			width: 100%;
-			height: 10%;
-			z-index: 900;
-		}
-
-
-		.pay_tcbk {
-			border: 1px #dcdcdc solid;
-		}
-
-		td {
-			word-break: break-all;
-			word-wrap: break-word;
-		}
-
-		td,
-		th {
-			display: table-cell;
-			vertical-align: inherit;
-		}
-
-		.line24 dl dd em {
-			color: #b4b4b4;
-			position: absolute;
-			right: 84px;
-			font-size: 15px;
-			line-height: 34px;
-		}
-
-		em,
-		strong {
-			font-style: normal;
-			font-weight: normal;
-		}
-
-		.payjsbd {
-			height: 31px;
-			border: 1px #dcdcdc solid;
-			border-radius: 3px;
-			text-align: center;
-			color: #666;
-		}
-
-		body,
-		div,
-		dl,
-		dt,
-		dd,
-		ul,
-		ol,
-		li,
-		h1,
-		h2,
-		h3,
-		h4,
-		h5,
-		h6,
-		p {
-			margin: 0;
-			padding: 0;
-			font-family: "微软雅黑", "宋体", "黑体", Arial, simsun, Verdana, Lucida, Helvetica, sans-serif;
-			font-size: 14px;
-			font-style: normal;
-			font-weight: normal;
-			font-variant: normal;
-			list-style-type: none;
-		}
-
-		.pay_top dl dd {
-			font-size: 24px;
-			font-weight: bold;
-			color: #ff3200;
-			line-height: 58px;
-		}
-
-		.pay_top dl dt {
-			font-size: 16px;
-			margin: 21px 5px 0 0;
-		}
-
-		.fw {
-			margin-top: 10px;
-			margin-left: 15px;
-		}
-
-		.pay_top dl dt,
-		.pay_top dl dd {
-			float: left;
-		}
-
-		.pay_jshj_list {
-			padding: 16px 14px;
-			height: auto;
-			overflow: hidden;
-			border-bottom: 1px #dcdcdc solid;
-		}
-
-		.pay_list {
-			width: 1000px;
-			height: auto;
-			overflow: hidden;
-			margin: 0 auto;
-			margin-top: 30px;
-		}
-
-		.pay_js_left a.xz {
-			border: 2px #01b49e solid;
-			background: #fff url(manage/settlement/images/pay_xztb.png) right 13px no-repeat;
-			color: #01b49e;
-		}
-
-		.pay_js_right {
-			margin-left: 160px;
-			height: auto;
-			overflow: hidden;
-		}
-
-		.pay_js_left {
-			width: 160px;
-			float: left;
-		}
-
-		a.btn {
-			background: #28bef0;
-			text-decoration: none;
-			display: inline-block;
-			height: 38px;
-			line-height: 38px;
-			padding: 0 22px;
-			border-radius: 5px;
-			color: #fff;
-			font-size: 15px;
-		}
-
-		.pay_js_left a {
-			width: 102px;
-			height: 32px;
-			border: 2px #dcdcdc solid;
-			padding-left: 14px;
-			background: #f8f8f8;
-			color: #b4b4b4;
-			display: block;
-			font-size: 15px;
-			line-height: 32px;
-			text-decoration: none;
-			border-radius: 5px;
-		}
-
-		.pay_top {
-			background: #f9fafb;
-			border-bottom: 1px #dde0e6 solid;
-			height: 58px;
-		}
+				element.style {
+					background-color: #cfddee;
+					position: absolute;
+					top: 90%;
+					width: 100%;
+					height: 10%;
+					z-index: 900;
+				}
 
 
+				.pay_tcbk {
+					border: 1px #dcdcdc solid;
+				}
 
-		.zffs td {
-			font-size: 16px;
-		}
+				td {
+					word-break: break-all;
+					word-wrap: break-word;
+				}
 
-		a.depj {
-			display: block;
-			width: 14px;
-			height: 15px;
-			background: url(manage/settlement/images/delete.gif) 0 2px no-repeat;
-			float: left;
-			margin-right: 8px;
-		}
+				td,
+				th {
+					display: table-cell;
+					vertical-align: inherit;
+				}
 
-		select {
-			appearance: none;
-			-moz-appearance: none;
-			-webkit-appearance: none;
-			background: #fff url(manage/settlement/images/ssxljt.png) right center no-repeat;
-			border: 1px #dcdcdc solid;
-			border-radius: 3px;
-			height: 30px;
-			font-family: "微软雅黑";
-			text-indent: 5px;
-		}
+				.line24 dl dd em {
+					color: #b4b4b4;
+					position: absolute;
+					right: 84px;
+					font-size: 15px;
+					line-height: 34px;
+				}
 
-		.pay_tcbk_list ul li a font {
-			background: url(manage/settlement/images/yw_bg2.png) 0 -154px no-repeat;
-			line-height: 33px;
-			padding-left: 28px;
-			width: 120px;
-			margin: 0 auto;
-			display: block;
-		}
+				em,
+				strong {
+					font-style: normal;
+					font-weight: normal;
+				}
 
-		.pay_tcbk_list ul li a {
-			width: 180px;
-			height: 33px;
-			display: block;
-			background: #75b7ea;
-			border-radius: 3px;
-			color: #fff;
-			text-decoration: none;
-		}
+				.payjsbd {
+					height: 31px;
+					border: 1px #dcdcdc solid;
+					border-radius: 3px;
+					text-align: center;
+					color: #666;
+				}
 
-		.jiesuan2 {
-			margin-right: 100px;
-			height: 80px;
-			background: #dce1e5;
-			position: relative;
-		}
+				body,
+				div,
+				dl,
+				dt,
+				dd,
+				ul,
+				ol,
+				li,
+				h1,
+				h2,
+				h3,
+				h4,
+				h5,
+				h6,
+				p {
+					margin: 0;
+					padding: 0;
+					font-family: "微软雅黑", "宋体", "黑体", Arial, simsun, Verdana, Lucida, Helvetica, sans-serif;
+					font-size: 14px;
+					font-style: normal;
+					font-weight: normal;
+					font-variant: normal;
+					list-style-type: none;
+				}
 
-		.zffs {
-			padding: 15px 0;
-		}
-	</style>
-</head>
+				.pay_top dl dd {
+					font-size: 24px;
+					font-weight: bold;
+					color: #ff3200;
+					line-height: 58px;
+				}
 
-<body>
-	<div style="position: relative;">
-		<div class="fw">
-			<div class="fw_top" style="text-align: center; background: #dcdcdc; font-size: 25px; line-height: 64px;">
-				厂家购车款结账
-			</div>
-			<div class="pay_top">
-				<table width="1000" border="0" align="center" cellpadding="0" cellspacing="0">
-					<tbody>
-						<tr>
-							<td width="200" height="58">
-								车辆：
-								
-								<span style="padding-top: 2px;"  id="carNo" name="carNo"></span>
-							</td>
-							<td align="center">
-								往来单位：
-								
-									<span style="padding-top: 2px;" id="guest" name="guest"></span>
-								
-								
-								<span name="mobile" id="mobile"></span>
-							</td>
-							<td align="center" style="padding-left: 10px;">
-								挂账：
-								<span style="color: #ff7800;" id="creditEl">0.00元</span>
-							</td>
-							<td width="320" valign="top" style="position: relative;">
-								<dl>
-									<dt>待付金额：</dt>
-									<dd totalmoney="0" totalpaid="0" id="totalAmt" name="totalAmt"></dd>
-								</dl>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="pay_list">
-				
+				.pay_top dl dt {
+					font-size: 16px;
+					margin: 21px 5px 0 0;
+				}
 
-			</div>
+				.fw {
+					margin-top: 10px;
+					margin-left: 15px;
+				}
+
+				.pay_top dl dt,
+				.pay_top dl dd {
+					float: left;
+				}
+
+				.pay_jshj_list {
+					padding: 16px 14px;
+					height: auto;
+					overflow: hidden;
+					border-bottom: 1px #dcdcdc solid;
+				}
+
+				.pay_list {
+					width: 1000px;
+					height: auto;
+					overflow: hidden;
+					margin: 0 auto;
+					margin-top: 30px;
+				}
+
+				.pay_js_left a.xz {
+					border: 2px #01b49e solid;
+					background: #fff url(manage/settlement/images/pay_xztb.png) right 13px no-repeat;
+					color: #01b49e;
+				}
+
+				.pay_js_right {
+					margin-left: 160px;
+					height: auto;
+					overflow: hidden;
+				}
+
+				.pay_js_left {
+					width: 160px;
+					float: left;
+				}
+
+				a.btn {
+					background: #28bef0;
+					text-decoration: none;
+					display: inline-block;
+					height: 38px;
+					line-height: 38px;
+					padding: 0 22px;
+					border-radius: 5px;
+					color: #fff;
+					font-size: 15px;
+				}
+
+				.pay_js_left a {
+					width: 102px;
+					height: 32px;
+					border: 2px #dcdcdc solid;
+					padding-left: 14px;
+					background: #f8f8f8;
+					color: #b4b4b4;
+					display: block;
+					font-size: 15px;
+					line-height: 32px;
+					text-decoration: none;
+					border-radius: 5px;
+				}
+
+				.pay_top {
+					background: #f9fafb;
+					border-bottom: 1px #dde0e6 solid;
+					height: 58px;
+				}
+
+
+
+				.zffs td {
+					font-size: 16px;
+				}
+
+				a.depj {
+					display: block;
+					width: 14px;
+					height: 15px;
+					background: url(manage/settlement/images/delete.gif) 0 2px no-repeat;
+					float: left;
+					margin-right: 8px;
+				}
+
+				select {
+					appearance: none;
+					-moz-appearance: none;
+					-webkit-appearance: none;
+					background: #fff url(manage/settlement/images/ssxljt.png) right center no-repeat;
+					border: 1px #dcdcdc solid;
+					border-radius: 3px;
+					height: 30px;
+					font-family: "微软雅黑";
+					text-indent: 5px;
+				}
+
+				.pay_tcbk_list ul li a font {
+					background: url(manage/settlement/images/yw_bg2.png) 0 -154px no-repeat;
+					line-height: 33px;
+					padding-left: 28px;
+					width: 120px;
+					margin: 0 auto;
+					display: block;
+				}
+
+				.pay_tcbk_list ul li a {
+					width: 180px;
+					height: 33px;
+					display: block;
+					background: #75b7ea;
+					border-radius: 3px;
+					color: #fff;
+					text-decoration: none;
+				}
+
+				.jiesuan2 {
+					margin-right: 100px;
+					height: 80px;
+					background: #dce1e5;
+					position: relative;
+				}
+
+				.zffs {
+					padding: 15px 0;
+				}
+			</style>
+		</head>
+
+		<body>
+			<div style="position: relative;">
+				<div class="fw">
+					<div class="fw_top" style="text-align: center; background: #dcdcdc; font-size: 25px; line-height: 64px;">
+						厂家购车款结账
+					</div>
+					<div class="pay_top">
+						<table width="1000" border="0" align="center" cellpadding="0" cellspacing="0">
+							<tbody>
+								<tr>
+									<td width="200" height="58">
+										车辆：
+
+										<span style="padding-top: 2px;" id="carNo" name="carNo"></span>
+									</td>
+									<td align="center">
+										往来单位：
+
+										<span style="padding-top: 2px;" id="guest" name="guest"></span>
+
+
+										<span name="mobile" id="mobile"></span>
+									</td>
+									<td align="center" style="padding-left: 10px;">
+										挂账：
+										<span style="color: #ff7800;" id="creditEl">0.00元</span>
+									</td>
+									<td width="320" valign="top" style="position: relative;">
+										<dl>
+											<dt>待付金额：</dt>
+											<dd totalmoney="0" totalpaid="0" id="totalAmt" name="totalAmt"></dd>
+										</dl>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 					<div class="pay_list">
-						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">本单预付款抵扣</span></h2>
+
+
+					</div>
+					<div class="pay_list">
+						<h2>
+							<span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">本单预付款抵扣</span>
+						</h2>
 						<div class="pay_tcbk zffs" id="csdiv" style="background: #f8f8f8;">
 							<div class="guazhangbz">
-							<div class="pay_js_left">
-								<a href="javascript:;" class="xz">预付款抵扣</a>
-							</div>
-							<div class="pay_js_right">
-								<table width="100%" border="0" cellspacing="0" cellpadding="0">
-									<tbody>
-										<tr>
-											<td width="15%">
-												<span>单据编号：</span>
+								<div class="pay_js_left">
+									<a href="javascript:;" class="xz">预付款抵扣</a>
+								</div>
+								<div class="pay_js_right">
+									<table width="100%" border="0" cellspacing="0" cellpadding="0">
+										<tbody>
+											<tr>
+												<td width="15%">
+													<span>单据编号：</span>
 
-											</td>
-											<td height="40" class="line24">
-												<input class="nui-textbox" id="code" name="code" enabled="false"  style="width: 200px; float: left;">
-											</td>
-										</tr>
-										<tr>
-											<td width="15%">
-												<span>抵扣金额：</span>
+												</td>
+												<td height="40" class="line24">
+													<input class="nui-textbox" id="code" name="code" enabled="false" style="width: 200px; float: left;">
+												</td>
+											</tr>
+											<tr>
+												<td width="15%">
+													<span>抵扣金额：</span>
 
-											</td>
-											<td height="40" class="line24">
-												<input class="nui-textbox" id="balaAmt" name="balaAmt" enabled="false"  style="width: 100px; float: left;">
-											</td>
-										</tr>
-									</tbody>
-								</table>
+												</td>
+												<td height="40" class="line24">
+													<input class="nui-textbox" id="balaAmt" name="balaAmt" enabled="false" style="width: 100px; float: left;">
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
 							</div>
+						</div>
 					</div>
-				</div>
-			</div>
-			<div class="pay_list">
-				<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">预付款抵扣</span></h2>
-				<div class="pay_tcbk zffs" id="csdiv" style="background: #f8f8f8;">
-          <div class="nui-fit">
-                <div id="qRightGrid" class="nui-datagrid" style="height:200px;"
-                     showPager="false"
-                      allowCellEdit="true"
-                     dataField="detailList"
-                     idField="detailId"
-                     ondrawcell="onDrawCell"
-                     oncellclick="onPGridbeforeselect" 
-                     sortMode="client"
-                     url=""
-                     multiSelect="true"
-                     onshowrowdetail="onShowRowDetail"
-                     showSummaryRow="false">
-                    <div property="columns">
-                        <div type="indexcolumn">序号</div>
-                        <div type="checkcolumn" width="20"></div>
-                        <div field="guestName" width="150" headerAlign="center" header="来往单位"></div>
-                        <div field="remark" width="120" headerAlign="center" header="业务备注"></div>
-                        <div field="amt" width="60" headerAlign="center" header="金额"></div>
-                        <div field="deductionAmt" width="60" headerAlign="center" header="已抵扣金额"></div>
-                        <div field="balaAmt" width="60" headerAlign="center" header="剩余金额">
-                        	<input property="editor" class="nui-textbox" />
-                        </div>
-                         <div field="nowAmt" width="60" headerAlign="center" header="抵扣金额">
-                        	<input property="editor" class="nui-textbox" />
-                        </div>
-                    </div>
-                </div>
-          </div>
-				</div>
-			</div>
+					<div class="pay_list">
+						<h2>
+							<span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">预付款抵扣</span>
+						</h2>
+						<div class="pay_tcbk zffs" id="csdiv" style="background: #f8f8f8;">
+							<div class="nui-fit">
+								<div id="qRightGrid" class="nui-datagrid" style="height:200px;" showPager="false" allowCellEdit="true" dataField="detailList"
+								 idField="detailId" ondrawcell="onDrawCell" oncellclick="onPGridbeforeselect" sortMode="client" url="" multiSelect="true"
+								 onshowrowdetail="onShowRowDetail" showSummaryRow="false">
+									<div property="columns">
+										<div type="indexcolumn">序号</div>
+										<div type="checkcolumn" width="20"></div>
+										<div field="guestName" width="150" headerAlign="center" header="来往单位"></div>
+										<div field="remark" width="120" headerAlign="center" header="业务备注"></div>
+										<div field="amt" width="60" headerAlign="center" header="金额"></div>
+										<div field="deductionAmt" width="60" headerAlign="center" header="已抵扣金额"></div>
+										<div field="balaAmt" width="60" headerAlign="center" header="剩余金额">
+											<input property="editor" class="nui-textbox" />
+										</div>
+										<div field="nowAmt" width="60" headerAlign="center" header="抵扣金额">
+											<input property="editor" class="nui-textbox" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
 					<div class="pay_list">
-						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">付款方式</span></h2>
+						<h2>
+							<span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">付款方式</span>
+						</h2>
 						<div class="pay_tcbk zffs" style="padding: 0 0 18px 0;">
 							<div id="dataform">
 								<div class="skbox2" id="div0" name="div0">
@@ -400,7 +397,7 @@
 						</div>
 					</div>
 
-						
+
 
 					<div class="pay_list">
 						<div class="pay_tcbk zffs" id="csdiv" style="background: #f8f8f8;">
@@ -412,7 +409,7 @@
 											<input class="mini-datepicker">
 										</td> -->
 										<td width="120" align="center">付款备注</td>
-										<td >
+										<td>
 											<input class="nui-textbox" id="txtreceiptcomment" name="txtreceiptcomment">
 										</td>
 									</tr>
@@ -422,43 +419,43 @@
 					</div>
 				</div>
 			</div>
-			
-		</div>
-		<div style="height: 10%;">
 
-		</div>
-	</div>
-	<div style="background-color: #cfddee;position:fixed; top:90%;width:100%;height: 10%; z-index:900;">
-		<div style="float:left;height:100%;width:100%;">
-			<table id="statustable" style="width:100%;height:100%;font-size:16px;color:#5a78a0;padding-left:20px;">
-				<tr>
-					<td >
-						<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-					</td>
-					<td >
-						<label style="font-family:Verdana;">应付金额：</label>
-						<span id="totalAmt1" name="totalAmt1" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
-					</td>
-					<td >
-					</td>
-					<td >
-						<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-					</td>
-					<td >
-						<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-					</td>
-					<td >
-						<input type="checkbox" id="settlesendwx" >微信通知客户
-					</td>
-					<td >
-						<input type="checkbox" id="settlesenddx">短信通知客户
-					</td>
-					<td >
-						<label style="font-family:Verdana;">实付金额：</label>
-						<span id="amount" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
-					</td>
-					<td >
-						<a id="wxbtnsettle" style="    width: 120px;
+			</div>
+			<div style="height: 10%;">
+
+			</div>
+			</div>
+			<div style="background-color: #cfddee;position:fixed; top:90%;width:100%;height: 10%; z-index:900;">
+				<div style="float:left;height:100%;width:100%;">
+					<table id="statustable" style="width:100%;height:100%;font-size:16px;color:#5a78a0;padding-left:20px;">
+						<tr>
+							<td>
+								<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+							</td>
+							<td>
+								<label style="font-family:Verdana;">应付金额：</label>
+								<span id="totalAmt1" name="totalAmt1" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
+							</td>
+							<td>
+							</td>
+							<td>
+								<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+							</td>
+							<td>
+								<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+							</td>
+							<td>
+								<input type="checkbox" id="settlesendwx">微信通知客户
+							</td>
+							<td>
+								<input type="checkbox" id="settlesenddx">短信通知客户
+							</td>
+							<td>
+								<label style="font-family:Verdana;">实付金额：</label>
+								<span id="amount" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
+							</td>
+							<td>
+								<a id="wxbtnsettle" style="    width: 120px;
 							height: 40px;
 							font-size: 18px;
 							background: #2ac476;
@@ -467,11 +464,10 @@
 							display: block;
 							border-radius: 5px;
 							line-height: 2;
-							text-decoration: none;" 
-							href="javascript:void(0)" onclick="noPay()">转预结算</a>
-					</td>
-					<td >
-						<a id="btnsettle" style="    width: 120px;
+							text-decoration: none;" href="javascript:void(0)" onclick="noPay()">转预结算</a>
+							</td>
+							<td>
+								<a id="btnsettle" style="    width: 120px;
 							height: 40px;
 							font-size: 18px;
 							background: #578ccd;
@@ -480,14 +476,13 @@
 							display: block;
 							border-radius: 5px;
 							text-decoration: none;
-							line-height: 2;" 
-							href="javascript:void(0)" onclick="settleOK()">结算</a>
-					</td>
-				</tr>
-			</table>
-		</div>
-			
-		<!-- <div style="float: left;height: 100%;">
+							line-height: 2;" href="javascript:void(0)" onclick="settleOK()">结算</a>
+							</td>
+						</tr>
+					</table>
+				</div>
+
+				<!-- <div style="float: left;height: 100%;">
 			<table id="statustable" style="width:100%;height:100%;font-size:16px;color:#5a78a0;padding-left:20px;align-content: ">
 				<tr>
 					<td margin-left:10px width="20%">
@@ -544,11 +539,11 @@
 				</tr>
 			</table>
 		</div> -->
-	</div>
-	<script type="text/javascript">
+			</div>
+			<script type="text/javascript">
 
-	</script>
+			</script>
 
-</body>
+		</body>
 
-</html>
+		</html>

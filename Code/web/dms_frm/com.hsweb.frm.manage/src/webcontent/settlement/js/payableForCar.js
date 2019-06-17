@@ -78,7 +78,8 @@ function setData(data){
     			params:{
     				codeId : data[0].billMainId,
     				guestId : data[0].guestId,
-    				billDc : -2
+    				billDc : -2,
+    				isSettle : 1
     			},
     			token : token
     		}
@@ -391,7 +392,7 @@ for(var i = 0;i<fisRpAdvanceSelect.length;i++){
 							type : "post",
 							data : JSON.stringify({
 								account : account,
-								fisRpAdvance : fisRpAdvance,
+								fisRpAdvance : fisRpAdvanceSelect,
 								accountDetailList : accountDetailList,
 								accountTypeList : accountTypeList,
 								token : token

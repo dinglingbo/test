@@ -94,7 +94,8 @@
             <isNotEmpty prepend="and" property="zzscoutStatus">
                 (c.scout_status = #zzscoutStatus#)
             </isNotEmpty>
-        </dynamic>  
+        </dynamic> 
+         ORDER BY a.modify_date DESC 
 	</select>
 	
 	 <select id="queryGuestList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">

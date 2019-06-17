@@ -10,7 +10,7 @@
 -->
 <head>
 <title>参数设置</title>
-    <script src="<%=webPath + contextPath%>/basic/js/paramMgr.js?v=1.0.12"></script>
+    <script src="<%=webPath + contextPath%>/basic/js/paramMgr.js?v=1.0.14"></script>
     
     <style type="text/css">
 
@@ -78,7 +78,26 @@
                 <td class="tbCtrl" >
                     <input id="cloudSellOrderPrintContent" name="cloudSellOrderPrintContent" class="nui-textarea"   style="height:100px;width:300px">
                 </td>
-            </tr>    
+            </tr> 
+            
+            <tr>
+                <td class="tbtext">打印单表格是否换行：</td>
+                <td class="tbCtrl" >
+                   <div id="isNeedNewLine" name="isNeedNewLine" 
+                        class="nui-radiobuttonlist" value="" repeatItems="2" 
+                        repeatDirection="" repeatLayout="table" 
+                        textField="text" valueField="id" ></div>
+                </td>
+            </tr>              
+            <tr>
+                <td class="tbtext">是否启用信誉额度管理：</td>
+                <td class="tbCtrl" >
+                   <div id="isOpenCredit" name="isOpenCredit" 
+                        class="nui-radiobuttonlist" value="" repeatItems="2" 
+                        repeatDirection="" repeatLayout="table" 
+                        textField="text" valueField="id" ></div>
+                </td>
+            </tr>   
               
         </table>
     </div>

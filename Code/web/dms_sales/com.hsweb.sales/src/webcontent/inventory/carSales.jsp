@@ -124,18 +124,18 @@
         <div property="columns">
             <div type="indexcolumn" width="40">序号</div>
             <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
-            		<div allowSort="true" field="status" name="payMode" width="90" headerAlign="center" header="状态"></div>
-                    <div field="serviceCode" name="serviceCode" allowSort="true"  width="165" summaryType="count" headerAlign="center" header="订单单号"></div>
+            		<div allowSort="true" field="status" name="payMode" width="70px" headerAlign="center" header="状态"></div>
+                    <div field="serviceCode" name="serviceCode" allowSort="true"  width="165px" summaryType="count" headerAlign="center" header="订单单号"></div>
                     <div field="guestFullName" name="guestFullName" width="220" headerAlign="center" header="供应商"></div>                    
-                    <div allowSort="true" field="billTypeId"  name="billTypeId" width="90" headerAlign="center" header="票据类型"></div>
-                    <div allowSort="true" field="payMode" name="payMode" width="90" headerAlign="center" header="结算方式"></div>
-                    <div allowSort="true" field="isFinancial" name="isFinancial" width="90" headerAlign="center" header="是否提交"></div>                 
-                    <div field="orderTotalAmt" allowSort="true" datatype="float" summaryType="sum"  width="60" headerAlign="center" header="订单金额"></div>                                                                                                  
+                    <div allowSort="true" field="billTypeId"  name="billTypeId" width="70" headerAlign="center" header="票据类型"></div>
+                    <div allowSort="true" field="payMode" name="payMode" width="70" headerAlign="center" header="结算方式"></div>
+                    <div allowSort="true" field="isFinancial" name="isFinancial" width="60" headerAlign="center" header="是否提交"></div>                 
+                    <div field="orderTotalAmt" allowSort="true" datatype="float" summaryType="sum"  width="80" headerAlign="center" header="订单金额"></div>                                                                                                  
                     <div field="predictDeliveryDate" allowSort="true"  width="130" headerAlign="center" header="预计到货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-                    <div field="remark" allowSort="true"  width="80" headerAlign="center" header="备注"></div>
-                    <div field="recorder" width="90" name="creator" headerAlign="center" header="创建人"></div>
+                    <div field="remark" allowSort="true"  width="120" headerAlign="center" header="备注"></div>
+                    <div field="recorder" width="70" name="creator" headerAlign="center" header="创建人"></div>
                     <div field="recordDate" allowSort="true"  width="130" headerAlign="center" header="创建日期" dateFormat="yyyy-MM-dd HH:mm" ></div>  
-                    <div field="modifier" width="90" name="creator" headerAlign="center" header="修改人"></div>
+                    <div field="modifier" width="70" name="creator" headerAlign="center" header="修改人"></div>
                     <div field="modifyDate" allowSort="true"  width="130" headerAlign="center" header="修改日期" dateFormat="yyyy-MM-dd HH:mm" ></div>  
         </div>
     </div> 

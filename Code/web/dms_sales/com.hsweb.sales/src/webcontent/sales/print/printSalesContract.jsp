@@ -230,7 +230,7 @@
                                 <span id="interialColorId"></span>
                             </td>
                             <td height="50" valign="top" style="padding:  8px;" id="">
-                                <span id=""></span>
+                                <span id="vin"></span>
                             </td>
                             <td height="50" valign="top" style="padding:  8px;" id="">
                                 <span id=""></span>
@@ -344,6 +344,7 @@
                     document.getElementById("comp").innerHTML = currRepairSettorderPrintShow;
                     document.getElementById("currEmpTel").innerHTML = currEmpTel;
                     var url = baseUrl + 'sales.search.searchSalesMain.biz.ext?params/id=' + serviceId;
+                    var enterId = 0;
                     $.post(url, function(res) {
                         if (res.data.length > 0) {
                             var temp = res.data[0];
@@ -355,6 +356,7 @@
                             var carModelName = temp.carModelName || "";
                             var frameColorId = temp.frameColorId || "";
                             var interialColorId = temp.interialColorId || "";
+                            enterId = temp.enterId || 0;
                             document.getElementById("contractNo").innerHTML = contractNo;
                             document.getElementById("guestFullName").innerHTML = guestFullName;
                             if (submitPlanDate) {
@@ -395,6 +397,16 @@
                             }
                         }
                     });
+                    var url = baseUrl + "/sales.inventory.queryCheckEnter.biz.ext?params/id=" + enterId;
+                    if (enterId) {
+                        $.post(url, function(res) {
+                            if (res.data.length > 0) {
+                                var temp = res.cssCheckEnter[0];
+                                var vin = temp.vin || "";
+                                document.getElementById("vin").innerHTML = vin;
+                            }
+                        });
+                    }
                 }
 
                 function CloseWindow(action) {

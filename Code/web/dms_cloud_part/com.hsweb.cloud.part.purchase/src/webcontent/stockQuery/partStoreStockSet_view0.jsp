@@ -9,7 +9,7 @@
 -->
 <head>
 <title>安全库存设置</title>
-<script src="<%=webPath + contextPath%>/purchase/js/stockQuery/partStoreStockSet.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/stockQuery/partStoreStockSet.js?v=1.0.12"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -66,6 +66,18 @@
                            showNullItem="false"
                            nullItemText="请选择..."/>
                 <input id="storeShelf" width="120px" emptyText="仓位" class="nui-textbox"/>
+                <input id="upOrDown"
+                           name="upOrDown"
+                           class="nui-combobox width1"
+                           textField="name"
+                           valueField="id"
+                           emptyText="库存上下限"
+                           url=""
+                           data="UpOrDownList"
+                           valueFromSelect="true"
+                           allowInput="true"
+                           showNullItem="true"
+                           nullItemText="请选择..."/>
                 <input id="partId" width="80px" visible="false" emptyText="配件ID" class="nui-textbox"/>
                 <span class="separator"></span>
                 <label style="font-family:Verdana;">显示零库存：</label>
@@ -112,14 +124,17 @@
             <div header="数量" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="65" headerAlign="center" header="库存数量"></div>
-                    <div allowSort="true" field="upLimit" width="65" headerAlign="center" header="库存上限" numberFormat="0.00"><input property="editor" vtype="float" class="nui-textbox"/></div>
-                    <div allowSort="true" field="downLimit" width="65" headerAlign="center" header="库存下限" numberFormat="0.00"><input property="editor" vtype="float" class="nui-textbox"/></div>
+                    <div allowSort="true" field="upLimit" width="95" headerAlign="center" header="库存上限(夏季)" numberFormat="0.00"><input property="editor" vtype="float" class="nui-textbox"/></div>
+                    <div allowSort="true" field="downLimit" width="95" headerAlign="center" header="库存下限(夏季)" numberFormat="0.00"><input property="editor" vtype="float" class="nui-textbox"/></div>
+                    <div allowSort="true" field="upLimitWinter" width="95" headerAlign="center" header="库存上限(冬季)" numberFormat="0.00"><input property="editor" vtype="float" class="nui-textbox"/></div>
+                    <div allowSort="true" field="downLimitWinter" width="95" headerAlign="center" header="库存下限(冬季)" numberFormat="0.00"><input property="editor" vtype="float" class="nui-textbox"/></div>
                     <div allowSort="true" field="minOrderQty" width="75" headerAlign="center" header="最小起订量" numberFormat="0.00"><input property="editor" vtype="float" class="nui-textbox"/></div>
                     <div allowSort="true" field="minPackQty" width="75" headerAlign="center" header="最小包装量" numberFormat="0.00"><input property="editor" vtype="float" class="nui-textbox"/></div>
                 </div>
             </div>
             <div header="其他" headerAlign="center">
                 <div property="columns">
+                	<div allowSort="true" field="wain" width="40" headerAlign="center" header="警戒"></div>
                     <div allowSort="true" datatype="float" field="enterQty" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div>
                     <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
                     <div allowSort="true" datatype="float" field="onRoadQty" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>

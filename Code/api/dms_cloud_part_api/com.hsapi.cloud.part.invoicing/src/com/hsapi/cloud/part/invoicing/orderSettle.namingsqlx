@@ -44,7 +44,8 @@
 	
 	<update id="updatePchsMainFinish" parameterClass="java.util.HashMap" >
 		UPDATE pj_pchs_order_main_chk
-		SET	 is_finished = #isFinished#
+		SET	 is_finished = #isFinished#,
+		  bill_status_id = #billStatusId#
 		 WHERE 	id = #id#					
 	</update>
 	

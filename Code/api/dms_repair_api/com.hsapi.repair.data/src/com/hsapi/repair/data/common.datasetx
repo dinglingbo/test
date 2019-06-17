@@ -30167,7 +30167,7 @@
       </viewField>
     </columnProperty>
   </nodes>
-  <nodes xsi:type="model:PEntityNode" id="node0" name="ComGuest" nodeType="table" displayName="ComGuest" author="Administrator" allUseViewModel="true" instanceClass="" table="com_guest" genStrategy="native">
+  <nodes xsi:type="model:PEntityNode" id="node0" name="ComGuest" nodeType="table" displayName="ComGuest" author="Administrator" allUseViewModel="true" instanceClass="" table="com_guest" genStrategy="assigned">
     <location x="60" y="10716"/>
     <size height="1218" width="150"/>
     <figSize height="20" width="150"/>

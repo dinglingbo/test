@@ -188,21 +188,21 @@
 			       0 as techDeductValue, 0 as advisorDeductValue
 			from rps_package a
 			WHERE
-				service_id = #serviceId# 
+				service_id = #serviceId# and ifnull(sale_man,'') != ''
 			group by sale_man_id, sale_man
 				union all
 			SELECT sale_man_id as workerId, ifnull(sale_man,'') as worker , sum(IFNULL(sales_deduct_value,0)) as salesDeductValue, 
 			       0 as techDeductValue, 0 as advisorDeductValue
 			from rps_item
 			WHERE
-				service_id = #serviceId# 
+				service_id = #serviceId# and ifnull(sale_man,'') != ''
 			group by sale_man_id, sale_man
 				union all		
 			SELECT sale_man_id as workerId, ifnull(sale_man,'') as worker , sum(IFNULL(sales_deduct_value,0)) as salesDeductValue, 
 			       0 as techDeductValue, 0 as advisorDeductValue
 			from rps_part
 			WHERE
-				service_id = #serviceId# and ifnull(is_disabled,0) = 0
+				service_id = #serviceId# and ifnull(is_disabled,0) = 0 and ifnull(sale_man,'') != ''
 			group by sale_man_id, sale_man
 				union all
 			select #mtAdvisorId#  as workerId, #mtAdvisor#  as worker, 0 as salesDeductValue, 
@@ -221,7 +221,7 @@
 			       sum(IFNULL(deduct_value,deduct_value)) as techDeductValue, 0 as advisorDeductValue
 			from rps_item_workers 
 			WHERE
-				service_id = #serviceId# 
+				service_id = #serviceId# and ifnull(worker,'') != ''
 			group by worker_id, worker
 			) d 
 		GROUP BY

@@ -161,6 +161,11 @@ function getSearchParam(){
     params.endDate = searchEndDate.getFormValue();
     params.startDate = searchBeginDate.getFormValue();
     params.billStatusId = billStatusIdEl.getValue();
+    //待收货
+    if(params.billStatusId==2){
+    	params.billStatusId =null;
+    	params.billStatusIdList ='2,3';
+    }
     return params;
 }
 function onSearch(){

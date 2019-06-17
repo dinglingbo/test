@@ -18,70 +18,72 @@
 <body>
     <div class="nui-toolbar" >
      
-                    <label style="font-family:Verdana;">快速查询：</label>
-                    <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本月</a>
+        <label style="font-family:Verdana;">快速查询：</label>
+        <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本月</a>
 
-                    <ul id="popupMenuDate" class="nui-menu" style="display:none;">
-                        <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
-                        <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
-                        <li class="separator"></li>
-                        <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
-                        <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
-                        <li class="separator"></li>
-                        <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
-                        <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
-                        <li class="separator"></li>
-                        <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
-                        <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
-                    </ul>
-                    <!-- <a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">所有</a>
-                    <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
-                        <li iconCls="" onclick="quickSearch(12)" id="type">所有</li>
-                        <li iconCls="" onclick="quickSearch(13)" id="type12">草稿</li>
-                        <li iconCls="" onclick="quickSearch(14)" id="type12">待审</li>
-                        <li iconCls="" onclick="quickSearch(15)" id="type12">已审</li>
-                        <li iconCls="" onclick="quickSearch(16)" id="type12">作废</li>
-                    </ul> -->
-                    <input class="nui-combobox" id="searchType" width="100" textField="name" valueField="id" value="0"
-                        data="statusList" allowInput="false" />
-                    <input class="nui-textbox" id="textValue" emptyText="输入查询条件" width="120"
-                        onenter="onenterSearch(this.value)" />
-                    <!-- <input id="serviceId" width="120px" emptyText="订单单号" class="nui-textbox" />
+        <ul id="popupMenuDate" class="nui-menu" style="display:none;">
+            <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
+            <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
+            <li class="separator"></li>
+            <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
+            <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
+            <li class="separator"></li>
+            <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
+            <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
+            <li class="separator"></li>
+            <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
+            <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
+        </ul>
+        <!-- <a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">所有</a>
+        <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
+            <li iconCls="" onclick="quickSearch(12)" id="type">所有</li>
+            <li iconCls="" onclick="quickSearch(13)" id="type12">草稿</li>
+            <li iconCls="" onclick="quickSearch(14)" id="type12">待审</li>
+            <li iconCls="" onclick="quickSearch(15)" id="type12">已审</li>
+            <li iconCls="" onclick="quickSearch(16)" id="type12">作废</li>
+        </ul> -->
+        <input class="nui-combobox" id="searchType" width="100" textField="name" valueField="id" value="0"
+            data="statusList" allowInput="false" />
+        <input class="nui-textbox" id="textValue" emptyText="输入查询条件" width="120"
+            onenter="onenterSearch(this.value)" />
+        <!-- <input id="serviceId" width="120px" emptyText="订单单号" class="nui-textbox" />
 
-                        <input id="" name="" width="80px" emptyText="车型名称" class="nui-textbox" /> -->
+            <input id="" name="" width="80px" emptyText="车型名称" class="nui-textbox" /> -->
 
-                    <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span
-                            class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                            <li class="separator"></li>
-                    <a class="nui-button" iconCls="" plain="true" onclick="selectCar()" id="selectBtn"><span
-                            class="fa fa-check fa-lg"></span>&nbsp;选车</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="close()" id="closeBtn"><span
-                            class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+        <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span
+                class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                <li class="separator"></li>
+        <a class="nui-button" iconCls="" plain="true" onclick="selectCar()" id="selectBtn"><span
+                class="fa fa-check fa-lg"></span>&nbsp;选车</a>
+        <a class="nui-button" iconCls="" plain="true" onclick="close()" id="closeBtn"><span
+                class="fa fa-close fa-lg"></span>&nbsp;取消</a>
 
     </div>
+    <div class="nui-fit">
     <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" showPager="true" dataField="data"
-        sortMode="client" url="" totalField="page.count" pageSize="10000" sizeList="[20,50,100]"
+        sortMode="client" url="" totalField="page.count" pageSize="20" sizeList="[20,50,100]"
         selectOnLoad="false" allowCellWrap=true showSummaryRow="true" showModified="false" >
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div field="serviceCode" name="serviceCode" width="100px" headerAlign="center" header="工单号"></div>
+            <div field="serviceCode" name="serviceCode" width="120px" headerAlign="center" header="工单号"></div>
             <div field="status" name="status" width="50px" headerAlign="center" header="状态"></div>
             <div field="guestFullName" name="guestFullName" width="100px" headerAlign="center" header="客户名称"></div>
             <div field="orderDate" name="orderDate" width="100px" headerAlign="center" header="订车日期"></div>
             <div field="carModelName" name="carModelName" width="100px" headerAlign="center" header="车型名称"></div>
-            <div field="submiPlanDate" name="submiPlanDate" width="100px" headerAlign="center" header="预交车日期"></div>
+            <div field="submitPlanDate" name="submiPlanDate" width="100px" headerAlign="center" header="预交车日期" dateFormat="yyyy-MM-dd"></div>
             <div field="saleAdvisor" name="saleAdvisor" width="100px" headerAlign="center" header="销售顾问"></div>
-            <div field="saleAmt" name="saleAmt" width="100px" headerAlign="center" header="车辆销价"></div>
+            <!-- <div field="saleAmt" name="saleAmt" width="100px" headerAlign="center" header="车辆销价"></div>
             <div field="advanceChargeAmt" name="advanceChargeAmt" width="100px" headerAlign="center" header="应收定金">
             </div>
             <div field="receivedDeposit" name="receivedDeposit" width="100px" headerAlign="center" header="已收定金"></div>
-            <div field="calculateField" name="calculateField" width="100px" headerAlign="center" header="应收余款"></div>
+            <div field="calculateField" name="calculateField" width="100px" headerAlign="center" header="应收余款"></div> -->
         </div>
     </div>
+</div>
     <script type="text/javascript">
         var statusList = [{ id: "0", name: "订单单号" }, { id: "1", name: "客户名称" }];
         nui.parse();
-        var mainGridUrl = apiPath + saleApi + "/sales.search.searchSalesMain.biz.ext";
+        var mainGridUrl = apiPath + saleApi + "/sales.search.searchSalesMainSelect.biz.ext";
         var param = {};
         var mainGrid = nui.get("mainGrid");
         mainGrid.setUrl(mainGridUrl);
@@ -115,11 +117,11 @@
                     e.cellHtml = format(value, 'yyyy-MM-dd');
                 }
             }
-            if (field == "status") {
-                var value1 = value == 0 ? "草稿" : (value == 1 ? "待审" : (value == 2 ? "已审" : (value == 3 ? "作废" :
-                    "")));
-                e.cellHtml = value1;
-            }
+            // if (field == "status") {
+            //     var value1 = value == 0 ? "草稿" : (value == 1 ? "待审" : (value == 2 ? "已审" : (value == 3 ? "作废" :
+            //         "")));
+            //     e.cellHtml = value1;
+            // }
         });
 
         function getRow() {

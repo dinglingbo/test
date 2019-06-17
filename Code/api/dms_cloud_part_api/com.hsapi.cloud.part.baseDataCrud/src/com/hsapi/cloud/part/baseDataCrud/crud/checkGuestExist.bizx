@@ -51,28 +51,20 @@
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">cond/_or[1]/_expr[1]/orgid</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">cond/_or[1]/_expr[1]/_op</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">cond/_or[1]/_expr[2]/orgid</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">cond/_or[1]/_expr[2]/_op</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">fullName</process:from>
-      <process:to type="query">cond/_expr[1]/fullName</process:to>
+      <process:to type="query">cond/_expr[1]/orgid</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">fullName</process:from>
+      <process:to type="query">cond/_expr[2]/fullName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[2]/_op</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>

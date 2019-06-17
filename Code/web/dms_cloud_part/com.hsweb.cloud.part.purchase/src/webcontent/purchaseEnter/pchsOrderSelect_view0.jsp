@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购订单选择</title>
-<script src="<%=webPath + contextPath%>/purchase/js/purchaseEnter/pchsOrderSelect.js?v=2.5.4"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/purchaseEnter/pchsOrderSelect.js?v=2.5.5"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -193,7 +193,10 @@
             <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
             <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
             <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
-            <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="数量"></div>
+            <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="订单数量"></div>
+            <div allowSort="true" datatype="float" field="trueEnterQty" summaryType="sum" width="60" headerAlign="center" header="实际入库数量"></div>
+            <div allowSort="true" datatype="float" field="adjustQty" summaryType="sum" width="60" headerAlign="center" header="调整数量"></div>
+            <div allowSort="true" datatype="float" field="canInQty" summaryType="sum" width="60" headerAlign="center" header="可入库数量"></div>
             <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="单价"></div>
             <div allowSort="true" datatype="float" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="金额"></div>
             <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>

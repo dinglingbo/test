@@ -48,6 +48,22 @@
       <process:from type="literal" pattern="reference">true</process:from>
       <process:to type="query">page/isCount</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">ct/_expr[1]/recordDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/startDate</process:from>
+      <process:to type="query">ct/_expr[1]/_min</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/endDate</process:from>
+      <process:to type="query">ct/_expr[1]/_max</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">between</process:from>
+      <process:to type="query">ct/_expr[1]/_op</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="210" y="96"/>

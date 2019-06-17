@@ -5,6 +5,9 @@ package com.hs.common;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -104,7 +107,25 @@ public class QiNiuUtils {
 		return maintenance;
 
 	}
-	
+	@Bizlet("获取维保大数据Authorization")
+	public static Map getMaintenanceMap(String Url) {
+		Map retMap = new HashMap();
+		
+		String envType = Env.getContributionConfig("com.vplus.login",
+				"cfg", "MAINTENANCEAUTHORIZATION", "serverType");
+		String MAINTENANCEAUTHORIZATION = Env.getContributionConfig("com.vplus.login",
+				"cfg", "MAINTENANCEAUTHORIZATION", envType);
+		String secret_key = "zMyFfrIHQRzCZdy40ZOQD2wMLl9NUBhJ";//维保给车道的唯一值
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");//设置日期格式
+        String timestamp = df.format(new Date()).toString();// new Date()为获取当前系统时间，也可使用当前时间戳
+		System.out.println(timestamp);
+		String sign =  MD5(secret_key+timestamp);
+		String returnUrl = Url + "?timestamp="+timestamp+"&sign="+sign;
+		retMap.put("MAINTENANCEAUTHORIZATION", MAINTENANCEAUTHORIZATION);
+		retMap.put("returnUrl", returnUrl);
+		return retMap;
+
+	}
 	@Bizlet("获取图片上传路径")
 	public static String getCompanyLogoUrl() {
 		String envType = Env.getContributionConfig("com.vplus.login",
@@ -272,4 +293,31 @@ public class QiNiuUtils {
 		
 		}
 	 * */
+	public static String MD5(String key) {
+        char hexDigits[] = {
+                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'
+        };
+        try {
+            byte[] btInput = key.getBytes();
+            // 获得MD5摘要算法的 MessageDigest 对象
+            MessageDigest mdInst = MessageDigest.getInstance("MD5");
+            // 使用指定的字节更新摘要
+            mdInst.update(btInput);
+            // 获得密文
+            byte[] md = mdInst.digest();
+            // 把密文转换成十六进制的字符串形式
+            int j = md.length;
+            char str[] = new char[j * 2];
+            int k = 0;
+            for (int i = 0; i < j; i++) {
+                byte byte0 = md[i];
+                str[k++] = hexDigits[byte0 >>> 4 & 0xf];
+                str[k++] = hexDigits[byte0 & 0xf];
+            }
+            return new String(str);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+	
 }

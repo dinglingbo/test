@@ -380,7 +380,7 @@ function doSearch(params) {
 	switch (name) {
 	
 	case "rRightTab":
-		params.billDc = 1;
+		params.billDc = 2;
 		rRightGrid.load({
 			params : params,
 			token : token
@@ -962,10 +962,6 @@ function checkSettleRow() {
 					return "请选择相同结算单位的单据!";
 				}
 			}
-			//整车销售款单条结算
-			if(s>1&&row.billTypeId==254){
-				return "整车销售款只能单条结算!";
-			}
 		}
 
 		for (var i = 0; i < s; i++) {
@@ -1108,39 +1104,21 @@ function doSettle() {
 		}		
 		settleWin.show();
 		var guestName = rows[0].guestName;*/
-		if(rows[0].billTypeId==254){
-			nui.open({
-		        url: webPath + contextPath +"/com.hsweb.frm.manage.receivableForCar.flow?token="+token,
-		         width: "100%", height: "100%", 
-		        onload: function () {
-		            var iframe = this.getIFrameEl();
-		            iframe.contentWindow.setData(rows);
-		        },
-				ondestroy : function(action) {// 弹出页面关闭前
-					if (action == "saveSuccess") {
-						showMsg("结算成功!", "S");
-						rightGrid.reload();
-					}
+		nui.open({
+	        url: webPath + contextPath +"/com.hsweb.frm.manage.receivable.flow?token="+token,
+	         width: "100%", height: "100%", 
+	        onload: function () {
+	            var iframe = this.getIFrameEl();
+	            rows[0].typeUrl = 3;
+	            iframe.contentWindow.setData(rows);
+	        },
+			ondestroy : function(action) {// 弹出页面关闭前
+				if (action == "saveSuccess") {
+					showMsg("结算成功!", "S");
+					rightGrid.reload();
 				}
-		    });
-
-		}else{
-			nui.open({
-		        url: webPath + contextPath +"/com.hsweb.frm.manage.receivable.flow?token="+token,
-		         width: "100%", height: "100%", 
-		        onload: function () {
-		            var iframe = this.getIFrameEl();
-		            iframe.contentWindow.setData(rows);
-		        },
-				ondestroy : function(action) {// 弹出页面关闭前
-					if (action == "saveSuccess") {
-						showMsg("结算成功!", "S");
-						rightGrid.reload();
-					}
-				}
-		    });
-
-		}
+			}
+	    });
 
 
 	} else {
@@ -1739,7 +1717,7 @@ function openOrderDetail(){
 	}
 
 }
-var doAuditUrl = baseUrl+"com.hsapi.frm.frmService.rpsettle.rpAccountSettleAudit.biz.ext";
+var doAuditUrl = baseUrl+"com.hsapi.frm.frmService.rpsettle.advanceAudit.biz.ext";
 function doAudit(){
 	var rows = rRightGrid.getSelecteds();
 	for(var i =0;i<rows.length;i++){
@@ -1764,7 +1742,7 @@ function doAudit(){
 		type : "post",
 		data : JSON.stringify({
 
-			accountDetailList : rows
+			rpBill : rows
 		}),
 		success : function(data) {
 			nui.unmask(document.body);

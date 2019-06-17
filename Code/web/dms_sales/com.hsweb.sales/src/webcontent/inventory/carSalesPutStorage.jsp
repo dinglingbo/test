@@ -161,7 +161,7 @@
                     <div field="billStatus" name="billStatus" width="60" headerAlign="center" header="单据状态"></div>         
                     <div field="serviceCode" name="serviceCode" allowSort="true"  width="165" summaryType="count" headerAlign="center" header="订单单号"></div>
                     <div field="guestFullName" name="guestFullName" width="220" headerAlign="center" header="供应商"></div>    
-                    <div field="carModelName" name="carModelName" width="150" headerAlign="center" header="车型名称"></div> 
+                    <div field="carModelName" name="carModelName" width="200" headerAlign="center" header="车型名称"></div> 
                     <div field="vin" name="vin" width="150" headerAlign="center" header="车架号"></div> 
 <!--                     <div field="engineNo" name="engineNo" width="150" headerAlign="center" header="发动机号"></div>  -->
                     <div field="kilometers" name="kilometers" width="70" headerAlign="center" header="公里数"></div> 

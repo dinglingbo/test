@@ -10,8 +10,8 @@
 -->
 
 		<head>
-			<title>应付结算</title>
-			<script src="<%=webPath + contextPath%>/manage/settlement/js/payableForCar.js?v=1.1.1"></script>
+			<title>预付结算</title>
+			<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableForCar.js?v=1.0.4"></script>
 			<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 			<style>
 				html {
@@ -234,6 +234,153 @@
 				.zffs {
 					padding: 15px 0;
 				}
+
+				/*优惠券*/
+
+				.quan-item {
+					width: 30%;
+					position: relative;
+					margin-bottom: 20px;
+					height: auto;
+					overflow: hidden;
+					border: 1px solid #f1f1f1;
+					background: #fff;
+					font-family: "Microsoft YaHei";
+					float: left;
+					margin-left: 20px;
+					border: 2px solid #fff;
+				}
+
+				.quan-item1 {
+					width: 30%;
+					position: relative;
+					margin-bottom: 20px;
+					height: auto;
+					overflow: hidden;
+					border: 1px solid #f1f1f1;
+					background: #fff;
+					font-family: "Microsoft YaHei";
+					float: left;
+					margin-left: 20px;
+					border: 2px solid #ff9000;
+					/*  box-shadow: darkgrey 0px 0px 30p */
+				}
+
+				.q-type {
+					float: right;
+					width: 70%;
+					padding: 5px 0;
+				}
+
+				.q-price,
+				.typ-txt {
+					display: inline-block;
+					display: block;
+					color: #ff9000;
+					font-size: 13px;
+				}
+
+				.quan-d-item .q-price {
+					color: #ff9000;
+					height: auto;
+					overflow: hidden;
+					padding: 5px 0;
+				}
+
+				.q-price em {
+					margin: 5px 0 0;
+					font-family: verdana;
+					font-size: 24px;
+					font-style: normal;
+
+				}
+
+				.q-price strong {
+					margin: 0 10px 0 5px;
+					font-size: 2rem;
+					font-family: arial;
+					_display: inline;
+				}
+
+				.q-price .txt {
+					line-height: 22px;
+					font-size: 1rem;
+				}
+
+
+				.q-range {
+					color: #999;
+				}
+
+				.q-price {
+					display: -webkit-flex;
+					display: flex;
+					-webkit-align-items: center;
+					align-items: center;
+					-webkit-justify-content: center;
+					justify-content: center;
+				}
+
+				.q-price div.titles {
+					flex: 1;
+				}
+
+				.quan-d-item .q-opbtns {
+					background: #ff9000;
+
+				}
+
+				.q-opbtns {
+					position: absolute;
+					top: 0;
+					bottom: 0;
+					float: left;
+					width: 25%;
+					/* -webkit-writing-mode: vertical-lr; */
+					line-height: 25px;
+					background: #ff9000;
+					color: #fff;
+					font-size: 1.2rem;
+					/* padding: 0 15px; */
+					/*  height: 100%; */
+					display: -webkit-flex;
+					display: flex;
+					-webkit-align-items: center;
+					align-items: center;
+					-webkit-justify-content: center;
+					justify-content: center;
+					text-align: center;
+
+
+				}
+
+				.q-opbtns::after {
+					box-sizing: border-box;
+					position: absolute;
+					top: -3px;
+					right: -3px;
+					bottom: 0;
+					content: "• • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • •";
+					line-height: 10px;
+					width: 7px;
+					color: #fff;
+					font-size: 18px;
+					overflow: hidden;
+					z-index: 1;
+				}
+
+				.useText {
+					background: #3087F7;
+					text-decoration: none;
+					display: inline-block;
+					width: 40px;
+					height: 25px;
+					border-radius: 5px;
+					font-size: 12px;
+					text-align: center;
+					color: #fff;
+					line-height: 24px
+				}
 			</style>
 		</head>
 
@@ -241,7 +388,7 @@
 			<div style="position: relative;">
 				<div class="fw">
 					<div class="fw_top" style="text-align: center; background: #dcdcdc; font-size: 25px; line-height: 64px;">
-						厂家购车款结账
+						整车销售收款结账
 					</div>
 					<div class="pay_top">
 						<table width="1000" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -250,14 +397,14 @@
 									<td width="200" height="58">
 										车辆：
 
-										<span style="padding-top: 2px;" id="carNo" name="carNo"></span>
+										<span style="padding-top: 2px;" id="carNo" name="carNo">></span>
 									</td>
 									<td align="center">
-										往来单位：
+										客户：
 
 										<span style="padding-top: 2px;" id="guest" name="guest"></span>
 
-
+										&nbsp;&nbsp;
 										<span name="mobile" id="mobile"></span>
 									</td>
 									<td align="center" style="padding-left: 10px;">
@@ -266,17 +413,13 @@
 									</td>
 									<td width="320" valign="top" style="position: relative;">
 										<dl>
-											<dt>待付金额：</dt>
+											<dt>待收金额：</dt>
 											<dd totalmoney="0" totalpaid="0" id="totalAmt" name="totalAmt"></dd>
 										</dl>
 									</td>
 								</tr>
 							</tbody>
 						</table>
-					</div>
-					<div class="pay_list">
-
-
 					</div>
 					<div class="pay_list">
 						<h2>
@@ -321,7 +464,7 @@
 						<div class="pay_tcbk zffs" id="csdiv" style="background: #f8f8f8;">
 							<div class="nui-fit">
 								<div id="qRightGrid" class="nui-datagrid" style="height:200px;" showPager="false" allowCellEdit="true" dataField="detailList"
-								 idField="detailId" ondrawcell="onDrawCell" oncellclick="onPGridbeforeselect" sortMode="client" url="" multiSelect="true"
+								 idField="detailId"  oncellclick="onPGridbeforeselect" sortMode="client" url="" multiSelect="true"
 								 onshowrowdetail="onShowRowDetail" showSummaryRow="false">
 									<div property="columns">
 										<div type="indexcolumn">序号</div>
@@ -342,9 +485,11 @@
 						</div>
 					</div>
 
+
+					<input class="nui-textbox" id="PrefAmt" name="PrefAmt" enabled="false" m="1" cardid="" amount="" style="width: 100px; float: left;display:none;">
 					<div class="pay_list">
 						<h2>
-							<span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">付款方式</span>
+							<span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">收款方式</span>
 						</h2>
 						<div class="pay_tcbk zffs" style="padding: 0 0 18px 0;">
 							<div id="dataform">
@@ -361,7 +506,7 @@
 												<td>
 												</td>
 												<!-- <td>
-											<a class="depj" data-balloon="删除付款方式" href="javascript:void(0);" onclick="dF()" style="margin-left: 15px;"></a>
+											<a class="depj" data-balloon="删除收款方式" href="javascript:void(0);" onclick="dF()" style="margin-left: 15px;"></a>
 										</td> -->
 											</tr>
 										</tbody>
@@ -383,7 +528,7 @@
 														<ul>
 															<li>
 																<a href="javascript:void(0);" onclick="addF()">
-																	<font>添加付款方式</font>
+																	<font>添加收款方式</font>
 																</a>
 															</li>
 														</ul>
@@ -408,7 +553,7 @@
 										<td width="220">
 											<input class="mini-datepicker">
 										</td> -->
-										<td width="120" align="center">付款备注</td>
+										<td width="120" align="center">收款备注</td>
 										<td>
 											<input class="nui-textbox" id="txtreceiptcomment" name="txtreceiptcomment">
 										</td>
@@ -433,7 +578,7 @@
 								<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 							</td>
 							<td>
-								<label style="font-family:Verdana;">应付金额：</label>
+								<label style="font-family:Verdana;">应收金额：</label>
 								<span id="totalAmt1" name="totalAmt1" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
 							</td>
 							<td>
@@ -450,12 +595,16 @@
 							<td>
 								<input type="checkbox" id="settlesenddx">短信通知客户
 							</td>
+							<!-- 					<td >
+						<label style="font-family:Verdana;">优惠券抵扣：</label>
+						<span id="quanAmt" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
+					</td> -->
 							<td>
-								<label style="font-family:Verdana;">实付金额：</label>
+								<label style="font-family:Verdana;">实收金额：</label>
 								<span id="amount" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
 							</td>
-							<td>
-								<a id="wxbtnsettle" style="    width: 120px;
+							<!-- 					<td >
+						<a id="wxbtnsettle" style="    width: 120px;
 							height: 40px;
 							font-size: 18px;
 							background: #2ac476;
@@ -464,8 +613,9 @@
 							display: block;
 							border-radius: 5px;
 							line-height: 2;
-							text-decoration: none;" href="javascript:void(0)" onclick="noPay()">转预结算</a>
-							</td>
+							text-decoration: none;" 
+							href="javascript:void(0)" onclick="settleOK()">微信结算</a>
+					</td> -->
 							<td>
 								<a id="btnsettle" style="    width: 120px;
 							height: 40px;

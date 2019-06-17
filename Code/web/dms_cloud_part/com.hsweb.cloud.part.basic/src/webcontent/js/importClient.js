@@ -166,6 +166,12 @@ function sure() {
 	}
 
 	//faddPart(partList);
+	nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '正在导入...'
+    });
+
 	saveEnterPart(partList);
 }
 

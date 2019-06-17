@@ -8,8 +8,8 @@
 -->
 
 <head>
-	<title>应收账款管理</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.0.3"></script>
+	<title>预收账款管理</title>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/advanceSettlement.js?v=1.0.3"></script>
 	    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 	<style type="text/css">

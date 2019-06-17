@@ -47,6 +47,7 @@ function edit(e) {
 
 function search() {
     var data = form.getData(true);
+    data.endDate = data.endDate + " 23:59:59";
     grid.load({
         params: data
     });
@@ -113,6 +114,7 @@ function quickSearch(type) {
     endDateEl.setValue(addDate(params.endDate, -1));
     var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);
+    params.endDate = params.endDate + " 23:59:59";
     grid.load({
         params: params
     });

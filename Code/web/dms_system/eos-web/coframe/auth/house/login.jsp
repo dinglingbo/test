@@ -29,8 +29,8 @@
     String sweepCodeUrl = null;
    String loginUrl = "org.gocom.components.coframe.auth.login.login.flow";
    String sweepCodeFlow = "com.hsapi.system.auth.login.qrLogin.flow";
-   loginUrl = "com.hsapi.system.auth.login.login.flow";
-   String regUrl = "com.hsapi.system.auth.login.registerOfm.flow";
+   loginUrl = "com.hsapi.system.auth.login.loginHouse.flow";
+   String regUrl = "com.hsapi.system.auth.login.houseRegister.flow";
    
    HttpSecurityConfig securityConfig = new HttpSecurityConfig();
    boolean isOpenSecurity = securityConfig.isOpenSecurity();
@@ -95,6 +95,7 @@ body {
 	font-size: 18px;
 	text-align: center;
 	height: 40px;
+	color: #26C789;
 }
 .login_box .login .loginTitle {
 	padding-left: 30px;
@@ -279,6 +280,20 @@ a {
   	margin-left: 20px;
   }
   
+  .ios-max {
+  	bottom: 120px;
+  	margin-left: 120px;
+  	position:absolute;
+  	z-index:1;
+  }
+  
+  .android-max {
+  	bottom: 120px;
+  	margin-left: 320px;
+  	position:absolute;
+  	z-index:1;
+  }
+  
   #qrcode{
   	margin-left: 55px;
   	margin-top: 20px;
@@ -393,13 +408,14 @@ a {
 </form>
 
 <div class="com_rcode">
-	<div class="qr_imgbox">
-		<img src="images/ios.png" onclick="changeShow();"  />
+	<div class="qr_imgbox" onmouseout="hiddenPic()" onmousemove="showPic(event, 'images/ios-max.png', 'ios-max')" id="iosEl">
+		<img src="images/ios.png"   />
 	</div>
-	<div class="qr_imgbox">
-		<img src="images/android.png" onclick="changeShow();"  />
+	<div class="qr_imgbox" onmouseout="hiddenPic()" onmousemove="showPic(event, 'images/android-max.png', 'android-max')" id="androidEl">
+		<img src="images/android.png"   />
 	</div>
 </div>
+<div id="Layer1" style="display:none;position:absolute;z-index:1;"></div>
 <div class="com_text">Copyright © 2014-2018 广州信绘通信息科技有限公司  版权所有: 粤ICP备10036501号-1 </div>
 </div>
 <script src="jquery-1.9.1.min.js?ver=1.01"></script>
@@ -471,8 +487,9 @@ $(function () {
 	}).mouseout(function (){
 		$(".weixin_max_img").hide();
 	}); 
+	
 });
-
+	
 function changeShow(){
 	$(".max_img").show();
 }
@@ -480,6 +497,22 @@ function changeShow(){
 function changeHide(){
 	$(".max_img").hide();
 }
+
+    function showPic(e, sUrl, eclass){ 
+        //var x,y; 
+        //x = e.clientX; 
+        //y = e.clientY; 
+        //document.getElementById("Layer1").style.left = x+2+'px'; 
+        //document.getElementById("Layer1").style.top = y+2+'px'; 
+        document.getElementById("Layer1").setAttribute("class", eclass);
+        document.getElementById("Layer1").innerHTML = "<img border='0' src=\"" + sUrl + "\">"; 
+        document.getElementById("Layer1").style.display = ""; 
+    } 
+    function hiddenPic(){ 
+        document.getElementById("Layer1").innerHTML = ""; 
+        document.getElementById("Layer1").style.display = "none"; 
+    }  
+ 
 //显示登录框
 function openLogin() {
 	$("#registerBox").hide();

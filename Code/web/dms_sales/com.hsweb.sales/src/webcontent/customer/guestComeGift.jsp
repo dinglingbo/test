@@ -51,10 +51,13 @@
                     dataField="data" showModified="false" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true" allowCellWrap="true" url="">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
+                        <div field="giftId" name="giftId" width="100px" headerAlign="center" header="" visible="false"></div>
+                        <div field="serviceId" name="serviceId" width="100px" headerAlign="center" header="工单id" visible="false"></div>
+                        <div field="id" name="id" width="100px" headerAlign="center" header="精品主表id" visible="false"></div>
                         <div field="giftName" name="giftName" width="100px" headerAlign="center" header="精品名称"></div>
                         <div field="receType" name="receType" width="100px" headerAlign="center" header="收费类型">
-                        <input class="nui-combobox"  name="name"  valueField="id" id="name"
-                             textField="name"  property="editor" data="statusList" emptyText="" />
+                        <input class="nui-combobox"  name="receType"  valueField="id" id="receType"
+                             textField="receType"  property="editor" data="statusList" emptyText="" value="0"/>
           
                         </div>
                         <div field="qty" name="qty" width="100px" headerAlign="center" header="数量">
@@ -89,7 +92,7 @@ var jpUrl = baseUrl + "sales.search.searchCsbGiftMsg.biz.ext";
 var jpDetailGrid = null;
 var jpDetailGridUrl = baseUrl + "sales.search.searchSaleGiftApply.biz.ext";
 var serviceIdF = null;
-var statusList = [{id:"0",name:"免费"},{id:"1",name:"收费"}];
+var statusList = [{id:"0",receType:"免费"},{id:"1",receType:"收费"}];
 $(document).ready(function (){
    jpGrid = nui.get("jpGrid");
    jpGrid.setUrl(jpUrl);
@@ -199,6 +202,7 @@ function selectJpGrid(){
                 var newRow = {
                     giftId: jpdata[i].id,
                     giftName: jpdata[i].name,
+                    receType:1,
                     billType:1
                 };
                 jpDetailGrid.addRow(newRow, jpDetailData.length);
@@ -242,6 +246,30 @@ function save(){
        var jpDetailGridAdd = jpDetailGrid.getChanges("added"); //精品加装
 	   var jpDetailGridEdit = jpDetailGrid.getChanges("modified");
 	   var jpDetailGridDel = jpDetailGrid.getChanges("removed");
+	    //判断jpDetailGridAdd,jpDetailGridDel里面有没有已存在的值
+	   if(giftData.length>0 && jpDetailGridAdd.length>0){
+	       for(var i = 0;i<giftData.length;i++){
+	           var old = giftData[i];
+	           for(var j = 0;j<jpDetailGridAdd.length;j++){
+	               var add = jpDetailGridAdd[j];
+	               if(old.giftId == add.giftId){
+	                   var updat = add;
+	                   updat.id = old.id;
+	                   updat.serviceId = old.serviceId;
+	                   jpDetailGridEdit.push(updat);
+	                   for(var n = 0;n<jpDetailGridDel.length;n++){
+	                        var del = jpDetailGridDel[n];
+	                       if(del.giftId == old.giftId){
+	                         // delete jpDetailGridDel[n];
+	                         jpDetailGridDel.splice(n,1);
+	                       }
+	                   }
+	                    jpDetailGridAdd.splice(j,1);
+	               }
+	           }
+	           
+	       }
+       }	   
 	   nui.mask({
 	        el: document.body,
 	        cls: 'mini-mask-loading',
@@ -263,15 +291,26 @@ function save(){
 			success : function(text) {
 				if(text.errCode=="S"){
 			    	showMsg("保存成功","S");
+			    	jpDetailGrid.load({
+				        token:token,
+				        serviceId:serviceIdF,
+				        billType:1
+				     },function(){
+				       //获取数据
+				       giftData = jpDetailGrid.getData();
+				     });
+				     nui.unmask(document.body);
 			    }else{
 			    	showMsg("保存失败","E");
+			    	nui.unmask(document.body);
 			    }
-				nui.unmask(document.body);
+				
 			}
 	    }); 
     }
 }
 var statusF = null;
+var giftData = {};
 function setData(params){
     if(params.show && params.show==1){
       document.getElementById("save").style.display = "none";
@@ -284,6 +323,9 @@ function setData(params){
         token:token,
         serviceId:serviceIdF,
         billType:1
+    },function(){
+    //获取数据
+     giftData = jpDetailGrid.getData();
     });
 }
 

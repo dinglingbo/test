@@ -109,14 +109,26 @@ style="width:100%;height:100%;display:none" bodyStyle="padding:0;border:0;" allo
             <td class="tbtext">管理员：</td>
             <td colspan="3"><input class="nui-textbox" style="width:100%" id="manager" name="manager" /></td>
             </tr>        
-            <tr>
+           <!--  <tr>
             <td class="tbtext">联系电话：</td>
             <td colspan="3"><input class="nui-textbox" style="width:100%"  id="mobile" name="mobile"/></td>
-            </tr>        
+            </tr>  -->       
             <tr>
             <td class="tbtext">联系地址：</td>
             <td colspan="3"><input class="nui-textbox" style="width:100%"  id="address" name="address"/></td>
-            </tr>        
+            </tr> 
+            <tr>
+                <td class="tbtext">联系电话：</td>
+                 <td colspan="1"><input class="nui-textbox"   id="mobile" name="mobile"/></td>
+		        <td class="tbtext">管理员身份：</td>
+		        <td colspan="1">
+		            <div class="mini-radiobuttonlist" repeatItems="1"
+				      repeatLayout="table" repeatDirection="vertical" name="managerIdentity"
+				      textField="text" valueField="value" id = "radiobuttonlist"
+				      data="[{value:'0',text:'老板',},{value:'1',text:'员工'}]">
+			        </div>
+		        </td>
+            </tr>       
             <tr>
             <td class="tbtext">业务员：</td>
             <td colspan=""><input class="nui-textbox" style="width:100%" id="salesMan" name="salesMan"/></td>

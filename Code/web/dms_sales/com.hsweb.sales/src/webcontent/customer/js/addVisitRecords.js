@@ -316,7 +316,7 @@ function buyCarCount(){
 			url: webPath + contextPath + '/sales/sales/caCalculation.jsp',
 			title: '购车预算',
 			width: 1000,
-			height: 600,
+			height:650,
 			onload: function () {
 			var iframe = this.getIFrameEl();
 			iframe.contentWindow.setShowSave(main);
@@ -369,6 +369,10 @@ var statusUrl = apiPath + saleApi + "/sales.custormer.changStatus.biz.ext";
 function changStatus(){
 	var guestCome = guestComeForm.getData("true");
 	var status = guestCome.status;
+	if(guestCome.id == "" && guestCome.id == null){
+		showMsg("请先保存来访登记!","W");
+		return;
+	}
 	if(status == 1){
 		showMsg("来访登记已归档！","W");
 		return;
@@ -425,6 +429,10 @@ function doSetStyle(status){
 function saveSaleMain(){
 	var guestCome = guestComeForm.getData("true");
 	var status = guestCome.status;
+	if(guestCome.id == "" && guestCome.id == null){
+		showMsg("请先保存来访登记!","W");
+		return;
+	}
 	if(status == 0){
 		showMsg("来访登记未归档,不能转销售","W");
 		return;

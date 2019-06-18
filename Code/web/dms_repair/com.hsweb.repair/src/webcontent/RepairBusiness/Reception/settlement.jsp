@@ -248,10 +248,11 @@
         <div style="padding-top: 10px;">
             <table  width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk">
                 <tr>
-                    <td height="24" width="25%" id="guestFullName">&nbsp;客户名称：</td>
+                    <td height="24" width="20%" id="guestFullName">&nbsp;客户名称：</td>
                     <td height="24" width="28%" id="contactName">&nbsp;联系人名称：</td>
-                    <td width="25%" id="mtAdvisor">&nbsp;服务顾问：</td>
-                    <td >&nbsp;进厂里程：<span id="enterKilometers"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;油量：<span id="enterOilMass"></span></td>
+                    <td width="18%" id="mtAdvisor">&nbsp;服务顾问：</td>
+                    <td width="32%">&nbsp;进厂里程：<span id="enterKilometers"></span>
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;油量：<span id="enterOilMass"></span></td>
                 </tr>
                 <tr>
                     <td height="24" id="carNo">&nbsp;车牌号：</td>
@@ -573,6 +574,7 @@
 	        		}
 	        		var guestFullName = list.guestFullName || "";
 	        		var guestMobile = list.guestMobile || "";
+	        		var contactMobile = list.contactMobile;
 	        		var enterOilMass = list.enterOilMass || "0";
 	        		var name = "0";
 	        		//查找油量http://127.0.0.1:8080/default/
@@ -604,7 +606,7 @@
 	        		if(params.type){
 	        			guestFullName = list.guestName || "";
 	        			guestMobile = list.guestTel || "";
-	        			//contactMobile = list.contactorTel || "";
+	        			contactMobile = list.contactorTel || "";
 	        			carNo = list.carNo || "";
 	        			contactName = list.contactorName || "";
 	        			mtAdvisor = list.mtAdvisor || "";
@@ -626,8 +628,8 @@
 	        		//document.getElementById("guestAddr").innerHTML = document.getElementById("guestAddr").innerHTML + guestAddr;
 	        		//document.getElementById("name").innerHTML = document.getElementById("name").innerHTML + mtAdvisor; 
 	        	    if(currRepairBillMobileFlag==1){
-	        	        document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + 
-	        	        "<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ guestMobile;
+	        	        document.getElementById("contactName").innerHTML = document.getElementById("contactName").innerHTML + 
+	        	        "<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ contactMobile;
 	        	    }
 	        	}
         	});

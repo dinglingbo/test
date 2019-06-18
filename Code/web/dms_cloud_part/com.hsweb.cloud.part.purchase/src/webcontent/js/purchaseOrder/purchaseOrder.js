@@ -78,6 +78,7 @@ var AuditSignHash = {
 	"2" : "已过账",
 	"3" : "已取消"
 };
+var storeLimitMap={};
 $(document).ready(function(v) {
 	nui.mask({
         el: document.body,
@@ -1023,7 +1024,8 @@ function add() {
 
 	}
 
-	
+   //获取业务员的仓库限制	
+	getStoreLimit();
 }
 function getMainData() {
 	var data = basicInfoForm.getData();
@@ -1143,8 +1145,19 @@ function save() {
 			showMsg(requiredField[key] + "不能为空!","W");
 			//如果检测到有必填字段未填写，切换到主表界面
 			mainTabs.activeTab(billmainTab);
+			
+			
 
 			return;
+		}
+	}
+	var rightRow =rightGrid.getData();
+	for(var i=0;i<rightRow.length;i++){
+		if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
+			if(!storeLimitMap.hasOwnProperty(rightRow[i].storeId)){
+				showMsg("没有选择"+storeHash[rightRow[i].storeId].name+"的权限","W");
+				return;
+			}
 		}
 	}
 
@@ -1158,8 +1171,12 @@ function save() {
 		return;
 	}
 	
+	
+	
 	//保存价格设置
 	savePrice();
+	
+	
 	data = getMainData();
 
 	//由于票据类型可能修改，所以除了新建和删除，其他都应该是修改
@@ -1454,6 +1471,9 @@ function onCellCommitEdit(e) {
     		
 		}else if(e.field == "remark"){
 			//addNewKeyRow();
+		}
+		else if(e.field == "storeId"){
+	
 		}
 	}
 }
@@ -1979,6 +1999,16 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 	if(flagSign == 1){
 		str = "入库";
 	}
+	
+	var rightRow =rightGrid.getData();
+	for(var i=0;i<rightRow.length;i++){
+		if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
+			if(!storeLimitMap.hasOwnProperty(rightRow[i].storeId)){
+				showMsg("没有选择"+storeHash[rightRow[i].storeId].name+"的权限","W");
+				return;
+			}
+		}
+	}
 
 	if (p && p.pricePartCode) {
 		var partCode = p.pricePartCode;
@@ -2227,6 +2257,56 @@ function onGuestValueChanged(e) {
 
 		addNewRow(true);
     }
+}
+
+function onStoreValueChange(e){
+	var data = e.selected;
+	if(data){
+		var id = data.id;
+		var orderMan =nui.get('orderMan').value;
+		if(orderMan !=currUserName){
+			getStoreLimit();
+		}
+		if(Object.getOwnPropertyNames(storeLimitMap ).length ==0){
+			//不做限制
+		}
+		if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
+			if(!storeLimitMap.hasOwnProperty(id)){
+				showMsg("没有选择"+storeHash[341].name+"的权限","W");
+				return;
+			}
+		}
+	}
+		
+}
+var storeLimtUrl  = baseUrl +"com.hsapi.system.tenant.employee.queryStoreMember.biz.ext";
+function getStoreLimit(){
+	var orderMan =nui.get('orderMan').value;
+	if(!orderMan){
+		return;
+	}
+	nui.ajax({
+		url : storeLimtUrl,
+		async:false,
+		data : {
+			orgid : currOrgId,
+			name : orderMan,
+			token : token
+		},
+		type : "post",
+		success : function(text) {
+			var data =text.data;
+			for(var i=0;i<data.length;i++){
+				storeLimitMap[data[i].storeId] =data [i];
+			}
+			
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+	return storeLimitMap;
 }
 var getGuestInfo = baseUrl
 		+ "com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";

@@ -413,6 +413,9 @@ function setInitData(){
     	onCitySelected("cityId");
     }
     
+    if(supplier.addr){
+    	 nui.get("addr").setValue(supplier.addr);
+    }
     if(supplier.isInternal == 1)
     {
         nui.get("fullName").hide();
@@ -807,20 +810,22 @@ function setData(data)
         	onCitySelected("cityId");
         }
         
+        if(supplier.addr){
+       	 nui.get("addr").setValue(supplier.addr);
+       }
         var guestProperty =nui.get('guestProperty').getValue();
-        if(guestProperty){
-        	
-        	if(guestProperty=='013902'){
-        		$('#idNo').show();
-        		$('#lince').css("display","none");
-        		$('#idNoImg').attr("src",supplier.idCardUrl);
-        	}else{
-        		$('#idNo').show();
-        		$('#lince').show();
-        		$('#idNoImg').attr("src",supplier.idCardUrl);
-        		$('#xmTanImg').attr("src",supplier.licenseUrl);
-        	}
-        }
+        var settleId = nui.get('settTypeId').value;
+      //个人且不是现结
+    	if(guestProperty=='013902' && settleId !='020501'){
+    		$('#idNo').show();
+    		$('#lince').css("display","none");
+    		$('#otherPicture').show();
+    	//不是个人且不是现结
+    	}else if(guestProperty !='013902' && settleId !='020501'){
+    		$('#idNo').show();
+    		$('#lince').show();
+    		$('#otherPicture').show();
+    	}
     	
         if(supplier.isInternal == 1)
         {

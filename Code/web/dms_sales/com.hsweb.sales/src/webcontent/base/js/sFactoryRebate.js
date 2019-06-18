@@ -1,5 +1,6 @@
 var gridUrl = apiPath + saleApi + "/sales.base.searchCssFactoryRebate.biz.ext";
 var gUrl = apiPath + saleApi + "/sales.base.searchCsbRebate.biz.ext?params/isDisabled=0&token=" + token;
+var payUrl = apiPath + saleApi + "/sales.base.generateReceivable.biz.ext";
 var grid = null;
 var rebateId = null;
 var startDateEl = null;
@@ -117,5 +118,28 @@ function quickSearch(type) {
     params.endDate = params.endDate + " 23:59:59";
     grid.load({
         params: params
+    });
+}
+
+
+function submit() {
+    var row = grid.getSelected(); 
+    if (!row) {
+        showMsg("请选择一条数据", "W");
+        return;
+    }
+    nui.ajax({
+        url: payUrl,
+        type: 'post',
+        data: {
+            data: row
+        },
+        success: function (res) {
+            if (res.errCode == 'S') {
+                showMsg(showText, 'S');
+            } else {
+                showMsg('失败', 'E');
+            }
+        }
     });
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!-- 更新连锁库龄 -->
+    <update id="updateChainStockAge" parameterClass="java.util.HashMap" >
+		UPDATE pj_enter_detail_chk 
+		SET chain_stock_age =(DATEDIFF(NOW(), enter_date))
+		WHERE outable_qty>0
+		 
+	</update>
+	<!-- 更新分店库龄 -->
+	<update id="updateBranchStockAge" parameterClass="java.util.HashMap" >
+		UPDATE pj_enter_detail_chk  a, pj_enter_main_chk b
+		SET branch_stock_age = (
+			DATEDIFF(NOW(), b.audit_date)
+		)
+		WHERE a.main_id =b.id
+			AND	a.outable_qty > 0
+
+		 
+	</update>
+</sqlMap>

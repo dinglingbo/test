@@ -11,7 +11,7 @@ var requiredField = {
 	name: "项目名称",
 	//serviceTypeId: "业务类型",
 	type: "项目类型",
-	code: "项目编码"
+	//code: "项目编码"
 	//carModelId: "车型"
 };
 $(document).ready(function(){

@@ -73,12 +73,12 @@ pageEncoding="UTF-8" session="false" %>
                 <td class="td_title">级别：
                 </td>
                 <td>
-                    <input id="level" name="level"  class="nui-combobox"  dataField="data" valueField="id" textField="name"style="width: 150px" />
+                    <input id="level" name="level"  class="nui-combobox"  dataField="data" valueField="customid" textField="name"style="width: 150px" />
                 </td>
                 <td class="td_title">国别：
                 </td>
                 <td>
-                    <input id="countryType" name="countryType" class="nui-combobox"  dataField="data" valueField="id" textField="name"style="width: 150px" />
+                    <input id="countryType" name="countryType" class="nui-combobox"  dataField="data" valueField="customid" textField="name"style="width: 150px" />
                 </td>
             </tr>
             <tr>
@@ -89,7 +89,7 @@ pageEncoding="UTF-8" session="false" %>
                     valueField="nodeId" dataField="list"  emptyText="请选择..." url=""  onValuechanged="onBrandChanged"
                     showNullItem="false" nullItemText="请选择..." allowInput="true" valueFromSelect="true"
                     style="width: 150px" />
-                    <!-- <input id="carBrandId" name="carBrandId" class="nui-combobox"  dataField="data" valueField="id" textField="name"style="width: 150px" /> -->
+                    <!-- <input id="carBrandId" name="carBrandId" class="nui-combobox"  dataField="data" valueField="customid" textField="name"style="width: 150px" /> -->
                 </td>
                 <td class="td_title">车系：
                 </td>
@@ -116,36 +116,36 @@ pageEncoding="UTF-8" session="false" %>
                 <td class="td_title">结构：
                 </td>
                 <td>
-                    <input id="carStructureType" name="carStructureType" class="nui-combobox"  dataField="data" valueField="id" textField="name"style="width: 150px" />
+                    <input id="carStructureType" name="carStructureType" class="nui-combobox"  dataField="data" valueField="customid" textField="name"style="width: 150px" />
                 </td>
                 <td class="td_title">排量：
                 </td>
                 <td>
-                    <input id="outputVolume" name="outputVolume" class="nui-combobox"  dataField="data" valueField="id" textField="name"style="width: 150px" />
+                    <input id="outputVolume" name="outputVolume" class="nui-combobox"  dataField="data" valueField="customid" textField="name"style="width: 150px" />
                 </td>
             </tr>
             <tr>
                 <td class="td_title">座位数：
                 </td>
                 <td>
-                    <input id="seatQty" name="seatQty" class="nui-combobox"  dataField="data" valueField="id" textField="name"style="width: 150px" />
+                    <input id="seatQty" name="seatQty" class="nui-combobox"  dataField="data" valueField="customid" textField="name"style="width: 150px" />
                 </td>
                 <td class="td_title">进气形式：
                 </td>
                 <td>
-                    <input id="inletType" name="inletType" class="nui-combobox"  dataField="data" valueField="id" textField="name"style="width: 150px" />
+                    <input id="inletType" name="inletType" class="nui-combobox"  dataField="data" valueField="customid" textField="name"style="width: 150px" />
                 </td>
             </tr>
             <tr>
                 <td class="td_title">能源：
                 </td>
                 <td>
-                    <input id="powerType" name="powerType" class="nui-combobox"  dataField="data" valueField="id" textField="name"style="width: 150px" onValuechanged="onPowerTypeChanged"/>
+                    <input id="powerType" name="powerType" class="nui-combobox"  dataField="data" valueField="customid" textField="name"style="width: 150px" onValuechanged="onPowerTypeChanged"/>
                 </td>
                 <td class="td_title">驱动方式：
                 </td>
                 <td>
-                    <input id="driveMode" name="driveMode" class="nui-combobox"  dataField="data" valueField="id" textField="name"style="width: 150px" />
+                    <input id="driveMode" name="driveMode" class="nui-combobox"  dataField="data" valueField="customid" textField="name"style="width: 150px" />
                 </td>
             </tr>
             <tr>
@@ -169,14 +169,14 @@ pageEncoding="UTF-8" session="false" %>
                 <td class="td_title">变速箱：
                 </td>
                 <td>
-                    <input id="gearBox" name="gearBox" class="nui-combobox"  dataField="data" valueField="id" textField="name"style="width: 150px" />
+                    <input id="gearBox" name="gearBox" class="nui-combobox"  dataField="data" valueField="customid" textField="name"style="width: 150px" />
                 </td>
             </tr>
             <tr>
                 <td class="td_title">生产方式：
                 </td>
                 <td>
-                    <input id="productionMode" name="productionMode" class="nui-combobox"  dataField="data" valueField="id" textField="name"style="width: 150px" />
+                    <input id="productionMode" name="productionMode" class="nui-combobox"  dataField="data" valueField="customid" textField="name"style="width: 150px" />
                 </td>
                 <td class="td_title">上市日期：
                 </td>
@@ -304,8 +304,8 @@ pageEncoding="UTF-8" session="false" %>
     }
 
     function onPowerTypeChanged(e) {
-        //1558404416989油电混动  1559621209341纯电动   1559621209342插电式混动
-        if(e.value == "1558404416989" ||e.value == "1559621209341" ||e.value == "1559621209342"){
+        //1560737604106油电混动  1560737604108纯电动   1560737604110插电式混动
+        if(e.value == "1560737604106" ||e.value == "1560737604108" ||e.value == "1560737604110"){
             nui.get('enduranceMileage').enable();
             nui.get('electricMotor').enable();
             nui.get('chargingTime').enable();

@@ -16,6 +16,7 @@ var mainGrid = {};
 var itemGrid = {};
 var repairOutGrid = null;
 var memList = [];
+var servieTypeList = [];
 var startDateEl = null;
 var endDateEl = null;
 var jpDetailGrid = null;
@@ -37,6 +38,10 @@ $().ready(function (H) {
 
     initMember("worker", function () {
         memList = nui.get("worker").getData();
+    });
+
+    initServiceType("serviceTypeId",function(data) {
+        servieTypeList = nui.get("serviceTypeId").getData();
     });
 
     getAllStorehouse(function(data) {
@@ -85,12 +90,11 @@ $().ready(function (H) {
         }
     });
 
-    // itemGrid.on("cellcommitedit", function (e) {
-    //     var editor = e.editor;
-    //     if (e.field == 'worker') {
-    //         editor.setData(memList);
-    //     }
-    // });
+    itemGrid.on("drawcell", function (e) {
+        if (e.field == 'serviceTypeId') {
+            e.cellHtml = setColVal('serviceTypeId', 'id', 'name', e.value);
+        }
+    });
 
 
     repairOutGrid.on("drawcell", function (e) {
@@ -353,6 +357,11 @@ function addItem() {
         showMsg('请先保存本单，再进行添加操作','W');
         return;
     }
+    var row = mainGrid.getSelected();
+    if (row.status == 1) {
+        showMsg('本单已审核，不允许此操作','W');
+        return;
+    }
     nui.open({
 		url : webPath + contextPath + "/com.hsweb.repair.DataBase.itemChoose.flow?token=" + token,
 		title : "维修项目",
@@ -376,7 +385,8 @@ function addItem() {
                     itemCode:data.code,
                     itemName: data.name,
                     itemTime: data.itemTime,
-                    amt: data.unitPrice
+                    amt: data.unitPrice,
+                    serviceTypeId:data.serviceTypeId
                     
                 }
                 itemGrid.addRow(newRow);
@@ -388,6 +398,11 @@ function addItem() {
 
 
 function removeItem() {
+    var row = mainGrid.getSelected();
+    if (row.status == 1) {
+        showMsg('本单已审核，不允许此操作','W');
+        return;
+    }
     var row = itemGrid.getSelected();
     itemGrid.removeRow(row);
 }
@@ -395,6 +410,11 @@ function removeItem() {
 function saveItem() {
     if (!nui.get("id").value) {
         showMsg('请先保存本单，再进行保存工时操作','W');
+        return;
+    }
+    var row = mainGrid.getSelected();
+    if (row.status == 1) {
+        showMsg('本单已审核，不允许此操作','W');
         return;
     }
     var addArr = [];
@@ -457,6 +477,11 @@ function saveItem() {
 }
 
 function selectGift() {
+    var row = mainGrid.getSelected();
+    if (row.status == 1) {
+        showMsg('本单已审核，不允许此操作','W');
+        return;
+    }
     var row = mainGrid.getSelected();
     row.carNo = nui.get("carNo").value;
     row.carId = nui.get("enterId").value;
@@ -559,160 +584,79 @@ function memberSelect(row){
 function  savepartOutRtn(data,childdata){
 	if(data){
 		var paramsDataArr = [];
-            //var paramsData = nui.clone(data);
-            var paramsData = {};
-            paramsData.serviceId = data.serviceId;
-            paramsData.id = data.id;
-            paramsData.mainId = data.mainId;
-            paramsData.sourceId = data.id;
-            paramsData.serviceId = nui.get("id").value;
-            paramsData.serviceCode = nui.get("giftServiceCode").value;
-            paramsData.carNo = nui.get("carNo").value;
-            paramsData.carId = nui.get("enterId").value;
-            paramsData.vin = nui.get("vin").value;
-            paramsData.partId = data.partId;
-            paramsData.partCode = data.partCode;
-            paramsData.oemCode = data.oemCode;
-            paramsData.partName = data.partName;
-            paramsData.partNameId = data.partNameId;
-            paramsData.partFullName = data.partFullName;
-            paramsData.stockQty = data.stockQty;
-            paramsData.outQty = data.outQty;
-            paramsData.enterPrice = data.enterPrice;
-            paramsData.billTypeId = '050208';
-            paramsData.storeId = data.storeId;
-            paramsData.unit = data.systemUnitId;
-            paramsData.pickMan = data.pickMan;
-            paramsData.returnMan=childdata.mtAdvisor;
-            paramsData.returnRemark = childdata.remark;
-            //paramsData.pickType = "维修出库-领料";
-            paramsData.taxUnitPrice = data.taxUnitPrice;
-            paramsData.taxAmt = data.taxAmt;
-            paramsData.noTaxUnitPrice = data.noTaxUnitPrice;
-            paramsData.noTaxAmt = data.noTaxAmt;
-            paramsData.trueUnitPrice = data.trueUnitPrice;
-            paramsData.trueCost = data.trueCost;
-            paramsData.sellUnitPrice = data.sellUnitPrice; 
-            paramsData.sellAmt = data.sellAmt;
-            paramsData.guestId = nui.get("guestId").value;
-            paramsData.guestName = nui.get("guestName").value;
-            
-            if(!paramsData.partNameId){
-            	paramsData.partNameId = "0";
-            }
-            paramsDataArr.push(paramsData);
-
-            nui.mask({
-	            el: document.body,
-	            cls: 'mini-mask-loading',
-	            html: '数据处理中...'
-	        });
-            nui.ajax({
-            	url:baseUrl + "com.hsapi.repair.repairService.work.repairOutRtn.biz.ext",
-            	type:"post",
-            	data:{
-            		data:paramsDataArr,
-            		billTypeId:"050208", 
-            		token:token
-            	},
-            	success:function(text){
-            		var errCode = text.errCode;
-            		nui.unmask(document.body);
-            		if(errCode == "S"){
-                        repairOutGrid.load({
-                            serviceId: nui.get("id").value,
-                            billTypeId: '050208',
-                            returnSign: 0,
-                            token: token
-                        });
-            			showMsg('归库成功!','S');
-            		}else{
-            			showMsg(text.errMsg ||'归库失败!','W');
-            		}
-            	}
-            });
-        }else{
-        	showMsg('没有需要归库的精品!','W');
+        //var paramsData = nui.clone(data);
+        var paramsData = {};
+        paramsData.serviceId = data.serviceId;
+        paramsData.id = data.id;
+        paramsData.mainId = data.mainId;
+        paramsData.sourceId = data.id;
+        paramsData.serviceId = nui.get("id").value;
+        paramsData.serviceCode = nui.get("giftServiceCode").value;
+        paramsData.carNo = nui.get("carNo").value;
+        paramsData.carId = nui.get("enterId").value;
+        paramsData.vin = nui.get("vin").value;
+        paramsData.partId = data.partId;
+        paramsData.partCode = data.partCode;
+        paramsData.oemCode = data.oemCode;
+        paramsData.partName = data.partName;
+        paramsData.partNameId = data.partNameId;
+        paramsData.partFullName = data.partFullName;
+        paramsData.stockQty = data.stockQty;
+        paramsData.outQty = data.outQty;
+        paramsData.enterPrice = data.enterPrice;
+        paramsData.billTypeId = '050208';
+        paramsData.storeId = data.storeId;
+        paramsData.unit = data.systemUnitId;
+        paramsData.pickMan = data.pickMan;
+        paramsData.returnMan=childdata.mtAdvisor;
+        paramsData.returnRemark = childdata.remark;
+        //paramsData.pickType = "维修出库-领料";
+        paramsData.taxUnitPrice = data.taxUnitPrice;
+        paramsData.taxAmt = data.taxAmt;
+        paramsData.noTaxUnitPrice = data.noTaxUnitPrice;
+        paramsData.noTaxAmt = data.noTaxAmt;
+        paramsData.trueUnitPrice = data.trueUnitPrice;
+        paramsData.trueCost = data.trueCost;
+        paramsData.sellUnitPrice = data.sellUnitPrice; 
+        paramsData.sellAmt = data.sellAmt;
+        paramsData.guestId = nui.get("guestId").value;
+        paramsData.guestName = nui.get("guestName").value;
+        
+        if(!paramsData.partNameId){
+            paramsData.partNameId = "0";
         }
+        paramsDataArr.push(paramsData);
+
+        nui.mask({
+            el: document.body,
+            cls: 'mini-mask-loading',
+            html: '数据处理中...'
+        });
+        nui.ajax({
+            url:baseUrl + "com.hsapi.repair.repairService.work.repairOutRtn.biz.ext",
+            type:"post",
+            data:{
+                data:paramsDataArr,
+                billTypeId:"050208", 
+                token:token
+            },
+            success:function(text){
+                var errCode = text.errCode;
+                nui.unmask(document.body);
+                if(errCode == "S"){
+                    repairOutGrid.load({
+                        serviceId: nui.get("id").value,
+                        billTypeId: '050208',
+                        returnSign: 0,
+                        token: token
+                    });
+                    showMsg('归库成功!','S');
+                }else{
+                    showMsg(text.errMsg ||'归库失败!','W');
+                }
+            }
+        });
+    }else{
+        showMsg('没有需要归库的精品!','W');
     }
-
-// function partToOut() {
-	
-// 	if(onAdvancedAddOk()==false){
-// 		return;
-// 	}
-// 	data.outQty=form.getData().outQty;
-// 	data.pickMan=form.getData().pickMan;
-// 	data.remark=form.getData().remark;
-
-// 	var stockQty = data.stockQty;
-// 	var preOutQty = data.preOutQty || 0;
-// 	if (data.outQty > stockQty - preOutQty) {
-// 		showMsg("出库数量超出此批次可出库数量", "W");
-// 		return;
-// 	}
-// 	var billTypeId = "050207";
-// 	var partNameId = '0';
-// 	var pickType = '耗材出库-领料';
-	
-// 	var sellUnitPrice = data.enterPrice;
-// 	var sellAmt = parseFloat(data.outQty * sellUnitPrice).toFixed(2);
-// 	if(data.rootId==0){
-// 		data.rootId=data.id;
-// 	}
-// 	var data1 = {
-// 		enterPrice : data.enterPrice,
-// 		unit : data.enterUnitId,
-// 		partId : data.partId,
-// 		partCode : data.partCode,
-// 		partName : data.partName,
-// 		billTypeId : billTypeId,
-// 		partNameId : partNameId,
-// 		partFullName : data.fullName,
-// 		pickType : pickType,
-// 		preOutQty : data.preOutQty,
-// 		sourceId : data.sourceId,
-// 		stockAmt : data.stockAmt,
-// 		stockQty : data.stockQty,
-// 		storeId : data.storeId,
-// 		sellUnitPrice : sellUnitPrice,
-// 		sellAmt : sellAmt,
-// 		remark : data.remark,
-// 		outQty : data.outQty,
-// 		pickMan : data.pickMan,
-// 		rootId	: data.rootId
-// 	};
-
-// 	var list = [];
-// 	list.push(data1);
-// 	nui.mask({
-// 		el : document.body,
-// 		cls : 'mini-mask-loading',
-// 		html : '出库中...'
-// 	});
-
-// 	nui.ajax({
-// 		url : partToOutUrl,
-// 		type : "post",
-// 		data : JSON.stringify({
-// 			data : list,
-// 			billTypeId : billTypeId,
-// 			token : token
-// 		}),
-// 		success : function(data) {
-// 			nui.unmask(document.body);
-// 			data = data || {};
-// 			if (data.errCode == "S") {
-// 				showMsg("出库成功!", "S");
-// 			    CloseWindow("ok");
-
-// 			} else {
-// 				showMsg(data.errMsg || "出库失败!", "W");
-// 			}
-// 		},
-// 		error : function(jqXHR, textStatus, errorThrown) {
-
-// 			console.log(jqXHR.responseText);
-// 		}
-// 	});
-// }
+}

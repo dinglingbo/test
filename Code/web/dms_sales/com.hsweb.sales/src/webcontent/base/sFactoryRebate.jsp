@@ -14,7 +14,7 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
         <%@include file="/common/commonRepair.jsp"%>
-        <script src="<%=webPath + contextPath%>/sales/base/js/sFactoryRebate.js?v=1.1.7"></script>
+        <script src="<%=webPath + contextPath%>/sales/base/js/sFactoryRebate.js?v=1.1.9"></script>
             <style>
                 html,
                 body {
@@ -64,7 +64,8 @@
                         <a class="nui-button" iconCls="" plain="true" onclick="search()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="edit(1)" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="edit(2)" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="submit()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
+                        <!-- <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a> -->
 
                     </td>
                 </tr>
@@ -85,6 +86,7 @@
                     <!-- <div field="" headerAlign="center" allowSort="true" width="100px">厂家编号</div> -->
                     <!-- <div field="" headerAlign="center" allowSort="true" width="100px">数量</div> -->
                     <div field="recorder" headerAlign="center" allowSort="true" width="100px">制单人</div>
+                    <div field="status" headerAlign="center" allowSort="true" width="100px">状态</div>
                     <!-- <div field="" headerAlign="center" allowSort="true" width="100px">制单时间</div> -->
                     <div field="remark" headerAlign="center" allowSort="true" width="200px">备注</div>
                 </div>

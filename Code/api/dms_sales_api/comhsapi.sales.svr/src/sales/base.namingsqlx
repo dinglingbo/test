@@ -85,11 +85,11 @@
 		</isNotNull> 
 
         <isNotNull prepend = "" property = "startDate">
-            AND  a.rebate_date &gt;= #startDate# 			
+            AND  a.record_date &gt;= #startDate# 			
         </isNotNull>
 
         <isNotNull prepend = "" property = "endDate">
-            AND  a.rebate_date &lt;= #endDate# 			
+            AND  a.record_date &lt;= #endDate# 			
         </isNotNull>
     </select>
 </sqlMap>

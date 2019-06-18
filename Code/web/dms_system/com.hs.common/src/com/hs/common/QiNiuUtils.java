@@ -5,6 +5,11 @@ package com.hs.common;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -104,7 +109,25 @@ public class QiNiuUtils {
 		return maintenance;
 
 	}
-	
+	@Bizlet("获取维保大数据Authorization")
+	public static Map getMaintenanceMap(String Url) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+		Map retMap = new HashMap();
+		
+		String envType = Env.getContributionConfig("com.vplus.login",
+				"cfg", "MAINTENANCEAUTHORIZATION", "serverType");
+		String MAINTENANCEAUTHORIZATION = Env.getContributionConfig("com.vplus.login",
+				"cfg", "MAINTENANCEAUTHORIZATION", envType);
+		String secret_key = "zMyFfrIHQRzCZdy40ZOQD2wMLl9NUBhJ";//维保给车道的唯一值
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");//设置日期格式
+        String timestamp = df.format(new Date()).toString();// new Date()为获取当前系统时间，也可使用当前时间戳
+		System.out.println(timestamp);
+		String sign =  MD5(secret_key+timestamp);
+		String returnUrl = Url + "?timestamp="+timestamp+"&sign="+sign;
+		retMap.put("MAINTENANCEAUTHORIZATION", MAINTENANCEAUTHORIZATION);
+		retMap.put("returnUrl", returnUrl);
+		return retMap;
+
+	}
 	@Bizlet("获取图片上传路径")
 	public static String getCompanyLogoUrl() {
 		String envType = Env.getContributionConfig("com.vplus.login",
@@ -272,4 +295,30 @@ public class QiNiuUtils {
 		
 		}
 	 * */
+	public static String MD5(String key) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+		String result = "";
+		String str = key;
+		 
+		MessageDigest md5 = MessageDigest.getInstance("MD5");
+		md5.update((str).getBytes("UTF-8"));
+		byte b[] = md5.digest();
+		 
+		int i;
+		StringBuffer buf = new StringBuffer("");
+		 
+		for(int offset=0; offset<b.length; offset++){
+			i = b[offset];
+			if(i<0){
+				i+=256;
+			}
+			if(i<16){
+				buf.append("0");
+			}
+			buf.append(Integer.toHexString(i));
+		}
+		 
+		result = buf.toString();
+		return result;
+    }
+	
 }

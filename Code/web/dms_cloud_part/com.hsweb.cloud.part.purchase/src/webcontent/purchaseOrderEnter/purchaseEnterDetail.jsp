@@ -270,7 +270,7 @@
                                     <div field="comPartName" visible="false" headerAlign="center" header="配件名称">
                                         <!-- <input property="editor" class="nui-textbox" data="codeList" valueField="code" textField="code"/> -->
                                     </div>
-                                    <div field="fullName" width="150"headerAlign="center" header="配件全称"></div>
+                                    <div field="fullName" width="220"headerAlign="center" header="配件全称"></div>
                                     <div field="comPartBrandId" visible="false" width="60" headerAlign="center" header="品牌"></div>
                                     <div field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
                                     <div field="comUnit" name="comUnit" width="40" headerAlign="center" header="单位"></div>
@@ -294,7 +294,7 @@
                             </div>
                             <div header="辅助信息" headerAlign="center">
                                 <div property="columns">
-                                    <div type="comboboxcolumn" field="storeId" width="40" headerAlign="center" allowSort="true">
+                                    <div type="comboboxcolumn" field="storeId" width="30" headerAlign="center" allowSort="true">
                         仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" data="storehouse"
                                       url=""
                                       onvaluechanged="" emptyText=""  vtype="required"
@@ -303,32 +303,32 @@
                         <div field="storeShelf" width="30" headerAlign="center" allowSort="true">
                               仓位<input property="editor" class="nui-textbox"/>
                               </div>
-                      <div field="comOemCode" allowSelect="false" width="60" headerAlign="center" visible="false" allowSort="true" header="OEM码"></div> 
-                      <div field="comSpec" allowSelect="false" width="100" headerAlign="center"  visible="false" allowSort="true" header="规格/方向/颜色"></div>
+                      <div field="comOemCode" allowSelect="false" width="30" headerAlign="center" visible="false" allowSort="true" header="OEM码"></div> 
+                      <div field="comSpec" allowSelect="false" width="30" headerAlign="center"  visible="false" allowSort="true" header="规格/方向/颜色"></div>
                       <div field="sourceMainId" allowSelect="false" width="100" headerAlign="center"  visible="false" allowSort="true" header="来源主表ID"></div>
                       <div field="sourceDetailId" allowSelect="false" width="100" headerAlign="center"  visible="false" allowSort="true" header="来源明细ID"></div>                             
-                      <div field="sellUnitPrice" name="sellUnitPrice" allowSelect="false" width="30" headerAlign="center" visible="true" allowSort="true" header="统一售价">
+                      <div field="sellUnitPrice" name="sellUnitPrice" allowSelect="false" width="20" headerAlign="center" visible="true" allowSort="true" header="统一售价">
                       	<input property="editor" class="nui-textbox"/>
                       </div>
-                      <div field="price1" name="price1" allowSelect="false" width="30" headerAlign="center" visible="false" allowSort="true" header="">
+                      <div field="price1" name="price1" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="true" header="">
                       	<input property="editor" class="nui-textbox"/>
                       </div>
-                      <div field="price2" name="price2" allowSelect="false" width="30" headerAlign="center" visible="false" allowSort="true" header="">
+                      <div field="price2" name="price2" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="true" header="">
                       	<input property="editor" class="nui-textbox"/>
                       </div>
-                      <div field="price3" name="price3" allowSelect="false" width="30" headerAlign="center" visible="false" allowSort="true" header="">
+                      <div field="price3" name="price3" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="true" header="">
                       	<input property="editor" class="nui-textbox"/>
                       </div>
-                      <div field="price4" name="price4" allowSelect="false" width="30" headerAlign="center" visible="false" allowSort="true" header="">
+                      <div field="price4" name="price4" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="true" header="">
                       	<input property="editor" class="nui-textbox"/>
                       </div>
-                      <div field="price5" name="price5" allowSelect="false" width="30" headerAlign="center" visible="false" allowSort="true" header="">
+                      <div field="price5" name="price5" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="true" header="">
                       	<input property="editor" class="nui-textbox"/>
                       </div>
-                      <div field="price6" name="price6" allowSelect="false" width="30" headerAlign="center" visible="false" allowSort="true" header="">
+                      <div field="price6" name="price6" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="true" header="">
                       	<input property="editor" class="nui-textbox"/>
                       </div>
-                      <div field="price7" name="price7" allowSelect="false" width="30" headerAlign="center" visible="false" allowSort="true" header="">
+                      <div field="price7" name="price7" allowSelect="false" width="20" headerAlign="center" visible="false" allowSort="true" header="">
                       	<input property="editor" class="nui-textbox"/>
                       </div>   
                                 </div>

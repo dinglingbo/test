@@ -8,6 +8,7 @@ var form = null;
 var type = null;
 var typeList = {};
 var zongAmt = 0;//实时填写的结算金额
+var typeUrl = 0;//结算逻辑流，2退货.3预收预付
 var guestData = null;
 var deductible = 0;
 $(document).ready(function (){
@@ -31,7 +32,12 @@ function setData(data){
 		zongAmt = parseFloat(data[0].nowAmt||0);
 		netInAmt = parseFloat(data[0].nowAmt||0);
 	}
-
+	typeUrl =  data[0].typeUrl;
+	if(typeUrl==2){
+		$("#wxbtnsettle").show();
+	}else{
+		$("#wxbtnsettle").hide();
+	}
 	var rechargeBalaAmt = 0;
 	document.getElementById('carNo').innerHTML = data[0].carNo;
 	document.getElementById('guest').innerHTML = data[0].guestName;
@@ -342,7 +348,12 @@ function settleOK() {
 			accountDetail.billMainId = guestData[i].billMainId;
 			accountDetail.billServiceId = guestData[i].billServiceId;
 			accountDetail.billTypeId = guestData[i].billTypeId;
-			accountDetail.rpDc = 1;
+			//预收付账款typeUrl==3，不考虑别的
+			if(typeUrl==3){
+				accountDetail.rpDc = 2;
+			}else{				
+				accountDetail.rpDc = 1;
+			}
 			accountDetailList.push(accountDetail);
 		}
 		//单挑收款
@@ -367,9 +378,14 @@ function settleOK() {
 		accountDetail.voidAmt = nowVoidAmt;
 
 		accountDetailList.push(accountDetail);*/
-
-		account.rpDc = 1;
-		account.settleType = "应收";
+		//预付账款typeUrl==3，不考虑别的
+		if(typeUrl==3){
+			account.rpDc = -2;
+			account.settleType = "预收";
+		}else{				
+			account.rpDc = -1;
+			account.settleType = "应收";
+		}
 		account.voidAmt = pVoidAmt;
 		account.trueCharOffAmt = pTrueAmt;
 		account.charOffAmt = pVoidAmt + pTrueAmt;

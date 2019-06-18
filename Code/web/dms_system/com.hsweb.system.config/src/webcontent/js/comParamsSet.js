@@ -31,7 +31,7 @@ $(document).ready(function(v) {
     editParice = nui.get("editParice");
     repairPchsRtnFlag = nui.get("repairPchsRtnFlag");
     //rate = nui.get("rate");
-    openToArchives = nui.get("openToArchives");
+    //openToArchives = nui.get("openToArchives");
     openToGuestQrcode = nui.get("openToGuestQrcode");
     repairDefaultStore = nui.get("repairDefaultStore");
     nui.get("repairSettorderPrintShowT").disable();
@@ -45,7 +45,7 @@ $(document).ready(function(v) {
     repairBillCmodelFlagT.setData(radioList);
     repairBillMobileFlag.setData(radioList);
     repairStoreControlFlag.setData(radioList);
-    openToArchives.setData(typeList);
+    //openToArchives.setData(typeList);
     openToGuestQrcode.setData(typeList);
     
     getStore();

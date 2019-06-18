@@ -9,7 +9,7 @@
 -->
 <head>
   <title>工单设置</title>
-  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.0.11"></script>
+  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.1.0"></script>
   <style type="text/css">
 
     .title {
@@ -183,14 +183,14 @@
                     <a class="nui-button" onclick=""   plain="false" >获取标识</a>
                 </td>
             </tr>
-            <tr>
+            <!-- <tr>
                 <td class="tbtext">工单服务性质对健康档案不开放：</td>
                 <td class="tbCtrl" >
                     <div id="openToArchives" name="openToArchives" class="nui-checkboxlist" repeatItems="5" 
                         repeatLayout="flow"  value="" 
                         textField="text" valueField="id" ></div>
                 </td>
-            </tr>
+            </tr> -->
             <tr>
                 <td class="tbtext">工单服务性质对车主微信端不开放：</td>
                 <td class="tbCtrl" >

@@ -242,7 +242,7 @@ window.onresize = function(){
 document.getElementById("mainMenu").style.height = (document.documentElement.clientHeight-50) + 'px'
 
     var defDomin = "<%=request.getContextPath()%>";
-    var baseUrl = apiPath + repairApi + "/";
+    var baseUrl = apiPath + sysApi + "/";
     var mainTabs = mini.get("mainTabs");
     var loadingV = false;
     var obj = {};

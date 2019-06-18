@@ -303,7 +303,7 @@ body .mini-grid-row-selected{
                                           <input property="editor" class="nui-textbox" />
                                       </div>
                                       <div field="comPartName" visible="false" headerAlign="center" header="配件名称"></div>
-                                      <div field="fullName"  width="150" headerAlign="center" header="配件全称"></div>
+                                      <div field="fullName"  width="240" headerAlign="center" header="配件全称"></div>
                                       <div field="comPartBrandId" visible="false"width="60" headerAlign="center" header="品牌"></div>
                                       <div field="comApplyCarModel" width="80" headerAlign="center" header="品牌车型"></div>
                                       <div field="comUnit" name="comUnit" width="40" headerAlign="center" header="单位"></div>
@@ -327,16 +327,16 @@ body .mini-grid-row-selected{
                               </div>
                               <div header="辅助信息" headerAlign="center">
                                   <div property="columns">
-                                      <div type="comboboxcolumn" field="storeId" width="40" headerAlign="center" allowSort="true">
+                                      <div type="comboboxcolumn" field="storeId" width="30" headerAlign="center" allowSort="true">
                                       仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" 
                                               url="" data="storehouse"
                                               onvaluechanged="" emptyText=""  vtype="required"
                                               /> 
                                       </div>  
-                                      <div field="stockOutQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="缺货数量">
+                                      <div field="stockOutQty" summaryType="sum" numberFormat="0.00" width="25" headerAlign="center" header="缺货数量">
                                       </div>
-                                      <div field="comOemCode" width="60" headerAlign="center" allowSort="true" header="OEM码"></div>   
-                                      <div field="comSpec" width="60" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>                                                        
+                                      <div field="comOemCode" width="30" headerAlign="center" allowSort="true" header="OEM码"></div>   
+                                      <div field="comSpec" width="30" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>                                                        
                                   </div>
                               </div>
                           </div>

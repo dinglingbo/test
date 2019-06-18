@@ -276,7 +276,7 @@ hr {
 				    <td id="contactorTel">联系方式:</td>
 				  </tr>
 				  <tr>
-				    <td id="">地址</td>
+				    <td id="addr">地址</td>
 				    <td id="billTypeId">票据类型:</td>
 				    <td id="settleTypeId">结算方式:</td>
 				  </tr>

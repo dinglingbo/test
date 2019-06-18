@@ -4,6 +4,7 @@
 var bearUrl = apiPath + saleApi + "/"; 
 /*var DateList = [{id:"0",name:"上市日期"},{id:"1",name:"入库日期"}];*/
 var statusList = [{id:"0",name:"联系人"},{id:"1",name:"联系电话"},{id:"2",name:"车架号（VIN）"}];
+var carStatusList = [{id:"0",name:"订货未到"},{id:"1",name:"订货已到"},{id:"2",name:"入库退货"},{id:"3",name:"销售中"},{id:"4",name:"已销售"}];
 var inventory = [{id:"0",name:"否"},{id:"1",name:"是"}];
 var rightGridUrl = bearUrl+"sales.inventory.queryCheckEnter.biz.ext";
 var rightGrid = null;
@@ -42,6 +43,9 @@ $(document).ready(function(v){
             case "interialColorId":
             	e.cellHtml = setColVal('interialColorId', 'customid', 'name', e.value);
                break;
+            case "carStatus":
+            	e.cellHtml = carStatusList[e.value].name;
+               break;               
             default:
                 break;
         }
@@ -156,6 +160,7 @@ function quickSearch(type){
     
     searchBeginDate.setValue(params.startDate);
     searchEndDate.setValue(addDate(params.endDate,-1));
+    nui.get("menunamedate").setValue(querystatusname);
     currType = type;
     doSearch(params);
 }

@@ -30,6 +30,7 @@ import javax.net.ssl.X509TrustManager;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpMessage;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -403,8 +404,16 @@ public class HttpUtils {
 		}
 		urlPath += getParamFromMap(params).toString();
 		return getHttpByJsonParam(urlPath, null, "GET");
+		
 	}
-
+	@Bizlet("")
+	public static String getHttpByGetAddHeaders(String urlPath, Map<String, Object> params ,Map<String, String> headers) {
+		if (urlPath != null && urlPath.indexOf("?") < 0) {
+			urlPath += "?";
+		}
+		urlPath += getParamFromMap(params).toString();
+		return getHttpByJsonParamAddHeaders(urlPath, null, "GET" , headers);
+	}
 	/**
 	 * @param urlPath
 	 * @param params
@@ -487,6 +496,51 @@ public class HttpUtils {
 				}
 			}
 
+			// connection.setRequestProperty("Content-type", "text/html");
+			connection.setRequestProperty("Content-type", "application/json");
+			connection.setRequestProperty("Accept-Charset", "utf-8");
+			connection.setRequestProperty("contentType", "utf-8");
+			if (connection.getResponseCode() == 200) {
+				InputStream inputStream = connection.getInputStream();
+				result = new String(readStream(inputStream).toByteArray(),
+						"UTF-8");
+			} else {
+/*				System.out.println("getResponseCode："
+						+ connection.getResponseCode());*/
+			}
+
+			/*System.out.println("length：" + result.length());*/
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+/*		System.out.println("getHttpToString URL：" + urlPath);
+		System.out.println("getHttpToString Result：" + result);*/
+		return result;
+	}
+	
+	@Bizlet("")
+	public static String getHttpByJsonParamAddHeaders(String urlPath,
+			Map<String, String> params, String method,Map<String, String> headers) {
+		String result = null;
+		try {
+			URL url = new URL(urlPath);
+			HttpURLConnection connection = (HttpURLConnection) url
+					.openConnection();
+			connection.setRequestMethod(method);
+			connection.setConnectTimeout(30000);
+			connection.setReadTimeout(30000);
+
+			if (params != null && params.size() > 0) {
+				for (Entry<String, String> e : params.entrySet()) {
+					connection.setRequestProperty(e.getKey(), e.getValue());
+				}
+			}
+			if (headers != null) {
+				for (Map.Entry<String, String> e : headers.entrySet()) {
+					((HttpMessage) connection).addHeader(e.getKey(), e.getValue());
+				}
+			}
 			// connection.setRequestProperty("Content-type", "text/html");
 			connection.setRequestProperty("Content-type", "application/json");
 			connection.setRequestProperty("Accept-Charset", "utf-8");

@@ -38,7 +38,7 @@
     <input id="carStructureType" name="carStructureType"  class="nui-combobox" visible="false" dataField="data" valueField="customid" textField="name"/>
     <input id="outputVolume" name="outputVolume"  class="nui-combobox" visible="false" dataField="data" valueField="customid" textField="name"/>
     <input id="seatQty" name="seatQty"  class="nui-combobox" visible="false" dataField="data" valueField="customid" textField="name"/>
-             <input id="inletType" name="inletType"  class="nui-combobox" visible="false" dataField="data" valueField="customid" textField="name"/>
+    <input id="inletType" name="inletType"  class="nui-combobox" visible="false" dataField="data" valueField="customid" textField="name"/>
     <input id="powerType" name="powerType"  class="nui-combobox" visible="false" dataField="data" valueField="customid" textField="name"/>
     <input id="driveMode" name="driveMode"  class="nui-combobox" visible="false" dataField="data" valueField="customid" textField="name"/>
     <input id="gearBox" name="gearBox"  class="nui-combobox" visible="false" dataField="data" valueField="customid" textField="name"/>

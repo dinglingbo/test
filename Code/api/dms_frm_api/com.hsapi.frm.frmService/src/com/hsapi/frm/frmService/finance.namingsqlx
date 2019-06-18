@@ -304,9 +304,15 @@
 				   a.modifier as modifier,
 				   a.modify_date as modifyDate
 			from fis_rp_advance a
-			where 1 = 1 and a.is_settle =1 and a.bala_amt>0
+			where 1 = 1  and a.bala_amt>0
                 <isNotEmpty prepend="and" property="orgid">
                 (a.orgid = #orgid#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="id">
+                (a.id = #id#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isSettle">
+                (a.is_settle = #isSettle#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="orgids">
                 (a.orgid in ($orgids$))

@@ -8,7 +8,7 @@
 -->
 <head>
 <title>整车库存</title>
-<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesInventory.js?v=1.1.4"></script>
+<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesInventory.js?v=1.1.5"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -60,7 +60,7 @@
                 <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
                 	<li iconCls="" onclick="quickSearch()" id="type">所有</li>
                     <li iconCls="" onclick="quickSearch(12)" id="type12">订货已到</li>
-                    <li iconCls="" onclick="quickSearch(13)" id="type13">入库退货</li>
+                    <li iconCls="" onclick="quickSearch(13)" id="type13">已退货</li>
                     <li iconCls="" onclick="quickSearch(14)" id="type14">销售中</li>
                     <li iconCls="" onclick="quickSearch(15)" id="type15">已销售</li>
                 </ul>

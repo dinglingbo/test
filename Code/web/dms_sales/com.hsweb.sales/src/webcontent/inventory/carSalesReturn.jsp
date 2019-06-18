@@ -8,7 +8,7 @@
 -->
 <head>
 <title>整车采购退货</title>
-<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesReturn.js?v=1.0.5"></script>
+<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesReturn.js?v=1.0.6"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -38,7 +38,7 @@
     <table style="width:100%;">
         <tr>
             <td style="white-space:nowrap;">
-<!--                  <label style="font-family:Verdana;">快速查询：</label>
+                  <label style="font-family:Verdana;">快速查询：</label>
                 <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
 
                 <ul id="popupMenuDate" class="nui-menu" style="display:none;">
@@ -60,10 +60,8 @@
                 <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
                 	<li iconCls="" onclick="quickSearch()" id="type">所有</li>
                     <li iconCls="" onclick="quickSearch(12)" id="type12">草稿</li>
-                    <li iconCls="" onclick="quickSearch(13)" id="type13">待发货</li>
-                    <li iconCls="" onclick="quickSearch(14)" id="type14">待收货</li>
-                    <li iconCls="" onclick="quickSearch(15)" id="type15">已入库</li>
-                </ul>  -->
+                    <li iconCls="" onclick="quickSearch(13)" id="type13">已退货</li>
+                </ul>  
 
 
 				<label style="font-family:Verdana;">退货日期 从：</label>

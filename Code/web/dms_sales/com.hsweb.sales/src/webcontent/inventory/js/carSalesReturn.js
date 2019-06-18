@@ -206,17 +206,15 @@ function quickSearch(type){
             break;
         //草稿
         case 12:
-        	params.billStatusId=0;
-        	params.auditSign=0;
+        	params.status=0;
         	querysign = 2;
         	querystatusname = "草稿";
         	break;
         //待发货
         case 13:
-        	params.billStatusId=1;
-        	params.auditSign=1;
+        	params.status=1;
         	querysign = 2;
-        	querystatusname = "待发货";
+        	querystatusname = "已退货";
         	break;
         //待收货
         case 14:
@@ -244,14 +242,14 @@ function quickSearch(type){
     nui.get('auditSign').setValue(params.auditSign);
     nui.get('billStatusId').setValue(params.billStatusId);
     currType = type;
-/*    if(querysign == 1){
+    if(querysign == 1){
     	var menunamedate = nui.get("menunamedate");
     	menunamedate.setText(queryname); 	
     }
     else if(querysign == 2){
     	var menubillstatus = nui.get("menubillstatus");
 		menubillstatus.setText(querystatusname);
-    }*/
+    }
     doSearch(params);
 }
 function onSearch(){

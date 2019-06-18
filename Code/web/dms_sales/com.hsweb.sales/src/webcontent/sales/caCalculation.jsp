@@ -98,7 +98,7 @@
                                 <input id="saleType" name="saleType" style="width: 100%" class="nui-combobox" textField="name" valueField="customid" onvaluechanged="changeSaleType" enabled="false">
                             </td>
                             <td class="td_title">
-                                车型销价：
+                                车价：
                             </td>
                             <td>
                                 <input id="saleAmt" name="saleAmt" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg" />
@@ -168,13 +168,13 @@
                                 贷款利率(%)：
                             </td>
                             <td>
-                                <input id="bankHandlingRate" name="bankHandlingRate" style="width: 100%" class="nui-textbox" enabled="false" vtype="float">
+                                <input id="bankHandlingRate" name="bankHandlingRate" style="width: 100%" class="nui-textbox" enabled="false" vtype="float" onvaluechanged="changeValueMsg">
                             </td>
                             <td class="td_title">
                                 银行利息分摊：
                             </td>
                             <td>
-                                <input id="bankHandlingApportion" name="bankHandlingApportion" data="is_not" style="width: 100%" class="nui-combobox" onvaluechanged="changeValueMsg">
+                                <input id="bankHandlingApportion" name="bankHandlingApportion" data="is_not" value="0" style="width: 100%" class="nui-combobox" onvaluechanged="changeValueMsg" >
                             </td>
                             <td class="td_title">
                                 贷款利息：

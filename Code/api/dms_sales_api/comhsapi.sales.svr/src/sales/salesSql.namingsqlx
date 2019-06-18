@@ -871,4 +871,72 @@
                 (is_disabled = #isDisabled#)
             </isNotEmpty>
         </dynamic>  
-	</select></sqlMap>
+	</select>
+	
+	         <!-- 查询pdi -->
+    <select id="queryPdi" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT
+                a.id AS id,
+                a.orgid as orgid,
+                a.tenant_id AS tenantId,
+                a.enter_id as enterId,
+                a.pdi_detection_date AS pdiDetectionDate,
+                a.pdi_detectioner AS pdiDetectioner,
+                a.car_model_id as carModelId,
+                a.car_model_name as carModelName,
+                a.vin as vin,
+                a.engine_no as engineNo,
+                a.ignition_key_code AS ignitionKeyCode,
+                a.ignition_key_number AS ignitionKeyNumber,
+                a.transmitters_number as transmittersNumber,
+                a.remark as remark,
+                a.recorder as recorder,
+                a.record_date as recordDate,
+                a.modifier as modifier,
+                a.modify_date as modifyDate              
+            FROM
+            wb_sales.css_check_pdi_main a
+                where a.orgid = #orgid#
+            <dynamic>
+                <isNotEmpty prepend="and" property="enterId">  
+                    (A.enter_id = #enterId#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="id">  
+                    (A.id = #id#)
+                </isNotEmpty>                                                         
+            </dynamic>          
+        ORDER BY a.id asc
+    </select>
+    
+    	         <!-- 查询pdi明细 -->
+    <select id="queryPdiD" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT
+                a.id AS id,
+                a.order_id as orderId,
+                a.pdi_template_id AS pdiTemplateId,
+                a.pdi_item_type_id as pdiItemTypeId,
+                a.pdi_item_id AS pdiItemId,
+                a.pdi_item_name AS name,
+                a.is_normal as isNormal,
+                a.remark as remark,
+                a.recorder as recorder,
+                a.record_date as recordDate,
+                a.modifier as modifier,
+                a.modify_date as modifyDate              
+            FROM
+            wb_sales.css_check_pdi_detail a
+                where 1=1
+            <dynamic>
+                <isNotEmpty prepend="and" property="orderId">  
+                    (A.order_id = #orderId#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="id">  
+                    (A.id = #id#)
+                </isNotEmpty>                                                         
+            </dynamic>          
+        ORDER BY a.id asc
+    </select>
+	
+	</sqlMap>

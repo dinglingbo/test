@@ -1314,6 +1314,10 @@
       <process:to type="query">cssCheckEnter/billStatus</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">2</process:from>
+      <process:to type="query">cssCheckEnter/carStatus</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">tempAdd/returnAmt</process:from>
       <process:to type="query">danAmt</process:to>
     </process:copy>

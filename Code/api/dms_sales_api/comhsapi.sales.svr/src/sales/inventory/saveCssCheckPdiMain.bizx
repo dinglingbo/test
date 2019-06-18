@@ -21,7 +21,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link9" name="修改" displayName="修改" isDefault="false" type="transition">
       <sourceNode>assign0</sourceNode>
-      <targetNode>assign24</targetNode>
+      <targetNode>transactionbegin1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="GT">
           <process:leftOperand type="query">cssCheckPdiMain/id</process:leftOperand>
@@ -335,49 +335,6 @@
     <figSize height="17" width="62"/>
     <node>invokePojo6</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign24" name="主表赋值2" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign24</sourceNode>
-      <targetNode>transactionbegin1</targetNode>
-    </sourceConnections>
-    <targetConnections>link9</targetConnections>
-    <location x="197" y="75"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign24label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">guest/isInternal</process:from>
-      <process:to type="query">isInner</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">pchsOrderMain/orgid</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userId</process:from>
-      <process:to type="query">pchsOrderMain/operatorId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
-      <process:to type="query">pchsOrderMain/operator</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">operateDate</process:from>
-      <process:to type="query">pchsOrderMain/operateDate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">returnOrderMain/id</process:from>
-      <process:to type="query">mainId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">operateDate</process:from>
-      <process:to type="query">pchsOrderMain/versionNo</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign24label" name="label" nodeType="label">
-    <location x="183" y="111"/>
-    <figSize height="17" width="56"/>
-    <node>assign24</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign22" name="赋值19" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link78" name="link78" displayName="link6" isDefault="true" type="transition">
       <sourceNode>assign22</sourceNode>
@@ -565,13 +522,13 @@
       <sourceNode>transactionbegin1</sourceNode>
       <targetNode>assign2</targetNode>
     </sourceConnections>
-    <targetConnections>link3</targetConnections>
-    <location x="250" y="76"/>
+    <targetConnections>link9</targetConnections>
+    <location x="198" y="75"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionbegin1label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactionbegin1label" name="label" nodeType="label">
-    <location x="236" y="112"/>
+    <location x="184" y="111"/>
     <figSize height="17" width="56"/>
     <node>transactionbegin1</node>
   </nodes>
@@ -817,6 +774,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.sales.data.css.CssCheckPdiDetail" name="temp"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.sales.data.css.CssCheckPdiDetail" name="data"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="ct"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="主表信息" isArray="false" modelType="com.hsapi.sales.data.css.CssCheckPdiMain" name="cssCheckPdiMain"/>

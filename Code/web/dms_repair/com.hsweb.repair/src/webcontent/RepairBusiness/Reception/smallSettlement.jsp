@@ -278,13 +278,13 @@
                 	var contact = nui.decode(text.contactor);
                    if(text.errCode == "S"){
                    		var fullName = guest.fullName || "";
-                   		var mobile = guest.mobile || "";
                    		var contactName = contact.name;
+                   		var mobile = contact.mobile || "";
                    		phones = mobile;
                    		document.getElementById("guestId").innerHTML =  guestName.replace(/[0-9]/ig,"") + fullName;
                    		document.getElementById("contactName").innerHTML =  document.getElementById("contactName").innerHTML + contactName;
                    		if(currRepairBillMobileFlag==1){
-	        	        document.getElementById("guestId").innerHTML = document.getElementById("guestId").innerHTML + 
+	        	        document.getElementById("contactName").innerHTML = document.getElementById("contactName").innerHTML + 
 	        	        "<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ phones;
 	        	    }
                    		//document.getElementById("mobile").innerHTML = document.getElementById("mobile").innerHTML+ mobile;

@@ -10,7 +10,7 @@ $(document).ready(function(v) {
 });
 function setData(row){
 	costAdjust = row;
-
+	costAdjust.xunitPrice = costAdjust.unitPrice;//默认修改成本等于原成本
 	mainForm.setData(costAdjust);
 }
 

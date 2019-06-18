@@ -200,24 +200,22 @@ function quickSearch(type){
             break;
         //草稿
         case 12:
-        	params.billStatusId=0;
+        	params.billStatus=0;
         	params.auditSign=0;
         	querysign = 2;
         	querystatusname = "草稿";
         	break;
         //待发货
         case 13:
-        	params.billStatusId=1;
-        	params.auditSign=1;
+        	params.billStatus=1;
         	querysign = 2;
-        	querystatusname = "待发货";
+        	querystatusname = "已入库";
         	break;
         //待收货
         case 14:
-        	params.billStatusId=2;
-        	params.auditSign=1;
+        	params.billStatus=2;
         	querysign = 2;
-        	querystatusname = "待收货";
+        	querystatusname = "已退货";
         	break;
         //已入库
         case 15:

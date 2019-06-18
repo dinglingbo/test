@@ -11,7 +11,7 @@
     <title>用户管理</title>
     <%@include file="/common/sysCommon.jsp"%>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	 <script src="<%= request.getContextPath() %>/tenant/js/userManager.js?v=1.9.12"
+	 <script src="<%= request.getContextPath() %>/tenant/js/userManager.js?v=1.9.13"
 	type="text/javascript"></script>
     <style type="text/css">
     body {
@@ -74,7 +74,7 @@
          <label style="font-family:Verdana;">开通时间：</label>
         <input class="nui-combobox" id="startDatet" emptyText="" name="startDatet" data="[{startDatet:0,text:''},{startDatet:1,text:'本周'},{startDatet:2,text:'本月'},{startDatet:3,text:'本年'},{startDatet:4,text:'上年'}]"
                           width="60px"   textField="text" valueField="startDatet" value=""/>
-           <input  class="nui-textbox" emptytext="输入租户ID"  width="125px" style="margin-right:0px;" name="code" onenter="search()"/>
+           <input  class="nui-textbox" emptytext="输入租户ID"  width="125px" style="margin-right:0px;" name="tenantId" onenter="search()"/>
            <input  class="nui-textbox" emptytext="输入租户名称"  width="125px" style="margin-right:0px;" name="tenantName" onenter="search()"/>
            <input  class="nui-textbox" emptytext="输入租户Id"  width="125px" style="margin-right:0px;" name="tenantId" visible="false"/>
            <input  class="nui-textbox" emptytext="租户手机号"  width="125px" style="margin-right:0px;" name="mobile" onenter="search()"/>
@@ -105,12 +105,14 @@
             	<div type="checkcolumn" >选择</div>
             	<div type="checkboxcolumn" trueValue="1" falseValue="0" field="isPay" name="isPay"  width="60" headerAlign="center" header="是否付费" allowsort="true"></div>
             	<div type="checkboxcolumn" trueValue="0" falseValue="1" field="isDisabled" name="isDisabled"  width="60" headerAlign="center" header="是否在用" allowsort="true"></div>
-            	<div field="tenantId" width="80" headerAlign="center" align="center" visible="false">租户ID</div>
-                <div field="code" width="80" headerAlign="center" align="center">租户ID</div>
+            	<div field="tenantId" width="80" headerAlign="center" align="center" >租户ID</div>
+                <div field="code" width="80" headerAlign="center" align="center" visible="false">租户ID</div>
+                <div field="tenantType" width="120" headerAlign="center" align="center">租户类型</div>
                 <div field="tenantName" width="120" headerAlign="center" align="center">租户名称</div>
                 <div field="provinceId" width="80" headerAlign="center" align="center">省份</div>
                 <div field="cityId" width="80" headerAlign="center" align="center">城市</div>
                 <div field="manager" width="80" headerAlign="center" align="center">管理员</div>
+                <div field="managerIdentity" width="80" headerAlign="center" align="center">管理员身份</div>
                 <div field="mobile" width="80" headerAlign="center" align="center">联系电话</div>
                 <div field="address" width="80" headerAlign="center" align="center">联系地址</div>
                 <div field="recordDate" width="80" headerAlign="center" align="center"dateFormat="yyyy-MM-dd HH:mm" >注册时间</div>

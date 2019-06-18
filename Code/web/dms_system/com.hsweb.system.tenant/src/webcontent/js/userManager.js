@@ -82,10 +82,10 @@ switch (e.field)
 	        e.cellHtml = cityHash[e.value].name;
 	    }  
     break;
-	/*case "isDisabled":
-		e.cellHtml = e.value==0?"在用":"停用";
+	case "managerIdentity":
+		e.cellHtml = e.value==0?"老板":"员工";
 		break;
-	case "isPay":
+	/*case "isPay":
 		e.cellHtml = e.value==0?"免费":"付费";
 		break;*/
 	default:
@@ -393,7 +393,7 @@ function ViewType(e){
     
     }
     nui.open({
-        url: baseUrl +"tenant/userManagerment_view.jsp",
+        url: webPath + contextPath + "/tenant/userManagerment_view.jsp",
         title: tit, 
         width: view_w, 
         height: view_d,

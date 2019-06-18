@@ -29,6 +29,8 @@ $(document).ready(function ()
 	  },function(data){
    });
     initMember("saleAdvisorId",function(){
+    	nui.get("saleAdvisorId").setValue(currEmpId);
+    	nui.get("saleAdvisorId").setText(currUserName);
     });
 	mainGrid.on('drawcell', function (e) {
        var value = e.value;
@@ -104,9 +106,9 @@ $(document).ready(function ()
 	doSearch();
 	var data = []
 	form.setData(data);
-	nui.get("saleAdvisorId").setValue(currEmpId);
     nui.get("scoutDate").setValue(now);
     nui.get("recorder").setValue(currUserName);
+    nui.get("scoutRemark").disable();
 });
 
 function getSearchParam() {

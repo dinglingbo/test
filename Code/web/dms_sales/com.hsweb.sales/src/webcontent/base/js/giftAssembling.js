@@ -254,8 +254,13 @@ function onEnterIdEdit(params) {
     width: 1000,
     height: 500,
     onload: function () {
-      var iframe = this.getIFrameEl();
-      iframe.contentWindow.SetData('',1);
+        var iframe = this.getIFrameEl();
+        var data = {
+            billStatus:1,
+            carStatus: 1, 
+            carLock: 0
+        }
+      iframe.contentWindow.SetData(data,1);
     },
     ondestroy: function (action) {
         var iframe = this.getIFrameEl();

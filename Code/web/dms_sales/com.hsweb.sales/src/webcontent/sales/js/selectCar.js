@@ -39,13 +39,14 @@ $(document).ready(function(v) {
 });
 
 
-function SetData(carModelId, isUpdateParam) {
+function SetData(data, isUpdateParam) {
     isUpdate = isUpdateParam;
     var params = {
-        carModelId: carModelId,
+        carModelId: data.carModelId||'',
         carModelName: nui.get("carModelName").value,
-        carLock: 0,
-		carStatus: 0 
+        carLock: data.carLock||'',
+        carStatus: data.carStatus || '',
+        billStatus: data.billStatus || ''
     };
     grid.load({ params: params });
 }

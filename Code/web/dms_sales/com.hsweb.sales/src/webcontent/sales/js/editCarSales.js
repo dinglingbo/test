@@ -918,7 +918,12 @@ function selectCar() { //点击选车时触发
         height: "50%",
         onload: function() {
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(billFormData.carModelId);
+            var data = {
+                carModelId: billFormData.carModelId,
+                carLock: 0,
+                carStatus: 0
+            }
+            iframe.contentWindow.SetData(data);
         },
         ondestroy: function(action) {
             if (action == "ok") {

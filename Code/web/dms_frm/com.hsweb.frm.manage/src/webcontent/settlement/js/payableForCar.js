@@ -14,6 +14,8 @@ var qRightGrid = null;
 var fisRpAdvance = [];//本单定金
 var fisRpAdvanceList = [];//全部定金
 var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryFrmAccount.biz.ext";
+var accountSegmentation = [];//账户分割取id
+var accountList = [];//全部付款方式
 $(document).ready(function (){
 	qRightGrid = nui.get("qRightGrid");
 	$("body").on("blur","input[name='amount']",function(){
@@ -89,8 +91,8 @@ function setData(data){
     			type : "post",
     			data : json,
     			success : function(data) {
-    				 fisRpAdvance = data.fisRpAdvance;
-    				 fisRpAdvanceList = data.fisRpAdvanceList;
+    				 fisRpAdvance = data.fisRpAdvance||[];
+    				 fisRpAdvanceList = data.fisRpAdvanceList||[];
     				 if(fisRpAdvance.length>0){ 					 
     					 nui.get("code").setValue(fisRpAdvance[0].code||""); 
     					 nui.get("balaAmt").setValue("￥"+fisRpAdvance[0].balaAmt||0);
@@ -108,11 +110,6 @@ function setData(data){
 }
 
 function onChanged() {
-	var count = scount();
-	if(parseFloat(count) > netInAmt){
-		showMsg("收款大于应收金额，请重新填写","W");
-		return;
-	}
 	var amt = 0;
 	var rows = qRightGrid.getSelecteds();
 	for(i=0;i<rows.length;i++){
@@ -123,16 +120,23 @@ function onChanged() {
 		balaAmt = (balaAmt.split("￥"))[1];
 	}
 	amt = parseFloat(amt) + parseFloat(balaAmt);
-	if( parseFloat(amt)+ parseFloat(count) > netInAmt){
-		showMsg("预付款+收款金额大于应收金额，请重新填写","W");
-/*		nui.get("deductible").setValue(0);
-		deductible=0;
-		nui.get("PrefAmt").setValue(0);*/
-		//document.getElementById('amount').innerHTML=netInAmt;
+	
+
+		var amtd = document.getElementById('amount').innerText;
+		amtd = parseFloat(amtd) - parseFloat(amt);
+		var byId = accountSegmentation[1]+accountList[0].customId;
+		document.getElementById(byId).value = amtd;
+		checkF = 0;
+		
+	var count = scount();
+	if(parseFloat(count) > netInAmt){
+		showMsg("收款大于应收金额，请重新填写","W");
 		return;
 	}
-/*	var amount = parseFloat(netInAmt)-parseFloat(count);
-	document.getElementById('amount').innerHTML = amount;*/
+	if( parseFloat(amt)+ parseFloat(count) > netInAmt){
+		showMsg("预付款+收款金额大于应收金额，请重新填写","W");
+		return;
+	}
 
 }
 
@@ -179,7 +183,8 @@ function addType(){
 
 function checkField(id){
 		 var str = "";
-		 var s1=id.split("optaccount");
+		 var s1 =id.split("optaccount");
+		 accountSegmentation = s1;
 		// $("#paytype"+s1[1]).empty();
 		 var myselect=document.getElementById("optaccount"+s1[1]);
 		 var index=myselect.selectedIndex;
@@ -193,6 +198,7 @@ function checkField(id){
 			type : "post",
 			data : json,
 			success : function(data) {
+				accountList = data.list;
 				for(var i = 0;i<data.list.length;i++){
 					var ss = '<td width="110" height="44" align="right">'+data.list[i].customName+'</td>'+'<td>'+'<input class="nui-textbox" id ='+s1[1]+data.list[i].customId+' name ="amount" onvaluechanged="onChanged" style="width: 100px;">'+'</td>';
 					if(((i+1)%3)==0){
@@ -253,7 +259,7 @@ function settleOK() {
 		amt = parseFloat(amt) + parseFloat(rows[i].balaAmt);
 	}
 for(var i = 0;i<fisRpAdvanceSelect.length;i++){
-	var list={balaTypeCode:1,charOffAmt:fisRpAdvanceSelect[i].balaAmt,settAccountId:1,settAccountName:1};
+	var list={balaTypeCode:"020108",charOffAmt:fisRpAdvanceSelect[i].balaAmt,settAccountId:296,settAccountName:"默认现金账户"};
 	accountTypeList.push(list);
 }
 	var balaAmt = nui.get("balaAmt").getValue();

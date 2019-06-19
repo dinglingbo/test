@@ -323,7 +323,7 @@ function settleOK() {
 		amt = parseFloat(amt) + parseFloat(rows[i].balaAmt);
 	}
 for(var i = 0;i<fisRpAdvanceSelect.length;i++){
-	var list={balaTypeCode:1,charOffAmt:fisRpAdvanceSelect[i].balaAmt,settAccountId:1,settAccountName:1};
+	var list={balaTypeCode:"020109",charOffAmt:fisRpAdvanceSelect[i].balaAmt,settAccountId:296,settAccountName:"默认现金账户"};
 	accountTypeList.push(list);
 }
 	var balaAmt = nui.get("balaAmt").getValue();

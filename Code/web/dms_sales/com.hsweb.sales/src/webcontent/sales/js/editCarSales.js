@@ -562,7 +562,7 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
                 });
                 costDetailGrid.load({ serviceId: serviceId, type: 1 });
                 costDetailGrid2.load({ serviceId: serviceId, type: 2 });
-                if (e == 1) {
+                if (e == 2) {
                     var billFormData = billForm.getData(true); //主表信息
                     var params = document.getElementById("caCalculation").contentWindow.getValue(); //购车信息
                     var caCalculationData = params.data;
@@ -1352,6 +1352,44 @@ function activechangedmain(){
 function changeBuyType(){
 	isTabs = 0;
 	changeValueMsg(1);
+}
+
+//销售单审核
+function auditingSales(){
+	isTabs = 0;
+	var billFormData = billForm.getData(true); //主表信息
+	if(billFormData.status<1){
+		showMsg("销售单未提交,不能审核","W");
+		return;
+	}
+	var params = document.getElementById("caCalculation").contentWindow.getValue(); //购车信息
+    var caCalculationData = params.data;
+	nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '保存中...'
+    });
+	 nui.ajax({
+        url: baseUrl + "sales.save.auditingSales.biz.ext",
+        data: {
+            billFormData: billFormData,
+            caCalculationData: caCalculationData
+        },
+        cache: false,
+        async: false,
+        success: function(text) {
+            if (text.errCode == "S") {
+            	billFormData.status = 2;
+            	billForm.setData(billFormData)
+            	showMsg("审核成功" || text.errMsg, "S");
+                nui.unmask(document.body);
+
+            } else {
+                showMsg(text.errMsg, "E");
+                nui.unmask(document.body);
+            }
+        }
+    });
 }
 
 

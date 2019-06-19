@@ -41,7 +41,7 @@
                                                    style="width:100px;" onenter="onKeyEnter"/>
                                         </td>
                                         <td>
-                                            <a class="nui-button" onclick="searchDictType();">查询</a>
+                                            <a class="nui-button" onclick="searchDictType();"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                                         </td>
                                     </tr>
                                     <tr height="3px;">
@@ -57,16 +57,16 @@
                                     <tr>
                                         <td style="width:100%;">
                                             <a class="nui-button" plain="true" iconCls="icon-add"
-                                               onclick="addDictType()">添加
+                                               onclick="addDictType()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加
                                             </a>
                                             <a class="nui-button" plain="true" iconCls="icon-addnew"
-                                               onclick="addSubDictType()" id="btn_addSubDictType">添加子类型
+                                               onclick="addSubDictType()" id="btn_addSubDictType"><span class="fa fa-plus fa-lg"></span>&nbsp;添加子类型
                                             </a>
                                             <a class="nui-button" plain="true" iconCls="icon-edit"
-                                               onclick="editDictType()" id="btn_editDictType">修改
+                                               onclick="editDictType()" id="btn_editDictType"><span class="fa fa-edit fa-lg"></span>&nbsp;修改
                                             </a>
                                             <a class="nui-button" plain="true" iconCls="icon-remove" style="display:none;"
-                                               onclick="removeDictType()" id="btn_removeDictType">删除
+                                               onclick="removeDictType()" id="btn_removeDictType"><span class="fa fa-remove fa-lg"></span>&nbsp;删除
                                             </a>
                                             <!--
                                             <a class="nui-button" plain="true" iconCls="icon-upload" onclick="importDict();">导入</a>&nbsp;
@@ -109,15 +109,15 @@
                     <div class="nui-panel" title="数据字典项" style="width:100%;height:100%;"
                          showToolbar="true" showCollapseButton="false" showFooter="false" allowResize="false">
                         <div property="toolbar">
-                            <a class="nui-button" plain="true" iconCls="icon-add" onclick="addDict()">添加</a>
+                            <a class="nui-button" plain="true" iconCls="icon-add" onclick="addDict()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加</a>
                             <a class="nui-button" plain="true" iconCls="icon-addnew" onclick="addSubDict()"
-                               id="btn_addSubDict">添加子项
+                               id="btn_addSubDict"><span class="fa fa-plus fa-lg"></span>&nbsp;添加子项
                             </a>
                             <a class="nui-button" plain="true" iconCls="icon-edit" onclick="editDict()"
-                               id="btn_editDict">修改
+                               id="btn_editDict"><span class="fa fa-edit fa-lg"></span>&nbsp;修改
                             </a>
                             <a class="nui-button" plain="true" iconCls="icon-remove" onclick="removeDict()" style="display:none;"
-                               id="btn_removeDict">删除
+                               id="btn_removeDict"><span class="fa fa-remove fa-lg"></span>&nbsp;删除
                             </a>  
                         </div>
 
@@ -126,7 +126,7 @@
                              multiSelect="true"
                              url="com.hsapi.system.dict.dictMgr.queryDict.biz.ext" onbeforeload="onBeforeTreeLoad"
                              onselectionchanged="onDictSelected" ondrawnode="onDictDrawNode"
-                             onnodeclick="onDictNodeClick"
+                             onnodeclick="onDictNodeClick" ondrawcell="onDictNodeDrawCell"
                              dataField="data" idField="id" treeColumn="id">
                             <div property="columns">
                                 <div type="checkcolumn"></div>
@@ -270,6 +270,12 @@ function onDictTypeSelected(e) {
         nui.get("btn_editDictType").disable();
         nui.get("btn_removeDictType").disable();
     }
+}
+
+function onDictNodeDrawCell(e) {
+	if(e.field == "isDisabled") {
+		e.cellHtml = e.value==1?"无效":"有效";
+	}
 }
 
 function onDictTypeDrawNode(e) {//节点加载完清空参数，避免影响查询和翻页

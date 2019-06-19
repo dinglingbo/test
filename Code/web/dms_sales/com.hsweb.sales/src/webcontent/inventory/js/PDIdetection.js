@@ -52,27 +52,45 @@ $(document).ready(function(v){
 });
 
 function setData(row){
-	advancedSearchForm.setData(row);
-	nui.get("pdiDetectioner").setValue(currEmpId);
-	nui.get("pdiDetectioner").setText(currUserName);
-	nui.get("pdiDetectionDate").setValue(new Date());
-	nui.get("vin").setValue(row.vin);
-	nui.get("enterId").setValue(row.id);
-	
-/*	nui.ajax({
-		url : searchCsbPDICarTemplateUrl,
-		type : "post",
-		data : "",
-		success : function(data) {
-			data = data || {};
-			var  searchCsbPDICarTemplate = data.list;
-			
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			// nui.alert(jqXHR.responseText);
-			console.log(jqXHR.responseText);
-		}
-	});*/
+	if(row){
+		var searchPdiUrl = bearUrl+"sales.inventory.queryPDI.biz.ext";
+	    nui.ajax({
+	        url: searchPdiUrl,
+	        type:"post",
+	        async: false,
+	        data:{
+	        	params:{enterId:row.id},
+	        	token:token
+	        },
+	        cache: false,
+	        success: function (text) {
+	            var pdi = text.pdi||[];
+	            var pdiD = text.pdiD||[];
+
+	            if(pdi.length<1){
+	            	row.enterId = row.id;
+	            	row.id = null;
+	        		advancedSearchForm.setData(row);
+	        		nui.get("pdiDetectioner").setValue(currEmpId);
+	        		nui.get("pdiDetectioner").setText(currUserName);
+	        		nui.get("pdiDetectionDate").setValue(new Date());
+	        		nui.get("vin").setValue(row.vin);
+	            }else{
+		            advancedSearchForm.setData(pdi[0]);
+		            nui.get("enterId").setValue(row.id);
+		            nui.get("pdiTemplateId").setValue(pdiD[0].pdiTemplateId);
+		            for(var i = 0;i<pdiD.length;i++){
+		            	if(pdiD[i].isNormal==0){
+		            		pdiD[i].status = 1;
+		            	}else{
+		            		pdiD[i].nostatus = 1;
+		            	}		            	
+		            }
+		        	morePartGrid.setData(pdiD);
+	            }
+	        }
+	    });
+	}	
 }
 
 function ValueChanged(e) {
@@ -110,6 +128,11 @@ function ValueChanged(e) {
 var saveCssCheckPdiMainUrl = bearUrl+"sales.inventory.saveCssCheckPdiMain.biz.ext";
 
 function onOk(){
+	nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : '保存中...'
+	});
 	var cssCheckPdiMain = advancedSearchForm.getData();
 	var cssCheckPdiDetail = morePartGrid.getData();
 	for(var i = 0;i<cssCheckPdiDetail.length;i++){
@@ -134,6 +157,7 @@ function onOk(){
         },
         cache: false,
         success: function (text) {
+        	nui.unmask(document.body);
             var list = text.list;
             if(text.errCode=="S"){
             	showMsg("保存成功","S");

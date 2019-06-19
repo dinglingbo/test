@@ -10,7 +10,7 @@
 -->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.5.97"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.6.0"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -69,6 +69,12 @@
         color:#62b900;
     }
     #wechatTag1{
+        color:#ccc;
+    }
+    #eTag{
+        color:#62b900;
+    }
+    #eTag1{
         color:#ccc;
     }
 
@@ -240,7 +246,9 @@ html, body{
                 <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn">新增客户</a>
                 <a class="nui-button" iconCls="" plain="false" onclick="addFit()" id="addFit">标记为散客</a>
                 <label style="font-family:Verdana;">工单号:</label>
-                <label id="servieIdEl" style="font-family:Verdana;"></label>
+                <label id="servieIdEl" style="font-family:Verdana;"></label>&nbsp;
+                <a href="javascript:signElectronics()" id="showE" style="display:none"><span id="eTag" class="fa fa-star fa-lg"></span></a>
+                <a href="javascript:signElectronics()" id="showE1" style="display:none"><span id="eTag1" class="fa fa-star fa-lg"></span></a>
             </td>     
           
             <td style="text-align:right;">

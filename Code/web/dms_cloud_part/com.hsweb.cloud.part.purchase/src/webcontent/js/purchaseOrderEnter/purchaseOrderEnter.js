@@ -61,7 +61,7 @@ var AuditSignHash = {
 	"0" : "草稿",
 	"1" : "已入库"
 };
-
+var storeLimitMap={};
 $(document).ready(function(v) {
 	nui.mask({
         el: document.body,
@@ -923,7 +923,8 @@ function add() {
 
 	}
 
-	
+	//获取业务员的仓库限制	
+	getStoreLimit();
 }
 function getMainData() {
 	var data = basicInfoForm.getData();
@@ -1050,6 +1051,21 @@ function save() {
 	} else {
 		return;
 	}
+	
+	var rightRow =rightGrid.getData();
+	var orderMan =nui.get('orderMan').value;
+//	if(orderMan !=currUserName){
+		getStoreLimit();
+//	}
+	for(var i=0;i<rightRow.length;i++){
+		if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
+			if(!storeLimitMap.hasOwnProperty(rightRow[i].storeId)  && storeHash[rightRow[i].storeId]){
+				showMsg("没有选择"+storeHash[rightRow[i].storeId].name+"的权限","W");
+				return;
+			}
+		}
+	}
+	
 	//保存价格设置
 	savePrice();
 	data = getMainData();
@@ -1839,7 +1855,16 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 		return;
 	}
 	
-	
+	getStoreLimit();
+	var rightRow =rightGrid.getData();
+	for(var i=0;i<rightRow.length;i++){
+		if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
+			if(!storeLimitMap.hasOwnProperty(rightRow[i].storeId)  && storeHash[rightRow[i].storeId]){
+				showMsg("没有选择"+storeHash[rightRow[i].storeId].name+"的权限","W");
+				return;
+			}
+		}
+	}
 	
 	if (p && p.pricePartCode) {
 		var partCode = p.pricePartCode;
@@ -2031,6 +2056,58 @@ function onGuestValueChanged(e)
 		addNewRow(true);
     }
 }
+
+function onStoreValueChange(e){
+	var data = e.selected;
+	if(data){
+		var id = data.id;
+		var orderMan =nui.get('orderMan').value;
+		if(orderMan !=currUserName){
+			getStoreLimit();
+		}
+		if(Object.getOwnPropertyNames(storeLimitMap ).length ==0){
+			//不做限制
+		}
+		if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
+			if(!storeLimitMap.hasOwnProperty(id)){
+				showMsg("没有选择"+storeHash[341].name+"的权限","W");
+				return;
+			}
+		}
+	}
+		
+}
+var storeLimtUrl  = baseUrl +"com.hsapi.system.tenant.employee.queryStoreManOne.biz.ext";
+function getStoreLimit(){
+	storeLimitMap={};
+	var orderMan =nui.get('orderMan').value;
+	if(!orderMan){
+		return;
+	}
+	nui.ajax({
+		url : storeLimtUrl,
+		async:false,
+		data : {
+			orgid : currOrgId,
+			name : orderMan,
+			token : token
+		},
+		type : "post",
+		success : function(text) {
+			var data =text.data;
+			for(var i=0;i<data.length;i++){
+				storeLimitMap[data[i].storeId] =data [i];
+			}
+			
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+	return storeLimitMap;
+}
+
 var getGuestInfo = baseUrl
 		+ "com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
 function setGuestInfo(params) {

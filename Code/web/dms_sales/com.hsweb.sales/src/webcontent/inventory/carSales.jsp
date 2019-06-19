@@ -8,7 +8,7 @@
 -->
 <head>
 <title>整车采购订单</title>
-<script src="<%=webPath + contextPath%>/sales/inventory/js/carSales.js?v=1.0.6"></script>
+<script src="<%=webPath + contextPath%>/sales/inventory/js/carSales.js?v=1.0.7"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -55,13 +55,13 @@
                     <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                 </ul>
                 
-<!-- 				<a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">所有</a>
+ 				<a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">所有</a>
 
                  <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
                 	<li iconCls="" onclick="quickSearch()" id="type">所有</li>
                     <li iconCls="" onclick="quickSearch(12)" id="type12">草稿</li>
-                    <li iconCls="" onclick="quickSearch(13)" id="type13">待验车</li>
-                </ul>   -->
+                    <li iconCls="" onclick="quickSearch(13)" id="type13">在验车</li>
+                </ul>  
 
 
 				<label style="font-family:Verdana;">创建日期 从：</label>

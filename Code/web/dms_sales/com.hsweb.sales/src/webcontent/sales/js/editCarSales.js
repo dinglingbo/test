@@ -562,7 +562,7 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
                 });
                 costDetailGrid.load({ serviceId: serviceId, type: 1 });
                 costDetailGrid2.load({ serviceId: serviceId, type: 2 });
-                if (e == 1) {
+                if (e == 2) {
                     var billFormData = billForm.getData(true); //主表信息
                     var params = document.getElementById("caCalculation").contentWindow.getValue(); //购车信息
                     var caCalculationData = params.data;

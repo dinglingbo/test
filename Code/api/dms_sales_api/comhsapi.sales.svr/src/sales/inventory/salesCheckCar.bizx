@@ -518,12 +518,12 @@
       <targetNode>invokePojo8</targetNode>
     </sourceConnections>
     <targetConnections>link26</targetConnections>
-    <location x="597" y="255"/>
+    <location x="597" y="269"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="595" y="291"/>
+    <location x="595" y="305"/>
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
@@ -816,6 +816,7 @@
     <sourceConnections xsi:type="process:tLink" id="link42" name="link42" displayName="连接线" lineType="inheritance" isDefault="true" type="break">
       <sourceNode>assign8</sourceNode>
       <targetNode>loopend0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link40</targetConnections>
     <location x="1026" y="307"/>

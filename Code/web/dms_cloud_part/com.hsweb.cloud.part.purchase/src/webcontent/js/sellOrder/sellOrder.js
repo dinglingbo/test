@@ -57,6 +57,7 @@ var StatusHash={
 	"2"	:"已出库"
 };
 var partShow=0;
+var storeLimitMap={};
 $(document).ready(function(v)
 {
     nui.mask({
@@ -1261,6 +1262,19 @@ function save() {
     	    }
     }
    
+    var rightRow =rightGrid.getData();
+	var orderMan =nui.get('orderMan').value;
+//	if(orderMan !=currUserName){
+		getStoreLimit();
+//	}
+	for(var i=0;i<rightRow.length;i++){
+		if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
+			if(!storeLimitMap.hasOwnProperty(rightRow[i].storeId) && storeHash[rightRow[i].storeId]){
+				showMsg("没有选择"+storeHash[rightRow[i].storeId].name+"的权限","W");
+				return;
+			}
+		}
+	}
     data = getMainData();
    
     /*var enterDetailAdd = rightGrid.getChanges("added")||[];
@@ -1867,6 +1881,17 @@ function audit()
     	    }
     }
     
+    getStoreLimit();
+	var rightRow =rightGrid.getData();
+	for(var i=0;i<rightRow.length;i++){
+		if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
+			if(!storeLimitMap.hasOwnProperty(rightRow[i].storeId)  && storeHash[rightRow[i].storeId]){
+				showMsg("没有选择"+storeHash[rightRow[i].storeId].name+"的权限","W");
+				return;
+			}
+		}
+	}
+    
     data = getMainData();
 
     var sellOrderDetailAdd = rightGrid.getChanges("added");
@@ -1960,6 +1985,58 @@ function onGuestValueChanged(e)
 		addNewRow(true);
     }
 }
+
+function onStoreValueChange(e){
+	var data = e.selected;
+	if(data){
+		var id = data.id;
+		var orderMan =nui.get('orderMan').value;
+		if(orderMan !=currUserName){
+			getStoreLimit();
+		}
+		if(Object.getOwnPropertyNames(storeLimitMap ).length ==0){
+			//不做限制
+		}
+		if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
+			if(!storeLimitMap.hasOwnProperty(id) && storeHash[id].name){
+				showMsg("没有选择"+storeHash[id].name+"的权限","W");
+				return;
+			}
+		}
+	}
+		
+}
+var storeLimtUrl  = baseUrl +"com.hsapi.system.tenant.employee.queryStoreManOne.biz.ext";
+function getStoreLimit(){
+	storeLimitMap={};
+	var orderMan =nui.get('orderMan').value;
+	if(!orderMan){
+		return;
+	}
+	nui.ajax({
+		url : storeLimtUrl,
+		async:false,
+		data : {
+			orgid : currOrgId,
+			name : orderMan,
+			token : token
+		},
+		type : "post",
+		success : function(text) {
+			var data =text.data;
+			for(var i=0;i<data.length;i++){
+				storeLimitMap[data[i].storeId] =data [i];
+			}
+			
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+	return storeLimitMap;
+}
+
 var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
 function setGuestInfo(params)
 {

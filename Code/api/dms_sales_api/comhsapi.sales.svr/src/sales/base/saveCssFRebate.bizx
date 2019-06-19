@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveCssFRebate" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="保存厂家返利主表 后将id赋值给明细 然后保存明细" title="Administrator&#x9;19-6-19 上午9:47">
+    <location x="103" y="285"/>
+    <size height="100" width="197"/>
+  </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -240,9 +244,9 @@
         <process:inputVariable id="0" name="id" type="query" value="Int" valueType="Primitive" pattern="reference">res/id</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="2" name="list" type="query" value="com.hsapi.sales.data.css.CssFactoryRebateDetail[]" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="2" name="list" type="query" value="com.hsapi.sales.data.css.CssFactoryRebateDetail[]" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

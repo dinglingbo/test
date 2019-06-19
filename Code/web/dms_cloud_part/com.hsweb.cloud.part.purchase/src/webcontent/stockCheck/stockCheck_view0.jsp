@@ -9,7 +9,7 @@
 -->
 <head>
 <title>盘点单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/stockCheck/stockCheck.js?v=1.1.7"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/stockCheck/stockCheck.js?v=1.1.13"></script>
 <style type="text/css">
 .title {
 	width: 75px;
@@ -149,6 +149,7 @@
                                                showNullItem="false"
                                                width="100%"
                                                nullItemText="请选择..."
+                                               onvaluechanged="onStoreValueChange"
                                                />
                                       </td>
                                       <td class="title required">

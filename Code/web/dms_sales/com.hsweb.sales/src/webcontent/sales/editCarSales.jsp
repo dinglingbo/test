@@ -274,8 +274,8 @@
             </table>
         </form>
         <div class="nui-fit" style="padding-top:10px">
-            <div class="mini-tabs" activeIndex="0" style="width:100%;height:100%;">
-                <div title="精品加装">
+            <div class="mini-tabs" activeIndex="0" style="width:100%;height:100%;" onactivechanged="activechangedmain()" id="mainTabs" name="mainTabs">
+                <div title="精品加装" id="gift" name="gift">
                     <div class="mini-splitter" style="width:100%;height:100%;">
                         <div size="30%" showCollapseButton="true">
                             <div class="nui-fit">
@@ -317,7 +317,7 @@
                         </div>
                     </div>
                 </div>
-                <div title="购车计算">
+                <div title="购车计算" id="editForm" name="editForm">
                     <iframe id="caCalculation" src="" style="width: 100%;height: 100%"></iframe>
                 </div>
                 <div title="保险信息">

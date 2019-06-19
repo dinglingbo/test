@@ -433,7 +433,8 @@ $(document).ready(function ()
      } 
 	}
     document.getElementById("showA1").style.display = "";
-	document.getElementById("showA").style.display='none';
+	document.getElementById("showA").style.display='none';document.getElementById("showE1").style.display = "";
+	document.getElementById("showE").style.display='none';
 	nui.get("enterDate").setValue(now);
     doSearchItem();
 });
@@ -778,6 +779,14 @@ function setInitData(params){
                     contactorF = contactor;
                     if(errCode == 'S'){
                         $("#servieIdEl").html(data.serviceCode);
+                        if(data.isElectronics == 1) {
+	                        document.getElementById("showE1").style.display = 'none';
+	                    	document.getElementById("showE").style.display="";
+                        }else {
+                        	document.getElementById("showE1").style.display = "";
+                        	document.getElementById("showE").style.display='none';
+                        }
+                        
                         var carNo = data.carNo||"";
                         var tel = guest.mobile||"";
                         var guestName = guest.fullName||"";
@@ -936,6 +945,8 @@ function add(){
 	}
 	document.getElementById("showA1").style.display = "";
 	document.getElementById("showA").style.display='none';
+    document.getElementById("showE1").style.display = "";
+	document.getElementById("showE").style.display='none';
 	advancedCardTimesWin.hide();
 	advancedMemCardWin.hide();
 	advancedItemTimesWin.hide();
@@ -1138,6 +1149,14 @@ function saveNoshowMsg(callback,type){
                 contactorF = contactor;
                 if(errCode == 'S'){
                     $("#servieIdEl").html(data.serviceCode);
+                    if(data.isElectronics == 1) {
+                        document.getElementById("showE1").style.display = 'none';
+                    	document.getElementById("showE").style.display="";
+                    }else {
+                    	document.getElementById("showE1").style.display = "";
+                    	document.getElementById("showE").style.display='none';
+                    }
+                    
                     var carNo = data.carNo||"";
                     var tel = guest.mobile||"";
                     var guestName = guest.fullName||"";
@@ -1194,6 +1213,43 @@ function saveNoshowMsg(callback,type){
 	}
 }
 
+var elecUrl = baseUrl + "com.hsapi.repair.repairService.crud.updateMainElectronics.biz.ext";
+function signElectronics(){
+	var data = billForm.getData();
+	if(!data.id){
+		return;
+	}
+	var type = document.getElementById("showE").style.display;
+	var json = {
+		id:data.id,
+		status:type==""?0:1,
+		token:token
+	};
+	nui.ajax({
+		url : elecUrl,
+		type : "post",
+		data : json,
+		success : function(data) {
+			if(data.errCode=="S"){
+				if(type == "") {
+					document.getElementById("showE1").style.display = "";
+					document.getElementById("showE").style.display='none';
+				}else {
+					document.getElementById("showE1").style.display = 'none';
+					document.getElementById("showE").style.display="";
+				}
+			}else{
+				nui.alert(data.errMsg||"更新失败","提示");
+			}
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});	
+}
+
 var requiredField = {
     carNo : "车牌号",
     guestId : "客户",
@@ -1241,6 +1297,14 @@ svrSaveMaintain(params, function(text){
     	 var oldData = billForm.getData(true);
     	 oldData.id = fserviceId;
      	 billForm.setData(oldData);
+     	 if(main.isElectronics == 1) {
+            document.getElementById("showE1").style.display = 'none';
+        	document.getElementById("showE").style.display="";
+         }else {
+        	document.getElementById("showE1").style.display = "";
+        	document.getElementById("showE").style.display='none';
+         }
+     	
          var params1 = {
                  data:{
                      id:main.id||0

@@ -53,6 +53,8 @@ $(document).ready(function(v) {
             if (value) {
                 e.cellHtml = format(value, 'yyyy-MM-dd HH:ss');
             }
+        }else if (e.field == "serviceCode") {
+            e.cellHtml = '<a href="##" onclick="edit(' + e.record._uid + ')">' + e.record.serviceCode + '</a>';
         }
     });
 
@@ -73,6 +75,8 @@ $(document).ready(function(v) {
             if (value) {
                 e.cellHtml = format(value, 'yyyy-MM-dd HH:ss');
             }
+        }else if (e.field == "serviceCode") {
+            e.cellHtml = '<a href="##" onclick="edit(' + e.record._uid + ')">' + e.record.serviceCode + '</a>';
         }
     });
 
@@ -231,5 +235,11 @@ function addAndEdit(e) {
         var row = mainGrid.getSelected() || mainGrid2.getSelected() || mainGrid3.getSelected();
         params.id = row.id;
     }
+    openPage(params);
+}
+function edit(row_uid){
+    var row = mainGrid.getRowByUID(row_uid);
+    var params = {};  
+    params.id = row.id;
     openPage(params);
 }

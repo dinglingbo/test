@@ -9,7 +9,7 @@ pageEncoding="UTF-8" session="false" %>
 -->
 <head>
 <title>成本调整</title>
-<script src="<%=webPath + contextPath%>/sales/inventory/js/costAdjust.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/sales/inventory/js/costAdjust.js?v=1.0.2"></script>
 <style type="text/css">
 .title {
     width: 90px;

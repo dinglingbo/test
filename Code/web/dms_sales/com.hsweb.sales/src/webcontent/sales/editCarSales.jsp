@@ -13,7 +13,7 @@
         <title>编辑整车销售</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.1084" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.1085" type="text/javascript"></script>
 
     </head>
     <style type="text/css">
@@ -34,6 +34,7 @@
             width: 90px;
             text-align: right;
         }
+        
         
         .style1 {
             width: 95px;
@@ -295,7 +296,7 @@
                                     <div type="indexcolumn">序号</div>
                                     <div field="giftName" name="giftName" width="100px" headerAlign="center" header="精品名称"></div>
                                     <div field="receType" name="receType" width="100px" headerAlign="center" header="收费类型">
-                                        <input class="nui-combobox" property="editor" vtype="float" data="costList" idField="id" textField="name">
+                                        <input class="nui-combobox" property="editor" vtype="float" data="costList" idField="id" textField="name" value="1">
                                     </div>
                                     <div field="qty" name="qty" width="100px" headerAlign="center" header="数量">
                                         <input class="nui-textbox" property="editor" vtype="float">

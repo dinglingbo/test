@@ -254,17 +254,15 @@ function quickSearch(type){
             break;
         //草稿
         case 12:
-        	params.billStatusId=0;
-        	params.auditSign=0;
+        	params.status=0;
         	querysign = 2;
         	querystatusname = "草稿";
         	break;
         //待发货
         case 13:
-        	params.billStatusId=1;
-        	params.auditSign=1;
+        	params.status=1;
         	querysign = 2;
-        	querystatusname = "待发货";
+        	querystatusname = "在验车";
         	break;
         //待收货
         case 14:

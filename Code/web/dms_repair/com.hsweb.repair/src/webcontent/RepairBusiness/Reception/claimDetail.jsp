@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>理赔开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/claimDetail.js?v=1.6.49"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/claimDetail.js?v=1.7.0"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -69,6 +69,12 @@
             color:#62b900;
         }
         #wechatTag1{
+            color:#ccc;
+        }
+        #eTag{
+            color:#62b900;
+        }
+        #eTag1{
             color:#ccc;
         }
 
@@ -187,7 +193,9 @@
                 allowInput="true"/>
                 <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn">新增客户</a>
                 <label style="font-family:Verdana;">工单号:</label>
-                <label id="servieIdEl" style="font-family:Verdana;"></label>
+                <label id="servieIdEl" style="font-family:Verdana;"></label>&nbsp;
+                <a href="javascript:signElectronics()" id="showE" style="display:none"><span id="eTag" class="fa fa-star fa-lg"></span></a>
+                <a href="javascript:signElectronics()" id="showE1" style="display:none"><span id="eTag1" class="fa fa-star fa-lg"></span></a>
             </td>      
             <td style="text-align:right;">
                 <!-- <span id="carHealthEl" class="" style="font-family:Verdana;color:white;background:#62b900;padding:0px 8px;border-radius:90px;">车况:100</span>

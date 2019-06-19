@@ -39,7 +39,7 @@ $(document).ready(function(v) {
 
     jpGrid = nui.get("jpGrid");
     jpGrid.setUrl(jpUrl);
-
+    
     jpDetailGrid = nui.get("jpDetailGrid");
     jpDetailGrid.setUrl(jpDetailGridUrl);
 
@@ -52,7 +52,7 @@ $(document).ready(function(v) {
     costDetailGrid2 = nui.get("costDetailGrid2");
     costDetailGrid.setUrl(costDetailGridUrl);
     costDetailGrid2.setUrl(costDetailGridUrl);
-
+     
     jpGrid.load();
     jpGrid.on("select", function(e) {
         selectJPGrid();
@@ -99,8 +99,8 @@ $(document).ready(function(v) {
 
     jpDetailGrid.on("cellendedit", function(e) {
         var row = e.row,
-            field = e.field;
-        if (field == "price" || field == "qty") {
+        field = e.field;
+        if (field == "price" || field == "qty" ) {
             var price = row.price || 0;
             var qty = row.qty || 0;
             var value = (price * qty).toFixed(2);
@@ -111,11 +111,21 @@ $(document).ready(function(v) {
             var decrAmt = 0;
             for (var i = 0, l = data.length; i < l; i++) {
                 if (data[i].receType == 1) {
-                    decrAmt = data[i].amt || 0;
+                    decrAmt = decrAmt + data[i].amt || 0;
                 }
             }
             document.getElementById("caCalculation").contentWindow.setDecrAmt(decrAmt);
         };
+        if(field == "receType"){
+        	var data = jpDetailGrid.getData();
+        	var decrAmt = 0;
+            for (var i = 0, l = data.length; i < l; i++) {
+                if (data[i].receType == 1) {
+                    decrAmt = decrAmt + data[i].amt || 0;
+                }
+            }
+            document.getElementById("caCalculation").contentWindow.setDecrAmt(decrAmt);
+        }
     });
 
     jpGrid.on("beforedeselect", function(e) {
@@ -436,6 +446,32 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
     var jpDetailGridAdd = jpDetailGrid.getChanges("added"); //精品加装
     var jpDetailGridEdit = jpDetailGrid.getChanges("modified");
     var jpDetailGridDel = jpDetailGrid.getChanges("removed");
+    
+    //判断jpDetailGridAdd,jpDetailGridDel里面有没有已存在的值
+	   if(giftData.length>0 && jpDetailGridAdd.length>0){
+	       for(var i = 0;i<giftData.length;i++){
+	           var old = giftData[i];
+	           for(var j = 0;j<jpDetailGridAdd.length;j++){
+	               var add = jpDetailGridAdd[j];
+	               if(old.giftId == add.giftId){
+	                   var updat = add;
+	                   updat.id = old.id;
+	                   updat.serviceId = old.serviceId;
+	                   jpDetailGridEdit.push(updat);
+	                   for(var n = 0;n<jpDetailGridDel.length;n++){
+	                        var del = jpDetailGridDel[n];
+	                       if(del.giftId == old.giftId){
+	                         // delete jpDetailGridDel[n];
+	                         jpDetailGridDel.splice(n,1);
+	                       }
+	                   }
+	                    jpDetailGridAdd.splice(j,1);
+	               }
+	           }
+	           
+	       }
+    }	
+    
     caCalculationData.billType = 2;
     var saleExtend = caCalculationData;
     if (nui.get("agentGrossProfit").value != "") {
@@ -465,6 +501,11 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
     var addArr = addMsg.concat(addMs2);
     var editArr = editMsg.concat(editMsg2);
     var deleteArr = deleteMsg.concat(deleteMsg2);
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '保存中...'
+    });
     if (e == 11) {
         nui.ajax({
             url: baseUrl + "sales.save.backSingle.biz.ext",
@@ -475,7 +516,9 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
             async: false,
             success: function(text) {
                 if (text.errCode == "E") {
-                    showMsg(text.errMsg, "W");
+                    showMsg(text.errMsg, "E");
+                    nui.unmask(document.body);
+                    return;
                 };
             }
         });
@@ -503,7 +546,9 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
                 var serviceId = text.serviceId;
                 document.getElementById("caCalculation").contentWindow.SetDataMsg(serviceId);
                 searchSalesMain(serviceId, 0);
-                jpDetailGrid.load({ billType: 2, serviceId: serviceId });
+                jpDetailGrid.load({ billType: 2, serviceId: serviceId },function(){
+                	giftData = jpDetailGrid.getData();
+                });
                 costDetailGrid.load({ serviceId: serviceId, type: 1 });
                 costDetailGrid2.load({ serviceId: serviceId, type: 2 });
                 if (e == 1) {
@@ -513,9 +558,11 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
                     showAdvanceChargeAmt(billFormData, caCalculationData);
                 }
                 showMsg(text.errMsg, "S");
+                nui.unmask(document.body);
 
             } else {
-                showMsg(text.errMsg, "W");
+                showMsg(text.errMsg, "E");
+                nui.unmask(document.body);
             }
         }
     });
@@ -576,7 +623,7 @@ function costMsg() { //保存费用信息
         }
     });
 }
-
+var giftData = {}
 function setInitData(params) { //初始化
     nui.get("typeMsg").setValue(params.typeMsg);
     if (params.typeMsg == 1) {
@@ -591,16 +638,68 @@ function setInitData(params) { //初始化
         nui.get("case").setVisible(true);
     }
     if (params.id) {
+    	jpGrid.clearRows();
+        jpGrid.load();
         searchSalesMain(params.id, 0);
-        jpDetailGrid.load({ billType: 2, serviceId: params.id });
+        jpDetailGrid.load({ billType: 2, serviceId: params.id },function(){
+        	//获取数据
+            giftData = jpDetailGrid.getData();
+        });
         costDetailGrid.load({ serviceId: params.id, type: 1 });
         costDetailGrid2.load({ serviceId: params.id, type: 2 });
     } else {
-        var date = new Date();
-        nui.get("orderDate").setValue(date);
-        setReadOnlySubmitCar(1);
+    	add();
     }
 }
+
+function add(){
+    nui.get("submitBtn").setVisible(true);
+    nui.get("invalidBtn").setVisible(true);
+    nui.get("submitCarBtn").setVisible(true);
+    nui.get("saveBtn").enable();
+    nui.get("submitBtn").enable();
+    nui.get("invalidBtn").enable();
+    nui.get("submitCarBtn").enable();
+	$("#servieIdEl").html("");
+	searchNameEl.setVisible(false);
+    searchNameEl.setEnabled(false);
+    searchNameEl.setValue("");
+    var sk = document.getElementById("search_key");
+    sk.style.display = "";
+    searchKeyEl.focus();
+    searchKeyEl.setValue("");//点增加给输入框个值，防止触发不了onchanged方法，不能放入客户
+    //主表信息
+	billForm.setData([]);
+	nui.get("carModelName").setText("");
+	//购车预算
+	//form.setData([]);
+	document.getElementById("caCalculation").contentWindow.setEmpty();
+	//精品加装
+	jpDetailGrid.clearRows();
+	//加载精品信息
+	jpGrid.clearRows();
+	jpGrid.load();
+	//保险信息表头
+	insuranceForm.setData([]);
+	detailGrid.setData([]);
+	//费用信息
+	costGrid.clearRows();
+	var params = { isSale: 1 };
+    costGrid.load({ params: params });
+    
+    //费用信息右边
+    costDetailGrid.clearRows();
+    costDetailGrid2.clearRows();
+	var date = new Date();
+	nui.get("mtAdvisorId").setValue(currEmpId);
+    nui.get("mtAdvisor").setValue(currUserName);
+    nui.get("orderDate").setValue(date);
+    setReadOnlySubmitCar(1);
+    //表格输入
+    setInputModel();
+    document.getElementById("caCalculation").contentWindow.setInputModel();
+}
+
 
 function updateCheckEnter(enterId) { //返单 修改库存表车辆状态
     var data = {
@@ -618,7 +717,7 @@ function updateCheckEnter(enterId) { //返单 修改库存表车辆状态
             if (text.errCode == "S") {
                 showMsg(text.errMsg, "S");
             } else {
-                showMsg(text.errMsg, "W");
+                showMsg(text.errMsg, "E");
             }
         }
     });
@@ -1080,6 +1179,7 @@ function selectJPGrid() {
             var newRow = {
                 giftId: jpdata[i].id,
                 giftName: jpdata[i].name,
+                receType:1,
                 billType: 2
             };
             jpDetailGrid.addRow(newRow, jpDetailData.length);

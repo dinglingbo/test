@@ -112,6 +112,10 @@
       <process:from type="query" pattern="reference">cssCheckEnter/unitPrice</process:from>
       <process:to type="query">cssCheckEnter/amt</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">cssCheckEnter/carStatus</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="388" y="126"/>

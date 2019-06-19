@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8" session="false" %>
-    <div id="mainTabs" class="nui-tabs" name="mainTabs" activeIndex="0" style="width:100%; height:100%;" plain="false" onactivechanged="activechangedmain()">
+    <div id="mainTabsD" class="nui-tabs" name="mainTabs" activeIndex="0" style="width:100%; height:100%;" plain="false" onactivechanged="activechangedmainD()">
         <div title="回访记录">
             <div class="nui-fit box">
                 <input name="visitMode" id="visitMode" class="nui-combobox " textField="name" valueField="customid" visible="false" />
@@ -262,8 +262,8 @@
             var mainGrid1 = null;
             mainGrid1 = nui.get("mainGrid1");
             mainGrid1.setUrl(baseUrl + "com.hsapi.repair.repairService.query.querySettleList.biz.ext");
-            function activechangedmain() {
-                var tabs = nui.get("mainTabs").getActiveTab();
+            function activechangedmainD() {
+                var tabs = nui.get("mainTabsD").getActiveTab();
                 var row = visitHis.getSelected();
                 if (tabs.name == "serviceRecord") {
                     //服务记录

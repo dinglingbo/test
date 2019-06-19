@@ -5,9 +5,9 @@ $(document).ready(function(v) {
     form = new nui.Form("#form1");
     var calculate = "贷款利息=贷款金额*贷款利率(%)" +
         "\r\n费用合计= 按揭手续费+合同保证金+月供保证金+家访费+续保押金+GPS费用+上牌费+精品加装+其它费用+保险费预算+购置税预算" +
-        "\r\n全款购买：购车预算合计= 车型销价+费用合计" +
-        "\r\n全款购买：提车合计= 车型销价+费用合计" +
-        "\r\n贷款购买：购车预算合计= 车型销价+费用合计" +
+        "\r\n全款购买：购车预算合计= 车价+费用合计" +
+        "\r\n全款购买：提车合计= 车价+费用合计" +
+        "\r\n贷款购买：购车预算合计= 车价+费用合计" +
         "\r\n贷款购买：提车合计= 首付金额+费用合计"
     nui.get("calculate").setValue(calculate);
 
@@ -33,6 +33,9 @@ function getValue() {
     return params;
 }
 
+function setEmpty(){
+	form.setData([]);
+}
 function setSaleType(value) {
     var data = form.getData();
     data.saleType = value;
@@ -109,6 +112,7 @@ function changeSaleType(e) { //改变购买方式时触发
         nui.get("familyAmt").enable(); //家访费
         nui.get("loanPercent").enable(); //贷款比例
         nui.get("contractGuaranteeAmt").enable(); //合同保证金
+        nui.get("bankHandlingRate").enable(); //贷款利率
     }
     changeValueMsg(1);
 }
@@ -245,7 +249,10 @@ function setShowSave(params) {
                             nui.get("riskAmt").disable(); //月供保证金
                             nui.get("familyAmt").disable(); //家访费
                             nui.get("loanPercent").disable(); //贷款比例
+                        }else{
+                        	nui.get("bankHandlingRate").enable(); //贷款利率
                         }
+                        
                     }
                 }
                 //颜色设置
@@ -320,7 +327,8 @@ function saveCome() {
         var advanceChargeAmt = caCalculationData.advanceChargeAmt; //预付款
         var saleAmt = caCalculationData.saleAmt; //车型销价
         if (advanceChargeAmt > saleAmt) {
-            showMsg("预付款金额不能大于车型销价金额！", "W");
+            showMsg("预付款金额不能大于 车价金额！", "W");
+            return;
         }
         caCalculationData.billType = 1; //来访登记的预算
         var json = nui.encode({

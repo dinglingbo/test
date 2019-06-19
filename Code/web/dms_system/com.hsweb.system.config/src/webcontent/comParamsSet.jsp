@@ -9,7 +9,7 @@
 -->
 <head>
   <title>工单设置</title>
-  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.0.11"></script>
+  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.1.0"></script>
   <style type="text/css">
 
     .title {
@@ -106,7 +106,7 @@
                 </td>      
             </tr>
             <tr>
-                <td class="tbtext">工单打印是否显示客户手机号：</td>
+                <td class="tbtext">工单打印是否显示联系人手机号：</td>
                 <td class="tbCtrl" >
                     <div id="repairBillMobileFlag" name="repairBillMobileFlag" 
                         class="nui-radiobuttonlist" value="0" repeatItems="2" 
@@ -183,14 +183,14 @@
                     <a class="nui-button" onclick=""   plain="false" >获取标识</a>
                 </td>
             </tr>
-            <tr>
+            <!-- <tr>
                 <td class="tbtext">工单服务性质对健康档案不开放：</td>
                 <td class="tbCtrl" >
                     <div id="openToArchives" name="openToArchives" class="nui-checkboxlist" repeatItems="5" 
                         repeatLayout="flow"  value="" 
                         textField="text" valueField="id" ></div>
                 </td>
-            </tr>
+            </tr> -->
             <tr>
                 <td class="tbtext">工单服务性质对车主微信端不开放：</td>
                 <td class="tbCtrl" >

@@ -103,8 +103,8 @@
 									<li iconCls="" onclick="salesOnPrint(1)" id="type11">打印现款购车计算表</li>
 									<li iconCls="" onclick="salesOnPrint(2)" id="type11">打印贷款购车计算表</li>
 								</ul> -->
-								<a class="nui-button" onclick="salesOnPrint()" plain="true" style="width: 80px;">
-									<span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+								<!-- <a class="nui-button" onclick="salesOnPrint()" plain="true" style="width: 80px;">
+									<span class="fa fa-print fa-lg"></span>&nbsp;打印</a> -->
 							</td>
 						</tr>
 					</table>
@@ -154,7 +154,7 @@
 							</tr>
 							<tr>
 							    <td class="form_label required">
-									<label>手机号码：</label>
+									<label>客户手机：</label>
 								</td>
 								<td colspan="1">
 									<input class="nui-textbox" name="mobile" width="100%" maxlength="20" onvalidation="onMobileValidation" onvaluechanged="queryByMobile"/>

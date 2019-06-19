@@ -9,7 +9,7 @@
 -->
 <head>
 <title>PDI检测</title>
-    <script src="<%=webPath + contextPath%>/sales/inventory/js/PDIdetection.js?v=1.1.4"></script>
+    <script src="<%=webPath + contextPath%>/sales/inventory/js/PDIdetection.js?v=1.1.6"></script>
     <style type="text/css">
 .title {
   width: 90px;
@@ -61,6 +61,7 @@ body .mini-grid-row-selected{
 		<legend> 基本信息</legend>       
 		<div id="advancedSearchForm" class="form">
 			<input class="nui-hidden" name="enterId" id="enterId"/>
+			<input class="nui-hidden" name="id" id="id"/>
 			<input class="nui-hidden" name="carModelId"/>
 			<table style="width: 100%;">
 				<tr>
@@ -68,7 +69,7 @@ body .mini-grid-row-selected{
 						<label>车型名称:</label>
 					</td>
 					<td colspan="3">
-						<input name="carModelName" id="carModelName" disabled="disabled" class="nui-textbox" width="100%" />
+						<input name="carModelName" id="carModelName" disabled="disabled" class="nui-textbox" width="100%" readonly="readonly"/>
 					</td>
 				</tr>
 				<tr>
@@ -76,7 +77,7 @@ body .mini-grid-row-selected{
 						<label>车架号（VIN）:</label>
 					</td>
 					<td>
-						<input name="vin" id="vin" width="100%" disabled="disabled" class="nui-textbox" />
+						<input name="vin" id="vin" width="100%" disabled="disabled" class="nui-textbox" readonly="readonly"/>
 					</td>
 <!-- 					<td class="title required">
 						<label>发动机型号:</label>
@@ -111,7 +112,7 @@ body .mini-grid-row-selected{
 						<label>钥匙数量:</label>
 					</td>
 					<td>
-						<input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"   allowNull="false" showButton="false" name="ignitionKeyNumber" id="ignitionKeyNumber" />
+						<input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"   allowNull="false" showButton="false" name="ignitionKeyNumber" id="ignitionKeyNumber" style="width:100%"/>
 					</td>
 				</tr>
 				<tr>
@@ -119,7 +120,7 @@ body .mini-grid-row-selected{
 						<label>发送器数量:</label>
 					</td>
 					<td>
-						<input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"   allowNull="false" showButton="false" name="transmittersNumber" id="transmittersNumber" />
+						<input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"   allowNull="false" showButton="false" name="transmittersNumber" id="transmittersNumber" style="width:100%"/>
 					</td>				
 					<td class="title required">
 						<label>检测模板:</label>
@@ -157,12 +158,12 @@ body .mini-grid-row-selected{
               <div property="columns">
                 <div type="indexcolumn" width="30px">序号</div>
                 <div field="name" name="name" width="80px" headerAlign="center" header="PDI项目名称"></div>
-                <div field="code" name="code" width="60px" headerAlign="center" header="编码"></div>
-                <div field="checkRemark" name="checkRemark" width="140px" headerAlign="center" header="PDI项目说明"></div>
+<!--                 <div field="code" name="code" width="60px" headerAlign="center" header="编码"></div> -->
+                <!-- <div field="checkRemark" name="checkRemark" width="140px" headerAlign="center" header="PDI项目说明"></div> -->
                 <div field="remark" name="remark" width="140px" headerAlign="center" header="备注">
                	 <input property="editor"  class="nui-textbox"/>
                 </div>
-                <div type="checkboxcolumn" field="status" name="status" trueValue="1" falseValue="0"  width="50px" headerAlign="center" align="center" value="1">
+                <div type="checkboxcolumn" field="status" name="status" trueValue="1" falseValue="0"  width="50px" headerAlign="center" align="center" >
                 	<strong>正常&nbsp;<a title="批量设置为正常" plain="true" onclick="setNormal()"><span class="fa fa-edit fa-lg"></span></a></strong>
                 </div>
         		<div type="checkboxcolumn" field="nostatus" name="nostatus" trueValue="1" falseValue="0"  width="50px" headerAlign="center" align="center"><strong>异常</strong></div>

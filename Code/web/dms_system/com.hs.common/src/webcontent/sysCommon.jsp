@@ -131,6 +131,9 @@
 	String cloudSellOrderPrintContent ="";
 	String isNeedNewLine = "";
 	String isOpenCredit = "";
+	String isOpenApp = "";
+	String isOnlySeeOwn ="";
+	String isCanSeePrice ="";
 	
 	if (session == null || session.getAttribute("userObject") == null) {
 		%>backToLogin();<%
@@ -274,6 +277,18 @@
 	                if(billParams.get("isOpenCredit") != null){
 	                	isOpenCredit = billParams.get("isOpenCredit").toString();
 	                }
+	                //是否开启APP
+	                if(billParams.get("isOpenApp") != null){
+	                	isOpenApp = billParams.get("isOpenApp").toString();
+	                }
+	                //业务员是否只可见自己的客户和订单
+	                if(billParams.get("isOnlySeeOwn") != null){
+	                	isOnlySeeOwn = billParams.get("isOnlySeeOwn").toString();
+	                }
+	                //业务员是否可见采购价
+	                if(billParams.get("isCanSeePrice") != null){
+	                	isCanSeePrice = billParams.get("isCanSeePrice").toString();
+	                }
                 }
               
                 
@@ -348,7 +363,10 @@
 	var currSrmUserId = "<%=srmUserId %>";
 	var currCloudSellOrderPrintContent = "<%=cloudSellOrderPrintContent %>";
 	var currIsNeedNewLine = "<%=isNeedNewLine %>";
-	var currIsOpenCredit ="<%=isOpenCredit %>"
+	var currIsOpenCredit ="<%=isOpenCredit %>";
+	var currIsOpenApp ="<%=isOpenApp%>";
+	var currIsOnlySeeOwn ="<%=isOnlySeeOwn%>";
+	var currIsCanSeePrice ="<%=isCanSeePrice%>";
     //alert("token=" + token);
     
     /* var _sysMsg_;

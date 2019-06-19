@@ -1,0 +1,17 @@
+
+select *
+from wb_repair.rpb_item a
+inner join wb_repair.rpb_item b
+on a.code = b.code and a.name = b.name
+where a.orgid = 584 and b.orgid = 641
+
+update wb_repair.rpb_item a
+inner join wb_repair.rpb_item b
+on a.code = b.code and a.name = b.name
+set a.service_type_id = b.service_type_id
+where a.orgid = 584 and b.orgid = 641
+
+
+select *
+from wb_repair.rpb_item a
+where a.service_type_id = 0 and a.orgid = 584

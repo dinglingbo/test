@@ -95,7 +95,7 @@
 <!--                 <input class="nui-combobox" id="search-type" width="80px" textField="name" valueField="id" value="0" data="statusList" allowInput="false" />
 	            <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="80px" onenter="search()" /> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="costAdjust()" ><span class="fa fa-cny fa-lg"></span>&nbsp;成本调整</a>
+                <!-- <a class="nui-button" iconCls="" plain="true" onclick="costAdjust()" ><span class="fa fa-cny fa-lg"></span>&nbsp;成本调整</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="edit" ><span class="fa fa-lock fa-lg"></span>&nbsp;锁库/解锁</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="detection()" ><span class="fa fa-plus fa-lg"></span>&nbsp;PDI检测</a>
 <!--                 <a class="nui-button" iconCls="" plain="true" onclick="upload()" ><span class="fa fa-arrow-up fa-lg"></span>&nbsp;图片上传</a> -->

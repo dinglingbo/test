@@ -179,7 +179,7 @@
 
 	<!--工单回访  TIMESTAMPDIFF(DAY, a.out_date,NOW())-->
 	<select id="getVisitMaintainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
-			select 
+		select 
 			a.orgid,
 			a.service_type_id serviceTypeId,
 			a.bill_type_id billTypeId,

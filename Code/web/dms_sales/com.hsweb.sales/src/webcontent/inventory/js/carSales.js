@@ -27,7 +27,7 @@ var StatusHash = {
 		"2" : "待收货",
 		"4" : "已入库",
 	};
-var headerHash = [{ name: '草稿', id: '0' }, { name: '在验车', id: '1' }, {name: '已入库' , id: '2' }];
+var headerHash = [{ name: '草稿', id: '0' }, { name: '已提交', id: '1' }, { name: '在验车', id: '2' },{name: '已入库' , id: '3' }];
 var innerPartGrid=null;
 var editFormDetail = null;
 
@@ -72,6 +72,8 @@ $(document).ready(function(v)
         		e.cellHtml = "是";
         	}
 
+        }else if(field == 'serviceCode'){
+    		e.cellHtml ='<a href="##" onclick="edit()">'+e.value+'</a>'
         }
         
     });
@@ -262,14 +264,13 @@ function quickSearch(type){
         case 13:
         	params.status=1;
         	querysign = 2;
-        	querystatusname = "在验车";
+        	querystatusname = "已提交";
         	break;
         //待收货
         case 14:
-        	params.billStatusId=2;
-        	params.auditSign=1;
+        	params.status=2;
         	querysign = 2;
-        	querystatusname = "待收货";
+        	querystatusname = "在验车";
         	break;
         //已入库
         case 15:

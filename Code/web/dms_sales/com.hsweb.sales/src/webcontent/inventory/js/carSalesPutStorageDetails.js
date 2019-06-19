@@ -230,7 +230,7 @@ function check() {
 	nui.open({
 		url : webPath+contextPath+"/inventory.carCheck.flow?token="+token,
 		title : "选择待验车辆",
-		width : 980,
+		width : 1000,
 		height : 560,
 		onload : function() {
 

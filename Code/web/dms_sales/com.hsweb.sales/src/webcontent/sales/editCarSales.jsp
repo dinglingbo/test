@@ -226,7 +226,7 @@
                     <td align="right">购车方式：
                     </td>
                     <td>
-                        <input class="nui-combobox" id="saleType" name="saleType" style="width: 100%;" textField="name" valueField="customid" onvaluechanged="changeValueMsg">
+                        <input class="nui-combobox" id="saleType" name="saleType" style="width: 100%;" textField="name" valueField="customid" onvaluechanged="changeBuyType">
                     </td>
                     <td align="right">合同号：
                     </td>

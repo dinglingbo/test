@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryPchsOrderMainList" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="auditSign = 0&#xD;&#xA;auditSign = 1&#xD;&#xA;区分是查询已审核还是未审核的数据&#xD;&#xA;com.hsapi.part.invoice.queryPurchase.queryPjPchsOrderMainNotCheckList&#xD;&#xA;com.hsapi.part.invoice.queryPurchase.queryPjPchsOrderMainNotCheckList" title="Administrator&#x9;18-5-25 上午9:26">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="sales.salesSql.queryPchsOrderMainNotCheckList" title="Administrator&#x9;18-5-25 上午9:26">
     <location x="75" y="-60"/>
     <size height="100" width="586"/>
   </nodes>

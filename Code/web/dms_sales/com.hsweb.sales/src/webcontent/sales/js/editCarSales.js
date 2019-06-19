@@ -567,6 +567,7 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
                     var params = document.getElementById("caCalculation").contentWindow.getValue(); //购车信息
                     var caCalculationData = params.data;
                     showAdvanceChargeAmt(billFormData, caCalculationData);
+                    
                 }
                 showMsg(text.errMsg, "S");
                 nui.unmask(document.body);

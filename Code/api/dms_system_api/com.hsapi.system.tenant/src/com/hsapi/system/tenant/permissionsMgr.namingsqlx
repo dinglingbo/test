@@ -90,6 +90,7 @@
 			a.is_show_own_bill as isShowOwnBill,
 			a.is_can_settle as isCanSettle,
 			a.is_canfree_carnovin as isCanfreeCarnovin,
+			a.is_salesman as isSalesman,
 			a.member_group_id as memberGroupId,
 			a.member_level_id as memberLevelId,
 			a.integral_discount_max as integralDiscountMax,

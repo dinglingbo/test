@@ -1152,9 +1152,13 @@ function save() {
 		}
 	}
 	var rightRow =rightGrid.getData();
+	var orderMan =nui.get('orderMan').value;
+//	if(orderMan !=currUserName){
+		getStoreLimit();
+//	}
 	for(var i=0;i<rightRow.length;i++){
 		if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
-			if(!storeLimitMap.hasOwnProperty(rightRow[i].storeId)){
+			if(!storeLimitMap.hasOwnProperty(rightRow[i].storeId) && storeHash[rightRow[i].storeId]){
 				showMsg("没有选择"+storeHash[rightRow[i].storeId].name+"的权限","W");
 				return;
 			}
@@ -2000,10 +2004,11 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 		str = "入库";
 	}
 	
+	getStoreLimit();
 	var rightRow =rightGrid.getData();
 	for(var i=0;i<rightRow.length;i++){
 		if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
-			if(!storeLimitMap.hasOwnProperty(rightRow[i].storeId)){
+			if(!storeLimitMap.hasOwnProperty(rightRow[i].storeId)  && storeHash[rightRow[i].storeId]){
 				showMsg("没有选择"+storeHash[rightRow[i].storeId].name+"的权限","W");
 				return;
 			}
@@ -2271,16 +2276,17 @@ function onStoreValueChange(e){
 			//不做限制
 		}
 		if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
-			if(!storeLimitMap.hasOwnProperty(id)){
-				showMsg("没有选择"+storeHash[341].name+"的权限","W");
+			if(!storeLimitMap.hasOwnProperty(id) && storeHash[id].name){
+				showMsg("没有选择"+storeHash[id].name+"的权限","W");
 				return;
 			}
 		}
 	}
 		
 }
-var storeLimtUrl  = baseUrl +"com.hsapi.system.tenant.employee.queryStoreMember.biz.ext";
+var storeLimtUrl  = baseUrl +"com.hsapi.system.tenant.employee.queryStoreManOne.biz.ext";
 function getStoreLimit(){
+	storeLimitMap={};
 	var orderMan =nui.get('orderMan').value;
 	if(!orderMan){
 		return;

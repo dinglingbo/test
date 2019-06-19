@@ -13,7 +13,7 @@
         <title>精品加装</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-        <script src="<%=webPath + contextPath%>/sales/base/js/giftAssembling.js?v=1.3.6"></script>
+        <script src="<%=webPath + contextPath%>/sales/base/js/giftAssembling.js?v=1.3.7"></script>
     </head>
     <style type="text/css">
         body {
@@ -120,7 +120,7 @@
                                     库存车ID：
                                 </td>
                                 <td>
-                                    <input id="enterId" name="enterId" class="nui-buttonedit" 
+                                    <input id="enterId" name="enterId" class="nui-buttonedit"  enabled="false"
                                     allowInput="false" required="true" style="width: 100%;" onbuttonclick="onEnterIdEdit" />
                                 </td>
                             </tr>
@@ -192,7 +192,7 @@
                                                     <input property="editor" class="nui-textbox" />
                                             </div>
                                             <div field="receType" name="" width="100px" headerAlign="center" header="收费类型">
-                                                    <input property="editor" class="nui-textbox" />
+                                                    <input property="editor" class="nui-combobox" valueField="id" textField="text"/>
                                             </div>
                                             <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="100px" align="center">业务类型
                                                 <input  property="editor" enabled="true" dataField="servieTypeList" 

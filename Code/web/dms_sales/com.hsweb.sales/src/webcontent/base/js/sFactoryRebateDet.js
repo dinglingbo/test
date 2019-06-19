@@ -93,11 +93,12 @@ $(document).ready(function() {
 })
 
 
-function SetData(row) {
+function setInitData(row) { 
     mainData = row;
+    quickSearch(4);
     form.setData(row);
     nui.get("guestId").setText(row.guestFullName);
-    onSearch();
+    //onSearch();
     rightGrid.load({
         params: {
             orderId: row.id
@@ -151,6 +152,12 @@ function save() {
     var addList = rightGrid.getChanges("added"); //精品加装
     var upList = rightGrid.getChanges("modified");
     var delList = rightGrid.getChanges("removed");
+
+    nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : '保存中...'
+	});
     nui.ajax({
         url:saveUrl,
         type:'post',
@@ -160,7 +167,8 @@ function save() {
             upArr: upList,
             delArr:delList
         },
-        success:function(res){
+        success: function (res) {
+            nui.unmask(document.body);
             if(res.errCode == 'S'){
                 showMsg('保存成功', 'S');
                 nui.get('id').setValue(res.res.id);
@@ -286,12 +294,13 @@ function getSearchParam(){
     var params = {};
     params.serviceId = comServiceId.getValue();
     params.carModelName = nui.get("carModelName").getValue();
-	if(typeof comSearchGuestId.getValue() !== 'number'){
-    	params.guestId=null;
-    	params.guestName = comSearchGuestId.getValue();
-    }else{
-    	params.guestId = comSearchGuestId.getValue();
-    }
+	// if(typeof comSearchGuestId.getValue() !== 'number'){
+    // 	params.guestId=null;
+    // 	params.guestName = comSearchGuestId.getValue();
+    // }else{
+    // 	params.guestId = comSearchGuestId.getValue();
+    // }
+    params.guestId = nui.get("guestId").getValue();
     params.endDate = addDate(searchEndDate.getValue(), 1);
     if (params.endDate == 'NaN-NaN-NaN')
         params.endDate = '';

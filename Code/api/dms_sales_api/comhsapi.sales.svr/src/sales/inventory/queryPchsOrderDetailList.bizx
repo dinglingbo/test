@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryPchsOrderDetailList" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="明细：sales.salesSql.queryPchsOrderDetailCheckList" title="Administrator&#x9;19-6-19 上午9:02">
+    <location x="135" y="15"/>
+    <size height="100" width="316"/>
+  </nodes>
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="判断是查询审核表数据，还是未审表数据&#xD;&#xA;&#xD;&#xA;更新前：com.hsapi.cloud.part.invoicing.queryPurchase.queryPjPchsOrderDetailList" title="Administrator&#x9;18-5-25 上午9:56">
     <location x="-15" y="-135"/>
     <size height="100" width="244"/>
@@ -62,7 +66,7 @@
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="判断查询未审还是已审" displayName="queryEntitiesByCriteriaEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="查询" displayName="queryEntitiesByCriteriaEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" description="" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>invokePojo5</targetNode>
@@ -90,8 +94,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="221" y="167"/>
-    <figSize height="17" width="121"/>
+    <location x="269" y="167"/>
+    <figSize height="17" width="25"/>
     <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="明细" displayName="已审" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">

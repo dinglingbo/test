@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="savePchsOrderAddOrUpdate" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、需要判断单据是否已经审核  根据auditSign&#xD;&#xA;2、需要判断单据是否在其他地方被修改  根据operateDate&#xD;&#xA;&#xD;&#xA;3.如果是新增，需要返回pjPchsOrderMainList，更新左边表格记录&#xD;&#xA;&#xD;&#xA;单据状态（0草稿、1待发货、2待收货、3部分入库、4全部入库、5已退回、6关闭）" title="Administrator&#x9;18-2-26 下午9:03">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="" title="Administrator&#x9;18-2-26 下午9:03">
     <location x="15" y="-165"/>
-    <size height="181" width="391"/>
+    <size height="121" width="391"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">

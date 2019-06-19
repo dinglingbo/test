@@ -82,6 +82,9 @@ $(document).ready(function(v)
             case "interialColorId":
             	e.cellHtml = setColVal('interialColorId', 'customid', 'name', e.value);
                break;
+            case "serviceCode":
+            	e.cellHtml ='<a href="##" onclick="edit()">'+e.value+'</a>'
+               break;               
             default:
                 break;
         }

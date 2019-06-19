@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveReturnOrder" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、需要判断单据是否已经审核  根据auditSign&#xD;&#xA;2、需要判断单据是否在其他地方被修改  根据operateDate&#xD;&#xA;&#xD;&#xA;3.如果是新增，需要返回pjPchsOrderMainList，更新左边表格记录&#xD;&#xA;&#xD;&#xA;单据状态（0草稿、1待发货、2待收货、3部分入库、4全部入库、5已退回、6关闭）" title="Administrator&#x9;18-2-26 下午9:03">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="退货单修改与新增" title="Administrator&#x9;18-2-26 下午9:03">
     <location x="15" y="-165"/>
-    <size height="181" width="391"/>
+    <size height="127" width="391"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link28" name="link28" displayName="连接线" isDefault="true" type="transition">
@@ -673,7 +673,7 @@
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link55" name="link55" displayName="link42" isDefault="true" type="transition">
       <sourceNode>invokePojo8</sourceNode>
-      <targetNode>transactionbegin1</targetNode>
+      <targetNode>invokePojo9</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="444" y="85"/>
@@ -734,6 +734,10 @@
       <process:from type="query" pattern="reference">returnOrderMain/guestId</process:from>
       <process:to type="query">guest/id</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">returnOrderMain/id</process:from>
+      <process:to type="query">returnOrderMainValidation/id</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign20label" name="label" nodeType="label">
     <location x="285" y="121"/>
@@ -742,6 +746,7 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end4" name="结束4" displayName="结束" collapsed="false" type="end">
     <targetConnections>link48</targetConnections>
+    <targetConnections>link49</targetConnections>
     <location x="442" y="-75"/>
     <size height="28" width="28"/>
     <nodeLabel>end4label</nodeLabel>
@@ -762,7 +767,7 @@
       <targetNode>loopstart2</targetNode>
     </sourceConnections>
     <targetConnections>link27</targetConnections>
-    <location x="596" y="85"/>
+    <location x="647" y="84"/>
     <size height="28" width="28"/>
     <nodeLabel>assign24label</nodeLabel>
     <process:copy>
@@ -795,7 +800,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign24label" name="label" nodeType="label">
-    <location x="582" y="121"/>
+    <location x="633" y="120"/>
     <figSize height="17" width="56"/>
     <node>assign24</node>
   </nodes>
@@ -1222,13 +1227,13 @@
       <sourceNode>transactionbegin1</sourceNode>
       <targetNode>assign24</targetNode>
     </sourceConnections>
-    <targetConnections>link55</targetConnections>
-    <location x="524" y="85"/>
+    <targetConnections>link36</targetConnections>
+    <location x="581" y="85"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionbegin1label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactionbegin1label" name="label" nodeType="label">
-    <location x="510" y="121"/>
+    <location x="567" y="121"/>
     <figSize height="17" width="56"/>
     <node>transactionbegin1</node>
   </nodes>
@@ -1397,6 +1402,65 @@
     <figSize height="17" width="39"/>
     <node>assign9</node>
   </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo9" name="expandEntity2" displayName="expandEntity1" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link36" name="link36" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo9</sourceNode>
+      <targetNode>transactionbegin1</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link37" name="link37" displayName="连接线" type="transition">
+      <sourceNode>invokePojo9</sourceNode>
+      <targetNode>assign28</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">returnOrderMainValidation/status</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link55</targetConnections>
+    <location x="510" y="84"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo9label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.expandEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">sales</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">returnOrderMainValidation</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo9label" name="label" nodeType="label">
+    <location x="480" y="120"/>
+    <figSize height="17" width="82"/>
+    <node>invokePojo9</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign28" name="赋值22" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link49" name="link49" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign28</sourceNode>
+      <targetNode>end4</targetNode>
+    </sourceConnections>
+    <targetConnections>link37</targetConnections>
+    <location x="507" y="5"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign28label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">此单已退货</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign28label" name="label" nodeType="label">
+    <location x="502" y="41"/>
+    <figSize height="17" width="39"/>
+    <node>assign28</node>
+  </nodes>
   <topRuler>
     <guides position="545" horizontal="true"/>
     <guides position="674" horizontal="true"/>
@@ -1423,6 +1487,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.sales.data.css.CssCheckEnter" name="cssCheckEnter"/>
     <process:variable description="单条金额" historyStateLocation="client" isArray="false" name="danAmt" primitiveType="Float"/>
     <process:variable description="总金额" historyStateLocation="client" isArray="false" name="totalAmt" primitiveType="Float"/>
+    <process:variable description="验证用" historyStateLocation="client" isArray="false" modelType="com.hsapi.sales.data.css.CssFactoryReturnMain" name="returnOrderMainValidation"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="主表信息" isArray="false" modelType="com.hsapi.sales.data.css.CssFactoryReturnMain" name="returnOrderMain"/>

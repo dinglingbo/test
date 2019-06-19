@@ -41,6 +41,18 @@
 					textField="text" valueField="value" data="const_enabled" emptyText="请选择" allowInput="false"/>
             </td>
 		</tr>
+		<tr>
+			<th class="nui-form-label"><label for="">属性值1：</label></th>
+			<td><input id="property1" name="property1" class="nui-textbox nui-form-input"/></td>
+		</tr>
+		<tr>
+			<th class="nui-form-label"><label for="">属性值2：</label></th>
+			<td><input id="property2" name="property2" class="nui-textbox nui-form-input"/></td>
+		</tr>
+		<tr>
+			<th class="nui-form-label"><label for="">属性值3：</label></th>
+			<td><input id="property3" name="property3" class="nui-textbox nui-form-input"/></td>
+		</tr>
 		</table>
 	</form>
 </div>

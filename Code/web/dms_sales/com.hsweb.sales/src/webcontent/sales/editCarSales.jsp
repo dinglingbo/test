@@ -150,7 +150,7 @@
                         <a class="nui-button" iconCls="" plain="true" onclick="save(0)" id="saveBtn" visible="false"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="save(1)" id="submitBtn" visible="false"><span class="fa fa-save fa-lg"></span>&nbsp;提交</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="save(3)" id="invalidBtn" visible="false"><span class="fa fa-close fa-lg"></span>&nbsp;作废</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="save(2)" id="audit" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="auditingSales()" id="audit" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="selectCar()" id="selectBtn" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;选车</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="save(6)" id="submitCarBtn" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;交车</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="caseMsg()" id="case" visible="false"><span class="fa fa-dollar fa-lg"></span>&nbsp;结案</a>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="searchSalesMain" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="查询主表信息" title="Administrator&#x9;19-5-21 下午4:25">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="查询主表信息&#xD;&#xA;1、sales.salesSql.searchSalesMain&#xD;&#xA;2、sales.salesSql.searchSalesMainDetail&#xD;&#xA;查询销售主表信息，没有查询csb_contactor表&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" title="Administrator&#x9;19-5-21 下午4:25">
     <location x="75" y="15"/>
-    <size height="100" width="197"/>
+    <size height="100" width="391"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">

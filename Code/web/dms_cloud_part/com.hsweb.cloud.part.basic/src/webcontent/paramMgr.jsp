@@ -10,7 +10,7 @@
 -->
 <head>
 <title>参数设置</title>
-    <script src="<%=webPath + contextPath%>/basic/js/paramMgr.js?v=1.0.14"></script>
+    <script src="<%=webPath + contextPath%>/basic/js/paramMgr.js?v=1.0.19"></script>
     
     <style type="text/css">
 
@@ -58,6 +58,15 @@
                     <a class="nui-button" onclick="save()"   plain="false" >保存</a>
                 </td>
             </tr> 
+            <tr>
+                <td class="tbtext">是否启用APP：</td>
+                <td class="tbCtrl" >
+                   <div id="isOpenApp" name="isOpenApp" 
+                        class="nui-radiobuttonlist" value="" repeatItems="2" 
+                        repeatDirection="" repeatLayout="table" 
+                        textField="text" valueField="id" ></div>
+                </td>
+            </tr>   
         	<tr>
                 <td class="tbtext">销售单、销售出库配件选择tab切换成批次选择：</td>
                 <td class="tbCtrl" >
@@ -98,7 +107,24 @@
                         textField="text" valueField="id" ></div>
                 </td>
             </tr>   
-              
+            <tr>
+                <td class="tbtext">业务员是否只可见自己的客户和订单：</td>
+                <td class="tbCtrl" >
+                   <div id="isOnlySeeOwn" name="isOnlySeeOwn" 
+                        class="nui-radiobuttonlist" value="" repeatItems="2" 
+                        repeatDirection="" repeatLayout="table" 
+                        textField="text" valueField="id" ></div>
+                </td>
+            </tr>   
+            <tr>
+                <td class="tbtext">业务员是否可见采购价：</td>
+                <td class="tbCtrl" >
+                   <div id="isCanSeePrice" name="isCanSeePrice" 
+                        class="nui-radiobuttonlist" value="" repeatItems="2" 
+                        repeatDirection="" repeatLayout="table" 
+                        textField="text" valueField="id" ></div>
+                </td>
+            </tr>   
         </table>
     </div>
 	<script type="text/javascript">

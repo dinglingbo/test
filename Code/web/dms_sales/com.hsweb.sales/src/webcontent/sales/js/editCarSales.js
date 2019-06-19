@@ -109,22 +109,31 @@ $(document).ready(function(v) {
             //编辑完成后调用购车计算表将精品加装金额赋值上去
             var data = jpDetailGrid.getData();
             var decrAmt = 0;
+            var amt = 0;
             for (var i = 0, l = data.length; i < l; i++) {
                 if (data[i].receType == 1) {
-                    decrAmt = decrAmt + data[i].amt || 0;
+                	amt = data[i].amt || 0;
+                    decrAmt = parseFloat(decrAmt) + parseFloat(amt);
+                    decrAmt.toFixed(2);
+                    
                 }
             }
-            document.getElementById("caCalculation").contentWindow.setDecrAmt(decrAmt);
+           document.getElementById("caCalculation").contentWindow.setDecrAmt(decrAmt);
+           //dataF.decrAmt = decrAmt;
         };
         if(field == "receType"){
         	var data = jpDetailGrid.getData();
         	var decrAmt = 0;
+        	var amt = 0;
             for (var i = 0, l = data.length; i < l; i++) {
                 if (data[i].receType == 1) {
-                    decrAmt = decrAmt + data[i].amt || 0;
+                	amt = data[i].amt || 0;
+                    decrAmt = parseFloat(decrAmt) + parseFloat(amt);
+                    decrAmt.toFixed(2);
                 }
             }
             document.getElementById("caCalculation").contentWindow.setDecrAmt(decrAmt);
+            //dataF.decrAmt = decrAmt;
         }
     });
 
@@ -338,6 +347,7 @@ function checkMsg(e) { //统一数据验证
     //0为草稿  1为提交  2为审核  3为作废  11为返单    
     //4为结案按钮  5为费用信息保存 6为交车按钮 7为费用信息审核反审 8为车辆上牌  9为选车
     var boolean = false;
+    isTabs = 0;
     var billFormData = billForm.getData(true); //主表信息
     if (billFormData.id) {
         searchSalesMain(billFormData.id, 1);
@@ -423,6 +433,7 @@ function checkMsg(e) { //统一数据验证
 }
 
 function save(e) { //保存（主表信息+精品加装+购车信息+费用信息）
+	isTabs = 0;
     if (e != 10) { //关闭选车界面后，不再刷新表格，因为选车后enterId还没保存到主表，刷新后enterId为0
         var boolean = checkMsg(e);
         if (!boolean) {
@@ -624,7 +635,13 @@ function costMsg() { //保存费用信息
     });
 }
 var giftData = {}
+var isTabs = 0;
 function setInitData(params) { //初始化
+	isTabs = 1;
+	dataF = {};
+	//定位到精品加装tabs页
+	var gift = nui.get("mainTabs").getTab("gift");
+	nui.get("mainTabs").activeTab(gift);
     nui.get("typeMsg").setValue(params.typeMsg);
     if (params.typeMsg == 1) {
         nui.get("saveBtn").setVisible(true);
@@ -638,13 +655,15 @@ function setInitData(params) { //初始化
         nui.get("case").setVisible(true);
     }
     if (params.id) {
-    	jpGrid.clearRows();
+        
+        jpGrid.clearRows();
+        jpDetailGrid.clearRows();
         jpGrid.load();
-        searchSalesMain(params.id, 0);
         jpDetailGrid.load({ billType: 2, serviceId: params.id },function(){
         	//获取数据
             giftData = jpDetailGrid.getData();
         });
+        searchSalesMain(params.id, 0);
         costDetailGrid.load({ serviceId: params.id, type: 1 });
         costDetailGrid2.load({ serviceId: params.id, type: 2 });
     } else {
@@ -691,13 +710,14 @@ function add(){
     costDetailGrid.clearRows();
     costDetailGrid2.clearRows();
 	var date = new Date();
-	nui.get("mtAdvisorId").setValue(currEmpId);
-    nui.get("mtAdvisor").setValue(currUserName);
+	nui.get("saleAdvisorId").setValue(currEmpId);
+    nui.get("saleAdvisorId").setText(currUserName);
     nui.get("orderDate").setValue(date);
     setReadOnlySubmitCar(1);
     //表格输入
     setInputModel();
-    document.getElementById("caCalculation").contentWindow.setInputModel();
+    //购车计算表可填写
+    //document.getElementById("caCalculation").contentWindow.setInputModel();
 }
 
 
@@ -754,10 +774,16 @@ function checkCost(grid, value) { //费用信息  审核反审
 }
 
 /////////////////////////////////////////////////////////////////////////////////数据读取
+var dataF = {};//销售主表的信息，点击购车预算tab时用到
 function searchSalesMain(serviceId, type) { //查询主表信息
     var params = {
         id: serviceId
     };
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '保存中...'
+    });
     nui.ajax({
         url: baseUrl + "sales.search.searchSalesMain.biz.ext",
         data: {
@@ -768,14 +794,24 @@ function searchSalesMain(serviceId, type) { //查询主表信息
         success: function(text) {
             if (text.errCode == "S") {
                 var data = text.data[0];
+                dataF = data;
+                dataF.type = type;
                 if (!type) {
                     billForm.setData(data);
                     form.setData(data);
-                    changeValueMsg(1);
+                    //保存或者提交需要执行的
+                    if(isTabs == 0){
+                    	changeValueMsg(1);
+                    }
+                    
                     nui.get("carModelName").setValue(data.carModelName);
                     nui.get("carModelName").setText(data.carModelName);
-                    document.getElementById("caCalculation").contentWindow.setSelectCarValue(data.handcartAmt, data.carCost);
-                    document.getElementById("caCalculation").contentWindow.SetDataMsg(data.id, data.frameColorId, data.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
+                    if(isTabs == 0){
+                    	document.getElementById("caCalculation").contentWindow.setSelectCarValue(data.handcartAmt, data.carCost);
+                        document.getElementById("caCalculation").contentWindow.SetDataMsg(data.id, data.frameColorId, data.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
+                    }
+                   // document.getElementById("caCalculation").contentWindow.setSelectCarValue(data.handcartAmt, data.carCost);
+                   // document.getElementById("caCalculation").contentWindow.SetDataMsg(data.id, data.frameColorId, data.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
                 } else {
                     var billFormData = billForm.getData(true);
                     billFormData.isSettle = data.isSettle;
@@ -798,7 +834,10 @@ function searchSalesMain(serviceId, type) { //查询主表信息
                     nui.get("saveBtn").disable();
                     nui.get("submitBtn").disable();
                     setReadOnlyMsg();
-                    document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
+                    if(isTabs == 0){
+                    	document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
+                    }
+                    //document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
                     if (nui.get("typeMsg").value == 2) {
                         if (data.isSubmitCar == 0) {
                             if (data.status == 1 || data.status == 2) {
@@ -811,7 +850,10 @@ function searchSalesMain(serviceId, type) { //查询主表信息
                     nui.get("saveBtn").enable();
                     nui.get("submitBtn").enable();
                     setInputModel();
-                    document.getElementById("caCalculation").contentWindow.setInputModel();
+                    if(isTabs == 0){
+                    	document.getElementById("caCalculation").contentWindow.setInputModel();
+                    }
+                   // document.getElementById("caCalculation").contentWindow.setInputModel();
                 }
                 if (data.guestId) {
                     insuranceMsg(data.guestId);
@@ -844,7 +886,9 @@ function searchSalesMain(serviceId, type) { //查询主表信息
                 var sk = document.getElementById("search_key");
                 sk.style.display = "none";
             };
+            nui.unmask(document.body);
         }
+       
     });
 }
 
@@ -899,7 +943,12 @@ function selectCar() { //点击选车时触发
         height: "50%",
         onload: function() {
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(billFormData.carModelId);
+            var data = {
+                carModelId: billFormData.carModelId,
+                carLock: 0,
+                carStatus: 0
+            }
+            iframe.contentWindow.SetData(data);
         },
         ondestroy: function(action) {
             if (action == "ok") {
@@ -912,6 +961,9 @@ function selectCar() { //点击选车时触发
                 billFormData.enterId = enterId;
                 billForm.setData(billFormData);
                 document.getElementById("caCalculation").contentWindow.setSelectCarValue(handcartAmt, carCost);
+                //修改了购车预算中的运输成本和购买成本，需要把dataF重新赋值这两个值，要不然会显示之前的值(换成了另一种方式)
+                //dataF.handcartAmt = handcartAmt;
+               // dataF.carCost = carCost;
                 save(10); //避免 enterId赋值 导致触发表格验证判断
             }
         }
@@ -937,6 +989,7 @@ function registration() { //车辆上牌
 }
 
 function caseMsg() { //销售结案审核
+	isTabs = 0;
     var type = 1;
     var billFormData = billForm.getData(true);
     if (billFormData.isSettle != 1) {
@@ -964,6 +1017,7 @@ function caseMsg() { //销售结案审核
 }
 
 function salesOnPrint(p) {
+	isTabs = 0;
     var billFormData = billForm.getData(true); //主表信息
     searchSalesMain(billFormData.id, 1);
     var billFormData = billForm.getData(true); //主表信息
@@ -1268,4 +1322,36 @@ function changeFrameColorId(value) {
 function changeInterialColorId(value) {
     nui.get("interialColorId").setValue(value);
 }
+
+
+//点击购车预算tab页时，加载
+function activechangedmain(){
+	var tabs = nui.get("mainTabs").getActiveTab();
+	if(tabs.name=="editForm"){
+	   if(isTabs==1){
+		    isTabs = 0;
+			if(dataF.type==0){
+				changeValueMsg(1);
+			    document.getElementById("caCalculation").contentWindow.setSelectCarValue(dataF.handcartAmt, dataF.carCost);
+	            document.getElementById("caCalculation").contentWindow.SetDataMsg(dataF.id, dataF.frameColorId, dataF.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
+	            if(dataF.status != 0){
+					document.getElementById("caCalculation").contentWindow.setReadOnlyMsg()
+				}else{
+					document.getElementById("caCalculation").contentWindow.setInputModel();
+				}
+			}else{
+				document.getElementById("caCalculation").contentWindow.setInputModel();
+			}
+			
+		}
+	}
+}
+
+//主表购车方式改变时
+function changeBuyType(){
+	isTabs = 0;
+	changeValueMsg(1);
+}
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

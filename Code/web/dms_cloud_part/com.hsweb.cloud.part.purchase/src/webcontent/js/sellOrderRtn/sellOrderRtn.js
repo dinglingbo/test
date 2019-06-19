@@ -41,7 +41,9 @@ var StatusHash={
 	"1":"已提交",
 	"4":"已入库"
 }
-
+var partIn =null;
+var partShow=0;
+var storeLimitMap={};
 $(document).ready(function(v) {
     nui.mask({
         el: document.body,
@@ -105,10 +107,26 @@ $(document).ready(function(v) {
             onPrint();
         } 
         if((keyCode==27))  {  
+        	if(partShow == 1){
+                onPartClose();
+            }
             if(advancedSearchShow==1){
             	onAdvancedSearchCancel();
             }
         }
+        
+        if((keyCode==13))  {  //新建
+            if(partShow == 1) {
+            	if(partIn!=false){
+            		var row = morePartGrid.getSelected();
+    				if(row){
+    					addSelectPart();
+    				}
+    				
+            	}
+            	partIn=true;
+			}
+        } 
     }
     
     
@@ -737,6 +755,20 @@ function save() {
         return;
     }
 
+    var rightRow =rightGrid.getData();
+	var orderMan =nui.get('orderMan').value;
+//	if(orderMan !=currUserName){
+		getStoreLimit();
+//	}
+	for(var i=0;i<rightRow.length;i++){
+		if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
+			if(!storeLimitMap.hasOwnProperty(rightRow[i].storeId) && storeHash[rightRow[i].storeId]){
+				showMsg("没有选择"+storeHash[rightRow[i].storeId].name+"的权限","W");
+				return;
+			}
+		}
+	}
+	
     data = getMainData();
 
     //由于票据类型可能修改，所以除了新建和删除，其他都应该是修改
@@ -979,6 +1011,17 @@ function auditOrder(flagSign, flagStr, flagRtn) {
     if(flagSign == 1){
         str = "入库";
     }
+    
+    getStoreLimit();
+	var rightRow =rightGrid.getData();
+	for(var i=0;i<rightRow.length;i++){
+		if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
+			if(!storeLimitMap.hasOwnProperty(rightRow[i].storeId)  && storeHash[rightRow[i].storeId]){
+				showMsg("没有选择"+storeHash[rightRow[i].storeId].name+"的权限","W");
+				return;
+			}
+		}
+	}
 
     nui.confirm("是否确定"+str+"?", "友情提示", function(action) {
         if (action == "ok") {
@@ -1170,6 +1213,57 @@ function onGuestValueChanged(e)
 		addNewRow(true);
     }
 }
+
+function onStoreValueChange(e){
+	var data = e.selected;
+	if(data){
+		var id = data.id;
+		var orderMan =nui.get('orderMan').value;
+		if(orderMan !=currUserName){
+			getStoreLimit();
+		}
+		if(Object.getOwnPropertyNames(storeLimitMap ).length ==0){
+			//不做限制
+		}
+		if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
+			if(!storeLimitMap.hasOwnProperty(id) && storeHash[id].name){
+				showMsg("没有选择"+storeHash[id].name+"的权限","W");
+				return;
+			}
+		}
+	}
+		
+}
+var storeLimtUrl  = baseUrl +"com.hsapi.system.tenant.employee.queryStoreManOne.biz.ext";
+function getStoreLimit(){
+	storeLimitMap={};
+	var orderMan =nui.get('orderMan').value;
+	if(!orderMan){
+		return;
+	}
+	nui.ajax({
+		url : storeLimtUrl,
+		async:false,
+		data : {
+			orgid : currOrgId,
+			name : orderMan,
+			token : token
+		},
+		type : "post",
+		success : function(text) {
+			var data =text.data;
+			for(var i=0;i<data.length;i++){
+				storeLimitMap[data[i].storeId] =data [i];
+			}
+			
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+	return storeLimitMap;
+}
 var getGuestInfo = baseUrl
         + "com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
 function setGuestInfo(params) {
@@ -1344,9 +1438,21 @@ function OnrpMainGridCellBeginEdit(e){
         e.cancel = true;
     }
 
+    if(e.field == 'storeId'){
+    	editor.setData(storehouse);
+    }
     if(data.codeId && data.codeId>0){
         e.cancel = true;
     }
+    if(advancedMorePartWin.visible) {
+		e.cancel = true;
+		morePartGrid.focus();
+		var row = morePartGrid.getRow(0);   //默认不能选中，回车事件会有影响
+        if(row){
+            morePartGrid.select(row,true);
+        }
+        partIn=false;
+	}
 
 }
 // 提交单元格编辑数据前激发
@@ -1605,6 +1711,8 @@ function getPartInfo(params){
                 }else{
                     advancedMorePartWin.show();
                     morePartGrid.setData(partlist);
+                    partShow = 1;
+					event.keyCode = null;
                 }
                 
             }else{
@@ -1654,6 +1762,9 @@ function addSelectPart(){
             enterUnitId : row.unit
         };
 
+        advancedMorePartWin.hide();
+        morePartGrid.setData([]);
+        partShow = 0;
         if(rightGrid.getSelected()){
             rightGrid.updateRow(rightGrid.getSelected(),newRow);
         }else{
@@ -1695,6 +1806,7 @@ function addMorePart(){
     }
     advancedAddForm.setData([]);
     advancedAddWin.show();
+    partShow = 1;
 }
 
 function onAdvancedAddOk(){

@@ -88,6 +88,9 @@ $().ready(function (H) {
         if (e.field == 'worker') {
             editor.setData(memList);
         }
+        if (e.field == 'receType') {
+            editor.setData(costList);
+        }
     });
 
     itemGrid.on("drawcell", function (e) {
@@ -251,8 +254,13 @@ function onEnterIdEdit(params) {
     width: 1000,
     height: 500,
     onload: function () {
-      var iframe = this.getIFrameEl();
-      iframe.contentWindow.SetData('',1);
+        var iframe = this.getIFrameEl();
+        var data = {
+            billStatus:1,
+            carStatus: 1, 
+            carLock: 0
+        }
+      iframe.contentWindow.SetData(data,1);
     },
     ondestroy: function (action) {
         var iframe = this.getIFrameEl();
@@ -272,15 +280,21 @@ function onEnterIdEdit(params) {
 
 function sellTypeChanged(e) {
     var value = e.value;
-    if (value == 1) {
+    nui.get("saleCode").disable();
+    nui.get("enterId").disable();
+    nui.get("saleCode").setValue(null);
+    nui.get("saleCode").setText(null);
+    nui.get("enterId").setValue(null);
+    nui.get("enterId").setText(null);
+    nui.get("saleCode").setRequired(true);
+    nui.get("enterId").setRequired(true);
+    if (value == 1) {//库存车
+        nui.get("enterId").enable();
         nui.get("saleCode").disable();
         nui.get("saleCode").setRequired(false);
-        nui.get("saleCode").setValue(null);
-        nui.get("saleCode").setText(null);
-    } else if (value == 2) {
+    } else if (value == 2) {//销售车
         nui.get("enterId").disable();
         nui.get("saleCode").enable();
-        nui.get("saleCode").setRequired(true);
     }
 }
 

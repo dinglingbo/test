@@ -15,6 +15,12 @@ $(document).ready(function () {
     startDateEl = nui.get("startDate");
     endDateEl = nui.get("endDate");
     form = new nui.Form("form1");
+
+    grid.on("drawcell", function (e) {
+        if (e.field == 'status') {
+            e.cellHtml = (e.value == 0 ? '草稿' : '已提交');
+        }
+    })
 })
 
 
@@ -30,25 +36,37 @@ function edit(e) {
             showMsg('请选择要修改的数据', 'W');
             return;
         }
-    }
-    nui.open({
-        url: webPath + contextPath + '/sales/base/sFactoryRebateDet.jsp',
-        title: tit,
-        width: '100%',
-        height: '100%',
-        onload: function () {
-            var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(row);
-        },
-        ondestroy: function (action) {
-            grid.reload();
+        if (row.status == 1) {
+            showMsg("该返利单已提交", "W");
+            return;
         }
-    });
+    }
+    var item = {};
+    item.id = '12993';
+    item.text = '厂家返利编辑';
+    item.url = webPath + contextPath + '/sales/base/sFactoryRebateDet.jsp';
+    item.iconCls = "fa fa-file-text";
+    window.parent.activeTabAndInit(item, row);
+    // nui.open({
+    //     url: webPath + contextPath + '/sales/base/sFactoryRebateDet.jsp',
+    //     title: tit,
+    //     width: '100%',
+    //     height: '100%',
+    //     onload: function () {
+    //         var iframe = this.getIFrameEl();
+    //         iframe.contentWindow.SetData(row);
+    //     },
+    //     ondestroy: function (action) {
+    //         grid.reload();
+    //     }
+    // });
 }
 
 function search() {
     var data = form.getData(true);
-    data.endDate = data.endDate + " 23:59:59";
+    if (data.endDate) {
+        data.endDate = data.endDate + " 23:59:59";
+    }
     grid.load({
         params: data
     });
@@ -115,7 +133,9 @@ function quickSearch(type) {
     endDateEl.setValue(addDate(params.endDate, -1));
     var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);
-    params.endDate = params.endDate + " 23:59:59";
+    if (params.endDate) {
+        params.endDate = params.endDate + " 23:59:59";
+    }
     grid.load({
         params: params
     });
@@ -128,6 +148,15 @@ function submit() {
         showMsg("请选择一条数据", "W");
         return;
     }
+    if (row.status == 1) {
+        showMsg("请勿重复提交", "W");
+        return;
+    }
+    nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : '提交中...'
+	});
     nui.ajax({
         url: payUrl,
         type: 'post',
@@ -135,10 +164,11 @@ function submit() {
             data: row
         },
         success: function (res) {
+            nui.unmask(document.body);
             if (res.errCode == 'S') {
-                showMsg(showText, 'S');
+                showMsg('提交成功', 'S');
             } else {
-                showMsg('失败', 'E');
+                showMsg('提交失败', 'E');
             }
         }
     });

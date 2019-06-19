@@ -56,7 +56,7 @@ function getSearchParam(){
     params.carModelName = nui.get("carModelName").getValue();
 	params.endDate = addDate(searchEndDate.getValue(),1);
 	params.startDate = searchBeginDate.getFormValue();
-	params.billStatus = 1;
+	//params.billStatus = 1;
     return params;
 }
 var currType = 2;
@@ -125,31 +125,27 @@ function quickSearch(type){
             break;
         //草稿
         case 12:
-        	params.billStatusId=0;
-        	params.auditSign=0;
+        	params.carStatus=1;
         	querysign = 2;
-        	querystatusname = "草稿";
+        	querystatusname = "订货已到";
         	break;
         //待发货
         case 13:
-        	params.billStatusId=1;
-        	params.auditSign=1;
+        	params.carStatus=2;
         	querysign = 2;
-        	querystatusname = "待发货";
+        	querystatusname = "已退货";
         	break;
         //待收货
         case 14:
-        	params.billStatusId=2;
-        	params.auditSign=1;
+        	params.carStatus=3;
         	querysign = 2;
-        	querystatusname = "待收货";
+        	querystatusname = "销售中";
         	break;
         //已入库
         case 15:
-        	params.billStatusId=4;
-        	params.auditSign=1;
+        	params.carStatus=4;
         	querysign = 2;
-        	querystatusname = "已入库";
+        	querystatusname = "已销售";
         	break;
         default:
         	querysign = 2;
@@ -160,7 +156,14 @@ function quickSearch(type){
     
     searchBeginDate.setValue(params.startDate);
     searchEndDate.setValue(addDate(params.endDate,-1));
-    nui.get("menunamedate").setValue(querystatusname);
+    if(querysign==1){
+    	var menunamedate = nui.get("menunamedate");
+    	menunamedate.setText(queryname); 
+    }else{
+    	var menubillstatus = nui.get("menubillstatus");
+    	menubillstatus.setText(querystatusname); 
+    }
+
     currType = type;
     doSearch(params);
 }

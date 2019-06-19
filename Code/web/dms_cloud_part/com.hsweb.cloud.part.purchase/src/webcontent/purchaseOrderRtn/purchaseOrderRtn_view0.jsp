@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购退货</title>
-<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.1.25"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.1.30"></script>
 <style type="text/css">
 .title {
 	width: 70px;
@@ -137,6 +137,7 @@ body .mini-grid-row-selected{
                           <div id="basicInfoForm" class="form" contenteditable="false">
                               <input class="nui-hidden" name="id"/>
                               <input class="nui-hidden" name="operateDate"/>
+                              <input class="nui-hidden" name="storeId" id="storeId"/>
                               <input class="nui-hidden" name="auditSign"/>
                               <table style="width: 100%;">
                                   <tr>
@@ -327,11 +328,11 @@ body .mini-grid-row-selected{
                               </div>
                               <div header="辅助信息" headerAlign="center">
                                   <div property="columns">
-                                      <div type="comboboxcolumn" field="storeId" width="30" headerAlign="center" allowSort="true">
-                                      仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" 
-                                              url="" data="storehouse"
-                                              onvaluechanged="" emptyText=""  vtype="required"
-                                              /> 
+                                     <div type="comboboxcolumn" field="storeId" width="30" headerAlign="center" allowSort="true">
+                        		仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" data="storehouse"
+                                      url=""
+                                      onvaluechanged="onStoreValueChange" emptyText=""  vtype="required"
+                                      /> 
                                       </div>  
                                       <div field="stockOutQty" summaryType="sum" numberFormat="0.00" width="25" headerAlign="center" header="缺货数量">
                                       </div>

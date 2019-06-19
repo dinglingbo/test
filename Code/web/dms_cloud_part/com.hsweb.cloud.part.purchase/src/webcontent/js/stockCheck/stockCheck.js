@@ -19,6 +19,7 @@ var formJson = null;
 var brandHash = {};
 var brandList = [];
 var storehouse = null;
+var storeHash={};
 var morePartGrid = null;
 var gsparams = {};
 var sOrderDate = null;
@@ -36,6 +37,8 @@ var AuditSignHash = {
   "0":"草稿",
   "1":"已审核"
 };
+
+var storeLimitMap={};
 $(document).ready(function(v)
 {
     leftGrid = nui.get("leftGrid");
@@ -63,6 +66,9 @@ $(document).ready(function(v)
         storehouse = data.storehouse||[];
         if(storehouse && storehouse.length>0){
             FStoreId = storehouse[0].id;
+            storehouse.forEach(function(v){
+        		storeHash[v.id]=v;
+        	});
         }else{
             isNeedSet = true;
         }
@@ -328,6 +334,19 @@ function save() {
     }
     
 
+	var orderMan =nui.get('orderMan').value;
+//	if(orderMan !=currUserName){
+		getStoreLimit();
+//	}
+	var storeId =nui.get('storeId').value;
+	if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
+		if(!storeLimitMap.hasOwnProperty(storeId) && storeHash[storeId]){
+			showMsg("没有选择"+storeHash[storeId].name+"的权限","W");
+			return;
+		}
+	}
+
+	
     data = getMainData();
 
     var orderDetailAdd = rightGrid.getChanges("added");
@@ -653,6 +672,18 @@ function audit()
         return;
     }
 
+    var orderMan =nui.get('orderMan').value;
+//	if(orderMan !=currUserName){
+		getStoreLimit();
+//	}
+	var storeId =nui.get('storeId').value;
+	if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
+		if(!storeLimitMap.hasOwnProperty(storeId) && storeHash[storeId]){
+			showMsg("没有选择"+storeHash[storeId].name+"的权限","W");
+			return;
+		}
+	}
+	
     data = getMainData();
 
     var orderDetailAdd = rightGrid.getChanges("added");
@@ -771,7 +802,7 @@ function add()
         addNewRow();
         
     }
-
+    getStoreLimit();
     
 }
 //提交单元格编辑数据前激发
@@ -1430,4 +1461,55 @@ function setInitExportData(main, detail){
 
     var serviceId = main.serviceId?main.serviceId:"";
     method5('tableExcel',"盘点单"+serviceId,'tableExportA');
+}
+
+function onStoreValueChange(e){
+	var data = e.selected;
+	if(data){
+		var id = data.id;
+		var orderMan =nui.get('orderMan').value;
+		if(orderMan !=currUserName){
+			getStoreLimit();
+		}
+		if(Object.getOwnPropertyNames(storeLimitMap ).length ==0){
+			//不做限制
+		}
+		if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
+			if(!storeLimitMap.hasOwnProperty(id) && storeHash[id].name){
+				showMsg("没有选择"+storeHash[id].name+"的权限","W");
+				return;
+			}
+		}
+	}
+		
+}
+var storeLimtUrl  = baseUrl +"com.hsapi.system.tenant.employee.queryStoreManOne.biz.ext";
+function getStoreLimit(){
+	storeLimitMap={};
+	var orderMan =nui.get('orderMan').value;
+	if(!orderMan){
+		return;
+	}
+	nui.ajax({
+		url : storeLimtUrl,
+		async:false,
+		data : {
+			orgid : currOrgId,
+			name : orderMan,
+			token : token
+		},
+		type : "post",
+		success : function(text) {
+			var data =text.data;
+			for(var i=0;i<data.length;i++){
+				storeLimitMap[data[i].storeId] =data [i];
+			}
+			
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+	return storeLimitMap;
 }

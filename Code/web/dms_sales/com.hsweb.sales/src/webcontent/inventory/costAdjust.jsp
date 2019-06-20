@@ -84,7 +84,7 @@ pageEncoding="UTF-8" session="false" %>
 	            <tr class="htr">
 	                <td class=" right fwidtha required">现成本:</td>
 	                <td >
-	                <input name="xunitPrice" id="xunitPrice" class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"   allowNull="false" showButton="false" />
+	                <input name="xunitPrice" id="xunitPrice" class="nui-Spinner"  decimalPlaces="2" minValue="0" maxValue="1000000000"   allowNull="false" showButton="false" />
 	                </td>
 	            </tr>
 

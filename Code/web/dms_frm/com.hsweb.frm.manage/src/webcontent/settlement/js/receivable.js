@@ -380,10 +380,10 @@ function settleOK() {
 		accountDetailList.push(accountDetail);*/
 		//预付账款typeUrl==3，不考虑别的
 		if(typeUrl==3){
-			account.rpDc = -2;
+			account.rpDc = 2;
 			account.settleType = "预收";
 		}else{				
-			account.rpDc = -1;
+			account.rpDc = 1;
 			account.settleType = "应收";
 		}
 		account.voidAmt = pVoidAmt;

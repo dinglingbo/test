@@ -220,7 +220,7 @@
 									<label>预算金额：</label>
 								</td>
 								<td colspan="1">
-									<input class="nui-textbox" name="expectPrice" width="100%" maxlength="20" vtype="float"/>
+									<input class="nui-Spinner"    minValue="0" maxValue="1000000000"    decimalPlaces="2" allowNull="false" showButton="false" name="expectPrice" id="expectPrice" />
 								</td>
 							</tr>
 							<tr>

@@ -189,25 +189,25 @@
                          contextMenu="#gridMenu"
                          url="">
                         <div property="columns">
-                            <div type="indexcolumn">序号</div>
-                                    <div field="operateBtn" name="operateBtn" align="center" width="50" headerAlign="center" header="操作"></div>
+                            <div type="indexcolumn" width="30">序号</div>
+                                    <div field="operateBtn" name="operateBtn" align="center" width="40" headerAlign="center" header="操作"></div>
 <!--                                     <div field="code" name="code" width="180" headerAlign="center" header="车型编码">
                                         <input property="editor" class="nui-textbox" />
                                     </div> -->
                                     <div field="carModelName" headerAlign="center" header="车型名称"></div>
-                                    <div field="frameColorId" name="frameColorId" width="40" headerAlign="center" header="车身颜色">
+                                    <div field="vin" name="vin" width="120" headerAlign="center" header="车架号（VIN）"></div>
+                                    <div field="frameColorId" name="frameColorId" width="50" headerAlign="center" header="车身颜色">
                                     </div>
-                                    <div field="interialColorId" name="interialColorId"  width="60" headerAlign="center" header="内饰颜色">
+                                    <div field="interialColorId" name="interialColorId"  width="50" headerAlign="center" header="内饰颜色">
                                     </div>
-                                    <div field="vin" name="vin" width="40" headerAlign="center" header="车架号（VIN）"></div>
                                     <!-- <div field="engineNo" name="engineNo" width="40" headerAlign="center" header="发动机号"></div> -->
-                                    <div field="orderPrice" numberFormat="0.0000" width="60" headerAlign="center" header="进价">
+                                    <div field="orderPrice" numberFormat="0.0000" width="50" headerAlign="center" header="进价">
                                       <input property="editor" vtype="float" class="nui-textbox"/>
                                     </div> 
-                                     <div field="returnAmt" numberFormat="0.0000" width="60" headerAlign="center" header="退货金额">
+                                     <div field="returnAmt" numberFormat="0.0000" width="50" headerAlign="center" header="退货金额">
                                       <input property="editor" vtype="float" class="nui-textbox"/>
                                     </div>                                                                                                        								                                                                                                                                                                                                                                                                                                                                                                                                                         
-                                    <div field="remark" width="100" headerAlign="center" allowSort="false">
+                                    <div field="remark" width="110" headerAlign="center" allowSort="false">
                        					 退货备注<input property="editor" class="nui-textbox"/>
                        				</div>
                             </div>

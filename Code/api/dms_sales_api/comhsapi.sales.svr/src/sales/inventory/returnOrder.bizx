@@ -304,7 +304,7 @@
       <process:to type="query">params/BillMainId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">returnOrder/billTypeId</process:from>
+      <process:from type="literal" pattern="reference">124</process:from>
       <process:to type="query">params/BillTypeId</process:to>
     </process:copy>
     <process:copy>

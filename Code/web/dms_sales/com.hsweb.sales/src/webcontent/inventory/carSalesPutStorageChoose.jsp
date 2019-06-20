@@ -8,7 +8,7 @@
 -->
 <head>
 <title>整车验车</title>
-<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesPutStorageChoose.js?v=1.0.7"></script>
+<script src="<%=webPath + contextPath%>/sales/inventory/js/carSalesPutStorageChoose.js?v=1.0.8"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -72,6 +72,7 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn" width="40">序号</div>
+           			<div field="carStatus" name="carStatus" width=70" headerAlign="center" header="车辆状态"></div> 
                     <div field="guestFullName" name="guestFullName" width="200" headerAlign="center" header="供应商"></div>                    
             		<div field="carModelName" name="carModelName" width="200" headerAlign="center" header="车型名称"></div>  
                     <div field="frameColorId" name="frameColorId" width="60" headerAlign="center" header="车身颜色"></div>

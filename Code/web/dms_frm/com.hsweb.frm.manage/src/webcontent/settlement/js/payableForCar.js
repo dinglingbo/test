@@ -11,7 +11,6 @@ var zongAmt = 0;//实时填写的结算金额
 var guestData = null;
 var deductible = 0;
 var qRightGrid = null;
-var fisRpAdvance = [];//本单定金
 var fisRpAdvanceList = [];//全部定金
 var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryFrmAccount.biz.ext";
 var accountSegmentation = [];//账户分割取id
@@ -91,12 +90,7 @@ function setData(data){
     			type : "post",
     			data : json,
     			success : function(data) {
-    				 fisRpAdvance = data.fisRpAdvance||[];
     				 fisRpAdvanceList = data.fisRpAdvanceList||[];
-    				 if(fisRpAdvance.length>0){ 					 
-    					 nui.get("code").setValue(fisRpAdvance[0].code||""); 
-    					 nui.get("balaAmt").setValue("￥"+fisRpAdvance[0].balaAmt||0);
-    				 }
     				qRightGrid.addRows(fisRpAdvanceList);
     			},
     			error : function(jqXHR, textStatus, errorThrown) {
@@ -115,21 +109,15 @@ function onChanged() {
 	for(i=0;i<rows.length;i++){
 		amt = parseFloat(amt) + parseFloat(rows[i].balaAmt);
 	}
-	var balaAmt = nui.get("balaAmt").getValue();
-	if(balaAmt!=0){
-		balaAmt = (balaAmt.split("￥"))[1];
-	}
-	amt = parseFloat(amt) + parseFloat(balaAmt);
-	
-
 		var amtd = document.getElementById('amount').innerText;
 		amtd = parseFloat(amtd) - parseFloat(amt);
-		var byId = accountSegmentation[1]+accountList[0].customId;
-		document.getElementById(byId).value = amtd;
-		checkF = 0;
-		
+		if(accountSegmentation.length>0&&accountList.length>0){			
+			var byId = accountSegmentation[1]+accountList[0].customId;
+			document.getElementById(byId).value = amtd;
+			checkF = 0;
+		}		
 	var count = scount();
-	if(parseFloat(count) > netInAmt){
+	if(parseFloat(amt)+parseFloat(count) > netInAmt){
 		showMsg("收款大于应收金额，请重新填写","W");
 		return;
 	}
@@ -231,7 +219,6 @@ function remove(id){
 var settleAuditUrl = frmUrl+ "com.hsapi.frm.frmService.rpsettle.salesCarSettle.biz.ext";
 function settleOK() {
 	var accountTypeList =[];
-	var fisRpAdvanceSelect = {};//全部抵扣定金
 	var count = scount();
 	for(var i = 0;i<tableNum+1;i++){
 		var  Sel=document.getElementById("optaccount"+i);
@@ -252,21 +239,12 @@ function settleOK() {
 		}
 	}
 	var amt = 0;//总抵扣金额
-	var rows = qRightGrid.getSelecteds();
-	fisRpAdvanceSelect = fisRpAdvance;
-	for(var i=0;i<rows.length;i++){	
-		fisRpAdvanceSelect.push(rows[i]);
-		amt = parseFloat(amt) + parseFloat(rows[i].balaAmt);
+	var rowsSettle = qRightGrid.getSelecteds();
+	for(var i=0;i<rowsSettle.length;i++){	
+		amt = parseFloat(amt) + parseFloat(rowsSettle[i].balaAmt);
+		var list={balaTypeCode:"020108",charOffAmt:rowsSettle[i].balaAmt,settAccountId:296,settAccountName:"默认现金账户"};
+		accountTypeList.push(list);
 	}
-for(var i = 0;i<fisRpAdvanceSelect.length;i++){
-	var list={balaTypeCode:"020108",charOffAmt:fisRpAdvanceSelect[i].balaAmt,settAccountId:296,settAccountName:"默认现金账户"};
-	accountTypeList.push(list);
-}
-	var balaAmt = nui.get("balaAmt").getValue();
-	if(balaAmt!=0){
-		balaAmt = (balaAmt.split("￥"))[1];
-	}
-	amt = parseFloat(amt) + parseFloat(balaAmt);
 	count = (count+amt).toFixed(2);
 		
 		if(count!=zongAmt){
@@ -398,7 +376,7 @@ for(var i = 0;i<fisRpAdvanceSelect.length;i++){
 							type : "post",
 							data : JSON.stringify({
 								account : account,
-								fisRpAdvance : fisRpAdvanceSelect,
+								fisRpAdvance : rowsSettle,
 								accountDetailList : accountDetailList,
 								accountTypeList : accountTypeList,
 								token : token

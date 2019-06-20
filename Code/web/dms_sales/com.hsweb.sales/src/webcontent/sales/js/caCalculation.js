@@ -326,7 +326,7 @@ function saveCome() {
     } else {
         var advanceChargeAmt = caCalculationData.advanceChargeAmt; //预付款
         var saleAmt = caCalculationData.saleAmt; //车型销价
-        if (advanceChargeAmt > saleAmt) {
+        if (parseFloat(advanceChargeAmt) > parseFloat(saleAmt)) {
             showMsg("预付款金额不能大于 车价金额！", "W");
             return;
         }

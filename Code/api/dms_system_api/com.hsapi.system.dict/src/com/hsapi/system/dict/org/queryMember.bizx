@@ -214,6 +214,10 @@
       <process:from type="query" pattern="reference">memberLevelId</process:from>
       <process:to type="query">p/memberLevelId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">isMtadvisor</process:from>
+      <process:to type="query">p/isMtadvisor</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="468" y="278"/>
@@ -337,6 +341,7 @@
     <process:input description="强制从数据库查询" isArray="false" name="fromDb" primitiveType="Boolean"/>
     <process:input description="" isArray="false" name="memberGroupId" primitiveType="String"/>
     <process:input description="" isArray="false" name="memberLevelId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="isMtadvisor" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output anyType="java.util.HashMap" description="" isArray="true" name="data"/>

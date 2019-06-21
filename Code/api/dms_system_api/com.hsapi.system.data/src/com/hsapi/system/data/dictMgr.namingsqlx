@@ -237,6 +237,15 @@
 		<isNotNull property="memberLevelId">
 			AND a.member_level_id = #memberLevelId#
 		</isNotNull>
+		<isNotNull property="isMtadvisor">
+			AND a.is_mtadvisor = #isMtadvisor#
+		</isNotNull>
+		<isNotNull property="isArtificer">
+			AND a.is_artificer = #isArtificer#
+		</isNotNull>
+		<isNotNull property="isSalesman">
+			AND a.is_salesman = #isSalesman#
+		</isNotNull>
     </select>
     <!--业务分类   is_disabled = 0 -->
     <select id="getServiceType" parameterClass="HashMap" resultClass="HashMap">
@@ -249,7 +258,9 @@
     
     <!--查询本店系统参数 设置-->
     <select id="queryBillParams" parameterClass="HashMap" resultClass="HashMap">
-        SELECT a.orgid, a.keyid_id as keyidId, a.keyid_value as keyidValue FROM com_params AS a
+        SELECT a.orgid, a.keyid_id as keyidId, a.keyid_value as keyidValue,
+               a.keyid_name as keyidName
+        FROM com_params AS a
         where 1 = 1
         
             <isNotEmpty prepend="and" property="keyidIds">  

@@ -106,6 +106,7 @@
     String slogan2 = "";
     String imCode = "";
     String imDisabled = "";
+    String isReadSysmsg = "";
 	Map attr=new HashMap();
 	Object billParamsObj = null;
 	Map billParams = new HashMap();
@@ -118,6 +119,7 @@
 	String repairDefaultStore = "";
 	String repairBillMobileFlag = "0";
 	String repairStoreControlFlag = "0";
+	String isOpenElectronics = "0";
 	String isCanSettle = "";
 	String isCanfreeCarnovin = "";
 	String orgs = "";
@@ -228,6 +230,9 @@
                 if(attr.get("imDisabled") != null){
                 	imDisabled = attr.get("imDisabled").toString();
                 }
+                if(attr.get("isReadSysmsg") != null){
+                	isReadSysmsg = attr.get("isReadSysmsg").toString();
+                }
                 
                 if(attr.get("billParams") != null){
                 	billParamsObj = attr.get("billParams");
@@ -289,6 +294,9 @@
 	                if(billParams.get("isCanSeePrice") != null){
 	                	isCanSeePrice = billParams.get("isCanSeePrice").toString();
 	                }
+	                if(billParams.get("isOpenElectronics") != null){
+	                	isOpenElectronics = billParams.get("isOpenElectronics").toString();
+	                }
                 }
               
                 
@@ -331,6 +339,7 @@
     var token = "<%=token %>";
     var currImCode = "<%=imCode %>";
     var currImDisabled = "<%=imDisabled %>";
+    var currIsReadSysmsg = "<%=isReadSysmsg %>";
     var currCompAddress = "<%=compAddress %>";
     var currCompTel = "<%=compTel %>";
     var currCompLogoPath = "<%=compLogoPath %>";
@@ -348,6 +357,7 @@
 	var currRepairDefaultStore = "<%=repairDefaultStore %>";
 	var currRepairBillMobileFlag = "<%=repairBillMobileFlag %>";
 	var currRepairStoreControlFlag = "<%=repairStoreControlFlag %>";
+	var currIsOpenElectronics = "<%=isOpenElectronics %>";
 	var currIsCanSettle = "<%=isCanSettle %>";
 	var currIsCanfreeCarnovin = "<%=isCanfreeCarnovin %>";
 	var currIsCanBelowCost ="<%=isCanBelowCost %>";

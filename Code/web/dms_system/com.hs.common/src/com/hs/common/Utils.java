@@ -338,6 +338,12 @@ public class Utils {
 		System.out.println("获取客户端ip: " + ip);
 		return ip;
 	}
+	
+	@Bizlet("")
+	public static HashMap<String, Object> putMapProperty(HashMap<String, Object> map, String propertyName, Object propertyValue) {
+		map.put(propertyName, propertyValue);
+		return map;
+	}
 
 	@Bizlet("")
 	public static String createSessionId() {

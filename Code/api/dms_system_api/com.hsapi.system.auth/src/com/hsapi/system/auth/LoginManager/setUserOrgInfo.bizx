@@ -199,6 +199,10 @@
       <process:to type="query">m:userObject/attributes/imCode</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">member/isReadSysmsg</process:from>
+      <process:to type="query">m:userObject/attributes/isReadSysmsg</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">comp/bankName</process:from>
       <process:to type="query">m:userObject/attributes/bankName</process:to>
     </process:copy>
@@ -410,7 +414,7 @@
       <targetNode>assign3</targetNode>
     </sourceConnections>
     <targetConnections>link10</targetConnections>
-    <location x="30" y="180"/>
+    <location x="-26" y="180"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo4label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -423,7 +427,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo4label" name="label" nodeType="label">
-    <location x="-5" y="216"/>
+    <location x="-61" y="216"/>
     <figSize height="17" width="93"/>
     <node>invokePojo4</node>
   </nodes>
@@ -489,7 +493,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
-    <location x="195" y="180"/>
+    <location x="161" y="180"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo5label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -505,7 +509,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
-    <location x="182" y="216"/>
+    <location x="148" y="216"/>
     <figSize height="17" width="49"/>
     <node>invokePojo5</node>
   </nodes>
@@ -515,7 +519,7 @@
       <targetNode>subprocess5</targetNode>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
-    <location x="330" y="180"/>
+    <location x="296" y="180"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
     <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
@@ -530,7 +534,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="296" y="215"/>
+    <location x="262" y="215"/>
     <figSize height="17" width="94"/>
     <node>subprocess2</node>
   </nodes>
@@ -631,7 +635,7 @@
       <targetNode>invokePojo5</targetNode>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
-    <location x="120" y="180"/>
+    <location x="60" y="180"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
@@ -648,7 +652,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="118" y="216"/>
+    <location x="58" y="216"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>

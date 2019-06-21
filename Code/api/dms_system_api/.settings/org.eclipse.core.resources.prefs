@@ -2,6 +2,7 @@ eclipse.preferences.version=1
 encoding//com.hsapi.system.auth/eosdebug/com/hsapi/system/auth/LoginManager/setUserOrgInfo.bizx.eosdebug=UTF-8
 encoding//com.hsapi.system.basic/eosdebug/com/hsapi/system/basic/organization/saveMyCompany.bizx.eosdebug=UTF-8
 encoding//com.hsapi.system.common/eosdebug/com/hsapi/system/employee/feedback/saveFeedBackInfo.bizx.eosdebug=UTF-8
+encoding//com.hsapi.system.config/eosdebug/com/hsapi/system/config/paramSet/queryBillParams.bizx.eosdebug=UTF-8
 encoding//com.hsapi.system.dict/eosdebug/com/hsapi/system/dict/dictMgr/queryDict.bizx.eosdebug=UTF-8
 encoding//com.hsapi.system.dict/eosdebug/com/hsapi/system/dict/dictMgr/queryDictType.bizx.eosdebug=UTF-8
 encoding//com.hsapi.system.dict/eosdebug/com/hsapi/system/dict/dictMgr/queryDictTypeTree.bizx.eosdebug=UTF-8

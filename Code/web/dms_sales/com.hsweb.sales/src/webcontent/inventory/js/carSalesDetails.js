@@ -594,8 +594,8 @@ var requiredField = {
 /*	orderMan : "采购员",*/
 	billTypeId : "票据类型",
 	payMode : "结算方式",
-	predictDeliveryDate :"预计到货日期",
-	advanceDepositAmt :"预交定金",
+	predictDeliveryDate :"预计到货日期"
+/*	advanceDepositAmt :"预交定金",*/
 };
 var saveUrl = baseUrl
 		+ "sales.inventory.savePchsOrder.biz.ext";

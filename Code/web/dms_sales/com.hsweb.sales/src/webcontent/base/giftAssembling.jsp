@@ -13,7 +13,7 @@
         <title>精品加装</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-        <script src="<%=webPath + contextPath%>/sales/base/js/giftAssembling.js?v=1.3.7"></script>
+        <script src="<%=webPath + contextPath%>/sales/base/js/giftAssembling.js?v=1.3.8"></script>
     </head>
     <style type="text/css">
         body {
@@ -183,29 +183,29 @@
                                     editNextOnEnterKey="true"  allowCellWrap="true" url="" allowCellEdit="true" >
                                         <div property="columns">
                                             <div type="indexcolumn">序号</div>
-                                            <div field="itemId" name=""  header="工时ID" visible="false"></div>
+                                            <div field="itemId" name=""  header="工时ID" visible="false" width="60px"></div>
                                             <div field="itemCode" name="" header="工时编码"  visible="false"></div>
                                             <div field="itemName" name="" width="100px" headerAlign="center" header="工时名称"></div>
-                                            <div field="amt" name="" width="100px" headerAlign="center" header="金额小计"></div>
-                                            <div field="itemTime" name="" width="100px" headerAlign="center" header="工时"></div>
-                                            <div field="deductAmt" name="" width="100px" headerAlign="center" header="提成金额">
+                                            <div field="itemTime" name="" width="70px" headerAlign="center" header="工时"></div>
+                                            <div field="amt" name="" width="80px" headerAlign="center" header="金额小计"></div>
+                                            <div field="deductAmt" name="" width="80px" headerAlign="center" header="提成金额">
                                                     <input property="editor" class="nui-textbox" />
                                             </div>
-                                            <div field="receType" name="" width="100px" headerAlign="center" header="收费类型">
-                                                    <input property="editor" class="nui-combobox" valueField="id" textField="text"/>
+                                            <div field="receType" name="" width="80px" headerAlign="center" header="收费类型">
+                                                    <input property="editor" class="nui-combobox" valueField="id" textField="name" />
                                             </div>
-                                            <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="100px" align="center">业务类型
+                                            <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="80px" align="center">业务类型
                                                 <input  property="editor" enabled="true" dataField="servieTypeList" 
                                                          class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
                                                          url="" onvaluechanged="" emptyText=""  vtype="required" width="60%"/> 
                                             </div>
                                             <div field="workerId" name="workerId"  headerAlign="center" visible="false" header="承修人Id"></div>
-                                            <!-- <div field="" name="" width="100px" headerAlign="center" header="班组"></div> -->
-                                            <div field="worker" name="" width="100px" headerAlign="center" header="承修人">
+                                            <!-- <div field="" name="" width="80px" headerAlign="center" header="班组"></div> -->
+                                            <div field="worker" name="" width="80px" headerAlign="center" header="承修人">
                                                 <input property="editor"   class="nui-combobox " textField="empName" valueField="empName"
                                                 emptyText=""   allowInput="true" showNullItem="false" valueFromSelect="true" onValueChanged="workChanged"/>
                                             </div>
-                                            <div field="remark" name="" width="100px" headerAlign="center" header="备注">
+                                            <div field="remark" name="" width="140px" headerAlign="center" header="备注">
                                                 <input property="editor" class="nui-textarea" />
                                             </div>
                                         </div>

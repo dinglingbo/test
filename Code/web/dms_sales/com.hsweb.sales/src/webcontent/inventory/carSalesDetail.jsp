@@ -140,11 +140,11 @@
                                   <td colspan="1" style="width:15%">
 										<input allowInput="false" class="nui-textbox" width="100%" id="" name=""/>
                                   </td>  -->
-                                  <td class="title required" style="width:8%">
+                                  <td class="title" style="width:8%">
                                       <label>预交定金：</label>
                                   </td>
                                   <td colspan="1" >
-										<input  class="nui-textbox" width="100%" id="advanceDepositAmt" name="advanceDepositAmt"/>
+                                  		<input class="nui-Spinner"  decimalPlaces="2" minValue="0" maxValue="1000000000"  allowNull="false" showButton="false" width="100%" id="advanceDepositAmt" name="advanceDepositAmt" />
                                   </td>
                                    <td class="title" >
                                       <label>定金截止日期：</label>

@@ -220,6 +220,10 @@
         function onSearch() {
             param.serviceCode = null;
             param.guestName = null;
+            //param.enterId = 
+            param.hasEnterId = 1;//已选车
+            param.status = 2;
+            param.isSubmitCar = 0;
             var searchType = nui.get("searchType").value;
             searchType = parseInt(searchType);
             switch (searchType) {

@@ -54,7 +54,8 @@ var AuditSignHash = {
 var StatusHash={
 	"0"	:"草稿",
 	"1"	:"已提交",
-	"2"	:"已出库"
+	"2"	:"已出库",
+	"6" :"部分出库"
 };
 var partShow=0;
 var storeLimitMap={};
@@ -806,8 +807,11 @@ function quickSearch(type){
             gsparams.auditSign = 1;
             break;
         case 8:
-            params.postStatus = 1;
-            break;
+        	 querytypename = "部分出库";
+             gsparams.billStatusId = 6;
+             querysign = 2;
+             gsparams.auditSign = 1;
+             break;
         case 9:
             querytypename = "已出库";
             gsparams.billStatusId = 2;
@@ -1801,16 +1805,16 @@ function checkRightData()
             }else{
                 return true;
             }
-            if(row.orderPrice){
-                if(row.orderPrice <= 0) return true;
-            }else{
-                return true;
-            }
-            if(row.orderAmt){
-                if(row.orderAmt <= 0) return true;
-            }else{
-                return true;
-            }
+//            if(row.orderPrice){
+//                if(row.orderPrice <= 0) return true;
+//            }else{
+//                return true;
+//            }
+//            if(row.orderAmt){
+//                if(row.orderAmt <= 0) return true;
+//            }else{
+//                return true;
+//            }
             
             if(row.storeId){
             }else{

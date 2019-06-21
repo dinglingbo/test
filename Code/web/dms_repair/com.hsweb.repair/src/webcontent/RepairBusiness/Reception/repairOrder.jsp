@@ -574,7 +574,7 @@
         		var remark = maintain.remark || "";
         		document.getElementById("engineNo").innerHTML = document.getElementById("engineNo").innerHTML + engineNo; 
         		document.getElementById("carModel").innerHTML = document.getElementById("carModel").innerHTML + carModel; 
-        		document.getElementById("enterOilMass").innerHTML = document.getElementById("enterOilMass").innerHTML + name;
+        		document.getElementById("enterOilMass").innerHTML = document.getElementById("enterOilMass").innerHTML + enterOilMass;
         		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML + serviceCode;
         		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
         		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;

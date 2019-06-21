@@ -5,9 +5,11 @@ var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var detailGrid = null;
 var insurance = [];
+var saleMainUrl = apiPath + saleApi + "/sales.search.searchSalesMainSelect.biz.ext";
 var mainListUrl = baseUrl+"com.hsapi.repair.repairService.insurance.QueryRpsInsuranceListById.biz.ext";
 var detailGridUrl = baseUrl+"com.hsapi.repair.repairService.insurance.queryRpsInsuranceDetailList.biz.ext";
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
+var guestSaleInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactListSALE.biz.ext";//z整车销售客户
 var insuranceInfoUrl = baseUrl + "com.hsapi.repair.baseData.insurance.InsuranceQuery.biz.ext?params/orgid="+currOrgId+"&params/isDisabled=0";
 var servieIdEl = null;
 var searchNameEl = null; 
@@ -21,6 +23,8 @@ var fserviceId = 0;
 var fguestId = 0;
 var carCheckInfo = null;
 var mainData = null;
+var gType = 1;//默认维修客户
+var guestArr =[{id:1,name:"维修客户"},{id:2,name:"汽贸客户"}];
 var settleTypeIdList = [{id:1,name:"保司直收"},{id:2,name:"门店代收全款"},{id:3,name:"代收减返点"}];
 var detailData = [{insureTypeId:1,insureTypeName:"交强险"},{insureTypeId:2,insureTypeName:"商业险"},{insureTypeId:3,insureTypeName:"车船税"}];
 $(document).ready(function ()
@@ -201,46 +205,90 @@ $(document).ready(function ()
     
 });
 
-function setGuest(item){
-	var carNo = item.carNo||"";
-    var tel = item.guestMobile||"";
-    var guestName = item.guestFullName||"";
-    var carVin = item.vin||"";
-    var carModel = item.carModel||"";
-    var sdata = {
-        carNo:carNo,
-        carVin:carVin,
-        carId:item.carId,
-        guestMobile:tel,
-        contactName:item.contactName,
-        contactorId:item.contactorId,
-        guestId:item.guestId,
-        enterKilometers:"",
-        guestFullName:guestName,
-        recordDate: nui.get("recordDate").value,
-        mtAdvisorId:""
-    };
-    basicInfoForm.setData(sdata);
-    nui.get('mtAdvisorId').setValue(currEmpId);
-    nui.get('mtAdvisorId').setText(currUserName);
-    nui.get('mtAdvisor').setValue(currUserName);
-    $("#guestNameEl").html(guestName);
-    $("#guestCarEl").html(carNo);
-    $("#guestTelEl").html(tel);
-    if(tel){
-        tel = "/"+tel;
+function setGuest(item) {
+    if (gType == 1) {
+        var carNo = item.carNo||"";
+        var tel = item.guestMobile||"";
+        var guestName = item.guestFullName||"";
+        var carVin = item.vin||"";
+        var carModel = item.carModel||"";
+        var sdata = {
+            carNo:carNo,
+            carVin:carVin,
+            carId:item.carId,
+            guestMobile:tel,
+            contactName:item.contactName,
+            contactorId:item.contactorId,
+            guestId:item.guestId,
+            enterKilometers:"",
+            guestFullName:guestName,
+            recordDate: nui.get("recordDate").value,
+            mtAdvisorId:""
+        };
+        basicInfoForm.setData(sdata);
+        nui.get('mtAdvisorId').setValue(currEmpId);
+        nui.get('mtAdvisorId').setText(currUserName);
+        nui.get('mtAdvisor').setValue(currUserName);
+        $("#guestNameEl").html(guestName);
+        $("#guestCarEl").html(carNo);
+        $("#guestTelEl").html(tel);
+        if(tel){
+            tel = "/"+tel;
+        }
+        if(guestName){
+            guestName = "/"+guestName;
+        }
+        if(carVin){
+            carVin = "/"+carVin;
+        }
+        var sk = document.getElementById("search_key");
+        sk.style.display = "none";
+        searchNameEl.setVisible(true);
+        var t = carNo + tel + guestName + carVin;
+        searchNameEl.setValue(t);
+    } else if (gType == 2) {
+        var saleMainData = getSaleMain(item.guestId);
+        var carNo = saleMainData.carNo||"无牌";
+        var tel = item.guestMobile||"";
+        var guestName = item.guestFullName||"";
+        var carVin = item.vin||"";
+        var carModel = item.carModel||"";
+        var sdata = {
+            carNo:carNo,
+            carVin:carVin,
+            carId:saleMainData.enterId,
+            guestMobile:tel,
+            contactName:item.contactName,
+            contactorId:item.contactorId,
+            guestId:item.guestId,
+            enterKilometers:"0",
+            guestFullName:guestName,
+            recordDate: nui.get("recordDate").value,
+            mtAdvisorId:""
+        };
+        basicInfoForm.setData(sdata);
+        nui.get('mtAdvisorId').setValue(currEmpId);
+        nui.get('mtAdvisorId').setText(currUserName);
+        nui.get('mtAdvisor').setValue(currUserName);
+        $("#guestNameEl").html(guestName);
+        $("#guestCarEl").html(carNo);
+        $("#guestTelEl").html(tel);
+
+        if(tel){
+            tel = "/"+tel;
+        }
+        if(guestName){
+            guestName = "/"+guestName;
+        }
+        if(carVin){
+            carVin = "/"+carVin;
+        }
+        var sk = document.getElementById("search_key");
+        sk.style.display = "none";
+        searchNameEl.setVisible(true);
+        var t = carNo + tel + guestName + carVin;
+        searchNameEl.setValue(t);
     }
-    if(guestName){
-        guestName = "/"+guestName;
-    }
-    if(carVin){
-        carVin = "/"+carVin;
-    }
-    var sk = document.getElementById("search_key");
-    sk.style.display = "none";
-    searchNameEl.setVisible(true);
-    var t = carNo + tel + guestName + carVin;
-    searchNameEl.setValue(t);
 }
 
 function ManChanged(e){
@@ -954,3 +1002,37 @@ function changeCostAmt(e){
 	}
 	
 }
+
+
+function changedGuestType(e){
+	gType = nui.get("gType").value;
+	if(gType == 2){
+		   searchKeyEl.setUrl(guestSaleInfoUrl);
+	}else{
+		   searchKeyEl.setUrl(guestInfoUrl);
+	}
+}
+
+function getSaleMain(guestId) {
+    var resData = {};
+    var params = {
+        guestId:guestId
+    };
+    nui.ajax({
+        url: saleMainUrl,
+        type: 'post',
+        async:false,
+        data:{
+            params:params
+        },
+        success:function (res) {
+            if (res.errCode == 'S') {
+                if (res.data.length > 0) {
+                    resData = res.data[0];
+                }
+            }
+        }
+    })
+    return resData;
+}
+

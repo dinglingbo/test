@@ -14,7 +14,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%=webPath + contextPath%>/sales/base/js/sFactoryRebateDet.js?v=1.2.6"></script>
+    <script src="<%=webPath + contextPath%>/sales/base/js/sFactoryRebateDet.js?v=1.2.7"></script>
     <style>
         html,
         body {

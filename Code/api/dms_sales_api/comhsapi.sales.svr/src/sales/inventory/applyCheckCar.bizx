@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="applyCheckCar" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="申请验车，修改单据状态为1" title="Administrator&#x9;19-6-19 上午8:58">
+    <location x="150" y="23"/>
+    <size height="100" width="306"/>
+  </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -136,13 +140,13 @@
       <targetNode>assign3</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link16" name="link16" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link16" name="已申请" displayName="连接线" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>assign2</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query">orderMain/status</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
+          <process:rightOperand type="literal">2</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -162,7 +166,7 @@
       <targetNode>assign12</targetNode>
     </sourceConnections>
     <targetConnections>link16</targetConnections>
-    <location x="390" y="234"/>
+    <location x="405" y="265"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
@@ -171,7 +175,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="388" y="270"/>
+    <location x="403" y="301"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
@@ -185,7 +189,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
+      <process:from type="literal" pattern="reference">2</process:from>
       <process:to type="query">orderMain/status</process:to>
     </process:copy>
     <process:copy>

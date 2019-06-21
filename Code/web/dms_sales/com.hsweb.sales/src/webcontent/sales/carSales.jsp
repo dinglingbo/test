@@ -84,17 +84,17 @@
                 editNextOnEnterKey="true" allowCellWrap="true" url="">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
-                    <div field="serviceCode" name="serviceCode" width="100px" headerAlign="center" header="工单号"></div>
-                    <div field="status" name="status" width="50px" headerAlign="center" header="状态"></div>
+                    <div field="serviceCode" name="serviceCode" width="145px" headerAlign="center" header="工单号"></div>
+                    <div field="status" name="status" width="70px" headerAlign="center" header="状态"></div>
                     <div field="guestFullName" name="guestFullName" width="100px" headerAlign="center" header="客户名称"></div>
                     <div field="orderDate" name="orderDate" width="100px" headerAlign="center" header="订车日期"></div>
-                    <div field="carModelName" name="carModelName" width="100px" headerAlign="center" header="车型名称"></div>
+                    <div field="carModelName" name="carModelName" width="150px" headerAlign="center" header="车型名称"></div>
                     <div field="submitPlanDate" name="submitPlanDate" width="100px" headerAlign="center" header="预交车日期"></div>
-                    <div field="saleAdvisor" name="saleAdvisor" width="100px" headerAlign="center" header="销售顾问"></div>
-                    <div field="saleAmt" name="saleAmt" width="100px" headerAlign="center" header="车辆销价"></div>
-                    <div field="advanceChargeAmt" name="advanceChargeAmt" width="100px" headerAlign="center" header="应收定金"></div>
-                    <div field="receivedDeposit" name="receivedDeposit" width="100px" headerAlign="center" header="已收定金"></div>
-                    <div field="calculateField" name="calculateField" width="100px" headerAlign="center" header="应收余款"></div>
+                    <div field="saleAdvisor" name="saleAdvisor" width="80px" headerAlign="center" header="销售顾问"></div>
+                    <div field="saleAmt" name="saleAmt" width="80px" headerAlign="center" header="车辆销价"></div>
+                    <div field="advanceChargeAmt" name="advanceChargeAmt" width="80px" headerAlign="center" header="应收定金"></div>
+                    <div field="receivedDeposit" name="receivedDeposit" width="80px" headerAlign="center" header="已收定金"></div>
+                    <div field="calculateField" name="calculateField" width="80px" headerAlign="center" header="应收余款"></div>
                 </div>
             </div>
             <div id="mainGrid2" class="nui-datagrid" visible="false" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="data" showModified="false" onrowdblclick="" allowCellSelect="true"

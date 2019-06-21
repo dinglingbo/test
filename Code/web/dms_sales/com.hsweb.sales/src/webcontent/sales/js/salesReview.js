@@ -19,6 +19,56 @@ function SetData(serviceId, type) {
             if (c.setReadOnly) c.setReadOnly(true); //只读
         };
     }
+    var giftCost = 0;
+    if(type != 1){//未结算的需要查找精品加装手动填写成本
+    	 nui.ajax({
+	        url: baseUrl + "sales.search.searchSaleGiftApply.biz.ext",
+	        data: {
+	        	billType:2,
+	        	serviceId:serviceId
+	        },
+	        cache: false,
+	        async: false,
+	        success: function(text) {
+	            if (text.errCode == "S"){
+	               var gift = text.data;
+	               if(gift.length>0){
+	            	   for(var i = 0;i<gift.length;i++){
+    	            	   var temp = gift[i];
+    	            	   if(temp.receType==1){//计算收费的精品
+    	            		   var costAmt = temp.costAmt || 0;
+    	            		   giftCost = parseFloat(giftCost) + parseFloat(costAmt);
+    	            		   giftCost.toFixed(2);
+    	            	   }
+    	               } 
+	               }
+	            } else {
+	                
+	            }
+	        }
+	    });
+    	 nui.ajax({
+ 	        url: baseUrl + "sales.save.queryGiftItemCost.biz.ext",
+ 	        data: {
+ 	        	serviceId:serviceId
+ 	        },
+ 	        cache: false,
+ 	        async: false,
+ 	        success: function(text) {
+ 	            if (text.errCode == "S"){
+ 	               var item = text.data;
+ 	               if(item.length>0){
+ 	            	   for(var i = 0;i<item.length;i++){
+     	            	   var temp = item[i];
+ 	            		   var totalAmt = temp.totalAmt || 0;//总金额(总成本 = 配件成本+工时成本）
+ 	            		   giftCost = parseFloat(giftCost) + parseFloat(totalAmt);
+ 	            		   giftCost.toFixed(2);
+     	               } 
+ 	               }
+ 	            } 
+ 	        }
+ 	    });
+    }
     var params = { id: serviceId };
     nui.ajax({
         url: baseUrl + "sales.search.searchSalesMain.biz.ext",
@@ -32,9 +82,13 @@ function SetData(serviceId, type) {
                 var data = text.data[0];
                 form.setData(data);
                 nui.get("id").setValue(serviceId);
+                if(type != 1){
+                	//设置精品加装成本
+                	nui.get("decrCost").setValue(giftCost);
+                }
                 changeValueMsg(1);
             } else {
-                showMsg(text.errCode, "W");
+                showMsg(text.errCode, "E");
             }
         }
     });

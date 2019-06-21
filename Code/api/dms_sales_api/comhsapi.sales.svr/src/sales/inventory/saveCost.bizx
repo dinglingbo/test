@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveCost" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="成本调整" title="Administrator&#x9;19-6-19 上午9:07">
+    <location x="165" y="15"/>
+    <size height="100" width="197"/>
+  </nodes>
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="判断是查询审核表数据，还是未审表数据&#xD;&#xA;&#xD;&#xA;更新前：com.hsapi.cloud.part.invoicing.queryPurchase.queryPjPchsOrderDetailList" title="Administrator&#x9;18-5-25 上午9:56">
     <location x="-15" y="-135"/>
     <size height="100" width="244"/>

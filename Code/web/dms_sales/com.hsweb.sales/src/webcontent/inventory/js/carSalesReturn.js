@@ -354,6 +354,9 @@ function onDrawCell(e)
 				e.cellHtml = StatusHash[e.value];
 			}
 			break;
+        case "serviceCode":
+        	e.cellHtml ='<a href="##" onclick="edit()">'+e.value+'</a>'
+           break; 			
         default:
             break;
     }

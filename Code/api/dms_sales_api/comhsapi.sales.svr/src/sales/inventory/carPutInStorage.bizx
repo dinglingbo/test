@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="carPutInStorage" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="验车入库" title="Administrator&#x9;19-6-3 上午11:23">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="验车入库，生成运费应付" title="Administrator&#x9;19-6-3 上午11:23">
     <location x="203" y="13"/>
     <size height="100" width="197"/>
   </nodes>
@@ -115,7 +115,8 @@
     <targetConnections>link16</targetConnections>
     <targetConnections>link3</targetConnections>
     <targetConnections>link29</targetConnections>
-    <location x="383" y="273"/>
+    <targetConnections>link7</targetConnections>
+    <location x="394" y="316"/>
     <size height="28" width="28"/>
     <nodeLabel>assign13label</nodeLabel>
     <process:copy>
@@ -124,7 +125,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign13label" name="label" nodeType="label">
-    <location x="378" y="309"/>
+    <location x="389" y="352"/>
     <figSize height="17" width="39"/>
     <node>assign13</node>
   </nodes>
@@ -194,10 +195,21 @@
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo4</sourceNode>
       <targetNode>assign1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo4</sourceNode>
       <targetNode>assign13</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link6" name="link6" displayName="连接线" type="transition">
+      <sourceNode>invokePojo4</sourceNode>
+      <targetNode>assign0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">cssCheckEnter/billStatus</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
     <location x="300" y="150"/>
@@ -427,6 +439,29 @@
     <location x="824" y="188"/>
     <figSize height="17" width="54"/>
     <node>invokePojo6</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>assign13</targetNode>
+    </sourceConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="319" y="316"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign0label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">单据已入库</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
+    <location x="321" y="352"/>
+    <figSize height="17" width="25"/>
+    <node>assign0</node>
   </nodes>
   <topRuler>
     <guides position="408" horizontal="true"/>

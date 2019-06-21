@@ -304,7 +304,7 @@
 				   a.modifier as modifier,
 				   a.modify_date as modifyDate
 			from fis_rp_advance a
-			where 1 = 1  and a.bala_amt>0
+			where a.bala_amt>0 
                 <isNotEmpty prepend="and" property="orgid">
                 (a.orgid = #orgid#)
                 </isNotEmpty>
@@ -333,9 +333,9 @@
                 <isNotEmpty prepend="and" property="billDc">  
                     (a.bill_dc = #billDc#)
                 </isNotEmpty> 
-                <isNotEmpty prepend="and" property="codeId">  
+                <!--<isNotEmpty prepend="and" property="codeId">  
                     (a.codeId = #codeId#)
-                </isNotEmpty>  
+                </isNotEmpty>-->
                 <isNotEmpty prepend="and" property="code">  
                     (a.code = #code#)
                 </isNotEmpty>               

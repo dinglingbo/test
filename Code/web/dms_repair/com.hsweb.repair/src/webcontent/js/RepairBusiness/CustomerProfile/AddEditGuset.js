@@ -940,7 +940,8 @@ function parsingCarNo() {
 	 			return;
 	 			}else{
 	 				nui.unmask();
-	 				showMsg("车架号(VIN)解析失败","W");
+	 				//showMsg("车架号(VIN)解析失败","W");
+	 				showMsg("无车牌信息，请您手动填写！","W");//调用维保接口，必须有保险信息才能解析，出错一般都是无车辆信息2019.6.19熊鹰
 	 				return;
 	 			}
 	 			

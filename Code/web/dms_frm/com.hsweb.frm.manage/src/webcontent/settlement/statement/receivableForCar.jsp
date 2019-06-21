@@ -11,7 +11,7 @@
 
 		<head>
 			<title>预付结算</title>
-			<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableForCar.js?v=1.0.4"></script>
+			<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableForCar.js?v=1.0.8"></script>
 			<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 			<style>
 				html {
@@ -421,7 +421,7 @@
 							</tbody>
 						</table>
 					</div>
-					<div class="pay_list">
+<!-- 					<div class="pay_list">
 						<h2>
 							<span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">本单预付款抵扣</span>
 						</h2>
@@ -456,10 +456,10 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<div class="pay_list">
 						<h2>
-							<span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">预付款抵扣</span>
+							<span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">预收款抵扣</span>
 						</h2>
 						<div class="pay_tcbk zffs" id="csdiv" style="background: #f8f8f8;">
 							<div class="nui-fit">
@@ -470,6 +470,7 @@
 										<div type="indexcolumn">序号</div>
 										<div type="checkcolumn" width="20"></div>
 										<div field="guestName" width="150" headerAlign="center" header="来往单位"></div>
+										<div field="code" width="120" headerAlign="center" header="单号"></div>
 										<div field="remark" width="120" headerAlign="center" header="业务备注"></div>
 										<div field="amt" width="60" headerAlign="center" header="金额"></div>
 										<div field="deductionAmt" width="60" headerAlign="center" header="已抵扣金额"></div>

@@ -1825,3 +1825,24 @@ function print(){
         }
     });
 }
+function addPrepaid(){
+	nui.open({
+		targetWindow : window,
+		url : webPath + contextPath
+				+ "/com.hsweb.frm.manage.addPrepaid.flow?token=" + token,
+		title : "新增预付账款",
+		width : 480,
+		height : 290,
+		allowDrag : true,
+		allowResize : true,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			var data = {};
+			data.type=2//预收
+			iframe.contentWindow.setData(data);
+		},
+		ondestroy : function(action) {
+				quickSearch(2);
+		}
+	});
+}

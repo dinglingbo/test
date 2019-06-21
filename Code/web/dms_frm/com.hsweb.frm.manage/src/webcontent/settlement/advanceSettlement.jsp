@@ -9,7 +9,7 @@
 
 <head>
 	<title>预收账款管理</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/advanceSettlement.js?v=1.0.3"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/advanceSettlement.js?v=1.0.4"></script>
 	    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 	<style type="text/css">
@@ -138,9 +138,9 @@
 						<!-- <input id="serviceId" width="120px" emptyText="业务单号" class="nui-textbox" onenter="onSearch()" /> -->
 						<a class="nui-button" iconCls="" plain="true" onclick="onSearch()">
 							<span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-
 						 <input id="proId" width="120px" visible="false" emptyText="业务单号" class="nui-combobox" />
 						<span class="separator"></span>
+						<a class="nui-button" iconCls="" plain="true" onclick="addPrepaid()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a> 
 <!-- 						<a class="nui-button" plain="true" onclick="advancedSearch()">
 							<span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
 						<span class="separator"></span> -->

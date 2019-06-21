@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="auditingSales" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="整车销售&#xD;&#xA;审核调用&#xD;&#xA;生成预两笔预收款,分别是&#xD;&#xA;1、预收金额&#xD;&#xA;2、购车余款&#xD;&#xA;生成两笔预收业务数据" title="Administrator&#x9;19-6-14 下午4:08">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="整车销售&#xD;&#xA;审核调用&#xD;&#xA;生成预两笔预收款,分别是&#xD;&#xA;1、预收金额&#xD;&#xA;2、购车余款&#xD;&#xA;生成两笔预收业务数据&#xD;&#xA;&#xD;&#xA;销售单返单时，需要判断两笔预收是否结算，没有结算更新预收预付金额，只要其中一笔结算了都不再更新预收数据" title="Administrator&#x9;19-6-14 下午4:08">
     <location x="93" y="49"/>
-    <size height="147" width="409"/>
+    <size height="207" width="419"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">

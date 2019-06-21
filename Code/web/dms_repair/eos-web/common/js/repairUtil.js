@@ -497,3 +497,18 @@ function getWorkTeam(callback) {
 		}
 	});
 }
+
+var getMtadvisorUrl = apiPath + sysApi + "/com.hsapi.system.dict.org.queryMember.biz.ext";
+function getMtadvisor(callback) {
+	doPost({
+		url : getMtadvisorUrl,
+		data : {isMtadvisor:1, token: token},
+		success : function(data) {
+			callback && callback(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+			callback && callback({});
+		}
+	});
+}

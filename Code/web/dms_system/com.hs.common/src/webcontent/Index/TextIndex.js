@@ -62,6 +62,10 @@ $(document).ready(function(v) {
             setGridGuestCarData(data);
         });
         
+        if(currIsReadSysmsg != "1") {
+        	getLastLog();
+        }
+        
         setInitShareUrl();
     },1000);
 
@@ -540,4 +544,36 @@ function setInitShareUrl(){
 			console.log(jqXHR.responseText);
 		}
 	});
+}
+
+//判断公司是否开启消息提醒，判断当前登录人是否已经读了消息
+var updateLogUrl = apiPath + sysApi + "/com.hsapi.system.employee.slog.getLastLog.biz.ext";
+function getLastLog(){
+    nui.ajax({
+        url:updateLogUrl,
+        type:"post",
+        data:JSON.stringify({
+        	token: token
+        }),
+        success:function(text)
+        {
+            var data = text.data||{};
+            if (data) {
+            	nui.open({
+                    url: webPath + contextPath + "/com.hs.common.updateLogTip.flow?token="+token,
+                    title: "系统通知", width: 600, height: 550,
+                    onload: function () {
+                    	var params={};
+                        var iframe = this.getIFrameEl();
+                        iframe.contentWindow.setInitData(data);
+                    },
+                    ondestroy: function (action)
+                    {
+                    }
+                });
+            }
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+        }
+    });
 }

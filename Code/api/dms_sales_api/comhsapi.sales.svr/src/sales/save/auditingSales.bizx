@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="auditingSales" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="整车销售&#xD;&#xA;提交调用&#xD;&#xA;生成预两笔预收款&#xD;&#xA;1、预收金额&#xD;&#xA;2、购车余款" title="Administrator&#x9;19-6-14 下午4:08">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="整车销售&#xD;&#xA;审核调用&#xD;&#xA;生成预两笔预收款,分别是&#xD;&#xA;1、预收金额&#xD;&#xA;2、购车余款&#xD;&#xA;生成两笔预收业务数据&#xD;&#xA;&#xD;&#xA;销售单返单时，需要判断两笔预收是否结算，没有结算更新预收预付金额，只要其中一笔结算了都不再更新预收数据" title="Administrator&#x9;19-6-14 下午4:08">
     <location x="93" y="49"/>
-    <size height="147" width="409"/>
+    <size height="207" width="419"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
@@ -120,7 +120,7 @@
       <process:to type="query">fisRpAdvance/guestName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
+      <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">fisRpAdvance/status</process:to>
     </process:copy>
     <process:copy>
@@ -134,6 +134,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">caCalculationData/advanceChargeAmt</process:from>
       <process:to type="query">fisRpAdvance/balaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">122</process:from>
+      <process:to type="query">fisRpAdvance/billTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">122</process:from>
+      <process:to type="query">fisRpAdvance/billTypeCode</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
@@ -271,7 +279,7 @@
       <targetNode>assign11</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -520,7 +528,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link47</targetConnections>
-    <location x="866" y="453"/>
+    <location x="870" y="451"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
@@ -538,7 +546,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="837" y="488"/>
+    <location x="841" y="486"/>
     <figSize height="17" width="85"/>
     <node>subprocess1</node>
   </nodes>
@@ -808,7 +816,7 @@
       <process:to type="query">fisRpAdvanceyk/guestName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
+      <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">fisRpAdvanceyk/status</process:to>
     </process:copy>
     <process:copy>
@@ -822,6 +830,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">balance</process:from>
       <process:to type="query">fisRpAdvanceyk/balaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">123</process:from>
+      <process:to type="query">fisRpAdvanceyk/billTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">123</process:from>
+      <process:to type="query">fisRpAdvanceyk/billTypeCode</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
@@ -859,7 +875,7 @@
       <targetNode>assign15</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -984,7 +1000,7 @@
       <targetNode>assign23</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

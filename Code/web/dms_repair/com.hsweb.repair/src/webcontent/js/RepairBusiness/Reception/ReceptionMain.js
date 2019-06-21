@@ -59,11 +59,11 @@ $(document).ready(function ()
 
     beginDateEl.setValue(getMonthStartDate());
     endDateEl.setValue(addDate(getMonthEndDate(), 1));
-
-    initMember("mtAdvisorId",function(){
-        mtAdvisorIdEl.setValue(currEmpId);
+    
+    getMtadvisor(function(text){
+    	mtAdvisorIdEl.setData(text.data);
+    	mtAdvisorIdEl.setValue(currEmpId);
         mtAdvisorIdEl.setText(currUserName);
-
         
         initServiceType("serviceTypeId",function(data) {
             servieTypeList = nui.get("serviceTypeId").getData();
@@ -109,8 +109,13 @@ $(document).ready(function ()
             	return value;
             }
         });
-
     });
+
+/*    initMember("mtAdvisorId",function(){
+        mtAdvisorIdEl.setValue(currEmpId);
+        mtAdvisorIdEl.setText(currUserName);
+
+    });*/
 
     // initCustomDicts("receTypeId", "0415",function(data) {
     //     receTypeIdList = nui.get("receTypeId").getData();

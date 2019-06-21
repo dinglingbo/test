@@ -140,6 +140,11 @@ function save() {
         showMsg("请输入正确的数字后再保存！", "W");
         return;
     }
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '保存中...'
+    });
     nui.ajax({
         url: baseUrl + "sales.save.saveSaleExtend.biz.ext",
         data: {
@@ -149,9 +154,11 @@ function save() {
         async: false,
         success: function(text) {
             if (text.errCode == "S") {
-
-                showMsg(text.errMsg, "S");
+                showMsg("保存成功", "S");
+            }else{
+            	 showMsg(text.errMsg, "E");
             };
+            nui.unmask(document.body);
         }
     });
 }

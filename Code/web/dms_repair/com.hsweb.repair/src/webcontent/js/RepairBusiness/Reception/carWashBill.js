@@ -238,9 +238,13 @@ $(document).ready(function ()
     searchKeyEl.focus();
     //document.getElementById("formIframe").src=webPath + contextPath + "/repair/common/pipSelect.jsp?token"+token;
    
-    initMember("mtAdvisorId",function(){
-        memList = mtAdvisorIdEl.getData();
-        nui.get("checkManId").setData(memList);
+    initMember("checkManId",function(){
+        memList = nui.get("checkManId").getData();
+        //nui.get("checkManId").setData(memList);
+    });
+    
+    getMtadvisor(function(text){
+    	mtAdvisorIdEl.setData(text.data);
     });
   
     initServiceType("serviceTypeId",function(data) {
@@ -433,8 +437,11 @@ $(document).ready(function ()
      } 
 	}
     document.getElementById("showA1").style.display = "";
-	document.getElementById("showA").style.display='none';document.getElementById("showE1").style.display = "";
-	document.getElementById("showE").style.display='none';
+	document.getElementById("showA").style.display='none';
+	if(currIsOpenElectronics == "1") {
+		document.getElementById("showE1").style.display = "";
+		document.getElementById("showE").style.display='none';
+	}
 	nui.get("enterDate").setValue(now);
     doSearchItem();
 });
@@ -779,13 +786,15 @@ function setInitData(params){
                     contactorF = contactor;
                     if(errCode == 'S'){
                         $("#servieIdEl").html(data.serviceCode);
-                        if(data.isElectronics == 1) {
-	                        document.getElementById("showE1").style.display = 'none';
-	                    	document.getElementById("showE").style.display="";
-                        }else {
-                        	document.getElementById("showE1").style.display = "";
-                        	document.getElementById("showE").style.display='none';
-                        }
+                        if(currIsOpenElectronics == "1") {
+	                        if(data.isElectronics == 1) {
+		                        document.getElementById("showE1").style.display = 'none';
+		                    	document.getElementById("showE").style.display="";
+	                        }else {
+	                        	document.getElementById("showE1").style.display = "";
+	                        	document.getElementById("showE").style.display='none';
+	                        }
+                    	}
                         
                         var carNo = data.carNo||"";
                         var tel = guest.mobile||"";
@@ -945,8 +954,10 @@ function add(){
 	}
 	document.getElementById("showA1").style.display = "";
 	document.getElementById("showA").style.display='none';
-    document.getElementById("showE1").style.display = "";
-	document.getElementById("showE").style.display='none';
+	if(currIsOpenElectronics == "1") {
+	    document.getElementById("showE1").style.display = "";
+		document.getElementById("showE").style.display='none';
+	}
 	advancedCardTimesWin.hide();
 	advancedMemCardWin.hide();
 	advancedItemTimesWin.hide();
@@ -1149,12 +1160,14 @@ function saveNoshowMsg(callback,type){
                 contactorF = contactor;
                 if(errCode == 'S'){
                     $("#servieIdEl").html(data.serviceCode);
-                    if(data.isElectronics == 1) {
-                        document.getElementById("showE1").style.display = 'none';
-                    	document.getElementById("showE").style.display="";
-                    }else {
-                    	document.getElementById("showE1").style.display = "";
-                    	document.getElementById("showE").style.display='none';
+                    if(currIsOpenElectronics == "1") {
+	                    if(data.isElectronics == 1) {
+	                        document.getElementById("showE1").style.display = 'none';
+	                    	document.getElementById("showE").style.display="";
+	                    }else {
+	                    	document.getElementById("showE1").style.display = "";
+	                    	document.getElementById("showE").style.display='none';
+	                    }
                     }
                     
                     var carNo = data.carNo||"";
@@ -1297,13 +1310,15 @@ svrSaveMaintain(params, function(text){
     	 var oldData = billForm.getData(true);
     	 oldData.id = fserviceId;
      	 billForm.setData(oldData);
-     	 if(main.isElectronics == 1) {
-            document.getElementById("showE1").style.display = 'none';
-        	document.getElementById("showE").style.display="";
-         }else {
-        	document.getElementById("showE1").style.display = "";
-        	document.getElementById("showE").style.display='none';
-         }
+     	 if(currIsOpenElectronics == "1") {
+	     	 if(main.isElectronics == 1) {
+	            document.getElementById("showE1").style.display = 'none';
+	        	document.getElementById("showE").style.display="";
+	         }else {
+	        	document.getElementById("showE1").style.display = "";
+	        	document.getElementById("showE").style.display='none';
+	         }
+     	 }
      	
          var params1 = {
                  data:{

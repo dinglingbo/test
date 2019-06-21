@@ -131,6 +131,10 @@
                
              </tr>
             <tr>
+                <td align="right">是否服务顾问：</td>
+                <td><div  class="nui-checkbox" id="isMtadvisor" name="isMtadvisor" value="0" trueValue="1" falseValue="0"></div>
+            </tr> 
+            <tr>
                 <td align="right">允许领料：</td>
                 <td><div  class="nui-checkbox" id="isStockman" name="isStockman" value="0" trueValue="1" falseValue="0"></div>
             </tr> 

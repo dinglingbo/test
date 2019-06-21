@@ -13,5 +13,13 @@ import com.eos.system.annotation.Bizlet;
 @Bizlet("")
 public class RpbUtils {
 
-	
+	public static void main(String[] args) {
+		String contentString = "sdfsd abc---abc <a href='http://www.hao123.com'>" +
+				"http://www.hao123.com</a><img title='img' src='abc' />" +
+				"sdfsdfds";
+		contentString=contentString.replaceAll("<a href[^>]*>", "");
+		contentString=contentString.replaceAll("</a>", "");
+		contentString=contentString.replaceAll("<img[^>]*/>", " ");
+		System.out.println(contentString);
+	}
 }

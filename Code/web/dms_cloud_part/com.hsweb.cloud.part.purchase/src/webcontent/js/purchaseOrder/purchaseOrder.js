@@ -355,7 +355,7 @@ var StatusHash = {
 	"0" : "草稿",
 	"1" : "待发货",
 	"2" : "待收货",
-	//"3" : "部分入库",
+	"3" : "部分入库",
 	"4" : "已入库",
 	"5" : "已退回",
 	"6" : "已关闭"
@@ -716,12 +716,12 @@ function quickSearch(type) {
 		gsparams.auditSign = 1;
 		querysign = 3;
 		break;
-	// case 13:
-	// 	querystatusname = "部分入库";
-	// 	gsparams.billStatusId = 3;
-	// 	gsparams.auditSign = 1;
-	// 	querysign = 3;
-	// 	break;
+	 case 13:
+	 	querystatusname = "部分入库";
+	 	gsparams.billStatusId = 3;
+	 	gsparams.auditSign = 1;
+	 	querysign = 3;
+	 	break;
 	case 14:
 		querystatusname = "已入库";
 		gsparams.billStatusId = 4;

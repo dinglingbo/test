@@ -131,6 +131,9 @@
 	String cloudSellOrderPrintContent ="";
 	String isNeedNewLine = "";
 	String isOpenCredit = "";
+	String isOpenApp = "";
+	String isOnlySeeOwn ="";
+	String isCanSeePrice ="";
 	
 	if (session == null || session.getAttribute("userObject") == null) {
 		%>backToLogin();<%
@@ -274,6 +277,18 @@
 	                if(billParams.get("isOpenCredit") != null){
 	                	isOpenCredit = billParams.get("isOpenCredit").toString();
 	                }
+	                //是否开启APP
+	                if(billParams.get("isOpenApp") != null){
+	                	isOpenApp = billParams.get("isOpenApp").toString();
+	                }
+	                //业务员是否只可见自己的客户和订单
+	                if(billParams.get("isOnlySeeOwn") != null){
+	                	isOnlySeeOwn = billParams.get("isOnlySeeOwn").toString();
+	                }
+	                //业务员是否可见采购价
+	                if(billParams.get("isCanSeePrice") != null){
+	                	isCanSeePrice = billParams.get("isCanSeePrice").toString();
+	                }
                 }
               
                 
@@ -348,7 +363,10 @@
 	var currSrmUserId = "<%=srmUserId %>";
 	var currCloudSellOrderPrintContent = "<%=cloudSellOrderPrintContent %>";
 	var currIsNeedNewLine = "<%=isNeedNewLine %>";
-	var currIsOpenCredit ="<%=isOpenCredit %>"
+	var currIsOpenCredit ="<%=isOpenCredit %>";
+	var currIsOpenApp ="<%=isOpenApp%>";
+	var currIsOnlySeeOwn ="<%=isOnlySeeOwn%>";
+	var currIsCanSeePrice ="<%=isCanSeePrice%>";
     //alert("token=" + token);
     
     /* var _sysMsg_;
@@ -456,7 +474,7 @@
 
 </script>
 <script src="<%=webPath + contextPath%>/common/js/sysCommon.js?v=1.1.4" type="text/javascript"></script>
-<script src="<%=webPath + contextPath%>/common/js/constantDef.js?v=1.1" type="text/javascript"></script>
+<script src="<%=webPath + contextPath%>/common/js/constantDef.js?v=1.2" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/init.js?v=1.9.4" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/jsCryptoJS.js?v=1.0" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/settleCenter.js?v=1.1" type="text/javascript"></script>

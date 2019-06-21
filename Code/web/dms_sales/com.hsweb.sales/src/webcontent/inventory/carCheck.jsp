@@ -8,7 +8,7 @@
 -->
 <head>
 <title>验车</title>
-    <script src="<%=webPath + contextPath%>/sales/inventory/js/carCheck.js?v=1.0.2"></script>
+    <script src="<%=webPath + contextPath%>/sales/inventory/js/carCheck.js?v=1.0.4"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -61,15 +61,15 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn" width="40">序号</div>
-            		<div field="serviceCode" allowSort="true"  width="100" summaryType="count" headerAlign="center" header="单号"></div>
-            		<div field="guestFullName" allowSort="true"  width="100" summaryType="count" headerAlign="center" header="供应商"></div>
-                    <div field="carModelName" name="guestFullName" width="100" headerAlign="center" header="车型"></div>
-                    <div field="frameColorId" allowSort="true"  name="frameColorId" width="60" headerAlign="center" header="车身颜色"></div>
-                    <div allowSort="true" field="interialColorId"  name="interialColorId" width="60" headerAlign="center" header="内饰颜色"></div>  
-                    <div allowSort="true" field="orderPrice" name="orderPrice" width="60" headerAlign="center" header="单价"></div>
-                    <div allowSort="true" field="orderQty" name="orderQty" width="60" headerAlign="center" header="订货数量"></div>
-                    <div field="checkingQty" name="guestFullName" width="60" headerAlign="center" header="待验"></div>
-                     <div field="checkedQty" name="guestFullName" width="60" headerAlign="center" header="已验"></div>
+            		<div field="serviceCode" allowSort="true"  width="120" summaryType="count" headerAlign="center" header="单号"></div>
+            		<div field="guestFullName" allowSort="true"  width="110" summaryType="count" headerAlign="center" header="供应商"></div>
+                    <div field="carModelName" name="guestFullName" width="120" headerAlign="center" header="车型"></div>
+                    <div field="frameColorId" allowSort="true"  name="frameColorId" width="50" headerAlign="center" header="车身颜色"></div>
+                    <div allowSort="true" field="interialColorId"  name="interialColorId" width="50" headerAlign="center" header="内饰颜色"></div>  
+                    <div allowSort="true" field="orderPrice" name="orderPrice" width="40" headerAlign="center" header="单价"></div>
+                    <div allowSort="true" field="orderQty" name="orderQty" width="50" headerAlign="center" header="订货数量"></div>
+                    <div field="checkingQty" name="guestFullName" width="40" headerAlign="center" header="待验"></div>
+                     <div field="checkedQty" name="guestFullName" width="40" headerAlign="center" header="已验"></div>
                                                       
         </div>
     </div> 

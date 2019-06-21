@@ -1108,7 +1108,7 @@ function doSettle() {
 		}		
 		settleWin.show();
 		var guestName = rows[0].guestName;*/
-		if(rows[0].billTypeId==254){
+		if(rows[0].billTypeId==121){
 			nui.open({
 		        url: webPath + contextPath +"/com.hsweb.frm.manage.receivableForCar.flow?token="+token,
 		         width: "100%", height: "100%", 

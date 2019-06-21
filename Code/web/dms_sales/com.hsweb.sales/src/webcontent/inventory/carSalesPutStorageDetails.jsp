@@ -94,7 +94,7 @@
 	                                  </td>
 									<td class="title required" align="right">车价（成本）:</td>
 									<td>
-										<input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"   readonly="false" allowNull="false" showButton="false" name="unitPrice" id="unitPrice" />
+										<input class="nui-Spinner"  decimalPlaces="2" minValue="0" maxValue="1000000000"   readonly="false" allowNull="false" showButton="false" name="unitPrice" id="unitPrice" />
 									</td>
 								</tr>
 								<tr>
@@ -109,7 +109,7 @@
 									</td>
 									<td class="form_label" align="right">运输费:</td>
 									<td>
-										<input name="receiveCost" id="receiveCost" class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"   allowNull="false" showButton="false" />
+										<input name="receiveCost" id="receiveCost" class="nui-Spinner"  decimalPlaces="2" minValue="0" maxValue="1000000000"   allowNull="false" showButton="false" />
 									</td>
 								</tr>
 							</table>
@@ -143,7 +143,7 @@
 									</td>
 									<td class="title" align="right">公里数:</td>
 									<td>
-										<input name="kilometers" id="kilometers" class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"   allowNull="false" showButton="false" />
+										<input name="kilometers" id="kilometers" class="nui-Spinner"  decimalPlaces="2" minValue="0" maxValue="1000000000"   allowNull="false" showButton="false" />
 									</td>
 									<td class="form_label" align="right">生产日期:</td>
 									<td>

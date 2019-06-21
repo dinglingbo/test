@@ -48,7 +48,7 @@
  -->                        
                     <div showCollapseButton="true">
                     <div id="jpDetailGrid" class="nui-datagrid" style="width:100%;height:100%;"  showSummaryRow="true" selectOnLoad="false" allowcelledit="true" showPager="false" pageSize="50" totalField="page.count" sizeList=[20,50,100,200]
-                    dataField="data" showModified="false" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true" allowCellWrap="true" url="">
+                    dataField="data" showModified="false" oncellcommitedit="onCellCommitEdit" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true" allowCellWrap="true" url="">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
                         <div field="giftId" name="giftId" width="100px" headerAlign="center" header="" visible="false"></div>
@@ -340,7 +340,17 @@ function CloseWindow(action)
 function onCancel() {
 	CloseWindow("cancel");
 }
-  
+// 提交单元格编辑数据前激发
+function onCellCommitEdit(e) {
+	var editor = e.editor;
+	var record = e.record;
+	var row = e.row;
+	editor.validate();
+	if (editor.isValid() == false) {
+		showMsg("请输入数字!","W");
+		e.cancel = true;
+	}
+}
 </script>
 </body>
 </html>

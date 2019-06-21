@@ -579,7 +579,7 @@
             wb_sales.css_factory_order_detail A
             	left join wb_sales.css_factory_order_main b
 					on a.order_id = b.id and b.orgid = #orgid#
-                where b.status =1
+                where b.status =2
             <dynamic>
                 <isNotEmpty prepend="and" property="orderId">  
                     (A.order_id = #orderId#)

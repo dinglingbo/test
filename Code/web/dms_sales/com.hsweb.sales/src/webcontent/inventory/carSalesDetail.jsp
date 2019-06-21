@@ -144,7 +144,7 @@
                                       <label>预交定金：</label>
                                   </td>
                                   <td colspan="1" >
-										<input  class="nui-textbox" width="100%" id="advanceDepositAmt" name="advanceDepositAmt"/>
+                                  		<input class="nui-Spinner"  decimalPlaces="2" minValue="0" maxValue="1000000000"  allowNull="false" showButton="false" width="100%" id="advanceDepositAmt" name="advanceDepositAmt" />
                                   </td>
                                    <td class="title" >
                                       <label>定金截止日期：</label>

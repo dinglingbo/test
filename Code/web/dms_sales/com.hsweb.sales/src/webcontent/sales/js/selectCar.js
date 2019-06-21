@@ -15,7 +15,7 @@ $(document).ready(function(v) {
     });
 
     grid.on('rowdblclick', function (e) {
-        window.CloseOwnerWindow('ok');
+    	selectCar();
     });
 
     grid.on("drawcell", function(e) {
@@ -38,27 +38,32 @@ $(document).ready(function(v) {
     });
 });
 
-
-function SetData(data, isUpdateParam) {
+//销售主表数据
+var billFormDataF = null;
+var saleExtendF = null;
+function SetData(params, isUpdateParam) {
     isUpdate = isUpdateParam;
-    var params = {
+    billFormDataF = params.billFormData;
+    saleExtendF = params.saleExtend;
+    var data = params.data;
+    var p = {
         carModelId: data.carModelId||'',
         carModelName: nui.get("carModelName").value,
         carLock: data.carLock||'',
-        carStatus: data.carStatus || '',
-        billStatus: data.billStatus || ''
+        carStatus: data.carStatus || ''  
     };
-    grid.load({ params: params });
+    grid.load({ params: p });
 }
 
+var result = null;
 function getSelectedValue() {
-    var data = grid.getSelected();
-    return data;
+   /* var data = grid.getSelected();
+    return data;*/
+	 return result;
 }
 
 function selectCar() {
     var data = grid.getSelected();
-
     if (!data) {
         showMsg('请先选择一条数据', 'W');
         return;
@@ -70,16 +75,23 @@ function selectCar() {
         nui.ajax({
             url: baseUrl + "sales.save.updateCheckEnter.biz.ext",
             data: {
-                data: data
+                data: data,
+                billFormData:billFormDataF,
+                saleExtend:saleExtendF
             },
             cache: false,
             async: false,
             success: function(text) {
                 if (text.errCode == "S") {
+                	result = text.billFormData;
+                    var handcartAmt = data.receiveCost || 0; //运输成本
+                    var carCost = data.unitPrice || 0; //购买成本
+                    result.handcartAmt = handcartAmt;
+                    result.carCost = carCost;
                     showMsg(text.errMsg, "S");
                     window.CloseOwnerWindow('ok');
                 } else {
-                    showMsg(text.errMsg, "W");
+                    showMsg(text.errMsg, "E");
                 }
             }
  

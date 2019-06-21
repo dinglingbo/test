@@ -1415,12 +1415,12 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link70</targetConnections>
-    <location x="266" y="301"/>
+    <location x="266" y="291"/>
     <size height="28" width="28"/>
     <nodeLabel>assign39label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign39label" name="label" nodeType="label">
-    <location x="261" y="337"/>
+    <location x="261" y="327"/>
     <figSize height="17" width="39"/>
     <node>assign39</node>
   </nodes>

@@ -120,7 +120,7 @@
       <process:to type="query">fisRpAdvance/guestName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
+      <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">fisRpAdvance/status</process:to>
     </process:copy>
     <process:copy>
@@ -134,6 +134,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">caCalculationData/advanceChargeAmt</process:from>
       <process:to type="query">fisRpAdvance/balaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">122</process:from>
+      <process:to type="query">fisRpAdvance/billTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">122</process:from>
+      <process:to type="query">fisRpAdvance/billTypeCode</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
@@ -520,7 +528,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link47</targetConnections>
-    <location x="866" y="453"/>
+    <location x="870" y="451"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
@@ -538,7 +546,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="837" y="488"/>
+    <location x="841" y="486"/>
     <figSize height="17" width="85"/>
     <node>subprocess1</node>
   </nodes>
@@ -808,7 +816,7 @@
       <process:to type="query">fisRpAdvanceyk/guestName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
+      <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">fisRpAdvanceyk/status</process:to>
     </process:copy>
     <process:copy>
@@ -822,6 +830,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">balance</process:from>
       <process:to type="query">fisRpAdvanceyk/balaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">123</process:from>
+      <process:to type="query">fisRpAdvanceyk/billTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">123</process:from>
+      <process:to type="query">fisRpAdvanceyk/billTypeCode</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">

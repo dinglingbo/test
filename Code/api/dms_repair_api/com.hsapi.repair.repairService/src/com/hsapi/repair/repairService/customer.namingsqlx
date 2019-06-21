@@ -351,6 +351,100 @@
         order by b.modify_date desc
 	</select>
 	
+	
+	 <!--保险开单 整车客户 -->
+		<select id="queryCustomerWithSALE" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT
+			b.id contactorId,
+			b.tenant_id tenantId,
+			b.orgid,
+			b.guest_id guestId,
+			a.full_name guestFullName,
+			b.`name` contactName,
+			b.sex,
+			b.tel,
+			b.identity,
+			b.mobile ,
+			a.mobile guestMobile,
+			b.birthday_type birthdayType,
+			b.birthday,
+			b.marital_status maritalStatus,
+			b.buy_car_status buyCarStatus,
+			b.id_no idNo,
+			b.id_address idAddress,
+			b.trade,
+			b.duty,
+			b.source,
+			b.relationship,
+			b.special_care specialCare,
+			b.nature,
+			b.work_place workPlace,
+			b.scout_status scoutStatus,
+			b.this_scout_date thisScoutDate,
+			b.next_scout_date nextScoutDate,
+			b.sale_advisor_id saleAdvisorId,
+			b.sale_advisor saleAdvisor,
+			b.`status`,
+			b.is_disabled isDisabled,
+			b.remark,
+			b.recorder,
+			b.record_date recordDate,
+			b.modifier,
+			b.modify_date modifyDate
+			FROM
+			wb_common.com_guest AS a 
+			INNER JOIN wb_sales.csb_contactor AS b ON a.id = b.guest_id
+		WHERE 1=1
+			
+		<dynamic>
+            <isNotEmpty prepend="and" property="tenantId">  
+                (a.tenant_id = #tenantId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgId">  
+                (a.orgid = #orgId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">  
+                (a.id = #guestId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="contactorId">  
+                (b.id = #contactorId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestMobile">  
+                (a.mobile = #guestMobile#)
+            </isNotEmpty>
+           
+            <isNotEmpty prepend="and" property="mobile">  
+                (b.mobile like '%$mobile$%' or a.mobile like '%$mobile$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestFullName">  
+                (b.name like '%$guestFullName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="contactor">  
+                (b.name like '%$contactor$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="name">  
+                (b.name like '%$name$%' or d.name like '%$name$%')
+            </isNotEmpty>
+            
+             <!--纯数字  手机，车牌，车驾号-->
+            <isNotEmpty prepend="and" property="nums">  
+                (a.mobile like '%$nums$%' or  b.mobile like '%$nums$%' )
+            </isNotEmpty>
+            
+             <!--纯字母   车牌，车驾号    数字+字母 车牌，车驾号-->
+            <isNotEmpty prepend="and" property="letters">  
+               ( a.full_name like '%$letters$%' or b.name like '%$letters$%')
+            </isNotEmpty>
+            
+             <!--包含中文   只按名称查询 -->
+            <isNotEmpty prepend="and" property="chis">  
+                (a.full_name like '%$chis$%' or b.name like '%$chis$%')
+            </isNotEmpty>
+             
+        </dynamic>
+        order by a.modify_date desc
+	</select>
+	
 	<select id="queryGuestList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT
 			a.orgid,

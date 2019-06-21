@@ -15,7 +15,7 @@
 		from rpb_car_extend a
 		inner join rpb_car b
 		on a.car_id = b.id
-		where DATEDIFF(now(),a.care_due_date) = #ln#
+		where DATEDIFF(a.care_due_date,now()) = #ln#
 		      and a.last_orgid = #orgid# and a.is_need_remind = 0
 	</select>
 	<!--下次保养  TIMESTAMPDIFF(DAY , NOW(), a.care_due_date) = #ln#-->
@@ -24,7 +24,7 @@
 		inner join rpb_car b
 		on a.car_id = b.id
 		set a.is_need_remind = 1, a.remind_status = 0
-		where DATEDIFF(now(),a.care_due_date) = #ln#
+		where DATEDIFF(a.care_due_date,now()) = #ln#
 		      and a.last_orgid = #orgid# and a.is_need_remind = 0
 	</update>
 	
@@ -39,7 +39,7 @@
 		from rpb_car_extend a
 		inner join rpb_car b
 		on a.car_id = b.id
-		where DATEDIFF(now(),b.annual_verification_due_date) = #ln# and a.last_orgid = #orgid#
+		where DATEDIFF(b.annual_verification_due_date,now()) = #ln# and a.last_orgid = #orgid#
 	</select>
 	
 	<!--商业险到期  （暂时没用到）TIMESTAMPDIFF(DAY , NOW(), b.annual_inspection_date) = #ln#-->
@@ -49,7 +49,7 @@
 		from rpb_car_extend a
 		inner join rpb_car b
 		on a.car_id = b.id
-		where DATEDIFF(now(),b.annual_inspection_date) = #ln# and a.last_orgid = #orgid#
+		where DATEDIFF(b.annual_inspection_date,now()) = #ln# and a.last_orgid = #orgid#
 	</select>
 	<!--商业险到期  TIMESTAMPDIFF(DAY , NOW() , b.annual_inspection_date) = #ln#-->
 	<update id="updateAnnualRemind" parameterClass="java.util.HashMap">
@@ -57,7 +57,7 @@
 		inner join rpb_car b
 		on a.car_id = b.id
 		set a.is_annual_remind = 1, a.annual_status = 0
-		where DATEDIFF(now(),b.annual_inspection_date) = #ln#
+		where DATEDIFF(b.annual_inspection_date,now()) = #ln#
 		      and a.last_orgid = #orgid# and a.is_annual_remind = 0
 	</update>
 
@@ -68,7 +68,7 @@
 		from rpb_car_extend a
 		inner join rpb_car b
 		on a.car_id = b.id
-		where DATEDIFF(now(),b.insure_due_date) = #ln# and a.last_orgid = #orgid#
+		where DATEDIFF(b.insure_due_date,now()) = #ln# and a.last_orgid = #orgid#
 	</select>
 	<!--交强险到期  TIMESTAMPDIFF(DAY, NOW(), b.insure_due_date) = #ln#-->
 	<update id="updateInsureRemind" parameterClass="java.util.HashMap">
@@ -76,7 +76,7 @@
 		inner join rpb_car b
 		on a.car_id = b.id
 		set a.is_insure_remind = 1, a.insure_status = 0
-		where DATEDIFF(now(),b.insure_due_date) = #ln#
+		where DATEDIFF(b.insure_due_date,now()) = #ln#
 		      and a.last_orgid = #orgid# and a.is_insure_remind = 0
 	</update>
 	
@@ -89,7 +89,7 @@
 		inner join rpb_car b
 		on a.car_id = b.id
 		set a.is_veri_remind = 1, a.veri_status = 0
-		where DATEDIFF(now(),b.annual_verification_due_date) = #ln#
+		where DATEDIFF(b.annual_verification_due_date,now()) = #ln#
 					and a.last_orgid = #orgid# and a.is_veri_remind = 0
 	</update>
 	
@@ -110,7 +110,7 @@
 	<!--驾照到期  TIMESTAMPDIFF(DAY, NOW(), license_over_date) = #ln#-->
 	<update id="updateGuestLicenseRemind" parameterClass="java.util.HashMap">
 		update rpb_contactor set is_license_remind = 1, license_status = 0
-		where DATEDIFF(now(),license_over_date) = #ln#
+		where DATEDIFF(license_over_date,now()) = #ln#
 					and orgid = #orgid# and is_license_remind = 0
 	</update>
 	

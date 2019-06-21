@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="checkMoneyForAuditAndUpdate.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="费用审核&#xD;&#xA;1、先查询数据库查看金额是否发生变动再更新数据&#xD;&#xA;2、最后生成一笔应付账款&#xD;&#xA;3、反审时需要去应收表查看该记录是否已经结算了&#xD;&#xA;4、查询对应的应付记录需要注意查询条件是否查询出来对应的应付单&#xD;&#xA;" title="Administrator&#x9;19-6-10 下午2:41">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="费用审核&#xD;&#xA;1、先查询数据库查看金额是否发生变动再更新数据&#xD;&#xA;2、最后生成一笔应付账款&#xD;&#xA;3、反审时需要去应付表查看该记录是否已经结算了&#xD;&#xA;4、查询对应的应付记录需要注意查询条件是否查询出来对应的应付单&#xD;&#xA;" title="Administrator&#x9;19-6-10 下午2:41">
     <location x="60" y="15"/>
-    <size height="106" width="439"/>
+    <size height="148" width="439"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -1266,7 +1266,7 @@
       <targetNode>assign35</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -1287,7 +1287,7 @@
       <targetNode>invokePojo8</targetNode>
     </sourceConnections>
     <targetConnections>link64</targetConnections>
-    <location x="144" y="332"/>
+    <location x="146" y="332"/>
     <size height="28" width="28"/>
     <nodeLabel>assign34label</nodeLabel>
     <process:copy>
@@ -1318,9 +1318,17 @@
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[3]/_op</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">cond/_expr[4]/isDisabled</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[4]/_op</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign34label" name="label" nodeType="label">
-    <location x="139" y="368"/>
+    <location x="141" y="368"/>
     <figSize height="17" width="39"/>
     <node>assign34</node>
   </nodes>
@@ -1345,7 +1353,7 @@
       <targetNode>assign39</targetNode>
     </sourceConnections>
     <targetConnections>link67</targetConnections>
-    <location x="203" y="291"/>
+    <location x="204" y="280"/>
     <size height="28" width="28"/>
     <nodeLabel>assign36label</nodeLabel>
     <process:copy>
@@ -1354,7 +1362,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign36label" name="label" nodeType="label">
-    <location x="198" y="327"/>
+    <location x="199" y="316"/>
     <figSize height="17" width="39"/>
     <node>assign36</node>
   </nodes>
@@ -1530,7 +1538,7 @@
       <targetNode>assign36</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -1546,7 +1554,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link81</targetConnections>
-    <location x="148" y="280"/>
+    <location x="149" y="270"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo8label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -1562,7 +1570,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo8label" name="label" nodeType="label">
-    <location x="131" y="316"/>
+    <location x="132" y="306"/>
     <figSize height="17" width="56"/>
     <node>invokePojo8</node>
   </nodes>

@@ -634,8 +634,8 @@
       <targetNode>assign21</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand></process:leftOperand>
-          <process:rightOperand></process:rightOperand>
+          <process:leftOperand/>
+          <process:rightOperand/>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -745,6 +745,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">data/id</process:from>
       <process:to type="query">billFormData/enterId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">billFormData/isOutStock</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign19label" name="label" nodeType="label">

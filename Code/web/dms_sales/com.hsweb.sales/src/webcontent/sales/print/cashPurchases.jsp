@@ -169,7 +169,7 @@
                                 </td>
                                 <td rowspan="2" style="">
                                     <div style="font-size: 20px; font-family: 华文中宋;padding-top: 5px;"><b><span id="spstorename">现款购车计算表</span></b></div>
-                                    <div style="font-size: 14px;padding-left: 10px; "><span id="slogan1">Loan Detail</span></div>
+                                    <div style="font-size: 14px;padding-left: 10px; "><span id="slogan1">Cash Detail</span></div>
                                     <div style="font-size: 14px;padding-left: 10px; ">打印日期：<span id="date"></span></div>
                                 </td>
                             </tr>
@@ -218,6 +218,8 @@
                             </td>
                         </tr>
                     </tbody>
+                </table>
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk" style="line-height:32px;">
                     <tbody>
                         <tr>
                             <td height="50" valign="top" style="padding: 8px;" id="">
@@ -288,7 +290,7 @@
                                 购车预算合计
                             </td>
                             <td height="50" valign="top" style="padding: 8px;" id="" colspan="3">
-                                <span id="buyBudgetTotal" style="width:95px;display: inline-block;"></span>&nbsp;&nbsp;大写（人民币）：元<span id="money1"></span>
+                                <span id="buyBudgetTotal" style="width:95px;display: inline-block;"></span>&nbsp;&nbsp;大写（人民币）：<span id="money1"></span>
                             </td>
                         </tr>
                         <tr>
@@ -301,8 +303,9 @@
                         <tr style=height:100px;>
                             <td height="100" valign="top" style="padding: 8px;" id="" colspan="4">
                                 <div>
-                                    <div style="float:left;width:200px;">销售顾问：<span></span></div>
-                                    <div style="float:right;width:200px;">客户（签字）：<br> 年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日
+                                    <div style="float:left;width:200px;">销售顾问：<span id="saleAdvisor"></span></div>
+                                    <div style="float:right;width:200px;">客户（签字）：<br> 
+                                        年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日
                                     </div>
                                     <div style="clear:both"></div>
                                     <div style="height:50px;width:100%"></div>
@@ -358,6 +361,7 @@
                                 var temp = res.data[0];
                                 document.getElementById("guestFullName").innerHTML = temp.guestFullName || "";
                                 document.getElementById("carModelName").innerHTML = temp.carModelName || "";
+                                document.getElementById("saleAdvisor").innerHTML = temp.saleAdvisor || 0; //销售顾问
 
                             }
                         });

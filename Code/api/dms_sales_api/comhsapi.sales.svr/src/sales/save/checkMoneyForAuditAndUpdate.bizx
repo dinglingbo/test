@@ -532,10 +532,6 @@
       <process:to type="query">params/BillMainId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">2</process:from>
-      <process:to type="query">params/BillTypeId</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">data/costAmt</process:from>
       <process:to type="query">params/BillAmt</process:to>
     </process:copy>
@@ -712,7 +708,7 @@
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query">data/costId</process:leftOperand>
-          <process:rightOperand type="literal">250</process:rightOperand>
+          <process:rightOperand type="literal">249</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -730,7 +726,7 @@
     <figSize height="17" width="32"/>
     <node>assign7</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign12" name="赋值12" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign12" name="赋值12" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign12</sourceNode>
       <targetNode>assign20</targetNode>
@@ -750,13 +746,17 @@
     <location x="1035" y="491"/>
     <size height="28" width="28"/>
     <nodeLabel>assign12label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">230</process:from>
+      <process:to type="query">params/BillTypeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">
     <location x="1030" y="527"/>
     <figSize height="17" width="39"/>
     <node>assign12</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign13" name="赋值13" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign13" name="赋值13" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link45" name="link45" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign13</sourceNode>
       <targetNode>assign33</targetNode>
@@ -775,13 +775,17 @@
     <location x="941" y="491"/>
     <size height="28" width="28"/>
     <nodeLabel>assign13label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">243</process:from>
+      <process:to type="query">params/BillTypeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign13label" name="label" nodeType="label">
     <location x="936" y="527"/>
     <figSize height="17" width="39"/>
     <node>assign13</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign14" name="赋值14" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign14" name="赋值14" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link43" name="link43" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign14</sourceNode>
       <targetNode>assign30</targetNode>
@@ -800,16 +804,21 @@
     <location x="868" y="491"/>
     <size height="28" width="28"/>
     <nodeLabel>assign14label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">244</process:from>
+      <process:to type="query">params/BillTypeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign14label" name="label" nodeType="label">
     <location x="863" y="527"/>
     <figSize height="17" width="39"/>
     <node>assign14</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign15" name="赋值15" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign15" name="赋值15" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link36" name="link36" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign15</sourceNode>
       <targetNode>assign29</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link38" name="link38" displayName="连接线" type="transition">
       <sourceNode>assign15</sourceNode>
@@ -825,13 +834,17 @@
     <location x="795" y="496"/>
     <size height="28" width="28"/>
     <nodeLabel>assign15label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">245</process:from>
+      <process:to type="query">params/BillTypeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign15label" name="label" nodeType="label">
     <location x="790" y="532"/>
     <figSize height="17" width="39"/>
     <node>assign15</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign16" name="赋值16" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign16" name="赋值16" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link33" name="link33" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign16</sourceNode>
       <targetNode>assign26</targetNode>
@@ -850,13 +863,17 @@
     <location x="724" y="491"/>
     <size height="28" width="28"/>
     <nodeLabel>assign16label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">246</process:from>
+      <process:to type="query">params/BillTypeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign16label" name="label" nodeType="label">
     <location x="719" y="527"/>
     <figSize height="17" width="39"/>
     <node>assign16</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign17" name="赋值17" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign17" name="赋值17" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link28" name="link28" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign17</sourceNode>
       <targetNode>assign24</targetNode>
@@ -875,13 +892,17 @@
     <location x="615" y="491"/>
     <size height="28" width="28"/>
     <nodeLabel>assign17label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">247</process:from>
+      <process:to type="query">params/BillTypeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign17label" name="label" nodeType="label">
     <location x="610" y="527"/>
     <figSize height="17" width="39"/>
     <node>assign17</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign18" name="赋值18" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign18" name="赋值18" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link26" name="link26" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign18</sourceNode>
       <targetNode>assign23</targetNode>
@@ -900,6 +921,10 @@
     <location x="488" y="491"/>
     <size height="28" width="28"/>
     <nodeLabel>assign18label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">249</process:from>
+      <process:to type="query">params/BillTypeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign18label" name="label" nodeType="label">
     <location x="483" y="527"/>

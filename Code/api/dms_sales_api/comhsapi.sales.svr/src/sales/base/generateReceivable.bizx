@@ -76,7 +76,7 @@
       <process:to type="query">params/BillMainId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">255</process:from>
+      <process:from type="literal" pattern="reference">120</process:from>
       <process:to type="query">params/BillTypeId</process:to>
     </process:copy>
     <process:copy>
@@ -322,7 +322,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

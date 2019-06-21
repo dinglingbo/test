@@ -39,6 +39,8 @@ var advancedSearchShow=0;
 var StatusHash={
 	"0"	:"草稿",
 	"1":"已提交",
+	"2":"已提交",
+	"3":"部分入库",
 	"4":"已入库"
 }
 var partIn =null;
@@ -170,6 +172,14 @@ $(document).ready(function(v) {
             addNewRow(true);
         }
     });
+    //启用APP
+    if(currIsOpenApp==1){
+    	nui.get('auditToEnterBtn').setVisible(false);
+    	nui.get('auditBtn').setVisible(true);
+    }else{
+    	nui.get('auditToEnterBtn').setVisible(true);
+    	nui.get('auditBtn').setVisible(false);
+    }
 });
 var AuditSignHash = {
     "0" : "未审",
@@ -351,11 +361,27 @@ function quickSearch(type) {
         querysign = 2;
         gsparams.auditSign = 0;
         break;
+//    case 7:
+//        params.auditSign = 1;
+//        params.billStatusId = 1;
+//        gsparams.billStatusId=1;
+//        querytypename = "已提交";
+//        querysign = 2;
+//        gsparams.auditSign = 1;
+//        break;
     case 7:
         params.auditSign = 1;
-        params.billStatusId = 1;
-        gsparams.billStatusId=1;
+        gsparams.billStatusId = null;
+        gsparams.billStatusIdList= "1,2";
         querytypename = "已提交";
+        querysign = 2;
+        gsparams.auditSign = 1;
+        break;
+    case 8:
+        params.auditSign = 1;
+        params.billStatusId = 3;
+        gsparams.billStatusId=3;
+        querytypename = "部分入库";
         querysign = 2;
         gsparams.auditSign = 1;
         break;

@@ -1558,6 +1558,9 @@
                 <isNotEmpty prepend="and" property="billStatusId"> 
                     (A.BILL_STATUS_ID = #billStatusId#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="billStatusIdList"> 
+                    (A.BILL_STATUS_ID  in ($billStatusIdList$))
+                </isNotEmpty>
                 <!--订货日期 -->
                 <isNotEmpty prepend="and" property="sOrderDate">  
                     A.ORDER_DATE &gt;= #sOrderDate#

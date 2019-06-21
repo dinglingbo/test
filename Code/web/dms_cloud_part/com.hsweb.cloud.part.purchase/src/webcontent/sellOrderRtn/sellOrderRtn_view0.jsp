@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售退货</title>
-<script src="<%=webPath + contextPath%>/purchase/js/sellOrderRtn/sellOrderRtn.js?v=1.0.21"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/sellOrderRtn/sellOrderRtn.js?v=1.0.30"></script>
 <style type="text/css">
 .title {
 	width: 70px;
@@ -158,7 +158,7 @@
             <tr>
                 <td style="width:100%;">
                     <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="closeBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
                 </td>
             </tr>
         </table>

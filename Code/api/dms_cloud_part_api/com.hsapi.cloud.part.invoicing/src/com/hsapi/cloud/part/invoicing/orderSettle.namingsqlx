@@ -33,6 +33,8 @@
 	<update id="updatePchsOrderQty" parameterClass="java.util.HashMap" >
 		UPDATE pj_pchs_order_detail_chk
 			SET true_enter_qty = #trueEnterQty#,
+			 true_enter_amt = #trueEnterAmt#,
+			 not_enter_amt = #notEnterAmt#,
 			 not_enter_qty =#notEnterQty#,
 			 is_finished = #isFinished#,
 			 finish_date = #finishDate#

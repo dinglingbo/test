@@ -37,7 +37,7 @@
                     <li iconCls="" onclick="quickSearch(10)" id="type10">草稿</li>
                     <li iconCls="" onclick="quickSearch(11)" id="type11">待发货</li>
                     <li iconCls="" onclick="quickSearch(12)" id="type12">待收货</li>
-                    <!-- <li iconCls="" onclick="quickSearch(13)" id="type13">部分入库</li> -->
+                    <li iconCls="" onclick="quickSearch(13)" id="type13">部分入库</li> 
                     <li iconCls="" onclick="quickSearch(14)" id="type14">已入库</li>
                     <li iconCls="" onclick="quickSearch(15)" id="type15">已退回</li>
                     <li iconCls="" onclick="quickSearch(16)" id="type16">已关闭</li>

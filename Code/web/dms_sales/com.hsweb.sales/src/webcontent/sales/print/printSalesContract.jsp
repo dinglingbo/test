@@ -206,10 +206,10 @@
                             <td height="50" valign="top" style="padding:8px;width:33%;" id="">
                                 车型
                             </td>
-                            <td height="70" valign="top" style="padding:  8px;width:10%;" id="">
+                            <td height="50" valign="top" style="padding:  8px;width:10%;" id="">
                                 外饰
                             </td>
-                            <td height="70" valign="top" style="padding:  8px;width:10%;" id="">
+                            <td height="50" valign="top" style="padding:  8px;width:10%;" id="">
                                 内饰
                             </td>
                             <td height="50" valign="top" style="padding:  8px;width:20%;" id="">

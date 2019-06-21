@@ -121,7 +121,7 @@ function selectSupplier(elId,e)
             var iframe = this.getIFrameEl();
             var params = {
                 isSupplier: 1,
-                guestType:'01020202'
+                guestType:'01020201'
             };
             iframe.contentWindow.setGuestData(params);
         },

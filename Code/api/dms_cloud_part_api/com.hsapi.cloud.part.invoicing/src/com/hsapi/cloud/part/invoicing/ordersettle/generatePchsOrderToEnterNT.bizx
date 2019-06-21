@@ -634,6 +634,7 @@
     <sourceConnections xsi:type="process:tLink" id="link33" name="link33" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess2</sourceNode>
       <targetNode>invokePojo1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link35" name="link35" displayName="连接线" type="transition">
       <sourceNode>subprocess2</sourceNode>
@@ -1429,7 +1430,7 @@
       <process:partner type="literal">this.updatePchsOrderStatusNT</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="mainId" type="query" value="Int" valueType="Primitive" pattern="reference">main/codeId</process:inputVariable>
-        <process:inputVariable id="1" name="billStatusId" type="literal" value="Int" valueType="Primitive" pattern="reference">2</process:inputVariable>
+        <process:inputVariable id="1" name="billStatusId" type="literal" value="Int" valueType="Primitive" pattern="reference">3</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>

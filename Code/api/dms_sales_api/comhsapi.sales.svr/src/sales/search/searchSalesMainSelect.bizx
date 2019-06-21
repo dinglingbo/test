@@ -8,15 +8,16 @@
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <location x="102" y="211"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
-    <targetConnections>link2</targetConnections>
     <targetConnections>link4</targetConnections>
-    <location x="480" y="211"/>
+    <targetConnections>link5</targetConnections>
+    <location x="570" y="210"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -32,14 +33,14 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="482" y="247"/>
+    <location x="572" y="246"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="queryByNamedSqlWithPage" displayName="queryByNamedSqlWithPage" collapsed="false" type="invoke" index="4" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
-      <targetNode>end0</targetNode>
+      <targetNode>assign0</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo0</sourceNode>
@@ -78,14 +79,6 @@
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">S</process:from>
-      <process:to type="query">errCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">执行成功。</process:from>
-      <process:to type="query">errMsg</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="literal" pattern="reference">true</process:from>
       <process:to type="query">page/isCount</process:to>
     </process:copy>
@@ -117,6 +110,29 @@
     <location x="345" y="142"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="476" y="211"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign0label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">S</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">执行成功。</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
+    <location x="478" y="247"/>
+    <figSize height="17" width="25"/>
+    <node>assign0</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

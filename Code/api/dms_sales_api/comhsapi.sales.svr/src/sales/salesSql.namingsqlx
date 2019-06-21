@@ -221,6 +221,18 @@
             <isNotEmpty prepend="and" property="id">
                 (a.id = #id#)
             </isNotEmpty>
+             <isNotEmpty prepend="and" property="guestId">
+                (a.guest_id = #guestId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="enterId">
+               a.enter_id = #enterId#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="hasEnterId">
+               a.enter_id  &lt;&gt; 0
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isSubmitCar">
+                a.is_submit_car = #isSubmitCar#
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="status">
                 (a.status in ($status$))
             </isNotEmpty>
@@ -234,7 +246,9 @@
                 (a.record_date &lt; #recordEndDate#)
               </isNotEmpty>
         </dynamic>  
+        order by a.modify_date desc
 	</select>
+	
 	<select id="searchSalesMainDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT 
 			a.id	AS	id	,

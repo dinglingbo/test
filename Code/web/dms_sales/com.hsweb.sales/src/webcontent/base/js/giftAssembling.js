@@ -7,6 +7,7 @@ var saveItemUrl = apiPath + saleApi + "/sales.base.addCssGiftOutItem.biz.ext";
 var mGridUrl = apiPath + saleApi + "/sales.base.searchCssGiftOutMain.biz.ext";
 var mItemUrl = apiPath + saleApi + "/sales.base.searchCssGiftOutItem.biz.ext";
 var jpDetailGridUrl = apiPath + saleApi + "/sales.search.searchSaleGiftApply.biz.ext";
+var updateMainUrl = apiPath + saleApi + "/sales.base.updateCssGiftOutMainAmt.biz.ext";//更新主表的金额
 var repairOutGridUrl =  partUrl + "com.hsapi.part.invoice.partInterface.queryEnbleRtnPart.biz.ext";
 var sellTypeArr = [{ id: 1, text: "库存车" }, { id: 2, text: "销售车" }];
 var returnSignData = [{id:0,text:"否"},{id:1,text:"是"}];
@@ -96,6 +97,10 @@ $().ready(function (H) {
     itemGrid.on("drawcell", function (e) {
         if (e.field == 'serviceTypeId') {
             e.cellHtml = setColVal('serviceTypeId', 'id', 'name', e.value);
+        }else if (e.field == "receType") {
+            if (e.value == 0 || e.value == 1) {
+                e.cellHtml = costList.find(costList => costList.id == e.value).name;
+            }
         }
     });
 
@@ -180,6 +185,9 @@ function workChanged(e) {
 
 function newAdd() {
     form.clear();
+    itemGrid.clearRows();
+    repairOutGrid.clearRows();
+    jpDetailGrid.clearRows();
     nui.get("sellType").setValue(2);
     nui.get("enterId").disable();
 }
@@ -372,7 +380,7 @@ function addItem() {
         return;
     }
     var row = mainGrid.getSelected();
-    if (row.status == 1) {
+    if (row&&row.status == 1) {
         showMsg('本单已审核，不允许此操作','W');
         return;
     }
@@ -396,13 +404,13 @@ function addItem() {
                 //debugger;
                 var newRow = {
                     itemId: data.id,
-                    itemCode:data.code,
+                    itemCode: data.code,
                     itemName: data.name,
                     itemTime: data.itemTime,
+                    receType: 1,
                     amt: data.unitPrice,
-                    serviceTypeId:data.serviceTypeId
-                    
-                }
+                    serviceTypeId: data.serviceTypeId
+                };
                 itemGrid.addRow(newRow);
             }
 		}
@@ -413,7 +421,7 @@ function addItem() {
 
 function removeItem() {
     var row = mainGrid.getSelected();
-    if (row.status == 1) {
+    if (row&&row.status == 1) {
         showMsg('本单已审核，不允许此操作','W');
         return;
     }
@@ -427,7 +435,7 @@ function saveItem() {
         return;
     }
     var row = mainGrid.getSelected();
-    if (row.status == 1) {
+    if (row&&row.status == 1) {
         showMsg('本单已审核，不允许此操作','W');
         return;
     }
@@ -473,7 +481,8 @@ function saveItem() {
 		}),
 		success : function(data) {
 			nui.unmask(document.body);
-			data = data || {};
+            data = data || {};
+            updateMainAmt(nui.get("id").value);
 			if (data.errCode == "S") {
 				showMsg("保存成功!","S");
 			} else {
@@ -492,7 +501,7 @@ function saveItem() {
 
 function selectGift() {
     var row = mainGrid.getSelected();
-    if (row.status == 1) {
+    if (row&&row.status == 1) {
         showMsg('本单已审核，不允许此操作','W');
         return;
     }
@@ -657,7 +666,8 @@ function  savepartOutRtn(data,childdata){
             success:function(text){
                 var errCode = text.errCode;
                 nui.unmask(document.body);
-                if(errCode == "S"){
+                if (errCode == "S") {
+                    updateMainAmt(nui.get("id").value);
                     repairOutGrid.load({
                         serviceId: nui.get("id").value,
                         billTypeId: '050208',
@@ -673,4 +683,18 @@ function  savepartOutRtn(data,childdata){
     }else{
         showMsg('没有需要归库的精品!','W');
     }
+}
+
+
+
+function updateMainAmt(id) {//id  主表id
+    nui.ajax({
+        url:updateMainUrl,
+        type:"post",
+        data:{
+            id:id
+        },
+        success:function(text){
+        }
+    });
 }

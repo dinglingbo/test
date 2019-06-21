@@ -8,7 +8,7 @@
 -->
 <head>
 <title>预付账款管理</title>
-    <script src="<%= webPath + contextPath %>/manage/settlement/js/advancePayment.js?v=1.0.2"></script> 
+    <script src="<%= webPath + contextPath %>/manage/settlement/js/advancePayment.js?v=1.0.1"></script> 
         <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -123,6 +123,7 @@
                        emptyText="请选择结算单位..."
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" /> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="addPrepaid()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>               
                 <input id="proId" width="120px" visible="false" emptyText="业务单号" class="nui-combobox"/>
 				<a class="nui-button" iconCls="" plain="true" onclick="doAudit()"><span
 					class="fa fa-check fa-lg"></span>&nbsp;审核</a>                

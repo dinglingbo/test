@@ -329,10 +329,6 @@
       <process:to type="query">params/codeId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">temp/billServiceId</process:from>
-      <process:to type="query">params/code</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">params/isSettle</process:to>
     </process:copy>

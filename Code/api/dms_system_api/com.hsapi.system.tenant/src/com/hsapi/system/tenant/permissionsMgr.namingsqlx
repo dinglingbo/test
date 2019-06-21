@@ -85,6 +85,7 @@
 			a.is_dimission as isDimission,
 			a.is_open_account as isOpenAccount,
 			a.is_artificer as isArtificer,
+			a.is_mtadvisor as isMtadvisor,
 			a.is_stockman as isStockman,
 			a.is_allow_remind as isAllowRemind,
 			a.is_show_own_bill as isShowOwnBill,

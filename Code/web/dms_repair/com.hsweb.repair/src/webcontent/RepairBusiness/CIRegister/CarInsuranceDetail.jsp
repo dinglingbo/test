@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>车险开单明细</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.70"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.76"></script>
     <style type="text/css">
    .title {
         width: 90px;
@@ -163,6 +163,10 @@ pageEncoding="UTF-8" session="false"%>
                 enabled="false"
                 showClose="false"
                 allowInput="true"/>
+                 
+                <div id="gType" class="nui-radiobuttonlist" repeatItems="1" repeatLayout="table" repeatDirection="vertical" value="1"
+                textField="name" valueField="id" data="guestArr" style="display: inline-table;top: 8px;" onvaluechanged="changedGuestType()">
+                </div>  
                 <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn">新增客户</a>
                 <label style="font-family:Verdana;">工单号：</label>
                 <label id="servieIdEl" style="font-family:Verdana;"></label>

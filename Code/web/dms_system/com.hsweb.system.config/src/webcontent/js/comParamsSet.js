@@ -9,13 +9,15 @@ var repairBillQrSettleFlag = null;
 var repairBillCmodelFlag = null;
 var repairBillCmodelFlagT = null;
 var repairBillMobileFlag = null;
-var editParice = null;
+var editPrice = null;
 var rate = null;
 var openToArchives = null;
 var openToGuestQrcode = null;
 var repairDefaultStore = null;
 var repairPchsRtnFlag = null;
 var repairStoreControlFlag = null;
+var isJobItemShowPart = null;
+var isOpenElectronics = null;
  
 $(document).ready(function(v) {
     basicInfoForm = new nui.Form("#basicInfoForm");
@@ -28,13 +30,15 @@ $(document).ready(function(v) {
     repairBillCmodelFlagT = nui.get("repairBillCmodelFlagT");
     repairBillMobileFlag = nui.get("repairBillMobileFlag");
     repairStoreControlFlag = nui.get("repairStoreControlFlag");
-    editParice = nui.get("editParice");
+    editPrice = nui.get("editPrice");
     repairPchsRtnFlag = nui.get("repairPchsRtnFlag");
+    isJobItemShowPart = nui.get("isJobItemShowPart");
+    isOpenElectronics = nui.get("isOpenElectronics");
     //rate = nui.get("rate");
     //openToArchives = nui.get("openToArchives");
     openToGuestQrcode = nui.get("openToGuestQrcode");
     repairDefaultStore = nui.get("repairDefaultStore");
-    nui.get("repairSettorderPrintShowT").disable();
+    nui.get("electronicKey").disable();
     
     //repairBillControlFlag.setData(radioList);
     repairPchsRtnFlag.setData(radioList);
@@ -42,16 +46,18 @@ $(document).ready(function(v) {
     repairBillQrcodeFlag.setData(radioList);
     repairBillQrSettleFlag.setData(radioList);
     repairBillCmodelFlag.setData(radioList);
-    repairBillCmodelFlagT.setData(radioList);
+    isOpenElectronics.setData(radioList);
     repairBillMobileFlag.setData(radioList);
     repairStoreControlFlag.setData(radioList);
+    isJobItemShowPart.setData(radioList);
+    isOpenElectronics.setData(radioList);
     //openToArchives.setData(typeList);
     openToGuestQrcode.setData(typeList);
     
     getStore();
 
     getServiceTypeList(function(data){
-        editParice.setData(data);
+        editPrice.setData(data);
         repairPartAuditFlag.setData(data);
     });
 

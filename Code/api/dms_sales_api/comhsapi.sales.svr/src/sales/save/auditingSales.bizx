@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="auditingSales" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="整车销售&#xD;&#xA;提交调用&#xD;&#xA;生成预两笔预收款&#xD;&#xA;1、预收金额&#xD;&#xA;2、购车余款" title="Administrator&#x9;19-6-14 下午4:08">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="整车销售&#xD;&#xA;提交调用&#xD;&#xA;生成预两笔预收款,分别是&#xD;&#xA;1、预收金额&#xD;&#xA;2、购车余款&#xD;&#xA;生成两笔预收业务数据" title="Administrator&#x9;19-6-14 下午4:08">
     <location x="93" y="49"/>
     <size height="147" width="409"/>
   </nodes>
@@ -271,7 +271,7 @@
       <targetNode>assign11</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -859,7 +859,7 @@
       <targetNode>assign15</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -984,7 +984,7 @@
       <targetNode>assign23</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

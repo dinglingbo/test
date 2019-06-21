@@ -9,7 +9,7 @@
 -->
 <head>
   <title>工单设置</title>
-  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.1.0"></script>
+  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.1.3"></script>
   <style type="text/css">
 
     .title {
@@ -115,9 +115,18 @@
                 </td>      
             </tr>
             <tr>
+                <td class="tbtext">派工单打印配件项目：</td>
+                <td class="tbCtrl" >
+                    <div id="isJobItemShowPart" name="isJobItemShowPart" 
+                        class="nui-radiobuttonlist" value="" repeatItems="2" 
+                        repeatDirection="" repeatLayout="table" 
+                        textField="text" valueField="id" ></div>
+                </td>      
+            </tr>
+            <tr>
                 <td class="tbtext">哪些类别项目开单不能改价：</td>
                 <td class="tbCtrl" >
-                    <div id="editParice" name="editParice" class="nui-checkboxlist" repeatItems="5" 
+                    <div id="editPrice" name="editPrice" class="nui-checkboxlist" repeatItems="5" 
                     repeatLayout="flow"  value="" 
                     textField="text" valueField="id" ></div>
                 </td>
@@ -158,7 +167,7 @@
             <tr>
                 <td class="tbtext">开通维修电子档案：</td>
                 <td class="tbCtrl" >
-                    <div id="repairBillCmodelFlagT" name="repairBillCmodelFlagT" 
+                    <div id="isOpenElectronics" name="isOpenElectronics" 
                         class="nui-radiobuttonlist" value="" repeatItems="2" 
                         repeatDirection="" repeatLayout="table" 
                         textField="text" valueField="id" ></div>
@@ -167,19 +176,19 @@
             <tr>
                 <td class="tbtext">维修经营许可证号：</td>
                 <td class="tbCtrl" >
-                    <input id="repairSettorderPrintShowT" name="repairSettorderPrintShowT" class="nui-textbox" >
+                    <input id="repairLicenseNumber" name="repairLicenseNumber" class="nui-textbox" >
                 </td>
             </tr>
             <tr>
                 <td class="tbtext">企业注册区域编码：</td>
                 <td class="tbCtrl" >
-                    <input id="repairSettorderPrintShowT" name="repairSettorderPrintShowT" class="nui-textbox" >
+                    <input id="registerAreaCode" name="registerAreaCode" class="nui-textbox" >
                 </td>
             </tr>
             <tr>
                 <td class="tbtext">电子档案唯一标识：</td>
                 <td class="tbCtrl" >
-                    <input  id="repairSettorderPrintShowT" name="repairSettorderPrintShowT" class="nui-textbox" >
+                    <input  id="electronicKey" name="electronicKey" class="nui-textbox" >
                     <a class="nui-button" onclick=""   plain="false" >获取标识</a>
                 </td>
             </tr>

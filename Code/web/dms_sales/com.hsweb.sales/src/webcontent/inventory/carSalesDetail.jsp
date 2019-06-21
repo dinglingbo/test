@@ -140,7 +140,7 @@
                                   <td colspan="1" style="width:15%">
 										<input allowInput="false" class="nui-textbox" width="100%" id="" name=""/>
                                   </td>  -->
-                                  <td class="title required" style="width:8%">
+                                  <td class="title" style="width:8%">
                                       <label>预交定金：</label>
                                   </td>
                                   <td colspan="1" >

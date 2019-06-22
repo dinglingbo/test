@@ -1549,5 +1549,86 @@ function isSubmitCar(){
     
 }
 
+//返单，草稿的单子不需要返单，已结算的单子不需要返单,有BUG，表格读写的控制
+function backSingle(){
+	if(isTabs==1){
+    	isTabs = 0;
+	    changeValueMsg(1);
+	    document.getElementById("caCalculation").contentWindow.setSelectCarValue(dataF.handcartAmt, dataF.carCost);
+	    document.getElementById("caCalculation").contentWindow.SetDataMsg(dataF.id, dataF.frameColorId, dataF.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
+	    document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
+    }
+	 var billFormData = billForm.getData(true); //主表信息
+	 var status = billFormData.status || 0;
+	 var isSettle = billFormData.isSettle || 0;
+	 if(status == 0){
+		 showMsg("草稿状态的销售单不需要返单","W");
+		 return ;
+	 }
+	 if(isSettle == 1){
+		 showMsg("已结算的销售单不能返单","W");
+		 return ; 
+	 }
+	 nui.ajax({
+         url: baseUrl + "sales.save.backSingle.biz.ext",
+         data: {
+             data: billFormData
+         },
+         cache: false,
+         async: false,
+         success: function(text) {
+             if (text.errCode == "S") {
+                 showMsg("返单成功", "S");
+                 billFormData.status = 0;
+                 billFormData.isSubmitCar = 0;
+                 billFormData.enterId = 0;
+                 billForm.setData(billFormData)
+             }else{
+            	 showMsg(text.errMsg, "E");
+             }
+             nui.unmask(document.body);
+         }
+     });
+    
+}
+
+//工单作废
+function delet(){
+	if(isTabs==1){
+    	isTabs = 0;
+	    changeValueMsg(1);
+	    document.getElementById("caCalculation").contentWindow.setSelectCarValue(dataF.handcartAmt, dataF.carCost);
+	    document.getElementById("caCalculation").contentWindow.SetDataMsg(dataF.id, dataF.frameColorId, dataF.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
+	    document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
+    }
+	 var billFormData = billForm.getData(true); //主表信息
+	 var status = billFormData.status || 0;
+	 var isSettle = billFormData.isSettle || 0;
+	 if(status == 0){
+		 showMsg("草稿状态的销售单不需要返单","W");
+		 return ;
+	 }
+	 if(isSettle == 1){
+		 showMsg("已结算的销售单不能返单","W");
+		 return ; 
+	 }
+	 nui.ajax({
+         url: baseUrl + "sales.save.deletSaleMain.biz.ext",
+         data: {
+        	 saleMain: billFormData
+         },
+         cache: false,
+         async: false,
+         success: function(text) {
+             if (text.errCode == "S") {
+                 showMsg("作废成功", "S");
+             }else{
+            	 showMsg(text.errMsg, "E");
+             }
+             nui.unmask(document.body);
+         }
+     });
+}
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

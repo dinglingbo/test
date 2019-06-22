@@ -154,7 +154,7 @@
                     <td style="text-align:right;">
                         <a class="nui-button" iconCls="" plain="true" onclick="save(0)" id="saveBtn" visible="false"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="save(1)" id="submitBtn" visible="false"><span class="fa fa-save fa-lg"></span>&nbsp;提交</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="save(3)" id="invalidBtn" visible="false"><span class="fa fa-close fa-lg"></span>&nbsp;作废</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="delet()" id="invalidBtn" visible="false"><span class="fa fa-close fa-lg"></span>&nbsp;作废</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="auditingSales()" id="audit" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="selectCar()" id="selectBtn" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;选车</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="isSubmitCar()" id="submitCarBtn" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;交车</a>
@@ -174,7 +174,7 @@
                             <span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
 
                         <ul id="popupMenuMore" class="nui-menu" style="display:none;">
-                            <li iconCls="" onclick="save(11)" id="unfinishBtn">返单</li>
+                            <li iconCls="" onclick="backSingle()" id="unfinishBtn">返单</li>
                             <li iconCls="" onclick="registration()" id="addBtn">车辆上牌</li>
                         </ul>
                     </td>

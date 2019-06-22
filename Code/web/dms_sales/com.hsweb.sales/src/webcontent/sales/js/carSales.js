@@ -243,3 +243,41 @@ function edit(row_uid){
     params.id = row.id;
     openPage(params);
 }
+
+//反结案
+function backSettlement(){
+	var row = itemTimesGrid.getSelected();
+	if(row){
+		var isSettle = row.isSettle || 0;
+		if(isSettle == 1){
+			showMsg("销售单已结算，不能反结案","W");
+			return;
+		}
+		var status = row.status || 0;
+		if(status == 3){
+			showMsg("销售单已作废，不能反结案","W");
+			return;
+		}
+		nui.ajax({
+	         url: baseUrl + "sales.save.backSettlement.biz.ext",
+	         data: {
+	        	 saleMain: row
+	         },
+	         cache: false,
+	         async: false,
+	         success: function(text) {
+	             if (text.errCode == "S") {
+	                 showMsg("反结案成功", "S");
+	             }else{
+	            	 showMsg(text.errMsg, "E");
+	             }
+	             nui.unmask(document.body);
+	         }
+	     });
+	}else{
+		showMsg("请选择销售单记录","W");
+	}
+}
+
+
+

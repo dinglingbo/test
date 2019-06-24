@@ -50,35 +50,43 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">params/carBrandId</process:from>
-      <process:to type="query">ct/_expr[1]/carBrandId</process:to>
+      <process:to type="query">ct/_and[1]/_expr[1]/carBrandId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">params/carSeriesId</process:from>
-      <process:to type="query">ct/_expr[2]/carSeriesId</process:to>
+      <process:to type="query">ct/_and[1]/_expr[2]/carSeriesId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">params/fullName</process:from>
-      <process:to type="query">ct/_expr[3]/fullName</process:to>
+      <process:to type="query">ct/_and[1]/_expr[3]/fullName</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">like</process:from>
-      <process:to type="query">ct/_expr[3]/_op</process:to>
+      <process:to type="query">ct/_and[1]/_expr[3]/_op</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">params/isDisabled</process:from>
-      <process:to type="query">ct/_expr[4]/isDisabled</process:to>
+      <process:to type="query">ct/_and[1]/_expr[4]/isDisabled</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">params/code</process:from>
-      <process:to type="query">ct/_expr[5]/code</process:to>
+      <process:to type="query">ct/_and[1]/_expr[5]/code</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">like</process:from>
-      <process:to type="query">ct/_expr[5]/_op</process:to>
+      <process:to type="query">ct/_and[1]/_expr[5]/_op</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">params/id</process:from>
-      <process:to type="query">ct/_expr[6]/id</process:to>
+      <process:to type="query">ct/_and[1]/_expr[6]/id</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">ct/_or[1]/_or[1]/_expr[7]/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/isShare</process:from>
+      <process:to type="query">ct/_or[1]/_or[2]/_expr[8]/isShare</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">

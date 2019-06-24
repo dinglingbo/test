@@ -73,6 +73,10 @@
       <process:to type="query">ct/_expr[4]/isDisabled</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">ct/_expr[5]/orgid</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">orderNo</process:from>
       <process:to type="query">ct/_orderby[1]/_property</process:to>
     </process:copy>

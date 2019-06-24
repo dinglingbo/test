@@ -4,7 +4,7 @@ var isDisArr = [{id:'',text:'全部'},{id:0,text:'启用'},{id:1,text:'禁用'}]
 var statusList = [{id:0,name:"启用"},{id:1,name:"禁用"}];
 var statusHash = {0:"启用",1:"禁用"};
 var dgGrid = null;
-var nullMsg = "返利政策不能为空!";
+var nullMsg = "精品名称不能为空!";
 $(document).ready(function(v) {
 	dgGrid=nui.get("dgGrid");
     dgGrid.setUrl(gridUrl);

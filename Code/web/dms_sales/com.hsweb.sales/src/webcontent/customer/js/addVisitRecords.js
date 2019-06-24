@@ -210,6 +210,7 @@ function save(){
 	guest.guestProperty = guestCome.guestProperty;
 	guest.mobile = guestCome.mobile;
 	guest.id = guestCome.guestId;
+	guest.guestProperty = nui.get("guestProperty").value;
 	var json = nui.encode({
 		 guest:guest,
 		 guestCome:guestCome,
@@ -287,6 +288,7 @@ function setInitData(params){
 		    	$("#serviceCodeEl").html(guestCome.serviceCode);
 		    	$("#carModelNameEl").html(guestCome.carModelName);
 		    	$("#nameEl").html(guest.fullName);
+		    	nui.get("guestProperty").setValue(guest.guestProperty);
 		    	nui.get("carModelId").setValue(guestCome.carModelId);
 		    	nui.get("carModelName").setValue(guestCome.carModelName);
 		    	nui.get("carModelName").setText(guestCome.carModelName);

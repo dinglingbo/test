@@ -76,6 +76,10 @@
       <process:from type="literal" pattern="reference">like</process:from>
       <process:to type="query">ct/_expr[4]/_op</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">ct/_expr[5]/orgid</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="210" y="96"/>

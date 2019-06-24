@@ -90,8 +90,8 @@
       <targetNode>assign21</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
-          <process:rightOperand type="literal"></process:rightOperand>
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal"/>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>

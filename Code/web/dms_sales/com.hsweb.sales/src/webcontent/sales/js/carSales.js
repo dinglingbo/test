@@ -21,7 +21,7 @@ $(document).ready(function(v) {
     if (nui.get("typeMsg").value == 2) {
         mainGrid2.setVisible(true);
         nui.get("audit").setVisible(true);
-        /*nui.get("auditno").setVisible(true);*/
+        /*nui.get("auditno").setVisible(true);*/ 
         document.getElementById("menubillstatus").style.display = "none";
     }
     if (nui.get("typeMsg").value == 3) {

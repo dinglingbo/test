@@ -1497,12 +1497,17 @@ function isSubmitCar(){
 	    document.getElementById("caCalculation").contentWindow.SetDataMsg(dataF.id, dataF.frameColorId, dataF.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
 	    document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
     }
+	var billFormData = billForm.getData(true); //主表信息
+	if(billFormData.enterId==0){
+		showMsg("销售单暂未选车","W");
+		return;
+	}
     //检验状态
     var boolean = checkMsg(6);
     if (!boolean) {
         return;
     }   
-    var billFormData = billForm.getData(true); //主表信息
+    
     //获取交车信息
     var formData = form.getData();
     billFormData.submitCarMen = formData.submitCarMen;

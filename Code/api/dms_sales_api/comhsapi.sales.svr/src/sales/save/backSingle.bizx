@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="backSingle.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="返单&#xD;&#xA;1、更新销售主表信息&#xD;&#xA;2.将选中的库存车退回(需要判断是否已经选车)&#xD;&#xA;3、预收预付以及对应的业务数据会在审核做处理&#xD;&#xA;4、费用信息不变" title="Administrator&#x9;19-6-10 上午11:22">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="返单：没有审核的单子才可以返单&#xD;&#xA;1、更新销售主表信息&#xD;&#xA;2.将选中的库存车退回(需要判断是否已经选车)&#xD;&#xA;3、预收预付以及对应的业务数据会在审核做处理&#xD;&#xA;4、费用信息不变" title="Administrator&#x9;19-6-10 上午11:22">
     <location x="45" y="15"/>
-    <size height="132" width="301"/>
+    <size height="132" width="645"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -39,8 +39,8 @@
       <sourceNode>assign0</sourceNode>
       <targetNode>invokePojo1</targetNode>
     </sourceConnections>
-    <targetConnections>link46</targetConnections>
-    <location x="326" y="324"/>
+    <targetConnections>link10</targetConnections>
+    <location x="379" y="324"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
@@ -77,7 +77,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="328" y="360"/>
+    <location x="381" y="360"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
@@ -333,6 +333,7 @@
     </sourceConnections>
     <targetConnections>link44</targetConnections>
     <targetConnections>link48</targetConnections>
+    <targetConnections>link12</targetConnections>
     <location x="384" y="548"/>
     <size height="28" width="28"/>
     <nodeLabel>assign14label</nodeLabel>
@@ -352,7 +353,7 @@
       <targetNode>assign5</targetNode>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
-    <location x="400" y="324"/>
+    <location x="438" y="324"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -366,14 +367,14 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="383" y="360"/>
+    <location x="421" y="360"/>
     <figSize height="17" width="56"/>
     <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link46" name="link46" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
-      <targetNode>assign0</targetNode>
+      <targetNode>assign15</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link47" name="link47" displayName="连接线" type="transition">
@@ -435,12 +436,12 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link50</targetConnections>
-    <location x="466" y="322"/>
+    <location x="509" y="323"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="464" y="358"/>
+    <location x="507" y="359"/>
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
@@ -560,6 +561,54 @@
     <location x="661" y="526"/>
     <figSize height="17" width="39"/>
     <node>assign12</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign6</sourceNode>
+      <targetNode>assign14</targetNode>
+    </sourceConnections>
+    <targetConnections>link11</targetConnections>
+    <location x="326" y="412"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign6label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">销售单已作废，不能返单</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
+    <location x="324" y="448"/>
+    <figSize height="17" width="32"/>
+    <node>assign6</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign15" name="赋值15" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign15</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link11" name="link11" displayName="连接线" type="transition">
+      <sourceNode>assign15</sourceNode>
+      <targetNode>assign6</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">data/status</process:leftOperand>
+          <process:rightOperand type="literal">3</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link46</targetConnections>
+    <location x="318" y="324"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign15label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign15label" name="label" nodeType="label">
+    <location x="313" y="360"/>
+    <figSize height="17" width="39"/>
+    <node>assign15</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

@@ -71,7 +71,7 @@
                         <a class="nui-button" iconCls="" plain="true" onclick="addAndEdit(2)" id="editBtn" visible="false"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="addAndEdit(2)" id="deletBtn" visible="false"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="addAndEdit(2)" id="audit" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="addAndEdit(2)" id="auditno" visible="false"><span class="fa fa-close fa-lg"></span>&nbsp;反审</a>
+                       <!--  <a class="nui-button" iconCls="" plain="true" onclick="addAndEdit(2)" id="auditno" visible="false"><span class="fa fa-close fa-lg"></span>&nbsp;反审</a> -->
                         <a class="nui-button" iconCls="" plain="true" onclick="addAndEdit(2)" id="case" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;结案</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="backSettlement()" id="csaeno" visible="false"><span class="fa fa-close fa-lg"></span>&nbsp;反结案</a>
 
@@ -101,17 +101,20 @@
                 editNextOnEnterKey="true" allowCellWrap="true" url="">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
+                    <div field="serviceCode" name="serviceCode" width="100px" headerAlign="center" header="工单号"></div>
+                    <div field="status" name="status" width="100px" headerAlign="center" header="单据状态"></div>
+                    <div field="saleAdvisor" name="saleAdvisor" width="80px" headerAlign="center" header="销售顾问"></div>
                     <div field="guestFullName" name="guestFullName" width="100px" headerAlign="center" header="客户名称"></div>
                     <div field="carModelName" name="carModelName" width="100px" headerAlign="center" header="车型"></div>
                     <div field="submitPlanDate" name="submitPlanDate" width="100px" headerAlign="center" header="预交车日期"></div>
-                    <div field="serviceCode" name="serviceCode" width="100px" headerAlign="center" header="工单号"></div>
-                    <div field="status" name="status" width="100px" headerAlign="center" header="单据状态"></div>
                 </div>
             </div>
             <div id="mainGrid3" visible="false" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="data" showModified="false" onrowdblclick="" allowCellSelect="true"
                 editNextOnEnterKey="true" allowCellWrap="true" url="">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
+                     <div field="serviceCode" name="serviceCode" width="100px" headerAlign="center" header="工单号"></div>
+                     <div field="status" name="status" width="100px" headerAlign="center" header="单据状态"></div>
                     <div field="saleAdvisor" name="saleAdvisor" width="100px" headerAlign="center" header="销售顾问"></div>
                     <div field="guestFullName" name="guestFullName" width="100px" headerAlign="center" header="客户名称"></div>
                     <div field="carModelName" name="carModelName" width="100px" headerAlign="center" header="车型"></div>
@@ -119,7 +122,7 @@
                     <div field="submitPlanDate" name="submitPlanDate" width="100px" headerAlign="center" header="交车日期"></div>
                     <div field="financialEndDate" name="financialEndDate" width="100px" headerAlign="center" header="结案日期"></div>
                     <div field="financialEndMan" name="financialEndMan" width="100px" headerAlign="center" header="结案人"></div>
-                    <div field="serviceCode" name="serviceCode" width="100px" headerAlign="center" header="工单号"></div>
+                   
                 </div>
             </div>
         </div>

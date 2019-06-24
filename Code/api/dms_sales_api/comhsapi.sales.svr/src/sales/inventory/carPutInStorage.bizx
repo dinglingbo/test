@@ -126,6 +126,7 @@
     <targetConnections>link3</targetConnections>
     <targetConnections>link29</targetConnections>
     <targetConnections>link7</targetConnections>
+    <targetConnections>link13</targetConnections>
     <location x="394" y="316"/>
     <size height="28" width="28"/>
     <nodeLabel>assign13label</nodeLabel>
@@ -174,8 +175,8 @@
       <sourceNode>transactioncommit0</sourceNode>
       <targetNode>end1</targetNode>
     </sourceConnections>
-    <targetConnections>link28</targetConnections>
     <targetConnections>link11</targetConnections>
+    <targetConnections>link12</targetConnections>
     <location x="1155" y="147"/>
     <size height="28" width="28"/>
     <nodeLabel>transactioncommit0label</nodeLabel>
@@ -325,11 +326,11 @@
       <process:to type="query">params/token</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">cssCheckEnter/guestId</process:from>
+      <process:from type="query" pattern="reference">cssCheckEnter/logisticCompId</process:from>
       <process:to type="query">params/GuestId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">cssCheckEnter/guestFullName</process:from>
+      <process:from type="query" pattern="reference">cssCheckEnter/logisticCompName</process:from>
       <process:to type="query">params/GuestName</process:to>
     </process:copy>
     <process:copy>
@@ -398,7 +399,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="str2Map" displayName="str2Map" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link28" name="link28" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo5</sourceNode>
-      <targetNode>transactioncommit0</targetNode>
+      <targetNode>assign7</targetNode>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
     <location x="930" y="150"/>
@@ -488,6 +489,39 @@
     <location x="762" y="77"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值7" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign7</sourceNode>
+      <targetNode>transactioncommit0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link13" name="link13" displayName="连接线" type="transition">
+      <sourceNode>assign7</sourceNode>
+      <targetNode>assign13</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link28</targetConnections>
+    <location x="1019" y="152"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign7label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">result/errCode</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">result/errMsg</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
+    <location x="1017" y="188"/>
+    <figSize height="17" width="32"/>
+    <node>assign7</node>
   </nodes>
   <topRuler>
     <guides position="408" horizontal="true"/>

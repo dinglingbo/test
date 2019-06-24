@@ -1511,11 +1511,11 @@
     <size height="28" width="28"/>
     <nodeLabel>assign46label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">result/errCode</process:from>
+      <process:from type="query" pattern="reference">result/errCode</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">result/errMsg</process:from>
+      <process:from type="query" pattern="reference">result/errMsg</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -1694,7 +1694,7 @@
       <targetNode>assign40</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

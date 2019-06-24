@@ -478,7 +478,17 @@ function checkMsg(e) { //统一数据验证
 }
 
 function save(e) { //保存（主表信息+精品加装+购车信息+费用信息）
-	isTabs = 0;
+	if(e==0){
+		if(isTabs==1){
+	    	isTabs = 0;
+		    changeValueMsg(1);
+		    document.getElementById("caCalculation").contentWindow.setSelectCarValue(dataF.handcartAmt, dataF.carCost);
+		    document.getElementById("caCalculation").contentWindow.SetDataMsg(dataF.id, dataF.frameColorId, dataF.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
+		    document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
+	    }
+	}else{
+		isTabs = 0;
+	}
     if (e != 10) { //关闭选车界面后，不再刷新表格，因为选车后enterId还没保存到主表，刷新后enterId为0
         var boolean = checkMsg(e);
         if (!boolean) {
@@ -802,6 +812,13 @@ function updateCheckEnter(enterId) { //返单 修改库存表车辆状态
 }
 
 function checkCost(grid, value) { //费用信息  审核反审
+	if(isTabs==1){
+    	isTabs = 0;
+	    changeValueMsg(1);
+	    document.getElementById("caCalculation").contentWindow.setSelectCarValue(dataF.handcartAmt, dataF.carCost);
+	    document.getElementById("caCalculation").contentWindow.SetDataMsg(dataF.id, dataF.frameColorId, dataF.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
+	    document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
+    }
     var boolean = checkMsg(7);
     if (!boolean) {
         return;
@@ -823,7 +840,7 @@ function checkCost(grid, value) { //费用信息  审核反审
             if (text.errCode == "S") {
                 showMsg(text.errMsg, "S");
             } else {
-                showMsg(text.errMsg, "W");
+                showMsg(text.errMsg, "E");
             }
             costDetailGrid.load({ serviceId: billFormData.id, type: 1 });
             costDetailGrid2.load({ serviceId: billFormData.id, type: 2 });

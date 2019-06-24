@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="auditingSales" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="整车销售&#xD;&#xA;审核调用&#xD;&#xA;生成预两笔预收款,分别是&#xD;&#xA;1、预收金额&#xD;&#xA;2、购车余款&#xD;&#xA;生成两笔预收业务数据&#xD;&#xA;&#xD;&#xA;销售单返单时，需要判断两笔预收是否审核，没有审核更新预收预付金额，只要其中一笔审核了都不再更新预收数据&#xD;&#xA;&#xD;&#xA;返单时有可能还到审核，所以要注意查询数据是否为空&#xD;&#xA;&#xD;&#xA;" title="Administrator&#x9;19-6-14 下午4:08">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="整车销售&#xD;&#xA;审核调用&#xD;&#xA;生成预两笔预收款,分别是&#xD;&#xA;1、预收金额&#xD;&#xA;2、购车余款&#xD;&#xA;生成两笔预收业务数据&#xD;&#xA;&#xD;&#xA;销售单返单时，需要判断两笔预收是否审核，没有审核更新预收预付金额，只要其中一笔审核了都不再更新预收数据&#xD;&#xA;&#xD;&#xA;返单时有可能还到审核，所以要注意查询数据是否为空&#xD;&#xA;&#xD;&#xA;用HTTP请求的接口，如果报错了，事务回滚不了" title="Administrator&#x9;19-6-14 下午4:08">
     <location x="78" y="15"/>
     <size height="266" width="419"/>
   </nodes>
@@ -357,7 +357,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
-    <location x="1215" y="451"/>
+    <location x="1199" y="451"/>
     <size height="28" width="28"/>
     <nodeLabel>assign9label</nodeLabel>
     <process:copy>
@@ -441,12 +441,12 @@
       <process:to type="query">paramsyk/dc</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">122</process:from>
+      <process:from type="literal" pattern="reference">123</process:from>
       <process:to type="query">paramsyk/BillTypeCode</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
-    <location x="1213" y="487"/>
+    <location x="1197" y="487"/>
     <figSize height="17" width="32"/>
     <node>assign9</node>
   </nodes>
@@ -1041,7 +1041,7 @@
       <process:to type="query">params/dc</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">billFormData/billTypeId</process:from>
+      <process:from type="literal" pattern="reference">122</process:from>
       <process:to type="query">params/BillTypeCode</process:to>
     </process:copy>
     <process:copy>
@@ -1077,7 +1077,7 @@
       <process:to type="query">paramsyk/dc</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">billFormData/billTypeId</process:from>
+      <process:from type="literal" pattern="reference">123</process:from>
       <process:to type="query">paramsyk/BillTypeCode</process:to>
     </process:copy>
     <process:copy>
@@ -1188,6 +1188,7 @@
     <sourceConnections xsi:type="process:tLink" id="link90" name="link90" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign26</sourceNode>
       <targetNode>transactionrollback0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link88</targetConnections>
     <targetConnections>link93</targetConnections>

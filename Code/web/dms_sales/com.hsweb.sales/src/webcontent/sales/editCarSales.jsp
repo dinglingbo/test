@@ -321,7 +321,7 @@
                     </div>
                 </div>
                 <div title="购车计算" id="editForm" name="editForm">
-                    <iframe id="caCalculation" src="" style="width: 100%;height: 100%"></iframe>
+                    <iframe id="caCalculation" src="" style="width: 100%;height: 100%; border:0px" ></iframe>
                 </div>
                 <div title="保险信息">
                     <form id="insuranceForm">

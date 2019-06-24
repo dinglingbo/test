@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="settlement.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、把销售主表更新为已结算&#xD;&#xA;2、生成应收&#xD;&#xA;3、库存车更改为已销售车，辆状态（0订货未到1订货已到2入库退货3销售中4已销售）" title="Administrator&#x9;19-6-21 上午9:34">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="结案&#xD;&#xA;1、把销售主表更新为已结算&#xD;&#xA;2、生成应收&#xD;&#xA;3、库存车更改为已销售车，辆状态（0订货未到1订货已到2入库退货3销售中4已销售）" title="Administrator&#x9;19-6-21 上午9:34">
     <location x="30" y="28"/>
     <size height="100" width="449"/>
   </nodes>

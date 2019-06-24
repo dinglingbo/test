@@ -150,7 +150,7 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
-    <targetConnections>link19</targetConnections>
+    <targetConnections>link18</targetConnections>
     <location x="867" y="105"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionrollback0label</nodeLabel>
@@ -336,12 +336,12 @@
     <node>assign5</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
       <targetNode>transactionrollback0</targetNode>
     </sourceConnections>
     <targetConnections>link17</targetConnections>
-    <location x="297" y="327"/>
+    <location x="297" y="330"/>
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
     <process:copy>
@@ -354,7 +354,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
-    <location x="295" y="363"/>
+    <location x="295" y="366"/>
     <figSize height="17" width="32"/>
     <node>assign6</node>
   </nodes>

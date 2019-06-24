@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="delFisRpBillByServiceId.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="查询是否存在，如果存在，需要判断有没有结算&#xD;&#xA;&#xD;&#xA;查询未结算的，没有作废的数据，然后更新为作废；&#xD;&#xA;&#xD;&#xA;2019.2.12取消billTypeId的判断，根据工单IDbillMainId，工单号billServiceId禁用应付数据&#xD;&#xA;" title="Administrator&#x9;18-9-9 下午8:10">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="查询是否存在，如果存在，需要判断有没有结算&#xD;&#xA;&#xD;&#xA;查询未结算的，没有作废的数据，然后更新为作废；&#xD;&#xA;&#xD;&#xA;2019.2.12取消billTypeId的判断，根据工单IDbillMainId，工单号billServiceId禁用应付数据&#xD;&#xA;&#xD;&#xA;2019.6.22 多加一个billTypeId的判断&#xD;&#xA;" title="Administrator&#x9;18-9-9 下午8:10">
     <location x="75" y="-60"/>
-    <size height="136" width="616"/>
+    <size height="151" width="616"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -351,6 +351,14 @@
       <process:to type="query">cond1/_expr[4]/_op</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">billTypeId</process:from>
+      <process:to type="query">cond1/_expr[5]/billTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond1/_expr[5]/_op</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>
@@ -459,6 +467,7 @@
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="billMainId" primitiveType="Int"/>
     <process:input description="" isArray="false" name="billServiceId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="billTypeId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

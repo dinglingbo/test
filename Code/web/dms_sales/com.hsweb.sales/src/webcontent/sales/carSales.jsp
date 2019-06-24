@@ -73,7 +73,7 @@
                         <a class="nui-button" iconCls="" plain="true" onclick="addAndEdit(2)" id="audit" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="addAndEdit(2)" id="auditno" visible="false"><span class="fa fa-close fa-lg"></span>&nbsp;反审</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="addAndEdit(2)" id="case" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;结案</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="addAndEdit(2)" id="csaeno" visible="false"><span class="fa fa-close fa-lg"></span>&nbsp;反结案</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="backSettlement()" id="csaeno" visible="false"><span class="fa fa-close fa-lg"></span>&nbsp;反结案</a>
 
                     </td>
                 </tr>

@@ -1,0 +1,20 @@
+
+
+更新项目缓存ID
+http://qxy.7xdr.com/dms/com.hsapi.system.service.settle.initRpbItemId.biz.ext
+
+
+
+
+INSERT INTO `wb_repair`.`rpb_item` (`id`, `tenant_id`, `orgid`, `code`, `type`, `service_type_id`, 
+`name`, `car_brand_id`, `car_series_id`, `car_model_id`, `py_name`, `tech_level`, `item_time`, 
+`unit_price`, `amt`, `unit_price_fours`, `amt_fours`, `is_share`, `remark`, `is_disabled`, 
+`recorder`, `record_date`, `modifier`, `modify_date`) 
+select (@rowno:=@rowno+1) + 115534, 303, 661, code, `type`, `service_type_id`, 
+`name`, `car_brand_id`, `car_series_id`, `car_model_id`, `py_name`, `tech_level`, `item_time`, 
+`unit_price`, `amt`, `unit_price_fours`, `amt_fours`, `is_share`, `remark`, `is_disabled`, 
+'sys', now(), 'sys', now()
+from `wb_repair`.`rpb_item`,(select @rowno:=0) t
+where wb_repair.rpb_item.orgid = 641
+
+use_times

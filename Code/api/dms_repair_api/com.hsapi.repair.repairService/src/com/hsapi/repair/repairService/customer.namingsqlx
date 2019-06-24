@@ -351,6 +351,112 @@
         order by b.modify_date desc
 	</select>
 	
+	<!--
+		销售开单客户查询，只需要客户联系人，可以不要车辆信息
+	-->
+	<select id="querySellCustomerList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+			a.id id,
+			a.id carId,
+			a.orgid orgid,
+			a.car_no carNo,
+			b.id guestId,
+			a.car_model_full_name carModelFullName,
+			b.full_name guestFullName,
+			b.mobile as guestMobile,
+			a.car_model_id carModelId,
+			a.car_model carModel,
+			a.car_brand_id carBrandId,
+			a.car_model_id_ly as carModelIdLy,
+			a.insure_comp_code insureCompCode,
+			b.addr addr,
+			a.color color,
+			d.name contactName,
+			d.identity identity,
+			d.mobile mobile,
+			d.remark  remark,
+			d.tel tel,
+			d.id contactorId,
+			a.vin as vin,
+		    d.birthday_type as birthdayType,
+            d.birthday,
+            d.sex,
+            d.id_no as idNo,
+            d.wechat_open_id wechatOpenId
+		FROM
+			wb_common.com_guest b 
+			inner join rpb_contactor d on (b.id = d.guest_id)
+			left join rpb_car a on b.id = a.guest_id
+		WHERE
+			b.guest_type = '01020103'
+		<dynamic>
+            <isNotEmpty prepend="and" property="tenantId">  
+                (b.tenant_id = #tenantId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carId">  
+                (a.id = #carId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgId">  
+                (b.orgid = #orgId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">  
+                (b.id = #guestId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="contactorId">  
+                (d.id = #contactorId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carId">  
+                (a.ID = #carId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">  
+                (a.car_no = #carNo#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="lcarNo">  
+                (a.car_no like '%$lcarNo$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carModel">  
+                (a.car_model like '%$carModel$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carVin">  
+                (a.vin like '%$carVin$%')
+            </isNotEmpty>
+           
+            <isNotEmpty prepend="and" property="guestMobile">  
+                (b.mobile = #guestMobile#)
+            </isNotEmpty>
+           
+            <isNotEmpty prepend="and" property="mobile">  
+                (b.mobile like '%$mobile$%' or d.mobile like '%$mobile$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestFullName">  
+                (b.full_name like '%$guestFullName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="contactor">  
+                (d.name like '%$contactor$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="name">  
+                (b.full_name like '%$name$%' or d.name like '%$name$%')
+            </isNotEmpty>
+            
+             <!--纯数字  手机，车牌，车驾号-->
+            <isNotEmpty prepend="and" property="nums">  
+                (b.mobile like '%$nums$%' or b.full_name like '%$nums$%' or d.mobile like '%$nums$%' or a.car_no like '%$nums$%' or a.vin like '%$nums$%')
+            </isNotEmpty>
+             
+             <!--纯字母   车牌，车驾号    数字+字母 车牌，车驾号-->
+            <isNotEmpty prepend="and" property="letters">  
+                (a.car_no like '%$letters$%' or b.full_name like '%$nums$%' or a.vin like '%$letters$%')
+            </isNotEmpty>
+             
+             <!--包含中文   只按名称查询 -->
+            <isNotEmpty prepend="and" property="chis">  
+                (b.full_name like '%$chis$%' or d.name like '%$chis$%')
+            </isNotEmpty>
+             
+        </dynamic>
+        order by b.modify_date desc
+	</select>
+	
 	
 	 <!--保险开单 整车客户 -->
 		<select id="queryCustomerWithSALE" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">

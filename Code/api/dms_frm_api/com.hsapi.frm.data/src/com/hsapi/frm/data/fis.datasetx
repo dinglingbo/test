@@ -14148,7 +14148,7 @@
       </viewField>
     </columnProperty>
   </nodes>
-  <nodes xsi:type="model:PEntityNode" id="node8" name="FisRpAdvance" nodeType="table" displayName="FisRpAdvance" author="Administrator" allUseViewModel="true" instanceClass="" table="fis_rp_advance" genStrategy="assigned">
+  <nodes xsi:type="model:PEntityNode" id="node8" name="FisRpAdvance" nodeType="table" displayName="FisRpAdvance" author="Administrator" allUseViewModel="true" instanceClass="" table="fis_rp_advance" genStrategy="native">
     <location x="60" y="4614"/>
     <size height="462" width="150"/>
     <figSize height="20" width="150"/>

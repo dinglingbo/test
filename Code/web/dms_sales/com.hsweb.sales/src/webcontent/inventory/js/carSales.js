@@ -274,8 +274,7 @@ function quickSearch(type){
         	break;
         //已入库
         case 15:
-        	params.billStatusId=4;
-        	params.auditSign=1;
+        	params.status=3;
         	querysign = 2;
         	querystatusname = "已入库";
         	break;

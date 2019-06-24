@@ -204,6 +204,7 @@ public class HttpUtils {
 	public static String sendPost(String urlParam, Map<String, Object> params,
 			String charset) {
 		StringBuffer resultBuffer = null;
+		JSONObject result =null;
 		StringBuffer sbParams = getParamFromMap(params);
 		HttpURLConnection con = null;
 		OutputStreamWriter osw = null;
@@ -218,9 +219,12 @@ public class HttpUtils {
 			con.setUseCaches(false);
 			con.setRequestProperty("Content-Type",
 					"application/x-www-form-urlencoded");// multipart/form-data
+			con.setRequestProperty("Accept-Charset", "utf-8");
+			con.setRequestProperty("contentType", "utf-8");
 			if (sbParams != null && sbParams.length() > 0) {
 				osw = new OutputStreamWriter(con.getOutputStream(), charset);
-				osw.write(sbParams.substring(0, sbParams.length() - 1));
+				sbParams.substring(0, sbParams.length() - 1);
+				osw.write(sbParams.toString());
 				osw.flush();
 			}
 			// 读取返回内容
@@ -232,6 +236,7 @@ public class HttpUtils {
 			String temp;
 			while ((temp = br.readLine()) != null) {
 				resultBuffer.append(temp);
+				result=JSONObject.parseObject(resultBuffer.toString());
 			}
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -264,7 +269,7 @@ public class HttpUtils {
 			}
 		}
 
-		return resultBuffer.toString();
+		return result.toJSONString();
 	}
 
 	/**
@@ -354,7 +359,14 @@ public class HttpUtils {
 			for (Entry<String, Object> e : params.entrySet()) {
 				sbParams.append(e.getKey());
 				sbParams.append("=");
-				sbParams.append(e.getValue());
+				String s=e.getValue().toString();
+				try {
+					s=java.net.URLEncoder.encode(s,"utf-8");
+				} catch (UnsupportedEncodingException e1) {
+					// TODO 自动生成的 catch 块
+					e1.printStackTrace();
+				}
+				sbParams.append(s);
 				sbParams.append("&");
 			}
 		}
@@ -448,6 +460,7 @@ public class HttpUtils {
 
 			connection.setRequestProperty("cache-control", "no-cache");
 			connection.setRequestProperty("Accept-Charset", "utf-8");
+			connection.setRequestProperty("contentType", "utf-8");
 
 			connection.setDoOutput(true);
 			/* 设置容许输入 */

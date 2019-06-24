@@ -21,14 +21,14 @@ $(document).ready(function(v) {
     if (nui.get("typeMsg").value == 2) {
         mainGrid2.setVisible(true);
         nui.get("audit").setVisible(true);
-        nui.get("auditno").setVisible(true);
-        document.getElementById("menubillstatus").style.display = "none"
+        /*nui.get("auditno").setVisible(true);*/
+        document.getElementById("menubillstatus").style.display = "none";
     }
     if (nui.get("typeMsg").value == 3) {
         mainGrid3.setVisible(true);
         nui.get("case").setVisible(true);
         nui.get("csaeno").setVisible(true);
-        document.getElementById("menubillstatus").style.display = "none"
+        document.getElementById("menubillstatus").style.display = "none";
     }
     quickSearch(4);
     mainGrid.on("load", function(e) {
@@ -65,6 +65,8 @@ $(document).ready(function(v) {
             if (value) {
                 e.cellHtml = format(value, 'yyyy-MM-dd HH:ss');
             }
+        }else if (e.field == "serviceCode") {
+            e.cellHtml = '<a href="##" onclick="edit2(' + e.record._uid + ')">' + e.record.serviceCode + '</a>';
         }
     });
 
@@ -76,7 +78,7 @@ $(document).ready(function(v) {
                 e.cellHtml = format(value, 'yyyy-MM-dd HH:ss');
             }
         }else if (e.field == "serviceCode") {
-            e.cellHtml = '<a href="##" onclick="edit(' + e.record._uid + ')">' + e.record.serviceCode + '</a>';
+            e.cellHtml = '<a href="##" onclick="edit3(' + e.record._uid + ')">' + e.record.serviceCode + '</a>';
         }
     });
 
@@ -191,6 +193,7 @@ function onSearch() {
         default:
             break;
     }
+    //销售单管理。查询
     if (nui.get("typeMsg").value == 1) {
         mainGrid.load({ params: param, type: 1 });
     }
@@ -201,6 +204,7 @@ function onSearch() {
     if (nui.get("typeMsg").value == 3) {
         param.status = 2;
         param.isSettle = 1;
+        param.isSubmitCar = 1;
         mainGrid3.load({ params: param, type: 1 });
     }
 }
@@ -239,6 +243,18 @@ function addAndEdit(e) {
 }
 function edit(row_uid){
     var row = mainGrid.getRowByUID(row_uid);
+    var params = {};  
+    params.id = row.id;
+    openPage(params);
+}
+function edit2(row_uid){
+    var row = mainGrid2.getRowByUID(row_uid);
+    var params = {};  
+    params.id = row.id;
+    openPage(params);
+}
+function edit3(row_uid){
+    var row = mainGrid3.getRowByUID(row_uid);
     var params = {};  
     params.id = row.id;
     openPage(params);

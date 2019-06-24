@@ -130,11 +130,17 @@
 				ON a.guest_id = c.id
 		WHERE 1 = 1
 		<dynamic>
-			<isNotEmpty prepend="and" property="serviceCode">
+		    <isNotEmpty prepend="and" property="serviceCode">
                 (a.service_code= #serviceCode#)
+            </isNotEmpty>
+			<isNotEmpty prepend="and" property="orgid">
+                (a.orgid= #orgid#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="id">
                 (a.id = #id#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isSubmitCar">
+                (a.is_submit_car = #isSubmitCar#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="status">
                 (a.status in ($status$))
@@ -871,10 +877,12 @@
 			id_card	AS	idCard	,
 			license_url	AS	licenseUrl	,
 			id_card_url	AS	idCardUrl	
-
 		FROM wb_common.com_guest 
-		WHERE 1 = 1
+		WHERE guest_type = '01020103'
 		<dynamic>
+		    <isNotEmpty prepend="and" property="tenantId">  
+                (tenant_id = #tenantId#)
+            </isNotEmpty>
 			<isNotEmpty prepend="and" property="fullName">
                 (full_name like '%$fullName$%')
             </isNotEmpty>

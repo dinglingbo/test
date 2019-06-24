@@ -550,7 +550,6 @@ var basicRequiredField = {
 }
 
 var carRequiredField ={
-    "carNo":"车牌号"
 };
 var contactRequiredField ={
     "name":"联系人姓名",
@@ -665,6 +664,15 @@ function onOk()
 		        }
 		    });
 		    //循环判断VIN,车牌号,并判断车辆数组有没有重复车牌
+		    //如果 insCarList的长度为1，且车牌号和VIN都是空，则清空数组且不做判断
+		    if(insCarList && insCarList.length == 1) {
+		    	var carObj = insCarList[0];
+		    	var carObjCarNo = carObj.carNo||"";
+		    	var carObjVin = carObj.vin||"";
+		    	if(carObjCarNo == "" && carObjVin == "") {
+		    		insCarList = [];
+		    	}
+		    }
 		    for(var i = 0;i<insCarList.length;i++){
 		    	var num = 0;//两层循环，等于2就有重复
 		    	//禁用的车辆不判断车牌号Vin
@@ -788,6 +796,13 @@ function setData(data)
 	}
 	if(data.hidden){
 		nui.get("tabs").removeTab(0);
+	}
+	if(data.optType && data.optType == "SELL") {
+		carRequiredField = {};
+	}else {
+		carRequiredField = {
+			"carNo":"车牌号"
+		};
 	}
 	var count = 0;
     init(function()

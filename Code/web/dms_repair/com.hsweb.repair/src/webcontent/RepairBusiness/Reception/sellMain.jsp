@@ -106,12 +106,12 @@
                   <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
                   <div field="status" name="status" width="50" headerAlign="center" header="状态"></div>
                   <div field="serviceCode" name="serviceCode" width="130" headerAlign="center" header="工单号"></div>
-                  <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌" ></div>
-                  <div field="recordDate" name="recordDate" width="100" headerAlign="center" header="开单时间" dateFormat="  yyyy-MM-dd HH:mm"></div>
-                  <div field="carModel" name="carModel" width="80" headerAlign="center" header="品牌车型" ></div>
-                  <div field="carVin" name="carVin" width="80" headerAlign="center" header="车架号(VIN)" ></div>
                   <div field="contactName" name="contactName" width="80px" headerAlign="center" header="联系人姓名"></div>
                   <div field="contactMobile" name="contactMobile" width="100px" headerAlign="center" header="联系人手机"></div>
+                  <div field="recordDate" name="recordDate" width="100" headerAlign="center" header="开单时间" dateFormat="  yyyy-MM-dd HH:mm"></div>
+                  <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌" ></div>
+                  <div field="carModel" name="carModel" width="80" headerAlign="center" header="品牌车型" ></div>
+                  <div field="carVin" name="carVin" width="80" headerAlign="center" header="车架号(VIN)" ></div>
                   <div field="mtAdvisor" name="mtAdvisor" width="50" headerAlign="center" header="服务顾问"></div>
                   <div field="mtAdvisorId" name="mtAdvisorId" width="50" headerAlign="center" header="服务顾问" visible="false"></div>
                   <div field="partAmt" name="partAmt" width="40" headerAlign="center" header="结算金额"></div>

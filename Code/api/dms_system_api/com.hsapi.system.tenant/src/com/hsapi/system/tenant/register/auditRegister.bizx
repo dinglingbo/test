@@ -270,6 +270,10 @@
       <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">reg/modifyDate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tenantId</process:from>
+      <process:to type="query">reg/tenantId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
     <location x="298" y="231"/>

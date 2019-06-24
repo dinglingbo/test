@@ -128,7 +128,7 @@
 				ON a.id = b.id
 			INNER JOIN wb_common.com_guest c
 				ON a.guest_id = c.id
-		WHERE 1 = 1
+		WHERE a.orgid=#orgid#
 		<dynamic>
 			<isNotEmpty prepend="and" property="serviceCode">
                 (a.service_code= #serviceCode#)

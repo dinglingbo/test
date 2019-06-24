@@ -1,5 +1,6 @@
 var webBaseUrl = webPath + contextPath + "/";
-var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
+//var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + saleApi + "/"; 
 var billForm = null;
 var jpGrid = null;
 var jpUrl = baseUrl + "sales.search.searchCsbGiftMsg.biz.ext";
@@ -478,17 +479,13 @@ function checkMsg(e) { //统一数据验证
 }
 
 function save(e) { //保存（主表信息+精品加装+购车信息+费用信息）
-	if(e==0){
-		if(isTabs==1){
-	    	isTabs = 0;
-		    changeValueMsg(1);
-		    document.getElementById("caCalculation").contentWindow.setSelectCarValue(dataF.handcartAmt, dataF.carCost);
-		    document.getElementById("caCalculation").contentWindow.SetDataMsg(dataF.id, dataF.frameColorId, dataF.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
-		    document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
-	    }
-	}else{
-		isTabs = 0;
-	}
+	if(isTabs==1){
+    	isTabs = 0;
+	    changeValueMsg(1);
+	    document.getElementById("caCalculation").contentWindow.setSelectCarValue(dataF.handcartAmt, dataF.carCost);
+	    document.getElementById("caCalculation").contentWindow.SetDataMsg(dataF.id, dataF.frameColorId, dataF.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
+	    document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
+    }
     if (e != 10) { //关闭选车界面后，不再刷新表格，因为选车后enterId还没保存到主表，刷新后enterId为0
         var boolean = checkMsg(e);
         if (!boolean) {
@@ -1487,7 +1484,8 @@ function auditingSales(){
         url: baseUrl + "sales.save.auditingSales.biz.ext",
         data: {
             billFormData: billFormData,
-            caCalculationData: caCalculationData
+            caCalculationData: caCalculationData,
+            token:token
         },
         cache: false,
         async: false,

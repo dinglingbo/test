@@ -976,6 +976,7 @@
     <sourceConnections xsi:type="process:tLink" id="link82" name="link82" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign5</sourceNode>
       <targetNode>assign24</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link49</targetConnections>
     <location x="1138" y="525"/>
@@ -991,6 +992,7 @@
     <sourceConnections xsi:type="process:tLink" id="link83" name="link83" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign24</sourceNode>
       <targetNode>invokePojo9</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link82</targetConnections>
     <location x="1231" y="525"/>
@@ -1010,7 +1012,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">token</process:from>
-      <process:to type="query">params/token</process:to>
+      <process:to type="query">p/token</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">billFormData/guestId</process:from>
@@ -1043,10 +1045,6 @@
     <process:copy>
       <process:from type="literal" pattern="reference">122</process:from>
       <process:to type="query">params/BillTypeCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">token</process:from>
-      <process:to type="query">paramsyk/token</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">billFormData/guestId</process:from>
@@ -1099,6 +1097,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">billFormData/id</process:from>
       <process:to type="query">p/billMainId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billFormData/serviceCode</process:from>
+      <process:to type="query">p/billServiceId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign24label" name="label" nodeType="label">

@@ -1,5 +1,6 @@
 var webBaseUrl = webPath + contextPath + "/";
-var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
+//var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + saleApi + "/"; 
 var billForm = null;
 var jpGrid = null;
 var jpUrl = baseUrl + "sales.search.searchCsbGiftMsg.biz.ext";
@@ -268,6 +269,8 @@ $(document).ready(function(v) {
             } else {
                 e.cancel = true;
             }
+        }else {
+            e.cancel = true;
         }
         
     });
@@ -296,6 +299,8 @@ $(document).ready(function(v) {
             } else {
                 e.cancel = true;
             }
+        }else {
+            e.cancel = true;
         }
     });
 
@@ -392,11 +397,11 @@ function checkMsg(e) { //统一数据验证
     var boolean = false;
     isTabs = 0;
     var billFormData = billForm.getData(true); //主表信息
-    if (billFormData.id) {
+   /* if (billFormData.id) {
     	if(e!=6 && e!=4){
     		searchSalesMain(billFormData.id, 1);
     	}
-    }
+    }*/
     if (billFormData.status == 3) {
         showMsg("当前工单已作废！", "W");
         return boolean;
@@ -477,18 +482,151 @@ function checkMsg(e) { //统一数据验证
     return true;
 }
 
+//草稿和提交调用该方法(草稿和提交可以改变主表信息、精品信息、购车预算)
 function save(e) { //保存（主表信息+精品加装+购车信息+费用信息）
-	if(e==0){
-		if(isTabs==1){
-	    	isTabs = 0;
-		    changeValueMsg(1);
-		    document.getElementById("caCalculation").contentWindow.setSelectCarValue(dataF.handcartAmt, dataF.carCost);
-		    document.getElementById("caCalculation").contentWindow.SetDataMsg(dataF.id, dataF.frameColorId, dataF.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
-		    document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
-	    }
-	}else{
-		isTabs = 0;
-	}
+	if(isTabs==1){
+    	isTabs = 0;
+	    changeValueMsg(1);
+	    document.getElementById("caCalculation").contentWindow.setSelectCarValue(dataF.handcartAmt, dataF.carCost);
+	    document.getElementById("caCalculation").contentWindow.SetDataMsg(dataF.id, dataF.frameColorId, dataF.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
+	    document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
+    }
+	var boolean = checkMsg(e);
+    if (!boolean) {
+        return;
+    }
+    var billFormData = billForm.getData(true); //主表信息
+   
+    if (e == 0) {
+        billFormData.enterId = 0;
+        billFormData.isSubmitCar = 0;
+        billFormData.isSettle = 0;
+    }
+    var params = document.getElementById("caCalculation").contentWindow.getValue(); //购车信息
+    var caCalculationData = params.data;
+    var jpDetailGridAdd = jpDetailGrid.getChanges("added"); //精品加装
+    var jpDetailGridEdit = jpDetailGrid.getChanges("modified");
+    var jpDetailGridDel = jpDetailGrid.getChanges("removed");
+    
+    //判断jpDetailGridAdd,jpDetailGridDel里面有没有已存在的值
+	   if(giftData.length>0 && jpDetailGridAdd.length>0){
+	       for(var i = 0;i<giftData.length;i++){
+	           var old = giftData[i];
+	           for(var j = 0;j<jpDetailGridAdd.length;j++){
+	               var add = jpDetailGridAdd[j];
+	               if(old.giftId == add.giftId){
+	                   var updat = add;
+	                   updat.id = old.id;
+	                   updat.serviceId = old.serviceId;
+	                   jpDetailGridEdit.push(updat);
+	                   for(var n = 0;n<jpDetailGridDel.length;n++){
+	                        var del = jpDetailGridDel[n];
+	                       if(del.giftId == old.giftId){
+	                         // delete jpDetailGridDel[n];
+	                         jpDetailGridDel.splice(n,1);
+	                       }
+	                   }
+	                    jpDetailGridAdd.splice(j,1);
+	               }
+	           }
+	           
+	       }
+    }	
+    
+    caCalculationData.billType = 2;
+    var saleExtend = caCalculationData;
+    //agentGrossProfit:保险毛利
+    if (nui.get("agentGrossProfit").value != "") {
+        saleExtend.agentGrossProfit = parseFloat(nui.get("agentGrossProfit").value);
+    } else {
+        saleExtend.agentGrossProfit = 0;
+    }
+    billFormData.saleAdvisor = nui.get("saleAdvisorId").text;
+    billFormData.status = e; //0 草稿 、1提交（待审）、2已审、3作废
+    
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '保存中...'
+    });
+    nui.ajax({
+        url: baseUrl + "sales.save.saveSaleMainAll.biz.ext",
+        data: {
+            billFormData: billFormData,
+            caCalculationData: caCalculationData,
+            jpDetailGridAdd: jpDetailGridAdd,
+            jpDetailGridEdit: jpDetailGridEdit,
+            jpDetailGridDel: jpDetailGridDel,
+            saleExtend: saleExtend
+        },
+        cache: false,
+        async: false,
+        success: function(text ) {
+            if (text.errCode == "S") {
+                var serviceId = text.serviceId;
+                var data = text.billFormData;
+                dataF = text.billFormData;
+                billForm.setData(data);
+                $("#servieIdEl").html(data.serviceCode);
+                document.getElementById("caCalculation").contentWindow.SetDataMsg(serviceId);
+               // searchSalesMain(serviceId, 0);
+                jpDetailGrid.load({ billType: 2, serviceId: serviceId },function(){
+                	giftData = jpDetailGrid.getData();
+                });
+                costDetailGrid.load({ serviceId: serviceId, type: 1 });
+                costDetailGrid2.load({ serviceId: serviceId, type: 2 });
+                changeValueMsg(1);
+                nui.get("carModelName").setValue(data.carModelName);
+                nui.get("carModelName").setText(data.carModelName);
+               
+               if (data.status != 0) {
+                  nui.get("saveBtn").disable();
+                  nui.get("submitBtn").disable();
+                  setReadOnlyMsg();
+                  document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
+              } else {
+                 nui.get("saveBtn").enable();
+                 nui.get("submitBtn").enable();
+                 setInputModel();
+                 document.getElementById("caCalculation").contentWindow.setInputModel();
+            }
+             if(data.guestId) {
+                insuranceMsg(data.guestId);
+             }
+             setReadOnlySubmitCar(1);
+             var msg = (data.contactor || "") + "/" + (data.contactorTel || "");
+             if(data.contactor && data.contactorTel) {
+                searchNameEl.setValue(msg);
+             }
+             if(!data.contactor && data.contactorTel) {
+                searchNameEl.setValue(data.contactorTel);
+            }
+            if(data.contactor && !data.contactorTel) {
+                searchNameEl.setValue(data.contactor);
+             }
+            searchNameEl.setEnabled(false);
+            searchNameEl.setVisible(true);
+            var sk = document.getElementById("search_key");
+            sk.style.display = "none";
+            doSetStyle(data);          
+            showMsg(text.errMsg, "S");
+            nui.unmask(document.body);
+            } else {
+                showMsg(text.errMsg, "E");
+                nui.unmask(document.body);
+            }
+        }
+    });
+}
+   
+function save2(e) { //保存（主表信息+精品加装+购车信息+费用信息）
+	if(isTabs==1){
+    	isTabs = 0;
+	    changeValueMsg(1);
+	    document.getElementById("caCalculation").contentWindow.setSelectCarValue(dataF.handcartAmt, dataF.carCost);
+	    document.getElementById("caCalculation").contentWindow.SetDataMsg(dataF.id, dataF.frameColorId, dataF.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
+	    document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
+    }
     if (e != 10) { //关闭选车界面后，不再刷新表格，因为选车后enterId还没保存到主表，刷新后enterId为0
         var boolean = checkMsg(e);
         if (!boolean) {
@@ -635,6 +773,10 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
     });
 }
 
+
+
+
+
 function showAdvanceChargeAmt(billFormData, caCalculationData) {
     nui.ajax({
         url: baseUrl + "sales.save.generatingAdvancePayment.biz.ext",
@@ -682,7 +824,9 @@ function costMsg() { //保存费用信息
             serviceId: billFormData.id,
             addArr: addArr,
             editArr: editArr,
-            deleteArr: deleteArr
+            deleteArr: deleteArr,
+            type:1,
+            token:token
         },
         cache: false,
         async: false,
@@ -1487,7 +1631,8 @@ function auditingSales(){
         url: baseUrl + "sales.save.auditingSales.biz.ext",
         data: {
             billFormData: billFormData,
-            caCalculationData: caCalculationData
+            caCalculationData: caCalculationData,
+            token:token
         },
         cache: false,
         async: false,
@@ -1567,6 +1712,7 @@ function isSubmitCar(){
                 //交车信息不能修改，交车按钮不可用
                 setReadOnlySubmitCar(1);
                 nui.get("submitCarBtn").disable();
+                //费用信息不可填写
                 showMsg("交车成功", "S");
                 nui.unmask(document.body);
                 doSetStyle(billFormData);
@@ -1616,7 +1762,16 @@ function backSingle(){
                  billFormData.status = 0;
                  billFormData.isSubmitCar = 0;
                  billFormData.enterId = 0;
-                 billForm.setData(billFormData)
+                 billForm.setData(billFormData);
+                 doSetStyle(billFormData);
+                 //如果是在销售管理返单，表格信息、精品加装、购车预算可编辑
+                 if(nui.get("typeMsg").value ==1){
+                	 setReadOnlySubmitCar(1);//交车信息只读
+                	 setInputModel();//表格读写
+                	 document.getElementById("caCalculation").contentWindow.setInputModel();//购车预算读写
+                	 nui.get("saveBtn").enable();
+                     nui.get("submitBtn").enable();
+                 }
              }else{
             	 showMsg(text.errMsg, "E");
              }
@@ -1657,7 +1812,7 @@ function delet(){
              if (text.errCode == "S") {
                  showMsg("作废成功", "S");
                  setReadOnlyMsg();//表格不可读
-                 setReadOnlySubmitCar(1);//交车信息只读
+                 setReadOnlySubmitCar(1);//交车信息只读，读写setInputModel
                  document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
                  billFormData.status = 3;
                  billForm.getData(billFormData);

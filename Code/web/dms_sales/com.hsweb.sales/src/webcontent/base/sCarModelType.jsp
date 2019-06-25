@@ -14,7 +14,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%=webPath + contextPath%>/sales/base/js/sCarModelType.js?v=1.1.3"></script>
+    <script src="<%=webPath + contextPath%>/sales/base/js/sCarModelType.js?v=1.1.4"></script>
     <style>
         html,
         body {
@@ -90,26 +90,26 @@
                         <div property="columns">
                             <div type="indexcolumn" headerAlign="center" width="60px">序号</div>
                             <!-- <div type="checkcolumn" class="mini-radiobutton" width="60px">选择</div> -->
-                            <div field="code" headerAlign="center" allowSort="true" width="100px">车型编号</div>
+                            <div field="code" headerAlign="center" allowSort="true" width="140px">车型编号</div>
                             <div field="carBrandId" headerAlign="center" allowSort="true" width="100px">汽车品牌</div>
                             <div field="fullName" headerAlign="center" allowSort="true" width="400px">车型全称</div>
                             <div field="pyCode" headerAlign="center" allowSort="true" width="100px">拼音码</div>
                             <!-- <div field="" headerAlign="center" allowSort="true" width="100px">车辆类型</div> -->
-                            <div field="fyear" headerAlign="center" allowSort="true" width="100px">年款</div>
-                            <div field="launchDate" headerAlign="center" allowSort="true" width="100px">上市日期</div>
-                            <div field="carStructureType" headerAlign="center" allowSort="true" width="100px">车体结构</div>
-                            <div field="level" headerAlign="center" allowSort="true" width="100px">车辆级别</div>
-                            <div field="gearBox" headerAlign="center" allowSort="true" width="100px">变速箱</div>
-                            <div field="outputVolume" headerAlign="center" allowSort="true" width="100px">排量</div>
-                            <div field="driveMode" headerAlign="center" allowSort="true" width="100px">驱动方式</div>
-                            <div field="isImported" headerAlign="center" allowSort="true" width="100px">是否进口</div>
-                            <div field="seatQty" headerAlign="center" allowSort="true" width="100px">座位数</div>
-                            <div field="guidingPrice" headerAlign="center" allowSort="true" width="100px">指导进货价</div>
-                            <div field="sellPrice" headerAlign="center" allowSort="true" width="100px">指导销售价</div>
-                            <div field="sellPriceMin" headerAlign="center" allowSort="true" width="100px">公司限价</div>
+                            <div field="fyear" headerAlign="center" allowSort="true" width="70px">年款</div>
+                            <div field="launchDate" headerAlign="center" allowSort="true" width="80px">上市日期</div>
+                            <div field="carStructureType" headerAlign="center" allowSort="true" width="80px">车体结构</div>
+                            <div field="level" headerAlign="center" allowSort="true" width="70px">车辆级别</div>
+                            <div field="gearBox" headerAlign="center" allowSort="true" width="70px">变速箱</div>
+                            <div field="outputVolume" headerAlign="center" allowSort="true" width="80px">排量</div>
+                            <div field="driveMode" headerAlign="center" allowSort="true" width="80px">驱动方式</div>
+                            <div field="isImported" headerAlign="center" allowSort="true" width="80px">是否进口</div>
+                            <div field="seatQty" headerAlign="center" allowSort="true" width="70px">座位数</div>
+                            <div field="guidingPrice" headerAlign="center" allowSort="true" width="80px">指导进货价</div>
+                            <div field="sellPrice" headerAlign="center" allowSort="true" width="80px">指导销售价</div>
+                            <div field="sellPriceMin" headerAlign="center" allowSort="true" width="80px">公司限价</div>
                             <div field="sellOrderPrice" headerAlign="center" allowSort="true" width="100px">购车订金</div>
                             <div field="configure" headerAlign="center" allowSort="true" width="100px">备注说明</div>
-                            <div field="isDisabled" headerAlign="center" allowSort="true" width="100px">启用/禁用</div>
+                            <div field="isDisabled" headerAlign="center" allowSort="true" width="70px">启用/禁用</div>
                         </div>
                     </div>
                 </div>

@@ -18,7 +18,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">restMag</process:from>
+      <process:from type="query" pattern="reference">restMsg</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -150,7 +150,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">restMap/msg</process:from>
-      <process:to type="query">restMag</process:to>
+      <process:to type="query">restMsg</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -285,7 +285,7 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="restMap"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="code" primitiveType="String"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="restMag" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="restMsg" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="agency_id" primitiveType="String"/>

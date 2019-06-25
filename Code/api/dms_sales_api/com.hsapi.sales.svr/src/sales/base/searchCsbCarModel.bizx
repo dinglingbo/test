@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="searchCsbPDICarTemplate" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="searchCsbCarModel" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -41,7 +41,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.sales.data.csb.CsbPdiCarTemplate</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.sales.data.csb.CsbCarModel</process:from>
       <process:to type="query">ct/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -49,32 +49,44 @@
       <process:to type="query">page/isCount</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">params/code</process:from>
-      <process:to type="query">ct/_expr[1]/code</process:to>
+      <process:from type="query" pattern="reference">params/carBrandId</process:from>
+      <process:to type="query">ct/_and[1]/_expr[1]/carBrandId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/carSeriesId</process:from>
+      <process:to type="query">ct/_and[1]/_expr[2]/carSeriesId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/fullName</process:from>
+      <process:to type="query">ct/_and[1]/_expr[3]/fullName</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">like</process:from>
-      <process:to type="query">ct/_expr[1]/_op</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">params/carModelName</process:from>
-      <process:to type="query">ct/_expr[2]/carModelName</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">like</process:from>
-      <process:to type="query">ct/_expr[2]/_op</process:to>
+      <process:to type="query">ct/_and[1]/_expr[3]/_op</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">params/isDisabled</process:from>
-      <process:to type="query">ct/_expr[3]/isDisabled</process:to>
+      <process:to type="query">ct/_and[1]/_expr[4]/isDisabled</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">params/name</process:from>
-      <process:to type="query">ct/_expr[4]/name</process:to>
+      <process:from type="query" pattern="reference">params/code</process:from>
+      <process:to type="query">ct/_and[1]/_expr[5]/code</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">like</process:from>
-      <process:to type="query">ct/_expr[4]/_op</process:to>
+      <process:to type="query">ct/_and[1]/_expr[5]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/id</process:from>
+      <process:to type="query">ct/_and[1]/_expr[6]/id</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">ct/_or[1]/_or[1]/_expr[7]/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/isShare</process:from>
+      <process:to type="query">ct/_or[1]/_or[2]/_expr[8]/isShare</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">

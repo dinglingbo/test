@@ -18,7 +18,8 @@ $(document).ready(function () {
     grid.setUrl(gridUrl);
     grid.load({
         params: {
-            isDisabled:0
+            isDisabled: 0,
+            isShare:0//共享
         }
     });
     tree = nui.get("tree1"); 
@@ -83,7 +84,9 @@ $(document).ready(function () {
     tree.on("nodedblclick",function(e)
     {
         var node = e.node;
-        var params = {};
+        var params = {
+            isShare:0//共享
+        };
         if("carSeries" == node.nodeType)
         {
             var pNode = tree.getParentNode(node);
@@ -176,7 +179,8 @@ function search() {
         carBrandId:carBrandId.value,
         carSeriesId:carSeriesId.value,
         fullName: fullName.value,
-        code:nui.get("code").value
+        code:nui.get("code").value,
+        isShare:0//共享
     }
     grid.load({ params: params, token: token });
 }

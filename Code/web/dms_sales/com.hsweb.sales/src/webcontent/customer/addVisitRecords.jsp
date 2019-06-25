@@ -7,7 +7,7 @@
 
 		<head>
 			<title>编辑来访记录</title>
-			<script src="<%= request.getContextPath() %>/sales/customer/js/addVisitRecords.js?v=1.0.1"></script>
+			<script src="<%= request.getContextPath() %>/sales/customer/js/addVisitRecords.js?v=1.0.2"></script>
 			<style type="text/css">
 				.dtable {
 					table-layout: fixed;
@@ -169,7 +169,7 @@
 									<label>客户性质：</label>
 								</td>
 								<td>
-									<input class="nui-combobox" id="guestProperty" emptyText="个人" name="guestProperty" data="[{guestProperty:013902,text:'个人'},{guestProperty:013901,text:'单位'},{guestProperty:013903,text:'个体户'}]"
+									<input class="nui-combobox" id="guestProperty" emptyText="" name="guestProperty" data="[{guestProperty:013902,text:'个人'},{guestProperty:013901,text:'单位'},{guestProperty:013903,text:'个体户'}]"
 									 width="100%" onvaluechanged="onSearch" textField="text" valueField="guestProperty" value="013902" />
 								</td>
 							</tr>
@@ -191,7 +191,7 @@
 										<label>是否试驾：</label>
 									</td>
 									<td colspan="1">
-										<input class="nui-combobox" id="isTestDrive" emptyText="是" name="isTestDrive" data="[{isTestDrive:1,text:'是'},{isTestDrive:0,text:'否'}]"
+										<input class="nui-combobox" id="isTestDrive" emptyText="" name="isTestDrive" data="[{isTestDrive:1,text:'是'},{isTestDrive:0,text:'否'}]"
 										 width="98%" textField="text" valueField="isTestDrive" value="1" />
 									</td>
 							</tr>

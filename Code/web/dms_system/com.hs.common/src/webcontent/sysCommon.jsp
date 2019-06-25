@@ -136,6 +136,8 @@
 	String isOpenApp = "";
 	String isOnlySeeOwn ="";
 	String isCanSeePrice ="";
+	//仓先生公司ID
+	String agencyId = "";
 	
 	if (session == null || session.getAttribute("userObject") == null) {
 		%>backToLogin();<%
@@ -232,6 +234,9 @@
                 }
                 if(attr.get("isReadSysmsg") != null){
                 	isReadSysmsg = attr.get("isReadSysmsg").toString();
+                }
+                if(attr.get("agencyId") != null){
+                	agencyId = attr.get("agencyId").toString();
                 }
                 
                 if(attr.get("billParams") != null){
@@ -377,6 +382,7 @@
 	var currIsOpenApp ="<%=isOpenApp%>";
 	var currIsOnlySeeOwn ="<%=isOnlySeeOwn%>";
 	var currIsCanSeePrice ="<%=isCanSeePrice%>";
+	var currAgencyId ="<%=agencyId %>";
     //alert("token=" + token);
     
     /* var _sysMsg_;

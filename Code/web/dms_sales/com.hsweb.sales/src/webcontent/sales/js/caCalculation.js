@@ -49,6 +49,7 @@ function SetDataMsg(serviceId, frameColorId, interialColorId) {
         url: baseUrl + "sales.search.searchSaleCalc.biz.ext",
         type: "post",
         cache: false,
+        async: false,
         data: {
             params: params
         },

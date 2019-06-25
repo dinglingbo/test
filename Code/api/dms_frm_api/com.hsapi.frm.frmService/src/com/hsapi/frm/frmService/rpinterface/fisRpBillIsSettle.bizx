@@ -107,7 +107,7 @@
       <targetNode>assign1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -191,7 +191,7 @@
       <targetNode>assign8</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -382,6 +382,7 @@
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
       <targetNode>invokePojo2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
     <location x="243" y="195"/>
@@ -433,6 +434,7 @@
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>assign10</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
     <location x="330" y="195"/>
@@ -476,7 +478,7 @@
       <targetNode>assign9</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -507,7 +509,7 @@
       <targetNode>subprocess0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -516,42 +518,6 @@
     <location x="570" y="361"/>
     <size height="28" width="28"/>
     <nodeLabel>assign11label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">token</process:from>
-      <process:to type="query">params/token</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">billFormData/guestId</process:from>
-      <process:to type="query">params/GuestId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">billFormData/guestFullName</process:from>
-      <process:to type="query">params/GuestName</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">billFormData/serviceCode</process:from>
-      <process:to type="query">params/ServiceId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">billFormData/id</process:from>
-      <process:to type="query">params/BillMainId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">122</process:from>
-      <process:to type="query">params/BillTypeId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">fisRpAdvance/amt</process:from>
-      <process:to type="query">params/BillAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">2</process:from>
-      <process:to type="query">params/dc</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">billFormData/billTypeId</process:from>
-      <process:to type="query">params/BillTypeCode</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
     <location x="565" y="397"/>
@@ -612,7 +578,7 @@
       <targetNode>subprocess1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -643,7 +609,7 @@
       <targetNode>assign4</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -751,6 +717,7 @@
     <location x="644" y="220"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="rpBillList" iterableElement="temp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
@@ -877,8 +844,8 @@
       <process:to type="query">recondAd/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">billFormOld/id</process:from>
-      <process:to type="query">recondAd/_expr[1]/billMainId</process:to>
+      <process:from type="query" pattern="reference">billServiceId</process:from>
+      <process:to type="query">recondAd/_expr[1]/code</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
@@ -958,11 +925,13 @@
     <sourceConnections xsi:type="process:tLink" id="link38" name="link38" displayName="link63" isDefault="true" type="transition">
       <sourceNode>loopstart1</sourceNode>
       <targetNode>assign31</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link39</targetConnections>
     <location x="1082" y="220"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="returnFisRpAdvance" iterableElement="tempAd"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend1label" name="label" nodeType="label">
@@ -1249,7 +1218,7 @@
       <targetNode>assign18</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -1314,7 +1283,7 @@
       <targetNode>assign20</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -1446,10 +1415,10 @@
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="billMainId" primitiveType="Int"/>
     <process:input description="" isArray="false" name="type" primitiveType="Int"/>
-    <process:input description="" isArray="false" name="billTypeId" primitiveType="String"/>
-    <process:input description="" isArray="false" name="billServiceId" primitiveType="String"/>
+    <process:input description="业务类型" isArray="false" name="billTypeId" primitiveType="String"/>
+    <process:input description="工单号" isArray="false" name="billServiceId" primitiveType="String"/>
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
-    <process:input anyType="java.util.HashMap" description="" isArray="false" name="paramyk"/>
+    <process:input anyType="java.util.HashMap" description="" isArray="false" name="paramsyk"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

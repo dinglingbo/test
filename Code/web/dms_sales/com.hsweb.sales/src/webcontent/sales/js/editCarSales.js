@@ -1,5 +1,6 @@
 var webBaseUrl = webPath + contextPath + "/";
-var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
+//var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + saleApi + "/"; 
 var billForm = null;
 var jpGrid = null;
 var jpUrl = baseUrl + "sales.search.searchCsbGiftMsg.biz.ext";
@@ -380,6 +381,10 @@ $(document).ready(function(v) {
         billFormData.contactorTel = item.mobile;
         billForm.setData(billFormData);
     });
+    
+    
+    //document.getElementById("showA1").style.display = "";
+	document.getElementById("repairStatus").style.display='none';
 });
 
 function checkMsg(e) { //统一数据验证  
@@ -474,7 +479,13 @@ function checkMsg(e) { //统一数据验证
 }
 
 function save(e) { //保存（主表信息+精品加装+购车信息+费用信息）
-	isTabs = 0;
+	if(isTabs==1){
+    	isTabs = 0;
+	    changeValueMsg(1);
+	    document.getElementById("caCalculation").contentWindow.setSelectCarValue(dataF.handcartAmt, dataF.carCost);
+	    document.getElementById("caCalculation").contentWindow.SetDataMsg(dataF.id, dataF.frameColorId, dataF.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
+	    document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
+    }
     if (e != 10) { //关闭选车界面后，不再刷新表格，因为选车后enterId还没保存到主表，刷新后enterId为0
         var boolean = checkMsg(e);
         if (!boolean) {
@@ -741,6 +752,7 @@ function add(){
     sk.style.display = "";
     searchKeyEl.focus();
     searchKeyEl.setValue("");//点增加给输入框个值，防止触发不了onchanged方法，不能放入客户
+    document.getElementById("repairStatus").style.display='none';
     //主表信息
 	billForm.setData([]);
 	nui.get("carModelName").setText("");
@@ -797,6 +809,13 @@ function updateCheckEnter(enterId) { //返单 修改库存表车辆状态
 }
 
 function checkCost(grid, value) { //费用信息  审核反审
+	if(isTabs==1){
+    	isTabs = 0;
+	    changeValueMsg(1);
+	    document.getElementById("caCalculation").contentWindow.setSelectCarValue(dataF.handcartAmt, dataF.carCost);
+	    document.getElementById("caCalculation").contentWindow.SetDataMsg(dataF.id, dataF.frameColorId, dataF.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
+	    document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
+    }
     var boolean = checkMsg(7);
     if (!boolean) {
         return;
@@ -818,7 +837,7 @@ function checkCost(grid, value) { //费用信息  审核反审
             if (text.errCode == "S") {
                 showMsg(text.errMsg, "S");
             } else {
-                showMsg(text.errMsg, "W");
+                showMsg(text.errMsg, "E");
             }
             costDetailGrid.load({ serviceId: billFormData.id, type: 1 });
             costDetailGrid2.load({ serviceId: billFormData.id, type: 2 });
@@ -939,6 +958,7 @@ function searchSalesMain(serviceId, type) { //查询主表信息
                 searchNameEl.setVisible(true);
                 var sk = document.getElementById("search_key");
                 sk.style.display = "none";
+                doSetStyle(data);
             };
             nui.unmask(document.body);
         }
@@ -1035,6 +1055,7 @@ function selectCar() { //点击选车时触发
                 //dataF.handcartAmt = handcartAmt;
                // dataF.carCost = carCost;
              //   save(10); //避免 enterId赋值 导致触发表格验证判断
+                doSetStyle(result);
             }
         }
     });
@@ -1463,7 +1484,8 @@ function auditingSales(){
         url: baseUrl + "sales.save.auditingSales.biz.ext",
         data: {
             billFormData: billFormData,
-            caCalculationData: caCalculationData
+            caCalculationData: caCalculationData,
+            token:token
         },
         cache: false,
         async: false,
@@ -1473,7 +1495,7 @@ function auditingSales(){
             	billForm.setData(billFormData)
             	showMsg("审核成功" || text.errMsg, "S");
                 nui.unmask(document.body);
-
+                doSetStyle(billFormData);
             } else {
                 showMsg(text.errMsg, "E");
                 nui.unmask(document.body);
@@ -1490,12 +1512,17 @@ function isSubmitCar(){
 	    document.getElementById("caCalculation").contentWindow.SetDataMsg(dataF.id, dataF.frameColorId, dataF.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
 	    document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
     }
+	var billFormData = billForm.getData(true); //主表信息
+	if(billFormData.enterId==0){
+		showMsg("销售单暂未选车","W");
+		return;
+	}
     //检验状态
     var boolean = checkMsg(6);
     if (!boolean) {
         return;
     }   
-    var billFormData = billForm.getData(true); //主表信息
+    
     //获取交车信息
     var formData = form.getData();
     billFormData.submitCarMen = formData.submitCarMen;
@@ -1540,6 +1567,7 @@ function isSubmitCar(){
                 nui.get("submitCarBtn").disable();
                 showMsg("交车成功", "S");
                 nui.unmask(document.body);
+                doSetStyle(billFormData);
             } else {
                 showMsg(text.errMsg, "E");
                 nui.unmask(document.body);
@@ -1569,6 +1597,10 @@ function backSingle(){
 		 showMsg("已结算的销售单不能返单","W");
 		 return ; 
 	 }
+	 if(status == 3){
+		 showMsg("销售单已作废不能返单","W");
+		 return ; 
+	 }
 	 nui.ajax({
          url: baseUrl + "sales.save.backSingle.biz.ext",
          data: {
@@ -1592,7 +1624,7 @@ function backSingle(){
     
 }
 
-//工单作废
+//工单作废,作废之后所有表格不能编辑
 function delet(){
 	if(isTabs==1){
     	isTabs = 0;
@@ -1604,12 +1636,12 @@ function delet(){
 	 var billFormData = billForm.getData(true); //主表信息
 	 var status = billFormData.status || 0;
 	 var isSettle = billFormData.isSettle || 0;
-	 if(status == 0){
-		 showMsg("草稿状态的销售单不需要返单","W");
+	 if(status != 0){
+		 showMsg("请先返单再作废","W");
 		 return ;
 	 }
 	 if(isSettle == 1){
-		 showMsg("已结算的销售单不能返单","W");
+		 showMsg("已结算的销售单不能作废","W");
 		 return ; 
 	 }
 	 nui.ajax({
@@ -1619,15 +1651,63 @@ function delet(){
          },
          cache: false,
          async: false,
-         success: function(text) {
+         success: function(text){
              if (text.errCode == "S") {
                  showMsg("作废成功", "S");
+                 setReadOnlyMsg();//表格不可读
+                 setReadOnlySubmitCar(1);//交车信息只读
+                 document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
+                 billFormData.status = 3;
+                 billForm.getData(billFormData);
+                 doSetStyle(billFormData)
              }else{
             	 showMsg(text.errMsg, "E");
              }
              nui.unmask(document.body);
          }
      });
+}
+
+
+//草稿、待审、已审未选车、已审未交车、未结算、已结算、作废、repairStatus
+function doSetStyle(data){
+	document.getElementById("repairStatus").style.display = ""
+	if(data.status==0){
+		document.getElementById("repairStatus").innerHTML = "草稿";
+		$("#repairStatus").attr("class", "statusview");
+	}else if(data.status==1){
+		document.getElementById("repairStatus").innerHTML = "待审";
+		$("#repairStatus").attr("class", "statusview");
+	}else if(data.status==3){
+		document.getElementById("repairStatus").innerHTML = "作废";
+		$("#repairStatus").attr("class", "statusview");
+	}else if(data.status==2 && data.enterId==0){
+		document.getElementById("repairStatus").innerHTML = "已审未选车";
+		$("#repairStatus").attr("class", "statusview");
+	}else if(data.status==2 && data.isSubmitCar==0){
+		document.getElementById("repairStatus").innerHTML = "已审未交车";
+		$("#repairStatus").attr("class", "statusview");
+	}else if(data.status==2 && data.isSettle==0){
+		document.getElementById("repairStatus").innerHTML = "未结算";
+		$("#repairStatus").attr("class", "statusview");
+	}else if(data.status==2 && data.isSettle==1){
+		document.getElementById("repairStatus").innerHTML = "已结算";
+		$("#repairStatus").attr("class", "statusview");
+	}
+	
+	/*if(isSettle == 1){
+		$("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
+		$("#settleStatus").attr("class", "statusview");
+	}else{
+		$("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
+		if(status==0){
+			$("#addStatus").attr("class", "statusview");
+		}else if(status==1){
+			$("#repairStatus").attr("class", "statusview");
+		}else if(status==2){
+			$("#finishStatus").attr("class", "statusview");
+		}
+	}*/
 }
 
 

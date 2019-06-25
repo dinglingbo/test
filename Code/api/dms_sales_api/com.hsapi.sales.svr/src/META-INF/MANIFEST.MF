@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Require-Bundle: com.eos.workflow,com.primeton.eos.richweb,com.hsapi.re
+ pair.repairService,com.hsapi.sales.data,com.hsapi.repair.data,com.hsa
+ pi.repair.common,com.eos.foundation,com.hsapi.repair.report,com.hsapi
+ .repair.baseData,com.hsapi.part.invoice
+Bundle-Vendor: Administrator
+eos-webCtxPath: svr
+Bundle-Version: 1.0.0
+Bundle-Name: comhsapi.sales.svr
+Bundle-Description: 
+Bundle-SymbolicName: com.hsapi.sales.svr
+

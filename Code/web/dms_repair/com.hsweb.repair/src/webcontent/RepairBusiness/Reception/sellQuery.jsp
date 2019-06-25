@@ -121,7 +121,7 @@
 		                <div field="contactName" name="contactName" headeralign="center" allowsort="false" visible="true" >客户名称</div>
 		                <div field="contactMobile" headeralign="center" allowsort="false" visible="true" >客户手机</div>
 		                <div field="carNo" name="carNo" headeralign="center" allowsort="false" visible="true" >车牌号</div>
-		                <div field="carModel" name="carModel" headeralign="center" allowsort="false" visible="true">品牌车型</div>
+		                <div field="carModel" name="carModel" headeralign="center" allowsort="false" visible="false">品牌车型</div>
 		                <div field="carVin" headeralign="center" allowsort="true" visible="true">车架号(VIN)</div>
                       </div>
                     </div>

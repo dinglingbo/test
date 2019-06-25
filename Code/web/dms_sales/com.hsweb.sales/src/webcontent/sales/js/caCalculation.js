@@ -88,6 +88,7 @@ function changeSaleType(e) { //改变购买方式时触发
         nui.get("riskAmt").disable(); //月供保证金
         nui.get("familyAmt").disable(); //家访费
         nui.get("contractGuaranteeAmt").disable(); //合同保证金
+        nui.get("bankHandlingRate").disable();
 
         nui.get("loanPercent").setValue(0); //贷款利率
         nui.get("loanAmt").setValue(0); //贷款金额

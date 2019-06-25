@@ -130,6 +130,8 @@
             text-decoration: none;
             border-radius: 5px;
         }
+         .statusview{background:#78c800; color:#fff; padding:3px 20px; border-radius:20px;}
+        .nvstatusview{color: #5a78a0;padding:3px 20px; border-radius:20px;border: 1px solid;}
     </style>
 
     <body>
@@ -150,16 +152,17 @@
                         <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn">新增客户</a>
                         <label style="font-family:Verdana;">工单号:</label>
                         <label id="servieIdEl" style="font-family:Verdana;"></label>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label style="font-family:Verdana;"><span id="repairStatus" name="statusvi" class="nvstatusview" >草稿</span></label>
                     </td>
                     <td style="text-align:right;">
                         <a class="nui-button" iconCls="" plain="true" onclick="save(0)" id="saveBtn" visible="false"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="save(1)" id="submitBtn" visible="false"><span class="fa fa-save fa-lg"></span>&nbsp;提交</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="delet()" id="invalidBtn" visible="false"><span class="fa fa-close fa-lg"></span>&nbsp;作废</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="isSubmitCar()" id="submitCarBtn" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;交车</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="auditingSales()" id="audit" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="selectCar()" id="selectBtn" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;选车</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="isSubmitCar()" id="submitCarBtn" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;交车</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="caseMsg()" id="case" visible="false"><span class="fa fa-dollar fa-lg"></span>&nbsp;结案</a>
-
+                        <a class="nui-button" iconCls="" plain="true" onclick="delet()" id="invalidBtn" visible="false"><span class="fa fa-close fa-lg"></span>&nbsp;作废</a>
                         <a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint">
                             <span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
 
@@ -318,7 +321,7 @@
                     </div>
                 </div>
                 <div title="购车计算" id="editForm" name="editForm">
-                    <iframe id="caCalculation" src="" style="width: 100%;height: 100%"></iframe>
+                    <iframe id="caCalculation" src="" style="width: 100%;height: 100%; border:0px" ></iframe>
                 </div>
                 <div title="保险信息">
                     <form id="insuranceForm">

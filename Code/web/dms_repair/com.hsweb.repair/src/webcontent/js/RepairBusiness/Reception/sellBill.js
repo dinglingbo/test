@@ -4,7 +4,7 @@
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var mainGrid = null;
-var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
+var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.querySellCustomerList.biz.ext";
 
 var billForm = null;
 var editFormDetail = null;//
@@ -667,7 +667,6 @@ function saveNoShowMsg(callback){
 }
 
 var requiredField = {
-    carNo : "车牌号",
     guestId : "客户",
     /*serviceTypeId : "业务类型",
     mtAdvisorId : "服务顾问"*/
@@ -908,7 +907,7 @@ function deletePartRow(row_uid){
 }
 
 function addGuest(){
-    doApplyCustomer({},function(adction){
+    doApplyCustomer({optType:"SELL"},function(adction){
         if("ok" == action)
         {
             var iframe = this.getIFrameEl();
@@ -1316,6 +1315,7 @@ function saveBatch(){
 		for ( var key in requiredField) {
 			if (!data[key] || $.trim(data[key]).length == 0) {
 	            showMsg(requiredField[key] + "不能为空!","W");
+	            nui.unmask(document.body);
 				return;
 			}
 	    }
@@ -1386,6 +1386,7 @@ function saveBatch(){
 			            }, function(){});
 								
 				} else {
+					nui.unmask(document.body);
 					//数据改回原本来的数据
 					//rpsPartGrid.reject();
 					showMsg(returnJson.errMsg || "保存失败","E");

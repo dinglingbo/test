@@ -1854,12 +1854,10 @@
 			e.part_name partName,
 			e.qty qty,
 			e.unit_price unitPrice,
-			e.amt amt,
-			b.car_model carModel
+			e.amt amt
 		FROM
 			rps_maintain a
 			inner join rpb_contactor d on (a.contactor_id = d.id)
-			INNER JOIN rpb_car b ON (a.car_id = b.id)
 			inner join rps_part e on (a.id = e.service_id)
 		WHERE 1 = 1
 			and a.status = 2

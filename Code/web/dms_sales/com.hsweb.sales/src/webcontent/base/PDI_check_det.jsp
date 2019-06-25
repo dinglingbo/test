@@ -100,7 +100,7 @@ pageEncoding="UTF-8" session="false" %>
                 </td>
                 <td>
                     <input id="isEnableCheck" name="isEnableCheck" class="nui-combobox" style="width: 150px" required="true"
-                        data="checkList" valueField="id" textField="name" />
+                        data="checkList" valueField="id" textField="name" value="0"/>
                 </td>
                 <td class="td_title">禁用：
                 </td>

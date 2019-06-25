@@ -269,6 +269,8 @@ $(document).ready(function(v) {
             } else {
                 e.cancel = true;
             }
+        }else {
+            e.cancel = true;
         }
         
     });
@@ -297,6 +299,8 @@ $(document).ready(function(v) {
             } else {
                 e.cancel = true;
             }
+        }else {
+            e.cancel = true;
         }
     });
 
@@ -1708,6 +1712,7 @@ function isSubmitCar(){
                 //交车信息不能修改，交车按钮不可用
                 setReadOnlySubmitCar(1);
                 nui.get("submitCarBtn").disable();
+                //费用信息不可填写
                 showMsg("交车成功", "S");
                 nui.unmask(document.body);
                 doSetStyle(billFormData);
@@ -1764,6 +1769,8 @@ function backSingle(){
                 	 setReadOnlySubmitCar(1);//交车信息只读
                 	 setInputModel();//表格读写
                 	 document.getElementById("caCalculation").contentWindow.setInputModel();//购车预算读写
+                	 nui.get("saveBtn").enable();
+                     nui.get("submitBtn").enable();
                  }
              }else{
             	 showMsg(text.errMsg, "E");

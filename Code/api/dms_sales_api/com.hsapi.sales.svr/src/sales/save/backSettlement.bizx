@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="backSettlement.bizx" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="backSettlement.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="销售单反结案&#xD;&#xA;1、已经结案的单子才能反结案&#xD;&#xA;2、应收没有审核单子才能反结案(测试时注意)&#xD;&#xA;3、反结案后，需要把应收记录删除" title="Administrator&#x9;19-6-22 上午9:07">
     <location x="35" y="545"/>
     <size height="220" width="436"/>
@@ -27,6 +27,7 @@
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="java.util.HashMap" name="result" type="query" valueType="Java">result</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
@@ -92,7 +93,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="link3" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>end2</targetNode>
     </sourceConnections>
     <targetConnections>link19</targetConnections>
     <location x="200" y="290"/>
@@ -112,27 +113,10 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
-  <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" collapsed="false" type="end">
-    <targetConnections>link7</targetConnections>
-    <targetConnections>link8</targetConnections>
-    <targetConnections>link28</targetConnections>
-    <location x="312" y="395"/>
-    <size height="28" width="28"/>
-    <nodeLabel>end1label</nodeLabel>
-    <process:returns>
-      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
-      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-    </process:returns>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="310" y="431"/>
-    <figSize height="17" width="32"/>
-    <node>end1</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link28" name="link28" displayName="link5" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>end2</targetNode>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
     <location x="320" y="290"/>
@@ -168,7 +152,7 @@
       <targetNode>assign4</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -188,7 +172,7 @@
       <sourceNode>assign4</sourceNode>
       <targetNode>assign5</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
+        <process:simpleCondition operator="NE">
           <process:leftOperand type="query">saleMain/isSettle</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
@@ -199,7 +183,7 @@
       <targetNode>transactionbegin0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -217,7 +201,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="link9" isDefault="true" type="transition">
       <sourceNode>assign5</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>end2</targetNode>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
     <location x="392" y="298"/>
@@ -228,7 +212,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">销售单已经结算，不能反结案</process:from>
+      <process:from type="literal" pattern="reference">销售单未结案，不能反结案</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -257,6 +241,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">saleMain/modifyDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">saleMain/isSettle</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
@@ -600,11 +588,11 @@
     <size height="28" width="28"/>
     <nodeLabel>assign28label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">result/errCode</process:from>
+      <process:from type="query" pattern="reference">result/errCode</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">result/errMsg</process:from>
+      <process:from type="query" pattern="reference">result/errMsg</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -654,6 +642,24 @@
     <figSize height="17" width="39"/>
     <node>assign11</node>
   </nodes>
+  <nodes xsi:type="process:tEnd" id="end2" name="结束2" displayName="结束" type="end">
+    <targetConnections>link8</targetConnections>
+    <targetConnections>link28</targetConnections>
+    <targetConnections>link7</targetConnections>
+    <location x="300" y="390"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end2label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="java.util.HashMap" name="result" type="query" valueType="Java">result</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end2label" name="label" nodeType="label">
+    <location x="298" y="426"/>
+    <figSize height="17" width="32"/>
+    <node>end2</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-06-22 18:16:17" date="2019-06-22Z" description="" name="backSettlement" version="7.0.0.0"/>
@@ -665,6 +671,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="apiName" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="len" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="token" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.sales.data.css.CssSaleMain" name="saleMain"/>
@@ -672,6 +679,8 @@
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
+    <process:output anyType="java.util.HashMap" description="" isArray="false" name="result"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
+  <process:transactionType>true</process:transactionType>
 </process:tBusinessLogic>

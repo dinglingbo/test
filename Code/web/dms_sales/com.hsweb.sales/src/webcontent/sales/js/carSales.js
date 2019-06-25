@@ -265,19 +265,26 @@ function backSettlement(){
 	var row = mainGrid3.getSelected();
 	if(row){
 		var isSettle = row.isSettle || 0;
-		if(isSettle == 1){
-			showMsg("销售单已结算，不能反结案","W");
+		if(isSettle != 1){
+			showMsg("销售单未结案，不能反结案","W");
 			return;
 		}
 		var status = row.status || 0;
+		//var enterId = row.enterId || 0;
 		if(status == 3){
 			showMsg("销售单已作废，不能反结案","W");
 			return;
 		}
+		if(status == 2){
+			showMsg("销售单未审核，不能反结案","W");
+			return;
+		}
+		var saleMain = {};
+		saleMain.id = row.id;
 		nui.ajax({
 	         url: baseUrl + "sales.save.backSettlement.biz.ext",
 	         data: {
-	        	 saleMain: row
+	        	 saleMain: saleMain
 	         },
 	         cache: false,
 	         async: false,

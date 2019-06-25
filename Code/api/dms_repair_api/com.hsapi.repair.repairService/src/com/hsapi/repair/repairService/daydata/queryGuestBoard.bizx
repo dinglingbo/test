@@ -70,6 +70,14 @@
       <process:to type="query">cond/_expr[3]/_op</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">0,2,4,6</process:from>
+      <process:to type="query">cond/_expr[4]/billTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">in</process:from>
+      <process:to type="query">cond/_expr[4]/_op</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">enterDate</process:from>
       <process:to type="query">cond/_orderby[1]/_property</process:to>
     </process:copy>

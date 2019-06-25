@@ -10,7 +10,7 @@
 -->
 <head>
 <title>销售开单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellMain.js?v=1.4.2"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellMain.js?v=1.4.3"></script>
  <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
  <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -109,8 +109,7 @@
                   <div field="contactName" name="contactName" width="80px" headerAlign="center" header="联系人姓名"></div>
                   <div field="contactMobile" name="contactMobile" width="100px" headerAlign="center" header="联系人手机"></div>
                   <div field="recordDate" name="recordDate" width="100" headerAlign="center" header="开单时间" dateFormat="  yyyy-MM-dd HH:mm"></div>
-                  <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌" ></div>
-                  <div field="carModel" name="carModel" width="80" headerAlign="center" header="品牌车型" ></div>
+                  <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌号" ></div>
                   <div field="carVin" name="carVin" width="80" headerAlign="center" header="车架号(VIN)" ></div>
                   <div field="mtAdvisor" name="mtAdvisor" width="50" headerAlign="center" header="服务顾问"></div>
                   <div field="mtAdvisorId" name="mtAdvisorId" width="50" headerAlign="center" header="服务顾问" visible="false"></div>

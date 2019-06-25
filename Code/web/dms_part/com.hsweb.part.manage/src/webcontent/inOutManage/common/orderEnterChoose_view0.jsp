@@ -8,7 +8,7 @@
 -->
 <head>
 <title>入库单选择</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/orderEnterChoose.js?v=1.0.5"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/orderEnterChoose.js?v=1.0.6"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -125,9 +125,12 @@
            sortMode="client"
            url=""
            allowCellWrap = true
+           multiSelect="true" 
+           allowCellSelect="true"
            showSummaryRow="true">
           <div property="columns">
               <div type="indexcolumn">序号</div>
+              <div type="checkcolumn" width="30"></div>
               <div allowSort="true" field="comPartCode" width="140" headerAlign="center" header="配件编码"></div>
               <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
               <div allowSort="true" field="comOemCode" width="140" headerAlign="center" header="OEM码"></div>

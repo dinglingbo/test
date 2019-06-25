@@ -98,6 +98,15 @@ $(document).ready(function() {
     });
     partLoalGrid.on("drawcell",function(e)
     {
+    	 if(!partTypeHash)
+         {
+             partTypeHash = {};
+             var partTypeList = tree.getList();
+             partTypeList.forEach(function(v)
+             {
+                 partTypeHash[v.id] = v;
+             });
+         }
         var field = e.field;
         if("isUniform" == field)
         {

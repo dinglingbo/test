@@ -382,14 +382,14 @@ function chooseRoles(){
 	            {
 	        		var iframe = this.getIFrameEl();
 					var roles = iframe.contentWindow.getRoles();
-					updateRoles(roles, node.cangStoreId);
+					updateRoles(roles, node.cangStoreId,node.id);
 	            }
 	        }
 	    });
 }
 
 var updateRolesUrl = apiPath + sysApi +"/com.hsapi.cloud.part.baseDataCrud.cang.updateUser.biz.ext";
-function updateRoles(roles,cangStoreId){
+function updateRoles(roles,cangStoreId,storeId){
 	
 	var memRow = memGrid.getSelected();
 	var empId = memRow.empId;
@@ -409,6 +409,7 @@ function updateRoles(roles,cangStoreId){
         	  phone  : "",
         	erp_id   :  empId,
         	roles  : roles,
+        	storeId : storeId,
             token:token
         }),
         success:function(data)
@@ -442,8 +443,9 @@ function saveStoreMember(memList, storeId){
     }
 	//开启APP
     if(currIsOpenApp ==1){
-    	var map ={};
+    	
     	for(var i=0;i<memList.length;i++){
+    		var map ={};
     		map.username =memList[i].systemAccount;
     		map.phone = memList[i].tel;
     		map.erp_id = memList[i].empid;
@@ -460,11 +462,10 @@ function saveStoreMember(memList, storeId){
     var data = [];
     for(var i=0; i<memList.length; i++) {
     	memList[i].storeId = storeId;
-    	var mem = {
-    		empId : memList[i].empid,
-    		empName: memList[i].name,
-    		storeId : storeId
-    	}
+    	var mem ={};
+		mem.empId = memList[i].empid;
+		mem.empName =memList[i].name;
+		mem.storeId = storeId;
     	data.push(mem);
     }
     nui.mask({
@@ -505,10 +506,20 @@ function saveStoreMember(memList, storeId){
 var delUrl = apiPath + sysApi + "/com.hsapi.system.tenant.employee.deleteStoreMember.biz.ext";
 function delStoreMem(){
 	var rows = memGrid.getSelecteds();
+	var wid ="";
+	var erp_id ="";
+	var node = tree.getSelectedNode();
+    if(node){
+    	wid = node.cangStoreId;
+    }
     if(!rows)
     {
         return;
     }
+    for(var i=0;i<rows.length;i++){
+    	erp_id =erp_id +rows[i].empId +",";
+    }
+    erp_id =erp_id.substring(0,erp_id.length-1);
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
@@ -519,6 +530,8 @@ function delStoreMem(){
         type:"post",
         data:JSON.stringify({
         	memList:rows,
+        	wid : wid,
+        	erp_id : erp_id,
             token:token
         }),
         success:function(data)
@@ -540,4 +553,13 @@ function delStoreMem(){
             console.log(jqXHR.responseText);
         }
     });
+}
+
+//删除APP权限
+function deleteApp(){
+	var rows = memGrid.getSelecteds();
+}
+//恢复APP使用权限
+function recoverApp(){
+	var rows = memGrid.getSelecteds();
 }

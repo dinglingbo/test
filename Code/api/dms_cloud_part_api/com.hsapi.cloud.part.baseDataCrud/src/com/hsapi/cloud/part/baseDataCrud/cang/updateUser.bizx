@@ -323,7 +323,11 @@
     <nodeLabel>assign6label</nodeLabel>
     <process:copy>
       <process:from type="query" pattern="reference">erp_id</process:from>
-      <process:to type="query">member/empid</process:to>
+      <process:to type="query">member/empId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">storeId</process:from>
+      <process:to type="query">member/storeId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">roles</process:from>
@@ -407,6 +411,7 @@
     <process:input description="" isArray="false" name="phone" primitiveType="String"/>
     <process:input description="" isArray="false" name="erp_id" primitiveType="String"/>
     <process:input description="" isArray="false" name="roles" primitiveType="String"/>
+    <process:input description="" isArray="false" name="storeId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

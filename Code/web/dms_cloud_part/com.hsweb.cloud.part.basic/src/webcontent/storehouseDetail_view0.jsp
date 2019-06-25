@@ -49,6 +49,7 @@
      onbuttonclick="onbuttonclick">
     <div id="basicInfoForm" class="form">
         <input class="nui-hidden" name="isEdit"/>
+        <input class="nui-hidden" name="cangStoreId"/>
         <div class="row">
             <span class="title title-width2">仓库编码：</span>
             <input name="id" class="nui-textbox width1" enabled="false"/>

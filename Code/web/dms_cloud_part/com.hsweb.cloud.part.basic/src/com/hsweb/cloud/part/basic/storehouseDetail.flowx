@@ -25,7 +25,7 @@
     <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
-  <nodes xsi:type="process:tView" id="view0" name="视图" displayName="视图" type="view" contributionName="com.hsweb.part.baseData" uri="/baseDataPart/storehouseDetail_view0.jsp">
+  <nodes xsi:type="process:tView" description="" id="view0" name="视图" displayName="storehouseDetail_view0.jsp" type="view" contextPath="" contributionName="com.hsweb.part.baseData" method="forward" uri="/basic/storehouseDetail_view0.jsp">
     <sourceConnections xsi:type="process:tActionLink" id="link1" name="link1" lineType="reference" isDefault="true" type="action" actionName="action1">
       <sourceNode>view0</sourceNode>
       <targetNode>end0</targetNode>
@@ -34,6 +34,8 @@
     <location x="208" y="60"/>
     <size height="28" width="22"/>
     <nodeLabel>view0label</nodeLabel>
+    <process:inputParameters/>
+    <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="view0label" name="label" nodeType="label">
     <location x="204" y="96"/>

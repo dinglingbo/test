@@ -18,7 +18,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">restMag</process:from>
+      <process:from type="query" pattern="reference">restMsg</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -120,22 +120,22 @@
     <node>assign4</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" description="" id="link2" name="link2" displayName="link9" isDefault="false" type="transition">
-      <sourceNode>assign1</sourceNode>
-      <targetNode>assign2</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">code</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link3" name="link3" displayName="link10" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>assign3</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link2" name="link2" displayName="link9" isDefault="false" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>assign2</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">code</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -150,7 +150,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">restMap/msg</process:from>
-      <process:to type="query">restMag</process:to>
+      <process:to type="query">restMsg</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -289,13 +289,14 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="restMap"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="code" primitiveType="String"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="restMag" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="restMsg" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="agency_id" primitiveType="String"/>
     <process:input description="" isArray="false" name="warehouse_name" primitiveType="String"/>
     <process:input description="" isArray="false" name="status" primitiveType="String"/>
     <process:input description="" isArray="false" name="wid" primitiveType="String"/>
+    <process:input description="" isArray="false" name="id" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

@@ -17,6 +17,7 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +31,8 @@ import org.apache.commons.beanutils.BeanMap;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.eos.data.datacontext.IMapContextFactory;
 import com.eos.data.datacontext.ISessionMap;
@@ -134,6 +137,40 @@ public class Utils {
 		} catch (Exception e) {
 			return new HashMap<String, Object>();
 		}
+	}
+	
+	@Bizlet("")
+	public static String strArry(DataObject[] obj,String property1,String  property2,
+									String property3,String property4) {
+		
+		List<HashMap<String,String>> resList =new ArrayList<HashMap<String, String>>();
+		for(DataObject a : obj){
+			HashMap <String,String> map =new HashMap<String, String>();
+			if(a.getString(property1) == null){
+				map.put(property1,"");
+			}else{
+				map.put(property1,a.getString(property1));
+			}
+			if(a.getString(property2) == null){
+				map.put(property2,"");
+			}else{
+				map.put(property2,a.getString(property2));
+			}
+			if(a.getString(property3) == null){
+				map.put(property3,"");
+			}else{
+				map.put(property3,a.getString(property3));
+			}
+			if(a.getString(property4) == null){
+				map.put(property4,"");
+			}else{
+				map.put(property4,a.getString(property4));
+			}
+			resList.add(map);
+		}
+		JSONArray array= JSONArray.parseArray(JSON.toJSONString(resList));
+		String  result =JSONArray.toJSONString(resList);
+		return result;
 	}
 	/**
 	 * Json转对象

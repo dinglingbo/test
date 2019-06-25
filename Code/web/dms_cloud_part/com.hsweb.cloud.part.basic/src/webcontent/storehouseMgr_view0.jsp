@@ -9,7 +9,7 @@
 -->
 <head>
 <title>仓库定义</title>
-<script src="<%=webPath + contextPath%>/basic/js/storehouseMgr.js?v=1.1.29"></script>
+<script src="<%=webPath + contextPath%>/basic/js/storehouseMgr.js?v=1.1.51"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -97,6 +97,9 @@
 		                    	 <label style="font-family:Verdana;">员工配置:</label>
 		                        <a class="nui-button" plain="true" iconCls="" onclick="addStoreMem()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加员工</a>
 		                        <a class="nui-button" plain="true" iconCls="" onclick="delStoreMem()"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
+		                        <a class="nui-button" plain="true" iconCls="" onclick="deleteApp()" id="delAppBtn" visible="false"><span class="fa fa-ban fa-lg"></span>&nbsp;删除APP使用权限</a>
+		                        <a class="nui-button" plain="true" iconCls="" onclick="recoverApp()" id="recoverAppBtn" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;恢复APP使用权限</a>
+		                        <a class="nui-button" plain="true" iconCls="" onclick="chooseRoles()" id="chooseBth" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;选择用户APP权限</a>
 		                    </td>
 		                </tr>
 		            </table>

@@ -37,6 +37,17 @@ $(document).ready(function(v)
         e.data.token = token;
     });
     
+    if(currIsOpenApp==1){
+    	nui.get('delAppBtn').setVisible(true);
+    	nui.get('recoverAppBtn').setVisible(true);
+    	nui.get('chooseBth').setVisible(true);
+    }else{
+    	nui.get('delAppBtn').setVisible(false);
+    	nui.get('recoverAppBtn').setVisible(false);
+    	nui.get('chooseBth').setVisible(false);
+
+    }
+    
 });
 function onRowClick(e)
 {
@@ -340,8 +351,110 @@ function addStoreMem()
     });
 }
 
+function chooseRoles(){
+	 var node = tree.getSelectedNode();
+	    var cangStoreId = "";
+	    if(node){
+	    	cangStoreId = node.cangStoreId;
+	    }
+	    else{
+	        showMsg("请选择一个仓库","W");
+	        return;
+	    }
+	var memList = memGrid.getSelecteds();
+	if(memList.length<0 || memList.length>1){
+		showMsg("请选择一条数据","W");
+		return;
+	}
+
+	 nui.open({
+	        url: webPath+contextPath+"/basic/chooseRolse.jsp?token=" + token,
+	        title: "角色选择",
+	        width: 600, height: 400,
+	        allowDrag:true,
+	        allowResize:false,
+	        onload: function ()
+	        {
+	        },
+	        ondestroy: function (action)
+	        {
+	        	if(action == "ok")
+	            {
+	        		var iframe = this.getIFrameEl();
+					var roles = iframe.contentWindow.getRoles();
+					updateRoles(roles, node.cangStoreId,node.id);
+	            }
+	        }
+	    });
+}
+
+var updateRolesUrl = apiPath + sysApi +"/com.hsapi.cloud.part.baseDataCrud.cang.updateUser.biz.ext";
+function updateRoles(roles,cangStoreId,storeId){
+	
+	var memRow = memGrid.getSelected();
+	var empId = memRow.empId;
+	nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '保存中...'
+	});
+    nui.ajax({
+        url:updateRolesUrl,
+        type:"post",
+        data:JSON.stringify({
+        	agency_id: currAgencyId,
+        	wid      :  cangStoreId,
+        	username :  "",
+        	password :  "",
+        	  phone  : "",
+        	erp_id   :  empId,
+        	roles  : roles,
+        	storeId : storeId,
+            token:token
+        }),
+        success:function(data)
+        {
+            nui.unmask();
+            data = data||{};
+            if(data.errCode == "S")
+            {
+                showMsg("添加成功","S");
+                memGrid.reload();
+            }
+            else{
+                showMsg("添加失败","W");
+            }
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+            //  nui.alert(jqXHR.responseText);
+        	nui.unmask();
+            console.log(jqXHR.responseText);
+        }
+    });
+}
 var saveStoreMemUrl = apiPath + sysApi + "/com.hsapi.system.tenant.employee.saveStoreMember.biz.ext";
 function saveStoreMember(memList, storeId){
+	var wid ="";
+	var userinfos ="";
+	var node = tree.getSelectedNode();
+	var appData =[];
+    if(node){
+    	wid = node.cangStoreId;
+    }
+	//开启APP
+    if(currIsOpenApp ==1){
+    	
+    	for(var i=0;i<memList.length;i++){
+    		var map ={};
+    		map.username =memList[i].systemAccount;
+    		map.phone = memList[i].tel;
+    		map.erp_id = memList[i].empid;
+    		map.password =memList[i].loginPwd;
+    		appData.push(map);
+    	}
+    	userinfos = appData;
+    }
+    
     if(!memList)
     {
         return;
@@ -349,11 +462,10 @@ function saveStoreMember(memList, storeId){
     var data = [];
     for(var i=0; i<memList.length; i++) {
     	memList[i].storeId = storeId;
-    	var mem = {
-    		empId : memList[i].empid,
-    		empName: memList[i].name,
-    		storeId : storeId
-    	}
+    	var mem ={};
+		mem.empId = memList[i].empid;
+		mem.empName =memList[i].name;
+		mem.storeId = storeId;
     	data.push(mem);
     }
     nui.mask({
@@ -366,6 +478,8 @@ function saveStoreMember(memList, storeId){
         type:"post",
         data:JSON.stringify({
         	memList:data,
+        	wid : wid,
+        	appData : userinfos,
             token:token
         }),
         success:function(data)
@@ -392,10 +506,20 @@ function saveStoreMember(memList, storeId){
 var delUrl = apiPath + sysApi + "/com.hsapi.system.tenant.employee.deleteStoreMember.biz.ext";
 function delStoreMem(){
 	var rows = memGrid.getSelecteds();
+	var wid ="";
+	var erp_id ="";
+	var node = tree.getSelectedNode();
+    if(node){
+    	wid = node.cangStoreId;
+    }
     if(!rows)
     {
         return;
     }
+    for(var i=0;i<rows.length;i++){
+    	erp_id =erp_id +rows[i].empId +",";
+    }
+    erp_id =erp_id.substring(0,erp_id.length-1);
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
@@ -406,6 +530,8 @@ function delStoreMem(){
         type:"post",
         data:JSON.stringify({
         	memList:rows,
+        	wid : wid,
+        	erp_id : erp_id,
             token:token
         }),
         success:function(data)
@@ -427,4 +553,13 @@ function delStoreMem(){
             console.log(jqXHR.responseText);
         }
     });
+}
+
+//删除APP权限
+function deleteApp(){
+	var rows = memGrid.getSelecteds();
+}
+//恢复APP使用权限
+function recoverApp(){
+	var rows = memGrid.getSelecteds();
 }

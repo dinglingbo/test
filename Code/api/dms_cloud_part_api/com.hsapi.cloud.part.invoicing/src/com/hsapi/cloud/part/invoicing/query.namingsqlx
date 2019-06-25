@@ -1583,11 +1583,6 @@
 			pj_pchs_order_detail_chk
 		WHERE
 			is_finished = 0
-		<dynamic>
-           	<isNotEmpty prepend="and" property="mainId">
-           		main_id = #mainId#
-           	</isNotEmpty>
-        </dynamic>
-        
+           	and main_id = #mainId#
     </select>
 </sqlMap>

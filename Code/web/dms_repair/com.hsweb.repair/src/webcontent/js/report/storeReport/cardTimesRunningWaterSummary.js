@@ -42,7 +42,8 @@ $(document).ready(function (v)
 	        	return value;
 	        }
 	    });
-	  
+		var amt = grid1.getColumn("amt");
+			grid1.hideColumn ( amt );
     grid1.on("drawcell", function (e) {
         if(e.field =="billTypeId"){
             e.cellHtml = servieTypeHash[e.value].name;
@@ -91,11 +92,17 @@ function onSearch(){
 
 function queryMX(e){
 	var params = form.getData();
+	var amt = grid1.getColumn("amt");
+	var sellPrice = grid1.getColumn("sellPrice");
 	params.endDate = formatDate(params.endDate) +" 23:59:59";
 	if(e==0){
 		params.billTypeIds = "0,1,2,3,4,5";
+		grid1.hideColumn ( amt );
+		grid1.showColumn ( sellPrice );
 	}else{
 		params.billTypeIds = e;
+		grid1.hideColumn ( sellPrice );
+		grid1.showColumn ( amt );
 	}
 	grid1.load({
         params: params,

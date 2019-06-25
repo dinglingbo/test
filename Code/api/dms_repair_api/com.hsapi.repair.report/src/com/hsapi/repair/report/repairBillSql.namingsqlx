@@ -912,7 +912,7 @@
 			   a.bala_times as balaTimes,
 			   a.bala_price as balaPrice,
 			   a.bala_amt as balaAmt,
-			   
+			   b.sell_price as sellPrice,
 			   a.remark as remark,
 			   a.creator_id as creatorId,
 			   a.creator as creator,
@@ -922,6 +922,7 @@
 			   a.operate_date as operateDate
 				
                FROM rps_card_times_invocing a
+               inner join rps_card_times_detail b on a.prdt_id = b.prdt_id and a.bill_main_id = b.main_id
     	where orgid = #orgid# 
 		<dynamic>
 
@@ -939,11 +940,12 @@
 	</select>
 	
 		<select id="queryCardTimesRunningWaterSZ" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
-		SELECT sum(case when dc = 1 then ifnull(amt,0) else 0 end ) as sAmt,
-    	       sum(case when a.dc = -1 and a.bill_type_id= 7 then ifnull(amt,0) else 0 end ) as tAmt,
-    	       sum(case when a.dc = -1 and a.bill_type_id &lt;&gt; 7 then ifnull(amt,0) else 0 end ) as zAmt
+		SELECT sum(case when dc = 1 then ifnull(b.sell_price,0) else 0 end ) as sAmt,
+    	       sum(case when a.dc = -1 and a.bill_type_id= 7 then ifnull(b.sell_price,0) else 0 end ) as tAmt,
+    	       sum(case when a.dc = -1 and a.bill_type_id &lt;&gt; 7 then ifnull(b.sell_price,0) else 0 end ) as zAmt
 				
                FROM rps_card_times_invocing a
+               inner join rps_card_times_detail b on a.prdt_id = b.prdt_id and a.bill_main_id = b.main_id
     	where orgid = #orgid# 
 		<dynamic>
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="receiveCardTimes" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="rps_card_times 结算收款&#xD;&#xA;105&#xD;&#xA;生成次卡记录，更新为已结算，生成应收及收款数据" title="Administrator&#x9;18-8-14 下午8:49">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="rps_card_times 结算收款&#xD;&#xA;105&#xD;&#xA;生成次卡记录，更新为已结算，生成应收及收款数据&#xD;&#xA;查看为什么流水生成去掉了  2019.6.25熊鹰" title="Administrator&#x9;18-8-14 下午8:49">
     <location x="-142" y="-29"/>
     <size height="100" width="381"/>
   </nodes>
@@ -891,6 +891,7 @@
     <sourceConnections xsi:type="process:tLink" id="link57" name="link57" displayName="link59" isDefault="true" type="transition">
       <sourceNode>invokePojo9</sourceNode>
       <targetNode>assign22</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link56</targetConnections>
     <location x="1261" y="145"/>

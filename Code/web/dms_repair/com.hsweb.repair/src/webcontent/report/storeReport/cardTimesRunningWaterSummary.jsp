@@ -111,7 +111,7 @@
                         <div field="prdtName" name="prdtName" headerAlign="center"   visible="true" width="100">名称</div>
 
                       	<div field="times"  name="times" headerAlign="center"   visible="true" width="100" summaryType="sum">次数</div>
-                        <div field="amt" name="amt" headerAlign="center"  visible="true" width="80" summaryType="sum">金额</div>                              
+                        <div field="sellPrice" name="sellPrice" headerAlign="center"  visible="true" width="80" summaryType="sum">金额</div>                              
                         <div field="creator" name="creator" headerAlign="center"  visible="true" width="100">创建人 </div>
                         <div field="createDate"  name="createDate" headerAlign="center"  dateformat="yyyy-MM-dd HH:mm" visible="true" width="100">创建日期</div>
 

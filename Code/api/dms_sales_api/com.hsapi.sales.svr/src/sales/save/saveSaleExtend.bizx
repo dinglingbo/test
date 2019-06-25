@@ -272,6 +272,7 @@
     <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>assign2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
     <location x="574" y="345"/>
@@ -324,7 +325,9 @@
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="612" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-05-25 09:47:18" date="2019-05-25Z" description="" name="updateSaleExtend" version="7.0.0.0"/>
   <process:variables>

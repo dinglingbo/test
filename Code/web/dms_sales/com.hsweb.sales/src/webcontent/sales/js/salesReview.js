@@ -20,6 +20,9 @@ function SetData(serviceId, type) {
         };
     }
     var giftCost = 0;
+    var receivedTotal = 0;//已收合计
+    var receivedDeposit = 0;//已收定金
+    var receivedBala = 0;//已收余额
     if(type != 1){//未结算的需要查找精品加装手动填写成本
     	 nui.ajax({
 	        url: baseUrl + "sales.search.searchSaleGiftApply.biz.ext",
@@ -68,7 +71,31 @@ function SetData(serviceId, type) {
  	            } 
  	        }
  	    });
+    	 //查找已结算的预收金额
+    	 nui.ajax({
+  	        url: baseUrl + "sales.search.queryFisRpAdvance.biz.ext",
+  	        data: {
+  	        	codeId:serviceId
+  	        },
+  	        cache: false,
+  	        async: false,
+  	        success: function(text) {
+  	            if (text.errCode == "S"){
+  	               var fisRpAdvanceList = text.fisRpAdvanceList;
+  	               if(fisRpAdvanceList.length>0){
+  	            	   for(var i = 0;i<fisRpAdvanceList.length;i++){
+      	            	   var temp = fisRpAdvanceList[i];
+  	            		   var amt = temp.amt || 0;//总金额(总成本 = 配件成本+工时成本）
+  	            		   receivedTotal = parseFloat(receivedTotal) + parseFloat(amt);
+  	            		   receivedTotal.toFixed(2);
+  	            		   
+      	               } 
+  	               }
+  	            } 
+  	        }
+  	    });
     }
+    
     var params = { id: serviceId };
     nui.ajax({
         url: baseUrl + "sales.search.searchSalesMain.biz.ext",
@@ -85,6 +112,11 @@ function SetData(serviceId, type) {
                 if(type != 1){
                 	//设置精品加装成本
                 	nui.get("decrCost").setValue(giftCost);
+                	nui.get("receivedTotal").setValue(receivedTotal);
+                	//未收余款
+                	var buyBudgetTotal = data.buyBudgetTotal;
+                	var ykAmt = parseFloat(buyBudgetTotal) + parseFloat(receivedTotal);
+                	nui.get("receivedBalaNo").setValue(ykAmt);
                 }
                 changeValueMsg(1);
             } else {

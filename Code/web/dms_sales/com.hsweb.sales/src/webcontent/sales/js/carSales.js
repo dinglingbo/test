@@ -262,7 +262,7 @@ function edit3(row_uid){
 
 //反结案
 function backSettlement(){
-	var row = itemTimesGrid.getSelected();
+	var row = mainGrid3.getSelected();
 	if(row){
 		var isSettle = row.isSettle || 0;
 		if(isSettle == 1){
@@ -284,6 +284,10 @@ function backSettlement(){
 	         success: function(text) {
 	             if (text.errCode == "S") {
 	                 showMsg("反结案成功", "S");
+	                 param.status = 2;
+	                 param.isSettle = 1;
+	                 param.isSubmitCar = 1;
+	                 mainGrid3.load({ params: param, type: 1 });
 	             }else{
 	            	 showMsg(text.errMsg, "E");
 	             }

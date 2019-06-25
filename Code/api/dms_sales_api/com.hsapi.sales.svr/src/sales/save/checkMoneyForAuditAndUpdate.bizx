@@ -1758,6 +1758,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="retData" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="apiName" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.sales.data.css.CssSaleExtend" name="saleExtend"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="token" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.sales.data.css.CssSaleCostList" name="data"/>

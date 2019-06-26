@@ -262,28 +262,39 @@ function edit3(row_uid){
 
 //反结案
 function backSettlement(){
-	var row = itemTimesGrid.getSelected();
+	var row = mainGrid3.getSelected();
 	if(row){
 		var isSettle = row.isSettle || 0;
-		if(isSettle == 1){
-			showMsg("销售单已结算，不能反结案","W");
+		if(isSettle != 1){
+			showMsg("销售单未结案，不能反结案","W");
 			return;
 		}
 		var status = row.status || 0;
+		//var enterId = row.enterId || 0;
 		if(status == 3){
 			showMsg("销售单已作废，不能反结案","W");
 			return;
 		}
+		if(status == 2){
+			showMsg("销售单未审核，不能反结案","W");
+			return;
+		}
+		var saleMain = {};
+		saleMain.id = row.id;
 		nui.ajax({
 	         url: baseUrl + "sales.save.backSettlement.biz.ext",
 	         data: {
-	        	 saleMain: row
+	        	 saleMain: saleMain
 	         },
 	         cache: false,
 	         async: false,
 	         success: function(text) {
 	             if (text.errCode == "S") {
 	                 showMsg("反结案成功", "S");
+	                 param.status = 2;
+	                 param.isSettle = 1;
+	                 param.isSubmitCar = 1;
+	                 mainGrid3.load({ params: param, type: 1 });
 	             }else{
 	            	 showMsg(text.errMsg, "E");
 	             }

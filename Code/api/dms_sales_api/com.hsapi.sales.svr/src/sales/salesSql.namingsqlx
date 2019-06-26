@@ -363,7 +363,8 @@
 			b.total_gross_profit_rate	AS	totalGrossProfitRate,
 			c.full_name	AS contactor,
 			c.mobile AS contactorTel,
-			c.id_card AS idCard
+			c.id_card AS idCard,
+			b.received_bala_no receivedBalaNo
 		FROM css_sale_main a 
 			INNER JOIN css_sale_extend b
 				ON a.id = b.id

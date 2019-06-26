@@ -609,7 +609,12 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
             var sk = document.getElementById("search_key");
             sk.style.display = "none";
             doSetStyle(data);          
-            showMsg(text.errMsg, "S");
+           // showMsg(text.errMsg, "S");
+            if(e==0){
+            	showMsg("保存成功", "S");
+            }else{
+            	showMsg("提交成功", "S");
+            }
             nui.unmask(document.body);
             } else {
                 showMsg(text.errMsg, "E");

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="outSettleByDetail" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据具体的明细出库&#xD;&#xA;根据已经提交的订单数据和当前应入库的数据生成 is_diff_order = 1 的数据，在循环处理的过程中判断是否超数&#xD;&#xA;&#xD;&#xA;判断主表是否完成，取版本号用于后面更新用，如果更新的数据条数为0，则失败&#xD;&#xA;明细数据生成后重新汇总主表的含税和不含税数据&#xD;&#xA;com.hsapi.cloud.part.invoicing.paramset.queryOutDetailInfoByDetailId&#xD;&#xA;取出库明细，判断参数的记录数与查询出的记录数是否相等，如果不相等提示获取入库数据失败&#xD;&#xA;取主表的版本号，根据版本号更新订单主表数据，如果影响的行数不等于1，则返回失败，提示数据处理频繁请稍后再处理&#xD;&#xA;com.hsapi.cloud.part.invoicing.query.querySellMainIsFinish（查询是否存在未完成的订单明细）&#xD;&#xA;是否需要根据outCode判断已经存在单据（暂不考虑）&#xD;&#xA;库存占用记录的处理" title="Administrator&#x9;19-6-25 上午10:19">
-    <location x="3" y="-36"/>
-    <size height="196" width="694"/>
+    <location x="0" y="-90"/>
+    <size height="226" width="694"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -113,6 +113,16 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link54" name="link54" displayName="连接线" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>assign21</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">paramsMain/creator</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link38</targetConnections>
     <location x="198" y="218"/>
     <size height="28" width="22"/>
@@ -186,6 +196,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
+    <targetConnections>link55</targetConnections>
     <location x="270" y="218"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
@@ -261,7 +272,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">orderNO</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -810,7 +821,7 @@
       <targetNode>invokePojo11</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -1484,6 +1495,25 @@
     <location x="727" y="328"/>
     <figSize height="17" width="25"/>
     <node>assign20</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign21" name="赋值16" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link55" name="link55" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign21</sourceNode>
+      <targetNode>assign2</targetNode>
+    </sourceConnections>
+    <targetConnections>link54</targetConnections>
+    <location x="270" y="144"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign21label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderMain/creator</process:from>
+      <process:to type="query">paramsMain/creator</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign21label" name="label" nodeType="label">
+    <location x="265" y="180"/>
+    <figSize height="17" width="39"/>
+    <node>assign21</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

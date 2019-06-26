@@ -555,7 +555,7 @@ function SetData(params){
 	   document.getElementById("guestAddr").innerHTML = currCompAddress;
 	   document.getElementById("phone").innerHTML = currCompTel;
        $("#guestName").html(params.guestFullName);
-       $("#guestAdd").html(params.addr);
+       //$("#guestAdd").html(params.addr);
        $("#recordDate").html(format(params.recordDate, "yyyy-MM-dd HH:mm"));
        $("#guestMobile").html(params.guestMobile); 
        $("#shippingAdd").html(params.addr); 

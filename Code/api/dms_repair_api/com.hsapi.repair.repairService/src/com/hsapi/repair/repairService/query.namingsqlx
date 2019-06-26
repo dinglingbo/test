@@ -1461,4 +1461,26 @@
 					where guest_id = #guestId#
 			</select>
 			
+		<select id="getRpsPart" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			
+			SELECT
+				a.part_id as partId,
+				a.part_code as partCode,
+				a.part_name as partName,
+				a.qty,
+				a.unit_price as unitPrice,
+				a.unit,
+				a.amt,
+				a.rate,
+				a.discount_amt as discountAmt,
+				a.subtotal,
+				a.remark,
+				b.full_name as fullName
+			FROM
+				rps_part AS a
+				inner join wb_common.com_attribute b
+				on a.part_id = b.id
+				where a.service_id = #serviceId# and a.is_disabled = 0
+		</select>	
+			
 </sqlMap>

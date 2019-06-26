@@ -480,6 +480,7 @@ function setInitData(params){
                         data.guestMobile = guest.mobile;
                         data.contactorName = contactor.name;
                         data.mobile = contactor.mobile;
+                        data.addr = guest.addr;
 
                         $("#guestNameEl").html(guest.guestFullName);
                         $("#showCarInfoEl").html(data.carNo);

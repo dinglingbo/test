@@ -20,6 +20,9 @@ function SetData(serviceId, type) {
         };
     }
     var giftCost = 0;
+    var receivedTotal = 0;//已收合计
+    var receivedDeposit = 0;//已收定金
+    var receivedBala = 0;//已收余额
     if(type != 1){//未结算的需要查找精品加装手动填写成本
     	 nui.ajax({
 	        url: baseUrl + "sales.search.searchSaleGiftApply.biz.ext",
@@ -68,7 +71,31 @@ function SetData(serviceId, type) {
  	            } 
  	        }
  	    });
+    	 //查找已结算的预收金额
+    	 nui.ajax({
+  	        url: baseUrl + "sales.search.queryFisRpAdvance.biz.ext",
+  	        data: {
+  	        	codeId:serviceId
+  	        },
+  	        cache: false,
+  	        async: false,
+  	        success: function(text) {
+  	            if (text.errCode == "S"){
+  	               var fisRpAdvanceList = text.fisRpAdvanceList;
+  	               if(fisRpAdvanceList.length>0){
+  	            	   for(var i = 0;i<fisRpAdvanceList.length;i++){
+      	            	   var temp = fisRpAdvanceList[i];
+  	            		   var amt = temp.amt || 0;//总金额(总成本 = 配件成本+工时成本）
+  	            		   receivedTotal = parseFloat(receivedTotal) + parseFloat(amt);
+  	            		   receivedTotal.toFixed(2);
+  	            		   
+      	               } 
+  	               }
+  	            } 
+  	        }
+  	    });
     }
+    
     var params = { id: serviceId };
     nui.ajax({
         url: baseUrl + "sales.search.searchSalesMain.biz.ext",
@@ -85,6 +112,11 @@ function SetData(serviceId, type) {
                 if(type != 1){
                 	//设置精品加装成本
                 	nui.get("decrCost").setValue(giftCost);
+                	nui.get("receivedTotal").setValue(receivedTotal);
+                	//未收余款
+                	var buyBudgetTotal = data.buyBudgetTotal;
+                	var ykAmt = parseFloat(buyBudgetTotal) + parseFloat(receivedTotal);
+                	nui.get("receivedBalaNo").setValue(ykAmt);
                 }
                 changeValueMsg(1);
             } else {
@@ -112,8 +144,11 @@ function changeValueMsg(e) { //值改变事件，统一触发此函数
         parseFloat(data.decrCost || 0) + parseFloat(data.familyCost || 0) + parseFloat(data.otherCost || 0); //总成本 = 购买成本 + 上牌成本 + GPS成本 + 按揭成本 + 加装成本 + 家访成本 + 其他成本
     var receTotal = parseFloat(data.saleAmt || 0) + parseFloat(data.insuranceAmt || 0) + parseFloat(data.purchaseAmt || 0) +
         parseFloat(data.boardLotAmt || 0) + parseFloat(data.gpsAmt || 0) + parseFloat(data.mortgageAmt || 0) + parseFloat(data.decrAmt || 0) +
-        parseFloat(data.familyAmt || 0) + parseFloat(data.otherAmt || 0); //购车总费用 = 车辆销价 + 实际保险费 + 实际购置税 + 上牌费 + GPS费 + 按揭手续费 + 加装费 + 家访费 + 其他费
-    var totalGrossProfitRate = (totalCost / receTotal).toFixed(2);
+        parseFloat(data.familyAmt || 0) + parseFloat(data.otherAmt || 0)+ parseFloat(data.agentDeposit || 0); //购车总费用 = 车辆销价 + 实际保险费 + 实际购置税 + 上牌费 + GPS费 + 按揭手续费 + 加装费 + 家访费 + 其他费+续保押金
+    var totalGrossProfitRate =0 ;
+    if(receTotal!=0){
+    	totalGrossProfitRate=(totalCost / receTotal).toFixed(2)
+    }
     data.totalGrossProfitRate = totalGrossProfitRate;
     data.saleGrossProfit = saleGrossProfit;
     data.insuranceDifferAmt = insuranceDifferAmt;

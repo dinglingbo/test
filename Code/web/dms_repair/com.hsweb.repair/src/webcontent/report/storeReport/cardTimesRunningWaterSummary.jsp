@@ -11,7 +11,7 @@
 <head>
 <title>计次卡流水汇总</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/cardTimesRunningWaterSummary.js?v=1.1.3"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/cardTimesRunningWaterSummary.js?v=1.1.6"></script>
         <link href="http://127.0.0.1:8080/default/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="http://127.0.0.1:8080/default/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
         <style>
@@ -111,6 +111,7 @@
                         <div field="prdtName" name="prdtName" headerAlign="center"   visible="true" width="100">名称</div>
 
                       	<div field="times"  name="times" headerAlign="center"   visible="true" width="100" summaryType="sum">次数</div>
+                      	<div field="amt" name="amt" headerAlign="center"  visible="true" width="80" summaryType="sum">金额</div> 
                         <div field="sellPrice" name="sellPrice" headerAlign="center"  visible="true" width="80" summaryType="sum">金额</div>                              
                         <div field="creator" name="creator" headerAlign="center"  visible="true" width="100">创建人 </div>
                         <div field="createDate"  name="createDate" headerAlign="center"  dateformat="yyyy-MM-dd HH:mm" visible="true" width="100">创建日期</div>

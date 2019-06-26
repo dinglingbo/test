@@ -49,6 +49,7 @@ function SetDataMsg(serviceId, frameColorId, interialColorId) {
         url: baseUrl + "sales.search.searchSaleCalc.biz.ext",
         type: "post",
         cache: false,
+        async: false,
         data: {
             params: params
         },
@@ -56,7 +57,7 @@ function SetDataMsg(serviceId, frameColorId, interialColorId) {
             if (text.errCode == "S") {
                 var data = text.data[0];
                 form.setData(data);
-                if (data.saleType == "1558580770894") { //全款
+                if (data && data.saleType == "1558580770894") { //全款
                     changeSaleType(1);
                 }
                 if (!data.frameColorId) { //没值则取销售主表的颜色

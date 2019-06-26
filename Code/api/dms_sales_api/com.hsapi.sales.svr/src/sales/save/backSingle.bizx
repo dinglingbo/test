@@ -105,7 +105,7 @@
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign3</targetNode>
     </sourceConnections>
-    <targetConnections>link56</targetConnections>
+    <targetConnections>link13</targetConnections>
     <location x="726" y="403"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
@@ -186,12 +186,12 @@
       <targetNode>assign8</targetNode>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
-    <location x="774" y="403"/>
+    <location x="795" y="403"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="772" y="439"/>
+    <location x="793" y="439"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
@@ -451,7 +451,7 @@
       <targetNode>invokePojo2</targetNode>
     </sourceConnections>
     <targetConnections>link53</targetConnections>
-    <location x="538" y="403"/>
+    <location x="525" y="403"/>
     <size height="28" width="28"/>
     <nodeLabel>assign7label</nodeLabel>
     <process:copy>
@@ -460,7 +460,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
-    <location x="536" y="439"/>
+    <location x="523" y="439"/>
     <figSize height="17" width="32"/>
     <node>assign7</node>
   </nodes>
@@ -494,7 +494,7 @@
       <targetNode>assign11</targetNode>
     </sourceConnections>
     <targetConnections>link54</targetConnections>
-    <location x="600" y="403"/>
+    <location x="570" y="403"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -510,14 +510,14 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="570" y="439"/>
+    <location x="540" y="439"/>
     <figSize height="17" width="82"/>
     <node>invokePojo2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign11" name="赋值11" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link56" name="link56" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign11</sourceNode>
-      <targetNode>invokePojo0</targetNode>
+      <targetNode>assign16</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link59" name="link59" displayName="连接线" type="transition">
       <sourceNode>assign11</sourceNode>
@@ -530,12 +530,12 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link55</targetConnections>
-    <location x="662" y="403"/>
+    <location x="619" y="403"/>
     <size height="28" width="28"/>
     <nodeLabel>assign11label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
-    <location x="657" y="439"/>
+    <location x="614" y="439"/>
     <figSize height="17" width="39"/>
     <node>assign11</node>
   </nodes>
@@ -609,6 +609,25 @@
     <location x="313" y="360"/>
     <figSize height="17" width="39"/>
     <node>assign15</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign16" name="赋值16" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign16</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link56</targetConnections>
+    <location x="677" y="403"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign16label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">checkEnter/carStatus</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign16label" name="label" nodeType="label">
+    <location x="672" y="439"/>
+    <figSize height="17" width="39"/>
+    <node>assign16</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

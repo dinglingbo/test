@@ -1266,8 +1266,13 @@ function caseMsg() { //销售结案审核
             iframe.contentWindow.SetData(billFormData.id, type);
         },
         ondestroy: function(action) {
-            var billFormData = billForm.getData(true);
-            searchSalesMain(billFormData.id, 0);
+        	if(action=="ok"){
+        		var billFormData = billForm.getData(true);
+        		billFormData.isSettle = 1;
+        		billForm.setData(billFormData);
+        		doSetStyle(billFormData);
+        	}
+           // searchSalesMain(billFormData.id, 0);
         }
     });
 }

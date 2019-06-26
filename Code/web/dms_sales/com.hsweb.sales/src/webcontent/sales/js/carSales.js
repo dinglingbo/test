@@ -195,17 +195,17 @@ function onSearch() {
     }
     //销售单管理。查询
     if (nui.get("typeMsg").value == 1) {
-        mainGrid.load({ params: param, type: 1 });
+        mainGrid.load({ params: param, type: 1,token:token});
     }
     if (nui.get("typeMsg").value == 2) {
         param.status = "1,2";
-        mainGrid2.load({ params: param, type: 1 });
+        mainGrid2.load({ params: param, type: 1,token:token });
     }
     if (nui.get("typeMsg").value == 3) {
         param.status = 2;
         param.isSettle = 1;
         param.isSubmitCar = 1;
-        mainGrid3.load({ params: param, type: 1 });
+        mainGrid3.load({ params: param, type: 1,token:token });
     }
 }
 

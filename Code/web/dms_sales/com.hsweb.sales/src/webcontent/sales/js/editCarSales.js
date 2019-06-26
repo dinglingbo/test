@@ -330,6 +330,13 @@ $(document).ready(function(v) {
     searchKeyEl.setUrl(guestInfoUrl);
 
     searchKeyEl.on("beforeload", function(e) {
+    	var data = billForm.getData();
+    	if(!data.id){
+    		if(typeF==1){
+    			typeF = 0;
+    			document.getElementById("caCalculation").contentWindow.setEmpty();
+    		}
+    	}
         var data = {};
         var params = {};
         var value = e.data.key;
@@ -910,7 +917,7 @@ function add(){
 	nui.get("carModelName").setText("");
 	//购车预算
 	//form.setData([]);
-	document.getElementById("caCalculation").contentWindow.setEmpty();
+	//document.getElementById("caCalculation").contentWindow.setEmpty();
 	//精品加装
 	jpDetailGrid.clearRows();
 	//加载精品信息
@@ -1582,6 +1589,14 @@ function changeInterialColorId(value) {
 function activechangedmain(){
 	var tabs = nui.get("mainTabs").getActiveTab();
 	if(tabs.name=="editForm"){
+		var data = billForm.getData();
+		if(!data.id){
+			if(typeF==1){
+				type == 0;
+				document.getElementById("caCalculation").contentWindow.setEmpty();
+			}
+			
+		}
 	   if(isTabs==1){
 		    isTabs = 0;
 			if(dataF.type==0){
@@ -1602,7 +1617,16 @@ function activechangedmain(){
 }
 
 //主表购车方式改变时
+var typeF = 1;
 function changeBuyType(){
+	var data = billForm.getData();
+	if(!data.id){
+		if(typeF==1){
+			type == 0;
+			document.getElementById("caCalculation").contentWindow.setEmpty();
+		}
+		
+	}
 	isTabs = 0;
 	changeValueMsg(1);
 }

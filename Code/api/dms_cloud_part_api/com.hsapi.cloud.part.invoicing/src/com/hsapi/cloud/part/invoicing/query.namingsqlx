@@ -1585,4 +1585,14 @@
 			is_finished = 0
            	and main_id = #mainId#
     </select>
+    
+    <select id="querySellMainIsFinish" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">   	
+		SELECT
+			id
+		FROM
+			pj_sell_order_detail_chk
+		WHERE
+			is_finished = 0
+           	and main_id = #mainId#
+    </select>
 </sqlMap>

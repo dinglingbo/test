@@ -501,9 +501,30 @@
 		       a.order_price as orderPrice, a.tax_sign as taxSign, a.tax_rate as taxRate, 
 		       a.tax_price as taxPrice, a.no_tax_price as noTaxPrice,
 			   a.true_enter_qty as trueEnterQty, a.not_enter_qty as notEnterQty,
-			   a.adjust_qty as adjustQty, a.is_finished as isFinished, a.prev_detail_id,
+			   a.adjust_qty as adjustQty, a.is_finished as isFinished, a.prev_detail_id as prevDetailId,
 			   a.remark as remark, a.store_shelf as storeShelf, b.source_detail_id as sourceDetailId, b.qty as qty
-		from dms_cloud_part.pj_pchs_order_detail a
+		from dms_cloud_part.pj_pchs_order_detail_chk a
+		inner join dms_cloud_part.pj_wms_params_detail b
+		on a.id = b.erp_detail_id and a.main_id = b.erp_main_id
+		inner join wb_common.com_attribute c
+		on b.part_id = c.cang_part_id
+		where a.main_id = #erpId# and b.main_id = #mainId#
+    	
+    </select>
+    
+    <!--
+    	根据订单明细ID进行出库，需要更新订单来源ID，来源单据类型，外部来源ID
+    -->
+    <select id="queryOutDetailInfoByDetailId" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		
+		SELECT a.id, a.main_id as mainId, a.store_id as storeId, a.part_id as partId, 
+			   a.part_code as partCode, a.part_name as partName, a.full_name as fullName, 
+			   a.out_unit_id as outUnitId, a.system_unit_id as systemUnitId, a.order_qty as orderQty, 
+			   a.order_price as orderPrice, a.true_out_qty as trueOutQty, a.not_out_qty as notOutQty,
+			   a.adjust_qty as adjustQty, a.is_finished as isFinished, a.prev_detail_id as prevDetailId, 
+		       a.is_mark_batch as isMarkBatch, a.batch_source_id as batchSourceId,
+			   a.remark as remark, a.store_shelf as storeShelf, b.source_detail_id as sourceDetailId, b.qty as qty
+		from dms_cloud_part.pj_sell_order_detail_chk a
 		inner join dms_cloud_part.pj_wms_params_detail b
 		on a.id = b.erp_detail_id and a.main_id = b.erp_main_id
 		inner join wb_common.com_attribute c

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="enterSettleByDetail" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据具体的明细入库&#xD;&#xA;根据已经提交的订单数据和当前应入库的数据生成 is_diff_order = 1 的数据，在循环处理的过程中判断是否超数&#xD;&#xA;&#xD;&#xA;判断主表是否完成，取版本号用于后面更新用，如果更新的数据条数为0，则失败&#xD;&#xA;明细数据生成后重新汇总主表的含税和不含税数据&#xD;&#xA;com.hsapi.cloud.part.invoicing.paramset.queryEnterDetailInfoByDetailId&#xD;&#xA;取入库明细，判断参数的记录数与查询出的记录数是否相等，如果不相等提示获取入库数据失败&#xD;&#xA;取主表的版本号，根据版本号更新订单主表数据，如果影响的行数不等于1，则返回失败，提示数据处理频繁请稍后再处理&#xD;&#xA;com.hsapi.cloud.part.invoicing.query.queryMainIsFinish（查询是否存在未完成的订单明细）&#xD;&#xA;是否需要根据outCode判断已经存在单据（暂不考虑）" title="Administrator&#x9;19-6-25 上午10:19">
-    <location x="26" y="-15"/>
+    <location x="26" y="-60"/>
     <size height="196" width="694"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
@@ -41,7 +41,7 @@
       <targetNode>invokePojo13</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -94,7 +94,7 @@
       <targetNode>assign2</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -242,19 +242,21 @@
       <targetNode>assign15</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
+    <targetConnections>link52</targetConnections>
+    <targetConnections>link53</targetConnections>
     <location x="752" y="219"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.cloud.part.common.uniq.getCompBillNO</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="billTypeCode" type="literal" value="String" valueType="Primitive" pattern="reference">CGD</process:inputVariable>
+        <process:inputVariable id="0" name="billTypeCode" type="query" value="String" valueType="Primitive" pattern="reference">billNoPreFix</process:inputVariable>
         <process:inputVariable id="1" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
@@ -875,6 +877,26 @@
       <sourceNode>invokePojo8</sourceNode>
       <targetNode>subprocess1</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link50" name="link50" displayName="连接线" type="transition">
+      <sourceNode>invokePojo8</sourceNode>
+      <targetNode>assign19</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">main/orderTypeId</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link51" name="link51" displayName="连接线" type="transition">
+      <sourceNode>invokePojo8</sourceNode>
+      <targetNode>assign20</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">main/orderTypeId</process:leftOperand>
+          <process:rightOperand type="literal">4</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link5</targetConnections>
     <location x="675" y="219"/>
     <size height="28" width="22"/>
@@ -1459,6 +1481,44 @@
     <figSize height="17" width="39"/>
     <node>assign18</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign19" name="赋值16" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link52" name="link52" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign19</sourceNode>
+      <targetNode>subprocess1</targetNode>
+    </sourceConnections>
+    <targetConnections>link50</targetConnections>
+    <location x="711" y="159"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign19label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">CGD</process:from>
+      <process:to type="query">billNoPreFix</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign19label" name="label" nodeType="label">
+    <location x="706" y="195"/>
+    <figSize height="17" width="39"/>
+    <node>assign19</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign20" name="赋值17" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link53" name="link53" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign20</sourceNode>
+      <targetNode>subprocess1</targetNode>
+    </sourceConnections>
+    <targetConnections>link51</targetConnections>
+    <location x="711" y="293"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign20label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">XTD</process:from>
+      <process:to type="query">billNoPreFix</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign20label" name="label" nodeType="label">
+    <location x="706" y="329"/>
+    <figSize height="17" width="39"/>
+    <node>assign20</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-06-25 10:19:09" date="2019-06-25Z" description="" name="enterSettle" version="7.0.0.0"/>
@@ -1496,6 +1556,7 @@
     <process:variable anyType="java.util.HashMap" description="用于接收未完成的订单明细" historyStateLocation="client" isArray="true" name="clist"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" name="codeCheck"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="sourceId" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="billNoPreFix" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjWmsParamsMain" name="paramsMain"/>

@@ -3,6 +3,7 @@
  */
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var basicInfoForm = null;
+var wid ="";
 $(document).ready(function(v)
 {
     basicInfoForm = new nui.Form("#basicInfoForm");
@@ -55,6 +56,9 @@ function onOk()
         });
     }
     console.log(storeLocations);
+    
+    
+    
     //return;
     nui.mask({
     	el : document.body,
@@ -66,6 +70,7 @@ function onOk()
         type:"post",
         data:JSON.stringify({
             storeLocations:storeLocations,
+            wid :wid,
             token:token
         }),
         success:function(data)
@@ -139,5 +144,8 @@ function setData(data)
         basicInfoForm.setData({
             storeId:data.storehouse.id
         });
+        if(data.storehouse.cangStoreId){       	
+        	wid=data.storehouse.cangStoreId;
+        }
     }
 }

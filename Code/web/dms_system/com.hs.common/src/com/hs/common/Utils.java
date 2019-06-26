@@ -140,6 +140,19 @@ public class Utils {
 	}
 	
 	@Bizlet("")
+	public static HashMap<String, Object>[] parseArray(String param,String index) {
+		List<HashMap<String, Object>> lp = new ArrayList<HashMap<String, Object>>();
+		JSONObject obj=JSONObject.parseObject(param);
+		String obj2 = (obj.getJSONArray(index)).toJSONString();
+		try {		
+			HashMap<String, Object>[] p = JSONObject.parseObject(obj2,HashMap[].class);
+			return p;
+		} catch (Exception e) {
+			return lp.toArray(new HashMap[0]); 
+		}
+	}
+	
+	@Bizlet("")
 	public static String strArry(DataObject[] obj,String property1,String  property2,
 									String property3,String property4) {
 		
@@ -169,6 +182,28 @@ public class Utils {
 			resList.add(map);
 		}
 		JSONArray array= JSONArray.parseArray(JSON.toJSONString(resList));
+		String  result =JSONArray.toJSONString(resList);
+		return result;
+	}
+	
+	@Bizlet("")
+	public static String strArry2(DataObject[] obj,String property1,String  property2) {
+		
+		List<HashMap<String,String>> resList =new ArrayList<HashMap<String, String>>();
+		for(DataObject a : obj){
+			HashMap <String,String> map =new HashMap<String, String>();
+			if(a.getString(property1) == null){
+				map.put(property1,"");
+			}else{
+				map.put(property1,a.getString(property1));
+			}
+			if(a.getString(property2) == null){
+				map.put(property2,"");
+			}else{
+				map.put(property2,a.getString(property2));
+			}
+			resList.add(map);
+		}
 		String  result =JSONArray.toJSONString(resList);
 		return result;
 	}

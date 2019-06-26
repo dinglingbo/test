@@ -333,7 +333,7 @@
     <process:input description="" isArray="false" name="label" primitiveType="String"/>
     <process:input description="" isArray="false" name="cars" primitiveType="String"/>
     <process:input description="" isArray="false" name="spec" primitiveType="String"/>
-    <process:input description="" isArray="false" name="status" primitiveType="String"/>
+    <process:input description="" isArray="false" name="status" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

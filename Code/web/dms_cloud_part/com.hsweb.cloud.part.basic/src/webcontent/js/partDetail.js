@@ -163,6 +163,7 @@ var oldData = null;
 var saveUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.savePart.biz.ext";
 function onOk()
 {
+	
     var data = basicInfoForm.getData();
     for(var key in requiredField)
     {
@@ -212,6 +213,21 @@ function onOk()
     if (data.modifyDate) {
         data.modifyDate = format(data.modifyDate, 'yyyy-MM-dd HH:mm:ss');
     }
+    
+    var cangHash ={};
+//    if(qualityHash){
+//    	cangHash.part_type_id =qualityHash[data.qualityTypeId].name;
+//    }
+    cangHash.part_type_id =data.qualityTypeId;
+    cangHash.agency_id =currAgencyId;
+    cangHash.pid = data.code;
+    cangHash.source_pid = data.code;
+    cangHash.um = data.unit;
+    cangHash.remark = data.remark?null:"";
+    cangHash.origin = "";
+    cangHash.label = data.fullName;
+    cangHash.cars = data.applyCarModel;
+    cangHash.spec =data.spec;
     nui.mask({
         el : document.body,
         cls : 'mini-mask-loading',
@@ -222,6 +238,7 @@ function onOk()
         type:"post",
         data:JSON.stringify({
             part:data,
+            cangHash :cangHash,
             token:token
         }),
         success:function(data)

@@ -144,7 +144,8 @@ function changeValueMsg(e) { //值改变事件，统一触发此函数
         parseFloat(data.decrCost || 0) + parseFloat(data.familyCost || 0) + parseFloat(data.otherCost || 0); //总成本 = 购买成本 + 上牌成本 + GPS成本 + 按揭成本 + 加装成本 + 家访成本 + 其他成本
     var receTotal = parseFloat(data.saleAmt || 0) + parseFloat(data.insuranceAmt || 0) + parseFloat(data.purchaseAmt || 0) +
         parseFloat(data.boardLotAmt || 0) + parseFloat(data.gpsAmt || 0) + parseFloat(data.mortgageAmt || 0) + parseFloat(data.decrAmt || 0) +
-        parseFloat(data.familyAmt || 0) + parseFloat(data.otherAmt || 0)+ parseFloat(data.agentDeposit || 0); //购车总费用 = 车辆销价 + 实际保险费 + 实际购置税 + 上牌费 + GPS费 + 按揭手续费 + 加装费 + 家访费 + 其他费+续保押金
+        parseFloat(data.familyAmt || 0) + parseFloat(data.otherAmt || 0)+ parseFloat(data.agentDeposit || 0)+ parseFloat(data.contractGuaranteeAmt || 0)+
+        + parseFloat(data.riskAmt || 0); //购车总费用 = 车辆销价 + 实际保险费 + 实际购置税 + 上牌费 + GPS费 + 按揭手续费 + 加装费 + 家访费 + 其他费+续保押金+ 合同保证金+月供保证金
     var totalGrossProfitRate =0 ;
     if(receTotal!=0){
     	totalGrossProfitRate=(totalCost / receTotal).toFixed(2)

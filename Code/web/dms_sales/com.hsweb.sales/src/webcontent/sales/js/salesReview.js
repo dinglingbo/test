@@ -216,7 +216,7 @@ function approved() { //审核通过
         success: function(text) {
             if (text.errCode == "S") {
                 showMsg(text.errMsg, "S");
-                close();
+                CloseWindow("ok");
             } else {
                 showMsg(text.errMsg, "W");
             }
@@ -226,5 +226,12 @@ function approved() { //审核通过
 }
 
 function close() {
-    window.CloseOwnerWindow('');
+    window.CloseOwnerWindow();
+}
+
+function CloseWindow(action)
+{
+	if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else window.close();
 }

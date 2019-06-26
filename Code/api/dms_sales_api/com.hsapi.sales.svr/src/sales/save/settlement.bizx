@@ -151,7 +151,7 @@
       <sourceNode>transactioncommit0</sourceNode>
       <targetNode>end0</targetNode>
     </sourceConnections>
-    <targetConnections>link22</targetConnections>
+    <targetConnections>link34</targetConnections>
     <location x="1080" y="240"/>
     <size height="28" width="28"/>
     <nodeLabel>transactioncommit0label</nodeLabel>
@@ -702,10 +702,10 @@
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link22" name="link22" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign11</sourceNode>
-      <targetNode>transactioncommit0</targetNode>
+      <targetNode>assign13</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -742,6 +742,29 @@
     <location x="971" y="338"/>
     <figSize height="17" width="39"/>
     <node>assign12</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign13" name="赋值13" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link34" name="link34" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign13</sourceNode>
+      <targetNode>transactioncommit0</targetNode>
+    </sourceConnections>
+    <targetConnections>link22</targetConnections>
+    <location x="1070" y="302"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign13label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">S</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">结案成功</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign13label" name="label" nodeType="label">
+    <location x="1065" y="338"/>
+    <figSize height="17" width="39"/>
+    <node>assign13</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

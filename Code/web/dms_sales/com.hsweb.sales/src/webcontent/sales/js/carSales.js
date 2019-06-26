@@ -195,17 +195,17 @@ function onSearch() {
     }
     //销售单管理。查询
     if (nui.get("typeMsg").value == 1) {
-        mainGrid.load({ params: param, type: 1 });
+        mainGrid.load({ params: param, type: 1,token:token});
     }
     if (nui.get("typeMsg").value == 2) {
         param.status = "1,2";
-        mainGrid2.load({ params: param, type: 1 });
+        mainGrid2.load({ params: param, type: 1,token:token });
     }
     if (nui.get("typeMsg").value == 3) {
         param.status = 2;
         param.isSettle = 1;
         param.isSubmitCar = 1;
-        mainGrid3.load({ params: param, type: 1 });
+        mainGrid3.load({ params: param, type: 1,token:token });
     }
 }
 
@@ -214,15 +214,15 @@ function openPage(params) {
     var text = null;
     if (nui.get("typeMsg").value == 1) {
         tabsId = "12780";
-        text = "编辑销售管理";
+        text = "销售管理详情";
     }
     if (nui.get("typeMsg").value == 2) {
         tabsId = "12781";
-        text = "编辑销售单审核";
+        text = "销售单审核详情";
     }
     if (nui.get("typeMsg").value == 3) {
         tabsId = "12782";
-        text = "编辑销售结案";
+        text = "销售结案详情";
     }
     var item = {};
     item.id = tabsId;

@@ -155,7 +155,7 @@
                 (a.record_date &lt; #recordEndDate#)
               </isNotEmpty>             
         </dynamic> 
-        
+        order by a.record_date desc
 	</select>
 	
 	<!--选择界面使用 -->

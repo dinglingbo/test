@@ -41,7 +41,6 @@
       <sourceNode>transactioncommit0</sourceNode>
       <targetNode>assign9</targetNode>
     </sourceConnections>
-    <targetConnections>link26</targetConnections>
     <targetConnections>link28</targetConnections>
     <targetConnections>link41</targetConnections>
     <location x="810" y="195"/>
@@ -111,6 +110,14 @@
       <process:from type="query" pattern="reference">comd/name</process:from>
       <process:to type="query">orgTemp/orgname</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">comd/code</process:from>
+      <process:to type="query">orgTemp/orgcode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">comd/address</process:from>
+      <process:to type="query">orgTemp/orgaddr</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="347" y="231"/>
@@ -118,15 +125,11 @@
     <node>assign2</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="updateEntity" displayName="updateEntity" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="link5" lineType="note" type="exception">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="link5" lineType="note" isDefault="false" type="exception">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>assign1</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" id="link26" name="link26" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo1</sourceNode>
-      <targetNode>transactioncommit0</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link40" name="link40" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link40" name="link40" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>invokePojo5</targetNode>
       <process:transitionCondition>
@@ -526,7 +529,7 @@
       <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link40</targetConnections>
-    <location x="660" y="226"/>
+    <location x="676" y="195"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo5label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -540,7 +543,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
-    <location x="609" y="262"/>
+    <location x="625" y="231"/>
     <figSize height="17" width="124"/>
     <node>invokePojo5</node>
   </nodes>
@@ -621,7 +624,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

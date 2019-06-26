@@ -620,3 +620,48 @@ function addOrgAccount(){
 	});
 	
 }
+
+var openAppUrl =apiPath + cloudPartApi + "/"+"com.hsapi.cloud.part.baseDataCrud.cang.registerCompany.biz.ext";
+function openAPP(){
+	var row = moreOrgGrid.getSelected();
+	if(!row){
+		showMsg("请选择一条记录","W");
+		return;
+	}
+	var srmUserId = row.srmUserId;
+	if(srmUserId){
+		showMsg("已开通电商账号","W");
+		return;
+	}
+	var orgid = row.orgid;
+	var company = row.name;
+	
+	nui.mask({
+        el : document.body,
+        cls : 'mini-mask-loading',
+        html : '开通中...'
+    });
+    nui.ajax({
+        url: openAppUrl,
+        type: 'post',
+        data: nui.encode({
+        	orgid     : orgid,
+        	company   : company,
+        	token     : token
+        }),
+        cache: false,
+        success: function (data) {
+            if (data.errCode == "S"){
+            	nui.unmask(document.body);
+            	showMsg(data.errMsg ||"仓先生APP注册成功","S");
+                }else {
+                nui.unmask(document.body);
+                showMsg(data.errMsg ||"仓先生APP注册失败","E");
+            }
+            moreOrgGrid.reload();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            nui.alert(jqXHR.responseText);
+        }
+	});
+}

@@ -59,7 +59,8 @@
 			a.latitude latitude,
 			a.tel tel,
 			a.complain_tel complainTel,
-			a.srm_user_id  srmUserId
+			a.srm_user_id  srmUserId,
+			a.agency_id as agencyId
 		FROM  wb_common.com_company a
 			where 1=1
 		<dynamic>

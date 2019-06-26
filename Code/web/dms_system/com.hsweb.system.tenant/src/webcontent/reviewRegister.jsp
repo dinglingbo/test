@@ -7,7 +7,7 @@
 <link
 	href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.1"
 	rel="stylesheet" type="text/css" />
-<script src="<%= request.getContextPath() %>/tenant/js/review_register.js?v=1.9.31"
+<script src="<%= request.getContextPath() %>/tenant/js/review_register.js?v=1.9.36"
 	type="text/javascript"></script>
 </head>
 <body>
@@ -99,7 +99,7 @@
 
  	
  	<div id="advancedOrgWin" class="nui-window"
-     title="公司选择" style="width:530px;height:340px;"
+     title="公司选择" style="width:600px;height:340px;"
      showModal="true"
      showHeader="false"
      allowResize="false"
@@ -112,6 +112,7 @@
                     <input class="nui-textbox" id="orgidOrName" name="orgidOrName" width="160px" emptyText="请输入店号或公司名">
                     <a class="nui-button" iconCls="" plain="true" onclick="searchOrg()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="addOrgAccount" id=""><span class="fa fa-check fa-lg"></span>&nbsp;开通电商账号</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="openAPP" id=""><span class="fa fa-check fa-lg"></span>&nbsp;注册仓先生APP</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="onOrgClose" id=""><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
                 </td>
             </tr>
@@ -131,8 +132,9 @@
               <div property="columns">
               	<div type="checkcolumn" width="15" class="mini-radiobutton" header="选择"></div>
                 <div field="orgid" name="orgid" width="15" align="center"  visible="true" headerAlign="center" header="企业号"></div>
-                <div field="name" name="name" width="" align="center"  headerAlign="center" header="公司名称"></div>
+                <div field="name" name="name" width="80" align="center"  headerAlign="center" header="公司名称"></div>
                 <div field="srmUserId" name="srmUserId" width="40" align="center"  headerAlign="center" header="电商账号"></div>
+                <div field="agencyId" name="agencyId" width="40" align="center"  headerAlign="center" header="仓先生APP公司ID"></div>
               </div>
           </div>
     </div>

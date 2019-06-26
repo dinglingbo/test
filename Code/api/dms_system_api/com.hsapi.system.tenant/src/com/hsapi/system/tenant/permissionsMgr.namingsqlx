@@ -229,5 +229,37 @@
 			a.is_dimission = 0 AND a.is_stockman = 1 and a.orgid = #orgid#
 
     </select>
+    
+    
+    <!--查询仓库人员-->
+    <select id="queryStoreMem" parameterClass="HashMap" resultClass="HashMap">
+    	
+    	SELECT DISTINCT
+			a.emp_id as empId, 
+			a.store_id as storeId,
+			a.emp_name as empName,
+			a.orgid as orgid,
+			a.recorder as recorder,
+			a.record_date  as  recordDate,
+			a.cang_roles as cangRoles,
+			b.is_open_app as isOpenApp
+		FROM
+			com_store_member a
+		INNER JOIN com_member b ON a.emp_id = b.empid
+		where 1=1
+		  <isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+          </isNotEmpty>
+	      <isNotEmpty prepend="and" property="name">  
+	            (a.emp_name  like '%$name$%')
+	      </isNotEmpty>
+	      <isNotEmpty prepend="and" property="storeId">  
+	            a.store_id = #storeId#
+	      </isNotEmpty>
+	      <isNotEmpty prepend="and" property="empId">  
+	            (a.emp_id = #empId#)
+	      </isNotEmpty>
+		order by recordDate desc
+    </select>
 	
 </sqlMap>

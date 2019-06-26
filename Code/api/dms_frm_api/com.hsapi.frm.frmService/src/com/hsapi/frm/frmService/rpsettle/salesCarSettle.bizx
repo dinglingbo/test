@@ -697,7 +697,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign23label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">fisRpAdvanceTemp/balaAmt</process:from>
+      <process:from type="query" pattern="reference">fisRpAdvanceTemp/charOffAmt</process:from>
       <process:to type="query">fisRpAdvanceTemp/deductionAmt</process:to>
     </process:copy>
     <process:copy>

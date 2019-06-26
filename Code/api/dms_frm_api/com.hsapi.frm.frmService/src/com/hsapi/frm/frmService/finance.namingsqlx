@@ -294,6 +294,7 @@
 			       a.guest_id as guestId,
 			       a.guest_name as guestName, 
 			       a.amt as amt,
+			       a.char_off_amt as charOffAmt,
 			       a.deduction_amt as deductionAmt, 
 			       a.bala_amt as balaAmt,
 			       a.status as status, 

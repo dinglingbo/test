@@ -492,6 +492,7 @@ function saveItem() {
                 serviceId: nui.get("id").value
             };
             itemGrid.load({ params: params });
+           
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR.responseText);
@@ -526,6 +527,7 @@ function selectGift() {
                 returnSign: 0,
                 token: token
             });
+            
         }
 
     });
@@ -694,7 +696,8 @@ function updateMainAmt(id) {//id  主表id
         data:{
             id:id
         },
-        success:function(text){
+        success: function (text) {
+            mainGrid.reload();
         }
     });
 }

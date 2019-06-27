@@ -86,7 +86,7 @@ function setData(data){
     		}
     		
     		nui.ajax({
-    			url : apiPath + repairApi + "/com.hsapi.frm.frmService.rpsettle.queryPayCarByGuestId.biz.ext" ,
+    			url : apiPath + frmApi + "/com.hsapi.frm.frmService.rpsettle.queryPayCarByGuestId.biz.ext" ,
     			type : "post",
     			data : json,
     			success : function(data) {

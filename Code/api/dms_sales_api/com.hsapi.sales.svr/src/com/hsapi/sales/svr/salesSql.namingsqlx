@@ -519,7 +519,7 @@
                     (a.code in ($code$))
             </isNotEmpty> 
         </dynamic>  
-        
+        order by a.record_date desc
     </select>
      <!-- 根据主表ID查询 -->
     <select id="queryPchsOrderDetailCheckList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
@@ -555,7 +555,7 @@
             </dynamic>  
            
         
-        ORDER BY a.id asc
+        order by a.record_date desc
     </select>
     
      <!-- 查询所有待验车辆 -->
@@ -600,7 +600,7 @@
             </dynamic>  
            
         
-        ORDER BY a.id asc
+        order by a.record_date desc
     </select>
     
          <!-- 查询所有已验车辆 -->
@@ -698,7 +698,7 @@
             </dynamic>  
            
         
-        ORDER BY a.id asc
+        order by a.record_date desc
     </select>
 	   
            
@@ -812,7 +812,7 @@
             </dynamic>  
            
         
-        ORDER BY a.id asc
+        order by a.record_date desc
     </select>
 	<select id="searchGuest" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT 

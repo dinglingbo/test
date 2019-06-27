@@ -767,7 +767,9 @@
     <node>assign13</node>
   </nodes>
   <topRuler/>
-  <leftRuler/>
+  <leftRuler>
+    <guides position="199" horizontal="true"/>
+  </leftRuler>
   <process:info author="Administrator" createTime="2019-06-03 17:09:16" date="2019-06-03Z" description="" name="settlement" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="serverType" primitiveType="String"/>

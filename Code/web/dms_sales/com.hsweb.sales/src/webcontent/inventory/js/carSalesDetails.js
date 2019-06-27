@@ -5,7 +5,7 @@ var baseUrl = apiPath + saleApi + "/";//window._rootUrl || "http://127.0.0.1:808
 //var leftGridUrl = baseUrl
 //		+ "com.hsapi.part.invoice.svr.queryPjPchsOrderMainList.biz.ext";
 var rightGridUrl = baseUrl
-		+ "sales.inventory.queryPchsOrderDetailList.biz.ext";
+		+ "com.hsapi.sales.svr.inventory.queryPchsOrderDetailList.biz.ext";
 var storeShelf = baseUrl+"com.hsapi.part.baseDataCrud.crud.getSorehouseLocation.biz.ext";
 //var advancedSearchWin = null;
 var advancedMorePartWin = null;
@@ -598,7 +598,7 @@ var requiredField = {
 /*	advanceDepositAmt :"预交定金",*/
 };
 var saveUrl = baseUrl
-		+ "sales.inventory.savePchsOrder.biz.ext";
+		+ "com.hsapi.sales.svr.inventory.savePchsOrder.biz.ext";
 function save() {
 	var data = basicInfoForm.getData();
 	for ( var key in requiredField) {
@@ -1197,7 +1197,7 @@ function checkRightData() {
 	// }
 	return p;
 }
-var salesCheckCar = baseUrl+"sales.inventory.applyCheckCar.biz.ext";
+var salesCheckCar = baseUrl+"com.hsapi.sales.svr.inventory.applyCheckCar.biz.ext";
 function salesCheck(){
 	if (isFinancial == 0) {
 		showMsg("请先提交!","W");
@@ -1232,7 +1232,7 @@ function salesCheck(){
 		}
 	});	
 }
-var salesSubmitFinancial = baseUrl+"sales.inventory.salesSubmitFinancial.biz.ext";
+var salesSubmitFinancial = baseUrl+"com.hsapi.sales.svr.inventory.salesSubmitFinancial.biz.ext";
 function audit(){
 	if (isFinancial == 1) {
 		showMsg("此单已提交!","W");

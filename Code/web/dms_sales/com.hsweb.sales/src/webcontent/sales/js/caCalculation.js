@@ -46,7 +46,7 @@ function setSaleType(value) {
 function SetDataMsg(serviceId, frameColorId, interialColorId) {
     var params = { billType: 2, serviceId: serviceId };
     nui.ajax({
-        url: baseUrl + "sales.search.searchSaleCalc.biz.ext",
+        url: baseUrl + "com.hsapi.sales.svr.search.searchSaleCalc.biz.ext",
         type: "post",
         cache: false,
         async: false,
@@ -210,8 +210,8 @@ function changeInterialColorId() {
 
 var comeServiceIdF = null;
 var statusF = null;
-var saveComeUrl = baseUrl + "sales.save.saveSaleCalc.biz.ext";
-var jpDetailGridUrl = baseUrl + "sales.search.searchSaleGiftApply.biz.ext";
+var saveComeUrl = baseUrl + "com.hsapi.sales.svr.save.saveSaleCalc.biz.ext";
+var jpDetailGridUrl = baseUrl + "com.hsapi.sales.svr.search.searchSaleGiftApply.biz.ext";
 var mainF = null
 
 function setShowSave(params) {
@@ -231,7 +231,7 @@ function setShowSave(params) {
     if (comeServiceIdF) {
         var params = { billType: 1, serviceId: comeServiceIdF };
         nui.ajax({
-            url: baseUrl + "sales.search.searchSaleCalc.biz.ext",
+            url: baseUrl + "com.hsapi.sales.svr.search.searchSaleCalc.biz.ext",
             type: "post",
             cache: false,
             async: false,

@@ -1,6 +1,6 @@
 var statusList = [{id:"0",name:"联系人"},{id:"1",name:"联系电话"},{id:"2",name:"车架号（VIN）"}];
 var saleApiUrl  = apiPath + saleApi + "/";
-var rightGridUrl = saleApiUrl+"sales.inventory.queryFactoryReturnList.biz.ext";
+var rightGridUrl = saleApiUrl+"com.hsapi.sales.svr.inventory.queryFactoryReturnList.biz.ext";
 
 var basicInfoForm = null;
 var rightGrid = null;

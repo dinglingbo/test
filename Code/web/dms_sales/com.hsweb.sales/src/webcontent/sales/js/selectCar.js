@@ -1,6 +1,6 @@
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + saleApi + "/";
-var gridUrl = baseUrl + "/sales.inventory.queryCheckEnter.biz.ext";
+var gridUrl = baseUrl + "/com.hsapi.sales.svr.inventory.queryCheckEnter.biz.ext";
 var grid = null;
 var frameColorData = null;
 var interialColorData = null;
@@ -73,7 +73,7 @@ function selectCar() {
     } else {
         data.carStatus = 1;
         nui.ajax({
-            url: baseUrl + "sales.save.updateCheckEnter.biz.ext",
+            url: baseUrl + "com.hsapi.sales.svr.save.updateCheckEnter.biz.ext",
             data: {
                 data: data,
                 billFormData:billFormDataF,

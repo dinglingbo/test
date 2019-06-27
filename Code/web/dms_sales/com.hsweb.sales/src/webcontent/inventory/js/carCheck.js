@@ -1,5 +1,5 @@
 var partApiUrl  = apiPath + saleApi + "/";
-var rightGridUrl=partApiUrl+"sales.inventory.queryCheckOrderDetailList.biz.ext";
+var rightGridUrl=partApiUrl+"com.hsapi.sales.svr.inventory.queryCheckOrderDetailList.biz.ext";
 var rightGrid = null;
 $(document).ready(function(v){
 	rightGrid = nui.get("rightGrid");

@@ -28,7 +28,7 @@ function SetData(data, type) {
     var agentGrossProfit = 0;
     if(type != 1){//未结算的需要查找精品加装手动填写成本
     	 nui.ajax({
-	        url: baseUrl + "sales.search.searchSaleGiftApply.biz.ext",
+	        url: baseUrl + "com.hsapi.sales.svr.search.searchSaleGiftApply.biz.ext",
 	        data: {
 	        	billType:2,
 	        	serviceId:serviceId,
@@ -55,7 +55,7 @@ function SetData(data, type) {
 	        }
 	    });
     	 nui.ajax({
- 	        url: baseUrl + "sales.save.queryGiftItemCost.biz.ext",
+ 	        url: baseUrl + "com.hsapi.sales.svr.save.queryGiftItemCost.biz.ext",
  	        data: {
  	        	serviceId:serviceId,
  	        	token:token
@@ -78,7 +78,7 @@ function SetData(data, type) {
  	    });
     	 //查找已结算的预收金额
     	 nui.ajax({
-  	        url: baseUrl + "sales.search.queryFisRpAdvance.biz.ext",
+  	        url: baseUrl + "com.hsapi.sales.svr.search.queryFisRpAdvance.biz.ext",
   	        data: {
   	        	codeId:serviceId,
   	        	token:token
@@ -102,7 +102,7 @@ function SetData(data, type) {
   	    });
     	 //查找保险毛利
     	 nui.ajax({
-   	        url: baseUrl + "sales.search.queryGrossProfit.biz.ext",
+   	        url: baseUrl + "com.hsapi.sales.svr.search.queryGrossProfit.biz.ext",
    	        data: {
    	        	guestId:guestId,
    	        	token:token
@@ -123,7 +123,7 @@ function SetData(data, type) {
     
     var params = { id: serviceId };
     nui.ajax({
-        url: baseUrl + "sales.search.searchSalesMain.biz.ext",
+        url: baseUrl + "com.hsapi.sales.svr.search.searchSalesMain.biz.ext",
         data: {
             params: params,
             token:token
@@ -229,7 +229,7 @@ function save() {
         html: '保存中...'
     });
     nui.ajax({
-        url: baseUrl + "sales.save.saveSaleExtend.biz.ext",
+        url: baseUrl + "com.hsapi.sales.svr.save.saveSaleExtend.biz.ext",
         data: {
             data: data,
             token:token
@@ -255,7 +255,7 @@ function approved() { //审核通过
         return;
     }
     nui.ajax({ //更改主表 isSettle为1 --- 已结算  未生成应收应付
-        url: baseUrl + "sales.save.settlement.biz.ext",
+        url: baseUrl + "com.hsapi.sales.svr.save.settlement.biz.ext",
         data: {
             saleExtend: data,
             token:token

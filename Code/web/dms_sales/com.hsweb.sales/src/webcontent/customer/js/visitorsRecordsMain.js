@@ -3,7 +3,7 @@ var beginDateEl = null;
 var endDateEl = null;
 var mainGrid = null;
 var form = null;
-var queryUrl = apiPath + saleApi + "/sales.custormer.queryGuestCome.biz.ext";
+var queryUrl = apiPath + saleApi + "/com.hsapi.sales.svr.custormer.queryGuestCome.biz.ext";
 //状态：0草稿，1归档，2转销售，3作废
 var statusHash = {
     "0": "草稿",
@@ -302,7 +302,7 @@ function queryCar() {
     window.parent.activeTabAndInit(part, params);
 }
 
-var statusUrl = apiPath + saleApi + "/sales.custormer.changStatus.biz.ext";
+var statusUrl = apiPath + saleApi + "/com.hsapi.sales.svr.custormer.changStatus.biz.ext";
 function del() {
     var row = mainGrid.getSelected();
     if (row) {

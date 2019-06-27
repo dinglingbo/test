@@ -56,7 +56,7 @@ var requiredField = {
 	
 };
 var salesCheckCarUrl = baseUrl
-		+ "sales.inventory.salesCheckCar.biz.ext";
+		+ "com.hsapi.sales.svr.inventory.salesCheckCar.biz.ext";
 function save() {
 	if(cssCheckEnter.billStatus==1){
 		showMsg("单据已入库!","W");
@@ -298,7 +298,7 @@ function carPutInStorage(){
 		token:token
 	});
 	var carPutInStorageUrl = baseUrl
-	+ "sales.inventory.carPutInStorage.biz.ext";
+	+ "com.hsapi.sales.svr.inventory.carPutInStorage.biz.ext";
 	nui.mask({
 		el : document.body,
 		cls : 'mini-mask-loading',

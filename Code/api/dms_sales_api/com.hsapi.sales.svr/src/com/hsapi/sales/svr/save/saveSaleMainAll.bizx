@@ -953,7 +953,7 @@
     <figSize height="17" width="39"/>
     <node>assign18</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess7" name="saveContactor" displayName="saveSaleCostLIst1" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess7" name="saveContactor" displayName="saveContactor" type="subprocess">
     <sourceConnections xsi:type="process:tLink" description="" id="link49" name="link49" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>subprocess7</sourceNode>
       <targetNode>assign15</targetNode>
@@ -972,8 +972,8 @@
     <location x="323" y="265"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess7label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">sales.custormer.saveContactor</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.sales.svr.custormer.saveContactor</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="guest" type="query" value="com.hsapi.sales.data.com.ComGuest" valueType="DataObject" pattern="reference">guest</process:inputVariable>
       </process:inputVariables>

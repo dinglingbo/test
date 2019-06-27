@@ -49,7 +49,9 @@ $(document).ready(function(v) {
     costGrid = nui.get("costGrid");
     costGrid.setUrl(queryUrl);
     var params = { isSale: 1 };
-    costGrid.load({ params: params,token:token });
+    costGrid.load({ params: params,token:token},function(){
+    	
+    });
 
     costDetailGrid = nui.get("costDetailGrid");
     costDetailGrid2 = nui.get("costDetailGrid2");
@@ -1223,11 +1225,22 @@ function selectCar() { //点击选车时触发
 }
 
 function registration() { //车辆上牌
+	if(isTabs==1){
+    	isTabs = 0;
+	    changeValueMsg(1);
+	    document.getElementById("caCalculation").contentWindow.setSelectCarValue(dataF.handcartAmt, dataF.carCost);
+	    document.getElementById("caCalculation").contentWindow.SetDataMsg(dataF.id, dataF.frameColorId, dataF.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
+	    document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
+    }
     var boolean = checkMsg(8);
     if (!boolean) {
         return;
     }
     var billFormData = billForm.getData(true); //主表信息
+    if(billFormData.enterId==0){
+    	showMsg("销售单未选车","W");
+    	return;
+    }
     nui.open({
         url: webPath + contextPath + "/sales/sales/vehicleRegistration.jsp?token=" + token,
         title: "车辆上牌",
@@ -1235,7 +1248,7 @@ function registration() { //车辆上牌
         height: "490px",
         onload: function() {
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(billFormData.id, billFormData.guestId, billFormData.guestFullName);
+            iframe.contentWindow.SetData(billFormData.enterId, billFormData.guestId, billFormData.guestFullName);
         }
     });
 }

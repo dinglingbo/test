@@ -129,7 +129,7 @@
 			a.scout_status as scoutStatus
 		FROM csb_contactor a 
 			INNER JOIN wb_common.com_guest  b ON a.guest_id = b.id
-		WHERE b.tenant_id = #tenantId# or b.tenant_id =0
+		WHERE b.tenant_id = #tenantId# 
 		<dynamic>
 			<isNotEmpty prepend="and" property="fullName">
                 (b.full_name like '%$fullName$%')
@@ -147,6 +147,7 @@
                 (a.status = #status# )
             </isNotEmpty>
         </dynamic>  
+        ORDER BY b.modify_date DESC
 	</select>
 	
       

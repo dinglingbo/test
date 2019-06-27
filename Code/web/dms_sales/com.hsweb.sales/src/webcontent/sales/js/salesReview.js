@@ -23,6 +23,7 @@ function SetData(serviceId, type) {
     var receivedTotal = 0;//已收合计
     var receivedDeposit = 0;//已收定金
     var receivedBala = 0;//已收余额
+    var agentGrossProfit = 0;
     if(type != 1){//未结算的需要查找精品加装手动填写成本
     	 nui.ajax({
 	        url: baseUrl + "sales.search.searchSaleGiftApply.biz.ext",
@@ -94,6 +95,24 @@ function SetData(serviceId, type) {
   	            } 
   	        }
   	    });
+    	 //查找保险毛利
+    	 nui.ajax({
+   	        url: baseUrl + "sales.search.queryGrossProfit.biz.ext",
+   	        data: {
+   	        	codeId:serviceId
+   	        },
+   	        cache: false,
+   	        async: false,
+   	        success: function(text) {
+   	            if (text.errCode == "S"){
+   	               var data = text.result.data;
+   	               if(data){
+   	            	  agentGrossProfit = data.grossProfit;
+   	               }
+   	               
+   	            } 
+   	        }
+   	    });
     }
     
     var params = { id: serviceId };
@@ -117,6 +136,7 @@ function SetData(serviceId, type) {
                 	var buyBudgetTotal = data.buyBudgetTotal;
                 	var ykAmt = parseFloat(buyBudgetTotal) + parseFloat(receivedTotal);
                 	nui.get("receivedBalaNo").setValue(ykAmt);
+                	nui.get("agentGrossProfit").setValue(agentGrossProfit);
                 }
                 changeValueMsg(1);
             } else {
@@ -126,6 +146,11 @@ function SetData(serviceId, type) {
     });
 }
 
+
+//车辆销售收入=车辆销价+保险毛利+上牌费+GPS费+按揭手续费+加装费+家访费+其它费用
+//购车总费用 = 车辆销价 + 实际保险费 + 实际购置税 + 上牌费 + GPS费 + 按揭手续费 + 加装费 + 家访费 + 其他费+续保押金+ 合同保证金+月供保证金
+//总成本 = 购买成本 + 上牌成本 + GPS成本 + 按揭成本 + 加装成本 + 家访成本 + 其他成本+运输费
+//总毛利= 车辆毛利+保险毛利+上牌毛利+GPS毛利+按揭毛利+加装毛利+家访毛利+其他毛利-销售提成-佣金+毛利调整
 function changeValueMsg(e) { //值改变事件，统一触发此函数
     var data = form.getData();
     var saleGrossProfit = parseFloat(data.saleAmt || 0) - parseFloat(data.carCost || 0) - parseFloat(data.handcartAmt || 0); //车辆毛利 = 车辆销价 - 购买成本-运输费
@@ -139,16 +164,30 @@ function changeValueMsg(e) { //值改变事件，统一触发此函数
     var decrGrossProfit = parseFloat(data.decrAmt || 0) - parseFloat(data.decrCost || 0); //加装毛利 = 加装费 - 加装成本
     var familyGrossProfit = parseFloat(data.familyAmt || 0) - parseFloat(data.familyCost || 0); //家访毛利 = 家访费 - 家访成本
     var otherGrossProfit = parseFloat(data.otherAmt || 0) - parseFloat(data.otherCost || 0); //其他毛利 = 其他费 - 其他成本
-    var totalGrossProfit = saleGrossProfit + agentGrossProfit + boardLotGrossProfit + gpsGrossProfit + mortgageGrossProfit + decrGrossProfit + familyGrossProfit + otherGrossProfit; //总毛利 = 车辆毛利+保险毛利+上牌毛利+GPS毛利+GPS毛利+按揭毛利+加装毛利+家访毛利+其他毛利
+    
+    //车辆毛利+保险毛利+上牌毛利+GPS毛利+按揭毛利+加装毛利+家访毛利+其他毛利-销售提成-佣金+毛利调整
+    var totalGrossProfit = parseFloat(saleGrossProfit) + parseFloat(agentGrossProfit) + parseFloat(boardLotGrossProfit) + 
+                            parseFloat(gpsGrossProfit) + parseFloat(mortgageGrossProfit) + parseFloat(decrGrossProfit) + parseFloat(familyGrossProfit) + 
+                            parseFloat(otherGrossProfit)-parseFloat(data.salesmanDeduct || 0)-parseFloat(data.commissionDeduct || 0)+parseFloat(data.adjustmentAmt || 0); 
+    
+     //总毛利= 车辆毛利+保险毛利+上牌毛利+GPS毛利+按揭毛利+加装毛利+家访毛利+其他毛利-销售提成-佣金+毛利调整
     var totalCost = parseFloat(data.carCost || 0) + parseFloat(data.boardLotCost || 0) + parseFloat(data.gpsCost || 0) + parseFloat(data.mortgageCost || 0) +
-        parseFloat(data.decrCost || 0) + parseFloat(data.familyCost || 0) + parseFloat(data.otherCost || 0); //总成本 = 购买成本 + 上牌成本 + GPS成本 + 按揭成本 + 加装成本 + 家访成本 + 其他成本
+        parseFloat(data.decrCost || 0) + parseFloat(data.familyCost || 0) + parseFloat(data.otherCost || 0) + parseFloat(data.handcartAmt || 0); 
+    
+    //购车总费用 = 车辆销价 + 实际保险费 + 实际购置税 + 上牌费 + GPS费 + 按揭手续费 + 加装费 + 家访费 + 其他费+续保押金+ 合同保证金+月供保证金
     var receTotal = parseFloat(data.saleAmt || 0) + parseFloat(data.insuranceAmt || 0) + parseFloat(data.purchaseAmt || 0) +
         parseFloat(data.boardLotAmt || 0) + parseFloat(data.gpsAmt || 0) + parseFloat(data.mortgageAmt || 0) + parseFloat(data.decrAmt || 0) +
         parseFloat(data.familyAmt || 0) + parseFloat(data.otherAmt || 0)+ parseFloat(data.agentDeposit || 0)+ parseFloat(data.contractGuaranteeAmt || 0)+
-        + parseFloat(data.riskAmt || 0); //购车总费用 = 车辆销价 + 实际保险费 + 实际购置税 + 上牌费 + GPS费 + 按揭手续费 + 加装费 + 家访费 + 其他费+续保押金+ 合同保证金+月供保证金
+        + parseFloat(data.riskAmt || 0);
+    
+    //车辆销售收入=车辆销价+保险毛利+上牌费+GPS费+按揭手续费+加装费+家访费+其它费用
+    var saleIncomeTotal =  parseFloat(data.saleAmt || 0) + parseFloat(data.agentGrossProfit) + parseFloat(data.boardLotAmt || 0) + parseFloat(data.gpsAmt || 0) +
+                           parseFloat(data.mortgageAmt || 0) + parseFloat(data.decrAmt || 0) + parseFloat(data.familyAmt || 0) + parseFloat(data.otherAmt || 0);
+    
+    //总毛利率=总毛利/销售收入
     var totalGrossProfitRate =0 ;
-    if(receTotal!=0){
-    	totalGrossProfitRate=(totalCost / receTotal).toFixed(2)
+    if(saleIncomeTotal!=0){
+    	totalGrossProfitRate=(totalCost / saleIncomeTotal).toFixed(2);
     }
     data.totalGrossProfitRate = totalGrossProfitRate;
     data.saleGrossProfit = saleGrossProfit;
@@ -165,6 +204,7 @@ function changeValueMsg(e) { //值改变事件，统一触发此函数
     data.totalGrossProfit = totalGrossProfit;
     data.totalCost = totalCost;
     data.receTotal = receTotal;
+    data.saleIncomeTotal = saleIncomeTotal;
     form.setData(data);
 }
 

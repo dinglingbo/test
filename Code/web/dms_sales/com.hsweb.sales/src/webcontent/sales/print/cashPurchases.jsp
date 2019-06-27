@@ -334,7 +334,7 @@
                     var billType = params.billType;
                     var carModelId = params.carModelId;
                     document.getElementById("comp").innerHTML = currRepairSettorderPrintShow;
-                    var url = baseUrl + 'sales.search.searchSaleCalc.biz.ext?params/billType=' + billType + '&params/serviceId=' + serviceId;
+                    var url = baseUrl + 'com.hsapi.sales.svr.search.searchSaleCalc.biz.ext?params/billType=' + billType + '&params/serviceId=' + serviceId;
                     var date = new Date();
                     document.getElementById("date").innerHTML = format(date, "yyyy-MM-dd HH:mm:ss");
                     $.post(url, function(res) {
@@ -356,7 +356,7 @@
                     });
 
                     if (billType == 2) {
-                        $.post(baseUrl + "sales.search.searchSalesMain.biz.ext?params/id=" + serviceId, function(res) {
+                        $.post(baseUrl + "com.hsapi.sales.svr.search.searchSalesMain.biz.ext?params/id=" + serviceId, function(res) {
                             if (res.data.length > 0) {
                                 var temp = res.data[0];
                                 document.getElementById("guestFullName").innerHTML = temp.guestFullName || "";
@@ -371,7 +371,7 @@
                     }
 
                     if (carModelId) {
-                        $.post(baseUrl + "sales.base.searchCsbCarModel.biz.ext?params/id=" + carModelId, function(res) {
+                        $.post(baseUrl + "com.hsapi.sales.svr.base.searchCsbCarModel.biz.ext?params/id=" + carModelId, function(res) {
                             if (res.list.length > 0) {
                                 var temp = res.list[0];
                                 document.getElementById("sellPrice").innerHTML = temp.sellPrice;

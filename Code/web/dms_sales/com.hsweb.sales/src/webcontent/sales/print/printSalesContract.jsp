@@ -343,7 +343,7 @@
                     document.getElementById("currBankAccountNumber").innerHTML = currBankAccountNumber;
                     document.getElementById("comp").innerHTML = currRepairSettorderPrintShow;
                     document.getElementById("currEmpTel").innerHTML = currEmpTel;
-                    var url = baseUrl + 'sales.search.searchSalesMain.biz.ext?params/id=' + serviceId;
+                    var url = baseUrl + 'com.hsapi.sales.svr.search.searchSalesMain.biz.ext?params/id=' + serviceId;
                     var enterId = 0;
                     $.post(url, function(res) {
                         if (res.data.length > 0) {
@@ -371,7 +371,7 @@
                             document.getElementById("carModelName").innerHTML = carModelName;
                         }
                     });
-                    var url = baseUrl + 'sales.search.searchSaleCalc.biz.ext?params/billType=2&params/serviceId=' + serviceId;
+                    var url = baseUrl + 'com.hsapi.sales.svr.search.searchSaleCalc.biz.ext?params/billType=2&params/serviceId=' + serviceId;
                     $.post(url, function(res) {
                         if (res.data.length > 0) {
                             var temp = res.data[0];
@@ -397,7 +397,7 @@
                             }
                         }
                     });
-                    var url = baseUrl + "/sales.inventory.queryCheckEnter.biz.ext?params/id=" + enterId;
+                    var url = baseUrl + "com.hsapi.sales.svr.inventory.queryCheckEnter.biz.ext?params/id=" + enterId;
                     if (enterId) {
                         $.post(url, function(res) {
                             if (res.data.length > 0) {

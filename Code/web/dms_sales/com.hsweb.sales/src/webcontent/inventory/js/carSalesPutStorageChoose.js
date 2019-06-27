@@ -4,7 +4,7 @@
 var statusList = [{id:"0",name:"联系人"},{id:"1",name:"联系电话"}];
 var carStatusList = [{id:"0",name:"订货未到"},{id:"1",name:"订货已到"},{id:"2",name:"入库退货"},{id:"3",name:"销售中"},{id:"4",name:"已销售"}];
 var partApiUrl  = apiPath +saleApi + "/";
-var rightGridUrl = partApiUrl+"sales.inventory.queryCheckEnter.biz.ext";
+var rightGridUrl = partApiUrl+"com.hsapi.sales.svr.inventory.queryCheckEnter.biz.ext";
 
 var basicInfoForm = null;
 var rightGrid = null;
@@ -375,7 +375,7 @@ function add(){
     var item={};
     item.id = "carSalesPutStorageDetails";
     item.text = "验车入库详情";
-    item.url = webPath + contextPath + "/inventory.carSalesPutStorageDetails.flow";
+    item.url = webPath + contextPath + "/com.hsweb.inventory.carSalesPutStorageDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {};
@@ -387,7 +387,7 @@ function edit(){
     var item={};
     item.id = "carSalesPutStorageDetails";
     item.text = "验车入库详情";
-    item.url = webPath + contextPath + "/inventory.carSalesPutStorageDetails.flow";
+    item.url = webPath + contextPath + "/com.hsweb.inventory.carSalesPutStorageDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {}; 
@@ -397,7 +397,7 @@ function carCheck(){
     var item={};
     item.id = "carSalesPutStorageDetails";
     item.text = "验车入库详情";
-    item.url = webPath + contextPath + "/inventory.carSalesPutStorageDetails.flow";
+    item.url = webPath + contextPath + "/com.hsweb.inventory.carSalesPutStorageDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {}; 

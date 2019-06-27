@@ -246,8 +246,16 @@ function setGuest(item) {
         searchNameEl.setVisible(true);
         var t = carNo + tel + guestName + carVin;
         searchNameEl.setValue(t);
-    } else if (gType == 2) {
-        var saleMainData = getSaleMain(item.guestId);
+    } else if (gType == 2) { 
+    	var saleMainData = getSaleMain(item.guestId);
+    	if($.isEmptyObject(saleMainData)){
+    		showMsg("该客户没有相关车辆信息，无法开单",'E');
+    		return;
+    	}
+    	if(saleMainData.enterId == 0 || saleMainData.enterId ==''){
+    		showMsg("该客户销但未选车，无法开单",'E');
+    		return;
+    	}
         var carNo = saleMainData.carNo||"无牌";
         var tel = item.guestMobile||"";
         var guestName = item.guestFullName||"";

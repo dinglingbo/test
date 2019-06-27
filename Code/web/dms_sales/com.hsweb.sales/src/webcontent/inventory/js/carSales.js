@@ -3,8 +3,8 @@
  */
 var statusList = [{id:"0",name:"联系人"},{id:"1",name:"联系电话"}];
 var saleApiUrl  = apiPath + saleApi + "/";
-var rightGridUrl = saleApiUrl+"sales.inventory.queryPchsOrderMainList.biz.ext";
-var getDetailPartUrl=saleApiUrl+"sales.inventory.queryPchsOrderDetailList.biz.ext";
+var rightGridUrl = saleApiUrl+"com.hsapi.sales.svr.inventory.queryPchsOrderMainList.biz.ext";
+var getDetailPartUrl=saleApiUrl+"com.hsapi.sales.svr.inventory.queryPchsOrderDetailList.biz.ext";
 var innerPartGrid = null;
 var basicInfoForm = null;
 var searchBeginDate = null;
@@ -440,7 +440,7 @@ function add(){
     var item={};
     item.id = "carSalesDetails";
     item.text = "厂家订货详情";
-    item.url = webPath + contextPath + "/inventory.carSalesDetails.flow";
+    item.url = webPath + contextPath + "/com.hsweb.inventory.carSalesDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {};
@@ -454,7 +454,7 @@ function edit(){
     var item={};
     item.id = "carSalesDetails";
     item.text = "厂家订货详情";
-    item.url = webPath + contextPath + "/inventory.carSalesDetails.flow";
+    item.url = webPath + contextPath + "/com.hsweb.inventory.carSalesDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = row; 

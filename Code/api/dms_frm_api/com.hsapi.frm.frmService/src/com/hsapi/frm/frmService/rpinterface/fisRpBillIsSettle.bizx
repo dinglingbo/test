@@ -226,7 +226,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.sales.data.frm.FisRpBill</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.frm.data.fis.FisRpBill</process:from>
       <process:to type="query">cond1/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -1157,7 +1157,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign16label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.sales.data.frm.FisRpBill</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.frm.data.fis.FisRpBill</process:from>
       <process:to type="query">cond1/_entity</process:to>
     </process:copy>
     <process:copy>

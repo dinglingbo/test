@@ -120,7 +120,7 @@ pageEncoding="UTF-8" session="false" %>
             name: "描述"
         }];
         nui.parse();
-        var saveUrl = apiPath + saleApi + "/sales.base.addCsbPDI.biz.ext";
+        var saveUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.addCsbPDI.biz.ext";
         var form = new nui.Form("form1")
         initDicts({
             pdiTypeId: '10361' //pdi检测类型

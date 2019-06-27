@@ -1,5 +1,5 @@
 var bearUrl  = apiPath +saleApi + "/";
-var rightGridUrl = bearUrl+"sales.inventory.queryCheckEnter.biz.ext";
+var rightGridUrl = bearUrl+"com.hsapi.sales.svr.inventory.queryCheckEnter.biz.ext";
 var searchCsbPDICarDetailUrl = bearUrl+"sales.base.searchCsbPDICarDetail.biz.ext";
 var searchCsbPDICarTemplateUrl = bearUrl+"sales.base.searchCsbPDICarTemplate.biz.ext";
 var morePartGrid = null;
@@ -53,7 +53,7 @@ $(document).ready(function(v){
 
 function setData(row){
 	if(row){
-		var searchPdiUrl = bearUrl+"sales.inventory.queryPDI.biz.ext";
+		var searchPdiUrl = bearUrl+"com.hsapi.sales.svr.inventory.queryPDI.biz.ext";
 	    nui.ajax({
 	        url: searchPdiUrl,
 	        type:"post",
@@ -125,7 +125,7 @@ function ValueChanged(e) {
     
    
 }
-var saveCssCheckPdiMainUrl = bearUrl+"sales.inventory.saveCssCheckPdiMain.biz.ext";
+var saveCssCheckPdiMainUrl = bearUrl+"com.hsapi.sales.svr.inventory.saveCssCheckPdiMain.biz.ext";
 
 function onOk(){
 	nui.mask({

@@ -161,16 +161,16 @@
         </table>
         <script type="text/javascript">
             nui.parse();
-            var saveUrl = apiPath + saleApi + '/sales.save.saveCarGuest.biz.ext';
+            var saveUrl = apiPath + saleApi + '/com.hsapi.sales.svr.save.saveCarGuest.biz.ext';
             var form = new nui.Form("form1");
             var mainId = null;
             var guestId = null;
             var guestFullName = null;
 
-            function SetData(mainId, guestId, guestFullName) {
-                mainId = mainId;
-                guestId = guestId;
-                guestFullName = guestFullName;
+            function SetData(Id, gId, gFullName) {
+                mainId = Id || 0;
+                guestId = gId || "";
+                guestFullName = gFullName || "";
             }
 
             function save() {
@@ -189,7 +189,7 @@
                         if (res.errCode == 'S') {
                             showMsg('保存成功', 'S');
                         } else {
-                            showMsg('保存失败', "E")
+                            showMsg(res.errMsg, "E");
                         }
                     }
                 })

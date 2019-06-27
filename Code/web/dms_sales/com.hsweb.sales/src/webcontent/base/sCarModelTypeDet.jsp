@@ -233,8 +233,8 @@ pageEncoding="UTF-8" session="false" %>
     <script type="text/javascript">
     var isNotArr = [{id:0,name:'是'},{id:1,name:'否'}];
     nui.parse();
-    var addUrl = apiPath + saleApi + "/sales.base.addCsbCarModel.biz.ext";
-    var updateUrl = apiPath + saleApi + "/sales.base.updateCsbCarModel.biz.ext";
+    var addUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.addCsbCarModel.biz.ext";
+    var updateUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.updateCsbCarModel.biz.ext";
     var modelUrl = apiPath + repairApi + '/com.hsapi.repair.common.svr.queryCarBrandSeriesTree.biz.ext';
     var form =  new nui.Form("form1");
     var carBrandId = nui.get('carBrandId');

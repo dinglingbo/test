@@ -1,7 +1,7 @@
 var baseUrl = window._rootSysUrl || "http://127.0.0.1:8080/default/";
-var guestComeUrl = apiPath + saleApi +  "/sales.custormer.saveGuestCome.biz.ext";
-var queryUrl = apiPath + saleApi + "/sales.custormer.queryGuestComeAndGuest.biz.ext";
-var saleUrl = apiPath + saleApi + "/sales.custormer.insSaleMain.biz.ext";
+var guestComeUrl = apiPath + saleApi +  "/com.hsapi.sales.svr.custormer.saveGuestCome.biz.ext";
+var queryUrl = apiPath + saleApi + "/com.hsapi.sales.svr.custormer.queryGuestComeAndGuest.biz.ext";
+var saleUrl = apiPath + saleApi + "/com.hsapi.sales.svr.custormer.insSaleMain.biz.ext";
 var levelOfIntent = null;
 var important = null;
 var frameColorIdHash = {};
@@ -367,7 +367,7 @@ function addGift(){
 	}
 }
 //归档
-var statusUrl = apiPath + saleApi + "/sales.custormer.changStatus.biz.ext";
+var statusUrl = apiPath + saleApi + "/com.hsapi.sales.svr.custormer.changStatus.biz.ext";
 function changStatus(){
 	var guestCome = guestComeForm.getData("true");
 	var status = guestCome.status;
@@ -538,7 +538,7 @@ function onDrawDate(e) {
         
     }
 }
-var queryGuestListUrl =  apiPath + saleApi + "/sales.custormer.queryCustomerListByMobile.biz.ext";
+var queryGuestListUrl =  apiPath + saleApi + "/com.hsapi.sales.svr.custormer.queryCustomerListByMobile.biz.ext";
 var mobileF = null;
 var n = 1;
 function queryByMobile(e){

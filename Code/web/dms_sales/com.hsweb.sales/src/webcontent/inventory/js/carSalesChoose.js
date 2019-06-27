@@ -3,8 +3,8 @@
  */
 var statusList = [{id:"0",name:"联系人"},{id:"1",name:"联系电话"}];
 var partApiUrl  = apiPath + saleApi + "/";
-var rightGridUrl = partApiUrl+"sales.inventory.queryPchsOrderMainList.biz.ext";
-var getDetailPartUrl=partApiUrl+"sales.inventory.queryPchsOrderDetailList.biz.ext";
+var rightGridUrl = partApiUrl+"com.hsapi.sales.svr.inventory.queryPchsOrderMainList.biz.ext";
+var getDetailPartUrl=partApiUrl+"com.hsapi.sales.svr.inventory.queryPchsOrderDetailList.biz.ext";
 
 var basicInfoForm = null;
 var rightGrid = null;

@@ -1032,7 +1032,7 @@
       <process:to type="query">balaAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">trueCharOffAmt+balaAmt</process:from>
+      <process:from type="expression" pattern="reference">accountAmt+balaAmt</process:from>
       <process:to type="query">fisRpAdvanceTemp/balaAmt</process:to>
     </process:copy>
   </nodes>
@@ -1104,7 +1104,7 @@
       <process:to type="query">balaAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">trueCharOffAmt+balaAmt</process:from>
+      <process:from type="expression" pattern="reference">accountAmt+balaAmt</process:from>
       <process:to type="query">fisRpAdvanceTemp/balaAmt</process:to>
     </process:copy>
   </nodes>
@@ -1136,8 +1136,8 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params2"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.frm.data.fis.FisRpAdvance" name="fisRpAdvanceTemp"/>
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="true" name="fisRpAdvance"/>
-    <process:variable description="预收预付业务表抵扣金额" historyStateLocation="client" isArray="false" name="deductionAmt" primitiveType="Double"/>
-    <process:variable description="预收预付业务表剩余金额" historyStateLocation="client" isArray="false" name="balaAmt" primitiveType="Double"/>
+    <process:variable description="预收预付业务表抵扣金额" historyStateLocation="client" isArray="false" name="deductionAmt" primitiveType="Float"/>
+    <process:variable description="预收预付业务表剩余金额" historyStateLocation="client" isArray="false" name="balaAmt" primitiveType="Float"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="true" modelType="com.hsapi.frm.data.fis.FisRpAccountDetail" name="accountDetailList"/>

@@ -302,9 +302,11 @@ function settleOK() {
 			if(typeUrl==3){
 				account.rpDc = -2;
 				account.settleType = "预付";
+				settleAuditUrl =frmUrl+ "com.hsapi.frm.frmService.rpsettle.RpAccountSettleForCarSales.biz.ext";
 			}else{				
 				account.rpDc = -1;
 				account.settleType = "应付";
+				settleAuditUrl =frmUrl+ "com.hsapi.frm.frmService.rpsettle.rpAccountSettle.biz.ext";
 			}
 			account.voidAmt = pVoidAmt;
 			account.trueCharOffAmt = pTrueAmt;

@@ -281,7 +281,7 @@
 	                $sortField$ $sortOrder$
 	            </isNotEmpty> 
     </select>
-        <!--预收付款查询 -->
+        <!--抵扣预收付款查询 -->
 	<select id="querySalesCar" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	
             SELECT a.tenant_id as tenantId, 
@@ -307,7 +307,75 @@
 				   a.modifier as modifier,
 				   a.modify_date as modifyDate
 			from fis_rp_advance a
-			where a.bala_amt>0 
+			where 1=1 
+                <isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="balaAmt">
+                (a.bala_amt != #balaAmt#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="id">
+                (a.id = #id#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isSettle">
+                (a.is_settle = #isSettle#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+               </isNotEmpty>
+                <!--本日 昨日 本周 上周 本月 下月 -->
+                <isNotEmpty prepend="and" property="startDate">  
+                    (a.settle_date &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (a.settle_date &lt; #endDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="settleStatus">  
+                    (a.status = #settleStatus#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="guestId">  
+                    (a.guest_id = #guestId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="billDc">  
+                    (a.bill_dc = #billDc#)
+                </isNotEmpty> 
+                <isNotEmpty prepend="and" property="codeId">  
+                    (a.codeId = #codeId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="code">  
+                    (a.code = #code#)
+                </isNotEmpty>   
+                <isNotEmpty prepend="and" property="billTypeId">  
+                    (a.bill_type_id = #billTypeId#)
+                </isNotEmpty>                             
+    </select>
+            <!--结算预收付款查询 -->
+	<select id="querySalesCarForRp" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT a.tenant_id as tenantId, 
+            	   a.id as id,
+		           a.orgid as orgid, 
+		           a.bill_type_id as billTypeId, 
+		           a.bill_type_code as billTypeCode,
+		           a.codeId as codeId, 
+			       a.code as code,
+			       a.guest_id as guestId,
+			       a.guest_name as guestName, 
+			       a.amt as amt,
+			       a.char_off_amt as charOffAmt,
+			       a.deduction_amt as deductionAmt, 
+			       a.bala_amt as balaAmt,
+			       a.status as status, 
+			       a.is_settle as isSettle,
+				   a.settleer as settleer, 
+				   a.settle_date as settleDate,
+				   a.remark as remark, 
+				   a.recorder as recorder,
+				   a.record_date as recordDate, 
+				   a.modifier as modifier,
+				   a.modify_date as modifyDate
+			from fis_rp_advance a
+			where 1=1
                 <isNotEmpty prepend="and" property="orgid">
                 (a.orgid = #orgid#)
                 </isNotEmpty>

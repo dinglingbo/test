@@ -62,7 +62,7 @@
     <figSize height="17" width="48"/>
     <node>invokePojo0</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="获取环境变量" displayName="获取环境变量" collapsed="false" type="invoke" index="4" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="获取环境变量" displayName="" collapsed="false" type="invoke" index="4" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="link63" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>invokePojo0</targetNode>
@@ -132,7 +132,7 @@
     <figSize height="17" width="50"/>
     <node>invokePojo2</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="sendPost" displayName="sendPost" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="sendPost" displayName="" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="link65" isDefault="true" type="transition">
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>invokePojo2</targetNode>
@@ -167,6 +167,7 @@
     <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo4</sourceNode>
       <targetNode>assign9</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
     <location x="630" y="150"/>

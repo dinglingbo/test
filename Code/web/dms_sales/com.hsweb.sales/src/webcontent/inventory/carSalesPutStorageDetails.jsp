@@ -147,7 +147,7 @@
 									</td>
 									<td class="form_label" align="right">生产日期:</td>
 									<td>
-										<input name="produceDate" id="produceDate" showTime="true" class="nui-datepicker" format="yyyy-MM-dd HH:mm" />
+										<input name="produceDate" id="produceDate" showTime="true" class="nui-datepicker" format="yyyy-MM-dd" />
 									</td>
 								</tr>
 								<tr>

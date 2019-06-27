@@ -136,7 +136,7 @@
                     <div allowSort="true" field="unitPrice" name="unitPrice" width="60" headerAlign="center" header="进价"></div>
                     <div allowSort="true" field="receiveCost" name="receiveCost" width="60" headerAlign="center" header="运费"></div>                                                                                                
                     <div field="carLock" allowSort="true"   width="60" headerAlign="center" header="是否锁库"></div>   
-                    <div field="produceDate" allowSort="true"  width="120" headerAlign="center" header="生产日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                	
+                    <div field="produceDate" allowSort="true"  width="120" headerAlign="center" header="生产日期" dateFormat="yyyy-MM-dd" ></div>                	
 <!--                     <div field="" allowSort="true"  width="130" headerAlign="center" header="上市日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                  	
                 	<div field="" allowSort="true"   width="60" headerAlign="center" header="车体结构"></div>
                 	<div field="" allowSort="true"   width="60" headerAlign="center" header="车辆级别"></div> -->

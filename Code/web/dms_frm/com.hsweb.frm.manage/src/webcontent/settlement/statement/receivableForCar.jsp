@@ -11,7 +11,7 @@
 
 		<head>
 			<title>预付结算</title>
-			<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableForCar.js?v=1.1.1"></script>
+			<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableForCar.js?v=1.1.2"></script>
 			<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 			<style>
 				html {

@@ -551,7 +551,7 @@ function onPGridbeforeselect(e) {
 		var row = e.row;
 		var billDc = row.billDc;
 		var newRow = {
-			nowAmt : row.charOffAmt
+			nowAmt : row.balaAmt
 		};
 		qRightGrid.updateRow(row, newRow);
 		onChanged();

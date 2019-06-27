@@ -890,7 +890,7 @@
       <targetNode>assign26</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -1027,6 +1027,14 @@
       <process:from type="query" pattern="reference">tempRPBill/trueCharOffAmt</process:from>
       <process:to type="query">fisRpAdvanceTemp/charOffAmt</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">fisRpAdvanceTemp/balaAmt</process:from>
+      <process:to type="query">balaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">trueCharOffAmt+balaAmt</process:from>
+      <process:to type="query">fisRpAdvanceTemp/balaAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign27label" name="label" nodeType="label">
     <location x="1130" y="177"/>
@@ -1091,6 +1099,14 @@
       <process:from type="query" pattern="reference">tempRPBill/trueCharOffAmt</process:from>
       <process:to type="query">fisRpAdvanceTemp/charOffAmt</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">fisRpAdvanceTemp/balaAmt</process:from>
+      <process:to type="query">balaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">trueCharOffAmt+balaAmt</process:from>
+      <process:to type="query">fisRpAdvanceTemp/balaAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign28label" name="label" nodeType="label">
     <location x="1130" y="229"/>
@@ -1120,6 +1136,8 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params2"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.frm.data.fis.FisRpAdvance" name="fisRpAdvanceTemp"/>
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="true" name="fisRpAdvance"/>
+    <process:variable description="预收预付业务表抵扣金额" historyStateLocation="client" isArray="false" name="deductionAmt" primitiveType="Double"/>
+    <process:variable description="预收预付业务表剩余金额" historyStateLocation="client" isArray="false" name="balaAmt" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="true" modelType="com.hsapi.frm.data.fis.FisRpAccountDetail" name="accountDetailList"/>

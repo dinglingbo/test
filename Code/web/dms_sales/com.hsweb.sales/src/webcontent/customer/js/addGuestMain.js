@@ -1,6 +1,7 @@
-var baseUrl = window._rootSysUrl || "http://127.0.0.1:8080/default/";
-var queryUrl = apiPath + saleApi + "/sales.custormer.queryGuestList.biz.ext";
-var changeBathUrl = apiPath + saleApi + "/sales.custormer.changeSaleAdvisor.biz.ext";
+//var baseUrl = window._rootSysUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + saleApi + "/";
+var queryUrl = apiPath + saleApi + "/com.hsapi.sales.svr.custormer.queryGuestList.biz.ext";
+var changeBathUrl = apiPath + saleApi + "/com.hsapi.sales.svr.custormer.changeSaleAdvisor.biz.ext";
 var mainGrid = null;
 var statusHash = {
 	"0":"草稿",

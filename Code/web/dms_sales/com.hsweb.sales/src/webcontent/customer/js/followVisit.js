@@ -1,7 +1,7 @@
 var baseUrl = window._rootSysUrl || "http://127.0.0.1:8080/default/";
-var queryUrl = apiPath + saleApi +"/sales.custormer.queryGuestCome.biz.ext";
-var saveScout = apiPath + saleApi + "/sales.custormer.saveGuestScout.biz.ext";
-var queryScoutUrl = apiPath + saleApi + "/sales.custormer.queryScoutList.biz.ext";
+var queryUrl = apiPath + saleApi +"/com.hsapi.sales.svr.custormer.queryGuestCome.biz.ext";
+var saveScout = apiPath + saleApi + "/com.hsapi.sales.svr.custormer.saveGuestScout.biz.ext";
+var queryScoutUrl = apiPath + saleApi + "/com.hsapi.sales.svr.custormer.queryScoutList.biz.ext";
 var mainGrid = null;
 var form = null;
 var datagrid = null;
@@ -113,8 +113,8 @@ $(document).ready(function ()
 
 function getSearchParam() {
     var params = {};
-    var saleAdvisorId = nui.get("saleAdvisorId").getValue();
-    params.saleAdvisorId = saleAdvisorId;
+   /* var saleAdvisorId = nui.get("saleAdvisorId").getValue();
+    params.saleAdvisorId = saleAdvisorId;*/
     var fullName = nui.get("fullName-search").getValue();
     params.fullName = fullName;
     var mobile = nui.get("mobile-search").getValue();

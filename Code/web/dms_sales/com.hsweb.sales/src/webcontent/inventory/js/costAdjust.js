@@ -15,7 +15,7 @@ function setData(row){
 }
 
 var saveUrl = baseUrl
-		+ "sales.inventory.saveCost.biz.ext";
+		+ "com.hsapi.sales.svr.inventory.saveCost.biz.ext";
 function save(type){
 
 	costAdjust.unitPrice = nui.get("xunitPrice").getValue();

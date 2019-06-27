@@ -386,6 +386,9 @@ function salesOnPrint(p) {
     params.guestFullName = mainF.fullName;
     params.carModelName = mainF.carModelName;
     params.carModelId = mainF.carModelId;
+    params.saleAdvisor = mainF.saleAdvisor;
+    params.getCarTotal = nui.get("getCarTotal").value;
+    params.buyBudgetTotal = nui.get("buyBudgetTotal").value;
     var url = webPath + contextPath;
     switch (p) {
         case 1:

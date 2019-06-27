@@ -440,7 +440,7 @@ function add(){
     var item={};
     item.id = "carSalesDetails";
     item.text = "厂家订货详情";
-    item.url = webPath + contextPath + "/inventory.carSalesDetails.flow";
+    item.url = webPath + contextPath + "/com.hsweb.inventory.carSalesDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {};
@@ -454,7 +454,7 @@ function edit(){
     var item={};
     item.id = "carSalesDetails";
     item.text = "厂家订货详情";
-    item.url = webPath + contextPath + "/inventory.carSalesDetails.flow";
+    item.url = webPath + contextPath + "/com.hsweb.inventory.carSalesDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = row; 

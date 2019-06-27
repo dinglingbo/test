@@ -3,10 +3,12 @@ var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + saleApi + "/"; 
 var billForm = null;
 var jpGrid = null;
+var frmUrl =  apiPath + frmApi + "/";
+var repairUrl = apiPath + repairApi + "/";
 var jpUrl = baseUrl + "com.hsapi.sales.svr.search.searchCsbGiftMsg.biz.ext";
 var jpDetailGrid = null;
 var jpDetailGridUrl = baseUrl + "com.hsapi.sales.svr.search.searchSaleGiftApply.biz.ext";
-var queryUrl = baseUrl + "com.hsapi.frm.frmService.crud.queryFibInComeExpenses.biz.ext";
+var queryUrl = frmUrl + "com.hsapi.frm.frmService.crud.queryFibInComeExpenses.biz.ext";
 var costGrid = null;
 var costDetailGrid = null;
 var costDetailGrid2 = null;
@@ -17,7 +19,7 @@ var insuranceForm = null;
 var detailGrid = null;
 var searchKeyEl = null;
 var searchNameEl = null;
-var detailGridUrl = baseUrl + "com.hsapi.repair.repairService.insurance.queryRpsInsuranceDetailList.biz.ext";
+var detailGridUrl = repairUrl + "com.hsapi.repair.repairService.insurance.queryRpsInsuranceDetailList.biz.ext";
 var guestInfoUrl = baseUrl + "com.hsapi.sales.svr.search.searchGuest.biz.ext";
 var settleTypeIdList = [{ id: 1, name: "保司直收" }, { id: 2, name: "门店代收全款" }, { id: 3, name: "代收减返点" }];
 var costList = [{ id: 0, name: "免费" }, { id: 1, name: "收费" }];
@@ -47,7 +49,7 @@ $(document).ready(function(v) {
     costGrid = nui.get("costGrid");
     costGrid.setUrl(queryUrl);
     var params = { isSale: 1 };
-    costGrid.load({ params: params });
+    costGrid.load({ params: params,token:token });
 
     costDetailGrid = nui.get("costDetailGrid");
     costDetailGrid2 = nui.get("costDetailGrid2");
@@ -929,7 +931,7 @@ function add(){
 	//费用信息
 	costGrid.clearRows();
 	var params = { isSale: 1 };
-    costGrid.load({ params: params });
+    costGrid.load({ params: params,token:token });
     //费用信息右边
     costDetailGrid.clearRows();
     costDetailGrid2.clearRows();

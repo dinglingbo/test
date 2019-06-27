@@ -363,7 +363,7 @@
                     var date = new Date();
                     document.getElementById("date").innerHTML = format(date, "yyyy-MM-dd HH:mm");
                     document.getElementById("comp").innerHTML = currRepairSettorderPrintShow;
-                    var url = baseUrl + 'sales.search.searchSalesMain.biz.ext?params/id=' + serviceId;
+                    var url = baseUrl + 'com.hsapi.sales.svr.search.searchSalesMain.biz.ext?params/id=' + serviceId;
                     $.post(url, function(res) {
                         if (res.data.length > 0) {
                             var temp = res.data[0];

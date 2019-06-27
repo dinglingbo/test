@@ -277,7 +277,7 @@
                 document.getElementById("currUserName").innerHTML = currUserName;
                 var date = new Date();
                 document.getElementById("date").innerHTML = format(date, "yyyy-MM-dd HH:mm:ss");
-                var url = baseUrl + 'sales.search.searchSalesMain.biz.ext?params/id=' + serviceId;
+                var url = baseUrl + 'com.hsapi.sales.svr.search.searchSalesMain.biz.ext?params/id=' + serviceId;
                 var enterId = 0;
                 $.post(url, function(res) {
                     if (res.data.length > 0) {
@@ -299,7 +299,7 @@
                     }
                 });
 
-                var url = baseUrl + "/sales.inventory.queryCheckEnter.biz.ext?params/id=" + enterId;
+                var url = baseUrl + "com.hsapi.sales.svr.inventory.queryCheckEnter.biz.ext?params/id=" + enterId;
                 if (enterId) {
                     $.post(url, function(res) {
                         if (res.data.length > 0) {

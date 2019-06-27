@@ -77,7 +77,6 @@
     <chidren>assign2</chidren>
     <chidren>assign3</chidren>
     <chidren>assign4</chidren>
-    <chidren>assign5</chidren>
     <chidren>assign6</chidren>
     <chidren>assign7</chidren>
     <chidren>assign8</chidren>
@@ -143,16 +142,6 @@
       <process:transitionCondition>
         <process:simpleCondition operator="NULLOREMPTY">
           <process:leftOperand type="query">mainTemp/sourceId</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link10" name="link10" displayName="连接线" type="transition">
-      <sourceNode>assign0</sourceNode>
-      <targetNode>assign5</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NULLOREMPTY">
-          <process:leftOperand type="query">mainTemp/creator</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -333,36 +322,12 @@
     <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" grouped="true" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign5</sourceNode>
-      <targetNode>assign6</targetNode>
-    </sourceConnections>
-    <targetConnections>link10</targetConnections>
-    <location x="315" y="115"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign5label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">E</process:from>
-      <process:to type="query">errCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">存在creator为空的数据</process:from>
-      <process:to type="query">errMsg</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="313" y="151"/>
-    <figSize height="17" width="32"/>
-    <node>assign5</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" id="assign6" name="赋值6" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
       <targetNode>assign7</targetNode>
     </sourceConnections>
     <targetConnections>link11</targetConnections>
-    <targetConnections>link12</targetConnections>
     <targetConnections>link13</targetConnections>
     <targetConnections>link14</targetConnections>
     <targetConnections>link19</targetConnections>

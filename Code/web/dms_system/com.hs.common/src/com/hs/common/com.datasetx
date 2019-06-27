@@ -16719,6 +16719,776 @@
       </viewField>
     </columnProperty>
   </nodes>
+  <nodes xsi:type="model:PEntityNode" id="node9" name="ComTreeNo" nodeType="table" displayName="ComTreeNo" author="Administrator" allUseViewModel="true" table="com_tree_no" genStrategy="native">
+    <location x="60" y="5442"/>
+    <size height="250" width="150"/>
+    <figSize height="20" width="150"/>
+    <columnProperty id="property254" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
+      <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
+        <fieldView showAllAttr="false">
+          <type name="write"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
+          <attr name="maxLength"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
+          <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
+        </fieldView>
+        <fieldEdit showAllAttr="false">
+          <type name="text"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="true" name="validateOnChanged"/>
+          <attr defaultValue="请输入整数" name="intErrorText"/>
+          <attr defaultValue="" name="emptyText"/>
+          <attr defaultValue="请输入URL格式" name="urlErrorText"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="请输入邮件格式" name="emailErrorText"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="请输入数字" name="floatErrorText"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="" name="maxLength"/>
+          <attr defaultValue="数字不能小于 {0}" name="minErrorText"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="不能少于 {0} 个字符" name="minLengthErrorText"/>
+          <attr defaultValue="不能超过 {0} 个字符" name="maxLengthErrorText"/>
+          <attr defaultValue="请输入日期格式 {0}" name="dateErrorText"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="数字必须在 {0} 到 {1} 之间" name="rangeErrorText"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="requiredErrorText"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="inputStyle"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-textbox" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="" name="vtype"/>
+          <attr defaultValue="数字不能大于 {0}" name="maxErrorText"/>
+          <attr defaultValue="字符数必须在 {0} 到 {1} 之间" name="rangeLengthErrorText"/>
+          <attr defaultValue="true" name="validateOnLeave"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="" name="tooltip"/>
+        </fieldEdit>
+      </viewField>
+    </columnProperty>
+    <columnProperty id="property255" name="orgid" displayName="orgid" columnName="orgid" nullAble="false" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
+      <comment>公司ID</comment>
+      <viewField dict="false" dictTypeId="" displayName="orgid" entityField="orgid" id="orgid" label="orgid" name="orgid" userDefined="true">
+        <fieldView showAllAttr="false">
+          <type name="write"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
+          <attr name="maxLength"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
+          <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
+        </fieldView>
+        <fieldEdit showAllAttr="false">
+          <type name="text"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="true" name="validateOnChanged"/>
+          <attr defaultValue="请输入整数" name="intErrorText"/>
+          <attr defaultValue="" name="emptyText"/>
+          <attr defaultValue="请输入URL格式" name="urlErrorText"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="请输入邮件格式" name="emailErrorText"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="请输入数字" name="floatErrorText"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="" name="maxLength"/>
+          <attr defaultValue="数字不能小于 {0}" name="minErrorText"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="不能少于 {0} 个字符" name="minLengthErrorText"/>
+          <attr defaultValue="不能超过 {0} 个字符" name="maxLengthErrorText"/>
+          <attr defaultValue="请输入日期格式 {0}" name="dateErrorText"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="数字必须在 {0} 到 {1} 之间" name="rangeErrorText"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="requiredErrorText"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="inputStyle"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-textbox" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="" name="vtype"/>
+          <attr defaultValue="数字不能大于 {0}" name="maxErrorText"/>
+          <attr defaultValue="字符数必须在 {0} 到 {1} 之间" name="rangeLengthErrorText"/>
+          <attr defaultValue="true" name="validateOnLeave"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="" name="tooltip"/>
+        </fieldEdit>
+      </viewField>
+    </columnProperty>
+    <columnProperty id="property256" name="treeType" displayName="treeType" columnName="tree_type" nullAble="true" defaultValue="''" columnType="VARCHAR" eosDataType="String" length="10" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true" default="">
+      <comment>树结构的开头(A,A001,A001001）</comment>
+      <viewField dict="false" dictTypeId="" displayName="treeType" entityField="treeType" id="treeType" label="treeType" name="treeType" userDefined="true">
+        <fieldView showAllAttr="false">
+          <type name="write"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
+          <attr name="maxLength"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
+          <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
+        </fieldView>
+        <fieldEdit showAllAttr="false">
+          <type name="text"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="true" name="validateOnChanged"/>
+          <attr defaultValue="请输入整数" name="intErrorText"/>
+          <attr defaultValue="" name="emptyText"/>
+          <attr defaultValue="请输入URL格式" name="urlErrorText"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="请输入邮件格式" name="emailErrorText"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="请输入数字" name="floatErrorText"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="" name="maxLength"/>
+          <attr defaultValue="数字不能小于 {0}" name="minErrorText"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="不能少于 {0} 个字符" name="minLengthErrorText"/>
+          <attr defaultValue="不能超过 {0} 个字符" name="maxLengthErrorText"/>
+          <attr defaultValue="请输入日期格式 {0}" name="dateErrorText"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="数字必须在 {0} 到 {1} 之间" name="rangeErrorText"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="requiredErrorText"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="inputStyle"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-textbox" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="" name="vtype"/>
+          <attr defaultValue="数字不能大于 {0}" name="maxErrorText"/>
+          <attr defaultValue="字符数必须在 {0} 到 {1} 之间" name="rangeLengthErrorText"/>
+          <attr defaultValue="true" name="validateOnLeave"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="" name="tooltip"/>
+        </fieldEdit>
+      </viewField>
+    </columnProperty>
+    <columnProperty id="property257" name="treeNo" displayName="treeNo" columnName="tree_no" nullAble="true" columnType="VARCHAR" eosDataType="String" length="100" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+      <viewField dict="false" displayName="treeNo" id="treeNo" label="treeNo" name="treeNo" userDefined="true">
+        <fieldView>
+          <type name="write"/>
+          <attr name="formatPattern"/>
+          <attr name="srcFormatPattern"/>
+          <attr name="maxLength"/>
+          <attr attrValue="" defaultValue="" name="filter"/>
+          <attr attrValue="" defaultValue="" name="maxLengthString"/>
+          <attr name="value"/>
+        </fieldView>
+        <fieldEdit>
+          <type name="text"/>
+          <attr attrValue="nui-textbox" defaultValue="nui-textbox" name="class"/>
+          <attr attrValue="" defaultValue="" name="emptyText"/>
+          <attr attrValue="" defaultValue="" name="inputStyle"/>
+          <attr attrValue="false" defaultValue="false" name="required"/>
+          <attr attrValue="" defaultValue="" name="borderStyle"/>
+          <attr attrValue="" defaultValue="" name="cls"/>
+          <attr attrValue="true" defaultValue="true" name="enabled"/>
+          <attr attrValue="" defaultValue="" name="height"/>
+          <attr attrValue="" defaultValue="" name="id"/>
+          <attr attrValue="" defaultValue="" name="name"/>
+          <attr attrValue="" defaultValue="" name="style"/>
+          <attr attrValue="" defaultValue="" name="tooltip"/>
+          <attr attrValue="true" defaultValue="true" name="visible"/>
+          <attr attrValue="" defaultValue="" name="width"/>
+        </fieldEdit>
+      </viewField>
+    </columnProperty>
+    <columnProperty id="property258" name="codeSize" displayName="codeSize" columnName="code_size" nullAble="true" defaultValue="3" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true" default="3">
+      <comment>编码长度（A001,A001001,A0001,A00010001）</comment>
+      <viewField dict="false" dictTypeId="" displayName="codeSize" entityField="codeSize" id="codeSize" label="codeSize" name="codeSize" userDefined="true">
+        <fieldView showAllAttr="false">
+          <type name="write"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
+          <attr name="maxLength"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
+          <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
+        </fieldView>
+        <fieldEdit showAllAttr="false">
+          <type name="text"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="true" name="validateOnChanged"/>
+          <attr defaultValue="请输入整数" name="intErrorText"/>
+          <attr defaultValue="" name="emptyText"/>
+          <attr defaultValue="请输入URL格式" name="urlErrorText"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="请输入邮件格式" name="emailErrorText"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="请输入数字" name="floatErrorText"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="" name="maxLength"/>
+          <attr defaultValue="数字不能小于 {0}" name="minErrorText"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="不能少于 {0} 个字符" name="minLengthErrorText"/>
+          <attr defaultValue="不能超过 {0} 个字符" name="maxLengthErrorText"/>
+          <attr defaultValue="请输入日期格式 {0}" name="dateErrorText"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="数字必须在 {0} 到 {1} 之间" name="rangeErrorText"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="requiredErrorText"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="inputStyle"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-textbox" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="" name="vtype"/>
+          <attr defaultValue="数字不能大于 {0}" name="maxErrorText"/>
+          <attr defaultValue="字符数必须在 {0} 到 {1} 之间" name="rangeLengthErrorText"/>
+          <attr defaultValue="true" name="validateOnLeave"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="" name="tooltip"/>
+        </fieldEdit>
+      </viewField>
+    </columnProperty>
+    <columnProperty id="property259" name="codeQty" displayName="codeQty" columnName="code_qty" nullAble="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
+      <comment>节点数量</comment>
+      <viewField dict="false" dictTypeId="" displayName="codeQty" entityField="codeQty" id="codeQty" label="codeQty" name="codeQty" userDefined="true">
+        <fieldView showAllAttr="false">
+          <type name="write"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
+          <attr name="maxLength"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
+          <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
+        </fieldView>
+        <fieldEdit showAllAttr="false">
+          <type name="text"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="true" name="validateOnChanged"/>
+          <attr defaultValue="请输入整数" name="intErrorText"/>
+          <attr defaultValue="" name="emptyText"/>
+          <attr defaultValue="请输入URL格式" name="urlErrorText"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="请输入邮件格式" name="emailErrorText"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="请输入数字" name="floatErrorText"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="" name="maxLength"/>
+          <attr defaultValue="数字不能小于 {0}" name="minErrorText"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="不能少于 {0} 个字符" name="minLengthErrorText"/>
+          <attr defaultValue="不能超过 {0} 个字符" name="maxLengthErrorText"/>
+          <attr defaultValue="请输入日期格式 {0}" name="dateErrorText"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="数字必须在 {0} 到 {1} 之间" name="rangeErrorText"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="requiredErrorText"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="inputStyle"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-textbox" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="" name="vtype"/>
+          <attr defaultValue="数字不能大于 {0}" name="maxErrorText"/>
+          <attr defaultValue="字符数必须在 {0} 到 {1} 之间" name="rangeLengthErrorText"/>
+          <attr defaultValue="true" name="validateOnLeave"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="" name="tooltip"/>
+        </fieldEdit>
+      </viewField>
+    </columnProperty>
+    <columnProperty id="property260" name="creatorId" displayName="creatorId" columnName="creator_id" nullAble="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
+      <comment>???ID</comment>
+      <viewField dict="false" dictTypeId="" displayName="creatorId" entityField="creatorId" id="creatorId" label="creatorId" name="creatorId" userDefined="true">
+        <fieldView showAllAttr="false">
+          <type name="write"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
+          <attr name="maxLength"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
+          <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
+        </fieldView>
+        <fieldEdit showAllAttr="false">
+          <type name="text"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="true" name="validateOnChanged"/>
+          <attr defaultValue="请输入整数" name="intErrorText"/>
+          <attr defaultValue="" name="emptyText"/>
+          <attr defaultValue="请输入URL格式" name="urlErrorText"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="请输入邮件格式" name="emailErrorText"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="请输入数字" name="floatErrorText"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="" name="maxLength"/>
+          <attr defaultValue="数字不能小于 {0}" name="minErrorText"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="不能少于 {0} 个字符" name="minLengthErrorText"/>
+          <attr defaultValue="不能超过 {0} 个字符" name="maxLengthErrorText"/>
+          <attr defaultValue="请输入日期格式 {0}" name="dateErrorText"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="数字必须在 {0} 到 {1} 之间" name="rangeErrorText"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="requiredErrorText"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="inputStyle"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-textbox" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="" name="vtype"/>
+          <attr defaultValue="数字不能大于 {0}" name="maxErrorText"/>
+          <attr defaultValue="字符数必须在 {0} 到 {1} 之间" name="rangeLengthErrorText"/>
+          <attr defaultValue="true" name="validateOnLeave"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="" name="tooltip"/>
+        </fieldEdit>
+      </viewField>
+    </columnProperty>
+    <columnProperty id="property261" name="creator" displayName="creator" columnName="creator" nullAble="true" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+      <comment>???</comment>
+      <viewField dict="false" dictTypeId="" displayName="creator" entityField="creator" id="creator" label="creator" name="creator" userDefined="true">
+        <fieldView showAllAttr="false">
+          <type name="write"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
+          <attr name="maxLength"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
+          <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
+        </fieldView>
+        <fieldEdit showAllAttr="false">
+          <type name="text"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="true" name="validateOnChanged"/>
+          <attr defaultValue="请输入整数" name="intErrorText"/>
+          <attr defaultValue="" name="emptyText"/>
+          <attr defaultValue="请输入URL格式" name="urlErrorText"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="请输入邮件格式" name="emailErrorText"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="请输入数字" name="floatErrorText"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="" name="maxLength"/>
+          <attr defaultValue="数字不能小于 {0}" name="minErrorText"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="不能少于 {0} 个字符" name="minLengthErrorText"/>
+          <attr defaultValue="不能超过 {0} 个字符" name="maxLengthErrorText"/>
+          <attr defaultValue="请输入日期格式 {0}" name="dateErrorText"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="数字必须在 {0} 到 {1} 之间" name="rangeErrorText"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="requiredErrorText"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="inputStyle"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-textbox" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="" name="vtype"/>
+          <attr defaultValue="数字不能大于 {0}" name="maxErrorText"/>
+          <attr defaultValue="字符数必须在 {0} 到 {1} 之间" name="rangeLengthErrorText"/>
+          <attr defaultValue="true" name="validateOnLeave"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="" name="tooltip"/>
+        </fieldEdit>
+      </viewField>
+    </columnProperty>
+    <columnProperty id="property262" name="createDate" displayName="createDate" columnName="create_date" nullAble="true" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
+      <comment>????</comment>
+      <viewField dict="false" dictTypeId="" displayName="createDate" entityField="createDate" id="createDate" label="createDate" name="createDate" userDefined="true">
+        <fieldView showAllAttr="false">
+          <type name="write"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
+          <attr name="maxLength"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
+          <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
+        </fieldView>
+        <fieldEdit showAllAttr="false">
+          <type name="date"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="" name="validateOnChanged"/>
+          <attr defaultValue="false" name="showTime"/>
+          <attr defaultValue="H:mm" name="timeFormat"/>
+          <attr defaultValue="" name="onhidepopup"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="viewDate"/>
+          <attr defaultValue="" name="onbeforeshowpopup"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="1000" name="maxLength"/>
+          <attr defaultValue="" name="popupHeight"/>
+          <attr defaultValue="" name="popup"/>
+          <attr defaultValue="0" name="minLength"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="true" name="showTodayButton"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="100%" name="popupWidth"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="false" name="showClose"/>
+          <attr defaultValue="" name="text"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-datepicker" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="yyyy-MM-dd" name="format"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="oncloseclick"/>
+          <attr defaultValue="false" name="showOkButton"/>
+          <attr defaultValue="" name="onbuttonclick"/>
+          <attr defaultValue="" name="maxDate"/>
+          <attr defaultValue="" name="minDate"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="true" name="showClearButton"/>
+          <attr defaultValue="" name="textName"/>
+          <attr defaultValue="" name="onshowpopup"/>
+          <attr defaultValue="" name="tooltip"/>
+        </fieldEdit>
+      </viewField>
+    </columnProperty>
+    <columnProperty id="property263" name="operatorId" displayName="operatorId" columnName="operator_id" nullAble="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
+      <comment>???ID</comment>
+      <viewField dict="false" dictTypeId="" displayName="operatorId" entityField="operatorId" id="operatorId" label="operatorId" name="operatorId" userDefined="true">
+        <fieldView showAllAttr="false">
+          <type name="write"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
+          <attr name="maxLength"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
+          <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
+        </fieldView>
+        <fieldEdit showAllAttr="false">
+          <type name="text"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="true" name="validateOnChanged"/>
+          <attr defaultValue="请输入整数" name="intErrorText"/>
+          <attr defaultValue="" name="emptyText"/>
+          <attr defaultValue="请输入URL格式" name="urlErrorText"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="请输入邮件格式" name="emailErrorText"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="请输入数字" name="floatErrorText"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="" name="maxLength"/>
+          <attr defaultValue="数字不能小于 {0}" name="minErrorText"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="不能少于 {0} 个字符" name="minLengthErrorText"/>
+          <attr defaultValue="不能超过 {0} 个字符" name="maxLengthErrorText"/>
+          <attr defaultValue="请输入日期格式 {0}" name="dateErrorText"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="数字必须在 {0} 到 {1} 之间" name="rangeErrorText"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="requiredErrorText"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="inputStyle"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-textbox" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="" name="vtype"/>
+          <attr defaultValue="数字不能大于 {0}" name="maxErrorText"/>
+          <attr defaultValue="字符数必须在 {0} 到 {1} 之间" name="rangeLengthErrorText"/>
+          <attr defaultValue="true" name="validateOnLeave"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="" name="tooltip"/>
+        </fieldEdit>
+      </viewField>
+    </columnProperty>
+    <columnProperty id="property264" name="operator" displayName="operator" columnName="operator" nullAble="true" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+      <comment>???</comment>
+      <viewField dict="false" dictTypeId="" displayName="operator" entityField="operator" id="operator" label="operator" name="operator" userDefined="true">
+        <fieldView showAllAttr="false">
+          <type name="write"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
+          <attr name="maxLength"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
+          <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
+        </fieldView>
+        <fieldEdit showAllAttr="false">
+          <type name="text"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="true" name="validateOnChanged"/>
+          <attr defaultValue="请输入整数" name="intErrorText"/>
+          <attr defaultValue="" name="emptyText"/>
+          <attr defaultValue="请输入URL格式" name="urlErrorText"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="请输入邮件格式" name="emailErrorText"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="请输入数字" name="floatErrorText"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="" name="maxLength"/>
+          <attr defaultValue="数字不能小于 {0}" name="minErrorText"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="不能少于 {0} 个字符" name="minLengthErrorText"/>
+          <attr defaultValue="不能超过 {0} 个字符" name="maxLengthErrorText"/>
+          <attr defaultValue="请输入日期格式 {0}" name="dateErrorText"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="数字必须在 {0} 到 {1} 之间" name="rangeErrorText"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="requiredErrorText"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="inputStyle"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-textbox" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="" name="vtype"/>
+          <attr defaultValue="数字不能大于 {0}" name="maxErrorText"/>
+          <attr defaultValue="字符数必须在 {0} 到 {1} 之间" name="rangeLengthErrorText"/>
+          <attr defaultValue="true" name="validateOnLeave"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="" name="tooltip"/>
+        </fieldEdit>
+      </viewField>
+    </columnProperty>
+    <columnProperty id="property265" name="operateDate" displayName="operateDate" columnName="operate_date" nullAble="true" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
+      <comment>????</comment>
+      <viewField dict="false" dictTypeId="" displayName="operateDate" entityField="operateDate" id="operateDate" label="operateDate" name="operateDate" userDefined="true">
+        <fieldView showAllAttr="false">
+          <type name="write"/>
+          <attr defaultValue="" name="iterateId"/>
+          <attr defaultValue="" name="scope"/>
+          <attr defaultValue="" name="propertyType"/>
+          <attr name="maxLength"/>
+          <attr name="formatPattern"/>
+          <attr defaultValue="" name="maxLengthString"/>
+          <attr name="value"/>
+          <attr name="srcFormatPattern"/>
+          <attr defaultValue="" name="property"/>
+          <attr defaultValue="" name="modelField"/>
+          <attr defaultValue="" name="filter"/>
+          <attr name="ignore"/>
+        </fieldView>
+        <fieldEdit showAllAttr="false">
+          <type name="date"/>
+          <attr defaultValue="" name="onvalidation"/>
+          <attr defaultValue="" name="borderStyle"/>
+          <attr defaultValue="true" name="visible"/>
+          <attr defaultValue="" name="validateOnChanged"/>
+          <attr defaultValue="false" name="showTime"/>
+          <attr defaultValue="H:mm" name="timeFormat"/>
+          <attr defaultValue="" name="onhidepopup"/>
+          <attr defaultValue="" name="destroy"/>
+          <attr defaultValue="" name="id"/>
+          <attr defaultValue="" name="height"/>
+          <attr defaultValue="true" name="allowInput"/>
+          <attr defaultValue="" name="viewDate"/>
+          <attr defaultValue="" name="onbeforeshowpopup"/>
+          <attr defaultValue="" name="style"/>
+          <attr defaultValue="1000" name="maxLength"/>
+          <attr defaultValue="" name="popupHeight"/>
+          <attr defaultValue="" name="popup"/>
+          <attr defaultValue="0" name="minLength"/>
+          <attr defaultValue="" name="onblur"/>
+          <attr defaultValue="" name="name"/>
+          <attr defaultValue="" name="value"/>
+          <attr defaultValue="true" name="showTodayButton"/>
+          <attr defaultValue="false" name="required"/>
+          <attr defaultValue="100%" name="popupWidth"/>
+          <attr defaultValue="false" name="selectOnFocus"/>
+          <attr defaultValue="true" name="enabled"/>
+          <attr defaultValue="false" name="showClose"/>
+          <attr defaultValue="" name="text"/>
+          <attr defaultValue="" name="cls"/>
+          <attr defaultValue="" name="width"/>
+          <attr defaultValue="" name="onkeyup"/>
+          <attr defaultValue="" name="onenter"/>
+          <attr defaultValue="nui-datepicker" name="class"/>
+          <attr defaultValue="" name="onkeydown"/>
+          <attr defaultValue="" name="onfocus"/>
+          <attr defaultValue="editor" name="property"/>
+          <attr defaultValue="yyyy-MM-dd" name="format"/>
+          <attr defaultValue="icon" name="errorMode"/>
+          <attr defaultValue="" name="oncloseclick"/>
+          <attr defaultValue="false" name="showOkButton"/>
+          <attr defaultValue="" name="onbuttonclick"/>
+          <attr defaultValue="" name="maxDate"/>
+          <attr defaultValue="" name="minDate"/>
+          <attr defaultValue="" name="onvaluechanged"/>
+          <attr defaultValue="true" name="showClearButton"/>
+          <attr defaultValue="" name="textName"/>
+          <attr defaultValue="" name="onshowpopup"/>
+          <attr defaultValue="" name="tooltip"/>
+        </fieldEdit>
+      </viewField>
+    </columnProperty>
+  </nodes>
   <topRuler/>
   <leftRuler/>
 </model:DataSetDiagram>

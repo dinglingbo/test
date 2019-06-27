@@ -179,7 +179,7 @@ function onChanged() {
 	var amt = 0;
 	var rows = qRightGrid.getSelecteds();
 	for(i=0;i<rows.length;i++){
-		amt = parseFloat(amt) + parseFloat(rows[i].balaAmt);
+		amt = parseFloat(amt) + parseFloat(rows[i].nowAmt);
 	}
 	var amtd = document.getElementById('amount').innerText;
 	amtd = parseFloat(amtd) - parseFloat(amt);
@@ -318,8 +318,8 @@ function settleOK() {
 	var amt = 0;//总抵扣金额
 	var rowsSettle = qRightGrid.getSelecteds();
 	for(var i=0;i<rowsSettle.length;i++){	
-		amt = parseFloat(amt) + parseFloat(rowsSettle[i].balaAmt);
-		var list={balaTypeCode:"020109",charOffAmt:rowsSettle[i].balaAmt,settAccountId:296,settAccountName:"默认现金账户"};
+		amt = parseFloat(amt) + parseFloat(rowsSettle[i].nowAmt);
+		var list={balaTypeCode:"020109",charOffAmt:rowsSettle[i].nowAmt,settAccountId:296,settAccountName:"默认现金账户"};
 		accountTypeList.push(list);
 	}
 	count = (count+amt).toFixed(2);

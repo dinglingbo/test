@@ -787,7 +787,7 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="result1"/>
     <process:variable description="用于哪些应收需要更新真正收到款" historyStateLocation="client" isArray="false" name="mainBillTypeId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.frm.data.fis.FisRpAdvance" name="fisRpAdvanceTemp"/>
-    <process:variable description="已抵扣金额" historyStateLocation="client" isArray="false" name="deductionAmt" primitiveType="Double"/>
+    <process:variable description="已抵扣金额" historyStateLocation="client" isArray="false" name="deductionAmt" primitiveType="Float"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.frm.data.fis.FisRpAccount" name="account"/>

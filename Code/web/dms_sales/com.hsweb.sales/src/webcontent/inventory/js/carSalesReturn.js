@@ -312,7 +312,7 @@ function add(){
     var item={};
     item.id = "carSalesReturnDetails";
     item.text = "采购退货详情";
-    item.url = webPath + contextPath + "/inventory.carSalesReturnDetails.flow";
+    item.url = webPath + contextPath + "/com.hsweb.inventory.carSalesReturnDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {};
@@ -326,7 +326,7 @@ function edit(){
     var item={};
     item.id = "carSalesReturnDetails";
     item.text = "采购退货详情";
-    item.url = webPath + contextPath + "/inventory.carSalesReturnDetails.flow";
+    item.url = webPath + contextPath + "/com.hsweb.inventory.carSalesReturnDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = row; 

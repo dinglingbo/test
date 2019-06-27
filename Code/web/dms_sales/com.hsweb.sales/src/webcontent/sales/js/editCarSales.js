@@ -1378,6 +1378,7 @@ function onButtonEdit(e) {
                 billFormData.carModelId = row.id;
                 nui.get("carModelName").setValue(row.fullName);
                 nui.get("carModelName").setText(row.fullName);
+                nui.get("carModelId").setValue(row.id);
                 billFormData.carModelName = row.fullName;
                 billForm.setData(billFormData);
 

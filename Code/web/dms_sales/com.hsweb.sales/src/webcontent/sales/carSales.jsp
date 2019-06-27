@@ -113,15 +113,15 @@
                 editNextOnEnterKey="true" allowCellWrap="true" url="">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
-                     <div field="serviceCode" name="serviceCode" width="100px" headerAlign="center" header="工单号"></div>
-                     <div field="status" name="status" width="100px" headerAlign="center" header="单据状态"></div>
-                    <div field="saleAdvisor" name="saleAdvisor" width="100px" headerAlign="center" header="销售顾问"></div>
-                    <div field="guestFullName" name="guestFullName" width="100px" headerAlign="center" header="客户名称"></div>
-                    <div field="carModelName" name="carModelName" width="100px" headerAlign="center" header="车型"></div>
+                     <div field="serviceCode" name="serviceCode" width="130px" headerAlign="center" header="工单号"></div>
+                     <div field="status" name="status" width="80px" headerAlign="center" header="单据状态"></div>
+                    <div field="saleAdvisor" name="saleAdvisor" width="80px" headerAlign="center" header="销售顾问"></div>
+                    <div field="guestFullName" name="guestFullName" width="90px" headerAlign="center" header="客户名称"></div>
+                    <div field="carModelName" name="carModelName" width="200px" headerAlign="center" header="车型"></div>
                     <div field="submitTrueDate" name="submitTrueDate" width="100px" headerAlign="center" header="销售日期"></div>
                     <div field="submitPlanDate" name="submitPlanDate" width="100px" headerAlign="center" header="交车日期"></div>
                     <div field="financialEndDate" name="financialEndDate" width="100px" headerAlign="center" header="结案日期"></div>
-                    <div field="financialEndMan" name="financialEndMan" width="100px" headerAlign="center" header="结案人"></div>
+                    <div field="financialEndMan" name="financialEndMan" width="80px" headerAlign="center" header="结案人"></div>
                    
                 </div>
             </div>

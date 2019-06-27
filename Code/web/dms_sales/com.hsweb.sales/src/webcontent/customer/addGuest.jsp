@@ -219,7 +219,7 @@ var requiredField = {
 	saleAdvisorId : "销售顾问",
 	identity:"身份"
 };
-var saveUrl = apiPath + saleApi + "/sales.custormer.saveGuestContactor.biz.ext";
+var saveUrl = apiPath + saleApi + "/com.hsapi.sales.svr.custormer.saveGuestContactor.biz.ext";
 function save(){
    var data = basicInfoForm.getData();
    for ( var key in requiredField) {
@@ -284,7 +284,7 @@ function setData(row){
     data.id = row.guestId;
     basicInfoForm.setData(data); 
 }
-var queryUrl = apiPath + saleApi + "/sales.custormer.queryGuestAndContactor.biz.ext";
+var queryUrl = apiPath + saleApi + "/com.hsapi.sales.svr.custormer.queryGuestAndContactor.biz.ext";
 function queryData(guestId){
     if(guestId){
        var json = nui.encode({

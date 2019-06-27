@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    
+    <!-- 汇总订单特定产品金额 -->
+	<select id="queryDeductPartSum" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">	
+		SELECT sum(b.order_amt) as partAmt
+		from pj_deduct_part a 
+		inner join pj_sell_order_detail_chk b
+		on a.part_id = b.part_id
+		inner join pj_sell_order_main_chk c
+		on b.main_id = c.id and a.orgid = c.orgid
+		where c.id = #orderId#
+	</select>
+    
+    <!-- 查询订单特定产品提成 -->
+	<select id="queryDeductPart" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT m.serviceId, m.partId, m.partCode, m.partName, m.fullName,
+		       m.type, m.deductRate, m.partAmt, n.deduct_mem_id as deductMemId,
+		       n.deduct_mem_name as deductMemName, n.deduct_mem_type as deductMemType
+		from (
+		SELECT a.part_id as partId, a.part_code as partCode, a.part_name as partName, 
+					 a.full_name as fullName, a.type as type, a.deduct_rate as deductRate,
+					 sum(b.order_amt) as partAmt, c.id as serviceId
+		from pj_deduct_part a 
+		inner join pj_sell_order_detail_chk b
+		on a.part_id = b.part_id
+		inner join pj_sell_order_main_chk c
+		on b.main_id = c.id and a.orgid = c.orgid
+		where c.id = #orderId#
+		group by a.part_id, a.part_code, a.part_name, a.full_name, a.type, a.deduct_rate) m
+		inner join pj_bill_deduct_mem n
+		on m.serviceId = n.service_id
+		where n.service_id = #orderId#
+	</select>
+	
+	<!-- 查询订单提成 -->
+	<select id="queryDeductBill" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT a.type, a.begin_amt as beginAmt, a.end_amt as endAmt, a.deduct_rate as deductRate,
+		       b.deduct_mem_id as deductMemId, b.deduct_mem_name as deductMemName, b.deduct_mem_type as deductMemType
+		from pj_deduct_params a
+		inner join pj_bill_deduct_mem b
+		on a.deduct_mem_id = b.deduct_mem_id and a.orgid = b.orgid
+		where a.begin_amt &lt; #orderAmt# and a.end_amt &gt;= #orderAmt# and b.service_id = #orderId#
+	</select>
+
+</sqlMap>

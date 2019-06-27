@@ -9,7 +9,7 @@
 -->
 <head>
 <title>提成参数设置</title>
-<script src="<%=webPath + contextPath%>/basic/js/deductParamsMgr.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/basic/js/deductParamsMgr.js?v=1.0.2"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

@@ -135,7 +135,8 @@
 	String isOpenCredit = "";
 	String isOpenApp = "";
 	String isOnlySeeOwn ="";
-	String isCanSeePrice ="";
+	String isBanSeePrice ="";
+	String isSalesman = "";
 	//仓先生公司ID
 	String agencyId = "";
 	
@@ -238,6 +239,9 @@
                 if(attr.get("agencyId") != null){
                 	agencyId = attr.get("agencyId").toString();
                 }
+                if(attr.get("isSalesman") != null){
+                	isSalesman = attr.get("isSalesman").toString();
+                }
                 
                 if(attr.get("billParams") != null){
                 	billParamsObj = attr.get("billParams");
@@ -296,8 +300,8 @@
 	                	isOnlySeeOwn = billParams.get("isOnlySeeOwn").toString();
 	                }
 	                //业务员是否可见采购价
-	                if(billParams.get("isCanSeePrice") != null){
-	                	isCanSeePrice = billParams.get("isCanSeePrice").toString();
+	                if(billParams.get("isBanSeePrice") != null){
+	                	isBanSeePrice = billParams.get("isBanSeePrice").toString();
 	                }
 	                if(billParams.get("isOpenElectronics") != null){
 	                	isOpenElectronics = billParams.get("isOpenElectronics").toString();
@@ -381,8 +385,9 @@
 	var currIsOpenCredit ="<%=isOpenCredit %>";
 	var currIsOpenApp ="<%=isOpenApp%>";
 	var currIsOnlySeeOwn ="<%=isOnlySeeOwn%>";
-	var currIsCanSeePrice ="<%=isCanSeePrice%>";
+	var currIsBanSeePrice ="<%=isBanSeePrice%>";
 	var currAgencyId ="<%=agencyId %>";
+	var currIsSalesman = "<%=isSalesman %>";
     //alert("token=" + token);
     
     /* var _sysMsg_;

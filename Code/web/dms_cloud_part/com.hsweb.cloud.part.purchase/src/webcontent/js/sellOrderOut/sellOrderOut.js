@@ -1008,7 +1008,8 @@ function add()
                     
                     nui.get("serviceId").setValue("新销售出库");
                     nui.get("billTypeId").setValue("010103");  //010101  收据   010102  普票  010103  增票
-                    nui.get("createDate").setValue(new Date());
+//                    nui.get("createDate").setValue(new Date());
+                    nui.get("orderDate").setValue(new Date());
                     nui.get("orderMan").setValue(currUserName);
                     
                     addNewRow();
@@ -1039,7 +1040,8 @@ function add()
         
         nui.get("serviceId").setValue("新销售出库");
         nui.get("billTypeId").setValue("010103");  //010101  收据   010102  普票  010103  增票
-        nui.get("createDate").setValue(new Date());
+//        nui.get("createDate").setValue(new Date());
+        nui.get("orderDate").setValue(new Date());
         nui.get("orderMan").setValue(currUserName);
 
         addNewRow();
@@ -1097,6 +1099,9 @@ function getMainData()
     if(data.operateDate) {
         data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
     }
+    if (data.orderDate) {
+  	  data.orderDate = format(data.orderDate, 'yyyy-MM-dd HH:mm:ss');
+  	}
 
     rightGrid.findRow(function(row){
         var partId = row.partId;
@@ -1142,7 +1147,7 @@ function getSellOrderBillNO(callback){
 var requiredField = {
     guestId : "客户",
     orderMan : "销售员",
-    createDate : "建单日期",
+    orderDate : "订单日期",
 	billTypeId : "票据类型",
     settleTypeId : "结算方式"
 };

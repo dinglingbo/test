@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购退货</title>
-<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.1.42"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.1.53"></script>
 <style type="text/css">
 .title {
 	width: 70px;
@@ -121,7 +121,7 @@ body .mini-grid-row-selected{
                         <div field="billStatusId" width="60" headerAlign="center" header="状态"></div>
                       	<div field="auditSign" width="65" visible="false" headerAlign="center" header="状态"></div>
                         <div field="guestFullName" width="120" headerAlign="center" header="供应商"></div>
-                        <div field="createDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="退货日期"></div>
+                        <div field="orderDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="退货日期"></div>
                         <div field="orderMan" width="60" headerAlign="center" header="退货员"></div>
                         <div field="serviceId" headerAlign="center" width="150" header="采退单号"></div>
                         <div field="printTimes" width="60" headerAlign="center" header="打印次数"></div>
@@ -143,6 +143,7 @@ body .mini-grid-row-selected{
                               <input class="nui-hidden" name="operateDate"/>
                               <input class="nui-hidden" name="storeId" id="storeId"/>
                               <input class="nui-hidden" name="auditSign"/>
+                              <input class="nui-hidden" name="createDate"/>
                               <table style="width: 100%;">
                                   <tr>
                                       <td class="title required">
@@ -188,13 +189,12 @@ body .mini-grid-row-selected{
                                           <label>退货日期：</label>
                                       </td>
                                       <td width="120">
-                                          <input name="createDate"
-                                                 id="createDate"
-                                                 width="100%"
-                                                 enabled="false"
-                                                 showTime="true"
-                                                 class="nui-datepicker" enabled="false" format="yyyy-MM-dd HH:mm"/>
-                                      </td>
+                                      <input name="orderDate"
+                                             id="orderDate"
+                                             width="100%"
+                                             showTime="true"
+                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
+                                  	</td>
                                       <td class="title">
                                           <label>采退单号：</label>
                                       </td>

@@ -672,7 +672,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="serviceId" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.sales.data.css.CssFactoryOrderDetail" name="tmp"/>
     <process:variable description="010101 收据 010102 普票 010103 增票" historyStateLocation="client" isArray="false" name="billTypeId" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.com.ComGuest" name="guest"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.sales.data.com.ComGuest" name="guest"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
     <process:variable description="订货总金额" historyStateLocation="client" isArray="false" name="totalAmt" primitiveType="Float"/>
     <process:variable description="单条金额" historyStateLocation="client" isArray="false" name="nowAmt" primitiveType="Float"/>

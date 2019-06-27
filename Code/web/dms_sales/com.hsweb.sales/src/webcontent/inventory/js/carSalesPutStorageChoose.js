@@ -375,7 +375,7 @@ function add(){
     var item={};
     item.id = "carSalesPutStorageDetails";
     item.text = "验车入库详情";
-    item.url = webPath + contextPath + "/inventory.carSalesPutStorageDetails.flow";
+    item.url = webPath + contextPath + "/com.hsweb.inventory.carSalesPutStorageDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {};
@@ -387,7 +387,7 @@ function edit(){
     var item={};
     item.id = "carSalesPutStorageDetails";
     item.text = "验车入库详情";
-    item.url = webPath + contextPath + "/inventory.carSalesPutStorageDetails.flow";
+    item.url = webPath + contextPath + "/com.hsweb.inventory.carSalesPutStorageDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {}; 
@@ -397,7 +397,7 @@ function carCheck(){
     var item={};
     item.id = "carSalesPutStorageDetails";
     item.text = "验车入库详情";
-    item.url = webPath + contextPath + "/inventory.carSalesPutStorageDetails.flow";
+    item.url = webPath + contextPath + "/com.hsweb.inventory.carSalesPutStorageDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {}; 

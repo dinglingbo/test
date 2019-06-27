@@ -13,7 +13,7 @@
         <title>精品加装</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-        <script src="<%=webPath + contextPath%>/sales/base/js/giftAssembling.js?v=1.3.8"></script>
+        <script src="<%=webPath + contextPath%>/sales/base/js/giftAssembling.js?v=1.3.9"></script>
     </head>
     <style type="text/css">
         body {
@@ -84,11 +84,12 @@
                         allowCellWrap="true" url="">
                         <div property="columns">
                             <div type="indexcolumn">序号</div>
-                            <div field="status" name="" width="100px" headerAlign="center" header="状态"></div>
+                            <div field="status" name="" width="80px" headerAlign="center" header="状态"></div>
                             <div field="guestName" name="" width="100px" headerAlign="center" header="客户名称"></div>
-                            <div field="vin" name="" width="100px" headerAlign="center" header="车架号(VIN)"></div>
-                            <div field="sellType" name="" width="100px" headerAlign="center" header="销售类型"></div>
-                            <div field="recordDate" name="" width="100px" headerAlign="center" header="单据日期" dateFormat="yyyy-MM-dd"></div>
+                            <div field="vin" name="" width="120px" headerAlign="center" header="车架号(VIN)"></div>
+                            <div field="sellType" name="" width="80px" headerAlign="center" header="销售类型"></div>
+                            <div field="totalAmt" name="" width="80px" headerAlign="center" header="总成本"></div>
+                            <div field="recordDate" name="" width="90px" headerAlign="center" header="单据日期" dateFormat="yyyy-MM-dd"></div>
                         </div>
                     </div>
                 </div>

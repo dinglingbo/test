@@ -228,7 +228,7 @@ function onOut(){
 
 function check() {
 	nui.open({
-		url : webPath+contextPath+"/inventory.carCheck.flow?token="+token,
+		url : webPath+contextPath+"/com.hsweb.inventory.carCheck.flow?token="+token,
 		title : "选择待验车辆",
 		width : 1000,
 		height : 560,

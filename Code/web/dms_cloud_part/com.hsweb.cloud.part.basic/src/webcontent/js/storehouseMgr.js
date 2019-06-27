@@ -203,7 +203,13 @@ function onDrawCell(e){
 
 var saveUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.updateStorehouseLocation.biz.ext";
 function disableLocation(){
+	var node = tree.getSelectedNode();
+    var cangStoreId = "";
+    if(node){
+    	cangStoreId = node.cangStoreId;
+    }
     var row = rightGrid.getSelected();
+    var cid =row.cangShelfId;
     if(!row)
     {
         return;
@@ -222,6 +228,9 @@ function disableLocation(){
         type:"post",
         data:JSON.stringify({
             locations:data,
+            wid: cangStoreId,
+            cid :cid,
+            status : "0",
             token:token
         }),
         success:function(data)
@@ -244,7 +253,15 @@ function disableLocation(){
     });
 }
 function enableLocation(){
+	
+	var node = tree.getSelectedNode();
+    var cangStoreId = "";
+    if(node){
+    	cangStoreId = node.cangStoreId;
+    }
+    
     var row = rightGrid.getSelected();
+    var cid =row.cangShelfId;
     if(!row)
     {
         return;
@@ -263,6 +280,9 @@ function enableLocation(){
         type:"post",
         data:JSON.stringify({
             locations:data,
+            wid: cangStoreId,
+            cid :cid,
+            status:"1",
             token:token
         }),
         success:function(data)
@@ -286,19 +306,30 @@ function enableLocation(){
 }
 function savePosition()
 {
+	var node = tree.getSelectedNode();
+    var cangStoreId = "";
+    if(node){
+    	cangStoreId = node.cangStoreId;
+    }
+    var literainfos =[];
     var rows = rightGrid.getChanges("modified")||[];
     if(rows.length == 0)
     {
         return;
     }
-    var locations = [];
+    var locations =[];
     for(var i=0;i<rows.length;i++)
     {
+    	literainfos.push({
+    		 name:rows[i].name,
+    		 cid :rows[i].cangShelfId
+    	});
         locations.push({
             id:rows[i].id,
             name:rows[i].name
         });
     }
+    literainfos =JSON.stringify(literainfos);
   //  console.log(locations);
     nui.mask({
         html:'保存中...'
@@ -308,6 +339,8 @@ function savePosition()
         type:"post",
         data:JSON.stringify({
             locations:locations,
+            wid: cangStoreId,
+            literainfos : literainfos,
             token:token
         }),
         success:function(data)

@@ -606,7 +606,8 @@ function add() {
 
                 nui.get("serviceId").setValue("新销售退货");
                 nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
-                nui.get("createDate").setValue(new Date());
+//                nui.get("createDate").setValue(new Date());
+                nui.get("orderDate").setValue(new Date());
                 nui.get("orderMan").setValue(currUserName);
 
                 addNewRow();
@@ -639,7 +640,8 @@ function add() {
 
         nui.get("serviceId").setValue("新销售退货");
         nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
-        nui.get("createDate").setValue(new Date());
+//        nui.get("createDate").setValue(new Date());
+        nui.get("orderDate").setValue(new Date());
         nui.get("orderMan").setValue(currUserName);
 
         addNewRow();
@@ -711,6 +713,9 @@ function getMainData() {
                 + '.0';// 用于后台判断数据是否在其他地方已修改
         // data.versionNo = format(data.versionNo, 'yyyy-MM-dd HH:mm:ss');
     }
+    if (data.orderDate) {
+  	  data.orderDate = format(data.orderDate, 'yyyy-MM-dd HH:mm:ss');
+  	}
 
     if(!data.billTypeId){
         data.billTypeId = "010103";
@@ -754,7 +759,7 @@ function getModifyData(data, addList, delList){
 var requiredField = {
     guestId : "客户",
     orderMan : "退货员",
-    createDate : "退货日期",
+    orderDate : "退货日期",
     rtnReasonId : "退货原因",
     settleTypeId : "结算方式"
 };

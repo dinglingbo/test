@@ -93,6 +93,9 @@
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (D.CODE in ($partCodeList$))
                 </isNotEmpty> 
+                 <isNotEmpty prepend="and" property="creator">  
+                    (a.creator = #creator#)
+                </isNotEmpty>
             </dynamic>  
             
     	

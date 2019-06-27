@@ -184,6 +184,10 @@
       <process:to type="query">params/agency_id</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">part_id</process:from>
+      <process:to type="query">params/part_id</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">pid</process:from>
       <process:to type="query">params/pid</process:to>
     </process:copy>
@@ -214,6 +218,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">spec</process:from>
       <process:to type="query">params/spec</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">status</process:from>
+      <process:to type="query">params/status</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">

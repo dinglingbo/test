@@ -54,6 +54,8 @@ body {
             </tr>
         </table>
     </div> -->
+    <input class="nui-hidden" name="cangBrandId"/>
+    <input class="nui-hidden" name="isDisabled"/>
     <input class="nui-hidden" name="id"/>
     <div class="row">
         <span class="title title-width1 required">品质编码：</span>

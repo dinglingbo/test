@@ -234,6 +234,9 @@
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (D.CODE in ($partCodeList$))
                 </isNotEmpty> 
+                <isNotEmpty prepend="and" property="creator">  
+                    (A.creator = #creator#)
+                </isNotEmpty>
             </dynamic>  
             
             union all
@@ -357,6 +360,9 @@
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (D.CODE in ($partCodeList$))
                 </isNotEmpty> 
+                 <isNotEmpty prepend="and" property="creator">  
+                    (A.creator = #creator#)
+                </isNotEmpty>
             </dynamic>  
         )M
     	
@@ -1475,6 +1481,9 @@
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (D.CODE in ($partCodeList$))
                 </isNotEmpty> 
+                <isNotEmpty prepend="and" property="creator">  
+                    (a.creator = #creator#)
+                </isNotEmpty>
             </dynamic>  
            
         
@@ -1610,6 +1619,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (D.CODE in ($partCodeList$))
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="creator">  
+                    (a.creator = #creator#)
                 </isNotEmpty> 
             </dynamic>  
            

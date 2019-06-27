@@ -881,7 +881,8 @@ function add() {
 
 				nui.get("serviceId").setValue("新采购入库");
 				nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
-				nui.get("createDate").setValue(new Date());
+//				nui.get("createDate").setValue(new Date());
+				nui.get("orderDate").setValue(new Date());
 				nui.get("orderMan").setValue(currUserName);
 				nui.get("sourceType").setValue(0);
 
@@ -913,7 +914,8 @@ function add() {
 
 		nui.get("serviceId").setValue("新采购入库");
 		nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
-		nui.get("createDate").setValue(new Date());
+//		nui.get("createDate").setValue(new Date());
+		nui.get("orderDate").setValue(new Date());
 		nui.get("orderMan").setValue(currUserName);
 
 		addNewRow();
@@ -940,6 +942,9 @@ function getMainData() {
 		data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss')
 				+ '.0';// 用于后台判断数据是否在其他地方已修改
 		// data.versionNo = format(data.versionNo, 'yyyy-MM-dd HH:mm:ss');
+	}
+	if (data.orderDate) {
+	  data.orderDate = format(data.orderDate, 'yyyy-MM-dd HH:mm:ss');
 	}
 
 	rightGrid.findRow(function(row){
@@ -980,7 +985,7 @@ function getModifyData(data, addList, delList){
 var requiredField = {
 	guestId : "供应商",
 	orderMan : "采购员",
-	createDate : "订货日期",
+	orderDate : "订单日期",
 	billTypeId : "票据类型",
 	settleTypeId : "结算方式"
 };

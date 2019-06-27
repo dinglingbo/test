@@ -337,6 +337,9 @@
             <isNotEmpty prepend="and" property="idCard">  
                 (id_card = #idCard#)
             </isNotEmpty>
+             <isNotEmpty prepend="and" property="modifier">  
+                (modifier = #modifier#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="sortField">  
                 $sortField$ $sortOrder$
             </isNotEmpty>  
@@ -473,7 +476,7 @@
 			c.oem_code as oemCode
 		FROM
 			pj_part_stock a
-		LEFT JOIN pj_part_price b ON a.part_id = b.part_id
+		LEFT JOIN pj_part_price b ON a.part_id = b.part_id and a.orgid =b.orgid
 		INNER JOIN wb_common.com_attribute c ON a.part_id = c.id
 		WHERE 1 = 1 
     	<dynamic>
@@ -539,7 +542,8 @@
 		       a.is_host isHost,
 		       a.orgid orgid,
 		       a.common_id as commonId,
-		       a.remark as remark
+		       a.remark as remark,
+		       a.cang_part_id as cangPartId
         FROM com_attribute a
         where 1 = 1
     	<dynamic>

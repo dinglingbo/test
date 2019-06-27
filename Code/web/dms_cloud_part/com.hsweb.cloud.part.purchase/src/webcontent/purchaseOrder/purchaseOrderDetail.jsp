@@ -109,7 +109,7 @@
                     <div type="indexcolumn">序号</div>
                       <div field="billStatusId" width="60" headerAlign="center" header="状态"></div>
                       <div field="guestFullName" width="80" headerAlign="center" header="供应商"></div>
-                      <div field="createDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="订单日期"></div>
+                      <div field="orderDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="订单日期"></div>
                       <div field="auditSign" visible="false" width="35" headerAlign="center" header="状态"></div>
                       <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
                       <div field="serviceId" headerAlign="center" width="150" header="订单号"></div>
@@ -132,6 +132,7 @@
                       <div id="basicInfoForm" class="form" contenteditable="false">
                           <input class="nui-hidden" name="id"/>
                           <input class="nui-hidden" name="operateDate"/>
+                          <input class="nui-hidden" name="createDate"/>
                           <input class="nui-hidden" name="versionNo"/>
                           <input class="nui-hidden" name="storeId" id="storeId"/>
                           <input class="nui-hidden" name="taxRate" id="taxRate"/>
@@ -174,11 +175,11 @@
                                       <label>订货日期：</label>
                                   </td>
                                   <td width="120">
-                                      <input name="createDate"
-                                             id="createDate"
+                                      <input name="orderDate"
+                                             id="orderDate"
                                              width="100%"
                                              showTime="true"
-                                             class="nui-datepicker" enabled="false" format="yyyy-MM-dd HH:mm"/>
+                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
                                   </td>
                                   <td class="title wide">
                                       <label>预计到货日期：</label>

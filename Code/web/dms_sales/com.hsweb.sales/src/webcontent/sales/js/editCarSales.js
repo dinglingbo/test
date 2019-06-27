@@ -1,10 +1,10 @@
 var webBaseUrl = webPath + contextPath + "/";
 //var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var baseUrl = apiPath + saleApi + "/"; 
-var frmUrl =  apiPath + frmApi + "/";
-var repairUrl = apiPath + repairApi + "/";
 var billForm = null;
 var jpGrid = null;
+var frmUrl =  apiPath + frmApi + "/";
+var repairUrl = apiPath + repairApi + "/";
 var jpUrl = baseUrl + "com.hsapi.sales.svr.search.searchCsbGiftMsg.biz.ext";
 var jpDetailGrid = null;
 var jpDetailGridUrl = baseUrl + "com.hsapi.sales.svr.search.searchSaleGiftApply.biz.ext";

@@ -6,7 +6,8 @@ var tree = null;
 var rightGrid = null;
 var treeUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.getStorehouse.biz.ext";
 var rightGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.getSorehouseLocation.biz.ext";
-var storeMemUrl = apiPath + sysApi + "/com.hsapi.system.tenant.employee.queryStoreMember.biz.ext";
+var storeMemUrl = apiPath + sysApi + "/com.hsapi.system.tenant.employee.queryStoreMem.biz.ext";
+var isHash ={"0":"否","1":"是"};
 $(document).ready(function(v)
 {
 	tree = nui.get("tree1");
@@ -35,6 +36,21 @@ $(document).ready(function(v)
     
     memGrid.on("beforeload",function(e){
         e.data.token = token;
+    });
+    
+
+    memGrid.on("drawcell",function(e){
+        switch (e.field)
+        {
+            case "isOpenApp":
+                if(isHash && isHash[e.value])
+                {
+                    e.cellHtml = isHash[e.value];
+                }
+                break;
+            default:
+                break;
+        }
     });
     
     if(currIsOpenApp==1){
@@ -382,14 +398,14 @@ function chooseRoles(){
 	            {
 	        		var iframe = this.getIFrameEl();
 					var roles = iframe.contentWindow.getRoles();
-					updateRoles(roles, node.cangStoreId);
+					updateRoles(roles, node.cangStoreId,node.id);
 	            }
 	        }
 	    });
 }
 
-var updateRolesUrl = apiPath + sysApi +"/com.hsapi.cloud.part.baseDataCrud.cang.updateUser.biz.ext";
-function updateRoles(roles,cangStoreId){
+var updateRolesUrl = baseUrl +"/com.hsapi.cloud.part.baseDataCrud.cang.updateUser.biz.ext";
+function updateRoles(roles,cangStoreId,storeId){
 	
 	var memRow = memGrid.getSelected();
 	var empId = memRow.empId;
@@ -409,6 +425,7 @@ function updateRoles(roles,cangStoreId){
         	  phone  : "",
         	erp_id   :  empId,
         	roles  : roles,
+        	storeId : storeId,
             token:token
         }),
         success:function(data)
@@ -442,8 +459,9 @@ function saveStoreMember(memList, storeId){
     }
 	//开启APP
     if(currIsOpenApp ==1){
-    	var map ={};
+    	
     	for(var i=0;i<memList.length;i++){
+    		var map ={};
     		map.username =memList[i].systemAccount;
     		map.phone = memList[i].tel;
     		map.erp_id = memList[i].empid;
@@ -460,11 +478,10 @@ function saveStoreMember(memList, storeId){
     var data = [];
     for(var i=0; i<memList.length; i++) {
     	memList[i].storeId = storeId;
-    	var mem = {
-    		empId : memList[i].empid,
-    		empName: memList[i].name,
-    		storeId : storeId
-    	}
+    	var mem ={};
+		mem.empId = memList[i].empid;
+		mem.empName =memList[i].name;
+		mem.storeId = storeId;
     	data.push(mem);
     }
     nui.mask({
@@ -505,10 +522,20 @@ function saveStoreMember(memList, storeId){
 var delUrl = apiPath + sysApi + "/com.hsapi.system.tenant.employee.deleteStoreMember.biz.ext";
 function delStoreMem(){
 	var rows = memGrid.getSelecteds();
+	var wid ="";
+	var erp_id ="";
+	var node = tree.getSelectedNode();
+    if(node){
+    	wid = node.cangStoreId;
+    }
     if(!rows)
     {
         return;
     }
+    for(var i=0;i<rows.length;i++){
+    	erp_id =erp_id +rows[i].empId +",";
+    }
+    erp_id =erp_id.substring(0,erp_id.length-1);
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
@@ -518,7 +545,8 @@ function delStoreMem(){
         url:delUrl,
         type:"post",
         data:JSON.stringify({
-        	memList:rows,
+        	agency_id:currAgencyId,
+        	erp_id : erp_id,
             token:token
         }),
         success:function(data)
@@ -540,4 +568,101 @@ function delStoreMem(){
             console.log(jqXHR.responseText);
         }
     });
+}
+
+var  deleteAppUrl = baseUrl +"/com.hsapi.cloud.part.baseDataCrud.cang.unvalidUser.biz.ext";
+//删除APP权限
+function deleteApp(){
+	var memberList =[];
+	var rows = memGrid.getSelecteds();
+	var erp_id ="";
+    for(var i=0;i<rows.length;i++){
+    	erp_id =erp_id +rows[i].empId +",";
+    	var mem={};
+    	mem.empid= rows[i].empId;
+    	mem.isOpenApp =0;
+    	memberList.push(mem);
+    }
+    erp_id =erp_id.substring(0,erp_id.length-1);
+	 nui.mask({
+	        el: document.body,
+	        cls: 'mini-mask-loading',
+	        html: '运行中...'
+		});
+	    nui.ajax({
+	        url:deleteAppUrl,
+	        type:"post",
+	        data:JSON.stringify({
+	        	memberList:memberList,
+	        	agency_id:currAgencyId,
+	        	erp_id : erp_id,
+	            token:token
+	        }),
+	        success:function(data)
+	        {
+	            nui.unmask();
+	            data = data||{};
+	            if(data.errCode == "S")
+	            {
+	                showMsg("删除成功","S");
+	                memGrid.reload();
+	            }
+	            else{
+	                showMsg("删除失败","W");
+	            }
+	        },
+	        error:function(jqXHR, textStatus, errorThrown){
+	            //  nui.alert(jqXHR.responseText);
+	        	nui.unmask();
+	            console.log(jqXHR.responseText);
+	        }
+	    });
+}
+var recoverAppUrl = baseUrl +"/com.hsapi.cloud.part.baseDataCrud.cang.validUser.biz.ext";
+//恢复APP使用权限
+function recoverApp(){
+	var memberList =[];
+	var rows = memGrid.getSelecteds();
+	var erp_id ="";
+	for(var i=0;i<rows.length;i++){
+    	erp_id =erp_id +rows[i].empId +",";
+    	var mem={};
+    	mem.empid= rows[i].empId;
+    	mem.isOpenApp =1;
+    	memberList.push(mem);
+    }
+    erp_id =erp_id.substring(0,erp_id.length-1);
+	 nui.mask({
+	        el: document.body,
+	        cls: 'mini-mask-loading',
+	        html: '运行中...'
+		});
+	    nui.ajax({
+	        url:recoverAppUrl,
+	        type:"post",
+	        data:JSON.stringify({
+	        	memberList:memberList,
+	        	agency_id:currAgencyId,
+	        	erp_id : erp_id,
+	            token:token
+	        }),
+	        success:function(data)
+	        {
+	            nui.unmask();
+	            data = data||{};
+	            if(data.errCode == "S")
+	            {
+	                showMsg("成功","S");
+	                memGrid.reload();
+	            }
+	            else{
+	                showMsg("失败","W");
+	            }
+	        },
+	        error:function(jqXHR, textStatus, errorThrown){
+	            //  nui.alert(jqXHR.responseText);
+	        	nui.unmask();
+	            console.log(jqXHR.responseText);
+	        }
+	    });
 }

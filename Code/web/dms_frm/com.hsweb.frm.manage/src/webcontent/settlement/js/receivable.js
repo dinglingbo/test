@@ -273,8 +273,9 @@ function remove(id){
 	onChanged();
 }
 
-var settleAuditUrl = frmUrl+ "com.hsapi.frm.frmService.rpsettle.rpAccountSettle.biz.ext";
+
 function settleOK() {
+	var settleAuditUrl = "";//结算接口，根据
 	var accountTypeList =[];
 	var accountDetail = {};
 	var count = scount();
@@ -382,9 +383,11 @@ function settleOK() {
 		if(typeUrl==3){
 			account.rpDc = 2;
 			account.settleType = "预收";
+			settleAuditUrl =frmUrl+ "com.hsapi.frm.frmService.rpsettle.RpAccountSettleForCarSales.biz.ext";
 		}else{				
 			account.rpDc = 1;
 			account.settleType = "应收";
+			settleAuditUrl =frmUrl+ "com.hsapi.frm.frmService.rpsettle.rpAccountSettle.biz.ext";
 		}
 		account.voidAmt = pVoidAmt;
 		account.trueCharOffAmt = pTrueAmt;

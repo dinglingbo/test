@@ -46,9 +46,10 @@ function setSaleType(value) {
 function SetDataMsg(serviceId, frameColorId, interialColorId) {
     var params = { billType: 2, serviceId: serviceId };
     nui.ajax({
-        url: baseUrl + "sales.search.searchSaleCalc.biz.ext",
+        url: baseUrl + "com.hsapi.sales.svr.search.searchSaleCalc.biz.ext",
         type: "post",
         cache: false,
+        async: false,
         data: {
             params: params
         },
@@ -56,7 +57,7 @@ function SetDataMsg(serviceId, frameColorId, interialColorId) {
             if (text.errCode == "S") {
                 var data = text.data[0];
                 form.setData(data);
-                if (data.saleType == "1558580770894") { //全款
+                if (data && data.saleType == "1558580770894") { //全款
                     changeSaleType(1);
                 }
                 if (!data.frameColorId) { //没值则取销售主表的颜色
@@ -209,8 +210,8 @@ function changeInterialColorId() {
 
 var comeServiceIdF = null;
 var statusF = null;
-var saveComeUrl = baseUrl + "sales.save.saveSaleCalc.biz.ext";
-var jpDetailGridUrl = baseUrl + "sales.search.searchSaleGiftApply.biz.ext";
+var saveComeUrl = baseUrl + "com.hsapi.sales.svr.save.saveSaleCalc.biz.ext";
+var jpDetailGridUrl = baseUrl + "com.hsapi.sales.svr.search.searchSaleGiftApply.biz.ext";
 var mainF = null
 
 function setShowSave(params) {
@@ -230,7 +231,7 @@ function setShowSave(params) {
     if (comeServiceIdF) {
         var params = { billType: 1, serviceId: comeServiceIdF };
         nui.ajax({
-            url: baseUrl + "sales.search.searchSaleCalc.biz.ext",
+            url: baseUrl + "com.hsapi.sales.svr.search.searchSaleCalc.biz.ext",
             type: "post",
             cache: false,
             async: false,

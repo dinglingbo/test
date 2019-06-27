@@ -1,0 +1,965 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="searchSalesMain" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT 
+			a.id	AS	id	,
+			a.tenant_id	AS	tenantId	,
+			a.orgid	AS	orgid	,
+			a.sale_type	AS	saleType	,
+			a.service_code	AS	serviceCode	,
+			a.contract_no	AS	contractNo	,
+			a.come_id	AS	comeId	,
+			a.guest_id	AS	guestId	,
+			a.guest_full_name	AS	guestFullName	,
+			a.sale_advisor	AS	saleAdvisor	,
+			a.sale_advisor_id	AS	saleAdvisorId	,
+			a.car_model_id	AS	carModelId	,
+			a.car_model_name	AS	carModelName	,
+			a.frame_color_id	AS	frameColorId	,
+			a.interial_color_id	AS	interialColorId	,
+			a.bill_sign	AS	billSign	,
+			a.bill_type_id	AS	billTypeId	,
+			a.bill_amt	AS	billAmt	,
+			a.bill_no	AS	billNo	,
+			a.bill_title	AS	billTitle	,
+			a.order_date	AS	orderDate	,
+			a.submit_plan_date	AS	submitPlanDate	,
+			a.submit_true_date	AS	submitTrueDate	,
+			a.submit_car_men	AS	submitCarMen	,
+			a.submit_car_remark	AS	submitCarRemark	,
+			a.submit_car_key_qty	AS	submitCarKeyQty	,
+			a.submit_rpaccounts	AS	submitRpaccounts	,
+			a.submit_man	AS	submitMan	,
+			a.submit_date	AS	submitDate	,
+			a.enter_id	AS	enterId	,
+			a.financial_end_date	AS	financialEndDate	,
+			a.financial_end_man	AS	financialEndMan	,
+			a.visit_man	AS	visitMan	,
+			a.visit_sign	AS	visitSign	,
+			a.next_visit_date	AS	nextVisitDate	,
+			CASE WHEN a.status = 0 then '草稿' ELSE 
+			CASE WHEN a.status = 1 then '待审' ELSE 
+			CASE WHEN a.status = 3 then '作废' ELSE 
+			CASE WHEN a.enter_id = 0 AND a.status = 2 then '已审未选车' ELSE 				
+			CASE WHEN a.is_submit_car = 0 AND a.status = 2 THEN '已审未交车' ELSE 
+			CASE WHEN a.is_settle = 0 AND a.status = 2 THEN '未结算' ELSE 
+			CASE WHEN a.is_settle = 1 AND a.status = 2 THEN '已结算' ELSE a.status END END END END END END END as status,
+			a.is_out_stock	AS	isOutStock	,
+			a.is_submit_car	AS	isSubmitCar	,
+			a.is_settle	AS	isSettle	,
+			a.remark	AS	remark	,
+			a.recorder	AS	recorder	,
+			a.record_date	AS	recordDate	,
+			a.modifier	AS	modifier	,
+			a.modify_date	AS	modifyDate	,	
+			b.buy_budget_total	AS	buyBudgetTotal,
+			b.advance_charge_amt	AS	advanceChargeAmt,
+			b.received_deposit	AS	receivedDeposit,
+			b.received_bala	AS	receivedBala,
+			b.received_total	AS	receivedTotal,
+			b.sale_amt	AS	saleAmt,
+			b.car_cost	AS	carCost,
+			b.handcart_amt	 AS	handcartAmt,
+			b.sale_gross_profit	AS	saleGrossProfit,
+			b.insurance_budget_amt	AS	insuranceBudgetAmt,
+			b.insurance_amt	AS	insuranceAmt,
+			b.insurance_differ_amt	AS	insuranceDifferAmt,
+			b.agent_gross_profit	AS	agentGrossProfit,
+			b.purchase_budget_amt	AS	purchaseBudgetAmt,
+			b.purchase_amt	AS	purchaseAmt,
+			b.purchase_differ_amt	AS	purchaseDifferAmt,
+			b.differ_amt_total	AS	differAmtTotal,
+			b.board_lot_amt	AS	boardLotAmt,
+			b.board_lot_cost	AS	boardLotCost,
+			b.board_lot_gross_profit	AS	boardLotGrossProfit,
+			b.gps_amt	AS	gpsAmt,
+			b.gps_cost	AS	gpsCost,
+			b.gps_gross_profit	AS	gpsGrossProfit,
+			b.mortgage_amt	AS	mortgageAmt,
+			b.mortgage_cost	AS	mortgageCost,
+			b.mortgage_gross_profit	AS	mortgageGrossProfit,
+			b.decr_amt	AS	decrAmt,
+			b.decr_cost	AS	decrCost,
+			b.decr_gross_profit	AS	decrGrossProfit,
+			b.family_amt	AS	familyAmt,
+			b.family_cost	AS	familyCost,
+			b.family_gross_profit	AS	familyGrossProfit,
+			b.other_amt	AS	otherAmt,
+			b.other_cost	AS	otherCost,
+			b.other_gross_profit	AS	otherGrossProfit,
+			b.down_payment_proportion	AS	downPaymentProportion,
+			b.down_payment_amt	AS	downPaymentAmt,
+			b.loan_percent	AS	loanPercent,
+			b.loan_amt	AS	loanAmt,
+			b.loan_period	AS	loanPeriod,
+			b.sign_bill_bank_id	AS	signBillBankId,
+			b.bank_handling_rate	AS	bankHandlingRate,
+			b.bank_handling_apportion	AS	bankHandlingApportion,
+			b.bank_handling_amt	AS	bankHandlingAmt,
+			b.month_pay_amt	AS	monthPayAmt,
+			b.agent_deposit	AS	agentDeposit,
+			b.risk_amt	AS	riskAmt,
+			b.contract_guarantee_amt	AS	contractGuaranteeAmt,
+			b.rece_total	AS	receTotal,
+			b.get_car_total	AS	getCarTotal,
+			b.rece_cost_total	AS	receCostTotal,
+			b.rece_bala	AS	receBala,
+			b.sale_income_total	AS	saleIncomeTotal,
+			b.salesman_deduct	AS	salesmanDeduct,
+			b.commission_deduct	AS	commissionDeduct,
+			b.total_cost	AS	totalCost,
+			b.adjustment_amt	AS	adjustmentAmt,
+			b.adjustment_remark	AS	adjustmentRemark,
+			b.total_gross_profit	AS	totalGrossProfit,
+			b.total_gross_profit_rate	AS	totalGrossProfitRate,
+			b.remark	AS	remarka	,
+			c.full_name	AS contactor,
+			c.mobile AS contactorTel,
+			c.id_card AS idCard
+		FROM css_sale_main a 
+			INNER JOIN css_sale_extend b
+				ON a.id = b.id
+			INNER JOIN wb_common.com_guest c
+				ON a.guest_id = c.id
+		WHERE a.orgid=#orgid#
+		<dynamic>
+		    <isNotEmpty prepend="and" property="serviceCode">
+                (a.service_code= #serviceCode#)
+            </isNotEmpty>
+			<isNotEmpty prepend="and" property="orgid">
+                (a.orgid= #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="id">
+                (a.id = #id#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isSubmitCar">
+                (a.is_submit_car = #isSubmitCar#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="status">
+                (a.status in ($status$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestName">  
+                (a.guest_full_name like '%$guestName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="recordStartDate"> 
+                (a.record_date &gt;= #recordStartDate#)
+              </isNotEmpty>
+              <isNotEmpty prepend="and" property="recordEndDate"> 
+                (a.record_date &lt; #recordEndDate#)
+              </isNotEmpty>             
+        </dynamic> 
+        order by a.record_date desc
+	</select>
+	
+	<!--选择界面使用 -->
+	    <select id="searchSalesMainB" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT 
+			a.id	AS	id	,
+			a.tenant_id	AS	tenantId	,
+			a.orgid	AS	orgid	,
+			a.sale_type	AS	saleType	,
+			a.service_code	AS	serviceCode	,
+			a.contract_no	AS	contractNo	,
+			a.come_id	AS	comeId	,
+			a.guest_id	AS	guestId	,
+			a.guest_full_name	AS	guestFullName	,
+			a.sale_advisor	AS	saleAdvisor	,
+			a.sale_advisor_id	AS	saleAdvisorId	,
+			a.car_model_id	AS	carModelId	,
+			a.car_model_name	AS	carModelName	,
+			a.frame_color_id	AS	frameColorId	,
+			a.interial_color_id	AS	interialColorId	,
+			a.bill_sign	AS	billSign	,
+			a.bill_type_id	AS	billTypeId	,
+			a.bill_amt	AS	billAmt	,
+			a.bill_no	AS	billNo	,
+			a.bill_title	AS	billTitle	,
+			a.order_date	AS	orderDate	,
+			a.submit_plan_date	AS	submitPlanDate	,
+			a.submit_true_date	AS	submitTrueDate	,
+			a.submit_car_men	AS	submitCarMen	,
+			a.submit_car_remark	AS	submitCarRemark	,
+			a.submit_car_key_qty	AS	submitCarKeyQty	,
+			a.submit_rpaccounts	AS	submitRpaccounts	,
+			a.submit_man	AS	submitMan	,
+			a.submit_date	AS	submitDate	,
+			a.enter_id	AS	enterId	,
+			a.financial_end_date	AS	financialEndDate	,
+			a.financial_end_man	AS	financialEndMan	,
+			a.visit_man	AS	visitMan	,
+			a.visit_sign	AS	visitSign	,
+			a.next_visit_date	AS	nextVisitDate	,
+			CASE WHEN a.status = 0 then '草稿' ELSE 
+			CASE WHEN a.status = 1 then '待审' ELSE 
+			CASE WHEN a.enter_id = 0 AND a.status = 2 then '已审未选车' ELSE 				
+			CASE WHEN a.is_submit_car = 0 AND a.status = 2 THEN '已审未交车' ELSE 
+			CASE WHEN a.is_settle = 0 AND a.status = 2 THEN '未结算' ELSE 
+			CASE WHEN a.is_settle = 1 AND a.status = 2 THEN '已结算' ELSE a.status END END END END END END as status,
+			a.is_out_stock	AS	isOutStock	,
+			a.is_submit_car	AS	isSubmitCar	,
+			a.is_settle	AS	isSettle	,
+			a.remark	AS	remark	,
+			a.recorder	AS	recorder	,
+			a.record_date	AS	recordDate	,
+			a.modifier	AS	modifier	,
+			a.modify_date	AS	modifyDate	,	
+			c.full_name	AS contactor,
+			c.mobile AS contactorTel,
+			c.id_card AS idCard,
+			d.vin,
+			d.car_no carNo
+		FROM css_sale_main a 
+			INNER JOIN wb_common.com_guest c
+				ON a.guest_id = c.id
+				left join css_check_enter d on d.id = a.enter_id
+		WHERE 1 = 1
+		<dynamic>
+			<isNotEmpty prepend="and" property="serviceCode">
+                (a.service_code= #serviceCode#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="id">
+                (a.id = #id#)
+            </isNotEmpty>
+             <isNotEmpty prepend="and" property="guestId">
+                (a.guest_id = #guestId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="enterId">
+               a.enter_id = #enterId#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="hasEnterId">
+               a.enter_id  &lt;&gt; 0
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isSubmitCar">
+                a.is_submit_car = #isSubmitCar#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="status">
+                (a.status in ($status$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestName">  
+                (a.guest_full_name like '%$guestName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="recordStartDate"> 
+                (a.record_date &gt;= #recordStartDate#)
+              </isNotEmpty>
+              <isNotEmpty prepend="and" property="recordEndDate"> 
+                (a.record_date &lt; #recordEndDate#)
+              </isNotEmpty>
+        </dynamic>  
+        order by a.modify_date desc
+	</select>
+	
+	<select id="searchSalesMainDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT 
+			a.id	AS	id	,
+			a.tenant_id	AS	tenantId	,
+			a.orgid	AS	orgid	,
+			a.sale_type	AS	saleType	,
+			a.service_code	AS	serviceCode	,
+			a.contract_no	AS	contractNo	,
+			a.come_id	AS	comeId	,
+			a.guest_id	AS	guestId	,
+			a.guest_full_name	AS	guestFullName	,
+			a.sale_advisor	AS	saleAdvisor	,
+			a.sale_advisor_id	AS	saleAdvisorId	,
+			a.car_model_id	AS	carModelId	,
+			a.car_model_name	AS	carModelName	,
+			a.frame_color_id	AS	frameColorId	,
+			a.interial_color_id	AS	interialColorId	,
+			a.bill_sign	AS	billSign	,
+			a.bill_type_id	AS	billTypeId	,
+			a.bill_amt	AS	billAmt	,
+			a.bill_no	AS	billNo	,
+			a.bill_title	AS	billTitle	,
+			a.order_date	AS	orderDate	,
+			a.submit_plan_date	AS	submitPlanDate	,
+			a.submit_true_date	AS	submitTrueDate	,
+			a.submit_car_men	AS	submitCarMen	,
+			a.submit_car_remark	AS	submitCarRemark	,
+			a.submit_car_key_qty	AS	submitCarKeyQty	,
+			a.submit_rpaccounts	AS	submitRpaccounts	,
+			a.submit_man	AS	submitMan	,
+			a.submit_date	AS	submitDate	,
+			a.enter_id	AS	enterId	,
+			a.financial_end_date	AS	financialEndDate	,
+			a.financial_end_man	AS	financialEndMan	,
+			a.visit_man	AS	visitMan	,
+			a.visit_sign	AS	visitSign	,
+			a.next_visit_date	AS	nextVisitDate	,
+			a.status as status,
+			a.is_out_stock	AS	isOutStock	,
+			a.is_submit_car	AS	isSubmitCar	,
+			a.is_settle	AS	isSettle	,
+			a.remark	AS	remark	,
+			a.recorder	AS	recorder	,
+			a.record_date	AS	recordDate	,
+			a.modifier	AS	modifier	,
+			a.modify_date	AS	modifyDate	,	
+			b.buy_budget_total	AS	buyBudgetTotal,
+			b.advance_charge_amt	AS	advanceChargeAmt,
+			b.received_deposit	AS	receivedDeposit,
+			b.received_bala	AS	receivedBala,
+			b.received_total	AS	receivedTotal,
+			b.sale_amt	AS	saleAmt,
+			b.car_cost	AS	carCost,
+			b.handcart_amt	 AS	handcartAmt,
+			b.sale_gross_profit	AS	saleGrossProfit,
+			b.insurance_budget_amt	AS	insuranceBudgetAmt,
+			b.insurance_amt	AS	insuranceAmt,
+			b.insurance_differ_amt	AS	insuranceDifferAmt,
+			b.agent_gross_profit	AS	agentGrossProfit,
+			b.purchase_budget_amt	AS	purchaseBudgetAmt,
+			b.purchase_amt	AS	purchaseAmt,
+			b.purchase_differ_amt	AS	purchaseDifferAmt,
+			b.differ_amt_total	AS	differAmtTotal,
+			b.board_lot_amt	AS	boardLotAmt,
+			b.board_lot_cost	AS	boardLotCost,
+			b.board_lot_gross_profit	AS	boardLotGrossProfit,
+			b.gps_amt	AS	gpsAmt,
+			b.gps_cost	AS	gpsCost,
+			b.gps_gross_profit	AS	gpsGrossProfit,
+			b.mortgage_amt	AS	mortgageAmt,
+			b.mortgage_cost	AS	mortgageCost,
+			b.mortgage_gross_profit	AS	mortgageGrossProfit,
+			b.decr_amt	AS	decrAmt,
+			b.decr_cost	AS	decrCost,
+			b.decr_gross_profit	AS	decrGrossProfit,
+			b.family_amt	AS	familyAmt,
+			b.family_cost	AS	familyCost,
+			b.family_gross_profit	AS	familyGrossProfit,
+			b.other_amt	AS	otherAmt,
+			b.other_cost	AS	otherCost,
+			b.other_gross_profit	AS	otherGrossProfit,
+			b.down_payment_proportion	AS	downPaymentProportion,
+			b.down_payment_amt	AS	downPaymentAmt,
+			b.loan_percent	AS	loanPercent,
+			b.loan_amt	AS	loanAmt,
+			b.loan_period	AS	loanPeriod,
+			b.sign_bill_bank_id	AS	signBillBankId,
+			b.bank_handling_rate	AS	bankHandlingRate,
+			b.bank_handling_apportion	AS	bankHandlingApportion,
+			b.bank_handling_amt	AS	bankHandlingAmt,
+			b.month_pay_amt	AS	monthPayAmt,
+			b.agent_deposit	AS	agentDeposit,
+			b.risk_amt	AS	riskAmt,
+			b.contract_guarantee_amt	AS	contractGuaranteeAmt,
+			b.rece_total	AS	receTotal,
+			b.get_car_total	AS	getCarTotal,
+			b.rece_cost_total	AS	receCostTotal,
+			b.rece_bala	AS	receBala,
+			b.sale_income_total	AS	saleIncomeTotal,
+			b.salesman_deduct	AS	salesmanDeduct,
+			b.commission_deduct	AS	commissionDeduct,
+			b.total_cost	AS	totalCost,
+			b.adjustment_amt	AS	adjustmentAmt,
+			b.adjustment_remark	AS	adjustmentRemark,
+			b.total_gross_profit	AS	totalGrossProfit,
+			b.total_gross_profit_rate	AS	totalGrossProfitRate,
+			c.full_name	AS contactor,
+			c.mobile AS contactorTel,
+			c.id_card AS idCard,
+			b.received_bala_no receivedBalaNo
+		FROM css_sale_main a 
+			INNER JOIN css_sale_extend b
+				ON a.id = b.id
+			INNER JOIN wb_common.com_guest c
+				ON a.guest_id = c.id
+		WHERE a.orgid =#orgid#
+		<dynamic>
+			<isNotEmpty prepend="and" property="serviceCode">
+                (a.service_code= #serviceCode#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="id">
+                (a.id = #id#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="status">
+                (a.status in ($status$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestName">  
+                (a.guest_full_name like '%$guestName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="recordStartDate"> 
+                (a.record_date &gt;= #recordStartDate#)
+              </isNotEmpty>
+              <isNotEmpty prepend="and" property="recordEndDate"> 
+                (a.record_date &lt; #recordEndDate#)
+              </isNotEmpty>
+        </dynamic>  
+        order by  a.record_date desc 
+	</select>
+    
+       <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
+    <select id="queryPchsOrderMainNotCheckList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+            SELECT DISTINCT
+                a.id as id,
+                a.tenant_id as tenantId,
+                a.orgid as orgid,
+                a.guest_id as guestId,
+                a.service_code as serviceCode,
+                a.bill_type_id as billTypeId,
+                a.pay_mode as payMode,
+                a.advance_deposit_date as advanceDepositDate,
+                a.payable_bala_date as payableBalaDate,
+                a.order_total_amt as orderTotalAmt,
+                a.advance_deposit_amt as advanceDepositAmt,
+                a.payable_bala_amt as payableBalaAmt,
+                a.predict_delivery_date as predictDeliveryDate,
+                a.is_financial as isFinancial,
+                a.is_financial_date as isFinancialDate,
+                a.is_financialer as isFinancialer,
+                a.status as status,
+                a.remark as remark,
+                a.recorder as recorder,
+                a.record_date as recordDate,
+                a.modifier as modifier,
+                a.modify_date as modifyDate,                    
+                b.FULL_NAME AS guestFullName,
+                b.SHORT_NAME AS guestShortName,
+                b.srm_guest_id as srmGuestId
+                FROM
+                wb_sales.css_factory_order_main a
+                INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID     
+                where 1=1
+            <dynamic>
+            	<isNotEmpty prepend="and" property="status"> 
+                    (a.status = #status#)
+                </isNotEmpty>
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="id"> 
+                    (a.id = #id#)
+                </isNotEmpty>
+                <!--订货日期 -->
+                <isNotEmpty prepend="and" property="sOrderDate">  
+                    A.record_date &gt;= #sOrderDate#
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eOrderDate">  
+                    (A.record_date &lt; #eOrderDate#)
+                </isNotEmpty>
+                <!--创建日期 -->
+                <isNotEmpty prepend="and" property="sCreateDate">  
+                    (A.record_date &gt;= #sCreateDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eCreateDate">  
+                    (A.record_date &lt; #eCreateDate#)
+                </isNotEmpty>
+                <!--本日 昨日 本周 上周 本月 下月 -->
+                <isNotEmpty prepend="and" property="startDate">  
+                    (A.record_date &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (A.record_date &lt; #endDate#)
+                </isNotEmpty>
+
+                <isNotEmpty prepend="and" property="guestId">  
+                    (A.guest_id = #guestId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="guestName">  
+                    (B.FULL_NAME like '%$guestName$%' or B.SHORT_NAME like '%$guestName$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceId">  
+                    (a.service_code like '%$serviceId$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceIdList">  
+                    (A.service_code in ($serviceIdList$))
+                </isNotEmpty>
+            </dynamic>  
+		
+        ORDER BY A.record_date DESC
+        
+    </select>
+    
+    	<select id="querySellOrderPartChoose" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT 	 a.id id,
+				 a.orgid orgid,
+				 a.py_code pyCode,
+				 a.level level,
+				 a.code code,
+				 a.country_type countryType,			
+				 a.car_brand_id carBrandId,
+				 a.car_series_id carSeriesId,
+				 a.name name,
+				 a.full_name fullName,				 
+				 a.car_structure_type carStructureType,
+				 a.output_volume outputVolume,
+				 a.fyear fyear,
+				 a.seat_qty seatQty,
+				 a.inlet_type  inletType,
+				 a.power_type powerType,
+				 a.drive_mode  driveMode,
+				 a.launch_date  launchDate,
+				 a.guiding_price guidingPrice,	
+				 a.electric_motor electricMotor,
+				 a.endurance_mileage enduranceMileage,
+				 a.gear_box gearBox,
+				 a.engine_model_no engineModelNo,
+				 a.charging_time chargingTime,
+				 a.production_mode productionMode,
+				 a.is_imported isImported,
+				 a.configure configure,
+			     b.qty as stockQty,
+			     b.unit_price as unitPrice
+		FROM wb_sales.csb_car_model a		
+				left join wb_sales.css_check_enter b
+					on a.id = b.car_model_id and b.orgid = #orgid#
+			
+		where 1=1 and  a.is_disabled=0
+    	<dynamic>
+    	    <isNotEmpty prepend="and" property="code">  
+                (a.py_code like '%$code$%' or a.code like '%$code$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="code">  
+                    (a.code in ($code$))
+            </isNotEmpty> 
+        </dynamic>  
+        
+    </select>
+     <!-- 根据主表ID查询 -->
+    <select id="queryPchsOrderDetailCheckList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT
+                A.id AS id,
+                A.order_id AS orderId,
+                A.car_model_code AS carModelCode,
+                A.car_model_id AS carModelId,
+                A.car_model_name AS carModelName,
+                A.frame_color_id AS frameColorId,
+                A.interial_color_id AS interialColorId,
+                A.order_qty AS orderQty,
+                A.order_price AS orderPrice,
+                A.order_amt AS orderAmt,
+                A.checking_qty AS checkingQty,
+                A.checked_qty AS checkedQty,
+                A.status AS status,
+                A.recorder AS recorder,
+                A.record_date AS recordDate,
+                A.modifier AS modifier,
+                A.modify_date AS modifyDate      
+            FROM
+            wb_sales.css_factory_order_detail A
+                where 1=1
+            <dynamic>
+                <isNotEmpty prepend="and" property="orderId">  
+                    (A.order_id = #orderId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="orderIds">  
+                    (A.order_id in ($orderIds$))
+                </isNotEmpty>
+            </dynamic>  
+           
+        
+        ORDER BY a.id asc
+    </select>
+    
+     <!-- 查询所有待验车辆 -->
+    <select id="queryCheckOrderDetailCheckList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT
+                A.id AS id,
+                A.order_id AS orderId,
+                A.car_model_code AS carModelCode,
+                A.car_model_id AS carModelId,
+                A.car_model_name AS carModelName,
+                A.frame_color_id AS frameColorId,
+                A.interial_color_id AS interialColorId,
+                A.order_qty AS orderQty,
+                A.order_price AS orderPrice,
+                A.order_amt AS orderAmt,
+                A.checking_qty AS checkingQty,
+                A.checked_qty AS checkedQty,
+                A.status AS status,
+                A.recorder AS recorder,
+                A.record_date AS recordDate,
+                A.modifier AS modifier,
+                A.modify_date AS modifyDate,
+                b.service_code as serviceCode,  
+                b.guest_full_name AS guestFullName,
+                b.guest_id as guestId 
+            FROM
+            wb_sales.css_factory_order_detail A
+            	left join wb_sales.css_factory_order_main b
+					on a.order_id = b.id and b.orgid = #orgid#
+                where b.status =2
+            <dynamic>
+                <isNotEmpty prepend="and" property="orderId">  
+                    (A.order_id = #orderId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="orderIds">  
+                    (A.order_id in ($orderIds$))
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="checkingQty">  
+                    (A.checking_qty &gt; #checkingQty#)
+                </isNotEmpty>
+            </dynamic>  
+           
+        
+        ORDER BY a.id asc
+    </select>
+    
+         <!-- 查询所有已验车辆 -->
+    <select id="queryCheckEnter" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT
+                A.id AS id,
+                a.orgid as orgid,
+                A.order_id AS orderId,
+                a.order_detail_id as orderDetailId,
+                A.enter_date AS enterDate,
+                a.guest_full_name AS guestFullName,
+                a.guest_id as guestId,
+                a.logistic_comp_id as logisticCompId,
+                a.logistic_comp_name as logisticCompName,
+                a.receive_cost as receiveCost,
+                A.car_model_id AS carModelId,
+                A.car_model_name AS carModelName,
+                a.vin as vin,
+                a.car_no as carNo,
+                a.engine_no as engineNo,
+                a.kilometers as kilometers,
+                a.produce_date as produceDate,
+                a.frame_color_id as frameColorId,
+                A.interial_color_id AS interialColorId,
+                a.qty as qty,
+                a.unit_price as unitPrice,
+                a.amt as amt,
+                a.repackage_cost as repackageCost,
+                a.repackage_amt as repackageAmt,
+                a.car_goods as carGoods,
+                a.logistic_man as logisticMan,
+                a.procedure_man as procedureMan,
+                a.warehouse_man as warehouseMan,
+                a.hall_director as hallDirector,
+                a.bill_status as billStatus,
+                a.car_status as carStatus,
+                a.car_lock as carLock,
+                a.car_locker as carLocker,
+                a.car_lock_date as carLockDate,
+                a.remark as remark,              
+                A.recorder AS recorder,
+                A.record_date AS recordDate,
+                A.modifier AS modifier,
+                A.modify_date AS modifyDate,  
+                b.service_code as serviceCode
+            FROM
+            wb_sales.css_check_enter A
+            left JOIN wb_sales.css_factory_order_main B ON A.order_id = B.ID 
+                where a.orgid = #orgid#
+            <dynamic>
+                <isNotEmpty prepend="and" property="orderId">  
+                    (A.order_id = #orderId#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="id">  
+                    (A.id = #id#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="orderIds">  
+                    (A.order_id in ($orderIds$))
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="carLock">  
+                    (a.car_lock = #carLock#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="carStatus">  
+                    (a.car_status = #carStatus#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="carModelId">  
+                    (A.car_model_id = #carModelId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="billStatus">  
+                    (A.bill_status = #billStatus#)
+                </isNotEmpty>  
+                <isNotEmpty prepend="and" property="guestId">  
+                    (A.guest_id = #guestId#)
+                </isNotEmpty> 
+                <isNotEmpty prepend="and" property="guestFullName">  
+                    (A.guest_full_name = #guestFullName#)
+                </isNotEmpty> 
+                <isNotEmpty prepend="and" property="guestFullName">  
+                    (A.guest_full_name like '%$guestName$%')
+                </isNotEmpty>    
+                <!--本日 昨日 本周 上周 本月 下月 -->
+                <isNotEmpty prepend="and" property="startDate">  
+                    (A.record_date &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (A.record_date &lt; #endDate#)
+                </isNotEmpty> 
+                <isNotEmpty prepend="and" property="serviceId">  
+                    (b.service_code like '%$serviceId$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="carModelName">  
+                    (A.car_model_name like '%$carModelName$%')
+                </isNotEmpty>                                                          
+            </dynamic>  
+           
+        
+        ORDER BY a.id asc
+    </select>
+	   
+           
+    <select id="queryFactoryReturnList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+            SELECT DISTINCT
+                a.id as id,
+                a.tenant_id as tenantId,
+                a.orgid as orgid,
+                a.guest_id as guestId,
+                a.service_code as serviceCode,
+                a.bill_type_id as billTypeId,
+                a.pay_mode as payMode,
+                a.transport_id as transportId,
+                a.return_men as returnMen,
+                a.return_date as returnDate,
+                a.return_amt as returnAmt,
+                a.status as status,
+                a.remark as remark,
+                a.recorder as recorder,
+                a.record_date as recordDate,
+                a.modifier as modifier,
+                a.modify_date as modifyDate,                    
+                b.FULL_NAME AS guestFullName,
+                b.SHORT_NAME AS guestShortName,
+                b.srm_guest_id as srmGuestId
+                FROM
+                wb_sales.css_factory_return_main a
+                INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID     
+                where 1=1
+            <dynamic>
+            	<isNotEmpty prepend="and" property="status"> 
+                    (a.status = #status#)
+                </isNotEmpty>
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="id"> 
+                    (a.id = #id#)
+                </isNotEmpty>
+                <!--订货日期 -->
+                <isNotEmpty prepend="and" property="sOrderDate">  
+                    A.record_date &gt;= #sOrderDate#
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eOrderDate">  
+                    (A.record_date &lt; #eOrderDate#)
+                </isNotEmpty>
+                <!--创建日期 -->
+                <isNotEmpty prepend="and" property="sCreateDate">  
+                    (A.record_date &gt;= #sCreateDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eCreateDate">  
+                    (A.record_date &lt; #eCreateDate#)
+                </isNotEmpty>
+                <!--本日 昨日 本周 上周 本月 下月 -->
+                <isNotEmpty prepend="and" property="startDate">  
+                    (A.record_date &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (A.record_date &lt; #endDate#)
+                </isNotEmpty>
+
+                <isNotEmpty prepend="and" property="guestId">  
+                    (A.guest_id = #guestId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="guestName">  
+                    (B.FULL_NAME like '%$guestName$%' or B.SHORT_NAME like '%$guestName$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceId">  
+                    (a.service_code like '%$serviceId$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceIdList">  
+                    (A.service_code in ($serviceIdList$))
+                </isNotEmpty>
+            </dynamic>  
+		
+        ORDER BY A.record_date DESC
+        
+    </select>
+    
+         <!-- 根据主表ID查询 -->
+    <select id="queryFactoryReturnDetailList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT
+                A.id AS id,
+                A.order_id AS orderId,
+                A.enter_id AS enterId,
+                A.car_model_id AS carModelId,
+                A.car_model_name AS carModelName,
+                A.frame_color_id AS frameColorId,
+                A.interial_color_id AS interialColorId,
+                A.vin AS vin,
+                A.order_price AS orderPrice,
+                A.return_amt AS returnAmt,
+                A.recorder AS recorder,
+                A.record_date AS recordDate,
+                A.modifier AS modifier,
+                A.modify_date AS modifyDate      
+            FROM
+            wb_sales.css_factory_return_detail A
+                where 1=1
+            <dynamic>
+                <isNotEmpty prepend="and" property="id">  
+                    (A.id = #id#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="orderId">  
+                    (A.order_id = #orderId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="orderIds">  
+                    (A.order_id in ($orderIds$))
+                </isNotEmpty>
+            </dynamic>  
+           
+        
+        ORDER BY a.id asc
+    </select>
+	<select id="searchGuest" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT 
+			id	AS	id	,
+			tenant_id	AS	tenantId	,
+			orgid	AS	orgid	,
+			code	AS	code	,
+			full_name	AS	fullName	,
+			short_name	AS	shortName	,
+			card_no	AS	cardNo	,
+			py_name	AS	pyName	,
+			guest_type	AS	guestType	,
+			is_supplier	AS	isSupplier	,
+			is_client	AS	isClient	,
+			contactor	AS	contactor	,
+			contactor_tel	AS	contactorTel	,
+			manager	AS	manager	,
+			manager_duty	AS	managerDuty	,
+			province_id	AS	provinceId	,
+			area_id	AS	areaId	,
+			city_id	AS	cityId	,
+			addr	AS	addr	,
+			postal_code	AS	postalCode	,
+			website	AS	website	,
+			tel	AS	tel	,
+			mobile	AS	mobile	,
+			fax	AS	fax	,
+			email	AS	email	,
+			supplier_type	AS	supplierType	,
+			advantage_carbrand_id	AS	advantageCarbrandId	,
+			instant_msg	AS	instantMsg	,
+			mem_car_no	AS	memCarNo	,
+			mem_level_id	AS	memLevelId	,
+			taxpayer_code	AS	taxpayerCode	,
+			taxpayer_name	AS	taxpayerName	,
+			manage_addr	AS	manageAddr	,
+			taxpayer_tel	AS	taxpayerTel	,
+			account_bank	AS	accountBank	,
+			account_bank_no	AS	accountBankNo	,
+			sex	AS	sex	,
+			birthday_type	AS	birthdayType	,
+			birthday	AS	birthday	,
+			bill_type_id	AS	billTypeId	,
+			sett_type_id	AS	settTypeId	,
+			tgrade	AS	tgrade	,
+			credit_limit	AS	creditLimit	,
+			is_disabled	AS	isDisabled	,
+			remark	AS	remark	,
+			is_internal	AS	isInternal	,
+			is_internal_id	AS	isInternalId	,
+			is_need_pack	AS	isNeedPack	,
+			order_index	AS	orderIndex	,
+			srm_guest_id	AS	srmGuestId	,
+			recorder	AS	recorder	,
+			record_date	AS	recordDate	,
+			modifier	AS	modifier	,
+			modify_date	AS	modifyDate	,
+			default_logistics_id	AS	defaultLogisticsId	,
+			default_logistics	AS	defaultLogistics	,
+			guest_property	AS	guestProperty	,
+			property_features	AS	propertyFeatures	,
+			license_code	AS	licenseCode	,
+			id_card	AS	idCard	,
+			license_url	AS	licenseUrl	,
+			id_card_url	AS	idCardUrl	
+		FROM wb_common.com_guest 
+		WHERE guest_type = '01020103'
+		<dynamic>
+		    <isNotEmpty prepend="and" property="tenantId">  
+                (tenant_id = #tenantId#)
+            </isNotEmpty>
+			<isNotEmpty prepend="and" property="fullName">
+                (full_name like '%$fullName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">
+                (mobile like '%$mobile$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isDisabled">
+                (is_disabled = #isDisabled#)
+            </isNotEmpty>
+        </dynamic>  
+	</select>
+	
+	         <!-- 查询pdi -->
+    <select id="queryPdi" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT
+                a.id AS id,
+                a.orgid as orgid,
+                a.tenant_id AS tenantId,
+                a.enter_id as enterId,
+                a.pdi_detection_date AS pdiDetectionDate,
+                a.pdi_detectioner AS pdiDetectioner,
+                a.car_model_id as carModelId,
+                a.car_model_name as carModelName,
+                a.vin as vin,
+                a.engine_no as engineNo,
+                a.ignition_key_code AS ignitionKeyCode,
+                a.ignition_key_number AS ignitionKeyNumber,
+                a.transmitters_number as transmittersNumber,
+                a.remark as remark,
+                a.recorder as recorder,
+                a.record_date as recordDate,
+                a.modifier as modifier,
+                a.modify_date as modifyDate              
+            FROM
+            wb_sales.css_check_pdi_main a
+                where a.orgid = #orgid#
+            <dynamic>
+                <isNotEmpty prepend="and" property="enterId">  
+                    (A.enter_id = #enterId#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="id">  
+                    (A.id = #id#)
+                </isNotEmpty>                                                         
+            </dynamic>          
+        ORDER BY a.id asc
+    </select>
+    
+    	         <!-- 查询pdi明细 -->
+    <select id="queryPdiD" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT
+                a.id AS id,
+                a.order_id as orderId,
+                a.pdi_template_id AS pdiTemplateId,
+                a.pdi_item_type_id as pdiItemTypeId,
+                a.pdi_item_id AS pdiItemId,
+                a.pdi_item_name AS name,
+                a.is_normal as isNormal,
+                a.remark as remark,
+                a.recorder as recorder,
+                a.record_date as recordDate,
+                a.modifier as modifier,
+                a.modify_date as modifyDate              
+            FROM
+            wb_sales.css_check_pdi_detail a
+                where 1=1
+            <dynamic>
+                <isNotEmpty prepend="and" property="orderId">  
+                    (A.order_id = #orderId#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="id">  
+                    (A.id = #id#)
+                </isNotEmpty>                                                         
+            </dynamic>          
+        ORDER BY a.id asc
+    </select>
+	
+	</sqlMap>

@@ -3,7 +3,7 @@
  */
 var baseUrl = apiPath + saleApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var rightGridUrl = baseUrl
-		+ "sales.inventory.queryFactoryReturnDetailList.biz.ext";
+		+ "com.hsapi.sales.svr.inventory.queryFactoryReturnDetailList.biz.ext";
 var advancedMorePartWin = null;
 var advancedAddWin = null;
 var advancedSearchForm = null;
@@ -597,7 +597,7 @@ var requiredField = {
 	payMode : "结算方式"
 };
 var saveUrl = baseUrl
-		+ "sales.inventory.saveReturnOrder.biz.ext";
+		+ "com.hsapi.sales.svr.inventory.saveReturnOrder.biz.ext";
 function save() {
 	var data = basicInfoForm.getData();
 	for ( var key in requiredField) {
@@ -2549,7 +2549,7 @@ function addProcurement(){
         	var iframe = this.getIFrameEl();
         	if(action == 'ok'){
         	var row = iframe.contentWindow.getRow();
-        	var queryCheckEnterUrl=baseUrl+"sales.inventory.queryCheckEnter.biz.ext";
+        	var queryCheckEnterUrl=baseUrl+"com.hsapi.sales.svr.inventory.queryCheckEnter.biz.ext";
         	nui.ajax({
                 url : queryCheckEnterUrl,
                 type : "post",
@@ -2620,7 +2620,7 @@ function addPutStorage(){
     });
 }
 
-var returnOrderUrl = baseUrl+"sales.inventory.returnOrder.biz.ext";
+var returnOrderUrl = baseUrl+"com.hsapi.sales.svr.inventory.returnOrder.biz.ext";
 function audit(){
 	if (isFinancial == 1) {
 		showMsg("此单已退货!","W");

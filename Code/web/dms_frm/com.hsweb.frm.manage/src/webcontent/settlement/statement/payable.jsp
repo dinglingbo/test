@@ -11,7 +11,7 @@
 
 <head>
 	<title>应付结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/payable.js?v=1.2.5"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/payable.js?v=1.2.6"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {

@@ -359,7 +359,13 @@ public class HttpUtils {
 			for (Entry<String, Object> e : params.entrySet()) {
 				sbParams.append(e.getKey());
 				sbParams.append("=");
-				String s=e.getValue().toString();
+				String s ="";
+				if(e.getValue() == null){
+					s = "";
+				}else{
+					s=e.getValue().toString();
+				}
+				
 				try {
 					s=java.net.URLEncoder.encode(s,"utf-8");
 				} catch (UnsupportedEncodingException e1) {

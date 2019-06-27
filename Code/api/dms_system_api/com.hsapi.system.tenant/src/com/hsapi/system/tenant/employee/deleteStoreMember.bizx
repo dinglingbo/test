@@ -109,7 +109,7 @@
     <chidren>loopstart1</chidren>
     <chidren>loopend1</chidren>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="clearAndResetCache" displayName="clearAndResetCache" collapsed="false" grouped="true" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="clearAndResetCache" displayName="deleteUser" collapsed="false" grouped="true" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="link16" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>loopend1</targetNode>
@@ -257,7 +257,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.deleteUser</process:partner>
+      <process:partner type="literal">com.hsapi.system.tenant.cang.deleteUser</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="agency_id" type="query" value="String" valueType="Primitive" pattern="reference">agencyId</process:inputVariable>
         <process:inputVariable id="1" name="wid" type="query" value="String" valueType="Primitive" pattern="reference">wid</process:inputVariable>

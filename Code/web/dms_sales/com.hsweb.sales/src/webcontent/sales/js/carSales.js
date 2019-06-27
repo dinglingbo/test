@@ -3,7 +3,7 @@ var mainGrid2 = null;
 var mainGrid3 = null;
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + saleApi + "/";
-var mainGridUrl = baseUrl + "sales.search.searchSalesMain.biz.ext";
+var mainGridUrl = baseUrl + "com.hsapi.sales.svr.search.searchSalesMain.biz.ext";
 var statusList = [{ id: "0", name: "订单单号" }, { id: "1", name: "客户名称" }];
 var param = {};
 $(document).ready(function(v) {
@@ -195,17 +195,17 @@ function onSearch() {
     }
     //销售单管理。查询
     if (nui.get("typeMsg").value == 1) {
-        mainGrid.load({ params: param, type: 1 });
+        mainGrid.load({ params: param, type: 1,token:token});
     }
     if (nui.get("typeMsg").value == 2) {
         param.status = "1,2";
-        mainGrid2.load({ params: param, type: 1 });
+        mainGrid2.load({ params: param, type: 1,token:token });
     }
     if (nui.get("typeMsg").value == 3) {
         param.status = 2;
         param.isSettle = 1;
         param.isSubmitCar = 1;
-        mainGrid3.load({ params: param, type: 1 });
+        mainGrid3.load({ params: param, type: 1,token:token });
     }
 }
 
@@ -214,15 +214,15 @@ function openPage(params) {
     var text = null;
     if (nui.get("typeMsg").value == 1) {
         tabsId = "12780";
-        text = "编辑销售管理";
+        text = "销售管理详情";
     }
     if (nui.get("typeMsg").value == 2) {
         tabsId = "12781";
-        text = "编辑销售单审核";
+        text = "销售单审核详情";
     }
     if (nui.get("typeMsg").value == 3) {
         tabsId = "12782";
-        text = "编辑销售结案";
+        text = "销售结案详情";
     }
     var item = {};
     item.id = tabsId;
@@ -262,28 +262,39 @@ function edit3(row_uid){
 
 //反结案
 function backSettlement(){
-	var row = itemTimesGrid.getSelected();
+	var row = mainGrid3.getSelected();
 	if(row){
 		var isSettle = row.isSettle || 0;
-		if(isSettle == 1){
-			showMsg("销售单已结算，不能反结案","W");
+		if(isSettle != 1){
+			showMsg("销售单未结案，不能反结案","W");
 			return;
 		}
 		var status = row.status || 0;
+		//var enterId = row.enterId || 0;
 		if(status == 3){
 			showMsg("销售单已作废，不能反结案","W");
 			return;
 		}
+		if(status == 2){
+			showMsg("销售单未审核，不能反结案","W");
+			return;
+		}
+		var saleMain = {};
+		saleMain.id = row.id;
 		nui.ajax({
-	         url: baseUrl + "sales.save.backSettlement.biz.ext",
+	         url: baseUrl + "com.hsapi.sales.svr.save.backSettlement.biz.ext",
 	         data: {
-	        	 saleMain: row
+	        	 saleMain: saleMain
 	         },
 	         cache: false,
 	         async: false,
 	         success: function(text) {
 	             if (text.errCode == "S") {
 	                 showMsg("反结案成功", "S");
+	                 param.status = 2;
+	                 param.isSettle = 1;
+	                 param.isSubmitCar = 1;
+	                 mainGrid3.load({ params: param, type: 1 });
 	             }else{
 	            	 showMsg(text.errMsg, "E");
 	             }

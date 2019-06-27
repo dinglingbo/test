@@ -96,6 +96,7 @@
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="link2" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>end0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="link3" lineType="note" type="exception">
       <sourceNode>invokePojo0</sourceNode>

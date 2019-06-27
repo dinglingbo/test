@@ -74,11 +74,11 @@
       <process:to type="query">cond1/_expr[3]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">1,2</process:from>
-      <process:to type="query">cond1/_expr[4]/settleStatus</process:to>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">cond1/_expr[4]/auditSign</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">in</process:from>
+      <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond1/_expr[4]/_op</process:to>
     </process:copy>
     <process:copy>
@@ -1169,7 +1169,7 @@
       <process:to type="query">cond1/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">-1</process:from>
+      <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">cond1/_expr[2]/billDc</process:to>
     </process:copy>
     <process:copy>

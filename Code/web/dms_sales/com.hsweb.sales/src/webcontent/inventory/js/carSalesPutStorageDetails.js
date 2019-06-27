@@ -56,7 +56,7 @@ var requiredField = {
 	
 };
 var salesCheckCarUrl = baseUrl
-		+ "sales.inventory.salesCheckCar.biz.ext";
+		+ "com.hsapi.sales.svr.inventory.salesCheckCar.biz.ext";
 function save() {
 	if(cssCheckEnter.billStatus==1){
 		showMsg("单据已入库!","W");
@@ -254,9 +254,9 @@ function check() {
 			nui.get("carModelName").setText(row.carModelName);
 			nui.get("orderId").setValue(row.orderId);
 			nui.get("orderDetailId").setValue(orderDetailId);
-			$('#guestId').attr("readonly",true);
-			$('#carModelName').attr("readonly",true);
-			$('#unitPrice').attr("readonly",true);
+			nui.get("guestId").disable();
+			nui.get("unitPrice").disable();
+			nui.get("carModelName").disable();
 			 }
 		}
 	});
@@ -276,8 +276,8 @@ function onButtonEdit(e) {
 	if(action == 'ok'){
 	var row = iframe.contentWindow.getRow();
 	nui.get("carModelId").setValue(row.id);
-	nui.get("carModelName").setValue(row.name);
-	nui.get("carModelName").setText(row.name);
+	nui.get("carModelName").setValue(row.fullName);
+	nui.get("carModelName").setText(row.fullName);
 	 }
     }
   });
@@ -298,7 +298,7 @@ function carPutInStorage(){
 		token:token
 	});
 	var carPutInStorageUrl = baseUrl
-	+ "sales.inventory.carPutInStorage.biz.ext";
+	+ "com.hsapi.sales.svr.inventory.carPutInStorage.biz.ext";
 	nui.mask({
 		el : document.body,
 		cls : 'mini-mask-loading',
@@ -335,6 +335,9 @@ function add(){
 	nui.get("carModelName").setValue("");
 	nui.get("carModelName").setText("");
 	cssCheckEnter = {};
+	nui.get("guestId").enable();
+	nui.get("unitPrice").enable();
+	nui.get("carModelName").enable();	
 }
 
 function setInitData(params){

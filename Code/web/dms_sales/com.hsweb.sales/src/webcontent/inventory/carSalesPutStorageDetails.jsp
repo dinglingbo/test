@@ -12,7 +12,7 @@
 
 				<head>
 					<title>验车入库添加</title>
-					<script src="<%=request.getContextPath()%>/sales/inventory/js/carSalesPutStorageDetails.js?v=1.1.2"></script>
+					<script src="<%=request.getContextPath()%>/sales/inventory/js/carSalesPutStorageDetails.js?v=1.1.6"></script>
 					<style type="text/css">
 						.title {
 							width: 90px;
@@ -77,7 +77,7 @@
 									<td class="title required" align="right">供应商:</td>
 									<td colspan="3" style="width:38%">
 										<input id="guestId" name="guestId" class="nui-buttonedit" emptyText="请选择供应商..." onbuttonclick="selectSupplier('guestId')"
-										 onvaluechanged="onGuestValueChanged" width="100%" placeholder="请选择供应商" selectOnFocus="true" readonly="false"/>
+										 onvaluechanged="onGuestValueChanged" width="100%" placeholder="请选择供应商" selectOnFocus="true" disabled="true"/>
 									</td>
 									<td class="title required" align="right">经手人:</td>
 	                                  <td colspan="1" >
@@ -94,7 +94,7 @@
 	                                  </td>
 									<td class="title required" align="right">车价（成本）:</td>
 									<td>
-										<input class="nui-Spinner"  decimalPlaces="2" minValue="0" maxValue="1000000000"   readonly="false" allowNull="false" showButton="false" name="unitPrice" id="unitPrice" />
+										<input class="nui-Spinner"  decimalPlaces="2" minValue="0" maxValue="1000000000"    allowNull="false" showButton="false" name="unitPrice" id="unitPrice" />
 									</td>
 								</tr>
 								<tr>
@@ -121,7 +121,7 @@
 									<td class="title required" align="right">车型:</td>
 									<td>
 										<input id="carModelId" name="carModelId" class="nui-textbox" visible="false" width="100%"/>
-           								<input id="carModelName" name="carModelName" class="nui-buttonedit"  onbuttonclick="onButtonEdit" width="100%" readonly="false"/>      
+           								<input id="carModelName" name="carModelName" class="nui-buttonedit"  onbuttonclick="onButtonEdit" width="100%" />      
 									</td>
 									<td class="title required" align="right">车身颜色:</td>
 									<td>

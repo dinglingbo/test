@@ -80,7 +80,7 @@
                       <div field="auditSign" width="55" headerAlign="center"visible="false" header="状态"></div>
                       <div field="billStatusId" width="55" headerAlign="center"  header="状态"></div>
                       <div field="guestFullName" width="140" headerAlign="center" header="客户"></div>
-                      <div field="createDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="退货日期"></div>
+                      <div field="orderDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="退货日期"></div>
                       <div field="orderMan" width="60" headerAlign="center" header="退货员"></div>
                       <div field="serviceId" headerAlign="center" width="150" header="退货单号"></div>
                       <!-- <div field="enterDate" width="80" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd H:ss:mm"></div> -->
@@ -110,6 +110,7 @@
                           <input class="nui-hidden" name="orderAmt" id="orderAmt"/>
                           <input class="nui-hidden" name="auditSign" id="auditSign"/>
                           <input class="nui-hidden" name="billStatusId" id="billStatusId"/>
+                          <input class="nui-hidden" name="createDate"/>
                           <input class="nui-textbox" visible="false" width="100%" id="isInner" name="isInner"/>
                           <table style="width: 100%;">
                               <tr>
@@ -145,11 +146,11 @@
                                       <label>退货日期：</label>
                                   </td>
                                   <td width="120">
-                                      <input name="createDate"
-                                             id="createDate"
+                                      <input name="orderDate"
+                                             id="orderDate"
                                              width="100%"
                                              showTime="true"
-                                             class="nui-datepicker" enabled="false" format="yyyy-MM-dd HH:mm"/>
+                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
                                   </td>
                                   <td class="title">
                                       <label>往来单号：</label>

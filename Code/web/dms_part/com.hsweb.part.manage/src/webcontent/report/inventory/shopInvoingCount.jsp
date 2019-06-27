@@ -136,6 +136,18 @@
                 <div summaryType="sum" allowSort="true" datatype="float" field="shiftOutAmt" headerAlign="center" header="金额"  align="right"></div>
             </div>
         </div>
+        <div header="精品入库" headerAlign="center">
+            <div property="columns">
+                <div summaryType="sum" allowSort="true" datatype="float" field="" width="60" headerAlign="center" header="数量"  align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="" headerAlign="center" header="金额"  align="right"></div>
+            </div>
+        </div>
+        <div header="精品出库" headerAlign="center">
+            <div property="columns">
+                <div summaryType="sum" allowSort="true" datatype="float" field="" width="60" headerAlign="center" header="数量"  align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="" headerAlign="center" header="金额"  align="right"></div>
+            </div>
+        </div>
         <div header="耗材入库" headerAlign="center">
             <div property="columns">
                 <div summaryType="sum" allowSort="true" datatype="float" field="consumableEnterQty" width="60" headerAlign="center" header="数量"  align="right"></div>

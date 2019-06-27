@@ -1,6 +1,6 @@
 var statusList = [{id:"0",name:"联系人"},{id:"1",name:"联系电话"},{id:"2",name:"车架号（VIN）"}];
 var saleApiUrl  = apiPath + saleApi + "/";
-var rightGridUrl = saleApiUrl+"sales.inventory.queryFactoryReturnList.biz.ext";
+var rightGridUrl = saleApiUrl+"com.hsapi.sales.svr.inventory.queryFactoryReturnList.biz.ext";
 
 var basicInfoForm = null;
 var rightGrid = null;
@@ -312,7 +312,7 @@ function add(){
     var item={};
     item.id = "carSalesReturnDetails";
     item.text = "采购退货详情";
-    item.url = webPath + contextPath + "/inventory.carSalesReturnDetails.flow";
+    item.url = webPath + contextPath + "/com.hsweb.inventory.carSalesReturnDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {};
@@ -326,7 +326,7 @@ function edit(){
     var item={};
     item.id = "carSalesReturnDetails";
     item.text = "采购退货详情";
-    item.url = webPath + contextPath + "/inventory.carSalesReturnDetails.flow";
+    item.url = webPath + contextPath + "/com.hsweb.inventory.carSalesReturnDetails.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = row; 

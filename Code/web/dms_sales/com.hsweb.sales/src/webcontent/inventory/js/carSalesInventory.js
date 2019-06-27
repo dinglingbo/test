@@ -6,7 +6,7 @@ var bearUrl = apiPath + saleApi + "/";
 var statusList = [{id:"0",name:"联系人"},{id:"1",name:"联系电话"},{id:"2",name:"车架号（VIN）"}];
 var carStatusList = [{id:"0",name:"订货未到"},{id:"1",name:"订货已到"},{id:"2",name:"入库退货"},{id:"3",name:"销售中"},{id:"4",name:"已销售"}];
 var inventory = [{id:"0",name:"否"},{id:"1",name:"是"}];
-var rightGridUrl = bearUrl+"sales.inventory.queryCheckEnter.biz.ext";
+var rightGridUrl = bearUrl+"com.hsapi.sales.svr.inventory.queryCheckEnter.biz.ext";
 var rightGrid = null;
 var searchBeginDate = null;
 var searchEndDate = null;
@@ -265,7 +265,7 @@ function upload() {
 }
 
 var saveUrl = bearUrl
-+ "sales.inventory.saveCarLock.biz.ext";
++ "com.hsapi.sales.svr.inventory.saveCarLock.biz.ext";
 function edit() {
 	var row = rightGrid.getSelected();
 	nui.mask({

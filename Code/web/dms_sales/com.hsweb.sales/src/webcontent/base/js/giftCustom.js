@@ -1,5 +1,5 @@
-var saveUrl = apiPath + saleApi + "/sales.base.addCsbGift.biz.ext";
-var gridUrl = apiPath + saleApi + "/sales.base.searchCsbGift.biz.ext";
+var saveUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.addCsbGift.biz.ext";
+var gridUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.searchCsbGift.biz.ext";
 var isDisArr = [{id:'',text:'全部'},{id:0,text:'启用'},{id:1,text:'禁用'}];
 var statusList = [{id:0,name:"启用"},{id:1,name:"禁用"}];
 var statusHash = {0:"启用",1:"禁用"};

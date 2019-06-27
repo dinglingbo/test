@@ -214,12 +214,12 @@
       <targetNode>transactionrollback0</targetNode>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
-    <location x="507" y="225"/>
+    <location x="536" y="220"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="505" y="261"/>
+    <location x="534" y="256"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
@@ -331,7 +331,7 @@
       <targetNode>transactionrollback0</targetNode>
     </sourceConnections>
     <targetConnections>link23</targetConnections>
-    <location x="385" y="237"/>
+    <location x="409" y="210"/>
     <size height="28" width="28"/>
     <nodeLabel>assign7label</nodeLabel>
     <process:copy>
@@ -344,7 +344,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
-    <location x="383" y="273"/>
+    <location x="407" y="246"/>
     <figSize height="17" width="32"/>
     <node>assign7</node>
   </nodes>
@@ -497,7 +497,7 @@
       <targetNode>transactionrollback0</targetNode>
     </sourceConnections>
     <targetConnections>link53</targetConnections>
-    <location x="536" y="237"/>
+    <location x="585" y="210"/>
     <size height="28" width="28"/>
     <nodeLabel>assign18label</nodeLabel>
     <process:copy>
@@ -510,7 +510,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign18label" name="label" nodeType="label">
-    <location x="531" y="273"/>
+    <location x="580" y="246"/>
     <figSize height="17" width="39"/>
     <node>assign18</node>
   </nodes>
@@ -622,14 +622,14 @@
       <targetNode>assign23</targetNode>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
-    <location x="702" y="200"/>
+    <location x="705" y="152"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
     <process:condition/>
     <process:iterate iterable="fisRpAdvance" iterableElement="fisRpAdvanceTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">
-    <location x="698" y="232"/>
+    <location x="701" y="184"/>
     <figSize height="17" width="32"/>
     <node>loopstart1</node>
   </nodes>
@@ -640,17 +640,17 @@
     </sourceConnections>
     <targetConnections>link74</targetConnections>
     <targetConnections>link77</targetConnections>
-    <location x="941" y="200"/>
+    <location x="944" y="152"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend1label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend1label" name="label" nodeType="label">
-    <location x="925" y="232"/>
+    <location x="928" y="184"/>
     <figSize height="17" width="56"/>
     <node>loopend1</node>
   </nodes>
   <nodes xsi:type="model:GroupNode" id="group1" name="group1" grouped="true" gstart="loopstart1" gend="loopend1">
-    <location x="702" y="139"/>
+    <location x="705" y="91"/>
     <size height="162" width="264"/>
     <chidren>loopend1</chidren>
     <chidren>loopstart1</chidren>
@@ -668,7 +668,7 @@
       <targetNode>assign24</targetNode>
     </sourceConnections>
     <targetConnections>link72</targetConnections>
-    <location x="842" y="158"/>
+    <location x="863" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo9label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -682,7 +682,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo9label" name="label" nodeType="label">
-    <location x="823" y="194"/>
+    <location x="844" y="186"/>
     <figSize height="17" width="61"/>
     <node>invokePojo9</node>
   </nodes>
@@ -693,13 +693,9 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link73</targetConnections>
-    <location x="752" y="158"/>
+    <location x="767" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign23label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">fisRpAdvanceTemp/balaAmt</process:from>
-      <process:to type="query">fisRpAdvanceTemp/deductionAmt</process:to>
-    </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">fisRpAdvanceTemp/balaAmt</process:to>
@@ -712,9 +708,25 @@
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
       <process:to type="query">fisRpAdvanceTemp/modifier</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">fisRpAdvanceTemp/deductionAmt</process:from>
+      <process:to type="query">deductionAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">charOffAmt+deductionAmt</process:from>
+      <process:to type="query">fisRpAdvanceTemp/deductionAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">fisRpAdvanceTemp/balaAmt</process:from>
+      <process:to type="query">balaAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">balaAmt-charOffAmt</process:from>
+      <process:to type="query">fisRpAdvanceTemp/balaAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign23label" name="label" nodeType="label">
-    <location x="747" y="194"/>
+    <location x="762" y="186"/>
     <figSize height="17" width="39"/>
     <node>assign23</node>
   </nodes>
@@ -724,7 +736,7 @@
       <targetNode>loopend1</targetNode>
     </sourceConnections>
     <targetConnections>link76</targetConnections>
-    <location x="815" y="246"/>
+    <location x="870" y="220"/>
     <size height="28" width="28"/>
     <nodeLabel>assign24label</nodeLabel>
     <process:copy>
@@ -737,11 +749,13 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign24label" name="label" nodeType="label">
-    <location x="810" y="282"/>
+    <location x="865" y="256"/>
     <figSize height="17" width="39"/>
     <node>assign24</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="354" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-03-22 01:18:40" date="2018-03-21Z" description="应收应付结算" name="rpAccountSettle" version="7.0.0.0"/>
   <process:variables>
@@ -773,6 +787,8 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="result1"/>
     <process:variable description="用于哪些应收需要更新真正收到款" historyStateLocation="client" isArray="false" name="mainBillTypeId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.frm.data.fis.FisRpAdvance" name="fisRpAdvanceTemp"/>
+    <process:variable description="已抵扣金额" historyStateLocation="client" isArray="false" name="deductionAmt" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="balaAmt" primitiveType="Float"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.frm.data.fis.FisRpAccount" name="account"/>

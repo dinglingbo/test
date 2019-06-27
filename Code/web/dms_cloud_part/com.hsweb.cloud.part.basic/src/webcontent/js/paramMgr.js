@@ -6,7 +6,7 @@ var cloudSellOrderPrintContent =null;
 var isNeedNewLine = null;
 var isOpenCredit = null;
 var isOnlySeeOwn=null;
-var isCanSeePrice = null;
+var isBanSeePrice = null;
 var isOpenApp = null;
 var radioList = [{id:1,text:"开启"},{id:0,text:"关闭"}];
 $(document).ready(function(v) {
@@ -17,13 +17,13 @@ $(document).ready(function(v) {
 	 isNeedNewLine =nui.get('isNeedNewLine'); 
 	 isOpenCredit = nui.get('isOpenCredit');
 	 isOnlySeeOwn =nui.get('isOnlySeeOwn');
-	 isCanSeePrice = nui.get('isCanSeePrice');
+	 isBanSeePrice = nui.get('isBanSeePrice');
 	 isOpenApp = nui.get('isOpenApp');
 	 swithBatchFlag.setData(radioList);
 	 isNeedNewLine.setData(radioList);
 	 isOpenCredit.setData(radioList);
 	 isOnlySeeOwn.setData(radioList);
-	 isCanSeePrice.setData(radioList);
+	 isBanSeePrice.setData(radioList);
 	 isOpenApp.setData(radioList);
 	 getComParamsList();
 	 	

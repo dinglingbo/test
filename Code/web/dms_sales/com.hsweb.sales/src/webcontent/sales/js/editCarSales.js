@@ -3,22 +3,24 @@ var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + saleApi + "/"; 
 var billForm = null;
 var jpGrid = null;
-var jpUrl = baseUrl + "sales.search.searchCsbGiftMsg.biz.ext";
+var frmUrl =  apiPath + frmApi + "/";
+var repairUrl = apiPath + repairApi + "/";
+var jpUrl = baseUrl + "com.hsapi.sales.svr.search.searchCsbGiftMsg.biz.ext";
 var jpDetailGrid = null;
-var jpDetailGridUrl = baseUrl + "sales.search.searchSaleGiftApply.biz.ext";
-var queryUrl = baseUrl + "com.hsapi.frm.frmService.crud.queryFibInComeExpenses.biz.ext";
+var jpDetailGridUrl = baseUrl + "com.hsapi.sales.svr.search.searchSaleGiftApply.biz.ext";
+var queryUrl = frmUrl + "com.hsapi.frm.frmService.crud.queryFibInComeExpenses.biz.ext";
 var costGrid = null;
 var costDetailGrid = null;
 var costDetailGrid2 = null;
-var costDetailGridUrl = baseUrl + "sales.search.searchSaleCostList.biz.ext";
+var costDetailGridUrl = baseUrl + "com.hsapi.sales.svr.search.searchSaleCostList.biz.ext";
 var form = null;
 var is_not = [{ id: 0, text: '未审' }, { id: 1, text: '已审' }];
 var insuranceForm = null;
 var detailGrid = null;
 var searchKeyEl = null;
 var searchNameEl = null;
-var detailGridUrl = baseUrl + "com.hsapi.repair.repairService.insurance.queryRpsInsuranceDetailList.biz.ext";
-var guestInfoUrl = baseUrl + "sales.search.searchGuest.biz.ext";
+var detailGridUrl = repairUrl + "com.hsapi.repair.repairService.insurance.queryRpsInsuranceDetailList.biz.ext";
+var guestInfoUrl = baseUrl + "com.hsapi.sales.svr.search.searchGuest.biz.ext";
 var settleTypeIdList = [{ id: 1, name: "保司直收" }, { id: 2, name: "门店代收全款" }, { id: 3, name: "代收减返点" }];
 var costList = [{ id: 0, name: "免费" }, { id: 1, name: "收费" }];
 
@@ -47,7 +49,9 @@ $(document).ready(function(v) {
     costGrid = nui.get("costGrid");
     costGrid.setUrl(queryUrl);
     var params = { isSale: 1 };
-    costGrid.load({ params: params });
+    costGrid.load({ params: params,token:token},function(){
+    	
+    });
 
     costDetailGrid = nui.get("costDetailGrid");
     costDetailGrid2 = nui.get("costDetailGrid2");
@@ -557,7 +561,7 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
         html: '保存中...'
     });
     nui.ajax({
-        url: baseUrl + "sales.save.saveSaleMainAll.biz.ext",
+        url: baseUrl + "com.hsapi.sales.svr.save.saveSaleMainAll.biz.ext",
         data: {
             billFormData: billFormData,
             caCalculationData: caCalculationData,
@@ -724,7 +728,7 @@ function save2(e) { //保存（主表信息+精品加装+购车信息+费用信�
     });
     if (e == 11) {
         nui.ajax({
-            url: baseUrl + "sales.save.backSingle.biz.ext",
+            url: baseUrl + "com.hsapi.sales.svr.save.backSingle.biz.ext",
             data: {
                 data: billFormData
             },
@@ -743,7 +747,7 @@ function save2(e) { //保存（主表信息+精品加装+购车信息+费用信�
         billFormData.enterId = 0;
     }
     nui.ajax({
-        url: baseUrl + "sales.save.saveSaleMainAll.biz.ext",
+        url: baseUrl + "com.hsapi.sales.svr.save.saveSaleMainAll.biz.ext",
         data: {
             billFormData: billFormData,
             caCalculationData: caCalculationData,
@@ -791,7 +795,7 @@ function save2(e) { //保存（主表信息+精品加装+购车信息+费用信�
 
 function showAdvanceChargeAmt(billFormData, caCalculationData) {
     nui.ajax({
-        url: baseUrl + "sales.save.generatingAdvancePayment.biz.ext",
+        url: baseUrl + "com.hsapi.sales.svr.save.generatingAdvancePayment.biz.ext",
         data: {
             billFormData: billFormData,
             caCalculationData: caCalculationData
@@ -831,7 +835,7 @@ function costMsg() { //保存费用信息
     var editArr = editMsg.concat(editMsg2);
     var deleteArr = deleteMsg.concat(deleteMsg2);
     nui.ajax({
-        url: baseUrl + "sales.save.saveSaleCostLIst.biz.ext",
+        url: baseUrl + "com.hsapi.sales.svr.save.saveSaleCostLIst.biz.ext",
         data: {
             serviceId: billFormData.id,
             addArr: addArr,
@@ -929,7 +933,7 @@ function add(){
 	//费用信息
 	costGrid.clearRows();
 	var params = { isSale: 1 };
-    costGrid.load({ params: params });
+    costGrid.load({ params: params,token:token });
     //费用信息右边
     costDetailGrid.clearRows();
     costDetailGrid2.clearRows();
@@ -951,7 +955,7 @@ function updateCheckEnter(enterId) { //返单 修改库存表车辆状态
         carStatus: 0
     };
     nui.ajax({
-        url: baseUrl + "sales.save.updateCheckEnter.biz.ext",
+        url: baseUrl + "com.hsapi.sales.svr.save.updateCheckEnter.biz.ext",
         data: {
             data: data
         },
@@ -986,7 +990,7 @@ function checkCost(grid, value) { //费用信息  审核反审
     };
     grid.updateRow(row, newRow);
     nui.ajax({
-        url: baseUrl + "sales.save.checkMoneyForAuditAndUpdate.biz.ext",
+        url: baseUrl + "com.hsapi.sales.svr.save.checkMoneyForAuditAndUpdate.biz.ext",
         data: {
             data: row
         },
@@ -1016,7 +1020,7 @@ function searchSalesMain(serviceId, type) { //查询主表信息
         html: '加载中...'
     });
     nui.ajax({
-        url: baseUrl + "sales.search.searchSalesMain.biz.ext",
+        url: baseUrl + "com.hsapi.sales.svr.search.searchSalesMain.biz.ext",
         data: {
             params: params
         },
@@ -1128,7 +1132,7 @@ function searchSalesMain(serviceId, type) { //查询主表信息
 function insuranceMsg(guestId) { //获取保险信息
     var params = { guestId: guestId };
     nui.ajax({
-        url: baseUrl + "sales.search.searchInsuranceMsg.biz.ext",
+        url: baseUrl + "com.hsapi.sales.svr.search.searchInsuranceMsg.biz.ext",
         data: {
             params: params
         },
@@ -1221,11 +1225,22 @@ function selectCar() { //点击选车时触发
 }
 
 function registration() { //车辆上牌
+	if(isTabs==1){
+    	isTabs = 0;
+	    changeValueMsg(1);
+	    document.getElementById("caCalculation").contentWindow.setSelectCarValue(dataF.handcartAmt, dataF.carCost);
+	    document.getElementById("caCalculation").contentWindow.SetDataMsg(dataF.id, dataF.frameColorId, dataF.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
+	    document.getElementById("caCalculation").contentWindow.setReadOnlyMsg();
+    }
     var boolean = checkMsg(8);
     if (!boolean) {
         return;
     }
     var billFormData = billForm.getData(true); //主表信息
+    if(billFormData.enterId==0){
+    	showMsg("销售单未选车","W");
+    	return;
+    }
     nui.open({
         url: webPath + contextPath + "/sales/sales/vehicleRegistration.jsp?token=" + token,
         title: "车辆上牌",
@@ -1233,7 +1248,7 @@ function registration() { //车辆上牌
         height: "490px",
         onload: function() {
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(billFormData.id, billFormData.guestId, billFormData.guestFullName);
+            iframe.contentWindow.SetData(billFormData.enterId, billFormData.guestId, billFormData.guestFullName);
         }
     });
 }
@@ -1263,7 +1278,7 @@ function caseMsg() { //销售结案审核
         height: "700px",
         onload: function() {
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(billFormData.id, type);
+            iframe.contentWindow.SetData(billFormData, type);
         },
         ondestroy: function(action) {
         	if(action=="ok"){
@@ -1363,6 +1378,7 @@ function onButtonEdit(e) {
                 billFormData.carModelId = row.id;
                 nui.get("carModelName").setValue(row.fullName);
                 nui.get("carModelName").setText(row.fullName);
+                nui.get("carModelId").setValue(row.id);
                 billFormData.carModelName = row.fullName;
                 billForm.setData(billFormData);
 
@@ -1441,7 +1457,7 @@ function costCommitEdit(e) {
         }
     };
     nui.ajax({
-        url: baseUrl + "sales.search.searchSaleCostList.biz.ext",
+        url: baseUrl + "com.hsapi.sales.svr.search.searchSaleCostList.biz.ext",
         data: {
             id: row.id
         },
@@ -1662,7 +1678,7 @@ function auditingSales(){
         html: '保存中...'
     });
 	 nui.ajax({
-        url: baseUrl + "sales.save.auditingSales.biz.ext",
+        url: baseUrl + "com.hsapi.sales.svr.save.auditingSales.biz.ext",
         data: {
             billFormData: billFormData,
             caCalculationData: caCalculationData,
@@ -1728,7 +1744,7 @@ function isSubmitCar(){
         html: '保存中...'
     });
     nui.ajax({
-        url: baseUrl + "sales.save.saveSaleMainAll.biz.ext",
+        url: baseUrl + "com.hsapi.sales.svr.save.saveSaleMainAll.biz.ext",
         data: {
             billFormData: billFormData,
             addArr: addArr,
@@ -1784,7 +1800,7 @@ function backSingle(){
 		 return ; 
 	 }
 	 nui.ajax({
-         url: baseUrl + "sales.save.backSingle.biz.ext",
+         url: baseUrl + "com.hsapi.sales.svr.save.backSingle.biz.ext",
          data: {
              data: billFormData
          },
@@ -1836,7 +1852,7 @@ function delet(){
 		 return ; 
 	 }
 	 nui.ajax({
-         url: baseUrl + "sales.save.deletSaleMain.biz.ext",
+         url: baseUrl + "com.hsapi.sales.svr.save.deletSaleMain.biz.ext",
          data: {
         	 saleMain: billFormData
          },

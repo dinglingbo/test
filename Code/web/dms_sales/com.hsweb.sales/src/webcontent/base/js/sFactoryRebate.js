@@ -1,6 +1,6 @@
-var gridUrl = apiPath + saleApi + "/sales.base.searchCssFactoryRebate.biz.ext";
-var gUrl = apiPath + saleApi + "/sales.base.searchCsbRebate.biz.ext?params/isDisabled=0&token=" + token;
-var payUrl = apiPath + saleApi + "/sales.base.generateReceivable.biz.ext";
+var gridUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.searchCssFactoryRebate.biz.ext";
+var gUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.searchCsbRebate.biz.ext?params/isDisabled=0&token=" + token;
+var payUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.generateReceivable.biz.ext";
 var grid = null;
 var rebateId = null;
 var startDateEl = null;

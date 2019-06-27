@@ -259,7 +259,40 @@
 	      <isNotEmpty prepend="and" property="empId">  
 	            (a.emp_id = #empId#)
 	      </isNotEmpty>
-		order by recordDate desc
+		order by record_date desc
     </select>
 	
+	
+	<!--查询仓先生注册的员工-->
+    <select id="checkMemberExist" parameterClass="HashMap" resultClass="HashMap">
+    	
+    	SELECT
+			a.emp_id as empId,
+			a.emp_name as empName,
+			c.cang_store_id as cangStoreId,
+			b.system_account as systemAccount
+		FROM
+			com_store_member a
+		INNER JOIN com_member b ON a.emp_id = b.empid
+		INNER JOIN com_store c ON a.store_id = c.id
+		WHERE
+			1 = 1
+		AND c.cang_store_id > 0
+		  <isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+          </isNotEmpty>
+	      <isNotEmpty prepend="and" property="name">  
+	            (a.emp_name  like '%$name$%')
+	      </isNotEmpty>
+	      <isNotEmpty prepend="and" property="storeId">  
+	            a.store_id = #storeId#
+	      </isNotEmpty>
+	      <isNotEmpty prepend="and" property="empId">  
+	            (a.emp_id = #empId#)
+	      </isNotEmpty>
+	      <isNotEmpty prepend="and" property="systemAccount">  
+	            (b.system_account = #systemAccount#)
+	      </isNotEmpty>
+		order by a.record_date desc
+    </select>
 </sqlMap>

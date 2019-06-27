@@ -161,10 +161,6 @@
       <process:to type="query">pchsOrderMain/billStatusId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">operateDate</process:from>
-      <process:to type="query">pchsOrderMain/orderDate</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userId</process:from>
       <process:to type="query">pchsOrderMain/orderManId</process:to>
     </process:copy>

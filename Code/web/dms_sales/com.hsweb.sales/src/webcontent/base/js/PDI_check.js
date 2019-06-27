@@ -1,5 +1,5 @@
-var saveUrl = apiPath + saleApi + "/sales.base.addCsbPDI.biz.ext";
-var gridUrl = apiPath + saleApi + "/sales.base.searchCsbPDI.biz.ext";
+var saveUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.addCsbPDI.biz.ext";
+var gridUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.searchCsbPDI.biz.ext";
 var isDisArr = [{id:'',text:'全部'},{id:0,text:'启用'},{id:1,text:'禁用'}];
 var checkList = [{id:0,name:"勾选"},{id:1,name:"描述"}];
 var statusList = [{id:0,name:"启用"},{id:1,name:"禁用"}];

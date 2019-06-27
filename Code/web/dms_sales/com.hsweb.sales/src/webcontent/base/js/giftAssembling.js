@@ -1,13 +1,13 @@
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var partUrl = apiPath + partApi + "/";
-var saveUrl = apiPath + saleApi + "/sales.base.addCssGiftOutMain.biz.ext";
-var updateUrl = apiPath + saleApi + "/sales.base.updateCssGiftOutMain.biz.ext";
-var saveItemUrl = apiPath + saleApi + "/sales.base.addCssGiftOutItem.biz.ext";
-var mGridUrl = apiPath + saleApi + "/sales.base.searchCssGiftOutMain.biz.ext";
-var mItemUrl = apiPath + saleApi + "/sales.base.searchCssGiftOutItem.biz.ext";
+var saveUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.addCssGiftOutMain.biz.ext";
+var updateUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.updateCssGiftOutMain.biz.ext";
+var saveItemUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.addCssGiftOutItem.biz.ext";
+var mGridUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.searchCssGiftOutMain.biz.ext";
+var mItemUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.searchCssGiftOutItem.biz.ext";
 var jpDetailGridUrl = apiPath + saleApi + "/sales.search.searchSaleGiftApply.biz.ext";
-var updateMainUrl = apiPath + saleApi + "/sales.base.updateCssGiftOutMainAmt.biz.ext";//更新主表的金额
+var updateMainUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.updateCssGiftOutMainAmt.biz.ext";//更新主表的金额
 var repairOutGridUrl =  partUrl + "com.hsapi.part.invoice.partInterface.queryEnbleRtnPart.biz.ext";
 var sellTypeArr = [{ id: 1, text: "库存车" }, { id: 2, text: "销售车" }];
 var returnSignData = [{id:0,text:"否"},{id:1,text:"是"}];
@@ -492,6 +492,7 @@ function saveItem() {
                 serviceId: nui.get("id").value
             };
             itemGrid.load({ params: params });
+           
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR.responseText);
@@ -526,6 +527,7 @@ function selectGift() {
                 returnSign: 0,
                 token: token
             });
+            
         }
 
     });
@@ -694,7 +696,8 @@ function updateMainAmt(id) {//id  主表id
         data:{
             id:id
         },
-        success:function(text){
+        success: function (text) {
+            mainGrid.reload();
         }
     });
 }

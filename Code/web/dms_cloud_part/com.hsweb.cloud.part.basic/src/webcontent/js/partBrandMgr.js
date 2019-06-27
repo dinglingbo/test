@@ -126,7 +126,8 @@ function addOrEditPartQuality(quality)
 	var title = "新增品质";
     if(quality)
     {
-        if(quality.orgid != currOrgid)
+    	if(currTenantId != '0')
+//        if(quality.orgid != currOrgid)
         {
             return;
         }
@@ -295,7 +296,7 @@ function onLeftGridRowClick(e)
         nui.get("disabledLeft").show();
         nui.get("enabledLeft").hide();
     }
-    if(row.orgid == currOrgid || currTenantId=='default'){
+    if(row.orgid == currOrgid || currTenantId=='0'){
         nui.get("disabledLeft").enable();
         nui.get("enabledLeft").enable();
         nui.get("editLeft").enable();
@@ -347,6 +348,7 @@ function disablePartQuality(){
                 updateIsDisabled({
                     id:row.id,
                     isDisabled:1,
+                    cangBrandId : row.cangBrandId,
                     name:row.name
                 },function(data)
                 {
@@ -378,6 +380,7 @@ function enablePartQuality(){
                 updateIsDisabled({
                     id:row.id,
                     isDisabled:0,
+                    cangBrandId : row.cangBrandId,
                     name:row.name
                 },function(data)
                 {

@@ -13,7 +13,7 @@
         <title>销售结案审核</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%= request.getContextPath() %>/sales/sales/js/salesReview.js?v=1.007" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/sales/sales/js/salesReview.js?v=1.008" type="text/javascript"></script>
     </head>
     <style type="text/css">
         body {
@@ -45,8 +45,8 @@
     <body>
         <div class="nui-toolbar" id="toolbar">
             <div align="right">
-                <a class="nui-button" iconCls="" plain="true" onclick="approved()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核通过</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="approved()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核通过</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="close()" id="addBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
             </div>
         </div>
@@ -379,13 +379,13 @@
                         销售提成：
                     </td>
                     <td>
-                        <input id="salesmanDeduct" name="salesmanDeduct" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="salesmanDeduct" name="salesmanDeduct" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg(1)"/>
                     </td>
                     <td class="td_title">
                         佣金：
                     </td>
                     <td>
-                        <input id="commissionDeduct" name="commissionDeduct" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="commissionDeduct" name="commissionDeduct" style="width: 100%" class="nui-textbox" vtype="float"  onvaluechanged="changeValueMsg(1)"/>
                     </td>
                 </tr>
                 <tr>
@@ -399,13 +399,13 @@
                         毛利调整：
                     </td>
                     <td>
-                        <input id="adjustmentAmt" name="adjustmentAmt" style="width: 100%" class="nui-textbox" vtype="float" enabled="false" />
+                        <input id="adjustmentAmt" name="adjustmentAmt" style="width: 100%" class="nui-textbox" vtype="float" onvaluechanged="changeValueMsg(1)" />
                     </td>
                     <td class="td_title">
                         调整说明：
                     </td>
                     <td colspan="3">
-                        <input id="adjustmentRemark" name="adjustmentRemark" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="adjustmentRemark" name="adjustmentRemark" style="width: 100%" class="nui-textbox" />
                     </td>
                 </tr>
                 <tr>

@@ -215,19 +215,26 @@ function onOk()
     }
     
     var cangHash ={};
-//    if(qualityHash){
-//    	cangHash.part_type_id =qualityHash[data.qualityTypeId].name;
-//    }
-    cangHash.part_type_id =data.qualityTypeId;
+    if(qualityHash && qualityHash[data.qualityTypeId]){
+    	cangHash.part_type_id =qualityHash[data.qualityTypeId].cangBrandId;
+    }
     cangHash.agency_id =currAgencyId;
+    cangHash.part_id = data.cangPartId;
     cangHash.pid = data.code;
     cangHash.source_pid = data.code;
     cangHash.um = data.unit;
     cangHash.remark = data.remark?null:"";
-    cangHash.origin = "";
+    if(partBrandIdHash && partBrandIdHash[data.partBrandId]){    	
+    	cangHash.origin = partBrandIdHash[data.partBrandId].name;
+    }
     cangHash.label = data.fullName;
     cangHash.cars = data.applyCarModel;
     cangHash.spec =data.spec;
+    if(data.isDisabled ==1){
+    	cangHash.status =0;
+    }else{
+    	cangHash.status =1;
+    }
     nui.mask({
         el : document.body,
         cls : 'mini-mask-loading',

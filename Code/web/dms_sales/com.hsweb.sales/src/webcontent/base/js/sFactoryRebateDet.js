@@ -1,7 +1,7 @@
-var saveUrl = apiPath + saleApi + "/sales.base.saveCssFRebate.biz.ext";
-var gUrl = apiPath + saleApi + "/sales.base.searchCsbRebate.biz.ext?params/isDisabled=0&token=" + token;
+var saveUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.saveCssFRebate.biz.ext";
+var gUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.searchCsbRebate.biz.ext?params/isDisabled=0&token=" + token;
 var leftGridUrl = apiPath + saleApi +"/sales.inventory.queryCheckEnter.biz.ext";
-var rightGridUrl = apiPath + saleApi +"/sales.base.searchCssFRebateDet.biz.ext";
+var rightGridUrl = apiPath + saleApi +"/com.hsapi.sales.svr.base.searchCssFRebateDet.biz.ext";
 var form = null;
 var mainData = null;
 var searchBeginDate = null;

@@ -54,7 +54,7 @@
   </div>
   <script type="text/javascript">
     nui.parse();
-    var gridUrl = apiPath + saleApi + "/sales.base.searchCsbPDI.biz.ext"
+    var gridUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.searchCsbPDI.biz.ext"
     var grid =nui.get("grid1");
     grid.setUrl(gridUrl);
     grid.load({

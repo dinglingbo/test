@@ -1,8 +1,8 @@
 var baseUrl = window._rootSysUrl || "http://127.0.0.1:8080/default/";
-//var queryUrl = apiPath + saleApi + "/sales.custormer.queryGuestList.biz.ext";
-var queryUrl = apiPath + saleApi +"/sales.custormer.queryGuestCome.biz.ext";
-var saveBathUrl = apiPath + saleApi + "/sales.custormer.saveGuestComeBath.biz.ext";
-var queryScoutUrl = apiPath + saleApi + "/sales.custormer.queryScoutList.biz.ext";
+//var queryUrl = apiPath + saleApi + "/com.hsapi.sales.svr.custormer.queryGuestList.biz.ext";
+var queryUrl = apiPath + saleApi +"/com.hsapi.sales.svr.custormer.queryGuestCome.biz.ext";
+var saveBathUrl = apiPath + saleApi + "/com.hsapi.sales.svr.custormer.saveGuestComeBath.biz.ext";
+var queryScoutUrl = apiPath + saleApi + "/com.hsapi.sales.svr.custormer.queryScoutList.biz.ext";
 var mainGrid = null;
 var datagrid = null;
 var statusHash = {

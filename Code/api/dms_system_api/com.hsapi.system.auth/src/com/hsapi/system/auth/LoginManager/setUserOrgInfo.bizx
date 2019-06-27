@@ -259,6 +259,10 @@
       <process:to type="query">m:userObject/attributes/isCanfreeCarnovin</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">member/isSalesman</process:from>
+      <process:to type="query">m:userObject/attributes/isSalesman</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject</process:from>
       <process:to type="query">userObject</process:to>
     </process:copy>

@@ -4,6 +4,7 @@
 	<comment></comment>
 	<projects>
 		<project>dms_repair_api</project>
+		<project>dms_system</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -88,9 +88,9 @@
   nui.parse();
 var jpGrid = null;
 var baseUrl = apiPath + saleApi + "/";
-var jpUrl = baseUrl + "sales.search.searchCsbGiftMsg.biz.ext";
+var jpUrl = baseUrl + "com.hsapi.sales.svr.search.searchCsbGiftMsg.biz.ext";
 var jpDetailGrid = null;
-var jpDetailGridUrl = baseUrl + "sales.search.searchSaleGiftApply.biz.ext";
+var jpDetailGridUrl = baseUrl + "com.hsapi.sales.svr.search.searchSaleGiftApply.biz.ext";
 var serviceIdF = null;
 var statusList = [{id:"0",receType:"免费"},{id:"1",receType:"收费"}];
 $(document).ready(function (){
@@ -228,7 +228,7 @@ function selectJpGrid(){
 	saleAdvisorId : "销售顾问",
 	identity:"身份"
 };*/
-var saveUrl = apiPath + saleApi + "/sales.save.saveGiftApply.biz.ext";
+var saveUrl = apiPath + saleApi + "/com.hsapi.sales.svr.save.saveGiftApply.biz.ext";
 function save(){
     if (serviceIdF && serviceIdF < 0) {
         showMsg("请先保存来访登记", "W");

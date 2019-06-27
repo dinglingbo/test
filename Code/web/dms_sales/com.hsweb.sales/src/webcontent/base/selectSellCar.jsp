@@ -83,7 +83,7 @@
     <script type="text/javascript">
         var statusList = [{ id: "0", name: "订单单号" }, { id: "1", name: "客户名称" }];
         nui.parse();
-        var mainGridUrl = apiPath + saleApi + "/sales.search.searchSalesMainSelect.biz.ext";
+        var mainGridUrl = apiPath + saleApi + "/com.hsapi.sales.svr.search.searchSalesMainSelect.biz.ext";
         var param = {};
         var mainGrid = nui.get("mainGrid");
         mainGrid.setUrl(mainGridUrl);

@@ -179,7 +179,7 @@
     </select>
     <!--配件品质   parent_id is null and is_disabled = 0 and orgid = 0   用于缓存配件品质-->
     <select id="getPartQuality" parameterClass="HashMap" resultClass="HashMap">
-    	SELECT id as id, 0 as orgid, code as code, name as name, parent_id as parentId
+    	SELECT id as id, 0 as orgid, code as code, name as name, parent_id as parentId,cang_brand_id as cangBrandId
 		from com_part_brand 
 		where parent_id = 0 and is_disabled = 0 
     </select>
@@ -199,7 +199,7 @@
     </select>
     <!--本机构配件品质   parent_id is null and is_disabled = 0 -->
     <select id="getOwnPartQuality" parameterClass="HashMap" resultClass="HashMap">
-    	SELECT id as id, 0 as orgid, code as code, name as name, parent_id as parentId
+    	SELECT id as id, 0 as orgid, code as code, name as name, parent_id as parentId,cang_brand_id as cangBrandId
 		from com_part_brand 
 		where parent_id = 0 and is_disabled = 0 
     </select>

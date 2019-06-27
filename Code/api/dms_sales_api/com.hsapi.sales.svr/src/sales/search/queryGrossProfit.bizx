@@ -3,6 +3,7 @@
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" collapsed="false" type="end">
     <targetConnections>link4</targetConnections>
     <targetConnections>link11</targetConnections>
+    <targetConnections>link13</targetConnections>
     <location x="770" y="170"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
@@ -60,13 +61,23 @@
       <sourceNode>assign45</sourceNode>
       <targetNode>invokePojo1</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link12" name="link12" displayName="连接线" type="transition">
+      <sourceNode>assign45</sourceNode>
+      <targetNode>assign1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">guestId</process:leftOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link7</targetConnections>
-    <location x="170" y="170"/>
+    <location x="120" y="170"/>
     <size height="28" width="28"/>
     <nodeLabel>assign45label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign45label" name="label" nodeType="label">
-    <location x="165" y="206"/>
+    <location x="115" y="206"/>
     <figSize height="17" width="39"/>
     <node>assign45</node>
   </nodes>
@@ -260,7 +271,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign49label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.repairService.svr.queryGrossProfit</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.repairService.svr.queryGrossProfit.biz.ext</process:from>
       <process:to type="query">apiName</process:to>
     </process:copy>
     <process:copy>
@@ -277,13 +288,36 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">guestId</process:from>
-      <process:to type="query">params/codeId</process:to>
+      <process:to type="query">params/guestId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign49label" name="label" nodeType="label">
     <location x="420" y="206"/>
     <figSize height="17" width="39"/>
     <node>assign49</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link12</targetConnections>
+    <location x="120" y="303"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">客户Id不能为空</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
+    <location x="118" y="339"/>
+    <figSize height="17" width="32"/>
+    <node>assign1</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -297,7 +331,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="token" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" name="guestId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="guestId" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

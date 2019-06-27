@@ -1263,7 +1263,7 @@ function caseMsg() { //销售结案审核
         height: "700px",
         onload: function() {
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(billFormData.id, type);
+            iframe.contentWindow.SetData(billFormData, type);
         },
         ondestroy: function(action) {
         	if(action=="ok"){

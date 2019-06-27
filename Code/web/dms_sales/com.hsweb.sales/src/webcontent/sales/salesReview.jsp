@@ -45,8 +45,8 @@
     <body>
         <div class="nui-toolbar" id="toolbar">
             <div align="right">
-                <a class="nui-button" iconCls="" plain="true" onclick="approved()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核通过</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="approved()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核通过</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="close()" id="addBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
             </div>
         </div>
@@ -405,7 +405,7 @@
                         调整说明：
                     </td>
                     <td colspan="3">
-                        <input id="adjustmentRemark" name="adjustmentRemark" style="width: 100%" class="nui-textbox" vtype="float" />
+                        <input id="adjustmentRemark" name="adjustmentRemark" style="width: 100%" class="nui-textbox" />
                     </td>
                 </tr>
                 <tr>

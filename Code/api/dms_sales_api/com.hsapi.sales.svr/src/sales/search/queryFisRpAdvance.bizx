@@ -149,7 +149,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign49label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.frm.frmService.rpinterface.getFisRpAdvance</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.frm.frmService.rpinterface.getFisRpAdvance.biz.ext</process:from>
       <process:to type="query">apiName</process:to>
     </process:copy>
     <process:copy>
@@ -276,7 +276,7 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
-    <location x="468" y="315"/>
+    <location x="459" y="300"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
@@ -289,11 +289,13 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="470" y="351"/>
+    <location x="461" y="336"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="171" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-06-25 19:06:43" date="2019-06-25Z" description="" name="queryFisRpAdvance" version="7.0.0.0"/>
   <process:variables>

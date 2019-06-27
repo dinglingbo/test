@@ -476,6 +476,12 @@
             } else if (billType == 1) {
                 document.getElementById("guestFullName").innerHTML = params.guestFullName || "";
                 document.getElementById("carModelName").innerHTML = params.carModelName || "";
+                document.getElementById("getCarTotal").innerHTML = params.getCarTotal || 0; //提车合计
+                document.getElementById("buyBudgetTotal").innerHTML = params.buyBudgetTotal || 0; //购车预算合计
+                document.getElementById("saleAdvisor").innerHTML = params.saleAdvisor || 0; //销售顾问
+                document.getElementById("money").innerHTML = transform(params.getCarTotal + "");
+                document.getElementById("money1").innerHTML = transform(params.buyBudgetTotal + "");
+     
             }
 
             if (carModelId) {

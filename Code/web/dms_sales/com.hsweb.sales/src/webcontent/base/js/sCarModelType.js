@@ -1,7 +1,7 @@
 
 var baseUrl = apiPath + saleApi + "/";
-var gridUrl = apiPath + saleApi + "/sales.base.searchCsbCarModel.biz.ext";
-var updateUrl = apiPath + saleApi + "/sales.base.updateCsbCarModel.biz.ext";
+var gridUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.searchCsbCarModel.biz.ext";
+var updateUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.updateCsbCarModel.biz.ext";
 var treeUrl = apiPath + repairApi + "/com.hsapi.repair.common.svr.queryCarBrandSeriesTree.biz.ext";
 var isDisArr = [{id:'',text:'全部'},{id:0,text:'启用'},{id:1,text:'禁用'}];
 var grid = null;

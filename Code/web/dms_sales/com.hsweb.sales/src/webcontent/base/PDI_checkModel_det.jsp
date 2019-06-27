@@ -117,8 +117,8 @@ pageEncoding="UTF-8" session="false" %>
 </div>
 <script type="text/javascript">
     nui.parse();
-    var saveUrl = apiPath + saleApi + "/sales.base.saveCsbCarTemplate.biz.ext";
-    var gridUrl = apiPath + saleApi + "/sales.base.searchCsbPDICarDetail.biz.ext";
+    var saveUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.saveCsbCarTemplate.biz.ext";
+    var gridUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.searchCsbPDICarDetail.biz.ext";
     var form = new nui.Form("form1");
     var grid =nui.get("grid1");
     grid.setUrl(gridUrl);

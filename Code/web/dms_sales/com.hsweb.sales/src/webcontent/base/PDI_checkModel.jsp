@@ -66,7 +66,7 @@
         nui.parse();
         var checkList = [{id:0,name:"否"},{id:1,name:"是"}];
         var statusList = [{id:0,name:"启用"},{id:1,name:"禁用"}];
-        var gridUrl = apiPath + saleApi + "/sales.base.searchCsbPDICarTemplate.biz.ext";
+        var gridUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.searchCsbPDICarTemplate.biz.ext";
         var grid = nui.get("grid1");
         grid.setUrl(gridUrl);
         grid.load();

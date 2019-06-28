@@ -335,11 +335,11 @@
       <process:to type="query">main/auditorId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">main/serviceId</process:from>
+      <process:from type="query" pattern="reference">orderMain/serviceId</process:from>
       <process:to type="query">main/code</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">main/id</process:from>
+      <process:from type="query" pattern="reference">orderMain/id</process:from>
       <process:to type="query">main/codeId</process:to>
     </process:copy>
     <process:copy>
@@ -416,6 +416,7 @@
     <location x="930" y="220"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="detailList" iterableElement="listTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -791,8 +792,12 @@
       <process:to type="query">main/taxDiff</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">paramsMain/erpMainId</process:from>
+      <process:from type="query" pattern="reference">paramsMain/erpMainId</process:from>
       <process:to type="query">params/mainId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">3</process:from>
+      <process:to type="query">orderMain/billStatusId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
@@ -997,6 +1002,14 @@
       <process:from type="expression" pattern="reference">trueEnterQty+qty</process:from>
       <process:to type="query">trueEnterQty</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">sourceOrderDetail/isFinished</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">sourceOrderDetail/finishDate</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
     <location x="1119" y="227"/>
@@ -1030,6 +1043,7 @@
     <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo9</sourceNode>
       <targetNode>loopend0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link19</targetConnections>
     <location x="1289" y="218"/>
@@ -1223,6 +1237,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">operateDate</process:from>
       <process:to type="query">orderMain/finishDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">4</process:from>
+      <process:to type="query">orderMain/billStatusId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">

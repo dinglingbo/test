@@ -440,6 +440,10 @@ function getSearchParam() {
     var params = {};
     params = gsparams;
     params.guestId = nui.get("searchGuestId").getValue();
+  //是业务员且业务员禁止可见
+	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
+		params.creator= currUserName;
+	}
     return params;
 }
 function setBtnable(flag) {
@@ -463,6 +467,10 @@ function setEditable(flag) {
 function doSearch(params) {
     //销售退货;
     params.orderTypeId = 4;
+  //是业务员且业务员禁止可见
+	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
+		params.creator= currUserName;
+	}
     leftGrid.load({
         params : params,
         token : token

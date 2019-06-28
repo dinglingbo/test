@@ -203,6 +203,10 @@ $(document).ready(function() {
             onSearch();
         }
     });
+    //开启APP
+    if(currIsOpenApp ==1){
+    	nui.get('syncCangBtn').setVisible(true);
+    }
 
 });
 function onDrawNode(e)
@@ -533,4 +537,48 @@ function onDrawCell(e){
             e.cellHtml = "";
         }
     }
+}
+
+//查询未同步的配件
+function getNoSync(params){
+	params.orgid=currOrgid;
+	params.noCangPartId=1;
+	var partList=[];
+	var partinfos ="";
+	nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : "同步中..."
+	});
+    nui.ajax({
+        url:partListUrl,
+        type:"post",
+        data:JSON.stringify({
+        	params:params,
+            token:token
+        }),
+        success:function(data)
+        {
+            nui.unmask();
+            data = data||{};
+            if(data.errCode == "S")
+            {
+//            	nui.unmask();
+            	partList= data.parts;
+            }
+            else{
+            	nui.unmask();
+                showMsg(data.errMsg||errorTip||"同步失败","E");
+            }
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+        	nui.unmask();
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+//同步配件到仓先生
+function syncCang(){
+	var partinfos = getNoSync(params);
 }

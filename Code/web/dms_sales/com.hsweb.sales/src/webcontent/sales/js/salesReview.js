@@ -1,7 +1,8 @@
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + saleApi + "/";
+var repairUrl = apiPath + repairApi + "/";
+var frmUrl =  apiPath + frmApi + "/";
 var form = null;
-
 $(document).ready(function(v) {
     form = new nui.Form("#form1");
     initDicts({
@@ -13,6 +14,7 @@ $(document).ready(function(v) {
 function SetData(data, type) {
 	var serviceId = data.id;
 	var guestId = data.guestId;
+	var enterId = data.enterId;
     if (type == 1) { //已结算
         document.getElementById("toolbar").style.display = "none";
         var fields = form.getFields();
@@ -42,11 +44,10 @@ function SetData(data, type) {
 	               if(gift.length>0){
 	            	   for(var i = 0;i<gift.length;i++){
     	            	   var temp = gift[i];
-    	            	   if(temp.receType==1){//计算收费的精品
-    	            		   var costAmt = temp.costAmt || 0;
-    	            		   giftCost = parseFloat(giftCost) + parseFloat(costAmt);
-    	            		   giftCost.toFixed(2);
-    	            	   }
+    	            	    //精品加装手动填写的成本
+	            		   var costAmt = temp.costAmt || 0;
+	            		   giftCost = parseFloat(giftCost) + parseFloat(costAmt);
+	            		   giftCost.toFixed(2);
     	               } 
 	               }
 	            } else {
@@ -77,21 +78,23 @@ function SetData(data, type) {
  	        }
  	    });
     	 //查找已结算的预收金额
+    	 billTypeId = "122,123";
     	 nui.ajax({
-  	        url: baseUrl + "com.hsapi.sales.svr.search.queryFisRpAdvance.biz.ext",
+  	        url: frmUrl + "com.hsapi.frm.frmService.rpinterface.getFisRpAdvance.biz.ext",
   	        data: {
   	        	codeId:serviceId,
+  	        	billTypeId:billTypeId,
   	        	token:token
   	        },
   	        cache: false,
   	        async: false,
   	        success: function(text) {
   	            if (text.errCode == "S"){
-  	               var fisRpAdvanceList = text.result.fisRpAdvanceList;
+  	               var fisRpAdvanceList = text.fisRpAdvanceList;
   	               if(fisRpAdvanceList.length>0){
   	            	   for(var i = 0;i<fisRpAdvanceList.length;i++){
       	            	   var temp = fisRpAdvanceList[i];
-  	            		   var amt = temp.amt || 0;//总金额(总成本 = 配件成本+工时成本）
+  	            		   var amt = temp.charOffAmt || 0;
   	            		   receivedTotal = parseFloat(receivedTotal) + parseFloat(amt);
   	            		   receivedTotal.toFixed(2);
   	            		   
@@ -100,25 +103,32 @@ function SetData(data, type) {
   	            } 
   	        }
   	    });
-    	 //查找保险毛利
-    	 nui.ajax({
-   	        url: baseUrl + "com.hsapi.sales.svr.search.queryGrossProfit.biz.ext",
-   	        data: {
-   	        	guestId:guestId,
-   	        	token:token
-   	        },
-   	        cache: false,
-   	        async: false,
-   	        success: function(text) {
-   	            if (text.errCode == "S"){
-   	               var data = text.result.data;
-   	               if(data){
-   	            	  agentGrossProfit = data.grossProfit;
-   	               }
-   	               
-   	            } 
-   	        }
-   	    });
+    	 //如果该销售单已选车，则查找保险毛利
+    	 if(enterId==0){
+    		 agentGrossProfit = 0; 
+    	 }else{
+    		 var params = {};
+    		 params.guestId = guestId;
+    		 params.enterId = enterId;
+		      nui.ajax({
+		   	        url: repairUrl + "com.hsapi.repair.repairService.svr.queryGrossProfit.biz.ext",
+		   	        data: {
+		   	        	params:params,
+		   	        	token:token
+		   	        },
+		   	        cache: false,
+		   	        async: false,
+		   	        success: function(text) {
+		   	            if (text.errCode == "S"){
+		   	               var data = text.data;
+		   	               if(data){
+		   	            	  agentGrossProfit = data.grossProfit;
+		   	               }
+		   	               
+		   	            } 
+		   	        }
+		   	    }); 
+	    }
     }
     
     var params = { id: serviceId };
@@ -194,7 +204,8 @@ function changeValueMsg(e) { //值改变事件，统一触发此函数
     //总毛利率=总毛利/销售收入totalGrossProfit
     var totalGrossProfitRate =0 ;
     if(saleIncomeTotal!=0){
-    	totalGrossProfitRate=(totalGrossProfit / saleIncomeTotal).toFixed(2);
+    	totalGrossProfitRate=totalGrossProfit / saleIncomeTotal;
+    	totalGrossProfitRate = (totalGrossProfitRate*100).toFixed(2);
     }
     data.totalGrossProfitRate = totalGrossProfitRate;
     data.saleGrossProfit = saleGrossProfit;
@@ -218,6 +229,9 @@ function changeValueMsg(e) { //值改变事件，统一触发此函数
 function save() {
     var data = form.getData();
     data.remark = data.remarka;
+    var totalGrossProfitRate = data.totalGrossProfitRate;
+    totalGrossProfitRate = (totalGrossProfitRate/100).toFixed(4);
+    data.totalGrossProfitRate = totalGrossProfitRate;
     var isValid = form.isValid();
     if (isValid == false) {
         showMsg("请输入正确的数字后再保存！", "W");
@@ -249,6 +263,9 @@ function save() {
 
 function approved() { //审核通过   
     var data = form.getData();
+    var totalGrossProfitRate = data.totalGrossProfitRate;
+    totalGrossProfitRate = (totalGrossProfitRate/100).toFixed(4);
+    data.totalGrossProfitRate = totalGrossProfitRate;
     var isValid = form.isValid();
     if (isValid == false) {
         showMsg("请输入正确的数字后再保存！", "W");

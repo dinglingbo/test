@@ -554,7 +554,7 @@
         <process:inputVariable id="5" name="BillAmt" type="query" value="Float" valueType="Primitive" pattern="reference">params/BillAmt</process:inputVariable>
         <process:inputVariable id="6" name="operateDate" type="query" value="Date" valueType="Primitive" pattern="reference">value</process:inputVariable>
         <process:inputVariable id="7" name="dc" type="query" value="Int" valueType="Primitive" pattern="reference">params/dc</process:inputVariable>
-        <process:inputVariable id="8" name="remark" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="8" name="remark" type="query" value="String" valueType="Primitive" pattern="reference">params/remark</process:inputVariable>
         <process:inputVariable id="9" name="BillTypeCode" type="query" value="String" valueType="Primitive" pattern="reference">params/BillTypeCode</process:inputVariable>
         <process:inputVariable id="10" name="carId" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
         <process:inputVariable id="11" name="carNo" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
@@ -629,7 +629,7 @@
         <process:inputVariable id="5" name="BillAmt" type="query" value="Float" valueType="Primitive" pattern="reference">paramsyk/BillAmt</process:inputVariable>
         <process:inputVariable id="6" name="operateDate" type="query" value="Date" valueType="Primitive" pattern="reference">value</process:inputVariable>
         <process:inputVariable id="7" name="dc" type="query" value="Int" valueType="Primitive" pattern="reference">paramsyk/dc</process:inputVariable>
-        <process:inputVariable id="8" name="remark" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="8" name="remark" type="query" value="String" valueType="Primitive" pattern="reference">paramsyk/remark</process:inputVariable>
         <process:inputVariable id="9" name="BillTypeCode" type="query" value="String" valueType="Primitive" pattern="reference">paramsyk/BillTypeCode</process:inputVariable>
         <process:inputVariable id="10" name="carId" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
         <process:inputVariable id="11" name="carNo" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
@@ -793,6 +793,10 @@
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">temp/preCharOffAmt</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">paramsyk/remark</process:from>
+      <process:to type="query">temp/remark</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign26label" name="label" nodeType="label">
     <location x="792" y="252"/>
@@ -823,6 +827,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">temp/preCharOffAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">paramsyk/remark</process:from>
+      <process:to type="query">temp/remark</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign27label" name="label" nodeType="label">
@@ -1006,6 +1014,10 @@
       <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">tempAd/modifyDate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">paramsyk/remark</process:from>
+      <process:to type="query">tempAd/remark</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign32label" name="label" nodeType="label">
     <location x="1200" y="255"/>
@@ -1036,6 +1048,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">tempAd/modifyDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">paramsyk/remark</process:from>
+      <process:to type="query">tempAd/remark</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign33label" name="label" nodeType="label">

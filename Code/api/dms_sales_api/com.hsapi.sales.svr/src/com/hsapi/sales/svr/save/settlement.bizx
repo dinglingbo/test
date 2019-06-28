@@ -128,7 +128,7 @@
       <targetNode>assign2</targetNode>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
-    <location x="736" y="240"/>
+    <location x="725" y="199"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -142,7 +142,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="719" y="276"/>
+    <location x="708" y="235"/>
     <figSize height="17" width="56"/>
     <node>invokePojo1</node>
   </nodes>
@@ -192,9 +192,9 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
-    <targetConnections>link20</targetConnections>
     <targetConnections>link31</targetConnections>
     <targetConnections>link33</targetConnections>
+    <targetConnections>link20</targetConnections>
     <location x="1020" y="152"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionrollback0label</nodeLabel>
@@ -477,6 +477,7 @@
     <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>transactionrollback0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link19</targetConnections>
     <location x="362" y="351"/>

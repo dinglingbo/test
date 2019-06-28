@@ -204,7 +204,7 @@ function add() {
     var part = {};
     part.id = "addVisitors";
     part.text = "来访记录详情";
-    part.url = webPath + contextPath + "/customer.addVisitRecords.flow?token=" + token;
+    part.url = webPath + contextPath + "/com.hsweb.customer.addVisitRecords.flow?token=" + token;
     part.iconCls = "fa fa-file-text";
     var params = {};
     window.parent.activeTabAndInit(part, params);

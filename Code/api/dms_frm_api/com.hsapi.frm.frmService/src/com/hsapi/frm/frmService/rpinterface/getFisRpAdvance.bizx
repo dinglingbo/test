@@ -61,11 +61,11 @@
       <process:to type="query">cond1/_expr[2]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
+      <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">cond1/_expr[3]/isSettle</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">=</process:from>
+      <process:from type="literal" pattern="reference">&lt;></process:from>
       <process:to type="query">cond1/_expr[3]/_op</process:to>
     </process:copy>
   </nodes>

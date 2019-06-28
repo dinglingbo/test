@@ -227,7 +227,7 @@
                                 车架号
                             </td>
                             <td height="50" valign="top" style="padding:  8px;" id="">
-                                <span id=""></span>
+                                <span id="vin"></span>
                             </td>
                             <td height="50" valign="top" style="padding:  8px;" id="">
                                 提车时间
@@ -364,9 +364,11 @@
                     document.getElementById("date").innerHTML = format(date, "yyyy-MM-dd HH:mm");
                     document.getElementById("comp").innerHTML = currRepairSettorderPrintShow;
                     var url = baseUrl + 'com.hsapi.sales.svr.search.searchSalesMain.biz.ext?params/id=' + serviceId;
+                    var enterId = 0;
                     $.post(url, function(res) {
                         if (res.data.length > 0) {
                             var temp = res.data[0];
+                            enterId = temp.enterId;
                             var contractNo = temp.contractNo || "";
                             var guestFullName = temp.guestFullName || "";
                             var contactorTel = temp.contactorTel || "";
@@ -387,6 +389,17 @@
                             document.getElementById("contactorTel").innerHTML = contactorTel;
                         }
                     });
+		             var url = baseUrl + "com.hsapi.sales.svr.inventory.queryCheckEnter.biz.ext?params/id=" + enterId;
+		             if (enterId) {
+		                $.post(url, function(res) {
+		                    if (res.cssCheckEnter.length > 0) {
+		                        var temp = res.cssCheckEnter[0];
+		                        var vin = temp.vin || "";
+		                       // var carNo = temp.carNo || "";
+		                        document.getElementById("vin").innerHTML = vin;
+		                    }
+		                });
+		             }
                 }
 
                 function CloseWindow(action) {

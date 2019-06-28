@@ -825,7 +825,7 @@
     <figSize height="17" width="39"/>
     <node>assign13</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess6" name="searchSalesMain1" displayName="saveSaleCostLIst1" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess6" name="searchSalesMain1" displayName="searchSalesMain" type="subprocess">
     <sourceConnections xsi:type="process:tLink" description="" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess6</sourceNode>
       <targetNode>assign8</targetNode>
@@ -860,8 +860,8 @@
     <location x="255" y="465"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess6label</nodeLabel>
-    <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">sales.search.searchSalesMain</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.sales.svr.search.searchSalesMain</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">params</process:inputVariable>
         <process:inputVariable id="1" name="page" type="query" value="com.eos.foundation.PageCond" valueType="DataObject" pattern="reference">page</process:inputVariable>

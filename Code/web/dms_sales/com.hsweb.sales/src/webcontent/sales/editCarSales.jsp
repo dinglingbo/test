@@ -391,10 +391,10 @@
                                         <div field="auditSign" name="auditSign" width="100px" headerAlign="center" header="状态" renderer="onIsNotRenderer" data="is_not"></div>
                                         <div field="costName" name="costName" width="100px" headerAlign="center" header="费用名称"></div>
                                         <div field="costAmt" name="costAmt" width="100px" headerAlign="center" header="报销金额">
-                                            <input class="nui-textarea" property="editor" vtype="float">
+                                            <input class="nui-textbox" property="editor" vtype="float">
                                         </div>
                                         <div field="remark" name="remark" width="100px" headerAlign="center" header="备注">
-                                            <input class="nui-textarea" property="editor">
+                                            <input class="nui-textbox" property="editor">
                                         </div>
                                         <div field="modifier" name="modifier" width="100px" headerAlign="center" header="登记人"></div>
                                         <div field="modifyDate" name="modifyDate" width="100px" headerAlign="center" header="登记时间"></div>
@@ -408,10 +408,10 @@
                                         <div field="auditSign" name="auditSign" width="100px" headerAlign="center" header="状态" renderer="onIsNotRenderer" data="is_not"></div>
                                         <div field="costName" name="costName" width="100px" headerAlign="center" header="费用名称"></div>
                                         <div field="costAmt" name="costAmt" width="100px" headerAlign="center" header="成本金额（报销金额）">
-                                            <input class="nui-textarea" property="editor" vtype="float">
+                                            <input class="nui-textbox" property="editor" vtype="float">
                                         </div>
                                         <div field="remark" name="remark" width="100px" headerAlign="center" header="备注内容">
-                                            <input class="nui-textarea" property="editor">
+                                            <input class="nui-textbox" property="editor">
                                         </div>
                                         <div field="modifier" name="modifier" width="100px" headerAlign="center" header="登记人"></div>
                                         <div field="modifyDate" name="modifyDate" width="100px" headerAlign="center" header="登记时间"></div>

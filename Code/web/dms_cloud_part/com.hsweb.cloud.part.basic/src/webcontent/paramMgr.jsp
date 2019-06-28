@@ -124,7 +124,16 @@
                         repeatDirection="" repeatLayout="table" 
                         textField="text" valueField="id" ></div>
                 </td>
-            </tr>   
+            </tr> 
+             <tr>
+                <td class="tbtext">业务员是否禁止可见采购价：</td>
+                <td class="tbCtrl" >
+                   <div id="isBanSeePrice" name="isBanSeePrice" 
+                        class="nui-radiobuttonlist" value="" repeatItems="2" 
+                        repeatDirection="" repeatLayout="table" 
+                        textField="text" valueField="id" ></div>
+                </td>
+            </tr>     
         </table>
     </div>
 	<script type="text/javascript">

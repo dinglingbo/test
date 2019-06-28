@@ -193,7 +193,7 @@
                                                     <input property="editor" class="nui-textbox" />
                                             </div>
                                             <div field="receType" name="" width="80px" headerAlign="center" header="收费类型">
-                                                    <input property="editor" class="nui-combobox" valueField="id" textField="name" />
+                                                    <input property="editor" class="nui-combobox" valueField="id" textField="name" data="costList"/>
                                             </div>
                                             <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="80px" align="center">业务类型
                                                 <input  property="editor" enabled="true" dataField="servieTypeList" 

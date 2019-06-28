@@ -319,8 +319,8 @@
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign14</targetNode>
     </sourceConnections>
-    <targetConnections>link29</targetConnections>
-    <location x="-12" y="175"/>
+    <targetConnections>link25</targetConnections>
+    <location x="60" y="175"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -331,12 +331,12 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="-45" y="210"/>
+    <location x="27" y="210"/>
     <figSize height="17" width="92"/>
     <node>subprocess1</node>
   </nodes>
@@ -370,7 +370,7 @@
       <targetNode>loopstart0</targetNode>
     </sourceConnections>
     <targetConnections>link34</targetConnections>
-    <location x="105" y="175"/>
+    <location x="143" y="175"/>
     <size height="28" width="28"/>
     <nodeLabel>assign14label</nodeLabel>
     <process:copy>
@@ -471,7 +471,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign14label" name="label" nodeType="label">
-    <location x="95" y="211"/>
+    <location x="133" y="211"/>
     <figSize height="17" width="49"/>
     <node>assign14</node>
   </nodes>
@@ -1016,7 +1016,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo8" name="getNextSequence" displayName="getNextSequence" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link29" name="link29" displayName="link7" isDefault="true" type="transition">
       <sourceNode>invokePojo8</sourceNode>
-      <targetNode>subprocess1</targetNode>
+      <targetNode>invokePojo5</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link24</targetConnections>
@@ -1063,6 +1063,32 @@
     <location x="436" y="210"/>
     <figSize height="17" width="110"/>
     <node>invokePojo2</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="版本号" displayName="版本号" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link25" name="link25" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo5</sourceNode>
+      <targetNode>subprocess1</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link29</targetConnections>
+    <location x="-21" y="175"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo5label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getNextSequence</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="name" type="literal" value="java.lang.String" valueType="Java" pattern="reference">cloudPartPjSellOrderMain.versionNo</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="long" valueType="Java">orderMain/versionNo</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
+    <location x="-28" y="211"/>
+    <figSize height="17" width="37"/>
+    <node>invokePojo5</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

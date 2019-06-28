@@ -13,7 +13,7 @@
         <title>编辑整车销售</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.1085" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/sales/sales/js/editCarSales.js?v=1.1088" type="text/javascript"></script>
 
     </head>
     <style type="text/css">
@@ -192,7 +192,7 @@
             <input class="nui-hidden" name="status" />
             <input class="nui-hidden" name="serviceCode" />
             <input class="nui-hidden" name="billTypeId" />
-            <input class="nui-hidden" name="carModelId" />
+            <input class="nui-hidden" name="carModelId"  id="carModelId"/>
             <input class="nui-hidden" name="isSubmitCar" />
             <input class="nui-hidden" name="guestId" />
             <input class="nui-hidden" id="handcartAmt" name="handcartAmt" />

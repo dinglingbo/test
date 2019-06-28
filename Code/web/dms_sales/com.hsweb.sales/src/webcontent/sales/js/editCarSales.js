@@ -1132,7 +1132,7 @@ function searchSalesMain(serviceId, type) { //查询主表信息
 function insuranceMsg(guestId) { //获取保险信息
     var params = { guestId: guestId };
     nui.ajax({
-        url: baseUrl + "com.hsapi.sales.svr.search.searchInsuranceMsg.biz.ext",
+        url: repairUrl + "com.hsapi.repair.repairService.svr.searchInsuranceMsg.biz.ext",
         data: {
             params: params
         },

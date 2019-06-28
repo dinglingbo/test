@@ -86,6 +86,7 @@
       	
   			    <input id="orgid" name="orgid" width="150px" class="nui-hidden" >
   			    <input class="nui-hidden" name="id"/>
+  			    <input class="nui-hidden" name="name"/>
   			    <input class="nui-hidden" name="isEdit"/>
             <input id="modifier" name="modifier" width="150px" class="nui-hidden" >
             <input id="modifyDate" name="modifyDate" width="150px" class="nui-hidden" >

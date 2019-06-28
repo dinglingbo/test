@@ -9,7 +9,7 @@
 -->
 <head>
     <title>配件管理</title>
-    <script src="<%=webPath + contextPath%>/basic/js/partMgr.js?v=1.0.21"></script>
+    <script src="<%=webPath + contextPath%>/basic/js/partMgr.js?v=1.0.25"></script>
     <style type="text/css">
     </style>
 </head>
@@ -74,6 +74,8 @@
                     <span class="separator"></span>
                     <a class="nui-button" iconCls="" plain="true" onclick="reloadData()">
                         <span class="fa fa-refresh fa-lg"></span>&nbsp;刷新</a>
+                    <a class="nui-button" iconCls="" visible="false" plain="true" onclick="syncCang()" id="syncCangBtn">
+                        <span class="fa fa-refresh fa-lg"></span>&nbsp;同步仓先生</a>
                 </div>
                 <div class="nui-fit">
                     <div id="mainTabs" class="nui-tabs" name="mainTabs" activeIndex="0" style="width:100%; height:100%;" plain="false" onactivechanged="">

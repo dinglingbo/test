@@ -460,7 +460,7 @@
 	
 	 <!--保险开单 整车客户 -->
 		<select id="queryCustomerWithSALE" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-			SELECT
+					SELECT
 			b.id contactorId,
 			b.tenant_id tenantId,
 			b.orgid,
@@ -496,12 +496,16 @@
 			b.recorder,
 			b.record_date recordDate,
 			b.modifier,
-			b.modify_date modifyDate
+			b.modify_date modifyDate,
+			c.enter_id enterId,
+			d.car_no carNo,
+			d.car_model_name carModelName
 			FROM
 			wb_common.com_guest AS a 
 			INNER JOIN wb_sales.csb_contactor AS b ON a.id = b.guest_id
-		WHERE 1=1
-			
+			INNER JOIN wb_sales.css_sale_main AS c ON a.id = c.guest_id
+			INNER JOIN wb_sales.css_check_enter AS d ON c.enter_id = d.id
+		WHERE 1=1 and c.enter_id > 0
 		<dynamic>
             <isNotEmpty prepend="and" property="tenantId">  
                 (a.tenant_id = #tenantId#)

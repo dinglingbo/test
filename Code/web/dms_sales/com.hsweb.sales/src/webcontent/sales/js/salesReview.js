@@ -90,7 +90,7 @@ function SetData(data, type) {
   	        async: false,
   	        success: function(text) {
   	            if (text.errCode == "S"){
-  	               var fisRpAdvanceList = text.result.fisRpAdvanceList;
+  	               var fisRpAdvanceList = text.fisRpAdvanceList;
   	               if(fisRpAdvanceList.length>0){
   	            	   for(var i = 0;i<fisRpAdvanceList.length;i++){
       	            	   var temp = fisRpAdvanceList[i];

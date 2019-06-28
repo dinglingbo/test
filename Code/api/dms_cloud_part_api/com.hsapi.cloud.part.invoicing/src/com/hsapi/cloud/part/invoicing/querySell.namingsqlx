@@ -204,6 +204,9 @@
                 <isNotEmpty prepend="and" property="isDiffOrder">  
                     (A.is_diff_order = #isDiffOrder#)
                 </isNotEmpty>
+                 <isNotEmpty prepend="and" property="creator">  
+                    (a.creator = #creator#)
+                </isNotEmpty>
             </dynamic>  
             
             union all
@@ -316,6 +319,9 @@
                 </isNotEmpty>
                  <isNotEmpty prepend="and" property="isDiffOrder">  
                     (A.is_diff_order = #isDiffOrder#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="creator">  
+                    (a.creator = #creator#)
                 </isNotEmpty>
             </dynamic>  
         )M
@@ -1256,6 +1262,9 @@
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (D.CODE in ($partCodeList$))
                 </isNotEmpty> 
+                 <isNotEmpty prepend="and" property="creator">  
+                    (a.creator = #creator#)
+                </isNotEmpty>
             </dynamic>  
             
     	
@@ -1397,6 +1406,9 @@
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (D.CODE in ($partCodeList$))
                 </isNotEmpty> 
+                 <isNotEmpty prepend="and" property="creator">  
+                    (a.creator = #creator#)
+                </isNotEmpty>
             </dynamic>  
             
     	

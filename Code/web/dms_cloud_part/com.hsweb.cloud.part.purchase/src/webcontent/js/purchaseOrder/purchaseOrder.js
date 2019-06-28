@@ -984,7 +984,7 @@ function add() {
 
 				nui.get("serviceId").setValue("新采购订单");
 				nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
-				nui.get("createDate").setValue(new Date());
+				nui.get("orderDate").setValue(new Date());
 				nui.get("orderMan").setValue(currUserName);
 
 				addNewRow();
@@ -1014,7 +1014,7 @@ function add() {
 
 		nui.get("serviceId").setValue("新采购订单");
 		nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
-		nui.get("createDate").setValue(new Date());
+		nui.get("orderDate").setValue(new Date());
 		nui.get("orderMan").setValue(currUserName);
 
 		addNewRow();
@@ -1038,6 +1038,9 @@ function getMainData() {
 	data.isDiffOrder = 0;
 	if (data.planArriveDate) {
 		data.planArriveDate = format(data.planArriveDate, 'yyyy-MM-dd HH:mm:ss');
+	}
+	if (data.orderDate) {
+	  data.orderDate = format(data.orderDate, 'yyyy-MM-dd HH:mm:ss');
 	}
 	if(data.id) {
     	delete data.createDate;
@@ -1087,7 +1090,7 @@ function getModifyData(data, addList, delList){
 var requiredField = {
 	guestId : "供应商",
 	orderMan : "采购员",
-	createDate : "订货日期",
+	orderDate : "订货日期",
 	billTypeId : "票据类型",
 	settleTypeId : "结算方式"
 };

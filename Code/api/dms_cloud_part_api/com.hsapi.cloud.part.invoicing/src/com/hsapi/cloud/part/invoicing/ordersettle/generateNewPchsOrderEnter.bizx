@@ -1276,7 +1276,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign19" name="赋值19" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link53" name="link53" displayName="link60" isDefault="true" type="transition">
       <sourceNode>assign19</sourceNode>
-      <targetNode>invokePojo2</targetNode>
+      <targetNode>invokePojo4</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query"/>
@@ -1307,7 +1307,7 @@
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>assign2</targetNode>
     </sourceConnections>
-    <targetConnections>link53</targetConnections>
+    <targetConnections>link1</targetConnections>
     <location x="55" y="168"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
@@ -1351,6 +1351,31 @@
     <location x="286" y="205"/>
     <figSize height="17" width="110"/>
     <node>invokePojo0</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo4" name="版本号" displayName="版本号" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo4</sourceNode>
+      <targetNode>invokePojo2</targetNode>
+    </sourceConnections>
+    <targetConnections>link53</targetConnections>
+    <location x="126" y="101"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo4label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getNextSequence</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="name" type="literal" value="java.lang.String" valueType="Java" pattern="reference">cloudPartPjPchsOrderMain.versionNo</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="long" valueType="Java">orderMain/versionNo</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo4label" name="label" nodeType="label">
+    <location x="119" y="137"/>
+    <figSize height="17" width="37"/>
+    <node>invokePojo4</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

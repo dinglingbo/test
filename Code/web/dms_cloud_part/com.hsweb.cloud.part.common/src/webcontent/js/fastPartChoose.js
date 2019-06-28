@@ -164,8 +164,26 @@ $(document).ready(function(v)
     });
 
     morePartGrid.setUrl(partInfoUrl);
+    morePartGrid.on("preload",function(e){
+    	var sender=e.sender;
+		var columnsList = [];
+		columnsList=sender.columns;
+		//是业务员且禁止可见采购价
+		if(currIsBanSeePrice == 1 && currIsSalesman ==1){
+			var index =0;
+			for(var i=0;i<columnsList.length;i++){
+				if(columnsList[i].field=="costPrice"){
+					index =i;
+				}
+			}
+			columnsList[index].visible=false;
+			morePartGrid.set({
+		        columns: columnsList
+		    });
+		}
+    });
     morePartGrid.on("beforeload",function(e){
-        e.data.token = token;
+    	e.data.token = token;		
     });
     morePartGrid.on("load", function(e) {
         var row = morePartGrid.getRow(0);
@@ -215,6 +233,25 @@ $(document).ready(function(v)
         var row = enterGrid.getSelected();
         gpartId = row.partId||0;
         showBottomTabInfo(gpartId);
+    });
+    
+    enterGrid.on("preload",function(e){
+    	var sender=e.sender;
+		var columnsList = [];
+		columnsList=sender.columns;
+		//是业务员且禁止可见采购价
+		if(currIsBanSeePrice == 1 && currIsSalesman == 1){
+			var index =0;
+			for(var i=0;i<columnsList.length;i++){
+				if(columnsList[i].field=="costPrice"){
+					index =i;
+				}
+			}
+			columnsList[index].visible=false;
+			enterGrid.set({
+		        columns: columnsList
+		    });
+		}
     });
 
     enterGrid.setUrl(enterUrl);
@@ -682,10 +719,10 @@ function addSelectInnerPart(){
 
             params.partId = record.partId;
             params.guestId = guestId;
-            var price = getPartPrice(params);
-            if(price == 0){
-                price = record.enterPrice||0;
-            }
+            var price = getSellPrice(params);
+//            if(price == 0){
+//                price = record.enterPrice||0;
+//            }
             nui.get("price").setValue(price);
             nui.get("amt").setValue(price);
 
@@ -712,10 +749,10 @@ function addSelectInnerPart(){
             record.id=record.partId
             params.partId = record.id;
             params.guestId = guestId;
-            var price = getPartPrice(params);
-            if(price == 0){
-                price = record.costPrice||0;
-            }
+            var price = getSellPrice(params);
+//            if(price == 0){
+//                price = record.costPrice||0;
+//            }
             nui.get("price").setValue(price);
             nui.get("amt").setValue(price);
 
@@ -751,10 +788,10 @@ function addSelectPart(){
 
             params.partId = record.partId;
             params.guestId = guestId;
-            var price = getPartPrice(params);
-            if(price == 0){
-                price = record.enterPrice||0;
-            }
+            var price = getSellPrice(params);
+//            if(price == 0){
+//                price = record.enterPrice||0;
+//            }
             nui.get("price").setValue(price);
             nui.get("amt").setValue(price);
 
@@ -780,10 +817,10 @@ function addSelectPart(){
 
             params.partId = record.id;
             params.guestId = guestId;
-            var price = getPartPrice(params);
-            if(price == 0){
-                price = record.costPrice||0;
-            }
+            var price = getSellPrice(params);
+//            if(price == 0){
+//                price = record.costPrice||0;
+//            }
             nui.get("price").setValue(price);
             nui.get("amt").setValue(price);
 
@@ -1043,6 +1080,36 @@ function getPartPrice(params){
                 var priceRecord = data.priceRecord;
                 if(priceRecord.sellPrice){
                     price = priceRecord.sellPrice;
+                }
+            }
+
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+
+    return price;
+}
+var partSellPriceUrl = cloudPartApiUrl + "com.hsapi.cloud.part.baseDataCrud.crud.queryPjPartPrice.biz.ext";
+function getSellPrice(params){
+	var price = 0;
+    nui.ajax({
+        url : partSellPriceUrl,
+        type : "post",
+        async: false,
+        data : {
+            orgid: currOrgId,
+            partId : params.partId,
+            token: token
+        },
+        success : function(data) {
+            var errCode = data.errCode;
+            if(errCode == "S"){
+                var priceRecord = data.data;
+                if(priceRecord.length>0){
+                    price = priceRecord[0].sellPrice;
                 }
             }
 

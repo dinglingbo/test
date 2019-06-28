@@ -23,8 +23,8 @@ var fserviceId = 0;
 var fguestId = 0;
 var carCheckInfo = null;
 var mainData = null;
-var gType = 1;//默认维修客户
-var guestArr =[{id:1,name:"维修客户"},{id:2,name:"汽贸客户"}];
+var gType = 0;//默认维修客户
+var guestArr =[{id:0,name:"维修客户"},{id:1,name:"汽贸客户"}];
 var settleTypeIdList = [{id:1,name:"保司直收"},{id:2,name:"门店代收全款"},{id:3,name:"代收减返点"}];
 var detailData = [{insureTypeId:1,insureTypeName:"交强险"},{insureTypeId:2,insureTypeName:"商业险"},{insureTypeId:3,insureTypeName:"车船税"}];
 $(document).ready(function ()
@@ -206,7 +206,7 @@ $(document).ready(function ()
 });
 
 function setGuest(item) {
-    if (gType == 1) {
+    if (gType == 0) {
         var carNo = item.carNo||"";
         var tel = item.guestMobile||"";
         var guestName = item.guestFullName||"";
@@ -246,17 +246,17 @@ function setGuest(item) {
         searchNameEl.setVisible(true);
         var t = carNo + tel + guestName + carVin;
         searchNameEl.setValue(t);
-    } else if (gType == 2) { 
-    	var saleMainData = getSaleMain(item.guestId);
-    	if($.isEmptyObject(saleMainData)){
-    		showMsg("该客户没有相关车辆信息，无法开单",'E');
-    		return;
-    	}
-    	if(saleMainData.enterId == 0 || saleMainData.enterId ==''){
-    		showMsg("该客户销但未选车，无法开单",'E');
-    		return;
-    	}
-        var carNo = saleMainData.carNo||"无牌";
+    } else if (gType == 1) { 
+    	// var saleMainData = getSaleMain(item.guestId);
+    	// if($.isEmptyObject(saleMainData)){
+    	// 	showMsg("该客户没有相关车辆信息，无法开单",'E');
+    	// 	return;
+    	// }
+    	// if(saleMainData.enterId == 0 || saleMainData.enterId ==''){
+    	// 	showMsg("该客户销售单未选车，无法开单",'E');
+    	// 	return;
+    	// }
+        var carNo = item.carNo||"无牌";
         var tel = item.guestMobile||"";
         var guestName = item.guestFullName||"";
         var carVin = item.vin||"";
@@ -264,7 +264,7 @@ function setGuest(item) {
         var sdata = {
             carNo:carNo,
             carVin:carVin,
-            carId:saleMainData.enterId,
+            carId:item.enterId,
             guestMobile:tel,
             contactName:item.contactName,
             contactorId:item.contactorId,
@@ -731,7 +731,8 @@ function pay() {
         t_rtnCompRate:t_rtnCompRate,
         t_rtnGuestRate:t_rtnGuestRate,
         moneyCost:moneyCost,
-        sTypeId:sTypeId
+        sTypeId: sTypeId,
+        guestType:gType
     };
     saveData(2);//转入结算和预结算都要保存
     if(saveData(2)==false){
@@ -1013,34 +1014,35 @@ function changeCostAmt(e){
 
 
 function changedGuestType(e){
-	gType = nui.get("gType").value;
-	if(gType == 2){
+    gType = nui.get("gType").value;
+    
+	if(gType == 1){
 		   searchKeyEl.setUrl(guestSaleInfoUrl);
 	}else{
 		   searchKeyEl.setUrl(guestInfoUrl);
 	}
 }
 
-function getSaleMain(guestId) {
-    var resData = {};
-    var params = {
-        guestId:guestId
-    };
-    nui.ajax({
-        url: saleMainUrl,
-        type: 'post',
-        async:false,
-        data:{
-            params:params
-        },
-        success:function (res) {
-            if (res.errCode == 'S') {
-                if (res.data.length > 0) {
-                    resData = res.data[0];
-                }
-            }
-        }
-    })
-    return resData;
-}
+// function getSaleMain(guestId) {
+//     var resData = {};
+//     var params = {
+//         guestId:guestId
+//     };
+//     nui.ajax({
+//         url: saleMainUrl,
+//         type: 'post',
+//         async:false,
+//         data:{
+//             params:params
+//         },
+//         success:function (res) {
+//             if (res.errCode == 'S') {
+//                 if (res.data.length > 0) {
+//                     resData = res.data[0];
+//                 }
+//             }
+//         }
+//     })
+//     return resData;
+// }
 

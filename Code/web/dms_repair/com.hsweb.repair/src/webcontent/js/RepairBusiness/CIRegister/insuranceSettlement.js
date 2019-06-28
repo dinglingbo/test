@@ -6,6 +6,7 @@ var rlist = [];
 var typeList = {};
 var mtAmtEl = null;
 var guestData = null;
+var guestType = 0;
 var netInAmt = 0;
 var amountEl = null;
 var zongAmt = 0;//总金额
@@ -36,6 +37,7 @@ function setData(params){
 		showAmt = "(保司保费-客户返点)";
 	}
 	guestData = params.data1;
+	guestType = params.guestType;
 	zongAmt = params.moneyCost;
 	netInAmt = parseFloat(params.moneyCost);
 	var serviceId = params.data1.id||0;
@@ -219,7 +221,8 @@ function pay(){
 		cardPayAmt:deductible,
 		serviceId:fserviceId,
 		remark:nui.get("txtreceiptcomment").getValue(),
-		payAmt:count
+		payAmt:count, 
+		guestType:guestType
 	}
     nui.confirm("是否确定结算？", "友情提示",function(action){
 	       if(action == "ok"){

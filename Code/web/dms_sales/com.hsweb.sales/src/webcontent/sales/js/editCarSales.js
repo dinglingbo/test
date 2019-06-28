@@ -373,30 +373,60 @@ $(document).ready(function(v) {
 
     searchKeyEl.on("itemclick", function(e) {
         var item = e.item;
-        var fullName = item.fullName || "";
-        var mobile = item.mobile || "";
-        var msg = fullName + "/" + mobile
-        if (fullName && mobile) {
-            searchNameEl.setValue(msg);
+        if(item){
+        	 var fullName = item.fullName || "";
+             var mobile = item.mobile || "";
+             var msg = fullName + "/" + mobile
+             if (fullName && mobile) {
+                 searchNameEl.setValue(msg);
+             }
+             if (fullName && !mobile) {
+                 searchNameEl.setValue(fullName);
+             }
+             if (mobile && !fullName) {
+                 searchNameEl.setValue(mobile);
+             }
+             searchNameEl.setEnabled(false);
+             searchNameEl.setVisible(true);
+             var sk = document.getElementById("search_key");
+             sk.style.display = "none";
+             var billFormData = billForm.getData(true); //主表信息
+             billFormData.guestId = item.id;
+             billFormData.guestFullName = item.fullName;
+             billFormData.contactor = item.fullName;
+             billFormData.contactorTel = item.mobile;
+             billForm.setData(billFormData);
         }
-        if (fullName && !mobile) {
-            searchNameEl.setValue(fullName);
-        }
-        if (mobile && !fullName) {
-            searchNameEl.setValue(mobile);
-        }
-        searchNameEl.setEnabled(false);
-        searchNameEl.setVisible(true);
-        var sk = document.getElementById("search_key");
-        sk.style.display = "none";
-        var billFormData = billForm.getData(true); //主表信息
-        billFormData.guestId = item.id;
-        billFormData.guestFullName = item.fullName;
-        billFormData.contactor = item.fullName;
-        billFormData.contactorTel = item.mobile;
-        billForm.setData(billFormData);
+       
     });
     
+    searchKeyEl.on("valuechanged",function(e){
+    	var item = e.item;
+    	if(item){
+       	    var fullName = item.fullName || "";
+            var mobile = item.mobile || "";
+            var msg = fullName + "/" + mobile
+            if (fullName && mobile) {
+                searchNameEl.setValue(msg);
+            }
+            if (fullName && !mobile) {
+                searchNameEl.setValue(fullName);
+            }
+            if (mobile && !fullName) {
+                searchNameEl.setValue(mobile);
+            }
+            searchNameEl.setEnabled(false);
+            searchNameEl.setVisible(true);
+            var sk = document.getElementById("search_key");
+            sk.style.display = "none";
+            var billFormData = billForm.getData(true); //主表信息
+            billFormData.guestId = item.id;
+            billFormData.guestFullName = item.fullName;
+            billFormData.contactor = item.fullName;
+            billFormData.contactorTel = item.mobile;
+            billForm.setData(billFormData);
+       }
+    });
     
     //document.getElementById("showA1").style.display = "";
 	document.getElementById("repairStatus").style.display='none';
@@ -865,6 +895,14 @@ function setInitData(params) { //初始化
 	isTabs = 1;
 	dataF = {};
 	//定位到精品加装tabs页
+	nui.get("saveBtn").setVisible(false);
+    nui.get("submitBtn").setVisible(false);
+    nui.get("submitCarBtn").setVisible(false);
+    nui.get("audit").setVisible(false);
+    nui.get("selectBtn").setVisible(false);
+    nui.get("case").setVisible(false);
+    nui.get("invalidBtn").setVisible(false);
+  
 	var gift = nui.get("mainTabs").getTab("gift");
 	nui.get("mainTabs").activeTab(gift);
     nui.get("typeMsg").setValue(params.typeMsg);

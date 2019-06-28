@@ -484,22 +484,37 @@
 <!--                     <td width="20%">打印时间：<span id="date"></span></td> -->
 <!--                     <td width="33%" align="right"><b style="font-size:16px;">合计</b>： <font style="font-size:16px; font-weight:bold;"><span id = "amt"></span></font> 元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size:16px;">大写</b>：<font style="font-size:16px; font-weight:bold;"><span id = "Damt"></span></font></td> -->
 <!--                 </tr> -->
+             <tr>    
+                <td height="36" colspan="2" style="border:0px;font-family: Arial; font-size:16px;font-weight: bold;">
+                    <div style="float: right; color: #000; margin-right: 12px; line-height: 36px;">
+                        <span style="margin-right: 15px;">
+                            <font style="font-size: 13px; font-weight: bold;">                                		             
+               					 &nbsp;&nbsp;&nbsp;金额：<span id="cash1"></span>元
+                            </font>
+                        </span>
+                        <font style="font-size: 13px; font-weight: bold;">
+                                                            大写：<span id="money" style="margin-right: 0px;"></span>
+                        </font>
+                    </div>
+                </td>
+            </tr>
                 <tr>
 
-                    <td colspan="3" class="left" height="25">备注：</td>
+                    <td colspan="1"  height="25" width="40px">备注：</td>
+                    <td><div id="remark"></div></td>
                 </tr>
                 <tr>
                     <td height="40" colspan="3" class="left">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                                <td width="55">销售员：</td>
-                                <td><div style="width:80%; height:25px; border-bottom:1px #000 solid;"></div></td>
-                                <td width="55">仓库员：</td>
-                                <td><div style="width:80%; height:25px; border-bottom:1px #000 solid;"></div></td>
-                                <td width="70">发(送)货人：</td>
-                                <td><div style="width:80%; height:25px; border-bottom:1px #000 solid;"></div></td>
-                                <td width="65">客户签收：</td>
-                                <td width="15%"><div style="width:100%; height:25px; border-bottom:1px #000 solid;"></div></td>
+                                <td width="70px">服务顾问：</td>
+                                <td width="200px" align="left"><div  id="mtAdvisor"></div></td>
+                                <td width="55px">仓库员：</td>
+                                <td width="200px" align="left"><div ></div></td>
+                                <td width="70px">发(送)货人：</td>
+                                <td width="200px" align="left"><div ></div></td>
+                                <td width="65px">客户签收：</td>
+                                <td width="200px" align="left"><div></div></td>
                             </tr>
                         </table>
                     </td>
@@ -560,6 +575,8 @@ function SetData(params){
        $("#guestMobile").html(params.guestMobile); 
        $("#shippingAdd").html(params.addr); 
        $("#serviceCode").html(params.serviceCode);
+       $("#remark").html(params.remark);
+       $("#mtAdvisor").html(params.mtAdvisor);
        $.post(params.baseUrl+"com.hsapi.repair.repairService.query.getRpsPartByServiceId.biz.ext?serviceId="+params.id+"&token="+params.token,{},function(text){
         	if(text.errCode == "S"){
         	    data =  text.data;
@@ -586,8 +603,8 @@ function SetData(params){
 		         tBody.append(tr);
            }
       }
-      $("#amt").html(sumAmt);
-      $("#Damt").html(transform(sumAmt+""));  
+      $("#cash1").html(sumAmt);
+      $("#money").html(transform(sumAmt+""));  
    });
    $("#date").html(format(date, "yyyy-MM-dd HH:mm"));
    $("#currUserName").html(currUserName);

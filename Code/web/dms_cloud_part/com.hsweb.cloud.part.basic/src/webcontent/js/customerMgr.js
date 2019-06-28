@@ -98,10 +98,16 @@ function search()
 }
 function getSearchParam()
 {
+	var modifier =null;
+	//是业务员且业务员禁止可见
+	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
+		modifier= currUserName;
+	}
     var params = {
         fullName:nui.get("fullName").getValue().replace(/\s+/g, ""),
         mobile:nui.get("mobile").getValue().replace(/\s+/g, ""),
-        code:nui.get("code").getValue().replace(/\s+/g, "")
+        code:nui.get("code").getValue().replace(/\s+/g, ""),
+        modifier : modifier
     };
 
     return params;

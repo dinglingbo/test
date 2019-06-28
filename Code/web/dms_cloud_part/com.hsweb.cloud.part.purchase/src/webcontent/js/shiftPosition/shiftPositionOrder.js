@@ -334,6 +334,10 @@ function search()
 function getSearchParam(){
     var params = {};
     params = gsparams;
+  //是业务员且业务员禁止可见
+	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
+		params.creator= currUserName;
+	}
     return params;
 }
 function setBtnable(flag)
@@ -497,6 +501,10 @@ function setEditable(flag)
 }
 function doSearch(params) 
 {
+	//是业务员且业务员禁止可见
+	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
+		params.creator= currUserName;
+	}
     leftGrid.load({
         params : params,
         token : token

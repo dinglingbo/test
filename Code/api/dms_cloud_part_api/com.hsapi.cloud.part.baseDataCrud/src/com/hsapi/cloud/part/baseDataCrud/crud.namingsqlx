@@ -601,6 +601,9 @@
             <isNotEmpty prepend="and" property="namePy">  
                 (a.name_py like '%$namePy$%')
             </isNotEmpty>  
+             <isNotEmpty prepend="and" property="noCangPartId">  
+                (a.cang_part_id is NULL)
+            </isNotEmpty>
             <isNotEmpty prepend="order by " property="sortField">  
                 $sortField$ $sortOrder$
             </isNotEmpty>  

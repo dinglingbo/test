@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件资料</title>
-<script src="<%=webPath + contextPath%>/basic/js/partDetail.js?v=1.0.49"></script>
+<script src="<%=webPath + contextPath%>/basic/js/partDetail.js?v=1.0.50"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -88,6 +88,7 @@
   			    <input id="orgid" name="orgid" width="150px" class="nui-hidden" >
   			    <input class="nui-hidden" name="id"/>
   			    <input class="nui-hidden" name="isEdit"/>
+  			    <input class="nui-hidden" name="name"/>
   			    <input class="nui-hidden" name="cangPartId"/>
             <input id="modifier" name="modifier" width="150px" class="nui-hidden" >
             <input id="modifyDate" name="modifyDate" width="150px" class="nui-hidden" >

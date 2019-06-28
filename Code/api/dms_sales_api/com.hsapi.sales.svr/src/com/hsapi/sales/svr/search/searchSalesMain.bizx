@@ -167,7 +167,7 @@
     <figSize height="17" width="171"/>
     <node>invokePojo1</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign0" name="赋值" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>assign4</targetNode>
@@ -186,6 +186,10 @@
     <location x="75" y="264"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">true</process:from>
+      <process:to type="query">page/isCount</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="77" y="300"/>

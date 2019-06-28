@@ -66,6 +66,9 @@
             <isNotEmpty prepend="and" property="billTypeId">  
                 (a.bill_type_id = #billTypeId#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="billTypeIdList">  
+                (a.bill_type_id in ($billTypeIdList$))
+            </isNotEmpty>
             <!--进厂日期 -->
             <isNotEmpty prepend="and" property="sEnterDate">  
                 (a.enter_date &gt;= #sEnterDate#)

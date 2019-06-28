@@ -156,7 +156,7 @@ var requiredField = {
     qualityTypeId:"配件品质",
     partBrandId:"配件品牌",
     code:"编码",
-    partNameId:"名称",
+    name:"名称",
     unit:"单位"
 };
 var oldData = null;
@@ -182,7 +182,9 @@ function onOk()
     }
   //  data.abcType = "";
     data.code =data.code.replace(/\s+/g, "");
-    data.name = nui.get("partNameId").getText();
+    if(!data.name){    	
+    	data.name = nui.get("partNameId").getText();
+    }
     data.fullName = data.name;    
     data.fullName = data.fullName + " " + partBrandIdHash[data.partBrandId].name;
     if(data.spec)

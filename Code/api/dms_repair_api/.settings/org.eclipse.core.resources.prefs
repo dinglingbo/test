@@ -20,6 +20,7 @@ encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/saveRpbCars.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/saveRpsMaintain.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/updRpsPackage.bizx.eosdebug=UTF-8
+encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/insurance/saveInsuranceMain.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/repairInterface/partToOutInterface.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/repairInterface/queryCheckMainbyServiceId.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/repairInterface/setVisitMaintainList.bizx.eosdebug=UTF-8

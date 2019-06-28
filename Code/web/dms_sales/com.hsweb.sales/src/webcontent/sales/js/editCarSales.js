@@ -602,7 +602,9 @@ function save(e) { //保存（主表信息+精品加装+购车信息+费用信�
                  document.getElementById("caCalculation").contentWindow.setInputModel();
             }
              if(data.guestId) {
-                insuranceMsg(data.guestId);
+            	 if(data.enterId !=0 ){
+            		 insuranceMsg(data.guestId,data.enterId);
+            	 }
              }
              setReadOnlySubmitCar(1);
              var msg = (data.contactor || "") + "/" + (data.contactorTel || "");
@@ -882,18 +884,18 @@ function setInitData(params) { //初始化
         jpGrid.clearRows();
         jpDetailGrid.clearRows();
         jpGrid.load();
-        jpDetailGrid.load({ billType: 2, serviceId: params.id },function(){
+        jpDetailGrid.load({ billType: 2, serviceId: params.id,token:token},function(){
         	//获取数据
             giftData = jpDetailGrid.getData();
         });
         searchSalesMain(params.id, 0);
         costGrid.clearRows();
     	var params2 = { isSale: 1 };
-        costGrid.load({ params: params2 });
+        costGrid.load({ params: params2,token:token});
         costDetailGrid.clearRows();
         costDetailGrid2.clearRows();
-        costDetailGrid.load({ serviceId: params.id, type: 1 });
-        costDetailGrid2.load({ serviceId: params.id, type: 2 });
+        costDetailGrid.load({ serviceId: params.id, type: 1,token:token});
+        costDetailGrid2.load({ serviceId: params.id, type: 2,token:token});
     } else {
     	add();
     }
@@ -933,7 +935,7 @@ function add(){
 	//费用信息
 	costGrid.clearRows();
 	var params = { isSale: 1 };
-    costGrid.load({ params: params,token:token });
+    costGrid.load({ params: params,token:token});
     //费用信息右边
     costDetailGrid.clearRows();
     costDetailGrid2.clearRows();
@@ -1090,8 +1092,10 @@ function searchSalesMain(serviceId, type) { //查询主表信息
                     }
                    // document.getElementById("caCalculation").contentWindow.setInputModel();
                 }
-                if (data.guestId) {
-                    insuranceMsg(data.guestId);
+                if(data.guestId) {
+			       	 if(data.enterId !=0 ){
+			       		 insuranceMsg(data.guestId,data.enterId);
+			       	 }
                 }
                 if (nui.get("typeMsg").value != 1) {
                     setReadOnlySubmitCar(1);
@@ -1129,22 +1133,35 @@ function searchSalesMain(serviceId, type) { //查询主表信息
     });
 }
 
-function insuranceMsg(guestId) { //获取保险信息
-    var params = { guestId: guestId };
+function insuranceMsg(guestId,enterId) { //获取保险信息
+	if(enterId==0){
+		return;
+	}
+    var params = { guestId: guestId,
+    		      enterId : enterId
+    		      };
     nui.ajax({
-        url: baseUrl + "com.hsapi.sales.svr.search.searchInsuranceMsg.biz.ext",
+        url: repairUrl + "com.hsapi.repair.repairService.svr.searchInsuranceMsg.biz.ext",
         data: {
-            params: params
+            params: params,
+            token:token
         },
         cache: false,
         async: false,
         success: function(text) {
             if (text.errCode == "S") {
-                var list = text.list[0];
+                var list = text.list;
                 var data = text.data;
-                detailGrid.setData(data);
-                insuranceForm.setData(list);
-                nui.get("agentGrossProfit").setValue(text.grossProfit);
+                if(data.id){
+                	detailGrid.setData(list);
+                    insuranceForm.setData(data);
+                    nui.get("agentGrossProfit").setValue(text.grossProfit);
+                }else{
+                	detailGrid.setData([]);
+                    insuranceForm.setData([]);
+                    nui.get("agentGrossProfit").setValue(0);
+                }
+                
             };
         }
     });
@@ -1300,7 +1317,7 @@ function salesOnPrint(p) {
 	    document.getElementById("caCalculation").contentWindow.SetDataMsg(dataF.id, dataF.frameColorId, dataF.interialColorId); //查询购车计算表，如果购车计算表车身颜色和内饰颜色为空，则将主表信息赋值上去
     }
     var billFormData = billForm.getData(true); //主表信息
-    searchSalesMain(billFormData.id, 1);
+   // searchSalesMain(billFormData.id, 1);
     var billFormData = billForm.getData(true); //主表信息
     if (billFormData.status == 3) {
         showMsg("当前工单已作废！", "W");

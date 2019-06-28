@@ -67,7 +67,7 @@ $(document).ready(function(v)
 		var roleId = row.id;
 		if(roleId) {
 			frole.id = roleId;
-			frole.name = name;
+			frole.name = row.name;
 			var params = {
 				roleId: roleId
 			};
@@ -117,6 +117,7 @@ function addDeductMem() {
 		}
 		memForm.setData(data);
 	}else {
+		document.getElementById("t").innerHTML = "当前角色：" + frole.name||"";
 		var data = {
 			pid: null,
 			roleId: frole.id,

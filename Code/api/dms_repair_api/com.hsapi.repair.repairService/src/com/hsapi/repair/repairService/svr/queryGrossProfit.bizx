@@ -45,20 +45,20 @@
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">recordDate</process:from>
-      <process:to type="query">cond/_orderby[1]/_property</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">desc</process:from>
-      <process:to type="query">cond/_orderby[1]/_sort</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">guestId</process:from>
+      <process:from type="query" pattern="reference">params/guestId</process:from>
       <process:to type="query">cond/_expr[1]/guestId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/enterId</process:from>
+      <process:to type="query">cond/_expr[2]/carId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[2]/_op</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -195,7 +195,7 @@
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsInsuranceMain" name="dataList"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" name="guestId" primitiveType="Int"/>
+    <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

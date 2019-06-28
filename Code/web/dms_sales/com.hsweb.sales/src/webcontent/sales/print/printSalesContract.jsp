@@ -188,7 +188,7 @@
                 </div>
                 <div class="divHeight">
                     <div style="width:50%;display: inline-block;">买方姓名：<span style="text-decoration: underline;" id="guestFullName"></span></div>
-                    <div style="width:49%;display: inline-block;">卖方：<span id="comp"></span></div>
+                    <div style="width:49%;display: inline-block;">卖方：<span id="mcomp"></span></div>
                 </div>
                 <div class="divHeight">
                     <div style="width:50%;display: inline-block;">电&emsp;&emsp;话：<span style="text-decoration: underline;" id="contactorTel"></span></div>
@@ -196,7 +196,7 @@
                 </div>
                 <div class="divHeight">
                     <div style="width:50%;display: inline-block;">身份证号：<span style="text-decoration: underline;" id="idCard"></span></div>
-                    <div style="width:49%;display: inline-block;">服务热线：<span></span></div>
+                    <!-- <div style="width:49%;display: inline-block;">服务热线：<span></span></div> -->
                 </div>
                 <div style="margin-top:10px;">一、车辆信息 </div>
 
@@ -338,6 +338,8 @@
                     document.getElementById("currRepairSettorderPrintShow").innerHTML = currRepairSettorderPrintShow;
                     document.getElementById("currCompTel").innerHTML = currCompTel;
                     document.getElementById("currCompAddress").innerHTML = currCompAddress;
+                    var printName = currRepairSettorderPrintShow||currOrgName
+                    document.getElementById("mcomp").innerHTML = document.getElementById("mcomp").innerHTML + printName;
                     document.getElementById("address").innerHTML = currCompAddress;
                     document.getElementById("currBankName").innerHTML = currBankName;
                     document.getElementById("currBankAccountNumber").innerHTML = currBankAccountNumber;
@@ -400,7 +402,7 @@
                     var url = baseUrl + "com.hsapi.sales.svr.inventory.queryCheckEnter.biz.ext?params/id=" + enterId;
                     if (enterId) {
                         $.post(url, function(res) {
-                            if (res.data.length > 0) {
+                            if (res.cssCheckEnter.length > 0) {
                                 var temp = res.cssCheckEnter[0];
                                 var vin = temp.vin || "";
                                 document.getElementById("vin").innerHTML = vin;

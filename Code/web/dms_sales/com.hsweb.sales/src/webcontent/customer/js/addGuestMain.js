@@ -82,8 +82,8 @@ function add(){
 		allowDrag : true,
 		allowResize : true,
 		onload : function() {
-			var iframe = this.getIFrameEl();
-            iframe.contentWindow.updatRowSetData(params);//显示该显示的功能
+			//var iframe = this.getIFrameEl();
+           // iframe.contentWindow.updatRowSetData(params);//显示该显示的功能
            // iframe.contentWindow.setViewData(dock, dodelck, docck);
 		},
 		ondestroy : function(action) {

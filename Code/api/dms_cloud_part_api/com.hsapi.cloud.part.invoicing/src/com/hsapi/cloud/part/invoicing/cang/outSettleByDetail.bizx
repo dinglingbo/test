@@ -335,11 +335,11 @@
       <process:to type="query">main/auditorId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">main/serviceId</process:from>
+      <process:from type="query" pattern="reference">orderMain/serviceId</process:from>
       <process:to type="query">main/code</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">main/id</process:from>
+      <process:from type="query" pattern="reference">orderMain/id</process:from>
       <process:to type="query">main/codeId</process:to>
     </process:copy>
     <process:copy>
@@ -751,8 +751,12 @@
       <process:to type="query">main/orderAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">paramsMain/erpMainId</process:from>
+      <process:from type="query" pattern="reference">paramsMain/erpMainId</process:from>
       <process:to type="query">params/mainId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">6</process:from>
+      <process:to type="query">orderMain/billStatusId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
@@ -962,6 +966,14 @@
     <process:copy>
       <process:from type="expression" pattern="reference">trueOutQty+qty</process:from>
       <process:to type="query">trueOutQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">sourceOrderDetail/isFinished</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">sourceOrderDetail/finishDate</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
@@ -1189,6 +1201,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">operateDate</process:from>
       <process:to type="query">orderMain/finishDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">2</process:from>
+      <process:to type="query">orderMain/billStatusId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">

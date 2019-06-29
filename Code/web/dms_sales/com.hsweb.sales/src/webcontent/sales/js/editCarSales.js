@@ -884,7 +884,7 @@ function costMsg() { //保存费用信息
                 costDetailGrid.load({ serviceId: billFormData.id, type: 1 });
                 costDetailGrid2.load({ serviceId: billFormData.id, type: 2 });
             } else {
-                showMsg(text.errMsg, "W");
+                showMsg(text.errMsg, "E");
             };
         }
     });
@@ -1303,7 +1303,7 @@ function registration() { //车辆上牌
         height: "490px",
         onload: function() {
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(billFormData.enterId, billFormData.guestId, billFormData.guestFullName);
+            iframe.contentWindow.SetData(billFormData.enterId, billFormData.guestId);
         }
     });
 }

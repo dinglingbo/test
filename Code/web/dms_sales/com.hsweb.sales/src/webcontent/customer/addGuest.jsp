@@ -59,7 +59,7 @@
 				             id="source"
 				             class="nui-combobox"
 				             textField="name"
-				             valueField="id"
+				             valueField="customid"
 				             allowInput="true"
 				             width="100%"
 				             visible="true"
@@ -198,6 +198,9 @@ $(document).ready(function (){
 	 nature:10181
     },function(data){
    });
+   $.ajaxSetup({
+            async: false
+        });
    initMember("saleAdvisorId",function(){
       
     });

@@ -137,6 +137,7 @@
 	String isOnlySeeOwn ="";
 	String isBanSeePrice ="";
 	String isSalesman = "";
+	String isCommission = "";
 	//仓先生公司ID
 	String agencyId = "";
 	
@@ -306,6 +307,10 @@
 	                if(billParams.get("isOpenElectronics") != null){
 	                	isOpenElectronics = billParams.get("isOpenElectronics").toString();
 	                }
+	                //是否开启分级提成
+	                if(billParams.get("isCommission") != null){
+	                	isCommission = billParams.get("isCommission").toString();
+	                }
                 }
               
                 
@@ -388,6 +393,7 @@
 	var currIsBanSeePrice ="<%=isBanSeePrice%>";
 	var currAgencyId ="<%=agencyId %>";
 	var currIsSalesman = "<%=isSalesman %>";
+	var currIsCommission ="<%=isCommission %>";
     //alert("token=" + token);
     
     /* var _sysMsg_;

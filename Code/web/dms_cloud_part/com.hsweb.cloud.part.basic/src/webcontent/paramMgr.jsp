@@ -10,7 +10,7 @@
 -->
 <head>
 <title>参数设置</title>
-    <script src="<%=webPath + contextPath%>/basic/js/paramMgr.js?v=1.0.21"></script>
+    <script src="<%=webPath + contextPath%>/basic/js/paramMgr.js?v=1.0.23"></script>
     
     <style type="text/css">
 
@@ -126,9 +126,9 @@
                 </td>
             </tr> 
              <tr>
-                <td class="tbtext">业务员是否禁止可见采购价：</td>
+                <td class="tbtext">是否开启分级提成：</td>
                 <td class="tbCtrl" >
-                   <div id="isBanSeePrice" name="isBanSeePrice" 
+                   <div id="isCommission" name="isCommission" 
                         class="nui-radiobuttonlist" value="" repeatItems="2" 
                         repeatDirection="" repeatLayout="table" 
                         textField="text" valueField="id" ></div>

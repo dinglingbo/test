@@ -53,6 +53,7 @@
                 <a class="nui-button" plain="true" onclick="unAudit()" id="unAuditBtn"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返单</a>
                 <a class="nui-button" plain="true" onclick="addMorePart()" id="fastEnterBtn"><span class="fa fa-hand-o-right fa-lg"></span>&nbsp;快速录入配件</a>
                 <a class="nui-button" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
+                <a class="nui-button" plain="true" onclick="chooseMember()" visible="false" id="chooseMemBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选择提成成员</a>
                 <span id="status"></span>
                 <span class="separator"></span>
            		<span id="dueAmt"></span>

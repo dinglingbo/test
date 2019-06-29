@@ -499,7 +499,7 @@
 			b.modify_date modifyDate,
 			c.enter_id enterId,
 			d.car_no carNo,
-			d.car_model_name carModelName
+			d.car_model_name carModel
 			FROM
 			wb_common.com_guest AS a 
 			INNER JOIN wb_sales.csb_contactor AS b ON a.id = b.guest_id

@@ -336,6 +336,9 @@
                 <isNotEmpty prepend="and" property="guestId">  
                     (a.guest_id = #guestId#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="guestName">  
+                (a.guest_name like '%$guestName$%')
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="billDc">  
                     (a.bill_dc = #billDc#)
                 </isNotEmpty> 

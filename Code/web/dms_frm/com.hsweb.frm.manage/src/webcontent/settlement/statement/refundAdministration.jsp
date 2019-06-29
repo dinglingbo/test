@@ -27,6 +27,8 @@
 		</div>
 		<div title="计次卡退款" url="<%=request.getContextPath() %>/manage/settlement/statement/refundTimesCardList.jsp">
 		</div>
+		<div title="预收预付款列表" url="<%=request.getContextPath() %>/manage/settlement/statement/advanceList.jsp">
+		</div>
 	</div>
 
 

@@ -18,7 +18,7 @@
 	<div class="nui-fit">
 		<div class="nui-toolbar">
 			<a class="nui-button" onclick="save()" plain="true" enabled="">
-				<span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+				<span class="fa fa-save fa-lg"></span>&nbsp;发布</a>
 		</div>
 		<div class="nui-fit">
 			<input name="id" class="nui-hidden" id="id"/>
@@ -67,7 +67,7 @@
 	    	nui.mask({
 	            el: document.body,
 	            cls: 'mini-mask-loading',
-	            html: '数据保存中...'
+	            html: '数据处理中...'
 	        });
 	    	nui.ajax({
 				url: apiPath + sysApi + "/com.hsapi.system.employee.slog.saveSysUpdateLog.biz.ext",
@@ -81,9 +81,9 @@
 					if(text.errCode == "S"){
 						var updateLog = text.updateLog;
 						nui.get("id").setValue(updateLog.id);
-						showMsg("保存成功","S");
+						showMsg("发布成功","S");
 					}else{
-						showMsg("保存失败","E");
+						showMsg("发布失败","E");
 					}
 				}
 			});

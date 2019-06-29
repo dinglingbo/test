@@ -431,8 +431,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	     	}
 		  %>
 		 var  msgCode = "";
-		 var  kaiguan = 0//0发请求，1取消请求
+		 var  kaiguan = 0;//0发请求，1取消请求
 $(function () {
+	openLogin();
 	//显示登录框
 	$("#login").click(openLogin);
 	$("#login1").click(openLogin);

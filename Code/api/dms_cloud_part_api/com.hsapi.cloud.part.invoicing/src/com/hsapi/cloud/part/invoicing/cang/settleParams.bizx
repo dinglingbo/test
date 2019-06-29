@@ -80,11 +80,11 @@
     <chidren>assign6</chidren>
     <chidren>assign7</chidren>
     <chidren>assign8</chidren>
-    <chidren>assign9</chidren>
     <chidren>invokePojo2</chidren>
     <chidren>invokePojo1</chidren>
     <chidren>assign14</chidren>
     <chidren>group1</chidren>
+    <chidren>assign9</chidren>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="signId" displayName="getNextSequence" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
@@ -322,7 +322,7 @@
     <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign6" name="赋值6" displayName="赋值" grouped="true" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
       <targetNode>assign7</targetNode>
@@ -387,7 +387,7 @@
       <targetNode>assign6</targetNode>
     </sourceConnections>
     <targetConnections>link18</targetConnections>
-    <location x="417" y="148"/>
+    <location x="417" y="128"/>
     <size height="28" width="28"/>
     <nodeLabel>assign9label</nodeLabel>
     <process:copy>
@@ -395,12 +395,12 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">存在明细为空的数据</process:from>
+      <process:from type="literal" pattern="reference">明细为空</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
-    <location x="415" y="184"/>
+    <location x="415" y="164"/>
     <figSize height="17" width="32"/>
     <node>assign9</node>
   </nodes>

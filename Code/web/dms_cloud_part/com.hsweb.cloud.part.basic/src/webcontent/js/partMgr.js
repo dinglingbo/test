@@ -541,8 +541,11 @@ function onDrawCell(e){
 
 //查询未同步的配件
 function getNoSync(params){
+	var params ={};
 	params.orgid=currOrgid;
+	params.noPage=1;
 	params.noCangPartId=1;
+	var partInfosList=[];
 	var partList=[];
 	var partinfos ="";
 	nui.mask({
@@ -553,6 +556,7 @@ function getNoSync(params){
     nui.ajax({
         url:partListUrl,
         type:"post",
+        async:false,
         data:JSON.stringify({
         	params:params,
             token:token
@@ -568,7 +572,7 @@ function getNoSync(params){
             }
             else{
             	nui.unmask();
-                showMsg(data.errMsg||errorTip||"同步失败","E");
+                showMsg(data.errMsg||"同步失败","E");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){
@@ -577,8 +581,71 @@ function getNoSync(params){
             console.log(jqXHR.responseText);
         }
     });
+    for(var i=0;i<partList.length;i++){
+    	var temp={};
+    	temp.erp_part_id =partList[i].id;
+    	temp.cars =partList[i].applyCarModel || "";
+    	temp.pid =partList[i].code;
+    	temp.label =partList[i].fullName;
+    	if(brandHash && brandHash[partList[i].partBrandId]){    	
+    		temp.origin = brandHash[partList[i].partBrandId].name;
+	    }else{
+	    	temp.origin = "";
+	    }
+    	temp.source_pid =partList[i].code;
+    	temp.um =partList[i].unit;
+    	temp.spec ="";
+    	temp.remark ="";
+    	temp.brand =temp.origin;
+    	if(qualityHash && qualityHash[partList[i].qualityTypeId]){
+    		temp.part_type_id =qualityHash[partList[i].qualityTypeId].cangBrandId;
+    	}else{
+    		temp.part_type_id ="";
+    	}
+    	
+    	partInfosList.push(temp);
+    }
+    partinfos =JSON.stringify(partInfosList);
+    return partinfos;
 }
 //同步配件到仓先生
+var syncUrl =baseUrl+"com.hsapi.cloud.part.baseDataCrud.cang.addParts.biz.ext";
 function syncCang(){
 	var partinfos = getNoSync(params);
+	if(partinfos.length<=0){
+		return;
+	}
+	nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : "同步中..."
+	});
+    nui.ajax({
+        url:syncUrl,
+        type:"post",
+        data:JSON.stringify({
+        	agency_id:currAgencyId,
+        	partinfos:partinfos,
+            token:token
+        }),
+        success:function(data)
+        {
+            nui.unmask();
+            data = data||{};
+            if(data.errCode == "S")
+            {
+//            	nui.unmask();
+        	    showMsg(data.errMsg||"同步成功","S");
+            }
+            else{
+            	nui.unmask();
+                showMsg(data.errMsg ||"同步失败","E");
+            }
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+        	nui.unmask();
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
 }

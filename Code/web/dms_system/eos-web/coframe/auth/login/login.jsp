@@ -333,7 +333,7 @@ a {
 	<form method="post"	name="ysweepCodeForm" onsubmit="" action="">
 	<div class="login" id="ysweepCodeBox">
 		<div class="title"><font color="#0050fb9e" >扫码登录| <span class="blue1" id="login2">账号登录</span></font></div>
-		<div style="margin-left: 85px;"><img src="images/xiongying.jpg" /></div>
+		<div style="margin-left: 70px;"><img src="images/xiongying.jpg" /></div>
 		<div style="margin-left: 120px;" >已扫码，请在手机上确认！</div>
 	</div>
 </form>	
@@ -431,8 +431,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	     	}
 		  %>
 		 var  msgCode = "";
-		 var  kaiguan = 0//0发请求，1取消请求
+		 var  kaiguan = 0;//0发请求，1取消请求
 $(function () {
+	openLogin();
 	//显示登录框
 	$("#login").click(openLogin);
 	$("#login1").click(openLogin);

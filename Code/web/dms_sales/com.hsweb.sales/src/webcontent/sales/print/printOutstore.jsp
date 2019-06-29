@@ -196,10 +196,10 @@
                             <span id="carNo"></span>
                         </td>
                         <td height="50" valign="top" style="padding:  8px;width:10%;" id="">
-                            厂牌
+                             车架号
                         </td>
                         <td height="50" valign="top" style="padding:  8px;width:20%;" id="">
-
+                            <span id="vin"></span>
                         </td>
                         <td height="50" valign="top" style="padding:  8px;width:10%;" id="">
                             车型
@@ -228,24 +228,24 @@
 
                         </td>
                     </tr>
-                    <tr>
-                        <td height="50" valign="top" style="padding:8px" id="">
+                   <!--  <tr>
+                      <td height="50" valign="top" style="padding:8px" id="">
                             车架号
                         </td>
                         <td height="50" valign="top" style="padding:  8px;" id="" colspan="3">
                             <span id="vin"></span>
-                        </td>
+                        </td> 
                         <td height="50" valign="top" style="padding:  8px;" id="">
                             销售员
                         </td>
                         <td height="50" valign="top" style="padding:  8px;">
                             <span id="saleAdvisorId"></span>
                         </td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
             <div style="border-top:1px">
-                <div style="width:33%;display: inline-block;">销售顾问：<span></span></div>
+                <div style="width:33%;display: inline-block;">销售顾问： <span id="saleAdvisorId"></span></div>
                 <div style="width:33%;display: inline-block;">收银：<span></span></div>
                 <div style="width:32%;display: inline-block;">销售经理：<span></span></div>
             </div>
@@ -302,7 +302,7 @@
                 var url = baseUrl + "com.hsapi.sales.svr.inventory.queryCheckEnter.biz.ext?params/id=" + enterId;
                 if (enterId) {
                     $.post(url, function(res) {
-                        if (res.data.length > 0) {
+                        if (res.cssCheckEnter.length > 0) {
                             var temp = res.cssCheckEnter[0];
                             var vin = temp.vin || "";
                             var carNo = temp.carNo || "";

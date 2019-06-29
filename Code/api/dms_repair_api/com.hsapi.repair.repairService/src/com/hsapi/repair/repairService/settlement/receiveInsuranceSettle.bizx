@@ -778,6 +778,17 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link17" name="汽贸客户" displayName="连接线" type="transition">
+      <bendPoint heightToEnd="-52" heightToStart="-52" widthToEnd="-55" widthToStart="68"/>
+      <sourceNode>assign28</sourceNode>
+      <targetNode>assign4</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">guestType</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link8</targetConnections>
     <location x="237" y="205"/>
     <size height="28" width="28"/>
@@ -958,6 +969,7 @@
       <targetNode>transactionbegin0</targetNode>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
+    <targetConnections>link17</targetConnections>
     <location x="360" y="205"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
@@ -1217,6 +1229,7 @@
     <process:input description="020101现金，020102刷卡，020104微信/支付宝" isArray="false" name="payType" primitiveType="String"/>
     <process:input description="" isArray="true" modelType="com.hsapi.repair.data.common.FisRpAccountDType" name="accountTypeList"/>
     <process:input description="收款备注" isArray="false" name="remark" primitiveType="String"/>
+    <process:input description="1汽贸客户（不传则是维修客户）" isArray="false" name="guestType" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

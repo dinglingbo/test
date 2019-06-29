@@ -416,10 +416,10 @@
                         <input id="totalGrossProfit" name="totalGrossProfit" style="width: 100%" class="nui-textbox" vtype="float" enabled="false" />
                     </td>
                     <td class="td_title">
-                        毛利率：
+                        毛利率(%)：
                     </td>
                     <td>
-                        <input id="totalGrossProfitRate" name="totalGrossProfitRate" style="width: 100%" class="nui-textbox" vtype="float" enabled="false" />
+                        <input id="totalGrossProfitRate" name="totalGrossProfitRate" style="width: 100%" class="nui-textbox"  enabled="false" />
                     </td>
                 </tr>
                 <tr>

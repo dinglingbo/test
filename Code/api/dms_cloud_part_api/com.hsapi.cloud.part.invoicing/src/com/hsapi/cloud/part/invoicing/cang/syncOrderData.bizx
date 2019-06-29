@@ -365,6 +365,10 @@
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">criteria/_expr[1]/_op</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainTemp/billTypeId</process:from>
+      <process:to type="query">billTypeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
     <location x="566" y="187"/>
@@ -380,10 +384,9 @@
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>subprocess1</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="OBJEQ">
-          <process:leftOperand type="query">direct</process:leftOperand>
-          <process:rightOperand type="literal">out</process:rightOperand>
-        </process:simpleCondition>
+        <process:complexCondition>
+          <process:code>billTypeId==2||billTypeId==3</process:code>
+        </process:complexCondition>
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link25</targetConnections>
@@ -518,10 +521,10 @@
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjWmsParamsMain" name="mainList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjWmsParamsMain" name="mainTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjWmsParamsDetail" name="detailList"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="billTypeId" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjWmsParamsMain" name="data"/>
-    <process:input description="in;out" isArray="false" name="direct" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

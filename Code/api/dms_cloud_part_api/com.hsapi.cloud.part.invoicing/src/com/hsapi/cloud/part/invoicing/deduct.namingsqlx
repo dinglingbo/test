@@ -64,7 +64,6 @@
 	
 	<!-- 查询出库单特定产品提成   deduct_type = 2 -->
 	<select id="queryOutDeductPart" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-    	
 		SELECT m.outId, m.outCode, m.partId, m.partCode, m.partName, m.fullName,
 			   m.type, m.deductRate, m.partAmt, m.partGross,  
 		       n.deduct_mem_id as deductMemId, n.deduct_mem_name as deductMemName, 

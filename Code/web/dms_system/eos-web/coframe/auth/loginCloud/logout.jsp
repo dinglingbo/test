@@ -24,6 +24,7 @@
      	_url=request.getContextPath()+"/coframe/auth/loginCloud/login.jsp";
      }
      response.sendRedirect(_url);
+     
    %>
 </body>
 </html>

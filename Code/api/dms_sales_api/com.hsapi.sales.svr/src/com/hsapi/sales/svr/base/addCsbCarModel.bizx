@@ -36,7 +36,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
-      <targetNode>invokePojo1</targetNode>
+      <targetNode>invokePojo2</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="165" y="60"/>
@@ -119,30 +119,30 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="getShortPyWithoutSpace" displayName="getShortPyWithoutSpace" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="converterToFirstSpell" displayName="converterToFirstSpell" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo1</sourceNode>
+      <sourceNode>invokePojo2</sourceNode>
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
     <location x="270" y="60"/>
     <size height="28" width="22"/>
-    <nodeLabel>invokePojo1label</nodeLabel>
+    <nodeLabel>invokePojo2label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.repair.common.RepairCommonUtil.getShortPyWithoutSpace</process:partner>
+      <process:partner type="literal">com.hs.common.PY4JUtils.converterToFirstSpell</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="text" type="query" value="java.lang.String" valueType="Java" pattern="reference">data/fullName</process:inputVariable>
+      <process:inputVariable id="0" name="chines" type="query" value="java.lang.String" valueType="Java" pattern="reference">data/fullName</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
       <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java">data/pyCode</process:outputVariable>
     </process:outputVariables>
   </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="209" y="96"/>
-    <figSize height="17" width="144"/>
-    <node>invokePojo1</node>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
+    <location x="220" y="96"/>
+    <figSize height="17" width="123"/>
+    <node>invokePojo2</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

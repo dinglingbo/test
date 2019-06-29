@@ -23,7 +23,9 @@
      if(_url==null){
      	_url=request.getContextPath()+"/coframe/auth/login/login.jsp";
      }
+     
      response.sendRedirect(_url);
+    
    %>
 </body>
 </html>

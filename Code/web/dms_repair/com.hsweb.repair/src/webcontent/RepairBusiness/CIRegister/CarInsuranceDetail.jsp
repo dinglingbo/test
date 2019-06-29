@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>车险开单明细</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.80"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.81"></script>
     <style type="text/css">
    .title {
         width: 90px;
@@ -149,9 +149,10 @@ pageEncoding="UTF-8" session="false"%>
                         <div header="客户名称" field="guestFullName" width="30" headerAlign="center"></div>
                         <div header="客户手机" field="guestMobile" width="60" headerAlign="center"></div>
                         <div header="车牌号" field="carNo" width="40" headerAlign="center"></div>
-                        <div header="联系人名称" field="contactName" width="30" headerAlign="center"></div>
-                        <div header="联系人手机" field="mobile" width="60" headerAlign="center"></div>
-                        <div header="VIN" field="vin" width="70" headerAlign="center"></div>
+                        <div header="联系人名称" field="contactName" name="contactName" width="30" headerAlign="center"></div>
+                        <div header="联系人手机" field="mobile" name="mobile" width="60" headerAlign="center"></div>
+                        <div header="VIN" field="vin" name="vin"  width="70" headerAlign="center"></div>
+                        <!-- <div header="车型" field="carModelName" name="carModelName" visible="false" width="70" headerAlign="center"></div> -->
                     </div>
                 </div>
                 <input id="search_name"

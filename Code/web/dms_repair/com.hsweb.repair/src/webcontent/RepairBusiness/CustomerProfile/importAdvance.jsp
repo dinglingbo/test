@@ -8,7 +8,7 @@
   - Description:
 -->
 <head>
-<title>客户储值卡导入</title>
+<title>预收预付导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
 <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/importAdvance.js?v=1.0.0"></script>

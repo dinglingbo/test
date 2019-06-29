@@ -842,7 +842,7 @@
     <location x="1110" y="306"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess4label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.saveSaleExtend</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="data" type="query" value="com.hsapi.sales.data.css.CssSaleExtend" valueType="DataObject" pattern="reference">saleExtend</process:inputVariable>

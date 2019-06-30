@@ -187,209 +187,209 @@
             </table>
         </div>
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk"
-            style="line-height:32px;margin-top:5px;">
+            style="line-height:30px;margin-top:5px;">
             <tbody>
                 <tr>
-                    <td height="50" valign="top" style="padding:8px" id="guestDesc">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="guestDesc">
                         购车人：
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="faultPhen">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="faultPhen">
                         <span id="guestFullName"></span>
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="solveMethod">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="solveMethod">
                         车价（元）：
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="saleAmt">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="saleAmt">
 
                     </td>
                 </tr>
                 <tr>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         购买车型：
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
 
                         <span id="carModelName"></span>
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         首付金额（元）：
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         <span id="downPaymentAmt"></span>
                     </td>
                 </tr>
                 <tr>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         贷款方式：
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         <span id="saleType"></span>
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         贷款金额（元）：
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         <span id="loanAmt"></span>
                     </td>
                 </tr>
                 <tr>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         利息支付方式：
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         <span id="bankHandlingApportion"></span>
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         月供金额（元）：
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         <span id="monthPayAmt"></span>
                     </td>
                 </tr>
                 <tr>
-                    <td height="50" valign="top" style="padding: 8px;" id="" colspan="2">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="" colspan="2">
                         本明细表所列费用为办理按揭购车所需缴纳的所有费用
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         厂商指导价（元）：
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="sellPrice">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="sellPrice">
 
                     </td>
                 </tr>
             </tbody>
         </table>
-        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk" style="line-height:32px;">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk" style="line-height:30px;">
             <tbody>
                 <tr>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         项目名称
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         金额（元）
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         项目名称
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         金额（元）
                     </td>
                 </tr>
                 <tr>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         按揭手续费：
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         <span id="mortgageAmt"></span>
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         GPS费：
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         <span id="gpsAmt"></span>
                     </td>
                 </tr>
                 <tr>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         合同保证金：
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         <span id="contractGuaranteeAmt"></span>
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         上牌费：
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         <span id="boardLotAmt"></span>
                     </td>
                 </tr>
                 <tr>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         续保押金：
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         <span id="agentDeposit"></span>
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         贷款利息：
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         <span id="bankHandlingAmt"></span>
                     </td>
                 </tr>
                 <tr>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         保险费预算：
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         <span id="insuranceBudgetAmt"></span>
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         精品加装费：
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         <span id="decrAmt"></span>
                     </td>
                 </tr>
                 <tr>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         购置税预算：
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         <span id="purchaseBudgetAmt"></span>
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         其它费用：
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         <span id="otherAmt"></span>
                     </td>
                 </tr>
                 <tr>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         家访费：
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         <span id="familyAmt"></span>
                     </td>
 
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         月供保证金：
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         <span id="riskAmt"></span>
                     </td>
                 </tr>
                 <tr>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         提车合计
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="" colspan="3">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="" colspan="3">
                         <span id="getCarTotal"
                             style="width:95px;display: inline-block;"></span>&nbsp;&nbsp;大写（人民币）：<span
                             id="money"></span>
                     </td>
                 </tr>
                 <tr>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         购车预算合计
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="" colspan="3">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="" colspan="3">
                         <span id="buyBudgetTotal"
                             style="width:95px;display: inline-block;"></span>&nbsp;&nbsp;大写（人民币）：<span
                             id="money1"></span>
                     </td>
                 </tr>
                 <tr>
-                    <td height="50" valign="top" style="padding: 8px;" id="">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="">
                         备注：
                     </td>
-                    <td height="50" valign="top" style="padding: 8px;" id="remark" colspan="3">
+                    <td height="42" valign="top" style="padding: 8px;height:42px;" id="remark" colspan="3">
                     </td>
                 </tr>
 
                 <tr style=height:100px;>
-                    <td height="100" valign="top" style="padding: 8px;" id="" colspan="4">
+                    <td height="100" valign="top" style="padding: 8px;height:42px;" id="" colspan="4">
                         <div>
                             <div style="float:left;width:200px;">销售顾问：<span id="saleAdvisor"></span></div>
                             <div style="float:right;width:200px;">客户（签字）：<br>

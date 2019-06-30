@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>车险开单明细</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.81"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.83"></script>
     <style type="text/css">
    .title {
         width: 90px;
@@ -142,17 +142,17 @@ pageEncoding="UTF-8" session="false"%>
         <tr>            
             <td class="btn">
                 <div class="mini-autocomplete" emptyText="未匹配到数据...(输入的内容长度要求大于或是等于3)"
-                    style="width:350px;height: 50px !important;"  popupWidth="600" textField="text" valueField="id" 
+                    style="width:350px;height: 50px !important;"  popupWidth="750" textField="text" valueField="id" 
                     id="search_key" url="" value="carNo"   searchField="key" 
                     dataField="list" placeholder="请输入...">     
-                    <div property="columns">
-                        <div header="客户名称" field="guestFullName" width="30" headerAlign="center"></div>
-                        <div header="客户手机" field="guestMobile" width="60" headerAlign="center"></div>
-                        <div header="车牌号" field="carNo" width="40" headerAlign="center"></div>
-                        <div header="联系人名称" field="contactName" name="contactName" width="30" headerAlign="center"></div>
+                    <div property="columns"> 
+                        <div header="客户名称" field="guestFullName" width="40" headerAlign="center"></div>
+                        <div header="客户手机" field="guestMobile" width="55" headerAlign="center"></div>
+                        <div header="车牌号" field="carNo" width="45" headerAlign="center"></div>
+                        <div header="联系人名称" field="contactName" name="contactName" width="45" headerAlign="center"></div>
                         <div header="联系人手机" field="mobile" name="mobile" width="60" headerAlign="center"></div>
-                        <div header="VIN" field="vin" name="vin"  width="70" headerAlign="center"></div>
-                        <!-- <div header="车型" field="carModelName" name="carModelName" visible="false" width="70" headerAlign="center"></div> -->
+                        <div header="VIN" field="vin" name="vin"  width="85" headerAlign="center"></div>
+                        <div header="车型" field="carModel" name="carModel" visible="true" width="90" headerAlign="center"></div>
                     </div>
                 </div>
                 <input id="search_name"
@@ -165,7 +165,7 @@ pageEncoding="UTF-8" session="false"%>
                 showClose="false"
                 allowInput="true"/>
                  
-                <div id="gType" class="nui-radiobuttonlist" repeatItems="1" repeatLayout="table" repeatDirection="vertical" value="1"
+                <div id="gType" class="nui-radiobuttonlist" repeatItems="1" repeatLayout="table" repeatDirection="vertical" value="0"
                 textField="name" valueField="id" data="guestArr" style="display: inline-table;top: 8px;" onvaluechanged="changedGuestType()">
                 </div>  
                 <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn">新增客户</a>

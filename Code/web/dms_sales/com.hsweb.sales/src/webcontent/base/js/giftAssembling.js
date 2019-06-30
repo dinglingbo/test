@@ -6,7 +6,7 @@ var updateUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.updateCssGiftOutM
 var saveItemUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.addCssGiftOutItem.biz.ext";
 var mGridUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.searchCssGiftOutMain.biz.ext";
 var mItemUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.searchCssGiftOutItem.biz.ext";
-var jpDetailGridUrl = apiPath + saleApi + "/sales.search.searchSaleGiftApply.biz.ext";
+var jpDetailGridUrl = apiPath + saleApi + "/com.hsapi.sales.svr.search.searchSaleGiftApply.biz.ext";
 var updateMainUrl = apiPath + saleApi + "/com.hsapi.sales.svr.base.updateCssGiftOutMainAmt.biz.ext";//更新主表的金额
 var repairOutGridUrl =  partUrl + "com.hsapi.part.invoice.partInterface.queryEnbleRtnPart.biz.ext";
 var sellTypeArr = [{ id: 1, text: "库存车" }, { id: 2, text: "销售车" }];
@@ -528,7 +528,7 @@ function selectGift() {
                 returnSign: 0,
                 token: token
             });
-            
+            updateMainAmt(nui.get("id").value);
         }
 
     });

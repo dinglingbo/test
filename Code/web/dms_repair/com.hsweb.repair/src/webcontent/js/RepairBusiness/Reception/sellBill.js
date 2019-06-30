@@ -408,6 +408,7 @@ function doSetMainInfo(car){
     var maintain = billForm.getData();
     maintain.carId = car.id;
     maintain.carNo = car.carNo;
+    maintain.addr = car.addr||"";
     maintain.carVin = car.vin;
     maintain.engineNo = car.engineNo;
     maintain.contactorId = car.contactorId;

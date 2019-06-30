@@ -300,6 +300,10 @@ $(document).ready(function(v)
         });
     });
     
+    if(currIsCommission ==1){
+    	nui.get('chooseMemBtn').setVisible(true);
+    }
+    
 });
 //库存数量↑，库存数量↓；入库日期↑，入库日期↓；成本↑，成本↓
 var sortTypeList = [
@@ -2760,4 +2764,39 @@ function getDueAmt(params){
         }
     });
 	return dueAmt;
+}
+
+function chooseMember(){
+	  var row = leftGrid.getSelected();
+	    if(row){
+	    	if(row.auditSign ==1){
+	    		showMsg("单据已审核,不能修改");
+	    		return;
+	    	}
+	        if(row.id) {
+	            nui.open({
+	                // targetWindow: window,
+	                url: webBaseUrl+"com.hsweb.cloud.part.basic.selectMember.flow?token="+token,
+	                title: "选择提成成员", 
+	                width: 880, height: 650,
+	                showHeader:true,
+	                allowDrag:true,
+	                allowResize:true,
+	                onload: function ()
+	                {
+	                    var iframe = this.getIFrameEl();
+	                    iframe.contentWindow.setData(row.id);
+	                },
+	                ondestroy: function (action)
+	                {
+
+	                }
+	            });
+	        }else{
+	            showMsg("请先选择订单!","W");
+	            return;
+	        }
+	    }else{
+	        return;
+	    }
 }

@@ -76,7 +76,7 @@
 <div style="text-align:center;">
     <span id="carHealthEl" >
         <a href="javascript:chooseItem()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择维修项目</a>
-        <a href="javascript:chooseBlank()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择钣喷项目</a>
+        <a href="javascript:chooseBlank()" class="chooseClass" id="chooseBlank" ><span class="fa fa-plus"></span>&nbsp;选择钣喷项目</a>
     </span>
     <!-- <span id="carHealthEl" >
         <a href="javascript:updateItem()" class="chooseClass" >修改</a>

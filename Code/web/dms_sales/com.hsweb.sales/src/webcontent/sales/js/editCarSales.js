@@ -84,7 +84,8 @@ $(document).ready(function(v) {
         var field = e.field;
         if (field == "receType") {
             if (e.value == 0 || e.value == 1) {
-                e.cellHtml = costList.find(costList => costList.id == e.value).name;
+               // e.cellHtml = costList.find((costList > costList.id == e.value) || (costList == (costList.id == e.value))).name;
+            	e.cellHtml = costList.find(costList => costList.id == e.value).name;
             }
         }
     });
@@ -1038,7 +1039,12 @@ function checkCost(grid, value) { //费用信息  审核反审
         async: false,
         success: function(text) {
             if (text.errCode == "S") {
-                showMsg(text.errMsg, "S");
+            	if(value){
+            		showMsg(text.errMsg, "S");
+            	}else{
+            		showMsg("反审成功", "S");
+            	}
+                
             } else {
                 showMsg(text.errMsg, "E");
             }

@@ -12,8 +12,8 @@
 <title>计次卡流水汇总</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/cardTimesRunningWaterSummary.js?v=1.1.6"></script>
-        <link href="http://127.0.0.1:8080/default/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
-    <script src="http://127.0.0.1:8080/default/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
+<link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
         <style>
             .parent{display:flex;}
         .column{flex:1;border-radius:10px;background-color:#B0D6F9;margin-top:20px;padding:10px;}

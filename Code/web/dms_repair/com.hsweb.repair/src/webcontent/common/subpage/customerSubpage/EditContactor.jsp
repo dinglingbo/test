@@ -115,8 +115,8 @@
                         <label>微信服务号：</label>
                     </td>
                     <td nowrap="nowrap">
-                       <input class="nui-textbox" name="wechatServiceId" width="80%" id="wechatServiceId" />
-                        <a class="optbtn" href="javascript:void()" onclick="wechatBin()">绑定</a>
+                       <input class="nui-textbox" name="wechatServiceId" width="80%" id="wechatServiceId" vtype="int"/>
+                        <a class="optbtn" href="javascript:void()" onclick="wechatBin()" >绑定</a>
                     </td>
                     <td class="form_label" colspan="1">
                        <label>微信ID：</label>

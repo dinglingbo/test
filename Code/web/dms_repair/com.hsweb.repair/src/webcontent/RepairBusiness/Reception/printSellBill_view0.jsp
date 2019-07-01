@@ -412,14 +412,17 @@
                 	<td rowspan="2" style="width: 133px;">
                      	<img alt="" src="" id="showImg" height="60px" style="display:none">
                     </td>
-                    <td style="width:55%">
+                    <td >
                         <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><span id="comp"></span></div>
+                        <div style="font-size: 12px; padding-top: 5px;padding-left: 10px;">   地址：<span id="guestAddr"></span></div>
+                        <div style="font-size: 12px; padding-top: 5px;padding-left: 10px;"> 电话：<span id="phone"></span></div>
                     </td>
                     <td rowspan="2" style="">
                         <div style="font-size: 20px; font-family: 华文中宋;padding-top: 5px;"><b><span id="spstorename"></span></b></div>
                         <div style="padding-top: 2px; font-size: 16px;font-family: Arial;">
                           №:<span id="serviceCode"></span>  
                         </div>
+                       	打印时间：<span id="date"></span>
                     </td>
                 </tr>
                 <tr>
@@ -430,22 +433,7 @@
                 </tr>
             </tbody>
         </table>
-         <hr />
-          <table width="100%" border="0"  cellspacing="0" cellpadding="0">
-             <tr>
-                <td style="font-size:8px;">地址：<span id="guestAddr"></span></td>
-<!--                 <td  id="openBank" style="width: 300px;">开户银行：</td> -->
-                <td  style="width: 190px;font-size:8px;">打印时间：<span id="date"></span></td>
-            </tr> 
-            <tr>
-                <td style="font-size:8px;">电话：<span id="phone"></span></td>
-<!--                 <td  id="bankNo" >银行账号：</td> -->
-<!-- 	             	<td style="font-size:8px;" id="enterDate" >进厂时间：</td> -->
-            </tr>
-        </table>
-        <hr />
 <div class="content" >
-<!--     <hr /> -->
 	<div style="height :15px;"></div>
     <table width="100%" border="0" id="ybk" cellpadding="0" cellspacing="0" class="table theader">
         <tbody>
@@ -455,22 +443,21 @@
                 <td width="25%" class="left">开单日期：<span id="recordDate"></span></td>
             </tr>
             <tr>   
-                <td colspan="3" class="left">收货地址：<span id="shippingAdd"></td>
-              
-<!--                 <td class="left">单号：<span id="serviceCode"></td> -->
+                <td colspan="3" class="left">收货地址：<span id="shippingAdd"></td>            
             </tr>
         </tbody>
     </table>
-    <div style="padding: 8px 0 5px 0">
+    <div style="padding: 0px 0 5px 0">
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table tlist mt10" style="table-layout: fixed;">
             <tr>
-                <td width="30" height="30" align="center" bgcolor="#f5f5f5">序号</td>
+                <td width="30px" height="30" align="center" bgcolor="#f5f5f5">序号</td>
+                <td width="40%" align="center" bgcolor="#f5f5f5">配件名称</td>           
                 <td align="center" bgcolor="#f5f5f5">配件编号</td>
-                <td width="50%" align="center" bgcolor="#f5f5f5">配件名称</td>
-                <td width="40" align="center" bgcolor="#f5f5f5">单位</td>
-                <td width="40" align="center" bgcolor="#f5f5f5">数量</td>
-                <td width="60" align="center" bgcolor="#f5f5f5">单价</td>
-                <td width="60" align="center" bgcolor="#f5f5f5">金额</td>   
+                <td align="center" bgcolor="#f5f5f5">OEM码</td>
+                <td width="40px" align="center" bgcolor="#f5f5f5">单位</td>
+                <td width="40px" align="center" bgcolor="#f5f5f5">数量</td>
+                <td width="60px" align="center" bgcolor="#f5f5f5">单价</td>
+                <td width="60px" align="center" bgcolor="#f5f5f5">金额</td>   
             </tr>
             <tbody id="tbodyId">
 		   </tbody>
@@ -488,6 +475,9 @@
                 <td height="36" colspan="2" style="border:0px;font-family: Arial; font-size:16px;font-weight: bold;">
                     <div style="float: right; color: #000; margin-right: 12px; line-height: 36px;">
                         <span style="margin-right: 15px;">
+                            <font style="font-size: 13px; font-weight: bold;">                                		             
+               					 &nbsp;&nbsp;&nbsp;数量：<span id="cash2"></span>
+                            </font>
                             <font style="font-size: 13px; font-weight: bold;">                                		             
                					 &nbsp;&nbsp;&nbsp;金额：<span id="cash1"></span>元
                             </font>
@@ -507,13 +497,13 @@
                     <td height="40" colspan="3" class="left">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                                <td width="70px">服务顾问：</td>
+                                <td width="90px">服务顾问：</td>
                                 <td width="200px" align="left"><div  id="mtAdvisor"></div></td>
-                                <td width="55px">仓库员：</td>
+                                <td width="75px">仓库员：</td>
                                 <td width="200px" align="left"><div ></div></td>
-                                <td width="70px">发(送)货人：</td>
+                                <td width="100px">发(送)货人：</td>
                                 <td width="200px" align="left"><div ></div></td>
-                                <td width="65px">客户签收：</td>
+                                <td width="85px">客户签收：</td>
                                 <td width="200px" align="left"><div></div></td>
                             </tr>
                         </table>
@@ -561,7 +551,8 @@ function SetData(params){
           $('#showImg').show();
           $("#showImg").attr("src",imgUrl);
        }
-       var sumAmt = 0;
+       var sumAmt = 0;//循环金额
+       var number = 0;//循环数量
        var date = new Date();
        var data = [];
        document.getElementById("comp").innerHTML = currRepairSettorderPrintShow||currOrgName || "";
@@ -584,18 +575,21 @@ function SetData(params){
         	     tBody.empty();
             	for(var i = 0 , l = data.length ; i < l ; i++){
             	  sumAmt = parseFloat(sumAmt) + parseFloat(data[i].amt);
+            	  number = parseFloat(number) + parseFloat(data[i].qty);
 		           var tr = $("<tr></tr>");
 	               var tds =  '<td align="center">[id]</td>' +
-				    		   "<td>[partCode]</td>"+
 				    			"<td align='center'>[partName]</td>"+ 
+				    		   "<td>[partCode]</td>"+
+				    		   "<td>[oemCode]</td>"+				    		 
 				    			"<td align='center'>[unit]</td>"+
 				    			"<td align='center'>[qty]</td>"+
 				    			"<td align='center'>[nuitPrice]</td>"+
 				    			"<td align='center'>[amt]</td>";
 				  tr.append(
 		    				tds.replace("[id]",i +1)
-				    			.replace("[partCode]",data[i].partCode || "")
 				    			.replace("[partName]",data[i].partName || "")
+				    			.replace("[partCode]",data[i].partCode || "")
+				    			.replace("[oemCode]",data[i].oemCode || "")
 				    			.replace("[unit]",data[i].unit || "")
 				    			.replace("[qty]",data[i].qty || "")
 				    			.replace("[nuitPrice]",data[i].unitPrice || "")
@@ -604,6 +598,7 @@ function SetData(params){
            }
       }
       $("#cash1").html(sumAmt);
+       $("#cash2").html(number);
       $("#money").html(transform(sumAmt+""));  
    });
    $("#date").html(format(date, "yyyy-MM-dd HH:mm"));

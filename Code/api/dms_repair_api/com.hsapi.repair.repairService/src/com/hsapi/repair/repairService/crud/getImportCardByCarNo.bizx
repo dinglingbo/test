@@ -952,20 +952,12 @@
       <process:to type="query">cond/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">cond/_expr[2]/orgid</process:to>
+      <process:from type="query" pattern="reference">carList/guestId</process:from>
+      <process:to type="query">cond/_expr[2]/id</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[2]/_op</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">carList/guestId</process:from>
-      <process:to type="query">cond/_expr[3]/id</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">cond/_expr[3]/_op</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign15label" name="label" nodeType="label">
@@ -1032,20 +1024,12 @@
       <process:to type="query">cond/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">cond/_expr[2]/orgid</process:to>
+      <process:from type="query" pattern="reference">temp/carNo</process:from>
+      <process:to type="query">cond/_expr[2]/carNo</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[2]/_op</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">temp/carNo</process:from>
-      <process:to type="query">cond/_expr[3]/carNo</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">cond/_expr[3]/_op</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>

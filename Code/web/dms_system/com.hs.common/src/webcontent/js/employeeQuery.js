@@ -112,6 +112,9 @@ function onDrawCell(e)  {
                 e.cellHtml = sexSignHash[e.value];
             }
             break;
+        case "tel":
+        	e.cellHtml = changedTel(e);
+            break;
         default:
             break;
     }
@@ -529,4 +532,23 @@ function stoporstartIM() {
             console.log(jqXHR.responseText);
         }
     });
+}
+
+
+
+function changedTel(e) {
+    var value = e.value;
+    var res = {};
+    value = "" + value;
+    if(e.value){
+        if(e.record.openId){
+            res =  '<span id="wechatTag" class="fa fa-wechat fa-lg"></span>&nbsp;'+value;
+                /*e.cellHtml = "<span id='wechatTag' class='fa fa-wechat fa-lg'></span>"+value;*/
+        }else{
+            res =  '<span id="wechatTag1" class="fa fa-wechat fa-lg"></span>&nbsp;'+value;
+        }
+    }else{
+        res="";
+    }
+    return res;
 }

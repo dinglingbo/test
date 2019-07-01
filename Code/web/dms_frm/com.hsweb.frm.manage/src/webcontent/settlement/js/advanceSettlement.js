@@ -1690,7 +1690,7 @@ function setInitExportData(detail){
         }
     }
 
-    method5('tableExcel',"应收账款管理",'tableExportA');
+    method5('tableExcel',"预收收账款管理",'tableExportA');
 }
 
 function openOrderDetail(){

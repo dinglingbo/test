@@ -607,6 +607,9 @@
     		<isNotEmpty prepend="and" property="orgid">  
                 (a.orgid = #orgid#)
             </isNotEmpty>
+    		<isNotEmpty prepend="and" property="tenantId">  
+                (a.tenant_id = #tenantId#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="orgids">  
                 (a.orgid = #orgids# or a.orgid = 0)
             </isNotEmpty>

@@ -401,14 +401,14 @@
 				</isEqual>
 				
 				<isNotEqual prepend = "" property = "showStock" compareValue="1">
-					and (a.orgid = #orgid# or a.orgid = 0) 
+					and (a.tenant_id = #tenantId# or a.orgid = 0) 
 				</isNotEqual>
 				
 			</isNotNull>
 			
 			<isNull prepend = "" property = "showStock">
     		
-				and (a.orgid = #orgid# or a.orgid = 0) 
+				and (a.tenant_id = #tenantId# or a.orgid = 0) 
 				
 			</isNull>
 			

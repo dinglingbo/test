@@ -7,17 +7,19 @@ var repairUrl = apiPath + repairApi + "/";
 var saveUrl = baseUrl + "com.hsapi.system.tenant.employee.saveEmployee.biz.ext";//"com.hsapi.system.employee.employeeMgr.employeeSave.biz.ext";
 var fromUrl = baseUrl + "com.hsapi.system.tenant.employee.queryEmployee.biz.ext";
 var sex;
-var isShowOwnBill = null;
+var isShowOwnBill = null; 
 var isAllowRemind = null;
 var isservicelist = [{id: 0, name: '否'}, {id: 1, name: '是'}];
 var basicInfoForm = null;
-var form1=null;
+var form1 = null;
+var wechatCodeUrl = webPath + contextPath + '/common/images/wechatCode.jpg';
 var rmp = {};
 $(document).ready(function(v) {
 	isShowOwnBill=nui.get("isShowOwnBill");
 	isAllowRemind=nui.get("isAllowRemind");
-	isShowOwnBill.setData(isservicelist);
-
+    isShowOwnBill.setData(isservicelist);
+    
+    document.getElementById("wechatCode").src = wechatCodeUrl;
 	isAllowRemind.setData(isservicelist);
 
     basicInfoForm = new nui.Form('#basicInfoForm');
@@ -142,4 +144,11 @@ function updatePassWord(){
 		width: "370px",
 		height: "200px"
 	});
+}
+
+function showCode() {
+    $("#cover").show();
+}
+function hideCode() {
+    $("#cover").hide();
 }

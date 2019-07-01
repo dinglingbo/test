@@ -167,7 +167,7 @@
                                 <td rowspan="2" style="width: 133px;text-align: center">
                                     <img alt="" src="http://qxy60.7xdr.com/Fv1sKmBhuP9apHjTtFsNG5fKTlV7" id="showImg" height="60px">
                                 </td>
-                                <td style="width:55%">
+                                <td style="width:49%">
                                     <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><span id="comp"></span></div>
                                     <div style="font-size: 14px;padding-left: 10px; "><span id="slogan1">您身边的车管家</span></div>
                                     <div style="font-size: 14px;padding-left: 10px; "><span id="slogan1">一次选择 终生服务</span></div>
@@ -233,7 +233,7 @@
                                 <span id="vin"></span>
                             </td>
                             <td height="50" valign="top" style="padding:  8px;" id="">
-                                <span id=""></span>
+                                <span id="remark"></span>
                             </td>
                         </tr>
 
@@ -250,7 +250,7 @@
                         <span id="saleAmt"></span>元（大写）<span id="saleAmtB"></span></p>
                     <p>&emsp;&emsp;预付款￥：<span id="advanceChargeAmt"></span>元（大写）<span id="advanceChargeAmtB"></span></p>
                     <p id="saleType">&emsp;&emsp;银行按揭：审核贷款通过后，买方按购车计算表提车首付款金额（￥
-                        <span style="text-decoration: underline" id="downPaymentAmt"></span>元）支付给卖方，待银行将贷款金额（￥
+                        <span style="text-decoration: underline" id="getCarTotal"></span>元）支付给卖方，待银行将贷款金额（￥
                         <span style="text-decoration: underline" id="loanAmt"></span>元）打入卖方账户并且到账后，买方办理提车。</p>
 
                 </div>
@@ -338,7 +338,7 @@
                     document.getElementById("currRepairSettorderPrintShow").innerHTML = currRepairSettorderPrintShow;
                     document.getElementById("currCompTel").innerHTML = currCompTel;
                     document.getElementById("currCompAddress").innerHTML = currCompAddress;
-                    var printName = currRepairSettorderPrintShow||currOrgName
+                    var printName = currRepairSettorderPrintShow||currOrgName;
                     document.getElementById("mcomp").innerHTML = document.getElementById("mcomp").innerHTML + printName;
                     document.getElementById("address").innerHTML = currCompAddress;
                     document.getElementById("currBankName").innerHTML = currBankName;
@@ -358,11 +358,12 @@
                             var carModelName = temp.carModelName || "";
                             var frameColorId = temp.frameColorId || "";
                             var interialColorId = temp.interialColorId || "";
+                            var remark = temp.remark || "";
                             enterId = temp.enterId || 0;
                             document.getElementById("contractNo").innerHTML = contractNo;
                             document.getElementById("guestFullName").innerHTML = guestFullName;
                             if (submitPlanDate) {
-                                document.getElementById("submitPlanDate").innerHTML = format(submitPlanDate, 'yyyy-MM-dd HH:mm:ss');
+                                document.getElementById("submitPlanDate").innerHTML = format(submitPlanDate, 'yyyy-MM-dd ');
                             }
                             document.getElementById("contactorTel").innerHTML = contactorTel;
                             document.getElementById("idCard").innerHTML = idCard;
@@ -371,6 +372,7 @@
                             document.getElementById("frameColorId").innerHTML = nui.get("frameColorId1").text;
                             document.getElementById("interialColorId").innerHTML = nui.get("interialColorId1").text;
                             document.getElementById("carModelName").innerHTML = carModelName;
+                            document.getElementById("remark").innerHTML = remark;
                         }
                     });
                     var url = baseUrl + 'com.hsapi.sales.svr.search.searchSaleCalc.biz.ext?params/billType=2&params/serviceId=' + serviceId;
@@ -385,7 +387,7 @@
                             if (saleType && saleType == "1558580770894") {
                                 document.getElementById("saleType").style.display = "none";
                             } else {
-                                document.getElementById("downPaymentAmt").innerHTML = temp.downPaymentAmt || 0;
+                                document.getElementById("getCarTotal").innerHTML = temp.getCarTotal || 0;
                                 document.getElementById("loanAmt").innerHTML = temp.loanAmt || 0;
                             }
                             if (saleType == "1558580770894") {

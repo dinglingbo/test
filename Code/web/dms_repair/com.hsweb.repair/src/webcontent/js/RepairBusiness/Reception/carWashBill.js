@@ -444,6 +444,8 @@ $(document).ready(function ()
 	}
 	nui.get("enterDate").setValue(now);
     doSearchItem();
+    //钣喷项目隐藏
+	document.getElementById("chooseBlank").style.display = "none"; 
 });
 
 function setGuest(item){
@@ -895,6 +897,8 @@ function setInitData(params){
             nui.unmask(document.body);
         });
     }
+    //钣喷项目隐藏
+	document.getElementById("chooseBlank").style.display = "none";
 }
 function add(){
 	showcF = 1;
@@ -961,6 +965,8 @@ function add(){
 	advancedCardTimesWin.hide();
 	advancedMemCardWin.hide();
 	advancedItemTimesWin.hide();
+	 //钣喷项目隐藏
+	document.getElementById("chooseBlank").style.display = "none";
 }
 function save(){
 	itemF = "S";

@@ -65,7 +65,7 @@
 					         style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;">
 					      <span>本地项目类型</span>
 				      </div>
-				         <div style="width: 100%; height: 40%;">
+				         <div style="width: 100%; height: 55%;">
 							<ul id="tree1" class="nui-tree" url="" style="width: 100%;"
 								dataField="data"
 								resultAsTree="false"
@@ -78,7 +78,7 @@
 						 style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;">
 						<span>标准项目类型</span>
 					</div>
-					<div style="width: 100%; height: 50%;">
+					<div style="width: 100%; height: 35%;">
 					<!--	<ul id="tree" class="nui-tree" url="" style="width: 100%;height:100%;"
 							dataField="result" showTreeIcon="true" textField="name" 
 							idField="code" >

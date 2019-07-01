@@ -223,7 +223,8 @@ function setGuest(item) {
             enterKilometers:"",
             guestFullName:guestName,
             recordDate: nui.get("recordDate").value,
-            mtAdvisorId:""
+            mtAdvisorId: "",
+            carModel:carModel
         };
         basicInfoForm.setData(sdata);
         nui.get('mtAdvisorId').setValue(currEmpId);
@@ -272,7 +273,8 @@ function setGuest(item) {
             enterKilometers:"0",
             guestFullName:guestName,
             recordDate: nui.get("recordDate").value,
-            mtAdvisorId:""
+            mtAdvisorId: "",
+            carModel:carModel
         };
         basicInfoForm.setData(sdata);
         nui.get('mtAdvisorId').setValue(currEmpId);

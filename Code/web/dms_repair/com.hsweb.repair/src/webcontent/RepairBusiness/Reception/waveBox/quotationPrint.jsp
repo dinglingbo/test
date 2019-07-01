@@ -146,6 +146,7 @@
     </div>
      
         <div style="margin: 0 10px;" class="printny">
+           <input class="nui-combobox" name="carBrandId1" id="carBrandId1" valueField="id" textField="name" width="100%" />
         <div class="company-info">
             <table  width="100%" border="0" cellspacing="0" cellpadding="0">
 	            <tbody>
@@ -194,8 +195,8 @@
                     <td id="guestFullName" width="25%"></td>
                     <td width="14%">&nbsp;变速箱型号</td>
                     <td id="boxModel"></td>
-                    <td width="14%">&nbsp;车型</td>
-                    <td id="carModel"></td>
+                    <td width="14%">&nbsp;波箱厂牌</td>
+                    <td id="carBrandId"></td>
                 </tr>
                 <tr>
                     <td>&nbsp;联系人</td>
@@ -371,6 +372,11 @@
        		 }
         	
 			 function SetData(serviceId,type,sourceServiceId){
+			     $.ajaxSetup({
+                    async: false
+                });
+			    initCarBrand("carBrandId1",function(){
+	            });
 			 	document.getElementById("comp").innerHTML = currRepairSettorderPrintShow
 			    var imgUrl = currCompLogoPath || "";
                 if(imgUrl && imgUrl != ""){
@@ -417,10 +423,14 @@
 			 	 	   		 var serviceCode = list.serviceCode || "";
 			 	 	   		 var drawOutReport = list.drawOutReport || "";
 			 	 	   		 var carModel = list.carModel || "";
+			 	 	   		 var carBrandId = list.boxBrandId || "";
 			 	 	   		 document.getElementById("guestFullName").innerHTML = "&nbsp;"+guestFullName;
 			 	 	   		 document.getElementById("carNo").innerHTML = "&nbsp;"+carNo;
 			 	 	   		 document.getElementById("boxModel").innerHTML = "&nbsp;"+boxModel;
-			 	 	   		 document.getElementById("carModel").innerHTML = "&nbsp;"+carModel;
+			 	 	   		 
+			 	 	   		 nui.get("carBrandId1").setValue(carBrandId);
+			 	 	   		 var carBrandName = nui.get("carBrandId1").text;
+			 	 	   		 document.getElementById("carBrandId").innerHTML = "&nbsp;"+carBrandName;
 			 	 	   		 document.getElementById("name").innerHTML = "&nbsp;"+name;
 			 	 	   		 document.getElementById("carVin").innerHTML = "&nbsp;"+carVin;
 			 	 	   		 document.getElementById("guestAddr").innerHTML = "&nbsp;"+guestAddr;

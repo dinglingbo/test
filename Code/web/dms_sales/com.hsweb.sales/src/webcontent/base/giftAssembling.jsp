@@ -13,7 +13,7 @@
         <title>精品加装</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <%@include file="/common/commonRepair.jsp"%>
-        <script src="<%=webPath + contextPath%>/sales/base/js/giftAssembling.js?v=1.3.9"></script>
+        <script src="<%=webPath + contextPath%>/sales/base/js/giftAssembling.js?v=1.4.0"></script>
     </head>
     <style type="text/css">
         body {
@@ -71,7 +71,7 @@
                         <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="updateMainStatus(1)" id="deletBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
                         <a class="nui-button" iconCls="" plain="true" onclick="updateMainStatus(0)" id="deletBtn"><span class="fa fa-close fa-lg"></span>&nbsp;反审</a>
-                        <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+                        <!-- <a class="nui-button" iconCls="" plain="true" onclick="" id="deletBtn" ><span class="fa fa-print fa-lg"></span>&nbsp;打印</a> -->
 
                     </td>
                 </tr>

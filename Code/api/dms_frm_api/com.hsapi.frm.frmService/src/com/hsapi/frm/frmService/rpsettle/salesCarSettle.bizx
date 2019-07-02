@@ -697,10 +697,6 @@
     <size height="28" width="28"/>
     <nodeLabel>assign23label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">fisRpAdvanceTemp/balaAmt</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="expression" pattern="reference">new Date()</process:from>
       <process:to type="query">fisRpAdvanceTemp/modifyDate</process:to>
     </process:copy>
@@ -709,19 +705,11 @@
       <process:to type="query">fisRpAdvanceTemp/modifier</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">fisRpAdvanceTemp/deductionAmt</process:from>
-      <process:to type="query">deductionAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">charOffAmt+deductionAmt</process:from>
+      <process:from type="query" pattern="reference">fisRpAdvanceTemp/balaAmt</process:from>
       <process:to type="query">fisRpAdvanceTemp/deductionAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">fisRpAdvanceTemp/balaAmt</process:from>
-      <process:to type="query">balaAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">balaAmt-charOffAmt</process:from>
+      <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">fisRpAdvanceTemp/balaAmt</process:to>
     </process:copy>
   </nodes>

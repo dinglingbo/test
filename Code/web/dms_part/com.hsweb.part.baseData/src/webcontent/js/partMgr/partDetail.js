@@ -164,6 +164,9 @@ var saveUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.savePart.biz.ext";
 function onOk()
 {
     var data = basicInfoForm.getData();
+    if(!data.name){    	
+    	data.name = nui.get("partNameId").getText();
+    }
     for(var key in requiredField)
     {
     	if(!data[key] || data[key].toString().trim().length==0)
@@ -180,9 +183,7 @@ function onOk()
         data.carTypeIdT = partName.cartypet||"";
     }
   //  data.abcType = "";
-    if(!data.name){    	
-    	data.name = nui.get("partNameId").getText();
-    }
+   
     data.fullName = data.name;    
     data.fullName = data.fullName + " " + partBrandIdHash[data.partBrandId].name;
     if(data.spec)

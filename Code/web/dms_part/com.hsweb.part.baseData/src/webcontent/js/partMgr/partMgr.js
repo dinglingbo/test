@@ -26,9 +26,7 @@ $(document).ready(function() {
     partLoalGrid.setUrl(partListUrl);
     mainTabs = nui.get("mainTabs");
     partLoalGrid.load({
-        params:{
-        	orgid:currOrgId
-        },
+        params:{},
         token:token
     }); 
     partGrid.on("beforeload",function(e){
@@ -316,7 +314,6 @@ function doSearch(params)
             params:params
         });  
     }else if(tab.name == "local"){
-        params.orgid = currOrgId;
         partLoalGrid.load({
             params:params,
             token:token

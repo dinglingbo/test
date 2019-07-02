@@ -59,4 +59,18 @@
 			</isNotNull>
 	</update>
 	
+	<!--更新盘点单的实盘数量-->
+	<update id="updateStockCheckQty" parameterClass="java.util.HashMap" >
+		update dms_cloud_part.pj_stock_check_detail a
+		inner join dms_cloud_part.pj_wms_params_detail b
+		on a.id = b.erp_detail_id and a.main_id = b.erp_main_id
+		inner join wb_common.com_attribute c
+		on b.part_id = c.cang_part_id and a.part_id = c.id
+		set a.true_qty = b.qty, a.true_amt = b.qty * a.true_price, 
+		    a.exhibit_qty = abs(a.true_qty - b.qty), exhibit_amt = abs(a.true_qty - b.qty) * a.true_price,
+		    a.exhibit_price = a.true_price, a.dc = case when a.true_qty - b.qty = 0 then 0 
+		    when a.true_qty - b.qty > 0 then -1 else 1 end
+		where a.main_id = #erpId# and b.main_id = #mainId#
+	</update>
+	
 </sqlMap>

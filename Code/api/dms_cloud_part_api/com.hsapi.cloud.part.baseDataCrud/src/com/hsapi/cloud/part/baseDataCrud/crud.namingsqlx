@@ -589,6 +589,9 @@
             <isNotEmpty prepend="and" property="partCodeList">
             	(a.code in ($partCodeList$))
             </isNotEmpty>
+             <isNotEmpty prepend="and" property="partIdList">
+            	(a.id in ($partIdList$))
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="name">  
                 (a.name like '%$name$%' or a.full_name like '%$name$%')
             </isNotEmpty>
@@ -820,4 +823,38 @@
 		DELETE  FROM pj_sell_price_part WHERE strategy_id = #strategyId#
            
 	</delete>
+	
+	<select id="queryPjDeductPart" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    <!-- 物流公司 -->
+   		 SELECT
+			id AS id,
+			orgid AS orgid,
+			part_id AS partId,
+			part_code AS partCode,
+			part_name AS partName,
+			full_name AS fullName,
+			type AS type,
+			deduct_rate AS deductRate,
+			remark AS remark,
+			creator_id AS creatorId,
+			creator AS creator,
+			create_date AS createDate,
+			operator_id AS operatorId,
+			operator AS operator,
+			operate_date as operateDate
+		FROM
+			pj_deduct_part
+		where 1=1
+		<dynamic>
+    		<isNotEmpty prepend="and" property="orgid">  
+                (orgid =#orgid#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="partName">  
+                (part_name like '%$partName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="sortField">  
+                $sortField$ $sortOrder$
+            </isNotEmpty>  
+        </dynamic>
+	</select>
 </sqlMap>

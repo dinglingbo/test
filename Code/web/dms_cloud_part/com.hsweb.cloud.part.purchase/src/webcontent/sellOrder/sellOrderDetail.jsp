@@ -46,7 +46,7 @@
                 <a class="nui-button" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button"  plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
-                <a class="nui-button" visible="true" plain="true" onclick="auditToOut()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;出库</a>
+                <a class="nui-button" visible="false" plain="true" onclick="auditToOut()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;出库</a>
                 <a class="nui-button" style="display:none;" plain="true" onclick="packOut()" id="auditBtn"><span class="fa fa-truck fa-lg"></span>&nbsp;发货</a>
                 <a class="nui-button" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
                 <span class="separator"></span>
@@ -290,9 +290,9 @@
                                               onvaluechanged="onStoreValueChange" emptyText=""  vtype="required"
                                               /> 
                                       </div>  
-                                       <div field="storeShelf" width="30" headerAlign="center" allowSort="true">
-		                              		仓位<input property="editor" class="nui-textbox"/>
-		                              </div>  
+                                       <div field="storeShelf" width="20" headerAlign="center" allowSort="true" header="仓位">
+		                             	 仓位<input  property="editor" id="storeShelf" name='storeShelf'  class="nui-textbox"/>
+		                          </div>  
                                       <div field="stockOutQty" summaryType="sum" numberFormat="0.00" width="25" headerAlign="center" header="缺货数量">
                                       </div>
                                       <div type="checkboxcolumn" field="isMarkBatch" trueValue="1" falseValue="0" width="15" headerAlign="center" header="批次">

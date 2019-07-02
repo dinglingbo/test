@@ -84,15 +84,15 @@
             <tr>
                 <td class="td_title">车牌号码
                 </td>
-                <td>
+               <td>
                     <input id="carNo" name="carNo" style="width: 100%" class="nui-textbox" />
                 </td>
-                <td align="right">出生日期
+               <!--   <td align="right">出生日期
                     <td>
                         <input id="birthday" name="birthday" style="width: 100%" class="nui-textbox" />
-                    </td>
+                    </td> -->
             </tr>
-            <tr>
+            <!-- <tr>
                 <td align="right">手机号码
                 </td>
                 <td>
@@ -103,7 +103,7 @@
                 <td>
                     <input id="tel" name="tel" style="width: 100%" class="nui-textbox" />
                 </td>
-            </tr>
+            </tr> -->
             <tr>
 
                 <td align="right" style="width:95px;">商业险保险公司
@@ -155,7 +155,7 @@
                 <td align="right" style="width:95px;">下次保养里程
                 </td>
                 <td>
-                    <input id="careDueMileage" name="careDueMileage" min="0" class="nui-textbox usernumber" style="width: 70px;" />公里
+                    <input id="careDueMileage" name="careDueMileage" min="0" class="nui-textbox usernumber" style="width: 120px;" />公里
                 </td>
             </tr>
         </table>
@@ -163,22 +163,50 @@
             nui.parse();
             var saveUrl = apiPath + saleApi + '/com.hsapi.sales.svr.save.saveCarGuest.biz.ext';
             var form = new nui.Form("form1");
-            var mainId = null;
+            var enterId = null;
             var guestId = null;
-            var guestFullName = null;
-
-            function SetData(Id, gId, gFullName) {
-                mainId = Id || 0;
-                guestId = gId || "";
-                guestFullName = gFullName || "";
-            }
+            function SetData(eId, gId) {
+                 enterId = eId;
+                 guestId = gId;
+                /* guestId = gId || "";
+                guestFullName = gFullName || ""; */
+                //查找该车的保险信息
+                 if(enterId==0){
+					 enterId = 0;
+				 }else{
+					 var params = {};
+					 params.guestId = guestId;
+					 params.enterId = enterId;
+				      nui.ajax({
+				   	        url: repairUrl + "com.hsapi.repair.repairService.svr.queryGrossProfit.biz.ext",
+				   	        data: {
+				   	        	params:params,
+				   	        	token:token
+				   	        },
+				   	        cache: false,
+				   	        async: false,
+				   	        success: function(text) {
+				   	            if (text.errCode == "S"){
+				   	               var data = text.data;
+				   	               if(data){
+				   	            	  var insureCompName = data.insureCompName || "";
+				   	            	  nui.get("annualInspectionCompCode").setValue(insureCompName);
+				   	            	  nui.get("insureCompCode").setValue(insureCompName);
+				   	            	  var endDate = data.endDate || "";
+				   	            	  nui.get("annualInspectionDate").setValue(insureCompName);
+				   	            	  nui.get("insureDueDate").setValue(insureCompName);
+				   	               }
+				   	            } 
+				   	        }
+				   	    }); 
+				  }
+		   }
 
             function save() {
                 var data = form.getData(true);
                 var params = data;
-                params.mainId = mainId;
+                params.enterId = enterId;
                 params.guestId = guestId;
-                params.guestName = guestFullName;
                 nui.ajax({
                     url: saveUrl,
                     type: 'post',

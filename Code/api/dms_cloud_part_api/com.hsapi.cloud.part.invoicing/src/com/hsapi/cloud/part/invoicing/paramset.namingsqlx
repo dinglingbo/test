@@ -560,4 +560,20 @@
     	
     </select>
     
+    <!--
+    	根据盘点明细ID查询盘点数据
+    -->
+    <select id="queryStockCheckDetailByDetailId" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		
+		SELECT a.id, a.main_id as mainId, a.store_id as storeId, a.part_id as partId, 
+			   a.sys_qty as sysQty,  b.source_detail_id as sourceDetailId, b.qty as qty
+		from dms_cloud_part.pj_stock_check_detail a
+		inner join dms_cloud_part.pj_wms_params_detail b
+		on a.id = b.erp_detail_id and a.main_id = b.erp_main_id
+		inner join wb_common.com_attribute c
+		on b.part_id = c.cang_part_id and a.part_id = c.id
+		where a.main_id = #erpId# and b.main_id = #mainId#
+    	
+    </select>
+    
 </sqlMap>

@@ -210,47 +210,6 @@ function add() {
     window.parent.activeTabAndInit(part, params);
 }
 
-function addFollowUpRecord() {
-    nui.open({
-        url: webPath + contextPath + "/com.hsweb.repair.potentialCustomer.FollowUpRecord.flow?token=" + token,
-        title: "来访记录详情",
-        width: 600,
-        height: 360,
-        allowDrag: true,
-        allowResize: true,
-        onload: function () {
-			/*var iframe = this.getIFrameEl();
-            iframe.contentWindow.updatRowSetData(params);//显示该显示的功能
-           // iframe.contentWindow.setViewData(dock, dodelck, docck);
-*/		},
-        ondestroy: function (action) {
-
-
-        }
-    });
-}
-
-function potentialCustomer() {
-    nui.open({
-        url: webPath + contextPath + "/com.hsweb.repair.potentialCustomer.check.flow?token=" + token,
-        title: "审核",
-        width: 600,
-        height: 360,
-        allowDrag: true,
-        allowResize: true,
-        onload: function () {
-			/*var iframe = this.getIFrameEl();
-            iframe.contentWindow.updatRowSetData(params);//显示该显示的功能
-           // iframe.contentWindow.setViewData(dock, dodelck, docck);
-*/		},
-        ondestroy: function (action) {
-
-
-        }
-    });
-}
-
-
 function edit(row_uid) {
     if (!row_uid) {
         var row = mainGrid.getSelected();
@@ -261,7 +220,7 @@ function edit(row_uid) {
     var part = {};
     part.id = "addVisitors";
     part.text = "来访记录详情";
-    part.url = webPath + contextPath + "/customer.addVisitRecords.flow?token=" + token;
+    part.url = webPath + contextPath + "/com.hsweb.customer.addVisitRecords.flow?token=" + token;
     part.iconCls = "fa fa-file-text";
     var params = {};
     window.parent.activeTabAndInit(part, row);
@@ -296,7 +255,7 @@ function queryCar() {
     var part = {};
     part.id = "3223";
     part.text = "库存管理";
-    part.url = webPath + contextPath + "/inventory.carSalesInventory.flow?token=" + token;
+    part.url = webPath + contextPath + "/com.hsweb.inventory.carSalesInventory.flow.flow?token=" + token;
     part.iconCls = "fa fa-file-text";
     var params = {};
     window.parent.activeTabAndInit(part, params);

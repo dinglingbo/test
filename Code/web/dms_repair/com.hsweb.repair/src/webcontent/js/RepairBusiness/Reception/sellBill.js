@@ -408,6 +408,7 @@ function doSetMainInfo(car){
     var maintain = billForm.getData();
     maintain.carId = car.id;
     maintain.carNo = car.carNo;
+    maintain.addr = car.addr||"";
     maintain.carVin = car.vin;
     maintain.engineNo = car.engineNo;
     maintain.contactorId = car.contactorId;
@@ -1069,6 +1070,7 @@ function choosePart(){
 			                   	partId:data.id,
 			                   	packageId:0,
 			                   	partCode:data.code,
+			                   	oemCode : data.oemCode,
 			                   	//partName:data.name,
 			                   	partName:data.fullName,
 			                   	partNameId:data.partNameId,
@@ -1129,6 +1131,7 @@ function choosePart(){
                        	partId:data.id,
                        	packageId:0,
                        	partCode:data.code,
+                       	oemCode : data.oemCode,
                        	//partName:data.name,
                        	partName:data.fullName,
                        	partNameId:data.partNameId,

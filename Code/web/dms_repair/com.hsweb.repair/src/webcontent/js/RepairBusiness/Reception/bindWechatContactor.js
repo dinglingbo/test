@@ -59,7 +59,14 @@ function wechatBin(row_uid){
 		return 0;
 	}
 	var wechatService = contactorGrid.getCellEditor("wechatServiceId", row);
+	/*var r =  /^[0-9]+.?[0-9]*$/;;
+	var flag = r.test(wechatService);*/
 	var wechatServiceId = wechatService.getValue();
+	if(!(wechatServiceId%1 === 0)){
+		showMsg("请输入正确的服务号","W");
+		return;
+	}
+	
 	if(!wechatServiceId){
 		 showMsg("请输入服务号!","W");
 		 return 0; 

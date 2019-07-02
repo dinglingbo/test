@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="tgetMenuDatagetext/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <%@include file="/common/sysCommon.jsp" %>
-    <title >车道商户版</title>
+    <title >仓先生</title>
       
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/common/nui/boot.js" type="text/javascript"></script>
@@ -187,7 +187,7 @@
                      <!-- <li><a href="javascript:resetIM();"><i class="fa fa-pencil-square-o"></i> 登录IM</a></li> -->
                      <!-- <li><a href="javascript:updateSkin();"><i class="fa fa-pencil-square-o"></i> 皮肤中心</a></li> -->
                     <!-- <li><a href="#"><i class="fa fa-eye "></i> 用户信息</a></li> -->
-                    <li><a href="<%=request.getContextPath()%>/coframe/auth/login/logout.jsp"><i class="fa fa-user"></i> 退出登录</a></li>
+                    <li><a href="<%=request.getContextPath()%>/coframe/auth/house/logout.jsp"><i class="fa fa-user"></i> 退出登录</a></li>
                 </ul>
             </li>
             <li class="dropdown" width="10px">
@@ -213,7 +213,7 @@
         <div id="mainTabs" class="mini-tabs indexTabs" activeIndex="0" style="width:100%;height:100%;" plain="false"
                 buttons="#tabsButtons" arrowPosition="side" ontabload="ontabload">
             <div name="index" iconCls="fa-home" title="首页">
-                    <iframe id="formIframe" src="<%=request.getContextPath()%>/common/Index/TextIndex.jsp" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
+                    <iframe id="formIframe" src="<%=request.getContextPath()%>/purchase/indexCloudPart_view0.jsp" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
             </div>
         </div>
         <div id="tabsButtons">

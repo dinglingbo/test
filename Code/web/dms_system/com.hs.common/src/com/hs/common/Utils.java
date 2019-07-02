@@ -15,10 +15,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -799,6 +802,70 @@ public class Utils {
 
 		return imgBase64;
 	}
+	
+	@Bizlet("")
+    public static java.util.Date getCarVerificationDate(Date regDate) throws ParseException {		
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();//创建一个date对象保存当前时间
+		String nowStr = simpleDateFormat.format(date);
+		String regStr = simpleDateFormat.format(regDate);
+		
+		Date nowDate = simpleDateFormat.parse(nowStr);//调用parse()方法时 注意 传入的格式必须符合simpleDateFormat对象的格式，即"yyyy-MM-dd HH:mm:ss:SSS" 否则会报错！！
+		regDate = simpleDateFormat.parse(regStr);
+		
+		if(regDate.getTime() >= nowDate.getTime()) return null;
+
+		Calendar bef = Calendar.getInstance();
+        Calendar aft = Calendar.getInstance();
+        bef.setTime(nowDate);
+        aft.setTime(regDate);
+        
+        int year1 = bef.get(Calendar.YEAR);
+        int year2 = aft.get(Calendar.YEAR);
+        int month1 = bef.get(Calendar.MONTH);
+        int month2 = aft.get(Calendar.MONTH);
+        int day1 = bef.get(Calendar.DAY_OF_MONTH);
+        int day2 = aft.get(Calendar.DAY_OF_MONTH);
+        // 获取年的差值 
+        int yearInterval = year1 - year2;
+        // 如果 d1的 月-日 小于 d2的 月-日 那么 yearInterval-- 这样就得到了相差的年数
+        if (month1 < month2 || month1 == month2 && day1 < day2) {
+            yearInterval--;
+        }
+        // 获取月数差值
+        int monthInterval = (month1 + 12) - month2;
+        if (day1 < day2) {
+            monthInterval--;
+        }
+        monthInterval %= 12;
+        int monthsDiff = Math.abs(yearInterval * 12 + monthInterval);
+        //System.out.println("相差月份：" + monthsDiff);
+        //6年 = 72月，免检， 年审到期日期 regDate + 8年
+        //6年 到 15年包含15年，1年检1次
+        //15年以上 是半年1检
+        if((int) monthsDiff <= 72) {
+        	aft.add(Calendar.YEAR, 7);
+            return aft.getTime();
+        }else if(monthsDiff>72 && monthsDiff<=180) {
+        	//7年 = 72 + 12  8年 = 72 + 24  9年 = 72 + 36 10年 = 72 + 48
+        	System.out.println((monthsDiff*1.0 - 72)/12);
+        	int d = (int) Math.ceil((monthsDiff*1.0 - 72)/12);
+        	aft.add(Calendar.YEAR, d + 6);
+        	if(aft.getTime().getTime() < nowDate.getTime() && monthsDiff < 180) {
+        		aft.add(Calendar.YEAR, 1);
+        	}else if(aft.getTime().getTime() < nowDate.getTime()) {
+        		aft.add(Calendar.MONTH, 6);
+        	}
+        	return aft.getTime();
+        }else {
+        	int m = (int) Math.ceil((monthsDiff*1.0 - 180)/6);
+        	aft.add(Calendar.MONTH, m*6 + 180);
+        	if(aft.getTime().getTime() < nowDate.getTime()) {
+        		aft.add(Calendar.MONTH, 6);
+        	}
+        	return aft.getTime();
+        }
+    }
 
 	/**
 	 * 

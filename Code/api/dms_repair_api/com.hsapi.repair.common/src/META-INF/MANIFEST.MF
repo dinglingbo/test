@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
-Require-Bundle: com.hsapi.repair.data,com.primeton.eos.richweb,com.eos
- .foundation,com.eos.workflow
-Bundle-Vendor: Administrator
+Require-Bundle: com.eos.workflow,com.hs.common,com.primeton.eos.richwe
+ b,com.hsapi.repair.data,com.eos.foundation
 eos-webCtxPath: common1
+Bundle-Vendor: Administrator
 Bundle-Version: 1.0.0
 Bundle-Name: com.hsapi.repair.common
 Bundle-Description: 公共的api

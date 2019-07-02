@@ -380,7 +380,7 @@
 	var currSystemImg = "<%=systemImg %>";
 	var currSystemName = "<%=systemName %>";
 	var currSource = "<%=source %>";
-	//currOrgs = currOrgs.replace(/\*/g,"");
+	currOrgs = currOrgs.replace(/\*/g,"");
 	var currOrgJsonStr = "<%=orgJsonStr %>";
 	currOrgJsonStr = currOrgJsonStr.replace(/'/g,'"');
 	var currOrgList = JSON.parse(currOrgJsonStr);

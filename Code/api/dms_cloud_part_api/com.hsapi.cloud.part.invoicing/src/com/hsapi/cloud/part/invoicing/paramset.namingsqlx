@@ -43,6 +43,10 @@
             	<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid# or a.orgid = 0)
                 </isNotEmpty>
+                <!-- 仓先生只有当前机构-->
+                <isNotEmpty prepend="and" property="onlyOrgid"> 
+                    (a.orgid = #onlyOrgid# )
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="partId">  
                     (a.id = #partId#)
                 </isNotEmpty>
@@ -401,14 +405,25 @@
 		FROM wb_common.com_attribute a
 		
 			<isNotNull prepend = "" property = "showStock">
-				<isNotEqual prepend = "" property = "showStock" compareValue="1">
+				<!-- <isNotEqual prepend = "" property = "showStock" compareValue="1">
 					left join pj_part_stock b
 					on a.id = b.part_id and b.orgid = #orgid#
-				</isNotEqual>
-				
+				</isNotEqual> -->
+				<!-- 不显示库存-->
+				<isEqual prepend = "" property = "showStock" compareValue="0">
+					left join pj_part_stock b
+					on a.id = b.part_id and b.orgid = #orgid#
+				</isEqual>
+				<!-- 显示库存-->
 				<isEqual prepend = "" property = "showStock" compareValue="1">
 					inner join pj_part_stock b
 					on a.id = b.part_id 
+				</isEqual>
+				
+				<!-- （不显示库存）仓先生目前不支持选择orgid=0）-->
+				<isEqual prepend = "" property = "showStock" compareValue="2">
+					left join pj_part_stock b
+					on a.id = b.part_id and b.orgid = #orgid# 
 				</isEqual>
 				
 			</isNotNull>
@@ -422,15 +437,25 @@
     	<dynamic>
     		<isNotNull prepend = "" property = "showStock">
     		
+    			<!-- 不显示库存-->
+				<isEqual prepend = "" property = "showStock" compareValue="0">
+					and (a.orgid = #orgid# or a.orgid = 0) 
+				</isEqual>
+				<!-- 显示库存-->
 				<isEqual prepend = "" property = "showStock" compareValue="1">
 					and b.orgid = #orgid#
 				
 					and b.outable_qty > 0
 				</isEqual>
 				
-				<isNotEqual prepend = "" property = "showStock" compareValue="1">
+				<!-- （不显示库存）仓先生目前不支持选择orgid=0）-->
+				<isEqual prepend = "" property = "showStock" compareValue="2">
+					and (a.orgid = #orgid#) 
+				</isEqual>
+				
+				<!-- <isNotEqual prepend = "" property = "showStock" compareValue="1">
 					and (a.orgid = #orgid# or a.orgid = 0) 
-				</isNotEqual>
+				</isNotEqual> -->
 				
 			</isNotNull>
 			

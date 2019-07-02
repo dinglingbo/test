@@ -461,6 +461,7 @@ function quickSearch(type){
             var menunametype = nui.get("menunametype");
             menunametype.setText(querytypename);
     }
+    gsparams.isDiffOrder = 0;
     doSearch(gsparams);
 }
 function onSearch(){
@@ -475,6 +476,7 @@ function getSearchParam(){
     var params = {};
     params = gsparams;
     params.guestId = nui.get("searchGuestId").getValue();
+    params.isDiffOrder = 1;
   //是业务员且业务员禁止可见
 	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
 		params.creator= currUserName;

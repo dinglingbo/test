@@ -280,17 +280,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link47" name="link47" displayName="link26" isDefault="true" type="transition">
-      <sourceNode>invokePojo0</sourceNode>
-      <targetNode>invokePojo12</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link48" name="link48" displayName="link11" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link48" name="link48" displayName="link11" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>subprocess7</targetNode>
       <process:transitionCondition>
@@ -1831,7 +1821,6 @@
       <sourceNode>invokePojo12</sourceNode>
       <targetNode>assign2</targetNode>
     </sourceConnections>
-    <targetConnections>link47</targetConnections>
     <targetConnections>link57</targetConnections>
     <location x="159" y="172"/>
     <size height="28" width="22"/>

@@ -165,6 +165,9 @@ function onOk()
 {
 	
     var data = basicInfoForm.getData();
+    if(!data.name){    	
+    	data.name = nui.get("partNameId").getText();
+    }
     for(var key in requiredField)
     {
     	if(!data[key] || data[key].toString().trim().length==0)
@@ -182,9 +185,7 @@ function onOk()
     }
   //  data.abcType = "";
     data.code =data.code.replace(/\s+/g, "");
-    if(!data.name){    	
-    	data.name = nui.get("partNameId").getText();
-    }
+    
     data.fullName = data.name;    
     data.fullName = data.fullName + " " + partBrandIdHash[data.partBrandId].name;
     if(data.spec)

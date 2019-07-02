@@ -290,9 +290,9 @@
                                               onvaluechanged="onStoreValueChange" emptyText=""  vtype="required"
                                               /> 
                                       </div>  
-                                       <div field="storeShelf" width="30" headerAlign="center" allowSort="true">
-		                              		仓位<input property="editor" class="nui-textbox"/>
-		                              </div>  
+                                       <div field="storeShelf" width="20" headerAlign="center" allowSort="true" header="仓位">
+		                             	 仓位<input  property="editor" id="storeShelf" name='storeShelf'  class="nui-textbox"/>
+		                          </div>  
                                       <div field="stockOutQty" summaryType="sum" numberFormat="0.00" width="25" headerAlign="center" header="缺货数量">
                                       </div>
                                       <div type="checkboxcolumn" field="isMarkBatch" trueValue="1" falseValue="0" width="15" headerAlign="center" header="批次">

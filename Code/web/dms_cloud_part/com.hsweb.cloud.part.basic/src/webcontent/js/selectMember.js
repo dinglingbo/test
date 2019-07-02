@@ -17,7 +17,7 @@ var typehash = {
 var roleHash ={};
 var serviceId =null;
 var typeList = [{id:"1",name:"按销售金额提成"},{id:"2",name:"按销售毛利提成"}];
-
+var haveSelectHash={};
 $(document).ready(function(v)
 {
 	roleGrid = nui.get("roleGrid");
@@ -62,6 +62,16 @@ $(document).ready(function(v)
 		}
 	});
 	
+	deductMemGrid.on("drawcell",function(e){
+		var data =deductMemGrid.getData();
+		var selectdData =[];
+		deductMemGrid.deselectAll();
+		for(var i=0;i<data.length;i++){
+			if(haveSelectHash[data[i].id]){
+				deductMemGrid.select(data[i]);
+			}
+		}
+	});
 	deductMemGrid.on("selectionchanged",function(e) {
 		var row = e.selected;
 		var deductMemId = row.id;
@@ -137,7 +147,14 @@ function save(){
             {
             	nui.unmask();
             	showMsg(data.errMsg||"保存成功","S");
-            	haveSelectGrid.reload();
+            	haveSelectGrid.reload(function(data){
+            		var data =data.data;
+            		haveSelectHash={};
+            		data.forEach(function(v){
+            			haveSelectHash[v.deductMemId]=v;
+                	});
+            		deductMemGrid.relaod();
+            	});
             }
             else{
             	nui.unmask();
@@ -158,6 +175,9 @@ function close(){
 function search(){
 	var params ={};
 	var name =nui.get('name').getValue();
+	if(!roleGrid.getSelected()){
+		return;
+	}
 	var roleId =roleGrid.getSelected().id;
 	if(!roleId){
 		showMsg("请先选择角色","W");
@@ -180,5 +200,11 @@ function CloseWindow(action) {
 function setData(serviceId){
 	nui.get('serviceId').setValue(serviceId);
 	serviceId =serviceId;
-	haveSelectGrid.load({serviceId:serviceId,orgid:currOrgid});
+	haveSelectGrid.load({serviceId:serviceId,orgid:currOrgid},function(data){
+		var data =data.data;
+		haveSelectHash={};
+		data.forEach(function(v){
+			haveSelectHash[v.deductMemId]=v;
+    	});
+	});
 }

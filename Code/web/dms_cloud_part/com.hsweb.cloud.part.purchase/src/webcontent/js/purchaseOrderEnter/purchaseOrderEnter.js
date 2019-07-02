@@ -1381,6 +1381,10 @@ function getPartInfo(params){
 	var page = {size:100,length:100};
 	params.sortField = "b.stock_qty";
     params.sortOrder = "desc";
+  //仓先生
+    if(currIsOpenApp ==1){
+    	params.showStock=2;
+    }
 	nui.ajax({
 		url : partInfoUrl,
 		type : "post",

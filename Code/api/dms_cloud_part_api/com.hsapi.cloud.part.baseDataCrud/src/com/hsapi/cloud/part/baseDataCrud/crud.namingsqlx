@@ -589,6 +589,9 @@
             <isNotEmpty prepend="and" property="partCodeList">
             	(a.code in ($partCodeList$))
             </isNotEmpty>
+             <isNotEmpty prepend="and" property="partIdList">
+            	(a.id in ($partIdList$))
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="name">  
                 (a.name like '%$name$%' or a.full_name like '%$name$%')
             </isNotEmpty>

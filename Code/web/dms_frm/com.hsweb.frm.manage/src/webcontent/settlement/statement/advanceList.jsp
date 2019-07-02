@@ -8,7 +8,7 @@
 -->
 <head>
 <title>整车库存</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/advanceList.js?v=1.0.5"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/advanceList.js?v=1.1.2"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -66,7 +66,7 @@
                 </ul> -->
 
 
-				<label style="font-family:Verdana;">入库日期 从：</label>
+				<label style="font-family:Verdana;">付款日期 从：</label>
                 <input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <label style="font-family:Verdana;">至</label>
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
@@ -77,7 +77,7 @@
                 <input id="guestName" name="guestName" width="150px" emptyText="客户名称" class="nui-textbox"/>
 
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-
+				<a class="nui-button" iconCls="" plain="true" onclick="doSettle()"><span class="fa fa-dollar fa-lg"></span>&nbsp;退款</a>
 
             </td>
         </tr>
@@ -89,22 +89,31 @@
          showPager="false"
          dataField="fisRpAdvanceList"
          idField="detailId"
-         ondrawcell="onDrawCell"
+         ondrawcell="onDrawCell"   
          sortMode="client"
          url=""
+         oncellclick="onRGridbeforeselect"
+         allowCellSelect="true" 
+         allowCellEdit="true" multiSelect="false"
+         oncellcommitedit="onCellCommitEdit"
          onshowrowdetail="onShowRowDetail"
-         allowCellWrap = true
+         allowCellWrap = "true"
          showSummaryRow="true">
         <div property="columns">
-            <div type="indexcolumn" width="40">序号</div>                                        
-                    <div field="guestName" name="guestName" width="200" headerAlign="center" header="往来单位"></div>    
-                    <div field="billTypeId" allowSort="true"   width="150" headerAlign="center" header="收支项目"></div>  
-                    <div allowSort="true" field="amt" name="amt" width="60" headerAlign="center" header="金额"></div>
-                    <div allowSort="true" field="charOffAmt" name="charOffAmt" width="60" headerAlign="center" header="结算金额"></div>
-                    <div allowSort="true" field="deductionAmt" name="deductionAmt" width="60" headerAlign="center" header="已抵扣金额"></div>
-                    <div allowSort="true" field="balaAmt" name="balaAmt" width="60" headerAlign="center" header="剩余金额"></div>
-                    <div field="settleDate" allowSort="true"  width="120" headerAlign="center" header="付款日期" dateFormat="yyyy-MM-dd" ></div>                	
-                    <div field="remark" allowSort="true"  width="220" headerAlign="center" header="备注"></div>
+            <div type="indexcolumn" width="40px">序号</div>   
+           		    <div type="checkcolumn" field="check" width="20px"></div>                                      
+                    <div field="guestName" name="guestName" width="200px" headerAlign="center" header="往来单位"></div>    
+                    <div field="billTypeId" allowSort="true"   width="80px" headerAlign="center" header="收支项目"></div>  
+                    <div allowSort="true" field="amt" name="amt" width="60px" headerAlign="center" header="金额"></div>
+                    <div allowSort="true" field="charOffAmt" name="charOffAmt" width="60px" headerAlign="center" header="结算金额"></div>
+                    <div allowSort="true" field="deductionAmt" name="deductionAmt" width="60px" headerAlign="center" header="已抵扣金额"></div>
+                    <div allowSort="true" field="refundAmt" name="deductionAmt" width="60px" headerAlign="center" header="已退款金额"></div>
+                    <div allowSort="true" field="balaAmt" name="balaAmt" width="60px" headerAlign="center" header="剩余金额"></div>
+                    <div allowSort="true" field="nowAmt" width="60px" headerAlign="center" align="right" numberFormat="0.00" dataType="float" header="退款金额">
+						<input property="editor" vtype="float" class="nui-textbox" />
+					</div>
+                    <div field="settleDate" allowSort="true"  width="100px" headerAlign="center" header="付款日期" dateFormat="yyyy-MM-dd HH:mm" ></div>                	
+                    <div field="remark" allowSort="true"  width="220px" headerAlign="center" header="备注"></div>
         </div>
     </div> 
 </div>

@@ -296,8 +296,10 @@
 			       a.amt as amt,
 			       a.char_off_amt as charOffAmt,
 			       a.deduction_amt as deductionAmt, 
+			       a.refund_amt as refundAmt,
 			       a.bala_amt as balaAmt,
 			       a.status as status, 
+			       a.is_refund as isRefund,			       
 			       a.is_settle as isSettle,
 				   a.settleer as settleer, 
 				   a.settle_date as settleDate,
@@ -305,14 +307,16 @@
 				   a.recorder as recorder,
 				   a.record_date as recordDate, 
 				   a.modifier as modifier,
-				   a.modify_date as modifyDate
+				   a.modify_date as modifyDate,
+				   a.refunder as refunder,
+				   a.refund_date as refundDate
 			from fis_rp_advance a
 			where 1=1 
                 <isNotEmpty prepend="and" property="orgid">
                 (a.orgid = #orgid#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="balaAmt">
-                (a.bala_amt != #balaAmt#)
+                (a.bala_amt > #balaAmt#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="id">
                 (a.id = #id#)
@@ -320,6 +324,9 @@
                 <isNotEmpty prepend="and" property="isSettle">
                 (a.is_settle = #isSettle#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="isRefund">
+                (a.is_refund = #isRefund#)
+                </isNotEmpty>                
                 <isNotEmpty prepend="and" property="orgids">
                 (a.orgid in ($orgids$))
                </isNotEmpty>

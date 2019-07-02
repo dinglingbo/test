@@ -11,7 +11,7 @@
     <figSize height="20" width="40"/>
     <node>end1</node>
   </nodes>
-  <nodes xsi:type="process:tView" description="" id="view0" name="视图" displayName="partDeductSet_view.jsp" collapsed="false" type="view" contextPath="" method="forward" uri="/manage/inOutManage/basic/partDeductSet_view.jsp">
+  <nodes xsi:type="process:tView" description="" id="view0" name="视图" displayName="partDeductSet_view.jsp" collapsed="false" type="view" contextPath="" method="forward" uri="/manage/inOutManage/basic/partDeductSet_view.jsp" variableUri="false">
     <sourceConnections xsi:type="process:tActionLink" id="link1" name="link1" displayName="link1" lineType="reference" isDefault="true" type="action" actionName="action1">
       <sourceNode>view0</sourceNode>
       <targetNode>end1</targetNode>

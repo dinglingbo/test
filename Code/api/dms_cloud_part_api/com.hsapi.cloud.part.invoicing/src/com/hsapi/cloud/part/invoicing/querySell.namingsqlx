@@ -33,23 +33,24 @@
         <result column="printTimes" javaType="int" property="printTimes"/>
         <result column="printManId" javaType="string" property="printManId"/>
         <result column="printMan" javaType="string" property="printMan"/>
-        <result column="printDate" javaType="java.sql.Timestamp" property="printDate"/>
+        <result column="printDate" javaType="string" property="printDate"/>
         <result column="auditSign" javaType="int" property="auditSign"/>
         <result column="auditorId" javaType="string" property="auditorId"/>
         <result column="auditor" javaType="string" property="auditor"/>
-        <result column="auditDate" javaType="java.sql.Timestamp" property="auditDate"/>
+        <result column="auditDate" javaType="string" property="auditDate"/>
         <result column="remark" javaType="string" property="remark"/>
         <result column="creatorId" javaType="string" property="creatorId"/>
         <result column="creator" javaType="string" property="creator"/>
-        <result column="createDate" javaType="java.sql.Timestamp" property="createDate"/>
+        <result column="createDate" javaType="string" property="createDate"/>
         <result column="operatorId" javaType="string" property="operatorId"/>
         <result column="operator" javaType="string" property="operator"/>
-        <result column="operateDate" javaType="java.sql.Timestamp" property="operateDate"/>
+        <result column="operateDate" javaType="string" property="operateDate"/>
         <result column="settleTypeId" javaType="string" property="settleTypeId"/>
         <result column="isNeedPack" javaType="int" property="isNeedPack"/>
         <result column="guestFullName" javaType="string" property="guestFullName"/>
         <result column="guestShortName" javaType="string" property="guestShortName"/>
-        <result column="versionNo" javaType="java.sql.Timestamp" property="versionNo"/>
+        <result column="versionNo" javaType="string" property="versionNo"/>
+        <result column="rtnReasonId" javaType="string" property="rtnReasonId"/>
     </resultMap>
     <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
     <select id="queryPjSellOrderMainList" parameterClass="java.util.HashMap" resultMap="pjSellOrderMainList">
@@ -94,7 +95,8 @@
 			M.settleTypeId,
 			M.isNeedPack,
             M.guestFullName,
-            M.guestShortName
+            M.guestShortName,
+            M.rtnReasonId
         FROM (
             SELECT DISTINCT
 				A.id as id,
@@ -135,6 +137,7 @@
 				A.operate_date as operateDate,
 				A.settle_type_id as settleTypeId,
 				A.is_need_pack as isNeedPack,
+				A.rtn_reason_id as rtnReasonId,
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName
 				FROM
@@ -250,6 +253,7 @@
 				A.operate_date as operateDate,
 				A.settle_type_id as settleTypeId,
 				A.is_need_pack as isNeedPack,
+				A.rtn_reason_id as rtnReasonId,
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName
 				FROM

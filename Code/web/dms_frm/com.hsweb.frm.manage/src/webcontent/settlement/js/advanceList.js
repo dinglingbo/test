@@ -40,6 +40,9 @@ $(document).ready(function(v){
         			e.cellHtml = enterTypeIdHash[e.value].name;
         		}
         		break;
+        	case "nowAmt":
+        		e.cellStyle = 'background-color:#90EE90';
+        		break;
             case "carStatus":
             	e.cellHtml = carStatusList[e.value].name;
                break;               
@@ -187,12 +190,12 @@ function quickSearch(type){
 }
 function onSearch(){
 	var params = getSearchParam();
-
     doSearch(params);
 }
 function doSearch(params)
 {
-
+	params.isSettle=1;
+	params.balaAmt=0;
     rightGrid.load({
         params:params,
         token:token
@@ -215,8 +218,8 @@ function selectSupplier(elId)
         {
             var iframe = this.getIFrameEl();
             var params = {
-                isSupplier: 1,
-                guestType:'01020202'
+                isSupplier: 1
+/*                guestType:'01020202'*/
             };
             iframe.contentWindow.setGuestData(params);
         },
@@ -263,7 +266,53 @@ function detection() {
 }
 
 
+//提交单元格编辑数据前激发
+function onCellCommitEdit(e) {
+	var editor = e.editor;
+	var record = e.record;
+
+	editor.validate();
+	if (editor.isValid() == false) {
+		showMsg("请输入数字!", "W");
+		e.cancel = false;
+	}
+}
 
 
-
-
+function onRGridbeforeselect(e) {
+	var row = e.row;
+		var row = e.row;
+		var billDc = row.billDc;
+		var newRow = {
+			nowAmt : row.balaAmt
+		};
+		if (row.nowAmt) {
+			newRow.nowAmt = row.balaAmt;
+		} else {
+			newRow.nowAmt = row.balaAmt;
+		}
+		rightGrid.updateRow(row, newRow);
+}
+function doSettle() {
+	var rows = rightGrid.getSelecteds();
+	var s = rows.length;
+	if (s > 0) {
+			nui.open({
+		        url: webPath + contextPath +"/com.hsweb.frm.manage.preRefund.flow?token="+token,
+		         width: "100%", height: "100%", 
+		        onload: function () {
+		            var iframe = this.getIFrameEl();
+		            iframe.contentWindow.setData(rows);
+		        },
+				ondestroy : function(action) {// 弹出页面关闭前
+					if (action == "ok") {
+						showMsg("结算成功!", "S");
+						rightGrid.reload();
+					}
+				}
+		    });
+	} else {
+		showMsg("请选择单据!", "W");
+		return;
+	}
+}

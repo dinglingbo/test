@@ -54,6 +54,9 @@
             <isNotEmpty prepend="and" property="orgids">  
                 (a.orgid = #orgids# or a.orgid = 0)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="tenantId">  
+                (a.tenant_id = #tenantId# or a.orgid = 0)
+            </isNotEmpty>
     		<isNotEmpty prepend="and" property="isDisabled">  
                 (is_disabled = #isDisabled#)
             </isNotEmpty>
@@ -168,8 +171,8 @@
 		       a.modifier              modifier,
 		       a.modify_date           modifyDate,
 		       a.is_need_pack          isNeedPack
-		       FROM com_guest a
-		       WHERE 1 = 1 and (a.orgid = #orgid# or a.orgid = 0)
+		 FROM com_guest a
+		       WHERE 1 = 1 and (a.tenant_id = #tenantId# or a.orgid = 0)
 		     <!-- a.is_supplier = 1   AND a.guest_type = '01020202'-->
     	<dynamic>	
     		<isNotEmpty prepend="and" property="isSupplier">  
@@ -494,7 +497,7 @@
 		     a.default_logistics_id as defaultLogisticsId,
 		     a.default_logistics as defaultLogistics
 		FROM com_guest a
-		WHERE (a.orgid = #orgid# or a.orgid = 0)
+		WHERE (a.tenant_id = #tenantId# or a.orgid = 0)
     	<dynamic>
     		<isNotEmpty prepend="and" property="guestId">  
                 (id = #guestId#)
@@ -603,6 +606,9 @@
     	<dynamic>
     		<isNotEmpty prepend="and" property="orgid">  
                 (a.orgid = #orgid#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="tenantId">  
+                (a.tenant_id = #tenantId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="orgids">  
                 (a.orgid = #orgids# or a.orgid = 0)

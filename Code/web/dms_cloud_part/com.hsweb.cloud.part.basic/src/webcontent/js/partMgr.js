@@ -612,7 +612,7 @@ function getNoSync(params){
 var syncUrl =baseUrl+"com.hsapi.cloud.part.baseDataCrud.cang.addParts.biz.ext";
 function syncCang(){
 	var partinfos = getNoSync(params);
-	if(partinfos.length<=0){
+	if(partinfos=="[]"){
 		return;
 	}
 	nui.mask({

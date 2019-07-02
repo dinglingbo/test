@@ -548,6 +548,10 @@ function setInitData(params, ck, cck){
         });
     }else if(tab.name == "partInfoTab"){
         params.showStock = showStockEl.getValue();
+        //仓先生
+        if(currIsOpenApp ==1){
+        	params.showStock=2;
+        }
         params.sortField = "b.stock_qty";
         params.sortOrder = "desc";
 
@@ -570,6 +574,10 @@ function morePartSearch(){
     params.partCode = morePartCodeEl.getValue().replace(/\s+/g, "");
     params.partName = morePartNameEl.getValue().replace(/\s+/g, "");
     params.showStock = showStockEl.getValue().replace(/\s+/g, "");
+    //仓先生且不显示库存
+    if(currIsOpenApp ==1 &&  params.showStock ==0){
+    	params.showStock=2;
+    }
     params.serviceId = moreServiceIdEl.getValue().replace(/\s+/g, "");
     params.partBrandId = nui.get('partBrandId').getValue().replace(/\s+/g, "");
     var sortTypeValue = sortTypeEl.getValue();
@@ -638,6 +646,10 @@ function morePartSearchAll(){
     params.partCodeAll = morePartCodeEl.getValue().replace(/\s+/g, "");
     params.partName = morePartNameEl.getValue().replace(/\s+/g, "");
     params.showStock = showStockEl.getValue().replace(/\s+/g, "");
+    //仓先生
+    if(currIsOpenApp ==1 && params.showStock ==0){
+    	params.showStock=2;
+    }
     params.serviceId = moreServiceIdEl.getValue().replace(/\s+/g, "");
     params.partBrandId = nui.get('partBrandId').getValue().replace(/\s+/g, "");
     var sortTypeValue = sortTypeEl.getValue();
@@ -673,6 +685,10 @@ function morePartSearchAll(){
         });
     }else if(tab.name == "partInfoTab"){
         params.showStock = showStockEl.getValue();
+        //仓先生
+        if(currIsOpenApp ==1 && params.showStock ==0){
+        	params.showStock=2;
+        }
         if(sortTypeValue == 1){
             params.sortField = "b.last_enter_date";
             params.sortOrder = "asc";

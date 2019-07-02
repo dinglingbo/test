@@ -17,6 +17,7 @@ var advancedSearchFormData = null;
 var beginDateEl = null;
 var endDateEl = null;
 var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"车架号(VIN)"},{id:"2",name:"客户名称"},{id:"3",name:"手机号"}];
+var billTypeIdList = [{name:"综合开单"},{name:"检查开单"},{name:"洗美开单"},{name:"销售开单"},{name:"理赔开单"},{name:"退货开单"},{name:"波箱开单"}];
 var brandList = [];
 var brandHash = {};
 var servieTypeList = [];
@@ -210,6 +211,8 @@ $(document).ready(function ()
             if (brandHash && brandHash[e.value]) {
                 e.cellHtml = brandHash[e.value].name;
             }
+        }else if (e.field == "billTypeId") {
+        	e.cellHtml = billTypeIdList[e.value].name; 
         }else if (e.field == "isSettle") {
         	if(e.value==null){
         		e.cellHtml = "在厂";
@@ -590,14 +593,44 @@ function edit(row_uid){
 	}
     if(!row) return;
     var item={};
-    var data = {};
-    data.id = row.id;
-    var item={};
-	item.id = "11111";
-    item.text = "工单详情页";
-	item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow?sourceServiceId="+data.id;
-	item.iconCls = "fa fa-file-text";
-	window.parent.activeTabAndInit(item,data);
+    var params = {};
+    //先判断是否结算
+    if(row.isCollectMoney==1){
+        item.id = "11111";
+        item.text = "工单详情页";
+        item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow?sourceServiceId="+row.id;
+        item.iconCls = "fa fa-file-text";
+        params.id=row.id;
+    	window.parent.activeTabAndInit(item,params);
+    }else{
+    	 //0综合，1检查，2洗美，3销售，4理赔，5退货，6波箱
+        if(row.billTypeId==0){
+            item.id = "2000";
+            item.text = "综合开单详情";
+            item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.repairBill.flow";
+            item.iconCls = "fa fa-file-text";
+            params.id=row.id;
+        }else if(row.billTypeId==2){
+            item.id = "3000";
+            item.text = "洗美开单详情";
+            item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.carWashBill.flow";
+            item.iconCls = "fa fa-file-text";
+            params.id=row.id;
+        }else if(row.billTypeId==4){
+            item.id = "4000";
+            item.text = "理赔开单详情";
+            item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.claimDetail.flow";
+            item.iconCls = "fa fa-file-text";
+            params.id=row.id;
+        }else if(row.billTypeId==6){
+            item.id = "8000";
+            item.text = "波箱开单详情";
+            item.url = webPath + contextPath + "/com.hsweb.bx.waveBoxDetail.flow";
+            item.iconCls = "fa fa-file-text";
+            params.id=row.id;
+        }
+    }
+    window.parent.activeTabAndInit(item,params);
 }
 
 function showCarInfo(row_uid){

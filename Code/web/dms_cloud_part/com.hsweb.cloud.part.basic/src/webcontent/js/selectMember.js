@@ -33,8 +33,18 @@ $(document).ready(function(v)
 	
 	deductMemGrid = nui.get("deductMemGrid");
 	deductMemGrid.setUrl(deductMemUrl);
-	deductMemGrid.on("beforeload",function(e){
+	deductMemGrid.on("load",function(e){
         e.data.token = token;
+        var data =deductMemGrid.getData();
+		var selectdData =[];
+		deductMemGrid.deselectAll();
+		for(var i=0;i<data.length;i++){
+			if(haveSelectHash[data[i].id]){
+//				deductMemGrid.select(data[i]);
+				selectdData.push(data[i]);
+			}
+		}
+		deductMemGrid.selects(selectdData);
     });
 	
 	haveSelectGrid=nui.get('haveSelectGrid');
@@ -63,18 +73,11 @@ $(document).ready(function(v)
 	});
 	
 	deductMemGrid.on("drawcell",function(e){
-		var data =deductMemGrid.getData();
-		var selectdData =[];
-		deductMemGrid.deselectAll();
-		for(var i=0;i<data.length;i++){
-			if(haveSelectHash[data[i].id]){
-				deductMemGrid.select(data[i]);
-			}
-		}
+
 	});
 	deductMemGrid.on("selectionchanged",function(e) {
-		var row = e.selected;
-		var deductMemId = row.id;
+//		var row = e.selected;
+//		var deductMemId = row.id;
 		
 	});
 	
@@ -153,7 +156,7 @@ function save(){
             		data.forEach(function(v){
             			haveSelectHash[v.deductMemId]=v;
                 	});
-            		deductMemGrid.relaod();
+            		deductMemGrid.reload();
             	});
             }
             else{

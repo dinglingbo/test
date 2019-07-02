@@ -1,13 +1,13 @@
 /**
  * Created by Administrator on 2018/1/24.
  */
-var baseUrl = apiPath + repairApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var rightUnifyGrid = null;
 
-var rightUnifyGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryRpbPart.biz.ext";
-var typeList = [{id:"1",text:"按原价比例"},{id:"2",text:"按折后价比例"},{id:"3",text:"按产值比例"},{id:"4",text:"固定金额"}];
-var statusList = [{id:"0",name:"编码"},{id:"1",name:"拼音"},{id:"2",name:"名称"}];
-var salesDeductTypeList=[{id:"1",text:"原价"},{id:"2",text:"折后价"},{id:"3",text:"产值"}];
+var rightUnifyGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.query.queryDeductPart.biz.ext";
+var typeList = [{id:"1",text:"按销售金额分成"},{id:"2",text:"按销售毛利分成"}];
+var statusList = [{id:"0",name:"编码"},{id:"1",name:"名称"}];
+//var salesDeductTypeList=[{id:"1",text:"原价"},{id:"2",text:"折后价"},{id:"3",text:"产值"}];
 var salesDeductTypeEl= null;
 
 //var requiredField = {
@@ -54,21 +54,21 @@ $(document).ready(function(v)
     
     rightUnifyGrid.on("drawcell",function(e){
     	switch(e.field){
-    		case "salesDeductValue":
-    			if(e.row.salesDeductType && e.row.salesDeductValue){
-    				for(var i=0;i<salesDeductTypeList.length;i++){
-    					if(e.row.salesDeductType==salesDeductTypeList[i].id){    						
-    						e.cellHtml = e.row.salesDeductValue+"%";
-    					}else if(e.row.salesDeductType==4){
-    						e.cellHtml = e.row.salesDeductValue+"元";
-    					}
-    				}
-    			}
-    			break;
-    		case "salesDeductType":
-    			if(e.row.salesDeductType){
+//    		case "salesDeductValue":
+//    			if(e.row.salesDeductType && e.row.salesDeductValue){
+//    				for(var i=0;i<salesDeductTypeList.length;i++){
+//    					if(e.row.salesDeductType==salesDeductTypeList[i].id){    						
+//    						e.cellHtml = e.row.salesDeductValue+"%";
+//    					}else if(e.row.salesDeductType==4){
+//    						e.cellHtml = e.row.salesDeductValue+"元";
+//    					}
+//    				}
+//    			}
+//    			break;
+    		case "type":
+    			if(e.row.type){
     				for(var i=0;i<typeList.length;i++){
-    					if(e.row.salesDeductType==typeList[i].id){    						
+    					if(e.row.type==typeList[i].id){    						
     						e.cellHtml = typeList[i].text || "";
     					}
     				}
@@ -87,8 +87,6 @@ function onUnifySearch() {
     if(type==0){
     	params.partCode = typeValue;
     }else if(type==1){
-    	params.namePy = typeValue;
-    }else if(type==2){
     	params.partName = typeValue;
     }
     rightUnifyGrid.load({params:params,token:token});
@@ -98,7 +96,7 @@ function onUnifySearch() {
 function selectPart(callback, checkcallback) {
     nui.open({
         // targetWindow: window,,
-        url : webPath+contextPath+"/com.hsweb.part.common.partSelectView.flow?token="+token,
+        url : webPath+contextPath+"/com.hsweb.cloud.part.common.partSelectView.flow?token="+token,
         title : "配件选择",
         width : 930,
         height : 560, 
@@ -134,12 +132,16 @@ function onCellCommitEdit(e) {
     var editor = e.editor;
     var record = e.record;
     var row = e.row;
-   if(e.field == "salesDeductValue" || e.field == "useTimes"){
+   if(e.field == "deductRate"){
 	   editor.validate();
 	    if (editor.isValid() == false) {
 	        showMsg("请输入数字!","W");
 	        e.cancel = true;
-	    }   
+	    } 
+	    if(editor.value >100 || editor.value<0 ){
+	    	 showMsg("请输入0-100的数字!","W");
+		     e.cancel = true;
+	    }
    }
     /*editor.validate();
     if (editor.isValid() == false) {
@@ -164,12 +166,13 @@ function addUnifyDetail(row){
     var newRow = {
         partId: row.id,
         partCode: row.code,
-        partName: row.name
+        partName: row.name,
+        fullName: row.fullName
     };
     rightUnifyGrid.addRow(newRow);
 }
 
-var saveUnifyUrl = baseUrl + "com.hsapi.repair.baseData.crud.saveRpbPart.biz.ext";
+var saveUnifyUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.savePjdeductPart.biz.ext";
 function saveUnifyPart(){
 	
 	rightUnifyGrid.validate();
@@ -182,14 +185,14 @@ function saveUnifyPart(){
 //            showMsg("售价不能为空", "W");
 //            return;
 //        }
-		if(!data[i].salesDeductType )
+		if(!data[i].type )
         {
             showMsg("提成类型不能为空", "W");
             return;
         }
-		if(!data[i].salesDeductValue )
+		if(!data[i].deductRate )
         {
-            showMsg("提成类型对应的比率或金额不能为空", "W");
+            showMsg("提成比例不能为空", "W");
             return;
         }
 		

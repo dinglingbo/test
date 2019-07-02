@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false" %>
 -->
 <head>
 	<title>配件提成设置</title>
-	<script src="<%=webPath + contextPath%>/basic/js/partDeductSet.js?v=1.0.10"></script>
+	<script src="<%=webPath + contextPath%>/basic/js/partDeductSet.js?v=1.0.29"></script>
 
 	<style type="text/css">
 	.table-label {
@@ -92,11 +92,14 @@ pageEncoding="UTF-8" session="false" %>
                             popupHeight="90%"
                           />
 			</div>
-			<div field="deductRate" name="deductRate" headerAlign="center" allowSort="true" header="销售提成">
+			<div field="deductRate" name="deductRate" headerAlign="center" allowSort="true" header="销售提成比例(%)">
 				<input  property="editor" required="true" vtype="float;range:0,100;" class="nui-textbox"/>
 			</div>
-			<div field="modifier" width="60" headerAlign="center" allowSort="true">操作人</div>
-			<div field="modifyDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm">操作日期</div>
+			<div field="remark" name="remark" headerAlign="center" allowSort="true" header="备注">
+				<input  property="editor"  class="nui-textbox"/>
+			</div>
+			<div field="operator" width="60" headerAlign="center" allowSort="true">操作人</div>
+			<div field="operateDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm">操作日期</div>
 		</div>
 	</div>
 </div>

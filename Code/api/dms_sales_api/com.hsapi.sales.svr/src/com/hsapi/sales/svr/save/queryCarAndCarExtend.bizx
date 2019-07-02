@@ -207,7 +207,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="urlParam" type="query" value="java.lang.String" valueType="Java" pattern="reference">httpStr</process:inputVariable>
-      <process:inputVariable id="1" name="params" type="query" value="java.util.Map&lt;java.lang.String,java.lang.Object>" valueType="Java" pattern="reference">params</process:inputVariable>
+      <process:inputVariable id="1" name="params" type="query" value="java.util.Map&lt;java.lang.String,java.lang.Object>" valueType="Java" pattern="reference">p</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
       <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java">retData</process:outputVariable>
@@ -284,7 +284,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">token</process:from>
-      <process:to type="query">params/token</process:to>
+      <process:to type="query">p/token</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">params</process:from>
@@ -369,16 +369,6 @@
       <sourceNode>assign3</sourceNode>
       <targetNode>assign4</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link18" name="link18" displayName="连接线" type="transition">
-      <sourceNode>assign3</sourceNode>
-      <targetNode>assign5</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">enterCar/carId</process:leftOperand>
-          <process:rightOperand type="literal">0</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <targetConnections>link15</targetConnections>
     <location x="325" y="190"/>
     <size height="28" width="28"/>
@@ -408,35 +398,11 @@
     <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign5</sourceNode>
-      <targetNode>assign6</targetNode>
-    </sourceConnections>
-    <targetConnections>link18</targetConnections>
-    <location x="325" y="450"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign5label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">S</process:from>
-      <process:to type="query">errCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">查询成功</process:from>
-      <process:to type="query">errMsg</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="323" y="486"/>
-    <figSize height="17" width="32"/>
-    <node>assign5</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" id="assign6" name="赋值6" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
       <targetNode>end0</targetNode>
     </sourceConnections>
-    <targetConnections>link19</targetConnections>
     <targetConnections>link9</targetConnections>
     <location x="450" y="323"/>
     <size height="28" width="28"/>
@@ -448,7 +414,9 @@
     <node>assign6</node>
   </nodes>
   <topRuler/>
-  <leftRuler/>
+  <leftRuler>
+    <guides position="701" horizontal="true"/>
+  </leftRuler>
   <process:info author="Administrator" createTime="2019-07-01 17:16:37" date="2019-07-01Z" description="" name="queryCarAndCarExtend" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="httpStr" primitiveType="String"/>

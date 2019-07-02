@@ -1306,10 +1306,10 @@ function registration() { //车辆上牌
         url: webPath + contextPath + "/sales/sales/vehicleRegistration.jsp?token=" + token,
         title: "车辆上牌",
         width: "550px",
-        height: "490px",
+        height: "450px",
         onload: function() {
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(billFormData.enterId, billFormData.guestId);
+            iframe.contentWindow.SetData(billFormData);
         }
     });
 }

@@ -378,7 +378,7 @@ function onDrawCell(e)
 function onPrint(){
 	var data=rightGrid.getSelected();
 	var params={
-			id : data.codeId,
+			id : data.id,
 		auditSign:1,
 		guestId : data.guestId,
 		currUserName :currUserName,
@@ -392,7 +392,7 @@ function onPrint(){
 		printName : "销售出库单"
 	};
 	var detailParams={
-			mainId :data.codeId
+			mainId :data.id
 	};
 	var openUrl = webPath + contextPath+"/purchase/sellOrderOut/sellOrderOutPrint.jsp";
 

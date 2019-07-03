@@ -210,6 +210,11 @@ hr {
         border-top: 1px solid #333;
         border-bottom: 1px solid #ffffff;
     }
+ #se2{
+ 	 margin: 2px 0;
+     border: 0;
+     border-top: 1px ;
+ }
 #currUserName{
 	width:20%;
 }
@@ -268,7 +273,7 @@ hr {
 				    <td style="font-size:8px;" id="createDate" align="left">订单日期:</td>	    
 				  </tr>
 				</table>
-				<hr/>
+				<hr id="se2"/>
 				<table id="ybk" width="100%">
 				  <tr>
 				    <td width="33.3%" id="guestFullName">客户:</td>
@@ -282,7 +287,7 @@ hr {
 				  </tr>
 				</table>
         	</div> 
-        	<hr />
+        	<hr id="se2"/>
             <div id="queryTable" style="height:auto;">
 				<table id="tbody" width="100%"  border="1" style="border: 1px solid #151515; border-collapse:collapse;">
 					<tbody>
@@ -317,7 +322,7 @@ hr {
 				  </tr>
 				</table>
 				<table>
-				  <tr><td  colspan="5"><hr id="se"/></td></tr>
+				  <tr><td  colspan="5"></td></tr>
 				  <tr id="border2">
 				  	<td id="dueAmt">客户欠款金额:</td>
 				    <td id="currUserName" >打印人：系统管理员</td>

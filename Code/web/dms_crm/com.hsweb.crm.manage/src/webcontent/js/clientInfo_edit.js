@@ -18,7 +18,8 @@ $(document).ready(function(v){
     modifyDate = nui.get("modifyDate");
     insureCompCode = nui.get("insureCompCode");
     insureCompCode.setUrl(insuranceInfoUrl);
-    
+    nui.get("visitManId").setValue(currUserId);
+    nui.get("visitMan").setValue(currUserName);
     carModelText = nui.get("carModelText");
     init();
     
@@ -127,14 +128,14 @@ function onCancel(){
 function onOk(){
     //验证
     if(!formValidate(form1)) return;
-
+    var data = form1.getData(true);
     //$("#save").hide();
     try {
         nui.ajax({
             url: saveUrl,
             type: 'post',
             data: nui.encode({
-                data: form1.getData(true),
+                data: data,
                 token:token
             }),
             cache: false,

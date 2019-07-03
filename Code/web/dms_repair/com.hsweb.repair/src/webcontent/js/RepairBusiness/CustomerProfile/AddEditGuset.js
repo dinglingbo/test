@@ -1104,6 +1104,8 @@ function addCarList(){
 	carExtend.lastComeKilometers = car.lastComeKilometers;
 	carExtend.careDueMileage = car.careDueMileage;
 	carExtend.careDueDate = car.careDueDate;
+	carExtend.prevAdvisorId = currUserId;
+	carExtend.prevAdvisorName = currUserName;
 	car.carExtend = carExtend;
 	//禁用的车辆不判断车牌号Vin
 	if(nui.get("isDisabled").getValue()==0){

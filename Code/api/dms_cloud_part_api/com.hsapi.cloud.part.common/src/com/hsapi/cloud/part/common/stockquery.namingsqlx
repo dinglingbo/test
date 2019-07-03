@@ -192,5 +192,26 @@
 
     </select>
     
+     <select id="queryStoreLocation" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject"> 
+		 SELECT
+			a.id as id,
+			a.orgid as orgid,
+			a.store_id as storeId,
+			a.first_char as firstChar,
+			a.num_id as numId,
+			a.`name` as name,
+			a.is_disabled as isDisabled,
+			a.recorder as recorder,
+			a.record_date as recordDate,
+			a.modifier as modifier,
+			a.modify_date as modifyDate,
+			a.cang_shelf_id as cangShelfId
+		FROM
+			com_store_location AS a
+		where a.is_disabled = 0
+		 	<isNotNull prepend = "" property = "storeId">
+	  		        AND a.store_id = #storeId# 
+			 </isNotNull>
+    </select>
     
 </sqlMap>

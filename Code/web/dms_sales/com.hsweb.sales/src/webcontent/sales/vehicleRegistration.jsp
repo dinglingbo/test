@@ -81,6 +81,11 @@
             </table>
         </div>
         <table style="width: 100%; line-height: 30px; padding-top: 10px; padding-left: 5px;">
+             
+              <!-- <input class="nui-combobox" id="insureCompName" name="insureCompName" emptyText="选择保险公司" 
+              dataField="list" valueField="fullName" textField="fullName" showNullItem="true" nullItemText="请选择..." 
+              popupWidth="200" onvaluechanged="insuranceChange" width="100%" visible="false"/> -->
+        
             <tr>
                 <td class="td_title">车牌号码
                 </td>
@@ -109,14 +114,20 @@
                 <td align="right" style="width:95px;">商业险保险公司
                 </td>
                 <td align="left">
-                    <input id="annualInspectionCompCode" name="annualInspectionCompCode" class="nui-combobox" editable="false" style="width: 100%" />
+                    <input id="annualInspectionCompCode" name="annualInspectionCompCode" class="nui-combobox" editable="false"  visible="false" />
+                    <input class="nui-combobox" id="annualInspectionCompName" name="annualInspectionCompName" emptyText="选择保险公司" 
+              dataField="compList" valueField="fullName" textField="fullName" showNullItem="true" nullItemText="请选择..." 
+              popupWidth="200" onvaluechanged="insuranceChange" width="100%"/>
                 </td>
 
 
                 <td align="right" style="width:95px;">交强险保险公司
                 </td>
                 <td>
-                    <input id="insureCompCode" name="insureCompCode" class="nui-combobox" editable="false" style="width: 100%" />
+                    <input id="insureCompCode" name="insureCompCode" class="nui-combobox" editable="false" visible="false" />
+                    <input class="nui-combobox" id="insureCompName" name="insureCompName" emptyText="选择保险公司" 
+              dataField="list" valueField="fullName" textField="fullName" showNullItem="true" nullItemText="请选择..." 
+              popupWidth="200" onvaluechanged="insuranceChange2" width="100%"/>
                 </td>
             </tr>
             <tr>
@@ -162,12 +173,22 @@
         <script type="text/javascript">
             nui.parse();
             var saveUrl = apiPath + saleApi + '/com.hsapi.sales.svr.save.saveCarGuest.biz.ext';
+            var insuranceInfoUrl =  apiPath + repairApi + "/" + "com.hsapi.repair.baseData.insurance.InsuranceQuery.biz.ext?params/orgid="+currOrgId+"&params/isDisabled=0";
             var form = new nui.Form("form1");
             var enterId = null;
             var guestId = null;
-            function SetData(eId, gId) {
-                 enterId = eId;
-                 guestId = gId;
+            var insuranceComp = null;
+	       $(document).ready(function(v) {
+	             insuranceComp = nui.get("insureCompName");
+	             insuranceComp.setUrl(insuranceInfoUrl);
+	       });
+	
+            function SetData(data) {
+                 var compList = insuranceComp.getData();
+                 nui.get("annualInspectionCompName").setData(compList);
+               
+                 enterId = data.enterId;
+                 guestId = data.guestId;
                 /* guestId = gId || "";
                 guestFullName = gFullName || ""; */
                 //查找该车的保险信息
@@ -177,8 +198,9 @@
 					 var params = {};
 					 params.guestId = guestId;
 					 params.enterId = enterId;
+					 params.mobile = data.mobile;
 				      nui.ajax({
-				   	        url: repairUrl + "com.hsapi.repair.repairService.svr.queryGrossProfit.biz.ext",
+				   	        url: apiPath + saleApi + "/com.hsapi.sales.svr.save.queryCarAndCarExtend.biz.ext",
 				   	        data: {
 				   	        	params:params,
 				   	        	token:token
@@ -187,14 +209,41 @@
 				   	        async: false,
 				   	        success: function(text) {
 				   	            if (text.errCode == "S"){
-				   	               var data = text.data;
-				   	               if(data){
-				   	            	  var insureCompName = data.insureCompName || "";
-				   	            	  nui.get("annualInspectionCompCode").setValue(insureCompName);
-				   	            	  nui.get("insureCompCode").setValue(insureCompName);
-				   	            	  var endDate = data.endDate || "";
-				   	            	  nui.get("annualInspectionDate").setValue(insureCompName);
-				   	            	  nui.get("insureDueDate").setValue(insureCompName);
+				   	               var result = text.result;
+				   	               if(result){
+				   	                  var car = result.car;
+				   	                  var carExtend = result.carExtend;
+				   	                  var data = result.data;
+				   	                  var contactor = result.contactor;
+				   	                  if(contactor){
+				   	                     var licenseOverDate = contactor.licenseOverDate;
+				   	                      nui.get("annualInspectionCompCode").setValue(licenseOverDate);
+				   	                  }
+				   	                  if(data){
+					   	                  var insureCompName = data.insureCompName || "";
+					   	                  nui.get("insureCompName").setValue(insureCompName);
+					   	            	  nui.get("annualInspectionCompName").setValue(insureCompName);
+					   	            	  
+					   	            	   var insureCompId = data.insureCompId || "";
+					   	            	  nui.get("annualInspectionCompCode").setValue(insureCompId);
+					   	            	  nui.get("insureCompCode").setValue(insureCompId);
+					   	            	  
+					   	            	  var endDate = data.endDate || "";
+					   	            	  nui.get("annualInspectionDate").setValue(endDate);
+					   	            	  nui.get("insureDueDate").setValue(endDate);
+				   	                  }
+				   	                  if(carExtend){
+				   	                      var careDueDate = carExtend.careDueDate || "";
+					   	            	  nui.get("careDueDate").setValue(careDueDate);
+					   	            	
+					   	            	  var careDueMileage = data.careDueMileage || "";
+					   	            	  nui.get("careDueMileage").setValue(careDueMileage);
+				   	                  }
+				   	                  if(car){
+				   	                      var carNo = car.carNo || "";
+					   	            	  nui.get("carNo").setValue(carNo);
+				   	                  }
+				   	            	  
 				   	               }
 				   	            } 
 				   	        }
@@ -207,20 +256,32 @@
                 var params = data;
                 params.enterId = enterId;
                 params.guestId = guestId;
-                nui.ajax({
-                    url: saveUrl,
-                    type: 'post',
-                    data: {
-                        params: params
-                    },
-                    success: function(res) {
-                        if (res.errCode == 'S') {
-                            showMsg('保存成功', 'S');
-                        } else {
-                            showMsg(res.errMsg, "E");
-                        }
-                    }
-                })
+                if(data.carNo){
+		            var falge = isVehicleNumber(data.carNo);
+		        	data.carNo = falge.vehicleNumber;//返回转化好的车牌
+		        	if(!falge.result){
+		        		showMsg("请输入正确的车牌号","W");
+		        		return;
+		        	}
+		            nui.ajax({
+		                url: saveUrl,
+		                type: 'post',
+		                data: {
+		                    params: params
+		                },
+		                success: function(res) {
+		                    if (res.errCode == 'S') {
+		                        nui.get("carNo").setValue(data.carNo);
+		                        showMsg('保存成功', 'S');
+		                    } else {
+		                        showMsg(res.errMsg, "E");
+		                    }
+		                }
+		            })
+		        }else{
+		            showMsg("请输入车牌号","W");
+		        	return;
+		        }
             }
 
             function onCancel() {
@@ -233,6 +294,15 @@
                 else
                     window.close();
             }
+            
+            function insuranceChange(e){
+			    var selected = e.selected;
+			    nui.get("annualInspectionCompCode").setValue(selected.id);
+			}
+			function insuranceChange2(e){
+			    var selected = e.selected;
+			    nui.get("insureCompCode").setValue(selected.id);
+			}
         </script>
     </body>
 

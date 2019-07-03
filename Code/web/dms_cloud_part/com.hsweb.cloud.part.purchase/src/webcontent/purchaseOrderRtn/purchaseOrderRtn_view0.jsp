@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购退货</title>
-<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.1.57"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.1.95"></script>
 <style type="text/css">
 .title {
 	width: 70px;
@@ -214,11 +214,12 @@ body .mini-grid-row-selected{
                                              valueField="customid"
                                              emptyText="请选择..."
                                              url=""
+                                             enabled="true"
+                                             valuefromselect="true"
                                              allowInput="true"
+                                             selectOnFocus="true"
                                              showNullItem="false"
                                              width="100%"
-                                             valueFromSelect="true"
-                                             onvaluechanged=""
                                              nullItemText="请选择..."/>
                                   </td>
                                       <td class="title required">
@@ -308,7 +309,7 @@ body .mini-grid-row-selected{
                                           <input property="editor" class="nui-textbox" />
                                       </div>
                                       <div field="comPartName" visible="false" headerAlign="center" header="配件名称"></div>
-                                      <div field="fullName"  width="240" headerAlign="center" header="配件全称"></div>
+                                      <div field="fullName"  width="200" headerAlign="center" header="配件全称"></div>
                                       <div field="comPartBrandId" visible="false"width="60" headerAlign="center" header="品牌"></div>
                                       <div field="comApplyCarModel" width="80" headerAlign="center" header="品牌车型"></div>
                                       <div field="comUnit" name="comUnit" width="40" headerAlign="center" header="单位"></div>
@@ -332,12 +333,16 @@ body .mini-grid-row-selected{
                               </div>
                               <div header="辅助信息" headerAlign="center">
                                   <div property="columns">
-                                     <div type="comboboxcolumn" field="storeId" width="30" headerAlign="center" allowSort="true">
-                        		仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" data="storehouse"
+                                     <div type="comboboxcolumn" field="storeId" width="40" headerAlign="center" allowSort="true">
+                        		仓库<input  property="editor" enabled="true" name="storehouse"  class="nui-combobox" valueField="id" textField="name" data="storehouse"
                                       url=""
                                       onvaluechanged="onStoreValueChange" emptyText=""  vtype="required"
-                                      /> 
-                                      </div>  
+                                      />   
+                                      </div> 
+                                      
+                                       <div field="storeShelf" width="20" headerAlign="center" allowSort="true" header="仓位">
+							                              仓位<input id="storeShelf" name='storeShelf' property="editor" class="nui-textbox"/>
+			                          </div>  
                                       <div field="stockOutQty" summaryType="sum" numberFormat="0.00" width="25" headerAlign="center" header="缺货数量">
                                       </div>
                                       <div field="comOemCode" width="30" headerAlign="center" allowSort="true" header="OEM码"></div>   

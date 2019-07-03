@@ -60,7 +60,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <!-- <a class="nui-button" iconCls="icon-undo" plain="true" onclick="cancelEditInbound()" id="cancelEditEnterMainBtn">取消</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="auditToEnter()" id="auditBtn" style="display :none;"><span class="fa fa-check fa-lg"></span>&nbsp;入库</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="auditToEnter()" id="auditBtn" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;入库</a>
                 
                 <!-- <a class="nui-menubutton " menu="#popupMenuPrint" id="menuprint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
 
@@ -306,14 +306,14 @@
                             </div>
                             <div header="辅助信息" headerAlign="center">
                                 <div property="columns">
-                                    <div type="comboboxcolumn" field="storeId" width="30" headerAlign="center" allowSort="true">
+                                    <div type="comboboxcolumn" field="storeId" width="30" headerAlign="center" allowSort="true" header="仓库">
                         仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" data="storehouse"
                                       url=""
                                       onvaluechanged="onStoreValueChange" emptyText=""  vtype="required"
                                       /> 
                         </div>  
-                        <div field="storeShelf" width="20" headerAlign="center" allowSort="true">
-                              仓位<input property="editor" class="nui-textbox"/>
+                        <div field="storeShelf" width="20" headerAlign="center" allowSort="true" header="仓位">
+                              仓位<input id="storeShelf" name='storeShelf' property="editor" class="nui-textbox"/>
                           </div>  
                       <div field="comOemCode" allowSelect="false" width="60" headerAlign="center" visible="false"  allowSort="true" header="OEM码"></div> 
                       <div field="comSpec" allowSelect="false" width="100" headerAlign="center" visible="false" allowSort="true" header="规格/方向/颜色"></div>

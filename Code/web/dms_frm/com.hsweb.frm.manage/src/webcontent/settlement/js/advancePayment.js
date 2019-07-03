@@ -1808,7 +1808,7 @@ function setInitExportData(detail){
         }
     }
 
-    method5('tableExcel',"应付账款管理",'tableExportA');
+    method5('tableExcel',"预付账款管理",'tableExportA');
 }
 
 var doAuditUrl = baseUrl+"com.hsapi.frm.frmService.rpsettle.advanceAudit.biz.ext";

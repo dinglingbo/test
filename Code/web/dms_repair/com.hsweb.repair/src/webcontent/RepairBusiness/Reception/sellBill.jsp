@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单-销售单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/sellBill.js?v=2.2.0"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/sellBill.js?v=2.2.1"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -307,18 +307,19 @@
         <div headerAlign="center" type="indexcolumn" width="20">序号</div>
         <div header="配件信息" headerAlign="center">
             <div property="columns">
-                <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称" align="center">
+                <div field="partName" headerAlign="center" allowSort="false" visible="true" width="150px" header="配件名称" align="center">
                 </div>
                 
-                <div field="partCode" headerAlign="center" allowSort="false"  width="80px" header="配件编码" align="center">
-                </div>           
-                <div field="qty" name="qty" summaryType="sum"  numberFormat="0" width="60" headerAlign="center" header="数量" align="center">
+                <div field="partCode" headerAlign="center" allowSort="false"  width="110px" header="配件编码" align="center">
+                </div>         
+                <div field="oemCode" name="oemCode" width="110px" headerAlign="center" header="OEM码"></div>  
+                <div field="qty" name="qty" summaryType="sum"  numberFormat="0" width="60px" headerAlign="center" header="数量" align="center">
                    <input property="editor" vtype="int" class="nui-textbox" width="90%" selectOnFocus="true" onvaluechanged="onValueChangedComQty"/>
                 </div>
-                <div field="unitPrice" name="unitPrice" width="60" headerAlign="center" header="单价" align="center" >
-                   <input property="editor" vtype="float" class="nui-textbox" width="90%" selectOnFocus="true" onvaluechanged="onValueChangedUnitPrice"/>
+                <div field="unitPrice" name="unitPrice" width="60px" headerAlign="center" header="单价" align="center" >
+                   <input property="editor" vtype="float" class="nui-textbox"  selectOnFocus="true" onvaluechanged="onValueChangedUnitPrice"/>
                 </div>
-                <div field="amt" summaryType="sum" name="amt" width="60" headerAlign="center" header="金额" align="center" >
+                <div field="amt" summaryType="sum" name="amt" width="60px" headerAlign="center" header="金额" align="center" >
                    <input property="editor" vtype="float" class="nui-textbox" width="90%" selectOnFocus="true" onvaluechanged="onValueChangedAmt"/>
                 </div>
                 <div field="subtotal" summaryType="sum" name="subtotal" width="60" headerAlign="center" header="小计" align="center" visible="false">
@@ -330,14 +331,14 @@
                              url="" onvaluechanged="onpartsalemanChanged" emptyText=""  vtype="required"/> 
                 </div> -->
                 <div field="saleMan" headerAlign="center"
-                     allowSort="false" visible="true" width="50" header="" align="center" name="saleMan">
+                     allowSort="false" visible="true" width="70px" header="" align="center" name="saleMan">
                                                    销售员<a href="javascript:setPartSaleMans()" title="批量设置销售员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
                      <input class="nui-textbox" property="editor" id="saleMansName" name="saleMansName"  onclick="openItemSaleMans" width="60%"/> 
                 </div>
                 <div field="saleManId" headerAlign="center"
-                     allowSort="false" visible="false" width="80" header="销售员" align="center" align="center">
+                     allowSort="false" visible="false" width="80px" header="销售员" align="center" align="center">
                 </div>   
-                <div field="partOptBtn" name="partOptBtn" width="100" headerAlign="center" header="操作" align="center" align="center"></div>
+                <div field="partOptBtn" name="partOptBtn" width="60px" headerAlign="center" header="操作" align="center" align="center"></div>
             </div>
         </div>
     </div>

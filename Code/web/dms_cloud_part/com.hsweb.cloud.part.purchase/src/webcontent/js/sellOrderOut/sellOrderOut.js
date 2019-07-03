@@ -587,9 +587,13 @@ function showPartInfo(row, value, mainId){
 }
 function morePartSearch(){
     var params = {}; 
-    params.partCode = morePartCodeEl.getValue();
-    params.partName = morePartNameEl.getValue();
+    params.partCode = morePartCodeEl.getValue().replace(/\s+/g, "");;
+    params.partName = morePartNameEl.getValue().replace(/\s+/g, "");;
     params.showStock = showStockEl.getValue();
+    //仓先生
+    if(currIsOpenApp ==1 &&  params.showStock==0){
+    	params.showStock=2;
+    }
     params.sortField = "b.outable_qty";
     params.sortOrder = "asc";
 

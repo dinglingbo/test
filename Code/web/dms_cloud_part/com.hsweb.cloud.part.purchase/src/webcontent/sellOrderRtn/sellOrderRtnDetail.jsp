@@ -303,6 +303,9 @@
                                       onvaluechanged="onStoreValueChange" emptyText=""  vtype="required"
                                       /> 
                         </div>
+                           <div field="storeShelf" width="20" headerAlign="center" allowSort="true" header="仓位">
+                             	 仓位<input id="storeShelf" name='storeShelf' property="editor" class="nui-textbox"/>
+                          </div>  
                       <div field="comOemCode" allowSelect="false" width="30" headerAlign="center" allowSort="true" header="OEM码"></div> 
                       <div field="comSpec" allowSelect="false" width="30" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>                             
                                 </div>

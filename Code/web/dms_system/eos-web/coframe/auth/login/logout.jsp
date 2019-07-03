@@ -9,7 +9,7 @@
   - Description:
 -->
 <head>
-<%@include file="/coframe/tools/skins/common.jsp" %>
+
 <title>退出系统</title>
 </head>
 <%
@@ -25,7 +25,7 @@
      }
      
      response.sendRedirect(_url);
-    
+   
    %>
 </body>
 </html>

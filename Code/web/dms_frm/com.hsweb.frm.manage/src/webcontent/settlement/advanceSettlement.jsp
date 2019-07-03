@@ -9,7 +9,7 @@
 
 <head>
 	<title>预收账款管理</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/advanceSettlement.js?v=1.0.5"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/advanceSettlement.js?v=1.0.6"></script>
 	    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 	<style type="text/css">
@@ -150,18 +150,19 @@
 							class="fa fa-check fa-lg"></span>&nbsp;审核</a>
 						<a class="nui-button" iconCls="" plain="true" onclick="doSettle()">
 							<span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
-						<a class="nui-button" iconCls="" plain="true" onclick="openOrderDetail()">
+<!--						<a class="nui-button" iconCls="" plain="true" onclick="openOrderDetail()">
 							<span class="fa fa-search fa-lg"></span>&nbsp;详情</a>
-<!-- 						<a class="nui-button" iconCls="" plain="true" onclick="print()"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+ 						<a class="nui-button" iconCls="" plain="true" onclick="print()"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
 						<a class="nui-button" iconCls="" plain="true" onclick="doDelete()">
 							<span class="fa fa-trash fa-lg"></span>&nbsp;作废</a>
-						<a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn">
-							<span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a> -->
-						<a class="nui-menubutton" plain="true" menu="#popupMenuMore" id="menuMore"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
+ -->
+ 						<a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn">
+							<span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
+<!-- 						<a class="nui-menubutton" plain="true" menu="#popupMenuMore" id="menuMore"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
 						<ul id="popupMenuMore" class="nui-menu" style="display:none;">
 		                    <li iconCls="" onclick="onExport()" id="">导出</li>
 		                    <li iconCls="" onclick="print()" id="type11">打印欠款单</li>
-		                </ul>
+		                </ul> -->
 					</td>
 				</tr>
 			</table>

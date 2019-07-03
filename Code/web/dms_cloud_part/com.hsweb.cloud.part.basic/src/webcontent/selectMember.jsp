@@ -9,7 +9,7 @@
 -->
 <head>
 <title>选择提成成员</title>
-<script src="<%=webPath + contextPath%>/basic/js/selectMember.js?v=1.0.44"></script>
+<script src="<%=webPath + contextPath%>/basic/js/selectMember.js?v=1.0.2"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -104,7 +104,7 @@
 	                 sortMode="client"
 	                 multiSelect="true">                 
 	                 <div property="columns">
-	                 	 <div type="indexcolumn">序号</div>
+	                 	 <div type="indexcolumn" >序号</div>
 	                 	 <div field="roleId" width="100" headerAlign="center" allowSort="true" header="角色名称"></div>
 	                 	 <div field="deductMemName" width="100" headerAlign="center" allowSort="true" header="成员名称"></div>
 	                 	 <div field="creator" width="100" headerAlign="center" allowSort="true" header="添加人"></div>

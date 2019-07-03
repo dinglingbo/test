@@ -251,6 +251,43 @@
 			}
 		});
 	}
+	
+	var getLocationListByStoreIdUrl = apiPath + cloudPartApi+ "/"
+	+ "com.hsapi.cloud.part.baseDataCrud.query.getLocationListByStoreId.biz.ext";
+	var locationListHash = window.parent.locationListHash || {};
+	function getLocationListByStoreId(storeId, callback) {
+		if (locationListHash[storeId]) {
+			callback && callback({
+				locationList : locationListHash[storeId]
+			});
+			return;
+		}
+	//	var params = {};
+	//	params.storeId = storeId;
+		nui.ajax({
+			url : getLocationListByStoreIdUrl,
+			type : "post",
+			data : {
+				storeId :storeId,
+				token :token
+			},
+			async: false,
+			success : function(data) {
+				if (data && data.locationList) {
+					var list = data.locationList;
+					locationListHash[storeId] = list;
+					callback && callback({
+						locationList : list
+					});
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+			}
+		});
+	}
+	
 	function addDate(date, days) {
         if (days == undefined || days == '') {
             days = 1;

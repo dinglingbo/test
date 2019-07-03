@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveSaleMainAll" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="销售保存&#xD;&#xA;1、新增时，需要判断csb_contactor表里面是否有该客户扩展信息，没有新增&#xD;&#xA;2、交车时只对销售主表进行修改。交车时，费用信息进行了修改也一起保存&#xD;&#xA;3、如果修改了费用信息，这个时候返单，就会造成草稿状态下的单子也保存了费用信息，所以控制费用信息在只有交车的情况下才能保存" title="Administrator&#x9;19-6-10 下午5:40">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="销售保存&#xD;&#xA;1、新增时，需要判断csb_contactor表里面是否有该客户扩展信息，没有新增&#xD;&#xA;2、交车时只对销售主表进行修改。交车时，费用信息进行了修改也一起保存&#xD;&#xA;3、如果修改了费用信息，这个时候返单，就会造成草稿状态下的单子也保存了费用信息，所以控制费用信息在只有交车的情况下才能保存&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;事务嵌套事务：新增、修改、删除都是按照最外层事务的回滚和提交执行。&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" title="Administrator&#x9;19-6-10 下午5:40">
     <location x="64" y="31"/>
     <size height="165" width="580"/>
   </nodes>
@@ -203,9 +203,9 @@
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign2</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
+        <process:simpleCondition operator="NE">
           <process:leftOperand type="query">errCode</process:leftOperand>
-          <process:rightOperand type="literal">E</process:rightOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -546,9 +546,9 @@
       <sourceNode>subprocess4</sourceNode>
       <targetNode>assign2</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
+        <process:simpleCondition operator="NE">
           <process:leftOperand type="query">errCode</process:leftOperand>
-          <process:rightOperand type="literal">E</process:rightOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>

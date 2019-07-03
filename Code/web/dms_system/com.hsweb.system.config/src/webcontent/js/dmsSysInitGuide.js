@@ -144,3 +144,28 @@ function importMaintain(){
 	item.iconCls = "fa fa-file";
 	window.parent.activeTab(item);
 }
+
+function companyMgr(){
+	var item={};
+	item.id = "companyMgr";
+	item.text = "门店管理";
+	item.url = webPath + contextPath + "/com.hs.common.orgExtendT.flow";
+	item.iconCls = "fa fa-file";
+	window.parent.activeTab(item);
+}
+function appointmentMgr(){
+	var item={};
+	item.id = "appointmentMgr";
+	item.text = "预约参数";
+	item.url = webPath + contextPath + "/com.hsweb.repair.DataBase.appointmentParamsSet.flow";
+	item.iconCls = "fa fa-file";
+	window.parent.activeTab(item);
+}
+function partDeductMgr(){
+	var item={};
+	item.id = "partDeductMgr";
+	item.text = "配件提成";
+	item.url = webPath + contextPath + "/com.hsweb.part.manage.partDeductSet.flow";
+	item.iconCls = "fa fa-file";
+	window.parent.activeTab(item);
+}

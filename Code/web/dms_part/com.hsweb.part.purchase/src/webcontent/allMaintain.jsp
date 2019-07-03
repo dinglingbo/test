@@ -10,7 +10,7 @@
 -->
 <head>
 <title>全部工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/allMaintain.js?v=1.2.24"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/allMaintain.js?v=1.2.25"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -117,6 +117,7 @@
 	                  <div type="checkcolumn" name="checkcolumn" visible="false"></div>  
 	                  <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div> 
 	                  <div field="serviceCode" name="serviceCode" width="160" headerAlign="center" header="工单号" summaryType="count" allowsort="true"></div>
+	                  <div field="billTypeId" name="billTypeId" width="70" headerAlign="center" allowsort="true"  header="工单类型"></div>
 	                  <div field="status" name="status" width="50" headerAlign="center" header="进程" allowsort="true"></div> 
 	                  <div field="serviceTypeName" name="serviceTypeName" width="65" headerAlign="center" header="业务类型" allowsort="true"></div>
 	                  <div field="isSettle" name="isSettle" width="50" headerAlign="center" header="状态" allowsort="true"></div>

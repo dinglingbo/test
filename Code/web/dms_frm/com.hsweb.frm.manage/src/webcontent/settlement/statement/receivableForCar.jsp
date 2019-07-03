@@ -11,7 +11,7 @@
 
 		<head>
 			<title>预付结算</title>
-			<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableForCar.js?v=1.1.2"></script>
+			<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableForCar.js?v=1.1.3"></script>
 			<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 			<style>
 				html {
@@ -475,6 +475,7 @@
 										<div field="amt" width="60" headerAlign="center" header="金额"></div>
 										<div field="charOffAmt" width="60" headerAlign="center" header="已结算金额"></div>
 										<div field="deductionAmt" width="60" headerAlign="center" header="已抵扣金额"></div>
+										<div field="refundAmt" width="60" headerAlign="center" header="已退款金额"></div>
 										<div field="balaAmt" width="60" headerAlign="center" header="剩余金额">
 											<input property="editor" class="nui-textbox" />
 										</div>

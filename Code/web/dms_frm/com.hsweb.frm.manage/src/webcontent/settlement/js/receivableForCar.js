@@ -97,7 +97,8 @@ function setData(data){
     				codeId : data[0].billMainId,
     				guestId : data[0].guestId,
     				billDc : 2,
-    				isSettle : 1
+    				isSettle : 1,
+    				balaAmt : 0
     			},
     			token : token
     		}
@@ -437,8 +438,12 @@ function settleOK() {
 							nui.unmask(document.body);
 							data = data || {};
 							if (data.errCode == "S") {
-								print(accountDetailList,printCount);
-			
+/*							if(typeUrl!=3){
+								print(accountDetailList,printCount);	
+							}else{
+								CloseWindow("saveSuccess");
+							}*/								
+							print(accountDetailList,printCount);
 							} else {
 								showMsg(data.errMsg || "结算失败!", "W");
 							}

@@ -7,8 +7,8 @@
   - Description:
 -->
 <head>
-<title>整车库存</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/advanceList.js?v=1.1.2"></script>
+<title>预收预付退款</title>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/advanceList.js?v=1.1.4"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">

@@ -419,7 +419,12 @@ function settleOK() {
 							nui.unmask(document.body);
 							data = data || {};
 							if (data.errCode == "S") {
-								print(accountDetailList,printCount);
+/*							if(typeUrl!=3){
+								print(accountDetailList,printCount);	
+							}else{
+								CloseWindow("saveSuccess");
+							}*/								
+							print(accountDetailList,printCount);	
 			
 							} else {
 								showMsg(data.errMsg || "结算失败!", "W");

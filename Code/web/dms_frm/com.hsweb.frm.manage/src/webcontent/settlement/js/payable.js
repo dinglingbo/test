@@ -337,10 +337,13 @@ function settleOK() {
 							success : function(data) {
 								nui.unmask(document.body);
 								data = data || {};
-								if (data.errCode == "S") {
-									print(accountDetailList,netInAmt);
-									
-				
+								if (data.errCode == "S") {								
+/*						    	if(typeUrl!=3){
+									print(accountDetailList,netInAmt);	
+								}else{
+									CloseWindow("saveSuccess");
+								}*/								
+								print(accountDetailList,netInAmt);
 								} else {
 									showMsg(data.errMsg || "结算失败!", "W");
 								}

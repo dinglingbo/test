@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售出库查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/sellOut/sellOutQuery.js?v=2.0.4"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/sellOut/sellOutQuery.js?v=2.0.7"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -64,7 +64,7 @@
                 <!-- <label style="font-family:Verdana;">配件ID：</label> -->
                 <input id="partCode" width="120px" emptyText="配件编码" class="nui-textbox"/>
                 <!-- <label style="font-family:Verdana;">订单单号：</label> -->
-                <input id="serviceId" width="120px" emptyText="采购单号" class="nui-textbox"/>
+                <input id="serviceId" width="120px" emptyText="订单号" class="nui-textbox"/>
                 <!-- <label style="font-family:Verdana;">供应商：</label> -->
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择客户..."
@@ -101,7 +101,7 @@
             <div type="indexcolumn">序号</div>
             <div header="" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="code" width="150" summaryType="count" headerAlign="center" header="销售单号"></div>
+                    <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="销售单号"></div>
                     <div field="guestFullName" width="150" headerAlign="center" header="客户"></div>
                     <div field="auditor" width="60" headerAlign="center" header="销售员"></div>
                     <div allowSort="true" width="120"field="auditDate" headerAlign="center" header="出库日期" dateFormat="yyyy-MM-dd HH:mm"></div>

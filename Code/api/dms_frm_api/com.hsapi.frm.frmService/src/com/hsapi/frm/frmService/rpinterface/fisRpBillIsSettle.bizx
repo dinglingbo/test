@@ -193,9 +193,15 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" id="link75" name="link75" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link75" name="link75" displayName="连接线" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>assign16</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">type</process:leftOperand>
+          <process:rightOperand type="literal">3</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="165" y="195"/>
@@ -499,7 +505,7 @@
       <targetNode>invokePojo8</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -1355,7 +1361,7 @@
       <targetNode>assign23</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -1664,12 +1670,12 @@
       <targetNode>assign4</targetNode>
     </sourceConnections>
     <targetConnections>link77</targetConnections>
-    <location x="882" y="361"/>
+    <location x="891" y="361"/>
     <size height="28" width="28"/>
     <nodeLabel>assign30label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign30label" name="label" nodeType="label">
-    <location x="877" y="397"/>
+    <location x="886" y="397"/>
     <figSize height="17" width="39"/>
     <node>assign30</node>
   </nodes>

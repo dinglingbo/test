@@ -312,6 +312,9 @@
             <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
         </dynamic>
     </select>
+    <!-- 替换上面 -->
+    <select id="queryPjPchsEnterMainDetails" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
+    </select>
     <select id="queryPjSellOrderMainDetailList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
 		SELECT
 			a.service_id as serviceId,

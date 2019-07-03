@@ -625,7 +625,12 @@ function onOk()
 		                setCarByIdx(i);
 		                return;
 		            }
-		        }
+                }
+                var carExtend = {};
+                carExtend.prevAdvisorId = currUserId;
+                carExtend.prevAdvisorName = currUserName;
+	            carList[i].carExtend = carExtend;
+
 		    }
 		    
 		    for(i=0;i<contactList.length;i++)

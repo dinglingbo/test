@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.3.47"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.3.43"></script>
       	<script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
   	    <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
  	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
@@ -143,28 +143,38 @@ cursor: pointer;
 		                        <input class="nui-textbox" name="propertyFeatures" id="propertyFeatures"  width="100%"  />
 		                    </td> 
                         </tr>                    
-                        <tr>
-                            <td class="form_label">
-                                <label>地址：</label>
-                            </td>
-                            <td colspan="3">
-                                <input name="provinceId" id="provice" valueField="code" textField="name" emptyText="省" url="" onvaluechanged="onProvinceChange"
-                                    class="nui-combobox" width="32%" />
-
-                                <input name="cityId" id="cityId" valueField="code" textField="name" emptyText="市/县" onvaluechanged="onCityChange"
-                                    class="nui-combobox" width="33%" />
-
-                                <input name="areaId" id="areaId" valueField="code" textField="name" emptyText="乡/镇" class="nui-combobox" width="33%" onvaluechanged="onCountyChange"/>
-                            </td>
-                        </tr>
-                        <tr>
-			                <td class="form_label"><label>详细地址:</label></td>
-			                <td colspan="3"><input class="nui-textbox tabwidth" name="streetAddress" id="streetAddress" onvaluechanged="onStreetChange" width="66%"/></td>			
-			            </tr>
-			            <tr>
-			                <td class="form_label"><label>组合地址:</label></td>
-			                <td colspan="3"><input class="nui-textbox tabwidth" enabled="true" name="addr" id="addr" width="66%"/></td>			
-			            </tr>
+                    <tr>
+                        <td class="form_label">
+                            <label>地址：</label>
+                        </td>
+                        <td colspan="3">
+                            <input name="provinceId"
+                               id="provice"
+                               valueField="code"
+                               textField="name"
+                               emptyText = "省"
+                               url=""
+                               onValuechanged="initCityByParent('cityId', e.value || -1)"
+                               class="nui-combobox" width="32%"/>
+                            
+                            <input name="cityId"
+                               id="cityId"
+                               valueField="code"
+                               textField="name"
+                               emptyText = "市/县"
+                               onValuechanged="initCityByParent('areaId', e.value || -1)"
+                               class="nui-combobox" width="33%"/>
+                               
+                            <input name="areaId"
+                               id="areaId"
+                               valueField="code"
+                               textField="name"
+                               emptyText = "乡/镇"
+                               class="nui-combobox" width="33%"/>
+                            
+                            <input class="nui-textbox" name="addr" width="100%"/>
+                        </td>
+                    </tr>
                     <tr>
                         <td class="form_label">
                             <label>备注：</label>

@@ -468,7 +468,7 @@ function quickSearch(type) {
         var menunametype = nui.get("menunametype");
         menunametype.setText(querytypename);
     }
-
+    gsparams.isDiffOrder =0;
     doSearch(gsparams);
 }
 function onSearch() {

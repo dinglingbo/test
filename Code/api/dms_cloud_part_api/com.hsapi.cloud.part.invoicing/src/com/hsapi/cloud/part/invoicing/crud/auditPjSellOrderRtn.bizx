@@ -639,7 +639,7 @@
     <figSize height="20" width="70"/>
     <node>transactionrollback2</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess5" name="generateSellRtnToEnter" displayName="generateSellRtnToEnter" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess5" name="generateNewSellRtnToEnter" displayName="generateNewSellRtnToEnter" type="subprocess">
     <sourceConnections xsi:type="process:tLink" description="" id="link30" name="link30" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>subprocess5</sourceNode>
       <targetNode>transactionrollback2</targetNode>
@@ -664,8 +664,8 @@
     <location x="672" y="391"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess5label</nodeLabel>
-    <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.invoicing.ordersettle.generateSellRtnToEnter</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.cloud.part.invoicing.ordersettle.generateNewSellRtnToEnter</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="main" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" valueType="DataObject" pattern="reference">auditMain</process:inputVariable>
         <process:inputVariable id="1" name="detail" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk[]" valueType="DataObject" pattern="reference">auditDetails</process:inputVariable>
@@ -678,8 +678,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess5label" name="label" nodeType="label">
-    <location x="598" y="426"/>
-    <figSize height="20" width="175"/>
+    <location x="581" y="426"/>
+    <figSize height="20" width="208"/>
     <node>subprocess5</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess4" name="inStock" displayName="inStock" type="subprocess">

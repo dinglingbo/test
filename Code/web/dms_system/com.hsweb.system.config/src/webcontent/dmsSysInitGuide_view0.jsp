@@ -11,11 +11,11 @@
 
 <head>
     <title>初始化导航</title>
-    <script src="<%= request.getContextPath() %>/config/js/dmsSysInitGuide.js?v=1.2.1"></script>
+    <script src="<%= request.getContextPath() %>/config/js/dmsSysInitGuide.js?v=1.2.2"></script>
     <style>
     	body{
-	overflow:auto;
-	}
+			overflow:auto;
+		}
         .container {
             padding: 10px;
         }
@@ -95,7 +95,6 @@
                 </td>
 
             </tr>
-
             <tr>
                 <td>
                     <div class="mini-panel mini-panel-success" title="保险公司" width="350px" showCollapseButton="false" showCloseButton="false">
@@ -124,6 +123,38 @@
                         <br />
                         <div align="center">
                             <a class="mini-button mini-button-success" onclick="initImport()">导入功能</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="mini-panel mini-panel-success" title="门店管理" width="350px" showCollapseButton="false" showCloseButton="false">
+                        <br />管理和维护门店信息
+                        <br />
+                        <br />
+                        <div align="center">
+                            <a class="mini-button mini-button-success" onclick="companyMgr()">门店管理</a>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="mini-panel mini-panel-warning" title="预约参数" width="350px" showCollapseButton="false" showCloseButton="false">
+                        <br />设置预约时间，便于预约时间选择
+                        <br />
+                        <br />
+                        <div align="center">
+                            <a class="mini-button mini-button-success" onclick="appointmentMgr()">设置预约参数</a>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="mini-panel mini-panel-warning" title="配件提成" width="350px" showCollapseButton="false" showCloseButton="false">
+                        <br />设置配件提成，用于计算配件提成数据
+                        <br />
+                        <br />
+                        <div align="center">
+                            <a class="mini-button mini-button-success" onclick="partDeductMgr()">设置配件提成</a>
                         </div>
                     </div>
                 </td>

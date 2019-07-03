@@ -9,6 +9,8 @@ pageEncoding="UTF-8" session="false" %>
             <input class="nui-hidden" name="guestId" />
             <input class="nui-hidden" id="visitStatus" name="visitStatus" />
             <input class="nui-hidden" id="status" name="status" />
+            <input class="nui-hidden" id="visitManId" name="visitManId" />
+            <input class="nui-hidden" id="visitMan" name="visitMan" />
 
             <table>
                 <tr style="display:none;">

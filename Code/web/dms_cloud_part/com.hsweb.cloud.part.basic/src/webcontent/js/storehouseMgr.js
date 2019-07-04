@@ -179,6 +179,16 @@ function addPosition()
 function onNodeselect(e)
 {
     var node = e.node;
+    if(currAgencyId){	
+    	if(node.cangStoreId){
+    		nui.get('sys').disable();
+    		
+    	}else{
+    		nui.get('sys').enable();
+    	}
+    }else{
+    	nui.get('sys').disable();
+    }
     if(node && node.id)
     {
         rightGrid.load({
@@ -554,6 +564,7 @@ function saveStoreMember(memList, storeId){
 
 var delUrl = apiPath + sysApi + "/com.hsapi.system.tenant.employee.deleteStoreMember.biz.ext";
 function delStoreMem(){
+	var memList = memGrid.getChanges("removed");
 	var rows = memGrid.getSelecteds();
 	var wid ="";
 	var erp_id ="";
@@ -578,6 +589,8 @@ function delStoreMem(){
         url:delUrl,
         type:"post",
         data:JSON.stringify({
+        	memList :memList,
+        	wid:wid,
         	agency_id:currAgencyId,
         	erp_id : erp_id,
             token:token
@@ -698,4 +711,48 @@ function recoverApp(){
 	            console.log(jqXHR.responseText);
 	        }
 	    });
+}
+var sysUrl= baseUrl+"com.hsapi.cloud.part.baseDataCrud.cang.addStore.biz.ext";
+function sysCang(){
+	var node = tree.getSelectedNode();
+    var cangStoreId = "";
+    if(node){
+    	cangStoreId = node.cangStoreId;
+    }
+    if(cangStoreId){
+    	showMsg("已经同步仓先生","S");
+    	return;
+    }
+   
+    nui.mask({
+        html:'同步中...'
+    });
+    nui.ajax({
+        url:sysUrl,
+        type:"post",
+        data:JSON.stringify({
+        	warehouse_name: node.name,
+            agency_id : currAgencyId,
+            id : node.id,
+            token:token
+        }),
+        success:function(data)
+        {
+            nui.unmask();
+            data = data||{};
+            if(data.errCode == "S")
+            {
+                showMsg("同步成功","S");
+                tree.reoad();
+            }
+            else{
+                showMsg("同步失败","W");
+            }
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+            //  nui.alert(jqXHR.responseText);
+            showMsg("网络出错","W");
+            console.log(jqXHR.responseText);
+        }
+    });
 }

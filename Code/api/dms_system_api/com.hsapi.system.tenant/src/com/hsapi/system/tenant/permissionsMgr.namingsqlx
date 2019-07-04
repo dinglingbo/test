@@ -259,7 +259,7 @@
 	      <isNotEmpty prepend="and" property="empId">  
 	            (a.emp_id = #empId#)
 	      </isNotEmpty>
-		order by record_date desc
+		order by a.record_date desc
     </select>
 	
 	

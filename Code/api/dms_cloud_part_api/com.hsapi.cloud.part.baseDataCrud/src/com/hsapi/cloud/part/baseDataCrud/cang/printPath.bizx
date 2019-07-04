@@ -220,7 +220,7 @@
     <figSize height="20" width="51"/>
     <node>subprocess0</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="运算逻辑" displayName="sendGet" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="运算逻辑" displayName="" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="link7" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>invokePojo1</targetNode>
@@ -353,7 +353,9 @@
     <figSize height="20" width="40"/>
     <node>assign8</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="744" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-07-01 14:55:12" date="2019-07-01Z" description="" name="printPath" version="7.0.0.0"/>
   <process:variables>

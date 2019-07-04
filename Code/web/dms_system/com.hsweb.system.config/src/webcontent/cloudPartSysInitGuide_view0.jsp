@@ -9,7 +9,7 @@
 -->
 <head>
     <title>用户导航</title>
-    <script src="<%= request.getContextPath() %>/config/js/cloudPartsysInitGuide.js?v=1.1.3"></script>
+    <script src="<%= request.getContextPath() %>/config/js/cloudPartsysInitGuide.js?v=1.1.4"></script>
     <style>
         .container {
             padding: 10px;
@@ -94,7 +94,15 @@
                     </div>
                 </td>
             </tr>
+           
             <tr>
+            	 <td>
+                    <div class="mini-panel mini-panel-info" title="配件提成" width="350px" showCollapseButton="false" showCloseButton="false">
+                        <br />设置配件提成，用于计算配件提成数据
+                        <br /><br />
+                        <div align="center"><a class="mini-button mini-button-success" onclick="toPartDeductSet()" >设置配件提成</a></div>
+                    </div>
+                </td>
                 <td>
                     <div class="mini-panel mini-panel-info" title="公司属性" width="350px" showCollapseButton="false" showCloseButton="false">
                         <br />设置系统公司属性

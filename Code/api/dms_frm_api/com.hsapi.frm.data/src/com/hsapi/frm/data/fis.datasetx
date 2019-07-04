@@ -14150,7 +14150,7 @@
   </nodes>
   <nodes xsi:type="model:PEntityNode" id="node8" name="FisRpAdvance" nodeType="table" displayName="FisRpAdvance" author="Administrator" allUseViewModel="true" table="fis_rp_advance" genStrategy="native">
     <location x="60" y="4614"/>
-    <size height="484" width="150"/>
+    <size height="538" width="150"/>
     <figSize height="20" width="150"/>
     <columnProperty id="property213" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="id" entityField="id" id="id" label="id" name="id" userDefined="true">
@@ -14873,7 +14873,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property224" name="amt" displayName="amt" columnName="amt" nullAble="true" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="10" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
+    <columnProperty id="property224" name="amt" displayName="amt" columnName="amt" nullAble="true" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
       <comment>金额</comment>
       <viewField dict="false" dictTypeId="" displayName="amt" entityField="amt" id="amt" label="amt" name="amt" userDefined="true">
         <fieldView showAllAttr="false">
@@ -14939,7 +14939,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property225" name="charOffAmt" displayName="charOffAmt" columnName="char_off_amt" nullAble="true" defaultValue="0.0000" columnType="DECIMAL" eosDataType="Decimal" length="10" precision="4" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.0000">
+    <columnProperty id="property225" name="charOffAmt" displayName="charOffAmt" columnName="char_off_amt" nullAble="true" defaultValue="0.0000" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="4" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.0000">
       <comment>已收/已付金额</comment>
       <viewField dict="false" displayName="charOffAmt" id="charOffAmt" label="charOffAmt" name="charOffAmt" userDefined="true">
         <fieldView>
@@ -14970,7 +14970,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property226" name="deductionAmt" displayName="deductionAmt" columnName="deduction_amt" nullAble="true" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="10" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
+    <columnProperty id="property226" name="deductionAmt" displayName="deductionAmt" columnName="deduction_amt" nullAble="true" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
       <comment>抵扣金额</comment>
       <viewField dict="false" dictTypeId="" displayName="deductionAmt" entityField="deductionAmt" id="deductionAmt" label="deductionAmt" name="deductionAmt" userDefined="true">
         <fieldView showAllAttr="false">
@@ -15036,7 +15036,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property227" name="balaAmt" displayName="balaAmt" columnName="bala_amt" nullAble="true" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="10" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
+    <columnProperty id="property227" name="balaAmt" displayName="balaAmt" columnName="bala_amt" nullAble="true" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
       <comment>剩余金额</comment>
       <viewField dict="false" dictTypeId="" displayName="balaAmt" entityField="balaAmt" id="balaAmt" label="balaAmt" name="balaAmt" userDefined="true">
         <fieldView showAllAttr="false">
@@ -15102,7 +15102,38 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property228" name="billDc" displayName="billDc" columnName="bill_dc" nullAble="true" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true">
+    <columnProperty id="property228" name="refundAmt" displayName="refundAmt" columnName="refund_amt" nullAble="true" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
+      <comment>已退款金额</comment>
+      <viewField dict="false" displayName="refundAmt" id="refundAmt" label="refundAmt" name="refundAmt" userDefined="true">
+        <fieldView>
+          <type name="write"/>
+          <attr name="formatPattern"/>
+          <attr name="srcFormatPattern"/>
+          <attr name="maxLength"/>
+          <attr attrValue="" defaultValue="" name="filter"/>
+          <attr attrValue="" defaultValue="" name="maxLengthString"/>
+          <attr name="value"/>
+        </fieldView>
+        <fieldEdit>
+          <type name="text"/>
+          <attr attrValue="nui-textbox" defaultValue="nui-textbox" name="class"/>
+          <attr attrValue="" defaultValue="" name="emptyText"/>
+          <attr attrValue="" defaultValue="" name="inputStyle"/>
+          <attr attrValue="false" defaultValue="false" name="required"/>
+          <attr attrValue="" defaultValue="" name="borderStyle"/>
+          <attr attrValue="" defaultValue="" name="cls"/>
+          <attr attrValue="true" defaultValue="true" name="enabled"/>
+          <attr attrValue="" defaultValue="" name="height"/>
+          <attr attrValue="" defaultValue="" name="id"/>
+          <attr attrValue="" defaultValue="" name="name"/>
+          <attr attrValue="" defaultValue="" name="style"/>
+          <attr attrValue="" defaultValue="" name="tooltip"/>
+          <attr attrValue="true" defaultValue="true" name="visible"/>
+          <attr attrValue="" defaultValue="" name="width"/>
+        </fieldEdit>
+      </viewField>
+    </columnProperty>
+    <columnProperty id="property229" name="billDc" displayName="billDc" columnName="bill_dc" nullAble="true" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true">
       <comment>2预收，-2预付</comment>
       <viewField dict="false" dictTypeId="" displayName="billDc" entityField="billDc" id="billDc" label="billDc" name="billDc" userDefined="true">
         <fieldView showAllAttr="false">
@@ -15168,7 +15199,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property229" name="status" displayName="status" columnName="status" nullAble="true" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true">
+    <columnProperty id="property230" name="status" displayName="status" columnName="status" nullAble="true" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true">
       <comment>使用状态; 0草稿，1已提交，2已结算</comment>
       <viewField dict="false" dictTypeId="" displayName="status" entityField="status" id="status" label="status" name="status" userDefined="true">
         <fieldView showAllAttr="false">
@@ -15234,7 +15265,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property230" name="isSettle" displayName="isSettle" columnName="is_settle" nullAble="true" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
+    <columnProperty id="property231" name="isSettle" displayName="isSettle" columnName="is_settle" nullAble="true" defaultValue="0" columnType="TINYINT" eosDataType="Short" dasType="short" overWriteDefaultColumnType="false" showType="Short" update="true" insert="true" default="0">
       <comment>是否收款</comment>
       <viewField dict="false" dictTypeId="" displayName="isSettle" entityField="isSettle" id="isSettle" label="isSettle" name="isSettle" userDefined="true">
         <fieldView showAllAttr="false">
@@ -15300,7 +15331,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property231" name="settleer" displayName="settleer" columnName="settleer" nullAble="true" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+    <columnProperty id="property232" name="settleer" displayName="settleer" columnName="settleer" nullAble="true" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <comment>付款人</comment>
       <viewField dict="false" dictTypeId="" displayName="settleer" entityField="settleer" id="settleer" label="settleer" name="settleer" userDefined="true">
         <fieldView showAllAttr="false">
@@ -15366,7 +15397,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property232" name="settleDate" displayName="settleDate" columnName="settle_date" nullAble="true" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
+    <columnProperty id="property233" name="settleDate" displayName="settleDate" columnName="settle_date" nullAble="true" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <comment>结算时间</comment>
       <viewField dict="false" dictTypeId="" displayName="settleDate" entityField="settleDate" id="settleDate" label="settleDate" name="settleDate" userDefined="true">
         <fieldView showAllAttr="false">
@@ -15437,7 +15468,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property233" name="remark" displayName="remark" columnName="remark" nullAble="true" columnType="VARCHAR" eosDataType="String" length="200" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+    <columnProperty id="property234" name="remark" displayName="remark" columnName="remark" nullAble="true" columnType="VARCHAR" eosDataType="String" length="200" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <comment>备注</comment>
       <viewField dict="false" dictTypeId="" displayName="remark" entityField="remark" id="remark" label="remark" name="remark" userDefined="true">
         <fieldView showAllAttr="false">
@@ -15503,7 +15534,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property234" name="recorder" displayName="recorder" columnName="recorder" nullAble="true" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+    <columnProperty id="property235" name="recorder" displayName="recorder" columnName="recorder" nullAble="true" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="recorder" entityField="recorder" id="recorder" label="recorder" name="recorder" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>
@@ -15568,7 +15599,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property235" name="recordDate" displayName="recordDate" columnName="record_date" nullAble="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
+    <columnProperty id="property236" name="recordDate" displayName="recordDate" columnName="record_date" nullAble="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="recordDate" entityField="recordDate" id="recordDate" label="recordDate" name="recordDate" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>
@@ -15638,7 +15669,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property236" name="modifier" displayName="modifier" columnName="modifier" nullAble="true" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+    <columnProperty id="property237" name="modifier" displayName="modifier" columnName="modifier" nullAble="true" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="modifier" entityField="modifier" id="modifier" label="modifier" name="modifier" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>
@@ -15703,7 +15734,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property237" name="modifyDate" displayName="modifyDate" columnName="modify_date" nullAble="true" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
+    <columnProperty id="property238" name="modifyDate" displayName="modifyDate" columnName="modify_date" nullAble="true" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <viewField dict="false" dictTypeId="" displayName="modifyDate" entityField="modifyDate" id="modifyDate" label="modifyDate" name="modifyDate" userDefined="true">
         <fieldView showAllAttr="false">
           <type name="write"/>
@@ -15770,6 +15801,70 @@
           <attr defaultValue="" name="textName"/>
           <attr defaultValue="" name="onshowpopup"/>
           <attr defaultValue="" name="tooltip"/>
+        </fieldEdit>
+      </viewField>
+    </columnProperty>
+    <columnProperty id="property239" name="refunder" displayName="refunder" columnName="refunder" nullAble="true" columnType="VARCHAR" eosDataType="String" length="20" dasType="string" overWriteDefaultColumnType="false" showType="String" update="true" insert="true">
+      <comment>退款人</comment>
+      <viewField dict="false" displayName="refunder" id="refunder" label="refunder" name="refunder" userDefined="true">
+        <fieldView>
+          <type name="write"/>
+          <attr name="formatPattern"/>
+          <attr name="srcFormatPattern"/>
+          <attr name="maxLength"/>
+          <attr attrValue="" defaultValue="" name="filter"/>
+          <attr attrValue="" defaultValue="" name="maxLengthString"/>
+          <attr name="value"/>
+        </fieldView>
+        <fieldEdit>
+          <type name="text"/>
+          <attr attrValue="nui-textbox" defaultValue="nui-textbox" name="class"/>
+          <attr attrValue="" defaultValue="" name="emptyText"/>
+          <attr attrValue="" defaultValue="" name="inputStyle"/>
+          <attr attrValue="false" defaultValue="false" name="required"/>
+          <attr attrValue="" defaultValue="" name="borderStyle"/>
+          <attr attrValue="" defaultValue="" name="cls"/>
+          <attr attrValue="true" defaultValue="true" name="enabled"/>
+          <attr attrValue="" defaultValue="" name="height"/>
+          <attr attrValue="" defaultValue="" name="id"/>
+          <attr attrValue="" defaultValue="" name="name"/>
+          <attr attrValue="" defaultValue="" name="style"/>
+          <attr attrValue="" defaultValue="" name="tooltip"/>
+          <attr attrValue="true" defaultValue="true" name="visible"/>
+          <attr attrValue="" defaultValue="" name="width"/>
+        </fieldEdit>
+      </viewField>
+    </columnProperty>
+    <columnProperty id="property240" name="refundDate" displayName="refundDate" columnName="refund_date" nullAble="true" columnType="DATETIME" eosDataType="Date" dasType="date" overWriteDefaultColumnType="false" showType="Date" update="true" insert="true">
+      <comment>退款日期</comment>
+      <viewField dict="false" displayName="refundDate" id="refundDate" label="refundDate" name="refundDate" userDefined="true">
+        <fieldView>
+          <type name="write"/>
+          <attr name="formatPattern"/>
+          <attr name="srcFormatPattern"/>
+          <attr name="maxLength"/>
+          <attr attrValue="" defaultValue="" name="filter"/>
+          <attr attrValue="" defaultValue="" name="maxLengthString"/>
+          <attr name="value"/>
+        </fieldView>
+        <fieldEdit>
+          <type name="date"/>
+          <attr attrValue="nui-datepicker" defaultValue="nui-datepicker" name="class"/>
+          <attr attrValue="" defaultValue="" name="popup"/>
+          <attr attrValue="" defaultValue="" name="popupHeight"/>
+          <attr attrValue="100%" defaultValue="100%" name="popupWidth"/>
+          <attr attrValue="false" defaultValue="false" name="required"/>
+          <attr attrValue="" defaultValue="" name="validateOnChanged"/>
+          <attr attrValue="" defaultValue="" name="borderStyle"/>
+          <attr attrValue="" defaultValue="" name="cls"/>
+          <attr attrValue="true" defaultValue="true" name="enabled"/>
+          <attr attrValue="" defaultValue="" name="height"/>
+          <attr attrValue="" defaultValue="" name="id"/>
+          <attr attrValue="" defaultValue="" name="name"/>
+          <attr attrValue="" defaultValue="" name="style"/>
+          <attr attrValue="" defaultValue="" name="tooltip"/>
+          <attr attrValue="true" defaultValue="true" name="visible"/>
+          <attr attrValue="" defaultValue="" name="width"/>
         </fieldEdit>
       </viewField>
     </columnProperty>

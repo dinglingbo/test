@@ -610,6 +610,7 @@
     <!-- 替换上面-->
      <select id="queryPjSellOutMainDetails" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
 	    SELECT
+	    		a.id as id,
 				a.service_id as serviceId,
 				a.guest_id as guestId,
 				a.orgid as orgid,

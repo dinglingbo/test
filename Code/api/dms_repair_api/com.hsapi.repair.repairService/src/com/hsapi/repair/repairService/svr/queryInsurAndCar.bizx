@@ -135,6 +135,16 @@
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>assign3</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link20" name="link20" displayName="连接线" type="transition">
+      <sourceNode>invokePojo1</sourceNode>
+      <targetNode>assign10</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">params/carId</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link3</targetConnections>
     <location x="435" y="345"/>
     <size height="28" width="22"/>
@@ -230,6 +240,7 @@
       <targetNode>invokePojo2</targetNode>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
+    <targetConnections>link21</targetConnections>
     <location x="615" y="345"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
@@ -383,6 +394,21 @@
     <location x="343" y="261"/>
     <figSize height="17" width="32"/>
     <node>assign9</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign10" name="赋值10" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign10</sourceNode>
+      <targetNode>assign4</targetNode>
+    </sourceConnections>
+    <targetConnections>link20</targetConnections>
+    <location x="525" y="270"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign10label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
+    <location x="520" y="306"/>
+    <figSize height="17" width="39"/>
+    <node>assign10</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

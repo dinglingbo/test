@@ -402,7 +402,7 @@ $(document).ready(function(v) {
     });
     
     searchKeyEl.on("valuechanged",function(e){
-    	var item = e.item;
+    	var item = e.selected;
     	if(item){
        	    var fullName = item.fullName || "";
             var mobile = item.mobile || "";

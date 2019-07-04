@@ -244,7 +244,7 @@ function selectSupplier(elId)
 function detection() {
 	var row = rightGrid.getSelected();
 	if(!row){		
-		showMsg("请选择单据","W");
+		parent.parent.showMsg("请选择单据","W");
 	}
 	nui.open({
 		url : webPath + contextPath
@@ -273,7 +273,7 @@ function onCellCommitEdit(e) {
 
 	editor.validate();
 	if (editor.isValid() == false) {
-		showMsg("请输入数字!", "W");
+		parent.parent.showMsg("请输入数字!", "W");
 		e.cancel = false;
 	}
 }
@@ -295,6 +295,9 @@ function onRGridbeforeselect(e) {
 }
 function doSettle() {
 	var rows = rightGrid.getSelecteds();
+	if(!rows){		
+		parent.parent.showMsg("请选择单据","W");
+	}
 	var s = rows.length;
 	if (s > 0) {
 			nui.open({
@@ -306,13 +309,13 @@ function doSettle() {
 		        },
 				ondestroy : function(action) {// 弹出页面关闭前
 					if (action == "ok") {
-						showMsg("结算成功!", "S");
+						parent.parent.showMsg("结算成功!", "S");
 						rightGrid.reload();
 					}
 				}
 		    });
 	} else {
-		showMsg("请选择单据!", "W");
+		parent.parent.showMsg("请选择单据!", "W");
 		return;
 	}
 }

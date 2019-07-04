@@ -198,7 +198,7 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="saveGiftApply" displayName="saveSaleCostLIst1" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="saveGiftApply" displayName="saveGiftApplyNT" type="subprocess">
     <sourceConnections xsi:type="process:tLink" description="" id="link8" name="link8" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign2</targetNode>
@@ -223,8 +223,8 @@
     <location x="912" y="315"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
-    <process:flow index="4" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.saveGiftApply</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.saveGiftApplyNT</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="jpDetailGridAdd" type="query" value="com.hsapi.sales.data.css.CssSaleGiftApply[]" valueType="DataObject" pattern="reference">jpDetailGridAdd</process:inputVariable>
         <process:inputVariable id="1" name="jpDetailGridEdit" type="query" value="com.hsapi.sales.data.css.CssSaleGiftApply[]" valueType="DataObject" pattern="reference">jpDetailGridEdit</process:inputVariable>
@@ -497,7 +497,7 @@
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess3" name="saveSaleCostLIst" displayName="saveSaleCostLIst" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess3" name="saveSaleCostLIst" displayName="saveSaleCostLIstNT" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess3</sourceNode>
       <targetNode>assign5</targetNode>
@@ -518,7 +518,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess3label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.saveSaleCostLIst</process:partner>
+      <process:partner type="literal">this.saveSaleCostLIstNT</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="addArr" type="query" value="com.hsapi.sales.data.css.CssSaleCostList[]" valueType="DataObject" pattern="reference">addArr</process:inputVariable>
         <process:inputVariable id="1" name="editArr" type="query" value="com.hsapi.sales.data.css.CssSaleCostList[]" valueType="DataObject" pattern="reference">editArr</process:inputVariable>
@@ -537,7 +537,7 @@
     <figSize height="17" width="97"/>
     <node>subprocess3</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess4" name="saveSaleExtend" displayName="saveSaleCostLIst1" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess4" name="saveSaleExtend" displayName="saveSaleExtendNT" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess4</sourceNode>
       <targetNode>assign1</targetNode>
@@ -556,8 +556,8 @@
     <location x="780" y="315"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess4label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.saveSaleExtend</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.saveSaleExtendNT</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="data" type="query" value="com.hsapi.sales.data.css.CssSaleExtend" valueType="DataObject" pattern="reference">saleExtend</process:inputVariable>
       </process:inputVariables>
@@ -592,7 +592,7 @@
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="saveSaleCalc" displayName="saveSaleCostLIst1" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="saveSaleCalc" displayName="saveSaleCalcNT" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link34" name="link34" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess2</sourceNode>
       <targetNode>subprocess3</targetNode>
@@ -621,8 +621,8 @@
     <location x="999" y="315"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.saveSaleCalc</process:partner>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.saveSaleCalcNT</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="caCalculationData" type="query" value="com.hsapi.sales.data.css.CssSaleCalc" valueType="DataObject" pattern="reference">caCalculationData</process:inputVariable>
         <process:inputVariable id="1" name="serviceId" type="query" value="Int" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
@@ -630,7 +630,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="caCalculationData" type="query" value="com.hsapi.sales.data.css.CssSaleCalc" valueType="DataObject"/>
+        <process:outputVariable id="2" name="caCalculationData" type="query" value="com.hsapi.sales.data.css.CssSaleCalc" valueType="DataObject"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -953,7 +953,7 @@
     <figSize height="17" width="39"/>
     <node>assign18</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess7" name="saveContactor" displayName="saveContactor" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess7" name="saveContactor" displayName="saveContactorNT" type="subprocess">
     <sourceConnections xsi:type="process:tLink" description="" id="link49" name="link49" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>subprocess7</sourceNode>
       <targetNode>assign15</targetNode>
@@ -973,7 +973,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess7label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.sales.svr.custormer.saveContactor</process:partner>
+      <process:partner type="literal">com.hsapi.sales.svr.custormer.saveContactorNT</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="guest" type="query" value="com.hsapi.sales.data.com.ComGuest" valueType="DataObject" pattern="reference">guest</process:inputVariable>
       </process:inputVariables>

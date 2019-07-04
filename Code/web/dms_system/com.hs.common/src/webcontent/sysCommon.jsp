@@ -77,6 +77,7 @@
     var frmApi   = "<%=frmApi%>";
     var wechatApi   = "<%=wechatApi%>";
 	var saleApi   = "<%=saleApi%>";
+	
 	$(function(){
 		nui.context='<%=contextPath %>';
 		nui.parse();
@@ -118,6 +119,7 @@
 	String repairPchsRtnFlag = "1";
 	String repairDefaultStore = "";
 	String repairBillMobileFlag = "0";
+	String isJobItemShowPart = "0";
 	String repairStoreControlFlag = "0";
 	String isOpenElectronics = "0";
 	String isCanSettle = "";
@@ -277,6 +279,10 @@
 	                if(billParams.get("repairBillMobileFlag") != null){
 	                	repairBillMobileFlag = billParams.get("repairBillMobileFlag").toString();
 	                }
+	                //派工单是否打印配件
+	               if(billParams.get("isJobItemShowPart") != null){
+	                	isJobItemShowPart = billParams.get("isJobItemShowPart").toString();
+	                }     
 	                if(billParams.get("repairStoreControlFlag") != null){
 	                	repairStoreControlFlag = billParams.get("repairStoreControlFlag").toString();
 	                }
@@ -370,6 +376,7 @@
 	var currRepairPchsRtnFlag = "<%=repairPchsRtnFlag %>";
 	var currRepairDefaultStore = "<%=repairDefaultStore %>";
 	var currRepairBillMobileFlag = "<%=repairBillMobileFlag %>";
+	var currIsJobItemShowPart = "<%=isJobItemShowPart%>";
 	var currRepairStoreControlFlag = "<%=repairStoreControlFlag %>";
 	var currIsOpenElectronics = "<%=isOpenElectronics %>";
 	var currIsCanSettle = "<%=isCanSettle %>";

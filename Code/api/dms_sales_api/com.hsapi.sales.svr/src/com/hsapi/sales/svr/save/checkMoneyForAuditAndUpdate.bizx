@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="checkMoneyForAuditAndUpdate" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="费用审核&#xD;&#xA;1、先查询数据库查看金额是否发生变动再更新数据&#xD;&#xA;2、最后生成一笔应付账款&#xD;&#xA;3、反审时需要去应付表查看该记录是否已经结算了&#xD;&#xA;4、查询对应的应付记录需要注意查询条件是否查询出来对应的应付单&#xD;&#xA;&#xD;&#xA;2019/06/22(解决了，还没有测试)&#xD;&#xA;反审有可能有问题，会把其他已审的变为反审？？？&#xD;&#xA;使用的接口是销售单单号和对应的主表id" title="Administrator&#x9;19-6-10 下午2:41">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="费用审核&#xD;&#xA;1、先查询数据库查看金额是否发生变动再更新数据&#xD;&#xA;2、最后生成一笔应付账款&#xD;&#xA;3、反审时需要去应付表查看该记录是否已经结算了&#xD;&#xA;4、查询对应的应付记录需要注意查询条件是否查询出来对应的应付单&#xD;&#xA;&#xD;&#xA;2019/06/22&#xD;&#xA;反审有可能有问题，会把其他已审的变为反审(已解决)&#xD;&#xA;使用的接口是销售单单号和对应的主表id" title="Administrator&#x9;19-6-10 下午2:41">
     <location x="60" y="0"/>
     <size height="208" width="439"/>
   </nodes>

@@ -211,6 +211,7 @@
                     <li iconCls="" onclick="onPrint(1)" id="type11">打印报价单</li>
                     <li iconCls="" onclick="onPrint(8)" id="type11">打印报价单(项目配件分开)</li>
                     <li iconCls="" onclick="onPrint(2)" id="type11">打印派工单</li>
+                    <li iconCls="" onclick="onPrint(11)" id="type11">打印派工单(项目配件分开)</li>
                     <li iconCls="" onclick="onPrint(3)" id="type11">打印结账单</li>
                     <li iconCls="" onclick="onPrint(9)" id="type11">打印结账单(项目配件分开)</li>
                     <li iconCls="" onclick="onPrint(4)" id="type11">打印结账单(小票)</li>

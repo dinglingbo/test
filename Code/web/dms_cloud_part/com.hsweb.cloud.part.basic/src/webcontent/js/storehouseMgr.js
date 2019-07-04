@@ -564,7 +564,7 @@ function saveStoreMember(memList, storeId){
 
 var delUrl = apiPath + sysApi + "/com.hsapi.system.tenant.employee.deleteStoreMember.biz.ext";
 function delStoreMem(){
-	var memList = memGrid.getChanges("removed");
+	
 	var rows = memGrid.getSelecteds();
 	var wid ="";
 	var erp_id ="";
@@ -580,6 +580,8 @@ function delStoreMem(){
     	erp_id =erp_id +rows[i].empId +",";
     }
     erp_id =erp_id.substring(0,erp_id.length-1);
+    memGrid.removeRows(memGrid.getSelecteds());
+    var memList = memGrid.getChanges("removed");
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',

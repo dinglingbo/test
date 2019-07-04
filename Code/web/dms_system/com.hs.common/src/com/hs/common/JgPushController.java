@@ -171,8 +171,8 @@ public class JgPushController {
     public static PushResult push(String userId,String message){
         ClientConfig clientConfig = ClientConfig.getInstance();
         //洗美  "f54213bf24f3ce7e32bb3f6b", "cb4e8779dcdacc44d3bee944"
-        //车道  AppKey 25759c5a258bdee3096097fa  Master Secret b20ccb76740c1a0342c1f0de 
-        JPushClient jpushClient = new JPushClient("25759c5a258bdee3096097fa", "b20ccb76740c1a0342c1f0de", null, clientConfig);
+        //车道  AppKey 25759c5a258bdee3096097fa  Master Secret 080a425fd00b1aa376b27637 
+        JPushClient jpushClient = new JPushClient("080a425fd00b1aa376b27637", "25759c5a258bdee3096097fa", null, clientConfig);
         //PushPayload payload = buildPushObject_android_tag_message(tag,message);
         PushPayload payload = buildPushObject_all_alias_alert(userId,message);
         try {
@@ -198,7 +198,7 @@ public class JgPushController {
     @Bizlet("")
     public static PushResult pushByTitle(String title, String userId, String message){
         ClientConfig clientConfig = ClientConfig.getInstance();
-        JPushClient jpushClient = new JPushClient("25759c5a258bdee3096097fa", "b20ccb76740c1a0342c1f0de", null, clientConfig);
+        JPushClient jpushClient = new JPushClient("080a425fd00b1aa376b27637", "25759c5a258bdee3096097fa", null, clientConfig);
         //PushPayload payload = buildPushObject_android_tag_message(tag,message);
         PushPayload payload = buildPushObject_all_title_alias_alert(title, userId, message);
         try {

@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.3.43"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.4.2"></script>
       	<script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
   	    <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
  	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
@@ -249,13 +249,26 @@ cursor: pointer;
                                     <input name="engineNo" class="nui-textbox" width="100%"/>
                                 </td>
                                 <td class="form_label">
+                                    <label>生产日期：</label>
+                                </td>
+                                <td>
+                                    <input name="produceDate" allowInput="true" class="nui-datepicker" width="100%"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="form_label">
+                                    <label>注册日期：</label>
+                                </td>
+                                <td>
+                                    <input name="firstRegDate" id="firstRegDate" allowInput="true" class="nui-datepicker" width="100%"/>
+                                </td>
+                                <td class="form_label">
                                     <label>年审到期：</label>
                                 </td>
                                 <td>
-                                    <input name="annualVerificationDueDate" allowInput="true" class="nui-datepicker" width="100%"/>
+                                    <input name="annualVerificationDueDate" id="annualVerificationDueDate" allowInput="true" class="nui-datepicker" width="100%"/>
                                 </td>
                             </tr>
-
                             <tr>
                                 <td class="form_label">
                                     <label>商业险单号：</label>
@@ -302,20 +315,6 @@ cursor: pointer;
 			                        />
 			                    </td>
 			                </tr>
-                            <tr>
-                                <td class="form_label">
-                                    <label>生产日期：</label>
-                                </td>
-                                <td>
-                                    <input name="produceDate" allowInput="true" class="nui-datepicker" width="100%"/>
-                                </td>
-                                <td class="form_label">
-                                    <label>注册日期：</label>
-                                </td>
-                                <td>
-                                    <input name="firstRegDate" allowInput="true" class="nui-datepicker" width="100%"/>
-                                </td>
-                            </tr>
                             <tr>
                                 
                                 <td class="form_label">

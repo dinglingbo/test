@@ -26,8 +26,8 @@
     <targetConnections>link2</targetConnections>
     <targetConnections>link3</targetConnections>
     <targetConnections>link22</targetConnections>
-    <targetConnections>link30</targetConnections>
     <targetConnections>link36</targetConnections>
+    <targetConnections>link16</targetConnections>
     <location x="11" y="343"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
@@ -680,7 +680,8 @@
   <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link30" name="link30" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>subprocess7</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link29</targetConnections>
     <location x="173" y="270"/>
@@ -843,8 +844,36 @@
     <figSize height="17" width="39"/>
     <node>assign11</node>
   </nodes>
+  <nodes xsi:type="process:tSubprocess" id="subprocess7" name="推送领料消息" displayName="sWechatModelQF" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess7</sourceNode>
+      <targetNode>end1</targetNode>
+    </sourceConnections>
+    <targetConnections>link30</targetConnections>
+    <location x="105" y="301"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess7label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.repair.repairService.sendWeChat.sWechatModelQF</process:partner>
+      <process:inputVariables>
+        <process:inputVariable name="tempDataList" type="query" value="java.util.HashMap[]" valueType="Java" pattern="reference"/>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable name="result" type="query" value="java.util.HashMap" valueType="Java"/>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess7label" name="label" nodeType="label">
+    <location x="82" y="336"/>
+    <figSize height="17" width="73"/>
+    <node>subprocess7</node>
+  </nodes>
   <topRuler/>
-  <leftRuler/>
+  <leftRuler>
+    <guides position="394" horizontal="true"/>
+  </leftRuler>
   <process:info author="chenziming" createTime="2018-03-30 15:54:28" date="2018-03-30Z" description="" name="repairAudit" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>

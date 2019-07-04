@@ -45,24 +45,24 @@
 					</table>
 				</div>
 				<div class="form" id="basicInfoForm">
-					<input class="nui-hidden" name="carModel" id="carModel" />
-                    <input class="nui-hidden" name="carBrandId" id="carBrandId" valueField="id" textField="name"
-                        width="100%"  onvaluechanged="getModel"/>
-                        <input class="nui-hidden" id="carNo" name="carNo" width="100%" />
+                      <input class="nui-textbox" name="carBrandId" id="carBrandId" valueField="id" textField="name"
+                        width="100%"  onvaluechanged="getModel"  visible="false"/>
+                        <input class="nui-textbox" id="carNo" name="carNo" width="100%" visible="false"/>
+                         <input class="nui-textbox" name="carModel" id="carModel" visible="false"/>
 					<table class="nui-form-table" style="width:99%">
 						<tr>
 							<td class="form_label required">
 								<label>客户名称：</label>
 							</td>
 							<td>
-								<input class="nui-hidden" name="id" id="guestId" />
-								<input class="nui-textbox" id="fullName" name="fullName" width="100%" />
+								<input class="nui-textbox" name="id" id="guestId" visible="false"/>
+								<input class="nui-textbox" id="fullName" name="fullName" width="100%" onvaluechanged="changNameMobile(1)"/>
 							</td>
 							<td class="form_label required">
 								<label>手机号码：</label>
 							</td>
 							<td>
-								<input class="nui-textbox" id="mobile" name="mobile1" width="100%" emptyText="请输入手机号查询" />
+								<input class="nui-textbox" id="mobile" name="mobile1" width="100%" emptyText="请输入手机号" onvaluechanged="changNameMobile(2)"/>
 							</td>
                             	<td class="form_label">
 								<label>性别：</label>
@@ -193,19 +193,20 @@
 				var provice = nui.get("provice");
 				var cityId = nui.get("cityId");
 				var Url = window._rootUrl || "http://127.0.0.1:8080/default/";
-				initProvince("provice");
-				provice.doValueChanged();
-				cityId.doValueChanged();
-				initCarBrand("carBrandId",function(){
-				 
-	 			});
-				initDicts({
-					source: GUEST_SOURCE,//客户来源
-					identity: IDENTITY //客户身份
-				}, function () {
+				$(document).ready(function (){
+				    initProvince("provice");
+				    provice.doValueChanged();
+				    cityId.doValueChanged();
+				    /* initCarBrand("carBrandId",function(){
+	 			    });  */
+				   initDicts({
+					  source: GUEST_SOURCE,//客户来源
+					   identity: IDENTITY //客户身份
+				    }, function () {
 					hash.initDicts = true;
+				    });
 				});
-
+				
 				function addContact() {
 					var data = contactInfoForm.getData();
 					var check = checkContactInfoForm(data);
@@ -213,7 +214,7 @@
 						showMsg("请填写正确的联系人信息", "W");
 						return;
 					}
-					if (!checkMobile(mobile)) {
+					if (!checkMobile(data.mobile)) {
 						return;
 					}
 					$(".sjd").append('<li name="name0"><font>' + data.name + '</font>' +
@@ -226,13 +227,22 @@
 						'</li>');
 
 					//清空表格
-					contactInfoForm.setData([]);
+					var conData = {};
+					conData.identity = "060301";
+					conData.sex = 0
+					conData.source = "060110";
+					contactInfoForm.setData(conData);
 					clickLi();
 				}
 
 				function clickLi() {
 					$(".sjd li[name=name0]").click(function () {
-						contactInfoForm.setData([]);
+					    var conData = {};
+					    conData.identity = "060301";
+					    conData.sex = 0
+					    conData.source = "060110";
+					    contactInfoForm.setData(conData);
+						//contactInfoForm.setData([]);
 						var data = {
 							name: $(this)[0].childNodes[0].innerText,
 							mobile: $(this)[0].childNodes[1].innerText,
@@ -270,7 +280,8 @@
 						if (form.id) {//保存了一遍
 							arr[i].guestId = form.id;
 						}
-						if(contact[i].childNodes[5].innerText == contactInfoForm.getData().id){
+						if(contactInfoForm.getData().id != ""){
+						    if(contact[i].childNodes[5].innerText == contactInfoForm.getData().id){
 							arr[i] = {
 								name: contactInfoForm.getData().name,
 								mobile: contactInfoForm.getData().mobile,
@@ -279,7 +290,8 @@
 								source: contactInfoForm.getData().source,
 								id: contactInfoForm.getData().id,
 							};
-						}
+						  } 
+					    }
 					}
 					if (index == 0) {//当没有点击+增加联系人信息时contact为空
 						var data = contactInfoForm.getData();
@@ -306,6 +318,8 @@
 						carBrandId :nui.get("carBrandId").value,
 						carModel:nui.get("carModel").value
 					}
+					
+					
 					nui.ajax({
 						url: baseUrl + "com.hsapi.repair.repairService.crud.saveBXCustomerInforMation.biz.ext",
 						type: "post",
@@ -326,7 +340,7 @@
 									nui.get("carNo").setValue(car.carNo);
 									nui.get("carId").setValue(car.id);
 									nui.get("carBrandId").setValue(car.carBrandId);
-									nui.get("carModel").setVale(car.carModel);
+									nui.get("carModel").setValue(car.carModel);
 								}
 								var rpb = text.rpb;
 								$(".sjd").empty();
@@ -344,7 +358,7 @@
 								clickLi();
 							}
 						}
-					});
+					}); 
 				}
 
 				function checkContactInfoForm(data) {
@@ -414,6 +428,17 @@
 				function getData(){
 					var carId = nui.get("carId").value;				
 					return carId;	
+				}
+				function changNameMobile(e){
+				     if(e==1){
+				         var fullName = nui.get("fullName").value;
+					     nui.get("name2").setValue(fullName);
+				     }
+				     if(e==2){
+				         var mobile = nui.get("mobile").value;
+					     nui.get("mobile2").setValue(mobile);
+				     }
+				
 				}
 			</script>
 		</body>

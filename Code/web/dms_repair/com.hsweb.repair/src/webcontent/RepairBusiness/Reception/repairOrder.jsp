@@ -458,7 +458,8 @@
                     <tbody>
                         <tr>
                             <td width="30" height="35" align="center">序号</td>
-                            <td width="200" align="center">项目名称</td>
+                            <td width="300" align="center">项目名称</td>
+                            <td width="100" align="center">工时</td>
                             <td align="center">施工员</td>
                             <td align="center">备注</td>
                             <td align="center">签字</td>
@@ -598,24 +599,44 @@
 //            		document.getElementById("tel").innerHTML = document.getElementById("tel").innerHTML+ tel;
 //         	}
 //         });
-        $.post(params.baseUrl+"com.hsapi.repair.repairService.query.getRpsItemByServiceId.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){
+        //url_one = "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext?serviceId=";
+        //com.hsapi.repair.repairService.query.getRpsItemByServiceId.biz.ext?serviceId=
+        $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){
         	if(text.errCode == "S"){
             	var tBody = $("#tbodyId");
 				tBody.empty();
-				var tds = '<td align="center">[id]</td>' +
-    			"<td align='center'>[itemName]</td>"+
+				var tds = '<td align="center">[orderIndex]</td>' +
+    			"<td align='center'>[prdtName]</td>"+
+    			"<td align='center'>[qty]</td>"+
     			"<td align='center'>[workers]</td>"+
     			"<td align='center'>[remark]</td>"+
     			"<td align='center'></td>";
         		var data = text.data;
         		for(var i = 0 , l = data.length ; i < l ; i++){
-        			var tr = $("<tr></tr>");
-        			tr.append(
-				    				tds.replace("[id]",i +1)
-				    				.replace("[itemName]",data[i].itemName)
-				    				.replace("[workers]",data[i].workers || "")
-				    				.replace("[remark]",data[i].remark || ""));
-				    			tBody.append(tr);
+        		     if(data[i].billItemId==0){
+        		       var tr = $("<tr></tr>");
+        			    tr.append(
+				    		  tds.replace("[orderIndex]",data[i].orderIndex)
+				    			 .replace("[prdtName]",data[i].prdtName)
+				    			 .replace("[qty]",data[i].qty)
+				    			 .replace("[workers]",data[i].workers || "")
+				    			 .replace("[remark]",data[i].remark || ""));
+				    	tBody.append(tr);
+        		    }else{
+        		       if(params.currIsCanfreeCarnovin==1){
+        		            var tr = $("<tr></tr>");
+        			        tr.append(
+				    		      tds.replace("[orderIndex]",data[i].orderIndex)
+				    			 .replace("[prdtName]",data[i].prdtName)
+				    			 .replace("[qty]",data[i].qty)
+				    			 .replace("[workers]","----")
+				    			 .replace("[remark]",data[i].remark || ""));
+				    	    tBody.append(tr);
+        		       }
+        		       
+        		    } 
+        		   
+        			
         		}
         	}
         });

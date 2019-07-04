@@ -12,8 +12,23 @@ var data;
 var empty = 0;//是否清空
 var guestTypeList = [];
 var guestTypeHash = {};
+var provinceEl = null;
+var cityEl = null;
+var countyEl = null;
+var streetAddressEl = null;
+var addressEl = null;
+var provinceHash = null;
+var cityHash = null;
+var firstRegDateEl = null;
+var countyHash = null;
 $(document).ready(function()
 {
+    provinceEl = nui.get("provice");
+    cityEl = nui.get("cityId");
+    countyEl = nui.get("areaId");
+    streetAddressEl = nui.get("streetAddress");
+    addressEl = nui.get("addr");
+	firstRegDateEl = nui.get("firstRegDate");
 	if(currRepairBillCmodelFlag == "1"){
         nui.get("carModel").disable();
     }else{
@@ -328,6 +343,17 @@ $(document).ready(function()
 		        }
 		    }
 		});
+		
+		firstRegDateEl.on("valuechanged",function(e){
+	    	  var value = e.value;
+	    	  value = value.Format("yyyy-MM-dd");
+	    	  getCarVerificationDate(value,function(data) {
+	    		  if(data && data.dueDate) {
+	    			  nui.get("annualVerificationDueDate").setValue(data.dueDate);
+	    		  }
+	    	  });
+        });
+		
     //init();
 });
 
@@ -455,7 +481,7 @@ function setCarByIdx(idx)
 {
     if(currCarIdx>=0 && currCarIdx<carList.length)
     {
-        carList[currCarIdx] = carInfoFrom.getData();
+        carList[currCarIdx] = carInfoFrom.getData(true);
         //carList[currCarIdx].carModel = nui.get("carModelId").getText();
         carList[currCarIdx].isChanged = carInfoFrom.isChanged();
         currCarIdx = idx;
@@ -509,7 +535,7 @@ function setContactByIdx(idx)
 {
     if(idx>=0 && idx<contactList.length)
     {
-        var contact = contactInfoForm.getData();
+        var contact = contactInfoForm.getData(true);
         contact.isChanged = contactInfoForm.isChanged();
         contactList[currContactIdx] = contact;
         currContactIdx = idx;
@@ -580,7 +606,7 @@ function onOk()
 		showMsg("请输入正确的车牌号","W");
 		return;
 	}*/
-		    var guest = basicInfoForm.getData();
+		    var guest = basicInfoForm.getData(true);
 		    guest.tgrade = guest.guestTypeId;
 		    var name = guest.fullName || "";
 		    if(name=="散客"){
@@ -588,10 +614,10 @@ function onOk()
 		    	return;
 		    }
 		    guest.guestType = "01020103";
-		    carList[currCarIdx] = carInfoFrom.getData();
+		    carList[currCarIdx] = carInfoFrom.getData(true);
 		    //carList[currCarIdx].carModel = nui.get("carModelId").getText();
 		    var i,key,tmp;
-		    contactList[currContactIdx] = contactInfoForm.getData();
+		    contactList[currContactIdx] = contactInfoForm.getData(true);
 		    
 		    for(key in basicRequiredField){
 		        //tmp = nui.get(key).getText();
@@ -1171,9 +1197,22 @@ function setDataQuery(data)
                     }
                     setCarByIdx(currCarIdx);
                     setContactByIdx(currContactIdx);
-                    
-                    provice.doValueChanged();
-                    cityId.doValueChanged();
+
+
+                    onProvinceChange( {
+                    	value : data.guest.provinceId	
+                    });
+                    onCityChange( {
+                    	value : data.guest.cityId	
+                    });
+                    onCountyChange( {
+                    	value : data.guest.areaId	
+                    });
+                    provinceEl.setValue(data.guest.provinceId);
+                    cityEl.setValue(data.guest.cityId);
+                    countyEl.setValue(data.guest.areaId);
+/*                    provice.doValueChanged();
+                    cityId.doValueChanged();*/
                 }
                 else{
                     showMsg("获取客户信息失败", "E");
@@ -1190,7 +1229,7 @@ function setDataQuery(data)
 
 function getWalkGuest(){
 	var car = carList[0];
-	var guest = basicInfoForm.getData();
+	var guest = basicInfoForm.getData(true);
 	var data = {};
 	data.guestId = guest.id;
 	data.guestFullName = guest.fullName;
@@ -1265,4 +1304,61 @@ function changeShow(src){
 
 function changeHide(){
 	$(".max_img").hide();
+}
+
+function onProvinceChange(e){
+    var value = e.value;
+    cityEl.setValue(null);
+    countyEl.setValue(null);
+    getRegion(value,function(data) {
+        cityHash = data.rs || [];
+        cityEl.setData(cityHash);
+
+    });
+    setAddress();
+}
+function onCityChange(e){
+    var value = e.value;
+    countyEl.setValue(null);
+    getRegion(value,function(data) {
+        countyHash = data.rs || [];
+        countyEl.setData(countyHash);
+
+    });
+    setAddress();
+}
+function onCountyChange(e){
+    setAddress();
+}
+function onStreetChange(e){
+    setAddress();
+}
+function setAddress() {
+    var provinceT = provinceEl.getText()||'';
+    var cityT = cityEl.getText()||'';
+    var countyT = countyEl.getText()||'';
+    var streetAddressT = streetAddressEl.getValue()||'';
+    var address = provinceT + cityT + countyT + streetAddressT;
+    addressEl.setValue(address);
+    addressEl.getValue();
+}
+var getRegionUrl = apiPath + sysApi + "/" + "com.hs.common.region.getRegin.biz.ext";
+function getRegion(parentId,callback) {
+    nui.ajax({
+        url : getRegionUrl,
+        data : {
+            token: token, 
+            parentId: parentId
+        },
+        type : "post",
+        success : function(data) {
+            if (data && data.rs) {
+                callback && callback(data);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
 }

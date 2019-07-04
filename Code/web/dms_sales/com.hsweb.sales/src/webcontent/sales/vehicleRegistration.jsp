@@ -213,35 +213,56 @@
 				   	               if(result){
 				   	                  var car = result.car;
 				   	                  var carExtend = result.carExtend;
-				   	                  var data = result.data;
+				   	                  var data1 = result.data;
 				   	                  var contactor = result.contactor;
 				   	                  if(contactor){
 				   	                     var licenseOverDate = contactor.licenseOverDate;
-				   	                      nui.get("annualInspectionCompCode").setValue(licenseOverDate);
+				   	                      nui.get("licenseOverDate").setValue(licenseOverDate);
 				   	                  }
-				   	                  if(data){
-					   	                  var insureCompName = data.insureCompName || "";
+				   	                  if(data1.guestId){
+					   	                  var insureCompName = data1.insureCompName || "";
 					   	                  nui.get("insureCompName").setValue(insureCompName);
 					   	            	  nui.get("annualInspectionCompName").setValue(insureCompName);
 					   	            	  
-					   	            	   var insureCompId = data.insureCompId || "";
+					   	            	   var insureCompId = data1.insureCompId || "";
 					   	            	  nui.get("annualInspectionCompCode").setValue(insureCompId);
 					   	            	  nui.get("insureCompCode").setValue(insureCompId);
 					   	            	  
-					   	            	  var endDate = data.endDate || "";
+					   	            	  var endDate = data1.endDate || "";
 					   	            	  nui.get("annualInspectionDate").setValue(endDate);
 					   	            	  nui.get("insureDueDate").setValue(endDate);
+				   	                  }else{
+				   	                  
+					   	                  if(car.id){
+					   	                      var insureCompName = car.insureCompName || "";
+						   	                  nui.get("insureCompName").setValue(insureCompName);
+						   	                  var annualInspectionCompName = car.annualInspectionCompName || "";
+						   	            	  nui.get("annualInspectionCompName").setValue(annualInspectionCompName);
+						   	            	  
+						   	            	   var annualInspectionCompCode = car.annualInspectionCompCode || "";
+						   	            	  nui.get("annualInspectionCompCode").setValue(annualInspectionCompCode);
+						   	            	  var insureCompCode = car.insureCompCode || "";
+						   	            	  nui.get("insureCompCode").setValue(insureCompCode);
+						   	            	  
+						   	            	  var annualInspectionDate = car.annualInspectionDate || "";
+						   	            	  nui.get("annualInspectionDate").setValue(annualInspectionDate);
+						   	            	  var insureDueDate = car.insureDueDate || "";
+						   	            	  nui.get("insureDueDate").setValue(insureDueDate);
+					   	                  }
+				   	                  
 				   	                  }
-				   	                  if(carExtend){
+				   	                  if(carExtend.carId){
 				   	                      var careDueDate = carExtend.careDueDate || "";
 					   	            	  nui.get("careDueDate").setValue(careDueDate);
 					   	            	
-					   	            	  var careDueMileage = data.careDueMileage || "";
+					   	            	  var careDueMileage = carExtend.careDueMileage || "";
 					   	            	  nui.get("careDueMileage").setValue(careDueMileage);
 				   	                  }
-				   	                  if(car){
+				   	                  if(car.id){
 				   	                      var carNo = car.carNo || "";
 					   	            	  nui.get("carNo").setValue(carNo);
+					   	            	  var annualVerificationDueDate = car.annualVerificationDueDate || "";
+					   	            	  nui.get("annualVerificationDueDate").setValue(annualVerificationDueDate);
 				   	                  }
 				   	            	  
 				   	               }

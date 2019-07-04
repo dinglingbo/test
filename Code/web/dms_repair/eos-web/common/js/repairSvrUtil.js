@@ -756,6 +756,7 @@ function doPrint(params){
         currSlogan2: currSlogan2,
         currCompLogoPath: currCompLogoPath,
         currRepairBillMobileFlag:currRepairBillMobileFlag,
+        currIsCanfreeCarnovin:currIsCanfreeCarnovin,
 		token : token 
 	};
 	if(source == 1){  //打印报价单
@@ -792,6 +793,9 @@ function doPrint(params){
 	}else if(source == 10){
 		sourceUrl = webPath + contextPath + "/com.hsweb.print.smallSettlementPart.flow?token="+token;
 		p.name = "结账单";
+	}else if(source == 11){
+		sourceUrl = webPath + contextPath + "/com.hsweb.print.repairOrderPart.flow?token="+token;
+		p.name = "派工单";
 	}
 	
 	nui.open({

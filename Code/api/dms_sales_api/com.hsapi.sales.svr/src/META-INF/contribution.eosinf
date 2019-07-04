@@ -32,6 +32,7 @@
 			<configValue key="common">DB02_ORA_WB_COMMON</configValue>
 			<configValue key="frm">DB06_ORA_WB_FRM</configValue>
 			<configValue key="repair">DB04_ORA_WB_REPAIR</configValue>
+			<configValue key="DB01_MYSQL_WB_SLOG">DB01_MYSQL_WB_SLOG</configValue>
 			
 		</group>
 	</module>

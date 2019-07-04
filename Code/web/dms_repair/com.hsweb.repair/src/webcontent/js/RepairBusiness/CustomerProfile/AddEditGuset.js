@@ -26,8 +26,22 @@ var photos = [];//汽车图片
 var isOpen = true;
 var carIdForPhoto = null;
 var firstRegDateEl = null;
+var provinceEl = null;
+var cityEl = null;
+var countyEl = null;
+var streetAddressEl = null;
+var addressEl = null;
+var provinceHash = null;
+var cityHash = null;
+var countyHash = null;
 $(document).ready(function()
 {
+    provinceEl = nui.get("provice");
+    cityEl = nui.get("cityId");
+    countyEl = nui.get("areaId");
+    streetAddressEl = nui.get("streetAddress");
+    addressEl = nui.get("addr");
+    
 	carview = nui.get("carview");
 	carview.hide();
 	contactview = nui.get("contactview");
@@ -1730,4 +1744,59 @@ function mouseImage(){
 
 	});
 }
+function onProvinceChange(e){
+    var value = e.value;
+    cityEl.setValue(null);
+    countyEl.setValue(null);
+    getRegion(value,function(data) {
+        cityHash = data.rs || [];
+        cityEl.setData(cityHash);
 
+    });
+    setAddress();
+}
+function onCityChange(e){
+    var value = e.value;
+    countyEl.setValue(null);
+    getRegion(value,function(data) {
+        countyHash = data.rs || [];
+        countyEl.setData(countyHash);
+
+    });
+    setAddress();
+}
+function onCountyChange(e){
+    setAddress();
+}
+function onStreetChange(e){
+    setAddress();
+}
+function setAddress() {
+    var provinceT = provinceEl.getText()||'';
+    var cityT = cityEl.getText()||'';
+    var countyT = countyEl.getText()||'';
+    var streetAddressT = streetAddressEl.getValue()||'';
+    var address = provinceT + cityT + countyT + streetAddressT;
+    addressEl.setValue(address);
+    addressEl.getValue();
+}
+var getRegionUrl = apiPath + sysApi + "/" + "com.hs.common.region.getRegin.biz.ext";
+function getRegion(parentId,callback) {
+    nui.ajax({
+        url : getRegionUrl,
+        data : {
+            token: token, 
+            parentId: parentId
+        },
+        type : "post",
+        success : function(data) {
+            if (data && data.rs) {
+                callback && callback(data);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}

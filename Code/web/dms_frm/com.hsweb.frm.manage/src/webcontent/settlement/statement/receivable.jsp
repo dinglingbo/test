@@ -11,7 +11,7 @@
 
 <head>
 	<title>应收结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.5.7"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.5.8"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {

@@ -298,8 +298,7 @@
 			       a.deduction_amt as deductionAmt, 
 			       a.refund_amt as refundAmt,
 			       a.bala_amt as balaAmt,
-			       a.status as status, 
-			       a.is_refund as isRefund,			       
+			       a.status as status, 			       
 			       a.is_settle as isSettle,
 				   a.settleer as settleer, 
 				   a.settle_date as settleDate,
@@ -323,9 +322,6 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="isSettle">
                 (a.is_settle = #isSettle#)
-                </isNotEmpty>
-                <isNotEmpty prepend="and" property="isRefund">
-                (a.is_refund = #isRefund#)
                 </isNotEmpty>                
                 <isNotEmpty prepend="and" property="orgids">
                 (a.orgid in ($orgids$))

@@ -347,8 +347,24 @@
       <process:to type="query">rbpCarExt/careDueDate</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">params/carNo</process:from>
+      <process:to type="query">rbpCar/carNo</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">guest/id</process:from>
+      <process:to type="query">rbpCar/guestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">checkEnter/carId</process:from>
+      <process:to type="query">rbpCar/id</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">rbpCarExt</process:from>
       <process:to type="query">rbpCar/carExtend</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/annualInspectionDate</process:from>
+      <process:to type="query">rbpCar/annualInspectionDate</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
@@ -666,6 +682,10 @@
       <process:to type="query">rbpCar/annualVerificationDueDate</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">params/annualInspectionDate</process:from>
+      <process:to type="query">rbpCar/annualInspectionDate</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">params/annualInspectionCompCode</process:from>
       <process:to type="query">rbpCar/annualInspectionCompCode</process:to>
     </process:copy>
@@ -952,6 +972,7 @@
     </sourceConnections>
     <targetConnections>link70</targetConnections>
     <targetConnections>link71</targetConnections>
+    <targetConnections>link10</targetConnections>
     <location x="1262" y="465"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionrollback0label</nodeLabel>
@@ -1006,7 +1027,6 @@
       <targetNode>transactionrollback0</targetNode>
     </sourceConnections>
     <targetConnections>link72</targetConnections>
-    <targetConnections>link10</targetConnections>
     <location x="1251" y="390"/>
     <size height="28" width="28"/>
     <nodeLabel>assign24label</nodeLabel>
@@ -1067,7 +1087,7 @@
   <nodes xsi:type="process:tAssign" id="assign8" name="赋值8" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
-      <targetNode>assign24</targetNode>
+      <targetNode>transactionrollback0</targetNode>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
     <location x="1070" y="400"/>

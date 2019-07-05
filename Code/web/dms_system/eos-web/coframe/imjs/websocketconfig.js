@@ -1,5 +1,5 @@
 //var websocketurl="ws://192.168.122.68:2048/ws";   //ws://{ip}:{端口}/{java后端websocket配置的上下文}
-var websocketurl="ws://127.0.0.1:8090/ws";
+var websocketurl="ws://192.168.122.51:8090/ws";
 //var websocketurl="ws://192.168.111.60:8090/ws";   
 //var websocketurl="wss://qxy60.hszb.harsons.cn/ws";
 //var websocketurl="wss://qxy.cloud.7xdr.com/ws";
@@ -62,7 +62,7 @@ function reconnect(callbak) {
  
 
 layui.use('layim', function(layim){
-	if(currImDisabled != "0" || currImCode == "") return;
+	//if(currImDisabled != "0" || currImCode == "") return;
 
 	//回复消息
 	var reMsg=function(sender,time,msg){
@@ -255,9 +255,10 @@ layui.use('layim', function(layim){
 	  }; 
   };
 
-  if(currImDisabled == "0" && currImCode != "") {
+  
+  //if(currImDisabled == "0" && currImCode != "") {
 	  createWebSocket(websocketurl,initEventHandle);  
-  }
+  //}
       
   
   //演示自动回复
@@ -273,6 +274,7 @@ layui.use('layim', function(layim){
     '(*^__^*) face[嘻嘻] ，是贤心吗？'
   ];
   
+  if(currImDisabled != "0" || currImCode == "") return;
   //基础配置
   layim.config({
 

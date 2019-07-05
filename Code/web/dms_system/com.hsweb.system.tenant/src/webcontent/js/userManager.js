@@ -13,6 +13,14 @@ var cityList=[];
 var cityHash={};
 var queryForm;
 var provinceCode;
+//租户类型：1，汽修店，2汽配店，3变速箱维修店，4汽贸店，5汽贸汽修综合店
+var tenantTypeHash = {
+		"1":"汽修店",
+		"2":"汽配店",
+		"3":"变速箱维修店",
+		"4":"汽贸店",
+		"5":"汽贸汽修综合店"
+}
 nui.parse();
 
 
@@ -85,9 +93,9 @@ switch (e.field)
 	case "managerIdentity":
 		e.cellHtml = e.value==0?"老板":"员工";
 		break;
-	/*case "isPay":
-		e.cellHtml = e.value==0?"免费":"付费";
-		break;*/
+	case "tenantType":
+		e.cellHtml = tenantTypeHash[e.value];
+		break;
 	default:
     break;
 }

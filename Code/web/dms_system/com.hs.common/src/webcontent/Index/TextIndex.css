@@ -157,7 +157,7 @@ body {
 
 
 #table1 tr {
-    height:48px;
+    height:40px;
     vertical-align:bottom;
 }
 
@@ -166,6 +166,7 @@ body {
 } 
 .tabletext{
    font-size:14px !important;
+   height: 10px;
 } 
 
 .tabletext i{

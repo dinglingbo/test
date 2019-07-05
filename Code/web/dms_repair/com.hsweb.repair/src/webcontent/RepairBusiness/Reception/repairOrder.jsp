@@ -453,13 +453,31 @@
             </table>
     
             <h5 style="padding-top: 20px;">施工项目</h5>
+            
             <div style="padding: 10px 0">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table tlist mt10" style="table-layout: fixed;" id="showPkg">
+                    <tbody>
+                        <tr>
+                            <td width="30" height="35" align="center">序号</td>
+                            <td width="300" align="center">套餐项目</td>
+                            <td width="100" align="center">工时/数量</td>
+                            <td align="center">施工员</td>
+                            <td align="center">备注</td>
+                            <td align="center">签字</td>
+                        </tr>
+                        <tbody id="tbodyId1">
+						</tbody>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="height: 12px;" id="space1"></div>
                 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table tlist mt10" style="table-layout: fixed;">
                     <tbody>
                         <tr>
                             <td width="30" height="35" align="center">序号</td>
                             <td width="300" align="center">项目名称</td>
-                            <td width="100" align="center">工时</td>
+                            <td width="100" align="center">工时/数量</td>
                             <td align="center">施工员</td>
                             <td align="center">备注</td>
                             <td align="center">签字</td>
@@ -469,6 +487,7 @@
                     </tbody>
                 </table>
             </div>
+            
             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader" style="margin-top: 15px;">
                 <tbody>
                     <tr>
@@ -588,7 +607,105 @@
         		document.getElementById("remark").innerHTML = document.getElementById("remark").innerHTML + remark; 
         	}
         });
-        $.ajaxSettings.async = true;//设置为异步执行
+    $.ajaxSettings.async = false;//设置为异步执行 
+    $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){
+        	if(text.errCode == "S"){
+            	var tBody1 = $("#tbodyId1");
+				tBody1.empty();
+				var tds = '<td align="center">[orderIndex]</td>' +
+    			"<td align='center'>[prdtName]</td>"+
+    			"<td align='center'>[qty]</td>"+
+    			"<td align='center'>[workers]</td>"+
+    			"<td align='center'>[remark]</td>"+
+    			"<td align='center'></td>";
+        		var data = text.data;
+        		if(data.length>0){
+        		     for(var i = 0 , l = data.length ; i < l ; i++){
+        		     if(data[i].billPackageId==0){
+        		       var tr = $("<tr></tr>");
+        			    tr.append(
+				    		  tds.replace("[orderIndex]",data[i].orderIndex)
+				    			 .replace("[prdtName]",data[i].prdtName || "")
+				    			 .replace("[qty]","")
+				    			 .replace("[workers]","----")
+				    			 .replace("[remark]",data[i].remark || ""));
+				    	tBody1.append(tr);
+        		    }else{
+        		       if(params.currIsCanfreeCarnovin==1){
+        		           if(data[i].billPackageId!=0 && data[i].type==3){
+        		               var tr = $("<tr></tr>");
+        			           tr.append(
+				    		      tds.replace("[orderIndex]","")
+				    			 .replace("[prdtName]",data[i].prdtName || "")
+				    			 .replace("[qty]",data[i].qty)
+				    			 .replace("[workers]","----")
+				    			 .replace("[remark]",data[i].remark || ""));
+				    	       tBody1.append(tr);
+        		           }
+        		       }
+        		      if(data[i].billPackageId!=0 && data[i].type==2){
+        		               var tr = $("<tr></tr>");
+        			           tr.append(
+				    		      tds.replace("[orderIndex]","")
+				    			 .replace("[prdtName]",data[i].prdtName)
+				    			 .replace("[qty]",data[i].qty)
+				    			 .replace("[workers]",data[i].workers || "")
+				    			 .replace("[remark]",data[i].remark || ""));
+				    	       tBody1.append(tr);
+        		       }
+        		       
+        		    }         			
+        		 }
+        		}else{
+    		       $("#showPkg").hide();
+	               $("#space1").hide();
+        		}
+        	}
+        });
+            
+   $.ajaxSettings.async = false;//设置为同步执行
+   $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){
+    	if(text.errCode == "S"){
+        	var tBody = $("#tbodyId");
+			tBody.empty();
+			var tds = '<td align="center">[orderIndex]</td>' +
+			"<td align='center'>[prdtName]</td>"+
+			"<td align='center'>[qty]</td>"+
+			"<td align='center'>[workers]</td>"+
+			"<td align='center'>[remark]</td>"+
+			"<td align='center'></td>";
+    		var data = text.data;
+    		if(data.length>0){
+    		   for(var i = 0 , l = data.length ; i < l ; i++){
+    		     if(data[i].billItemId==0){
+    		       var tr = $("<tr></tr>");
+    			    tr.append(
+			    		  tds.replace("[orderIndex]",data[i].orderIndex)
+			    			 .replace("[prdtName]",data[i].prdtName)
+			    			 .replace("[qty]",data[i].qty)
+			    			 .replace("[workers]",data[i].workers || "")
+			    			 .replace("[remark]",data[i].remark || ""));
+			    	tBody.append(tr);
+			    	
+    		    }else{
+    		       if(params.currIsCanfreeCarnovin==1){
+    		           var prdtName = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+data[i].prdtName;
+    		            var tr = $("<tr></tr>");
+    			        tr.append(
+			    		      tds.replace("[orderIndex]",data[i].orderIndex)
+			    			 .replace("[prdtName]",prdtName)
+			    			 .replace("[qty]",data[i].qty)
+			    			 .replace("[workers]","----")
+			    			 .replace("[remark]",data[i].remark || ""));
+			    	    tBody.append(tr);
+    		       }
+    		    }         			
+    		 }
+    	  }
+    	}
+    });
+          
+       
 
 //         $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext?guestId="+ guestId+"&token="+params.token,{},function(text){
 //         	if(text.errCode == "S"){
@@ -601,45 +718,8 @@
 //         });
         //url_one = "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext?serviceId=";
         //com.hsapi.repair.repairService.query.getRpsItemByServiceId.biz.ext?serviceId=
-        $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){
-        	if(text.errCode == "S"){
-            	var tBody = $("#tbodyId");
-				tBody.empty();
-				var tds = '<td align="center">[orderIndex]</td>' +
-    			"<td align='center'>[prdtName]</td>"+
-    			"<td align='center'>[qty]</td>"+
-    			"<td align='center'>[workers]</td>"+
-    			"<td align='center'>[remark]</td>"+
-    			"<td align='center'></td>";
-        		var data = text.data;
-        		for(var i = 0 , l = data.length ; i < l ; i++){
-        		     if(data[i].billItemId==0){
-        		       var tr = $("<tr></tr>");
-        			    tr.append(
-				    		  tds.replace("[orderIndex]",data[i].orderIndex)
-				    			 .replace("[prdtName]",data[i].prdtName)
-				    			 .replace("[qty]",data[i].qty)
-				    			 .replace("[workers]",data[i].workers || "")
-				    			 .replace("[remark]",data[i].remark || ""));
-				    	tBody.append(tr);
-        		    }else{
-        		       if(params.currIsCanfreeCarnovin==1){
-        		            var tr = $("<tr></tr>");
-        			        tr.append(
-				    		      tds.replace("[orderIndex]",data[i].orderIndex)
-				    			 .replace("[prdtName]",data[i].prdtName)
-				    			 .replace("[qty]",data[i].qty)
-				    			 .replace("[workers]","----")
-				    			 .replace("[remark]",data[i].remark || ""));
-				    	    tBody.append(tr);
-        		       }
-        		       
-        		    } 
-        		   
-        			
-        		}
-        	}
-        });
+        
+       
 	}
     </script>
 </body>

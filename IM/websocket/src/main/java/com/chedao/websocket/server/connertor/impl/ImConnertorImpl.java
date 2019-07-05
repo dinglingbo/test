@@ -209,6 +209,35 @@ public class ImConnertorImpl implements ImConnertor {
 	    
 	}
     @Override
+    public void pushNoticeMessage(String sessionId,MessageWrapper wrapper) throws RuntimeException{
+        //判断是不是无效用户回复
+        if(!sessionId.equals(Constants.ImserverConfig.REBOT_SESSIONID)){//判断非机器人回复时验证
+            Session session = sessionManager.getSession(sessionId);
+            if (session == null) {
+                throw new RuntimeException(String.format("session %s is not exist.", sessionId));
+            }
+        }
+        try {
+            ///取得接收人 给接收人写入消息  不用保存消息
+            Session responseSession = sessionManager.getSession(wrapper.getReSessionId());
+            if (responseSession != null && responseSession.isConnected() ) {
+                boolean result = responseSession.write(wrapper.getBody());
+
+                return;
+            }else{
+
+            }
+        } catch (PushException e) {
+            log.error("connector send occur PushException.", e);
+
+            throw new RuntimeException(e.getCause());
+        } catch (Exception e) {
+            log.error("connector send occur Exception.", e);
+            throw new RuntimeException(e.getCause());
+        }
+
+    }
+    @Override
     public void pushCreateGroupMessage(String sessionId, List<String> reSessionIdList, String content) throws RuntimeException {
         try {
             ///取得接收人 给接收人写入消息

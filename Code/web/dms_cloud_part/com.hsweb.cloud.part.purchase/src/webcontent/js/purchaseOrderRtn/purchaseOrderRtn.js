@@ -1987,6 +1987,10 @@ function OnrpMainGridCellBeginEdit(e){
 	}
     if (field == "storeShelf") {
 	    var value = e.record.storeId;
+	    var editor = e.editor;
+	    if(editor.type=='textbox'){
+	    	return;
+	    }
 	    getLocationListByStoreId(value,function(data) {
 			storeShelfList = data.locationList || [];
 			nui.get('storeShelf').setData(storeShelfList);

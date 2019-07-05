@@ -2408,7 +2408,7 @@ function OnrpMainGridCellBeginEdit(e){
                 e.cancel = true;
             }
         }else{
-            if(column.field != "remark" && column.field != "orderQty" && column.field != "orderPrice" && column.field != "orderAmt" && column.field != "storeId"){
+            if(column.field != "remark" && column.field != "orderQty" && column.field != "orderPrice" && column.field != "orderAmt" && column.field != "storeId" && column.field != "storeShelf"){
                 e.cancel = true;
             }
         }  
@@ -2416,13 +2416,18 @@ function OnrpMainGridCellBeginEdit(e){
     
     if (field == "storeShelf") {
 	    var value = e.record.storeId;
+	    var value = e.record.storeId;
+	    var editor = e.editor;
+	    if(editor.type=='textbox'){
+	    	return;
+	    }
 	    getLocationListByStoreId(value,function(data) {
 			storeShelfList = data.locationList || [];
 			nui.get('storeShelf').setData(storeShelfList);
 			
 	
 		});
-    }
+  }
 
 }
 function addMorePart(){

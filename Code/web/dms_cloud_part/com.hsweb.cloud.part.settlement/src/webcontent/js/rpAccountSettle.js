@@ -216,7 +216,7 @@ function getSearchParam(){
     //params.guestId = comSearchGuestId.getValue();
     
     params.sCreateDate = searchBeginDate.getFormValue();
-    params.eCreateDate = searchEndDate.getValue();
+    params.eCreateDate = searchEndDate.getFormValue();
     return params;
 }
 var currType = 2;

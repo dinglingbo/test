@@ -58,7 +58,7 @@ public class MessageProxyImpl implements MessageProxy {
 			case Constants.CmdType.OFFLINE:
 				
 				break;
-			case Constants.CmdType.MESSAGE:
+            case Constants.CmdType.MESSAGE:
 					try {
 						  MessageProto.Model.Builder  result = MessageProto.Model.newBuilder(message);
 						  result.setTimeStamp(DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
@@ -81,7 +81,31 @@ public class MessageProxyImpl implements MessageProxy {
 		            } catch (Exception e) {
 		                e.printStackTrace();
 		            }
-				break;  
+				break;
+            case Constants.CmdType.NOTICE:
+                try {
+                    MessageProto.Model.Builder  result = MessageProto.Model.newBuilder(message);
+                    result.setTimeStamp(DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
+                    result.setSender(sessionId);//存入发送人sessionId
+                    message =  MessageProto.Model.parseFrom(result.build().toByteArray());
+                    //判断消息是否有接收人
+                    if(StringUtils.isNotEmpty(message.getReceiver())){
+                        //判断是否发消息给机器人
+                        if(message.getReceiver().equals(Constants.ImserverConfig.REBOT_SESSIONID)){
+                            MessageBodyProto.MessageBody  msg =  MessageBodyProto.MessageBody.parseFrom(message.getContent());
+                            return  rebotProxy.botMessageReply(sessionId, msg.getContent());
+                        }else{
+                            return new MessageWrapper(MessageWrapper.MessageProtocol.NOTIFY, sessionId,message.getReceiver(), message);
+                        }
+                    }else if(StringUtils.isNotEmpty(message.getGroupId())){
+                        return new MessageWrapper(MessageWrapper.MessageProtocol.NOTIFY, sessionId, null,message);
+                    }else {
+                        return new MessageWrapper(MessageWrapper.MessageProtocol.NOTIFY, sessionId, null,message);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
 		} 
         return null;
     }

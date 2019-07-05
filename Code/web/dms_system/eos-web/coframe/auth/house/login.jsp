@@ -68,25 +68,29 @@ html{
 }
 
 body { 
+    margin:0px;
+    padding:0px;
+    text-align:center;
+}
 
-	min-width: 98%;
-	min-height: 97%;
+.main_content{
+	width:1024px;
+	height:520px;
+    margin: 0 auto;
+    position: relative;
 	background-image: url(images/bg.png);
 	background-repeat: no-repeat;
 	background-position:center center;
 	background-size: 100% 100%;	
 }
-
 .login_box .login {
 	position: absolute;
 	display: block;
-	width: 380px;
+	width: 362px;
+    height:362px;
 	background-color: #FFF;
-	top: 30%;
-	right: 15%;
-	padding-bottom: 30px;
-	
-	
+	top: 79px;
+	right: 39px;
 }
 
 
@@ -98,7 +102,7 @@ body {
 	color: #26C789;
 }
 .login_box .login .loginTitle {
-	padding-left: 30px;
+	padding-left: 20px;
 	height: 60px;
 }
 .login_box .login .loginTitle .log {
@@ -106,18 +110,26 @@ body {
 	font-size: 20px;
 	text-align: left;
 	padding-top: 10px;
-	color:#26C789
+	color:#26C789;
+
+    height:28px;
+    font-family:PingFang-SC-Medium;
+    font-weight:500;
+    line-height:28px;
 }
 .login_box .login .loginTitle .log span {
 	display: block;
-	font-size: 10px;
+	font-size: 12px;
+    font-family:PingFang-SC-Regular;
 	color: #A5A5A5;
+    line-height:17px;
+    font-weight:400;
 }
 .login_box .login .loginTitle .weixinbox {
 	float: right;
 }
 .login_box .login label {
-	padding: 0 30px;
+	padding: 0 20px;
 	width: 80%;
 	margin: 0;
 	float: left;
@@ -126,18 +138,38 @@ body {
 	margin-top: 15px;
 }
 .login_box .login input.yzm {
-	background-color: #F0F0F0;
+	/* background-color: #F0F0F0;
+    float:left;
 	border: 0;
 	width: 40%;
 	border-radius: 0;
-	height: 34px;
+	height: 34px; */
+    float: left;
+    width:160px;
+    height:40px;
+    background:rgba(255,255,255,1);
+    border-radius:4px;
+    border:1px solid rgba(0,0,0,0.15);
+}
+
+.yzm_pic{
+    width:86px;
+    height:40px;
+    background:rgba(240,240,240,1);
+    border-radius:4px;
+
 }
 .login_box .login input {
-	background-color: #F0F0F0;
+	/* background-color: #F0F0F0;
 	border: 0;
 	width: 100%;
 	border-radius: 0;
-	height: 34px;
+	height: 34px; */
+    width:320px;
+    height:40px;
+    background:rgba(255,255,255,1);
+    border-radius:4px;
+    border:1px solid rgba(0,0,0,0.15);
 }
 .login_box .login input[type="checkbox"] {
 	background-color: #F0F0F0;
@@ -270,9 +302,9 @@ a {
   
   .com_rcode {
   	position: absolute;
-  	bottom: 60px;
+    left:40px;
+  	bottom: 40px;
   	width:50%;
-  	margin-left: 100px;
   }
   
   .qr_imgbox {
@@ -281,15 +313,15 @@ a {
   }
   
   .ios-max {
-  	bottom: 120px;
-  	margin-left: 120px;
+  	bottom: 100px;
+  	margin-left: 40px;
   	position:absolute;
   	z-index:1;
   }
   
   .android-max {
-  	bottom: 120px;
-  	margin-left: 320px;
+  	bottom: 100px;
+  	margin-left: 240px;
   	position:absolute;
   	z-index:1;
   }
@@ -304,7 +336,7 @@ a {
 <body>
 
 
-
+<div class="main_content">
 <div class="login_box">
 	<form method="post"	name="registerForm" onsubmit="return register();" action="">
 	<div class="login" id="registerBox">
@@ -369,7 +401,7 @@ a {
 			</div> -->		
 			<div class="log">
 				欢迎登录仓先生
-				<span>为了保障您顺畅的使用，建议使用谷歌/火孤/360浏览器</span>
+				<span >为了保障您顺畅的使用，建议使用谷歌/火孤/360浏览器</span>
 			</div>
 		</div>
 		<label style="width:100%">
@@ -382,8 +414,8 @@ a {
 		</label>
 		<label style="width:100%">
 			
-		   	 <input type="text" class="yzm" name="code"  id="code" style="width:60%" placeholder="验证码" maxlength="9" />
-		  	 <span><img id="loginImgVeri" src="../img.jsp" style="vertical-align:middle;"></span><a href="javascript:reload();" > 换一张</a>
+		   	 <input type="text" class="yzm" name="code"  id="code" placeholder="验证码" maxlength="9" />
+		  	 <span class="yzm_pic"><img id="loginImgVeri" src="../img.jsp" style="vertical-align:middle;"></span><a href="javascript:reload();" > 换一张</a>
 		</label>
 		<label style="width:100%">
 			<div  class="sing" id="loginJump"><input  type="submit" value="登录" class="button" /></div>
@@ -408,7 +440,7 @@ a {
 </form>
 
 <div class="com_rcode">
-	<div class="qr_imgbox" onmouseout="hiddenPic()" onmousemove="showPic(event, 'images/ios-max.png', 'ios-max')" id="iosEl">
+	<div style="float: left;" onmouseout="hiddenPic()" onmousemove="showPic(event, 'images/ios-max.png', 'ios-max')" id="iosEl">
 		<img src="images/ios.png"   />
 	</div>
 	<div class="qr_imgbox" onmouseout="hiddenPic()" onmousemove="showPic(event, 'images/android-max.png', 'android-max')" id="androidEl">
@@ -417,6 +449,7 @@ a {
 </div>
 <div id="Layer1" style="display:none;position:absolute;z-index:1;"></div>
 <div class="com_text"></div>
+</div>
 </div>
 <script src="jquery-1.9.1.min.js?ver=1.01"></script>
 

@@ -512,3 +512,18 @@ function getMtadvisor(callback) {
 		}
 	});
 }
+
+var getCarVerificationDateUrl = apiPath + repairApi + "/com.hsapi.repair.common.common.getCarVerificationDate.biz.ext";
+function getCarVerificationDate(regDate, callback) {
+	doPost({
+		url : getCarVerificationDateUrl,
+		data : {regDate:regDate, token: token},
+		success : function(data) {
+			callback && callback(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+			callback && callback({});
+		}
+	});
+}

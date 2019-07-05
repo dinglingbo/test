@@ -98,3 +98,11 @@ function toOrgSetSet(){
 //	window.parent.activeTab(item);
 //}
 
+function toPartDeductSet(){
+	var item={};
+	item.id = "1424";
+	item.text = "配件提成";
+	item.url = webPath + contextPath + "/com.hsweb.cloud.part.basic.partDeductSet.flow";
+	item.iconCls = "fa fa-cog";
+	window.parent.activeTab(item);
+}

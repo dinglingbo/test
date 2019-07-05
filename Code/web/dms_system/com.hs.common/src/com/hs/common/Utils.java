@@ -813,12 +813,15 @@ public class Utils {
 		Date nowDate = simpleDateFormat.parse(nowStr);//调用parse()方法时 注意 传入的格式必须符合simpleDateFormat对象的格式，即"yyyy-MM-dd HH:mm:ss:SSS" 否则会报错！！
 		regDate = simpleDateFormat.parse(regStr);
 		
-		if(regDate.getTime() >= nowDate.getTime()) return null;
-
 		Calendar bef = Calendar.getInstance();
         Calendar aft = Calendar.getInstance();
         bef.setTime(nowDate);
         aft.setTime(regDate);
+		
+		if(regDate.getTime() >= nowDate.getTime()) {
+			aft.add(Calendar.YEAR, 1);
+            return aft.getTime();
+		}
         
         int year1 = bef.get(Calendar.YEAR);
         int year2 = aft.get(Calendar.YEAR);

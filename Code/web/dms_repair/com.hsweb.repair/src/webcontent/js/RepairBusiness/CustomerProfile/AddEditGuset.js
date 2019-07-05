@@ -73,17 +73,12 @@ $(document).ready(function()
       
       firstRegDateEl.on("valuechanged",function(e){
     	  var value = e.value;
-    	  var obj = getDiffYmdBetweenDate(format(value, 'yyyy-MM-dd'),format(now, 'yyyy-MM-dd'));
-    	  var y = obj.y, m = obj.m, d = obj.d;
-    	  if(y<6 || (y==6&&m==0&&d==0)){
-    		  var d = null;
-    		  if(y==1) {
-    			  d = format(value.setFullYear(value.getFullYear()+2),'yyyy-MM-dd');
-    		  }else {
-    			  d = format(value.setFullYear(value.getFullYear() + y + 1),'yyyy-MM-dd'); 
+    	  value = value.Format("yyyy-MM-dd");
+    	  getCarVerificationDate(value,function(data) {
+    		  if(data && data.dueDate) {
+    			  nui.get("annualVerificationDueDate").setValue(data.dueDate);
     		  }
-    		  nui.get("annualVerificationDueDate").setValue(d);
-    	  }
+    	  });
       });
       
 		uploader = Qiniu.uploader({

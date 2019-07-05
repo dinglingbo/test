@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/3/17.
  */
-var rightGridUrl = apiPath++"com.hsapi.cloud.part.invoicing.query.queryChainStockByPartId.biz.ext";
+var rightGridUrl = apiPath + cloudPartApi + "/" +"com.hsapi.cloud.part.baseDataCrud.cang.queryStocks.biz.ext";
 var basicInfoForm = null;
 var rightGrid = null;
 var searchBeginDate = null;
@@ -58,9 +58,13 @@ function doSearch(params)
     }
     //params.sortField = "b.stock_qty";
     //params.sortOrder = "desc";
-    params.notShowAll = 1;
-    params.sortField = "a.outable_qty";
-    params.sortOrder = "desc";
+    if(params.partCode){
+    	params={};
+    	params.pids=partCode;
+    }
+//    params.notShowAll = 1;
+//    params.sortField = "a.outable_qty";
+//    params.sortOrder = "desc";
     rightGrid.load({
         params:params,
         token:token

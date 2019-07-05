@@ -470,7 +470,7 @@
                 </table>
             </div>
             
-             <div style="height: 12px;display:none" id="space3"></div>
+            <!--  <div style="height: 12px;display:none" id="space3"></div> -->
              <h5 style="padding-top: 20px;display:none" id="h53">配件物料</h5>
              <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table tlist mt10" style="table-layout: fixed;display:none" id="showPart" >
                 <tr>
@@ -604,7 +604,7 @@
         		document.getElementById("remark").innerHTML = document.getElementById("remark").innerHTML + remark; 
         	}
         });
-        $.ajaxSettings.async = true;//设置为异步执行
+        
 
 //         $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext?guestId="+ guestId+"&token="+params.token,{},function(text){
 //         	if(text.errCode == "S"){
@@ -618,20 +618,22 @@
         //url_one = "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext?serviceId=";
         //com.hsapi.repair.repairService.query.getRpsItemByServiceId.biz.ext?serviceId=
         var partShow = 0;
+        var itemNum = 1;
+        var partNum = 1;
+        $.ajaxSettings.async = false;//设置为异步执行
+        var tBody = $("#tbodyId");
+		tBody.empty();
+		var tBody3 = $("#tbodyId3");
+		tBody3.empty();
+		var tds = '<td align="center">[orderIndex]</td>' +
+		"<td align='center'>[prdtName]</td>"+
+		"<td align='center'>[qty]</td>"+
+		"<td align='center'>[workers]</td>"+
+		"<td align='center'>[remark]</td>"+
+		"<td align='center'></td>";
         $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){
         	if(text.errCode == "S"){
-            	var tBody = $("#tbodyId");
-				tBody.empty();
-				var tBody3 = $("#tbodyId3");
-				tBody3.empty();
-				var tds = '<td align="center">[orderIndex]</td>' +
-    			"<td align='center'>[prdtName]</td>"+
-    			"<td align='center'>[qty]</td>"+
-    			"<td align='center'>[workers]</td>"+
-    			"<td align='center'>[remark]</td>"+
-    			"<td align='center'></td>";
         		var data = text.data;
-        		var num = 1;
         		for(var i = 0 , l = data.length ; i < l ; i++){
         		     var tr = $("<tr></tr>");
         		    /*  tr.append(
@@ -658,29 +660,77 @@
 				    			 .replace("[workers]",data[i].workers || "")
 				    			 .replace("[remark]",data[i].remark || ""));
 				    	tBody.append(tr);
+				    	itemNum = itemNum + 1;
         		    }else{
         		       if(params.currIsCanfreeCarnovin==1){
 		    		       var tr = $("<tr></tr>");
 		    			    tr.append(
-					    		  tds.replace("[orderIndex]",num)
+					    		  tds.replace("[orderIndex]",partNum)
 					    			 .replace("[prdtName]",data[i].prdtName)
 					    			 .replace("[qty]",data[i].qty)
 					    			 .replace("[workers]","----")
 					    			 .replace("[remark]",data[i].remark || ""));
 					    	 tBody3.append(tr);
 			    			 partShow = 1;
-			    			 num = num + 1;
+			    			 partNum = partNum + 1;
         		       }
         		        
         		    } 
         		}
         		if(partShow==1){
 				   document.getElementById("showPart").style.display = "";
-				   document.getElementById("space3").style.display = "";
+				   //document.getElementById("space3").style.display = "";
 				   document.getElementById("h53").style.display = "";
 				}
         	}
         });
+         $.ajaxSettings.async = false;//设置为同步执行
+         $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){
+        	if(text.errCode == "S"){
+        		var data = text.data;
+        		for(var i = 0 , l = data.length ; i < l ; i++){
+        		     var tr = $("<tr></tr>");
+        		     //套餐下的项目
+		    		if(data[i].billPackageId!=0 && data[i].type==2){
+        		       var tr = $("<tr></tr>");
+        			    tr.append(
+				    		  tds.replace("[orderIndex]",itemNum)
+				    			 .replace("[prdtName]",data[i].prdtName)
+				    			 .replace("[qty]",data[i].qty)
+				    			 .replace("[workers]",data[i].workers || "")
+				    			 .replace("[remark]",data[i].remark || ""));
+				    	tBody.append(tr);
+				    	itemNum = itemNum + 1;
+        		    }else{
+        		       if(params.currIsCanfreeCarnovin==1){
+        		           if(data[i].billPackageId!=0 && data[i].type==3){
+        		                var tr = $("<tr></tr>");
+			    			    tr.append(
+						    		  tds.replace("[orderIndex]",partNum)
+						    			 .replace("[prdtName]",data[i].prdtName)
+						    			 .replace("[qty]",data[i].qty)
+						    			 .replace("[workers]","----")
+						    			 .replace("[remark]",data[i].remark || ""));
+						    	 tBody3.append(tr);
+				    			 partShow = 1;
+				    			 partNum = partNum + 1;
+        		           }
+		    		       
+        		       }
+        		        
+        		    } 
+        		}
+        		if(partShow==1){
+				   document.getElementById("showPart").style.display = "";
+				  // document.getElementById("space3").style.display = "";
+				   document.getElementById("h53").style.display = "";
+				}
+        	}
+        });
+        
+        
+        
+        
 	}
     </script>
 </body>

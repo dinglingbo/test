@@ -656,7 +656,7 @@ function openAPP(){
             	showMsg(data.errMsg ||"仓先生APP注册成功","S");
                 }else {
                 nui.unmask(document.body);
-                showMsg(data.errMsg ||"仓先生APP注册失败","E");
+                showMsg(data.errMsg ||"仓先生APP注册失败","W");
             }
             moreOrgGrid.reload();
         },

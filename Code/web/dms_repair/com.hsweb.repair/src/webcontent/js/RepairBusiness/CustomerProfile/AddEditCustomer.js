@@ -19,6 +19,7 @@ var streetAddressEl = null;
 var addressEl = null;
 var provinceHash = null;
 var cityHash = null;
+var firstRegDateEl = null;
 var countyHash = null;
 $(document).ready(function()
 {
@@ -27,6 +28,7 @@ $(document).ready(function()
     countyEl = nui.get("areaId");
     streetAddressEl = nui.get("streetAddress");
     addressEl = nui.get("addr");
+	firstRegDateEl = nui.get("firstRegDate");
 	if(currRepairBillCmodelFlag == "1"){
         nui.get("carModel").disable();
     }else{
@@ -341,6 +343,17 @@ $(document).ready(function()
 		        }
 		    }
 		});
+		
+		firstRegDateEl.on("valuechanged",function(e){
+	    	  var value = e.value;
+	    	  value = value.Format("yyyy-MM-dd");
+	    	  getCarVerificationDate(value,function(data) {
+	    		  if(data && data.dueDate) {
+	    			  nui.get("annualVerificationDueDate").setValue(data.dueDate);
+	    		  }
+	    	  });
+        });
+		
     //init();
 });
 
@@ -468,7 +481,7 @@ function setCarByIdx(idx)
 {
     if(currCarIdx>=0 && currCarIdx<carList.length)
     {
-        carList[currCarIdx] = carInfoFrom.getData();
+        carList[currCarIdx] = carInfoFrom.getData(true);
         //carList[currCarIdx].carModel = nui.get("carModelId").getText();
         carList[currCarIdx].isChanged = carInfoFrom.isChanged();
         currCarIdx = idx;
@@ -522,7 +535,7 @@ function setContactByIdx(idx)
 {
     if(idx>=0 && idx<contactList.length)
     {
-        var contact = contactInfoForm.getData();
+        var contact = contactInfoForm.getData(true);
         contact.isChanged = contactInfoForm.isChanged();
         contactList[currContactIdx] = contact;
         currContactIdx = idx;
@@ -593,7 +606,7 @@ function onOk()
 		showMsg("请输入正确的车牌号","W");
 		return;
 	}*/
-		    var guest = basicInfoForm.getData();
+		    var guest = basicInfoForm.getData(true);
 		    guest.tgrade = guest.guestTypeId;
 		    var name = guest.fullName || "";
 		    if(name=="散客"){
@@ -601,10 +614,10 @@ function onOk()
 		    	return;
 		    }
 		    guest.guestType = "01020103";
-		    carList[currCarIdx] = carInfoFrom.getData();
+		    carList[currCarIdx] = carInfoFrom.getData(true);
 		    //carList[currCarIdx].carModel = nui.get("carModelId").getText();
 		    var i,key,tmp;
-		    contactList[currContactIdx] = contactInfoForm.getData();
+		    contactList[currContactIdx] = contactInfoForm.getData(true);
 		    
 		    for(key in basicRequiredField){
 		        //tmp = nui.get(key).getText();
@@ -1216,7 +1229,7 @@ function setDataQuery(data)
 
 function getWalkGuest(){
 	var car = carList[0];
-	var guest = basicInfoForm.getData();
+	var guest = basicInfoForm.getData(true);
 	var data = {};
 	data.guestId = guest.id;
 	data.guestFullName = guest.fullName;

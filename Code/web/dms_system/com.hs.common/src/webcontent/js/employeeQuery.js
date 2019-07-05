@@ -21,7 +21,8 @@ var sexSignHash = {
     "1":"男",
     "0":"女"
 };
-
+var isDimissionEl=null;
+var isDimissionList=[{"id":0,"value":"否"},{"id":1,"value":"是"}];
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
     btnisDimission = nui.get("btnisDimission");
@@ -29,6 +30,8 @@ $(document).ready(function(v) {
     btnisIM = nui.get("btnisIM");
 	grid.setUrl(gridUrl);
 	orgidsEl = nui.get("orgids");
+	isDimissionEl =nui.get('isDimission');
+	isDimissionEl.setData(isDimissionList);
     if(currIsMaster==0){
     	orgidsEl.hide();
     }else{
@@ -129,6 +132,7 @@ function getSearchParam(){
     var params = {};
     params.empName = nui.get("name").getValue().replace(/\s+/g, "");
     params.empTel = nui.get("mobile").getValue().replace(/\s+/g, "");
+    params.isDimission =nui.get("isDimission").getValue();
     var orgidsElValue = orgidsEl.getValue();
     if(orgidsElValue==null||orgidsElValue==""){
         if(currIsMaster == "1"){

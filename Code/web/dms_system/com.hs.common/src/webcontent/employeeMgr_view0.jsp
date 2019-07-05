@@ -12,7 +12,7 @@
 <head>
     <title>员工管理</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />	
-    <script src="<%=webPath + contextPath%>/common/js/employeeQuery.js?v=2.1.23" type="text/javascript"></script>    
+    <script src="<%=webPath + contextPath%>/common/js/employeeQuery.js?v=2.1.27" type="text/javascript"></script>    
         <style type="text/css">
 
         #wechatTag1{
@@ -33,6 +33,8 @@
 					<input class="nui-textbox" id="name" name="meberName" onenter="search()"/>
 					<label style="font-family:Verdana;">电话：</label>
 					<input class="nui-textbox" id="mobile" name="mobile" onenter="search()" />
+					<input name="isDimission" id="isDimission" class="nui-combobox width1" textField="value" valueField="id" 
+                        emptyText="是否离职" url=""  allowInput="true" showNullItem="false" width="160" valueFromSelect="true" onvaluechanged="search()"/>
 					<input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
                         emptyText="选择公司" url=""  allowInput="true" showNullItem="false" width="160" valueFromSelect="true" onvaluechanged="search()"/>
 					<a class="nui-button"  iconCls="" onclick="search()" plain="true"><span class="fa fa-search"></span>&nbsp;查询</a>

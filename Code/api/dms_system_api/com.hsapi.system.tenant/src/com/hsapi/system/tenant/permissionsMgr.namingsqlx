@@ -144,6 +144,9 @@
               <isNotEmpty prepend="and" property="empTel">  
                     (a.tel like '%$empTel$%')
               </isNotEmpty>
+               <isNotEmpty prepend="and" property="isDimission">  
+                    (a.is_dimission = #isDimission#)
+              </isNotEmpty>
               order by EMPid
     </select>
     

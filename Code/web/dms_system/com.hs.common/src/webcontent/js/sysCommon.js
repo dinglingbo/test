@@ -303,3 +303,19 @@ function CtoH(str)
     return result;  
 }   
 
+//发送消息
+function sendNoticeMsg(socket,params){ 
+	var message = new proto.Model(); 
+	var content = new proto.MessageBody();
+    message.setMsgtype(params.type);
+    message.setCmd(params.cmd);
+    message.setGroupid(params.group);
+    message.setToken(params.sender);  
+    message.setSender(params.sender);
+    message.setReceiver(params.receiver);
+    content.setContent(params.msg);
+    content.setType(0);
+    message.setContent(content.serializeBinary())
+    socket.send(message.serializeBinary()); 
+};
+

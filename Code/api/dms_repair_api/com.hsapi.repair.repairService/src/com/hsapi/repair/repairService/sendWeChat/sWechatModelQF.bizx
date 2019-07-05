@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="sWechatModelQF" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="群发微信模板的接口&#xD;&#xA;&#xD;&#xA;tempData/first&#xD;&#xA;tempData/keyword1&#xD;&#xA;tempData/keyword2&#xD;&#xA;tempData/keyword3&#xD;&#xA;tempData/keyword4&#xD;&#xA;tempData/keyword5&#xD;&#xA;tempData/remark&#xD;&#xA;tempData/openid&#xD;&#xA;tempData/templateId" title="Administrator&#x9;19-7-3 上午10:17">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="群发微信模板的接口&#xD;&#xA;&#xD;&#xA;tempData/first&#xD;&#xA;tempData/keyword1&#xD;&#xA;tempData/keyword2&#xD;&#xA;tempData/keyword3&#xD;&#xA;tempData/keyword4&#xD;&#xA;tempData/keyword5&#xD;&#xA;tempData/remark&#xD;&#xA;tempData/openid&#xD;&#xA;templateId" title="Administrator&#x9;19-7-3 上午10:17">
     <location x="30" y="240"/>
     <size height="271" width="511"/>
   </nodes>
@@ -52,7 +52,7 @@
       <process:to type="query">p/paramsType</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">tempData/templateId</process:from>
+      <process:from type="query" pattern="reference">templateId</process:from>
       <process:to type="query">p/templateId</process:to>
     </process:copy>
   </nodes>
@@ -101,6 +101,7 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="" isArray="true" name="tempDataList"/>
+    <process:input description="" isArray="false" name="templateId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

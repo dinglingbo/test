@@ -72,6 +72,7 @@ body {
     margin:0px;
     padding:0px;
     text-align:center;
+    background:rgba(255,255,255,1);
 }
 
 .main_content{
@@ -79,7 +80,7 @@ body {
 	height:520px;
     margin: 0 auto;
     position: relative;
-	background-image: url(images/bg.png);
+	background-image: url(images/bg_mini.png);
 	background-repeat: no-repeat;
 	background-position:center center;
 	background-size: 100% 100%;	
@@ -534,8 +535,8 @@ a {
                 <img class="img_group" src="images/Group1.png"></img>
             </div>
         </div>
-        <div class="group_box">
-            <div style="text-align: center;"> <span class="tip_text">专门给仓库用的移动端，让库存变得更高效</span>
+        <div class="group_box" >
+            <div style="height:40px;display: flex;align-items: center;justify-content: center;"> <span class="tip_text" style="display: inline-block;">专门给仓库用的移动端，让库存变得更高效</span>
 
             </div>
             <div class="pic_margin_top">

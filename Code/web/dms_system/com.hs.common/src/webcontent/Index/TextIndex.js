@@ -601,8 +601,8 @@ function addIcon(){
 	nui.open({
 		url : webPath + contextPath + "/common/homeIcon.jsp",
 		title : "设置主页图标",
-		width : 600,
-		height : 600,
+		width : 900,
+		height : 400,
 		allowDrag : true,
 		allowResize : false,
 		onload : function() {

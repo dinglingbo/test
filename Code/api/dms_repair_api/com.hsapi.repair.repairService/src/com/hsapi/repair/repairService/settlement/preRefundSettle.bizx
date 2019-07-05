@@ -207,10 +207,6 @@
       <process:to type="query">fisRpAccount/orgid</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">应付</process:from>
-      <process:to type="query">fisRpAccount/settleType</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">refundAmt</process:from>
       <process:to type="query">fisRpAccount/trueCharOffAmt</process:to>
     </process:copy>
@@ -517,6 +513,7 @@
     <sourceConnections xsi:type="process:tLink" id="link78" name="link78" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign17</sourceNode>
       <targetNode>transactionbegin0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link77</targetConnections>
     <location x="728" y="45"/>
@@ -906,6 +903,10 @@
       <process:from type="literal" pattern="reference">252</process:from>
       <process:to type="query">billTypeId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">应付</process:from>
+      <process:to type="query">fisRpAccount/settleType</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
     <location x="898" y="163"/>
@@ -944,6 +945,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">125</process:from>
       <process:to type="query">billTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">应收</process:from>
+      <process:to type="query">fisRpAccount/settleType</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">

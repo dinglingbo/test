@@ -82,6 +82,12 @@ public class ImWebSocketServerHandler   extends SimpleChannelInboundHandler<Mess
                       receiveMessages(ctx, wrapper);
                 	}
                 }
+                if(message.getMsgtype() == Constants.ProtobufType.NOTIFY) {
+                    MessageWrapper wrapper = proxy.convertToMessageWrapper(sessionId, message);
+                    if (wrapper != null) {
+                        receiveMessages(ctx, wrapper);
+                    }
+                }
 	        } catch (Exception e) {
 	            log.error("ImWebSocketServerHandler channerRead error.", e);
 	            throw e;
@@ -144,6 +150,8 @@ public class ImWebSocketServerHandler   extends SimpleChannelInboundHandler<Mess
         	connertor.pushMessage(wrapper);
         } else if (wrapper.isReply()) {
         	connertor.pushMessage(wrapper.getSessionId(),wrapper);
-        }  
+        } else if (wrapper.isNotify()) {
+            connertor.pushNoticeMessage(wrapper.getSessionId(),wrapper);
+        }
     }
 }

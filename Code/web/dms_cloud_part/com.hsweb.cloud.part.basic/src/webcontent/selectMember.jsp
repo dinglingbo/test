@@ -20,11 +20,11 @@
 	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
 	  <table style="width:100%;">
 		  	<td style="white-space:nowrap;">
-		  		<input class="nui-hidden" id ="serviceId" name="serviceId">
-		  		<a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-		  		<a class="nui-button" iconCls="" plain="true" onclick="close()" id="closeBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+		  		<input class="nui-hidden" id ="serviceId" name="serviceId">  		
 		  		名称：<input class="nui-textbox" id ="name" name="name">
 		  		<a class="nui-button" iconCls="" plain="true" onclick="search()" id="searchBtn"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+		  		<a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+		  		<a class="nui-button" iconCls="" plain="true" onclick="close()" id="closeBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
 		  	</td>
 	  </table>
 	</div>

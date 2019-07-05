@@ -9,7 +9,7 @@
 -->
 <head>
 <title>仓库定义</title>
-<script src="<%=webPath + contextPath%>/basic/js/storehouseMgr.js?v=1.1.87"></script>
+<script src="<%=webPath + contextPath%>/basic/js/storehouseMgr.js?v=1.1.89"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -31,7 +31,7 @@
                         <label style="font-family:Verdana;">仓库定义:</label>
                         <a class="nui-button" plain="true" iconCls="" onclick="onAddNode()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                         <a class="nui-button" plain="true" iconCls="" onclick="onEditNode()"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
-                        <a class="nui-button" plain="true" id="sys" iconCls="" enabled="false" onclick="sysCang()"><span class="fa fa-check fa-lg"></span>&nbsp;同步仓先生</a>
+                        <a class="nui-button" plain="true" id="sys" iconCls="" enabled="false" onclick="sysCang()"><span class="fa fa-refresh fa-lg"></span>&nbsp;同步仓先生</a>
                     </td>
                 </tr>
             </table>

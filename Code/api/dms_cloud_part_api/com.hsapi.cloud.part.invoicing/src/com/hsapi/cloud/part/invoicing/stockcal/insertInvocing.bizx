@@ -30,7 +30,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.getBalanceInvocing</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
+        <process:inputVariable id="0" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">orgid</process:inputVariable>
         <process:inputVariable id="1" name="partId" type="query" value="Long" valueType="Primitive" pattern="reference">partId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
@@ -55,7 +55,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.getStoreBalanceInvocing</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
+        <process:inputVariable id="0" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">orgid</process:inputVariable>
         <process:inputVariable id="1" name="partId" type="query" value="Long" valueType="Primitive" pattern="reference">partId</process:inputVariable>
         <process:inputVariable id="2" name="storeId" type="query" value="Long" valueType="Primitive" pattern="reference">storeId</process:inputVariable>
       </process:inputVariables>
@@ -117,7 +117,7 @@
       <process:to type="query">sdInvocing/storeId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">sdInvocing/orgid</process:to>
     </process:copy>
     <process:copy>
@@ -173,11 +173,11 @@
       <process:to type="query">sdInvocing/guestName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userId</process:from>
+      <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">sdInvocing/creatorId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:from type="query" pattern="reference">operator</process:from>
       <process:to type="query">sdInvocing/creator</process:to>
     </process:copy>
     <process:copy>
@@ -189,7 +189,7 @@
       <process:to type="query">sdInvocing/operatorId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:from type="query" pattern="reference">operator</process:from>
       <process:to type="query">sdInvocing/operator</process:to>
     </process:copy>
     <process:copy>
@@ -305,6 +305,7 @@
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign5</sourceNode>
       <targetNode>invokePojo1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
     <targetConnections>link12</targetConnections>
@@ -348,7 +349,7 @@
       <process:to type="query">dInvocing/storeId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">dInvocing/orgid</process:to>
     </process:copy>
     <process:copy>
@@ -408,7 +409,7 @@
       <process:to type="query">dInvocing/creatorId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:from type="query" pattern="reference">operator</process:from>
       <process:to type="query">dInvocing/creator</process:to>
     </process:copy>
     <process:copy>
@@ -420,7 +421,7 @@
       <process:to type="query">dInvocing/operatorId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:from type="query" pattern="reference">operator</process:from>
       <process:to type="query">dInvocing/operator</process:to>
     </process:copy>
     <process:copy>
@@ -693,6 +694,8 @@
     <process:input description="" isArray="false" name="costPrice" primitiveType="Float"/>
     <process:input description="" isArray="false" name="costAmt" primitiveType="Float"/>
     <process:input description="" isArray="false" name="operateDate" primitiveType="Date"/>
+    <process:input description="" isArray="false" name="orgid" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="operator" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

@@ -73,7 +73,7 @@
       <process:to type="query">partStoreStockCd/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">partStoreStockCd/_expr[1]/orgid</process:to>
     </process:copy>
     <process:copy>
@@ -152,7 +152,7 @@
       <process:inputVariable id="2" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">partStoreStockCd</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
@@ -208,7 +208,7 @@
       <process:to type="query">partStoreStockCd/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">partStoreStockCd/_expr[1]/orgid</process:to>
     </process:copy>
     <process:copy>
@@ -271,7 +271,7 @@
       <targetNode>assign16</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"/>
+          <process:leftOperand type="query"></process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -306,7 +306,7 @@
       <process:to type="query">partStockCd/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">partStockCd/_expr[1]/orgid</process:to>
     </process:copy>
     <process:copy>
@@ -377,7 +377,7 @@
       <process:to type="query">partStockCd/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">partStockCd/_expr[1]/orgid</process:to>
     </process:copy>
     <process:copy>
@@ -455,7 +455,7 @@
       <process:to type="query">partStoreStockCd/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">partStoreStockCd/_expr[1]/orgid</process:to>
     </process:copy>
     <process:copy>
@@ -487,7 +487,7 @@
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">cond/_expr[1]/orgid</process:to>
     </process:copy>
     <process:copy>
@@ -584,7 +584,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign9label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">partStoreStock/orgid</process:to>
     </process:copy>
     <process:copy>
@@ -696,7 +696,7 @@
       <process:to type="query">partStockCd/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">partStockCd/_expr[1]/orgid</process:to>
     </process:copy>
     <process:copy>
@@ -790,7 +790,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign10label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">partStock/orgid</process:to>
     </process:copy>
     <process:copy>
@@ -975,7 +975,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="store" type="query" value="com.hsapi.cloud.part.data.com.ComStore" valueType="DataObject">storeInfo</process:outputVariable>
-        <process:outputVariable id="1" name="sellSign" type="query" value="Int" valueType="Primitive"/>
+        <process:outputVariable id="1" name="sellSign" type="query" value="Int" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1198,7 +1198,7 @@
       <process:to type="query">cdRecord/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">cdRecord/_expr[1]/orgid</process:to>
     </process:copy>
     <process:copy>
@@ -1259,7 +1259,7 @@
       <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cdRecord</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo7label" name="label" nodeType="label">
@@ -1298,7 +1298,7 @@
     <figSize height="17" width="39"/>
     <node>assign21</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign22" name="赋值11" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign22" name="赋值11" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link47" name="link47" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign22</sourceNode>
       <targetNode>assign12</targetNode>
@@ -1385,7 +1385,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.updateGuestPartPriceInfo</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
+        <process:inputVariable id="0" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">orgid</process:inputVariable>
         <process:inputVariable id="1" name="guestId" type="query" value="Int" valueType="Primitive" pattern="reference">guestId</process:inputVariable>
         <process:inputVariable id="2" name="partId" type="query" value="Int" valueType="Primitive" pattern="reference">partId</process:inputVariable>
         <process:inputVariable id="3" name="price" type="query" value="Float" valueType="Primitive" pattern="reference">billPrice</process:inputVariable>
@@ -1424,7 +1424,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.updateGuestPartPriceInfo</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
+        <process:inputVariable id="0" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">orgid</process:inputVariable>
         <process:inputVariable id="1" name="guestId" type="query" value="Int" valueType="Primitive" pattern="reference">guestId</process:inputVariable>
         <process:inputVariable id="2" name="partId" type="query" value="Int" valueType="Primitive" pattern="reference">partId</process:inputVariable>
         <process:inputVariable id="3" name="price" type="query" value="Float" valueType="Primitive" pattern="reference">billPrice</process:inputVariable>
@@ -1527,7 +1527,7 @@
     <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.updatePartStock</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
+        <process:inputVariable id="0" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">orgid</process:inputVariable>
         <process:inputVariable id="1" name="partId" type="query" value="Int" valueType="Primitive" pattern="reference">partId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
@@ -1621,6 +1621,8 @@
     <process:input description="" isArray="false" name="detailId" primitiveType="Int"/>
     <process:input description="" isArray="false" name="mainId" primitiveType="Int"/>
     <process:input description="" isArray="false" name="guestId" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="orgid" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="operator" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

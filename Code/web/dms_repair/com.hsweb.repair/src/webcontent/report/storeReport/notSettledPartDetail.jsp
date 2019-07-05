@@ -100,7 +100,8 @@
     <input class="nui-datepicker" width="100px"id="eOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
  -->    
     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-    <input type="checkbox" id="ReturnSign" class="mini-checkbox"  onclick="changed()" >
+    <!-- <input type="checkbox" id="ReturnSign" class="mini-checkbox"  onclick="changed()" > -->
+    <input type="checkbox" id="ReturnSign" class="mini-checkbox">
 	<span >是否显示归库</span>
 </div>
 

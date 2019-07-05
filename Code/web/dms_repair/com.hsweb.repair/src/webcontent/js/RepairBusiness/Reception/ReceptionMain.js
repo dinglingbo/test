@@ -33,6 +33,7 @@ var editFormDetail = null;
 var innerItemGrid = null;
 var advancedSearchWin = null;
 var seeBill = true;
+var balaAuditSign = null;
 //var serviceTypeIds = null;
 var prdtTypeHash = {
 	    "1":"套餐",
@@ -42,6 +43,8 @@ var prdtTypeHash = {
 $(document).ready(function ()
 {
 	nui.parse();
+	//是否显示预结算
+	balaAuditSign = nui.get("balaAuditSign");
     mainGrid = nui.get("mainGrid");
     mainGrid.setUrl(mainGridUrl);
     beginDateEl = nui.get("sRecordDate");
@@ -375,6 +378,7 @@ function quickSearch(type) {
             params.balaAuditSign = 1;
             params.isSettle = 0;
             queryname = "待结算";
+            balaAuditSign.setValue(1);
             //document.getElementById("advancedMore").style.display='block';
             break;
         default:
@@ -531,6 +535,7 @@ function onSearch()
             params.status = 2;//待结算
             params.balaAuditSign = 1;
             params.isSettle = 0;
+            balaAuditSign.setValue(1);
             break;
         default:
             break;
@@ -554,6 +559,10 @@ function doSearch(params) {
     gsparams.billTypeId = 0;
     gsparams.isDisabled = 0;
 
+    if(!balaAuditSign.checked){
+    	gsparams.balaAuditSign = 0;
+    }
+    
     mainGrid.load({
         token:token,
         params: gsparams
@@ -647,3 +656,14 @@ function setInitData(params){
         seeBill = false;
     }
 }
+
+/*function change(){
+	var menunamestatus = nui.get("menunamestatus");
+    var queryname = menunamestatus.getText();
+    if(!balaAuditSign.checked){
+    	if(queryname=="待结算"){
+    		quickSearch(0);
+        }
+    }
+    
+}*/

@@ -28,6 +28,7 @@ var advancedSearchFormData = null;
 var advancedSearchWin = null;
 var editFormDetail = null;
 var innerItemGrid = null;
+var balaAuditSign = null;
 var prdtTypeHash = {
 	    "1":"套餐",
 	    "2":"项目",
@@ -38,6 +39,8 @@ var headerHash = [{ name: '未结算', id: '0' }, { name: '预结算', id: '1' }
 var seeBill = true;
 $(document).ready(function ()
 {
+	//是否显示预结算
+	balaAuditSign = nui.get("balaAuditSign");
     mainGrid = nui.get("mainGrid");
     mainGrid.setUrl(mainGridUrl);
     beginDateEl = nui.get("sRecordDate");
@@ -362,6 +365,7 @@ function quickSearch(type) {
             params.balaAuditSign = 1;
             params.isSettle = 0;
             queryname = "待结算";
+            balaAuditSign.setValue(1);
             //document.getElementById("advancedMore").style.display='block';
             break;
         default:
@@ -394,6 +398,7 @@ function onSearch()
             params.status = 2;//待结算
             params.balaAuditSign = 1;
             params.isSettle = 0;
+            balaAuditSign.setValue(1);
             break;
         default:
             break;
@@ -416,7 +421,9 @@ function doSearch(params) {
     gsparams.isSettle = params.isSettle;
     gsparams.billTypeId = 4;
     gsparams.isDisabled = 0;
-
+    if(!balaAuditSign.checked){
+    	gsparams.balaAuditSign = 0;
+    }
     mainGrid.load({
         token:token,
         params: gsparams

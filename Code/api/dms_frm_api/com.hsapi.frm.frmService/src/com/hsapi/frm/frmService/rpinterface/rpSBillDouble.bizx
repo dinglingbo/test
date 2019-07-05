@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="rpSBillDouble" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="1、生成应付数据&#xD;&#xA;参数：往来单位ID，往来单位名称，单据ID，单据单号，单据金额，单据类型，操作日期&#xD;&#xA;2、判断是否存在相同单据的应收单（20181012暂时不考虑）&#xD;&#xA;&#xD;&#xA;3、如果是预收预付，需要生成相应的业务数据（2019/06/22 mml 改）&#xD;&#xA;" title="Administrator&#x9;17-8-2 下午11:03">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="1、生成两条预付和业务数据&#xD;&#xA;&#xD;&#xA;" title="Administrator&#x9;19-7-3 下午11:03">
     <location x="-43" y="0"/>
     <size height="179" width="502"/>
   </nodes>
@@ -196,7 +196,7 @@
       <targetNode>assign11</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -214,7 +214,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="rpBill" type="query" value="com.hsapi.frm.data.fis.FisRpBill" valueType="DataObject">temp</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -720,7 +720,7 @@
       <targetNode>assign1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

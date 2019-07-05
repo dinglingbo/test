@@ -32,6 +32,7 @@ var innerPartGrid = null;
 //批次选择替换件
 var editFormDetail2 = null;
 var innerPartGrid2 = null;
+var storeShelfList=[]; 
 $(document).ready(function(v)
 {
     morePartGrid = nui.get("morePartGrid");
@@ -729,6 +730,7 @@ function addSelectInnerPart(){
             column = innerPartGrid2.getColumn("stockQty");
             advancedAddWin.show();
             nui.get("storeId").setValue(record.storeId);
+          
             nui.get("storeShelf").setValue(record.storeShelf);
             nui.get("qty").setValue(1);
             nui.get("qty").focus();
@@ -757,6 +759,7 @@ function addSelectInnerPart(){
             column = innerPartGrid.getColumn("outableQty");
             advancedAddWin.show();
             nui.get("storeId").setValue(FStoreId);
+           
             nui.get("storeShelf").setValue(record.storeShelf);
             nui.get("qty").setValue(1);
             nui.get("qty").focus();
@@ -798,6 +801,12 @@ function addSelectPart(){
             column = enterGrid.getColumn("stockQty");
             advancedAddWin.show();
             nui.get("storeId").setValue(record.storeId);
+            getLocationListByStoreId(record.storeId,function(data) {
+        		storeShelfList = data.locationList || [];
+        		nui.get('storeShelf').setData(storeShelfList);
+        		
+
+        	});
             nui.get("storeShelf").setValue(record.storeShelf);
             nui.get("qty").setValue(1);
             nui.get("qty").focus();
@@ -826,6 +835,12 @@ function addSelectPart(){
             column = morePartGrid.getColumn("outableQty");
             advancedAddWin.show();
             nui.get("storeId").setValue(FStoreId);
+            getLocationListByStoreId(FStoreId,function(data) {
+        		storeShelfList = data.locationList || [];
+        		nui.get('storeShelf').setData(storeShelfList);
+        		
+
+        	});
             nui.get("storeShelf").setValue(record.storeShelf);
             nui.get("qty").setValue(1);
             nui.get("qty").focus();
@@ -1282,4 +1297,14 @@ function onShowRowDetail2(e) {
     	token:token
 	});
     
+}
+
+function  onStoreValueChange(e){
+	var value =e.value;
+	 getLocationListByStoreId(value,function(data) {
+		storeShelfList = data.locationList || [];
+		nui.get('storeShelf').setData(storeShelfList);
+		
+
+	});
 }

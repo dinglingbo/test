@@ -371,6 +371,7 @@ function onApplyClick(){
                 maintain.carNo = guest.carNo;
                 maintain.carVin = guest.vin;
                 maintain.engineNo = guest.engineNo;
+                maintain.addr = guest.addr||"";
                 maintain.contactorId = guest.contactorId||0;
                 maintain.contactorName = guest.contactName;
                 maintain.identity = guest.identity;
@@ -608,6 +609,7 @@ function save(){
                     data.guestMobile = guest.mobile;
                     data.contactorName = contactor.name;
                     data.mobile = contactor.mobile;
+                    data.addr = guest.addr;
                     billForm.setData(data);
                     nui.get("mtAdvisorId").setText(data.mtAdvisor);
                     var p3 = {
@@ -667,6 +669,7 @@ function saveNoShowMsg(callback){
                     data.guestMobile = guest.mobile;
                     data.contactorName = contactor.name;
                     data.mobile = contactor.mobile;
+                    data.addr = guest.addr;
                     nui.get("mtAdvisorId").setText(data.mtAdvisor);
                     billForm.setData(data);
 

@@ -84,6 +84,7 @@ public class Constants {
 		 byte FRIENDMESSAGE = 7; //好友申请同意/拒绝后的消息
 		 byte SYSMESSAGE = 8; //系统公告消息
 		 byte CREATEGROUPMESSAGE = 9; //系统公告消息
+		 byte NOTICE = 10; //业务提醒 仓库配件审核提醒，前台完工提醒
 	}
 
 	public static interface MessageType{

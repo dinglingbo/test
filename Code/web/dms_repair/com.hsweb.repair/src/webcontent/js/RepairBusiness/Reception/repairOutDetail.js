@@ -1490,6 +1490,9 @@ function  savepartOutRtn(data,childdata){
         			if(status==1){
         				nui.get('partAuditSign').setValue("已审核");
             			showMsg('配件审核成功!','S');
+            			
+            			pushNotice();
+            			
             			$('#audit').text("配件返审");
         			}else{
         				nui.get('partAuditSign').setValue("未核");
@@ -1527,4 +1530,23 @@ function getAllStorehouse(callback) {
 			callback && callback({});
 		}
 	});
+}
+
+function pushNotice() {
+	var msg = {
+		autior:"张三",
+		carNo:"粤A43922"
+	};
+	var message = new proto.Model(); 
+	var content = new proto.MessageBody();
+    message.setMsgtype(3);
+    message.setCmd(10);
+    message.setGroupid(null);//系统用户组
+    message.setToken(currentsession);  
+    message.setSender(currentsession);
+    message.setReceiver(2);//好友ID
+    content.setContent(msg);
+    content.setType(0);
+    message.setContent(content.serializeBinary())
+    socket.send(message.serializeBinary()); 
 }

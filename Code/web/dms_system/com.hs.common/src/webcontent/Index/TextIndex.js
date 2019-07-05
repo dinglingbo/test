@@ -496,6 +496,26 @@ function query (){
 			console.log(jqXHR.responseText);
 		}
 	});
+	
+	var queryMaintainUrl = baseUrl+"com.hsapi.repair.repairService.query.homePageQuantity.biz.ext";
+	nui.ajax({
+		url : queryMaintainUrl,
+		type : "post",
+		cache : false,
+		data : JSON.stringify({ 
+            token:token
+        }),
+		success : function(text) {
+			var carExtendQty = text.carExtendQty;
+			var contactorQty = text.contactorQty;
+			var messageQty = text.messageQty;
+			var appQty = text.appQty;
+			queryRemind(carExtendQty,contactorQty,messageQty,appQty); 
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+		}
+	});
 }
 
 function bookingMgr(){
@@ -576,4 +596,26 @@ function getLastLog(){
         error:function(jqXHR, textStatus, errorThrown){
         }
     });
+}
+function addIcon(){
+	nui.open({
+		url : webPath + contextPath + "/common/homeIcon.jsp",
+		title : "设置主页图标",
+		width : 900,
+		height : 400,
+		allowDrag : true,
+		allowResize : false,
+		onload : function() {
+		},
+		ondestroy : function(action) {
+			if (action == "ok") {
+				var iframe = this.getIFrameEl();
+				var data = iframe.contentWindow.getData();
+				if (data && data.carModel) {
+					var carModel = data.carModel || {};
+                    callBack && callBack(carModel);
+				}
+			}
+		}
+	});
 }

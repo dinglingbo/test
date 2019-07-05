@@ -745,7 +745,7 @@ function sysCang(){
             if(data.errCode == "S")
             {
                 showMsg("同步成功","S");
-                tree.reoad();
+                tree.reload();
             }
             else{
                 showMsg("同步失败","W");

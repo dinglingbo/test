@@ -56,7 +56,7 @@
       <process:to type="query">stateMain/guestId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">main/orgid</process:from>
       <process:to type="query">stateMain/orgid</process:to>
     </process:copy>
     <process:copy>
@@ -64,7 +64,7 @@
       <process:to type="query">stateMain/creatorId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:from type="query" pattern="reference">main/auditor</process:from>
       <process:to type="query">stateMain/creator</process:to>
     </process:copy>
     <process:copy>
@@ -76,7 +76,7 @@
       <process:to type="query">stateMain/operatorId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:from type="query" pattern="reference">main/auditor</process:from>
       <process:to type="query">stateMain/operator</process:to>
     </process:copy>
     <process:copy>

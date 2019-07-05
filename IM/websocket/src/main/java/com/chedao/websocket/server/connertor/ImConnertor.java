@@ -67,6 +67,14 @@ public interface ImConnertor {
 	  * @throws RuntimeException
 	  */
 	 void pushMessage(String sessionId, MessageWrapper wrapper) throws RuntimeException;
+
+	/**
+	 * 发送业务提醒消息
+	 * @param sessionId  发送人
+	 * @param wrapper   发送内容
+	 * @throws RuntimeException
+	 */
+	void pushNoticeMessage(String sessionId, MessageWrapper wrapper) throws RuntimeException;
 	 /**
 	  * 获取用户唯一标识符
 	  * @param ctx

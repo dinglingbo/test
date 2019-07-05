@@ -401,7 +401,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="code" primitiveType="String"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="restMsg" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.com.ComStoreMember" name="member"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.ComStoreMember" name="member"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="agency_id" primitiveType="String"/>

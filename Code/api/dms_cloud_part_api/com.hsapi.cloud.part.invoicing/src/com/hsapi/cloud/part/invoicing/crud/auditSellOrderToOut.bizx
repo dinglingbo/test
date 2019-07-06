@@ -15,9 +15,9 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link30</targetConnections>
-    <targetConnections>link38</targetConnections>
     <targetConnections>link7</targetConnections>
-    <location x="1251" y="150"/>
+    <targetConnections>link36</targetConnections>
+    <location x="1320" y="149"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -31,7 +31,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="1253" y="186"/>
+    <location x="1322" y="185"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -626,7 +626,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign11" name="赋值11" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link38" name="link38" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign11</sourceNode>
-      <targetNode>end0</targetNode>
+      <targetNode>subprocess5</targetNode>
     </sourceConnections>
     <targetConnections>link33</targetConnections>
     <targetConnections>link34</targetConnections>
@@ -761,6 +761,32 @@
     <location x="2" y="307"/>
     <figSize height="17" width="39"/>
     <node>assign16</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess5" name="setBillDeductNT" displayName="setBillDeductNT" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link36" name="link36" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess5</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link38</targetConnections>
+    <location x="1185" y="150"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess5label</nodeLabel>
+    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.setBillDeductNT</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="orderId" type="query" value="Int" valueType="Primitive" pattern="reference">main/codeId</process:inputVariable>
+        <process:inputVariable id="1" name="outId" type="query" value="Int" valueType="Primitive" pattern="reference">outMainId</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess5label" name="label" nodeType="label">
+    <location x="1152" y="185"/>
+    <figSize height="17" width="93"/>
+    <node>subprocess5</node>
   </nodes>
   <topRuler>
     <guides position="370" horizontal="true"/>

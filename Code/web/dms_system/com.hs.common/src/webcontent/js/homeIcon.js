@@ -10,23 +10,10 @@ var carBrandId = null;
 var carSeriesId = null;
 var fullName = null;
 var arr = {};
+var number = 1;//第几个div
 $(document).ready(function () {
-    grid = nui.get("grid1");
-
     tree = nui.get("tree1"); 
     loadTree();//加载标准项目
-
-
-
-    grid.on('drawcell', function (e) {
-        var value = e.value;
-        var field = e.field;
-        if (field == 'operateBtn') {
-			e.cellHtml = '<span class="fa fa-arrow-up" onClick="javascript:goUp()" title="添加行">&nbsp;&nbsp;</span>'+
-						' <span class="fa fa-arrow-down" onClick="javascript:goDown()" title="删除行">&nbsp;&nbsp;</span>'+
-						 ' <span class="fa fa-close" onClick="javascript:deleteR()" title="删除行"></span>';
-        }        
-    });
 
     //"nodedblclick":节点双击时发生
     tree.on("nodedblclick",function(e)
@@ -39,12 +26,17 @@ $(document).ready(function () {
         var temp = {
         		name:e.row.menuName,
         		iconId:e.row.menuPrimeKey,
-        		//linkResId:e.row.linkResId,
-        		address:e.row.linkActione,
-        		iconOrder : iconList.length
+        		address:e.row.linkActione
+        }
+        for(var i=0;i<iconList.length;i++){
+        	if(iconList[i].iconId==e.row.menuPrimeKey){
+            	showMsg("存在相同菜单","W");
+            	return;
+        	}
         }
         iconList.push(temp);
-        grid.setData(iconList);
+        addDiv(number,e.row.menuName);
+        number++;
     });
 });
 
@@ -71,17 +63,28 @@ function loadTree(){
 	 });
     
 }
+/*<div class="item item3 dads-children dad-draggable-area" data-dad-id="3" data-dad-position="3">	*/
 
-function goUp(){
-	var row = grid.getSelected();
-	if(row.iconOrder!=0){
-		grid.moveUp(row);
-	}
+//生成 div
+function addDiv(number,name){
+	var html="";
+	html+='<div class="item item'+number+' dads-children dad-draggable-area" data-dad-id="'+number+'" data-dad-position="'+number+'" style="background-color: #1faeff;">';		
+	html+='		<i class="fa fa-wrench fa-4x  fa-inverse"></i>';
+	html+='		<span>'+name+'</span> ';
+	html+='</div>';
+	$("#demo").append(html);
+	//$.parser.parse($("#demo").parent());
+	$('#demo').dad();
 }
 
-function goDown(){
-	var row = grid.getSelected();
-	if(row.iconOrder!=iconList.length){
-		grid.moveDown(row);
+function save(){
+	var smalls = document.getElementById('demo').getElementsByTagName('span');
+	for(var i = 0;i<smalls.length;i++){
+		for(var j=0;j<iconList.length;j++){
+			if(smalls[i].innerHTML==iconList[j].name){
+				iconList[j].iconOrder = i;
+			}
+		}
 	}
+	
 }

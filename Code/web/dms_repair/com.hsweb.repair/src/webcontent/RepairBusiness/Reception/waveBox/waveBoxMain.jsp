@@ -81,6 +81,8 @@
                     <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
+                    <input type="checkbox" id="balaAuditSign" class="mini-checkbox" trueValue="1" falseValue="0">
+	                <span >显示预结算</span>
                 </td>
             </tr>
         </table>

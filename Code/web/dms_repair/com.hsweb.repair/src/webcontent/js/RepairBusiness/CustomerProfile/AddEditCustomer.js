@@ -1202,29 +1202,31 @@ function setDataQuery(data)
                     onProvinceChange( {
                     	value : data.guest.provinceId	
                     });
+                    provinceEl.setValue(data.guest.provinceId);
                     onCityChange( {
                     	value : data.guest.cityId	
                     });
+                    cityEl.setValue(data.guest.cityId);
+                    countyEl.setValue(data.guest.areaId);
                     onCountyChange( {
                     	value : data.guest.areaId	
                     });
-                    provinceEl.setValue(data.guest.provinceId);
-                    cityEl.setValue(data.guest.cityId);
-                    countyEl.setValue(data.guest.areaId);
+                   
 /*                    provice.doValueChanged();
                     cityId.doValueChanged();*/
                 }
                 else{
                     showMsg("获取客户信息失败", "E");
                 }
+
             },
             error : function(jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR.responseText);
                 showMsg("网络出错", "E");
             }
+
         });
     }
-
 }
 
 function getWalkGuest(){
@@ -1314,8 +1316,8 @@ function onProvinceChange(e){
         cityHash = data.rs || [];
         cityEl.setData(cityHash);
 
+        setAddress();
     });
-    setAddress();
 }
 function onCityChange(e){
     var value = e.value;
@@ -1324,8 +1326,8 @@ function onCityChange(e){
         countyHash = data.rs || [];
         countyEl.setData(countyHash);
 
+        setAddress();
     });
-    setAddress();
 }
 function onCountyChange(e){
     setAddress();

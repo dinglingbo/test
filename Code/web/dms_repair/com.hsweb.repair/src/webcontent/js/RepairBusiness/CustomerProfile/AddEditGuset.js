@@ -1747,8 +1747,8 @@ function onProvinceChange(e){
         cityHash = data.rs || [];
         cityEl.setData(cityHash);
 
+        setAddress();
     });
-    setAddress();
 }
 function onCityChange(e){
     var value = e.value;
@@ -1757,8 +1757,8 @@ function onCityChange(e){
         countyHash = data.rs || [];
         countyEl.setData(countyHash);
 
+        setAddress();
     });
-    setAddress();
 }
 function onCountyChange(e){
     setAddress();

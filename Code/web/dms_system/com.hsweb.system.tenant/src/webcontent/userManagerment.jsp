@@ -82,15 +82,15 @@
            <input  class="nui-combobox" emptytext="选择城市"  width="125px" style="margin-right:0px;"  id="cityId" name="cityId" textField="name"  valueField="code"/>
            <input  class="nui-textbox" emptytext="业务员"  width="125px" style="margin-right:0px;" name="salesMan" id="salesMan" onenter="search()"/>
            <input  class="nui-textbox" emptytext="推荐人"  width="125px" style="margin-right:0px;" name="referee" id="referee" onenter="search()"/>
-            <a class="nui-button" onclick="search()" plain="false" enabled=""><i class="fa fa-search"></i>&nbsp;查询(<u>Q</u>)</a>
+            <a class="nui-button" onclick="search()" plain="true" enabled=""><i class="fa fa-search"></i>&nbsp;查询(<u>Q</u>)</a>
             <span style="display:inline-block;">
-                <a class="nui-button " style="" iconcls="" plain="false" onclick="ViewType(5)"><i class="fa fa-pencil"></i>&nbsp;修改</a>
-                <a class="nui-button " style="" iconcls="" plain="false" onclick="stoporstart()"><i class="fa fa-exchange"></i>&nbsp;启用/禁用</a>
+                <a class="nui-button " plain="true" style="" iconcls="" plain="false" onclick="ViewType(5)"><i class="fa fa-pencil"></i>&nbsp;修改</a>
+                <a class="nui-button " plain="true" style="" iconcls="" plain="false" onclick="stoporstart()"><i class="fa fa-exchange"></i>&nbsp;启用/禁用</a>
                 <span class="separator"></span>
-                <a class="nui-button " style="" iconcls="" plain="false" onclick="ViewType(1)"><i class="fa fa-cubes"></i>&nbsp;查看产品</a>
-                <a class="nui-button " style="" iconcls="" plain="false" onclick="ViewType(2)"><i class="fa fa-list"></i>&nbsp;查看订单</a>
-                <a class="nui-button " style="" iconcls="" plain="false" onclick="ViewType(3)"><i class="fa fa-cny"></i>&nbsp;查看费用</a>
-                <a class="nui-button " style="" iconcls="" plain="false" onclick="ViewType(4)"><i class="fa fa-map"></i>&nbsp;查看发票</a>
+                <a class="nui-button " plain="true" style="" iconcls="" plain="false" onclick="ViewType(1)"><i class="fa fa-cubes"></i>&nbsp;查看产品</a>
+                <a class="nui-button " plain="true" style="" iconcls="" plain="false" onclick="ViewType(2)"><i class="fa fa-list"></i>&nbsp;查看订单</a>
+                <a class="nui-button " plain="true" style="" iconcls="" plain="false" onclick="ViewType(3)"><i class="fa fa-cny"></i>&nbsp;查看费用</a>
+                <a class="nui-button " plain="true" style="" iconcls="" plain="false" onclick="ViewType(4)"><i class="fa fa-map"></i>&nbsp;查看发票</a>
             </span>
         </div> 
 	</div>

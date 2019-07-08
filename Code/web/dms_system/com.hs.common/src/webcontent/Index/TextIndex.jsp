@@ -12,10 +12,10 @@ pageEncoding="UTF-8" session="false" %>
         <head>
             <title>首页</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.0.2"></script>
+            <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.0.3"></script>
             <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
             <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
-            <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css?v=1.0.9" rel="stylesheet" type="text/css" />
+            <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css?v=1.1.2" rel="stylesheet" type="text/css" />
             <script type="text/javascript" src="<%=request.getContextPath()%>/common/nui/echarts.min.js"></script>
             <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
             <style type="text/css">

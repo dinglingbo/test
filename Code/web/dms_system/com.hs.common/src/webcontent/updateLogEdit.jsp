@@ -18,6 +18,8 @@
 	<div class="nui-fit">
 		<div class="nui-toolbar">
 			<a class="nui-button" onclick="save()" plain="true" enabled="">
+				<span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+			<a class="nui-button" onclick="publish()" plain="true" enabled="">
 				<span class="fa fa-save fa-lg"></span>&nbsp;发布</a>
 		</div>
 		<div class="nui-fit">
@@ -37,6 +39,10 @@
 	<script type="text/javascript">
     	nui.parse();
     	var ue = UE.getEditor('container');
+    	
+    	$(document).ready(function(v) {
+			getUnPublishLog();
+		});
 
 	    function getContent() {
 	        var arr = ue.getContent();
@@ -54,6 +60,37 @@
 	        ue.setEnabled();
 	    }
 	    
+	    function getUnPublishLog() {
+	    	var params = {
+	    		sortField: "recordDate",
+	    		sortOrder: "desc",
+	    		status: 0
+	    	};
+	    	var json = {
+	    		token: token,
+	    		show: true,
+	    		params: params
+	    	};
+	    	nui.ajax({
+				url: apiPath + sysApi + "/com.hsapi.system.employee.slog.querySysUpdateLogList.biz.ext",
+				type: 'POST',
+				data: json,
+				cache: false,
+				async: true,
+				contentType: 'text/json',
+				success: function(text) {
+					nui.unmask(document.body);
+					if(text.data){
+						var updateLog = text.data[0];
+						nui.get("id").setValue(updateLog.id);
+						setTimeout(function(){
+					        ue.setContent(updateLog.content);
+					    },1000);
+					}
+				}
+			});
+	    }
+	    
 	    function save() {
 	    	var updateLog = {
 	    		id: nui.get("id").getValue(),
@@ -69,10 +106,35 @@
 	            cls: 'mini-mask-loading',
 	            html: '数据处理中...'
 	        });
+	    	setContent(json);
+	    }
+	    
+	    function publish() {
+	    	var updateLog = {
+	    		id: nui.get("id").getValue(),
+	    		status: 1,
+	    		content: ue.getContent()
+	    	};
+	    	var json = {
+	    		updateLog: updateLog,
+	    		token: token
+	    	};
+	    	
+	    	nui.mask({
+	            el: document.body,
+	            cls: 'mini-mask-loading',
+	            html: '数据处理中...'
+	        });
+	        
+	        setContent(json);
+	    	
+	    }
+	    
+	    function setContent(data) {
 	    	nui.ajax({
 				url: apiPath + sysApi + "/com.hsapi.system.employee.slog.saveSysUpdateLog.biz.ext",
 				type: 'POST',
-				data: json,
+				data: data,
 				cache: false,
 				async: false,
 				contentType: 'text/json',
@@ -81,9 +143,9 @@
 					if(text.errCode == "S"){
 						var updateLog = text.updateLog;
 						nui.get("id").setValue(updateLog.id);
-						showMsg("发布成功","S");
+						showMsg("操作成功","S");
 					}else{
-						showMsg("发布失败","E");
+						showMsg("操作失败","E");
 					}
 				}
 			});

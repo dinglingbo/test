@@ -1542,11 +1542,11 @@ function pushNotice() {
     message.setMsgtype(3);
     message.setCmd(10);
     message.setGroupid(null);//系统用户组
-    message.setToken(currentsession);  
-    message.setSender(currentsession);
-    message.setReceiver(2);//好友ID
-    content.setContent(msg);
+    message.setToken("1");  
+    message.setSender("1");
+    message.setReceiver("1");//好友ID
+    content.setContent(nui.encode(msg));
     content.setType(0);
     message.setContent(content.serializeBinary())
-    socket.send(message.serializeBinary()); 
+    parent.socket.send(message.serializeBinary()); 
 }

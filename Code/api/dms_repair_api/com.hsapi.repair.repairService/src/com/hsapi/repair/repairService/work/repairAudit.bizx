@@ -27,7 +27,7 @@
     <targetConnections>link3</targetConnections>
     <targetConnections>link22</targetConnections>
     <targetConnections>link36</targetConnections>
-    <targetConnections>link16</targetConnections>
+    <targetConnections>link39</targetConnections>
     <location x="11" y="343"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
@@ -658,7 +658,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link27</targetConnections>
-    <location x="173" y="222"/>
+    <location x="173" y="165"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess5label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
@@ -673,7 +673,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess5label" name="label" nodeType="label">
-    <location x="147" y="257"/>
+    <location x="147" y="200"/>
     <figSize height="17" width="78"/>
     <node>subprocess5</node>
   </nodes>
@@ -684,7 +684,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link29</targetConnections>
-    <location x="173" y="270"/>
+    <location x="172" y="222"/>
     <size height="28" width="28"/>
     <nodeLabel>assign8label</nodeLabel>
     <process:copy>
@@ -697,7 +697,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
-    <location x="171" y="306"/>
+    <location x="170" y="258"/>
     <figSize height="17" width="32"/>
     <node>assign8</node>
   </nodes>
@@ -847,14 +847,40 @@
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess8" name="推送领料消息" displayName="sStoreManReming" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess8</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>subprocess7</targetNode>
     </sourceConnections>
     <targetConnections>link30</targetConnections>
-    <location x="105" y="301"/>
+    <location x="172" y="281"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess8label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.repair.repairService.sendWeChat.sStoreManReming</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="maintain" type="query" value="com.hsapi.repair.data.rps.RpsMaintain" valueType="DataObject" pattern="reference">maintain</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="2" name="res" type="query" value="java.util.HashMap" valueType="Java"/>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess8label" name="label" nodeType="label">
+    <location x="149" y="316"/>
+    <figSize height="17" width="73"/>
+    <node>subprocess8</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess7" name="提醒到App" displayName="sStoreManApp" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link39" name="link39" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess7</sourceNode>
+      <targetNode>end1</targetNode>
+    </sourceConnections>
+    <targetConnections>link16</targetConnections>
+    <location x="98" y="307"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess7label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.repair.repairService.sendWeChat.sStoreManApp</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="maintain" type="query" value="com.hsapi.repair.data.rps.RpsMaintain" valueType="DataObject" pattern="reference">maintain</process:inputVariable>
       </process:inputVariables>
@@ -865,10 +891,10 @@
       </process:outputVariables>
     </process:flow>
   </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess8label" name="label" nodeType="label">
-    <location x="82" y="336"/>
-    <figSize height="17" width="73"/>
-    <node>subprocess8</node>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess7label" name="label" nodeType="label">
+    <location x="81" y="342"/>
+    <figSize height="17" width="61"/>
+    <node>subprocess7</node>
   </nodes>
   <topRuler/>
   <leftRuler>

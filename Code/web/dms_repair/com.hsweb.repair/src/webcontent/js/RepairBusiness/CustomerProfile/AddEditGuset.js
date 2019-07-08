@@ -55,9 +55,9 @@ $(document).ready(function()
 	//nui.get("name").focus();
 	
 	if(currRepairBillCmodelFlag == "1"){
-        nui.get("carModel").disable();
-    }else{
         nui.get("carModel").enable();
+    }else{
+        nui.get("carModel").disable();
     }
 	
 	nui.get("name").focus();

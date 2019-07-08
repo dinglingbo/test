@@ -120,7 +120,11 @@ $(document).ready(function ()
     mainGrid.on("drawcell", function (e) {
     	var record = e.record;
         if (e.field == "status") {
-            e.cellHtml = statusHash[e.value];
+        	if(record.status == 1 && record.partAuditSign ==1) {
+            	e.cellHtml = "<font color='red'>"+statusHash[e.value]+"(配件已审)</font>"
+            }else {
+            	e.cellHtml = statusHash[e.value];
+            }
         }else if (e.field == "carBrandId") {
             if (brandHash && brandHash[e.value]) {
                 e.cellHtml = brandHash[e.value].name;

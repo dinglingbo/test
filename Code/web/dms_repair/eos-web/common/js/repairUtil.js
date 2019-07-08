@@ -527,3 +527,20 @@ function getCarVerificationDate(regDate, callback) {
 		}
 	});
 }
+
+var getUserInfoUrl = apiPath + sysApi + "/com.hsapi.system.tenant.user.getEmployeeByEmpId.biz.ext";
+function getUserInfo(empId, type, callback) {
+	doPost({
+		url : getUserInfoUrl,
+		data : {empId:empId, type: type, token: token},
+		success : function(data) {
+			callback && callback(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+			callback && callback({});
+		}
+	});
+}
+
+

@@ -80,7 +80,9 @@
 			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
 	       inner join rpb_business_type f on e.service_type_id = f.id
 	       where e.service_id = a.id) as serviceTypeName,
-	       d.wechat_open_id as openId
+	       d.wechat_open_id as openId,
+			a.part_audit_sign as partAuditSign,
+			a.is_part_notice as isPartNotice
 		FROM
 			rps_maintain a
 			inner JOIN rpb_car b ON ( a.car_id = b.id )
@@ -952,6 +954,7 @@
 			b.annual_inspection_no as annualInspectionNo,
 			a.part_amt as partAmt,
 			d.wechat_open_id as openId,
+			a.part_audit_sign as partAuditSign
 		FROM
 			rps_maintain a
 			inner JOIN rpb_car b ON ( a.car_id = b.id )
@@ -1475,7 +1478,7 @@
                 (c.full_name like '%$name$%')
             </isNotEmpty>
         </dynamic> 
-        order by a.modify_date desc
+        order by a.out_date asc
 	</select>
 	
 	 <select id="WechatQueryComprehensive" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">

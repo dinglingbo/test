@@ -376,7 +376,12 @@ var headerHash = [{ name: '综合开单', id: '0' }, { name: '检查开单', id:
        e.cellHtml ='<a id="service" href="##" onclick="newrepairOut('+"'ll'"+ ')">'+e.value+'</a>';
     }
   	if(column.field == "carNo"){
-    	e.cellHtml ='<a id="car" href="##" onclick="showCarInfo('+e.record._uid+')">'+e.record.carNo+'</a>';
+  		if(record.isPartNotice == "1") {
+  			e.cellHtml ='<a id="car" href="##" onclick="showCarInfo('+e.record._uid+')">'+e.record.carNo+'</a><font color="red">(待完工)</font>';
+  		}else {
+  			e.cellHtml ='<a id="car" href="##" onclick="showCarInfo('+e.record._uid+')">'+e.record.carNo+'</a>';
+  		}
+    	
     }
 
 });

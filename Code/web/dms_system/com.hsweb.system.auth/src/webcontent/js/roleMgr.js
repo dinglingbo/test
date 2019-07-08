@@ -3,7 +3,7 @@
  */
 
 var baseUrl = apiPath + sysApi + "/";
-var leftGridUrl = baseUrl + "com.hsapi.system.tenant.role.queryRole.biz.ext";
+var leftGridUrl = baseUrl + "com.primeton.tenant.comTenant.comTenantQueryBySql.biz.ext";
 var saveUrl = baseUrl + "com.hsapi.system.tenant.role.saveRole.biz.ext";
 var deleteRoleUrl = baseUrl + "com.hsapi.system.tenant.role.deleteRole.biz.ext";
 
@@ -18,18 +18,23 @@ $(document).ready(function(v) {
     roleForm = new nui.get("#roleForm");
     mainTabs = nui.get("mainTabs");
 
-    queryRole();
+	queryTenant();
 });
 
-function queryRole() {
+function queryTenant() {
     var params = {};
+    params.isDisabled = 0;
+    var tenantId = nui.get("tenantId").getValue();
+    if(tenantId){
+    	params.tenantId = tenantId;
+    }
     leftGrid.load({
         params:params,
         token:token
     });  
 
-    var db = new nui.DataBinding();
-    db.bindForm("roleForm", leftGrid);    
+    /*var db = new nui.DataBinding();
+    db.bindForm("roleForm", leftGrid);  */  
 }
 
 function editRole(action) {
@@ -153,37 +158,33 @@ function onLeftGridSelectionChanged() {
 }
 function loadResAndUser(row) {
     if (row) {
-        var roleId = row.roleId||0;
-        var roleCode = row.roleCode||"";
-        var roleName = row.roleName||"";
-        var tenantId = row.tenantId||0;
+    	var tenantId = row.tenantId||0;
+    	var tenantType = row.tenantType;
         var tab = mainTabs.getActiveTab();
-        if(tab.name == "resTab"){
-            mainTabs.loadTab(webPath + defDomin + "/common/function/function_role_auth.jsp?roleId="+roleId+"&roleCode="+roleCode+"&roleName="+roleName+"&tenantId="+tenantId+"&token="+token, tab);  
-        }else if(tab.name == "userTab"){
+        if(tab.name == "role"){
+        	mainTabs.loadTab(webPath + defDomin + "/common/function/tenant_role_auth.jsp?tenantId="+tenantId+"&tenantType="+tenantType+"&token="+token, tab);
+        }else if(tab.name == "resauth"){
             mainTabs.loadTab(webPath + defDomin + "/common/function/employee_auth.jsp?roleId="+roleId+"&token="+token, tab);   
-        }else if(tab.name == "appTab"){
+        }else if(tab.name == "roleResauth"){
             mainTabs.loadTab(webPath + defDomin + "/common/function/app_role_auth.jsp?roleId="+roleId+"&roleCode="+roleCode+"&roleName="+roleName+"&tenantId="+tenantId+"&token="+token, tab);   
         }
     } else {
+    	//showMsg("请选择一个租户","W");
     }
 
 }
 function ontopTabChanged(e){
     var tab = e.tab;
     var name = tab.name;
-
     var row = leftGrid.getSelected();
     if(!row) return;
-    var roleId = row.roleId||0;
-    var roleCode = row.roleCode||"";
-    var roleName = row.roleName||"";
     var tenantId = row.tenantId||0;
-    if(name == "resTab"){
-        mainTabs.loadTab(webPath + defDomin + "/common/function/function_role_auth.jsp?roleId="+roleId+"&roleCode="+roleCode+"&roleName="+roleName+"&tenantId="+tenantId+"&token="+token, tab);  
-    }else if(name == "userTab"){
+    var tenantType = row.tenantType;
+    if(name == "role"){
+    	mainTabs.loadTab(webPath + defDomin + "/common/function/tenant_role_auth.jsp?tenantId="+tenantId+"&tenantType="+tenantType+"&token="+token, tab);
+    }else if(name == "resauth"){
         mainTabs.loadTab(webPath + defDomin + "/common/function/employee_auth.jsp?roleId="+roleId+"&token="+token, tab);   
-    }else if(name == "appTab"){
+    }else if(name == "roleResauth"){
         mainTabs.loadTab(webPath + defDomin + "/common/function/app_role_auth.jsp?roleId="+roleId+"&roleCode="+roleCode+"&roleName="+roleName+"&tenantId="+tenantId+"&token="+token, tab);   
     }
     

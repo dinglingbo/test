@@ -4,7 +4,7 @@
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var mainGrid = null;
-var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
+var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.querySellCustomerList.biz.ext";
 
 var billForm = null;
 var editFormDetail = null;//
@@ -650,8 +650,7 @@ function saveNoShowMsg(callback){
 
 
 var requiredField = {
-    carNo : "车牌号",
-    guestId : "客户",
+    guestId : "客户"
     /*serviceTypeId : "业务类型",
     mtAdvisorId : "服务顾问"*/
 };

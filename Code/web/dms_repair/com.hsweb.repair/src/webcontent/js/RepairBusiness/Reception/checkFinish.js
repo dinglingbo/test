@@ -135,6 +135,7 @@ function finish(){
 	    	        data = data||{};
 	    	        var errCode = data.errCode||"";
 	    	        var errMsg = data.errMsg||"";
+	    	        var flag = data.flag||"";
 	    	        if(errCode == 'S'){
 	    	            var dataHash = data.data||{};
 	    	            resultData = dataHash.maintain||{};
@@ -174,6 +175,7 @@ function finish(){
 	        data = data||{};
 	        var errCode = data.errCode||"";
 	        var errMsg = data.errMsg||"";
+	        var flag = data.flag||"";
 	        if(errCode == 'S'){
 	            var dataHash = data.data||{};
 	            resultData = dataHash.maintain||{};

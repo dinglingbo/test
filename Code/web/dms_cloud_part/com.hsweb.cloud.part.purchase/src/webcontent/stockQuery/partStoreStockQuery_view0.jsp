@@ -116,8 +116,10 @@
                     <div allowSort="true" datatype="float" field="onRoadQty" visible="false" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>
                     <div allowSort="true" field="lastEnterDate" headerAlign="center" width="120"header="最近入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div allowSort="true" field="lastOutDate" headerAlign="center"  width="120" header="最近出库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-                    <div allowSort="true" field="upLimit" width="60" headerAlign="center" header="库存上限"></div>
-                    <div allowSort="true" field="downLimit" width="60" headerAlign="center" header="库存下限"></div>
+                    <div allowSort="true" field="upLimit" width="60" headerAlign="center" header="库存上限(夏季)"></div>
+                    <div allowSort="true" field="downLimit" width="60" headerAlign="center" header="库存下限(夏季)"></div>
+                    <div allowSort="true" field="upLimitWinter" width="95" headerAlign="center" header="库存上限(冬季)" numberFormat="0.00"></div>
+                    <div allowSort="true" field="downLimitWinter" width="95" headerAlign="center" header="库存下限(冬季)" numberFormat="0.00"></div>
                     <div allowSort="true" field="remark" width="200" headerAlign="center" header="备注"></div>
                 </div>
             </div>

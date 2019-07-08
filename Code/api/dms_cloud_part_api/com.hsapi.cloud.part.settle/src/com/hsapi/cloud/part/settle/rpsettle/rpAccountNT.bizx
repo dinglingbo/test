@@ -14,8 +14,8 @@
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" nodeType="label">
-    <location x="17" y="206"/>
-    <figSize height="17" width="25"/>
+    <location x="14" y="206"/>
+    <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" collapsed="false" type="assign">
@@ -33,8 +33,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="826" y="206"/>
-    <figSize height="17" width="32"/>
+    <location x="822" y="206"/>
+    <figSize height="20" width="40"/>
     <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" collapsed="false" type="end">
@@ -48,8 +48,8 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="614" y="126"/>
-    <figSize height="17" width="32"/>
+    <location x="610" y="126"/>
+    <figSize height="20" width="40"/>
     <node>end1</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="getJVMDate" displayName="getJVMDate" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
@@ -77,8 +77,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="302" y="206"/>
-    <figSize height="17" width="72"/>
+    <location x="293" y="206"/>
+    <figSize height="20" width="91"/>
     <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="rpSettle" displayName="rpSettle" type="subprocess">
@@ -113,6 +113,7 @@
         <process:inputVariable id="7" name="dc" type="query" value="Int" valueType="Primitive" pattern="reference">dc</process:inputVariable>
         <process:inputVariable id="8" name="remark" type="query" value="String" valueType="Primitive" pattern="reference">remark</process:inputVariable>
         <process:inputVariable id="9" name="BillTypeCode" type="query" value="String" valueType="Primitive" pattern="reference">BillTypeCode</process:inputVariable>
+        <process:inputVariable id="10" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">orgid</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -121,8 +122,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="441" y="205"/>
-    <figSize height="17" width="46"/>
+    <location x="434" y="205"/>
+    <figSize height="20" width="60"/>
     <node>subprocess1</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="initialGuestBalance" displayName="initialGuestBalance" type="subprocess">
@@ -162,8 +163,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="676" y="205"/>
-    <figSize height="17" width="109"/>
+    <location x="662" y="205"/>
+    <figSize height="20" width="137"/>
     <node>subprocess2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
@@ -177,8 +178,8 @@
     <nodeLabel>assign3label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="449" y="126"/>
-    <figSize height="17" width="32"/>
+    <location x="445" y="126"/>
+    <figSize height="20" width="40"/>
     <node>assign3</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="getNowYear" displayName="getNowYear" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
@@ -200,8 +201,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="141" y="206"/>
-    <figSize height="17" width="73"/>
+    <location x="131" y="206"/>
+    <figSize height="20" width="92"/>
     <node>invokePojo0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="getNowMonth" displayName="getNowMonth" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
@@ -223,8 +224,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="210" y="206"/>
-    <figSize height="17" width="85"/>
+    <location x="198" y="206"/>
+    <figSize height="20" width="109"/>
     <node>invokePojo2</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
@@ -238,8 +239,8 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
-    <location x="719" y="336"/>
-    <figSize height="17" width="25"/>
+    <location x="716" y="336"/>
+    <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end2" name="结束2" displayName="结束" type="end">
@@ -253,8 +254,8 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end2label" name="label" nodeType="label">
-    <location x="1003" y="206"/>
-    <figSize height="17" width="32"/>
+    <location x="999" y="206"/>
+    <figSize height="20" width="40"/>
     <node>end2</node>
   </nodes>
   <topRuler/>
@@ -275,6 +276,7 @@
     <process:input description="" isArray="false" name="dc" primitiveType="Int"/>
     <process:input description="" isArray="false" name="remark" primitiveType="String"/>
     <process:input description="" isArray="false" name="BillTypeCode" primitiveType="String"/>
+    <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

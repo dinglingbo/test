@@ -52,10 +52,10 @@ function onSearch(){
 }
 function doSearch(params)
 {
-    if(!params.partId && params.partCode){
-        rightGrid.setData([]);
-        return;
-    }
+//    if(!params.partId && params.partCode){
+//        rightGrid.setData([]);
+//        return;
+//    }
     //params.sortField = "b.stock_qty";
     //params.sortOrder = "desc";
     if(params.partCode){

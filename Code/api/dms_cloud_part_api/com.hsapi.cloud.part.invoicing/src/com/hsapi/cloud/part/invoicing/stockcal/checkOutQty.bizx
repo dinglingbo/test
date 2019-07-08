@@ -14,8 +14,8 @@
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="22" y="195"/>
-    <figSize height="17" width="25"/>
+    <location x="19" y="195"/>
+    <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="来源的可出库数量" displayName="getAuditEnterDetail" type="subprocess">
@@ -40,8 +40,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="130" y="194"/>
-    <figSize height="17" width="97"/>
+    <location x="118" y="194"/>
+    <figSize height="20" width="121"/>
     <node>subprocess0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
@@ -79,8 +79,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="259" y="195"/>
-    <figSize height="17" width="25"/>
+    <location x="256" y="195"/>
+    <figSize height="20" width="31"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
@@ -116,8 +116,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="256" y="295"/>
-    <figSize height="17" width="32"/>
+    <location x="252" y="295"/>
+    <figSize height="20" width="40"/>
     <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
@@ -159,8 +159,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="333" y="195"/>
-    <figSize height="17" width="32"/>
+    <location x="329" y="195"/>
+    <figSize height="20" width="40"/>
     <node>assign2</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="仓库结存" displayName="getStoreBalanceInvocing" type="subprocess">
@@ -181,7 +181,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.getStoreBalanceInvocing</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
+        <process:inputVariable id="0" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">orgid</process:inputVariable>
         <process:inputVariable id="1" name="partId" type="query" value="Long" valueType="Primitive" pattern="reference">partId</process:inputVariable>
         <process:inputVariable id="2" name="storeId" type="query" value="Long" valueType="Primitive" pattern="reference">storeId</process:inputVariable>
       </process:inputVariables>
@@ -191,8 +191,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="409" y="194"/>
-    <figSize height="17" width="49"/>
+    <location x="403" y="194"/>
+    <figSize height="20" width="61"/>
     <node>subprocess1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
@@ -226,8 +226,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="508" y="195"/>
-    <figSize height="17" width="32"/>
+    <location x="504" y="195"/>
+    <figSize height="20" width="40"/>
     <node>assign3</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" collapsed="false" type="assign">
@@ -263,8 +263,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
-    <location x="418" y="295"/>
-    <figSize height="17" width="32"/>
+    <location x="414" y="295"/>
+    <figSize height="20" width="40"/>
     <node>assign4</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="公司库存" displayName="getBalanceInvocing" type="subprocess">
@@ -285,7 +285,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.getBalanceInvocing</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
+        <process:inputVariable id="0" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">orgid</process:inputVariable>
         <process:inputVariable id="1" name="partId" type="query" value="Long" valueType="Primitive" pattern="reference">partId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
@@ -294,8 +294,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="589" y="194"/>
-    <figSize height="17" width="49"/>
+    <location x="583" y="194"/>
+    <figSize height="20" width="61"/>
     <node>subprocess2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" collapsed="false" type="assign">
@@ -314,7 +314,7 @@
       <targetNode>end1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -329,8 +329,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="673" y="195"/>
-    <figSize height="17" width="32"/>
+    <location x="669" y="195"/>
+    <figSize height="20" width="40"/>
     <node>assign5</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" collapsed="false" type="assign">
@@ -360,8 +360,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
-    <location x="583" y="295"/>
-    <figSize height="17" width="32"/>
+    <location x="579" y="295"/>
+    <figSize height="20" width="40"/>
     <node>assign6</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
@@ -378,8 +378,8 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
-    <location x="422" y="366"/>
-    <figSize height="17" width="25"/>
+    <location x="419" y="366"/>
+    <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
@@ -394,8 +394,8 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="823" y="195"/>
-    <figSize height="17" width="32"/>
+    <location x="819" y="195"/>
+    <figSize height="20" width="40"/>
     <node>end1</node>
   </nodes>
   <topRuler/>
@@ -417,6 +417,7 @@
     <process:input description="" isArray="false" name="sourceId" primitiveType="Long"/>
     <process:input description="" isArray="false" name="partId" primitiveType="Long"/>
     <process:input description="" isArray="false" name="storeId" primitiveType="Long"/>
+    <process:input description="" isArray="false" name="orgid" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

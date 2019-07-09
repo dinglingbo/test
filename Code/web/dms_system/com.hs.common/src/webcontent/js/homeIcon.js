@@ -26,7 +26,7 @@ $(document).ready(function () {
         var temp = {
         		name:e.row.menuName,
         		iconId:e.row.menuPrimeKey,
-        		address:e.row.linkActione
+        		address:e.row.linkAction
         }
         for(var i=0;i<iconList.length;i++){
         	if(iconList[i].iconId==e.row.menuPrimeKey){
@@ -42,9 +42,16 @@ $(document).ready(function () {
 
 
 
-function setData(iconList) {
-	iconList = iconList||[];
-	grid.setData(iconList);
+function setData(icon) {
+	iconList = icon||[];
+    for(var i=0;i<iconList.length;i++){
+    	for(var j=0;j<iconList.length;j++){
+        	if(iconList[j].iconOrder==i){
+            	addDiv(iconList[j].iconOrder,iconList[j].name);
+            	number++;
+        	}    		
+    	}
+    }
 }
 
 function loadTree(){
@@ -68,16 +75,24 @@ function loadTree(){
 //生成 div
 function addDiv(number,name){
 	var html="";
-	html+='<div class="item item'+number+' dads-children dad-draggable-area" data-dad-id="'+number+'" data-dad-position="'+number+'" style="background-color: #1faeff;">';		
+	html+='<div class="item item'+number+' dads-children dad-draggable-area" data-dad-id="'+number+'" data-dad-position="'+number+'" style="background-color: #1faeff;    margin-top: 10px;">';		
 	html+='		<i class="fa fa-wrench fa-4x  fa-inverse"></i>';
 	html+='		<span>'+name+'</span> ';
 	html+='</div>';
+	if(number%7==0&&number!=0){
+		html=html+"<br/>"
+	}
 	$("#demo").append(html);
 	//$.parser.parse($("#demo").parent());
 	$('#demo').dad();
 }
-
+var saveUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.svr.savehomePage.biz.ext";
 function save(){
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '保存中...'
+    });
 	var smalls = document.getElementById('demo').getElementsByTagName('span');
 	for(var i = 0;i<smalls.length;i++){
 		for(var j=0;j<iconList.length;j++){
@@ -86,5 +101,32 @@ function save(){
 			}
 		}
 	}
+	var json = {
+			homePage : 	iconList,
+			token : token
+	};
+	nui.ajax({
+		url : saveUrl,
+		type : 'POST',
+		data : json,
+		cache : false,
+		contentType : 'text/json',
+		success : function(text) {
+			nui.unmask(document.body);
+			if(text.errCode=="S"){
+				showMsg("保存成功","S")
+				CloseWindow("ok");
+			}
+		}
+	 });
 	
+}
+
+function CloseWindow(action) {
+	if (action == "close") {
+
+	} else if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else
+		return window.close();
 }

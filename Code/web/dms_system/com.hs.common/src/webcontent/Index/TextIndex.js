@@ -14,6 +14,7 @@ var statusHash = {
     "1" : "施工",
     "2" : "完工"
 };
+var homePage = [];//主页图片
 $(document).ready(function(v) {
 
     guestBoardGrid = nui.get("guestBoardGrid");
@@ -54,7 +55,7 @@ $(document).ready(function(v) {
         queryTodayData(function(data){
             setGridTodayData(data);
         });
-
+        queryHomePage();//加载主页图标按钮
         var p = {
             orgid: currOrgId
         }
@@ -294,6 +295,23 @@ function queryTodayData(callback) {
 		}
 	});
 }
+var queryHomePageUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryHomePage.biz.ext";
+function queryHomePage(callback) {
+	nui.ajax({
+		url : queryHomePageUrl,
+		type : "post",
+		data : JSON.stringify({
+            token:token
+        }),
+		success : function(text) {
+			 homePage = text.homePage || {};
+			 setHomePage(homePage);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+		}
+	});
+}
 function setGridTodayData(data){
 	$("#newCarQty").text(0);
 	$("#recordBillQty").text(0);
@@ -319,6 +337,24 @@ function setGridTodayData(data){
         $("#receiveAmt ").text(receiveAmt);
 	}
 
+}
+function setHomePage(data){
+    for(var i=0;i<data.length;i++){
+    	for(var j=0;j<data.length;j++){
+        	if(data[j].iconOrder==i){
+            	addDiv(data[j].address,data[j].name,data[j].iconId);
+        	}    		
+    	}
+    }
+	var twidth = 80 + (data.length+2)*110;
+	var html="";
+		html+='<div  style="float: left;"> ';		
+		html+='	<a href="javascript:;" id="faker4" class="addImage tc sub-add-btn" onclick="addIcon()" style="display: flex;border: 2px dotted #B8B8B8;border-radius: 5px 5px 5px 5px;color: #222222;height: 75px;width:100px;text-align: center;text-decoration: none;left;margin-top: 10px;margin-left: 10px;">';
+		html+='	<img alt="" style="height: 75px;width: 100px;" src="'+webPath + contextPath+'/repair/prototype/images/add1.png"> ';
+		html+='</a>';
+		html+='</div>';
+		$("#demo").append(html);
+	document.getElementById("demo").style.width = twidth + 'px';
 }
 function queryGuestCarData(p,callback) {
     p.startDate = getNowStartDate();
@@ -606,16 +642,45 @@ function addIcon(){
 		allowDrag : true,
 		allowResize : false,
 		onload : function() {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(homePage);
 		},
 		ondestroy : function(action) {
 			if (action == "ok") {
-				var iframe = this.getIFrameEl();
-				var data = iframe.contentWindow.getData();
-				if (data && data.carModel) {
-					var carModel = data.carModel || {};
-                    callBack && callBack(carModel);
-				}
+				queryHomePage();
 			}
 		}
 	});
+}
+
+function addDiv(address,name,iconId){
+	var html="";
+//可拖动
+/*	html+='<div class="item item'+number+' dads-children dad-draggable-area" data-dad-id="'+number+'" data-dad-position="'+number+'" style="background-color: #1faeff;width: 80px;height: 80px;float: left;">';		
+	html+='		<i class="fa fa-wrench fa-4x  fa-inverse"></i>';
+	html+='		<span>'+name+'</span> ';
+	html+='</div>';
+	$("#demo").append(html);*/
+	//$('#demo').dad();
+	//$("#demo").before(html);
+
+
+	//不可拖动
+	html+='<div class="menu_pannel menu_pannel_bg" style="background-color: #1faeff;width: 110px;height: 85px;float: left;margin-top: 10px;margin-left: 10px;"> ';		
+	html+='<a onclick="tojump('+"'" +address+"','"+name+"','"+iconId+"'" + ')">';
+	html+='	<i class="fa fa-wrench fa-3x  fa-inverse" style="margin-top: 10px;margin-left: 10px;"></i> ';
+	html+='<p>'+name+'</p>';
+	html+='	</a> ';
+	html+='</div>';
+	$("#demo").append(html);
+}
+
+function tojump(address,name,iconId){
+    var item={};
+    item.id = iconId;
+    item.text = name;
+    item.url = webPath + contextPath +address+"?token="+token;
+    item.iconCls = "fa fa-file-text";
+    var params = {};
+    window.parent.activeTabAndInit(item,params);
 }

@@ -12,110 +12,29 @@ pageEncoding="UTF-8" session="false" %>
         <head>
             <title>首页</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.0.2"></script>
+            <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.3.13"></script>
             <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
             <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
-            <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css?v=1.0.9" rel="stylesheet" type="text/css" />
+            <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css?v=1.0.5" rel="stylesheet" type="text/css" />
             <script type="text/javascript" src="<%=request.getContextPath()%>/common/nui/echarts.min.js"></script>
             <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<%--             <script src="<%=webPath + contextPath%>/common/js/jquery-1.11.3.min.js?v=1.0.3"></script>
+			<script src="<%=webPath + contextPath%>/common/js/jquery.dad.min.js?v=1.0.3"></script> --%>
             <style type="text/css">
             </style>
         </head>
 
         <body>
-            <div class="nui-fit">
-                <div id="" class="main" style="margin-top: 5px;height:146px !important;">
-
-                    <div id="">
-                        <div class="nui-fit">
-
-                            <div id="menu1" class="demo" style="">
-                                    <div id="btn-uploader">
-                                        <a href="javascript:;" id="faker4" class="addImage tc sub-add-btn" onclick="addIcon()" style="display: flex;border: 2px dotted #B8B8B8;border-radius: 5px 5px 5px 5px;color: #222222;height: 80px;width:80px;text-align: center;text-decoration: none;">
-                                            <div class="vm dib sub-add-icon" style="height: 80px;margin-right: 5px;width: 80px;9px;;margin-left: 0%;background-size: 18px;">
-                                            	<img alt="" style="height: 80px;width: 80px;" src="<%=webPath + contextPath%>/repair/prototype/images/add1.png">
-                                            	
-                                            </div>
-                                        </a>
-                                    </div>
-<!--                                 <div class="menu_pannel menu_pannel_bg">
-                                    <a onclick="toRepairBill()">
-                                        <i class="fa fa-wrench fa-4x  fa-inverse"></i>
-                                        <p>综合开单</p>
-                                    </a>
-                                </div>
-                                <div class="menu_pannel menu_pannel_bg">
-                                    <a onclick="toCarWashBill()">
-                                        <i class="fa fa-shower fa-4x  fa-inverse"></i>
-                                        <p>洗美开单</p>
-                                    </a>
-                                </div>
-                                <div class="menu_pannel menu_pannel_bg">
-                                    <a onclick="toSellBill()">
-                                        <i class="fa fa-cart-plus fa-4x  fa-inverse"></i>
-                                        <p>销售开单</p>
-                                    </a>
-
-                                </div>
-
-                                <div class="menu_pannel menu_pannel_bg">
-                                    <a onclick="toCarInsuranceDetail()">
-                                        <i class="fa fa-unlock-alt fa-4x  fa-inverse"></i>
-                                        <p>车险开单</p>
-                                    </a>
-                                </div>
-
-                                <div class="menu_pannel menu_pannel_bg">
-                                    <a onclick="toRepairBillTable()">
-                                        <i class="fa fa-car fa-4x  fa-inverse"></i>
-                                        <p>维修档案</p>
-                                    </a>
-                                </div> -->
+            <div class="nui-fit" >
+				<div class="nui-fit" style="height: 125px !important;">
+				              <div class="vpanel_heading">
+                                <i class="fa fa-th-list fa-lg-custom fa-fw"></i>
+                                <span>快捷菜单</span>                              
                             </div>
+                <div  class="nui-fit" style="white-space: nowrap;height: 125px !important;overflow-y:hidden;overflow-x:auto;padding:0px 0px 0px 0px;" id="demo" >
 
-                            <!-- <div id="menu2" class="demo" style="margin-top:20px;">
-                                <div class="menu_pannel menu_pannel_bg">
-                                    <a onclick="toTimesCardList()">
-                                        <i class="fa fa-gift fa-4x  fa-inverse"></i>
-                                        <p>计次卡销售</p>
-                                    </a>
-                                </div>
-                                <div class="menu_pannel menu_pannel_bg">
-                                    <a onclick="toCardList()">
-                                        <i class="fa fa-credit-card-alt fa-4x  fa-inverse"></i>
-                                        <p>储值卡充值</p>
-                                    </a>
-                                </div>
-                                <div class="menu_pannel menu_pannel_bg">
-                                    <a onclick="toVisitMain()">
-                                        <i class="fa fa-phone fa-4x  fa-inverse"></i>
-                                        <p>客户回访</p>
-                                    </a>
-                                </div>
-                                <div class="menu_pannel menu_pannel_bg">
-                                    <a onclick="toPurchaseOrderMain()">
-                                        <i class="fa fa-copy fa-4x  fa-inverse"></i>
-                                        <p>采购订单</p>
-                                    </a>
-                                </div>
-
-                                <div class="menu_pannel menu_pannel_bg">
-                                    <a onclick="toRepairOut()">
-                                        <i class="fa fa-imdb fa-4x  fa-inverse"></i>
-                                        <p>配件出库</p>
-                                    </a>
-                                </div>
-                            </div> -->
-                        </div>
-                    </div>
-
-
-
-                 
-
-
-                </div>
-
+                </div>            
+				</div>
                 <div id="" class="main" style="margin-top: 15px;height: 205px;">
 
                     <div id="" class="main_child_left">

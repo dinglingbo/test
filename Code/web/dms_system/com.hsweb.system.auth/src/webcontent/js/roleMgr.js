@@ -164,7 +164,7 @@ function loadResAndUser(row) {
         if(tab.name == "role"){
         	mainTabs.loadTab(webPath + defDomin + "/common/function/tenant_role_auth.jsp?tenantId="+tenantId+"&tenantType="+tenantType+"&token="+token, tab);
         }else if(tab.name == "resauth"){
-            mainTabs.loadTab(webPath + defDomin + "/common/function/employee_auth.jsp?roleId="+roleId+"&token="+token, tab);   
+            mainTabs.loadTab(webPath + defDomin + "/common/function/tenant_function.jsp?tenantId="+tenantId+"&tenantType="+tenantType+"&token="+token, tab);   
         }else if(tab.name == "roleResauth"){
             mainTabs.loadTab(webPath + defDomin + "/common/function/app_role_auth.jsp?roleId="+roleId+"&roleCode="+roleCode+"&roleName="+roleName+"&tenantId="+tenantId+"&token="+token, tab);   
         }
@@ -183,7 +183,7 @@ function ontopTabChanged(e){
     if(name == "role"){
     	mainTabs.loadTab(webPath + defDomin + "/common/function/tenant_role_auth.jsp?tenantId="+tenantId+"&tenantType="+tenantType+"&token="+token, tab);
     }else if(name == "resauth"){
-        mainTabs.loadTab(webPath + defDomin + "/common/function/employee_auth.jsp?roleId="+roleId+"&token="+token, tab);   
+        mainTabs.loadTab(webPath + defDomin + "/common/function/tenant_function.jsp?tenantId="+tenantId+"&tenantType="+tenantType+"&token="+token, tab);   
     }else if(name == "roleResauth"){
         mainTabs.loadTab(webPath + defDomin + "/common/function/app_role_auth.jsp?roleId="+roleId+"&roleCode="+roleCode+"&roleName="+roleName+"&tenantId="+tenantId+"&token="+token, tab);   
     }

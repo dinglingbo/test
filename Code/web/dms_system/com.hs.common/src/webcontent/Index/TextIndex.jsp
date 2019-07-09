@@ -12,29 +12,32 @@ pageEncoding="UTF-8" session="false" %>
         <head>
             <title>首页</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.3.13"></script>
+            <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.0.9"></script>
             <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
             <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
-            <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css?v=1.0.5" rel="stylesheet" type="text/css" />
+            <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css?v=1.0.9" rel="stylesheet" type="text/css" />
             <script type="text/javascript" src="<%=request.getContextPath()%>/common/nui/echarts.min.js"></script>
             <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<%--             <script src="<%=webPath + contextPath%>/common/js/jquery-1.11.3.min.js?v=1.0.3"></script>
-			<script src="<%=webPath + contextPath%>/common/js/jquery.dad.min.js?v=1.0.3"></script> --%>
+            <script src="<%=webPath + contextPath%>/common/js/jquery-1.11.3.min.js?v=1.0.3"></script>
+            <script src="<%=webPath + contextPath%>/common/js/jquery.dad.min.js?v=1.0.3"></script>
             <style type="text/css">
             </style>
         </head>
 
         <body>
-            <div class="nui-fit" >
-				<div class="nui-fit" style="height: 125px !important;">
-				              <div class="vpanel_heading">
-                                <i class="fa fa-th-list fa-lg-custom fa-fw"></i>
-                                <span>快捷菜单</span>                              
-                            </div>
-                <div  class="nui-fit" style="white-space: nowrap;height: 125px !important;overflow-y:hidden;overflow-x:auto;padding:0px 0px 0px 0px;" id="demo" >
+            <div class="nui-fit">
 
-                </div>            
-				</div>
+                <div class="" style="width: 1920px;height: 216px;float: left;overflow-y: hidden;overflow-x: auto;white-space: nowrap;" id="demo">
+                    <div style="float: left;">
+                        <a href="javascript:;" id="faker4" class="addImage tc sub-add-btn" onclick="addIcon()" style="display: flex;border: 2px dotted #B8B8B8;border-radius: 5px 5px 5px 5px;color: #222222;height: 80px;width:80px;text-align: center;text-decoration: none;">
+                            <div class="vm dib sub-add-icon" style="height: 80px;margin-right: 5px;width: 80px;9px;;margin-left: 0%;background-size: 18px;">
+                                <img alt="" style="height: 80px;width: 80px;" src="<%=webPath + contextPath%>/repair/prototype/images/add1.png">
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
                 <div id="" class="main" style="margin-top: 15px;height: 205px;">
 
                     <div id="" class="main_child_left">
@@ -130,7 +133,7 @@ pageEncoding="UTF-8" session="false" %>
 
                     <div id="" style="float:left;width: 1%;height: 100%;"> </div>
 
-                      <div id="" class="main_child">
+                    <div id="" class="main_child">
                         <div class="vpanel">
                             <div class="vpanel_heading">
                                 <i class="fa fa-eye fa-lg-custom fa-fw"></i>
@@ -357,9 +360,9 @@ pageEncoding="UTF-8" session="false" %>
 
                     </div>
 
-                   
 
-            
+
+
                     <div style="clear: both"></div>
                     <!-- 注释：清除float产生浮动 -->
                 </div>

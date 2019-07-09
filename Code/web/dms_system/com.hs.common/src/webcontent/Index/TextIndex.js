@@ -17,11 +17,11 @@ var statusHash = {
 var homePage = [];//主页图片
 $(document).ready(function(v) {
 
-    guestBoardGrid = nui.get("guestBoardGrid");
+/*    guestBoardGrid = nui.get("guestBoardGrid");
+    guestBoardGrid.setUrl(guestBoardUrl);*/
     workShopBoard = nui.get("workShopBoard");
-    guestBoardGrid.setUrl(guestBoardUrl);
 
-    guestBoardGrid.on("drawcell", function (e) {
+/*    guestBoardGrid.on("drawcell", function (e) {
         if (e.field == "status") {
             e.cellHtml = statusHash[e.value];
         }
@@ -45,12 +45,12 @@ $(document).ready(function(v) {
 				e.cellHtml = time;
 			}
 		}
-    });
+    });*/
 
     setTimeout(function(){
-        guestBoardGrid.load({
+/*        guestBoardGrid.load({
             token:token
-        });
+        });*/
 
         queryTodayData(function(data){
             setGridTodayData(data);

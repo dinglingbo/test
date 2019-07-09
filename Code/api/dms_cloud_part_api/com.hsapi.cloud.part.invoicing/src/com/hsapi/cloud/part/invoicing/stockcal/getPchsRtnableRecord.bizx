@@ -190,7 +190,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">pGuestId/orgid</process:to>
     </process:copy>
     <process:copy>
@@ -221,7 +221,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">pStock/orgid</process:to>
     </process:copy>
     <process:copy>
@@ -320,6 +320,7 @@
     <process:input description="客户ID" isArray="false" name="guestId" primitiveType="String"/>
     <process:input description="退货数量" isArray="false" name="rtnQty" primitiveType="Decimal"/>
     <process:input description="" isArray="false" name="storeId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="orgid" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

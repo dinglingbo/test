@@ -546,6 +546,10 @@
       <process:from type="query" pattern="reference">params/BillTypeCode</process:from>
       <process:to type="query">temp/billTypeCode</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/BillAmt</process:from>
+      <process:to type="query">temp/noCharOffAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
     <location x="471" y="397"/>
@@ -558,7 +562,7 @@
       <targetNode>transactioncommit0</targetNode>
     </sourceConnections>
     <targetConnections>link52</targetConnections>
-    <location x="882" y="473"/>
+    <location x="897" y="473"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
@@ -571,7 +575,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
-    <location x="880" y="509"/>
+    <location x="895" y="509"/>
     <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
@@ -917,10 +921,6 @@
     <process:copy>
       <process:from type="query" pattern="reference">params/BillAmt</process:from>
       <process:to type="query">tempAd/amt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">params/BillAmt</process:from>
-      <process:to type="query">tempAd/balaAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
@@ -1427,6 +1427,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">paramsyk/BillTypeCode</process:from>
       <process:to type="query">temp/billTypeCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">paramsyk/BillAmt</process:from>
+      <process:to type="query">temp/noCharOffAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign23label" name="label" nodeType="label">

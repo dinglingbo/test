@@ -30,9 +30,9 @@ $(document).ready(function()
     addressEl = nui.get("addr");
 	firstRegDateEl = nui.get("firstRegDate");
 	if(currRepairBillCmodelFlag == "1"){
-        nui.get("carModel").disable();
-    }else{
         nui.get("carModel").enable();
+    }else{
+        nui.get("carModel").disable();
     }
     initDicts({
         //carSpec:CAR_SPEC,//车辆规格

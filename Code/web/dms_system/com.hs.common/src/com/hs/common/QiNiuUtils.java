@@ -5,6 +5,7 @@ package com.hs.common;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -12,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import sun.misc.BASE64Decoder;
 
@@ -321,4 +323,60 @@ public class QiNiuUtils {
 		return result;
     }
 	
+	/**
+     * 输入流上传
+     * @param stream
+     * @return
+     */
+	@Bizlet("上传io流")
+    public static Map<String, Object> upload(InputStream stream) {
+
+        Map<String, Object> retMap = new HashMap<String, Object>();
+        // 构造一个带指定Zone对象的配置类   华南地区zone2
+        Configuration cfg = new Configuration(Zone.zone2());
+        // ...其他参数参考类注释
+        UploadManager uploadManager = new UploadManager(cfg);
+        // ...生成上传凭证，然后准备上传
+        String envType = Env.getContributionConfig("com.vplus.login",
+				"cfg", "QNACCESSKEY", "serverType");
+		String accessKey = Env.getContributionConfig("com.vplus.login",
+				"cfg", "QNACCESSKEY", envType);
+
+		String secretKey = Env.getContributionConfig("com.vplus.login",
+				"cfg", "QNSECRETKEY", envType);
+
+
+		String bucketName = Env.getContributionConfig("com.vplus.login",
+				"cfg", "QNBUCKETNAME", envType);
+		
+        String doMain = getQNDomain();
+        // 默认不指定key的情况下，以文件内容的hash值作为文件名
+        String key = UUID.randomUUID().toString().replaceAll("\\-", "");
+        try {
+            Auth auth = Auth.create(accessKey, secretKey);
+            String upToken = auth.uploadToken(bucketName);
+            try {
+                Response response = uploadManager.put(stream, key, upToken, null, null);
+                // 解析上传成功的结果
+                DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
+                System.out.println(putRet.key);
+                System.out.println(putRet.hash);
+                retMap.put("url",  doMain + putRet.key);
+                retMap.put("hash", putRet.hash);
+			/*System.out.println(putRet.key);
+			System.out.println(putRet.hash);*/
+            } catch (QiniuException ex) {
+                Response r = ex.response;
+                System.err.println(r.toString());
+                try {
+                    System.err.println(r.bodyString());
+                } catch (QiniuException ex2) {
+                    ex2.printStackTrace();
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return retMap;
+    }
 }

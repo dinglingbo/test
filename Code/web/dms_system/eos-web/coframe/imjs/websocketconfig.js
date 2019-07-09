@@ -216,6 +216,10 @@ layui.use('layim', function(layim){
 	    	            avatar: group.avatar
 	    	        });
 	    	   } 
+	       }else if(msg.getCmd()==10) {
+    		   var msgCon =  proto.MessageBody.deserializeBinary(msg.getContent()); 
+    		   var group = JSON.parse(msgCon.getContent());
+    		   console.log("提醒消息：" + msgCon.getContent());
 	       }
 	  }else {
 	        var data = event.data;                //后端返回的是文本帧时触发

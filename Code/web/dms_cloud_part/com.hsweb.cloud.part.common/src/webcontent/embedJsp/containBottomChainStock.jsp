@@ -9,7 +9,7 @@
 -->
 <head>
 <title>库存分布</title>
-<script src="<%=webPath + contextPath%>/common/js/embed/containBottomChainStock.js?v=1.0.5"></script>
+<script src="<%=webPath + contextPath%>/common/js/embed/containBottomChainStock.js?v=1.0.9"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -30,7 +30,7 @@
 <div class="nui-fit">
     <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
          showPager="false"
-         dataField="detailList"
+         dataField="data"
          idField="detailId"
          ondrawcell="onDrawCell"
          sortMode="client"
@@ -41,15 +41,15 @@
          showSummaryRow="false">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div allowSort="true" field="shortName" width="100" headerAlign="center" header="供应商名称"></div>
-            <div allowSort="true" field="storeId" width="70" headerAlign="center" header="仓库"></div>
-            <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
-            <div allowSort="true" field="sellPrice" width="60" headerAlign="center" header="售价"></div>
-            <div allowSort="true" field="manager" width="60" headerAlign="center" header="联系人"></div>
-            <div allowSort="true" field="mobile" width="60" headerAlign="center" header="联系人手机"></div>
-            <div allowSort="true" field="contactor" width="60" headerAlign="center" header="业务员"></div>
-            <div allowSort="true" field="contactorTel" width="60" headerAlign="center" header="业务员手机"></div>
-            <div allowSort="true" field="address" width="180" headerAlign="center" header="公司地址"></div>
+            <div allowSort="true" field="phone" width="100" headerAlign="center" header="供应商名称"></div>
+  			<div allowSort="true" field="pid" width="100" headerAlign="center" header="配件编码"></div>
+            <div allowSort="true" datatype="float" field="amount" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
+            <div allowSort="true" field="price" width="60" headerAlign="center" header="售价"></div>
+<!--             <div allowSort="true" field="manager" width="60" headerAlign="center" header="联系人"></div> -->
+            <div allowSort="true" field="phone" width="60" headerAlign="center" header="联系人手机"></div>
+<!--             <div allowSort="true" field="contactor" width="60" headerAlign="center" header="业务员"></div> -->
+<!--             <div allowSort="true" field="contactorTel" width="60" headerAlign="center" header="业务员手机"></div> -->
+            <div allowSort="true" field="position" width="180" headerAlign="center" header="公司地址"></div>
         </div>
     </div>
 </div>

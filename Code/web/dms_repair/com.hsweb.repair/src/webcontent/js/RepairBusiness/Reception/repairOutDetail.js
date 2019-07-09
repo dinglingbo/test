@@ -1491,7 +1491,7 @@ function  savepartOutRtn(data,childdata){
         				nui.get('partAuditSign').setValue("已审核");
             			showMsg('配件审核成功!','S');
             			
-            			pushNotice();
+            			pushNotice(mainRow);
             			
             			$('#audit').text("配件返审");
         			}else{
@@ -1532,8 +1532,31 @@ function getAllStorehouse(callback) {
 	});
 }
 
-function pushNotice() {
+function pushNotice(data) {
+	var carNo = data.carNo;
+	var carModel = data.carModel;
+	var serviceCode = data.serviceCode;
+	var content = carNo + "(carModel) 配件已审核";
 	var msg = {
+		title: "工单完工提醒",
+		serviceCode: serviceCode,
+		content: content,
+		sender: currUserName,
+		sendDate: now.Format("yyyy-MM-dd HH:mm:ss")
+	};
+	getUserInfo(data.mtAdvisorId, 'emp', function(text){
+		var userId = text.member.imCode;
+		var params = {
+			type: 3,
+			cmd: 10,
+			group: null,
+			sender: "0",
+			receiver: userId.toString(),
+			msg: nui.encode(msg)
+		};
+		sendNoticeMsg(parent.socket,params);
+	});
+	/*var msg = {
 		autior:"张三",
 		carNo:"粤A43922"
 	};
@@ -1542,11 +1565,11 @@ function pushNotice() {
     message.setMsgtype(3);
     message.setCmd(10);
     message.setGroupid(null);//系统用户组
-    message.setToken(currentsession);  
-    message.setSender(currentsession);
-    message.setReceiver(2);//好友ID
-    content.setContent(msg);
+    message.setToken("1");  
+    message.setSender("1");
+    message.setReceiver("1");//好友ID
+    content.setContent(nui.encode(msg));
     content.setType(0);
     message.setContent(content.serializeBinary())
-    socket.send(message.serializeBinary()); 
+    parent.socket.send(message.serializeBinary()); */
 }

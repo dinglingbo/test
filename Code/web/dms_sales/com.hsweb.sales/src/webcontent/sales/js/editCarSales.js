@@ -456,6 +456,10 @@ function checkMsg(e) { //统一数据验证
         showMsg("当前工单已结算！", "W");
         return;
     }
+    if(!billFormData.saleType){
+    	showMsg("请选择购车方式！", "W");
+        return;
+    }
     var params = document.getElementById("caCalculation").contentWindow.getValue(); //购车信息
     if (params.isValid == false) {
         showMsg("购车信息填写有误，请检查后再保存", "W");
@@ -941,6 +945,7 @@ function setInitData(params) { //初始化
 }
 
 function add(){
+	typeF = 1;
     nui.get("submitBtn").setVisible(true);
     nui.get("invalidBtn").setVisible(true);
     nui.get("submitCarBtn").setVisible(true);

@@ -10,7 +10,7 @@
 -->
 <head>
 <title>理赔开单</title>
-<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/claimMain.js?v=1.2.5"></script>
+<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/claimMain.js?v=1.2.6"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -78,6 +78,8 @@
                     <!-- <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;完工</a> -->
                     <!-- <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="addBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a> -->
                     <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
+                    <input type="checkbox" id="balaAuditSign" class="mini-checkbox" trueValue="1" falseValue="0">
+	                <span >显示预结算</span>
                 </td>
             </tr>
         </table>

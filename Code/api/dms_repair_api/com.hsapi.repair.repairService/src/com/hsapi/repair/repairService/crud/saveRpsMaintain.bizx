@@ -652,6 +652,7 @@
     </sourceConnections>
     <targetConnections>link54</targetConnections>
     <targetConnections>link70</targetConnections>
+    <targetConnections>link71</targetConnections>
     <location x="289" y="387"/>
     <size height="28" width="28"/>
     <nodeLabel>assign12label</nodeLabel>
@@ -1311,6 +1312,16 @@
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query">maintain/billTypeId</process:leftOperand>
           <process:rightOperand type="literal">3</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link71" name="link71" displayName="连接线" type="transition">
+      <sourceNode>assign31</sourceNode>
+      <targetNode>assign12</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">maintain/billTypeId</process:leftOperand>
+          <process:rightOperand type="literal">5</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>

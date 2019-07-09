@@ -614,7 +614,7 @@ function getLastLog(){
         success:function(text)
         {
             var data = text.data||{};
-            if (data) {
+            if (data && data.content) {
             	nui.open({
                     url: webPath + contextPath + "/com.hs.common.updateLogTip.flow?token="+token,
                     title: "系统通知", width: 600, height: 550,

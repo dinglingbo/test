@@ -14,7 +14,7 @@
     <script>
 		var defDomin = "<%=request.getContextPath()%>";
 	</script>
-    <script src="<%=webPath + contextPath%>/auth/js/roleMgr.js?v=1.0.0" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/auth/js/roleMgr.js?v=1.0.1" type="text/javascript"></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style type="text/css">
     body {
@@ -58,15 +58,14 @@
     <div class="nui-splitter" style="width: 100%; height: 100%;">
         <div size="270" showcollapsebutton="true">
             <div class="nui-toolbar"  >
-                <a class="nui-button" plain="true" onclick="queryRole()"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
-                <a class="nui-button" plain="true" onclick="editRole('new')"><i class="fa fa-plus"></i>&nbsp;新增</a>
-                <a class="nui-button" plain="true" onclick="editRole('edit')"><i class="fa fa-pencil"></i>&nbsp;修改</a>
-                <a class="nui-button" plain="true" onclick="deleteRole()"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
-
+               
+                <input class="nui-textbox" id="tenantId" name="tenantId" width="100" emptyText="租户ID" onenter="queryTenant">
+                 <a class="nui-button" iconCls="" plain="true" onclick="queryTenant"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                <!-- <a class="nui-button" plain="true" onclick="queryRole()"><i class="fa fa-refresh"></i>&nbsp;刷新</a> -->
             </div>
             <div class="nui-fit" >
             <div id="leftGrid" class="nui-datagrid" dataField="rs" style="width: 100%; height: 100%;" 
-                idField="roleId" allowResize="true"
+                idField="tenantId" allowResize="true"
                 sizeList="[20,50,100]" 
                 pageSize="20" 
                 totalField="page.count" 
@@ -76,28 +75,25 @@
                 
                 <div property="columns">
                     <div type="indexcolumn" name="index" width="30px" headeralign="center" >  <strong>序号</strong></div>
-                    <div field="roleId" width="140" headeralign="left" visible="false"><strong>角色名称</strong></div>
-                    <div field="roleCode" width="140" headeralign="left" visible="false"><strong>角色编码</strong></div>
+                    <div field=tenantName width="140" headeralign="left" ><strong>租户名称</strong></div>
+                    <div field="tenantType" width="140" headeralign="left" visible="false"><strong>租户类型</strong></div>
                     <div field="tenantId" width="140" headeralign="left" visible="false"><strong>租户ID</strong></div>
-                    <div field="roleName" width="140" headeralign="left" ><strong>角色名称</strong></div>
-                    <div field="roleDesc" width="140" headeralign="left" visible="false"><strong>角色描述</strong></div>
                 </div>
             </div> 
             </div>
-
         </div>
         <div showcollapsebutton="true">
             <div id="mainTabs" name="mainTabs" class="nui-tabs" activeIndex="0" style="width:100%;height:100%;padding:0px;" bodyStyle="padding:0;border:0;" onactivechanged="ontopTabChanged">
-                <div title="PC权限" name="resTab"  url=""></div>
-                <div title="APP权限" name="appTab"  url=""></div>
-                <div title="员工" name="userTab" url=""></div>
+                <div title="角色" name="role"  url=""></div>
+                <div title="资源" name="resauth"  url=""></div>
+                <div title="角色对应资源" name="roleResauth" url=""></div>
              </div>
         </div>
 </div>
 <div id="roleForm" class="nui-window" title="窗体" style="width:500px;height:200px;"  allowDrag="true" >
     <input id="roleId" name="roleId" class="nui-hidden" />
     <input id="roleCode" name="roleCode" class="nui-hidden" />
-    <input id="tenantId" name="tenantId" class="nui-hidden" />
+   <!--  <input id="tenantId" name="tenantId" class="nui-hidden" /> -->
     <table style="table-layout: fixed; border-collapse:separate;border-spacing:5px; ">
         <tr>
             <td style="width: 90px;text-align:right">角色名称：</td>

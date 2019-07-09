@@ -18,14 +18,14 @@ var memberLever=[];
 var isCanSettle ;
 var isCanfreeCarnovin;
 $(document).ready(function(v) {
-	isShowOwnBill=nui.get("isShowOwnBill");
+	/*isShowOwnBill=nui.get("isShowOwnBill");
 	isAllowRemind=nui.get("isAllowRemind");
 	isCanSettle=nui.get("isCanSettle");
 	isCanfreeCarnovin=nui.get("isCanfreeCarnovin");
 	isShowOwnBill.setData(isservicelist);
 	isAllowRemind.setData(isservicelist);
 	isCanSettle.setData(isservicelist);	
-	isCanfreeCarnovin.setData(isservicelist);
+	isCanfreeCarnovin.setData(isservicelist);*/
 	isservice=nui.get("isArtificer");
 	sex=nui.get("sex");
 	sex.setData(sexlist);

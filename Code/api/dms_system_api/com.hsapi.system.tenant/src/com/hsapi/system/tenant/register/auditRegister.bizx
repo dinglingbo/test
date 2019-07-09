@@ -585,6 +585,10 @@
       <process:from type="literal" pattern="reference">k2xvHUmCHWw=</process:from>
       <process:to type="query">emp/loginPwd</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">capUser/operatorId</process:from>
+      <process:to type="query">emp/userId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
     <location x="893" y="306"/>

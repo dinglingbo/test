@@ -12,7 +12,7 @@
 <head>
     <title>员工管理</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />	
-    <script src="<%=webPath + contextPath%>/common/js/employeeQuery.js?v=2.1.27" type="text/javascript"></script>    
+    <script src="<%=webPath + contextPath%>/common/js/employeeQuery.js?v=2.1.29" type="text/javascript"></script>    
         <style type="text/css">
 
         #wechatTag1{
@@ -30,11 +30,23 @@
 			<tr>
 				<td style="white-space:nowrap;">
 					<label style="font-family:Verdana;">姓名：</label>
-					<input class="nui-textbox" id="name" name="meberName" onenter="search()"/>
-					<label style="font-family:Verdana;">电话：</label>
-					<input class="nui-textbox" id="mobile" name="mobile" onenter="search()" />
-					<input name="isDimission" id="isDimission" class="nui-combobox width1" textField="value" valueField="id" 
-                        emptyText="是否离职" url=""  allowInput="true" showNullItem="false" width="160" valueFromSelect="true" onvaluechanged="search()"/>
+					<input class="nui-textbox" width="100px" id="name" name="meberName" onenter="search()"/>
+					<label style="font-family:Verdana;">手机号码：</label>
+					<input class="nui-textbox" width="100px" id="mobile" name="mobile" onenter="search()" />
+					<label style="font-family:Verdana;">是否离职：</label>
+					<input name="isDimission" width="60px" id="isDimission" class="nui-combobox width1" textField="value" valueField="id" 
+                        emptyText="" url=""  allowInput="true" showNullItem="false" width="160" valueFromSelect="true" onvaluechanged="search()"/>
+					<label style="font-family:Verdana;">是否服务技师：</label>
+					<input name="isArtificer" width="60px" id="isArtificer" class="nui-combobox width1" textField="value" valueField="id" 
+                        emptyText="" url=""  allowInput="true" showNullItem="false" width="160" valueFromSelect="true" onvaluechanged="search()"/>
+					<label style="font-family:Verdana;">是否服务顾问：</label>
+					<input name="isMtadvisor" width="60px" id="isMtadvisor" class="nui-combobox width1" textField="value" valueField="id" 
+                        emptyText="" url=""  allowInput="true" showNullItem="false" width="160" valueFromSelect="true" onvaluechanged="search()"/>
+					<label style="font-family:Verdana;">是否采购/仓库：</label>
+					<input name="isPchsStock" width="60px" id="isPchsStock" class="nui-combobox width1" textField="value" valueField="id" 
+                        emptyText="" url=""  allowInput="true" showNullItem="false" width="160" valueFromSelect="true" onvaluechanged="search()"/>
+					
+					
 					<input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
                         emptyText="选择公司" url=""  allowInput="true" showNullItem="false" width="160" valueFromSelect="true" onvaluechanged="search()"/>
 					<a class="nui-button"  iconCls="" onclick="search()" plain="true"><span class="fa fa-search"></span>&nbsp;查询</a>
@@ -78,20 +90,25 @@
 
 			<div property="columns">
 				
-						<div type="checkcolumn">选择</div>
-						<div id="empid" field="empid" headerAlign="center" allowSort="true"  width="40px" visible="false">id</div>
-						<div id="name" field="name" headerAlign="center" allowSort="true" visible="true" width="40px">姓名</div>
-						<div id="compShortName" field="compShortName" headerAlign="center" allowSort="true" visible="true" width="60px">所属机构</div>
-						<div id="sex" field="sex" headerAlign="center" allowSort="true" visible="true" width="20px">性别</div>
-						<div id="idcardno" field="idcardno" headerAlign="center" allowSort="true" visible="true" width="80px">身份证</div>
-						<div id="birthday" field="birthday" headerAlign="center" allowSort="true" visible="true" dateFormat="yyyy-MM-dd" width="60px">生日</div>
-						<div id="tel" field="tel" headerAlign="center" allowSort="true" visible="true" width="60px">电话</div>
-						<div id="isDimission" field="isDimission" headerAlign="center" allowSort="true" visible="true" width="40px">是否离职</div>
-						<div id="isOpenAccount" field="isOpenAccount" headerAlign="center" allowSort="true" visible="true" width="50px">是否开通系统</div>
-						<div id="imCode" field="imCode" headerAlign="center" allowSort="true" visible="true" width="50px">是否开通IM</div>
-						<div id="systemAccount" field="systemAccount" headerAlign="center" allowSort="true" visible="true" width="50px">登陆账号</div>
-						<div id="recorder" field="recorder" headerAlign="center" allowSort="true" visible="true" width="60px">建档人</div>
-						<div id="recordDate" field="recordDate" headerAlign="center" allowSort="true" visible="true" width="60px" dateFormat="yyyy-MM-dd HH:mm">建档日期</div>
+				<div type="checkcolumn">选择</div>
+				<div id="empid" field="empid" headerAlign="center" allowSort="true"  width="60px" visible="false">id</div>
+				<div id="name" field="name" headerAlign="center" allowSort="true" visible="true" width="60px">姓名</div>
+				<div id="tel" field="tel" headerAlign="center" allowSort="true" visible="true" width="100px">手机号码</div>
+				<div id="sex" field="sex" headerAlign="center" allowSort="true" visible="true" width="20px">性别</div>
+				<div id="isArtificer" field="isArtificer" headerAlign="center" allowSort="true" visible="true" width="40px">服务技师</div>
+				<div id="isMtadvisor" field="isMtadvisor" headerAlign="center" allowSort="true" visible="true" width="40px">服务顾问</div>
+				<div id="isStockman" field="isStockman" headerAlign="center" allowSort="true" visible="true" width="40px">允许领料</div>
+				<div id="isCanfreeCarnovin" field="isCanfreeCarnovin" headerAlign="center" allowSort="true" visible="true" width="40px">车牌号车架号是否允许自由输入</div>
+				<div id="isCanSettle" field="isCanSettle" headerAlign="center" allowSort="true" visible="true" width="40px">工单是否允许直接结算</div>
+				<div id="isPchsStock" field="isPchsStock" headerAlign="center" allowSort="true" visible="true" width="40px">采购/仓库</div>
+				<div id="birthday" field="birthday" headerAlign="center" allowSort="true" visible="true" dateFormat="yyyy-MM-dd" width="60px">生日</div>
+				<div id="systemAccount" field="systemAccount" headerAlign="center" allowSort="true" visible="true" width="100px">登陆账号</div>
+				<div id="isOpenAccount" field="isOpenAccount" headerAlign="center" allowSort="true" visible="true" width="50px">是否开通系统</div>
+				<div id="imCode" field="imCode" headerAlign="center" allowSort="true" visible="true" width="50px">是否开通IM</div>
+				<div id="isDimission" field="isDimission" headerAlign="center" allowSort="true" visible="true" width="40px">是否离职</div>
+				<div id="compShortName" field="compShortName" headerAlign="center" allowSort="true" visible="true" width="60px">所属机构</div>
+				<div id="recorder" field="recorder" headerAlign="center" allowSort="true" visible="true" width="60px">建档人</div>
+				<div id="recordDate" field="recordDate" headerAlign="center" allowSort="true" visible="true" width="100px" dateFormat="yyyy-MM-dd HH:mm">建档日期</div>							
 		
 				
 			</div>

@@ -243,8 +243,14 @@
 		<isNotNull property="isArtificer">
 			AND a.is_artificer = #isArtificer#
 		</isNotNull>
+		<isNotNull property="isStockman">
+			AND a.is_stockman = #isStockman#
+		</isNotNull>
 		<isNotNull property="isSalesman">
 			AND a.is_salesman = #isSalesman#
+		</isNotNull>
+		<isNotNull property="isPchsStock">
+			AND a.is_pchs_stock = #isPchsStock#
 		</isNotNull>
     </select>
     <!--业务分类   is_disabled = 0 -->

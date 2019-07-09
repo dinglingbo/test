@@ -118,6 +118,7 @@
 			a.im_code as imCode,
 			a.im_disabled as imDisabled,
 			a.is_can_below_cost as isCanBelowCost,
+			a.is_pchs_stock as isPchsStock,
 			b.`code` as compCode,
 			b.`name` as compName,
 			b.short_name as compShortName
@@ -146,6 +147,15 @@
               </isNotEmpty>
                <isNotEmpty prepend="and" property="isDimission">  
                     (a.is_dimission = #isDimission#)
+              </isNotEmpty>
+               <isNotEmpty prepend="and" property="isArtificer">  
+                    (a.is_artificer = #isArtificer#)
+              </isNotEmpty>
+               <isNotEmpty prepend="and" property="isMtadvisor">  
+                    (a.is_mtadvisor = #isMtadvisor#)
+              </isNotEmpty>
+               <isNotEmpty prepend="and" property="isPchsStock">  
+                    (a.is_pchs_stock = #isPchsStock#)
               </isNotEmpty>
               order by EMPid
     </select>

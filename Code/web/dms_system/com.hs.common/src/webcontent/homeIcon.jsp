@@ -14,7 +14,7 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%=webPath + contextPath%>/common/js/homeIcon.js?v=1.0.7"></script>
+            <script src="<%=webPath + contextPath%>/common/js/homeIcon.js?v=1.0.9"></script>
 		<script src="<%=webPath + contextPath%>/common/js/jquery-1.11.3.min.js?v=1.0.3"></script>
 		<script src="<%=webPath + contextPath%>/common/js/jquery.dad.min.js?v=1.0.3"></script>
             <style>
@@ -81,7 +81,7 @@
 				.demo .item2 { background-color: #ff2e12;}
 				.demo .item3 { background-color: #00c13f;}
 				.demo .item4 { background-color: #e1b700;} */
-				 .demo span { display: block; height: 40px; line-height: 40px; font-size: 15px; text-align: center; color: #fff;}  
+				 .demo span { display: block; height: 40px; line-height: 40px; font-size: 12px; text-align: center; color: #fff;}  
             </style>
     </head>
 

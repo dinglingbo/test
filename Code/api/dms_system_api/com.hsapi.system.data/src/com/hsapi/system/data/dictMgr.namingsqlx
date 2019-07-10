@@ -221,7 +221,12 @@
     <select id="queryComMember" parameterClass="HashMap" resultClass="HashMap">
     	SELECT
 			a.empid as empId,
-			a.`name` as empName
+			a.`name` as empName,
+			a.user_id as userId,
+			a.open_id as openId,
+			a.wechat as wechat,
+			a.tel as tel,
+			a.system_account as systemAccount
 		FROM
 		com_member AS a
 		WHERE 1=1 and a.is_dimission = 0
@@ -253,6 +258,138 @@
 			AND a.is_pchs_stock = #isPchsStock#
 		</isNotNull>
     </select>
+    <!--根据empId查询员工信息-->
+    <select id="queryComMemberByEmpId" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT
+			a.empid as empId,
+			a.tenant_id as tenantId,
+			a.orgid as orgid,
+			a.`name` as name,
+			a.sex as sex,
+			a.idcardno as idcardno,
+			a.birthday as birthday,
+			a.tel as tel,
+			a.user_id as userId,
+			a.is_dimission as isDimission,
+			a.is_open_account as isOpenAccount,
+			a.is_mtadvisor as isMtadvisor,
+			a.is_artificer as isArtificer,
+			a.is_stockman as isStockman,
+			a.is_salesman as isSalesman,
+			a.member_group_id as memberGroupId,
+			a.member_level_id as memberLevelId,
+			a.integral_discount_max as integralDiscountMax,
+			a.item_discount_rate as itemDiscountRate,
+			a.part_discount_rate as partDiscountRate,
+			a.free_discount_max as freeDiscountMax,
+			a.cash_discount_max as cashDiscountMax,
+			a.display_remind_tag as displayRemindTag,
+			a.display_business_tag as displayBusinessTag,
+			a.display_bill_tag as displayBillTag,
+			a.system_account as systemAccount,
+			a.login_pwd as loginPwd,
+			a.authorize_pwd as authorizePwd,
+			a.wechat as wechat, 
+			a.open_id as openId,
+			a.urgency_person as urgencyPerson,
+			a.urgency_person_phone as urgencyPersonPhone,
+			a.is_allow_remind as isAllowRemind,
+			a.is_show_own_bill as isShowOwnBill,
+			a.is_can_settle as isCanSettle,
+			a.is_can_below_cost as isCanBelowCost,
+			a.is_canfree_carnovin as isCanfreeCarnovin,
+			a.is_pchs_stock as isPchsStock,
+			a.head_portrait as headPortrait,
+			a.background_color as backgroundColor,
+			a.im_code as imCode,
+			a.im_disabled as imDisabled,
+			a.is_read_sysmsg as isReadSysmsg,
+			a.recorder as recorder,
+			a.record_date as recordDate,
+			a.modifier as modifier,
+			a.modify_date as modifyDate,
+			a.is_open_app as isOpenApp
+		FROM
+			com_member AS a
+		where 1 = 1
+		<isNotNull property="empId">
+			AND a.empid = #empId#
+		</isNotNull>
+		<isNotNull property="systemAccount">
+			AND a.system_account = #systemAccount#
+		</isNotNull>
+		
+
+    </select>
+    
+    <!--根据empId查询员工信息-->
+    <select id="queryComCompany" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT
+			a.orgid as orgid,
+			a.tenant_id as tenantId,
+			a.`code` as code,
+			a.`name` as name,
+			a.short_name as shortName,
+			a.province_id as provinceId,
+			a.city_id as cityId,
+			a.county_id as countyId,
+			a.street_address as streetAddress,
+			a.address as address,
+			a.longitude as longitude,
+			a.latitude as latitude,
+			a.tel as tel,
+			a.fax as fax,
+			a.bank_name as bankName,
+			a.bank_account_number as bankAccountNumber,
+			a.main_brand_id AS mainBrandId,
+			a.webaddress as webaddress,
+			a.wechat_img as wechatImg,
+			a.logo_img as logoImg,
+			a.soft_open_date as softOpenDate,
+			a.part_expire_date as partExpireDate,
+			a.is_open_system as isOpenSystem,
+			a.is_open_process as isOpenProcess,
+			a.is_unify_financial as isUnifyFinancial,
+			a.is_account as isAccount,
+			a.sett_comp_code as settCompCode,
+			a.unsalable_days as unsalableDays,
+			a.widen_tax_rate as widenTaxRate,
+			a.part_manage_rate as partManageRate,
+			a.complain_tel as complainTel,
+			a.rescue_tel as rescueTel,
+			a.user_qty as userQty,
+			a.report_title as reportTitle,
+			a.slogan1 as slogan1,
+			a.slogan2 as slogan2,
+			a.is_data_share as isDataShare,
+			a.e_record_province as eRecordProvince,
+			a.e_record_repair_no as eRecordRepairNo,
+			a.e_record_user as eRecordUser,
+			a.e_record_pwd as eRecordPwd,
+			a.e_token_url as eTokenUrl,
+			a.e_push_url as ePushUrl,
+			a.is_master as isMaster,
+			a.remark as remark,
+			a.property_name as propertyName,
+			a.srm_company_id as srmCompanyId,
+			a.srm_guest_id as srmGuestId,
+			a.srm_user_id as srmUserId,
+			a.srm_user_pd as srmUserPd,
+			a.srm_modifier as srmModifier,
+			a.srm_modify_date as srmModifyDate,
+			a.agency_id as agencyId,
+			a.recorder as recorder,
+			a.record_date as recordDate,
+			a.modifier as modifier,
+			a.modify_date as modifyDate
+		FROM
+			com_company AS a
+		WHERE a.orgid = #orgid#
+		
+
+    </select>
+    
+    
     <!--业务分类   is_disabled = 0 -->
     <select id="getServiceType" parameterClass="HashMap" resultClass="HashMap">
         SELECT id as id, name as name 

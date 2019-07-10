@@ -33,7 +33,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="commonj.sdo.DataObject[]" name="data" type="query" valueType="Java">data</process:return>
+      <process:return id="0" language="java.util.HashMap[]" name="data" type="query" valueType="Java">data</process:return>
       <process:return id="1" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="2" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
     </process:returns>
@@ -48,100 +48,26 @@
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="getRedisCacheBasic" displayName="getRedisCacheBasic" collapsed="false" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess0</sourceNode>
-      <targetNode>assign2</targetNode>
-      <process:transitionCondition/>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="连接线" type="transition">
-      <sourceNode>subprocess0</sourceNode>
-      <targetNode>invokePojo0</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NULLOREMPTY">
-          <process:leftOperand type="query">data</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <targetConnections>link1</targetConnections>
-    <targetConnections>link7</targetConnections>
-    <location x="360" y="150"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="6" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hs.common.uitls.getRedisCacheBasic</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="dsName" type="literal" value="String" valueType="Primitive" pattern="reference">common</process:inputVariable>
-        <process:inputVariable id="1" name="nameSqlId" type="literal" value="String" valueType="Primitive" pattern="reference">com.hsapi.system.tenant.permissionsMgr.queryStockman</process:inputVariable>
-        <process:inputVariable id="2" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">p</process:inputVariable>
-        <process:inputVariable id="3" name="title" type="literal" value="String" valueType="Primitive" pattern="reference">领料人数据</process:inputVariable>
-        <process:inputVariable id="4" name="fromDb" type="literal" value="String" valueType="Primitive" pattern="reference">false</process:inputVariable>
-        <process:inputVariable id="5" name="expireTimes" type="literal" value="Int" valueType="Primitive" pattern="reference">-1</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="data" type="query" value="commonj.sdo.DataObject[]" valueType="Java">data</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
-        <process:outputVariable id="2" name="errCode" type="query" value="String" valueType="Primitive"/>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="315" y="185"/>
-    <figSize height="17" width="117"/>
-    <node>subprocess0</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
-      <targetNode>subprocess0</targetNode>
+      <targetNode>subprocess1</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="208" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">orgid</process:from>
-      <process:to type="query">p/orgid</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="210" y="186"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="queryByNamedSql" displayName="queryByNamedSql" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo0</sourceNode>
-      <targetNode>assign2</targetNode>
-    </sourceConnections>
-    <targetConnections>link5</targetConnections>
-    <location x="484" y="60"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo0label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.queryByNamedSql</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">common</process:inputVariable>
-      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.system.tenant.permissionsMgr.queryStockman</process:inputVariable>
-      <process:inputVariable id="2" name="parameterObject" type="query" value="java.lang.Object" valueType="Java" pattern="reference">p</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="java.lang.Object[]" valueType="Java">data</process:outputVariable>
-    </process:outputVariables>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="441" y="96"/>
-    <figSize height="17" width="109"/>
-    <node>invokePojo0</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
-      <targetNode>subprocess0</targetNode>
+      <targetNode>subprocess1</targetNode>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
     <location x="208" y="240"/>
@@ -150,10 +76,6 @@
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">orgid</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">orgid</process:from>
-      <process:to type="query">p/orgid</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -166,20 +88,53 @@
       <sourceNode>assign2</sourceNode>
       <targetNode>end0</targetNode>
     </sourceConnections>
-    <targetConnections>link8</targetConnections>
     <targetConnections>link2</targetConnections>
     <location x="675" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">S</process:from>
-      <process:to type="query">errCode</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="673" y="186"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="queryMember" displayName="queryMember" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess1</sourceNode>
+      <targetNode>assign2</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link7</targetConnections>
+    <targetConnections>link1</targetConnections>
+    <location x="379" y="151"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess1label</nodeLabel>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.system.dict.org.queryMember</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="orgid" type="query" value="String" valueType="Primitive" pattern="reference">orgid</process:inputVariable>
+        <process:inputVariable id="1" name="fromDb" type="literal" value="Boolean" valueType="Primitive" pattern="reference">false</process:inputVariable>
+        <process:inputVariable id="2" name="memberGroupId" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="3" name="memberLevelId" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="4" name="isMtadvisor" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="5" name="isArtificer" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="6" name="isStockman" type="literal" value="String" valueType="Primitive" pattern="reference">1</process:inputVariable>
+        <process:inputVariable id="7" name="isSalesman" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="8" name="isPchsStock" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="9" name="empId" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="10" name="systemAccount" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="data" type="query" value="java.util.HashMap[]" valueType="Java">data</process:outputVariable>
+        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
+    <location x="350" y="186"/>
+    <figSize height="17" width="84"/>
+    <node>subprocess1</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -191,7 +146,7 @@
     <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
-    <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="data"/>
+    <process:output anyType="java.util.HashMap" description="" isArray="true" name="data"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
   </process:outputs>

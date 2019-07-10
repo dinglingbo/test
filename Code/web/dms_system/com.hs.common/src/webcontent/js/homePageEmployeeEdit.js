@@ -19,6 +19,7 @@ $(document).ready(function(v) {
 	isAllowRemind=nui.get("isAllowRemind");
     isShowOwnBill.setData(isservicelist);
     
+    document.getElementById("wechatServiceCode").src = wechatCodeUrl;
     document.getElementById("wechatCode").src = wechatCodeUrl;
 	isAllowRemind.setData(isservicelist);
 
@@ -147,8 +148,10 @@ function updatePassWord(){
 }
 
 function showCode() {
-    $("#cover").show();
+    // $("#cover").show();
+    document.getElementById("cover").style.display = 'flex';
 }
 function hideCode() {
-    $("#cover").hide();
+    // $("#cover").hide();
+    document.getElementById("cover").style.display = 'none';
 }

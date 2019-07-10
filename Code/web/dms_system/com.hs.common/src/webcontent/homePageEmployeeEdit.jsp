@@ -12,7 +12,7 @@
 <head>
     <title>添加员工</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/js/homePageEmployeeEdit.js?v=1.0.9" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/common/js/homePageEmployeeEdit.js?v=1.1.0" type="text/javascript"></script>
     <style type="text/css">
     .table-text-width{
         width:18%;
@@ -32,16 +32,21 @@
         opacity:0.8;  /*非IE浏览器下设置透明度为70%*/
         display:none; 
         z-Index:999;  
-        text-align: center;
+        /* display: flex; */
+        align-items: center;
+        justify-content:center;
     }
-    #wechatCode{
+    .code-style{
         width:180px;
         height:180px;
+        left:37%;
+    }
+    #tip{
         position: absolute;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-        left:37%
+        left: 10;
+        color: white;
+        font-size: 16px;
+        text-shadow: 0px 0px 8px #fff;
     }
     </style>
 </head>
@@ -112,7 +117,12 @@
             </table>
         </div>
         <div id="cover" onclick="hideCode()">
-            <img id="wechatCode" > </img>
+            <div id="tip">
+                <p>1、绑定服务号</p>
+                <p>2、绑定微信号</p>
+            </div>
+            <img id="wechatServiceCode" class="code-style" title="绑定服务号"/>
+            <img id="wechatCode" class="code-style" title="绑定微信号" style="margin-left:50px;"/>
         </div>
     </div>
     <script type="text/javascript">

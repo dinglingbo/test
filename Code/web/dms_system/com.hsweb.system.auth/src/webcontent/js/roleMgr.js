@@ -166,7 +166,7 @@ function loadResAndUser(row) {
         }else if(tab.name == "resauth"){
             mainTabs.loadTab(webPath + defDomin + "/common/function/tenant_function.jsp?tenantId="+tenantId+"&tenantType="+tenantType+"&token="+token, tab);   
         }else if(tab.name == "roleResauth"){
-            mainTabs.loadTab(webPath + defDomin + "/common/function/app_role_auth.jsp?roleId="+roleId+"&roleCode="+roleCode+"&roleName="+roleName+"&tenantId="+tenantId+"&token="+token, tab);   
+            mainTabs.loadTab(webPath + defDomin + "/common/function/role_right_mgrt.jsp?tenantId="+tenantId+"&tenantType="+tenantType+"&token="+token, tab);   
         }
     } else {
     	//showMsg("请选择一个租户","W");
@@ -185,7 +185,7 @@ function ontopTabChanged(e){
     }else if(name == "resauth"){
         mainTabs.loadTab(webPath + defDomin + "/common/function/tenant_function.jsp?tenantId="+tenantId+"&tenantType="+tenantType+"&token="+token, tab);   
     }else if(name == "roleResauth"){
-        mainTabs.loadTab(webPath + defDomin + "/common/function/app_role_auth.jsp?roleId="+roleId+"&roleCode="+roleCode+"&roleName="+roleName+"&tenantId="+tenantId+"&token="+token, tab);   
+    	 mainTabs.loadTab(webPath + defDomin + "/common/function/role_right_mgrt.jsp?tenantId="+tenantId+"&tenantType="+tenantType+"&token="+token, tab);   
     }
     
 }

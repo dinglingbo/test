@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryStockman" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="com.hsapi.system.data.dictMgr.queryComMember" title="Administrator&#x9;19-7-9 下午5:32">
+    <location x="78" y="341"/>
+    <size height="100" width="418"/>
+  </nodes>
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="查询领料人&#xD;&#xA;com.hsapi.system.tenant.permissionsMgr.queryStockman" title="Administrator&#x9;19-3-20 下午11:35">
     <location x="15" y="15"/>
     <size height="91" width="391"/>

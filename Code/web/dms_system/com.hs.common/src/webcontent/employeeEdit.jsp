@@ -12,14 +12,17 @@
 <head> 
     <title>添加员工</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/js/employeeEdit.js?v=1.1.12" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/common/js/employeeEdit.js?v=1.1.14" type="text/javascript"></script>
   	<script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
   	<script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
  	<script src="<%= request.getContextPath() %>/common/qiniu/qiniu1.0.14.js" type="text/javascript"></script>
   	<script src="https://cdn.staticfile.org/plupload/2.1.9/moxie.js"></script>
  	<script src="https://cdn.staticfile.org/plupload/2.1.9/plupload.dev.js"></script>  
     <style type="text/css">
-</style>
+    	.fwidthb{
+		    width: 150px;
+		}
+	</style>
 </head>
 <body>
     <div class="nui-fit"> 
@@ -95,15 +98,6 @@
                 <td colspan="2"><input class="nui-textbox" name="openId" id="openId" enabled="false"/></td>
             </tr>
             <tr>
-                        <td align="right">显示个人单据：</td>
-                        <td>
-                       		 <input class="nui-combobox"  required="false" id="isShowOwnBill" name="isShowOwnBill" textField="name"  value="1" valueField="id" />
-                       		 <input class="nui-textbox" required="false" id="empid" name="empid" vtype="int" onvalidation="onempid" visible="false" emptyText="系统自动分配"/>
-                        </td>
-                        <td align="right">允许消息通知：</td>
-                        <td><input class="nui-combobox"  required="false" id="isAllowRemind" name="isAllowRemind" textField="name"  value="1" valueField="id" /></td>
-             </tr>
-            <tr>
                 <td align="right">紧急联系人：<span></span></td>
                 <td ><input class="nui-textbox" name="urgencyPerson" id="urgencyPerson" vtype="maxLength:20"/></td>
                 <td align="right"><font color="red">紧急联系人电话：</font></td>
@@ -116,47 +110,57 @@
     <fieldset id="fd1" style="width:600px;">
         <legend><span>其它信息</span></legend>
         <table>
+            <tr>
+                <td align="right" class="fwidthb">是否服务顾问：</td>
+                <td >
+                	<div  class="nui-checkbox" id="isMtadvisor" name="isMtadvisor" value="0" trueValue="1" falseValue="0"></div>
+                </td>
+                <td align="right" class="fwidthb">是否允许领料：</td>
+                <td >
+                	<div  class="nui-checkbox" id="isStockman" name="isStockman" value="0" trueValue="1" falseValue="0"></div>
+                </td>
+            </tr> 
              <tr>
-                <td align="right">工单是否允许直接结算：</td>
-                <td>
-               		 <input class="nui-combobox"  required="false" id="isCanSettle" name="isCanSettle" textField="name"  value="0" valueField="id" />
+                <td align="right" class="fwidthb">车牌号车架号是否允许自由输入：</td>
+                <td >
+                	<div  class="nui-checkbox" id="isCanfreeCarnovin" name="isCanfreeCarnovin" value="0" trueValue="1" falseValue="0">
+                </td>
+                <td align="right" class="fwidthb">工单是否允许直接结算：</td>
+                <td >
+                	<div  class="nui-checkbox" id="isCanSettle" name="isCanSettle" value="0" trueValue="1" falseValue="0">
                 </td>
                
-             </tr>
-             <tr>
-                <td align="right">车牌号车架号是否允许自由输入：</td>
-                <td>
-               		 <input class="nui-combobox"  required="false" id="isCanfreeCarnovin" name="isCanfreeCarnovin" textField="name"  value="0" valueField="id" />
-                </td>
-               
-             </tr>
-            <tr>
-                <td align="right">是否服务顾问：</td>
-                <td><div  class="nui-checkbox" id="isMtadvisor" name="isMtadvisor" value="0" trueValue="1" falseValue="0"></div>
-            </tr> 
-            <tr>
-                <td align="right">允许领料：</td>
-                <td><div  class="nui-checkbox" id="isStockman" name="isStockman" value="0" trueValue="1" falseValue="0"></div>
-            </tr> 
-            <tr>
-                <td align="right">积分抵扣上限金额：<span></span></td>
-                <td><input class="nui-textbox" name="integralDiscountMax" id="integralDiscountMax" onvalidation="onRateValidation" value="0" required="true" vtype="range:0,1000000"/>元</td>
             </tr>
             <tr>
-                <td align="right">项目优惠率最高上限：</td>
-                <td><input class="nui-textbox" name="itemDiscountRate" id="itemDiscountRate" onvalidation="onRateValidation" value="0" required="true"  vtype="range:0,100">%</td>
+                <td align="right" class="fwidthb">是否采购/仓库：</td>
+                <td ><div  class="nui-checkbox" id="isPchsStock" name="isPchsStock" value="0" trueValue="1" falseValue="0"></td>
+	            <td align="right" class="fwidthb">显示个人单据：</td>
+	            <td >
+	            	<div  class="nui-checkbox" id="isShowOwnBill" name="isShowOwnBill" value="0" trueValue="1" falseValue="0">
+	           		 <input class="nui-textbox" required="false" id="empid" name="empid" vtype="int" onvalidation="onempid" visible="false" emptyText="系统自动分配"/>
+	            </td> 
             </tr>
             <tr>
-                <td align="right">配件优惠率最高上限：</td>
-                <td><input class="nui-textbox" name="partDiscountRate" id="partDiscountRate" onvalidation="onRateValidation" value="0" required="true"  vtype="range:0,100"/>%</td>
+                <td align="right" class="fwidthb">允许消息通知：</td>
+                <td ><div  class="nui-checkbox" id="isAllowRemind" name="isAllowRemind" value="0" trueValue="1" falseValue="0"></td>
             </tr>
             <tr>
-                <td align="right">整单全免上限金额：<span></span></td>
-                <td><input class="mini-textbox" id="freeDiscountMax" name="freeDiscountMax" onvalidation="onRateValidation" value="0" required="true" vtype="range:0,1000000"/>元</td>
+                <td align="right" class="fwidthb">整单全免上限金额：<span></span></td>
+                <td ><input class="mini-textbox" width="100px" id="freeDiscountMax" name="freeDiscountMax" onvalidation="onRateValidation" value="0" required="true" vtype="range:0,1000000"/>元</td>
+            
+                <td align="right" class="fwidthb">收银优惠上限金额：</td>
+                <td ><input class="mini-textbox" width="100px" name="cashDiscountMax" id="cashDiscountMax" onvalidation="onRateValidation" value="0" required="true" vtype="range:0,1000000"/>元</td>
             </tr>
             <tr>
-                <td align="right">收银优惠上限金额：</td>
-                <td><input class="mini-textbox" name="cashDiscountMax" id="cashDiscountMax" onvalidation="onRateValidation" value="0" required="true" vtype="range:0,1000000"/>元</td>
+                <td align="right" class="fwidthb">项目优惠率最高上限：</td>
+                <td ><input class="nui-textbox" width="100px" name="itemDiscountRate" id="itemDiscountRate" onvalidation="onRateValidation" value="0" required="true"  vtype="range:0,100">%</td>
+          
+                <td align="right" class="fwidthb">配件优惠率最高上限：</td>
+                <td ><input class="nui-textbox" width="100px" name="partDiscountRate" id="partDiscountRate" onvalidation="onRateValidation" value="0" required="true"  vtype="range:0,100"/>%</td>
+            </tr>
+            <tr>
+                <td align="right" class="fwidthb">积分抵扣上限金额：<span></span></td>
+                <td ><input class="nui-textbox" width="100px" name="integralDiscountMax" id="integralDiscountMax" onvalidation="onRateValidation" value="0" required="true" vtype="range:0,1000000"/>元</td>
             </tr>
         </table>
     </fieldset>

@@ -529,6 +529,7 @@
         <process:inputVariable id="1" name="guestId" type="query" value="String" valueType="Primitive" pattern="reference">mainenter/guestId</process:inputVariable>
         <process:inputVariable id="2" name="rtnQty" type="query" value="Decimal" valueType="Primitive" pattern="reference">orderdetail/orderQty</process:inputVariable>
         <process:inputVariable id="3" name="storeId" type="query" value="String" valueType="Primitive" pattern="reference">orderdetail/storeId</process:inputVariable>
+        <process:inputVariable id="4" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">mainenter/orgid</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -551,6 +552,7 @@
     <location x="551" y="151"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart2label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="details" iterableElement="orderdetail"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart2label" name="label" nodeType="label">
@@ -594,6 +596,10 @@
     <location x="712" y="67"/>
     <size height="28" width="28"/>
     <nodeLabel>assign15label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">orderdetail/partId</process:from>
+      <process:to type="query">partId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign15label" name="label" nodeType="label">
     <location x="710" y="103"/>

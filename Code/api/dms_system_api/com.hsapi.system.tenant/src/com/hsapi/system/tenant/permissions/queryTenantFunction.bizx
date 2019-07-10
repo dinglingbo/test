@@ -58,6 +58,14 @@
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[2]/_op</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">resName</process:from>
+      <process:to type="query">cond/_expr[3]/resName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">like</process:from>
+      <process:to type="query">cond/_expr[3]/_op</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="215" y="186"/>
@@ -99,6 +107,7 @@
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="tenantId" primitiveType="String"/>
     <process:input description="APP,PC" isArray="false" name="type" primitiveType="String"/>
+    <process:input description="" isArray="false" name="resName" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.system.data.sys.ComTenantMenu" name="list"/>

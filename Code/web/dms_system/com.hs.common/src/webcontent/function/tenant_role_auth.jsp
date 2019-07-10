@@ -21,11 +21,11 @@
 </script>
 </head>
 <body>
-<div class="nui-fit" style="padding:10px;">
+
 <div id="panel1" class="nui-panel" style="width:100%;height:100%;" showHeader="false"
     showToolbar="true" showCollapseButton="false" showFooter="false">
     <!--toolbar-->
-    <div property="toolbar" style="padding:10px;">
+    <div property="toolbar" style="padding:10px;height:20px;">
     	<table style="width:100%;">
                 <tr>
                 <td style="width:100%;">
@@ -63,7 +63,7 @@
             </div> 
         </div>
 </div>
-</div>
+
 </body>
 </html>
 <script type="text/javascript">
@@ -77,7 +77,10 @@
 		rightGrid = nui.get("rightGrid");
 		rightGrid.setUrl(rightGridUrl);
 		getTenantId();
-	    queryRole(); 
+	    queryRole();
+	    rightGrid.on("rowdblclick",function(e){
+		   edit();
+	    });
     });
     
     function queryRole(){
@@ -104,7 +107,7 @@
 		var row = rightGrid.getSelected();
 		if(row){
 			nui.open({
-				url : webPath + contextPath + "/common/function/editRole.jsp?token=" + token,
+				url : webPath + contextPath + "/common/function/edit_role.jsp?token=" + token,
 				title : "编辑角色信息",
 				width : 400,
 				height : 300,
@@ -128,7 +131,7 @@
 	
 	function add(){
 		nui.open({
-			url : webPath + contextPath + "/common/function/editRole.jsp?token=" + token,
+			url : webPath + contextPath + "/common/function/edit_role.jsp?token=" + token,
 			title : "新增角色信息",
 			width : 400,
 			height : 300,

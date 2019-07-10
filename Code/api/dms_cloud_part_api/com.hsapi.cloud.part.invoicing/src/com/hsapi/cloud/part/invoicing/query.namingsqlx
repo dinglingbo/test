@@ -374,7 +374,7 @@
 		FROM
 			pj_pchs_order_main_chk a
 		INNER JOIN pj_pchs_order_detail_chk  b ON a.id = b.main_id
-		INNER JOIN pj_enter_detail_chk e on e.order_main_id = a.id
+		INNER JOIN pj_enter_detail_chk e on e.order_main_id = a.id and e.order_detail_id =b.id
 		INNER JOIN wb_common.com_attribute c ON b.part_id = c.id
 		INNER JOIN wb_common.com_guest d ON a.guest_id = d.id
 		WHERE
@@ -676,7 +676,7 @@
 				 on b.part_id = c.id 
 			inner join wb_common.com_guest d 
 				 on a.guest_id = d.id
-			inner join pj_out_detail_chk e on e.order_main_id =a.id
+			inner join pj_out_detail_chk e on e.order_main_id =a.id and e.order_detail_id =b.id
 			where a.audit_sign = 1
 			and a.is_diff_order =1
 			and a.order_type_id =2
@@ -863,7 +863,7 @@
 		inner join pj_sell_order_detail_chk b 
 			 on a.id = b.main_id 
 		INNER JOIN pj_out_detail_chk e 
-			on  a.id =e.order_main_id
+			on  a.id =e.order_main_id and e.order_detail_id =b.id
 		inner join wb_common.com_attribute c 
 			 on b.part_id = c.id 
 		inner join wb_common.com_guest d 
@@ -1058,7 +1058,7 @@
 		FROM
 			pj_pchs_order_main_chk a
 		INNER JOIN pj_pchs_order_detail_chk b ON a.id = b.main_id
-		INNER JOIN pj_enter_detail_chk f on f.order_main_id =a.id
+		INNER JOIN pj_enter_detail_chk f on f.order_main_id =a.id  and f.order_detail_id =b.id
 		INNER JOIN wb_common.com_attribute c ON b.part_id = c.id
 		INNER JOIN wb_common.com_guest d ON a.guest_id = d.id
 		inner JOIN wb_common.com_guest g on f.origin_guest_id = g.id

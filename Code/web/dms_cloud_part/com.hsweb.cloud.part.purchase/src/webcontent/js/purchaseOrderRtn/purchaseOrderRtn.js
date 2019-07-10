@@ -542,6 +542,22 @@ function save() {
 		}
 	}
 
+	if(currIsOpenApp ==1){
+		// set集合
+	    var set =new  Set();
+		for(var i=0;i<rightRow.length;i++){
+			if(!rightRow[i].partId){
+				rightGrid.removeRow(rightRow[i]);
+				continue;
+			}
+			set.add(rightRow[i].partId+"-"+rightRow[i].storeId);
+		}
+		if(set.size <rightGrid.getData().length){
+			showMsg("订单明细不能出现相同配件同个仓库两次以上","W");
+			return;
+		}
+
+	}
 
     data = getMainData();
 
@@ -912,6 +928,23 @@ function audit()
 		}
 	}
 
+	if(currIsOpenApp ==1){
+		// set集合
+	    var set =new  Set();
+		for(var i=0;i<rightRow.length;i++){
+			if(!rightRow[i].partId){
+				rightGrid.removeRow(rightRow[i]);
+				continue;
+			}
+			set.add(rightRow[i].partId+"-"+rightRow[i].storeId);
+		}
+		if(set.size <rightGrid.getData().length){
+			showMsg("订单明细不能出现相同配件同个仓库两次以上","W");
+			return;
+		}
+
+	}
+	
     sellOrderDetailList = removeChanges(sellOrderDetailAdd, sellOrderDetailUpdate, sellOrderDetailDelete, sellOrderDetailList);
 
    

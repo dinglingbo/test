@@ -107,15 +107,22 @@
 	}
 
 	var saveUrl = baseUrl + "com.hsapi.system.tenant.permissions.saveBachTenantMenu.biz.ext";
+	var deleteTenantMenuUrl = baseUrl + "com.hsapi.system.tenant.tenant.deleteTenantMenu.biz.ext"; 
 	function saveMenu(){
 		var list = moreOrgGrid.getSelecteds();
+		var url = null;
+		if(tenantMenu.delet && tenantMenu.delet==1){
+		    url = deleteTenantMenuUrl;
+		}else{
+		    url = saveUrl;
+		}
 		nui.mask({
 			el : document.body,
 			cls : 'mini-mask-loading',
 			html : '保存中...'
 		});
 		nui.ajax({
-        url: saveUrl,
+        url: url,
         type: 'post',
         data: nui.encode({
         	menu:tenantMenu,

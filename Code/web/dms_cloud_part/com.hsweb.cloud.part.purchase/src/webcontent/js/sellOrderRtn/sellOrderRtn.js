@@ -851,6 +851,22 @@ function save() {
 		}
 	}
 	
+	if(currIsOpenApp ==1){
+		// set集合
+	    var set =new  Set();
+		for(var i=0;i<rightRow.length;i++){
+			if(!rightRow[i].partId){
+				rightGrid.removeRow(rightRow[i]);
+				continue;
+			}
+			set.add(rightRow[i].partId+"-"+rightRow[i].storeId);
+		}
+		if(set.size <rightGrid.getData().length){
+			showMsg("订单明细不能出现相同配件同个仓库两次以上","W");
+			return;
+		}
+
+	}
     data = getMainData();
 
     //由于票据类型可能修改，所以除了新建和删除，其他都应该是修改
@@ -1103,6 +1119,23 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 				return;
 			}
 		}
+	}
+	
+	if(currIsOpenApp ==1){
+		// set集合
+	    var set =new  Set();
+		for(var i=0;i<rightRow.length;i++){
+			if(!rightRow[i].partId){
+				rightGrid.removeRow(rightRow[i]);
+				continue;
+			}
+			set.add(rightRow[i].partId+"-"+rightRow[i].storeId);
+		}
+		if(set.size <rightGrid.getData().length){
+			showMsg("订单明细不能出现相同配件同个仓库两次以上","W");
+			return;
+		}
+
 	}
 
     nui.confirm("是否确定"+str+"?", "友情提示", function(action) {

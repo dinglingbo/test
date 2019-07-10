@@ -1035,11 +1035,12 @@
     <location x="1329" y="174"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess4label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.clearMemberCache</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="empId" type="query" value="String" valueType="Primitive" pattern="reference">emp/empid</process:inputVariable>
         <process:inputVariable id="1" name="orgid" type="query" value="String" valueType="Primitive" pattern="reference">orgid</process:inputVariable>
+        <process:inputVariable id="2" name="systemAccount" type="query" value="String" valueType="Primitive" pattern="reference">emp/systemAccount</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>

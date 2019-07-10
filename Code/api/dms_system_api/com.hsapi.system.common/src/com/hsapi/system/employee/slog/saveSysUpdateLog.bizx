@@ -86,13 +86,13 @@
     <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="insertEntity" displayName="insertEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo0</sourceNode>
-      <targetNode>invokePojo3</targetNode>
-    </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign2</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>assign3</targetNode>
     </sourceConnections>
     <targetConnections>link10</targetConnections>
     <location x="375" y="60"/>
@@ -123,7 +123,7 @@
       <targetNode>assign2</targetNode>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
-    <targetConnections>link16</targetConnections>
+    <targetConnections>link13</targetConnections>
     <location x="375" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
@@ -169,7 +169,7 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
-    <targetConnections>link13</targetConnections>
+    <targetConnections>link5</targetConnections>
     <location x="482" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
@@ -265,14 +265,6 @@
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
       <process:to type="query">updateLog/recorder</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">member/isReadSysmsg</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.system.data.sys.ComMember</process:from>
-      <process:to type="query">criteria/_entity</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
     <location x="224" y="96"/>
@@ -282,14 +274,14 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="updateEntityByCriteriaEntity" displayName="updateEntityByCriteriaEntity" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo3</sourceNode>
-      <targetNode>assign3</targetNode>
+      <targetNode>invokePojo1</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>assign2</targetNode>
     </sourceConnections>
-    <targetConnections>link5</targetConnections>
-    <location x="459" y="75"/>
+    <targetConnections>link16</targetConnections>
+    <location x="375" y="240"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -306,14 +298,14 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="390" y="111"/>
+    <location x="306" y="276"/>
     <figSize height="17" width="160"/>
     <node>invokePojo3</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign5</sourceNode>
-      <targetNode>invokePojo1</targetNode>
+      <targetNode>invokePojo3</targetNode>
     </sourceConnections>
     <targetConnections>link15</targetConnections>
     <location x="226" y="240"/>
@@ -326,6 +318,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
       <process:to type="query">updateLog/publisher</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">com.hsapi.system.data.sys.ComMember</process:from>
+      <process:to type="query">criteria/_entity</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">member/isReadSysmsg</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">

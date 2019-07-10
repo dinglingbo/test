@@ -12,7 +12,7 @@
 <title>资料管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/AddTelTrackGuest.js?v=1.0.18"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/AddTelTrackGuest.js?v=1.0.20"></script>
     <style type="text/css">
 
     .file {

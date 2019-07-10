@@ -90,6 +90,10 @@ var requiredField = {
 		serviceCode : "工单号"
 };
 function sure() {
+	if(!importTimeLimit()){
+		parent.parent.showMsg("请在规定时间内导入！","W");
+		return;
+	}
 	var data = mainGrid.getData();
 	var partList = [];
 	if (data) {

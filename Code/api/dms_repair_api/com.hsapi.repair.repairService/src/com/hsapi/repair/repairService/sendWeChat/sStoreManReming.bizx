@@ -107,9 +107,9 @@
     <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign12" name="赋值12" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign12</sourceNode>
-      <targetNode>assign2</targetNode>
+      <targetNode>subprocess2</targetNode>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
     <location x="540" y="150"/>
@@ -145,26 +145,7 @@
     <figSize height="17" width="39"/>
     <node>assign12</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign2</sourceNode>
-      <targetNode>subprocess1</targetNode>
-    </sourceConnections>
-    <targetConnections>link7</targetConnections>
-    <location x="60" y="285"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign2label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">2334</process:from>
-      <process:to type="query">r/roleId</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="58" y="321"/>
-    <figSize height="17" width="32"/>
-    <node>assign2</node>
-  </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="sWechatModelQF" displayName="sWechatModelQF" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="sWechatModelQF" displayName="getStoreMembers" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>end0</targetNode>
@@ -190,32 +171,6 @@
     <location x="583" y="317"/>
     <figSize height="17" width="104"/>
     <node>subprocess0</node>
-  </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="getRoleMembers" displayName="getRoleMembers" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess1</sourceNode>
-      <targetNode>loopstart0</targetNode>
-    </sourceConnections>
-    <targetConnections>link2</targetConnections>
-    <location x="165" y="285"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess1label</nodeLabel>
-    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.getRoleMembers</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">r</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="list" type="query" value="commonj.sdo.DataObject[]" valueType="Java">roleList</process:outputVariable>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="127" y="320"/>
-    <figSize height="17" width="102"/>
-    <node>subprocess1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
@@ -339,7 +294,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link20</targetConnections>
+    <targetConnections>link9</targetConnections>
     <location x="255" y="286"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
@@ -375,6 +330,49 @@
     <chidren>assign5</chidren>
     <chidren>invokePojo3</chidren>
   </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="getRoleMembers1" displayName="getStoreMembers" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess2</sourceNode>
+      <targetNode>assign2</targetNode>
+    </sourceConnections>
+    <targetConnections>link3</targetConnections>
+    <location x="100" y="286"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess2label</nodeLabel>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.getStoreMembers</process:partner>
+      <process:inputVariables/>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="res" type="query" value="java.util.HashMap" valueType="Java">res</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
+    <location x="59" y="321"/>
+    <figSize height="17" width="109"/>
+    <node>subprocess2</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>loopstart0</targetNode>
+    </sourceConnections>
+    <targetConnections>link8</targetConnections>
+    <location x="185" y="286"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign2label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">res/data</process:from>
+      <process:to type="query">roleList</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <location x="183" y="322"/>
+    <figSize height="17" width="32"/>
+    <node>assign2</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-07-03 11:00:19" date="2019-07-03Z" description="" name="sStoreManReming" version="7.0.0.0"/>
@@ -386,9 +384,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="carNo" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="carModel" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="strDate" primitiveType="String"/>
-    <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="true" name="roleList"/>
-    <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="f"/>
-    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="r"/>
+    <process:variable anyType="com.alibaba.fastjson.JSONObject" description="" historyStateLocation="client" isArray="true" name="roleList"/>
+    <process:variable anyType="com.alibaba.fastjson.JSONObject" description="" historyStateLocation="client" isArray="false" name="f"/>
     <process:variable description="微信模板id" historyStateLocation="client" isArray="false" name="templateId" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">

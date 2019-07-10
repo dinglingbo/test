@@ -14,8 +14,8 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%=webPath + contextPath%>/common/js/homeIcon.js?v=1.0.9"></script>
-		<script src="<%=webPath + contextPath%>/common/js/jquery-1.11.3.min.js?v=1.0.3"></script>
+            <script src="<%=webPath + contextPath%>/common/js/homeIcon.js?v=1.1.8"></script>
+		<script src="<%=webPath + contextPath%>/common/js/jquery-1.11.3.min.js?v=1.0.5"></script>
 		<script src="<%=webPath + contextPath%>/common/js/jquery.dad.min.js?v=1.0.3"></script>
             <style>
                 html,
@@ -75,13 +75,14 @@
 				    color: #639BF6;
 				    font-weight: bold;
 				}
-               .demo { width: 1000px; margin: 0 auto; font-family: arial,SimSun; font-size: 0;}
+               .demo {  widows:1000px; margin: 0 auto; font-family: arial,SimSun; font-size: 0;}
 				.demo .item { display: inline-block; width: 80px; height: 40px; margin-right: 10px; *display: inline; *zoom: 1;}
 /* 				.demo .item1 { background-color: #1faeff;}
 				.demo .item2 { background-color: #ff2e12;}
 				.demo .item3 { background-color: #00c13f;}
 				.demo .item4 { background-color: #e1b700;} */
 				 .demo span { display: block; height: 40px; line-height: 40px; font-size: 12px; text-align: center; color: #fff;}  
+				 .dropzone { position:absolute; width:190px; height:170px; right: 0px;bottom: 0px;}
             </style>
     </head>
 
@@ -93,14 +94,14 @@
                         <tr>
                             <td style="width:100%;">
                                 <a class="nui-button" iconCls="" plain="true" onclick="save()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                                <a class="nui-button" iconCls="" plain="true" onclick="onCancel"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
-                                <a class="nui-button" iconCls="" plain="true" onclick="delet()" id="deletBtn"><span class="fa fa-trash-o fa-lg"></span>&nbsp;清空</a>
+                                <a class="nui-button" iconCls="" plain="true" onclick="CloseWindow()"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                                <!-- <a class="nui-button" iconCls="" plain="true" onclick="delet()" id="deletBtn"><span class="fa fa-trash-o fa-lg"></span>&nbsp;清空</a> -->
                             </td>
                         </tr>
                     </table>
                 </div>
-        <div class="nui-splitter" style="width:100%;height:100%;">
-            <div style="border:0;" size="30%" showCollapseButton="true">
+        <div class="nui-splitter" style="width:100%;height:90%;">
+            <div style="border:0;" size="25%" showCollapseButton="true">
                 <div class="nui-fit">
                     <div class="mini-panel" title="选择功能" style="width:100%;height:100%;" bodyStyle="padding:0;">
 						<ul id="tree1" class="mini-tree" style="width: 100%;height:100%;"
@@ -109,33 +110,14 @@
                     </div>
                 </div>
             </div>
-            <div style="border:0;" showCollapseButton="true">
+            <div style="border:0;" showCollapseButton="true" class="wrap">
 				<div class="demo jq22 dad-active dad-container" id="demo" >  					
-<!--  					<div class="item item1">	
-	 					<a onclick="toRepairBill()">
-						<i class="fa fa-wrench fa-4x  fa-inverse"></i>
-						<p>综合开单</p> 
-						</a> 
-					</div>
-					<div class="item item2 ">	
-	 					<a onclick="toRepairBill()">
-						<i class="fa fa-wrench fa-4x  fa-inverse"></i>
-						<p>综合开单</p> 
-						</a> 
-					</div>
-					<div class="item item3">	
-	 					<a onclick="toRepairBill()">
-						<i class="fa fa-wrench fa-4x  fa-inverse"></i>
-						<p>综合开单</p> 
-						</a> 
-					</div>  -->  
-<!-- 				<div class="item item1"><span>1</span></div>
-					<div class="item item2"><span>2</span></div>
-					<div class="item item3"><span>3</span></div>
-					<div class="item item4"><span>4</span></div>
-					<div class="item item5"><span>5</span></div>
-					<div class="item item6"><span>6</span></div>
-					<div class="item item7"><span>7</span></div> -->
+
+				</div>
+				<div class="dropzone" >
+					<!-- <i class="fa fa-trash-o" style="height: 170px;width: 190px;" ></i> -->
+<!-- 					<span class="fa fa-trash-o" style="height: 170px;width: 190px;"></span> -->
+					<img alt="" style="height: 170px;width: 190px;" src="<%=webPath + contextPath%>/common/images/trash.jpg">
 				</div>
             </div>
 

@@ -274,6 +274,18 @@
       <process:from type="expression" pattern="reference">&quot;user_&quot; + loginName</process:from>
       <process:to type="query">userKey</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billParams/systemCarNoPrefix</process:from>
+      <process:to type="query">m:userObject/attributes/systemCarNoPrefix</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billParams/isOpenAppRemind</process:from>
+      <process:to type="query">m:userObject/attributes/isOpenAppRemind</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billParams/isOpenWeChatRemind</process:from>
+      <process:to type="query">m:userObject/attributes/isOpenWeChatRemind</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="603" y="216"/>
@@ -655,7 +667,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="data" type="query" value="java.util.HashMap[]" valueType="Java">memberList</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -692,7 +704,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
         <process:outputVariable id="2" name="comp" type="query" value="java.util.HashMap" valueType="Java">comp</process:outputVariable>
       </process:outputVariables>
     </process:flow>

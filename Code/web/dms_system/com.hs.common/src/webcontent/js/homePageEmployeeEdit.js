@@ -19,6 +19,7 @@ $(document).ready(function(v) {
 	isAllowRemind=nui.get("isAllowRemind");
     isShowOwnBill.setData(isservicelist);
     
+    document.getElementById("wechatServiceCode").src = wechatCodeUrl;
     document.getElementById("wechatCode").src = wechatCodeUrl;
 	isAllowRemind.setData(isservicelist);
 

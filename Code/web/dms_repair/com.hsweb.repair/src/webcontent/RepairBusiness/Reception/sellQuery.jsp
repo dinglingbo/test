@@ -109,7 +109,7 @@
                editNextOnEnterKey="true"
                onshowrowdetail="onShowRowDetail"
                allowCellEdit="true"
-               allowCellWrap = "true"
+               allowCellWrap = "false"
                sortMode="client"
                showSummaryRow = "true"
                url="">

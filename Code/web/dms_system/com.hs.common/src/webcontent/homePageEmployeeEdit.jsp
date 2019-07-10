@@ -34,7 +34,7 @@
         z-Index:999;  
         text-align: center;
     }
-    #wechatCode{
+    .code-style{
         width:180px;
         height:180px;
         position: absolute;
@@ -53,7 +53,7 @@
                 <tr>
                     <td style="width:100%;">
                         <a class="nui-button" onclick="save('edit')" plain="true" style="width: 60px;"><span
-                                class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                                class="fa fa-save fa-lg"></span>&nbsp;保1111存</a>
                         <a class="nui-button" onclick="Oncancel()" plain="true" style="width: 60px;"><span
                                 class="fa fa-remove fa-lg"></span>&nbsp;取消</a>
                     </td>
@@ -112,7 +112,8 @@
             </table>
         </div>
         <div id="cover" onclick="hideCode()">
-            <img id="wechatCode" > </img>
+            <img id="wechatServiceCode" class="code-style"/>
+            <img id="wechatCode" class="code-style"/>
         </div>
     </div>
     <script type="text/javascript">

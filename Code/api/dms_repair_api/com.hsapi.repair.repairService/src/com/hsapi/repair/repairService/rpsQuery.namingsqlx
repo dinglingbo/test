@@ -2037,7 +2037,7 @@
 			inner join rpb_contactor d on (a.contactor_id = d.id)
 			inner join rps_part e on (a.id = e.service_id)
 		WHERE 1 = 1
-			and a.status = 2
+			and a.is_settle = 1
 		<dynamic>
 		<isNotEmpty prepend="and" property="orgid">
                 (a.orgid = #orgid#)

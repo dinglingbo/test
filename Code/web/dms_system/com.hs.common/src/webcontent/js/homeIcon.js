@@ -10,7 +10,7 @@ var carBrandId = null;
 var carSeriesId = null;
 var fullName = null;
 var arr = {};
-var number = 1;//第几个div
+var number = 0;//第几个div
 $(document).ready(function () {
     tree = nui.get("tree1"); 
     loadTree();//加载标准项目
@@ -28,6 +28,16 @@ $(document).ready(function () {
         		iconId:e.row.menuPrimeKey,
         		address:e.row.linkAction
         }
+        var smalls = document.getElementById('demo').getElementsByTagName('span');
+        var tempIconList = [];//删除之后不能添加重复的
+    	for(var i = 0;i<smalls.length;i++){
+    		for(var j=0;j<iconList.length;j++){
+    			if(smalls[i].innerHTML==iconList[j].name){
+    				tempIconList[i] = iconList[j];
+    			}
+    		}
+    	}
+    	iconList = tempIconList;//提出删除的
         for(var i=0;i<iconList.length;i++){
         	if(iconList[i].iconId==e.row.menuPrimeKey){
             	showMsg("存在相同菜单","W");
@@ -35,6 +45,7 @@ $(document).ready(function () {
         	}
         }
         iconList.push(temp);
+        number = smalls.length+1;
         addDiv(number,e.row.menuName);
         number++;
     });
@@ -47,7 +58,7 @@ function setData(icon) {
     for(var i=0;i<iconList.length;i++){
     	for(var j=0;j<iconList.length;j++){
         	if(iconList[j].iconOrder==i){
-            	addDiv(iconList[j].iconOrder,iconList[j].name);
+            	addDiv(number,iconList[j].name);
             	number++;
         	}    		
     	}
@@ -75,16 +86,20 @@ function loadTree(){
 //生成 div
 function addDiv(number,name){
 	var html="";
-	html+='<div class="item item'+number+' dads-children dad-draggable-area" data-dad-id="'+number+'" data-dad-position="'+number+'" style="background-color: #1faeff;    margin-top: 10px;">';		
-	html+='		<i class="fa fa-wrench fa-4x  fa-inverse"></i>';
-	html+='		<span>'+name+'</span> ';
-	html+='</div>';
-	if(number%7==0&&number!=0){
+	if(number%6==0&&number!=0){
 		html=html+"<br/>"
 	}
+	html+='<div class="item item'+number+' dads-children dad-draggable-area" data-dad-id="'+number+'" data-dad-position="'+number+'" style="background-color: #1faeff;    margin-top: 10px;border-radius: 12px;">';		
+	html+='		<span>'+name+'</span> ';
+	html+='</div>';
 	$("#demo").append(html);
 	//$.parser.parse($("#demo").parent());
 	$('#demo').dad();
+	var d = $('.jq22').dad();
+	
+	d.addDropzone('.dropzone', function(e){
+		e.remove();
+	});
 }
 var saveUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.svr.savehomePage.biz.ext";
 function save(){
@@ -94,15 +109,18 @@ function save(){
         html: '保存中...'
     });
 	var smalls = document.getElementById('demo').getElementsByTagName('span');
+	var newIconList = [];//新的列表，删除之后
+	
 	for(var i = 0;i<smalls.length;i++){
 		for(var j=0;j<iconList.length;j++){
 			if(smalls[i].innerHTML==iconList[j].name){
-				iconList[j].iconOrder = i;
+				newIconList[i] = iconList[j];
+				newIconList[i].iconOrder = i;
 			}
 		}
 	}
 	var json = {
-			homePage : 	iconList,
+			homePage : 	newIconList,
 			token : token
 	};
 	nui.ajax({

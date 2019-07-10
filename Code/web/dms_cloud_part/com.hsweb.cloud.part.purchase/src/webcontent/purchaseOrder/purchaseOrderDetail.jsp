@@ -313,7 +313,7 @@
                                       /> 
                         </div>  
                         <div field="storeShelf" width="20" headerAlign="center" allowSort="true" header="仓位">
-                              仓位<input id="storeShelf" name='storeShelf' property="editor" class="nui-textbox"/>
+                              仓位<input id="storeShelf" allowInput="true" name='storeShelf' property="editor" class="nui-textbox"/>
                           </div>  
                       <div field="comOemCode" allowSelect="false" width="60" headerAlign="center" visible="false"  allowSort="true" header="OEM码"></div> 
                       <div field="comSpec" allowSelect="false" width="100" headerAlign="center" visible="false" allowSort="true" header="规格/方向/颜色"></div>

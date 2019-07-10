@@ -40,6 +40,16 @@
       <targetNode>invokePojo4</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link20" name="link20" displayName="连接线" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>assign5</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">tenantId</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="123" y="150"/>
     <size height="28" width="28"/>
@@ -69,7 +79,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link18</targetConnections>
-    <location x="278" y="148"/>
+    <location x="300" y="149"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -86,7 +96,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="259" y="184"/>
+    <location x="281" y="185"/>
     <figSize height="17" width="61"/>
     <node>invokePojo0</node>
   </nodes>
@@ -374,7 +384,7 @@
       <targetNode>subprocess0</targetNode>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
-    <location x="350" y="149"/>
+    <location x="363" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -389,7 +399,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="340" y="185"/>
+    <location x="353" y="186"/>
     <figSize height="17" width="43"/>
     <node>invokePojo3</node>
   </nodes>
@@ -399,7 +409,8 @@
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
-    <location x="203" y="149"/>
+    <targetConnections>link21</targetConnections>
+    <location x="255" y="151"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo4label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -414,7 +425,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo4label" name="label" nodeType="label">
-    <location x="189" y="185"/>
+    <location x="241" y="187"/>
     <figSize height="17" width="50"/>
     <node>invokePojo4</node>
   </nodes>
@@ -443,6 +454,25 @@
     <figSize height="17" width="50"/>
     <node>invokePojo5</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>invokePojo4</targetNode>
+    </sourceConnections>
+    <targetConnections>link20</targetConnections>
+    <location x="172" y="224"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign5label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">tenantId</process:from>
+      <process:to type="query">p/tenantId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
+    <location x="170" y="260"/>
+    <figSize height="17" width="32"/>
+    <node>assign5</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-06-15 17:56:36" date="2018-06-15Z" description="" name="getRoleResauthValue" version="7.0.0.0"/>
@@ -456,6 +486,7 @@
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="roleId" primitiveType="String"/>
     <process:input description="APP,PC" isArray="false" name="type" primitiveType="String"/>
+    <process:input description="" isArray="false" name="tenantId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output anyType="java.util.HashMap" description="" isArray="true" name="data"/>

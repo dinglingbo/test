@@ -119,7 +119,7 @@
 	        var s = "";
 	        if(e.field=="itemOptBtn"){
 	          s = ' <a class="optbtn" href="javascript:addRow(\'' + uid + '\')">分配</a>';
-	          s = s + ' <a class="optbtn" href="javascript:addRow(\'' + uid + '\')">删除</a>';
+	          s = s + ' <a class="optbtn" href="javascript:deletRow(\'' + uid + '\')">删除</a>';
 	          e.cellHtml = s;
 	        }
 	    });
@@ -134,11 +134,52 @@
 	    }
 		
 	}
-
+    var deleteTenantMenuUrl = baseUrl + "com.hsapi.system.tenant.tenant.deleteTenantMenu.biz.ext";
 	function deleteMenu(){
 		var row = rightGrid.getSelected();
+		var list = [];
+		var temp = {};
+		temp.tenantId = row.tenantId;
+		if(row.tenantId<0){
+		    temp.tenantType = Math.abs(row.tenantId);
+		}
+		list.push(temp);
 		if(row){
-			rightGrid.removeRow(row);
+			//rightGrid.removeRow(row);
+			nui.confirm("确认删除吗？","提示",function(action) {
+	            if (action == "ok") {
+	                 nui.mask({
+	                    el : document.body,
+	                    cls : 'mini-mask-loading',
+	                    html : '保存中...'
+	                });
+	                
+	                nui.ajax({
+	                    url:deleteTenantMenuUrl,
+	                    type:"post",
+	                    data:JSON.stringify({
+	                        menu: row,
+	                        list:list,
+	                        token:token
+	                    }),
+	                    success:function(data)
+	                    {
+	                        nui.unmask();
+	                        if (data.errCode == "S"){
+	                           refresh(); 
+	                           showMsg("删除成功","S");                  
+	                        }else{
+	                            showMsg(data.errMsg||"删除失败","E");
+	                        }
+	                    },
+	                    error:function(jqXHR, textStatus, errorThrown){
+	                        console.log(jqXHR.responseText);
+	                        nui.unmask();
+	                        showMsg("网络出错","E");
+	                    }
+	                });            
+	            }
+	        });
 		}
 	}
 
@@ -213,6 +254,31 @@
 			});
        }
        
+    }
+    
+    function deletRow(row_uid){
+        var row = rightGrid.getRowByUID(row_uid);
+       if(row){
+           nui.open({
+				url : webPath + contextPath + "/common/function/select_tenant.jsp?token=" + token,
+				title : "选择租户",
+				width : 700,
+				height : 600,
+				allowDrag : true,
+				allowResize : true,
+				onload : function() {
+					var iframe = this.getIFrameEl();
+					row.delet = 1;
+		            iframe.contentWindow.setData(row);//显示该显示的功能
+				},
+				ondestroy : function(action) {
+				    if(action=="ok"){
+				      queryRole();
+				    }
+					
+				}
+			});
+       }
     }
 
 </script>

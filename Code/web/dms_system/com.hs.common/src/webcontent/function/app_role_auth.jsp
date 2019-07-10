@@ -61,9 +61,22 @@
 	funcTree.expandLevel(0);
 
 	var baseUrl = apiPath + sysApi + "/";
-
+    
+    var show = null;
+    $(document).ready(function(v) {
+	    getShow();
+	});
+    
+    function getShow(){
+      show = <%= request.getParameter("falg")%>;
+    }
 	function setRoleId(){
-		return {"roleId":"<%= request.getParameter("roleId")%>","type":"APP","token":token};
+	    var falg = <%= request.getParameter("falg")%>;
+	    if(falg){
+	         return {"roleId":"<%= request.getParameter("roleId")%>","tenantId":"<%= request.getParameter("tenantId")%>","type":"APP","token":token};
+	    }else{
+	       return {"roleId":"<%= request.getParameter("roleId")%>","type":"APP ","token":token};
+	    }
 	}
 
 	function saveTree(){
@@ -104,15 +117,29 @@
 			success: function (text) {
 				nui.unmask();
 				if(text.errCode == 'S'){
-					parent.showMsg("权限设置成功","S");
+					if(show){
+				       parent.parent.showMsg("权限设置成功","S");
+				    }else{
+				       parent.showMsg("权限设置成功","S");
+				    }
 				}else{
-					parent.showMsg("权限设置失败","E");
+					
 					//nui.alert("权限设置失败");
+					if(show){
+				       parent.parent.showMsg("权限设置失败","E");
+				    }else{
+				       parent.showMsg("权限设置失败","E");
+				    }
 				}
 			},
 			error: function () {
 				nui.unmask();
-				parent.showMsg("权限设置失败","E");
+				if(show){
+				    parent.parent.showMsg("权限设置失败","E");
+				 }else{
+				    parent.showMsg("权限设置失败","E");
+				 }
+				//parent.showMsg("权限设置失败","E");
 				//nui.alert("权限设置失败");
 			}
 		});

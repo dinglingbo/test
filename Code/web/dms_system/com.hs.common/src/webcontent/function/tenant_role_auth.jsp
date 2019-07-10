@@ -31,7 +31,7 @@
                 <td style="width:100%;">
                 	 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
                 </td>
                 <td style="white-space:nowrap;">
                 	<input id="roleName" name="roleName" class="nui-textbox" style="width:200px;" onenter="queryRole" emptyText="请输入角色名称" />
@@ -73,6 +73,7 @@
 	var baseUrl = apiPath + sysApi + "/";
     var rightGrid = nui.get("rightGrid");
     var rightGridUrl = baseUrl + "com.hsapi.system.tenant.tenant.queryTenantRole.biz.ext";
+    var deleteRoleUrl = baseUrl + "com.hsapi.system.tenant.role.deleteRole.biz.ext";
     $(document).ready(function(v) {
 		rightGrid = nui.get("rightGrid");
 		rightGrid.setUrl(rightGridUrl);
@@ -151,5 +152,50 @@
 			}
 		});
 	}
+	
+	function deleteRole() {
+	    var row = rightGrid.getSelected();
+	    if (!row) {
+	        showMsg("请选中一条记录","W");
+	        return;
+	    }
+	
+	    if(row && row.roleId){
+	        nui.confirm("确认删除吗？","提示",function(action) {
+	            if (action == "ok") {
+	                 nui.mask({
+	                    el : document.body,
+	                    cls : 'mini-mask-loading',
+	                    html : '保存中...'
+	                });
+	
+	                nui.ajax({
+	                    url:deleteRoleUrl,
+	                    type:"post",
+	                    data:JSON.stringify({
+	                        capRole: row,
+	                        token:token
+	                    }),
+	                    success:function(data)
+	                    {
+	                        nui.unmask();
+	                        if (data.errCode == "S"){
+	                           leftGrid.reload();                   
+	                        }else{
+	                            showMsg(data.errMsg||"保存失败","W");
+	                        }
+	                    },
+	                    error:function(jqXHR, textStatus, errorThrown){
+	                        console.log(jqXHR.responseText);
+	                        nui.unmask();
+	                        showMsg("网络出错","W");
+	                    }
+	                });            
+	            }
+	        });
+	    }else{
+	        leftGrid.removeRow(row);
+	    }   
+   }
 	
 </script>

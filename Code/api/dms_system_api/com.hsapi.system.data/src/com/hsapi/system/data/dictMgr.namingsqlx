@@ -222,7 +222,11 @@
     	SELECT
 			a.empid as empId,
 			a.`name` as empName,
-			a.user_id as userId
+			a.user_id as userId,
+			a.open_id as openId,
+			a.wechat as wechat,
+			a.tel as tel,
+			a.system_account as systemAccount
 		FROM
 		com_member AS a
 		WHERE 1=1 and a.is_dimission = 0

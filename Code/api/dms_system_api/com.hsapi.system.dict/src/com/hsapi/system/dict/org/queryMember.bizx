@@ -142,7 +142,7 @@
       <process:partner type="literal">com.hsapi.system.data.sys.getRedisCacheBasic</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="dsName" type="literal" value="String" valueType="Primitive" pattern="reference">DB02_ORA_WB_COMMON</process:inputVariable>
-        <process:inputVariable id="1" name="nameSqlId" type="literal" value="String" valueType="Primitive" pattern="reference">nameSqlId</process:inputVariable>
+        <process:inputVariable id="1" name="nameSqlId" type="query" value="String" valueType="Primitive" pattern="reference">nameSqlId</process:inputVariable>
         <process:inputVariable id="2" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">p</process:inputVariable>
         <process:inputVariable id="3" name="title" type="literal" value="String" valueType="Primitive" pattern="reference">公司员工</process:inputVariable>
         <process:inputVariable id="4" name="fromDb" type="query" value="String" valueType="Primitive" pattern="reference">fromDb</process:inputVariable>

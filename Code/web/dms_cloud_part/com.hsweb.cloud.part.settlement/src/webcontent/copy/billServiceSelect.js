@@ -112,6 +112,7 @@ var accountList = [
     {id:2,text:"全部"}
 ];
 var enterTypeIdHash = {"050101":"采购入库","050102":"销售退货","050201":"采购退货","050202":"销售出库"};
+var orderTypeIdHash ={"1":"采购入库","2":"销售出库","3":"采购退货","4":"销售退货"};
 var accountSignHash = {
     "0":"未对账",
     "1":"已对账"
@@ -151,6 +152,12 @@ function onDrawCell(e)
             if(enterTypeIdHash && enterTypeIdHash[e.value])
             {
                 e.cellHtml = enterTypeIdHash[e.value];
+            }
+            break;
+        case "orderTypeId":
+            if(orderTypeIdHash && orderTypeIdHash[e.value])
+            {
+                e.cellHtml = orderTypeIdHash[e.value];
             }
             break;
         case "settleTypeId":

@@ -232,6 +232,7 @@ $(document).ready(function(v) {
 	    	editor.textField="name";
 	    	editor.type="combobox";
 	    	editor.valueField="name";
+	    	editor.allowInput = true;
 	    	columnsObjList[flag].editor=editor;
 	    	
 	    }
@@ -468,6 +469,7 @@ function rightGridSet(){
     	editor.textField="name";
     	editor.type="combobox";
     	editor.valueField="name";
+    	editor.allowInput = true;
     	columnsObjList[flag].editor=editor;
     	
     }
@@ -1234,8 +1236,23 @@ function save() {
 			}
 		}
 	}
+	if(currIsOpenApp ==1){
+		// set集合
+	    var set =new  Set();
+		for(var i=0;i<rightRow.length;i++){
+			if(!rightRow[i].partId){
+				rightGrid.removeRow(rightRow[i]);
+				continue;
+			}
+			set.add(rightRow[i].partId+"-"+rightRow[i].storeId);
+		}
+		if(set.size <rightGrid.getData().length){
+			showMsg("订单明细不能出现相同配件同个仓库两次以上","W");
+			return;
+		}
 
-	var row = leftGrid.getSelected();
+	}
+		var row = leftGrid.getSelected();
 	if (row) {
 		if (row.auditSign == 1) {
 			showMsg("此单已审核!","W");
@@ -2089,6 +2106,23 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 		}
 	}
 
+	if(currIsOpenApp ==1){
+		// set集合
+	    var set =new  Set();
+		for(var i=0;i<rightRow.length;i++){
+			if(!rightRow[i].partId){
+				rightGrid.removeRow(rightRow[i]);
+				continue;
+			}
+			set.add(rightRow[i].partId+"-"+rightRow[i].storeId);
+		}
+		if(set.size <rightGrid.getData().length){
+			showMsg("订单明细不能出现相同配件同个仓库两次以上","W");
+			return;
+		}
+
+	}
+	
 	if (p && p.pricePartCode) {
 		var partCode = p.pricePartCode;
 		nui.confirm("存在单价为0信息，是否继续?", "友情提示", function(action) {
@@ -2359,6 +2393,15 @@ function onStoreValueChange(e){
 				return;
 			}
 		}
+		if(currIsOpenApp ==1){
+			getLocationListByStoreId(id,function(data) {
+				storeShelfList = data.locationList || [];
+				nui.get('storeShelf').setData(storeShelfList);
+				
+		
+			});
+		}
+		
 	}
 		
 }

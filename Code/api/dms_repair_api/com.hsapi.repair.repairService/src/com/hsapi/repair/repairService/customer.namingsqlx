@@ -829,68 +829,6 @@
         order by b.modify_date desc
 	</select>
 	
-	<!-- 获取某个岗位下的所有员工-->
-	  <select id="getRoleMembers" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
-	  		SELECT
-				a.ROLE_TYPE roleType,
-				a.PARTY_TYPE partyType,
-				a.ROLE_ID roleId,
-				b.empid,
-				b.tenant_id tenantId,
-				b.orgid,
-				b.`name`,
-				b.sex,
-				b.idcardno,
-				b.birthday,
-				b.tel,
-				b.user_id userId,
-				b.is_dimission isDimission,
-				b.is_open_account isOpenAccount,
-				b.is_mtadvisor isMtadvisor,
-				b.is_artificer isArtificer,
-				b.is_stockman isStockman,
-				b.is_salesman isSalesman,
-				b.member_group_id memberGroupId,
-				b.member_level_id memberLevelId,
-				b.integral_discount_max integralDiscountMax,
-				b.item_discount_rate itemDiscountRate,
-				b.part_discount_rate partDiscountRate,
-				b.free_discount_max freeDiscountMax,
-				b.cash_discount_max cashDiscountMax,
-				b.display_remind_tag displayRemindTag,
-				b.display_business_tag displayBusinessTag,
-				b.display_bill_tag displayBillTag,
-				b.system_account systemAccount,
-				b.login_pwd loginPwd,
-				b.authorize_pwd authorizePwd,
-				b.wechat,
-				b.open_id openId,
-				b.urgency_person urgencyPerson,
-				b.urgency_person_phone urgencyPersonPhone,
-				b.is_allow_remind isAllowRemind,
-				b.is_show_own_bill isShowOwnBill,
-				b.is_can_settle isCanSettle,
-				b.is_can_below_cost isCanBelowCost,
-				b.is_canfree_carnovin isCanfreeCarnovin,
-				b.head_portrait headPortrait,
-				b.background_color backgroundColor,
-				b.im_code imCode,
-				b.im_disabled imDisabled,
-				b.is_read_sysmsg isReadSysmsg,
-				b.recorder,
-				b.record_date recordDate,
-				b.modifier,
-				b.modify_date modifyDate,
-				b.is_open_app isOpenApp
-			FROM
-				dms_system.com_cap_partyauth AS a
-			INNER JOIN wb_common.com_member AS b ON a.PARTY_ID = b.system_account
-			WHERE 1=1
-	            <isNotEmpty prepend="and" property="roleId">  
-	                (a.ROLE_ID= #roleId#)
-	            </isNotEmpty>
-	  
-	  	</select>
 	  	
 	  	<select id="queryHomePage" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		SELECT

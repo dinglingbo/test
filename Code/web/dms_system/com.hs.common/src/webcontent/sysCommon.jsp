@@ -517,6 +517,7 @@
 <link href="<%=webPath + contextPath%>/common/nui/themes/cupertino/skin.css" rel="stylesheet"	type="text/css" />
 <%--  <link href="<%=webPath + contextPath%>/common/nui/themes/bootstrap/skin.css" rel="stylesheet"	type="text/css" />   --%>
 <link href="<%=webPath + contextPath%>/common/nui/res/fonts/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet"/>
+<%@include file="./sysNotice.jsp" %>
 <style type="text/css">
     html, body
     {

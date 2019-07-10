@@ -27,6 +27,7 @@ encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/repairInterface/settleRepairInfo.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/report/queryNotSettleMaintain.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/report/queryStoreConsume.bizx.eosdebug=UTF-8
+encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/sendWeChat/sStoreManApp.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/settlement/PreInsuranceReceiveSettle.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/settlement/calDeduct.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/settlement/preSettleRecharge.bizx.eosdebug=UTF-8

@@ -45,5 +45,7 @@
 	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.hsweb.system.llqv2/bin" path="com.hsweb.system.llqv2/src"/>
 	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.hsweb.system.tenant/bin" path="com.hsweb.system.tenant/src"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/slf4j-nop-1.7.26.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/core-3.3.0.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/javase-3.2.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

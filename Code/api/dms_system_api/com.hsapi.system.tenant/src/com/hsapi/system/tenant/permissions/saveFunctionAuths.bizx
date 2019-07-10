@@ -204,23 +204,22 @@
       <targetNode>loopend0</targetNode>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
-    <location x="496" y="142"/>
+    <location x="480" y="143"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="494" y="178"/>
+    <location x="478" y="179"/>
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" grouped="true" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link28" name="link28" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>invokePojo1</targetNode>
-      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
-    <location x="428" y="90"/>
+    <location x="411" y="90"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
@@ -261,7 +260,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="426" y="126"/>
+    <location x="409" y="126"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
@@ -270,8 +269,8 @@
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>loopend0</targetNode>
     </sourceConnections>
-    <targetConnections>link7</targetConnections>
-    <location x="542" y="90"/>
+    <targetConnections>link28</targetConnections>
+    <location x="523" y="90"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -287,7 +286,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="522" y="126"/>
+    <location x="503" y="126"/>
     <figSize height="17" width="62"/>
     <node>invokePojo1</node>
   </nodes>
@@ -411,6 +410,7 @@
     <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>loopstart0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo3</sourceNode>
@@ -526,7 +526,9 @@
   <topRuler>
     <guides position="494" horizontal="true"/>
   </topRuler>
-  <leftRuler/>
+  <leftRuler>
+    <guides position="461" horizontal="true"/>
+  </leftRuler>
   <process:info author="Administrator" createTime="2018-06-17 15:39:04" date="2018-06-17Z" description="" name="saveFunctionAuths" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cd"/>

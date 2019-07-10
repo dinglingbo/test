@@ -99,7 +99,7 @@ var accountList = [
     {id:1,text:"已对账"},
     {id:2,text:"全部"}
 ];
-var orderTypeIdHash = {1:"采购订单",2:"销售订单"};
+var orderTypeIdHash = {1:"采购订单",2:"销售订单",3:"采购退货",4:"销售退货"};
 var accountSignHash = {
     "0":"未对账",
     "1":"已对账"

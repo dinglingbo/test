@@ -23,6 +23,9 @@ var sexSignHash = {
 };
 var isDimissionEl=null;
 var isDimissionList=[{"id":0,"value":"否"},{"id":1,"value":"是"}];
+var isArtificerEl=null;
+var isMtadvisorEl=null;
+var isPchsStockEl=null;
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
     btnisDimission = nui.get("btnisDimission");
@@ -32,6 +35,13 @@ $(document).ready(function(v) {
 	orgidsEl = nui.get("orgids");
 	isDimissionEl =nui.get('isDimission');
 	isDimissionEl.setData(isDimissionList);
+	isArtificerEl =nui.get('isArtificer');
+	isMtadvisorEl =nui.get('isMtadvisor');
+	isPchsStockEl =nui.get('isPchsStock');
+	isArtificerEl.setData(isDimissionList);
+	isMtadvisorEl.setData(isDimissionList);
+	isPchsStockEl.setData(isDimissionList);
+	
     if(currIsMaster==0){
     	orgidsEl.hide();
     }else{
@@ -103,6 +113,36 @@ function onDrawCell(e)  {
                 e.cellHtml = SignHash[e.value];
             }
             break;
+        case "isArtificer":
+            if(SignHash && SignHash[e.value]) {
+                e.cellHtml = SignHash[e.value];
+            }
+            break;
+        case "isMtadvisor":
+            if(SignHash && SignHash[e.value]) {
+                e.cellHtml = SignHash[e.value];
+            }
+            break;
+        case "isStockman":
+            if(SignHash && SignHash[e.value]) {
+                e.cellHtml = SignHash[e.value];
+            }
+            break;
+        case "isCanfreeCarnovin":
+            if(SignHash && SignHash[e.value]) {
+                e.cellHtml = SignHash[e.value];
+            }
+            break;
+        case "isCanSettle":
+            if(SignHash && SignHash[e.value]) {
+                e.cellHtml = SignHash[e.value];
+            }
+            break;
+        case "isPchsStock":
+            if(SignHash && SignHash[e.value]) {
+                e.cellHtml = SignHash[e.value];
+            }
+            break;
         case "imCode":
             if(e.record.imCode != null && e.record.imCode != null && e.record.imDisabled == 0) {
                 e.cellHtml = "是";
@@ -133,6 +173,9 @@ function getSearchParam(){
     params.empName = nui.get("name").getValue().replace(/\s+/g, "");
     params.empTel = nui.get("mobile").getValue().replace(/\s+/g, "");
     params.isDimission =nui.get("isDimission").getValue();
+    params.isArtificer =nui.get("isArtificer").getValue();
+    params.isMtadvisor =nui.get("isMtadvisor").getValue();
+    params.isPchsStock =nui.get("isPchsStock").getValue();
     var orgidsElValue = orgidsEl.getValue();
     if(orgidsElValue==null||orgidsElValue==""){
         if(currIsMaster == "1"){

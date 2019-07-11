@@ -33,6 +33,13 @@ $(document).ready(function(v)
 
     isDisabledEl.setData(statusList);
     
+    leftGrid.on("cellbeginedit",function(e){
+		var field=e.field; 
+		var row = e.row;
+        if(row.orgid != currOrgId){
+			e.cancel = true;
+		}
+	});
     
     leftGrid.on("drawcell",function(e){
         switch (e.field)

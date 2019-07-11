@@ -11,7 +11,7 @@
 <head>
 <title>客户标签</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />   
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/guestTabShow.js?v=1.0.14"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/guestTabShow.js?v=1.0.15"></script>
    <style type="text/css">
     html, body{
         margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;

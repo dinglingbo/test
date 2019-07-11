@@ -63,7 +63,7 @@
       <process:to type="query">m:userObject/attributes/TENANT_ID</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">member/tenantId</process:from>
+      <process:from type="query" pattern="reference">tenantId</process:from>
       <process:to type="query">m:userObject/attributes/tenantId</process:to>
     </process:copy>
     <process:copy>
@@ -627,6 +627,10 @@
       <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">params/orgid</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">member/tenantId</process:from>
+      <process:to type="query">tenantId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
     <location x="58" y="216"/>
@@ -713,7 +717,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
         <process:outputVariable id="2" name="comp" type="query" value="java.util.HashMap" valueType="Java">comp</process:outputVariable>
       </process:outputVariables>
     </process:flow>
@@ -738,6 +742,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="orgs" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="orgJsonStr" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="orgid" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="tenantId" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="loginName" primitiveType="String"/>

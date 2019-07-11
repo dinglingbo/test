@@ -89,7 +89,7 @@
                 <div property="columns">
                     <div field="deductMemName" width="60" headerAlign="center" header="提成成员名称"></div>
                     <div field="deductType" width="80" headerAlign="center" header="提成类型"></div>
-                    <div allowSort="true" field="orderCode" width="150" headerAlign="center" header="销售订单号"></div>
+                    <div allowSort="true" field="orderCode" width="170" headerAlign="center" header="销售订单号"></div>
                     <div allowSort="true" field="outCode" width="170" headerAlign="center" header="出库单号"></div>  
                     <div allowSort="true" field="orderAmt" width="80" headerAlign="center" header="订单总金额"></div>     
                     <div allowSort="true" field="outAmt" width="80" headerAlign="center" header="当前出库金额"></div> 
@@ -99,7 +99,7 @@
             <div header="提成信息" headerAlign="center">
                 <div property="columns">
                 	<div allowSort="true" summaryType="sum" field="deductAmt" width="80" headerAlign="center" header="提成金额"></div>
-                	<div allowSort="true" field="type" width="60" headerAlign="center" header="提成方式"></div>
+                	<div allowSort="true" field="type" width="110" headerAlign="center" header="提成方式"></div>
                     <div allowSort="true" datatype="float"  field="beginAmt" width="100" headerAlign="center" header="销售金额开始区间"></div>
                     <div allowSort="true" datatype="float" field="endAmt" width="100" headerAlign="center" header="销售金额结束区间"></div>
                     <div allowSort="true" datatype="float"  field="deductRate" width="80" headerAlign="center" header="提成比例%"></div>

@@ -162,7 +162,9 @@
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="604" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-09-20 13:30:43" date="2018-09-20Z" description="" name="getRpsPartByServiceId" version="7.0.0.0"/>
   <process:variables>

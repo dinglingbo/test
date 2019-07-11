@@ -127,6 +127,12 @@
 	String orgs = "";
 	String systemImg = "";
 	String systemName = "";
+	//车牌默认前缀
+	String systemCarNoPrefix = "";
+	//派工是否默认开启APP提醒
+	String isOpenAppRemind = "0";
+	//派工是否默认开启微信提醒
+	String isOpenWeChatRemind = "0";	
 	String source = "";
 	String orgJsonStr = "";
 	String isCanBelowCost="";
@@ -221,6 +227,15 @@
                 if(attr.get("systemName") != null){
                 	systemName = attr.get("systemName").toString();
                 }
+                 if(attr.get("systemCarNoPrefix") != null){
+                	systemCarNoPrefix = attr.get("systemCarNoPrefix").toString();
+                }  
+                if(attr.get("isOpenAppRemind") != null){
+                	isOpenAppRemind = attr.get("isOpenAppRemind").toString();
+                }  
+                if(attr.get("isOpenWeChatRemind") != null){
+                	isOpenWeChatRemind = attr.get("isOpenWeChatRemind").toString();
+                }            
                 if(attr.get("source") != null){
                 	source = attr.get("source").toString();
                 }
@@ -386,6 +401,9 @@
 	var currOrgs = "<%=orgs %>";
 	var currSystemImg = "<%=systemImg %>";
 	var currSystemName = "<%=systemName %>";
+	var currSystemCarNoPrefix = "<%=systemCarNoPrefix %>";
+	var currIsOpenAppRemind = "<%=isOpenAppRemind %>";
+	var currIsOpenWeChatRemind = "<%=isOpenWeChatRemind %>";
 	var currSource = "<%=source %>";
 	currOrgs = currOrgs.replace(/\*/g,"");
 	var currOrgJsonStr = "<%=orgJsonStr %>";
@@ -507,7 +525,7 @@
 	}
 
 </script>
-<script src="<%=webPath + contextPath%>/common/js/sysCommon.js?v=1.1.5" type="text/javascript"></script>
+<script src="<%=webPath + contextPath%>/common/js/sysCommon.js?v=1.1.8" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/constantDef.js?v=1.2" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/init.js?v=1.9.4" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/jsCryptoJS.js?v=1.0" type="text/javascript"></script>

@@ -130,6 +130,10 @@ var requiredField = {
 	cityId : "城市"*/
 };
 function sure() {
+	if(!importTimeLimit()){
+		parent.parent.showMsg("请在规定时间内导入！","W");
+		return;
+	}
 	var data = mainGrid.getData();
 	var partList = [];
 	var length = 0;//用于限制大小不能超过一千

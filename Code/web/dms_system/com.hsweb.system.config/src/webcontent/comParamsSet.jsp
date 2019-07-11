@@ -9,7 +9,7 @@
 -->
 <head>
   <title>工单设置</title>
-  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.1.3"></script>
+  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.1.4"></script>
   <style type="text/css">
 
     .title {
@@ -228,6 +228,24 @@
                 <td class="tbtext">是否开启仓库权限控制：</td>
                 <td class="tbCtrl" >
                     <div id="repairStoreControlFlag" name="repairStoreControlFlag" 
+                        class="nui-radiobuttonlist" value="" repeatItems="2" 
+                        repeatDirection="" repeatLayout="table" 
+                        textField="text" valueField="id" ></div>
+                </td>      
+            </tr>
+            <tr>
+                <td class="tbtext">派工是否默认开启APP提醒：</td>
+                <td class="tbCtrl" >
+                    <div id="isOpenAppRemind" name="isOpenAppRemind" 
+                        class="nui-radiobuttonlist" value="" repeatItems="2" 
+                        repeatDirection="" repeatLayout="table" 
+                        textField="text" valueField="id" ></div>
+                </td>      
+            </tr>
+            <tr>
+                <td class="tbtext">派工是否默认开启微信提醒：</td>
+                <td class="tbCtrl" >
+                    <div id="isOpenWeChatRemind" name="isOpenWeChatRemind" 
                         class="nui-radiobuttonlist" value="" repeatItems="2" 
                         repeatDirection="" repeatLayout="table" 
                         textField="text" valueField="id" ></div>

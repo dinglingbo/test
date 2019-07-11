@@ -92,6 +92,10 @@ var requiredField = {
 		carNo: "车牌号",
 };
 function sure() {
+	if(!importTimeLimit()){
+		parent.parent.showMsg("请在规定时间内导入！","W");
+		return;
+	}
 	var data = mainGrid.getData();
 	var partList = [];
 	var length = 0;//用于限制大小不能超过一千
@@ -189,3 +193,22 @@ function saveEnterPart(partList){
 	}
 
 }
+
+/*function importTimeLimit(){
+	var d2=new Date();
+	var fullYear = d2.getFullYear();
+	var month = d2.getMonth()+1;
+	var date = d2.getDate();
+	
+	var limitMinData = fullYear+"-"+month+"-"+date+" 10:00:00"  
+	var limitMaxData = fullYear+"-"+month+"-"+(date+1)+" 05:00:00" 
+	limitMinData = limitMinData.replace("-","/");//替换字符，变成标准格式  
+	limitMaxData = limitMaxData.replace("-","/");//替换字符，变成标准格式   
+	var d1 = new Date(Date.parse(limitMinData)); 
+	var d3 = new Date(Date.parse(limitMaxData)); 
+	if(d2>d1&&d2<d3){
+		return true;
+	}else{
+		return false;
+	}
+}*/

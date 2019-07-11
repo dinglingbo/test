@@ -38,6 +38,20 @@ $(document).ready(function(v)
 		editGuestType();
 
 	});
+    
+    rightGrid.on("rowclick", function(e) {
+    	var row = rightGrid.getSelected();
+        
+        if(row){
+            if(row.orgid != currOrgId) {
+            	nui.get("editBtn").disable();
+            }else {
+            	nui.get("editBtn").enable();
+            }
+        }
+
+	});
+    
     document.onkeyup = function(event) {
         var e = event || window.event;
         var keyCode = e.keyCode || e.which;// 38向上 40向下
@@ -52,7 +66,6 @@ function getSearchParam(){
     var params = {};
    
     params.name = nameEl.getValue();
-	params.orgid = currOrgId;
     return params;
 }
 function onSearch(){
@@ -94,8 +107,14 @@ function addGuestType(){
 }
 function editGuestType(){
     var row = rightGrid.getSelected();
+    
     if(row){
-        addOrEdit(row);
+        if(row.orgid != currOrgId) {
+        	parent.showMsg("此级别不能修改!","W");
+        	return;
+        }else {
+        	addOrEdit(row);
+        }
     }else{
         parent.showMsg("请选择一条记录!","W");
     }

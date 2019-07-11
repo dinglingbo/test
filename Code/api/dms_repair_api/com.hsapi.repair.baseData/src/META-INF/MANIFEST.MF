@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
-Require-Bundle: com.hsapi.repair.common,com.hsapi.repair.data,com.eos.
- foundation,com.hs.common
-eos-webCtxPath: baseData
+Require-Bundle: com.hsapi.system.dict,com.hs.common,com.hsapi.repair.d
+ ata,com.hsapi.repair.common,com.eos.foundation
 Bundle-Vendor: liyin
+eos-webCtxPath: baseData
 Bundle-Version: 1.0.0
 Bundle-Name: com.hsapi.repair.baseData
 Bundle-Description: 基础数据

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件品牌</title>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/partBrandMgr/partBrandMgr.js?v=1.0.22"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/partBrandMgr/partBrandMgr.js?v=1.1.0"></script>
 <script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
 <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
@@ -43,7 +43,7 @@
                             <tr>
                                 <td style="white-space:nowrap;">
                                     <label style="font-family:Verdana;">云配件品质:</label>
-                                    <a class="nui-button" plain="true" iconCls="" onclick="addPartQuality()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增品质</a>
+                                    <a class="nui-button" plain="true" iconCls="" onclick="addPartQuality()" id="addLeft"><span class="fa fa-plus fa-lg"></span>&nbsp;新增品质</a>
                                     <a class="nui-button" plain="true" iconCls="" onclick="editPartQuality()" id="editLeft"><span class="fa fa-edit fa-lg"></span>&nbsp;修改品质</a>
                                     <a class="nui-button" plain="true" iconCls="" onclick="disablePartQuality()" id="disabledLeft" visible="false"><span class="fa fa-ban fa-lg"></span>&nbsp;禁用品质</a>
                                     <a class="nui-button" plain="true" iconCls="" onclick="enablePartQuality()" id="enabledLeft" visible="false"><span class="fa fa-check-circle fa-lg"></span>&nbsp;启用品质</a>

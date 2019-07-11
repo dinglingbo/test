@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryDictTypeItems" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="6.3">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="用于init.js，根据customid获取类型下的所有子项&#xD;&#xA;需要取缓存数据&#xD;&#xA;" title="Administrator&#x9;19-7-11 上午10:37">
+    <location x="-11" y="-54"/>
+    <size height="100" width="402"/>
+  </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" collapsed="false" type="end">
     <targetConnections>link7</targetConnections>
     <targetConnections>link17</targetConnections>
@@ -113,6 +117,7 @@
         <process:inputVariable id="8" name="tenantIds" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
         <process:inputVariable id="9" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">p</process:inputVariable>
         <process:inputVariable id="10" name="isClear" type="literal" value="Int" valueType="Primitive" pattern="reference">0</process:inputVariable>
+        <process:inputVariable id="11" name="isDisabled" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="data" type="query" value="java.util.HashMap[]" valueType="Java">data</process:outputVariable>

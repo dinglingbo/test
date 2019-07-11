@@ -10,7 +10,7 @@
 <head> 
 <title>客户级别</title>
 
-<script src="<%=webPath + contextPath%>/repair/cfg/js/guestTypeMgr.js?v=1.0.3"></script>
+<script src="<%=webPath + contextPath%>/repair/cfg/js/guestTypeMgr.js?v=1.0.5"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -35,7 +35,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <span class="separator"></span>
                 <a class="nui-button" plain="true" iconCls="" onclick="addGuestType()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-                <a class="nui-button" plain="true" iconCls="" onclick="editGuestType()"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
+                <a class="nui-button" plain="true" iconCls="" onclick="editGuestType()" id="editBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
            </td>
        </tr>
        </table>

@@ -75,6 +75,7 @@ function onCancel() {
 		aynsc:false,
 		data : {
 			dictids:dictids,
+			tenantIds:currTenantId,
 			token:token
 		},
 		success : function(data) {

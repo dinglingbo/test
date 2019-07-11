@@ -294,7 +294,7 @@
     </div>
 
     <div id="mainGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
-    dataField="list"  allowCellSelect="true"  oncellcommitedit="onCellCommitEdit"
+    dataField="list"  allowCellSelect="true"  oncellcommitedit="onCellCommitEdit" allowCellWrap="true"
     url=""  showModified="false"
     allowCellEdit="true" ShowHGridLines="false" ShowVGridLines="false" >
     <div property="columns">
@@ -313,7 +313,7 @@
         <div field="checkRemark" name="checkRemark" width="80" headerAlign="center" align="center"><strong>检查说明</strong>
         	 <input property="editor" class="nui-textbox" style="width:100%;" allowInput="true"/>  
         </div>
-       	<div field="remark" name="remark" width="90" headerAlign="center" align="center"><strong>备注</strong>
+       	<div field="remark" name="remark" width="90" headerAlign="center" align="center"><strong>检查结果</strong>
             <input property="editor" class="nui-combobox" style="width:100%;" 
             textfield="content" valuefield="content"  dataField="list" allowInput="true"/>  
 

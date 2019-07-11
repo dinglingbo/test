@@ -215,8 +215,9 @@
                     <li iconCls="" onclick="onPrint(3)" id="type11">打印结账单</li>
                     <li iconCls="" onclick="onPrint(9)" id="type11">打印结账单(项目配件分开)</li>
                     <li iconCls="" onclick="onPrint(4)" id="type11">打印结账单(小票)</li>
-                     <li iconCls="" onclick="onPrint(10)" id="type11">打印结账单(小票,项目配件分开)</li>
+                    <li iconCls="" onclick="onPrint(10)" id="type11">打印结账单(小票,项目配件分开)</li>
                     <li iconCls="" onclick="onPrint(5)" id="type11">打印领料单</li>
+                    <li iconCls="" onclick="onPrint(12)" id="">模板3</li>
                 </ul>
 
 

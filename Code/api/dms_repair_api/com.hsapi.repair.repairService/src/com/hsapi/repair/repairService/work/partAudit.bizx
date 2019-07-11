@@ -302,7 +302,7 @@
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="推送维修顾问消息" displayName="sSaleManReming" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="推送维修顾问消息" displayName="sWcSaleManReming" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>subprocess1</targetNode>
@@ -312,7 +312,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.repair.repairService.sendWeChat.sSaleManReming</process:partner>
+      <process:partner type="literal">com.hsapi.repair.repairService.sendWeChat.sWcSaleManReming</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="maintain" type="query" value="com.hsapi.repair.data.rps.RpsMaintain" valueType="DataObject" pattern="reference">maintain</process:inputVariable>
       </process:inputVariables>
@@ -328,7 +328,7 @@
     <figSize height="17" width="97"/>
     <node>subprocess0</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="sSaleManApp" displayName="sSaleManApp" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="sAppSaleMan" displayName="sWcSaleManReming" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>end0</targetNode>
@@ -338,7 +338,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.repair.repairService.sendWeChat.sSaleManApp</process:partner>
+      <process:partner type="literal">com.hsapi.repair.repairService.sendWeChat.sAppSaleMan</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="maintain" type="query" value="com.hsapi.repair.data.rps.RpsMaintain" valueType="DataObject" pattern="reference">maintain</process:inputVariable>
       </process:inputVariables>

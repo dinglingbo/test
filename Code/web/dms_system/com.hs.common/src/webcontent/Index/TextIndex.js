@@ -14,6 +14,8 @@ var statusHash = {
     "1" : "施工",
     "2" : "完工"
 };
+var colorList=[{color:"#1faeff"},{color:"#ffd666"},{color:"#ff7875"},{color:"#ffc069"},{color:"#8c64279e"},{color:"#d3f261"},{color:"#95de64"},{color:"#5cdbd3"},{color:"#69c0ff"}];
+var oder = 0;//颜色下标
 var homePage = [];//主页图片
 $(document).ready(function(v) {
 
@@ -655,7 +657,11 @@ function addIcon(){
 }
 
 function addDiv(address,name,iconId){
+	if(oder==8){
+		oder=0;
+	}
 	var html="";
+
 //可拖动
 /*	html+='<div class="item item'+number+' dads-children dad-draggable-area" data-dad-id="'+number+'" data-dad-position="'+number+'" style="background-color: #1faeff;width: 80px;height: 80px;float: left;">';		
 	html+='		<i class="fa fa-wrench fa-4x  fa-inverse"></i>';
@@ -667,12 +673,15 @@ function addDiv(address,name,iconId){
 
 
 	//不可拖动
-	html+='<div class="menu_pannel menu_pannel_bg" style="background-color: #1faeff;width: 120px;height: 80px;float: left;margin-top: 10px;margin-left: 10px;border-radius: 12px;"> ';		
-	html+='<a onclick="tojump('+"'" +address+"','"+name+"','"+iconId+"'" + ')">';
-	html+='	<i class="fa fa-file-code-o fa-3x  fa-inverse" style="margin-top: 10px;margin-left: 10px;"></i> ';
-	html+='<p>'+name+'</p>';
-	html+='	</a> ';
+	html+='<div class="menu_pannel menu_pannel_bg" style="background-color: '+colorList[oder].color+';width: 90px;height: 50px;float: left;margin-top: 10px;margin-left: 15px;border-radius: 12px;">';
+		html+='<div class="menu_pannel menu_pannel_bg" style="width: 90px;height: 40px;float: left;margin-top: 10px;border-radius: 12px;">';
+			html+='<a onclick="tojump('+"'" +address+"','"+name+"','"+iconId+"'" + ')" style="width: 50px;height: 60px;">';
+				html+='<i class="fa fa-file-code-o fa-2x  fa-inverse" style="margin-top: 10px;margin-left: 10px;"></i>';
+			html+='</a>';
+		html+='</div>';
+		html+='<p align="center" style="margin-top: 50px;">'+name+'</p>';                       
 	html+='</div>';
+	oder++;
 	$("#demo").append(html);
 }
 

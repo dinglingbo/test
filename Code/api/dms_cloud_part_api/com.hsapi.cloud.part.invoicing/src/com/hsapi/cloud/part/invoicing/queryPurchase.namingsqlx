@@ -59,6 +59,7 @@
         <result column="guestShortName" javaType="string" property="guestShortName"/>
         <result column="versionNo" javaType="string" property="versionNo"/>
         <result column="sourceType" javaType="int" property="int"/>
+        <result column="rtnReasonId" javaType="string" property="rtnReasonId"/>
     </resultMap>
     <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
     <select id="queryPjPchsOrderMainList" parameterClass="java.util.HashMap" resultMap="pjPchsOrderMainList">
@@ -112,7 +113,8 @@
             M.billStatusId,
             M.guestFullName,
             M.guestShortName,
-            M.versionNo
+            M.versionNo,
+            M.rtnReasonId
         FROM (
             SELECT DISTINCT
                 A.ID as id,
@@ -163,7 +165,8 @@
                 A.BILL_STATUS_ID as billStatusId,
                 B.FULL_NAME AS guestFullName,
                 B.SHORT_NAME AS guestShortName,
-                a.version_no as versionNo
+                a.version_no as versionNo,
+                a.rtn_reason_id as rtnReasonId
                 FROM
                 DMS_CLOUD_PART.PJ_PCHS_ORDER_MAIN A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
@@ -290,7 +293,8 @@
                 A.BILL_STATUS_ID as billStatusId,
                 B.FULL_NAME AS guestFullName,
                 B.SHORT_NAME AS guestShortName,
-                a.version_no as versionNo
+                a.version_no as versionNo,
+                a.rtn_reason_id as rtnReasonId
                 FROM
                 DMS_CLOUD_PART.PJ_PCHS_ORDER_MAIN_CHK A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID

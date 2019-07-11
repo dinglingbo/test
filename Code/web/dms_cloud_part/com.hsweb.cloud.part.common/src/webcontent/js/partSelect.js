@@ -186,6 +186,9 @@ function onSearch()
 }
 function doSearch(params)
 {
+	if(currIsOpenApp ==1 ){
+		params.orgid =currOrgid;
+	}
     partGrid.load({
         params:params
     });

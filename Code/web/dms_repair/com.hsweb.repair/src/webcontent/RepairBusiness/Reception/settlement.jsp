@@ -423,7 +423,7 @@
 		var partSubtotal = 0;
 		var enterDate = null;
 		var weChatData = {};
-		var wechatOpneId = null;
+		var wechatOpenId = null;
 		var infoData = {};
 		var sendY = 1;
 		//尊敬的客户:以上报价在实际施工过程中可能略有小幅变动，最终价格以实际结算单为准

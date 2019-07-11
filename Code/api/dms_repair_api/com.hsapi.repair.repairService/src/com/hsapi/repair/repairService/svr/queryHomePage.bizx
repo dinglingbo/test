@@ -10,16 +10,6 @@
       <targetNode>assign0</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link3" name="link3" displayName="连接线" type="transition">
-      <sourceNode>start0</sourceNode>
-      <targetNode>assign1</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NE">
-          <process:leftOperand type="query">m:userObject/attributes/tenantId</process:leftOperand>
-          <process:rightOperand type="literal">default</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <location x="60" y="60"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
@@ -50,14 +40,9 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <targetConnections>link4</targetConnections>
     <location x="182" y="60"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">tenantId</process:from>
-      <process:to type="query">params/tenantId</process:to>
-    </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">params/orgid</process:to>
@@ -71,26 +56,6 @@
     <location x="184" y="96"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
-  </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign1</sourceNode>
-      <targetNode>assign0</targetNode>
-      <process:transitionCondition/>
-    </sourceConnections>
-    <targetConnections>link3</targetConnections>
-    <location x="183" y="-15"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign1label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/attributes/tenantId</process:from>
-      <process:to type="query">tenantId</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="181" y="21"/>
-    <figSize height="17" width="32"/>
-    <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="queryByNamedSql" displayName="queryByNamedSql" collapsed="false" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">

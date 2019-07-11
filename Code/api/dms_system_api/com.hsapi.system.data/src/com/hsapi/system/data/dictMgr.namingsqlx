@@ -76,9 +76,12 @@
 		<isNotNull property="orgids">
 			AND (a.orgid = #orgids# or a.orgid = 0)
 		</isNotNull>
-		<isNotNull property="sortField">
-			Order By #sortField# #sortOrder#
+		<isNotNull property="isDisabled">
+			AND A.is_Disabled = #isDisabled#
 		</isNotNull>
+
+		order by a.record_date asc
+		
     </select>
     <!--根据 customid like '0415%' 加载所有字典类型-->
     <select id="queryDictTypeChilds" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
@@ -397,6 +400,45 @@
         where is_disabled = 0 and (orgid = #orgid# or orgid = 0 )
         order by id
     </select>   
+    
+    <!--业务分类   is_disabled = 0 -->
+    <select id="getRpbGuestType" parameterClass="HashMap" resultClass="HashMap">
+        SELECT
+			a.id as id,
+			a.tenant_id as tenantId,
+			a.orgid as orgid,
+			a.`name` as name,
+			a.discount_range_bill as discountRangeBill,
+			a.discount_range_wash as discountRangeWash,
+			a.discount_range_retail as discountRangeRetail,
+			a.discount_range_claims as discountRangeClaims,
+			a.integral_disabled as integralDisabled,
+			a.integral_add as integralAdd,
+			a.integral_bill_add as integralBillAdd,
+			a.integral_wash_add as integralWashAdd,
+			a.integral_retail_add as integralRetailAdd,
+			a.integral_claims_add as integralClaimsAdd,
+			a.integral_reduce as integralReduce,
+			a.integral_bill_reduce as integralBillReduce,
+			a.integral_wash_reduce as integralWashReduce,
+			a.integral_retail_reduce as integralRetailReduce,
+			a.integral_claims_reduce as integralClaimsReduce,
+			a.is_disabled as isDisabled,
+			a.recorder as recorder,
+			a.record_date as recordDate,
+			a.modifier as modifier,
+			a.modify_date as modifyDate
+		FROM
+			rpb_guest_type AS a
+		where 1 = 1 and a.is_disabled = 0
+		    <isNotEmpty prepend="and" property="tenantId">  
+                (a.tenant_id = #tenantId#)
+            </isNotEmpty>
+		    <isNotEmpty prepend="and" property="orgid">  
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+
+    </select> 
 
     
     <!--查询本店系统参数 设置-->

@@ -7,11 +7,7 @@ $(document).ready(function(v) {
 	dgGrid=nui.get("dgGrid");
 	dgGrid.setUrl(gridUrl);
 	var params = {
-		params:{
-			sortField:"record_date",
-			sortOrder:"asc"
-		},
-		orgids:currOrgId,
+		tenantIds:currTenantId,
 		dictid:"DDT20130703000075",
 		fromDb:true,
 		token:token
@@ -40,7 +36,7 @@ $(document).ready(function(v) {
 	dgGrid.on("cellbeginedit",function(e){
 		var field=e.field; 
 		var row = e.row;
-        if(row.orgid == 0){
+        if(row.orgid != currOrgId){
 			e.cancel = true;
 		}
 	});

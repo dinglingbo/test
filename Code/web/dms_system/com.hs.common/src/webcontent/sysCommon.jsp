@@ -133,6 +133,9 @@
 	String isOpenAppRemind = "0";
 	//派工是否默认开启微信提醒
 	String isOpenWeChatRemind = "0";	
+	//是否开启报价提醒
+	String isOpenOfferRemind = "0";	
+	
 	String source = "";
 	String orgJsonStr = "";
 	String isCanBelowCost="";
@@ -235,7 +238,10 @@
                 }  
                 if(attr.get("isOpenWeChatRemind") != null){
                 	isOpenWeChatRemind = attr.get("isOpenWeChatRemind").toString();
-                }            
+                }  
+                if(attr.get("isOpenOfferRemind") != null){
+                	isOpenOfferRemind = attr.get("isOpenOfferRemind").toString();
+                }           
                 if(attr.get("source") != null){
                 	source = attr.get("source").toString();
                 }
@@ -404,6 +410,7 @@
 	var currSystemCarNoPrefix = "<%=systemCarNoPrefix %>";
 	var currIsOpenAppRemind = "<%=isOpenAppRemind %>";
 	var currIsOpenWeChatRemind = "<%=isOpenWeChatRemind %>";
+	var currIsOpenOfferRemind = "<%=isOpenOfferRemind %>";
 	var currSource = "<%=source %>";
 	currOrgs = currOrgs.replace(/\*/g,"");
 	var currOrgJsonStr = "<%=orgJsonStr %>";

@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
         <head>
             <title>首页</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.3.21"></script>
+            <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.3.29"></script>
             <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
             <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
             <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css?v=1.0.5" rel="stylesheet" type="text/css" />
@@ -32,7 +32,15 @@ pageEncoding="UTF-8" session="false" %>
 				<div  class="nui-fit" id="nuifit">
 		             <div class="vpanel_heading">
 	                    <i class="fa fa-th-list fa-lg-custom fa-fw"></i>
-	                    <span>快捷菜单</span>                              
+	                    <span>快捷菜单</span>  
+<!-- 	                    	<div class="menu_pannel menu_pannel_bg" style="background-color: #1faeff;width: 90px;height: 50px;float: left;margin-top: 10px;margin-left: 10px;border-radius: 12px;">
+		                    	<div class="menu_pannel menu_pannel_bg" style="width: 90px;height: 40px;float: left;margin-top: 10px;border-radius: 12px;">	
+									<a onclick="tojump()" style="width: 50px;height: 60px;">
+										<i class="fa fa-file-code-o fa-2x  fa-inverse" style="margin-top: 10px;margin-left: 10px;"></i>
+									</a>
+								</div>
+								<p align="center" style="margin-top: 50px;">综合开单</p>                          
+							</div> -->
 	                </div>
 	                <div  class="nui-fit" style="white-space: nowrap;height: 125px !important;overflow-y:hidden;overflow-x:auto;padding:0px 0px 0px 0px;" id="demo" >
 	

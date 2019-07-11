@@ -239,7 +239,7 @@ function processTreeDictids(data){
 function initCustomDicts(el, customid,callback){//dictDefs{id1: dictid1, id2: dictid2}
 	_initDmsCallback["initCustomDicts"] = callback;
 	if(checkObjExists(el, "initCustomDicts")){
-	    var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.queryDictTypeItems.biz.ext";
+	    var url = _sysApiRoot + "/.biz.ext";
 	    params = {};
 	    params.customid = customid; 
 	    callAjax(url, params, processAjax, processCustomDictids, null);

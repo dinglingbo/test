@@ -110,7 +110,7 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
-    <location x="356" y="135"/>
+    <location x="375" y="144"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -130,7 +130,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="311" y="170"/>
+    <location x="330" y="179"/>
     <figSize height="17" width="117"/>
     <node>subprocess0</node>
   </nodes>

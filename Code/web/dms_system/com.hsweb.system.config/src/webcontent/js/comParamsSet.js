@@ -20,6 +20,8 @@ var isJobItemShowPart = null;
 var isOpenElectronics = null;
 var isOpenAppRemind = null;
 var isOpenWeChatRemind = null;
+var isOpenOfferRemind = null;
+
 $(document).ready(function(v) {
     basicInfoForm = new nui.Form("#basicInfoForm");
     //repairBillControlFlag = nui.get("repairBillControlFlag");
@@ -37,6 +39,7 @@ $(document).ready(function(v) {
     isOpenElectronics = nui.get("isOpenElectronics");
     isOpenAppRemind = nui.get("isOpenAppRemind");
     isOpenWeChatRemind = nui.get("isOpenWeChatRemind");
+    isOpenOfferRemind = nui.get("isOpenOfferRemind");
     //rate = nui.get("rate");
     //openToArchives = nui.get("openToArchives");
     openToGuestQrcode = nui.get("openToGuestQrcode");
@@ -52,6 +55,7 @@ $(document).ready(function(v) {
     isOpenElectronics.setData(radioList);
     isOpenAppRemind.setData(radioList);
     isOpenWeChatRemind.setData(radioList);
+    isOpenOfferRemind.setData(radioList);
     repairBillMobileFlag.setData(radioList);
     repairStoreControlFlag.setData(radioList);
     isJobItemShowPart.setData(radioList);

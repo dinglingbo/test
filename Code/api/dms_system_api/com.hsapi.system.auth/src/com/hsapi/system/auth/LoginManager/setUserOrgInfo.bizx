@@ -286,6 +286,10 @@
       <process:from type="query" pattern="reference">billParams/isOpenWeChatRemind</process:from>
       <process:to type="query">m:userObject/attributes/isOpenWeChatRemind</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billParams/isOpenOfferRemind</process:from>
+      <process:to type="query">m:userObject/attributes/isOpenOfferRemind</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="603" y="216"/>
@@ -572,6 +576,7 @@
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess4</sourceNode>
       <targetNode>assign1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
     <location x="542" y="180"/>

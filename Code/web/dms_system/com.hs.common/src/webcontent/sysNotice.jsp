@@ -5,6 +5,7 @@
  <script src="<%=webPath + contextPath%>/common/js/naranja.js?v=1.0.3" type="text/javascript"></script>    
  
  <script type="text/javascript">
+    //  调用的例子
 	function narn (type) {
         naranja()[type]({
             title: '新消息提示',

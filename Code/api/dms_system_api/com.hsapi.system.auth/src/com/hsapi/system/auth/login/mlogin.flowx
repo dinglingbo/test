@@ -108,9 +108,9 @@
         <process:inputVariable id="4" name="webPath" type="expression" value="String" valueType="Primitive" pattern="reference">sessionContext.getString(&quot;webPath&quot;)</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="userKey" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="2" name="token" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="userKey" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="2" name="token" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -156,16 +156,16 @@
     <location x="569" y="30"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.system.auth.LoginManager.setToggleUserOrgInfo</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="operatorId" type="query" value="Long" valueType="Primitive" pattern="reference">operatorId</process:inputVariable>
-        <process:inputVariable id="1" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">orgid</process:inputVariable>
+        <process:inputVariable id="1" name="orgid" type="query" value="String" valueType="Primitive" pattern="reference">orgid</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="userKey" type="query" value="String" valueType="Primitive"/>
-        <process:outputVariable id="2" name="token" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="userKey" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="token" type="query" value="String" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>

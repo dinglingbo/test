@@ -68,6 +68,27 @@ public class BillStateUtils {
 	}
 	
 	@Bizlet("")
+	public static String importTimeLimit() {
+		Date operateDate = new Date();
+		int hours = operateDate.getHours();
+		if((hours>=23&&hours<24)||(hours>=0&&hours<5)){
+			return "S";
+		}else{
+			return "E";
+		}
+
+	}
+	@Bizlet("")
+	public static String administratorLimit(String administrator) {
+		if(administrator.equals("sysadmin")||administrator.equals("sysqxy")||administrator.equals("sysqpy")){
+			return "S";
+		}else{
+			return "E";
+		}
+
+	}
+	
+	@Bizlet("")
 	public static Integer getColumnIntValue(String conColumn, int conContent,
 			String entityName, String resColumn, String dataSource) {
 

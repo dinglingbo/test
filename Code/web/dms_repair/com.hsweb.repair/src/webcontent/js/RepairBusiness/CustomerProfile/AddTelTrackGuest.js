@@ -151,6 +151,10 @@ function changedToText(newRow){//从文字转化为编码存到数据库中
 
 
 function sure() {
+	if(!importTimeLimit()){
+		parent.parent.showMsg("请在规定时间内导入！","W");
+		return;
+	}
 	var data = mainGrid.getData();
 	var partList = [];
 	var length = 0;

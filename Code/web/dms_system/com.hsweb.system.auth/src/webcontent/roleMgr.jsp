@@ -14,7 +14,7 @@
     <script>
 		var defDomin = "<%=request.getContextPath()%>";
 	</script>
-    <script src="<%=webPath + contextPath%>/auth/js/roleMgr.js?v=1.0.2" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/auth/js/roleMgr.js?v=1.0.3" type="text/javascript"></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style type="text/css">
     body {

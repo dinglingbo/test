@@ -1075,11 +1075,14 @@ function addCar() {
 	}
 	carIdForPhoto = null;
 	nui.get("carNo").enable();
+
 	nui.get("vin").enable();
 	carInfoFrom.setData("");
     $("#xmTanImg2").attr("src",webPath + contextPath + "/common/images/logo.jpg");
     $("#xmTanImg3").attr("src",webPath + contextPath + "/common/images/logo.jpg");
 	carview.show();
+	nui.get("carNo").setValue(currSystemCarNoPrefix);
+	nui.get("carNo").setText(currSystemCarNoPrefix);
 	$(".imgListA").remove();
 	photos=[];
 }

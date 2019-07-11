@@ -61,9 +61,23 @@
 	funcTree.expandLevel(0);
 
 	var baseUrl = apiPath + sysApi + "/";
-
+    var show = null;
+    $(document).ready(function(v) {
+	    getShow();
+	});
+    
+    function getShow(){
+      show = <%= request.getParameter("falg")%>;
+    }
+    
 	function setRoleId(){
-		return {"roleId":"<%= request.getParameter("roleId")%>","type":"PC","token":token};
+	    var falg = <%= request.getParameter("falg")%>;
+	    if(falg){
+	         show = 1;
+	         return {"roleId":"<%= request.getParameter("roleId")%>","tenantId":"<%= request.getParameter("tenantId")%>","type":"PC","token":token};
+	    }else{
+	       return {"roleId":"<%= request.getParameter("roleId")%>","type":"PC","token":token};
+	    }
 	}
 
 	function saveTree(){
@@ -104,16 +118,30 @@
 			success: function (text) {
 				nui.unmask();
 				if(text.errCode == 'S'){
-					parent.showMsg("权限设置成功","S");
+				    if(show){
+				       parent.parent.showMsg("权限设置成功","S");
+				    }else{
+				       parent.showMsg("权限设置成功","S");
+				    }
+					
 					//nui.alert("权限设置成功");
 				}else{
-					parent.showMsg("权限设置失败","E");
+				    if(show){
+				       parent.parent.showMsg("权限设置失败","E");
+				    }else{
+				       parent.showMsg("权限设置失败","E");
+				    }
+					
 					//nui.alert("权限设置失败");
 				}
 			},
 			error: function () {
 				nui.unmask();
-				parent.showMsg("权限设置失败","E");
+				if(show){
+				    parent.parent.showMsg("权限设置失败","E");
+				 }else{
+				    parent.showMsg("权限设置失败","E");
+				 }
 				//nui.alert("权限设置失败");
 			}
 		});

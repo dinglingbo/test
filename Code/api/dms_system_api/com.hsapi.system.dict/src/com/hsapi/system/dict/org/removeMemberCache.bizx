@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="removeMemberCache" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="6.3">
   <nodes xsi:type="model:Note" id="node2" name="注释2" displayName="注释" collapsed="false" nodeType="note" type="note" content="命名空间&#xD;&#xA;com.hsapi.system.data.dictMgr.queryComMember&#xD;&#xA;&#xD;&#xA;缓存条件：&#xD;&#xA;1、服务技师&#xD;&#xA;     params/orgid&#xD;&#xA;     params/isArtificer&#xD;&#xA;&#xD;&#xA;2、工作组对应人员&#xD;&#xA;     params/orgid&#xD;&#xA;     params/memberGroupId&#xD;&#xA;&#xD;&#xA;3、技师等级对应人员&#xD;&#xA;     params/orgid&#xD;&#xA;     params/memberLevelId&#xD;&#xA;&#xD;&#xA;4、服务顾问对应人员&#xD;&#xA;     params/orgid&#xD;&#xA;     params/isMtadvisor&#xD;&#xA;&#xD;&#xA;5、采购/仓库（仓库提醒）对应人员&#xD;&#xA;     params/orgid&#xD;&#xA;     params/isPchsStock&#xD;&#xA;&#xD;&#xA;6、领料对应人员&#xD;&#xA;     params/orgid&#xD;&#xA;     params/isStockman&#xD;&#xA;&#xD;&#xA;7、员工ID对应缓存（如果员工表字段有变更，需要清除所有缓存） com.hsapi.system.data.dictMgr.queryComMemberByEmpId&#xD;&#xA;     params/empId" title="Administrator&#x9;19-7-9 下午5:33">
-    <location x="-135" y="405"/>
+    <location x="-240" y="420"/>
     <size height="586" width="302"/>
   </nodes>
   <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="orgid 为空则取当前机构ID，也就是当前机构ID缓存肯定要清除&#xD;&#xA;com.hsapi.system.data.dictMgr.queryComMember" title="Guine&#x9;18-2-28 上午8:56">
@@ -41,6 +41,16 @@
       <process:transitionCondition>
         <process:simpleCondition operator="NOTNULLANDEMPTY">
           <process:leftOperand type="query">empId</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link6" name="link6" displayName="连接线" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign4</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">systemAccount</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -207,6 +217,7 @@
     </sourceConnections>
     <targetConnections>link14</targetConnections>
     <targetConnections>link4</targetConnections>
+    <targetConnections>link9</targetConnections>
     <location x="405" y="242"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
@@ -262,6 +273,41 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值5" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>subprocess1</targetNode>
+    </sourceConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="119" y="435"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign4label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">执行成功！</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">S</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">null</process:from>
+      <process:to type="query">data</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">systemAccount</process:from>
+      <process:to type="query">p/systemAccount</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">com.hsapi.system.data.dictMgr.queryComMemberByEmpId</process:from>
+      <process:to type="query">nameSqlId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <location x="117" y="471"/>
+    <figSize height="17" width="32"/>
+    <node>assign4</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="陈鹏" createTime="2013-12-02 10:16:52" date="2013-12-02Z" description="" name="查询业务字典项" version="6.3"/>
@@ -279,6 +325,7 @@
     <process:input description="采购/仓库（用于接收配件审核提醒）" isArray="false" name="isPchsStock" primitiveType="String"/>
     <process:input description="" isArray="false" name="empId" primitiveType="String"/>
     <process:input description="" isArray="false" name="isSalesman" primitiveType="String"/>
+    <process:input description="" isArray="false" name="systemAccount" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

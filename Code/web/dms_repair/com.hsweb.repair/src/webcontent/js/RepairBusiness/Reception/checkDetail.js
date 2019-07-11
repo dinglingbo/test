@@ -175,19 +175,17 @@ $(document).ready(function ()
     
     
     
-//    mainGrid.on("drawcell",function(e){
-//        switch (e.field)
-//        {
-//            case "remark":
-//                e.value="";
-//                break;
-//            case "checkRemark" :
-//            	e.value=e.record.remark;
-//            default:
-//                break;
-//        }
-//
-//    });
+    mainGrid.on("drawcell",function(e){
+       switch (e.field)
+        {
+			case "operateBtn":
+				e.cellHtml = '<span class="fa fa-edit" onClick="javascript:addPicture()" title="添加修改">&nbsp;&nbsp;</span>'
+                break;
+            default:
+                break;
+        }
+
+   });
 
     mainGrid.on("cellbeginedit",function(e){
         var record = e.record;
@@ -770,6 +768,9 @@ function saveDetail(){ //√  isCheckMain == "N"
         tem.checkName = grid_all[i].checkName;
         tem.checkType = grid_all[i].checkType;
         tem.checkRemark=grid_all[i].checkRemark;
+        tem.pictureOne=grid_all[i].pictureOne;
+        tem.pictureTwo=grid_all[i].pictureTwo;
+        tem.pictureThree=grid_all[i].pictureThree;
         tem.status = grid_all[i].status;
         tem.settleType=grid_all[i].settleType;
         if(tem.settleType==undefined ){
@@ -1028,6 +1029,9 @@ function saveDetailB(){
         tem.checkName = grid_all[i].checkName;
         tem.checkType = grid_all[i].checkType;
         tem.checkRemark=grid_all[i].checkRemark;
+        tem.pictureOne=grid_all[i].pictureOne;
+        tem.pictureTwo=grid_all[i].pictureTwo;
+        tem.pictureThree=grid_all[i].pictureThree;
         tem.status = grid_all[i].status;
         tem.settleType=grid_all[i].settleType;
         if(tem.settleType==undefined ){
@@ -1283,3 +1287,24 @@ function addOrEdit(item)
 }
 
 
+function addPicture(){
+	var row = mainGrid.getSelected();
+    nui.open({
+        url: webBaseUrl + "com.hsweb.RepairBusiness.checkPicture.flow",
+        title:"上传查车照片",
+        height:"400px",
+        width:"600px",
+        onload:function(){
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(row);
+        },
+        ondestroy:function(action){
+        	if(action.errCode=="S"){     		
+        		var oldRow = mainGrid.getSelected();
+        		mainGrid.updateRow ( oldRow,action.row);
+        		saveb();
+        	}
+        }
+
+    });
+}

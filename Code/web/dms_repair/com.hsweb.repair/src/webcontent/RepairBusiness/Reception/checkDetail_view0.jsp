@@ -12,7 +12,7 @@
 <head> 
     <title>检查开单详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.2.0"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.2.9"></script>
     <style type="text/css">
     
     body { 
@@ -275,7 +275,7 @@
                     nullItemText="请选择..."/>
 
                 </td>
-                <td  class="tbtext" style="width:100px">本次检查得分：</td>
+                <td  class="tbtext" style="width:100px">本次检查得：</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="checkPoint" id="checkPoint" enabled="false" style="width:100%"/>
                 </td>
@@ -294,7 +294,7 @@
     </div>
 
     <div id="mainGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
-    dataField="list"  allowCellSelect="true"  oncellcommitedit="onCellCommitEdit" allowCellWrap="true"
+    dataField="list"  allowCellSelect="true"  oncellcommitedit="onCellCommitEdit"
     url=""  showModified="false"
     allowCellEdit="true" ShowHGridLines="false" ShowVGridLines="false" >
     <div property="columns">
@@ -318,6 +318,7 @@
             textfield="content" valuefield="content"  dataField="list" allowInput="true"/>  
 
         </div>
+        <div field="operateBtn" name="operateBtn" width="30" headerAlign="center" align="center" ><strong>上传图片</strong></div>
         <div type="checkboxcolumn" field="settleType" name="settleType" trueValue="0" falseValue="1"  width="30" headerAlign="center" align="center" value="-1"><strong>下次处理</strong></div>
         <div type="checkboxcolumn" field="nosettleType" name="nosettleType" trueValue="1" falseValue="0"  width="30" headerAlign="center" align="center"><strong>本次处理</strong></div>
         <div field="careDueMileage" name="careDueMileage" width="30" vtype="float" headerAlign="center" align="center"><strong>下次处理里程</strong>

@@ -1104,5 +1104,104 @@
 				and   a.branch_stock_age &gt; 180
 		and b.orgid = #orgid#
     </select>
+    <!-- 销售提成明细 -->
+   <select id="querydeductDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">    	
+           SELECT
+				id as id,
+				orgid as orgid,
+				deduct_type as deductType,
+				deduct_mem_id as deductMemId ,
+				deduct_mem_name as deductMemName,
+				order_id as orderId,
+				order_code as orderCode,
+				out_id as outId,
+				out_code as outCode,
+				order_amt as orderAmt,
+				out_amt as outAmt,
+				out_gross as outGross,
+				part_id as partId,
+				part_code as partCode,
+				part_name as partName,
+				full_name as fullName,
+				type as type,
+				begin_amt as beginAmt,
+				end_amt as endAmt,
+				deduct_rate as deductRate,
+				deduct_amt as deductAmt,
+				create_date as  createDate 
+			FROM
+				pj_bill_deduct_detail
+				where 1=1
+			<isNotEmpty prepend="and" property="orgid"> 
+                (orgid = #orgid#)
+            </isNotEmpty>
+            <!--本日 昨日 本周 上周 本月 下月 -->
+            <isNotEmpty prepend="and" property="startDate">  
+                (create_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (create_date &lt; #endDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partId">  
+                (PART_ID = #partId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">  
+                (part_name like '%$partName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">  
+                (part_code like '%$partCode$%')
+            </isNotEmpty>
+             <isNotEmpty prepend="and" property="orderCode">  
+                (order_code like '%$orderCode$%')
+            </isNotEmpty>
+             <isNotEmpty prepend="and" property="outCode">  
+                (out_code like '%$outCode$%')
+            </isNotEmpty>
+	
+    </select>
     
+     <!-- 销售提成明细汇总 -->
+   <select id="querydeductDetailSum" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">    	
+	          SELECT
+				deduct_mem_id,
+				deduct_mem_name,
+				sum(deduct_amt),
+				sum(order_amt),
+				sum(out_amt)
+			FROM
+				pj_bill_deduct_detail
+				where 1=1
+			<isNotEmpty prepend="and" property="orgid"> 
+                (orgid = #orgid#)
+            </isNotEmpty>
+            <!--本日 昨日 本周 上周 本月 下月 -->
+            <isNotEmpty prepend="and" property="startDate">  
+                (create_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (create_date &lt; #endDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partId">  
+                (PART_ID = #partId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">  
+                (part_name like '%$partName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">  
+                (part_code like '%$partCode$%')
+            </isNotEmpty>
+             <isNotEmpty prepend="and" property="orderCode">  
+                (order_code like '%$orderCode$%')
+            </isNotEmpty>
+             <isNotEmpty prepend="and" property="outCode">  
+                (out_code like '%$outCode$%')
+            </isNotEmpty>
+            GROUP BY
+				deduct_mem_id,
+				deduct_mem_name,
+				deduct_amt,
+				order_amt,
+				out_amt
+	
+    </select>
 </sqlMap>

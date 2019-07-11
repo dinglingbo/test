@@ -31,7 +31,7 @@ pageEncoding="UTF-8" session="false" %>
 	    <div class="nui-toolbar" style="padding:10px;border-top:0;border-left:0;border-right:0;">
 	        <a class="nui-button" iconCls="" plain="true" onclick="add()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
 	        <a class="nui-button" iconCls="" plain="true" onclick="edit()"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
-	        <a class="nui-button" iconCls="" plain="true" onclick="deleteType()"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
+	        <a class="nui-button" iconCls="" plain="true" onclick="deleteType()" visible="false"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
 	        <a class="nui-button" id="disable" iconCls="" plain="true" onclick="disable()" ><span class="fa fa-ban fa-lg"></span>&nbsp;禁用</a>
 	        <a class="nui-button" id="undisable" iconCls="" plain="true" onclick="undisable()" ><span class="fa fa-check-circle fa-lg"></span>&nbsp;启用</a>
 	        <a class="nui-button" iconCls="" plain="true" onclick="refresh()"><span class="fa fa-refresh fa-lg"></span>&nbsp;刷新</a>

@@ -55,6 +55,7 @@ function getInComeExpenses(callback) {
 	nui.ajax({
 		url : queryUrl,
 		data : {
+			fromDb:'true',
 			token: token
 		},
 		type : "post",

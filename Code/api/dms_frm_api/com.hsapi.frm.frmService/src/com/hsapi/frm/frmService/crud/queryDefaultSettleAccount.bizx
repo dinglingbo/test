@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryDefaultSettleAccount.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="查询默认的结算账户或是isSystem=1，如果没有就新建一个默认账户 " title="Administrator&#x9;18-8-14 下午4:56">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="查询默认的结算账户或是isSystem=1，如果没有就新建一个默认账户 &#xD;&#xA;&#xD;&#xA;20190711&#xD;&#xA;只查询默认账户，注册用户通过后自动生成默认账户&#xD;&#xA;com.hsapi.frm.frmSetting.queryFibSettleAccount" title="Administrator&#x9;18-8-14 下午4:56">
     <location x="120" y="-45"/>
-    <size height="100" width="415"/>
+    <size height="136" width="526"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">

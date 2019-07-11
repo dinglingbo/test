@@ -28,7 +28,7 @@
             </isNotEmpty> 
         </dynamic>
 	</select>
-	<select id="getGroup" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	<select id="getGroup" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT type, id, name from (
 			select 'ALL' as type, 0 as id, '全部' as name
 			union

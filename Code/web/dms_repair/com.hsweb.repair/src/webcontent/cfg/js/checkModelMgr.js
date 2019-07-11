@@ -79,6 +79,14 @@ $(document).ready(function(v)
         var mainId = row.id;
 
 	    loadCheckDetail(mainId);
+	    
+	    if(row.orgid != currOrgId){
+			nui.get("addCheckDetailBtn").disable();
+			nui.get("editCheckDetailBtn").disable();
+		}else {
+			nui.get("addCheckDetailBtn").enable();
+			nui.get("editCheckDetailBtn").enable();
+		}
     });
     
     rightGrid.on("rowdblclick", function(e) {
@@ -157,7 +165,6 @@ function getSearchParam(){
     if(value && value<2){
         params.isDisabled = value;
     }
-	params.orgid = currOrgId;
     return params;
 }
 function onSearch(){

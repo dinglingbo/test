@@ -19,6 +19,7 @@ $(document).ready(function(v) {
 });
 function doSearch() {
 	mainGrid.load({
+		fromDb: 'true',
 		token : token
 	});
 }

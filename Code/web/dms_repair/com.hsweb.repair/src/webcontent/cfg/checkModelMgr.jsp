@@ -12,7 +12,7 @@
 <head> 
 <title>查车单模版管理</title>
 
-<script src="<%=webPath + contextPath%>/repair/cfg/js/checkModelMgr.js?v=1.0.10"></script>
+<script src="<%=webPath + contextPath%>/repair/cfg/js/checkModelMgr.js?v=1.0.13"></script>
 <link href="<%=webPath + contextPath %>/common/nui/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
 .title {
@@ -95,8 +95,8 @@
                    <tr>
                        <td style="white-space:nowrap;">
                            <label style="font-family:Verdana;">检查项目设置:</label>
-                           <a class="nui-button" plain="true" iconCls="" onclick="addCheckDetail()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增检查项目</a>
-                           <a class="nui-button" plain="true" iconCls="" onclick="editCheckDetail()"><span class="fa fa-edit fa-lg"></span>&nbsp;修改检查项目</a>
+                           <a class="nui-button" plain="true" id="addCheckDetailBtn" iconCls="" onclick="addCheckDetail()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增检查项目</a>
+                           <a class="nui-button" plain="true" id="editCheckDetailBtn" iconCls="" onclick="editCheckDetail()"><span class="fa fa-edit fa-lg"></span>&nbsp;修改检查项目</a>
                            <span class="separator"></span>
                            <a class="nui-button" plain="true" iconCls="" onclick="addCheckType()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增检查类型</a>
                        </td>

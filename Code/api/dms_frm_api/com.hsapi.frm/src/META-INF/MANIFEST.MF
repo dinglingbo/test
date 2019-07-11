@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
-Require-Bundle: com.eos.foundation,com.hsapi.part.common,com.hsapi.par
- t.data,com.hs.common
-Bundle-Vendor: Guine
+Require-Bundle: com.hsapi.part.common,com.hs.common,com.eos.foundation
+ ,com.hsapi.system.data,com.hsapi.part.data
 eos-webCtxPath: frm
+Bundle-Vendor: Guine
 Bundle-Version: 1.0.0
 Bundle-Name: com.hsapi.frm
 Bundle-Description: 

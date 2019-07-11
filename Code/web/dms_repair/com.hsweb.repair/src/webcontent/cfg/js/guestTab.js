@@ -41,7 +41,7 @@ $(document).ready(function(v) {
 	dgGrid.on("cellbeginedit",function(e){
 		var field=e.field; 
 		var row = e.row;
-        if(row.orgid == currOrgId){
+        if(row.orgid != currOrgId){
 			e.cancel = true;
 		}
 	});

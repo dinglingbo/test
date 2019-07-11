@@ -841,7 +841,9 @@
     <figSize height="20" width="149"/>
     <node>subprocess8</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="1041" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-02-26 21:02:48" date="2018-02-26Z" description="" name="auditPjPchsOrder" version="7.0.0.0"/>
   <process:variables>

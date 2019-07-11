@@ -200,7 +200,7 @@ cursor: pointer;
 
         <div showCollapseButton="false" style="border:0;">
             <div class="nui-fit">
-                <div class="nui-tabs" activeIndex="0" style="width:100%;height: 85%;">
+                <div class="nui-tabs" activeIndex="0" style="width:100%;height: 100%;">
                     <div title="车辆信息">
                         <div class="nui-toolbar" style="border-bottom: 0; padding: 0px; height:33px" id="toolbar1">
                             <table style="width: 100%;">
@@ -308,7 +308,7 @@ cursor: pointer;
                         </div>
                         <div class="nui-fit">
                             <div id="contactdatagrid" class="nui-datagrid" style="width: 100%;height:100%" showPager="false" sortMode="client" allowCellEdit="true" onrowdblclick="eaidContact()"
-                                allowCellSelect="true" multiSelect="true"  editNextOnEnterKey="true" onDrawCell="onDrawCell">
+                                allowCellSelect="true" multiSelect="true" showSummaryRow="true" editNextOnEnterKey="true" onDrawCell="onDrawCell">
                                 <div property="columns">
 
                                     <div field="id" class="nui-hidden" allowSort="true" align="left" headerAlign="center" width="" visible="false">

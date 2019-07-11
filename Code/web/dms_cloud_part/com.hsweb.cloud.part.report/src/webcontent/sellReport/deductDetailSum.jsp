@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售提成明细</title>
-<script src="<%=webPath + contextPath%>/report/js/deductDetail.js?v=2.0.8"></script>
+<script src="<%=webPath + contextPath%>/report/js/deductDetailSum.js?v=2.0.9"></script>
 <style type="text/css">
 .title {
 	width: 90px;

@@ -1159,4 +1159,49 @@
             </isNotEmpty>
 	
     </select>
+    
+     <!-- 销售提成明细汇总 -->
+   <select id="querydeductDetailSum" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">    	
+	          SELECT
+				deduct_mem_id,
+				deduct_mem_name,
+				sum(deduct_amt),
+				sum(order_amt),
+				sum(out_amt)
+			FROM
+				pj_bill_deduct_detail
+				where 1=1
+			<isNotEmpty prepend="and" property="orgid"> 
+                (orgid = #orgid#)
+            </isNotEmpty>
+            <!--本日 昨日 本周 上周 本月 下月 -->
+            <isNotEmpty prepend="and" property="startDate">  
+                (create_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (create_date &lt; #endDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partId">  
+                (PART_ID = #partId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">  
+                (part_name like '%$partName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">  
+                (part_code like '%$partCode$%')
+            </isNotEmpty>
+             <isNotEmpty prepend="and" property="orderCode">  
+                (order_code like '%$orderCode$%')
+            </isNotEmpty>
+             <isNotEmpty prepend="and" property="outCode">  
+                (out_code like '%$outCode$%')
+            </isNotEmpty>
+            GROUP BY
+				deduct_mem_id,
+				deduct_mem_name,
+				deduct_amt,
+				order_amt,
+				out_amt
+	
+    </select>
 </sqlMap>

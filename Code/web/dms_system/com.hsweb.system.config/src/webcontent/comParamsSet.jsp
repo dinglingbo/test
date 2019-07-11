@@ -9,7 +9,7 @@
 -->
 <head>
   <title>工单设置</title>
-  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.1.4"></script>
+  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.1.5"></script>
   <style type="text/css">
 
     .title {
@@ -251,6 +251,15 @@
                         textField="text" valueField="id" ></div>
                 </td>      
             </tr>
+            <tr>
+                <td class="tbtext">是否开启报价提醒：</td>
+                <td class="tbCtrl" >
+                    <div id="isOpenOfferRemind" name="isOpenOfferRemind" 
+                        class="nui-radiobuttonlist" value="" repeatItems="2" 
+                        repeatDirection="" repeatLayout="table" 
+                        textField="text" valueField="id" ></div>
+                </td>      
+            </tr>            
             <tr>
                 <td class="tbtext"></td>
                 <td class="tbCtrl" >

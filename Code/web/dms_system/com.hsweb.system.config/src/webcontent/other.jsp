@@ -79,6 +79,13 @@
                 </td>
 				
             </tr> 
+            <tr >
+                <td align="right">默认车牌号前缀：<span class="spanwidth"></span>   </td>
+                <td  colspan="5" class="tabwidth" >
+                		 <input  class="nui-textbox"  id="systemCarNoPrefix" name="systemCarNoPrefix" maxLength="2">              	
+                </td>
+				
+            </tr>
              <tr>
                 <td class="tbtext"></td>
                 <td class="tbCtrl" >

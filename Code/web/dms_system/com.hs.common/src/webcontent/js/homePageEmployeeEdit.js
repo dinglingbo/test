@@ -148,8 +148,10 @@ function updatePassWord(){
 }
 
 function showCode() {
-    $("#cover").show();
+    // $("#cover").show();
+    document.getElementById("cover").style.display = 'flex';
 }
 function hideCode() {
-    $("#cover").hide();
+    // $("#cover").hide();
+    document.getElementById("cover").style.display = 'none';
 }

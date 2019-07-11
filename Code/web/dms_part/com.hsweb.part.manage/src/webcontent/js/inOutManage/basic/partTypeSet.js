@@ -14,6 +14,13 @@ $(document).ready(function(v) {
 	disableEl = nui.get("disable");
 	undisableEl = nui.get("undisable");
 	
+	if(currOrgId != "0") {
+		nui.get("add").disable();
+		nui.get("mod").disable();
+		nui.get("disable").disable();
+		nui.get("undisable").disable();
+	}
+	
 	mainGrid.on("rowdblclick", function(e) {
 	        var row = mainGrid.getSelected();
 	        var rowc = nui.clone(row);
@@ -23,6 +30,7 @@ $(document).ready(function(v) {
 
 	    });
 	doSearch();
+	
 });
 function doSearch() {
 	

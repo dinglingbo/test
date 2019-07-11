@@ -318,4 +318,28 @@ function sendNoticeMsg(socket,params){
     message.setContent(content.serializeBinary())
     socket.send(message.serializeBinary()); 
 };
+//导入时间限制
+function importTimeLimit(){
+	//免限制权限账户
+	if(currLoginName=="sysadmin"||currLoginName=="sysqxy"||currLoginName=="sysqpy"){
+		return true;
+	}else{
+		var d2=new Date();
+		var fullYear = d2.getFullYear();
+		var month = d2.getMonth()+1;
+		var date = d2.getDate();
+		
+		var limitMinData = fullYear+"-"+month+"-"+date+" 23:00:00";
+		var limitMaxData = fullYear+"-"+month+"-"+(date+1)+" 05:00:00";
+		limitMinData = limitMinData.replace("-","/");//替换字符，变成标准格式  
+		limitMaxData = limitMaxData.replace("-","/");//替换字符，变成标准格式   
+		var d1 = new Date(Date.parse(limitMinData)); 
+		var d3 = new Date(Date.parse(limitMaxData)); 
+		if(d2>d1&&d2<d3){
+			return true;
+		}else{
+			return false;
+		}
+	}
 
+}

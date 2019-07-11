@@ -461,6 +461,8 @@ function updateCarBtnState()
     else{
         nui.get("carNo").enable();
         nui.get("vin").enable();
+    	nui.get("carNo").setValue(currSystemCarNoPrefix);
+    	nui.get("carNo").setText(currSystemCarNoPrefix);
     }
     if(currCarIdx<=0)
     {

@@ -12,7 +12,7 @@
 <head> 
 <title>查车单模版管理</title>
 
-<script src="<%=webPath + contextPath%>/repair/cfg/js/checkModelMgr.js?v=1.0.9"></script>
+<script src="<%=webPath + contextPath%>/repair/cfg/js/checkModelMgr.js?v=1.0.10"></script>
 <link href="<%=webPath + contextPath %>/common/nui/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
 .title {

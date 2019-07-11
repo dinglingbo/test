@@ -1009,13 +1009,15 @@
 				SUM(b.bala_amt) as balaAmt
 				
                FROM rps_card_times_invocing b
- 		WHERE id in(
+ 		WHERE  id in(
                SELECT max(a.id) from rps_card_times_invocing a
                		 where 1 = 1 
                	<isNotNull prepend = "" property = "startDate">
 						AND  a.create_date &gt;= #startDate#					
 				</isNotNull>
-				
+				<isNotNull prepend = "" property = "orgid">
+						AND  a.orgid = #orgid#					
+				</isNotNull>
 				<isNotNull prepend = "" property = "endDate">
 						AND   a.create_date &lt; #endDate#						
 				</isNotNull>

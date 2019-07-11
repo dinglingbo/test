@@ -1,7 +1,7 @@
 var tabs = null;
 
 
-var mainGrid1 = null;
+var mainServiceGrid = null;
 var params = {};
 var form = null; 
 var datagrid1 = null;
@@ -48,7 +48,7 @@ $(document).ready(function () {
 	datagrid2 = nui.get("datagrid2");
 	datagrid3 = nui.get("datagrid3");
 	datagrid1.setUrl(queryOldMaintain);
-    mainGrid1 = nui.get("mainGrid1");
+	mainServiceGrid = nui.get("mainServiceGrid");
     form = new nui.Form("#editForm1");
     carSellPointGrid = nui.get("carSellPointGrid");
     carSellPointGrid.setUrl(sellUrl);
@@ -67,7 +67,7 @@ $(document).ready(function () {
     grid2.setUrl(baseUrl+"com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext");
     grid3.setUrl(baseUrl+"com.hsapi.repair.baseData.query.queryItemTimesByUsableWithPage.biz.ext");
     grid4.setUrl(baseUrl2 +"com.hsapi.wechat.autoServiceBackstage.weChatInterface.queryUserUseCouponChenDaoCarId.biz.ext");
-    mainGrid1.setUrl(baseUrl+"com.hsapi.repair.repairService.query.querySettleList.biz.ext");
+    mainServiceGrid.setUrl(baseUrl+"com.hsapi.repair.repairService.query.querySettleList.biz.ext");
     mainGrid2 = nui.get("mainGrid2");
 
     grid2.on("load",function(e){
@@ -310,7 +310,7 @@ function onShowRowDetail(e) {
     var row = e.record;
     
     //将editForm元素，加入行详细单元格内
-    var td = mainGrid1.getRowDetailCellEl(row);
+    var td = mainServiceGrid.getRowDetailCellEl(row);
     td.appendChild(editFormDetail);
     editFormDetail.style.display = "";
 
@@ -446,7 +446,7 @@ function SetData(params) {
     		carId:params.carId,
     		token:token
     };
-    mainGrid1.load({params:pa1});
+    mainServiceGrid.load({params:pa1});
 //储值卡
     grid2.load({guestId:params.guestId});
 
@@ -608,7 +608,7 @@ function onSearch(){
 	    };
 	}
 
-    mainGrid1.load({params:pa1});
+    mainServiceGrid.load({params:pa1});
 }
 
 function activechangedmain(){
@@ -653,7 +653,7 @@ function activechangedmain(){
 	    		carId:onSearchParams.carId,
 	    		token:token
 	    };
-	    mainGrid1.load({params:pa1});
+	    mainServiceGrid.load({params:pa1});
 	}else if(tabs.name=="serviceRecordOld"){
 		searchOld(onSearchParams.carNo||"");
 	}else if(tabs.name=="sales"){

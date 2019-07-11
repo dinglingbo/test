@@ -12,7 +12,7 @@
 <head>
 <title>客户标签列表</title>
 <%@include file="/common/sysCommon.jsp"%>
-<script src="<%= request.getContextPath() %>/repair/cfg/js/guestTab.js?v=1.0.2"></script>
+<script src="<%= request.getContextPath() %>/repair/cfg/js/guestTab.js?v=1.0.3"></script>
 
 </head>
 <body>

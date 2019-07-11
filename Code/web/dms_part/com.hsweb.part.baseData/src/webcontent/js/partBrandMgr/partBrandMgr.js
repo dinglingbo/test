@@ -43,6 +43,18 @@ $(document).ready(function(v)
         }
     });
     
+    if(currOrgId != "0") {
+		nui.get("addLeft").disable();
+		nui.get("editLeft").disable();
+		nui.get("disabledLeft").disable();
+		nui.get("enabledLeft").disable();
+		
+
+		nui.get("editRight").disable();
+		nui.get("disabledRight").disable();
+		nui.get("enabledRight").disable();
+	}
+    
     uploader = Qiniu.uploader({
         runtimes: 'html5,flash,html4',
         browse_button: 'faker',//上传按钮的ID

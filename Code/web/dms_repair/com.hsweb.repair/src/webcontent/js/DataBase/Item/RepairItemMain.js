@@ -378,6 +378,7 @@ function onAdvancedAddOk(){
 			addList : addList,
 			updateList : updateList,
 			dictid : dictid,
+			rootid: 'DDT20130703000063',
 			token: token
 		}),
 		success : function(data) {

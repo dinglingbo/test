@@ -357,6 +357,7 @@ function setHomePage(data){
 		html+='</div>';
 		$("#demo").append(html);
 	document.getElementById("demo").style.width = twidth + 'px';
+	document.getElementById("demoFather").style.width = twidth + 'px';
 }
 function queryGuestCarData(p,callback) {
     p.startDate = getNowStartDate();

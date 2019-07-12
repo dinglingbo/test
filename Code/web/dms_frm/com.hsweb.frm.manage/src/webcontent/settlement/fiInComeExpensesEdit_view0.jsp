@@ -9,7 +9,7 @@ pageEncoding="UTF-8" session="false" %>
 -->
 <head>
 <title>新增项目</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/fiInComeExpensesEdit.js?v=2.0.7"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/fiInComeExpensesEdit.js?v=2.0.8"></script>
 <style type="text/css">
 .title {
     width: 90px;

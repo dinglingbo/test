@@ -8,7 +8,7 @@
 -->
 <head>
 <title>结算账户修改</title>
-<script src="<%=webPath + contextPath%>/frm/js/settle/settleAccountEdit.js?v=1.1.30"></script>
+<script src="<%=webPath + contextPath%>/frm/js/settle/settleAccountEdit.js?v=1.1.31"></script>
 <style type="text/css">
         a.optbtn {
             width: 44px;

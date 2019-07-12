@@ -14,6 +14,7 @@ var itemTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryItemTimesBy
 var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestIdNoPage.biz.ext";
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryFrmAccount.biz.ext";
+var pushInfoUrl = baseUrl + "com.hsapi.repair.repairService.sendWeChat.sAllShoppingSale.biz.ext";
 //var sellUrl = apiPath + crmApi + "/com.hsapi.crm.basic.crmBasic.querySellList.biz.ext";
 var sellUrl = apiPath + crmApi + "/com.hsapi.crm.basic.crmBasic.querySellListNoPage.biz.ext";
 var hash = new Array("尚未联系", "有兴趣", "意向明确", "成交" ,"输单");
@@ -5760,10 +5761,75 @@ function chooseBlank(){
  		}
  	});
 	   
-	
-
 }
 
+
+function saleReminding(){
+    var data = billForm.getData();
+    if(!data.id){
+        showMsg("请先保存工单!","W");
+        return;
+    }else{
+    	nui.open({
+    		url : webPath + contextPath + "/com.hsweb.RepairBusiness.offerRemind.flow?token=" + token,
+    		title : "报价提醒",
+    		width : 800,
+    		height : 500,
+    		allowDrag : true,
+    		allowResize : true,
+    		onload : function() {
+    			var iframe = this.getIFrameEl();
+    			var params = {
+    					serviceId:fserviceId
+    			}
+                iframe.contentWindow.setData(params);
+    		},
+    		ondestroy : function(action) {
+    			if(action=="ok"){
+    			   main = billForm.getData();
+    			   var p1 = { }
+     		       var p2 = {
+     		       interType: "item",
+     		           data:{
+     		             serviceId: main.id||0
+     		           }
+     		        };
+     		       var p3 = {};
+     		       loadDetail(p1, p2, p3,main.status);
+    			}
+    			
+    		}
+    	});
+    }
+
+/*    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '消息推送中...'
+    });
+	nui.ajax({
+		url : pushInfoUrl,
+		type : "post",
+		data : {
+			serviceId:fserviceId
+		},
+		success : function(data) {
+			nui.unmask(document.body);
+			if(data.errCode == "S"){
+				showMsg("推送成功","S");
+			}else{
+				showMsg("推送失败","E");
+			}
+			console.log(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			nui.unmask(document.body);
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+			
+		}
+	});*/	
+}
 
 
 

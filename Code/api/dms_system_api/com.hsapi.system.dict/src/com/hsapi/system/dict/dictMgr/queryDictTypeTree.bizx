@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryDictTypeTree" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="6.3">
-  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="orgid=0来源于缓存；&#xD;&#xA;orgid=本机构，单独查询；&#xD;&#xA;com.hsapi.system.data.dictMgr.queryDictItemTree" title="Guine&#x9;18-2-28 上午8:56">
+  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="orgid=0来源于缓存；&#xD;&#xA;orgid=本机构，单独查询；&#xD;&#xA;com.hsapi.system.data.dictMgr.queryDictItemTree&#xD;&#xA;com.hsapi.system.data.dictMgr.queryDictItemTree&#xD;&#xA;com.hsapi.system.data.dictMgr.queryDictItemTree" title="Guine&#x9;18-2-28 上午8:56">
     <location x="15" y="15"/>
     <size height="106" width="391"/>
   </nodes>

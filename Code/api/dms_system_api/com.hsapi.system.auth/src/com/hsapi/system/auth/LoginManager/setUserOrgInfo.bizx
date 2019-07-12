@@ -99,7 +99,7 @@
       <process:to type="query">m:userObject/attributes/userOrgName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">member/empid</process:from>
+      <process:from type="query" pattern="reference">member/empId</process:from>
       <process:to type="query">m:userObject/attributes/empId</process:to>
     </process:copy>
     <process:copy>
@@ -433,10 +433,15 @@
     <node>assign2</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo4" name="createSessionId" displayName="" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo4</sourceNode>
       <targetNode>assign3</targetNode>
-      <process:transitionCondition/>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link0" name="link0" displayName="连接线" type="transition">
       <sourceNode>invokePojo4</sourceNode>
@@ -560,7 +565,7 @@
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hs.common.login.getEmpOrgs</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="empId" type="query" value="String" valueType="Primitive" pattern="reference">member/empid</process:inputVariable>
+        <process:inputVariable id="0" name="empId" type="query" value="String" valueType="Primitive" pattern="reference">member/empId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="orgs" type="query" value="String" valueType="Primitive">orgs</process:outputVariable>
@@ -585,7 +590,7 @@
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hs.common.login.getEmpOrgStr</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="empId" type="query" value="String" valueType="Primitive" pattern="reference">member/empid</process:inputVariable>
+        <process:inputVariable id="0" name="empId" type="query" value="String" valueType="Primitive" pattern="reference">member/empId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="data" type="query" value="String" valueType="Primitive">orgJsonStr</process:outputVariable>
@@ -717,7 +722,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
         <process:outputVariable id="2" name="comp" type="query" value="java.util.HashMap" valueType="Java">comp</process:outputVariable>
       </process:outputVariables>
     </process:flow>

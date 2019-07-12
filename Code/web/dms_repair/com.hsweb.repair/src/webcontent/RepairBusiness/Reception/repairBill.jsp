@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>综合开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=2.3.6"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=2.3.9"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -218,8 +218,9 @@
                     <li iconCls="" onclick="onPrint(10)" id="type11">打印结账单(小票,项目配件分开)</li>
                     <li iconCls="" onclick="onPrint(5)" id="type11">打印领料单</li>
                     <li iconCls="" onclick="onPrint(12)" id="">模板3</li>
+                    <li iconCls="" onclick="onPrint(13)" id="">模板4</li>
+                    <li iconCls="" onclick="onPrint(14)" id="">模板5</li>
                 </ul>
-
 
                 <a class="nui-menubutton" plain="true" menu="#popupMenuQT" id="menuQT"><span class="fa fa-gift fa-lg"></span>&nbsp;充值办卡</a>
 
@@ -291,6 +292,11 @@
                             <a href="javascript:showSellPoint()" class="healthview" id="showSellEl" href="javascript:showSell()">销售机会(0)</a>&nbsp;
                         </span>
                     </div>
+                </td>
+                <td>
+	                <label id="" style="font-family:Verdana;color:#578ccd;">
+	                	<a id="" href="javascript:saleReminding()" style="font-size: 12px; color: #578ccd;text-decoration: none;">报价提醒</a>
+	                </label>
                 </td>
             </tr>
         </table>

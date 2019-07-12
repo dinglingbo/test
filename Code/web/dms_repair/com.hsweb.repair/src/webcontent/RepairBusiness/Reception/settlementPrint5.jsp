@@ -32,7 +32,7 @@
                     <p>&nbsp;</p>
                     <p>&nbsp;</p>
                     <p style="font-size:13px; line-height:140%;">
-                        <span style="font-size:13px;" id="guestFullName">&nbsp;&nbsp;</span><span class="font16" id="mobile"></span><br />
+                        <span class="font16" id="guestFullName"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="font16" id="mobile"></span><br />
                         <span id="contactorAddress"></span>
                     </p>
                 </td>
@@ -262,8 +262,8 @@
                     </td>
                     <td width="20" rowspan="2" align="center">&nbsp;</td>
                     <td width="130" rowspan="2" style="line-height:150%;">
-                        <p><span class="fr"><span id="itemRate">0.00000</span>%</span>项目优惠率</p>
-                        <p><span class="fr"><span id="itemAmt">0.00000</span></span>项目优惠金额</p>
+                        <p><span class="fr"><span id="itemRate">0.00</span>%</span>项目优惠率</p>
+                        <p><span class="fr"><span id="itemAmt">0.00</span></span>项目优惠金额</p>
                         <p><span class="fr"><span id="partRate">0.00</span>%</span>配件优惠率</p>
                         <p><span class="fr"><span id="partAmt">0.00</span></span>配件优惠金额</p>
                         <p><span class="fr"><span id="yh">0.00</span></span>总优惠</p>
@@ -271,7 +271,7 @@
                     </td>
                     <td rowspan="2" align="center" >
                     <b>总计：<span id="cash1">0.00</span></b><br>
-                    <b style="display: none">大写：<span id="cash1" ></span></b>
+                    <b style="display: none">大写：<span id="money" ></span></b>
                     
                     </td>
                     
@@ -287,7 +287,7 @@
                 <td valign="top"><div style="width:70%; height:24px; border-bottom:1px #000 solid;"></div></td>
                 <td width="70" valign="top"><p class="hei" style="margin-top:5px;">客户签名：</p></td>
                 <td valign="top"><div style="width:70%; height:24px; border-bottom:1px #000 solid;"></div></td>
-                <td width="38%" rowspan="2" style="padding-left:5px;" valign="top">
+                <td width="43%" rowspan="2" style="padding-left:5px;" valign="top">
                     地址：<span id="guestAddr"></span><br />
                   
                     电话：<span id="phone"></span>
@@ -373,7 +373,9 @@
             var imgUrl = params.currCompLogoPath || "";
             if(imgUrl && imgUrl != ""){
                $('#showImg').show();
+                $('#showImg2').show();
                $("#showImg").attr("src",imgUrl);
+               $("#showImg2").attr("src",imgUrl);
             }
             token1 =  params.token;
             webUrl = params.webUrl;
@@ -474,6 +476,7 @@
 	        		  enterDate='';
 	        		}
 	        		var guestFullName = list.guestFullName || "";
+	        		var contactorAddress = list.streetAddress || "";
 	        		var guestMobile = list.guestMobile || "";
 	        		var contactMobile = list.contactMobile;
 	        		var enterOilMass = list.enterOilMass || "0";
@@ -517,6 +520,7 @@
 	        		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
 	        		document.getElementById("enterDate").innerHTML = enterDate;
 	        		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
+	        		document.getElementById("contactorAddress").innerHTML = document.getElementById("contactorAddress").innerHTML + contactorAddress;
 	        	//	document.getElementById("contactName").innerHTML = document.getElementById("contactName").innerHTML + contactName;
 	        		
 	        		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;

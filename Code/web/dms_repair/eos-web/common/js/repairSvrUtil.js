@@ -802,6 +802,9 @@ function doPrint(params){
 	}else if(source == 13){
 		sourceUrl = webPath + contextPath + "/repair/RepairBusiness/Reception/settlementPrint4.jsp?token="+token;
 		p.name = "报价单";
+	}else if(source == 14){
+		sourceUrl = webPath + contextPath + "/repair/RepairBusiness/Reception/settlementPrint5.jsp?token="+token;
+		p.name = "报价单";
 	}
 	
 	nui.open({

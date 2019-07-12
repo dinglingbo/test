@@ -8,11 +8,12 @@ var basicInfoForm = null;
 var rightGrid = null;
 var searchBeginDate = null;
 var searchEndDate = null;
-var comPartNameAndPY = null;
-var comPartCode = null;
-var orderCodeEl = null;
-var outCodeEl = null;
-var comSearchGuestId = null;
+//var comPartNameAndPY = null;
+//var comPartCode = null;
+//var orderCodeEl = null;
+//var outCodeEl = null;
+var deductMemNameEl =null;
+
 
 var storehouseHash = {};
 var billTypeIdHash = {};
@@ -30,21 +31,24 @@ $(document).ready(function(v)
     });
     searchBeginDate = nui.get("startDate");
     searchEndDate = nui.get("endDate");
- 	comPartNameAndPY = nui.get("partName");
-	comPartCode = nui.get("partCode");
-	orderCodeEl = nui.get("orderCode");
-	outCodeEl = nui.get("outCode");
+    deductMemNameEl = nui.get("deductMemName");
+// 	comPartNameAndPY = nui.get("partName");
+//	comPartCode = nui.get("partCode");
+//	orderCodeEl = nui.get("orderCode");
+//	outCodeEl = nui.get("outCode");
 	quickSearch(2);
  
 });
 function getSearchParam(){
     var params = {};
-    params.orderCode = orderCodeEl.getValue().replace(/\s+/g, "");
-    params.outCode = outCodeEl.getValue().replace(/\s+/g, "");
-	params.partCode = comPartCode.getValue().replace(/\s+/g, "");
-	params.partName = comPartNameAndPY.getValue().replace(/\s+/g, "");
+//    params.orderCode = orderCodeEl.getValue().replace(/\s+/g, "");
+//    params.outCode = outCodeEl.getValue().replace(/\s+/g, "");
+//	params.partCode = comPartCode.getValue().replace(/\s+/g, "");
+//	params.partName = comPartNameAndPY.getValue().replace(/\s+/g, "");
 	params.endDate = searchEndDate.getFormValue();
 	params.startDate = searchBeginDate.getFormValue();
+	params.orgid =currOrgid;
+	params.deductMemName =deductMemNameEl.getValue().replace(/\s+/g, "");
     return params;
 }
 var currType = 2;

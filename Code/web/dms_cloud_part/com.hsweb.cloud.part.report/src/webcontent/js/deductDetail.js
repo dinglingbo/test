@@ -45,6 +45,7 @@ function getSearchParam(){
 	params.partName = comPartNameAndPY.getValue().replace(/\s+/g, "");
 	params.endDate = searchEndDate.getFormValue();
 	params.startDate = searchBeginDate.getFormValue();
+	params.orgid =currOrgid;
     return params;
 }
 var currType = 2;

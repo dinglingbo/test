@@ -129,6 +129,9 @@
     		<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid# or a.orgid = 0)
                 </isNotEmpty>
+            <isNotEmpty prepend="and" property="onlyOrgid"> 
+                (a.orgid = #onlyOrgid# )
+            </isNotEmpty>
     		<isNotEmpty prepend="and" property="isDisabled">  
                 (a.is_disabled = #isDisabled#)
             </isNotEmpty>

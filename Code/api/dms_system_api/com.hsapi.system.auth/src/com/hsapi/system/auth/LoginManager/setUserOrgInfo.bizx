@@ -438,7 +438,7 @@
       <targetNode>assign3</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -565,7 +565,7 @@
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hs.common.login.getEmpOrgs</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="empId" type="query" value="String" valueType="Primitive" pattern="reference">member/empid</process:inputVariable>
+        <process:inputVariable id="0" name="empId" type="query" value="String" valueType="Primitive" pattern="reference">member/empId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="orgs" type="query" value="String" valueType="Primitive">orgs</process:outputVariable>
@@ -590,7 +590,7 @@
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hs.common.login.getEmpOrgStr</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="empId" type="query" value="String" valueType="Primitive" pattern="reference">member/empid</process:inputVariable>
+        <process:inputVariable id="0" name="empId" type="query" value="String" valueType="Primitive" pattern="reference">member/empId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="data" type="query" value="String" valueType="Primitive">orgJsonStr</process:outputVariable>

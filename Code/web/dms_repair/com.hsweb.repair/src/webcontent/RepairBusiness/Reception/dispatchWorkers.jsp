@@ -263,8 +263,8 @@ label{
 			 <table style="width:100%;">
                     <tr>
                         <td style="width:100%;">
-                    		 <div id="ck1" name="" class="nui-checkbox" readOnly="false" text="推送微信" style="top: 15px;"></div>
-		  					 <div id="ck2" name="" class="nui-checkbox" readOnly="false" text="推送APP"  style="top: 15px;"></div>
+                    		 <div id="sendWechat" name="" class="nui-checkbox" readOnly="false" text="推送微信" style="top: 15px;"></div>
+		  					 <div id="sendApp" name="" class="nui-checkbox" readOnly="false" text="推送APP"  style="top: 15px;"></div>
                           <a id="wxbtnsettle" style="    width: 80px;
 							height: 40px;
 							font-size: 18px;

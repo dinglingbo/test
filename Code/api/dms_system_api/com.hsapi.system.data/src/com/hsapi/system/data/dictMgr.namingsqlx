@@ -229,7 +229,8 @@
 			a.open_id as openId,
 			a.wechat as wechat,
 			a.tel as tel,
-			a.system_account as systemAccount
+			a.system_account as systemAccount,
+			a.im_code as imCode
 		FROM
 		com_member AS a
 		WHERE 1=1 and a.is_dimission = 0

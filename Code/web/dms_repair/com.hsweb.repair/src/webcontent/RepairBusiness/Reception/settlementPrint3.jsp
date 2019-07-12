@@ -131,7 +131,7 @@
                 <tbody id="tbodyId">
 				</tbody>
                 <tr>
-                    <td height="24" colspan="7" align="right"><span style="font-family:'黑体'; font-size:15px;">套餐项目小计：</span></td>
+                    <td height="24" colspan="7" align="right"><span style="font-family:'黑体'; font-size:15px;">套餐小计：</span></td>
                     <td align="right"><span id="prdtSub">0.00</span>&nbsp;</td>
                 </tr>
                 </table>
@@ -158,17 +158,16 @@
                 </table>
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="showPart" style="display:none">
                 <tr class="title">
-                    <td rowspan="2" align="center" style="border-top-style:none">序号</td>
+                    <td width="40" rowspan="2" align="center" style="border-top-style:none">序号</td>
                     <td height="24" colspan="6" align="center" style="border-top-style:none">配件项目</td>
-                    <td rowspan="2" align="center" style="border-top-style:none">小计</td>
+                    <td width="80" rowspan="2" align="center" style="border-top-style:none">小计</td>
                 </tr>
                 <tr class="title">
-                    <td height="24" align="center">配件名称</td>
-                    <td width="110" align="center">配件编码</td>
-                    <td width="70" align="center">数量</td>
-                    <td align="center" class="title">单价</td>
-                    <td align="center" class="title">金额</td>
-                    <td align="center" class="title">优惠率</td>
+                    <td height="24" align="center" colspan="2">配件名称</td>
+                    <td width="70" align="center" >数量</td>
+                    <td align="center" width="70">单价</td>
+                    <td align="center" width="70">金额</td>
+                    <td align="center" width="80">优惠率</td>
                 </tr>
                 <tbody id="tbodyId3">
 				</tbody>
@@ -198,7 +197,7 @@
                     <td align="right" class="font15">&yen;<span id="expense">0.00</span></td>
                     <td align="right" class="font15">&yen;<span id="expRateAmt">0.00</span></td>
                    <!--  <td align="right" class="font15">&yen;0.00&nbsp;</td> --> 
-                    <td align="right" class="font15" colspan="2">&yen;160.00&nbsp;</td>
+                    <td align="right" class="font15" colspan="2">&yen;<span id="totalAmt">0.00</span></td>
                 </tr>
                 <tr>
                     <td height="28" colspan="2" align="left" class="font15">项目优惠率：<span id="itemRate">0.00</span>%</td>
@@ -727,6 +726,9 @@
     		   document.getElementById("money").innerHTML = money;
     		   document.getElementById("cash1").innerHTML = parseFloat(document.getElementById("cash1").innerHTML).toFixed(2);
         	}
+        	//总费用
+            var totalMoney = parseFloat(document.getElementById("prdt").innerHTML) + parseFloat(document.getElementById("item").innerHTML) + parseFloat(document.getElementById("part").innerHTML)+ parseFloat(document.getElementById("expense").innerHTML);
+            document.getElementById("totalAmt").innerHTML = totalMoney.toFixed(2); 
         }
         
         function box_setup_open() {

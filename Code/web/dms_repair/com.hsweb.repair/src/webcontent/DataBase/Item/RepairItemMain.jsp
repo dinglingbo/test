@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修项目</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.2.28" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.2.29" type="text/javascript"></script>
 
 </head>
 <body>

@@ -591,5 +591,100 @@
 	    </isEqual>  
 	    	
 	</select>
+	
+	<!--查询结算账户，用于缓存-->
+    <select id="queryFibSettleAccount" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT
+			a.id as id,
+			a.orgid as orgid,
+			a.`code` as code,
+			a.`name` as name,
+			a.account_type_id as account_type_id,
+			a.parent_id as parent_id,
+			a.is_end as is_end,
+			a.level_num as level_num,
+			a.is_disabled as is_disabled,
+			a.is_init as is_init,
+			a.init_balance as init_balance,
+			a.cur_balance as cur_balance,
+			a.is_default as is_default,
+			a.is_system as is_system,
+			a.bank_name as bank_name,
+			a.bank_account_number as bank_account_number,
+			a.fee_rate as fee_rate,
+			a.fee_max as fee_max,
+			a.recorder as recorder,
+			a.record_date as record_date,
+			a.modifier as modifier,
+			a.modify_date as modify_date,
+			a.remark as remark
+		FROM
+			wb_frm.fib_settle_account AS a
+		where a.is_disabled = 0 and a.orgid = #orgid#
+		
+        <isNotNull property="accountTypeId">
+			and a.account_type_id = #accountTypeId#
+		</isNotNull>
+        
+		<isNotNull property="isDefault">
+			and a.is_default = #isDefault#
+		</isNotNull>
+
+    </select>
     
-    </sqlMap>
+    <!--查询结算账户对应的结算方式，用于缓存-->
+    <select id="queryFibSettleAccountRela" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT
+			a.id as id,
+			a.custom_id as customId,
+			a.`code` as code,
+			a.`name` as name,
+			a.custom_name as customName,
+			a.creator_id as creatorId,
+			a.creator as creator,
+			a.create_date as createDate
+		FROM
+			wb_frm.fib_settle_account_rela AS a
+		where a.id = #accountId#
+    </select>
+    
+    <!--查询收支项目，用于缓存-->
+    <select id="queryFibIncomeExpenses" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT
+			a.id as id,
+			a.orgid as orgid,
+			a.`code` as code,
+			a.`name` as name,
+			a.item_type_id as itemTypeId,
+			a.is_primary_business as isPrimaryBusiness,
+			a.parent_id as parentId,
+			a.is_end as isEnd,
+			a.level_num as levelNum,
+			a.is_disabled as isDisabled,
+			a.is_sale as isSale,
+			a.creator_id as creatorId,
+			a.creator as creator,
+			a.create_date as createDate,
+			a.operator_id as operatorId,
+			a.operator as operator,
+			a.operate_date as operateDate,
+			a.remark as remark
+		FROM
+			wb_frm.fib_income_expenses AS a
+		where (a.orgid = 0 or a.orgid = #orgid#)
+		
+		<isNotNull property="itemTypeId">
+			and a.item_type_id = #itemTypeId#
+		</isNotNull>
+		
+		<isNotNull property="isMain">
+			and a.is_primary_business = #isMain#
+		</isNotNull>
+		
+		<isNotNull property="isSale">
+			and a.is_sale = #isSale#
+		</isNotNull>
+
+    </select>
+    
+ </sqlMap>

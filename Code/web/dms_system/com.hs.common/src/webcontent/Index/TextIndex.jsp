@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
         <head>
             <title>首页</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.3.29"></script>
+            <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.3.30"></script>
             <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
             <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
             <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css?v=1.0.5" rel="stylesheet" type="text/css" />
@@ -30,7 +30,7 @@ pageEncoding="UTF-8" session="false" %>
         <body>
             <div class="nui-fit" >
 				<div  class="nui-fit" id="nuifit">
-		             <div class="vpanel_heading">
+		             <div class="vpanel_heading" id="demoFather">
 	                    <i class="fa fa-th-list fa-lg-custom fa-fw"></i>
 	                    <span>快捷菜单</span>  
 <!-- 	                    	<div class="menu_pannel menu_pannel_bg" style="background-color: #1faeff;width: 90px;height: 50px;float: left;margin-top: 10px;margin-left: 10px;border-radius: 12px;">

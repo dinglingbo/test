@@ -799,6 +799,9 @@ function doPrint(params){
 	}else if(source == 12){
 		sourceUrl = webPath + contextPath + "/repair/RepairBusiness/Reception/settlementPrint3.jsp?token="+token;
 		p.name = "结账单";
+	}else if(source == 13){
+		sourceUrl = webPath + contextPath + "/repair/RepairBusiness/Reception/settlementPrint4.jsp?token="+token;
+		p.name = "结账单";
 	}
 	
 	nui.open({

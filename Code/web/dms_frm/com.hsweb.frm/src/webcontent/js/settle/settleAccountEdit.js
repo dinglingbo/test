@@ -85,7 +85,7 @@ function SetData(row, newRow){
 		addSettleAccountRow();
 		accountTypeIdEl.setValue(1);
 	}else{
-		settleAccountGrid.load({accountId:row.id});
+		settleAccountGrid.load({accountId:row.id,fromDb:"true"});
 	}
 
 }

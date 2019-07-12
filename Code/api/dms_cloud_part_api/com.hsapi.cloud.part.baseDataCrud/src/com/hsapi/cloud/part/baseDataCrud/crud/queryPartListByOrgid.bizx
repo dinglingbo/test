@@ -8,6 +8,7 @@
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="连接线" type="transition">
       <sourceNode>start0</sourceNode>
@@ -30,7 +31,7 @@
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
       <process:return id="0" language="com.eos.foundation.PageCond" name="page" type="query" valueType="DataObject">page</process:return>
-      <process:return id="1" language="com.hsapi.cloud.part.data.com.ComArea[]" name="parts" type="query" valueType="DataObject">parts</process:return>
+      <process:return id="1" language="com.hsapi.cloud.part.data.com.ComAttribute[]" name="parts" type="query" valueType="DataObject">parts</process:return>
       <process:return id="2" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="3" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
     </process:returns>
@@ -148,7 +149,7 @@
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
-    <process:output description="" isArray="true" modelType="com.hsapi.cloud.part.data.com.ComArea" name="parts"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.cloud.part.data.com.ComAttribute" name="parts"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
   </process:outputs>

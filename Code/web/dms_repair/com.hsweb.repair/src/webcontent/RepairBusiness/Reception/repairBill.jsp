@@ -219,6 +219,7 @@
                     <li iconCls="" onclick="onPrint(5)" id="type11">打印领料单</li>
                     <li iconCls="" onclick="onPrint(12)" id="">模板3</li>
                     <li iconCls="" onclick="onPrint(13)" id="">模板4</li>
+                    <li iconCls="" onclick="onPrint(14)" id="">模板5</li>
                 </ul>
 
                 <a class="nui-menubutton" plain="true" menu="#popupMenuQT" id="menuQT"><span class="fa fa-gift fa-lg"></span>&nbsp;充值办卡</a>

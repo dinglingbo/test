@@ -1,12 +1,13 @@
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var mainGrid = null;
-
+var maintainAll = {};
+var fserviceId = null;
 $(document).ready(function (){
 	mainGrid = nui.get("mainGrid");
 });
-var fserviceId = null;
 function setData(params){
+	maintainAll = params;
 	fserviceId = params.serviceId;
 	var getRpsItemPPartUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext";
 	var json = nui.encode({
@@ -91,6 +92,36 @@ function addRemind(){
 		success : function(data) {
 			nui.unmask(document.body);
 			if(data.errCode == "S"){
+				//pc提醒
+				var carNo = maintainAll.carNo;
+				var carModel = maintainAll.carModel;
+				var serviceCode = maintainAll.serviceCode;
+				var content = "您好,"+carNo + "("+carModel+"),请您报价 ！";
+				var msg = {
+					title: "配件待报价",
+					serviceCode: serviceCode,
+					serviceId :fserviceId,
+					content: content,
+					sender: currUserName,
+					sendDate: now.Format("yyyy-MM-dd HH:mm:ss")
+				};
+				getUserInfo(null, 1, function(text){
+					var memberList = text.data || [];
+					for(var i=0;i<memberList.length;i++){
+						member = memberList[i];
+						var userId = member.imCode;
+						var params = {
+							type: 3,
+							cmd: 10,
+							group: null,
+							sender: "0",
+							receiver: userId.toString(),
+							msg: nui.encode(msg)
+						};
+						sendNoticeMsg(parent.socket,params);
+					}
+				});
+				//推送app微信
 				nui.ajax({
 					url : pushInfoUrl,
 					type : "post",

@@ -223,7 +223,7 @@ function onSearch(){
 function doSearch(params)
 {
 	params.sortField = "audit_date";
-    params.sortOrder = "desc";
+    params.sortOrder = "asc";
     params.orderTypeId = 1;
     params.isFinished = 1;
     

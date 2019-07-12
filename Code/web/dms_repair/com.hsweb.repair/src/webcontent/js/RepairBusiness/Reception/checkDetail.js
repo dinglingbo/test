@@ -1291,8 +1291,8 @@ function addPicture(){
 	var row = mainGrid.getSelected();
     nui.open({
         url: webBaseUrl + "com.hsweb.RepairBusiness.checkPicture.flow",
-        title:"上传查车照片",
-        height:"400px",
+        title:"上传查车照片(最多三张)",
+        height:"300px",
         width:"600px",
         onload:function(){
             var iframe = this.getIFrameEl();

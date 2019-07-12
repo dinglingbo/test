@@ -798,10 +798,10 @@ function doPrint(params){
 		p.name = "派工单";
 	}else if(source == 12){
 		sourceUrl = webPath + contextPath + "/repair/RepairBusiness/Reception/settlementPrint3.jsp?token="+token;
-		p.name = "结账单";
+		p.name = "报价单";
 	}else if(source == 13){
 		sourceUrl = webPath + contextPath + "/repair/RepairBusiness/Reception/settlementPrint4.jsp?token="+token;
-		p.name = "结账单";
+		p.name = "报价单";
 	}
 	
 	nui.open({

@@ -528,11 +528,11 @@ function getCarVerificationDate(regDate, callback) {
 	});
 }
 
-var getUserInfoUrl = apiPath + sysApi + "/com.hsapi.system.tenant.user.getEmployeeByEmpId.biz.ext";
-function getUserInfo(empId, type, callback) {
+var getUserInfoUrl = apiPath + sysApi + "/com.hsapi.system.dict.org.queryMember.biz.ext";
+function getUserInfo(empId, isPchsStock, callback) {
 	doPost({
 		url : getUserInfoUrl,
-		data : {empId:empId, type: type, token: token},
+		data : {empId:empId, isPchsStock: isPchsStock, token: token},
 		success : function(data) {
 			callback && callback(data);
 		},

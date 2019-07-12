@@ -1544,17 +1544,23 @@ function pushNotice(data) {
 		sender: currUserName,
 		sendDate: now.Format("yyyy-MM-dd HH:mm:ss")
 	};
-	getUserInfo(data.mtAdvisorId, 'emp', function(text){
-		var userId = text.member.imCode;
-		var params = {
-			type: 3,
-			cmd: 10,
-			group: null,
-			sender: "0",
-			receiver: userId.toString(),
-			msg: nui.encode(msg)
-		};
-		sendNoticeMsg(parent.socket,params);
+	getUserInfo(data.mtAdvisorId, null, function(text){
+		var memberList = text.data || [];
+		if(memberList && memberList.length > 0) {
+			member = memberList[0];
+		}
+		if(member && member.imCode) {
+			var userId = member.imCode;
+			var params = {
+				type: 3,
+				cmd: 10,
+				group: null,
+				sender: "0",
+				receiver: userId.toString(),
+				msg: nui.encode(msg)
+			};
+			sendNoticeMsg(parent.socket,params);
+		}
 	});
 	/*var msg = {
 		autior:"张三",

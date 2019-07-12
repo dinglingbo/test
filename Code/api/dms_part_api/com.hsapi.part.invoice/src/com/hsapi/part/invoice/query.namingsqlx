@@ -267,6 +267,7 @@
 			b.store_shelf as storeShelf,
 			b.origin_id as originId,
 			b.origin_guest_id as originGuestId,
+			b.sell_price as sellPrice,
 			c.`code` as comPartCode,
 			c.`name` as comPartName,
 			c.full_name as comPartFullName,
@@ -308,6 +309,7 @@
             <isNotEmpty prepend="and" property="partId">(b.PART_ID = #partId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="guestId">(A.guest_id = #guestId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="pickName">(b.part_name = #pickName#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or c.name_py like '%$partNameAndPY$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
@@ -808,6 +810,7 @@
             <isNotEmpty prepend="and" property="showUp">(a.stock_qty &gt; a.up_limit)</isNotEmpty>
             <isNotEmpty prepend="and" property="showDown">(a.stock_qty &lt;a.down_limit)</isNotEmpty>
             <isNotEmpty prepend="and" property="partId">(a.PART_ID = #partId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="pickName">(a.part_name = #pickName#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(b.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(b.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNamePY">(b.name_py like '%$partNamePY$%')</isNotEmpty>

@@ -2995,8 +2995,11 @@ function getPart(partIdList){
 //			partHash[v.id]=v;			
 //		});
 //	});
-	var params={};
+  var params={};
+  var page ={};
+  page.length =1000;
   params.partIdList =partIdList;
+  params.orgid = currOrgid;
   nui.ajax({
         url : partUrl,
         type : "post",

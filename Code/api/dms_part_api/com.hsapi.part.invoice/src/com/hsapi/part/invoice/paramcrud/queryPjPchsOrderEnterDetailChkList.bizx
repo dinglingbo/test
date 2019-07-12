@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryPjPchsOrderEnterDetailChkList" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.cloud.part.invoicing.query.queryPjPchsEnterMainDetailList&#xD;&#xA;2019/5/5:采购入库明细表需要分页" title="Administrator&#x9;18-6-30 上午11:49">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.part.invoice.query.queryPjPchsEnterMainDetailList&#xD;&#xA;2019/5/5:采购入库明细表需要分页" title="Administrator&#x9;18-6-30 上午11:49">
     <location x="60" y="-15"/>
     <size height="100" width="541"/>
   </nodes>

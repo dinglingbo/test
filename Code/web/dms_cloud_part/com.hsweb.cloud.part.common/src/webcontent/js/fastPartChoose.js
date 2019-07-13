@@ -614,6 +614,9 @@ function morePartSearch(){
         });
     }else if(tab.name == "partInfoTab"){
         params.showStock = showStockEl.getValue();
+        if(currIsOpenApp ==1 &&  params.showStock ==0){
+        	params.showStock=2;
+        }
         if(sortTypeValue == 1){
             params.sortField = "b.last_enter_date";
             params.sortOrder = "asc";

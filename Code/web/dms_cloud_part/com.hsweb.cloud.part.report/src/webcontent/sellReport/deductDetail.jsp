@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售提成明细</title>
-<script src="<%=webPath + contextPath%>/report/js/deductDetail.js?v=2.0.8"></script>
+<script src="<%=webPath + contextPath%>/report/js/deductDetail.js?v=2.0.9"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -60,8 +60,8 @@
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
 
                 <span class="separator"></span> 
+                <input id="deductMemName" width="120px" emptyText="提成成员名称"  class="nui-textbox"/>
                 <input id="partName" width="120px" emptyText="配件名称"  class="nui-textbox"/>
-
                 <input id="partCode" width="120px" emptyText="配件编码"  class="nui-textbox"/>
                 <input id="orderCode" width="120px" emptyText="销售订单单号"  class="nui-textbox"/>
                 <input id="outCode" width="120px" emptyText="出库订单单号"  class="nui-textbox"/>
@@ -80,20 +80,21 @@
          ondrawcell="onDrawCell"
          sortMode="client"
          url=""
-         pageSize="10000"
-         sizeList="[1000,5000,10000]"
+         pageSize="100"
+         totalField="page.count"
+         sizeList="[100,500,1000]"
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <div header="订单信息" headerAlign="center">
                 <div property="columns">
-                    <div field="deductMemName" width="60" headerAlign="center" header="提成成员名称"></div>
+                    <div field="deductMemName" width="80" headerAlign="center" header="提成成员名称"></div>
                     <div field="deductType" width="80" headerAlign="center" header="提成类型"></div>
                     <div allowSort="true" field="orderCode" width="170" headerAlign="center" header="销售订单号"></div>
-                    <div allowSort="true" field="outCode" width="170" headerAlign="center" header="出库单号"></div>  
-                    <div allowSort="true" field="orderAmt" width="80" headerAlign="center" header="订单总金额"></div>     
-                    <div allowSort="true" field="outAmt" width="80" headerAlign="center" header="当前出库金额"></div> 
-                    <div allowSort="true" field="outGross" width="80" headerAlign="center" header="当前出库毛利"></div>                                                       
+                    <div allowSort="true" field="outCode" summaryType="sum" width="170" headerAlign="center" header="出库单号"></div>  
+                    <div allowSort="true" field="orderAmt" summaryType="sum" width="80" headerAlign="center" header="订单总金额"></div>     
+                    <div allowSort="true" field="outAmt"summaryType="sum" width="80" headerAlign="center" header="当前出库金额"></div> 
+                    <div allowSort="true" field="outGross" summaryType="sum" width="80" headerAlign="center" header="当前出库毛利"></div>                                                       
                 </div>
             </div>
             <div header="提成信息" headerAlign="center">

@@ -797,13 +797,13 @@ function doPrint(params){
 		sourceUrl = webPath + contextPath + "/com.hsweb.print.repairOrderPart.flow?token="+token;
 		p.name = "派工单";
 	}else if(source == 12){
-		sourceUrl = webPath + contextPath + "/repair/RepairBusiness/Reception/settlementPrint3.jsp?token="+token;
+		sourceUrl = webPath + contextPath + "/com.hsweb.print.settlement3.flow?token="+token;
 		p.name = "报价单";
 	}else if(source == 13){
-		sourceUrl = webPath + contextPath + "/repair/RepairBusiness/Reception/settlementPrint4.jsp?token="+token;
+		sourceUrl = webPath + contextPath + "/com.hsweb.print.settlement4.flow?token="+token;
 		p.name = "报价单";
 	}else if(source == 14){
-		sourceUrl = webPath + contextPath + "/repair/RepairBusiness/Reception/settlementPrint5.jsp?token="+token;
+		sourceUrl = webPath + contextPath + "/com.hsweb.print.settlement5.flow?token="+token;
 		p.name = "报价单";
 	}
 	

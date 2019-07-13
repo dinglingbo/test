@@ -805,6 +805,15 @@ function onPrint(e){
 	if(e==3 || e==4){
 		url = webBaseUrl +"com.hsweb.print.settlementPart.flow";
 	}
+	if(e==5){
+		url = webBaseUrl +"com.hsweb.print.settlement3.flow";
+	}
+	if(e==6){
+		url = webBaseUrl +"com.hsweb.print.settlement4.flow";
+	}
+	if(e==7){
+		url = webBaseUrl +"com.hsweb.print.settlement5.flow";
+	}
 	if(main.id){
 		nui.open({
 	        url: url,
@@ -932,9 +941,13 @@ function onCellCommitEditItem(e) {
             }else{
             	subtotal = amt;
             }
+            //计算优惠金额discountAmt
+            var discountAmt = amt - subtotal;
+            discountAmt = discountAmt.toFixed(2);
 			newRow = {
 				amt : amt,
-				subtotal:subtotal
+				subtotal:subtotal,
+				discountAmt:discountAmt
 			};
 			rpsItemGrid.updateRow(e.row, newRow);
 
@@ -960,9 +973,13 @@ function onCellCommitEditItem(e) {
             }else{
             	subtotal = amt;
             }
+			//计算优惠金额discountAmt
+            var discountAmt = amt - subtotal;
+            discountAmt = discountAmt.toFixed(2);
 			newRow = {
 				amt : amt,
-				subtotal:subtotal
+				subtotal:subtotal,
+				discountAmt:discountAmt
 			};
 			rpsItemGrid.updateRow(e.row, newRow);		
 
@@ -985,9 +1002,13 @@ function onCellCommitEditItem(e) {
             	rate = rate.toFixed(2);
             	subtotal = amt*(1-parseFloat(rate));
             }
+            //计算优惠金额discountAmt
+            var discountAmt = amt - subtotal;
+            discountAmt = discountAmt.toFixed(2);
             newRow = {
     				amt : amt,
-    				subtotal:subtotal
+    				subtotal:subtotal,
+    				discountAmt:discountAmt
     		};
 			
             rpsItemGrid.updateRow(e.row, newRow);
@@ -1023,7 +1044,10 @@ function onCellCommitEditPkg(e) {
 			}else{
 				rate = 100;
 			};
-			var newRow = {rate : rate};
+			//计算优惠金额discountAmt
+            var discountAmt = amt - subtotal;
+            discountAmt = discountAmt.toFixed(2);
+			var newRow = {rate : rate,discountAmt:discountAmt};
 			rpsPackageGrid.updateRow(row,newRow);
 			// record.enteramt.cellHtml = enterqty * enterprice;
 		} else if (e.field == "rate") {
@@ -1043,7 +1067,10 @@ function onCellCommitEditPkg(e) {
 			}else{
 				subtotal = 0;
 			}
-			var newRow = {subtotal : subtotal};
+			//计算优惠金额discountAmt
+            var discountAmt = amt - subtotal;
+            discountAmt = discountAmt.toFixed(2);
+			var newRow = {subtotal : subtotal,discountAmt:discountAmt};
 			rpsPackageGrid.updateRow(row,newRow);
 
 		} 
@@ -1063,6 +1090,9 @@ function onDrawSummaryCellPack(e){
 		  for (var i = 0; i < rows.length; i++)
 		  {
 			  if(rows[i].billPackageId=="0"){
+				  if(rows[i].subtotal == "" || rows[i].subtotal == null){
+					  rows[i].subtotal = 0;
+				  }
 				  pkgSubtotal += parseFloat(rows[i].subtotal);
 				 // pkgTotalAmt  += parseFloat(rows[i].amt);
 				 
@@ -1075,6 +1105,7 @@ function onDrawSummaryCellPack(e){
 		  data.pkgTotalAmt = pkgTotalAmt;*/
 		  pkgSubtotal = pkgSubtotal.toFixed(2);
 		  data.pkgSubtotal = pkgSubtotal;
+		  
 		  var total = parseFloat(data.pkgSubtotal) + parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
 		  total = total.toFixed(2);
 		  data.totalAmt = total;
@@ -1097,9 +1128,15 @@ function onDrawSummaryCellItem(e){
 		  for (var i = 0; i < rows.length; i++)
 		  {
 			 if(rows[i].billItemId=="0"){
+				 if(rows[i].subtotal == "" || rows[i].subtotal == null){
+					  rows[i].subtotal = 0;
+				  }
 				 itemSubtotal += parseFloat(rows[i].subtotal);
 				 //itemTotalAmt  += parseFloat(rows[i].amt); 
 			 }else{
+				 if(rows[i].subtotal == "" || rows[i].subtotal == null){
+					  rows[i].subtotal = 0;
+				  }
 				 partSubtotal += parseFloat(rows[i].subtotal);
 				 //partTotalPrefAmt  += parseFloat(rows[i].amt); 
 			 }
@@ -1116,6 +1153,7 @@ function onDrawSummaryCellItem(e){
 		  data.itemSubtotal = itemSubtotal;
 		  partSubtotal = partSubtotal.toFixed(2);
 		  data.partSubtotal = partSubtotal;
+		  
 		  var total = parseFloat(data.pkgSubtotal) + parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
 		  total = total.toFixed(2);
 		  data.totalAmt = total;

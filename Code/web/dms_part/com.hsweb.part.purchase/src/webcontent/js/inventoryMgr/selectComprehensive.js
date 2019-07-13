@@ -27,7 +27,7 @@ var serviceTypeIds = null;
 var advancedMore = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
-var editFormDetail = null;
+//var editFormDetail = null;
 var innerItemGrid = null;
 var advancedSearchWin = null;
 var orgidsEl = null;
@@ -37,6 +37,8 @@ var prdtTypeHash = {
 	    "2":"工时",
 	    "3":"配件"
 };
+var rpsPackageGrid = null;
+var rpsItemGrid = null;
 $(document).ready(function ()
 {
     //判断是否有兼职门店,是否显示门店选择框
@@ -57,11 +59,12 @@ $(document).ready(function ()
     serviceTypeIdEl = nui.get("serviceTypeId");
     serviceTypeIds = nui.get("serviceTypeIds");
     advancedSearchForm = new nui.Form("#advancedSearchForm");
-    editFormDetail = document.getElementById("editFormDetail");
+    //editFormDetail = document.getElementById("editFormDetail");
     innerItemGrid = nui.get("innerItemGrid");
     innerpackGrid = nui.get("innerpackGrid");
 	advancedSearchWin = nui.get("advancedSearchWin");
-
+	rpsPackageGrid = nui.get("rpsPackageGrid");
+	rpsItemGrid = nui.get("rpsItemGrid");
 
     beginDateEl.setValue(getMonthStartDate());
     endDateEl.setValue(addDate(getMonthEndDate(), 1));
@@ -288,6 +291,56 @@ $(document).ready(function ()
         }
     });
     //quickSearch(4);
+    rpsPackageGrid.on("drawcell",function(e){
+		var field = e.field,
+		value = e.value;
+		var record = e.record;
+		var uid = record._uid;
+		if(field=="packageName"){
+            var billPackageId = record.billPackageId || 0;
+            if(billPackageId != 0){
+            	e.cellHtml ='<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + e.value;
+            }
+		}
+		if(field == "rate"){
+			if(value){
+				e.cellHtml = value + "%";
+			}else{
+				e.cellHtml = 0 + "%";
+			}
+		}
+		if(field == "subtotal"){
+			if(!value){
+				e.cellHtml = 0;
+			}
+		}
+	});
+    
+    rpsItemGrid.on("drawcell",function(e){
+		var field = e.field,
+		value = e.value,
+		row = e.row;
+		var record = e.record;
+		var uid = record._uid;
+		if(field=="itemName"){
+            var billItemId = record.billItemId||0;
+            if(billItemId != 0){
+            	e.cellHtml ='<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + e.value;
+            }
+		}
+		if(field == "rate"){
+			if(value){
+				e.cellHtml = value + "%";
+			}else{
+				e.cellHtml = 0 + "%";
+			}
+		}
+		if(field == "itemTime" || field == "unitPrice"){
+			if(!value){
+				e.cellHtml = 0;
+			}
+		}
+	});
     
 });
 var statusHash = {
@@ -849,3 +902,55 @@ function cancelData(){
     nui.get("sEnterDate1").setValue(getMonthStartDate());
     nui.get("eEnterDate1").setValue(getMonthEndDate());
 }
+
+
+function activechangedmain(){
+	var row = mainGrid.getSelected();
+	var tabs = nui.get("mainTabs").getActiveTab();
+	if(row){
+		var serviceId = row.id;
+		if(tabs.name=="item"){//项目
+			innerItemGrid.setUrl(getRpsItemUrl);
+			innerItemGrid.setData([]);
+		    innerItemGrid.load({
+		    	serviceId:serviceId,
+		        token: token
+		    });
+		}else if(tabs.name=="pack"){//套餐
+			innerpackGrid.setUrl(getdRpsPackageUrl);
+		    innerpackGrid.setData([]);
+		    innerpackGrid.load({
+		    	serviceId:serviceId,
+		        token: token
+		    });
+		}else if(tabs.name=="expense"){
+			var serviceId = row.id;
+			rpsPackageGrid.setData([]);
+			rpsItemGrid.setData([]);
+			rpsPackageGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.searchExpensePkgBill.biz.ext");
+			rpsItemGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.searchExpenseItemBill.biz.ext");
+			rpsPackageGrid.load({serviceId : serviceId,type:1,token : token},function(e){
+			});
+			rpsItemGrid.load({serviceId : serviceId,type:1,token : token});
+		}else if(tabs.name=="coupons"){
+		    //优惠券
+		    var paraMap = {};
+		    paraMap.orgid = currOrgId;  
+		    paraMap.tenantId = currTenantId;
+		    paraMap.userCarId = onSearchParams.carId; 
+		    grid4.load({
+		    	token:token,
+		    	paraMap:paraMap
+		    });
+		}
+	}
+	
+}
+
+function onLeftGridSelectionChanged(){
+	activechangedmain();
+}
+
+
+
+

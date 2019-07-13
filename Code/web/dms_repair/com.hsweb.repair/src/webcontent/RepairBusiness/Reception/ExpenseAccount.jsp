@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>报销单</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.4.39"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.4.40"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
@@ -106,6 +106,9 @@
                     <li iconCls="" onclick="onPrint(3)" id="type11">打印报价单(项目配件分开)</li>
                     <li iconCls="" onclick="onPrint(2)" id="type11">打印结账单</li>
                     <li iconCls="" onclick="onPrint(4)" id="type11">打印结账单(项目配件分开)</li>
+                    <li iconCls="" onclick="onPrint(5)" id="type11">模板3</li>
+                    <li iconCls="" onclick="onPrint(6)" id="type11">模板4</li>
+                    <li iconCls="" onclick="onPrint(7)" id="type11">模板5</li>
                 </ul>
             </td>
         </tr>
@@ -234,6 +237,8 @@
                 <div field="amt" headerAlign="center"
                      allowSort="false" visible="true" width="60" header="原价" align="center">
                 </div>
+                <div field="discountAmt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">折扣金额
+                </div>
                 <div field="action" name="action" headerAlign="center"
                      allowSort="false" visible="true" width="60" header="操作" align="center"></div>
             </div>
@@ -274,6 +279,8 @@
                     <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
                 <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">金额
+                </div>
+                 <div field="discountAmt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">折扣金额
                 </div>
                  <div field="action" name="action" headerAlign="center"
                      allowSort="false" visible="true" width="60" header="操作" align="center"></div>

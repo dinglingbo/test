@@ -147,6 +147,9 @@
 		<isNotNull property="tenantId">
 			AND a.tenant_id=#tenantId#
 		</isNotNull>
+		<isNotNull property="tenantType">
+			AND a.tenant_type=#tenantType#
+		</isNotNull>
 		<isNotNull property="tenantName">
 			AND a.tenant_name like '%$tenantName$%'
 		</isNotNull>

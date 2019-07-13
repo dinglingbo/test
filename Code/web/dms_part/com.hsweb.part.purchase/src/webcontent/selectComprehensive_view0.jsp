@@ -46,8 +46,6 @@
 
 </head>
 <body>
-
-<div class="nui-fit">
     <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
         <table class="table" id="table1">
             <tr>
@@ -108,7 +106,10 @@
         </table>
     </div>
 
-
+<div class="nui-splitter" vertical="true"
+		style="width: 100%; height: 100%;" allowResize="true">
+		<!-- 上 -->
+		<div size="65%" showCollapseButton="false">
     <div class="nui-fit">
           <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
                selectOnLoad="true"
@@ -123,10 +124,9 @@
                editNextOnEnterKey="true"
                allowCellWrap = "true" 
                showSummaryRow = "true"
-               onshowrowdetail="onShowRowDetail"
                sortable="false"
                allowResize="true"
-
+               onselectionchanged="onLeftGridSelectionChanged"
                url="">
               <div property="columns">
                   <div type="indexcolumn">序号</div>
@@ -207,15 +207,363 @@
 		                 
 	                  </div>
                   </div>
-                  
               </div>
           </div>
     </div>
 </div>
+<!-- 下 -->
+<div showCollapseButton="false">
+	<div class="nui-fit">
+	    <div class="nui-tabs" activeIndex="0" name="mainTabs" id="mainTabs" style="width:100%;height:100%;" plain="false" onactivechanged="activechangedmain()">
+		 <div title="项目信息 " name="item" id="item">
+			    <div id="innerItemGrid"
+			       borderStyle="border-bottom:0;"
+			       class="nui-datagrid"
+			       dataField="data"
+			       style="width: 100%;height:100%;"
+			       showPager="false"
+			       allowSortColumn="true">
+	      <div property="columns">
+	           <div type="indexcolumn" headerAlign="center" name="index" visible="false">序号</div>
+	           <div headerAlign="center" field="orderIndex" width="25" align="right" name="num">序号</div>
+	           <div field="prdtName" headerAlign="center" allowSort="false" visible="true" width="100">项目名称</div>
+		       <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" align="center">业务类型 </div>
+		       <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" name="itemItemTime">工时/数量 </div>
+		       <div field="unitPrice" name="itemUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">单价 </div>
+		       <div field="rate" name="itemRate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" >优惠率</div>            
+		       <div field="subtotal"  name="itemSubtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">金额</div>          
+		       <div field="amt"  name="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">总金额 </div>           
+	           <div field="workers" headerAlign="center" allowSort="false" visible="true" width="80" header="施工员" name="workers"  align="center"></div>
+		       <div field="workerIds" headerAlign="center"  allowSort="false" visible="false" width="80" header="施工员" align="center"></div>  
+		       <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center" name="saleMan"></div>
+		       <div field="saleManId" headerAlign="center"   allowSort="false" visible="false" width="80" header="销售员" align="center"></div>
+		       <div field="remark" headerAlign="center"   allowSort="false" visible="true" width="80" header="备注" align="center"></div>
+	      </div>
+	   </div>
+	    </div>
+	    <div title="套餐信息" id="pack" name="pack" >
+		   <div  id="innerpackGrid" class="nui-datagrid"
+		         style="width: 100%;height:100%;"
+		         dataField="data"
+			     showPager="false"
+			     showModified="false"
+			     allowSortColumn="true" > 
+		      <div property="columns">
+		    	   <div type="indexcolumn" headerAlign="center" name="index" visible="false">序号</div>
+		           <div headerAlign="center" field="orderIndex" width="25" align="right" name="num">序号</div>
+		           <div field="prdtName" headerAlign="center" allowSort="false" visible="true" width="100" header="套餐名称"></div>
+		           <div field="type" headerAlign="center" allowSort="false" visible="true" width="60" header="项目类型" align="center"></div>    
+		           <div field="serviceTypeId" headerAlign="center" name="pkgServiceTypeId" allowSort="false" visible="true" width="50" header="业务类型" align="center"> </div>
+		           <div field="subtotal" headerAlign="center" name="pkgSubtotal" allowSort="false" visible="true" width="60" header="套餐金额" align="center" ></div>
+		           <div field="rate" headerAlign="center" name="pkgRate" allowSort="false" visible="true" width="60" header="优惠率" align="center"></div>
+		           <div field="amt" headerAlign="center" name="pkgAmt"  allowSort="false" visible="true" width="60" header="原价" align="center"></div>
+		           <div field="workers" headerAlign="center"  allowSort="false" visible="true" width="60" header="施工员" align="center" name="workers"></div>
+		           <div field="workerIds" headerAlign="center" allowSort="false" visible="false" width="80" header="施工员" align="center"></div>  
+		           <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center" name="saleMan"></div>
+		           <div field="saleManId" headerAlign="center" allowSort="false" visible="false" width="80" header="销售员" align="center"></div>
+		     </div>
+		  </div>
+	    </div>
+	    <div title="报销单信息" name="expense" id="expense">
+            <div id="rpsPackageGrid" class="nui-datagrid"
+		     style="width: 50%; height:100%;float:left"
+		     dataField="pkgBill"
+		     showPager="false"
+		     showModified="false"
+		     allowSortColumn="false" allowCellEdit="true" allowCellSelect="true"
+		     >
+            <div property="columns">
+               <div type="indexcolumn" headerAlign="center" align="center"visible="false">序号</div>
+			   <div field="orderIndex" name="orderIndex" headerAlign="center" allowSort="false" visible="true" width="20" align="right">序号</div>
+               <div field="billPackageId" width="120" headerAlign="center" allowSort="true" visible="false">员工帐号</div>  
+                <div field="packageName" headerAlign="center" allowSort="false"
+                     visible="true" width="100" header="套餐名称">
+                     <input property="editor"  class="nui-textbox"/>
+                </div>
+                 <div field="amt" headerAlign="center"
+                     allowSort="false" visible="true" width="60" header="原价" align="center">
+                </div>
+                <div field="rate" headerAlign="center"
+                     allowSort="false" visible="true" width="60" header="优惠率%" align="center">
+                     <input property="editor" vtype="float" class="nui-textbox"/>
+                </div>
+               <div field="subtotal" headerAlign="center"
+                     allowSort="false" visible="true" width="60" header="套餐金额" align="center">
+                     <input property="editor" vtype="float" class="nui-textbox"/>
+                </div>
+                <div field="discountAmt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">折扣金额
+                </div>
+            </div>
+		</div>
+	    <div id="rpsItemGrid" class="nui-datagrid"
+		     style="width: 50%; height:100%;"
+		     dataField="itemBill"
+		     showPager="false"
+		     showModified="false"
+		     allowSortColumn="false" allowCellEdit="true" allowCellSelect="true"
+	     >
+			<div property="columns">
+				<div type="indexcolumn" headerAlign="center" align="center"visible="false">序号</div>
+			    <div field="orderIndex" name="orderIndex" headerAlign="center" allowSort="false" visible="true" width="20" align="right">序号</div>
+	            <div field="itemName" name="itemName" headerAlign="center" allowSort="false" visible="true" width="100">项目名称
+	            	<input property="editor"  class="nui-textbox"/>
+	            </div>
+	            <div field="itemTime" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">工时/数量
+	                <input property="editor" vtype="float" class="nui-textbox"/>
+	            </div>
+	            <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">单价
+	                <input property="editor" vtype="float" class="nui-textbox"/>
+	            </div>
+	            <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" >优惠率%
+	                <input property="editor" vtype="float" class="nui-textbox"/>
+	            </div>
+	            <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">金额
+	            </div>
+	             <div field="discountAmt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">折扣金额
+	            </div>
+	        </div>
+	    </div>
+	 </div>
+	     <div title="完工信息" id="deductTab" name="deductTab" >
+	    <div class="nui-fit">
+	     <div id="billForm" class="form">
+          <table style="width: ;border-spacing: 0px 5px;">
+                <input name="id" class="nui-hidden" id="mainId"/>
+                <input name="guestId" class="nui-hidden"/>
+                <input id="mtAdvisor" name="mtAdvisor" class="nui-hidden"/>
+                <input class="nui-hidden" name="contactorId"/>
+                <input class="nui-hidden" name="carId"/>
+                <input class="nui-hidden" name="status"/>
+                <input class="nui-hidden" name="drawOutReport"/>
+                <input class="nui-hidden" name="contactorName"/>
+                <input class="nui-hidden" name="carModel"/>
+                <input class="nui-hidden" name="identity"/>
+                <input class="nui-hidden" name="billTypeId"/>
+                <input class="nui-hidden" name="status"/>
+                <input class="nui-hidden" name="isSettle"/>
+                <!-- <input class="nui-hidden" name="isOutBill"/> -->
+                <input class="nui-hidden" name="carModelIdLy"/>
+                <input class="nui-hidden" name="balaAuditor"/>
+                <input class="nui-hidden" name="balaAuditSign"/>
+                <tr>
+                        <td class="title required">
+                            <label>车&nbsp;牌&nbsp;&nbsp;号：</label>
+                        </td>
+                        <td class="" ><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
+                        <td class="title required">
+                            <label >进厂时间：</label>
+                        </td>
+                        <td style="width:15%">
+                            <input id="enterDate" name="enterDate" enabled="false" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
+                        </td>
+                        <td class="title" >
+                           <label>品牌车型：</label>
+                        </td>
+                        <td class="" colspan="1">
+                             <input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/>
+<!--                             <input  class="nui-textbox" name="carBrandModel" id="carBrandModel" enabled="false" width="100%"/>
+ -->                           
+                        </td>
+                        <td class="title" >
+                           <label>车架号(VIN)：</label>
+                        </td>
+                        <td class="" colspan="1">
+                            <input  class="nui-textbox" name="carVin" id="carVin" enabled="false" width="100%"/>
+                        </td>
+                        <td class="title required">
+                            <label>业务类型：</label>
+                        </td>
+                        <td>
+                            <input name="serviceTypeId"
+                                   id="serviceTypeId"
+                                   class="nui-combobox width1"
+                                   textField="name"
+                                   valueField="id"
+                                   emptyText="请选择..."
+                                   url=""
+                                   allowInput="true"
+                                   showNullItem="false"
+                                   width="100%"
+                                   valueFromSelect="true"
+                                   nullItemText="请选择..."/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title required">
+                            <label>进厂油量：</label>
+                        </td>
+                        <td>
+                           <!--  <input name="enterOilMass"
+                                   id="enterOilMass"
+                                   class="nui-combobox width1"
+                                   textField="name"
+                                   valueField="customid"
+                                   emptyText="请选择..."
+                                   url=""
+                                   width="100%"
+                                   allowInput="true"
+                                   showNullItem="false"
+                                   valueFromSelect="true"
+                                   nullItemText="请选择..."/> -->
+                                   
+                          <input class="nui-combobox" id="enterOilMass" emptyText="请选择..." name="enterOilMass"
+                           data="[{enterOilMass:'F',text:'F'},{enterOilMass:'3/4',text:'3/4'},{enterOilMass:'1/2',text:'1/2'},{enterOilMass:'1/4',text:'1/4'},{enterOilMass:'N',text:'N'}]"
+                           width="100%"   textField="text" valueField="enterOilMass" value=""/>
+               
+                        </td>
+                        <td class="title required">
+                              <label>进厂里程：</label>
+                          </td>
+                          <td >
+                               <input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"  width="30%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" />
+                               <label class="title">(上次里程：<span id="lastComeKilometers">0</span>)</label>
+                          </td>
+                        
+                        <td class="title required">
+                            <label>预计交车：</label>
+                        </td>
+                        <td>
+                            <input id="planFinishDate" name="planFinishDate" class="nui-datepicker" value="" format="yyyy-MM-dd HH:mm" nullValue="null" timeFormat="HH:mm:ss" showTime="true" showOkButton="false" showClearButton="true" width="100%"/>
+                        </td>
+                    	<td class="title required">
+                            <label>服&nbsp;务&nbsp;&nbsp;顾&nbsp;问：</label>
+                        </td>
+                        <td>
+                            <input name="mtAdvisorId"
+                                   id="mtAdvisorId"
+                                   class="nui-combobox width1"
+                                   textField="empName"
+                                   valueField="empId"
+                                   emptyText="请选择..."
+                                   url=""
+                                   allowInput="true"
+                                   showNullItem="false"
+                                   width="100%"
+                                   valueFromSelect="true"
+                                   nullItemText="请选择..."/>
+                        </td>
+                        <td class="title">
+                            <label>备注：</label>
+                        </td>
+                        <td >
+                            <input class="nui-textbox" width="100%" id="remark" name="remark"/>
+                        </td>
+                    </tr>
+                    
+                    
+                    <tr>
+                      <td class="title" style="width:100px">
+                          <label>商业险投保公司：</label>
+                      </td>
+                      <td >
+                          <input class="nui-textbox" enabled="false" width="100%" id="annualInspectionCompName" name="annualInspectionCompName"/>
+                      </td>
+                     
+                      <td class="title" style="width: 100px">
+                          <label>商业险到期：</label>
+                      </td>
+                      <td width="">
+                          <input name="annualInspectionDate"
+                                 id="annualInspectionDate"
+                                 width="100%"
+                                 showTime="false"
+                                 enabled="false"
+                                 class="nui-datepicker" format="yyyy-MM-dd"/>
+                      </td>
+                      
+                       <td class="title ">
+                          <label>交强险投保公司：</label>
+                      </td>
+                      <td >
+                          <input class="nui-textbox" enabled="false" width="100%" id="insureCompName" name="insureCompName"/>
+                      </td>
+                      <td class="title" style="width: 100px">
+                          <label>交强险到期：</label>
+                      </td>
+                      <td width="">
+                          <input name="insureDueDate"
+                                 id="insureDueDate"
+                                 width="100%"
+                                 showTime="false"
+                                 enabled="false"
+                                 class="nui-datepicker" format="yyyy-MM-dd"/>
+                      </td>
+                  </tr>
+                    
+                    
+                     <tr>
+                        <td class="title required">
+                            <label>联系人名称</label>
+                        </td>
+                        <td class="" ><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
+                        <td class="title">
+                          <label>联系方式：</label>
+                      </td>
+                      <td >
+                          <input class="nui-textbox" enabled="false" width="100%" id="mobile" name="mobile"/>
+                      </td>
+                       <td class="title">
+                          <label>证件号：</label>
+                      </td>
+                      <td >
+                          <input class="nui-textbox" enabled="false" width="100%" id="idNo" name="idNo"/>
+                      </td>
+                        <td class="title">
+                          <label>性别：</label>
+                      </td>
+                      <td>
+                          <input name="sex"
+                                 id="sex"
+                                 enabled="false"
+                                 class="nui-combobox width1"
+                                 textField="text"
+                                 valueField="id"
+                                 emptyText="请选择..."
+                                 data="[{id:0,text:'男'},{id:1,text:'女'},{id:2,text:'未知'}]"
+                                 allowInput="true"
+                                 showNullItem="false"
+                                 width="100%"
+                                 valueFromSelect="true"
+                                 nullItemText="请选择..."/>
+                      </td>
+                    </tr>
+                    
+                 <tr>
+                  <td class="title">
+                          <label>客户描述：</label>
+                  </td>
+                  <td >
+                      <textarea class="nui-textarea" name="guestDesc"
+                                style="width:100%;height: 40px;"></textarea>
+                  </td>
+                  
+                  <td class="title">
+                      <label>故障现象：</label>
+                  </td>
+                   <td>
+                      <textarea class="nui-textarea" name="faultPhen"
+                                style="width:100%;height: 40px;"></textarea>
+                  </td>
+                  <td class="title">
+                      <label>解决措施：</label>
+                  </td>
+                   <td>
+                      <textarea class="nui-textarea" name="solveMethod"
+                                style="width:100%;height: 40px;"></textarea>
+                  </td>
+              </tr>
+           </table>
+          </div>
+	     </div>
+	   </div>
+	 </div>
+	</div>
+  </div> 
+</div>
 
-<div id="editFormDetail" style="display:none;padding:5px;position:relative;">
 
-  <div  id="innerpackGrid" class="nui-datagrid"
+<!-- onshowrowdetail="onShowRowDetail"<div id="editFormDetail" style="display:none;padding:5px;position:relative;">
+   <div  id="innerpackGrid" class="nui-datagrid"
 	    style="width:1000px;height:100px;"
 	    dataField="data"
 	    showPager="false"
@@ -259,12 +607,8 @@
 	       <div field="saleManId" headerAlign="center"   allowSort="false" visible="false" width="80" header="销售员" align="center"></div>
 	       <div field="remark" headerAlign="center"   allowSort="false" visible="true" width="80" header="备注" align="center"></div>
       </div>
-   </div>
-</div>
-
-
-
-
+   </div> 
+</div> -->
 <div id="exportDiv" style="display:none">  
     <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
         <tr>  

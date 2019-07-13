@@ -130,6 +130,7 @@ $(document).ready(function ()
     itemTimesGrid = nui.get("itemTimesGrid");
     itemTimesGrid.setUrl(itemTimesGridUrl);
     carSellPointGrid = nui.get("carSellPointGrid");
+    
 /*    var data = [{prdtName:'保养到期提醒',amt:'3850',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'保养到期提醒'},
                 {prdtName:'商业险到期提醒',amt:'2600',status:'未联系',creator:'杨超越',doTimes:'2018-12-15',type:'商业险到期提醒'},
                 {prdtName:'交强险到期提醒',amt:'3460',status:'未联系',creator:'杨超越',doTimes:'2018-12-26',type:'交强险到期提醒'},
@@ -587,6 +588,12 @@ $(document).ready(function ()
 	if(currIsOpenElectronics == "1") {
 		document.getElementById("showE1").style.display = "";
 		document.getElementById("showE").style.display='none';
+	}
+	if(currIsOpenOfferRemind == "1") {
+		document.getElementById("carRemind").style.display = "";
+	}else{
+		document.getElementById("carRemind").style.display='none';
+		
 	}
 	nui.get("enterDate").setValue(now);
 
@@ -5766,6 +5773,10 @@ function chooseBlank(){
 
 function saleReminding(){
     var data = billForm.getData();
+	if(data.status == 2){
+		showMsg("工单已完工","W");
+        return;        
+    }
     if(!data.id){
         showMsg("请先保存工单!","W");
         return;
@@ -5779,10 +5790,8 @@ function saleReminding(){
     		allowResize : true,
     		onload : function() {
     			var iframe = this.getIFrameEl();
-    			var params = {
-    					serviceId:fserviceId
-    			}
-                iframe.contentWindow.setData(params);
+    			data.serviceId = fserviceId;
+                iframe.contentWindow.setData(data);
     		},
     		ondestroy : function(action) {
     			if(action=="ok"){

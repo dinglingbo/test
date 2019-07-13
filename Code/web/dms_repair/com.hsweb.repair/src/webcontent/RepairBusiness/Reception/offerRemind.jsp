@@ -11,7 +11,9 @@
 <head>
 <title>报价提醒</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/offerRemind.js?v=1.0.3"></script>
+        	<script src="<%=request.getContextPath()%>/coframe/imjs/message.js"></script>
+	<script src="<%=request.getContextPath()%>/coframe/imjs/messagebody.js"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/offerRemind.js?v=1.0.6"></script>
     
 </head>
 <body>
@@ -28,6 +30,7 @@
 					               url="">
 
 					              <div property="columns">
+					              	<div type="indexcolumn">序号</div>
 					                  <div type="checkboxcolumn" field="noMtType" name="noMtType" trueValue="1" falseValue="0"  width="50px" headerAlign="center" align="center" >
 						                	<strong>是否需要报价&nbsp;<a title="批量设置为需要" plain="true" onclick="setNormal()"><span class="fa fa-edit fa-lg"></span></a></strong>
 						              </div>

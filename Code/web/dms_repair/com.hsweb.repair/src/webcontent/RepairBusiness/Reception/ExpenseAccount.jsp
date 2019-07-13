@@ -106,9 +106,9 @@
                     <li iconCls="" onclick="onPrint(3)" id="type11">打印报价单(项目配件分开)</li>
                     <li iconCls="" onclick="onPrint(2)" id="type11">打印结账单</li>
                     <li iconCls="" onclick="onPrint(4)" id="type11">打印结账单(项目配件分开)</li>
-                    <li iconCls="" onclick="onPrint(5)" id="type11">模板3</li>
+                    <!-- <li iconCls="" onclick="onPrint(5)" id="type11">模板3</li>
                     <li iconCls="" onclick="onPrint(6)" id="type11">模板4</li>
-                    <li iconCls="" onclick="onPrint(7)" id="type11">模板5</li>
+                    <li iconCls="" onclick="onPrint(7)" id="type11">模板5</li> -->
                 </ul>
             </td>
         </tr>

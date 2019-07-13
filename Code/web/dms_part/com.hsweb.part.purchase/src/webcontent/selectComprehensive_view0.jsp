@@ -324,33 +324,16 @@
 	        </div>
 	    </div>
 	 </div>
-	     <div title="完工信息" id="deductTab" name="deductTab" >
+	     <div title="完工信息" id="finish" name="finish" >
 	    <div class="nui-fit">
 	     <div id="billForm" class="form">
           <table style="width: ;border-spacing: 0px 5px;">
-                <input name="id" class="nui-hidden" id="mainId"/>
-                <input name="guestId" class="nui-hidden"/>
-                <input id="mtAdvisor" name="mtAdvisor" class="nui-hidden"/>
-                <input class="nui-hidden" name="contactorId"/>
-                <input class="nui-hidden" name="carId"/>
-                <input class="nui-hidden" name="status"/>
-                <input class="nui-hidden" name="drawOutReport"/>
-                <input class="nui-hidden" name="contactorName"/>
-                <input class="nui-hidden" name="carModel"/>
-                <input class="nui-hidden" name="identity"/>
-                <input class="nui-hidden" name="billTypeId"/>
-                <input class="nui-hidden" name="status"/>
-                <input class="nui-hidden" name="isSettle"/>
-                <!-- <input class="nui-hidden" name="isOutBill"/> -->
-                <input class="nui-hidden" name="carModelIdLy"/>
-                <input class="nui-hidden" name="balaAuditor"/>
-                <input class="nui-hidden" name="balaAuditSign"/>
                 <tr>
-                        <td class="title required">
+                        <td class="title">
                             <label>车&nbsp;牌&nbsp;&nbsp;号：</label>
                         </td>
                         <td class="" ><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
-                        <td class="title required">
+                        <td class="title">
                             <label >进厂时间：</label>
                         </td>
                         <td style="width:15%">
@@ -370,7 +353,7 @@
                         <td class="" colspan="1">
                             <input  class="nui-textbox" name="carVin" id="carVin" enabled="false" width="100%"/>
                         </td>
-                        <td class="title required">
+                        <td class="title">
                             <label>业务类型：</label>
                         </td>
                         <td>
@@ -389,7 +372,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="title required">
+                        <td class="title">
                             <label>进厂油量：</label>
                         </td>
                         <td>
@@ -411,7 +394,7 @@
                            width="100%"   textField="text" valueField="enterOilMass" value=""/>
                
                         </td>
-                        <td class="title required">
+                        <td class="title">
                               <label>进厂里程：</label>
                           </td>
                           <td >
@@ -419,13 +402,13 @@
                                <label class="title">(上次里程：<span id="lastComeKilometers">0</span>)</label>
                           </td>
                         
-                        <td class="title required">
+                        <td class="title">
                             <label>预计交车：</label>
                         </td>
                         <td>
                             <input id="planFinishDate" name="planFinishDate" class="nui-datepicker" value="" format="yyyy-MM-dd HH:mm" nullValue="null" timeFormat="HH:mm:ss" showTime="true" showOkButton="false" showClearButton="true" width="100%"/>
                         </td>
-                    	<td class="title required">
+                    	<td class="title">
                             <label>服&nbsp;务&nbsp;&nbsp;顾&nbsp;问：</label>
                         </td>
                         <td>
@@ -492,7 +475,7 @@
                     
                     
                      <tr>
-                        <td class="title required">
+                        <td class="title">
                             <label>联系人名称</label>
                         </td>
                         <td class="" ><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>

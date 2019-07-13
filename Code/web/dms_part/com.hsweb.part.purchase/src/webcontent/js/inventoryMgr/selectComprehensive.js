@@ -932,16 +932,76 @@ function activechangedmain(){
 			rpsPackageGrid.load({serviceId : serviceId,type:1,token : token},function(e){
 			});
 			rpsItemGrid.load({serviceId : serviceId,type:1,token : token});
-		}else if(tabs.name=="coupons"){
-		    //优惠券
-		    var paraMap = {};
-		    paraMap.orgid = currOrgId;  
-		    paraMap.tenantId = currTenantId;
-		    paraMap.userCarId = onSearchParams.carId; 
-		    grid4.load({
-		    	token:token,
-		    	paraMap:paraMap
+		}else if(tabs.name=="finish"){
+			nui.mask({
+		        el: document.body,
+		        cls: 'mini-mask-loading',
+		        html: '加载中...'
 		    });
+			var row = mainGrid.getSelected();
+		    //完工信息
+			var getdRpsMaintainUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext";
+			var main = {};
+			var car = {};
+			var guest = {};
+			var conta = {};
+			var carExd = {};
+			nui.ajax({
+                url : getdRpsMaintainUrl,
+                type : "post",
+                data : JSON.stringify({
+                	id : row.id,
+                    token : token
+                }),
+                cache: false,
+                async: false,
+                success : function(data) {
+                	data = data || {};
+                    if (data.errCode == "S") {
+                       main = data.maintain;
+                    } else {
+                        showMsg("获取完工信息失败","E");
+                    }
+                },
+                error : function(jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR.responseText);
+                }
+            });
+			var getGuestContactorCarUrl =  window._rootRepairUrl + "com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext";
+			nui.ajax({
+                url : getGuestContactorCarUrl,
+                type : "post",
+                data : JSON.stringify({
+                	guestId: main.guestId||0,
+                    contactorId: main.contactorId||0,
+                    carId:main.carId || 0,
+                    carExtendId:main.carId,
+                    token : token
+                }),
+                cache: false,
+                async: false,
+                success : function(data) {
+                	data = data || {};
+                    if (data.errCode == "S") {
+                        car = data.car;
+                        guest = data.guest;
+                        conta = data.contactor;
+                        carExd = data.carExtend;
+                    } else {
+                        showMsg("获取完工信息失败","E");
+                    }
+                },
+                error : function(jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR.responseText);
+                }
+            });
+			 var billForm = new nui.Form("#billForm");
+			 billForm.setData(main);
+			 billForm.setData(car);
+			 billForm.setData(guest);
+			 billForm.setData(conta);
+			 billForm.setData(carExd);
+			 nui.unmask(document.body);
 		}
 	}
 	

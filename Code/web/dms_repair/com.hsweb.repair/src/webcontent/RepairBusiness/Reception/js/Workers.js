@@ -8,6 +8,8 @@ var workers={};
 var workersId={};
 $(document).ready(function(v) {
 	 //serviceTypeIds = nui.get("serviceTypeIds");
+	nui.get("sendWechat").setValue(currIsOpenWeChatRemind);
+	nui.get("sendApp").setValue(currIsOpenAppRemind);
     $(document).on("click",".none",function(e){
         nui.mask({
             el: document.body,
@@ -180,9 +182,14 @@ function dispatchOk(){
 			emlpszId = emlpszId+","+emlpsz[i].id;	
 			emlpszName = emlpszName+","+emlpsz[i].innerText;
 		}
-		
+		//推送消息用
+		var temp = {
+				userId:emlpsz[i].id
+		}
+		userList.push(temp);
 	}
     nui.unmask(document.body);
+    sendInfo(userList);
 	data = {
 			emlpszId :emlpszId,
 			emlpszName:emlpszName,
@@ -266,3 +273,39 @@ function timeStamp(StatusMinute){
 		}
 	}
 }
+
+//推送消息
+function sendInfo(userList){
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '消息推送中...'
+    });
+	nui.ajax({
+		url:sendInfoUrl,
+		type:"psot",
+		async:false,
+		data:{
+			serviceId:serviceId,
+			workerIdList:userList,
+			isWc:nui.get("sendWechat").getValue(),
+			isApp:nui.get("sendApp").getValue(),
+		},
+		success : function(data) {
+			nui.unmask(document.body);
+			if(data.errCode == "S"){
+				showMsg("推送成功","S");
+			}else{
+				showMsg("推送失败","E");
+			}
+			console.log(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			nui.unmask(document.body);
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+			
+		}
+	})
+}
+

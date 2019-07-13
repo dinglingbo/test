@@ -14,6 +14,8 @@
 			a.contactor_id as contactorId,
 			a.service_code AS serviceCode,
 			a.enter_date AS enterDate,
+			a.no_mt_type as noMtType,
+			a.no_mt_file_sign as noMtFileSign,
 			c.full_name AS guestFullName,
 			c.short_name AS guestShortName,
 			SUBSTRING_INDEX(b.car_model,' ',2) as carModel,
@@ -94,6 +96,12 @@
 		<dynamic>
 			<isNotEmpty prepend="and" property="rid">
                 (a.id = #rid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="noMtType">
+                (a.no_mt_type = #noMtType#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="noMtFileSign">
+                (a.no_mt_file_sign = #noMtFileSign#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="isDisabled">
                 (a.is_disabled = #isDisabled#)

@@ -32,7 +32,7 @@ function setData(params){
 				}
 				mainGrid.setData(ppart);
 			} else {
-				showMsg(returnJson.errMsg||"查询上次里程失败","E");
+				showMsg(returnJson.errMsg||"查询需要报价失败","E");
 		    }
 		}
 	 });
@@ -72,7 +72,7 @@ function setNormal(){
 
 function addRemind(){
 	var pushInfoUrl = baseUrl + "com.hsapi.repair.repairService.sendWeChat.sAllShoppingSale.biz.ext";
-	var saveRpsPartUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsPart.biz.ext";
+	var saveRpsPartUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveOffer.biz.ext";
 	var updList=mainGrid.getData();
 	
 	nui.mask({
@@ -87,20 +87,23 @@ function addRemind(){
 		data : {
 			serviceId:fserviceId,
 			updList:updList,
+			type : 0,
 			token:token
 		},
 		success : function(data) {
-			nui.unmask(document.body);
 			if(data.errCode == "S"){
 				//pc提醒
 				var carNo = maintainAll.carNo;
 				var carModel = maintainAll.carModel;
 				var serviceCode = maintainAll.serviceCode;
-				var content = "您好,"+carNo + "("+carModel+"),请您报价 ！";
+				var content = "您好,"+carNo + "("+carModel+"),请您报价 !";
 				var msg = {
 					title: "配件待报价",
 					serviceCode: serviceCode,
 					serviceId :fserviceId,
+					remindType : 1,
+					url:webPath + contextPath + "/com.hsweb.RepairBusiness.offerMain.flow",
+					urlId : 3501,
 					content: content,
 					sender: currUserName,
 					sendDate: now.Format("yyyy-MM-dd HH:mm:ss")
@@ -135,7 +138,6 @@ function addRemind(){
 						}else{
 							showMsg("推送失败","E");
 						}
-						console.log(data);
 					},
 					error : function(jqXHR, textStatus, errorThrown) {
 						nui.unmask(document.body);
@@ -147,7 +149,6 @@ function addRemind(){
 			}else{
 				showMsg("推送失败","E");
 			}
-			console.log(data);
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			nui.unmask(document.body);

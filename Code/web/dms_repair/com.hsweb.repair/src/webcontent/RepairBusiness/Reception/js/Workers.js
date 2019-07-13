@@ -8,6 +8,8 @@ var workers={};
 var workersId={};
 $(document).ready(function(v) {
 	 //serviceTypeIds = nui.get("serviceTypeIds");
+	nui.get("sendWechat").setValue(currIsOpenWeChatRemind);
+	nui.get("sendApp").setValue(currIsOpenAppRemind);
     $(document).on("click",".none",function(e){
         nui.mask({
             el: document.body,
@@ -61,8 +63,10 @@ var queryMemberLevel = apiPath + repairApi + "/com.hsapi.repair.baseData.team.ge
 	var queryMemberUrl = apiPath + sysApi + "/com.hsapi.system.dict.org.queryMember.biz.ext";
     var queryServiceType = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryServiceType.biz.ext";
     var setItemWorkersBatch = apiPath + repairApi + "/com.hsapi.repair.repairService.crud.setItemWorkersBatch.biz.ext";
+    var sendInfoUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.sendWeChat.sAllToWork.biz.ext";
     
 function setData(data){
+	serviceId =data.serviceId;
 	var workersStr =data.workers||"";
 	var workersIdStr =data.workersId||"";
 	workers =workersStr.split(",");
@@ -160,6 +164,7 @@ function onClose(){
 }
 var data={};
 function dispatchOk(){
+	var userList = [];
 	var emlpsz = $("a.empl1");//所选技师数组
 	var emlpszId = "";
 	var emlpszName = "";
@@ -180,9 +185,16 @@ function dispatchOk(){
 			emlpszId = emlpszId+","+emlpsz[i].id;	
 			emlpszName = emlpszName+","+emlpsz[i].innerText;
 		}
-		
+		//推送消息用
+		var temp = {
+				userId:emlpsz[i].id
+		}
+		userList.push(temp);
 	}
     nui.unmask(document.body);
+    if(nui.get("sendWechat").getValue() != "0" ||nui.get("sendApp").getValue() != "0"){
+    	sendInfo(userList);
+    }
 	data = {
 			emlpszId :emlpszId,
 			emlpszName:emlpszName,
@@ -266,3 +278,39 @@ function timeStamp(StatusMinute){
 		}
 	}
 }
+
+//推送消息
+function sendInfo(userList){
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '消息推送中...'
+    });
+	nui.ajax({
+		url:sendInfoUrl,
+		type:"psot",
+		async:false,
+		data:{
+			serviceId:serviceId,
+			workerIdList:userList,
+			isWc:nui.get("sendWechat").getValue(),
+			isApp:nui.get("sendApp").getValue(),
+		},
+		success : function(data) {
+			nui.unmask(document.body);
+			if(data.errCode == "S"){
+				showMsg("推送成功","S");
+			}else{
+				showMsg("推送失败","E");
+			}
+			console.log(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			nui.unmask(document.body);
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+			
+		}
+	})
+}
+

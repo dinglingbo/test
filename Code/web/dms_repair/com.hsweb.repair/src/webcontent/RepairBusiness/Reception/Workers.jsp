@@ -13,7 +13,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>班组选择</title>
 <script
-	src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/Workers.js?v=1.1.5"></script>
+	src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/Workers.js?v=1.1.6"></script>
 	<style type="text/css">
 
 				body,
@@ -246,6 +246,8 @@ label{
 			 <table style="width:100%;" id="table1">
                     <tr>
                         <td style="width:100%;">
+                         <div id="sendWechat" name="" class="nui-checkbox" readOnly="false" text="推送微信" style="top: 15px;" trueValue="1" falseValue="0"></div>
+		  				 <div id="sendApp" name="" class="nui-checkbox" readOnly="false" text="推送APP"  style="top: 15px;"  trueValue="1" falseValue="0"></div>
                           <a id="wxbtnsettle" style="    width: 80px;
 							height: 40px;
 							font-size: 18px;

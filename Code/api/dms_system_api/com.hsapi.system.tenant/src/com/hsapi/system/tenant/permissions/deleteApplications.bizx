@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="deleteApplications.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="删除应用功能&#xD;&#xA;" title="Administrator&#x9;18-12-4 上午9:52">
-    <location x="60" y="15"/>
-    <size height="100" width="197"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="删除应用功能&#xD;&#xA;&#xD;&#xA;1、应用功能中删除资源，  需要删除所有租户下的资源 com_tenant_menu&#xD;&#xA;    需要删除所有角色对应的资源  com_cap_resauth&#xD;&#xA;应用功能中删除功能需要清除以下缓存，前两项直接删除，后三项删除后重新加载缓存&#xD;&#xA;com.hs.common.orga.queryAppFunctionInfo&#x9;params/resId&#x9;资源表对象&#xD;&#xA;com.hs.common.orga.queryResInfo&#x9;params/resId&#x9;资源表关联菜单后的输出对象&#xD;&#xA;com.hs.common.orga.queryMenu&#x9;无&#x9;菜单表对象&#xD;&#xA;com.hs.common.orga.queryAppFunction&#x9;无&#x9;资源表对象&#xD;&#xA;com.hs.common.orga.queryComAppFunction&#x9;无&#x9;资源表关联菜单后的输出对象" title="Administrator&#x9;18-12-4 上午9:52">
+    <location x="-150" y="-120"/>
+    <size height="211" width="541"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">

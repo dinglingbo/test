@@ -4,8 +4,8 @@
 	<classpathentry kind="con" path="com.primeton.studio.workbench.serverPath"/>
 	<classpathentry kind="con" path="com.primeton.studio.workbench.libraries"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="com.primeton.studio.workbench.classPath"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/commons-beanutils-1.8.0.jar"/>
+	<classpathentry kind="con" path="com.primeton.studio.workbench.classPath"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/commons-codec-1.2.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/commons-httpclient-3.0.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/commons-lang-2.1.jar"/>
@@ -46,6 +46,5 @@
 	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.hsweb.system.tenant/bin" path="com.hsweb.system.tenant/src"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/slf4j-nop-1.7.26.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/core-3.3.0.jar"/>
-	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/javase-3.2.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -12,6 +12,7 @@ var comPartNameAndPY = null;
 var comPartCode = null;
 var orderCodeEl = null;
 var outCodeEl = null;
+var deductMemNameEl =null;
 var comSearchGuestId = null;
 
 var storehouseHash = {};
@@ -34,6 +35,7 @@ $(document).ready(function(v)
 	comPartCode = nui.get("partCode");
 	orderCodeEl = nui.get("orderCode");
 	outCodeEl = nui.get("outCode");
+	deductMemNameEl =nui.get('deductMemName');
 	quickSearch(2);
  
 });
@@ -45,6 +47,7 @@ function getSearchParam(){
 	params.partName = comPartNameAndPY.getValue().replace(/\s+/g, "");
 	params.endDate = searchEndDate.getFormValue();
 	params.startDate = searchBeginDate.getFormValue();
+	params.deductMemName =deductMemNameEl.getValue().replace(/\s+/g, "");
 	params.orgid =currOrgid;
     return params;
 }

@@ -81,8 +81,9 @@
          ondrawcell="onDrawCell"
          sortMode="client"
          url=""
-         pageSize="10000"
-         sizeList="[1000,5000,10000]"
+         pageSize="50"
+         totalField="page.count"
+         sizeList="[50,100,200]"
          showSummaryRow="true">
         <div property="columns">
             	      

@@ -101,7 +101,7 @@ function addDiv(number,name){
 		e.remove();
 	});
 }
-var saveUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.svr.savehomePage.biz.ext";
+var saveUrl = apiPath + sysApi + "/com.hsapi.system.employee.employeeMgr.savehomePage.biz.ext";
 function save(){
     nui.mask({
         el: document.body,

@@ -1157,6 +1157,9 @@
              <isNotEmpty prepend="and" property="outCode">  
                 (out_code like '%$outCode$%')
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="deductMemName">  
+                (deduct_mem_name like '%$deductMemName$%')
+            </isNotEmpty>
 	
     </select>
     
@@ -1200,11 +1203,7 @@
                 (out_code like '%$outCode$%')
             </isNotEmpty>
             GROUP BY
-				deduct_mem_id,
-				deduct_mem_name,
-				deduct_amt,
-				order_amt,
-				out_amt
+				deduct_mem_id
 	
     </select>
 </sqlMap>

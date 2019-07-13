@@ -16,9 +16,9 @@
 	        <table style="width:100%;">
 	            <tr>
 		            <td style="width:100%;">
-		                <a class="nui-button" iconCls="icon-add" onclick="add()">增加</a>
-		            	<a class="nui-button" iconCls="icon-edit" onclick="edit()" id="edit_btn">编辑</a>
-		            	<a class="nui-button" iconCls="icon-remove" onclick="remove()">删除</a>
+		                <a class="nui-button" iconCls="" onclick="add()"><span class="fa fa-plus fa-lg"></span>&nbsp;增加</a>
+		            	<a class="nui-button" iconCls="" onclick="edit()" id="edit_btn"><span class="fa fa-edit fa-lg"></span>&nbsp;编辑</a>
+		            	<a class="nui-button" iconCls="" onclick="remove()"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
 		            </td>
 	            </tr>
 	        </table>

@@ -1482,5 +1482,31 @@
 				on a.part_id = b.id
 				where a.service_id = #serviceId# and a.is_disabled = 0
 		</select>	
+		
+		
+					<!--获取工单的技师 （去重）-->
+			<select id="getWorkersByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+					
+			SELECT
+				a.main_id mainId,
+				a.id,
+				a.service_id serviceId,
+				a.worker_id workerId,
+				a.worker,
+				a.`status`,
+				a.deduct_type deductType,
+				a.deduct_value deductValue,
+				a.weight,
+				a.recorder,
+				a.record_date recordDate,
+				a.modifier,
+				a.modify_date modifyDate
+				
+				FROM
+				rps_item_workers AS a
+				where a.service_id = #serviceId#
+				GROUP BY a.worker_id
+			</select>
+			
 			
 </sqlMap>

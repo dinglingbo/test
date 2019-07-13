@@ -18,6 +18,8 @@ var fserviceId = null;//仓库点去报价才有值
 var pickName = null;//点击配件才会有.用于tables
 var storeHash = {};
 $(document).ready(function (){	
+/*	nui.get("sendWechat").setValue(currIsOpenWeChatRemind);
+	nui.get("sendApp").setValue(currIsOpenAppRemind);*/
 	queryRepairOutListGrid = nui.get("queryRepairOutListGrid");
 	queryRepairOutListGrid.setUrl(queryRepairOutListGridUrl);
 	queryPjPchsOrderEnterDetailChkListGrid = nui.get("queryPjPchsOrderEnterDetailChkListGrid");
@@ -61,11 +63,11 @@ $(document).ready(function (){
             servieTypeHash[v.id] = v;
         });
     });
-    mainGrid1.on("rowdblclick",function(e){
+    mainGrid1.on("selectionchanged",function(e){
     	var row = mainGrid1.getSelected();
     	setBillForm(row);
 	});
-    rpsItemGrid.on("rowdblclick",function(e){
+    rpsItemGrid.on("selectionchanged",function(e){
     	var row = rpsItemGrid.getSelected();
     	pickName = row.prdtName;
     	activechangedmain();
@@ -1443,6 +1445,8 @@ function releaseOfferRemind(){
 					msg.remindType=3;
 				}else if(xyguest.billTypeId==4){
 					msg.remindType=4;
+				}else if(xyguest.billTypeId==6){
+					msg.remindType=6;
 				}
 				getUserInfo(mtAdvisorId, null, function(text){
 					var memberList = text.data || [];
@@ -1467,6 +1471,8 @@ function releaseOfferRemind(){
 					type : "post",
 					data : {
 						serviceId:fserviceId
+/*						isWc:nui.get("sendWechat").getValue(),
+						isApp:nui.get("sendApp").getValue()*/
 					},
 					success : function(data) {
 						nui.unmask(document.body);

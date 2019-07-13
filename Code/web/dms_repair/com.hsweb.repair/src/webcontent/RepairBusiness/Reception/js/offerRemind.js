@@ -7,6 +7,8 @@ $(document).ready(function (){
 	mainGrid = nui.get("mainGrid");
 });
 function setData(params){
+	nui.get("sendWechat").setValue(currIsOpenWeChatRemind);
+	nui.get("sendApp").setValue(currIsOpenAppRemind);
 	maintainAll = params;
 	fserviceId = params.serviceId;
 	var getRpsItemPPartUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext";
@@ -135,7 +137,9 @@ function addRemind(){
 					type : "post",
 					data : {
 						serviceId:fserviceId,
-						partNum:num
+						partNum:num,
+						isWc:nui.get("sendWechat").getValue(),
+						isApp:nui.get("sendApp").getValue()
 					},
 					success : function(data) {
 						nui.unmask(document.body);

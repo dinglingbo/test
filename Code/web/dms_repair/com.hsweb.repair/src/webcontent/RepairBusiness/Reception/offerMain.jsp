@@ -14,7 +14,7 @@
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
                     	<script src="<%=request.getContextPath()%>/coframe/imjs/message.js"></script>
 	<script src="<%=request.getContextPath()%>/coframe/imjs/messagebody.js"></script>
-            <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/offerMain.js?v=1.2.2"></script>
+            <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/offerMain.js?v=1.2.5"></script>
             <style type="text/css">
                 body {
                     margin: 0;
@@ -258,7 +258,9 @@
                                                     <a class="nui-button" plain="true" onclick="save()" id="" enabled="true">
                                                         <span class="fa fa-save fa-lg"></span>&nbsp;保存报价</a>
                                                     <a class="nui-button" plain="true" onclick="releaseOfferRemind()" id="" enabled="true">
-                                                        <span class="fa fa-bell fa-lg"></span>&nbsp;发布报价</a>        
+                                                        <span class="fa fa-bell fa-lg"></span>&nbsp;发布报价</a>  
+<!--                                                      <div id="sendWechat" name="" class="nui-checkbox" readOnly="false" text="推送微信"  trueValue="1" falseValue="0"></div>
+		  											 <div id="sendApp" name="" class="nui-checkbox" readOnly="false" text="推送APP"    trueValue="1" falseValue="0"></div> -->      
                                                 </td>
                                             </tr>
                                         </table>

@@ -21,7 +21,9 @@
 		    <table style="width:100%;">
 				    <tr>
 						<td>
-		 						<a class="nui-button" iconCls="" plain="true" onclick="addRemind()" id="auditBtn"><span class="fa fa-bell fa-lg"></span>&nbsp;报价提醒</a>
+		 					<a class="nui-button" iconCls="" plain="true" onclick="addRemind()" id="auditBtn"><span class="fa fa-bell fa-lg"></span>&nbsp;报价提醒</a>
+		 					<div id="sendWechat" name="" class="nui-checkbox" readOnly="false" text="推送微信"  trueValue="1" falseValue="0"></div>
+		  				 	<div id="sendApp" name="" class="nui-checkbox" readOnly="false" text="推送APP"    trueValue="1" falseValue="0"></div>
 		 				</td>
 			        </tr>
 			  </table>

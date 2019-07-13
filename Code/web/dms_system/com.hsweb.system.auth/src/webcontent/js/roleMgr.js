@@ -23,7 +23,12 @@ $(document).ready(function(v) {
 
 function queryTenant() {
     var params = {};
-    params.isDisabled = 0;
+    if(isDisabled != 2){
+    	params.isDisabled = isDisabled;
+    }
+    if(tenantType != 6){
+    	params.tenantType = tenantType;
+    }
     var tenantId = nui.get("tenantId").getValue();
     if(tenantId){
     	params.tenantId = tenantId;
@@ -188,4 +193,74 @@ function ontopTabChanged(e){
     	 mainTabs.loadTab(webPath + defDomin + "/common/function/role_right_mgrt.jsp?tenantId="+tenantId+"&tenantType="+tenantType+"&token="+token, tab);   
     }
     
+}
+
+
+var isDisabled = 0;
+function quickSearch(type) {
+   // var params = getSearchParam();
+    var queryname = "在用";
+    switch (type) {
+        case 1:
+            //params.isDisabled = 1;
+            queryname = "停用";
+            isDisabled = 1;
+            break;
+        case 0:
+        	//params.isDisabled =0;
+        	isDisabled = 0;
+            queryname = "在用";
+            break;
+        case 2:
+            //queryname = "所有";
+            isDisabled = 2;
+            break;
+        default:
+            break;
+    }
+    var menunamedate = nui.get("menunamedate");
+    menunamedate.setText(queryname);
+    queryTenant();
+}
+
+//1，汽修店，2汽配店，3变速箱维修店，4汽贸店，5汽贸汽修综合店
+var tenantType = 6;
+function quickSearch1(type) {
+    var queryname = "所有";
+    switch (type) {
+        case 1:
+            //params.tenantType = 1;
+            queryname = "汽修";
+            tenantType = 1;
+            break;
+        case 2:
+        	//params.tenantType =1;
+        	tenantType = 2;
+            queryname = "汽配";
+            break;
+        case 3:
+        	//params.tenantType =3;
+        	tenantType = 3;
+            queryname = "变速箱";
+            break;
+        case 4:
+        	//params.tenantType =4;
+        	tenantType = 4;
+            queryname = "汽贸";
+            break;
+        case 5:
+        	//params.tenantType =5;
+        	tenantType = 5;
+            queryname = "汽修汽贸";
+            break;
+        case 6:
+            queryname = "所有";
+            tenantType = 6;
+            break;
+        default:
+            break;
+    }
+    var menunamedate = nui.get("menunamestatus");
+    menunamedate.setText(queryname);
+    queryTenant();
 }

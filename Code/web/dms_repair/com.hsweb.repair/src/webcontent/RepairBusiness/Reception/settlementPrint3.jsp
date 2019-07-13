@@ -320,7 +320,7 @@
 	        var url = null;
 	       if(params.type){
 	        	url = "com.hsapi.repair.repairService.svr.billqyeryMaintainList.biz.ext?rid=";
-	        	document.getElementById("sendInfo").style.background="#999999";
+	        	//document.getElementById("sendInfo").style.background="#999999";
 	        	sendY = 0;
 	        }else{
 	        	url = "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid=";
@@ -412,14 +412,14 @@
 	        		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
 	        		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
 	        		document.getElementById("enterDate").innerHTML = enterDate;
-	        		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
+	        		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + contactName;
 	        		//document.getElementById("contactName").innerHTML = document.getElementById("contactName").innerHTML + contactName;
 	        		
 	        		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
-	        		//document.getElementById("enterOilMass").innerHTML = document.getElementById("enterOilMass").innerHTML + enterOilMass;
+	        		document.getElementById("enterOilMass").innerHTML = document.getElementById("enterOilMass").innerHTML + enterOilMass;
 	        		document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + mtAdvisor;
 	        		//document.getElementById("guestDesc").innerHTML = document.getElementById("guestDesc").innerHTML + guestDesc; 
-	        		//document.getElementById("carModel").innerHTML = document.getElementById("carModel").innerHTML + carModel; 
+	        		document.getElementById("carModel").innerHTML = document.getElementById("carModel").innerHTML + carModel; 
 	        		//document.getElementById("faultPhen").innerHTML = document.getElementById("faultPhen").innerHTML + faultPhen; 
 	        		//document.getElementById("solveMethod").innerHTML = document.getElementById("solveMethod").innerHTML + solveMethod; 
 	        		//document.getElementById("guestAddr").innerHTML = document.getElementById("guestAddr").innerHTML + guestAddr;
@@ -457,7 +457,9 @@
 	    				var discountAmt = 0;
 	    				for(var i = 0 , l = data.length ; i < l ; i++){
 	    				    if(params.name != "结账单"){
-	    				       document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML) + parseFloat(data[i].discountAmt);
+	    				      if(data[i].billPackageId == 0){//只计算套餐的优惠
+	    				           document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML) + parseFloat(data[i].discountAmt);
+	    				      }
 	    				    }
 	    					var prdtName = data[i].prdtName;
 	    					if(params.type){

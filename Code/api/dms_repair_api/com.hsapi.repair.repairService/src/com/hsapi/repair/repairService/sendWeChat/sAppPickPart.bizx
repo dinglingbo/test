@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="sAppStoreMan" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="sAppPickPart" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="您好，粤A12345 宝马X5，请做配件领料审核。&#xD;&#xA;车辆状态：待配件领料审核&#xD;&#xA;时间：2019-06-28 10:09:20&#xD;&#xA;&#xD;&#xA;推送到app&#xD;&#xA;提醒仓库人员领料" title="Administrator&#x9;19-7-3 上午11:58">
     <location x="36" y="388"/>
     <size height="143" width="365"/>
@@ -137,11 +137,11 @@
       <process:to type="query">msg/msgParams</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">待配件领料审核</process:from>
+      <process:from type="literal" pattern="reference">待配件领料</process:from>
       <process:to type="query">msg/msgSubTitle</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">待配件领料审核</process:from>
+      <process:from type="literal" pattern="reference">待配件领料</process:from>
       <process:to type="query">msg/msgTitle</process:to>
     </process:copy>
     <process:copy>
@@ -241,7 +241,7 @@
       <process:to type="query">carModel</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">待配件领料审核：</process:from>
+      <process:from type="literal" pattern="reference">待配件领料：</process:from>
       <process:to type="query">firstText</process:to>
     </process:copy>
     <process:copy>
@@ -405,7 +405,7 @@
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign4" name="赋值4" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>invokePojo1</targetNode>

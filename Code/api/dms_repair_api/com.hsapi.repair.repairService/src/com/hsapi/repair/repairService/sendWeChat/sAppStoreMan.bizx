@@ -241,30 +241,6 @@
       <process:to type="query">carModel</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">您好，</process:from>
-      <process:to type="query">firstText</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">firstText + carNo</process:from>
-      <process:to type="query">firstText</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">firstText + &quot;(&quot;</process:from>
-      <process:to type="query">firstText</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">firstText + carModel</process:from>
-      <process:to type="query">firstText</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">firstText + &quot;)&quot;</process:from>
-      <process:to type="query">firstText</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">firstText + &quot;，请做配件领料审核。&quot;</process:from>
-      <process:to type="query">firstText</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="literal" pattern="reference">待配件领料审核：</process:from>
       <process:to type="query">firstText</process:to>
     </process:copy>

@@ -35,10 +35,9 @@
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="car" displayName="expandEntity" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="link4" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
-      <targetNode>subprocess2</targetNode>
-      <process:transitionCondition/>
+      <targetNode>assign0</targetNode>
     </sourceConnections>
     <targetConnections>link10</targetConnections>
     <location x="171" y="60"/>
@@ -235,7 +234,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link0</targetConnections>
+    <targetConnections>link5</targetConnections>
     <location x="300" y="60"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
@@ -248,7 +247,7 @@
       <process:to type="query">carModel</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">partList.length</process:from>
+      <process:from type="query" pattern="reference">partNum</process:from>
       <process:to type="query">partNum</process:to>
     </process:copy>
     <process:copy>
@@ -364,33 +363,6 @@
     <location x="949" y="50"/>
     <figSize height="17" width="71"/>
     <node>subprocess0</node>
-  </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="获取配件列表" displayName="getRpsPartByServiceId" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess2</sourceNode>
-      <targetNode>assign0</targetNode>
-    </sourceConnections>
-    <targetConnections>link9</targetConnections>
-    <location x="242" y="61"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess2label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.repair.repairService.query.getRpsPartByServiceId</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="serviceId" type="query" value="Int" valueType="Primitive" pattern="reference">maintain/id</process:inputVariable>
-        <process:inputVariable id="1" name="id" type="expression" value="String" valueType="Primitive" pattern="reference"/>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="data" type="query" value="com.hsapi.repair.data.rps.RpsPart[]" valueType="DataObject">partList</process:outputVariable>
-        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"/>
-        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"/>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="219" y="96"/>
-    <figSize height="17" width="73"/>
-    <node>subprocess2</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="maintain" displayName="expandEntity" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
@@ -557,12 +529,11 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="p"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="msg"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="apiName" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="partNum" primitiveType="Int"/>
-    <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="true" name="partList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="maintain"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="partNum" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

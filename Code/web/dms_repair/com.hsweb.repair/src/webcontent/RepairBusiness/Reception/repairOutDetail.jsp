@@ -139,7 +139,7 @@
     <div id="billForm" class="form" >
         <input class="nui-hidden" name="id" id="id" />
         <input class="nui-hidden" name="guestId"/>
-        <input class="nui-hidden" name="mtAdvisor" id="mtAdvisor"/>
+        <input class="nui-hidden" name="mtAdvisorId" id="mtAdvisorId"/>
         <input class="nui-hidden" name="contactorId"/>
         <input class="nui-hidden" name="carId"/>
         <input class="nui-hidden" name="status"/>

@@ -60,6 +60,14 @@
       <process:to type="query">cond/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">cond/_expr[2]/deductType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[2]/_op</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">orderId</process:from>
       <process:to type="query">params/orderId</process:to>
     </process:copy>
@@ -428,6 +436,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">partTemp/partName</process:from>
       <process:to type="query">deductTemp/partName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">partTemp/fullName</process:from>
+      <process:to type="query">deductTemp/fullName</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">

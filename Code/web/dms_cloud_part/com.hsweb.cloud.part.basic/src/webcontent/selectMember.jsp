@@ -9,7 +9,7 @@
 -->
 <head>
 <title>选择提成成员</title>
-<script src="<%=webPath + contextPath%>/basic/js/selectMember.js?v=1.0.2"></script>
+<script src="<%=webPath + contextPath%>/basic/js/selectMember.js?v=1.0.8"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

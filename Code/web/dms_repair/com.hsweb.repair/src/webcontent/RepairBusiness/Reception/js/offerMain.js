@@ -1280,7 +1280,7 @@ function saveItem(callback){
                  var errMsg = text.errMsg||"";
                  if(errCode == 'S'){   
                 	 itemF = "S";
-                	 showMsg("保存成功","W");
+                	 showMsg("保存成功","S");
                  }else{
                 	 itemF = "E";
                  	/*rpsItemGrid.reject();
@@ -1294,7 +1294,7 @@ function saveItem(callback){
                          var errMsg = text.errMsg||"";
                          if(errCode == 'S'){   
                         	 partF = "S";
-                        	 showMsg("保存成功","W");
+                        	 showMsg("保存成功","S");
                          }else{
                         	 partF = "E";
                          }
@@ -1399,7 +1399,22 @@ function releaseOfferRemind(){
 			token:token
 		},
 		success : function(data) {
+			nui.unmask(document.body);
 			if(data.errCode == "S"){
+				var p={
+						carNo : carNo,
+						serviceCode:serviceCode,
+						noMtType : 1,
+						isDisabled: 0,
+						page : {
+							pageSize:9999
+						}
+				}
+				mainGrid1.load({
+					params:p,
+			    	token:token
+				});
+				showMsg("推送成功","S");
 				//pc提醒
 				var carNo = xyguest.carNo;
 				var carModel = xyguest.carModel;
@@ -1434,5 +1449,6 @@ function releaseOfferRemind(){
 					}
 				});
 			}
+		}
 	});
 } 

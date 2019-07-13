@@ -14,7 +14,7 @@
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
                     	<script src="<%=request.getContextPath()%>/coframe/imjs/message.js"></script>
 	<script src="<%=request.getContextPath()%>/coframe/imjs/messagebody.js"></script>
-            <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/offerMain.js?v=1.1.5"></script>
+            <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/offerMain.js?v=1.1.7"></script>
             <style type="text/css">
                 body {
                     margin: 0;
@@ -329,7 +329,7 @@
                                             <input class="nui-hidden" name="balaAuditSign" />
                                             <div allowSort="true" field="storeId" width="100" headerAlign="center" header="仓库" style="display:none;"></div>
                                             <tr>
-                                                <td class="title required" width="40%">
+                                                <td class="title" width="40%">
                                                     <label>车&nbsp;牌&nbsp;&nbsp;号：</label>
                                                 </td>
                                                 <td class="">
@@ -337,7 +337,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="title required">
+                                                <td class="title">
                                                     <label>进厂时间：</label>
                                                 </td>
                                                 <td style="width:60%">
@@ -365,7 +365,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="title required">
+                                                <td class="title">
                                                     <label>业务类型：</label>
                                                 </td>
                                                 <td>
@@ -375,7 +375,7 @@
                                                 </td>
                                             </tr>
 <!--                                             <tr>
-                                                <td class="title required">
+                                                <td class="title">
                                                     <label>进厂油量：</label>
                                                 </td>
                                                 <td> -->
@@ -385,7 +385,7 @@
                                                 </td>
                                             </tr> -->
  <!--                                            <tr>
-                                                <td class="title required">
+                                                <td class="title">
                                                     <label>进厂里程：</label>
                                                 </td>
                                                 <td> -->
@@ -396,7 +396,7 @@
                                                 </td>
                                             </tr> -->
                                             <tr>
-                                                <td class="title required">
+                                                <td class="title">
                                                     <label>预计交车：</label>
                                                 </td>
                                                 <td>
@@ -406,7 +406,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="title required">
+                                                <td class="title">
                                                     <label>服&nbsp;务&nbsp;&nbsp;顾&nbsp;问：</label>
                                                 </td>
                                                 <td>

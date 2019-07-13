@@ -826,6 +826,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link16</targetConnections>
+    <targetConnections>link119</targetConnections>
     <location x="-238" y="205"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
@@ -873,6 +874,10 @@
     <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign14</sourceNode>
       <targetNode>invokePojo1</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link118" name="link118" displayName="连接线" type="transition">
+      <sourceNode>assign14</sourceNode>
+      <targetNode>subprocess12</targetNode>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
     <location x="-304" y="206"/>
@@ -1887,6 +1892,10 @@
       <process:from type="query" pattern="reference">grossProfitRate</process:from>
       <process:to type="query">settlement/grossProfitRate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outAmt</process:from>
+      <process:to type="query">settlement/outAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign30label" name="label" nodeType="label">
     <location x="969" y="242"/>
@@ -2812,6 +2821,31 @@
     <figSize height="17" width="49"/>
     <node>subprocess5</node>
   </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess12" name="getMainBillAmt" displayName="getMainBillAmt" collapsed="false" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link119" name="link119" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess12</sourceNode>
+      <targetNode>invokePojo1</targetNode>
+    </sourceConnections>
+    <targetConnections>link118</targetConnections>
+    <location x="-304" y="105"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess12label</nodeLabel>
+    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.repair.repairService.svr.getMainBillAmt</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="serviceId" type="query" value="Int" valueType="Primitive" pattern="reference">maintain/id</process:inputVariable>
+        <process:inputVariable id="1" name="billTypeId" type="query" value="Int" valueType="Primitive" pattern="reference">maintain/billTypeId</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="amt" type="query" value="Float" valueType="Primitive">outAmt</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess12label" name="label" nodeType="label">
+    <location x="-335" y="140"/>
+    <figSize height="17" width="89"/>
+    <node>subprocess12</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-08-11 15:01:25" date="2018-08-11Z" description="" name="receiveSettle" version="7.0.0.0"/>
@@ -2879,6 +2913,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="code" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="couponAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="couponCodes" primitiveType="String"/>
+    <process:variable description="报销单金额" historyStateLocation="client" isArray="false" name="outAmt" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>

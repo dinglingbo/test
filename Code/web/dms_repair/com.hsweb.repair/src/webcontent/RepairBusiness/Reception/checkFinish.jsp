@@ -10,7 +10,9 @@
 -->
 <head>
 <title>完工</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/checkFinish.js?v=1.1.1"></script>
+	<script src="<%=request.getContextPath()%>/coframe/imjs/message.js"></script>
+	<script src="<%=request.getContextPath()%>/coframe/imjs/messagebody.js"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/checkFinish.js?v=1.1.5"></script>
 <style type="text/css">
 
 .title {

@@ -146,6 +146,73 @@ function finish(){
 	    	            }
 	    	            CloseWindow('ok');
 	    	        }else{
+	    	        	if(data.errSign==2){
+	    	        		//pc提醒
+	    					var carNo = data.data.maintain.carNo||"";
+	    					var carModel = data.data.maintain.carModel||"";
+	    					var serviceCode = data.data.maintain.serviceCode||"";
+	    					var content = "您好,"+carNo + "("+carModel+"),请您审核 !";
+	    					var msg = {
+	    						title: "配件待审核",
+	    						serviceCode: serviceCode,
+	    						serviceId :data.data.maintain.id,
+	    						remindType : 5,
+	    						url:webPath + contextPath + "/repair/RepairBusiness/Reception/repairOutDetail.jsp",
+	    						urlId : "checkDetail",
+	    						content: content,
+	    						sender: currUserName,
+	    						sendDate: now.Format("yyyy-MM-dd HH:mm:ss")
+	    					};
+	    					getUserInfo(null, 1, function(text){
+	    						var memberList = text.data || [];
+	    						for(var i=0;i<memberList.length;i++){
+	    							member = memberList[i];
+	    							var userId = member.imCode;
+	    							var params = {
+	    								type: 3,
+	    								cmd: 10,
+	    								group: null,
+	    								sender: "0",
+	    								receiver: userId.toString(),
+	    								msg: nui.encode(msg)
+	    							};
+	    							sendNoticeMsg(parent.socket,params);
+	    						}
+	    					});
+	    	        	}else if(data.errSign==1){
+	    	        		//pc提醒
+	    					var carNo = data.data.maintain.carNo||"";
+	    					var carModel = data.data.maintain.carModel||"";
+	    					var serviceCode = data.data.maintain.serviceCode||"";
+	    					var content = "您好,"+carNo + "("+carModel+"),请您领料 !";
+	    					var msg = {
+	    						title: "配件待领料",
+	    						serviceCode: serviceCode,
+	    						serviceId :data.data.maintain.id,
+	    						remindType : 5,
+	    						url:webPath + contextPath + "/repair/RepairBusiness/Reception/repairOutDetail.jsp",
+	    						urlId : "checkDetail",
+	    						content: content,
+	    						sender: currUserName,
+	    						sendDate: now.Format("yyyy-MM-dd HH:mm:ss")
+	    					};
+	    					getUserInfo(null, 1, function(text){
+	    						var memberList = text.data || [];
+	    						for(var i=0;i<memberList.length;i++){
+	    							member = memberList[i];
+	    							var userId = member.imCode;
+	    							var params = {
+	    								type: 3,
+	    								cmd: 10,
+	    								group: null,
+	    								sender: "0",
+	    								receiver: userId.toString(),
+	    								msg: nui.encode(msg)
+	    							};
+	    							sendNoticeMsg(parent.socket,params);
+	    						}
+	    					});
+	    	        	}
 	    	        	showMsg(errMsg||"操作失败","E");
 	    	            //resultData.action = 'cancel';
 	    	            //CloseWindow("cancel");
@@ -186,6 +253,73 @@ function finish(){
 	            }
 	            CloseWindow('ok');
 	        }else{
+	        	if(data.errSign==2){
+	        		//pc提醒
+					var carNo = data.data.maintain.carNo||"";
+					var carModel = data.data.maintain.carModel||"";
+					var serviceCode = data.data.maintain.serviceCode||"";
+					var content = "您好,"+carNo + "("+carModel+"),请您审核 !";
+					var msg = {
+						title: "配件待审核",
+						serviceCode: serviceCode,
+						serviceId :data.data.maintain.id,
+						remindType : 5,
+						url:webPath + contextPath + "/repair/RepairBusiness/Reception/repairOutDetail.jsp",
+						urlId : "checkDetail",
+						content: content,
+						sender: currUserName,
+						sendDate: now.Format("yyyy-MM-dd HH:mm:ss")
+					};
+					getUserInfo(null, 1, function(text){
+						var memberList = text.data || [];
+						for(var i=0;i<memberList.length;i++){
+							member = memberList[i];
+							var userId = member.imCode;
+							var params = {
+								type: 3,
+								cmd: 10,
+								group: null,
+								sender: "0",
+								receiver: userId.toString(),
+								msg: nui.encode(msg)
+							};
+							sendNoticeMsg(parent.socket,params);
+						}
+					});
+	        	}else if(data.errSign==1){
+	        		//pc提醒
+					var carNo = data.data.maintain.carNo||"";
+					var carModel = data.data.maintain.carModel||"";
+					var serviceCode = data.data.maintain.serviceCode||"";
+					var content = "您好,"+carNo + "("+carModel+"),请您领料 !";
+					var msg = {
+						title: "配件待领料",
+						serviceCode: serviceCode,
+						serviceId :data.data.maintain.id,
+						remindType : 5,
+						url:webPath + contextPath + "/repair/RepairBusiness/Reception/repairOutDetail.jsp",
+						urlId : "checkDetail",
+						content: content,
+						sender: currUserName,
+						sendDate: now.Format("yyyy-MM-dd HH:mm:ss")
+					};
+					getUserInfo(null, 1, function(text){
+						var memberList = text.data || [];
+						for(var i=0;i<memberList.length;i++){
+							member = memberList[i];
+							var userId = member.imCode;
+							var params = {
+								type: 3,
+								cmd: 10,
+								group: null,
+								sender: "0",
+								receiver: userId.toString(),
+								msg: nui.encode(msg)
+							};
+							sendNoticeMsg(parent.socket,params);
+						}
+					});
+	        	}
 	        	showMsg(errMsg||"操作失败","W");
 	            //resultData.action = 'cancel';
 	            //CloseWindow("cancel");

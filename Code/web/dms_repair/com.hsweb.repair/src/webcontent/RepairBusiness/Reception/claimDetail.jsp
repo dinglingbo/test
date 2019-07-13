@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>理赔开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/claimDetail.js?v=1.7.3"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/claimDetail.js?v=1.7.4"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -291,6 +291,11 @@
                            <a href="javascript:showSellPoint()" class="healthview" id="showSellEl" href="javascript:showSell()">销售机会(0)</a>&nbsp;
                         </span>
                     </div>
+                </td>
+                <td>
+	                 <span id="carRemind" style="display:none">
+	                	<a id="" href="javascript:saleReminding()" class="healthview" >报价提醒</a>
+	                </span>
                 </td>
             </tr>
         </table>

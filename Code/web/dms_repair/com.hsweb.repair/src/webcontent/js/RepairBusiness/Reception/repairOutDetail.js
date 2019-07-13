@@ -334,8 +334,8 @@ document.onmousemove = function(e){
 function setInitData(params){
 	mid = params.id;
 	//serviceCode = params.row.serviceCode;
-	mainRow = params.row;
-	status=mainRow.status;
+	//mainRow = params.row;
+	//status=mainRow.status;
 	if(!params.id){
         //add();
     }else{
@@ -353,6 +353,7 @@ function setInitData(params){
     	getMaintain(mparams, function(text){
     		var errCode = text.errCode||"";
     		var data = text.maintain||{};
+    		mainRow = data;
     		if(errCode == 'S'){
     			var p = {
     				data:{
@@ -1533,17 +1534,25 @@ function getAllStorehouse(callback) {
 }
 
 function pushNotice(data) {
+	var data = billForm.getData();
 	var carNo = data.carNo;
 	var carModel = data.carModel;
 	var serviceCode = data.serviceCode;
-	var content = carNo + "(carModel) 配件已审核";
+	var content = carNo + "("+carModel+") 配件已审核!";
 	var msg = {
-		title: "工单完工提醒",
+		title: "配件已审核",
 		serviceCode: serviceCode,
 		content: content,
 		sender: currUserName,
 		sendDate: now.Format("yyyy-MM-dd HH:mm:ss")
 	};
+	if(data.billTypeId==0){
+		msg.remindType=2;
+	}else if(data.billTypeId==2){
+		msg.remindType=3;
+	}else if(data.billTypeId==4){
+		msg.remindType=4;
+	}
 	getUserInfo(data.mtAdvisorId, null, function(text){
 		var memberList = text.data || [];
 		if(memberList && memberList.length > 0) {
@@ -1559,6 +1568,7 @@ function pushNotice(data) {
 				receiver: userId.toString(),
 				msg: nui.encode(msg)
 			};
+
 			sendNoticeMsg(parent.socket,params);
 		}
 	});

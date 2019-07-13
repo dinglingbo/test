@@ -5774,8 +5774,8 @@ function chooseBlank(){
 
 function saleReminding(){
     var data = billForm.getData();
-	if(data.status == 2){
-		showMsg("工单已完工","W");
+	if(data.status != 0){
+		showMsg("工单不是报价状态，不能提醒报价！","W");
         return;        
     }
     if(!data.id){

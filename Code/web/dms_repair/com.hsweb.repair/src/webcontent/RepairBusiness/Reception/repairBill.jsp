@@ -295,7 +295,7 @@
                 </td>
                 <td>
 	                 <span id="carRemind" style="display:none">
-	                	<a id="" href="javascript:saleReminding()" class="healthview" style="font-size: 12px; text-decoration: none;">报价提醒</a>
+	                	<a id="" href="javascript:saleReminding()" class="healthview" >报价提醒</a>
 	                </span>
                 </td>
             </tr>

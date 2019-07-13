@@ -28,7 +28,7 @@ $(document).ready(function (){
 	mainGrid1 = nui.get("mainGrid1");
 	mainGrid1.setUrl(mainGrid1Url);
 	mtAdvisorIdEl = nui.get("mtAdvisorId");
-	var p={
+/*	var p={
 			noMtType : 1,
 			isDisabled: 0,
 			page : {
@@ -38,7 +38,7 @@ $(document).ready(function (){
 	mainGrid1.load({
 		params:p,
     	token:token
-	});
+	});*/
 	rpsItemGrid = nui.get("rpsItemGrid");
     getMtadvisor(function(text){
     	mtAdvisorIdEl.setData(text.data);
@@ -214,14 +214,7 @@ $(document).ready(function (){
             }
         }
     });
-	if(fserviceId){
-		var mainList = mainGrid1.getData();
-		for(var i =0;i<mainList.length;i++){
-			if(mainList[i].serviceId =fserviceId ){
-				mainGrid1.select( mainList[i], true )
-			}
-		}
-	}
+    onSearch();
 });
 
 function addPrdt(data){
@@ -1330,6 +1323,7 @@ function setInitData(params){
 	if(params.serviceId){		
 		fserviceId = params.serviceId;
 	}
+	onSearch();
 }
 function onSearch(){
 	var carNo = nui.get("carNo").getValue();
@@ -1339,6 +1333,7 @@ function onSearch(){
 			serviceCode:serviceCode,
 			noMtType : 1,
 			isDisabled: 0,
+			status:0,
 			page : {
 				pageSize:9999
 			}
@@ -1346,6 +1341,16 @@ function onSearch(){
 	mainGrid1.load({
 		params:p,
     	token:token
+	},function(e){
+		if(fserviceId){
+			var mainList = mainGrid1.getData();
+			for(var i =0;i<mainList.length;i++){
+				if(mainList[i].id ==fserviceId ){
+					mainGrid1.select( mainList[i], true )
+					setBillForm(mainList[i]);
+				}
+			}
+		}
 	});
 }
 
@@ -1406,6 +1411,7 @@ function releaseOfferRemind(){
 						serviceCode:serviceCode,
 						noMtType : 1,
 						isDisabled: 0,
+						status:0,
 						page : {
 							pageSize:9999
 						}
@@ -1425,13 +1431,19 @@ function releaseOfferRemind(){
 					title: "配件已报价",
 					serviceCode: serviceCode,
 					serviceId :fserviceId,
-					remindType : 2,
-					url:webPath + contextPath + "//com.hsweb.RepairBusiness.repairBill.flow",
+					url:webPath + contextPath + "/com.hsweb.RepairBusiness.repairBill.flow",
 					urlId : 2000,
 					content: content,
 					sender: currUserName,
 					sendDate: now.Format("yyyy-MM-dd HH:mm:ss")
 				};
+				if(xyguest.billTypeId==0){
+					msg.remindType=2;
+				}else if(xyguest.billTypeId==2){
+					msg.remindType=3;
+				}else if(xyguest.billTypeId==4){
+					msg.remindType=4;
+				}
 				getUserInfo(mtAdvisorId, null, function(text){
 					var memberList = text.data || [];
 					for(var i=0;i<memberList.length;i++){
@@ -1446,6 +1458,29 @@ function releaseOfferRemind(){
 							msg: nui.encode(msg)
 						};
 						sendNoticeMsg(parent.socket,params);
+					}
+				});
+				var pushInfoUrl = baseUrl + "com.hsapi.repair.repairService.sendWeChat.sAppFinishBJ.biz.ext";
+				//推送app微信
+				nui.ajax({
+					url : pushInfoUrl,
+					type : "post",
+					data : {
+						serviceId:fserviceId
+					},
+					success : function(data) {
+						nui.unmask(document.body);
+/*						if(data.errCode == "S"){
+							showMsg("提醒成功","S");							
+						}else{
+							showMsg("提醒失败","E");
+						}*/
+					},
+					error : function(jqXHR, textStatus, errorThrown) {
+						nui.unmask(document.body);
+						// nui.alert(jqXHR.responseText);
+						console.log(jqXHR.responseText);
+						
 					}
 				});
 			}

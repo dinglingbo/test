@@ -230,7 +230,8 @@ layui.use('layim', function(layim){
     		                text: '去报价',
     		                click: function (e) {
     		                	var opt = {};
-    	                            opt.id=group.urlId;
+    		                		opt.iconCls= "fa fa-file-text";
+    	                            opt.id=String(group.urlId);
     	                            opt.text="配件报价";
     	                            opt.url=group.url;
     	                    	var params = {
@@ -245,8 +246,9 @@ layui.use('layim', function(layim){
     					    }
     				    }]
     				})
-    		   }else if(group.remindType==2){
-        		   //remindType==报价完成提醒
+    		   }else if(group.remindType==2||group.remindType==3||group.remindType==4){
+        		   //remindType==报价完成提醒 2综合，3洗美，4理赔  	
+    			   
     			   parent.naranja()["log"]({
     		            title: group.title,
     		            text: group.content,
@@ -255,11 +257,23 @@ layui.use('layim', function(layim){
     		                text: '工单详情',
     		                click: function (e) {
     		                	var opt = {};
-    	                            opt.id=group.urlId;
-    	                            opt.text="配件报价完成";
-    	                            opt.url=group.url;
+    		                	opt.iconCls= "fa fa-file-text";
+    	                            if(group.remindType==2){
+        	                            opt.id=String(2000);
+        	                            opt.text="综合开单详情";
+        	                            opt.url="/dms/com.hsweb.RepairBusiness.repairBill.flow";
+    	                            }else if(group.remindType==3){
+        	                            opt.id=String(3000);
+        	                            opt.text="洗美开单详情";
+        	                            opt.url="/dms/com.hsweb.RepairBusiness.carWashBill.flow";
+    	                            }else if(group.remindType==4){
+        	                            opt.id=String(4000);
+        	                            opt.text="理赔开单详情";
+        	                            opt.url="/dms/com.hsweb.RepairBusiness.claimDetail.flow";
+    	                            }
+
     	                    	var params = {
-    	                    			serviceId: group.serviceId
+    	                    			id: group.serviceId
     	                            };
     		                	window.parent.activeTabAndInit(opt,params);
     		                }
@@ -270,7 +284,32 @@ layui.use('layim', function(layim){
     					    }
     				    }]
     				})
-    		   }
+    		   }else if(group.remindType==5){
+    			   parent.naranja()["log"]({
+   		            title: group.title,
+   		            text: group.content,
+   		            timeout: "keep",
+   		            buttons: [{
+   		                text: '确定',
+   		                click: function (e) {
+   		                	var opt = {};
+   		                		opt.iconCls= "fa fa-file-text";
+   	                            opt.id=String(group.urlId);
+   	                            opt.text="配件出库详情";
+   	                            opt.url=group.url;
+   	                    	var params = {
+   	                    			id: group.serviceId
+   	                            };
+   		                	window.parent.activeTabAndInit(opt,params);
+   		                }
+   		            },{
+   		                text: '取消',
+   		                click: function (e) {
+   		                    e.closeNotification()
+   					    }
+   				    }]
+   				})
+   		   }
 	       }
 	  }else {
 	        var data = event.data;                //后端返回的是文本帧时触发

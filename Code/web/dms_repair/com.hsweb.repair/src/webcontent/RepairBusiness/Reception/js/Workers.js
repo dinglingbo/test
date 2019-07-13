@@ -63,8 +63,10 @@ var queryMemberLevel = apiPath + repairApi + "/com.hsapi.repair.baseData.team.ge
 	var queryMemberUrl = apiPath + sysApi + "/com.hsapi.system.dict.org.queryMember.biz.ext";
     var queryServiceType = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryServiceType.biz.ext";
     var setItemWorkersBatch = apiPath + repairApi + "/com.hsapi.repair.repairService.crud.setItemWorkersBatch.biz.ext";
+    var sendInfoUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.sendWeChat.sAllToWork.biz.ext";
     
 function setData(data){
+	serviceId =data.serviceId;
 	var workersStr =data.workers||"";
 	var workersIdStr =data.workersId||"";
 	workers =workersStr.split(",");
@@ -162,6 +164,7 @@ function onClose(){
 }
 var data={};
 function dispatchOk(){
+	var userList = [];
 	var emlpsz = $("a.empl1");//所选技师数组
 	var emlpszId = "";
 	var emlpszName = "";
@@ -189,7 +192,9 @@ function dispatchOk(){
 		userList.push(temp);
 	}
     nui.unmask(document.body);
-    sendInfo(userList);
+    if(nui.get("sendWechat").getValue() != "0" ||nui.get("sendApp").getValue() != "0"){
+    	sendInfo(userList);
+    }
 	data = {
 			emlpszId :emlpszId,
 			emlpszName:emlpszName,

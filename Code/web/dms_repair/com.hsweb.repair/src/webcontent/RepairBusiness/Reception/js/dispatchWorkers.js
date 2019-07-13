@@ -246,7 +246,9 @@ function dispatchOk(){
 	}
 
     nui.unmask(document.body);
-    sendInfo(userList);
+    if(nui.get("sendWechat").getValue() != "0" ||nui.get("sendApp").getValue() != "0"){
+    	sendInfo(userList);
+    }
 	data = {
 			emlpszId :emlpszId,
 			emlpszName:emlpszName,

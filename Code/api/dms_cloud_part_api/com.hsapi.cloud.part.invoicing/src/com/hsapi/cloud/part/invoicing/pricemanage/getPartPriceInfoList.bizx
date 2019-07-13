@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getPartPriceInfoList.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
+    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>invokePojo2</targetNode>
+    </sourceConnections>
+    <location x="101" y="139"/>
+    <size height="28" width="28"/>
+    <nodeLabel>start0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" grouped="false" type="end">
+    <targetConnections>link3</targetConnections>
+    <location x="750" y="140"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end0label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="java.util.HashMap[]" name="price" type="query" valueType="Java">price</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
+    <location x="100" y="175"/>
+    <figSize height="20" width="31"/>
+    <node>start0</node>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
+    <location x="749" y="176"/>
+    <figSize height="20" width="31"/>
+    <node>end0</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="getPartPriceInfo" displayName="getPartPriceInfo" grouped="true" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <location x="364" y="140"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess0label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.getPartPriceInfo</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">paramsTemp</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="price" type="query" value="java.util.HashMap[]" valueType="Java">priceList</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
+    <location x="318" y="175"/>
+    <figSize height="20" width="119"/>
+    <node>subprocess0</node>
+  </nodes>
+  <nodes xsi:type="process:tLoopStart" description="" id="loopstart0" name="循环" displayName="循环" grouped="true" type="loopstart" matchedName="loopend0" loopType="iterate">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>loopstart0</sourceNode>
+      <targetNode>subprocess0</targetNode>
+    </sourceConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="285" y="142"/>
+    <size height="24" width="24"/>
+    <nodeLabel>loopstart0label</nodeLabel>
+    <process:iterate iterable="params" iterableElement="paramsTemp"/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
+    <location x="282" y="174"/>
+    <figSize height="20" width="31"/>
+    <node>loopstart0</node>
+  </nodes>
+  <nodes xsi:type="process:tLoopEnd" id="loopend0" name="循环结束" displayName="循环结束" grouped="true" type="loopend" matchedName="loopstart0">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>loopend0</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link4</targetConnections>
+    <location x="666" y="142"/>
+    <size height="24" width="24"/>
+    <nodeLabel>loopend0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
+    <location x="648" y="174"/>
+    <figSize height="20" width="61"/>
+    <node>loopend0</node>
+  </nodes>
+  <nodes xsi:type="model:GroupNode" id="group0" name="group" grouped="true" gstart="loopstart0" gend="loopend0">
+    <location x="285" y="120"/>
+    <size height="85" width="406"/>
+    <chidren>loopend0</chidren>
+    <chidren>loopstart0</chidren>
+    <chidren>subprocess0</chidren>
+    <chidren>invokePojo0</chidren>
+    <chidren>assign0</chidren>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="add2Array" displayName="" grouped="true" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>loopend0</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link8</targetConnections>
+    <location x="555" y="138"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo0label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.ArrayUtils.add2Array</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="sourceDO" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">priceTemp</process:inputVariable>
+      <process:inputVariable id="1" name="dos" type="query" value="java.util.HashMap[]" valueType="Java" pattern="value">price</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.util.HashMap[]" valueType="Java">price</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
+    <location x="528" y="174"/>
+    <figSize height="20" width="77"/>
+    <node>invokePojo0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="458" y="138"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign0label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">priceList[0]</process:from>
+      <process:to type="query">priceTemp</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
+    <location x="457" y="174"/>
+    <figSize height="20" width="31"/>
+    <node>assign0</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="remove1" displayName="remove" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo2</sourceNode>
+      <targetNode>loopstart0</targetNode>
+    </sourceConnections>
+    <targetConnections>link0</targetConnections>
+    <location x="180" y="140"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo2label</nodeLabel>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.ArrayUtils.remove</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="pros" type="query" value="java.lang.Object[]" valueType="Java" pattern="reference">price</process:inputVariable>
+      <process:inputVariable id="1" name="index" type="literal" value="java.lang.Integer" valueType="Java" pattern="reference">0</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.Object[]" valueType="Java">price</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
+    <location x="158" y="176"/>
+    <figSize height="20" width="66"/>
+    <node>invokePojo2</node>
+  </nodes>
+  <topRuler/>
+  <leftRuler/>
+  <process:info author="Administrator" createTime="2019-07-12 16:18:04" date="2019-07-12Z" description="" name="getPartPriceInfoList" version="7.0.0.0"/>
+  <process:variables>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="paramsTemp"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="true" name="priceList"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="praiceTemp"/>
+  </process:variables>
+  <process:inputs varArgs="false">
+    <process:input anyType="java.util.HashMap" description="" isArray="true" name="params"/>
+  </process:inputs>
+  <process:outputs>
+    <process:output anyType="java.util.HashMap" description="" isArray="true" name="price"/>
+  </process:outputs>
+  <process:extAttribute1>public</process:extAttribute1>
+  <process:transactionType>true</process:transactionType>
+</process:tBusinessLogic>

@@ -21,8 +21,46 @@
     
 </head>
 <body>
-    <div class="print_btn">
-        <a href="javascript:;" id="btnprint" style="background:#ff6600;">打印</a><a href="javascript:;" id="btnmodify">修改</a>
+
+
+<div class="boxbg" style="display:none"></div>
+ <div class="popbox" style="height:420px; width:480px; margin:-210px 0 0 -240px; display:none">
+        <h2><a class="close2" href="javascript:box_setup_close()" title="关闭">&nbsp;</a>修改</h2>
+        <div style="padding-top:15px; margin:0 15px;">
+            <table  width="92%" border="0" align="center" cellpadding="0" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td class="color999" width="90" height="46">单据编号：</td>
+                        <td><input type="text" id="txtno" class="peijianss" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td class="color999" height="46">门店名称：</td>
+                        <td><input type="text" id="txtstorename" class="peijianss" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td class="color999" height="46">地址：</td>
+                        <td><input type="text" id="txtaddress" class="peijianss" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td class="color999" height="46">电话：</td>
+                        <td><input type="text" id="txtphoneno" class="peijianss" value="" /></td>
+                    </tr>
+                     <tr>
+                        <td class="color999" height="46">进厂时间：</td>
+                        <td><input id="updateEnterDate" type="datetime-local" value=""/></td>
+                    </tr>
+                    <tr>
+                        <td class="color999" height="46">打印时间：</td>
+                        <td><input id="meeting" type="datetime-local" value=""/></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="boxbtn"><ul><a href="javascript:box_setup_close()" class="qc">取消</a><a href="javascript:save()" id="btn_save">保存</a></ul></div>
+</div>
+     <div class="print_btn">
+        <a href="javascript:;" id="print" style="background:#ff6600;">打印</a><a href="javascript:box_setup_open()">修改</a>
     </div>
     <div class="printny">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -796,5 +834,46 @@
     		       }
 	         });
         }
+          function box_setup_open() {
+	        $(".boxbg").show();
+	        $(".popbox").show();
+	        document.getElementById("txtno").value = document.getElementById("serviceCode").innerHTML;
+    		document.getElementById("txtstorename").value = document.getElementById("comp").innerHTML;
+    		document.getElementById("txtaddress").value = document.getElementById("guestAddr").innerHTML;
+    		document.getElementById("txtphoneno").value = document.getElementById("phone").innerHTML;
+    		if(document.getElementById("date").innerHTML.length > 16){
+    			var value = document.getElementById("date").innerHTML.substring(0, document.getElementById("date").innerHTML.length-3);
+    			document.getElementById("meeting").value = value.replace(" ","T");
+    		}else{
+    			document.getElementById("meeting").value = document.getElementById("date").innerHTML.replace(" ","T");
+    		}
+    		if(enterDate > 16){
+    			var value = enterDate.substring(0, enterDate-3);
+    			document.getElementById("updateEnterDate").value = value.replace(" ","T");
+    		}else{
+    			document.getElementById("updateEnterDate").value = enterDate.replace(" ","T");
+    		}
+    	}
+    	
+    	function save(){
+			box_setup_close(); 
+    		document.getElementById("serviceCode").innerHTML = document.getElementById("txtno").value;
+    		document.getElementById("comp").innerHTML = document.getElementById("txtstorename").value;
+    		var txtaddress = document.getElementById("txtaddress").value;
+    		if(txtaddress != null && txtaddress != ""){ 
+    		    document.getElementById("guestAddr").innerHTML = txtaddress;
+    		}
+    		var txtphoneno = document.getElementById("txtphoneno").value;
+    		if(txtphoneno != null && txtphoneno != ""){
+    		    document.getElementById("phone").innerHTML = txtphoneno;
+    		}
+			document.getElementById("date").innerHTML =  document.getElementById("meeting").value.replace("T"," ");
+            document.getElementById("enterDate").innerHTML = document.getElementById("updateEnterDate").value.replace("T"," ");
+    	}
+    	
+    	function box_setup_close(){
+    		$(".boxbg").hide();
+        	$(".popbox").hide();
+    	}
         
 </script>

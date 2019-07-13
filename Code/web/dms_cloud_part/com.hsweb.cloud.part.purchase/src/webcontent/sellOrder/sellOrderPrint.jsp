@@ -224,7 +224,7 @@ hr {
 </style>
 <title>销售订单打印</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/numberFormat.js"  type="text/javascript"></script>    
+    <script src="<%=request.getContextPath()%>/common/js/numberFormat.js"  type="text/javascript"></script>    
     
 </head>
 <body>
@@ -353,7 +353,7 @@ hr {
 		var settleTypeIdHash={};
 		var dictDefs ={"billTypeIdE":"DDT20130703000008", "settleTypeIdE":"DDT20130703000035"};
 		var baseUrl = apiPath + cloudPartApi + "/";
-		var supplierUrl=apiPath + partApi + "/"+"com.hsapi.part.baseDataCrud.crud.queryGuestList.biz.ext";
+		var supplierUrl=apiPath + cloudPartApi + "/"+"com.hsapi.part.baseDataCrud.crud.queryGuestList.biz.ext";
 		var MainUrl = baseUrl
 				+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderMainList.biz.ext";
 		var DetailUrl = baseUrl

@@ -246,7 +246,7 @@ layui.use('layim', function(layim){
     					    }
     				    }]
     				})
-    		   }else if(group.remindType==2||group.remindType==3||group.remindType==4){
+    		   }else if(group.remindType==2||group.remindType==3||group.remindType==4||group.remindType==6){
         		   //remindType==报价完成提醒 2综合，3洗美，4理赔  	
     			   
     			   parent.naranja()["log"]({
@@ -270,6 +270,10 @@ layui.use('layim', function(layim){
         	                            opt.id=String(4000);
         	                            opt.text="理赔开单详情";
         	                            opt.url="/dms/com.hsweb.RepairBusiness.claimDetail.flow";
+    	                            }else if(group.remindType==6){
+        	                            opt.id=String(6000);
+        	                            opt.text="波箱开单详情";
+        	                            opt.url="/dms/com.hsweb.bx.waveBoxDetail.flow";
     	                            }
 
     	                    	var params = {

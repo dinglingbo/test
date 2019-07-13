@@ -1542,6 +1542,7 @@ function pushNotice(data) {
 	var msg = {
 		title: "配件已审核",
 		serviceCode: serviceCode,
+		serviceId : data.id,
 		content: content,
 		sender: currUserName,
 		sendDate: now.Format("yyyy-MM-dd HH:mm:ss")

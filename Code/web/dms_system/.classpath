@@ -4,8 +4,8 @@
 	<classpathentry kind="con" path="com.primeton.studio.workbench.serverPath"/>
 	<classpathentry kind="con" path="com.primeton.studio.workbench.libraries"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="com.primeton.studio.workbench.classPath"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/commons-beanutils-1.8.0.jar"/>
+	<classpathentry kind="con" path="com.primeton.studio.workbench.classPath"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/commons-codec-1.2.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/commons-httpclient-3.0.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/commons-lang-2.1.jar"/>

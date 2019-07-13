@@ -120,16 +120,18 @@
 }
 
 .naranja-notification .naranja-body-notification .naranja-text-and-title {
-    padding-left: 15px;
+    /* padding-left: 8px; */
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width:100%;
+    width:244px;
 }
 
 .naranja-notification .naranja-body-notification .naranja-text-and-title>p {
     margin: 5px;
-    font-family: 'Open Sans'
+    font-family: 'Open Sans';
+    width: 100%;
+    overflow-wrap: break-word; 
 }
 
 .naranja-notification .naranja-body-notification .naranja-text-and-title>div {
@@ -167,7 +169,7 @@
 .naranja-notification .naranja-body-notification .naranja-parragraph {
     font-size: 14px;
     opacity: .6;
-    padding-right: 30px;
+    
     line-height: 1.4em
 }
 

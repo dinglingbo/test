@@ -5071,6 +5071,7 @@ function openItemWorkers(e){
 	//var setPlanFinishDate = rpsItemGrid.getCellEditor("planFinishDate", row);
     var data = {};
     data = {
+    	serviceId:fserviceId,
     	workers:row.workers,
     	workersId:row.workersId
     };

@@ -202,14 +202,26 @@
       return $parragraph
     },
     createText: function () {
-      var $title = createElement('p', [
-        'naranja-parragraph'
-      ])
-
-      var $tx = document.createTextNode(this.text)
-      $title.appendChild($tx)
-
-      return $title
+        // var $textContainerMain = createElement('div', [
+        //   'naranja-text-and-title1'
+        // ])
+        var $title = createElement('p', [
+            'naranja-parragraph'
+          ])
+        
+        var textList = this.text.split("<br>");
+        var pList = '';
+        var
+        for (i = 0; i < textList.length; i++) { 
+            var text = '<p class="naranja-parragraph">'+ textList[i]+'</p>'
+            pList += text;
+            // var $tx = document.createTextNode(textList[i])
+            // pList[i] = createElement('p', ['naranja-parragraph']).appendChild($tx)
+            // $textContainerMain.appendChild(pList[i])
+        }
+      //var $tx = document.createTextNode(this.text)
+      
+      return $textContainerMain 
     },
     createButtons: function ($notification, $body) {
       var $buttonsContainer = createElement('div', [

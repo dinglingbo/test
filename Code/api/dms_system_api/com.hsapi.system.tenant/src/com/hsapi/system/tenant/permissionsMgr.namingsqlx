@@ -308,4 +308,39 @@
 	      </isNotEmpty>
 		order by a.record_date desc
     </select>
+    
+    <!-- -->
+    <select id="queryCapResauth" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	
+    	SELECT
+			a.PARTY_ID as partyId,
+			a.PARTY_TYPE as partyType,
+			a.RES_ID as resId,
+			a.RES_TYPE as resType,
+			a.TENANT_ID as tenantId,
+			a.RES_STATE as resState,
+			a.PARTY_SCOPE as partyScope,
+			a.CREATEUSER as createuser,
+			a.CREATETIME as createtime
+		FROM
+			com_cap_resauth AS a
+			inner join cap_role b
+			on a.PARTY_ID = b.ROLE_ID
+		where 1 = 1 and a.RES_ID = #resId#
+		  <isNotEmpty prepend="and" property="tenantId">
+                b.TENANT_ID =  #tenantId#
+          </isNotEmpty>
+    </select>
+    
+    <delete id="deleteCapResauthByResId" parameterClass="java.util.HashMap">
+		delete a FROM
+			com_cap_resauth AS a
+			inner join cap_role b
+			on a.PARTY_ID = b.ROLE_ID
+		where 1 = 1 and a.RES_ID = #resId#
+		  <isNotEmpty prepend="and" property="tenantId">
+                b.TENANT_ID =  #tenantId#
+          </isNotEmpty>
+	</delete>
+    
 </sqlMap>

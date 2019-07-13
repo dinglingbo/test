@@ -4,14 +4,14 @@
     <location x="-240" y="420"/>
     <size height="586" width="302"/>
   </nodes>
-  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="orgid 为空则取当前机构ID，也就是当前机构ID缓存肯定要清除&#xD;&#xA;com.hsapi.system.data.dictMgr.queryComMember" title="Guine&#x9;18-2-28 上午8:56">
+  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="orgid 为空则取当前机构ID，也就是当前机构ID缓存肯定要清除&#xD;&#xA;com.hsapi.system.data.dictMgr.queryComMember&#xD;&#xA;com.hs.common.orga.queryOrgInfo" title="Guine&#x9;18-2-28 上午8:56">
     <location x="-4" y="0"/>
     <size height="106" width="548"/>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" collapsed="false" type="end">
     <targetConnections>link2</targetConnections>
-    <targetConnections>link7</targetConnections>
-    <location x="543" y="242"/>
+    <targetConnections>link3</targetConnections>
+    <location x="750" y="242"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -20,7 +20,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
-    <location x="545" y="278"/>
+    <location x="752" y="278"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -92,6 +92,7 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
+    <targetConnections>link4</targetConnections>
     <location x="404" y="153"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
@@ -160,7 +161,7 @@
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
-      <targetNode>end0</targetNode>
+      <targetNode>subprocess2</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link14</targetConnections>
@@ -183,6 +184,36 @@
     <location x="347" y="277"/>
     <figSize height="17" width="142"/>
     <node>subprocess1</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="removeRedisCacheBasic1" displayName="removeRedisCacheBasic" collapsed="false" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess2</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" lineType="note" type="exception">
+      <sourceNode>subprocess2</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <targetConnections>link7</targetConnections>
+    <location x="585" y="242"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess2label</nodeLabel>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.system.data.sys.removeRedisCacheBasic</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="nameSqlId" type="literal" value="String" valueType="Primitive" pattern="reference">com.hs.common.orga.queryOrgInfo</process:inputVariable>
+        <process:inputVariable id="1" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">p</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
+    <location x="524" y="277"/>
+    <figSize height="17" width="149"/>
+    <node>subprocess2</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

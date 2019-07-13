@@ -1,7 +1,7 @@
 //var websocketurl="ws://192.168.122.68:2048/ws";   //ws://{ip}:{端口}/{java后端websocket配置的上下文}
-var websocketurl="ws://192.168.122.51:8090/ws";
+//var websocketurl="ws://192.168.122.51:8090/ws";
 //var websocketurl="ws://192.168.111.60:8090/ws";   
-//var websocketurl="wss://qxy60.hszb.harsons.cn/ws";
+var websocketurl="wss://qxy60.hszb.harsons.cn/ws";
 //var websocketurl="wss://qxy.cloud.7xdr.com/ws";
 var reconnectflag = false;//避免重复连接
 var socket; 
@@ -219,7 +219,58 @@ layui.use('layim', function(layim){
 	       }else if(msg.getCmd()==10) {
     		   var msgCon =  proto.MessageBody.deserializeBinary(msg.getContent()); 
     		   var group = JSON.parse(msgCon.getContent());
-    		   console.log("提醒消息：" + msgCon.getContent());
+    		   //console.log("提醒消息：" + msgCon.getContent());
+    		   //remindType==报价提醒
+    		   if(group.remindType==1){
+    			   parent.naranja()["log"]({
+    		            title: group.title,
+    		            text: group.content,
+    		            timeout: "keep",
+    		            buttons: [{
+    		                text: '去报价',
+    		                click: function (e) {
+    		                	var opt = {};
+    	                            opt.id=group.urlId;
+    	                            opt.text="配件报价";
+    	                            opt.url=group.url;
+    	                    	var params = {
+    	                    			serviceId: group.serviceId
+    	                            };
+    		                	window.parent.activeTabAndInit(opt,params);
+    		                }
+    		            },{
+    		                text: '取消',
+    		                click: function (e) {
+    		                    e.closeNotification()
+    					    }
+    				    }]
+    				})
+    		   }else if(group.remindType==2){
+        		   //remindType==报价完成提醒
+    			   parent.naranja()["log"]({
+    		            title: group.title,
+    		            text: group.content,
+    		            timeout: "keep",
+    		            buttons: [{
+    		                text: '工单详情',
+    		                click: function (e) {
+    		                	var opt = {};
+    	                            opt.id=group.urlId;
+    	                            opt.text="配件报价完成";
+    	                            opt.url=group.url;
+    	                    	var params = {
+    	                    			serviceId: group.serviceId
+    	                            };
+    		                	window.parent.activeTabAndInit(opt,params);
+    		                }
+    		            },{
+    		                text: '取消',
+    		                click: function (e) {
+    		                    e.closeNotification()
+    					    }
+    				    }]
+    				})
+    		   }
 	       }
 	  }else {
 	        var data = event.data;                //后端返回的是文本帧时触发

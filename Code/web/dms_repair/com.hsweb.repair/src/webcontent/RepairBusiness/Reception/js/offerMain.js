@@ -16,6 +16,7 @@ var servieTypeHash = {};
 var mtAdvisorIdEl = null;
 var fserviceId = null;//仓库点去报价才有值
 var pickName = null;//点击配件才会有.用于tables
+var storeHash = {};
 $(document).ready(function (){	
 	queryRepairOutListGrid = nui.get("queryRepairOutListGrid");
 	queryRepairOutListGrid.setUrl(queryRepairOutListGridUrl);
@@ -46,7 +47,14 @@ $(document).ready(function (){
         var text = mtAdvisorIdEl.getText();
         nui.get("mtAdvisor").setValue(text);
     });
-	
+	getStorehouse(function(data) {
+		storehouse = data.storehouse || [];
+		if(storehouse && storehouse.length>0){
+			storehouse.forEach(function(v) {
+				storeHash[v.id] = v;
+			});
+		}
+	});
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();
         servieTypeList.forEach(function(v) {
@@ -101,16 +109,16 @@ $(document).ready(function (){
                 if(pid == 0){
                     e.cellHtml = '<a href="javascript:choosePart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' + e.value + s;	
                 }else{
-                	e.cellHtml ='<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + e.value + s;
+                	e.cellHtml = e.value + s;
                 }
                 break;
             case "itemOptBtn":
             	if(pid == 0){
             		var cardDetailId = record.cardDetailId||0;
-                  	s = ' <a class="optbtn" href="javascript:deleteItemRow(\'' + uid + '\')">删除</a>';
-                  	if(cardDetailId<=0){
+/*                  	s = ' <a class="optbtn" href="javascript:deleteItemRow(\'' + uid + '\')">删除</a>';*/
+/*                  	if(cardDetailId<=0){
                   		s = s + ' <a class="optbtn" href="javascript:updateItemRow(\'' + uid + '\')">修改项目</a>';
-                  	}
+                  	}*/
                     
                  }else{
                 	 s = ' <a class="optbtn" href="javascript:deletePartRow(\'' + uid + '\')">删除</a>';
@@ -158,6 +166,31 @@ $(document).ready(function (){
         }
         
     });
+    queryRepairOutListGrid.on("drawcell",function(e){
+		var record = e.record;
+		switch (e.field) {
+		case "serviceCode":
+			e.cellHtml ='<a href="##" onclick="editSell()">'+e.value+'</a>';
+			break;
+		 case "storeId" :
+		     if(storeHash[e.value])
+	            {
+	                e.cellHtml = storeHash[e.value].name||"";
+	            }
+	            else{
+	                e.cellHtml = "";
+	            }
+			 break;
+		 case "serviceTypeId":
+			 if(servieTypeHash[record.serviceTypeId]){		 
+				 e.cellHtml = servieTypeHash[record.serviceTypeId].name ||"";
+			 }else{
+				 e.cellHtml = '';
+			 }
+		default:
+			break;
+		}
+	});
     rpsItemGrid.on("cellbeginedit",function(e){
         var field=e.field; 
         var editor = e.editor;
@@ -1345,3 +1378,61 @@ function activechangedmain(){
 	    queryPartStoreStockGrid.load({params:params});
 	}
 }
+
+
+function releaseOfferRemind(){
+	var saveRpsPartUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveOffer.biz.ext";
+	
+	nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '消息推送中...'
+    });
+	
+	nui.ajax({
+		url : saveRpsPartUrl,
+		type : "post",
+		data : {
+			serviceId:fserviceId,
+			updList:[],
+			type:1,
+			token:token
+		},
+		success : function(data) {
+			if(data.errCode == "S"){
+				//pc提醒
+				var carNo = xyguest.carNo;
+				var carModel = xyguest.carModel;
+				var serviceCode = xyguest.serviceCode;
+				var content = "您好,"+carNo + "("+carModel+"),已完成报价 !";
+				var mtAdvisorId = nui.get("mtAdvisorId").getValue();
+				var msg = {
+					title: "配件已报价",
+					serviceCode: serviceCode,
+					serviceId :fserviceId,
+					remindType : 2,
+					url:webPath + contextPath + "//com.hsweb.RepairBusiness.repairBill.flow",
+					urlId : 2000,
+					content: content,
+					sender: currUserName,
+					sendDate: now.Format("yyyy-MM-dd HH:mm:ss")
+				};
+				getUserInfo(mtAdvisorId, null, function(text){
+					var memberList = text.data || [];
+					for(var i=0;i<memberList.length;i++){
+						member = memberList[i];
+						var userId = member.imCode;
+						var params = {
+							type: 3,
+							cmd: 10,
+							group: null,
+							sender: "0",
+							receiver: userId.toString(),
+							msg: nui.encode(msg)
+						};
+						sendNoticeMsg(parent.socket,params);
+					}
+				});
+			}
+	});
+} 

@@ -203,28 +203,31 @@ a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}
 						    <div title="库存分布" name="chainStock" url="">
 						      	<div class="nui-fit">
 								    <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
-								         showPager="false"
-								         dataField="data"
+								         showPager="true"
+								         dataField="result"
 								         idField="detailId"
 								         ondrawcell="onDrawCell"
 								         sortMode="client"
 								         url=""
 								         onrowdblclick=""
-								         pageSize="10000"
-								         sizeList="[1000,5000,10000]"
+								         sizeList="[10,20,50]"
+								         pageSize="10"
+				      		             totalField="page.count"
 								         showSummaryRow="false">
 								        <div property="columns">
 								            <div type="indexcolumn">序号</div>
-								            <div allowSort="true" field="guestName" width="80" headerAlign="center" header="供应商名称"></div>
-								            <div allowSort="true" field="code" width="60" headerAlign="center" header="配件编码"></div>
-								            <div allowSort="true" field="full_name" width="60" headerAlign="center" header="配件全称"></div>
-								            <div allowSort="true" field="qualityName" width="60" headerAlign="center" header="品质"></div>
-								            <div allowSort="true" field="brandName" width="60" headerAlign="center" header="品牌"></div>
-								            <div allowSort="true" field="carName" width="60" headerAlign="center" header="厂牌"></div>
-								            <div allowSort="true" field="qty" width="60" headerAlign="center" header="库存数量"></div>
+								            <div allowSort="true" field="sellerName" width="80" headerAlign="center" header="供应商名称"></div>
+								            <div allowSort="true" field="sellerCity" width="80" headerAlign="center" header="供应商所在地"></div>
+								            <div allowSort="true" field="searchOe" width="60" headerAlign="center" header="配件编码"></div>
+								            <div allowSort="true" field="prodName" width="60" headerAlign="center" header="配件名称"></div>
+								            <div allowSort="true" field="prodUom" width="60" headerAlign="center" header="配件单位"></div>
+								            <div allowSort="true" field="prodQuality" width="60" headerAlign="center" header="品质"></div>
+								            <div allowSort="true" field="prodBrand" width="60" headerAlign="center" header="品牌"></div>
+								            <!-- <div allowSort="true" field="carName" width="60" headerAlign="center" header="厂牌"></div> -->
+								            <div allowSort="true" field="stockQty" width="60" headerAlign="center" header="库存数量"></div>
 								            <div allowSort="true" field="price" width="60" headerAlign="center" header="单价"></div>
-								            <div allowSort="true" field="rangeName" width="100" headerAlign="center" header="库存所在地"></div>
-								            <div allowSort="true" field="warehouseName" width="60" headerAlign="center" header="仓库"></div>
+								            <div allowSort="true" field="vehBrand" width="100" headerAlign="center" header="车辆品牌"></div>
+								            <div allowSort="true" field=" vehVehicle" width="60" headerAlign="center" header="车辆型号"></div>
 								        </div>
 								    </div>
 								</div>

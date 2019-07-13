@@ -5765,7 +5765,44 @@ function chooseBlank(){
 
 
 function saleReminding(){
-    nui.mask({
+    var data = billForm.getData();
+    if(!data.id){
+        showMsg("请先保存工单!","W");
+        return;
+    }else{
+    	nui.open({
+    		url : webPath + contextPath + "/com.hsweb.RepairBusiness.offerRemind.flow?token=" + token,
+    		title : "报价提醒",
+    		width : 800,
+    		height : 500,
+    		allowDrag : true,
+    		allowResize : true,
+    		onload : function() {
+    			var iframe = this.getIFrameEl();
+    			var params = {
+    					serviceId:fserviceId
+    			}
+                iframe.contentWindow.setData(params);
+    		},
+    		ondestroy : function(action) {
+    			if(action=="ok"){
+    			   main = billForm.getData();
+    			   var p1 = { }
+     		       var p2 = {
+     		       interType: "item",
+     		           data:{
+     		             serviceId: main.id||0
+     		           }
+     		        };
+     		       var p3 = {};
+     		       loadDetail(p1, p2, p3,main.status);
+    			}
+    			
+    		}
+    	});
+    }
+
+/*    nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
         html: '消息推送中...'
@@ -5791,7 +5828,7 @@ function saleReminding(){
 			console.log(jqXHR.responseText);
 			
 		}
-	});	
+	});*/	
 }
 
 

@@ -2271,13 +2271,17 @@ function getPart(partIdList){
 //		});
 //	});
 	var params={};
+	var page ={};
+	page.length =1000;
   params.partIdList =partIdList;
+  params.orgid = currOrgid;
   nui.ajax({
         url : partUrl,
         type : "post",
         async:false,
         data : JSON.stringify({
         	params : params,
+        	page  : page,
             token : token
         }),
         success : function(data) {

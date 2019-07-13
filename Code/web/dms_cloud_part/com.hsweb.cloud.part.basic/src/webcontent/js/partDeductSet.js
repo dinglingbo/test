@@ -163,6 +163,13 @@ function addUnifyPart() {
     });
 }
 function addUnifyDetail(row){
+	var data =rightUnifyGrid.getData();
+	for(var i=0;i<data.length;i++){
+		if(row.id==data[i].partId){
+			showMsg("已经存在该配件","W");
+			return;
+		}
+	}
     var newRow = {
         partId: row.id,
         partCode: row.code,

@@ -2220,6 +2220,11 @@
                 (a.part_code in ($partCodeList$))
             </isNotEmpty> 
             
+            <isNotEmpty prepend="and" property="pickName">  
+                (a.part_name = #pickName#)
+            </isNotEmpty>
+            <!--默认按出库日期升序排序-->
+            <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
         </dynamic>  
 	</select>
 	

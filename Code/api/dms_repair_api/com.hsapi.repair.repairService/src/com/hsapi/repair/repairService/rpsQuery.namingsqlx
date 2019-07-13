@@ -26,6 +26,7 @@
 			a.car_no AS carNo,
 			c.tel AS guestTel,
 			c.mobile AS guestMobile,
+			c.street_address as streetAddress,
 			b.car_brand_id AS carBrandId,
 			a.mt_advisor AS mtAdvisor,
 			a.`status` AS `status`,

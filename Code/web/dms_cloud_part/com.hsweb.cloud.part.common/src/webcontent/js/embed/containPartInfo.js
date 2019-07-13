@@ -237,7 +237,12 @@ function getSearchParams()
     params.partBrandId = nui.get("partBrandId").getValue().replace(/\s+/g, "");
     params.partCodeList = nui.get("partCodeList").getValue().replace(/\s+/g, "");
     params.isDisabled = 0;
-
+    //是否开启APP
+    if(currIsOpenApp ==1){   	
+    	params.onlyOrgid= currOrgid;
+    }else{
+    	params.orgid = currOrgid;
+    }
     var partCodeList = nui.get("partCodeList").getValue().replace(/\s+/g, "");
     // 订单单号
     if (partCodeList) {

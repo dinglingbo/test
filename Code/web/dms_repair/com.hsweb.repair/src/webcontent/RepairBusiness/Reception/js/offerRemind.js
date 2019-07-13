@@ -87,6 +87,7 @@ function addRemind(){
 		data : {
 			serviceId:fserviceId,
 			updList:updList,
+			type : 0,
 			token:token
 		},
 		success : function(data) {
@@ -95,7 +96,7 @@ function addRemind(){
 				var carNo = maintainAll.carNo;
 				var carModel = maintainAll.carModel;
 				var serviceCode = maintainAll.serviceCode;
-				var content = "您好,"+carNo + "("+carModel+"),请您报价 ！hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh";
+				var content = "您好,"+carNo + "("+carModel+"),请您报价 !";
 				var msg = {
 					title: "配件待报价",
 					serviceCode: serviceCode,

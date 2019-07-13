@@ -76,9 +76,11 @@
       <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link16</targetConnections>
+    <targetConnections>link2</targetConnections>
     <location x="306" y="135"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="updList" iterableElement="temp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend1label" name="label" nodeType="label">
@@ -217,6 +219,16 @@
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>assign5</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link0" name="link0" displayName="连接线" type="transition">
+      <sourceNode>invokePojo3</sourceNode>
+      <targetNode>assign0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">type</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link14</targetConnections>
     <location x="-192" y="142"/>
     <size height="28" width="22"/>
@@ -251,6 +263,14 @@
       <process:from type="query" pattern="reference">serviceId</process:from>
       <process:to type="query">main/id</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">S</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">保存成功</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="-287" y="178"/>
@@ -261,6 +281,7 @@
     <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign5</sourceNode>
       <targetNode>loopstart1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link15</targetConnections>
     <location x="-105" y="142"/>
@@ -269,14 +290,6 @@
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">main/noMtType</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">S</process:from>
-      <process:to type="query">errCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">保存成功</process:from>
-      <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
@@ -308,6 +321,33 @@
     <figSize height="17" width="73"/>
     <node>invokePojo2</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>loopstart1</targetNode>
+    </sourceConnections>
+    <targetConnections>link0</targetConnections>
+    <location x="-105" y="69"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign0label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">main/noMtFileSign</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">d</process:from>
+      <process:to type="query">main/noMtFileDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">main/noMtFileMan</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
+    <location x="-103" y="105"/>
+    <figSize height="17" width="25"/>
+    <node>assign0</node>
+  </nodes>
   <topRuler/>
   <leftRuler>
     <guides position="290" horizontal="true"/>
@@ -321,6 +361,7 @@
   <process:inputs varArgs="false">
     <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsPart" name="updList"/>
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>
+    <process:input description="0需报价，1已报价" isArray="false" name="type" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

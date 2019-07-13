@@ -101,13 +101,6 @@ public class LogicFlowFilter implements Filter {
 				return;
 			}
 		}
-		
-		rep.setHeader("Access-Control-Allow-Origin",req.getHeader("origin"));  
-	    //rep.setHeader("Access-Control-Allow-Origin","*");  
-		rep.setHeader("Access-Control-Allow-Methods", "POST,GET, OPTIONS, DELETE");  
-		rep.setHeader("Access-Control-Max-Age","3600");  
-		rep.setHeader("Access-Control-Allow-Headers","x-requested-with,Cache-Control,Pragma,Content-Type,Token");  
-		rep.setHeader("Access-Control-Allow-Credentials","true"); 
 		   
 		// 检查是否客户端发送的请求
 		boolean b = isClientRequest(requestWrapper);

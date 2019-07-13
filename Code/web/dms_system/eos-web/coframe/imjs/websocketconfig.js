@@ -231,7 +231,32 @@ layui.use('layim', function(layim){
     		                click: function (e) {
     		                	var opt = {};
     	                            opt.id=group.urlId;
-    	                            opt.text="工单报价";
+    	                            opt.text="配件报价";
+    	                            opt.url=group.url;
+    	                    	var params = {
+    	                    			serviceId: group.serviceId
+    	                            };
+    		                	window.parent.activeTabAndInit(opt,params);
+    		                }
+    		            },{
+    		                text: '取消',
+    		                click: function (e) {
+    		                    e.closeNotification()
+    					    }
+    				    }]
+    				})
+    		   }else if(group.remindType==2){
+        		   //remindType==报价完成提醒
+    			   parent.naranja()["log"]({
+    		            title: group.title,
+    		            text: group.content,
+    		            timeout: "keep",
+    		            buttons: [{
+    		                text: '工单详情',
+    		                click: function (e) {
+    		                	var opt = {};
+    	                            opt.id=group.urlId;
+    	                            opt.text="配件报价完成";
     	                            opt.url=group.url;
     	                    	var params = {
     	                    			serviceId: group.serviceId

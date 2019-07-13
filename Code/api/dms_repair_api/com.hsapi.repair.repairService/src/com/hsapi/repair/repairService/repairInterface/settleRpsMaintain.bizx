@@ -9,7 +9,7 @@
       <sourceNode>start0</sourceNode>
       <targetNode>subprocess0</targetNode>
     </sourceConnections>
-    <location x="-329" y="250"/>
+    <location x="-395" y="250"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
@@ -27,7 +27,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="-327" y="286"/>
+    <location x="-393" y="286"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -271,7 +271,7 @@
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="querySettlement" displayName="querySettlement" collapsed="false" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
-      <targetNode>transactionbegin0</targetNode>
+      <targetNode>assign9</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link14" name="link14" displayName="连接线" type="transition">
       <sourceNode>subprocess0</sourceNode>
@@ -284,7 +284,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
-    <location x="-235" y="251"/>
+    <location x="-301" y="251"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -301,7 +301,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="-269" y="286"/>
+    <location x="-335" y="286"/>
     <figSize height="17" width="95"/>
     <node>subprocess0</node>
   </nodes>
@@ -310,7 +310,8 @@
       <sourceNode>transactionbegin0</sourceNode>
       <targetNode>assign0</targetNode>
     </sourceConnections>
-    <targetConnections>link10</targetConnections>
+    <targetConnections>link5</targetConnections>
+    <targetConnections>link42</targetConnections>
     <location x="-109" y="250"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionbegin0label</nodeLabel>
@@ -395,12 +396,12 @@
       <targetNode>end1</targetNode>
     </sourceConnections>
     <targetConnections>link14</targetConnections>
-    <location x="-235" y="331"/>
+    <location x="-301" y="331"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="-237" y="367"/>
+    <location x="-303" y="367"/>
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
@@ -422,7 +423,7 @@
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
     <targetConnections>link15</targetConnections>
     <targetConnections>link17</targetConnections>
-    <location x="-235" y="442"/>
+    <location x="-301" y="442"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
@@ -431,7 +432,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="-237" y="478"/>
+    <location x="-303" y="478"/>
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>
@@ -619,6 +620,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">grossProfitRate</process:from>
       <process:to type="query">settlement/grossProfitRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">outAmt</process:from>
+      <process:to type="query">settlement/outAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign30label" name="label" nodeType="label">
@@ -912,6 +917,56 @@
     <figSize height="17" width="142"/>
     <node>subprocess6</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" id="assign9" name="赋值10" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign9</sourceNode>
+      <targetNode>transactionbegin0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link18" name="link18" displayName="连接线" type="transition">
+      <sourceNode>assign9</sourceNode>
+      <targetNode>subprocess3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">maintain/isOutBill</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link10</targetConnections>
+    <location x="-214" y="251"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign9label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
+    <location x="-219" y="287"/>
+    <figSize height="17" width="39"/>
+    <node>assign9</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess3" name="getMainBillAmt" displayName="getMainBillAmt" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link42" name="link42" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess3</sourceNode>
+      <targetNode>transactionbegin0</targetNode>
+    </sourceConnections>
+    <targetConnections>link18</targetConnections>
+    <location x="-214" y="169"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess3label</nodeLabel>
+    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.repair.repairService.svr.getMainBillAmt</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="serviceId" type="query" value="Int" valueType="Primitive" pattern="reference">maintain/id</process:inputVariable>
+        <process:inputVariable id="1" name="billTypeId" type="query" value="Int" valueType="Primitive" pattern="reference">maintain/billTypeId</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="amt" type="query" value="Float" valueType="Primitive">outAmt</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess3label" name="label" nodeType="label">
+    <location x="-245" y="204"/>
+    <figSize height="17" width="89"/>
+    <node>subprocess3</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-09-09 17:48:11" date="2018-09-09Z" description="" name="settleRpsMaintain" version="7.0.0.0"/>
@@ -957,6 +1012,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="type" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="isSendMsg" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="rpBill" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="outAmt" primitiveType="Float"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>

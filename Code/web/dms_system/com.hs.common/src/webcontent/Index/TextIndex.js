@@ -297,7 +297,7 @@ function queryTodayData(callback) {
 		}
 	});
 }
-var queryHomePageUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryHomePage.biz.ext";
+var queryHomePageUrl = apiPath + sysApi + "/com.hsapi.system.employee.employeeMgr.queryHomePage.biz.ext";
 function queryHomePage(callback) {
 	nui.ajax({
 		url : queryHomePageUrl,

@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
     
- <link href="<%=webPath + contextPath%>/common/css/naranja.min.css" rel="stylesheet"	type="text/css" />
- <script src="<%=webPath + contextPath%>/common/js/naranja.js?v=1.0.3" type="text/javascript"></script>    
+ <link href="<%=webPath + contextPath%>/common/css/naranja.min.css?v=1.0.0" rel="stylesheet"	type="text/css" />
+ <script src="<%=webPath + contextPath%>/common/js/naranja.js?v=1.0.4" type="text/javascript"></script>    
  
  <script type="text/javascript">
     //  调用的例子
-	function narn (type) {
+	function narn (type) { 
         naranja()[type]({
             title: '新消息提示',
             text: '单击“接受”以创建新通知',

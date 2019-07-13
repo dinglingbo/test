@@ -2339,6 +2339,7 @@ function getPart(partIdList){
         async:false,
         data : JSON.stringify({
         	params : params,
+        	page   : page,
             token : token
         }),
         success : function(data) {

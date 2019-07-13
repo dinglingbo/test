@@ -243,12 +243,13 @@ $(document).ready(function(v) {
 	    		index=i+1;
 	    	}
 	    }
-	    
+	    var params =[];
 	    for(var i=0;i<resultList.length;i++){
 			var partId=resultList[i].partId;
-			getStratePrice(partId);
+			params.push({"partId":partId,"show":1});
+//			getStratePrice(partId);
 		}
-	    
+	    getStratePriceList(params);
 //	    if(priceList.length<=0)return;
 	    for(var i=0;i<priceList.length;i++){
 //	    	columnsObjList[index+i].field=priceList[i].id;
@@ -3430,6 +3431,7 @@ function getPart(partIdList){
         async:false,
         data : JSON.stringify({
         	params : params,
+        	page   : page,
             token : token
         }),
         success : function(data) {
@@ -3450,4 +3452,35 @@ function getPart(partIdList){
         }
     });
 //  return partHash;
+}
+var StratePriceListUrl =baseUrl+"com.hsapi.cloud.part.invoicing.pricemanage.getPartPriceInfoList.biz.ext";
+function getStratePriceList(params){
+	partPriceList=null;
+	partPriceHash={};
+	nui.ajax({
+		url : StratePriceListUrl,
+		type : "post",
+		async: false,
+		data : {
+			params: params,
+			token: token
+		},
+		success: function(data) {
+			partPriceList =data.price;	
+			var length=partPriceList.length;
+			partPriceList.forEach(function(v){
+				partPriceHash={};
+				partPriceHash[v.name]=v;	
+//				if(partPriceHash[v.name].partId ==v.partId){
+				StratePrice[v.partId]=partPriceHash;
+				
+//				}
+				
+			});
+
+		},error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
 }

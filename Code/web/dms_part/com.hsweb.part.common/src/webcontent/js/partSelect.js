@@ -5,8 +5,8 @@ var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/
 var treeUrl = baseUrl+"com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
 var partGridUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.queryPartList.biz.ext";
 var partGrid = null;
-var stockUrl = baseUrl+"com.hsapi.part.invoice.partInterface.queryStockByCode.biz.ext";
-
+//var stockUrl = baseUrl+"com.hsapi.part.invoice.partInterface.queryStockByCode.biz.ext";
+var stockUrl = baseUrl + "com.hsapi.part.invoice.query.queryInventoryAccessPart.biz.ext";
 var qualityList = [];
 var qualityHash = {};
 var brandHash = {};
@@ -38,11 +38,17 @@ $(document).ready(function(v)
     partGrid.on("selectionchanged", function () {
         var row = partGrid.getSelected();
         var code = row.code;
-        /*rightGrid.load({
-        	code: code,
-        	protoken: protoken,
+        var codeM = row.oemCode;
+        var params = {};
+        if(code){
+        	params.partCode = code;
+        }else{
+        	params.partCode = codeM;
+        }
+        rightGrid.load({
+        	params:params,
         	token: token
-        });*/
+        });
     });
     partGrid.on("drawcell",function(e)
     {

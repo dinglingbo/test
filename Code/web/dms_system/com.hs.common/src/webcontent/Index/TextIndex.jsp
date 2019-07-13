@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
         <head>
             <title>首页</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.3.30"></script>
+            <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.3.33"></script>
             <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
             <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
             <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css?v=1.0.5" rel="stylesheet" type="text/css" />
@@ -22,7 +22,7 @@ pageEncoding="UTF-8" session="false" %>
 			<script src="<%=webPath + contextPath%>/common/js/jquery.dad.min.js?v=1.0.3"></script> --%>
             <style type="text/css">
             	#nuifit{
-            		height:133px !important;
+            		height:125px !important;
             	}
             </style>
         </head>
@@ -46,7 +46,7 @@ pageEncoding="UTF-8" session="false" %>
 	
 	                </div>            
 				</div>
-                <div id="" class="main" style="margin-top: 15px;height: 205px;">
+                <div id="" class="main" style="margin-top: 5px;height: 205px;">
 
                     <div id="" class="main_child_left">
                         <div class="vpanel">

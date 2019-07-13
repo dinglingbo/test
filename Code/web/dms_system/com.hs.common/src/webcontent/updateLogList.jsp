@@ -86,7 +86,7 @@
 							
 							var btn = "<h4 style='margin: 0px; padding: 0px; font-weight: normal;  "
 									+ "	          font-variant-numeric: normal; font-variant-east-asian: normal;'> "
-									+ "		<a href='"+webPath + sysDomain+"/com.hs.common.updateLogDetail.flow?id="+temp.id+"&show=false'  "
+									+ "		<a href='"+webPath + sysDomain+"/com.hs.common.updateLogDetail.flow?id="+temp.id+"&show=true'  "
 									+ "		        target='_blank' style='text-decoration-line: none; transition: all 0.4s ease 0s; "
 									+ "		        font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 16px; "
 									+ "		        color: rgb(87, 140, 205); display: block; width: 200px; height: 40px; "

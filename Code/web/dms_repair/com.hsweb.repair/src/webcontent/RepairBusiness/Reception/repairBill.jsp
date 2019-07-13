@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>综合开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=2.3.9"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=2.4.2"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -294,9 +294,9 @@
                     </div>
                 </td>
                 <td>
-	                <label id="" style="font-family:Verdana;color:#578ccd;">
-	                	<a id="" href="javascript:saleReminding()" style="font-size: 12px; color: #578ccd;text-decoration: none;">报价提醒</a>
-	                </label>
+	                 <span id="carRemind" style="display:none">
+	                	<a id="" href="javascript:saleReminding()" class="healthview" style="font-size: 12px; text-decoration: none;">报价提醒</a>
+	                </span>
                 </td>
             </tr>
         </table>

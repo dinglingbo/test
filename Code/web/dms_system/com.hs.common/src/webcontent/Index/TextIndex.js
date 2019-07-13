@@ -348,16 +348,21 @@ function setHomePage(data){
         	}    		
     	}
     }
-	var twidth = 80 + (data.length+3)*110;
+	var twidth = 90 + (data.length+3)*90;
 	var html="";
 		html+='<div  style="float: left;"> ';		
-		html+='	<a href="javascript:;" id="faker4" class="addImage tc sub-add-btn" onclick="addIcon()" style="display: flex;border: 2px dotted #B8B8B8;border-radius: 5px 5px 5px 5px;color: #222222;height: 75px;width:100px;text-align: center;text-decoration: none;left;margin-top: 10px;margin-left: 10px;border-radius: 12px;">';
-		html+='	<img alt="" style="height: 75px;width: 100px;" src="'+webPath + contextPath+'/repair/prototype/images/add1.png"> ';
+		html+='	<a href="javascript:;" id="faker4" class="addImage tc sub-add-btn" onclick="addIcon()" style="display: flex;border: 2px dotted #B8B8B8;border-radius: 5px 5px 5px 5px;color: #222222;height: 50px;width:90px;text-align: center;text-decoration: none;left;margin-top: 10px;margin-left: 10px;border-radius: 12px;">';
+		html+='	<img alt="" style="height: 50px;width: 90px;" src="'+webPath + contextPath+'/repair/prototype/images/add1.png"> ';
 		html+='</a>';
 		html+='</div>';
 		$("#demo").append(html);
+	
+	if(data.length<11){
+		document.getElementById("demoFather").style.width = "100%";	
+	}else{
+		document.getElementById("demoFather").style.width = twidth + 'px';	
+	}
 	document.getElementById("demo").style.width = twidth + 'px';
-	document.getElementById("demoFather").style.width = twidth + 'px';
 }
 function queryGuestCarData(p,callback) {
     p.startDate = getNowStartDate();

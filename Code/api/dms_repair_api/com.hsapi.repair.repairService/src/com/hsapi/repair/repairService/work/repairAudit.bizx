@@ -139,6 +139,14 @@
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
       <process:to type="query">userName</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain</process:from>
+      <process:to type="query">data/maintain</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">settleMent</process:from>
+      <process:to type="query">data/settleMent</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="11" y="141"/>
@@ -436,6 +444,7 @@
     <sourceConnections xsi:type="process:tLink" id="link22" name="link22" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
       <targetNode>end1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link20</targetConnections>
     <location x="97" y="191"/>

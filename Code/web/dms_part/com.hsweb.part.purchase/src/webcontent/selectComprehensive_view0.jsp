@@ -105,7 +105,7 @@
             </tr>
         </table>
     </div>
-
+    <div class="nui-fit">
 <div class="nui-splitter" vertical="true"
 		style="width: 100%; height: 100%;" allowResize="true">
 		<!-- 上 -->
@@ -853,6 +853,7 @@
 				<a class="nui-button" onclick="cancelData" style="width: 60px;">清除</a>
 			</div>
 		</div>
-	</div>
+    </div>
+</div> 
 </body>
 </html>

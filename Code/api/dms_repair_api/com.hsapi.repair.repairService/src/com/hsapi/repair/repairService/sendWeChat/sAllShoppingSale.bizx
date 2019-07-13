@@ -44,14 +44,15 @@
     <location x="240" y="150"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.sAppShoppingSale</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="serviceId" type="query" value="String" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
+        <process:inputVariable id="1" name="partNum" type="query" value="String" valueType="Primitive" pattern="reference">partNum</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
         <process:outputVariable id="2" name="res" type="query" value="java.util.HashMap" valueType="Java">appRes</process:outputVariable>
       </process:outputVariables>
     </process:flow>
@@ -70,10 +71,11 @@
     <location x="390" y="150"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.sWcShoppingSale</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="serviceId" type="query" value="String" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
+        <process:inputVariable id="1" name="partNum" type="query" value="String" valueType="Primitive" pattern="reference">partNum</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
@@ -112,6 +114,7 @@
   <process:variables/>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="partNum" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output anyType="java.util.HashMap" description="" isArray="false" name="appRes"/>

@@ -667,7 +667,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link30" name="link30" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
-      <targetNode>subprocess8</targetNode>
+      <targetNode>subprocess10</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link29</targetConnections>
@@ -786,7 +786,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign10" name="赋值10" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link36" name="link36" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign10</sourceNode>
-      <targetNode>subprocess9</targetNode>
+      <targetNode>subprocess8</targetNode>
     </sourceConnections>
     <targetConnections>link38</targetConnections>
     <location x="270" y="342"/>
@@ -831,13 +831,13 @@
     <figSize height="17" width="39"/>
     <node>assign11</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess8" name="推送领料消息" displayName="sWcStoreManReming" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess8" name="推送领料审核" displayName="sWcStoreManReming" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess8</sourceNode>
       <targetNode>subprocess7</targetNode>
     </sourceConnections>
-    <targetConnections>link30</targetConnections>
-    <location x="172" y="281"/>
+    <targetConnections>link36</targetConnections>
+    <location x="197" y="342"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess8label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
@@ -853,7 +853,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess8label" name="label" nodeType="label">
-    <location x="149" y="316"/>
+    <location x="174" y="377"/>
     <figSize height="17" width="73"/>
     <node>subprocess8</node>
   </nodes>
@@ -863,7 +863,7 @@
       <targetNode>subprocess9</targetNode>
     </sourceConnections>
     <targetConnections>link16</targetConnections>
-    <location x="98" y="307"/>
+    <location x="126" y="342"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess7label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
@@ -879,7 +879,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess7label" name="label" nodeType="label">
-    <location x="81" y="342"/>
+    <location x="109" y="377"/>
     <figSize height="17" width="61"/>
     <node>subprocess7</node>
   </nodes>
@@ -905,9 +905,9 @@
       <sourceNode>subprocess9</sourceNode>
       <targetNode>end1</targetNode>
     </sourceConnections>
-    <targetConnections>link36</targetConnections>
     <targetConnections>link39</targetConnections>
-    <location x="40" y="342"/>
+    <targetConnections>link42</targetConnections>
+    <location x="13" y="342"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess9label</nodeLabel>
     <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
@@ -923,9 +923,61 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess9label" name="label" nodeType="label">
-    <location x="-23" y="377"/>
+    <location x="-50" y="377"/>
     <figSize height="17" width="153"/>
     <node>subprocess9</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess10" name="推送领料" displayName="sWcPickPart" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link43" name="link43" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess10</sourceNode>
+      <targetNode>subprocess11</targetNode>
+    </sourceConnections>
+    <targetConnections>link30</targetConnections>
+    <location x="173" y="281"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess10label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.repair.repairService.sendWeChat.sWcPickPart</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="maintain" type="query" value="com.hsapi.repair.data.rps.RpsMaintain" valueType="DataObject" pattern="reference">maintain</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="res" type="query" value="java.util.HashMap" valueType="Java"></process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess10label" name="label" nodeType="label">
+    <location x="162" y="316"/>
+    <figSize height="17" width="49"/>
+    <node>subprocess10</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess11" name="sAppPickPart" displayName="sAppPickPart" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link42" name="link42" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess11</sourceNode>
+      <targetNode>subprocess9</targetNode>
+    </sourceConnections>
+    <targetConnections>link43</targetConnections>
+    <location x="97" y="281"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess11label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.repair.repairService.sendWeChat.sAppPickPart</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="maintain" type="query" value="com.hsapi.repair.data.rps.RpsMaintain" valueType="DataObject" pattern="reference">maintain</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="res" type="query" value="java.util.HashMap" valueType="Java"></process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess11label" name="label" nodeType="label">
+    <location x="72" y="316"/>
+    <figSize height="17" width="77"/>
+    <node>subprocess11</node>
   </nodes>
   <topRuler/>
   <leftRuler>

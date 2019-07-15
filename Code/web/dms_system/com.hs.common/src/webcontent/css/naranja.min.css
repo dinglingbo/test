@@ -137,7 +137,24 @@
 .naranja-notification .naranja-body-notification .naranja-text-and-title>div {
     width: 100%
 }
+ .naranja-notification .naranja-body-notification .naranja-text-and-title .naranja-text-and-title1 {
+    /* padding-left: 8px; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width:244px;
+    padding: 5px;
+}
 
+.naranja-notification .naranja-body-notification .naranja-text-and-title .naranja-text-and-title1 > p{
+    font-family: 'Open Sans';
+    margin: auto;
+    width: 100%;
+    overflow-wrap: break-word; 
+    font-size: 14px;
+    opacity: .6;
+    line-height: 1.4em
+}
 .naranja-notification .naranja-body-notification .naranja-text-and-title>div button {
     float: right;
     margin-left: 6px;

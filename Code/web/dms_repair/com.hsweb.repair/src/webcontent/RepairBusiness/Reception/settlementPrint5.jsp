@@ -83,7 +83,7 @@
                             </td>
                             <td>
                                 <div style="padding-bottom:10px;">
-                                    <p style="font-size:15px; font-family:'黑体'; margin-bottom:10px;"><span id="comp"></span></p>
+                                    <p style="font-size:18px; font-family:'黑体'; margin-bottom:10px;"><span id="comp"></span></p>
                                     <p style="font-size:13px; font-weight:bold;"></p>
                                     <p style="font-size:13px;">
                                         
@@ -291,7 +291,7 @@
                     <td width="48%" valign="top"></td>
                     <td width="20" rowspan="2" align="center">&nbsp;</td>
                     <td width="100" rowspan="2" style="line-height:150%;">
-                        <p><span class="fr"><span id="prdt">0.0000</span></span>套餐</p>
+                        <p><span class="fr"><span id="prdt">0.00</span></span>套餐</p>
                         <p><span class="fr"> <span id="item">0.00</span></span>工时</p>
                         <p><span class="fr"><span id="part">0.00</span></span>配件</p>
                         <p><span class="fr"><span id="expense">0.00</span></span>其他费用</p>

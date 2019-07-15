@@ -175,6 +175,7 @@ $(document).ready(function()
 		            var info1 = JSON.parse(info);
 		            $("#xmTanImg1").attr("src",getCompanyLogoUrl() + info1.hash);
 		            nui.get("licensePicTwo").setValue(getCompanyLogoUrl() + info1.hash);
+
 		        },
 		        'Error': function (up, err, errTip) {
 		            alert(errTip);
@@ -248,6 +249,8 @@ $(document).ready(function()
 		            var info1 = JSON.parse(info);
 		            $("#xmTanImg2").attr("src",getCompanyLogoUrl() + info1.hash);
 		            nui.get("driveLicensePicOne").setValue(getCompanyLogoUrl() + info1.hash);
+		            var imgPath=getCompanyLogoUrl() + info1.hash;
+		            getLicense(imgPath);
 		        },
 		        'Error': function (up, err, errTip) {
 		            alert(errTip);
@@ -1365,4 +1368,45 @@ function getRegion(parentId,callback) {
             console.log(jqXHR.responseText);
         }
     });
+}
+
+function getLicense(imgPath){
+	nui.mask({
+        el : document.body,
+    	cls : 'mini-mask-loading',
+    	html : '识别中...'
+    });
+	nui.ajax({
+	    url:webPath + sysDomain +"/com.hs.common.sysService.getVehicleLicense.biz.ext",
+	    type:"post",
+	    data:{imgPath:imgPath},
+	    async:false,
+	    success:function(data)
+	    {
+	        nui.unmask();
+	        data = data.result||{};
+	        if(data.errCode && data.errCode == 'S'){	        	
+	        	nui.get('carNo').setValue(data.data.plate_num||"");
+        		nui.get('vin').setValue(data.data.vin||"");
+        		nui.get('carModel').setValue(data.data.model||"");       		
+	        	nui.get('engineNo').setValue(data.data.engine_num||"");
+	        	if(data.data.issue_date.length==8){	        		
+	        		nui.get('issuingDate').setValue(nui.parseDate ( data.data.issue_date )||"");
+	        	}
+	        	if(data.data.register_date.length==8){	        	
+	        		nui.get('firstRegDate').setValue(nui.parseDate ( data.data.register_date )||"");
+	        	}      		
+	        	showMsg("驾驶证识别成功","S");
+	        }else{
+	            showMsg("驾驶证识别失败","W");
+	            return;
+	        }
+	        
+	    },
+	    error:function(jqXHR, textStatus, errorThrown){
+	        //  nui.alert(jqXHR.responseText);
+	    	  nui.unmask();
+	        
+	    }
+	});
 }

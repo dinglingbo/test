@@ -42,8 +42,11 @@
 			</div> 
 			<div title="技师等级" name="x_makeAnAppointmentLocation" url="" >
 			</div> 
+			<div title="结算单模板设置" name="settlementTemplate" url="" > 
+ 			</div> 
  			<div title="其他" name="other" url="" > 
  			</div> 
+ 			
 		</div>	
 	</div>
 </body>

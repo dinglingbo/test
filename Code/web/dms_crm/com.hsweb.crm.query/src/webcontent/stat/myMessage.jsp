@@ -34,6 +34,8 @@
 				</div>
 				<div title="我的反馈记录" url="<%=request.getContextPath() %>/com.hs.common.userFeedbackList.flow">
 		        </div>
+		        <div title="历史日志" url="<%=request.getContextPath() %>/com.hs.common.updateLogList.flow">
+		        </div>
        </div>
 	<script type="text/javascript">
     	nui.parse();

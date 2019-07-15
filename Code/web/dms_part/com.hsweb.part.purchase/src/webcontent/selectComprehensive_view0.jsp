@@ -10,7 +10,7 @@
 -->
 <head>
 <title>已结算工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.0.57"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.1.0"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -133,7 +133,6 @@
                   <div header="工单信息" headerAlign="center">
                   	 <div property="columns" >
 	                  <div type="checkcolumn" name="checkcolumn" visible="false"></div>
-	                  <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div> 
 	                  <div field="serviceCode" name="serviceCode" width="170" headerAlign="center" allowsort="true" header="工单号" summaryType="count"></div>
 	                  <div field="billTypeId" name="billTypeId" width="70" headerAlign="center" allowsort="true"  header="工单类型"></div>
 	                  <div field="serviceTypeName" name="serviceTypeName" width="70" headerAlign="center" allowsort="true" header="业务类型"></div>
@@ -278,19 +277,16 @@
                <div field="billPackageId" width="120" headerAlign="center" allowSort="true" visible="false">员工帐号</div>  
                 <div field="packageName" headerAlign="center" allowSort="false"
                      visible="true" width="100" header="套餐名称">
-                     <input property="editor"  class="nui-textbox"/>
                 </div>
                  <div field="amt" headerAlign="center"
                      allowSort="false" visible="true" width="60" header="原价" align="center">
                 </div>
                 <div field="rate" headerAlign="center"
                      allowSort="false" visible="true" width="60" header="优惠率%" align="center">
-                     <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
                <div field="subtotal" headerAlign="center"
                      allowSort="false" visible="true" width="60" header="套餐金额" align="center">
-                     <input property="editor" vtype="float" class="nui-textbox"/>
-                </div>
+                 </div>
                 <div field="discountAmt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">折扣金额
                 </div>
             </div>
@@ -306,16 +302,12 @@
 				<div type="indexcolumn" headerAlign="center" align="center"visible="false">序号</div>
 			    <div field="orderIndex" name="orderIndex" headerAlign="center" allowSort="false" visible="true" width="20" align="right">序号</div>
 	            <div field="itemName" name="itemName" headerAlign="center" allowSort="false" visible="true" width="100">项目名称
-	            	<input property="editor"  class="nui-textbox"/>
 	            </div>
 	            <div field="itemTime" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">工时/数量
-	                <input property="editor" vtype="float" class="nui-textbox"/>
 	            </div>
 	            <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">单价
-	                <input property="editor" vtype="float" class="nui-textbox"/>
 	            </div>
 	            <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" >优惠率%
-	                <input property="editor" vtype="float" class="nui-textbox"/>
 	            </div>
 	            <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">金额
 	            </div>
@@ -324,7 +316,7 @@
 	        </div>
 	    </div>
 	 </div>
-	     <div title="完工信息" id="finish" name="finish" >
+	     <div title="完工信息" id="finish" name="finish" visible="false">
 	    <div class="nui-fit">
 	     <div id="billForm" class="form">
           <table style="width: ;border-spacing: 0px 5px;">

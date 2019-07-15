@@ -53,7 +53,7 @@
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">car</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
@@ -261,7 +261,7 @@
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">member</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
@@ -287,7 +287,7 @@
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">maintain</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo4label" name="label" nodeType="label">
@@ -436,7 +436,7 @@
       <process:to type="query">firstText</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">endText + &quot;车辆已经开始施工，请及时处理。&quot;</process:from>
+      <process:from type="expression" pattern="reference"> &quot;车辆已经开始施工，请及时处理。&quot;</process:from>
       <process:to type="query">endText</process:to>
     </process:copy>
   </nodes>
@@ -484,22 +484,22 @@
     <process:flow index="11" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.system.dict.org.queryMember</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="orgid" type="expression" value="String" valueType="Primitive" pattern="reference"></process:inputVariable>
-        <process:inputVariable id="1" name="fromDb" type="expression" value="Boolean" valueType="Primitive" pattern="reference"></process:inputVariable>
-        <process:inputVariable id="2" name="memberGroupId" type="expression" value="String" valueType="Primitive" pattern="reference"></process:inputVariable>
-        <process:inputVariable id="3" name="memberLevelId" type="expression" value="String" valueType="Primitive" pattern="reference"></process:inputVariable>
-        <process:inputVariable id="4" name="isMtadvisor" type="expression" value="String" valueType="Primitive" pattern="reference"></process:inputVariable>
-        <process:inputVariable id="5" name="isArtificer" type="expression" value="String" valueType="Primitive" pattern="reference"></process:inputVariable>
-        <process:inputVariable id="6" name="isStockman" type="expression" value="String" valueType="Primitive" pattern="reference"></process:inputVariable>
-        <process:inputVariable id="7" name="isSalesman" type="expression" value="String" valueType="Primitive" pattern="reference"></process:inputVariable>
+        <process:inputVariable id="0" name="orgid" type="expression" value="String" valueType="Primitive" pattern="reference"/>
+        <process:inputVariable id="1" name="fromDb" type="expression" value="Boolean" valueType="Primitive" pattern="reference"/>
+        <process:inputVariable id="2" name="memberGroupId" type="expression" value="String" valueType="Primitive" pattern="reference"/>
+        <process:inputVariable id="3" name="memberLevelId" type="expression" value="String" valueType="Primitive" pattern="reference"/>
+        <process:inputVariable id="4" name="isMtadvisor" type="expression" value="String" valueType="Primitive" pattern="reference"/>
+        <process:inputVariable id="5" name="isArtificer" type="expression" value="String" valueType="Primitive" pattern="reference"/>
+        <process:inputVariable id="6" name="isStockman" type="expression" value="String" valueType="Primitive" pattern="reference"/>
+        <process:inputVariable id="7" name="isSalesman" type="expression" value="String" valueType="Primitive" pattern="reference"/>
         <process:inputVariable id="8" name="isPchsStock" type="literal" value="String" valueType="Primitive" pattern="reference">1</process:inputVariable>
-        <process:inputVariable id="9" name="empId" type="expression" value="String" valueType="Primitive" pattern="reference"></process:inputVariable>
-        <process:inputVariable id="10" name="systemAccount" type="expression" value="String" valueType="Primitive" pattern="reference"></process:inputVariable>
+        <process:inputVariable id="9" name="empId" type="expression" value="String" valueType="Primitive" pattern="reference"/>
+        <process:inputVariable id="10" name="systemAccount" type="expression" value="String" valueType="Primitive" pattern="reference"/>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="data" type="query" value="java.util.HashMap[]" valueType="Java">roleList</process:outputVariable>
-        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

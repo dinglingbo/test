@@ -698,16 +698,6 @@ function setInitExportData( detail){
         "<td  colspan='1' align='left'>[otherAmt]</td>" +                     
         "<td  colspan='1' align='left'>[incomeTotal]</td>" +
         
-        "<td  colspan='1' align='left'>[partTaxCost]</td>" +
-        "<td  colspan='1' align='left'>[partNoTaxCost]</td>"+
-        "<td  colspan='1' align='left'>[partTrueCost]</td>"+
-        "<td  colspan='1' align='left'>[salesDeductValue]</td>"+
-        "<td  colspan='1' align='left'>[advisorDeductValue]</td>"+
-        "<td  colspan='1' align='left'>[techDeductValue]</td>"+       
-        "<td  colspan='1' align='left'>[otherCostAmt]</td>"+
-        "<td  colspan='1' align='left'>[expenditureTotal]</td>"+
-        "<td  colspan='1' align='left'>[allowanceAmt]</td>"+
-        
         "<td  colspan='1' align='left'>[netinAmt]</td>" +
         "<td  colspan='1' align='left'>[cardTimesAmt]</td>" +
         "<td  colspan='1' align='left'>[balaAmt]</td>" +      
@@ -755,16 +745,7 @@ function setInitExportData( detail){
                          .replace("[partSubtotal]", detail[i].partSubtotal?detail[i].partSubtotal:0)         
                          .replace("[otherAmt]", detail[i].otherAmt?detail[i].otherAmt:0)
                          .replace("[incomeTotal]", detail[i].incomeTotal?detail[i].incomeTotal:0)
-                         
-                         .replace("[partTaxCost]", detail[i].partTaxCost?detail[i].partTaxCost:0)
-                         .replace("[partNoTaxCost]", detail[i].partNoTaxCost?detail[i].partNoTaxCost:0)    
-                         .replace("[partTrueCost]", detail[i].partTrueCost?detail[i].partTrueCost:0)                     
-                         .replace("[salesDeductValue]", detail[i].salesDeductValue?detail[i].salesDeductValue:0)
-                         .replace("[advisorDeductValue]", detail[i].advisorDeductValue?detail[i].advisorDeductValue:0)
-                         .replace("[techDeductValue]", detail[i].techDeductValue?detail[i].techDeductValue:0)
-                         .replace("[otherCostAmt]", detail[i].otherCostAmt?detail[i].otherCostAmt:0)
-                         .replace("[expenditureTotal]", detail[i].expenditureTotal?detail[i].expenditureTotal:0)
-                         .replace("[allowanceAmt]", detail[i].allowanceAmt?detail[i].allowanceAmt:0)                        
+                                             
                          
                          .replace("[netinAmt]", detail[i].netinAmt?detail[i].netinAmt:0)                         
                          .replace("[cardTimesAmt]", detail[i].cardTimesAmt?detail[i].cardTimesAmt:0)

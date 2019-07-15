@@ -217,9 +217,9 @@
                     <li iconCls="" onclick="onPrint(4)" id="type11">打印结账单(小票)</li>
                     <li iconCls="" onclick="onPrint(10)" id="type11">打印结账单(小票,项目配件分开)</li>
                     <li iconCls="" onclick="onPrint(5)" id="type11">打印领料单</li>
-                    <li iconCls="" onclick="onPrint(12)" id="">模板3</li>
+                    <!-- <li iconCls="" onclick="onPrint(12)" id="">模板3</li>
                     <li iconCls="" onclick="onPrint(13)" id="">模板4</li>
-                    <li iconCls="" onclick="onPrint(14)" id="">模板5</li>
+                    <li iconCls="" onclick="onPrint(14)" id="">模板5</li> -->
                 </ul>
 
                 <a class="nui-menubutton" plain="true" menu="#popupMenuQT" id="menuQT"><span class="fa fa-gift fa-lg"></span>&nbsp;充值办卡</a>
@@ -295,7 +295,7 @@
                 </td>
                 <td>
 	                 <span id="carRemind" style="display:none">
-	                	<a id="" href="javascript:saleReminding()" class="healthview" style="font-size: 12px; text-decoration: none;">报价提醒</a>
+	                	<a id="" href="javascript:saleReminding()" class="healthview" >报价提醒</a>
 	                </span>
                 </td>
             </tr>

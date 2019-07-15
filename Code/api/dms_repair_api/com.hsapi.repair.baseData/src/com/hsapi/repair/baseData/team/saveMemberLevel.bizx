@@ -369,6 +369,10 @@
       <process:from type="query" pattern="reference">m:userObject/attributes/tenantId</process:from>
       <process:to type="query">tenantId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tenantId</process:from>
+      <process:to type="query">params/tenantId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
     <location x="95" y="133"/>
@@ -387,6 +391,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">tenantId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tenantId</process:from>
+      <process:to type="query">params/tenantId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
@@ -425,7 +433,7 @@
   <process:info author="Administrator" createTime="2018-07-13 16:44:44" date="2018-07-13Z" description="" name="saveStation" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.common.ComMemberLevel" name="temp"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="tenantId" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="tenantId" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="tmpInt" primitiveType="Int"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
   </process:variables>

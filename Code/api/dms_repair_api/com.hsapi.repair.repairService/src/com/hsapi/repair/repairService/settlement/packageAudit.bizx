@@ -2,7 +2,7 @@
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="packageAudit.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="汇总明细金额给主表；更新成本；计算differAmt&#xD;&#xA;不用汇总，只需要取成本&#xD;&#xA;&#xD;&#xA;com.hsapi.repair.repairService.settleMent.updateRpsItemSubtotal&#xD;&#xA;com.hsapi.repair.repairService.settleMent.updateRpsPartSubtotal&#xD;&#xA;com.hsapi.repair.repairService.settleMent.getRpsPkgDetailAmt&#xD;&#xA;&#xD;&#xA;com.hsapi.repair.repairService.settleMent.getRpsPkgDetailAmt&#xD;&#xA;com.hsapi.repair.repairService.settleMent.getRpsPkgCostAmt&#xD;&#xA;com.hsapi.repair.repairService.settleMent.updateRpsPkgDifferAmt" title="Administrator&#x9;18-8-7 下午8:25">
     <location x="51" y="240"/>
-    <size height="166" width="625"/>
+    <size height="196" width="625"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">

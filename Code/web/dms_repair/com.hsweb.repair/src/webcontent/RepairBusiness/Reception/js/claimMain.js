@@ -120,7 +120,9 @@ $(document).ready(function ()
     mainGrid.on("drawcell", function (e) {
     	var record = e.record;
         if (e.field == "status") {
-        	if(record.status == 1 && record.partAuditSign ==1) {
+        	if(record.status == 0 && record.noMtFileSign == 1) {
+        		e.cellHtml = "<font color='red'>"+statusHash[e.value]+"(已报价)</font>"
+        	}else if(record.status == 1 && record.partAuditSign ==1) {
             	e.cellHtml = "<font color='red'>"+statusHash[e.value]+"(配件已审)</font>"
             }else {
             	e.cellHtml = statusHash[e.value];

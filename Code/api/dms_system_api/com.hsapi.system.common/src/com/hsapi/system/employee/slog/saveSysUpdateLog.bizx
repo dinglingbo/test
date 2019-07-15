@@ -22,7 +22,7 @@
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link6</targetConnections>
     <targetConnections>link7</targetConnections>
-    <location x="582" y="150"/>
+    <location x="701" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -37,7 +37,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="584" y="186"/>
+    <location x="703" y="186"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -116,7 +116,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="updateEntity" displayName="updateEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
-      <targetNode>assign3</targetNode>
+      <targetNode>subprocess0</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo1</sourceNode>
@@ -168,9 +168,9 @@
       <sourceNode>assign3</sourceNode>
       <targetNode>end0</targetNode>
     </sourceConnections>
-    <targetConnections>link4</targetConnections>
     <targetConnections>link5</targetConnections>
-    <location x="482" y="150"/>
+    <targetConnections>link17</targetConnections>
+    <location x="601" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
@@ -179,7 +179,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="480" y="186"/>
+    <location x="599" y="186"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
@@ -332,6 +332,31 @@
     <location x="224" y="276"/>
     <figSize height="17" width="32"/>
     <node>assign5</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="removeCacheByName" displayName="removeCacheByName" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>assign3</targetNode>
+    </sourceConnections>
+    <targetConnections>link4</targetConnections>
+    <location x="510" y="150"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess0label</nodeLabel>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.system.data.sys.removeCacheByName</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="nameSqlId" type="literal" value="String" valueType="Primitive" pattern="reference">com.hsapi.system.data.dictMgr.queryComMemberByEmpId</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
+    <location x="459" y="185"/>
+    <figSize height="17" width="129"/>
+    <node>subprocess0</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

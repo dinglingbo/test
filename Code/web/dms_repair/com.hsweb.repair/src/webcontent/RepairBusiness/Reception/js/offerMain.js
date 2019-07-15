@@ -18,8 +18,8 @@ var fserviceId = null;//仓库点去报价才有值
 var pickName = null;//点击配件才会有.用于tables
 var storeHash = {};
 $(document).ready(function (){	
-/*	nui.get("sendWechat").setValue(currIsOpenWeChatRemind);
-	nui.get("sendApp").setValue(currIsOpenAppRemind);*/
+	nui.get("sendWechat").setValue(currIsOpenWeChatRemind);
+	nui.get("sendApp").setValue(currIsOpenAppRemind);
 	queryRepairOutListGrid = nui.get("queryRepairOutListGrid");
 	queryRepairOutListGrid.setUrl(queryRepairOutListGridUrl);
 	queryPjPchsOrderEnterDetailChkListGrid = nui.get("queryPjPchsOrderEnterDetailChkListGrid");
@@ -1464,15 +1464,15 @@ function releaseOfferRemind(){
 						sendNoticeMsg(parent.socket,params);
 					}
 				});
-				var pushInfoUrl = baseUrl + "com.hsapi.repair.repairService.sendWeChat.sAppFinishBJ.biz.ext";
+				var pushInfoUrl = baseUrl + "com.hsapi.repair.repairService.sendWeChat.sAllFinishBJ.biz.ext";
 				//推送app微信
 				nui.ajax({
 					url : pushInfoUrl,
 					type : "post",
 					data : {
-						serviceId:fserviceId
-/*						isWc:nui.get("sendWechat").getValue(),
-						isApp:nui.get("sendApp").getValue()*/
+						serviceId:fserviceId,
+						isWc:nui.get("sendWechat").getValue(),
+						isApp:nui.get("sendApp").getValue()
 					},
 					success : function(data) {
 						nui.unmask(document.body);

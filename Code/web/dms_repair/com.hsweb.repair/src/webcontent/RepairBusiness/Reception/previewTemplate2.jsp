@@ -150,7 +150,7 @@
             <table  width="92%" border="0" align="center" cellpadding="0" cellspacing="0">
                 <tbody>
                     <tr>
-                        <td class="color999" width="90" height="46">单据编号：</td>
+                        <td class="color999" width="76" height="46">单据编号：</td>
                         <td><input type="text" id="txtno" class="peijianss" value="" /></td>
                     </tr>
                     <tr>
@@ -165,7 +165,7 @@
                         <td class="color999" height="46">电话：</td>
                         <td><input type="text" id="txtphoneno" class="peijianss" value="" /></td>
                     </tr>
-                     <tr>
+                    <tr>
                         <td class="color999" height="46">进厂时间：</td>
                         <td><input id="updateEnterDate" type="datetime-local" value=""/></td>
                     </tr>
@@ -182,12 +182,55 @@
     <div class="print_btn" >
         <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
         <a href="javascript:box_setup_open()">修改</a>
-       <!--  <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
-        <a plain="true" iconCls="" plain="false" onclick="sendInfo()" id = "sendInfo">发送短信</a>
+       <!--<a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
+         <a plain="true" iconCls="" plain="false" onclick="sendInfo()" id = "sendInfo">发送短信</a>
         <a style="" plain="true" iconCls="" plain="false" onclick="sendWechatInfo()" id = "openId">发送微信</a> -->
      </div>
      
-        <div style="margin: 0 10px;" class="printny">
+       <!-- <div showCollapseButton="false" style="border:0; text-align: center;" class="print_hide">
+        	 <div class="nui-toolbar" style="padding:0px;border-bottom:0;white-space: nowrap;">
+	            <table  style="width:100%;">
+	                <tr>
+	                    <td style="width:80%;text-align: center;">
+	                        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="SetData()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
+                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
+                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
+                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+	                    </td>
+	                </tr>
+	            </table>
+	        </div>
+	     </div> -->
+	     
+        <!-- <div style="margin: 0 10px;" class="printny">
+        <div class="company-info">
+           <table  width="100%" border="0" cellspacing="0" cellpadding="0">
+	            <tbody>
+	                <tr>
+	                	<td rowspan="2" style="width: 133px;">
+	                     	<img alt="" src="" id="showImg" height="60px" style="display:none">
+	                    </td>
+	                    <td style="width:55%">
+	                        <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><span id="comp"></span></div>
+	                    </td>
+	                    <td rowspan="2" style="">
+	                        <div style="font-size: 20px; font-family: 华文中宋;padding-top: 5px;"><b><span id="spstorename"></span></b></div>
+	                        <div style="padding-top: 2px; font-size: 13px;font-family: Arial;">
+	                          №:<span id="serviceCode"></span>  
+	                        </div>
+	                    </td>
+	                </tr>
+	                <tr>
+	                	<td >
+	                	<div style="font-size: 8px;padding-left: 10px; "><span id="slogan1"></span></div>
+	                	<div style="font-size: 8px;padding-left: 10px; "><span id="slogan2"></span></div>
+	                	</td>
+	                </tr>
+	            </tbody>
+	        </table> -->
+	        
+	     <div style="margin: 0 10px;" class="printny">
         <div class="company-info">
             <table  width="100%" border="0" cellspacing="0" cellpadding="0">
 	            <tbody>
@@ -216,7 +259,7 @@
         </div>
         
         <!-- <div style="border-bottom: 1px #333 solid; height: 2px; margin-bottom: 10px;">&nbsp;</div> -->
-        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
              <tr>
                 <td style="font-size:8px;" >地址：<span id="guestAddr">广东省东莞市市辖区长安镇新安街口麦 园工业区1号</span></td>
                 <td style="font-size:8px;">开户银行：<span id="openBank">招商银行</span></td>
@@ -252,8 +295,8 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1" id="showPkg">
                 <tr>
                     <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;"></td>
-                    <td height="28" align="center" bgcolor="#f8f8f8"style="font-family: 华文中宋; font-size:13px;font-weight: bold;">
-套餐项目(含工时配件)</td>
+                    <td height="28" align="center" bgcolor="#f8f8f8"style="font-family: 华文中宋; font-size:13px;font-weight: bold;">套餐项目(含工时配件)</td>
+                                  
                     <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">数量</td>
                     <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">单价</td>
                     <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">金额</td>
@@ -271,7 +314,8 @@
                     <td ><hr style="border:0.5px solid #000"></td>
                 </tr>
                 <tbody id="tbodyId">
-                <tr>
+                
+                 <tr>
                     <td align="center">1</td> 
 					<td>套餐名称1</td>
 					<td align='center'>1</td>
@@ -305,7 +349,7 @@
                 <tr>
                     <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;"></td>
                     <td height="28" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">项目名称</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">工时/数量</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">工时</td>
                     <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">单价</td>
                     <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">金额</td>
                     <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">优惠率</td>
@@ -321,7 +365,7 @@
                     <td ><hr style="border:0.5px solid #000"></td>
                 </tr>
                 <tbody id="tbodyId2">
-                   <tr>
+                 <tr>
                     <td align="center">1</td> 
 					<td>工时名称1</td>
 					<td align='center'>1</td>
@@ -331,24 +375,6 @@
 					<td align='center'>90</td>
                 </tr>
                 <tr>
-                    <td align="center">&nbsp;</td> 
-					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;配件名称1</td>
-					<td align='center'>1</td>
-					<td align='center'>300</td>
-					<td align='center'>300</td>
-					<td align='center'>5%</td>
-					<td align='center'>285</td>
-                </tr>
-                <tr>
-                    <td align="center">&nbsp;</td> 
-					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;配件名称2</td>
-					<td align='center'>2</td>
-					<td align='center'>100</td>
-					<td align='center'>200</td>
-					<td align='center'>0</td>
-					<td align='center'>200</td>
-                </tr>
-                 <tr>
                     <td align="center">2</td> 
 					<td>工时名称2</td>
 					<td align='center'>2</td>
@@ -357,9 +383,51 @@
 					<td align='center'>0</td>
 					<td align='center'>120</td>
                 </tr>
+				</tbody>
+            </table>
+             <div style="height: 12px;display:none" id="space3"></div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1" id="showPart" >
                 <tr>
-                    <td align="center">&nbsp;</td> 
-					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;配件名称2</td>
+                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;"></td>
+                    <td height="28" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">配件名称</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">数量</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">单价</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">金额</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">优惠率</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:13px;font-weight: bold;">小计</td>
+                </tr>
+                <tr>
+                	<td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                </tr>
+                <tbody id="tbodyId3">
+                <tr>
+                    <td align="center">1</td> 
+					<td>配件名称1</td>
+					<td align='center'>1</td>
+					<td align='center'>300</td>
+					<td align='center'>300</td>
+					<td align='center'>5%</td>
+					<td align='center'>285</td>
+                </tr>
+                <tr>
+                    <td align="center">2</td> 
+					<td>配件名称2</td>
+					<td align='center'>2</td>
+					<td align='center'>100</td>
+					<td align='center'>200</td>
+					<td align='center'>0</td>
+					<td align='center'>200</td>
+                </tr>
+                 
+                <tr>
+                    <td align="center">3</td> 
+					<td>配件名称3</td>
 					<td align='center'>1</td>
 					<td align='center'>200</td>
 					<td align='center'>200</td>
@@ -368,7 +436,7 @@
                 </tr>
 				</tbody>
             </table>
-        <div style="height: 12px;" id="space2"></div>
+          <div style="height: 12px;" id="space2"></div>
         <table width="100%" border="0"  cellpadding="0" cellspacing="0"  class="ybk1">
             <tr>
                 <td height="36" colspan="1" style="border:0px solid #DDD;padding: 8px;" rowspan="1" colspan="1" >
@@ -464,15 +532,13 @@
 	            CloseWindow('cancle');
 	        }
 	     }  
-	    /*  var url = webPath + contextPath + "/repair/imag/comp.png";
-	     $("#showImg").attr("src",url); */
         });
         
          function CloseWindow(action) {
             if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
             else window.close();
         }
-        
+ 
         function box_setup_open() {
 	        $(".boxbg").show();
 	        $(".popbox").show();

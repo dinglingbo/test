@@ -755,13 +755,10 @@ public class Utils {
                 JSONArray inputArray = new JSONArray();
                 inputArray.add(obj);
                 requestObj.put("inputs", inputArray);
-                outResult.put("inputs", inputArray);
             }else{
                 requestObj.put("image", imgBase64);
-                outResult.put("image", imgBase64);
                 if(config_str.length() > 0) {
                     requestObj.put("configure", config_str);
-                    outResult.put("configure", config_str);
                 }
             }
         } catch (JSONException e) {
@@ -769,40 +766,23 @@ public class Utils {
         }
         String bodys = requestObj.toString();
 
-        try {
-            /**
-             * 重要提示如下:
-             * HttpUtils请从
-             * https://github.com/aliyun/api-gateway-demo-sign-java/blob/master/src/main/java/com/aliyun/api/gateway/demo/util/HttpUtils.java
-             * 下载
-             *
-             * 相应的依赖请参照
-             * https://github.com/aliyun/api-gateway-demo-sign-java/blob/master/pom.xml
-             */
             HttpResponse response = HttpUtils.doPost(host, path, method, headers, querys, bodys);
             int stat = response.getStatusLine().getStatusCode();
-            if(stat != 200){
-                System.out.println("Http code: " + stat);
-                System.out.println("http header error msg: "+ response.getFirstHeader("X-Ca-Error-Message"));
-                System.out.println("Http body error msg:" + EntityUtils.toString(response.getEntity()));
-                return outResult;
-            }
-
-            String res = EntityUtils.toString(response.getEntity());
-            JSONObject res_obj = JSON.parseObject(res);
-            if(is_old_format) {
-                JSONArray outputArray = res_obj.getJSONArray("outputs");
-                String output = outputArray.getJSONObject(0).getJSONObject("outputValue").getString("dataValue");
-                JSONObject out = JSON.parseObject(output);
-                System.out.println(out.toJSONString());
-            }else{
-                System.out.println(res_obj.toJSONString());
-            }
-            return outResult;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return outResult;
-        }
+    		if (stat == 200) {
+                String res = EntityUtils.toString(response.getEntity());
+                JSONObject res_obj = JSON.parseObject(res);
+    			
+    			if (res_obj.getBoolean("success")) {
+    				outResult.put("data", res_obj);
+    				return outResult;
+    			} else {
+    				outResult.put("errCode", "E");
+    				return outResult;
+    			}
+    		} else {
+    			outResult.put("errCode", "E");
+    			return outResult;
+    		}
     }
     
     /*

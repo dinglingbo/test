@@ -1816,26 +1816,20 @@ function getLicense(imgPath){
 	    {
 	        nui.unmask();
 	        data = data.result||{};
-	        if(data.errCode && data.errCode == 'S'){
-	        	address=data.address;
-	        	legalPerson =data.legal_person;
-	        	licenseCode = data.license_code;
-	        	name= data.name;
-	        	registerMoney =data.register_money;
-	        	
-	        	nui.get('shortName').setValue(name);
-        		nui.get('fullName').setValue(name);
-        		nui.get('licenseCode').setValue(licenseCode);
-    			if(guestProperty && guestProperty!='013902'){    		
-    				var params={};
-    	        	params.licenseCode=licenseCode;
-    	        	params.noOrgId=1;
-    	        	queryCustomer(params);
+	        if(data.errCode && data.errCode == 'S'){	        	
+	        	nui.get('carNo').setValue(data.data.plate_num||"");
+        		nui.get('vin').setValue(data.data.vin||"");
+        		nui.get('carModel').setValue(data.data.model||"");       		
+	        	nui.get('engineNo').setValue(data.data.engine_num||"");
+	        	if(data.data.issue_date.length==8){	        		
+	        		nui.get('issuingDate').setValue(nui.parseDate ( data.data.issue_date )||"");
 	        	}
-        		
-	        	showMsg("营业执照识别成功","S");
+	        	if(data.data.register_date.length==8){	        	
+	        		nui.get('firstRegDate').setValue(nui.parseDate ( data.data.register_date )||"");
+	        	}      		
+	        	showMsg("驾驶证识别成功","S");
 	        }else{
-	            showMsg("营业执照识别失败","W");
+	            showMsg("驾驶证识别失败","W");
 	            return;
 	        }
 	        

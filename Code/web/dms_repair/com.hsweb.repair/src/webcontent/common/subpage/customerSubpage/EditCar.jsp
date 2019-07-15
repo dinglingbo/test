@@ -146,13 +146,13 @@
                                 <label>发动机号：</label>
                             </td>
                             <td>
-                                <input name="engineNo" class="nui-textbox" width="100%" />
+                                <input name="engineNo" id="engineNo" class="nui-textbox" width="100%" />
                             </td>
                             <td class="form_label">
                                 <label>生产日期：</label>
                             </td>
                             <td>
-                                <input name="produceDate" allowInput="true" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
+                                <input name="produceDate" id="produceDate" allowInput="true" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
                             </td>
                         </tr>
 
@@ -161,13 +161,13 @@
                                 <label>商业险单号：</label>
                             </td>
                             <td>
-                                <input name="annualInspectionNo" class="nui-textbox" width="100%" />
+                                <input name="annualInspectionNo" id="annualInspectionNo" class="nui-textbox" width="100%" />
                             </td>
                             <td class="form_label">
                                 <label>商业险到期：</label>
                             </td>
                             <td>
-                                <input name="annualInspectionDate" format="yyyy-MM-dd" allowInput="true" class="nui-datepicker" width="100%" />
+                                <input name="annualInspectionDate" id="annualInspectionDate" format="yyyy-MM-dd" allowInput="true" class="nui-datepicker" width="100%" />
                             </td>
                         </tr>
                         <tr>

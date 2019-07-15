@@ -35,11 +35,11 @@
 	<!--年审到期  TIMESTAMPDIFF(DAY, NOW() , b.annual_verification_due_date) = #ln#-->
 	<select id="getAnnualVerification" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT a.last_orgid as orgid, b.guest_id as guestId, a.car_id as carId, b.car_no as carNo, b.vin as carVin, 
-		       b.mt_advisor_id as mtAdvisorId, b.mt_advisor_name as mtAdvisorName, DATE_FORMAT(b.annual_verification_due_date,'%Y-%m-%d') as dueDate
+		       a.mt_advisor_id as mtAdvisorId, a.mt_advisor_name as mtAdvisorName, DATE_FORMAT(b.annual_verification_due_date,'%Y-%m-%d') as dueDate
 		from rpb_car_extend a
 		inner join rpb_car b
 		on a.car_id = b.id
-		where DATEDIFF(b.annual_verification_due_date,now()) = #ln# and a.last_orgid = #orgid#
+		where DATEDIFF(b.annual_verification_due_date,now()) = #ln# and a.last_orgid = #orgid# and a.is_veri_remind = 0
 	</select>
 	
 	<!--商业险到期  （暂时没用到）TIMESTAMPDIFF(DAY , NOW(), b.annual_inspection_date) = #ln#-->
@@ -49,7 +49,7 @@
 		from rpb_car_extend a
 		inner join rpb_car b
 		on a.car_id = b.id
-		where DATEDIFF(b.annual_inspection_date,now()) = #ln# and a.last_orgid = #orgid#
+		where DATEDIFF(b.annual_inspection_date,now()) = #ln# and a.last_orgid = #orgid# and a.is_annual_remind = 0
 	</select>
 	<!--商业险到期  TIMESTAMPDIFF(DAY , NOW() , b.annual_inspection_date) = #ln#-->
 	<update id="updateAnnualRemind" parameterClass="java.util.HashMap">
@@ -68,7 +68,7 @@
 		from rpb_car_extend a
 		inner join rpb_car b
 		on a.car_id = b.id
-		where DATEDIFF(b.insure_due_date,now()) = #ln# and a.last_orgid = #orgid#
+		where DATEDIFF(b.insure_due_date,now()) = #ln# and a.last_orgid = #orgid# and a.is_insure_remind = 0
 	</select>
 	<!--交强险到期  TIMESTAMPDIFF(DAY, NOW(), b.insure_due_date) = #ln#-->
 	<update id="updateInsureRemind" parameterClass="java.util.HashMap">

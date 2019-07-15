@@ -15,6 +15,7 @@
     <targetConnections>link4</targetConnections>
     <targetConnections>link6</targetConnections>
     <targetConnections>link8</targetConnections>
+    <targetConnections>link10</targetConnections>
     <location x="400" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
@@ -62,6 +63,15 @@
     <sourceConnections xsi:type="process:tLink" description="" id="link7" name="link7" displayName="连接线" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>invokePojo3</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>1==2</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link9" name="link9" displayName="连接线" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>invokePojo4</targetNode>
       <process:transitionCondition>
         <process:complexCondition>
           <process:code>1==1</process:code>
@@ -125,7 +135,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="roleId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">19021</process:inputVariable>
+      <process:inputVariable id="0" name="roleId" type="query" value="java.lang.String" valueType="Java" pattern="reference">roleId</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
       <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java">d</process:outputVariable>
@@ -185,6 +195,31 @@
     <figSize height="17" width="80"/>
     <node>invokePojo3</node>
   </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo4" name="getResInfo" displayName="getResInfo" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo4</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link9</targetConnections>
+    <location x="284" y="0"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo4label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.ResauthUtils.getResInfo</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="resId" type="query" value="java.lang.String" valueType="Java" pattern="reference">resId</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java">d</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo4label" name="label" nodeType="label">
+    <location x="263" y="36"/>
+    <figSize height="17" width="64"/>
+    <node>invokePojo4</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-12-14 10:25:30" date="2018-12-14Z" description="" name="testPush" version="7.0.0.0"/>
@@ -192,6 +227,8 @@
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="phones" primitiveType="String"/>
     <process:input description="" isArray="false" name="message" primitiveType="String"/>
+    <process:input description="" isArray="false" name="roleId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="resId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="generateInsureDueRemind.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="com.hsapi.repair.repairService.timer.getInsureDueDate" title="Administrator&#x9;18-10-18 下午7:38">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="com.hsapi.repair.repairService.timer.getInsureDueDate&#xD;&#xA;com.hsapi.repair.repairService.timer.updateInsureRemind" title="Administrator&#x9;18-10-18 下午7:38">
     <location x="-152" y="-30"/>
     <size height="100" width="445"/>
   </nodes>
@@ -29,9 +29,8 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" collapsed="false" type="end">
-    <targetConnections>link9</targetConnections>
-    <targetConnections>link13</targetConnections>
-    <location x="873" y="330"/>
+    <targetConnections>link21</targetConnections>
+    <location x="1090" y="362"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -40,7 +39,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
-    <location x="875" y="366"/>
+    <location x="1092" y="398"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -51,7 +50,7 @@
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link14" name="link14" displayName="连接线" type="transition">
       <sourceNode>assign0</sourceNode>
-      <targetNode>invokePojo4</targetNode>
+      <targetNode>invokePojo5</targetNode>
       <process:transitionCondition>
         <process:complexCondition>
           <process:code>1==1</process:code>
@@ -78,6 +77,10 @@
       <process:from type="expression" pattern="reference">new Date()</process:from>
       <process:to type="query">d</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">beginDate</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="223" y="202"/>
@@ -87,7 +90,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="queryByNamedSql" displayName="queryByNamedSql" collapsed="false" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="link10" lineType="note" type="exception">
       <sourceNode>invokePojo0</sourceNode>
-      <targetNode>assign3</targetNode>
+      <targetNode>assign6</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
@@ -372,7 +375,7 @@
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="link12" lineType="note" type="exception">
       <sourceNode>invokePojo3</sourceNode>
-      <targetNode>assign3</targetNode>
+      <targetNode>assign6</targetNode>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
     <location x="876" y="12"/>
@@ -396,31 +399,42 @@
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="link11" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
-      <targetNode>end0</targetNode>
+      <targetNode>invokePojo6</targetNode>
     </sourceConnections>
-    <targetConnections>link5</targetConnections>
-    <targetConnections>link7</targetConnections>
     <targetConnections>link15</targetConnections>
-    <location x="341" y="330"/>
+    <targetConnections>link23</targetConnections>
+    <location x="340" y="362"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
       <process:from type="literal" pattern="reference">E</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">successNums</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">endDate</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="339" y="366"/>
+    <location x="338" y="398"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo4" name="executeNamedSql" displayName="executeNamedSql" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo4</sourceNode>
-      <targetNode>end0</targetNode>
+      <targetNode>assign5</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link22" name="link22" displayName="连接线" lineType="note" type="exception">
+      <sourceNode>invokePojo4</sourceNode>
+      <targetNode>assign6</targetNode>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
-    <targetConnections>link14</targetConnections>
+    <targetConnections>link16</targetConnections>
     <location x="876" y="166"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo4label</nodeLabel>
@@ -440,6 +454,159 @@
     <figSize height="17" width="106"/>
     <node>invokePojo4</node>
   </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="查询需要更新的数据" displayName="查询需要更新的数据" collapsed="false" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo5</sourceNode>
+      <targetNode>invokePojo4</targetNode>
+    </sourceConnections>
+    <targetConnections>link14</targetConnections>
+    <location x="475" y="166"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo5label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.queryByNamedSql</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
+      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.repair.repairService.timer.getInsureDueDate</process:inputVariable>
+      <process:inputVariable id="2" name="parameterObject" type="query" value="java.lang.Object" valueType="Java" pattern="reference">p</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.Object[]" valueType="Java">data</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
+    <location x="432" y="202"/>
+    <figSize height="17" width="109"/>
+    <node>invokePojo5</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="saveTimerExecuteLog" displayName="saveTimerExecuteLog" collapsed="false" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="link19" isDefault="true" type="transition">
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link17</targetConnections>
+    <targetConnections>link19</targetConnections>
+    <location x="989" y="362"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess0label</nodeLabel>
+    <process:flow index="7" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.system.employee.slog.saveTimerExecuteLog</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="title" type="literal" value="String" valueType="Primitive" pattern="reference">交强险到期</process:inputVariable>
+        <process:inputVariable id="1" name="interfaceName" type="literal" value="String" valueType="Primitive" pattern="reference">com.hsapi.repair.repairService.timersettle.generateInsureDueRemind.biz.ext</process:inputVariable>
+        <process:inputVariable id="2" name="params" type="query" value="String" valueType="Primitive" pattern="reference">pStr</process:inputVariable>
+        <process:inputVariable id="3" name="totalNums" type="expression" value="String" valueType="Primitive" pattern="reference">data.length</process:inputVariable>
+        <process:inputVariable id="4" name="successNums" type="query" value="String" valueType="Primitive" pattern="reference">successNums</process:inputVariable>
+        <process:inputVariable id="5" name="beginDate" type="query" value="Date" valueType="Primitive" pattern="reference">beginDate</process:inputVariable>
+        <process:inputVariable id="6" name="endDate" type="query" value="Date" valueType="Primitive" pattern="reference">endDate</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables/>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
+    <location x="939" y="397"/>
+    <figSize height="17" width="126"/>
+    <node>subprocess0</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo6" name="map2Str1" displayName="map2Str1" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="link20" isDefault="true" type="transition">
+      <sourceNode>invokePojo6</sourceNode>
+      <targetNode>subprocess0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="link21" lineType="note" type="exception">
+      <sourceNode>invokePojo6</sourceNode>
+      <targetNode>assign4</targetNode>
+    </sourceConnections>
+    <targetConnections>link20</targetConnections>
+    <targetConnections>link9</targetConnections>
+    <location x="877" y="362"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo6label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.Utils.map2Str</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="params" type="query" value="java.util.Map&lt;java.lang.String,java.lang.Object>" valueType="Java" pattern="reference">p</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java">pStr</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo6label" name="label" nodeType="label">
+    <location x="860" y="398"/>
+    <figSize height="17" width="57"/>
+    <node>invokePojo6</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="link22" isDefault="true" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>subprocess0</targetNode>
+    </sourceConnections>
+    <targetConnections>link18</targetConnections>
+    <location x="989" y="240"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign4label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">pStr</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <location x="987" y="276"/>
+    <figSize height="17" width="32"/>
+    <node>assign4</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="link18" isDefault="true" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>invokePojo6</targetNode>
+    </sourceConnections>
+    <targetConnections>link13</targetConnections>
+    <location x="873" y="240"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign5label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">data.length</process:from>
+      <process:to type="query">successNums</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">endDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">S</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
+    <location x="871" y="276"/>
+    <figSize height="17" width="32"/>
+    <node>assign5</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign6</sourceNode>
+      <targetNode>assign3</targetNode>
+    </sourceConnections>
+    <targetConnections>link5</targetConnections>
+    <targetConnections>link7</targetConnections>
+    <targetConnections>link22</targetConnections>
+    <location x="341" y="271"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign6label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">异常</process:from>
+      <process:to type="query">p/error</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
+    <location x="339" y="307"/>
+    <figSize height="17" width="32"/>
+    <node>assign6</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-10-18 19:34:35" date="2018-10-18Z" description="交强险到期提醒" name="generateInsureDueRemind" version="7.0.0.0"/>
@@ -453,6 +620,10 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="msgParamsStr" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="contentStr" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="strTemp" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="beginDate" primitiveType="Date"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="endDate" primitiveType="Date"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="successNums" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="pStr" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="距离多少天提醒" isArray="false" name="ln" primitiveType="Int"/>

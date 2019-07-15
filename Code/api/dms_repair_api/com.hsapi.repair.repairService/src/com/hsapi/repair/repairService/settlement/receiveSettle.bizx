@@ -875,9 +875,15 @@
       <sourceNode>assign14</sourceNode>
       <targetNode>invokePojo1</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" id="link118" name="link118" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link118" name="link118" displayName="连接线" type="transition">
       <sourceNode>assign14</sourceNode>
       <targetNode>subprocess12</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">maintain/isOutBill</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
     <location x="-304" y="206"/>

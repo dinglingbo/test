@@ -201,27 +201,38 @@
 
       return $parragraph
     },
-    createText: function () {
-        // var $textContainerMain = createElement('div', [
-        //   'naranja-text-and-title1'
-        // ])
+      createText: function () {
         var $title = createElement('p', [
             'naranja-parragraph'
           ])
+    
+          var $tx = document.createTextNode(this.text)
+          $title.appendChild($tx)
+    
+          return $title
+          
+          
+        // var $textContainerMain = createElement('div', [
+        //   'naranja-text-and-title1'
+        // ])
+        // var $title = createElement('p', [
+        //     'naranja-parragraph'
+        //   ])
         
-        var textList = this.text.split("<br>");
-        var pList = '';
-        var
-        for (i = 0; i < textList.length; i++) { 
-            var text = '<p class="naranja-parragraph">'+ textList[i]+'</p>'
-            pList += text;
+        // var textList = this.text.split("<br>");
+        // var pText= '';
+        // for (i = 0; i < textList.length; i++) { 
+            //var text = '<p class="naranja-parragraph">'+ textList[i]+'</p>'
+            //pText += text;
+            // var ppp = document.createElement('p');
+            // ppp
             // var $tx = document.createTextNode(textList[i])
             // pList[i] = createElement('p', ['naranja-parragraph']).appendChild($tx)
             // $textContainerMain.appendChild(pList[i])
-        }
+        // }
       //var $tx = document.createTextNode(this.text)
-      
-      return $textContainerMain 
+    //   $textContainerMain.appendChild(pText)
+    //   return $textContainerMain 
     },
     createButtons: function ($notification, $body) {
       var $buttonsContainer = createElement('div', [

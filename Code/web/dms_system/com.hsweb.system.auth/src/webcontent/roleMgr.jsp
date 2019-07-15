@@ -14,7 +14,7 @@
     <script>
 		var defDomin = "<%=request.getContextPath()%>";
 	</script>
-    <script src="<%=webPath + contextPath%>/auth/js/roleMgr.js?v=1.0.3" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/auth/js/roleMgr.js?v=1.0.4" type="text/javascript"></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style type="text/css">
     body {
@@ -53,13 +53,28 @@
 </style> 
 </head>
 <body> 
-
+<!-- 1，汽修店，2汽配店，3变速箱维修店，4汽贸店，5汽贸汽修综合店 -->
 
     <div class="nui-splitter" style="width: 100%; height: 100%;">
         <div size="270" showcollapsebutton="true">
             <div class="nui-toolbar"  >
-               
-                <input class="nui-textbox" id="tenantId" name="tenantId" width="100" emptyText="租户ID" onenter="queryTenant">
+                    <a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">所有</a>
+                    <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
+                        <li iconCls="" onclick="quickSearch1(1)" id="type0">汽修</li>
+                        <li iconCls="" onclick="quickSearch1(2)" id="type0">汽配</li>
+                        <li iconCls="" onclick="quickSearch1(3)" id="type1">变速箱</li>
+                        <li iconCls="" onclick="quickSearch1(4)" id="type2">汽贸</li>
+                        <li iconCls="" onclick="quickSearch1(5)" id="type0">汽修汽贸</li>
+                        <li iconCls="" onclick="quickSearch1(6)" id="type0">所有</li>
+                   </ul>
+                   <a class="nui-menubutton" plain="false" iconCls="" id="menunamedate" menu="#popupMenu" >在用</a>
+				    <ul id="popupMenu" class="nui-menu" style="display:none;">
+				        <li iconCls="" onclick="quickSearch(1)">停用</li>
+				        <li iconCls="" onclick="quickSearch(0)">在用</li>
+				        <li iconCls="" onclick="quickSearch(2)">所有</li>
+				        
+				    </ul>
+                <input class="nui-textbox" id="tenantId" name="tenantId" width="60" emptyText="租户ID" onenter="queryTenant">
                  <a class="nui-button" iconCls="" plain="true" onclick="queryTenant"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <!-- <a class="nui-button" plain="true" onclick="queryRole()"><i class="fa fa-refresh"></i>&nbsp;刷新</a> -->
             </div>

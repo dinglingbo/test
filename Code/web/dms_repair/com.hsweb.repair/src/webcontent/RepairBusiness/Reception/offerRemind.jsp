@@ -13,11 +13,22 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         	<script src="<%=request.getContextPath()%>/coframe/imjs/message.js"></script>
 	<script src="<%=request.getContextPath()%>/coframe/imjs/messagebody.js"></script>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/offerRemind.js?v=1.0.7"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/offerRemind.js?v=1.1.1"></script>
     
 </head>
 <body>
- 	<a class="nui-button" iconCls="" plain="true" onclick="addRemind()" id="auditBtn"><span class="fa fa-bell fa-lg"></span>&nbsp;报价提醒</a> 
+   		<div class="nui-toolbar" style="padding:2px;border-bottom:0;" id="queryForm">
+		    <table style="width:100%;">
+				    <tr>
+						<td>
+		 					<a class="nui-button" iconCls="" plain="true" onclick="addRemind()" id="auditBtn"><span class="fa fa-bell fa-lg"></span>&nbsp;报价提醒</a>
+		 					<div id="sendWechat" name="" class="nui-checkbox" readOnly="false" text="推送微信"  trueValue="1" falseValue="0"></div>
+		  				 	<div id="sendApp" name="" class="nui-checkbox" readOnly="false" text="推送APP"    trueValue="1" falseValue="0"></div>
+		 				</td>
+			        </tr>
+			  </table>
+		</div>
+ 
  <div id="mainGrid" class="nui-datagrid" style="width:100%;height:95%;"
                selectOnLoad="true"
                showPager="false" multiSelect="true"

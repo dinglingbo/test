@@ -7,6 +7,8 @@ $(document).ready(function (){
 	mainGrid = nui.get("mainGrid");
 });
 function setData(params){
+	nui.get("sendWechat").setValue(currIsOpenWeChatRemind);
+	nui.get("sendApp").setValue(currIsOpenAppRemind);
 	maintainAll = params;
 	fserviceId = params.serviceId;
 	var getRpsItemPPartUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext";
@@ -74,11 +76,16 @@ function addRemind(){
 	var pushInfoUrl = baseUrl + "com.hsapi.repair.repairService.sendWeChat.sAllShoppingSale.biz.ext";
 	var saveRpsPartUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveOffer.biz.ext";
 	var updList=mainGrid.getData();
-	
+	var num = 0;
+	for(var i =0;i<updList.length;i++){
+		if(updList[i].noMtType==1){
+			num++;
+		}
+	}
 	nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
-        html: '消息推送中...'
+        html: '消息提醒中...'
     });
 	
 	nui.ajax({
@@ -103,7 +110,7 @@ function addRemind(){
 					serviceId :fserviceId,
 					remindType : 1,
 					url:webPath + contextPath + "/com.hsweb.RepairBusiness.offerMain.flow",
-					urlId : 3501,
+					urlId : 2695,
 					content: content,
 					sender: currUserName,
 					sendDate: now.Format("yyyy-MM-dd HH:mm:ss")
@@ -129,14 +136,17 @@ function addRemind(){
 					url : pushInfoUrl,
 					type : "post",
 					data : {
-						serviceId:fserviceId
+						serviceId:fserviceId,
+						partNum:num,
+						isWc:nui.get("sendWechat").getValue(),
+						isApp:nui.get("sendApp").getValue()
 					},
 					success : function(data) {
 						nui.unmask(document.body);
 						if(data.errCode == "S"){
-							showMsg("推送成功","S");							
+							showMsg("提醒成功","S");							
 						}else{
-							showMsg("推送失败","E");
+							showMsg("提醒失败","E");
 						}
 					},
 					error : function(jqXHR, textStatus, errorThrown) {
@@ -147,7 +157,7 @@ function addRemind(){
 					}
 				});				
 			}else{
-				showMsg("推送失败","E");
+				showMsg("提醒失败","E");
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {

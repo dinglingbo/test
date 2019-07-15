@@ -21,6 +21,22 @@
 			<tr>
 				<td style="white-space:nowrap;">
 				    <label style="font-family:Verdana;">快速查询：</label>
+				    <a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">所有</a>
+                    <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
+                        <li iconCls="" onclick="quickSearch1(1)" id="type0">汽修</li>
+                        <li iconCls="" onclick="quickSearch1(2)" id="type0">汽配</li>
+                        <li iconCls="" onclick="quickSearch1(3)" id="type1">变速箱</li>
+                        <li iconCls="" onclick="quickSearch1(4)" id="type2">汽贸</li>
+                        <li iconCls="" onclick="quickSearch1(5)" id="type0">汽修汽贸</li>
+                        <li iconCls="" onclick="quickSearch1(6)" id="type0">所有</li>
+                   </ul>
+                   <a class="nui-menubutton" plain="false" iconCls="" id="menunamedate" menu="#popupMenu" >在用</a>
+				    <ul id="popupMenu" class="nui-menu" style="display:none;">
+				        <li iconCls="" onclick="quickSearch(1)">停用</li>
+				        <li iconCls="" onclick="quickSearch(0)">在用</li>
+				        <li iconCls="" onclick="quickSearch(2)">所有</li>
+				        
+				    </ul>
 					<input class="nui-textbox" id="tenantId" name="tenantId" width="160px" emptyText="请输入租户ID" onenter="refresh">
                     <a class="nui-button" iconCls="" plain="true" onclick="refresh()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="saveMenu()" id=""><span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
@@ -93,12 +109,19 @@
     });
 
 	function refresh(){
+	    
 	    var params = {};
-        params.isDisabled = 0;
-	    var tenantId = nui.get("tenantId").getValue();
-	    if(tenantId){
-	       params.tenantId = tenantId;
-	    }
+		if(isDisabled != 2){
+			params.isDisabled = isDisabled;
+		}
+		if(tenantType != 6){
+			params.tenantType = tenantType;
+		}
+		var tenantId = nui.get("tenantId").getValue();
+		if(tenantId){
+			params.tenantId = tenantId;
+		}
+	    
         moreOrgGrid.load({params:params,token:token});
 	}
 
@@ -154,6 +177,80 @@
    function onCancel() {
       CloseWindow("cancel");
    }
+   
+   
+   var isDisabled = 0;
+function quickSearch(type) {
+   // var params = getSearchParam();
+    var queryname = "在用";
+    switch (type) {
+        case 1:
+            //params.isDisabled = 1;
+            queryname = "停用";
+            isDisabled = 1;
+            break;
+        case 0:
+        	//params.isDisabled =0;
+        	isDisabled = 0;
+            queryname = "在用";
+            break;
+        case 2:
+            //queryname = "所有";
+            isDisabled = 2;
+            break;
+        default:
+            break;
+    }
+    var menunamedate = nui.get("menunamedate");
+    menunamedate.setText(queryname);
+    refresh();
+}
+
+//1，汽修店，2汽配店，3变速箱维修店，4汽贸店，5汽贸汽修综合店
+var tenantType = 6;
+function quickSearch1(type) {
+    var queryname = "所有";
+    switch (type) {
+        case 1:
+            //params.tenantType = 1;
+            queryname = "汽修";
+            tenantType = 1;
+            break;
+        case 2:
+        	//params.tenantType =1;
+        	tenantType = 2;
+            queryname = "汽配";
+            break;
+        case 3:
+        	//params.tenantType =3;
+        	tenantType = 3;
+            queryname = "变速箱";
+            break;
+        case 4:
+        	//params.tenantType =4;
+        	tenantType = 4;
+            queryname = "汽贸";
+            break;
+        case 5:
+        	//params.tenantType =5;
+        	tenantType = 5;
+            queryname = "汽修汽贸";
+            break;
+        case 6:
+            queryname = "所有";
+            tenantType = 6;
+            break;
+        default:
+            break;
+    }
+    var menunamedate = nui.get("menunamestatus");
+    menunamedate.setText(queryname);
+    refresh();
+ }
+   
+   
+   
+   
 	</script>
 </body>
 </html>

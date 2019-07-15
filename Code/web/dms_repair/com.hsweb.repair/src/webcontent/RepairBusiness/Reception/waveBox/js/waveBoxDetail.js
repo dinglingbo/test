@@ -391,6 +391,12 @@ $(document).ready(function ()
          save();
      } 
 	}
+	if(currIsOpenOfferRemind == "1") {
+		document.getElementById("carRemind").style.display = "";
+	}else{
+		document.getElementById("carRemind").style.display='none';
+		
+	}
     document.getElementById("showA1").style.display = "";
 	document.getElementById("showA").style.display='none';
 	nui.get("enterDate").setValue(now);
@@ -4897,4 +4903,72 @@ function showMmsg() {
 		ondestroy : function(action) {
 		}
 	});
+}
+function saleReminding(){
+    var data = billForm.getData();
+	if(data.status != 0){
+		showMsg("工单不是报价状态，不能提醒报价！","W");
+        return;        
+    }
+    if(!data.id){
+        showMsg("请先保存工单!","W");
+        return;
+    }else{
+    	nui.open({
+    		url : webPath + contextPath + "/com.hsweb.RepairBusiness.offerRemind.flow?token=" + token,
+    		title : "报价提醒",
+    		width : 800,
+    		height : 500,
+    		allowDrag : true,
+    		allowResize : true,
+    		onload : function() {
+    			var iframe = this.getIFrameEl();
+    			data.serviceId = fserviceId;
+                iframe.contentWindow.setData(data);
+    		},
+    		ondestroy : function(action) {
+    			if(action=="ok"){
+    			   main = billForm.getData();
+    			   var p1 = { }
+     		       var p2 = {
+     		       interType: "item",
+     		           data:{
+     		             serviceId: main.id||0
+     		           }
+     		        };
+     		       var p3 = {};
+     		       loadDetail(p1, p2, p3,main.status);
+    			}
+    			
+    		}
+    	});
+    }
+
+/*    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '消息推送中...'
+    });
+	nui.ajax({
+		url : pushInfoUrl,
+		type : "post",
+		data : {
+			serviceId:fserviceId
+		},
+		success : function(data) {
+			nui.unmask(document.body);
+			if(data.errCode == "S"){
+				showMsg("推送成功","S");
+			}else{
+				showMsg("推送失败","E");
+			}
+			console.log(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			nui.unmask(document.body);
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+			
+		}
+	});*/	
 }

@@ -538,6 +538,11 @@
 			                        </span>
                                 </div>
                             </td>
+                            <td>
+				                 <span id="carRemind" style="display:none">
+				                	<a id="" href="javascript:saleReminding()" class="healthview" >报价提醒</a>
+				                </span>
+			                </td>
                         </tr>
                     </table>
                 </div>

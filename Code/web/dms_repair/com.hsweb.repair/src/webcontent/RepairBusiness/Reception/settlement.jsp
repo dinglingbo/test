@@ -661,7 +661,10 @@
 	    				var discountAmt = 0;
 	    				for(var i = 0 , l = data.length ; i < l ; i++){
 	    				    if(params.name != "结账单"){
-	    				       document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML) + parseFloat(data[i].discountAmt);
+	    				       //document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML) + parseFloat(data[i].discountAmt);
+	    				       if(data[i].billPackageId == 0){//只计算套餐的优惠
+	    				           document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML) + parseFloat(data[i].discountAmt);
+	    				      }
 	    				    }
 	    					var prdtName = data[i].prdtName;
 	    					if(params.type){

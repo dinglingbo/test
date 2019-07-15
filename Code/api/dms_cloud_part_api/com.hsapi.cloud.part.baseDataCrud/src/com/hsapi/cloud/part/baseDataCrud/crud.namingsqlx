@@ -746,7 +746,8 @@
 		FROM
 			com_guest a 
 		WHERE
-			(a.orgid = 0 or a.orgid = #orgid#)
+	<!--		(a.orgid = 0 or a.orgid = #orgid#)-->
+			(a.orgid = #orgid# )
 			and a.guest_type = '01020204'
 		<dynamic>
     		<isNotEmpty prepend="and" property="isDisabled">  

@@ -9,7 +9,16 @@
       <sourceNode>start0</sourceNode>
       <targetNode>subprocess0</targetNode>
     </sourceConnections>
-    <location x="78" y="120"/>
+    <sourceConnections xsi:type="process:tLink" description="" id="link10" name="1==1" displayName="连接线" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>subprocess9</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>1==1</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <location x="76" y="45"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
@@ -24,7 +33,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="80" y="156"/>
+    <location x="78" y="81"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -244,6 +253,7 @@
       <targetNode>subprocess8</targetNode>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
+    <targetConnections>link11</targetConnections>
     <location x="1080" y="120"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess6label</nodeLabel>
@@ -339,6 +349,32 @@
     <location x="1135" y="155"/>
     <figSize height="17" width="97"/>
     <node>subprocess8</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess9" name="removeOrgCacheByName" displayName="removeOrgCacheByName" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess9</sourceNode>
+      <targetNode>subprocess6</targetNode>
+    </sourceConnections>
+    <targetConnections>link10</targetConnections>
+    <location x="454" y="46"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess9label</nodeLabel>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.system.data.sys.removeOrgCacheByName</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="nameSqlId" type="literal" value="String" valueType="Primitive" pattern="reference">com.hsapi.system.data.dictMgr.queryComMember</process:inputVariable>
+        <process:inputVariable id="1" name="orgid" type="query" value="String" valueType="Primitive" pattern="reference">orgid</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess9label" name="label" nodeType="label">
+    <location x="391" y="81"/>
+    <figSize height="17" width="152"/>
+    <node>subprocess9</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

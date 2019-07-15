@@ -281,6 +281,8 @@ $(document).ready(function()
 		            var info1 = JSON.parse(info);
 		            $("#xmTanImg2").attr("src",getCompanyLogoUrl() + info1.hash);
 		            nui.get("driveLicensePicOne").setValue(getCompanyLogoUrl() + info1.hash);
+		            var imgPath=getCompanyLogoUrl() + info1.hash;
+		            getLicense(imgPath);
 		        },
 		        'Error': function (up, err, errTip) {
 		            alert(errTip);
@@ -1797,4 +1799,51 @@ function getRegion(parentId,callback) {
             console.log(jqXHR.responseText);
         }
     });
+}
+
+function getLicense(imgPath){
+	nui.mask({
+        el : document.body,
+    	cls : 'mini-mask-loading',
+    	html : '识别中...'
+    });
+	nui.ajax({
+	    url:webPath + sysDomain +"/com.hs.common.sysService.getVehicleLicense.biz.ext",
+	    type:"post",
+	    data:{imgPath:imgPath},
+	    async:false,
+	    success:function(data)
+	    {
+	        nui.unmask();
+	        data = data.result||{};
+	        if(data.errCode && data.errCode == 'S'){
+	        	address=data.address;
+	        	legalPerson =data.legal_person;
+	        	licenseCode = data.license_code;
+	        	name= data.name;
+	        	registerMoney =data.register_money;
+	        	
+	        	nui.get('shortName').setValue(name);
+        		nui.get('fullName').setValue(name);
+        		nui.get('licenseCode').setValue(licenseCode);
+    			if(guestProperty && guestProperty!='013902'){    		
+    				var params={};
+    	        	params.licenseCode=licenseCode;
+    	        	params.noOrgId=1;
+    	        	queryCustomer(params);
+	        	}
+        		
+	        	showMsg("营业执照识别成功","S");
+	        }else{
+	            showMsg("营业执照识别失败","W");
+	            return;
+	        }
+	        
+	    },
+	    error:function(jqXHR, textStatus, errorThrown){
+	        //  nui.alert(jqXHR.responseText);
+	    	  nui.unmask();
+	        
+	    }
+	});
 }

@@ -125,7 +125,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">true</process:from>
+      <process:from type="expression" pattern="reference">true</process:from>
       <process:to type="query">page/isCount</process:to>
     </process:copy>
   </nodes>
@@ -140,6 +140,7 @@
   <process:variables/>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
+    <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>

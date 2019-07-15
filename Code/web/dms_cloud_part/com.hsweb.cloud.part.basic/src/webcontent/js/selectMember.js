@@ -22,6 +22,9 @@ $(document).ready(function(v)
 {
 	roleGrid = nui.get("roleGrid");
 	roleGrid.setUrl(roleUrl);
+	roleGrid.on("beforeload",function(e){
+        e.data.token = token;
+    });
 	roleGrid.on("preload",function(e){
 		var result=e.result;
 		var resultList=result.data;
@@ -59,7 +62,8 @@ $(document).ready(function(v)
 			frole.id = roleId;
 			frole.name = row.name;
 			var params = {
-				roleId: roleId
+				roleId: roleId,
+				token:token
 			};
 			deductMemGrid.load({
 				token:token,
@@ -203,7 +207,7 @@ function CloseWindow(action) {
 function setData(serviceId){
 	nui.get('serviceId').setValue(serviceId);
 	serviceId =serviceId;
-	haveSelectGrid.load({serviceId:serviceId,orgid:currOrgid},function(data){
+	haveSelectGrid.load({serviceId:serviceId,orgid:currOrgid,token:token},function(data){
 		var data =data.data;
 		haveSelectHash={};
 		data.forEach(function(v){

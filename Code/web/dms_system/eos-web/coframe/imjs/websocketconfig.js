@@ -1,8 +1,8 @@
 //var websocketurl="ws://192.168.122.68:2048/ws";   //ws://{ip}:{端口}/{java后端websocket配置的上下文}
 //var websocketurl="ws://192.168.122.51:8090/ws";
 //var websocketurl="ws://192.168.111.60:8090/ws";   
-var websocketurl="wss://qxy60.hszb.harsons.cn/ws";
-//var websocketurl="wss://qxy.cloud.7xdr.com/ws";
+//var websocketurl="wss://qxy60.hszb.harsons.cn/ws";
+var websocketurl="wss://qxy.cloud.7xdr.com/ws";
 var reconnectflag = false;//避免重复连接
 var socket; 
 var currentsession= currImCode;

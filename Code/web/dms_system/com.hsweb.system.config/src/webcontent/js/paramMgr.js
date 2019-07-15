@@ -132,6 +132,13 @@ function showTabInfo(){
             }
             
             break;
+        case "settlementTemplate":
+            if(!url){
+                mainTabs.loadTab(webPath + contextPath + "/config/sysPreviewTemplate.jsp?token="+token, tab);
+            }else{
+                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
+            }
+            break;
         default:
             break;
     }

@@ -354,6 +354,8 @@ function setInitData(params){
     		var errCode = text.errCode||"";
     		var data = text.maintain||{};
     		mainRow = data;
+    		status=mainRow.status;
+    		serviceCode=mainRow.serviceCode;
     		if(errCode == 'S'){
     			var p = {
     				data:{
@@ -657,7 +659,7 @@ function THSave(){
 		return;
 	}
 	if(status==0){
-		showMsg("草稿状态下的单据不能领料","W");
+		showMsg("草稿状态下的单据不能退货","W");
 		return;
 	}
 	var rows = repairOutGrid.getSelecteds();
@@ -666,12 +668,12 @@ function THSave(){
 			if(rows[i].returnSign == 0){
 				memberSelect(rows[i]);
 			}else{
-				showMsg('该条数据已归库!','W');
+				showMsg('该条数据已退货!','W');
 				return;
 			}
 		}
 	}else{
-		showMsg('请先选择需要归库的配件!','W');
+		showMsg('请先选择需要退货的配件!','W');
 	}
 
 }

@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.5.1"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.5.3"></script>
       	<script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
   	    <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
  	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
@@ -236,7 +236,7 @@ cursor: pointer;
                                     <label>发动机号：</label>
                                 </td>
                                 <td>
-                                    <input name="engineNo" class="nui-textbox" width="100%"/>
+                                    <input name="engineNo" id="engineNo" class="nui-textbox" width="100%"/>
                                 </td>
                                 <td class="form_label">
                                     <label>生产日期：</label>

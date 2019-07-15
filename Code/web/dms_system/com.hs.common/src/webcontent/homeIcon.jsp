@@ -14,8 +14,8 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
         <%@include file="/common/commonRepair.jsp"%>
-            <script src="<%=webPath + contextPath%>/common/js/homeIcon.js?v=1.2.0"></script>
-		<script src="<%=webPath + contextPath%>/common/js/jquery-1.11.3.min.js?v=1.0.5"></script>
+            <script src="<%=webPath + contextPath%>/common/js/homeIcon.js?v=1.2.1"></script>
+		<script src="<%=webPath + contextPath%>/common/js/jquery-1.11.3.min.js?v=1.0.6"></script>
 		<script src="<%=webPath + contextPath%>/common/js/jquery.dad.min.js?v=1.0.3"></script>
             <style>
                 html,

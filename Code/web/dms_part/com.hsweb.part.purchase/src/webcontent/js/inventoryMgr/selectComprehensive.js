@@ -341,6 +341,7 @@ $(document).ready(function ()
 			}
 		}
 	});
+ 
     
 });
 var statusHash = {
@@ -996,11 +997,40 @@ function activechangedmain(){
                 }
             });
 			 var billForm = new nui.Form("#billForm");
-			 billForm.setData(main);
-			 billForm.setData(car);
-			 billForm.setData(guest);
-			 billForm.setData(conta);
-			 billForm.setData(carExd);
+			 var setData = {};
+			 if(main){
+				 setData.carNo = main.carNo;
+				 setData.enterDate = main.enterDate;
+				 setData.enterOilMass = main.enterOilMass;
+				 setData.enterKilometers = main.enterKilometers;
+				 setData.lastComeKilometers = main.lastEnterKilometers || 0;
+				 setData.planFinishDate = main.planFinishDate;
+				 setData.mtAdvisor = main.mtAdvisor;
+				 setData.guestDesc = main.guestDesc;
+				 setData.faultPhen = main.faultPhen;
+				 setData.solveMethod = main.solveMethod; 
+				 setData.serviceTypeId2= servieTypeHash[main.serviceTypeId].name;
+			 }
+			
+			 if(car){
+				 setData.carModel = car.carModel;
+				 setData.carVin = car.vin;
+			 }
+			 
+			 if(carExd){
+				 setData.annualInspectionDate = carExd.annualInspectionDate || "";
+				 setData.annualInspectionCompName = carExd.annualInspectionCompName || "";
+				 setData.insureCompName = carExd.insureCompName || "";
+				 setData.insureDueDate = carExd.insureDueDate || "";
+			 }
+			 if(conta){
+				 setData.contactorName = conta.name;
+				 setData.contactorMobile = conta.mobile;
+				 setData.idNo = conta.idNo;
+				 setData.sex = conta.sex; 
+			 }
+			
+			 billForm.setData(setData);
 			 nui.unmask(document.body);
 		}
 	}

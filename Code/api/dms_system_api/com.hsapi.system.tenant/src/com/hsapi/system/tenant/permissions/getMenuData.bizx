@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getMenuData" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="报表功能结构，输出同一层级的菜单权限，但不包括本身" title="Administrator&#x9;19-2-23 上午10:57">
-    <location x="-30" y="-45"/>
-    <size height="76" width="368"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="报表功能结构，输出同一层级的菜单权限，但不包括本身&#xD;&#xA;首页快捷功能   20190716&#xD;&#xA;showBill   true显示综合开单详情&#xD;&#xA;var item={};&#xD;&#xA;    item.id = &quot;2000&quot;;&#xD;&#xA;    item.text = &quot;综合开单详情&quot;;&#xD;&#xA;    item.url = webPath + contextPath + &quot;/com.hsweb.RepairBusiness.repairBill.flow&quot;;&#xD;&#xA;    item.iconCls = &quot;fa fa-file-text&quot;;&#xD;&#xA;&#xD;&#xA;    item.id = &quot;3000&quot;;&#xD;&#xA;    item.text = &quot;洗美开单详情&quot;;&#xD;&#xA;    item.url = webPath + contextPath + &quot;/com.hsweb.RepairBusiness.carWashBill.flow&quot;;&#xD;&#xA;    item.iconCls = &quot;fa fa-file-text&quot;;&#xD;&#xA;&#xD;&#xA; item.id = &quot;4000&quot;;&#xD;&#xA;    item.text = &quot;理赔开单详情&quot;;&#xD;&#xA;    item.url = webPath + contextPath + &quot;/com.hsweb.RepairBusiness.claimDetail.flow&quot;;&#xD;&#xA;    item.iconCls = &quot;fa fa-file-text&quot;;&#xD;&#xA;&#xD;&#xA;item.id = &quot;8000&quot;;&#xD;&#xA;&#x9;item.text = &quot;波箱开单详情&quot;;&#xD;&#xA;&#x9;item.url = webPath + contextPath + &quot;/com.hsweb.bx.waveBoxDetail.flow&quot;;&#xD;&#xA;&#x9;item.iconCls = &quot;fa fa-file-text&quot;;&#xD;&#xA;&#xD;&#xA;item.id = &quot;timesCard&quot;;&#xD;&#xA;    item.text = &quot;计次卡销售&quot;;&#xD;&#xA;    item.url = webPath + contextPath + &quot;/com.hsweb.frm.manage.cardTimesSettlement.flow?token=&quot;+token;&#xD;&#xA;    item.iconCls = &quot;fa fa-file-text&quot;;&#xD;&#xA;    var params = {&#xD;&#xA;    &#x9;&#x9;xyguest:xyguest,&#xD;&#xA;    &#x9;&#x9;&#x9;cardType:1 //计次卡&#xD;&#xA;    &#x9;&#x9;};&#xD;&#xA;&#xD;&#xA;item.id = &quot;card&quot;;&#xD;&#xA;    item.text = &quot;储值卡充值&quot;;&#xD;&#xA;    item.url = webPath + contextPath + &quot;/com.hsweb.frm.manage.cardSettlement.flow?token=&quot;+token;&#xD;&#xA;    item.iconCls = &quot;fa fa-file-text&quot;;&#xD;&#xA;    var params = {&#xD;&#xA;    &#x9;&#x9;xyguest:xyguest,&#xD;&#xA;    &#x9;&#x9;&#x9;cardType:2 &#xD;&#xA;    &#x9;&#x9;};" title="Administrator&#x9;19-2-23 上午10:57">
+    <location x="-435" y="-210"/>
+    <size height="811" width="496"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -108,12 +108,12 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="getMenuData" displayName="getMenuData" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="getMenuData" displayName="" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>end0</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link6" name="link6" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link6" name="1!=1" displayName="连接线" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>invokePojo1</targetNode>
       <process:transitionCondition>
@@ -134,9 +134,10 @@
     <process:inputVariables>
       <process:inputVariable id="0" name="userId" type="query" value="java.lang.String" valueType="Java" pattern="reference">userId</process:inputVariable>
       <process:inputVariable id="1" name="type" type="query" value="java.lang.String" valueType="Java" pattern="reference">type</process:inputVariable>
+      <process:inputVariable id="2" name="showBill" type="query" value="boolean" valueType="Java" pattern="reference">showBill</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out1" type="query" value="java.util.List" valueType="Java">treeNodes</process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="java.util.List" valueType="Java">treeNodes</process:outputVariable>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
@@ -150,6 +151,7 @@
   <process:variables/>
   <process:inputs varArgs="false">
     <process:input description="app,pc" isArray="false" name="type" primitiveType="String"/>
+    <process:input description="" isArray="false" name="showBill" primitiveType="Boolean"/>
   </process:inputs>
   <process:outputs>
     <process:output anyType="java.util.List" description="" isArray="false" name="treeNodes"/>

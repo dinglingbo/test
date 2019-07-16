@@ -44,7 +44,7 @@ public class MenuUtil {
 
 
 	@Bizlet
-	public static List  getMenuData(String userId, String type)throws Throwable  {
+	public static List  getMenuData(String userId, String type, boolean showBill)throws Throwable  {
 		if(userId == null || userId == "") {
 			return null;
 		}
@@ -108,6 +108,17 @@ public class MenuUtil {
 	                }
 	            }
 	        });
+			
+			/*
+			 * 20190716修改
+			 * 判断有没有综合开单  dms_multiple_bill ，洗美开单 dms_wash_bill，理赔开单 dms_claim_bill，波箱开单 waveBox，工单；
+			 * 如果有工单  1026 则 添加计次卡销售，储值卡充值
+			 * */
+			boolean zhBillCheck = false;
+			boolean xcBillCheck = false;
+			boolean lpBillCheck = false;
+			boolean gbBillCheck = false;
+			boolean billCheck = false;
 	        
 	        List<Menu> list=new ArrayList<Menu>();
 	        for(int i = 0; i<c.size(); i++) {
@@ -143,9 +154,112 @@ public class MenuUtil {
 	    		        menu.setAppId(appId);
 	    		        menu.setParams(params);
 	    		        list.add(menu);
+	    		        
+	    		        if(showBill) {
+		    		        if(menuPrimeKey.equals("1026")) {
+		    		        	billCheck = true;
+		    		        }
+		    		        if(linkResId != null && linkResId.equals("dms_multiple_bill")) {
+		    		        	zhBillCheck = true;
+		    		        }
+		    		        if(linkResId != null && linkResId.equals("dms_wash_bill")) {
+		    		        	xcBillCheck = true;
+		    		        }
+		    		        if(linkResId != null && linkResId.equals("dms_claim_bill")) {
+		    		        	lpBillCheck = true;
+		    		        }
+		    		        if(linkResId != null && linkResId.equals("waveBox")) {
+		    		        	gbBillCheck = true;
+		    		        }
+	    		        }
+	    		        
 	        		}
 	        	}
 	        	
+	        }
+	        
+	        if(showBill) {
+		        if(zhBillCheck) {
+		        	Menu menu=new Menu();
+			        menu.setMenuPrimeKey("2000");
+			        menu.setMenuName("综合开单详情");
+			        menu.setImagePath(null);
+			        menu.setLinkAction("/com.hsweb.RepairBusiness.repairBill.flow");
+			        menu.setLinkResId(null);
+			        menu.setParentId("1026");
+			        menu.setImageColor(null);
+			        menu.setAppId(null);
+			        menu.setParams(null);
+			        list.add(menu);
+		        }
+		        
+		        if(xcBillCheck) {
+		        	Menu menu=new Menu();
+			        menu.setMenuPrimeKey("3000");
+			        menu.setMenuName("洗美开单详情");
+			        menu.setImagePath(null);
+			        menu.setLinkAction("/com.hsweb.RepairBusiness.carWashBill.flow");
+			        menu.setLinkResId(null);
+			        menu.setParentId("1026");
+			        menu.setImageColor(null);
+			        menu.setAppId(null);
+			        menu.setParams(null);
+			        list.add(menu);
+		        }
+		        
+		        if(lpBillCheck) {
+		        	Menu menu=new Menu();
+			        menu.setMenuPrimeKey("4000");
+			        menu.setMenuName("理赔开单详情");
+			        menu.setImagePath(null);
+			        menu.setLinkAction("/com.hsweb.RepairBusiness.claimDetail.flow");
+			        menu.setLinkResId(null);
+			        menu.setParentId("1026");
+			        menu.setImageColor(null);
+			        menu.setAppId(null);
+			        menu.setParams(null);
+			        list.add(menu);
+		        }
+		        
+		        if(gbBillCheck) {
+		        	Menu menu=new Menu();
+			        menu.setMenuPrimeKey("8000");
+			        menu.setMenuName("波箱开单详情");
+			        menu.setImagePath(null);
+			        menu.setLinkAction("/com.hsweb.bx.waveBoxDetail.flow");
+			        menu.setLinkResId(null);
+			        menu.setParentId("1026");
+			        menu.setImageColor(null);
+			        menu.setAppId(null);
+			        menu.setParams(null);
+			        list.add(menu);
+		        }
+		        
+		        if(billCheck) {
+		        	Menu menu=new Menu();
+			        menu.setMenuPrimeKey("timesCard");
+			        menu.setMenuName("计次卡销售");
+			        menu.setImagePath(null);
+			        menu.setLinkAction("/com.hsweb.frm.manage.cardTimesSettlement.flow");
+			        menu.setLinkResId(null);
+			        menu.setParentId("1026");
+			        menu.setImageColor(null);
+			        menu.setAppId(null);
+			        menu.setParams(null);
+			        list.add(menu);
+			        
+			        Menu menu1=new Menu();
+			        menu1.setMenuPrimeKey("card");
+			        menu1.setMenuName("储值卡充值");
+			        menu1.setImagePath(null);
+			        menu1.setLinkAction("/com.hsweb.frm.manage.cardSettlement.flow");
+			        menu1.setLinkResId(null);
+			        menu1.setParentId("1026");
+			        menu1.setImageColor(null);
+			        menu1.setAppId(null);
+			        menu1.setParams(null);
+			        list.add(menu1);
+		        }	
 	        }
 	        
 	        List<Menu> tree = TreeParser.getTreeList("", list);

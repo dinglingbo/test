@@ -133,8 +133,7 @@
 		where datediff(DATE_ADD(birthday,INTERVAL ceil(TIMESTAMPDIFF(MONTH,NOW(),birthday)/12) YEAR),NOW()) = #ln# 
 		      and orgid = #orgid#
 	</select>
-	
-	
+		
 	<!--更新套餐使用次数-->
 	<update id="updatePackageUseTimes" parameterClass="java.util.HashMap">
 		update rpb_package a

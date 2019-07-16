@@ -70,7 +70,9 @@ function loadTree(){
 	nui.ajax({
 		url : treeUrl,
 		type : 'POST',
-		data : "",
+		data : {
+			showBill:true
+		},
 		cache : false,
 		contentType : 'text/json',
 		success : function(text) {

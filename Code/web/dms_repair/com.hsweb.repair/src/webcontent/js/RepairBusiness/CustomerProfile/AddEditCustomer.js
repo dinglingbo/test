@@ -1377,7 +1377,7 @@ function getLicense(imgPath){
     	html : '识别中...'
     });
 	nui.ajax({
-	    url:webPath + sysDomain +"/com.hs.common.sysService.getVehicleLicense.biz.ext",
+	    url:apiPath+sysApi +"/com.hs.common.sysService.getVehicleLicense.biz.ext",
 	    type:"post",
 	    data:{imgPath:imgPath},
 	    async:false,

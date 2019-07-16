@@ -44,7 +44,7 @@ public class MenuUtil {
 
 
 	@Bizlet
-	public static List  getMenuData(String userId, String type)throws Throwable  {
+	public static List  getMenuData(String userId, String type, boolean showBill)throws Throwable  {
 		if(userId == null || userId == "") {
 			return null;
 		}
@@ -155,20 +155,22 @@ public class MenuUtil {
 	    		        menu.setParams(params);
 	    		        list.add(menu);
 	    		        
-	    		        if(menuPrimeKey.equals("1026")) {
-	    		        	billCheck = true;
-	    		        }
-	    		        if(linkResId.equals("dms_multiple_bill")) {
-	    		        	zhBillCheck = true;
-	    		        }
-	    		        if(linkResId.equals("dms_wash_bill")) {
-	    		        	xcBillCheck = true;
-	    		        }
-	    		        if(linkResId.equals("dms_claim_bill")) {
-	    		        	lpBillCheck = true;
-	    		        }
-	    		        if(linkResId.equals("waveBox")) {
-	    		        	gbBillCheck = true;
+	    		        if(showBill) {
+		    		        if(menuPrimeKey.equals("1026")) {
+		    		        	billCheck = true;
+		    		        }
+		    		        if(linkResId != null && linkResId.equals("dms_multiple_bill")) {
+		    		        	zhBillCheck = true;
+		    		        }
+		    		        if(linkResId != null && linkResId.equals("dms_wash_bill")) {
+		    		        	xcBillCheck = true;
+		    		        }
+		    		        if(linkResId != null && linkResId.equals("dms_claim_bill")) {
+		    		        	lpBillCheck = true;
+		    		        }
+		    		        if(linkResId != null && linkResId.equals("waveBox")) {
+		    		        	gbBillCheck = true;
+		    		        }
 	    		        }
 	    		        
 	        		}
@@ -176,85 +178,88 @@ public class MenuUtil {
 	        	
 	        }
 	        
-	        if(zhBillCheck) {
-	        	Menu menu=new Menu();
-		        menu.setMenuPrimeKey("2000");
-		        menu.setMenuName("综合开单详情");
-		        menu.setImagePath(null);
-		        menu.setLinkAction("/com.hsweb.RepairBusiness.repairBill.flow");
-		        menu.setLinkResId(null);
-		        menu.setParentId("1026");
-		        menu.setImageColor(null);
-		        menu.setAppId(null);
-		        menu.setParams(null);
-		        list.add(menu);
-	        }
-	        
-	        if(xcBillCheck) {
-	        	Menu menu=new Menu();
-		        menu.setMenuPrimeKey("3000");
-		        menu.setMenuName("洗美开单详情");
-		        menu.setImagePath(null);
-		        menu.setLinkAction("/com.hsweb.RepairBusiness.carWashBill.flow");
-		        menu.setLinkResId(null);
-		        menu.setParentId("1026");
-		        menu.setImageColor(null);
-		        menu.setAppId(null);
-		        menu.setParams(null);
-		        list.add(menu);
-	        }
-	        
-	        if(lpBillCheck) {
-	        	Menu menu=new Menu();
-		        menu.setMenuPrimeKey("4000");
-		        menu.setMenuName("理赔开单详情");
-		        menu.setImagePath(null);
-		        menu.setLinkAction("/com.hsweb.RepairBusiness.claimDetail.flow");
-		        menu.setLinkResId(null);
-		        menu.setParentId("1026");
-		        menu.setImageColor(null);
-		        menu.setAppId(null);
-		        menu.setParams(null);
-		        list.add(menu);
-	        }
-	        
-	        if(gbBillCheck) {
-	        	Menu menu=new Menu();
-		        menu.setMenuPrimeKey("8000");
-		        menu.setMenuName("波箱开单详情");
-		        menu.setImagePath(null);
-		        menu.setLinkAction("/com.hsweb.bx.waveBoxDetail.flow");
-		        menu.setLinkResId(null);
-		        menu.setParentId("1026");
-		        menu.setImageColor(null);
-		        menu.setAppId(null);
-		        menu.setParams(null);
-		        list.add(menu);
-	        }
-	        
-	        if(billCheck) {
-	        	Menu menu=new Menu();
-		        menu.setMenuPrimeKey("timesCard");
-		        menu.setMenuName("计次卡销售");
-		        menu.setImagePath(null);
-		        menu.setLinkAction("/com.hsweb.frm.manage.cardTimesSettlement.flow");
-		        menu.setLinkResId(null);
-		        menu.setParentId("1026");
-		        menu.setImageColor(null);
-		        menu.setAppId(null);
-		        menu.setParams(null);
-		        list.add(menu);
+	        if(showBill) {
+		        if(zhBillCheck) {
+		        	Menu menu=new Menu();
+			        menu.setMenuPrimeKey("2000");
+			        menu.setMenuName("综合开单详情");
+			        menu.setImagePath(null);
+			        menu.setLinkAction("/com.hsweb.RepairBusiness.repairBill.flow");
+			        menu.setLinkResId(null);
+			        menu.setParentId("1026");
+			        menu.setImageColor(null);
+			        menu.setAppId(null);
+			        menu.setParams(null);
+			        list.add(menu);
+		        }
 		        
-		        menu.setMenuPrimeKey("card");
-		        menu.setMenuName("储值卡充值");
-		        menu.setImagePath(null);
-		        menu.setLinkAction("/com.hsweb.frm.manage.cardSettlement.flow");
-		        menu.setLinkResId(null);
-		        menu.setParentId("1026");
-		        menu.setImageColor(null);
-		        menu.setAppId(null);
-		        menu.setParams(null);
-		        list.add(menu);
+		        if(xcBillCheck) {
+		        	Menu menu=new Menu();
+			        menu.setMenuPrimeKey("3000");
+			        menu.setMenuName("洗美开单详情");
+			        menu.setImagePath(null);
+			        menu.setLinkAction("/com.hsweb.RepairBusiness.carWashBill.flow");
+			        menu.setLinkResId(null);
+			        menu.setParentId("1026");
+			        menu.setImageColor(null);
+			        menu.setAppId(null);
+			        menu.setParams(null);
+			        list.add(menu);
+		        }
+		        
+		        if(lpBillCheck) {
+		        	Menu menu=new Menu();
+			        menu.setMenuPrimeKey("4000");
+			        menu.setMenuName("理赔开单详情");
+			        menu.setImagePath(null);
+			        menu.setLinkAction("/com.hsweb.RepairBusiness.claimDetail.flow");
+			        menu.setLinkResId(null);
+			        menu.setParentId("1026");
+			        menu.setImageColor(null);
+			        menu.setAppId(null);
+			        menu.setParams(null);
+			        list.add(menu);
+		        }
+		        
+		        if(gbBillCheck) {
+		        	Menu menu=new Menu();
+			        menu.setMenuPrimeKey("8000");
+			        menu.setMenuName("波箱开单详情");
+			        menu.setImagePath(null);
+			        menu.setLinkAction("/com.hsweb.bx.waveBoxDetail.flow");
+			        menu.setLinkResId(null);
+			        menu.setParentId("1026");
+			        menu.setImageColor(null);
+			        menu.setAppId(null);
+			        menu.setParams(null);
+			        list.add(menu);
+		        }
+		        
+		        if(billCheck) {
+		        	Menu menu=new Menu();
+			        menu.setMenuPrimeKey("timesCard");
+			        menu.setMenuName("计次卡销售");
+			        menu.setImagePath(null);
+			        menu.setLinkAction("/com.hsweb.frm.manage.cardTimesSettlement.flow");
+			        menu.setLinkResId(null);
+			        menu.setParentId("1026");
+			        menu.setImageColor(null);
+			        menu.setAppId(null);
+			        menu.setParams(null);
+			        list.add(menu);
+			        
+			        Menu menu1=new Menu();
+			        menu1.setMenuPrimeKey("card");
+			        menu1.setMenuName("储值卡充值");
+			        menu1.setImagePath(null);
+			        menu1.setLinkAction("/com.hsweb.frm.manage.cardSettlement.flow");
+			        menu1.setLinkResId(null);
+			        menu1.setParentId("1026");
+			        menu1.setImageColor(null);
+			        menu1.setAppId(null);
+			        menu1.setParams(null);
+			        list.add(menu1);
+		        }	
 	        }
 	        
 	        List<Menu> tree = TreeParser.getTreeList("", list);

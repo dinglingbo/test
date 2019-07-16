@@ -152,7 +152,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -230,7 +230,6 @@
     <location x="403" y="150"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
-    <process:condition/>
     <process:iterate iterable="menuList" iterableElement="menu"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -380,8 +379,8 @@
         <process:inputVariable id="0" name="nameSqlId" type="literal" value="String" valueType="Primitive" pattern="reference">com.hs.common.orga.queryComAppFunction</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -391,10 +390,15 @@
     <node>subprocess6</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess7" name="清除资源数据1" displayName="removeCacheByName" collapsed="false" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess7</sourceNode>
       <targetNode>subprocess6</targetNode>
-      <process:transitionCondition/>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
     <location x="-38" y="149"/>
@@ -416,7 +420,7 @@
     <figSize height="17" width="80"/>
     <node>subprocess7</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" id="invokePojo1" name="getAppFunction" displayName="getAppFunction" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="getAppFunction" displayName="getAppFunction" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>loopstart0</targetNode>
@@ -426,13 +430,13 @@
     <location x="330" y="148"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
-    <process:pojo synchronization="true">
-      <process:partner>com.hs.common.ResauthUtils.getAppFunction</process:partner>
-      <process:instance/>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.ResauthUtils.getAppFunction</process:partner>
+      <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables/>
     <process:outputVariables>
-      <process:outputVariable name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java"/>
+      <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java"></process:outputVariable>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
@@ -463,7 +467,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>

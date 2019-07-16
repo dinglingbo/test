@@ -2018,7 +2018,10 @@ function audit()
     
     sellOrderDetailList = removeChanges(sellOrderDetailAdd, sellOrderDetailUpdate, sellOrderDetailDelete, sellOrderDetailList);
     
-    var cangHash=getCangHash(data,sellOrderDetailList);
+    var cangHash ="";
+	if(currIsOpenApp ==1){
+		cangHash=getCangHash(data,detailData);
+	}
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
@@ -2935,6 +2938,10 @@ function getCangHash(data,detailData){
 		var warehouse=[];
 		var warehousetemp={};
 		var part_id=detailData[i].partId;
+		if(!partHash[part_id].cangPartId){
+			showMsg("该配件未同步仓先生","W");
+			return;
+		}
 		temp.part_id=partHash[part_id].cangPartId || "" ;
 		if(!temp.part_id){
 			showMsg("该配件未同步仓先生","W");

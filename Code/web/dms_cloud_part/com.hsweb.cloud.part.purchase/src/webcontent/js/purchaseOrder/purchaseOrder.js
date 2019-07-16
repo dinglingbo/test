@@ -82,6 +82,7 @@ var storeLimitMap={};
 var storeShelfList=[];
 var storeShelfHash={}
 var partHash={};
+var orderTypeList=[{"id":1,"name":"常规订单"},{"id":2,"name":"备货订单"},{"id":3,"name":"急件订单"}];
 $(document).ready(function(v) {
 	nui.mask({
         el: document.body,
@@ -119,6 +120,8 @@ $(document).ready(function(v) {
 	advancedTipWin = nui.get("advancedTipWin");
 	setPriceWin=nui.get("setPriceWin");
 	guestIdEl=nui.get('guestId');
+	orderTypeEl =nui.get("orderType");
+	orderTypeEl.setData(orderTypeList);
 	//setTimeout(function(){ 
 	document.getElementById("formIframe").src=webPath + contextPath + "/common/embedJsp/containBottom.jsp";
 	document.getElementById("formIframePart").src=webPath + contextPath + "/common/embedJsp/containPartInfo.jsp";
@@ -2142,10 +2145,12 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 				var pchsOrderDetailUpdate = rightGrid.getChanges("modified");
 				var pchsOrderDetailDelete = rightGrid.getChanges("removed");
 				var pchsOrderDetailUpdate = getModifyData(detailData, pchsOrderDetailAdd, pchsOrderDetailDelete);
+				var cangHash ="";
+				if(currIsOpenApp ==1){
+					cangHash=getCangHash(data,detailData);
+				}
 				
-				var cangHash=getCangHash(data,detailData);
 				
-	
 				nui.mask({
 					el : document.body,
 					cls : 'mini-mask-loading',
@@ -2214,7 +2219,10 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 				var pchsOrderDetailDelete = rightGrid.getChanges("removed");
 				var pchsOrderDetailUpdate = getModifyData(detailData, pchsOrderDetailAdd, pchsOrderDetailDelete);
 	
-				var cangHash=getCangHash(data,detailData);
+				var cangHash ="";
+				if(currIsOpenApp ==1){
+					cangHash=getCangHash(data,detailData);
+				}
 				nui.mask({
 					el : document.body,
 					cls : 'mini-mask-loading',
@@ -3360,6 +3368,10 @@ function getCangHash(data,detailData){
 		var warehouse=[];
 		var warehousetemp={};
 		var part_id=detailData[i].partId;
+		if(!partHash[part_id].cangPartId){
+			showMsg("该配件未同步仓先生","W");
+			return;
+		}
 		temp.part_id=partHash[part_id].cangPartId ;
 		if(!temp.part_id){
 			showMsg("该配件未同步仓先生","W");

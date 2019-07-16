@@ -309,6 +309,7 @@ $(document).ready(function(v)
     }
 	//开启APP
     if(currIsOpenApp ==1){
+  	  nui.get('unAuditBtn').setVisible(false);
   	  getStoreLocation();
 //  	  getPart();
     }

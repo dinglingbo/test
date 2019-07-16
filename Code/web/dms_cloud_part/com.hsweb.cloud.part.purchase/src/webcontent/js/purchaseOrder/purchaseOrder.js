@@ -414,7 +414,7 @@ function getStratePrice(partId){
 			var length=partPriceList.length;
 			partPriceList.forEach(function(v){
 				partPriceHash[v.name]=v;			
-				StratePrice[partId]=partPriceHash;
+				StratePrice[v.partId+"-"+v.name]=partPriceHash;
 			});
 
 		},error : function(jqXHR, textStatus, errorThrown) {
@@ -1175,8 +1175,8 @@ function savePrice(){
 			if(gridData[i][key]){
 				var partId=gridData[i].partId;
 				//匹配
-				if(StratePrice[partId][StrateHash[key].name]){
-					var obj=StratePrice[partId][StrateHash[key].name];
+				if(StratePrice[partId+"-"+StrateHash[key].name]){
+					var obj=StratePrice[partId+"-"+StrateHash[key].name][StrateHash[key].name];
 					obj.sellPrice=gridData[i][key];
 					data.push(obj);
 				}		
@@ -1410,9 +1410,9 @@ function onRightGridDraw(e) {
 //	}
 	if(partPriceHash[header]){
 		if(header==partPriceHash[header].name){
-			if(StratePrice[record.partId] && !e.value){
-				e.cellHtml = StratePrice[record.partId][header].sellPrice||"";
-				e.value= StratePrice[record.partId][header].sellPrice||"";
+			if(StratePrice[record.partId+"-"+header] && !e.value){
+				e.cellHtml = StratePrice[record.partId+"-"+header][header].sellPrice||"";
+				e.value= StratePrice[record.partId+"-"+header][header].sellPrice||"";
 			}
 		}
 	}
@@ -3472,12 +3472,13 @@ function getStratePriceList(params){
 			partPriceList.forEach(function(v){
 				partPriceHash={};
 				partPriceHash[v.name]=v;	
-//				if(partPriceHash[v.name].partId ==v.partId){
-				StratePrice[v.partId]=partPriceHash;
-				
-//				}
+				StratePrice[v.partId+"-"+v.name]=partPriceHash;
 				
 			});
+			partPriceList.forEach(function(v){
+				partPriceHash[v.name]=v;	
+			});
+			
 
 		},error : function(jqXHR, textStatus, errorThrown) {
 			// nui.alert(jqXHR.responseText);

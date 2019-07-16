@@ -10,7 +10,7 @@
 -->
 <head>
 <title>已结算工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.1.1"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.1.2"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -237,6 +237,7 @@
 		       <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center" name="saleMan"></div>
 		       <div field="saleManId" headerAlign="center"   allowSort="false" visible="false" width="80" header="销售员" align="center"></div>
 		       <div field="remark" headerAlign="center"   allowSort="false" visible="true" width="80" header="备注" align="center"></div>
+		       <div field="prdtCode" headerAlign="center" allowSort="false" visible="true" width="80" header="配件编码" align="center"></div>
 	      </div>
 	   </div>
 	    </div>
@@ -260,6 +261,7 @@
 		           <div field="workerIds" headerAlign="center" allowSort="false" visible="false" width="80" header="施工员" align="center"></div>  
 		           <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center" name="saleMan"></div>
 		           <div field="saleManId" headerAlign="center" allowSort="false" visible="false" width="80" header="销售员" align="center"></div>
+		           <div field="prdtCode" headerAlign="center" allowSort="false" visible="true" width="80" header="配件编码" align="center"></div>
 		     </div>
 		  </div>
 	    </div>
@@ -313,6 +315,7 @@
 	            </div>
 	             <div field="discountAmt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">折扣金额
 	            </div>
+	            <div field="itemCode" headerAlign="center" allowSort="false" visible="true" width="80" header="配件编码" align="center"></div>
 	        </div>
 	    </div>
 	 </div>

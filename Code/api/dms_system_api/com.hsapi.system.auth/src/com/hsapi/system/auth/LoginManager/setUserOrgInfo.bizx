@@ -279,6 +279,10 @@
       <process:to type="query">m:userObject/attributes/isOpenOfferRemind</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">billParams/repairSettPrintUrl</process:from>
+      <process:to type="query">m:userObject/attributes/repairSettPrintUrl</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject</process:from>
       <process:to type="query">userObject</process:to>
     </process:copy>
@@ -685,7 +689,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="data" type="query" value="java.util.HashMap[]" valueType="Java">memberList</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

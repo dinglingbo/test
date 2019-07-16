@@ -134,7 +134,9 @@
 	//派工是否默认开启微信提醒
 	String isOpenWeChatRemind = "0";	
 	//是否开启报价提醒
-	String isOpenOfferRemind = "0";	
+	String isOpenOfferRemind = "0";
+	//结算打印单路径
+	String repairSettPrintUrl = "";	
 	
 	String source = "";
 	String orgJsonStr = "";
@@ -338,6 +340,11 @@
 	                if(billParams.get("isCommission") != null){
 	                	isCommission = billParams.get("isCommission").toString();
 	                }
+	                //结算单打印界面
+	                if(billParams.get("repairSettPrintUrl") != null){
+	                	repairSettPrintUrl = billParams.get("repairSettPrintUrl").toString();
+	                }
+	                
                 }
               
                 
@@ -426,6 +433,7 @@
 	var currAgencyId ="<%=agencyId %>";
 	var currIsSalesman = "<%=isSalesman %>";
 	var currIsCommission ="<%=isCommission %>";
+	var currRepairSettPrintUrl ="<%=repairSettPrintUrl %>";
     //alert("token=" + token);
     
     /* var _sysMsg_;

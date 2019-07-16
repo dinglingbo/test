@@ -77,6 +77,10 @@
       <process:from type="expression" pattern="reference">new Date()</process:from>
       <process:to type="query">d</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">beginDate</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="223" y="202"/>
@@ -413,6 +417,22 @@
     <process:copy>
       <process:from type="expression" pattern="reference">new Date()</process:from>
       <process:to type="query">endDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">ln</process:from>
+      <process:to type="query">p/ln</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orgid</process:from>
+      <process:to type="query">p/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">d</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">beginDate</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">

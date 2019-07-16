@@ -322,6 +322,18 @@
       <process:from type="expression" pattern="reference">new Date()</process:from>
       <process:to type="query">endDate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tday</process:from>
+      <process:to type="query">p/tday</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orgid</process:from>
+      <process:to type="query">p/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">beginDate</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
     <location x="392" y="439"/>
@@ -341,7 +353,7 @@
     <process:flow index="7" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.system.employee.slog.saveTimerExecuteLog</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="title" type="literal" value="String" valueType="Primitive" pattern="reference">保养提醒</process:inputVariable>
+        <process:inputVariable id="0" name="title" type="literal" value="String" valueType="Primitive" pattern="reference">流失回访</process:inputVariable>
         <process:inputVariable id="1" name="interfaceName" type="literal" value="String" valueType="Primitive" pattern="reference">com.hsapi.repair.repairService.repairInterface.genrateLostVisit.biz.ext</process:inputVariable>
         <process:inputVariable id="2" name="params" type="query" value="String" valueType="Primitive" pattern="reference">pStr</process:inputVariable>
         <process:inputVariable id="3" name="totalNums" type="expression" value="String" valueType="Primitive" pattern="reference">maintainList.length</process:inputVariable>

@@ -68,7 +68,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userId</process:from>
-      <process:to type="query">ct/_expr[1]/user_id</process:to>
+      <process:to type="query">ct/_expr[1]/userId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
@@ -76,7 +76,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">ct/_expr[2]/orgId</process:to>
+      <process:to type="query">ct/_expr[2]/orgid</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>

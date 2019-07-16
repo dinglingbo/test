@@ -3875,7 +3875,7 @@ function onPrint(e){
             serviceId : main.id,
             isSettle : main.isSettle
 		};
-		if(e==3 || e==4 || e==9 || e==10){
+		if(e==3 || e==4 || e==10){
 			if(main.status==2){
 				doPrint(params);
 			}else{

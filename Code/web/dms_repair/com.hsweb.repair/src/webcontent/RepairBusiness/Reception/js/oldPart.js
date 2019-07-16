@@ -109,6 +109,7 @@ function sure() {
 			var newRow = {};
 			newRow.serviceCode = data[i].工单号||"";
 			newRow.partName = data[i].配件名称||"";
+			newRow.partCode = data[i].配件编码||"";			
 			newRow.partBrandId = data[i].配件品牌||"";
 			newRow.qty = data[i].数量||"";
 			newRow.unitPrice = data[i].单价||"";

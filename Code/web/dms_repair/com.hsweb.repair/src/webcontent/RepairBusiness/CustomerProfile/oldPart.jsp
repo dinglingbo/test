@@ -11,7 +11,7 @@
 <title>工单配件导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/oldPart.js?v=1.1.1"></script>
+<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/oldPart.js?v=1.1.2"></script>
 <style type="text/css">
 
 
@@ -74,6 +74,8 @@
 
 									<div field="配件名称" headerAlign="center" allowSort="true" width="60px">
 										*配件名称</div>
+									<div field="配件编码" headerAlign="center" allowSort="true" width="60px">
+										配件编码</div>
 									<div field="配件品牌" headerAlign="center" allowSort="true" width="60px">
 										配件品牌</div>
 									<div field="数量" headerAlign="center" allowSort="true" width="100px">

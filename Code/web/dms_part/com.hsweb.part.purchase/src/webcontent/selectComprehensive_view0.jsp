@@ -799,9 +799,6 @@
 				         <div  class="nui-checkbox" id="isCollectMoney" name="isCollectMoney" value="1"  trueValue="1" falseValue="0"></div> 
 					</td>
 				</tr>	 -->								
-
-                       
-                        
 			</table>
 			<div style="text-align: center; padding: 10px;">
 				<a class="nui-button" onclick="onAdvancedSearchOk" style="width: 60px; margin-right: 20px;">确定</a>

@@ -12,7 +12,7 @@
 <head>
     <title>添加员工</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/js/homePageEmployeeEdit.js?v=1.1.0" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/common/js/homePageEmployeeEdit.js?v=1.1.1" type="text/javascript"></script>
     <style type="text/css">
     .table-text-width{
         width:18%;

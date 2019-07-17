@@ -31,7 +31,7 @@
                 <td style="width:100%;">
                 	 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="deleteRole()" id="deletBtn"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
                 </td>
                 <td style="white-space:nowrap;">
                 	<input id="roleName" name="roleName" class="nui-textbox" style="width:200px;" onenter="queryRole" emptyText="请输入角色名称" />
@@ -51,7 +51,6 @@
                 onselectionchanged="onLeftGridSelectionChanged"
                 showPagerButtonIcon="true" 
                 >
-                
                 <div property="columns">
                     <div type="indexcolumn" name="index" width="30px" headeralign="center" >  <strong>序号</strong></div>
                      <div field="tenantId" width="140" headeralign="left" visible="true"><strong>租户ID</strong></div>

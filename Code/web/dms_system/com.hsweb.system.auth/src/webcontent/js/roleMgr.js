@@ -11,13 +11,26 @@ var leftGrid;
 var roleForm;
 var action;
 var mainTabs = null;
-
+//租户类型：1，汽修店，2汽配店，3变速箱维修店，4汽贸店，5汽贸汽修综合店
+var tenantTypeHash = {
+		"1":"汽修店",
+		"2":"汽配店",
+		"3":"变速箱维修店",
+		"4":"汽贸店",
+		"5":"汽贸汽修综合店"
+};
 $(document).ready(function(v) {
 	leftGrid = nui.get("leftGrid");
 	leftGrid.setUrl(leftGridUrl);
     roleForm = new nui.get("#roleForm");
     mainTabs = nui.get("mainTabs");
-
+    leftGrid.on("drawcell", function (e) {
+       var record = e.record;
+       var uid = record._uid;
+       if(e.field=="tenantType"){
+          e.cellHtml = tenantTypeHash[e.value];
+       }
+    }); 
 	queryTenant();
 });
 

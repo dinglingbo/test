@@ -81,18 +81,18 @@
             <div class="nui-fit" >
             <div id="leftGrid" class="nui-datagrid" dataField="rs" style="width: 100%; height: 100%;" 
                 idField="tenantId" allowResize="true"
-                sizeList="[20,50,100]" 
+                sizeList="[20,50,100]"  
                 pageSize="20" 
                 totalField="page.count" 
                 showPager="true" 
                 onselectionchanged="onLeftGridSelectionChanged"
                 showPagerButtonIcon="true" >
-                
                 <div property="columns">
-                    <div type="indexcolumn" name="index" width="30px" headeralign="center" >  <strong>序号</strong></div>
+                    <div type="indexcolumn" name="index" width="30px" headeralign="center" ><strong>序号</strong></div>
                     <div field=tenantName width="140" headeralign="left" ><strong>租户名称</strong></div>
-                    <div field="tenantType" width="140" headeralign="left" visible="false"><strong>租户类型</strong></div>
-                    <div field="tenantId" width="140" headeralign="left" visible="false"><strong>租户ID</strong></div>
+                    <div field="tenantType" width="100" headeralign="left" visible="true"><strong>租户类型</strong></div>
+                    <div field="tenantId" width="50" headeralign="left" visible="true"><strong>租户ID</strong></div>
+                    
                 </div>
             </div> 
             </div>

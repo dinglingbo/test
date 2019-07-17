@@ -12,13 +12,13 @@
 <script src="<%=webPath + contextPath%>/purchase/js/purchaseOrder/purchaseOrder.js?v=1.0.105"></script>
 <style type="text/css">
 .title {
-  width: 60px;
+  width: 70px;
   text-align: right;
 }
 
 .title.required {
   color: red;
-  width :6%;
+
 }
 .title.tip {
   color: blue;

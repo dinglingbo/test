@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="updateFunction.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="&#xD;&#xA;com_cap_resauth  1 role&#xD;&#xA;com_tenant_menu  default  1&#xD;&#xA;&#xD;&#xA;appfunction   funcdesc存放 APP,PC&#xD;&#xA;&#xD;&#xA;com.hs.common.orga.queryAppFunctionInfo 资源详情数据  resId   （受 菜单和应用功能 影响）" title="Administrator&#x9;18-12-12 下午6:15">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="&#xD;&#xA;com_cap_resauth  1 role&#xD;&#xA;com_tenant_menu  default  1&#xD;&#xA;&#xD;&#xA;appfunction   funcdesc存放 APP,PC&#xD;&#xA;&#xD;&#xA;1、com_tenant_menu:orgid=0，表示管理员可以维护该资源&#xD;&#xA;2、com_cap_resauth(角色对应资源表):partyId=1，表示管理员这个角色（roledId=1），有这个资源权限&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;com.hs.common.orga.queryAppFunctionInfo 资源详情数据  resId   （受 菜单和应用功能 影响）" title="Administrator&#x9;18-12-12 下午6:15">
     <location x="19" y="-30"/>
-    <size height="121" width="273"/>
+    <size height="151" width="300"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -213,7 +213,7 @@
       <process:to type="query">comTenantMenu/tenantId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
+      <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">comTenantMenu/orgid</process:to>
     </process:copy>
     <process:copy>
@@ -351,7 +351,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -467,7 +467,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

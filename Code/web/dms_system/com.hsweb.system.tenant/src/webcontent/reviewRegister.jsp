@@ -46,9 +46,11 @@
 					<a class="nui-button"  plain="true" href="javascript:query();" id="query" enabled="true"  onclick="superSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 					<a class="nui-button"  plain="true" href="" id="query" enabled="true"  onclick="OrgShow"><span class="fa fa-search fa-lg"></span>&nbsp;查看</a>
 <!-- 					<a class="nui-button"  plain="true"	 id="sh" enabled="true"  onclick="audit"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a> -->
-					<a class="nui-button"  plain="true"	 id="sh" enabled="true"  onclick="auditPart"><span class="fa fa-check fa-lg"></span>&nbsp;认证为汽配商</a>
-					<a class="nui-button"  plain="true"	 id="sh" enabled="true"  onclick="auditRepair"><span class="fa fa-check fa-lg"></span>&nbsp;认证为汽修商</a>
-					<a class="nui-button"  plain="true"	 id="sh" enabled="true"  onclick="auditGearBox"><span class="fa fa-check fa-lg"></span>&nbsp;认证为变速箱专修商</a>
+					<a class="nui-button"  plain="true"	 id="sh" enabled="true"  onclick="auditRepair(2)"><span class="fa fa-check fa-lg"></span>&nbsp;认证为汽配商</a>
+					<a class="nui-button"  plain="true"	 id="sh" enabled="true"  onclick="auditRepair(1)"><span class="fa fa-check fa-lg"></span>&nbsp;认证为汽修商</a>
+					<a class="nui-button"  plain="true"	 id="sh" enabled="true"  onclick="auditRepair(3)"><span class="fa fa-check fa-lg"></span>&nbsp;认证为变速箱专修商</a>
+					<a class="nui-button"  plain="true"	 id="sh" enabled="true"  onclick="auditRepair(4)"><span class="fa fa-check fa-lg"></span>&nbsp;认证为汽贸商</a>
+					<a class="nui-button"  plain="true"	 id="sh" enabled="true"  onclick="auditRepair(5)"><span class="fa fa-check fa-lg"></span>&nbsp;认证为汽贸汽修综合商</a>
 					<a class="nui-button"  plain="true"	 id="jy" name="jy" enabled="true"  onclick="stopUse"><span class="fa fa-ban fa-lg"></span>&nbsp;禁用</a>
 					<a class="nui-button"  plain="true" visible="false"	 id="qy" name="qy" enabled="true"  onclick="stopUse"><span class="fa fa-check-circle fa-lg"></span>&nbsp;启用</a>
 			 	</td>

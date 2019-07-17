@@ -9,7 +9,7 @@
 -->
 <head>
 <title>月结对账</title>
-<script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.2.3"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.2.9"></script>
 <style type="text/css">
 .title {
   width: 85px;
@@ -177,7 +177,8 @@
                                              width="87%"
                                              placeholder="请选择往来单位"
                                              selectOnFocus="true" />
-                                      	<input id="btnEdit1" width="8%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/>
+                                          <a class="nui-button" iconCls="" plain="false" onclick="selectSupplier('guestId')" id="addBtn"><span class="fa fa-check fa-lg"></span></a>
+<!--                                       	<input id="btnEdit1" width="8%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/> -->
                                       </td>
                                       <td class="title required">
                                           <label>对账员：</label>

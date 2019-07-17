@@ -1058,7 +1058,7 @@ function submit()
     sellOrderDetailList = removeChanges(sellOrderDetailAdd, sellOrderDetailUpdate, sellOrderDetailDelete, sellOrderDetailList);
     var cangHash ="";
 	if(currIsOpenApp ==1){
-		cangHash=getCangHash(data,detailData);
+		cangHash=getCangHash(data,sellOrderDetailList);
 	}
 
     nui.mask({

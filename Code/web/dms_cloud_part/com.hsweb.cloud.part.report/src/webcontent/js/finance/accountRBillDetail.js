@@ -37,7 +37,7 @@ function doSearch() {
 	var params = {};
     params.settleStatus = settleStatusEl.getValue();
 	params.startDate = beginDateEl.getFormValue();
-    params.endDate = endDateEl.getValue();
+    params.endDate = endDateEl.getFormValue();;
     params.guestId = advanceGuestIdEl.getValue();
     params.billDc = 1;
 

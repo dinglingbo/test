@@ -258,8 +258,8 @@
                               <td colspan=""><input id="tel" name="tel" width="100%" class="nui-textbox" ></td>
                           </tr>
                           <tr class="htr">
-                              <td class=" right fwidthb">邮箱:</td>
-                              <td ><input id="email" name="email" width="100%" class="nui-textbox" ></td>
+                              <td class=" right fwidtha">信誉额度:</td>
+                              <td ><input id="creditLimit" name="creditLimit" width="100%" class="nui-textbox" ></td>
                               <td class=" right fwidtha">QQ/微信:</td>
                               <td ><input id="instantMsg" name="instantMsg" width="100%" class="nui-textbox" ></td>
                           </tr>
@@ -330,8 +330,11 @@
                           <tr class="htr">
                               <td class=" right fwidthb">会员等级:</td>
                               <td ><input id="memLevel" name="memLevel" width="100%" class="nui-textbox" ></td>
-                              <td class=" right fwidtha">信誉额度:</td>
-                              <td ><input id="creditLimit" name="creditLimit" width="100%" class="nui-textbox" ></td>
+                              <td class=" right fwidthb">邮政编码:</td>
+                              <td>
+                                  <input id="postalCode" name="postalCode" width="100%" class="nui-textbox" >
+                              </td>
+                             
                           </tr>  
                           <tr class="htr" style="display :none;" id="otherPicture">
                               <td class=" right fwidthb">上传其他图片:</td>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getTemplateRole.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="店长&#xD;&#xA;服务主管&#xD;&#xA;服务顾问&#xD;&#xA;客服主管&#xD;&#xA;客服助理&#xD;&#xA;维修组长&#xD;&#xA;维修技师&#xD;&#xA;配件主管&#xD;&#xA;配件助理&#xD;&#xA;收银&#xD;&#xA;会计&#xD;&#xA;出纳&#xD;&#xA;管理员" title="Administrator&#x9;18-12-11 下午8:27">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="店长&#xD;&#xA;服务主管&#xD;&#xA;服务顾问&#xD;&#xA;客服主管&#xD;&#xA;客服助理&#xD;&#xA;维修组长&#xD;&#xA;维修技师&#xD;&#xA;配件主管&#xD;&#xA;配件助理&#xD;&#xA;收银&#xD;&#xA;会计&#xD;&#xA;出纳&#xD;&#xA;管理员&#xD;&#xA;根据不同租户类型的tenantId查询所对应的角色模板" title="Administrator&#x9;18-12-11 下午8:27">
     <location x="104" y="-150"/>
     <size height="271" width="204"/>
   </nodes>
@@ -46,20 +46,12 @@
       <process:to type="query">cd/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">type</process:from>
-      <process:to type="query">cd/_expr[1]/roleDesc</process:to>
+      <process:from type="query" pattern="reference">inx</process:from>
+      <process:to type="query">cd/_expr[1]/tenantId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cd/_expr[1]/_op</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">cd/_expr[2]/tenantId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">cd/_expr[2]/_op</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">createtime</process:from>
@@ -104,7 +96,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cd"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="PART,REPAIR" isArray="false" name="type" primitiveType="String"/>
+    <process:input description="" isArray="false" name="inx" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.system.data.sys.CapRole" name="capRoleList"/>

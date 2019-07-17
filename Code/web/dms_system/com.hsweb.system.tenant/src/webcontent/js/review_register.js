@@ -371,10 +371,32 @@ function auditPart(){
 	
 }
 
-function auditRepair(){
+function auditRepair(e){
+	var str = "";
+	var type = "";
+	if(e==1){
+		str = "是否确定认证为汽修商？";
+		type = "REPAIR";
+	}
+	if(e==2){
+		str = "是否确定认证为汽配商？";
+		type = "PART";
+	}
+	if(e==3){
+		str = "是否确定认证为变速箱专修商？";
+		type = "GEARBOX";
+	}
+	if(e==4){
+		str = "是否确定认证为汽贸商？";
+		type = "SALE";
+	}
+	if(e==5){
+		str = "是否确定认证为汽贸汽修综合商？";
+		type = "SALEREPAIR";
+	}
 	var s=dgGrid.getSelected ();
 	if(s){
-		  nui.confirm("是否确定认证为汽修商？", "友情提示",function(action){
+		  nui.confirm(str, "友情提示",function(action){
 		       if(action == "ok"){
 		    	   nui.mask({
 		               el : document.body,
@@ -387,7 +409,7 @@ function auditRepair(){
 		               type : "post",
 		               data : JSON.stringify({
 		                   reg: s,
-		                   type :'REPAIR',
+		                   type :type,
 		                   token:token
 		               }),
 		               success : function(data) {

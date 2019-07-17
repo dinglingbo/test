@@ -1234,7 +1234,7 @@
 				b.car_model carModel,
 				c.last_come_kilometers lastComeKilometers,
 				c.last_come_date lastComeDate,
-				datediff(DATE_ADD(birthday,INTERVAL ceil(TIMESTAMPDIFF(MONTH,NOW(),a.birthday)/12) YEAR),NOW()) birComeDay
+				datediff(( DATE_FORMAT(a.birthday, '%m%d')+0),( DATE_FORMAT(curdate(), '%m%d')+0)) birComeDay
 			FROM
 				wb_repair.rpb_contactor a
 		INNER JOIN wb_repair.rpb_car b on b.guest_id = a.guest_id
@@ -1251,8 +1251,8 @@
   				a.bir_status = #birStatus#
             </isNotEmpty>
            <isEqual  prepend="" property="dateType"   compareValue="khsr">
-		 	and datediff(DATE_ADD(birthday,INTERVAL ceil(TIMESTAMPDIFF(MONTH,NOW(),birthday)/12) YEAR),NOW()) &gt;= 0
-		    and datediff(DATE_ADD(birthday,INTERVAL ceil(TIMESTAMPDIFF(MONTH,NOW(),birthday)/12) YEAR),NOW()) &lt;= #tday#
+		 	datediff(( DATE_FORMAT(a.birthday, '%m%d')+0),( DATE_FORMAT(curdate(), '%m%d')+0)) &gt;= 0
+		    datediff(( DATE_FORMAT(a.birthday, '%m%d')+0),( DATE_FORMAT(curdate(), '%m%d')+0)) &lt;= #tday#
 	     </isEqual>
              <!-- 驾照是否需要提醒-->
             <isNotEmpty prepend="and" property="isLicenseRemind">

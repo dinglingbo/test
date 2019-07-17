@@ -221,6 +221,14 @@ $(document).ready(function ()
                     e.cellHtml = e.value + '%';
                 }
                 break;
+            case "prdtCode":
+            	var type = record.type||0;
+                if(type == 3){
+                	e.cellHtml = e.value;
+                }else{
+                	e.cellHtml = "--";
+                }
+                break;
             default:
                 break;
         }
@@ -286,6 +294,14 @@ $(document).ready(function ()
                     e.cellHtml = prdtTypeHash[e.value];
                 }
                 break;
+            case "prdtCode":
+            	var type = record.type||0;
+                if(type == 3){
+                	e.cellHtml = e.value;
+                }else{
+                	e.cellHtml = "--";
+                }
+                break;
             default:
                 break;
         }
@@ -314,6 +330,7 @@ $(document).ready(function ()
 				e.cellHtml = 0;
 			}
 		}
+		
 	});
     
     rpsItemGrid.on("drawcell",function(e){
@@ -340,7 +357,14 @@ $(document).ready(function ()
 				e.cellHtml = 0;
 			}
 		}
+		if(field == "itemCode"){
+			var billItemId = record.billItemId||0;
+			if(billItemId == 0){
+	            e.cellHtml = "--";
+	        }
+		}
 	});
+ 
     
 });
 var statusHash = {
@@ -803,7 +827,7 @@ function showCarInfo(row_uid){
 function doShowCarInfo(params) {
     nui.open({
         url: webBaseUrl + "com.hsweb.RepairBusiness.carDetails.flow?token="+token,
-        width: 800, height: 500,
+        width: 1100, height: 650,
 		allowResize: false,
 		showHeader: true,
         onload: function () {
@@ -996,11 +1020,40 @@ function activechangedmain(){
                 }
             });
 			 var billForm = new nui.Form("#billForm");
-			 billForm.setData(main);
-			 billForm.setData(car);
-			 billForm.setData(guest);
-			 billForm.setData(conta);
-			 billForm.setData(carExd);
+			 var setData = {};
+			 if(main){
+				 setData.carNo = main.carNo;
+				 setData.enterDate = main.enterDate;
+				 setData.enterOilMass = main.enterOilMass;
+				 setData.enterKilometers = main.enterKilometers;
+				 setData.lastComeKilometers = main.lastEnterKilometers || 0;
+				 setData.planFinishDate = main.planFinishDate;
+				 setData.mtAdvisor = main.mtAdvisor;
+				 setData.guestDesc = main.guestDesc;
+				 setData.faultPhen = main.faultPhen;
+				 setData.solveMethod = main.solveMethod; 
+				 setData.serviceTypeId2= servieTypeHash[main.serviceTypeId].name;
+			 }
+			
+			 if(car){
+				 setData.carModel = car.carModel;
+				 setData.carVin = car.vin;
+			 }
+			 
+			 if(carExd){
+				 setData.annualInspectionDate = carExd.annualInspectionDate || "";
+				 setData.annualInspectionCompName = carExd.annualInspectionCompName || "";
+				 setData.insureCompName = carExd.insureCompName || "";
+				 setData.insureDueDate = carExd.insureDueDate || "";
+			 }
+			 if(conta){
+				 setData.contactorName = conta.name;
+				 setData.contactorMobile = conta.mobile;
+				 setData.idNo = conta.idNo;
+				 setData.sex = conta.sex; 
+			 }
+			
+			 billForm.setData(setData);
 			 nui.unmask(document.body);
 		}
 	}

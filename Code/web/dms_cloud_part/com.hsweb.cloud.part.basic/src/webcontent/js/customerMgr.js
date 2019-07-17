@@ -153,7 +153,7 @@ function addCustomer()
     nui.open({
 //        // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.cloud.part.basic.customerAdd.flow?token=" + token,
-        title: "客户资料", width: 560, height: 660,
+        title: "客户资料", width: 560, height: 550,
         allowDrag:true,
         allowResize:false,
         onload: function ()
@@ -192,7 +192,7 @@ function editCustomer()
     nui.open({
 //        // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.cloud.part.basic.customerAdd.flow?token=" + token,
-        title: "客户资料", width: 600, height: 650,
+        title: "客户资料", width: 600, height: 550,
         allowDrag:true,
         allowResize:false,
         onload: function ()

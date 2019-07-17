@@ -36,6 +36,7 @@ import org.apache.http.util.EntityUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.eos.data.datacontext.IMapContextFactory;
 import com.eos.data.datacontext.ISessionMap;
@@ -710,6 +711,96 @@ public class Utils {
 
 	/**
 	 * 
+	 * @功能： 行驶证识别
+	 * @日期：2018年5月20日
+	 */
+	@Bizlet("行驶证识别")
+    public static Map vehicleLicense(String imgPath)throws Exception{
+		Map outResult = new HashMap();
+		outResult.put("errCode", "S");
+
+		
+        String host = "https://dm-53.data.aliyun.com";
+        String path = "/rest/160601/ocr/ocr_vehicle.json";
+        String appcode = "4afe7a5f18df4c978eb41e9ceeb376ae";
+        
+       
+        //String imgFile = "图片路径";
+        Boolean is_old_format = false;//如果文档的输入中含有inputs字段，设置为True， 否则设置为False
+        //请根据线上文档修改configure字段
+        JSONObject configObj = new JSONObject();
+        configObj.put("side", "face");
+        String config_str = configObj.toString();
+
+
+        String method = "POST";
+        Map<String, String> headers = new HashMap<String, String>();
+        //最后在header中的格式(中间是英文空格)为Authorization:APPCODE 83359fd73fe94948385f570e3c139105
+        headers.put("Authorization", "APPCODE " + appcode);
+
+        Map<String, String> querys = new HashMap<String, String>();
+
+        // 对图像进行base64编码
+        String imgBase64 = GetImageStr(imgPath);;
+
+        // 拼装请求body的json字符串
+        JSONObject requestObj = new JSONObject();
+        try {
+            if(is_old_format) {
+                JSONObject obj = new JSONObject();
+                obj.put("image", getParam(50, imgBase64));
+                if(config_str.length() > 0) {
+                    obj.put("configure", getParam(50, config_str));
+                }
+                JSONArray inputArray = new JSONArray();
+                inputArray.add(obj);
+                requestObj.put("inputs", inputArray);
+            }else{
+                requestObj.put("image", imgBase64);
+                if(config_str.length() > 0) {
+                    requestObj.put("configure", config_str);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String bodys = requestObj.toString();
+
+            HttpResponse response = HttpUtils.doPost(host, path, method, headers, querys, bodys);
+            int stat = response.getStatusLine().getStatusCode();
+    		if (stat == 200) {
+                String res = EntityUtils.toString(response.getEntity());
+                JSONObject res_obj = JSON.parseObject(res);
+    			
+    			if (res_obj.getBoolean("success")) {
+    				outResult.put("data", res_obj);
+    				return outResult;
+    			} else {
+    				outResult.put("errCode", "E");
+    				return outResult;
+    			}
+    		} else {
+    			outResult.put("errCode", "E");
+    			return outResult;
+    		}
+    }
+    
+    /*
+     * 获取参数的json对象
+     */
+    public static JSONObject getParam(int type, String dataValue) {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("dataType", type);
+            obj.put("dataValue", dataValue);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return obj;
+    }
+    
+	/**
+	 * 
 	 * @功能： 身份证识别
 	 * @日期：2018年5月20日
 	 */
@@ -969,3 +1060,4 @@ public class Utils {
 	
 
 }
+

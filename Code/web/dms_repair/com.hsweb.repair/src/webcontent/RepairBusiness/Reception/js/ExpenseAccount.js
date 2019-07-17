@@ -462,8 +462,10 @@ function choosePart(row_uid){//配件
             if(falg){
             	data = data.part;
             	var name = data.name || "";
+            	var itemCode = data.code || "";
             	var newRow = {
             			itemName : name,
+            			itemCode:itemCode,
             			itemTime : 1,
             			unitPrice : 0,
             			rate : 0,
@@ -684,6 +686,7 @@ function chooseItem(){
             	var itemTime = data[i].itemTime || "";
             	var unitPrice = data[i].unitPrice || "";
             	var itemId = data[i].id;
+            	var itemCode = data[i].code;
             	var dataAll = rpsItemGrid.getData();
             	var orderIndex = null;
             	for(var j = 0 , k = dataAll.length ; j < k ; j ++){
@@ -699,6 +702,7 @@ function chooseItem(){
             	var newRow = {
             				itemName : itemName,
             				type : type,
+            				itemCode:itemCode,
             				itemTime :itemTime,
             				unitPrice : unitPrice,
             				subtotal : subtotal,
@@ -792,28 +796,24 @@ function onPrint(e){
             sourceServiceId:main.sourceServiceId,
     		token : token
         };
-	if(e==1 || e==3){
+	if(e==1){
 		params.printName = "报价单";
 	}
-	if(e==2 || e==4){
+	if(e==2){
 		params.printName = "结账单";
 	}
 	var url = null;
-	if(e==1 || e==2){
+	if(currRepairSettPrintUrl){
+		url = webPath + contextPath + currRepairSettPrintUrl+"?token="+token;
+	}else{
+		url = webPath + contextPath + "/com.hsweb.print.settlement.flow?token="+token;
+	}
+	/*if(e==1 || e==2){
 		url = webBaseUrl +"com.hsweb.print.settlement.flow";
 	}
 	if(e==3 || e==4){
 		url = webBaseUrl +"com.hsweb.print.settlementPart.flow";
-	}
-	if(e==5){
-		url = webBaseUrl +"com.hsweb.print.settlement3.flow";
-	}
-	if(e==6){
-		url = webBaseUrl +"com.hsweb.print.settlement4.flow";
-	}
-	if(e==7){
-		url = webBaseUrl +"com.hsweb.print.settlement5.flow";
-	}
+	}*/
 	if(main.id){
 		nui.open({
 	        url: url,

@@ -224,6 +224,26 @@
       <process:to type="query">m:userObject/attributes/webPath</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">billParams/systemCarNoPrefix</process:from>
+      <process:to type="query">m:userObject/attributes/systemCarNoPrefix</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billParams/isOpenAppRemind</process:from>
+      <process:to type="query">m:userObject/attributes/isOpenAppRemind</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billParams/isOpenWeChatRemind</process:from>
+      <process:to type="query">m:userObject/attributes/isOpenWeChatRemind</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billParams/isOpenOfferRemind</process:from>
+      <process:to type="query">m:userObject/attributes/isOpenOfferRemind</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billParams/repairSettPrintUrl</process:from>
+      <process:to type="query">m:userObject/attributes/repairSettPrintUrl</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject</process:from>
       <process:to type="query">userObject</process:to>
     </process:copy>
@@ -642,7 +662,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
         <process:outputVariable id="2" name="comp" type="query" value="java.util.HashMap" valueType="Java">comp</process:outputVariable>
       </process:outputVariables>
     </process:flow>

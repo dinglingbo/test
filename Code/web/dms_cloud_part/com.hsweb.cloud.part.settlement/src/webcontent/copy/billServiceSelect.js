@@ -193,7 +193,8 @@ function getBillSearchParam(){
     params.serviceId = billServiceIdEl.getValue();
     params.serviceMan = billServiceManEl.getValue();
     params.accountSign = accountSign;
-    params.guestId = billSearchGuestIdEl.getValue();
+    var guestId = billSearchGuestIdEl.getValue();
+    params.guestIdList = getConnncetGuest(guestId);
     return params;
 }
 function searchBill()
@@ -367,4 +368,18 @@ function CloseWindow(action)
 {
     if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
     else window.close();
+}
+
+var guestConUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.queryGuestCon.biz.ext";
+function getConnncetGuest(guestId){
+	var guestIdList ="";
+	$.ajaxSettings.async = false;
+	$.post(guestConUrl+"?guestId="+guestId+"&token="+token,{},function(text){
+		var data =text.data;
+		for(var i=0;i<data.length;i++){
+			guestIdList+=data[i].guestConnectId+","+data[i].guestId;
+		}
+		guestIdList=guestIdList+guestId;
+	});
+	return guestIdList;
 }

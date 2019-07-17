@@ -123,6 +123,7 @@
             </div>
             <div header="其他" headerAlign="center">
                 <div property="columns">
+                	<div allowSort="true" field="manualCode" width="170" headerAlign="center" header="订单号"></div>
                     <div allowSort="true" field="detailRemark" width="120" headerAlign="center" header="备注"></div><!-- 
                 	<div allowSort="true" datatype="float" summaryType="sum" field="trueOutQty" width="60" headerAlign="center" header="已出库数量"></div>
                     <div allowSort="true" datatype="float" summaryType="sum" field="notOutQty" width="60" headerAlign="center" header="未出库数量"></div>

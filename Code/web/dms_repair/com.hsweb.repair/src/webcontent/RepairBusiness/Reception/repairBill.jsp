@@ -208,7 +208,7 @@
                 <a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
 
                 <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
-                    <li iconCls="" onclick="onPrint(1)" id="type11">打印报价单</li>
+                    <!-- <li iconCls="" onclick="onPrint(1)" id="type11">打印报价单</li>
                     <li iconCls="" onclick="onPrint(8)" id="type11">打印报价单(项目配件分开)</li>
                     <li iconCls="" onclick="onPrint(2)" id="type11">打印派工单</li>
                     <li iconCls="" onclick="onPrint(11)" id="type11">打印派工单(项目配件分开)</li>
@@ -217,9 +217,16 @@
                     <li iconCls="" onclick="onPrint(4)" id="type11">打印结账单(小票)</li>
                     <li iconCls="" onclick="onPrint(10)" id="type11">打印结账单(小票,项目配件分开)</li>
                     <li iconCls="" onclick="onPrint(5)" id="type11">打印领料单</li>
-                    <!-- <li iconCls="" onclick="onPrint(12)" id="">模板3</li>
+                    <li iconCls="" onclick="onPrint(12)" id="">模板3</li>
                     <li iconCls="" onclick="onPrint(13)" id="">模板4</li>
                     <li iconCls="" onclick="onPrint(14)" id="">模板5</li> -->
+                    <li iconCls="" onclick="onPrint(1)" id="type11">打印报价单</li>
+                    <li iconCls="" onclick="onPrint(2)" id="type11">打印派工单</li>
+                    <li iconCls="" onclick="onPrint(11)" id="type11">打印派工单(项目配件分开)</li>
+                    <li iconCls="" onclick="onPrint(3)" id="type11">打印结账单</li>
+                    <li iconCls="" onclick="onPrint(4)" id="type11">打印结账单(小票)</li>
+                    <li iconCls="" onclick="onPrint(10)" id="type11">打印结账单(小票,项目配件分开)</li>
+                    <li iconCls="" onclick="onPrint(5)" id="type11">打印领料单</li>
                 </ul>
 
                 <a class="nui-menubutton" plain="true" menu="#popupMenuQT" id="menuQT"><span class="fa fa-gift fa-lg"></span>&nbsp;充值办卡</a>

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>仓库定义</title>
-<script src="<%=webPath + contextPath%>/basic/js/storehouseMgr.js?v=1.1.89"></script>
+<script src="<%=webPath + contextPath%>/basic/js/storehouseMgr.js?v=1.1.90"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

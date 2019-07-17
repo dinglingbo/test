@@ -21,6 +21,8 @@ var editFormDetail = null;
 var innerItemGrid = null;
 var contactdatagrid = null;
 var onSearchParams = {};//现在用于查询本车或者客户全部
+var rpsPackageGrid = null;
+var rpsItemGrid = null;
 var prdtTypeHash = {
 	    "1":"套餐",
 	    "2":"项目",
@@ -58,7 +60,9 @@ $(document).ready(function () {
     innerpackGrid = nui.get("innerpackGrid");
     innerItemGrid.setUrl(getRpsItemUrl);
     innerpackGrid.setUrl(getdRpsPackageUrl);
-    
+    rpsPackageGrid = nui.get("rpsPackageGrid");
+	rpsItemGrid = nui.get("rpsItemGrid");
+	
     grid1 = nui.get("grid1");
     grid2 = nui.get("grid2");
     grid3 = nui.get("grid3");
@@ -85,6 +89,65 @@ $(document).ready(function () {
     if((keyCode==27))  {  //ESC
         onCancel();
     }
+    
+    rpsPackageGrid.on("drawcell",function(e){
+		var field = e.field,
+		value = e.value;
+		var record = e.record;
+		var uid = record._uid;
+		if(field=="packageName"){
+            var billPackageId = record.billPackageId || 0;
+            if(billPackageId != 0){
+            	e.cellHtml ='<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + e.value;
+            }
+		}
+		if(field == "rate"){
+			if(value){
+				e.cellHtml = value + "%";
+			}else{
+				e.cellHtml = 0 + "%";
+			}
+		}
+		if(field == "subtotal"){
+			if(!value){
+				e.cellHtml = 0;
+			}
+		}
+		
+	});
+    
+    rpsItemGrid.on("drawcell",function(e){
+		var field = e.field,
+		value = e.value,
+		row = e.row;
+		var record = e.record;
+		var uid = record._uid;
+		if(field=="itemName"){
+            var billItemId = record.billItemId||0;
+            if(billItemId != 0){
+            	e.cellHtml ='<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + e.value;
+            }
+		}
+		if(field == "rate"){
+			if(value){
+				e.cellHtml = value + "%";
+			}else{
+				e.cellHtml = 0 + "%";
+			}
+		}
+		if(field == "itemTime" || field == "unitPrice"){
+			if(!value){
+				e.cellHtml = 0;
+			}
+		}
+		if(field == "itemCode"){
+			var billItemId = record.billItemId||0;
+			if(billItemId == 0){
+	            e.cellHtml = "--";
+	        }
+		}
+	});
+    
   };
  
   var tip = new nui.ToolTip();
@@ -221,6 +284,14 @@ $(document).ready(function () {
               e.cellHtml = e.value + '%';
           }
           break;
+      case "prdtCode":
+      	var type = record.type||0;
+          if(type == 3){
+          	e.cellHtml = e.value;
+          }else{
+          	e.cellHtml = "--";
+          }
+          break;
       default:
           break;
   }
@@ -279,6 +350,14 @@ $(document).ready(function () {
                  e.cellHtml = "--";
              }else{
                  e.cellHtml = prdtTypeHash[e.value];
+             }
+             break;
+         case "prdtCode":
+         	var type = record.type||0;
+             if(type == 3){
+             	e.cellHtml = e.value;
+             }else{
+             	e.cellHtml = "--";
              }
              break;
          default:
@@ -681,4 +760,140 @@ function activechangedmain(){
 	        loadVisitHis(p);
 	    }
 	}
+}
+
+function activechangedmain2(){
+	var row = mainServiceGrid.getSelected();
+	var tabs = nui.get("mainTabs2").getActiveTab();
+	if(row){
+		var serviceId = row.id;
+		if(tabs.name=="item"){//项目
+			innerItemGrid.setUrl(getRpsItemUrl);
+			innerItemGrid.setData([]);
+		    innerItemGrid.load({
+		    	serviceId:serviceId,
+		        token: token
+		    });
+		}else if(tabs.name=="pack"){//套餐
+			innerpackGrid.setUrl(getdRpsPackageUrl);
+		    innerpackGrid.setData([]);
+		    innerpackGrid.load({
+		    	serviceId:serviceId,
+		        token: token
+		    });
+		}else if(tabs.name=="expense"){
+			var serviceId = row.id;
+			rpsPackageGrid.setData([]);
+			rpsItemGrid.setData([]);
+			rpsPackageGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.searchExpensePkgBill.biz.ext");
+			rpsItemGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.searchExpenseItemBill.biz.ext");
+			rpsPackageGrid.load({serviceId : serviceId,type:1,token : token},function(e){
+			});
+			rpsItemGrid.load({serviceId : serviceId,type:1,token : token});
+		}else if(tabs.name=="finish"){
+			nui.mask({
+		        el: document.body,
+		        cls: 'mini-mask-loading',
+		        html: '加载中...'
+		    });
+			var row = mainServiceGrid.getSelected();
+		    //完工信息
+			var getdRpsMaintainUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext";
+			var main = {};
+			var car = {};
+			var guest = {};
+			var conta = {};
+			var carExd = {};
+			nui.ajax({
+                url : getdRpsMaintainUrl,
+                type : "post",
+                data : JSON.stringify({
+                	id : row.id,
+                    token : token
+                }),
+                cache: false,
+                async: false,
+                success : function(data) {
+                	data = data || {};
+                    if (data.errCode == "S") {
+                       main = data.maintain;
+                    } else {
+                        showMsg("获取完工信息失败","E");
+                    }
+                },
+                error : function(jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR.responseText);
+                }
+            });
+			var getGuestContactorCarUrl =  window._rootRepairUrl + "com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext";
+			nui.ajax({
+                url : getGuestContactorCarUrl,
+                type : "post",
+                data : JSON.stringify({
+                	guestId: main.guestId||0,
+                    contactorId: main.contactorId||0,
+                    carId:main.carId || 0,
+                    carExtendId:main.carId,
+                    token : token
+                }),
+                cache: false,
+                async: false,
+                success : function(data) {
+                	data = data || {};
+                    if (data.errCode == "S") {
+                        car = data.car;
+                        guest = data.guest;
+                        conta = data.contactor;
+                        carExd = data.carExtend;
+                    } else {
+                        showMsg("获取完工信息失败","E");
+                    }
+                },
+                error : function(jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR.responseText);
+                }
+            });
+			 var billForm = new nui.Form("#billForm");
+			 var setData = {};
+			 if(main){
+				 setData.carNo = main.carNo;
+				 setData.enterDate = main.enterDate;
+				 setData.enterOilMass = main.enterOilMass;
+				 setData.enterKilometers = main.enterKilometers;
+				 setData.lastComeKilometers = main.lastEnterKilometers || 0;
+				 setData.planFinishDate = main.planFinishDate;
+				 setData.mtAdvisor = main.mtAdvisor;
+				 setData.guestDesc = main.guestDesc;
+				 setData.faultPhen = main.faultPhen;
+				 setData.solveMethod = main.solveMethod; 
+				 setData.serviceTypeId2= servieTypeHash[main.serviceTypeId].name;
+			 }
+			
+			 if(car){
+				 setData.carModel = car.carModel;
+				 setData.carVin = car.vin;
+			 }
+			 
+			 if(carExd){
+				 setData.annualInspectionDate = carExd.annualInspectionDate || "";
+				 setData.annualInspectionCompName = carExd.annualInspectionCompName || "";
+				 setData.insureCompName = carExd.insureCompName || "";
+				 setData.insureDueDate = carExd.insureDueDate || "";
+			 }
+			 if(conta){
+				 setData.contactorName = conta.name;
+				 setData.contactorMobile = conta.mobile;
+				 setData.idNo = conta.idNo;
+				 setData.sex = conta.sex; 
+			 }
+			
+			 billForm.setData(setData);
+			 nui.unmask(document.body);
+		}
+	}
+	
+}
+
+function onLeftGridSelectionChanged(){
+	activechangedmain2();
 }

@@ -15,8 +15,8 @@ $(document).ready(function () {
     tree = nui.get("tree1"); 
     loadTree();//加载标准项目
 
-    //"nodedblclick":节点双击时发生
-    tree.on("nodedblclick",function(e)
+    //"nodedblclick":节点单击时发生
+    tree.on("nodeclick",function(e)
     {
         var children = e.row.children;
         if(children){
@@ -70,7 +70,9 @@ function loadTree(){
 	nui.ajax({
 		url : treeUrl,
 		type : 'POST',
-		data : "",
+		data : {
+			showBill:true
+		},
 		cache : false,
 		contentType : 'text/json',
 		success : function(text) {
@@ -94,8 +96,8 @@ function addDiv(number,name){
 	html+='</div>';
 	$("#demo").append(html);
 	//$.parser.parse($("#demo").parent());
-	$('#demo').dad();
-	var d = $('.jq22').dad();
+	var d  = $('#demo').dad();
+	/*= $('.jq22').dad();*/
 	
 	d.addDropzone('.dropzone', function(e){
 		e.remove();

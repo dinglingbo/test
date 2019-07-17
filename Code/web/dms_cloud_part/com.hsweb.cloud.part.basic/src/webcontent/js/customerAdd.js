@@ -21,6 +21,11 @@ var guestPropertyList=[];
 var guestPropertyHash={};
 var guestPropertyEl=null;
 var dictDefs ={"guestProperty":"10042"};
+
+var guestGrid = null;
+var guestGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.queryCustomList.biz.ext";
+var haveSelectGrid =null;
+var haveSelectGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.queryGuestCon.biz.ext";
 function initForm(){
     mainForm = new nui.Form("#mainForm");
     otherForm = new nui.Form("#otherForm");
@@ -33,6 +38,11 @@ function initForm(){
 	astreetAddressEl = nui.get("astreetAddress");
 	aaddressEl = nui.get("addressA");
 	
+	guestGrid =nui.get("guestGrid");
+	guestGrid.setUrl(guestGridUrl);
+	
+	haveSelectGrid =nui.get('haveSelectGrid');
+	haveSelectGrid.setUrl(haveSelectGridUrl);
 	/*getRegion(null,function(data) {
 		//provinceHash = data.rs || [];
 		//provinceEl.setData(provinceHash);
@@ -428,6 +438,9 @@ function setInitData(){
     	guestId:supplier.id,
     	token:token
     });
+    if(supplier.id){
+    	haveSelectGrid.load({guestId: supplier.id ,token:token});
+    }
 }
 function queryCustomer(params){
 	nui.mask({
@@ -687,6 +700,8 @@ function onOk()
             if(data.errCode == "S")
             {
             	saveLogistics(data.guestId);
+            	//保存客户关系
+            	saveGuestCon(data.guestId);
                 parent.showMsg("保存成功","S");
                 CloseWindow("ok");
             }
@@ -839,6 +854,9 @@ function setData(data)
         	guestId:supplier.id,
         	token:token
         });
+        if(supplier.id){
+        	haveSelectGrid.load({guestId: supplier.id ,token:token});
+        }
     }
     else{
         mainForm.setData({
@@ -1039,3 +1057,65 @@ function setAddress() {
 	aaddressEl.setValue(address);
 	aaddressEl.getValue();
 }
+var guestGrid = null;
+var guestGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.queryCustomList.biz.ext";
+function searchGuest(){
+  var params = {
+	        fullName:nui.get("guestName").getValue().replace(/\s+/g, ""),
+	    };
+  guestGrid.load({params:params,token:token});
+}
+
+function selectGuest(){
+	var haveSelectHash={};
+	haveSelectGrid.getData().forEach(function(v){
+		if(v.guestConnectId){
+			haveSelectHash[v.guestConnectId] =v;
+		}		
+	});
+	var rows=guestGrid.getSelecteds();
+	var newRows=[];
+	for(var i=0;i<rows.length;i++){
+		if(haveSelectHash[rows[i].id]){
+			showMsg("已关联客户"+rows[i].fullName,"W");
+			return;
+		}
+		var newRow={guestConnectId:rows[i].id,
+			shortName:rows[i].shortName,
+			fullName: rows[i].fullName};
+		newRows.push(newRow);
+	}
+	haveSelectGrid.addRows(newRows);
+}
+function deleteRows(){
+	var rows= haveSelectGrid.getSelecteds();
+	haveSelectGrid.removeRows(rows);
+}
+
+var saveGuestConsUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveGuestConnect.biz.ext";
+function saveGuestCon(guestId){
+	var guestConAdd = haveSelectGrid.getChanges("added");
+	var guestConDelete = haveSelectGrid.getChanges("removed");
+	nui.ajax({
+        url:saveGuestConsUrl,
+        type:"post",
+        data:JSON.stringify({
+            guestId:guestId,
+            guestConAdd:guestConAdd,
+            guestConDelete:guestConDelete,
+            token:token
+        }),
+        success:function(data)
+        {
+            if(data.errCode == "S"){
+            }else{
+                parent.showMsg(data.errMsg||"保存客户关系失败","W");
+            }
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+

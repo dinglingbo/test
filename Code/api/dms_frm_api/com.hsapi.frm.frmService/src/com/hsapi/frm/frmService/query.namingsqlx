@@ -298,9 +298,12 @@
 			a.is_disabled AS isDisabled,
 			a.rp_type_id AS rpTypeId,
 			b.mobile as mobile
+			<!--c.wechat_open_id as wechatOpenId,
+			c.wechat_service_id as wechatServiceId-->
 		FROM
 			wb_frm.fis_rp_bill a
 		LEFT JOIN wb_common.com_guest b on a.guest_id= b.id	
+		<!--LEFT JOIN wb_repair.rpb_contactor c on a.guest_id = c.guest_id-->
 		where a.is_disabled = 0
 			<dynamic>
 			    <isNotEmpty prepend="and" property="mobile"> 

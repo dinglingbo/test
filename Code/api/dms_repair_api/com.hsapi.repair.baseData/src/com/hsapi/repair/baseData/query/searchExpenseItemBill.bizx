@@ -189,6 +189,10 @@
       <process:from type="query" pattern="reference">item1/itemName</process:from>
       <process:to type="query">temp1/itemName</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">item1/itemCode</process:from>
+      <process:to type="query">temp1/itemCode</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">
     <location x="667" y="472"/>
@@ -432,6 +436,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">item/id</process:from>
       <process:to type="query">temp/id</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">item/itemCode</process:from>
+      <process:to type="query">temp/itemCode</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
@@ -709,7 +717,7 @@
       <targetNode>assign18</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

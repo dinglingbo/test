@@ -10,7 +10,7 @@
 -->
 <head>
 <title>已结算工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.1.0"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.1.2"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -237,6 +237,7 @@
 		       <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center" name="saleMan"></div>
 		       <div field="saleManId" headerAlign="center"   allowSort="false" visible="false" width="80" header="销售员" align="center"></div>
 		       <div field="remark" headerAlign="center"   allowSort="false" visible="true" width="80" header="备注" align="center"></div>
+		       <div field="prdtCode" headerAlign="center" allowSort="false" visible="true" width="80" header="配件编码" align="center"></div>
 	      </div>
 	   </div>
 	    </div>
@@ -260,6 +261,7 @@
 		           <div field="workerIds" headerAlign="center" allowSort="false" visible="false" width="80" header="施工员" align="center"></div>  
 		           <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center" name="saleMan"></div>
 		           <div field="saleManId" headerAlign="center" allowSort="false" visible="false" width="80" header="销售员" align="center"></div>
+		           <div field="prdtCode" headerAlign="center" allowSort="false" visible="true" width="80" header="配件编码" align="center"></div>
 		     </div>
 		  </div>
 	    </div>
@@ -313,10 +315,11 @@
 	            </div>
 	             <div field="discountAmt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">折扣金额
 	            </div>
+	            <div field="itemCode" headerAlign="center" allowSort="false" visible="true" width="80" header="配件编码" align="center"></div>
 	        </div>
 	    </div>
 	 </div>
-	     <div title="完工信息" id="finish" name="finish" visible="false">
+	     <div title="完工信息" id="finish" name="finish">
 	    <div class="nui-fit">
 	     <div id="billForm" class="form">
           <table style="width: ;border-spacing: 0px 5px;">
@@ -349,18 +352,7 @@
                             <label>业务类型：</label>
                         </td>
                         <td>
-                            <input name="serviceTypeId"
-                                   id="serviceTypeId"
-                                   class="nui-combobox width1"
-                                   textField="name"
-                                   valueField="id"
-                                   emptyText="请选择..."
-                                   url=""
-                                   allowInput="true"
-                                   showNullItem="false"
-                                   width="100%"
-                                   valueFromSelect="true"
-                                   nullItemText="请选择..."/>
+                            <input  class="nui-textbox" name="serviceTypeId2" id="serviceTypeId2" enabled="false" width="100%"/>
                         </td>
                     </tr>
                     <tr>
@@ -383,14 +375,14 @@
                                    
                           <input class="nui-combobox" id="enterOilMass" emptyText="请选择..." name="enterOilMass"
                            data="[{enterOilMass:'F',text:'F'},{enterOilMass:'3/4',text:'3/4'},{enterOilMass:'1/2',text:'1/2'},{enterOilMass:'1/4',text:'1/4'},{enterOilMass:'N',text:'N'}]"
-                           width="100%"   textField="text" valueField="enterOilMass" value=""/>
+                           width="100%"   textField="text" valueField="enterOilMass" value="" enabled="false"/>
                
                         </td>
                         <td class="title">
                               <label>进厂里程：</label>
                           </td>
                           <td >
-                               <input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"  width="30%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" />
+                               <input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"  width="30%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" enabled="false"/>
                                <label class="title">(上次里程：<span id="lastComeKilometers">0</span>)</label>
                           </td>
                         
@@ -398,30 +390,19 @@
                             <label>预计交车：</label>
                         </td>
                         <td>
-                            <input id="planFinishDate" name="planFinishDate" class="nui-datepicker" value="" format="yyyy-MM-dd HH:mm" nullValue="null" timeFormat="HH:mm:ss" showTime="true" showOkButton="false" showClearButton="true" width="100%"/>
+                            <input id="planFinishDate" enabled="false" name="planFinishDate" class="nui-datepicker" value="" format="yyyy-MM-dd HH:mm" nullValue="null" timeFormat="HH:mm:ss" showTime="true" showOkButton="false" showClearButton="true" width="100%"/>
                         </td>
                     	<td class="title">
                             <label>服&nbsp;务&nbsp;&nbsp;顾&nbsp;问：</label>
                         </td>
                         <td>
-                            <input name="mtAdvisorId"
-                                   id="mtAdvisorId"
-                                   class="nui-combobox width1"
-                                   textField="empName"
-                                   valueField="empId"
-                                   emptyText="请选择..."
-                                   url=""
-                                   allowInput="true"
-                                   showNullItem="false"
-                                   width="100%"
-                                   valueFromSelect="true"
-                                   nullItemText="请选择..."/>
+                            <input class="nui-textbox" width="100%" id="mtAdvisor" name="mtAdvisor" enabled="false"/>
                         </td>
                         <td class="title">
                             <label>备注：</label>
                         </td>
                         <td >
-                            <input class="nui-textbox" width="100%" id="remark" name="remark"/>
+                            <input class="nui-textbox" width="100%" id="remark" name="remark" enabled="false"/>
                         </td>
                     </tr>
                     
@@ -443,14 +424,14 @@
                                  width="100%"
                                  showTime="false"
                                  enabled="false"
-                                 class="nui-datepicker" format="yyyy-MM-dd"/>
+                                 class="nui-datepicker" format="yyyy-MM-dd" enabled="false"/>
                       </td>
                       
                        <td class="title ">
                           <label>交强险投保公司：</label>
                       </td>
                       <td >
-                          <input class="nui-textbox" enabled="false" width="100%" id="insureCompName" name="insureCompName"/>
+                          <input class="nui-textbox" enabled="false" width="100%" id="insureCompName" name="insureCompName" enabled="false"/>
                       </td>
                       <td class="title" style="width: 100px">
                           <label>交强险到期：</label>
@@ -461,7 +442,7 @@
                                  width="100%"
                                  showTime="false"
                                  enabled="false"
-                                 class="nui-datepicker" format="yyyy-MM-dd"/>
+                                 class="nui-datepicker" format="yyyy-MM-dd" enabled="false"/>
                       </td>
                   </tr>
                     
@@ -470,12 +451,12 @@
                         <td class="title">
                             <label>联系人名称</label>
                         </td>
-                        <td class="" ><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
+                        <td class="" ><input  class="nui-textbox" name="contactorName" id="contactorName" enabled="false" width="100%"/></td>
                         <td class="title">
-                          <label>联系方式：</label>
+                          <label>联系手机：</label>
                       </td>
                       <td >
-                          <input class="nui-textbox" enabled="false" width="100%" id="mobile" name="mobile"/>
+                          <input class="nui-textbox" enabled="false" width="100%" id="contactorMobile" name="contactorMobile" />
                       </td>
                        <td class="title">
                           <label>证件号：</label>
@@ -499,7 +480,7 @@
                                  showNullItem="false"
                                  width="100%"
                                  valueFromSelect="true"
-                                 nullItemText="请选择..."/>
+                                 nullItemText="请选择..." />
                       </td>
                     </tr>
                     
@@ -509,7 +490,7 @@
                   </td>
                   <td >
                       <textarea class="nui-textarea" name="guestDesc"
-                                style="width:100%;height: 40px;"></textarea>
+                                style="width:100%;height: 40px;" enabled="false"></textarea>
                   </td>
                   
                   <td class="title">
@@ -517,14 +498,14 @@
                   </td>
                    <td>
                       <textarea class="nui-textarea" name="faultPhen"
-                                style="width:100%;height: 40px;"></textarea>
+                                style="width:100%;height: 40px;" enabled="false"></textarea>
                   </td>
                   <td class="title">
                       <label>解决措施：</label>
                   </td>
                    <td>
                       <textarea class="nui-textarea" name="solveMethod"
-                                style="width:100%;height: 40px;"></textarea>
+                                style="width:100%;height: 40px;" enabled="false"></textarea>
                   </td>
               </tr>
            </table>

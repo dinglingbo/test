@@ -320,13 +320,13 @@
         </div>
         <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:15px;">
             <tr>
-                <td width="125" height="40" style="padding-left:5px; line-height:150%;">
+                <td width="60" height="40" style="padding-left:5px; line-height:150%;">
                     <span class="hei">客户签字：</span>
                 </td>
                 <td><div style="width:70%; height:30px; border-bottom:1px #000 solid;"></div></td>
                 <td width="90"><span class="hei">维修顾问签字：</span></td>
                 <td><div style="width:70%; height:30px; border-bottom:1px #000 solid;"></div></td>
-                <td width="115"><span class="hei">收银员签字：</span></td>
+                <td width="90"><span class="hei">收银员签字：</span></td>
                 <td width="15%"><div style="width:100%; height:30px; border-bottom:1px #000 solid; float:right"></div></td>
             </tr>
         </table>

@@ -58,46 +58,6 @@
     <figSize height="17" width="72"/>
     <node>invokePojo0</node>
   </nodes>
-  <nodes xsi:type="model:GroupNode" id="group1" name="group1" grouped="true" gstart="loopstart1" gend="loopend1">
-    <location x="306" y="20"/>
-    <size height="271" width="391"/>
-    <chidren>loopstart1</chidren>
-    <chidren>loopend1</chidren>
-    <chidren>assign1</chidren>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">
-    <location x="302" y="167"/>
-    <figSize height="17" width="32"/>
-    <node>loopstart1</node>
-  </nodes>
-  <nodes xsi:type="process:tLoopStart" description="" id="loopstart1" name="循环1" displayName="循环" grouped="true" type="loopstart" matchedName="loopend1" loopType="iterate">
-    <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>loopstart1</sourceNode>
-      <targetNode>assign1</targetNode>
-    </sourceConnections>
-    <targetConnections>link16</targetConnections>
-    <targetConnections>link2</targetConnections>
-    <location x="306" y="135"/>
-    <size height="24" width="24"/>
-    <nodeLabel>loopstart1label</nodeLabel>
-    <process:condition/>
-    <process:iterate iterable="updList" iterableElement="temp"/>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="loopend1label" name="label" nodeType="label">
-    <location x="656" y="167"/>
-    <figSize height="17" width="56"/>
-    <node>loopend1</node>
-  </nodes>
-  <nodes xsi:type="process:tLoopEnd" id="loopend1" name="循环结束1" displayName="循环结束" grouped="true" type="loopend" matchedName="loopstart1">
-    <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>loopend1</sourceNode>
-      <targetNode>transactionbegin0</targetNode>
-    </sourceConnections>
-    <targetConnections>link18</targetConnections>
-    <location x="672" y="135"/>
-    <size height="24" width="24"/>
-    <nodeLabel>loopend1label</nodeLabel>
-  </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="updateEntityBatch" displayName="updateEntityBatch" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo1</sourceNode>
@@ -155,13 +115,14 @@
       <sourceNode>transactionbegin0</sourceNode>
       <targetNode>invokePojo2</targetNode>
     </sourceConnections>
-    <targetConnections>link19</targetConnections>
-    <location x="855" y="142"/>
+    <targetConnections>link2</targetConnections>
+    <targetConnections>link16</targetConnections>
+    <location x="525" y="142"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionbegin0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactionbegin0label" name="label" nodeType="label">
-    <location x="845" y="178"/>
+    <location x="515" y="178"/>
     <figSize height="17" width="49"/>
     <node>transactionbegin0</node>
   </nodes>
@@ -194,25 +155,6 @@
     <location x="1120" y="369"/>
     <figSize height="17" width="49"/>
     <node>transactionrollback0</node>
-  </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" grouped="true" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign1</sourceNode>
-      <targetNode>loopend1</targetNode>
-    </sourceConnections>
-    <targetConnections>link17</targetConnections>
-    <location x="488" y="132"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign1label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
-      <process:to type="query">temp/noMtType</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="486" y="168"/>
-    <figSize height="17" width="32"/>
-    <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="expandEntity" displayName="expandEntity" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
@@ -280,7 +222,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign5</sourceNode>
-      <targetNode>loopstart1</targetNode>
+      <targetNode>transactionbegin0</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link15</targetConnections>
@@ -303,7 +245,7 @@
       <targetNode>invokePojo1</targetNode>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
-    <location x="930" y="60"/>
+    <location x="735" y="142"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -317,14 +259,14 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="905" y="96"/>
+    <location x="710" y="178"/>
     <figSize height="17" width="73"/>
     <node>invokePojo2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
-      <targetNode>loopstart1</targetNode>
+      <targetNode>transactionbegin0</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="-105" y="69"/>

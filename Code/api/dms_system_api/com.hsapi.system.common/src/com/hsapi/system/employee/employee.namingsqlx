@@ -19,7 +19,7 @@
 			a.id as id,
 			a.tenant_id as tenantId,
 			a.orgid as orgid,
-			a.empId as empId,
+			a.emp_id as empId,
 			a.user_id as userId,
 			a.user_name as userName,
 			a.type as type,

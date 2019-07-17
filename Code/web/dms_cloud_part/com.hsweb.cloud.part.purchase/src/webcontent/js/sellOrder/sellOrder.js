@@ -1333,7 +1333,7 @@ function save() {
     }
     
     //开启额度管理
-    if(currIsOpenCredit ==1){
+    if(currIsOpenCredit ==1 && data.id){
     	 var flag = beforeSave();
     	    if(flag ==false){
     	    	return;
@@ -1971,7 +1971,7 @@ function audit()
     }
 
   //开启额度管理
-    if(currIsOpenCredit ==1){
+    if(currIsOpenCredit ==1  && data.id){
     	 var flag = beforeSave();
     	    if(flag ==false){
     	    	return;

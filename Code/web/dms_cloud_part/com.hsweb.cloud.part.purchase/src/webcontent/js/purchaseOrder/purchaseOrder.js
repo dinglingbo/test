@@ -2381,6 +2381,7 @@ function onGuestValueChanged(e) {
 
 		nui.get("billTypeId").setValue(billTypeIdV);
 		nui.get("settleTypeId").setValue(settTypeIdV);
+		nui.get("orderType").setValue(1);
 
 		addNewRow(true);
     }
@@ -3372,7 +3373,7 @@ function getCangHash(data,detailData){
 			showMsg("该配件未同步仓先生","W");
 			return;
 		}
-		temp.part_id=partHash[part_id].cangPartId ;
+		temp.part_id=partHash[part_id].cangPartId || "" ;
 		if(!temp.part_id){
 			showMsg("该配件未同步仓先生","W");
 			return;

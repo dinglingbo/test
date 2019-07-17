@@ -395,22 +395,28 @@ function onPartGridRowClick(e)
 }
 function disablePart()
 {
+	var cangHash={};
     var row = partLoalGrid.getSelected();
     if(!row)
     {
         showMsg("请选择要禁用的配件","W");
         return;
     }
-
+    if(currAgencyId>0 || currIsOpenApp ==1){
+    	cangHash.agency_id = currAgencyId;
+    	cangHash.part_id = row.cangPartId;
+    	cangHash.status =0;
+    }
     savePart({
         id:row.id,
         code:row.code,
         partBrandId:row.partBrandId,
         isDisabled:1
-    },"禁用成功","禁用失败");
+    },cangHash,"禁用成功","禁用失败");
 }
 function enablePart()
 {
+	var cangHash={};
     var row = partLoalGrid.getSelected();
     console.log(row);
     if(!row)
@@ -418,15 +424,20 @@ function enablePart()
         showMsg("请选择要启用的配件","W");
         return;
     }
+    if(currAgencyId>0 || currIsOpenApp ==1){
+    	cangHash.agency_id = currAgencyId;
+    	cangHash.part_id = row.cangPartId;
+    	cangHash.status =1;
+    }
     savePart({
         id:row.id,
         code:row.code,
         partBrandId:row.partBrandId,
         isDisabled:0
-    },"启用成功","启用失败");
+    },cangHash,"启用成功","启用失败");
 }
 var saveUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.savePart.biz.ext";
-function savePart(part,successTip,errorTip)
+function savePart(part,cangHash,successTip,errorTip)
 {
 	nui.mask({
 		el : document.body,
@@ -438,6 +449,7 @@ function savePart(part,successTip,errorTip)
         type:"post",
         data:JSON.stringify({
             part:part,
+            cangHash :cangHash,
             token:token
         }),
         success:function(data)

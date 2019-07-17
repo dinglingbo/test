@@ -221,6 +221,14 @@ $(document).ready(function ()
                     e.cellHtml = e.value + '%';
                 }
                 break;
+            case "prdtCode":
+            	var type = record.type||0;
+                if(type == 3){
+                	e.cellHtml = e.value;
+                }else{
+                	e.cellHtml = "--";
+                }
+                break;
             default:
                 break;
         }
@@ -286,6 +294,14 @@ $(document).ready(function ()
                     e.cellHtml = prdtTypeHash[e.value];
                 }
                 break;
+            case "prdtCode":
+            	var type = record.type||0;
+                if(type == 3){
+                	e.cellHtml = e.value;
+                }else{
+                	e.cellHtml = "--";
+                }
+                break;
             default:
                 break;
         }
@@ -314,6 +330,7 @@ $(document).ready(function ()
 				e.cellHtml = 0;
 			}
 		}
+		
 	});
     
     rpsItemGrid.on("drawcell",function(e){
@@ -339,6 +356,12 @@ $(document).ready(function ()
 			if(!value){
 				e.cellHtml = 0;
 			}
+		}
+		if(field == "itemCode"){
+			var billItemId = record.billItemId||0;
+			if(billItemId == 0){
+	            e.cellHtml = "--";
+	        }
 		}
 	});
  
@@ -804,7 +827,7 @@ function showCarInfo(row_uid){
 function doShowCarInfo(params) {
     nui.open({
         url: webBaseUrl + "com.hsweb.RepairBusiness.carDetails.flow?token="+token,
-        width: 800, height: 500,
+        width: 1100, height: 650,
 		allowResize: false,
 		showHeader: true,
         onload: function () {

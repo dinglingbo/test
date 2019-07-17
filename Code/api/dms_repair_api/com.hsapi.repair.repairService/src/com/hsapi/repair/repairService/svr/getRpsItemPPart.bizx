@@ -386,6 +386,10 @@
       <process:from type="query" pattern="reference">itemTemp/remark</process:from>
       <process:to type="query">tempHash/remark</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">tempHash/partCode</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
     <location x="685" y="177"/>
@@ -726,6 +730,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">partTemp/noMtType</process:from>
       <process:to type="query">tempHash/noMtType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">partTemp/partCode</process:from>
+      <process:to type="query">tempHash/partCode</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">

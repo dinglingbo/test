@@ -400,7 +400,7 @@ function doSelectCustomer(callback) {
 function doShowCarInfo(params) {
     nui.open({
         url: webBaseUrl + "com.hsweb.RepairBusiness.carDetails.flow?token="+token,
-        width: 1000, height: 600,
+        width: 1100, height: 650,
 		allowResize: false,
 		showHeader: true,
         onload: function () {
@@ -759,15 +759,24 @@ function doPrint(params){
         currIsCanfreeCarnovin:currIsCanfreeCarnovin,
 		token : token 
 	};
-	if(source == 1){  //打印报价单
-		sourceUrl = webPath + contextPath + "/com.hsweb.print.settlement.flow?token="+token;
+	if(source == 1 ){  //打印报价单
+		if(currRepairSettPrintUrl){
+			sourceUrl = webPath + contextPath + currRepairSettPrintUrl+"?token="+token;
+		}else{
+			sourceUrl = webPath + contextPath + "/com.hsweb.print.settlement.flow?token="+token;
+		}
+		
 		p.name = "报价单";
 		p.currRepairEntrustPrintContent = currRepairEntrustPrintContent;
 	}else if(source == 2){  //打印派工单
 		sourceUrl = webPath + contextPath + "/com.hsweb.print.repairOrder.flow?token="+token;
 		p.name = "派工单";
 	}else if(source == 3){  //打印结算单
-		sourceUrl = webPath + contextPath + "/com.hsweb.print.settlement.flow?token="+token;
+		if(currRepairSettPrintUrl){
+			sourceUrl = webPath + contextPath + currRepairSettPrintUrl+"?token="+token;
+		}else{
+			sourceUrl = webPath + contextPath + "/com.hsweb.print.settlement.flow?token="+token;
+		}
 		p.name = "结账单";
 		p.currRepairSettPrintContent = currRepairSettPrintContent;
 	}else if(source == 4){  //打印小票
@@ -796,15 +805,6 @@ function doPrint(params){
 	}else if(source == 11){
 		sourceUrl = webPath + contextPath + "/com.hsweb.print.repairOrderPart.flow?token="+token;
 		p.name = "派工单";
-	}else if(source == 12){
-		sourceUrl = webPath + contextPath + "/com.hsweb.print.settlement3.flow?token="+token;
-		p.name = "报价单";
-	}else if(source == 13){
-		sourceUrl = webPath + contextPath + "/com.hsweb.print.settlement4.flow?token="+token;
-		p.name = "报价单";
-	}else if(source == 14){
-		sourceUrl = webPath + contextPath + "/com.hsweb.print.settlement5.flow?token="+token;
-		p.name = "报价单";
 	}
 	
 	nui.open({

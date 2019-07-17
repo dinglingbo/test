@@ -36,75 +36,209 @@
 	.js_bill ul li a:hover{ background-color:#dce1e5;} 
     </style>
     <div style="margin-top:15px;">
-            <div class="js_bill">
-                <dl class="xz"><p><i></i><font>默认模板</font></p><img src="<%= request.getContextPath() %>/config/img/sys1.png" /></dl>
-                <h3 class="xz">系统模板1</h3>
-                <ul><li><a onclick="showPrint(1)" class="eye">预览</a></li></ul>
+            <div class="js_bill" id="temp1">
+                <dl>
+                 <div id="temp1_div1">
+                    <dt></dt><dd><a onclick="save(1)" name="setdefault" templateid="1">设为默认</a></dd>
+                 </div>
+                 <div id="temp1_div2" style="display: none">
+                     <p><i></i><font>默认模板</font></p>
+                 </div>
+                <img src="<%= request.getContextPath() %>/config/img/sys1.png" />
+                </dl>
+                <h3>系统模板1</h3>
+                <ul><li><a href="<%= request.getContextPath() %>/com.hsweb.RepairBusiness.previewTemplate1.flow" target='_blank' class="eye">预览</a></li></ul>
             </div>
-                    <div class="js_bill">
-                <dl><dt></dt><dd><a href="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/previewTemplate2.jsp" name="setdefault" templateid="1">设为默认</a></dd><img src="<%= request.getContextPath() %>/config/img/sys2.png" /></dl>
+            <div class="js_bill" id="temp2">
+                <dl>
+                 <div id="temp2_div1" >
+                    <dt></dt><dd><a onclick="save(2)" name="setdefault" templateid="2">设为默认</a></dd>
+                 </div>
+                
+                 <div id="temp2_div2" style="display: none">
+                     <p><i></i><font>默认模板</font></p>
+                 </div>
+                 
+                 <img src="<%= request.getContextPath() %>/config/img/sys2.png" />
+                </dl>
                 <h3>系统模板2</h3>
-                <ul><li><a onclick="showPrint(2)" class="eye">预览</a></li></ul>
+                <ul><li><a href="<%= request.getContextPath() %>/com.hsweb.RepairBusiness.previewTemplate2.flow" target='_blank' class="eye">预览</a></li></ul>
             </div>
-            <div class="js_bill">
-                <dl><dt></dt><dd><a href="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/previewTemplate3.jsp" name="setdefault" templateid="3">设为默认</a></dd><img src="<%= request.getContextPath() %>/config/img/sys3.png" /></dl>
+            <div class="js_bill" id="temp3">
+                <dl>
+               
+                <div id="temp3_div1">
+                    <dt></dt><dd><a onclick="save(3)" name="setdefault" templateid="3">设为默认</a></dd>
+                 </div>
+                 <div id="temp3_div2" style="display: none">
+                     <p><i></i><font>默认模板</font></p>
+                 </div>
+                
+                <img src="<%= request.getContextPath() %>/config/img/sys3.png" />
+                </dl>
                 <h3>系统模板3</h3>
-                <ul><li><a onclick="showPrint(3)" class="eye">预览</a>
-               <!--  <a class="eye"><i class="fa fa-eye" aria-hidden="true"></i>预览</a>  -->
+                <ul><li><a href="<%= request.getContextPath() %>/com.hsweb.RepairBusiness.previewTemplate3.flow" target='_blank' class="eye">预览</a>
                 </li></ul>
             </div>
-            <div class="js_bill">
-                <dl><dt></dt><dd><a href="javascript:;" name="setdefault" templateid="4">设为默认</a></dd><img src="<%= request.getContextPath() %>/config/img/sys4.png" /></dl>
+            <div class="js_bill" id="temp4">
+                <dl>
+                <div id="temp4_div1" >
+                    <dt></dt><dd><a onclick="save(4)" name="setdefault" templateid="4">设为默认</a></dd>
+                 </div>
+                 <div id="temp4_div2" style="display: none">
+                     <p><i></i><font>默认模板</font></p>
+                 </div>
+                <img src="<%= request.getContextPath() %>/config/img/sys4.png" />
+                </dl>
                 <h3>系统模板4</h3>
-                <ul><li><a onclick="showPrint(4)" class="eye">预览</a></li></ul>
+                <ul><li><a href="<%= request.getContextPath() %>/com.hsweb.RepairBusiness.previewTemplate4.flow" target='_blank' class="eye">预览</a></li></ul>
             </div>
-            <div class="js_bill">
-                <dl><dt></dt><dd><a href="javascript:;" name="setdefault" templateid="5">设为默认</a></dd><img src="<%= request.getContextPath() %>/config/img/sys5.png" /></dl>
+            <div class="js_bill" id="temp5">
+                <dl>
+               <div id="temp5_div1" >
+                    <dt></dt><dd><a onclick="save(5)" name="setdefault" templateid="5">设为默认</a></dd>
+                 </div>
+                 <div id="temp5_div2" style="display: none">
+                     <p><i></i><font>默认模板</font></p>
+                 </div>
+                <img src="<%= request.getContextPath() %>/config/img/sys5.png" />
+                </dl>
                 <h3>系统模板5</h3>
-                <ul><li><a onclick="showPrint(5)" class="eye">预览</a></li></ul>
+                <ul><li><a href="<%= request.getContextPath() %>/com.hsweb.RepairBusiness.previewTemplate5.flow" target='_blank' class="eye">预览</a></li></ul>
             </div>
     </div>
     <div style="padding-top:32px;"></div> 
     <script type="text/javascript">
       var webBaseUrl = webPath + contextPath + "/";
        $(document).ready(function (){
-		
+          doSearch();
         });
-        function showPrint(e){
-          var url = null;
-          if(e==1){
-             url = webBaseUrl + "repair/RepairBusiness/Reception/previewTemplate1.jsp?token=" + token;
-          }
-          if(e==2){
-             url = webBaseUrl + "repair/RepairBusiness/Reception/previewTemplate2.jsp?token=" + token;
-          }
-          if(e==3){
-             url = webBaseUrl + "repair/RepairBusiness/Reception/previewTemplate3.jsp?token=" + token;
-          }
-          if(e==4){
-             url = webBaseUrl + "repair/RepairBusiness/Reception/previewTemplate4.jsp?token=" + token;
-          }
-          if(e==5){
-             url = webBaseUrl + "repair/RepairBusiness/Reception/previewTemplate5.jsp?token=" + token;
-          }
-          nui.open({
-    		url : url,
-    		title : "",
-    		width : '100%',
-    		height : '100%',
-    		allowDrag : true,
-    		allowResize : true,
-    		onload : function() {
-    			var iframe = this.getIFrameEl();
-                iframe.contentWindow.updatRowSetData(params);//显示该显示的功能
-               // iframe.contentWindow.setViewData(dock, dodelck, docck);
-    		},
-    		ondestroy : function(action) {
-    			
-    		}
-    	});
         
-        }
+        function doSearch(){
+           getComParamsList();
+        } 
+        var billParams = {};
+        var comParamsUrl = apiPath + sysApi + "/com.hsapi.system.config.paramSet.queryBillParams.biz.ext";
+        function getComParamsList(){
+            var params = {isDisabled:0};
+		    nui.ajax({
+				url : comParamsUrl,
+		        type : "post",
+		        async:false,
+				data : JSON.stringify({
+					params : params,
+					token: token
+				}),
+				success : function(data) {
+		            data = data || {};
+		            billParams = data.billParams;
+					if (billParams) {
+					   var repairSettPrintUrl = billParams.repairSettPrintUrl;
+					   if(repairSettPrintUrl){
+					       setStyle(repairSettPrintUrl);
+					   }
+		
+					} 
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					// nui.alert(jqXHR.responseText);
+					console.log(jqXHR.responseText);
+				}
+			});
+       }
+       var saveUrl = apiPath + sysApi + "/com.hsapi.system.config.paramSet.saveBillParams.biz.ext";
+       function save(e){
+           var repairSettPrintUrl = null;
+           if(e==1){
+              repairSettPrintUrl = "/com.hsweb.print.settlement.flow";
+           }
+           if(e==2){
+              repairSettPrintUrl = "/com.hsweb.print.settlementPart.flow";
+           }
+           if(e==3){
+              repairSettPrintUrl = "/com.hsweb.print.settlement3.flow";
+           }
+           if(e==4){
+              repairSettPrintUrl = "/com.hsweb.print.settlement4.flow";
+           }
+           if(e==5){
+              repairSettPrintUrl = "/com.hsweb.print.settlement5.flow";
+           }
+           nui.mask({
+	        el: document.body,
+	        cls: 'mini-mask-loading',
+	        html: '保存中...'
+           });
+           var temp = {"keyidId":"repairSettPrintUrl",keyidValue:repairSettPrintUrl};
+           var params = [];
+           params.push(temp);
+		    nui.ajax({
+				url : saveUrl,
+		        type : "post",
+		        async:false,
+				data : JSON.stringify({
+					billParams : params,
+					token: token
+				}),
+				success : function(data) {
+					
+					if(data.errCode=="S"){
+					   parent.showMsg("设置成功","S");
+					   doSearch();
+					}else{
+					   parent.showMsg("设置成功","S");
+					}
+					nui.unmask(document.body);
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					// nui.alert(jqXHR.responseText);
+					console.log(jqXHR.responseText);
+					nui.unmask(document.body);
+				}
+			});
+       }
+       var oldStr = null;
+       function setStyle(repairSettPrintUrl){
+           var str = null;
+           if(repairSettPrintUrl == "/com.hsweb.print.settlement.flow"){
+              str = "temp1";
+           }
+           if(repairSettPrintUrl == "/com.hsweb.print.settlementPart.flow"){
+              str = "temp2";
+           }
+           if(repairSettPrintUrl == "/com.hsweb.print.settlement3.flow"){
+              str = "temp3";
+           }
+           if(repairSettPrintUrl == "/com.hsweb.print.settlement4.flow"){
+              str = "temp4";
+           }
+           if(repairSettPrintUrl == "/com.hsweb.print.settlement5.flow"){
+              str = "temp5";
+           }
+           if(str){
+              //先把原来选择的去掉样式
+               if(oldStr){
+                   var oldStr1 = oldStr + "_div1";
+	               var oldStr2 = oldStr + "_div2";
+	               var oldStr3 = "#" + oldStr + " dl";
+	               var oldStr4 = "#" + oldStr + " h3";
+		           document.getElementById(oldStr1).style.display = "";
+		           document.getElementById(oldStr2).style.display = "none";
+				   $(oldStr3).removeClass("xz");
+				   $(oldStr4).removeClass("xz");
+               }
+               var str1 = str + "_div1";
+               var str2 = str + "_div2";
+               var str3 = "#" + str + " dl";
+               var str4 = "#" + str + " h3";
+	           document.getElementById(str1).style.display = "none";
+	           document.getElementById(str2).style.display = "";
+			   $(str3).addClass("xz");
+			   $(str4).addClass("xz");
+			   oldStr = str;
+           }
+       }
+        
     </script>
 </body>
 </html>

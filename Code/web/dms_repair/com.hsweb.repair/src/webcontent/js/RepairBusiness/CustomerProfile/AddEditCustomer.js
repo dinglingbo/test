@@ -1395,10 +1395,15 @@ function getLicense(imgPath){
 	        	}
 	        	if(data.data.register_date.length==8){	        	
 	        		nui.get('firstRegDate').setValue(nui.parseDate ( data.data.register_date )||"");
+	          	  	getCarVerificationDate(nui.parseDate ( data.data.register_date ),function(data) {
+		          		  if(data && data.dueDate) {
+		          			  nui.get("annualVerificationDueDate").setValue(data.dueDate);
+		          		  }
+		          	  });
 	        	}      		
-	        	showMsg("驾驶证识别成功","S");
+	        	showMsg("行驶证识别成功","S");
 	        }else{
-	            showMsg("驾驶证识别失败","W");
+	            showMsg("行驶证识别失败","W");
 	            return;
 	        }
 	        

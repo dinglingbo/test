@@ -10,7 +10,7 @@
 -->
 <head>
   <title>首页</title>
-  <script src="<%=webPath + contextPath%>/purchase/js/indexCloudPart.js?v=1.5.2"></script>
+  <script src="<%=webPath + contextPath%>/purchase/js/indexCloudPart.js?v=1.5.9"></script>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
@@ -50,10 +50,16 @@
                             <p>新建销售单</p> 
                         </a>
                     </div>
-                    <div class="menu_pannel menu_pannel_bg">
+                    <div class="menu_pannel menu_pannel_bg" id="epc">
                         <a onclick="toEPC()">
                             <i class="fa fa-search-plus fa-4x  fa-inverse"></i>
                             <p>EPC云服务</p> 
+                        </a>
+                    </div>
+                    <div class="menu_pannel menu_pannel_bg" id="stock">
+                        <a onclick="toStockQty()">
+                            <i class="fa fa-cubes fa-4x  fa-inverse"></i>
+                            <p>库存查询</p> 
                         </a>
                     </div>
                 </div>

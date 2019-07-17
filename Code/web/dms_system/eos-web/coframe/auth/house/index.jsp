@@ -396,7 +396,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
         var tab = tabs.getActiveTab();
          
         if(tab.name == "index") {
-            tab.url = defDomin + "/common/Index/TextIndex.jsp";
+            tab.url = defDomin + "/purchase/indexCloudPart_view0.jsp";
         }
         tabs.loadTab(tab.url, tab);
     }

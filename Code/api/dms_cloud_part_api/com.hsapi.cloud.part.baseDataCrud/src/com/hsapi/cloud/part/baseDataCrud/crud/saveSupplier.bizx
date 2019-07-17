@@ -372,6 +372,10 @@
     <location x="-59" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userRealName</process:from>
+      <process:to type="query">userName</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
     <location x="-65" y="186"/>

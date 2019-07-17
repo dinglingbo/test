@@ -150,6 +150,7 @@
             </div>
             <div header="其他" headerAlign="center">
                 <div property="columns">
+                	<div allowSort="true" field="manualCode" width="170" headerAlign="center" header="订单号"></div>
                     <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
                     <div allowSort="true" width="120"field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div allowSort="true" field="partId" width="50" headerAlign="center" header="配件ID"></div>

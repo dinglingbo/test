@@ -82,6 +82,7 @@ var storeLimitMap={};
 var storeShelfList=[];
 var storeShelfHash={}
 var partHash={};
+var orderTypeList=[{"id":1,"name":"常规订单"},{"id":2,"name":"备货订单"},{"id":3,"name":"急件订单"}];
 $(document).ready(function(v) {
 	nui.mask({
         el: document.body,
@@ -119,6 +120,8 @@ $(document).ready(function(v) {
 	advancedTipWin = nui.get("advancedTipWin");
 	setPriceWin=nui.get("setPriceWin");
 	guestIdEl=nui.get('guestId');
+	orderTypeEl =nui.get("orderType");
+	orderTypeEl.setData(orderTypeList);
 	//setTimeout(function(){ 
 	document.getElementById("formIframe").src=webPath + contextPath + "/common/embedJsp/containBottom.jsp";
 	document.getElementById("formIframePart").src=webPath + contextPath + "/common/embedJsp/containPartInfo.jsp";
@@ -380,6 +383,7 @@ $(document).ready(function(v) {
 	});
 	//开启APP
   if(currIsOpenApp ==1){
+	  nui.get('uAuditBtn').setVisible(false);
 	  getStoreLocation();
 //	  getPart();
   }
@@ -413,7 +417,7 @@ function getStratePrice(partId){
 			var length=partPriceList.length;
 			partPriceList.forEach(function(v){
 				partPriceHash[v.name]=v;			
-				StratePrice[partId]=partPriceHash;
+				StratePrice[v.partId+"-"+v.name]=partPriceHash;
 			});
 
 		},error : function(jqXHR, textStatus, errorThrown) {
@@ -1174,8 +1178,8 @@ function savePrice(){
 			if(gridData[i][key]){
 				var partId=gridData[i].partId;
 				//匹配
-				if(StratePrice[partId][StrateHash[key].name]){
-					var obj=StratePrice[partId][StrateHash[key].name];
+				if(StratePrice[partId+"-"+StrateHash[key].name]){
+					var obj=StratePrice[partId+"-"+StrateHash[key].name][StrateHash[key].name];
 					obj.sellPrice=gridData[i][key];
 					data.push(obj);
 				}		
@@ -1409,9 +1413,9 @@ function onRightGridDraw(e) {
 //	}
 	if(partPriceHash[header]){
 		if(header==partPriceHash[header].name){
-			if(StratePrice[record.partId] && !e.value){
-				e.cellHtml = StratePrice[record.partId][header].sellPrice||"";
-				e.value= StratePrice[record.partId][header].sellPrice||"";
+			if(StratePrice[record.partId+"-"+header] && !e.value){
+				e.cellHtml = StratePrice[record.partId+"-"+header][header].sellPrice||"";
+				e.value= StratePrice[record.partId+"-"+header][header].sellPrice||"";
 			}
 		}
 	}
@@ -2141,10 +2145,12 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 				var pchsOrderDetailUpdate = rightGrid.getChanges("modified");
 				var pchsOrderDetailDelete = rightGrid.getChanges("removed");
 				var pchsOrderDetailUpdate = getModifyData(detailData, pchsOrderDetailAdd, pchsOrderDetailDelete);
+				var cangHash ="";
+				if(currIsOpenApp ==1){
+					cangHash=getCangHash(data,detailData);
+				}
 				
-				var cangHash=getCangHash(data,detailData);
 				
-	
 				nui.mask({
 					el : document.body,
 					cls : 'mini-mask-loading',
@@ -2213,7 +2219,10 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 				var pchsOrderDetailDelete = rightGrid.getChanges("removed");
 				var pchsOrderDetailUpdate = getModifyData(detailData, pchsOrderDetailAdd, pchsOrderDetailDelete);
 	
-				var cangHash=getCangHash(data,detailData);
+				var cangHash ="";
+				if(currIsOpenApp ==1){
+					cangHash=getCangHash(data,detailData);
+				}
 				nui.mask({
 					el : document.body,
 					cls : 'mini-mask-loading',
@@ -2372,6 +2381,7 @@ function onGuestValueChanged(e) {
 
 		nui.get("billTypeId").setValue(billTypeIdV);
 		nui.get("settleTypeId").setValue(settTypeIdV);
+		nui.get("orderType").setValue(1);
 
 		addNewRow(true);
     }
@@ -3359,7 +3369,11 @@ function getCangHash(data,detailData){
 		var warehouse=[];
 		var warehousetemp={};
 		var part_id=detailData[i].partId;
-		temp.part_id=partHash[part_id].cangPartId ;
+		if(!partHash[part_id].cangPartId){
+			showMsg("该配件未同步仓先生","W");
+			return;
+		}
+		temp.part_id=partHash[part_id].cangPartId || "" ;
 		if(!temp.part_id){
 			showMsg("该配件未同步仓先生","W");
 			return;
@@ -3471,12 +3485,13 @@ function getStratePriceList(params){
 			partPriceList.forEach(function(v){
 				partPriceHash={};
 				partPriceHash[v.name]=v;	
-//				if(partPriceHash[v.name].partId ==v.partId){
-				StratePrice[v.partId]=partPriceHash;
-				
-//				}
+				StratePrice[v.partId+"-"+v.name]=partPriceHash;
 				
 			});
+			partPriceList.forEach(function(v){
+				partPriceHash[v.name]=v;	
+			});
+			
 
 		},error : function(jqXHR, textStatus, errorThrown) {
 			// nui.alert(jqXHR.responseText);

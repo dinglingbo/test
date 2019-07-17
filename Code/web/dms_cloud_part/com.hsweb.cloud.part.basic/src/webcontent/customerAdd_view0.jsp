@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%=webPath + contextPath%>/basic/js/customerAdd.js?v=1.0.92"></script>
+<script src="<%=webPath + contextPath%>/basic/js/customerAdd.js?v=1.0.125"></script>
 <script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
 <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
 <script src="<%= request.getContextPath() %>/common/qiniu/qiniu1.0.14.js" type="text/javascript"></script>
@@ -258,8 +258,8 @@
                               <td colspan=""><input id="tel" name="tel" width="100%" class="nui-textbox" ></td>
                           </tr>
                           <tr class="htr">
-                              <td class=" right fwidthb">邮箱:</td>
-                              <td ><input id="email" name="email" width="100%" class="nui-textbox" ></td>
+                              <td class=" right fwidtha">信誉额度:</td>
+                              <td ><input id="creditLimit" name="creditLimit" width="100%" class="nui-textbox" ></td>
                               <td class=" right fwidtha">QQ/微信:</td>
                               <td ><input id="instantMsg" name="instantMsg" width="100%" class="nui-textbox" ></td>
                           </tr>
@@ -330,8 +330,11 @@
                           <tr class="htr">
                               <td class=" right fwidthb">会员等级:</td>
                               <td ><input id="memLevel" name="memLevel" width="100%" class="nui-textbox" ></td>
-                              <td class=" right fwidtha">信誉额度:</td>
-                              <td ><input id="creditLimit" name="creditLimit" width="100%" class="nui-textbox" ></td>
+                              <td class=" right fwidthb">邮政编码:</td>
+                              <td>
+                                  <input id="postalCode" name="postalCode" width="100%" class="nui-textbox" >
+                              </td>
+                             
                           </tr>  
                           <tr class="htr" style="display :none;" id="otherPicture">
                               <td class=" right fwidthb">上传其他图片:</td>
@@ -387,7 +390,73 @@
 
             </div>
         </div>
-</div>
+         <div name="tab4" title="关联客户">
+         	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:100%;">
+                          	客户名称：<input id="guestName" name="guestName"class="nui-textbox"  >
+                            <a class="nui-button" iconCls="" plain="true" onclick="searchGuest"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                            <a class="nui-button" iconCls="" plain="true" onclick="selectGuest"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+             <div class="form" id= "guestConnectFrom">
+              	<div class="vpanel mainwidth" style="height:auto;">
+          			 <div id="guestGrid" class="nui-datagrid" allowResize="true" style="width:100%;height:40%;"
+	                       url=""  idField="id" multiSelect="true"
+	                       pageSize="20"
+	                       dataField="customers"
+	                       onrowdblclick=""
+	                       sortMode="client"
+	                       totalField="page.count"
+	                       allowRowSelect="true"
+	                       multiSelect="true"
+	                       showPager="true">
+	                      <div property="columns">
+	                          <div allowSort="true" type="indexcolumn" headerAlign="center" width="30">序号</div> 
+	                          <div type="checkcolumn" width="20"></div>
+	                          <div allowSort="true" field="id" width="40" headerAlign="center" visible="false">主键</div>
+	                          <div allowSort="true" field="shortName" width="70" headerAlign="center">客户简称</div>
+	                          <div allowSort="true" field="fullName" width="120" headerAlign="center">客户全称</div>
+	                          <div allowSort="true" field="recordDate" dateFormat="yyyy-MM-dd HH:mm" width="80" headerAlign="center">创建日期</div>
+	                      </div>
+	                  </div>
+	                 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+			                <table style="width:100%;">
+			                    <tr>
+			                        <td style="width:100%;">
+			                        	<span>已选择的客户</span>
+			                          	<a class="nui-button" iconCls="" plain="true" onclick="deleteRows"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
+			                        </td>
+			                    </tr>
+			                </table>
+			            </div>
+	                  <div id="haveSelectGrid" class="nui-datagrid" allowResize="true" style="width:100%;height:40%;"
+	                       url=""  idField="id" multiSelect="true"
+	                       pageSize="20"
+	                       dataField="data"
+	                       onrowdblclick=""
+	                       sortMode="client"
+	                       totalField="page.count"
+	                       allowRowSelect="true"
+	                       multiSelect="true"
+	                       allowUnselect="true"
+	                       showPager="false">
+	                      <div property="columns">
+	                          <div allowSort="true" type="indexcolumn" headerAlign="center" width="30">序号</div> 
+	                          <div type="checkcolumn" width="25"></div>
+	                          <div allowSort="true" field="shortName" width="40" headerAlign="center">客户简称</div>
+	                          <div allowSort="true" field="fullName" width="120" headerAlign="center">客户全称</div>
+	                          <div allowSort="true" field="createDate" width="60" headerAlign="center">创建日期</div>
+	                      </div>
+	                   </div>
+                  	
+              	</div>
+            </div>
+		 </div>
+</div>		
 </div>
 <div style="text-align:center;padding:10px;">
     <a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>

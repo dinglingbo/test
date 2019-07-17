@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购记录</title>
-<script src="<%=webPath + contextPath%>/common/js/embed/containPchsOrderRecord.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/common/js/embed/containPchsOrderRecord.js?v=1.0.9"></script>
 <style type="text/css">
 .title {
   width: 90px;
@@ -31,6 +31,8 @@
             borderStyle="border:1;"
             selectOnLoad="true"
             showPager="true"
+            totalField="page.count"
+            ondrawcell="onDrawCell"
             pageSize="50"
             sizeList=[50,100,200]
             dataField="detailList"

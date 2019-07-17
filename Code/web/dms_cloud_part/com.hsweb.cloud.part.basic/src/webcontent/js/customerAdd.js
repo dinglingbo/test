@@ -723,6 +723,7 @@ function saveLogistics(guestId){
 	nui.ajax({
         url:saveLogisticsUrl,
         type:"post",
+        async:false,
         data:JSON.stringify({
             guestId:guestId,
             logisticsAdd:logisticsAdd,
@@ -1099,6 +1100,7 @@ function saveGuestCon(guestId){
 	nui.ajax({
         url:saveGuestConsUrl,
         type:"post",
+        async:false,
         data:JSON.stringify({
             guestId:guestId,
             guestConAdd:guestConAdd,

@@ -124,7 +124,7 @@
       <process:to type="query">stateDetail/billAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">main/auditDate</process:from>
+      <process:from type="query" pattern="reference">operateDate</process:from>
       <process:to type="query">stateDetail/billDate</process:to>
     </process:copy>
     <process:copy>
@@ -273,6 +273,7 @@
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>assign10</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
     <location x="222" y="153"/>

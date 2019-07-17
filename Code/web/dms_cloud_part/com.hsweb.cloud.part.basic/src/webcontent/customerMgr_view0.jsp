@@ -10,11 +10,11 @@
 <head>
 <title>客户管理</title>
 
-<script src="<%=webPath + contextPath%>/basic/js/customerMgr.js?v=1.0.24"></script>
+<script src="<%=webPath + contextPath%>/basic/js/customerMgr.js?v=1.0.28"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
-	width: 80px;
+	width: 70px;
 }
 </style>
 </head>
@@ -118,7 +118,7 @@
     </div>
 </div>
 <div id="advancedSearchWin" class="nui-window"
-     title="高级查询" style="width:500px;height:220px;"
+     title="高级查询" style="width:570px;height:250px;"
      showModal="true"
      allowResize="false"
      allowDrag="false">
@@ -134,7 +134,7 @@
             <tr>
                 <td class="table-label">客户全称:</td>
                 <td colspan="3">
-                    <input name="fullName" class="nui-textbox" style="width:100%;"/>
+                    <input name="fullName" class="nui-textbox" style="width:89%;"/>
                 </td>
             </tr>
             <tr>

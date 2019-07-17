@@ -134,7 +134,8 @@
                                              width="87%"
                                              placeholder="请选择客户"
                                              selectOnFocus="true" />
-                                      	<input id="btnEdit1" width="7.2%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/>
+                                         <a class="nui-button" iconCls="" plain="false" onclick="selectSupplier('guestId')" id="addBtn"><span class="fa fa-check fa-lg"></span></a>
+<!--                                       	<input id="btnEdit1" width="7.2%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/> -->
                                   </td>
                                   <td class="title required">
                                       <label>退货员：</label>

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%=webPath + contextPath%>/basic/js/customerAdd.js?v=1.0.125"></script>
+<script src="<%=webPath + contextPath%>/basic/js/customerAdd.js?v=1.0.128"></script>
 <script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
 <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
 <script src="<%= request.getContextPath() %>/common/qiniu/qiniu1.0.14.js" type="text/javascript"></script>
@@ -231,14 +231,7 @@
                               <td class=" right fwidtha">业务员手机:</td>
                               <td ><input id="contactorTel" name="contactorTel" width="100%" class="nui-textbox" ></td>
                           </tr>
-                          <tr class="htr">
-                              <td class=" right fwidthb">邮政编码:</td>
-                              <td>
-                                  <input id="postalCode" name="postalCode" width="100%" class="nui-textbox" >
-                              </td>
-                              <td class=" right fwidtha"></td>
-                              <td><input id="isNeedPack" name="isNeedPack" class="nui-checkbox" text="需要打包发货" onvaluechanged="onValueChanged" trueValue="1" falseValue="0"></td>
-                          </tr>
+                         
                           <tr class="htr">
                               <td class=" right fwidthb">信用等级:</td>
                               <td >
@@ -254,12 +247,12 @@
                                  showNullItem="true"
                                  nullItemText="请选择..."/>
                               </td>
-                              <td class=" right fwidthb">电话:</td>
-                              <td colspan=""><input id="tel" name="tel" width="100%" class="nui-textbox" ></td>
-                          </tr>
-                          <tr class="htr">
                               <td class=" right fwidtha">信誉额度:</td>
                               <td ><input id="creditLimit" name="creditLimit" width="100%" class="nui-textbox" ></td>
+                          </tr>
+                          <tr class="htr">
+                              <td class=" right fwidthb">电话:</td>
+                              <td colspan=""><input id="tel" name="tel" width="100%" class="nui-textbox" ></td>
                               <td class=" right fwidtha">QQ/微信:</td>
                               <td ><input id="instantMsg" name="instantMsg" width="100%" class="nui-textbox" ></td>
                           </tr>
@@ -272,6 +265,10 @@
                               <td >
                                   <input id="defaultLogistics" name="defaultLogistics" width="100%" class="nui-textbox" >
                               </td>
+                          </tr>
+                           <tr class="htr">
+                              <td class=" right fwidtha"></td>
+                              <td><input id="isNeedPack" name="isNeedPack" class="nui-checkbox" text="需要打包发货" onvaluechanged="onValueChanged" trueValue="1" falseValue="0"></td>
                           </tr>
                       </table>
 

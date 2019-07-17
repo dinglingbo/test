@@ -174,7 +174,8 @@
 	                                             width="80%"
 	                                             placeholder="请选择客户"
 	                                             selectOnFocus="true" />
-	                                      <input id="btnEdit1" width="11%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/>
+	                                      <a class="nui-button" iconCls="" plain="false" onclick="selectSupplier('guestId')" id="addBtn"><span class="fa fa-check fa-lg"></span></a>
+<!-- 	                                      <input id="btnEdit1" width="11%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/> -->
                                           <input class="nui-textbox" id="guestName" name="guestName" width="100%" visible="false">
                                       </td>
                                       <td class="title required">
@@ -192,10 +193,11 @@
                                                  placeholder="请选择物流公司..."
                                                  emptyText="请选择物流公司..."
                                                  popupEmptyText="未找到物流公司"
-                                                 width="58%"
+                                                 width="40%"
                                                  placeholder="请选择物流公司"
                                                  selectOnFocus="true" />
-                                          <input id="btnEdit1" width="15%" class="mini-buttonedit"  onbuttonclick="selectLogisticsSupplier('logisticsGuestId')"/>
+<!--                                           <input id="btnEdit1" width="15%" class="mini-buttonedit"  onbuttonclick="selectLogisticsSupplier('logisticsGuestId')"/> -->
+										  <a class="nui-button" iconCls="" plain="false" onclick="selectLogisticsSupplier('logisticsGuestId')" id="addBtn"><span class="fa fa-check fa-lg"></span></a>
                                           <a class="nui-button" iconCls="" plain="false" onclick="addLogistics()" id="addBtn"><span class="fa fa-plus fa-lg"></span></a>
                                           <input class="nui-textbox" id="logisticsName" name="logisticsName" width="100%" visible="false">
                                       </td>
@@ -236,10 +238,11 @@
                                                  placeholder="请选择物流公司..."
                                                  emptyText="请选择物流公司..."
                                                  popupEmptyText="未找到物流公司"
-                                                 width="46%"
+                                                 width="38%"
                                                  placeholder="请选择物流公司"
                                                  selectOnFocus="true" />
-                                          <input id="btnEdit1" width="17%" class="mini-buttonedit"  onbuttonclick="selectLogisticsSupplier('transitLogisticsId')"/>
+<!--                                           <input id="btnEdit1" width="17%" class="mini-buttonedit"  onbuttonclick="selectLogisticsSupplier('transitLogisticsId')"/> -->
+										  <a class="nui-button" iconCls="" plain="false" onclick="selectLogisticsSupplier('transitLogisticsId')" id="addBtn"><span class="fa fa-check fa-lg"></span></a>
                                           <a class="nui-button" iconCls="" plain="false" onclick="addLogistics()" id="addBtn"><span class="fa fa-plus fa-lg"></span></a>
                                           <input class="nui-textbox" id="transitLogisticsName" name="transitLogisticsName" width="100%" visible="false">
                                       </td>

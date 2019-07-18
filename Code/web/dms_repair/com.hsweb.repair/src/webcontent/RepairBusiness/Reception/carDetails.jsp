@@ -740,7 +740,7 @@
 									<div field="partName" headerAlign="center" allowSort="true" width="90px">
 										配件名称</div>
 									<div field="partCode" headerAlign="center" allowSort="true" width="80px">
-										配件品牌</div>
+										配件编码</div>
 									<div field="partBrandId" headerAlign="center" allowSort="true" width="80px">
 										配件品牌</div>
 									<div field="unitPrice" headerAlign="center" allowSort="true" width="60px">

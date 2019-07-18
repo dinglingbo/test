@@ -189,6 +189,82 @@
 		
 	 </select>
 	
-	
+    <select id="queryComCustomer" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+     SELECT
+     	a.id as id,  
+		a.name as name,
+		a.sign as sign,
+		a.qq as qq,
+		a.wechat as wechat,
+		a.sex as sex,
+		a.mobile as mobile,
+		a.fax as fax,
+		a.birthday as birthday,
+		a.email as email,
+		a.addr as addr,
+		a.photo as photo,
+		a.is_disabled as isDisabled,		
+		a.remark as remark,
+		a.recorder as recorder ,
+		a.record_date as recordDate,
+		a.modifier as modifier,
+		a.modify_date as modifyDate
+		FROM com_customer a
+		WHERE 1=1
+		<isNotNull property="name">
+			AND a.name like '%$name$%'
+		</isNotNull>
+		<isNotNull property="mobile">
+			AND a.mobile like '%$mobile$%'
+		</isNotNull>
+		<isNotNull property="isDisabled">
+			AND a.is_disabled = #isDisabled#
+		</isNotNull>
+		<isNotEmpty prepend="and" property="endDates">  
+              a.end_date &gt;= #endDates#
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="endDatee">  
+             a.end_date &lt; #endDatee#
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="startDates">  
+              a.start_date &gt;= #startDates#
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="startDatee">  
+              a.start_date &lt; #startDatee#
+        </isNotEmpty>
+		
+	 </select>
+	 
+	 	<select id="queryComCustomerAssociated" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+     SELECT
+     	a.id as id,  
+		a.customer_id as customerId,
+		a.tenant_id as tenantId,
+		a.recorder as recorder ,
+		a.record_date as recordDate,
+		a.modifier as modifier,
+		a.modify_date as modifyDate
+		FROM com_customer_associated a
+		WHERE 1=1
+		<isNotNull property="tenantId">
+			AND a.tenant_id=#tenantId#
+		</isNotNull>
+		<isNotNull property="customerId">
+			AND a.customer_id=#customerId#
+		</isNotNull>
+		<isNotEmpty prepend="and" property="endDates">  
+              a.end_date &gt;= #endDates#
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="endDatee">  
+             a.end_date &lt; #endDatee#
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="startDates">  
+              a.start_date &gt;= #startDates#
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="startDatee">  
+              a.start_date &lt; #startDatee#
+        </isNotEmpty>
+		
+	 </select>
 	
 </sqlMap>

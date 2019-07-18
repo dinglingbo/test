@@ -203,6 +203,9 @@
                 </ul>
             </li>
             <li class="dropdown">
+           		<a class="" style="padding-top: 18px; " onclick="custmer()" title="客服信息"><i class="fa fa-user-circle-o"></i></a>
+           	</li>
+            <li class="dropdown">
            		<a class="feedback-bt FeedBackButton" style="padding-top: 18px; ">
 				    反馈
 				</a>
@@ -471,7 +474,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
 	        success : function(text) {
 	            var list = text.rs||{};
 	            if(list.length==0){
-	                showMsg("此用户无法修改","W");
+	               // showMsg("此用户无法修改","W");
 	            }else{
 	      			if(list[0].backgroundColor!=null){
 	      				document.getElementById("skin").style.backgroundColor =list[0].backgroundColor; 
@@ -508,7 +511,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
         success : function(text) {
             var list = text.rs||{};
             if(list.length==0){
-                showMsg("此用户无法修改","W");
+                //showMsg("此用户无法修改","W");
             }else{
                     nui.open({
                         url: webPath + contextPath + "/com.hs.common.homePageEmployeeEdit.flow?token="+token,
@@ -883,7 +886,24 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
 	    });
 	}
 	
-	
+	function customer(){
+       nui.open({
+            url: webPath + contextPath + "/common/customer.jsp?token="+token,
+            width: "100%",         //宽度
+            height: "100%",        //高度
+            title: "客服信息",      //标题 组织编码选择
+            allowResize:true,
+            onload: function () {
+                var iframe = this.getIFrameEl();
+                iframe.contentWindow.SetInitData(list[0]);
+            },
+            ondestroy: function (action) {  //弹出页面关闭前
+                if (action == "ok") {       //如果点击“确定”
+                    search();
+                }
+            }
+        });
+	}
 
 </script>
 

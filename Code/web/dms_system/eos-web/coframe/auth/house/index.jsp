@@ -429,7 +429,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
     }
     
    function updateSkin(color){
-	    var queryEmployeeUrl = baseUrl+"com.hsapi.system.tenant.employee.queryEmployee.biz.ext";
+	    var queryEmployeeUrl = apiPath + sysApi + "/"+"com.hsapi.system.tenant.employee.queryEmployee.biz.ext";
 	    nui.ajax({
 	        url : queryEmployeeUrl,
 	        type : "post",
@@ -456,7 +456,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
     }
     
        function skin(){
-	    var queryEmployeeUrl = baseUrl+"com.hsapi.system.tenant.employee.queryEmployee.biz.ext";
+	    var queryEmployeeUrl =apiPath + sysApi + "/"+"com.hsapi.system.tenant.employee.queryEmployee.biz.ext";
 	    nui.ajax({
 	        url : queryEmployeeUrl,
 	        type : "post",
@@ -493,7 +493,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
     }
     
     function updateEmployee(){
-    var queryEmployeeUrl = baseUrl+"com.hsapi.system.tenant.employee.queryEmployee.biz.ext";
+    var queryEmployeeUrl = apiPath + sysApi + "/"+"com.hsapi.system.tenant.employee.queryEmployee.biz.ext";
     nui.ajax({
         url : queryEmployeeUrl,
         type : "post",

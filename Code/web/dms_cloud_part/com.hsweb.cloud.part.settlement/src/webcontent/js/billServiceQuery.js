@@ -530,7 +530,8 @@ function audit(){
 
     var msg = checkAuditRow(1);
     if(msg){
-        nui.alert(msg);
+    	showMsg(msg,"W");
+//        nui.alert(msg);
         return;
     }
         
@@ -547,7 +548,8 @@ function audit(){
         document.getElementById('rAuditAmt').innerHTML=rtn.rAmount;
 
     }else{
-        nui.alert("请选择单据！");
+    	showMsg("请选择单据！","W");
+//        nui.alert("请选择单据！");
         return;
     }
 }
@@ -632,13 +634,15 @@ function auditOK(){
                 nui.unmask(document.body);
                 data = data || {};
                 if (data.errCode == "S") {
-                    nui.alert("单据审核成功!");
+                	 showMsg("单据审核成功!","S");
+//                    nui.alert("单据审核成功!");
 
                     auditCancel();
                     rightGrid.reload();
                     
                 } else {
-                    nui.alert(data.errMsg || "单据审核失败!");
+                	showMsg(data.errMsg || "单据审核失败!","E");
+//                    nui.alert(data.errMsg || "单据审核失败!");
                 }
             },
             error : function(jqXHR, textStatus, errorThrown) {
@@ -648,7 +652,8 @@ function auditOK(){
         }); 
 
     }else{
-        nui.alert("请选择单据！");
+    	showMsg("请选择单据！","W");
+//        nui.alert("请选择单据！");
         return;
     }
 }
@@ -657,7 +662,8 @@ function unAudit(){
 
     var msg = checkAuditRow(0);
     if(msg){
-        nui.alert(msg);
+    	showMsg(msg,"W");
+//        nui.alert(msg);
         return;
     }
         
@@ -683,12 +689,14 @@ function unAudit(){
                 nui.unmask(document.body);
                 data = data || {};
                 if (data.errCode == "S") {
-                    nui.alert("单据反审核成功!");
+                	showMsg("单据反审核成功!","S");
+//                    nui.alert("单据反审核成功!");
 
                     rightGrid.reload();
                     
                 } else {
-                    nui.alert(data.errMsg || "单据反审核失败!");
+                	showMsg(data.errMsg || "单据反审核失败!","E");
+//                    nui.alert(data.errMsg || "单据反审核失败!");
                 }
             },
             error : function(jqXHR, textStatus, errorThrown) {
@@ -698,7 +706,8 @@ function unAudit(){
         }); 
 
     }else{
-        nui.alert("请选择单据！");
+    	showMsg("请选择单据！","W");
+//        nui.alert("请选择单据！");
         return;
     }
 }

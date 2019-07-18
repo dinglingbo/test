@@ -245,7 +245,7 @@ function importGuest(){
         url: webPath + contextPath + "/com.hsweb.cloud.part.basic.importClient.flow?token="+token,
         title: "客户导入", 
         width: 1000, 
-        height: 5400,
+        height: 540,
         allowDrag:true,
         allowResize:true,
         onload: function ()
@@ -260,7 +260,7 @@ function importGuest(){
         },
         ondestroy: function (action)
         {
-            doSearch();
+        	search();
         }
     });
 }

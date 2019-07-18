@@ -9,7 +9,7 @@
 -->
 <head>
 <title>月结对账</title>
-<script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.2.17"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.2.28"></script>
 <style type="text/css">
 .title {
   width: 85px;
@@ -320,13 +320,15 @@
             <tr>
                 <td class="title">对账日期:</td>
                 <td>
-                    <input name="sCreateDate"
+                    <input id="sOrderDate"
+                    	   name="sCreateDate"
                            width="100%"
                            class="nui-datepicker"/>
                 </td>
                 <td class="">至:</td>
                 <td>
-                    <input name="eCreateDate"
+                    <input id="eOrderDate"
+                    	   name="eCreateDate"
                            class="nui-datepicker"
                            format="yyyy-MM-dd"
                            timeFormat="H:mm:ss"

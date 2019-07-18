@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>收支项目</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/settlement/js/fiInComeExpensesSet.js?v=2.0.5"></script>
+    <script src="<%=webPath + contextPath%>/settlement/js/fiInComeExpensesSet.js?v=2.0.7"></script>
     <style type="text/css">
     body {
         margin: 0;

@@ -126,7 +126,8 @@ function addOrEditPartQuality(quality)
 	var title = "新增品质";
     if(quality)
     {
-    	if(currTenantId != '0')
+    	if(currTenantId != '0' )
+//		if(currTenantId != 'default' )
 //        if(quality.orgid != currOrgid)
         {
             return;
@@ -297,6 +298,7 @@ function onLeftGridRowClick(e)
         nui.get("enabledLeft").hide();
     }
     if(row.orgid == currOrgid || currTenantId=='0'){
+//    if(row.orgid == currOrgid || currTenantId=='0' || currTenantId=="default"){
         nui.get("disabledLeft").enable();
         nui.get("enabledLeft").enable();
         nui.get("editLeft").enable();

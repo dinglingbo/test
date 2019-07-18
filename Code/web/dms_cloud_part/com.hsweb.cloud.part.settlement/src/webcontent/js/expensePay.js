@@ -138,7 +138,8 @@ function onCellCommitEdit(e) {
     
     editor.validate();
     if (editor.isValid() == false) {
-        nui.alert("请输入数字！");
+    	showMsg("请输入数字！","W");
+//        nui.alert("请输入数字！");
         e.cancel = true;
     }
 }
@@ -235,7 +236,8 @@ function save(){
     });
 
     if(rows) {
-        nui.alert("请选择结算账户后再保存!");
+    	showMsg("请选择结算账户后再保存!","W");
+//        nui.alert("请选择结算账户后再保存!");
         return;
     }
 
@@ -249,7 +251,8 @@ function save(){
     });
 
     if(rows) {
-        nui.alert("请选择结算账户对应的结算方式后再保存!");
+    	showMsg("请选择结算账户对应的结算方式后再保存!","W");
+//        nui.alert("请选择结算账户对应的结算方式后再保存!");
         return;
     }
 
@@ -263,7 +266,8 @@ function save(){
     });
 
     if(rows) {
-        nui.alert("请选择费用科目后再保存!");
+    	showMsg("请选择费用科目后再保存!","W");
+//        nui.alert("请选择费用科目后再保存!");
         return;
     }
 
@@ -319,11 +323,13 @@ function save(){
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                nui.alert("保存成功!");
+            	showMsg("保存成功!","S");
+//                nui.alert("保存成功!");
                 
                 doSearch();
             } else {
-                nui.alert(data.errMsg || "保存失败!");
+            	showMsg(data.errMsg || "保存失败!","E");
+//                nui.alert(data.errMsg || "保存失败!");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -338,23 +344,36 @@ var auditUrl = baseUrl
 function audit(){
     var rpAdd = mainGrid.getChanges("added");
     if(rpAdd && rpAdd.length > 0){
-        nui.alert("请先保存数据再审核!");
+    	showMsg("请先保存数据再审核!","W");
+//        nui.alert("请先保存数据再审核!");
         return;
     }
 
     var rpUpdate = mainGrid.getChanges("modified");
     if(rpUpdate && rpUpdate.length > 0){
-        nui.alert("请先保存数据再审核!");
+    	showMsg("请先保存数据再审核!","W");
+//        nui.alert("请先保存数据再审核!");
         return;
     }
 
     var rpDelete = mainGrid.getChanges("removed");
     if(rpDelete && rpDelete.length > 0){
-        nui.alert("请先保存数据再审核!");
+    	showMsg("请先保存数据再审核!","W");
+//        nui.alert("请先保存数据再审核!");
         return;
     }
 
     var data = mainGrid.getSelecteds();
+    if(data.length<=0){
+    	showMsg("请选择要审核的数据!","W");
+    	return;
+    }
+    for(var i=0;i<data.length;i++){
+    	if(data[i].auditSign==1){
+    		showMsg("数据已审核","W");
+    		return;
+    	}
+    }
     var dataList = [];
     if(data){
         for(var i=0; i<data.length; i++){
@@ -387,11 +406,13 @@ function audit(){
                 nui.unmask(document.body);
                 data = data || {};
                 if (data.errCode == "S") {
-                    nui.alert("审核成功!");
+                	showMsg("审核成功!","S");
+//                    nui.alert("审核成功!");
                     
                     doSearch();
                 } else {
-                    nui.alert(data.errMsg || "审核失败!");
+                	 showMsg(data.errMsg || "审核失败!","E");
+//                    nui.alert(data.errMsg || "审核失败!");
                 }
             },
             error : function(jqXHR, textStatus, errorThrown) {

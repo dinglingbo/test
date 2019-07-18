@@ -9,7 +9,7 @@
 -->
 <head>
 <title>其他应收单</title>
-<script src="<%=webPath + contextPath%>/settlement/js/othersRBill.js?v=2.0.0"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/othersRBill.js?v=2.0.3"></script>
 <style type="text/css">
 .title {
   width: 60px;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="auditRegister" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、根据手机号判断是否已经存在&#xD;&#xA;&#xD;&#xA;不能添加相同的用户&#xD;&#xA;&#xD;&#xA;2、汽修的审核，汽配的审核&#xD;&#xA;&#xD;&#xA;3、提示认证成功，用户名，密码及一些基本注意事项等提示信息&#xD;&#xA;&#xD;&#xA;4、com_tenant表要更新tenant_type字段，租户类型：1，汽修，2汽配，3波箱（2019/06/17更新）&#xD;&#xA;4汽贸，5汽修汽贸&#xD;&#xA;" title="Administrator&#x9;18-6-14 上午10:51">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、根据手机号判断是否已经存在&#xD;&#xA;&#xD;&#xA;不能添加相同的用户&#xD;&#xA;&#xD;&#xA;2、汽修的审核，汽配的审核&#xD;&#xA;&#xD;&#xA;3、提示认证成功，用户名，密码及一些基本注意事项等提示信息&#xD;&#xA;&#xD;&#xA;4、com_tenant表要更新tenant_type字段，租户类型：1，汽修，2汽配，3波箱（2019/06/17更新）&#xD;&#xA;4汽贸，5汽修汽贸&#xD;&#xA;&#xD;&#xA;5、注册认证时，要赋值好租户的起始日期和停止使用日期，默认使用七天，到期后该租户下的用户不能登录" title="Administrator&#x9;18-6-14 上午10:51">
     <location x="-136" y="-165"/>
     <size height="178" width="571"/>
   </nodes>
@@ -289,6 +289,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">tenantId</process:from>
       <process:to type="query">reg/tenantId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">ten/startDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">ten/endDate</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">

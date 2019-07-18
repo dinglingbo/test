@@ -419,6 +419,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			     	out.println("showError('用户未到开始使用时间！')");
 			     }else if(resultCode == 5){
 			     	out.println("showError('密码已过期！')");
+			     }else if(resultCode == -6){
+			     	out.println("showError('租户已过期！')");
 			     }else if(resultCode == -3){
 	      			out.println("showError('查询用户信息失败，请联系系统管理员检查数据库连接！')");
 	     		 }else if(resultCode == -4){

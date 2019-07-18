@@ -262,7 +262,7 @@ function addStatement()
             var row = rows[i];
             var checkMsg = checkcallback(row.serviceId);
             if(checkMsg){
-                nui.alert(checkMsg);
+                showMsg(checkMsg,"W");
                 return;
             }
         }

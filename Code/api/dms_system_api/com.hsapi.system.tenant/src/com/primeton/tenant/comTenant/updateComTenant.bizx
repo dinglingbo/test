@@ -4,6 +4,7 @@
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <location x="60" y="144"/>
     <size height="28" width="28"/>
@@ -115,10 +116,10 @@
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
-      <targetNode>subprocess4</targetNode>
+      <targetNode>subprocess0</targetNode>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
-    <location x="442" y="144"/>
+    <location x="420" y="144"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
@@ -127,45 +128,39 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">tenantId</process:from>
-      <process:to type="query">pr/roleId</process:to>
+      <process:to type="query">pr/tenantId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="440" y="180"/>
+    <location x="418" y="180"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess4" name="租户缓存数据" displayName="clearAndResetCache" collapsed="false" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="removeRedisCacheBasic" displayName="removeRedisCacheBasic" collapsed="false" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess4</sourceNode>
+      <sourceNode>subprocess0</sourceNode>
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
-    <location x="525" y="144"/>
+    <location x="510" y="144"/>
     <size height="27" width="27"/>
-    <nodeLabel>subprocess4label</nodeLabel>
-    <process:flow index="8" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hs.common.login.clearAndResetCache</process:partner>
+    <nodeLabel>subprocess0label</nodeLabel>
+    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.system.data.sys.removeRedisCacheBasic</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="dsName" type="literal" value="String" valueType="Primitive" pattern="reference">default</process:inputVariable>
-        <process:inputVariable id="1" name="nameSqlId" type="literal" value="String" valueType="Primitive" pattern="reference">com.hs.common.orga.queryTenant</process:inputVariable>
-        <process:inputVariable id="2" name="title" type="literal" value="String" valueType="Primitive" pattern="reference">租户信息数据</process:inputVariable>
-        <process:inputVariable id="3" name="fromDb" type="literal" value="String" valueType="Primitive" pattern="reference">false</process:inputVariable>
-        <process:inputVariable id="4" name="expireTimes" type="literal" value="Int" valueType="Primitive" pattern="reference">-1</process:inputVariable>
-        <process:inputVariable id="5" name="setDe" type="literal" value="Boolean" valueType="Primitive" pattern="reference">false</process:inputVariable>
-        <process:inputVariable id="6" name="deData" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">value</process:inputVariable>
-        <process:inputVariable id="7" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">pr</process:inputVariable>
+        <process:inputVariable id="0" name="nameSqlId" type="literal" value="String" valueType="Primitive" pattern="reference">com.hs.common.orga.queryTenant</process:inputVariable>
+        <process:inputVariable id="1" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">pr</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess4label" name="label" nodeType="label">
-    <location x="502" y="179"/>
-    <figSize height="17" width="73"/>
-    <node>subprocess4</node>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
+    <location x="452" y="179"/>
+    <figSize height="17" width="142"/>
+    <node>subprocess0</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

@@ -181,7 +181,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.system.data.sys.getRedisCacheBasic</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="dsName" type="literal" value="String" valueType="Primitive" pattern="reference">DB02_ORA_WB_COMMON</process:inputVariable>
+        <process:inputVariable id="0" name="dsName" type="literal" value="String" valueType="Primitive" pattern="reference">default</process:inputVariable>
         <process:inputVariable id="1" name="nameSqlId" type="literal" value="String" valueType="Primitive" pattern="reference">com.hs.common.orga.queryTenant</process:inputVariable>
         <process:inputVariable id="2" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">p</process:inputVariable>
         <process:inputVariable id="3" name="title" type="literal" value="String" valueType="Primitive" pattern="reference">租户信息</process:inputVariable>

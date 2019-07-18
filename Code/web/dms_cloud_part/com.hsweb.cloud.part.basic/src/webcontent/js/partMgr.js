@@ -624,7 +624,8 @@ function getNoSync(params){
 var syncUrl =baseUrl+"com.hsapi.cloud.part.baseDataCrud.cang.addParts.biz.ext";
 function syncCang(){
 	var partinfos = getNoSync(params);
-	if(partinfos=="[]"){
+	if(partinfos=="[]" ||partinfos.length ==0){
+		showMsg("配件已经全部同步","S");
 		return;
 	}
 	nui.mask({

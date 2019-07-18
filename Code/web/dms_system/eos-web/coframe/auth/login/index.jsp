@@ -203,7 +203,7 @@
                 </ul>
             </li>
             <li class="dropdown">
-           		<a class="" style="padding-top: 18px; " onclick="custmer()" title="客服信息"><i class="fa fa-user-circle-o"></i></a>
+           		<a class="" style="padding-top: 18px; " onclick="customer()" title="客服信息"><i class="fa fa-user-circle-o"></i></a>
            	</li>
             <li class="dropdown">
            		<a class="feedback-bt FeedBackButton" style="padding-top: 18px; ">
@@ -895,7 +895,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
             allowResize:true,
             onload: function () {
                 var iframe = this.getIFrameEl();
-                iframe.contentWindow.SetInitData(list[0]);
+                iframe.contentWindow.setData();
             },
             ondestroy: function (action) {  //弹出页面关闭前
                 if (action == "ok") {       //如果点击“确定”

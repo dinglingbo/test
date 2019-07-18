@@ -69,6 +69,7 @@ function save() {
         type:"post",
         data:JSON.stringify({
         	customerAssociated:customerAssociated,
+        	customerId : customer.id,
         	token: token
         }),
         success:function(data)

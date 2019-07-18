@@ -12,7 +12,7 @@
 <title>租户列表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@ include file="/common/sysCommon.jsp"%>
-     <script src="<%=webPath + contextPath%>/common/js/tenantIdList.js?v=1.0.6" type="text/javascript"></script> 
+     <script src="<%=webPath + contextPath%>/common/js/tenantIdList.js?v=1.0.7" type="text/javascript"></script> 
     
 </head>
 <body>

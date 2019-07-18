@@ -57,6 +57,7 @@
     <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
       <targetNode>transactionbegin0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="116" y="195"/>
@@ -352,7 +353,7 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="true" modelType="com.hsapi.system.data.sys.ComCustomerAssociated" name="customerAssociated"/>
-    <process:input description="" isArray="false" name="custormerId" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="customerId" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

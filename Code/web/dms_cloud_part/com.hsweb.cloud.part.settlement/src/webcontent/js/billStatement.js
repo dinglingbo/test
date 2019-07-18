@@ -77,6 +77,9 @@ $(document).ready(function(v)
     editFormPchsRtnDetail = document.getElementById("editFormPchsRtnDetail");
     innerPchsRtnGrid.setUrl(innerSellGridUrl);
     
+    sOrderDate =nui.get("sOrderDate");
+    eOrderDate = nui.get("eOrderDate");
+    
     guestIdEl=nui.get('guestId');
     guestIdEl.setUrl(getGuestInfo);
 	guestIdEl.on("beforeload",function(e){
@@ -411,8 +414,10 @@ function doSearch(params)
 }
 function advancedSearch()
 {
+    
     advancedSearchWin.show();
 //    advancedSearchForm.clear();
+  
     if(advancedSearchFormData)
     {
         advancedSearchForm.setData(advancedSearchFormData);

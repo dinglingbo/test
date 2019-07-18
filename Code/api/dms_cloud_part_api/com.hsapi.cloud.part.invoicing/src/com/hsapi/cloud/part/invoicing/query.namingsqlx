@@ -1920,6 +1920,9 @@
            	<isNotEmpty prepend="and" property="orgid">
            		(b.orgid = #orgid#)
            	</isNotEmpty>
+           	<isNotEmpty prepend="and" property="orderTypeId">
+           		(b.order_type_id= #orderTypeId#)
+           	</isNotEmpty>
             <isNotEmpty prepend="and" property="sOrderDate">
             	b.CREATE_DATE &gt;= #sOrderDate#
             </isNotEmpty>

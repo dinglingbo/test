@@ -237,7 +237,7 @@ function onGridRowClick(e) {
 		nui.get("editBtn").enable();
 	}
 }
-function importGuest() {
+function importSupplier() {
 	billTypeIdList = nui.get("billTypeId").getData();
 	settTypeIdList = nui.get("settType").getData();
 

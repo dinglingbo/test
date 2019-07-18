@@ -153,7 +153,7 @@ $(document).ready(function(v)
     });
 
     gsparams.auditSign = 0;
-    quickSearch(0);
+    quickSearch(8);
 
     $("#guestId").bind("keydown", function (e) {
         if (e.keyCode == 13) {
@@ -312,6 +312,10 @@ function quickSearch(type){
             break;
         case 8:
             params.postStatus = 1;
+            params.auditSign = null;
+            querytypename = "全部";
+            querysign = 2;
+            gsparams.auditSign = null;
             break;
         default:
             params.today = 1;
@@ -531,14 +535,14 @@ function audit()
 {
     basicInfoForm.validate();
     if (basicInfoForm.isValid() == false) {
-        nui.alert("请输入数字！");
+        showMsg("请输入数字！","W");
         return;
     }
 
     var row = leftGrid.getSelected();
     if(row){
         if(row.auditSign == 1) {
-            nui.alert("此单已审核!");
+        	showMsg("此单已审核!","W");
             return;
         } 
     }else{
@@ -548,10 +552,19 @@ function audit()
     var data = getMainData();
 
     var stateDetailAdd = rightGrid.getChanges("added");
+    for(var i=0;i<stateDetailAdd.length;i++){
+    	stateDetailAdd[i].billDate=format(stateDetailAdd[i].billDate, 'yyyy-MM-dd HH:mm:ss');
+    }
     var stateDetailDelete = rightGrid.getChanges("removed");
+    for(var i=0;i<stateDetailDelete.length;i++){
+    	stateDetailDelete[i].billDate=format(stateDetailDelete[i].billDate, 'yyyy-MM-dd HH:mm:ss');
+    }
     var stateDetailList = rightGrid.getData();
+    for(var i=0;i<stateDetailList.length;i++){
+    	stateDetailList[i].billDate=format(stateDetailList[i].billDate, 'yyyy-MM-dd HH:mm:ss');
+    }
     if(stateDetailList.length<=0){
-        nui.alert("请添加对账明细!");
+        showMsg("请添加对账明细!","W");
         return;
     }
 
@@ -577,15 +590,15 @@ function audit()
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                nui.alert("审核成功!","",function(){
-                    var newRow = {auditSign: 1};
-                    leftGrid.updateRow(row, newRow);
+                showMsg("审核成功!","S");
+                var newRow = {auditSign: 1};
+                leftGrid.updateRow(row, newRow);
 
-                    setBtnable(false);
-                });
+                setBtnable(false);
+              
                 
             } else {
-                nui.alert(data.errMsg || "审核失败!");
+                showMsg(data.errMsg || "审核失败!","E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -687,7 +700,7 @@ function add()
 
     if(checkNew() > 0) 
     {
-        nui.alert("请先保存数据！");
+    	showMsg("请先保存数据！","W");
         return;
     }
 
@@ -787,7 +800,9 @@ function getMainData()
     if(data.operateDate) {
         data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
     }
-
+    if(data.createDate){
+    	data.createDate = format(data.createDate, 'yyyy-MM-dd HH:mm:ss'); 
+    }
     return data;
 }
 var requiredField = {
@@ -799,14 +814,14 @@ var saveUrl = baseUrl + "com.hsapi.cloud.part.settle.svr.savePjStatement.biz.ext
 function save() {
     basicInfoForm.validate();
     if (basicInfoForm.isValid() == false) {
-        nui.alert("请输入数字！");
+    	showMsg("请输入数字！","W");
         return;
     }
 
     var data = basicInfoForm.getData();
     for ( var key in requiredField) {
         if (!data[key] || $.trim(data[key]).length == 0) {
-            nui.alert(requiredField[key] + "不能为空!");
+            showMsg(requiredField[key] + "不能为空!","W");
             return;
         }
     }
@@ -814,7 +829,7 @@ function save() {
     var row = leftGrid.getSelected();
     if(row){
         if(row.auditSign == 1) {
-            nui.alert("此单已审核!");
+        	showMsg("此单已审核!","S");
             return;
         } 
     }else{
@@ -825,8 +840,17 @@ function save() {
     data = getMainData();
 
     var stateDetailAdd = rightGrid.getChanges("added");
+    for(var i=0;i<stateDetailAdd.length;i++){
+    	stateDetailAdd[i].billDate=format(stateDetailAdd[i].billDate, 'yyyy-MM-dd HH:mm:ss');
+    }
     var stateDetailDelete = rightGrid.getChanges("removed");
+    for(var i=0;i<stateDetailDelete.length;i++){
+    	stateDetailDelete[i].billDate=format(stateDetailDelete[i].billDate, 'yyyy-MM-dd HH:mm:ss');
+    }
     var stateDetailList = rightGrid.getData();
+    for(var i=0;i<stateDetailList.length;i++){
+    	stateDetailList[i].billDate=format(stateDetailList[i].billDate, 'yyyy-MM-dd HH:mm:ss');
+    }
     stateDetailList = removeChanges(stateDetailAdd, [], stateDetailDelete, stateDetailList);
 
     nui.mask({
@@ -849,23 +873,23 @@ function save() {
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                nui.alert("保存成功!","",function(e){
-                    var list = data.list;
-                    if(list && list.length>0) {
-                        var leftRow = list[0];
-                        var row = leftGrid.getSelected();
-                        leftGrid.updateRow(row,leftRow);
+                showMsg("保存成功!","S");
+                var list = data.list;
+                if(list && list.length>0) {
+                    var leftRow = list[0];
+                    var row = leftGrid.getSelected();
+                    leftGrid.updateRow(row,leftRow);
 
-                        //保存成功后重新加载数据
-                        loadMainAndDetailInfo(leftRow);
+                    //保存成功后重新加载数据
+                    loadMainAndDetailInfo(leftRow);
 
-                        
-                    }
-                });
+                    
+                }
+            
                 //onLeftGridRowDblClick({});
                 
             } else {
-                nui.alert(data.errMsg || "保存失败!");
+                showMsg(data.errMsg || "保存失败!","E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -958,7 +982,7 @@ function addBill(){
 
     var guestId = guestIdEl.getValue();
     if(!guestId){
-        nui.alert("请选择往来单位!");
+        showMsg("请选择往来单位!","W");
         return;
     }
 

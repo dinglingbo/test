@@ -71,7 +71,7 @@
 
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="unAudit()" id="uAuditBtn"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返单</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="unAudit()" id="uAuditBtn" visible="true"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返单</a>
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="addMorePart()" id="fastEnterBtn"><span class="fa fa-hand-o-right fa-lg"></span>&nbsp;快速录入配件</a>
                 <a class="nui-button" plain="true" iconCls="" onclick="importPart()" id="importPartBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
@@ -146,7 +146,7 @@
                                   <td class="title required">
                                       <label>供应商：</label>
                                   </td>
-                                  <td colspan="3">
+                                  <td colspan="1">
                                       <input id="guestId"
                                              name="guestId"
                                                dataField="suppliers"
@@ -159,11 +159,31 @@
                                              onvaluechanged="onGuestValueChanged"
                                              popupEmptyText="未找到供应商"
                                              url=""  searchField="key"
-                                             width="78%"
+                                             width="55%"
                                              placeholder="请选择供应商"
                                              selectOnFocus="true" />
-                                      <input id="btnEdit1" width="8.2%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/>
+                                      <a class="nui-button" iconCls="" plain="false" onclick="selectSupplier('guestId')" id="addBtn"><span class="fa fa-check fa-lg"></span></a>
+<!--                                       <input id="btnEdit1" width="8.2%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/> -->
                                        <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn"><span class="fa fa-plus fa-lg"></span></a>
+                                  </td>
+                                   <td class="title required">
+                                      <label>订单类型：</label>
+                                  </td>
+                                  <td colspan="1">
+                                       <input name="orderType"
+                                             id="orderType"
+                                             class="nui-combobox width1"
+                                             textField="name"
+                                             valueField="id"
+                                             emptyText="请选择..."
+                                             url=""
+                                             allowInput="true"
+                                             showNullItem="false"
+                                             width="100%"
+                                             valueFromSelect="true"
+                                             onvaluechanged=""
+                                             nullItemText="请选择..."
+                                            />
                                   </td>
                                   <td class="title required">
                                       <label>采购员：</label>

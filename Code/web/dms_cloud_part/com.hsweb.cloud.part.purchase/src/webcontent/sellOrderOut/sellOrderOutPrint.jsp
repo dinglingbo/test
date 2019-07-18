@@ -283,7 +283,7 @@ hr {
 				    <td id="contactorTel">联系方式:</td>
 				  </tr>
 				  <tr>
-				    <td id="addr">地址</td>
+				    <td id="addr">地址:</td>
 				    <td id="billTypeId">票据类型:</td>
 				    <td id="settleTypeId">结算方式:</td>
 				  </tr>
@@ -356,7 +356,7 @@ hr {
 		var settleTypeIdHash={};
 		var dictDefs ={"billTypeIdE":"DDT20130703000008", "settleTypeIdE":"DDT20130703000035"};
 		var baseUrl = apiPath + cloudPartApi + "/";
-		var supplierUrl=apiPath + cloudPartApi + "/"+"com.hsapi.part.baseDataCrud.crud.queryGuestList.biz.ext";
+		var supplierUrl=apiPath + cloudPartApi + "/"+"com.hsapi.cloud.part.baseDataCrud.crud.queryGuestList.biz.ext";
 		var MainUrl = baseUrl
 				+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderMainList.biz.ext";
 		var DetailUrl = baseUrl
@@ -448,8 +448,8 @@ hr {
     		$('#dueAmt').text("客户欠款金额:"+dueAmt+"元");
     		$('#currCloudSellOrderPrintContent').text(params.currCloudSellOrderPrintContent);
     		document.getElementById("spstorename").innerHTML = params.printName;
-    		document.getElementById("guestAddr").innerHTML = "地址："+ params.currCompAddress;
-	   		document.getElementById("phone").innerHTML ="电话："+ params.currCompTel;
+    		document.getElementById("guestAddr").innerHTML = "地址:"+ params.currCompAddress;
+	   		document.getElementById("phone").innerHTML ="电话:"+ params.currCompTel;
 	   		if(currCompLogoPath){
 	   			$('#logImg').show();
 	   			$('#logImg').attr("src",currCompLogoPath);
@@ -459,7 +459,7 @@ hr {
 	   			$.post(MainUrl+"?params/id="+params.id+"&params/auditSign="+params.auditSign+"&token="+token,{},function(text){
 		   			var formParms =text.pjSellOrderMainList[0];
 		       		$('#guestFullName').text("客户:"+formParms.guestFullName);
-		       		$('#createDate').text("订单日期："+format(formParms.createDate,"yyyy-MM-dd HH:mm"));
+		       		$('#createDate').text("订单日期:"+format(formParms.createDate,"yyyy-MM-dd HH:mm"));
 		       		$('#serviceId').text(formParms.serviceId);
 		       		if(formParms.remark != null){
 		       			$('#orderRemark').text("备注：" +formParms.remark);

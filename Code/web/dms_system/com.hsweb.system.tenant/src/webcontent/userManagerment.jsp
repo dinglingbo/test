@@ -76,7 +76,6 @@
                           width="60px"   textField="text" valueField="startDatet" value=""/>
            <input  class="nui-textbox" emptytext="输入租户ID"  width="125px" style="margin-right:0px;" name="tenantId" onenter="search()"/>
            <input  class="nui-textbox" emptytext="输入租户名称"  width="125px" style="margin-right:0px;" name="tenantName" onenter="search()"/>
-           <input  class="nui-textbox" emptytext="输入租户Id"  width="125px" style="margin-right:0px;" name="tenantId" visible="false"/>
            <input  class="nui-textbox" emptytext="租户手机号"  width="125px" style="margin-right:0px;" name="mobile" onenter="search()"/>
            <input  class="nui-combobox" emptytext="选择省份"  width="125px" style="margin-right:0px;"id="provinceId" name="provinceId" textField="name"  valueField="code" onvaluechanged="onProvinceChange" />
            <input  class="nui-combobox" emptytext="选择城市"  width="125px" style="margin-right:0px;"  id="cityId" name="cityId" textField="name"  valueField="code"/>

@@ -134,7 +134,8 @@
                                              width="87%"
                                              placeholder="请选择客户"
                                              selectOnFocus="true" />
-                                      	<input id="btnEdit1" width="7.2%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/>
+                                         <a class="nui-button" iconCls="" plain="false" onclick="selectSupplier('guestId')" id="addBtn"><span class="fa fa-check fa-lg"></span></a>
+<!--                                       	<input id="btnEdit1" width="7.2%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/> -->
                                   </td>
                                   <td class="title required">
                                       <label>退货员：</label>
@@ -265,7 +266,7 @@
                          url="">
                         <div property="columns">
                             <div type="indexcolumn">序号</div>
-                            <div header="采购订单明细" headerAlign="center">
+                            <div header="销退订单明细" headerAlign="center">
                                 <div property="columns">
                                     <div field="operateBtn" name="operateBtn" width="50" headerAlign="center" header="操作"></div>
                                     <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码">

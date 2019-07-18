@@ -452,6 +452,11 @@
                 <isNotEmpty prepend="and" property="guestId">  
                     (a.guestId = #guestId#)
                 </isNotEmpty>
+                
+                 <isNotEmpty prepend="and" property="guestIdList">  
+                    (a.guestId  in ($guestIdList$))
+                </isNotEmpty>
+                
                 <isNotEmpty prepend="and" property="serviceMan">  
                     (a.orderMan = #serviceMan#)
                 </isNotEmpty>

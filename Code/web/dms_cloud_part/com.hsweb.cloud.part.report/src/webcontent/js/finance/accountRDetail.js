@@ -51,7 +51,7 @@ function doSearch() {
 	var params = {};
 	params.id = accountIdEl.getValue();
 	params.startDate = beginDateEl.getFormValue();
-    params.endDate = endDateEl.getValue();
+    params.endDate = endDateEl.getFormValue();;
     params.guestId = advanceGuestIdEl.getValue();
     params.isMain = isMainEl.getValue();
     params.rpDc = 1;

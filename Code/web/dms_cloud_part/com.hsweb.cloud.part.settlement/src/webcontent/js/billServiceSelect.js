@@ -15,6 +15,7 @@ var orderTypeId = 1;
 var brandHash = {};
 var brandList = [];
 var storehouse = null;
+var storeHash={};
 var billTypeIdEl = null;
 var settleTypeIdEl = null;
 var billTypeIdHash = {};
@@ -73,6 +74,9 @@ $(document).ready(function(v)
     getStorehouse(function(data)
     {
         storehouse = data.storehouse||[];
+        storehouse.forEach(function(v){
+        	storeHash[v.id]=v;
+        })
     });
 
     getAllPartBrand(function(data) {
@@ -148,9 +152,9 @@ function onDrawCell(e)
             }
             break;
         case "storeId":
-            if(storehouse && storehouse[e.value])
+            if(storeHash && storeHash[e.value])
             {
-                e.cellHtml = storehouse[e.value].name;
+                e.cellHtml = storeHash[e.value].name;
             }
             break;
         case "accountSign":
@@ -169,7 +173,11 @@ function getBillSearchParam(){
     params.sAuditDate = sBillAuditDateEl.getValue();
     params.eAuditDate = addDate(eBillAuditDateEl.getValue(), 1);
     params.serviceId = billServiceIdEl.getValue().replace(/\s+/g, "");
-    params.guestId = billSearchGuestIdEl.getValue();
+    var guestId = billSearchGuestIdEl.getValue();
+    params.guestIdList = getConnncetGuest(guestId);
+    if(params.guestIdList==""){
+    	params.guestId = guestId;
+    }
     return params;
 }
 function searchBill()
@@ -254,7 +262,7 @@ function addStatement()
             var row = rows[i];
             var checkMsg = checkcallback(row.serviceId);
             if(checkMsg){
-                nui.alert(checkMsg);
+                showMsg(checkMsg,"W");
                 return;
             }
         }
@@ -268,4 +276,18 @@ function CloseWindow(action)
 {
     if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
     else window.close();
+}
+
+var guestConUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.queryGuestConnect.biz.ext";
+function getConnncetGuest(guestId){
+	var guestIdList ="";
+	$.ajaxSettings.async = false;
+	$.post(guestConUrl+"?guestId="+guestId+"&token="+token,{},function(text){
+		var data =text.data;
+		for(var i=0;i<data.length;i++){
+			guestIdList+=data[i].guestConnectId+","+data[i].guestId+",";
+		}
+		guestIdList=guestIdList+guestId;
+	});
+	return guestIdList;
 }

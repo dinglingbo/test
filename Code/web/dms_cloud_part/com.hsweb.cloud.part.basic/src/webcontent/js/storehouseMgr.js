@@ -551,7 +551,7 @@ function saveStoreMember(memList, storeId){
                 memGrid.reload();
             }
             else{
-                showMsg("添加失败","W");
+                showMsg(data.errMsg|| "添加失败","W");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){

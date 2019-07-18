@@ -309,6 +309,7 @@ $(document).ready(function(v)
     }
 	//开启APP
     if(currIsOpenApp ==1){
+  	  nui.get('unAuditBtn').setVisible(false);
   	  getStoreLocation();
 //  	  getPart();
     }
@@ -1332,7 +1333,7 @@ function save() {
     }
     
     //开启额度管理
-    if(currIsOpenCredit ==1){
+    if(currIsOpenCredit ==1 && data.id){
     	 var flag = beforeSave();
     	    if(flag ==false){
     	    	return;
@@ -1970,7 +1971,7 @@ function audit()
     }
 
   //开启额度管理
-    if(currIsOpenCredit ==1){
+    if(currIsOpenCredit ==1  && data.id){
     	 var flag = beforeSave();
     	    if(flag ==false){
     	    	return;
@@ -2017,7 +2018,10 @@ function audit()
     
     sellOrderDetailList = removeChanges(sellOrderDetailAdd, sellOrderDetailUpdate, sellOrderDetailDelete, sellOrderDetailList);
     
-    var cangHash=getCangHash(data,sellOrderDetailList);
+    var cangHash ="";
+	if(currIsOpenApp ==1){
+		cangHash=getCangHash(data,sellOrderDetailList);
+	}
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
@@ -2934,6 +2938,10 @@ function getCangHash(data,detailData){
 		var warehouse=[];
 		var warehousetemp={};
 		var part_id=detailData[i].partId;
+		if(!partHash[part_id].cangPartId){
+			showMsg("该配件未同步仓先生","W");
+			return;
+		}
 		temp.part_id=partHash[part_id].cangPartId || "" ;
 		if(!temp.part_id){
 			showMsg("该配件未同步仓先生","W");

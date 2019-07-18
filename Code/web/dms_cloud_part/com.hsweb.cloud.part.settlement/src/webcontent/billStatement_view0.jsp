@@ -9,7 +9,7 @@
 -->
 <head>
 <title>月结对账</title>
-<script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.2.3"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.2.17"></script>
 <style type="text/css">
 .title {
   width: 85px;
@@ -113,6 +113,7 @@
                      url="">
                     <div property="columns">
                       <div type="indexcolumn">序号</div>
+                      	<div field="id" width="55" headerAlign="center" header="主键" visible="false"></div>
                       	<div field="auditSign" width="55" headerAlign="center" header="状态"></div>
                         <div field="guestName" width="150" headerAlign="center" header="往来单位"></div>
                         <div field="createDate" width="130" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="对账日期"></div>
@@ -177,7 +178,8 @@
                                              width="87%"
                                              placeholder="请选择往来单位"
                                              selectOnFocus="true" />
-                                      	<input id="btnEdit1" width="8%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/>
+                                          <a class="nui-button" iconCls="" plain="false" onclick="selectSupplier('guestId')" id="addBtn"><span class="fa fa-check fa-lg"></span></a>
+<!--                                       	<input id="btnEdit1" width="8%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/> -->
                                       </td>
                                       <td class="title required">
                                           <label>对账员：</label>

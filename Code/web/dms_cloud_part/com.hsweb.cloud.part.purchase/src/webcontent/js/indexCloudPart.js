@@ -50,6 +50,13 @@ $(document).ready(function(v) {
 	});
 
 	//ShowRSS();
+	if(currIsOpenApp==1){
+		$("#epc").hide();
+		$("#purRtn").show();
+	}else{
+		$("#epc").show();
+		$("#purRtn").hide();
+	}
 });
 var grid1_data =[{business:"采购订单",custom:"长荣行",address:"上海浦东",date:"8:40",status:"已受理"},
 {business:"采购订单2",custom:"长荣行2",address:"上海浦东2",date:"8:50",status:"已受理2"}];
@@ -188,6 +195,12 @@ function toPchsOrder(){
 	item.text = "采购入库";
 	item.url = webPath + contextPath + "/com.hsweb.cloud.part.purchase.purchaseOrderEnter.flow";
 	item.iconCls = "fa fa-file-text";
+	if(currIsOpenApp==1){
+		item.id = "1184";
+		item.text = "采购订单";
+		item.url = webPath + contextPath + "/com.hsweb.cloud.part.purchase.purchaseOrder.flow";
+		item.iconCls = "fa fa-file-text";
+	}
 	window.parent.activeTab(item);
 }
 function toSellOrder(){
@@ -196,6 +209,12 @@ function toSellOrder(){
 	item.text = "销售出库";
 	item.url = webPath + contextPath + "/com.hsweb.cloud.part.purchase.sellOrderOut.flow";
 	item.iconCls = "fa fa-file-text";
+	if(currIsOpenApp==1){
+		item.id = "1269";
+		item.text = "销售订单";
+		item.url = webPath + contextPath + "/com.hsweb.cloud.part.purchase.sellOrder.flow";
+		item.iconCls = "fa fa-file-text";
+	}
 	window.parent.activeTab(item);
 }
 function toEPC(){
@@ -235,6 +254,14 @@ function toCostOut(){
 	item.id = "1425";
 	item.text = "费用支出单";
 	item.url = webPath + contextPath + "/com.hsweb.cloud.part.settlement.expensePay.flow";
+	item.iconCls = "fa fa-file-text";
+	window.parent.activeTab(item);
+}
+function toPurRtn(){
+	var item={};
+	item.id = "1321";
+	item.text = "采购退货";
+	item.url = webPath + contextPath + "/com.hsweb.cloud.part.purchase.purchaseOrderRtn.flow";
 	item.iconCls = "fa fa-file-text";
 	window.parent.activeTab(item);
 }

@@ -12,6 +12,7 @@ var isAllowRemind = null;
 var isservicelist = [{id: 0, name: '否'}, {id: 1, name: '是'}];
 var basicInfoForm = null;
 var form1 = null;
+var wechatServiceCodeUrl = webPath + contextPath + '/common/images/wechatServiceCode.jpg';
 var wechatCodeUrl = webPath + contextPath + '/common/images/wechatCode.jpg';
 var rmp = {};
 $(document).ready(function(v) {
@@ -19,7 +20,7 @@ $(document).ready(function(v) {
 	isAllowRemind=nui.get("isAllowRemind");
     isShowOwnBill.setData(isservicelist);
     
-    document.getElementById("wechatServiceCode").src = wechatCodeUrl;
+    document.getElementById("wechatServiceCode").src = wechatServiceCodeUrl;
     document.getElementById("wechatCode").src = wechatCodeUrl;
 	isAllowRemind.setData(isservicelist);
 

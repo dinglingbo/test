@@ -20,9 +20,10 @@
         	<table class="table" id="table1">
 	            <tr> 
 	              	<td>
-					<a class="nui-button" iconCls="" plain="true" onclick="onOk"><span class="fa fa-check fa-lg"></span>&nbsp;保存</a>
+					<input class="nui-textbox" width="170px" id="serviceId" name="serviceId" selectOnFocus="true" enabled="true" emptyText="订单号"/>
 					<a class="nui-button" iconCls="" plain="true" onclick="onSerach()">
                   	<span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                  	<a class="nui-button" iconCls="" plain="true" onclick="onOk"><span class="fa fa-check fa-lg"></span>&nbsp;保存</a>
 					</td>
 	            </tr>
             </table>
@@ -116,6 +117,8 @@
 		function onSerach(){
 		  var params = {};
 		  params.orgid =currOrgId;
+		  params.serviceId =nui.get("serviceId").getValue().replace(/\s+/g, "");
+		  params.orderTypeId=1;
 		  mainGrid.load({params:params,token:token});
 		}
 		function CloseWindow(action) {

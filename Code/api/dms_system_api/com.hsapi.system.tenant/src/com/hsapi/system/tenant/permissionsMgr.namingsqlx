@@ -136,9 +136,6 @@
               <isNotEmpty prepend="and" property="empid">  
                     a.empid = #empid#
               </isNotEmpty>
-		      <isNotEmpty prepend="and" property="orgid">  
-                    a.orgid = #orgid#
-              </isNotEmpty>
     		  <isNotEmpty prepend="and" property="empName">  
                     (a.`name` like '%$empName$%')
               </isNotEmpty>

@@ -1624,7 +1624,7 @@ function OnModelCellBeginEdit(e) {
 
     if (column.field == "balaTypeCode") {
         var str = "accountId="+row.settAccountId;
-        var url = "com.hsapi.cloud.part.baseDataCrud.crud.queryAccountSettleType.biz.ext?" + str;
+        var url =baseUrl+ "com.hsapi.cloud.part.baseDataCrud.crud.queryAccountSettleType.biz.ext?" + str;
         editor.setUrl(url);
     }
 

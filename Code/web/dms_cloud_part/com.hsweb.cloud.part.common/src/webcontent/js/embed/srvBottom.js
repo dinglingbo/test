@@ -89,7 +89,7 @@ function setInitEmbedParams(row){
 	params.storeId = row.storeId;
 	params.partId = row.partId;
 	params.guestId= row.guestId;
-
+	params.pids=row.code;
     if(row.type && row.type == "pchs"){
         params.storeId = null;
         params.guestId = null;

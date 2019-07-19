@@ -20,6 +20,13 @@
      <link href="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/bill.css" rel="stylesheet" type="text/css" /> 
     
 </head>
+<style>
+ /* table, td {
+    font-family:Arial,simsun,Verdana,Lucida,Helvetica,sans-serif,"宋体";
+    font-size: 12px;
+    color: #000;
+}  */
+</style>
 <body>
 <div class="boxbg" style="display:none"></div>
  <div class="popbox" style="height:420px; width:480px; margin:-210px 0 0 -240px; display:none">
@@ -200,10 +207,10 @@
                     <td align="right" class="font15" colspan="2">&yen;<span id="totalAmt">0.00</span></td>
                 </tr>
                 <tr>
-                    <td height="28" colspan="2" align="left" class="font15">项目优惠率：<span id="itemRate">0.00</span>%</td>
-                    <td colspan="2" align="left" class="font15">项目优惠金额：&yen;<span id="itemAmt">0.00</span></td>
-                    <td colspan="2" align="left" class="font15" width="22%">配件优惠率：<span id="partRate">0.00</span>%</td>
-                    <td  align="left" class="font15">配件优惠金额：&yen;<span id="partAmt">0.00</span></td>
+                    <td height="28" colspan="2" align="left" class="font15"><span class="hei16">项目优惠率：</span><span id="itemRate">0.00</span>%</td>
+                    <td colspan="2" align="left" class="font15"><span class="hei16">项目优惠金额：&yen;</span><span id="itemAmt">0.00</span></td>
+                    <td colspan="2" align="left" class="font15" width="22%"><span class="hei16">配件优惠率：</span><span id="partRate">0.00</span>%</td>
+                    <td  align="left" class="font15"><span class="hei16">配件优惠金额：&yen;</span><span id="partAmt">0.00</span></td>
                 </tr>
                  <tr>
                     <td height="28" align="center"><span class="hei16">优惠金额</span></td>
@@ -227,7 +234,7 @@
                 </tr>
                 <tr>
                     <td height="60" colspan="2" class="hei16" style="padding-left:8px;"><span id="makeMan">制单：</span></td>
-                    <td colspan="2" class="hei16" style="padding-left:10px;">服务顾问签名</td>
+                    <td colspan="2" class="hei16" style="padding-left:10px;">服务顾问签名：</td>
                     <td colspan="4" class="hei16" style="padding-left:10px;">客户签名：</td>
                 </tr>
             </table>

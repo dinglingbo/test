@@ -281,11 +281,47 @@
 	</update>
 	<!-->定时更新租户是否到期</!-->
 	<update id="updateTenantIsdisable" parameterClass="java.util.HashMap" >
-		update wb_common.com_tenant a set a.is_disabled = 1 where  DATEDIFF(a.end_date,now())=0 and a.end_date is not null
+		update wb_common.com_tenant a set a.is_disabled = 1 WHERE  DATEDIFF(a.end_date,#endDate#)=0 and a.end_date is not null
 	</update>
 	<!-->查询所有需要定时更新的租户</!-->
 	<select id="queryTenant" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
-		update wb_common.com_tenant a set a.is_disabled = 1 where  DATEDIFF(a.end_date,now())=0 and a.end_date is not null
+		SELECT
+	    a.tenant_id as tenantId,  
+		a.register_id as registerId,
+		a.code as code,
+		a.tenant_name as tenantName,
+		a.mobile as mobile,
+		a.province_id as provinceId,
+		a.area_id as areaId,
+		a.city_id as cityId,
+		a.addr as addr,
+		a.address as address,
+		a.manager as manager,
+		a.org_qty as orgQty,
+		a.audit_date as auditDate,
+		a.audit_man as auditMan,
+		a.start_date as startDate,
+		a.end_date as endDate,
+		a.sales_man as salesMan,
+		a.referee as referee,
+		a.Invitation_number as InvitationNumber,
+		a.largess_month as largessMonth,
+		a.max_user_qty as maxUserQty,
+		a.first_pay_amt as firstPayAmt,
+		a.next_renew_date as nextRenewDate,
+		a.next_renew_amt as nextRenewAmt,
+		a.is_pay as isPay,
+		a.is_disabled as isDisabled,
+		a.remark as remark,
+		a.recorder as recorder ,
+		a.record_date as recordDate,
+		a.modifier as modifier,
+		a.modify_date as modifyDate,
+		a.stores_qty as storesQty,
+		a.tenant_type as tenantType,
+		a.manager_identity as managerIdentity
+		from wb_common.com_tenant a   
+		WHERE DATEDIFF(a.end_date,#endDate#) = 0
 	</select>	
 	
 </sqlMap>

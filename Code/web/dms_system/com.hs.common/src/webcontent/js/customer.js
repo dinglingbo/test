@@ -21,6 +21,11 @@ function setCustomer(){
         	var html="";
         	var index = data.rs.length+5;
             for(var i = 0;i<data.rs.length;i++){
+            	if(data.rs[i].sex==1){
+            		data.rs[i].sex = "男";
+            	}else{
+            		data.rs[i].sex = "女";
+            	}
             	if(i==0){
                 	html+='<div class="bookPage frist">';		
                 	html+='		 <img src="img/dataImg1.png" /> ';

@@ -47,7 +47,8 @@ function deleteType(){
 	if(row && row.id){
 		var orgid = row.orgid;
 		if(currOrgId != "0" && orgid == 0) {
-			nui.alert("此记录不能删除!");
+			showMsg("此记录不能删除!","W");
+//			nui.alert("此记录不能删除!");
 			return;
 		}
 
@@ -71,11 +72,13 @@ function deleteType(){
 							nui.unmask(document.body);
 							data = data || {};
 							if (data.errCode == "S") {
-								nui.alert("删除成功!");
+								showMsg("删除成功!","S");
+//								nui.alert("删除成功!");
 								
 								doSearch();
 							} else {
-								nui.alert(data.errMsg || "删除失败!");
+								showMsg(data.errMsg || "删除失败!","E");
+//								nui.alert(data.errMsg || "删除失败!");
 							}
 						},
 						error : function(jqXHR, textStatus, errorThrown) {
@@ -88,7 +91,8 @@ function deleteType(){
 
 		
 	}else{
-		nui.alert("请选择记录！");
+		showMsg("请选择记录！","W");
+//		nui.alert("请选择记录！");
 	}
 }
 
@@ -149,7 +153,8 @@ function edit(){
 
 	var orgid = row.orgid;
 	if(currOrgId != "0" && orgid == 0) {
-		nui.alert("此记录不能修改!");
+		showMsg("此记录不能修改!","W");
+//		nui.alert("此记录不能修改!");
 		return;
 	}
 

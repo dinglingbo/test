@@ -1003,12 +1003,12 @@ function doUnBalance(){
                 nui.unmask(document.body);
                 data = data || {};
                 if (data.errCode == "S") {
-                    showMsg("取消对账成功!","W");
+                    showMsg("取消对账成功!","S");
 
                     rightGrid.reload();
                     
                 } else {
-                    showMsg(data.errMsg || "取消对账失败!");
+                    showMsg(data.errMsg || "取消对账失败!","E");
                 }
             },
             error : function(jqXHR, textStatus, errorThrown) {

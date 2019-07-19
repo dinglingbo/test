@@ -52,10 +52,10 @@ $(document).ready(function(v) {
 	//ShowRSS();
 	if(currIsOpenApp==1){
 		$("#epc").hide();
-		$("#stock").show();
+		$("#purRtn").show();
 	}else{
 		$("#epc").show();
-		$("#stock").hide();
+		$("#purRtn").hide();
 	}
 });
 var grid1_data =[{business:"采购订单",custom:"长荣行",address:"上海浦东",date:"8:40",status:"已受理"},
@@ -257,11 +257,11 @@ function toCostOut(){
 	item.iconCls = "fa fa-file-text";
 	window.parent.activeTab(item);
 }
-function toStockQty(){
+function toPurRtn(){
 	var item={};
-	item.id = "1280";
-	item.text = "库存查询";
-	item.url = webPath + contextPath + "/com.hsweb.cloud.part.purchase.partStoreStockQuery.flow";
+	item.id = "1321";
+	item.text = "采购退货";
+	item.url = webPath + contextPath + "/com.hsweb.cloud.part.purchase.purchaseOrderRtn.flow";
 	item.iconCls = "fa fa-file-text";
 	window.parent.activeTab(item);
 }

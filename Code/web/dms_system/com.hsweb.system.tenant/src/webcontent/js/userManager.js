@@ -176,7 +176,7 @@ function quickSearch1(type) {
     }
     var menunamedate = nui.get("menunamedate1");
     menunamedate.setText(queryname);
-    doSearch(params);
+    search();
 }
 var isDisabled = 0;
 function quickSearch(type) {
@@ -202,7 +202,7 @@ function quickSearch(type) {
     }
     var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);
-    doSearch(params);
+    search();
 }
 
 var getProvinceAndCityUrl = window._rootUrl
@@ -323,14 +323,14 @@ function stoporstart(){
                 	}else{
                 		showMsg("启用成功","S");
                 	}
-                	grid.reload();
+                	search();
                     }else {
                     nui.unmask(document.body);
                     //nui.alert("禁用失败！");
                     if(row.isDisabled == 0){
-                		showMsg("禁用成功","S");
+                		showMsg("禁用失败","E");
                 	}else{
-                		showMsg("启用成功","S");
+                		showMsg("启用失败","E");
                 	}
                 }
             },
@@ -412,8 +412,12 @@ function ViewType(e){
         },
         ondestroy: function (action) {  //弹出页面关闭前
        
-           	    var params;
-           	    search();
+        	  if(action=="ok"){
+        		  showMsg("修改成功","S")
+        		  search();
+        	  }
+           	   // var params;
+           	   
                // nui.alert("修改成功！");
                /* grid.load(params,function(){
                     //成功;

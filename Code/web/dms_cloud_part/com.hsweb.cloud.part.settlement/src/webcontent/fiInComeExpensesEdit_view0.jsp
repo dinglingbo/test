@@ -9,7 +9,7 @@
 -->
 <head>
 <title>新增项目</title>
-<script src="<%=webPath + contextPath%>/settlement/js/fiInComeExpensesEdit.js?v=2.0.0"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/fiInComeExpensesEdit.js?v=2.0.2"></script>
 <style type="text/css">
 .title {
     width: 90px;

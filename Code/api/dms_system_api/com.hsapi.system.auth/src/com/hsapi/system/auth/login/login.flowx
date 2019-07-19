@@ -22,6 +22,7 @@
     <targetConnections>link4</targetConnections>
     <targetConnections>link8</targetConnections>
     <targetConnections>link13</targetConnections>
+    <targetConnections>link14</targetConnections>
     <location x="208" y="-15"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
@@ -59,8 +60,8 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link10</targetConnections>
-    <location x="208" y="135"/>
+    <targetConnections>link11</targetConnections>
+    <location x="230" y="132"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" varArgs="false">
@@ -75,7 +76,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="197" y="170"/>
+    <location x="219" y="167"/>
     <figSize height="17" width="49"/>
     <node>subprocess0</node>
   </nodes>
@@ -98,7 +99,7 @@
       <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
-    <location x="306" y="135"/>
+    <location x="331" y="132"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -118,7 +119,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="274" y="170"/>
+    <location x="299" y="167"/>
     <figSize height="17" width="91"/>
     <node>subprocess1</node>
   </nodes>
@@ -167,8 +168,8 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="userKey" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="2" name="token" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="userKey" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="2" name="token" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -230,7 +231,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
-      <targetNode>subprocess0</targetNode>
+      <targetNode>subprocess3</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand/>
@@ -284,6 +285,46 @@
     <location x="73" y="96"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess3" name="认证租户" displayName="registerIsdisable" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" description="" id="link11" name="link11" displayName="连接线" isDefault="false" type="transition">
+      <sourceNode>subprocess3</sourceNode>
+      <targetNode>subprocess0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">result</process:leftOperand>
+          <process:rightOperand type="literal">6</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link14" name="link14" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess3</sourceNode>
+      <targetNode>end0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link10</targetConnections>
+    <location x="150" y="132"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess3label</nodeLabel>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.system.auth.LoginManager.registerIsdisable</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="userId" type="query" value="String" valueType="Primitive" pattern="reference">userId</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="returnValue" type="query" value="Int" valueType="Primitive">result</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess3label" name="label" nodeType="label">
+    <location x="139" y="167"/>
+    <figSize height="17" width="49"/>
+    <node>subprocess3</node>
   </nodes>
   <topRuler/>
   <leftRuler>

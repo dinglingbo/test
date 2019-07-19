@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="initOrgRolePermissions.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="初始子公司&#xD;&#xA;1、根据com_company新增组织机构org_organization&#xD;&#xA;2、当天添加人新增到org_emporg且配置管理员角色(查询模版角色)&#xD;&#xA;3、添加当前用户到cap_partyauth（添加管理员角色）&#xD;&#xA;4、角色权限，资源cap_resauth&#xD;&#xA;5、初始往来单位com_guest&#xD;&#xA;6、初始仓库com_store&#xD;&#xA;7、不用添加员工信息和用户信息（需要切换到新增的机构添加员工）&#xD;&#xA;&#xD;&#xA;目前汽修只取管理员角色 15  对应的角色资源  com_cap_resauth&#xD;&#xA;com_tenant_menu -1&#xD;&#xA;&#xD;&#xA;目前汽配只取管理员角色 24  对应的角色资源  com_cap_resauth&#xD;&#xA;com_tenant_menu -2&#xD;&#xA;波箱 66 com_tenant_menu -3&#xD;&#xA;&#xD;&#xA;20190106：注册审批通过时，要生成两条数据到com_guest，一个代表往来单位，一个代表散客（用于新增车辆但是没有提供客户信息），新增联系人信息&#xD;&#xA;&#xD;&#xA;初始用户角色缓存，初始角色资源缓存&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;租户类型：&#xD;&#xA;1，汽修，2汽配，3波箱，4汽贸，5汽修汽贸&#xD;&#xA;对应的租户id：&#xD;&#xA;-1，汽修，-2汽配，-3波箱，-4汽贸，-5汽修汽贸" title="Administrator&#x9;18-6-14 上午10:51">
-    <location x="56" y="-231"/>
-    <size height="367" width="480"/>
+    <location x="32" y="-377"/>
+    <size height="481" width="480"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" description="" id="link57" name="link57" displayName="link0" isDefault="true" type="transition">
@@ -643,7 +643,6 @@
     <location x="525" y="219"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
-    <process:condition/>
     <process:iterate iterable="tCapRoleList" iterableElement="roleTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">
@@ -828,7 +827,6 @@
     <location x="893" y="220"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart2label</nodeLabel>
-    <process:condition/>
     <process:iterate iterable="tCapResauth" iterableElement="resauthTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart2label" name="label" nodeType="label">
@@ -1490,7 +1488,6 @@
     <location x="2676" y="220"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart3label</nodeLabel>
-    <process:condition/>
     <process:iterate iterable="roleList" iterableElement="roleTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart3label" name="label" nodeType="label">

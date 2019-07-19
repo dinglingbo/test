@@ -9,7 +9,7 @@
 -->
 <head>
 <title>月结对账</title>
-<script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.2.28"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.2.30"></script>
 <style type="text/css">
 .title {
   width: 85px;
@@ -79,7 +79,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="printBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
            
             </td>
         </tr>
@@ -509,6 +509,34 @@
   </div>
 </div>
 
+
+<div id="exportDiv" style="display:none">  
+    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
+        <tr>
+            <td colspan="1" align="left">单号：</td>
+            <td colspan="1" align="left"><span id="eServiceId"></span></td>
+        </tr>
+        <tr>
+            <td colspan="1" align="left">往来单位：</td>
+            <td colspan="1" align="left"><span id="eGuestName"></span></td>
+        </tr>
+        <tr>
+            <td colspan="1" align="left">备注：</td>
+            <td colspan="1" align="left"><span id="eRemark"></span></td>
+        </tr>
+        <tr>  
+            <td colspan="1" align="center">业务类型</td>
+            <td colspan="1" align="center">金额</td>
+            <td colspan="1" align="center">业务员</td>
+            <td colspan="1" align="center">审核日期</td>
+            <td colspan="1" align="center">备注</td>
+            <td colspan="1" align="center">业务单号</td>
+        </tr>
+        <tbody id="tableExportContent">
+        </tbody>
+    </table>  
+    <a href="" id="tableExportA"></a>
+</div> 
 
 </body>
 </html>

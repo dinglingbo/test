@@ -95,7 +95,7 @@
     <location x="589" y="206"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo5label</nodeLabel>
-    <process:pojo methodType="static" synchronization="true" transactionType="join">
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
       <process:partner type="literal">com.hs.common.ResauthUtils.hsetAndExtend</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>

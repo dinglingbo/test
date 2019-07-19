@@ -430,6 +430,10 @@
       <process:from type="expression" pattern="reference">new Date()</process:from>
       <process:to type="query">beginDate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">error</process:from>
+      <process:to type="query">p/type</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
     <location x="326" y="383"/>
@@ -591,6 +595,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>
       <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">success</process:from>
+      <process:to type="query">p/type</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">

@@ -10,6 +10,15 @@
       <targetNode>assign0</targetNode>
       <process:transitionCondition>
         <process:complexCondition>
+          <process:code>1==2</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="连接线" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign1</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
           <process:code>1==1</process:code>
         </process:complexCondition>
       </process:transitionCondition>
@@ -21,6 +30,7 @@
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link2</targetConnections>
     <targetConnections>link4</targetConnections>
+    <targetConnections>link6</targetConnections>
     <location x="465" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
@@ -28,6 +38,7 @@
       <process:return id="0" language="java.util.HashMap" name="p" type="query" valueType="Java">p</process:return>
       <process:return id="1" language="String" name="s" type="query" valueType="Primitive">s</process:return>
       <process:return id="2" language="String" name="t" type="query" valueType="Primitive">t</process:return>
+      <process:return id="3" language="com.eos.data.datacontext.UserObject" name="data" type="query" valueType="Java">data</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -113,6 +124,25 @@
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link5</targetConnections>
+    <location x="197" y="245"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject</process:from>
+      <process:to type="query">data</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
+    <location x="195" y="281"/>
+    <figSize height="17" width="32"/>
+    <node>assign1</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-08-23 12:25:20" date="2018-08-23Z" description="" name="test" version="7.0.0.0"/>
@@ -124,6 +154,7 @@
     <process:output anyType="java.util.HashMap" description="" isArray="false" name="p"/>
     <process:output description="" isArray="false" name="s" primitiveType="String"/>
     <process:output description="" isArray="false" name="t" primitiveType="String"/>
+    <process:output anyType="com.eos.data.datacontext.UserObject" description="" isArray="false" name="data"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

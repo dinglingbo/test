@@ -66,7 +66,6 @@
     <location x="270" y="273"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
-    <process:condition/>
     <process:iterate iterable="list" iterableElement="temp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -126,7 +125,7 @@
       <process:to type="query">tenant/isDisabled</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">pc</process:from>
+      <process:from type="query" pattern="reference">temp/type</process:from>
       <process:to type="query">tenant/type</process:to>
     </process:copy>
     <process:copy>

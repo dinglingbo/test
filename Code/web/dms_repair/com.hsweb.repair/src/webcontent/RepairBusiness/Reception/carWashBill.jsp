@@ -244,7 +244,7 @@ html, body{
                 showClose="false"
                 allowInput="true"/>
                 <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn">新增客户</a>
-                <a class="nui-button" iconCls="" plain="false" onclick="addFit()" id="addFit">标记为散客</a>
+                <a class="nui-button" iconCls="" plain="false" onclick="addFit()" id="addFit">新增散客</a>
                 <label style="font-family:Verdana;">工单号:</label>
                 <label id="servieIdEl" style="font-family:Verdana;"></label>&nbsp;
                 <a href="javascript:signElectronics()" id="showE" style="display:none"><span id="eTag" class="fa fa-star fa-lg"></span></a>

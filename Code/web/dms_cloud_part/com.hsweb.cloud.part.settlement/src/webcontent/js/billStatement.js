@@ -1121,3 +1121,68 @@ function onLeftGridBeforeDeselect(e)
         leftGrid.removeRow(row);
     }
 }
+
+function checkNew() {
+	var rows = leftGrid.findRows(function(row) {
+		if (row.serviceId == "新对账单")
+			return true;
+	});
+
+	return rows.length;
+}
+
+function onExport(){
+	if (checkNew() > 0) {
+		showMsg("请先保存数据！!","W");
+		return;
+	}
+	var changes = rightGrid.getChanges();
+	if(changes.length>0){
+        var len = changes.length;
+        var row = changes[0];
+        if(len == 1 && !row.partId){
+        }else{
+		  showMsg("请先保存数据！!","W");
+          return;  
+        }
+	}
+
+	var main = leftGrid.getSelected();
+	if(!main) return;
+
+	var detail = rightGrid.getData();
+	if(detail && detail.length > 0){
+		setInitExportData(main, detail);
+	}else{
+		showMsg("请添加对账明细!","W");
+	}
+}
+function setInitExportData(main, detail){
+	document.getElementById("eServiceId").innerHTML = main.serviceId?main.serviceId:"";
+	document.getElementById("eGuestName").innerHTML = main.guestName?main.guestName:"";
+	document.getElementById("eRemark").innerHTML = main.remark?main.remark:"";
+    var tds = '<td  colspan="1" align="left">[typeCode]</td>' +
+        "<td  colspan='1' align='left'>[billAmt]</td>" +
+        "<td  colspan='1' align='left'>[orderMan]</td>" +
+        "<td  colspan='1' align='left'>[billDate]</td>" +
+        "<td  colspan='1' align='left'>[remark]</td>" +
+        "<td  colspan='1' align='left'>[billServiceId]</td>" ;
+    var tableExportContent = $("#tableExportContent");
+    tableExportContent.empty();
+    for (var i = 0; i < detail.length; i++) {
+        var row = detail[i];
+        
+        var tr = $("<tr></tr>");
+        tr.append(tds.replace("[typeCode]", detail[i].typeCode?detail[i].typeCode:"")
+                     .replace("[billAmt]", detail[i].billAmt?detail[i].billAmt:"")
+                     .replace("[orderMan]", detail[i].orderMan?detail[i].orderMan:"")
+                     .replace("[billDate]", detail[i].billDate?format(detail[i].billDate, 'yyyy-MM-dd HH:mm:ss'):"")
+                     .replace("[remark]", detail[i].remark?detail[i].remark:"")
+                     .replace("[billServiceId]", detail[i].billServiceId?detail[i].billServiceId:""));
+        tableExportContent.append(tr);
+    
+    }
+
+    var serviceId = main.serviceId?main.serviceId:"";
+    method5('tableExcel',"月结对账"+serviceId,'tableExportA');
+}

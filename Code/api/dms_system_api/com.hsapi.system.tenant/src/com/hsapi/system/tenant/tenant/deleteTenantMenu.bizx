@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="deleteTenantMenu.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="批量删除资源&#xD;&#xA;queryTenantRoleNopage&#xD;&#xA;&#xD;&#xA;取租户下拥有对应资源的角色&#xD;&#xA;根据资源获取所有有对应资源的角色&#xD;&#xA;com.hsapi.system.tenant.permissionsMgr.queryCapResauth" title="Administrator&#x9;19-7-19 下午12:31">
+    <location x="482" y="15"/>
+    <size height="136" width="474"/>
+  </nodes>
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="删除资源：com_tenant_menu, 根据res_ID，TENANT_ID&#xD;&#xA;                 com_cap_resauth，角色对应的资源 &#xD;&#xA;                选择租户后，查询租户的角色，然后根据角色id（PARTY_ID）和                资源id（res_id）删除&#xD;&#xA;" title="Administrator&#x9;19-7-10 下午12:07">
     <location x="124" y="540"/>
     <size height="161" width="432"/>
@@ -144,12 +148,12 @@
     <chidren>loopstart0</chidren>
     <chidren>assign1</chidren>
     <chidren>invokePojo0</chidren>
-    <chidren>subprocess1</chidren>
     <chidren>group1</chidren>
-    <chidren>assign3</chidren>
     <chidren>assign5</chidren>
     <chidren>assign7</chidren>
     <chidren>assign8</chidren>
+    <chidren>assign3</chidren>
+    <chidren>invokePojo2</chidren>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="删除 TenantMenu" displayName="删除 capResAuth" collapsed="false" grouped="true" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
@@ -173,7 +177,7 @@
       <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cond</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
@@ -181,53 +185,22 @@
     <figSize height="17" width="101"/>
     <node>invokePojo0</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="queryTenantRoleNopage" displayName="queryTenantRoleNopage" grouped="true" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess1</sourceNode>
-      <targetNode>loopstart1</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link17" name="link17" displayName="连接线" type="transition">
-      <sourceNode>subprocess1</sourceNode>
-      <targetNode>assign5</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NE">
-          <process:leftOperand type="query">errCode</process:leftOperand>
-          <process:rightOperand type="literal">S</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <targetConnections>link8</targetConnections>
-    <location x="615" y="309"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess1label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.queryTenantRoleNopage</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">params</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="roleList" type="query" value="com.hsapi.system.data.sys.CapRole[]" valueType="DataObject">roleList</process:outputVariable>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="555" y="344"/>
-    <figSize height="17" width="147"/>
-    <node>subprocess1</node>
-  </nodes>
   <nodes xsi:type="process:tLoopStart" description="" id="loopstart1" name="循环1" displayName="循环" grouped="true" type="loopstart" matchedName="loopend1" loopType="iterate">
-    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopstart1</sourceNode>
       <targetNode>assign4</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
     <location x="697" y="309"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
-    <process:condition/>
-    <process:iterate iterable="roleList" iterableElement="role"/>
+    <process:iterate iterable="resauthList" iterableElement="resauthTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">
     <location x="693" y="341"/>
@@ -263,10 +236,10 @@
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
-      <targetNode>subprocess1</targetNode>
+      <targetNode>invokePojo2</targetNode>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
-    <location x="553" y="307"/>
+    <location x="556" y="308"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
@@ -274,12 +247,12 @@
       <process:to type="query">params/tenantId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">temp/tenantType</process:from>
-      <process:to type="query">params/tenantType</process:to>
+      <process:from type="query" pattern="reference">menu/resId</process:from>
+      <process:to type="query">params/resId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="551" y="343"/>
+    <location x="554" y="344"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
@@ -297,7 +270,7 @@
       <process:to type="query">cond1/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">role/roleId</process:from>
+      <process:from type="query" pattern="reference">resauthTemp/partyId</process:from>
       <process:to type="query">cond1/_expr[1]/partyId</process:to>
     </process:copy>
     <process:copy>
@@ -313,7 +286,7 @@
       <process:to type="query">cond1/_expr[2]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">role/roleId</process:from>
+      <process:from type="query" pattern="reference">resauthTemp/partyId</process:from>
       <process:to type="query">roleId</process:to>
     </process:copy>
     <process:copy>
@@ -348,7 +321,7 @@
       <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cond1</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
@@ -400,6 +373,7 @@
     <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" lineType="inheritance" isDefault="true" type="break">
       <sourceNode>assign5</sourceNode>
       <targetNode>loopend0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link15</targetConnections>
     <targetConnections>link17</targetConnections>
@@ -563,7 +537,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -571,6 +545,37 @@
     <location x="872" y="380"/>
     <figSize height="17" width="97"/>
     <node>subprocess4</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="查询资源对应的角色" displayName="查询资源对应的角色" collapsed="false" grouped="true" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo2</sourceNode>
+      <targetNode>loopstart1</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" lineType="note" type="exception">
+      <sourceNode>invokePojo2</sourceNode>
+      <targetNode>assign5</targetNode>
+    </sourceConnections>
+    <targetConnections>link8</targetConnections>
+    <location x="633" y="307"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo2label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.queryByNamedSql</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">default</process:inputVariable>
+      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.system.tenant.permissionsMgr.queryCapResauth</process:inputVariable>
+      <process:inputVariable id="2" name="parameterObject" type="query" value="java.lang.Object" valueType="Java" pattern="reference">params</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.Object[]" valueType="Java">resauthList</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
+    <location x="590" y="343"/>
+    <figSize height="17" width="109"/>
+    <node>invokePojo2</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -584,6 +589,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond1"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="roleId" primitiveType="String"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="pr"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.system.data.sys.ComCapPartyauth" name="resauthList"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.ComCapPartyauth" name="resauthTemp"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.system.data.sys.ComTenantMenu" name="menu"/>

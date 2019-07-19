@@ -125,7 +125,7 @@
       <process:to type="query">tenant/isDisabled</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">temp/type</process:from>
+      <process:from type="query" pattern="reference">menu/type</process:from>
       <process:to type="query">tenant/type</process:to>
     </process:copy>
     <process:copy>

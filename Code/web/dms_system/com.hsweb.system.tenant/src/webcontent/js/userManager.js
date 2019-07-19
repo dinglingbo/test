@@ -412,8 +412,12 @@ function ViewType(e){
         },
         ondestroy: function (action) {  //弹出页面关闭前
        
-           	    var params;
-           	    search();
+        	  if(action=="ok"){
+        		  showMsg("修改成功","S")
+        		  search();
+        	  }
+           	   // var params;
+           	   
                // nui.alert("修改成功！");
                /* grid.load(params,function(){
                     //成功;

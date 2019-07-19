@@ -70,6 +70,12 @@ function getSearchParams()
     for(var key in params){
     	params[key]=params[key].replace(/\s+/g, "");
     }
+    if(type == 'pchs'){
+    	params.shopType=1;
+       
+    }else{
+    	params.shopType=-1;
+    }
     return params;
 }
 function onSearch()

@@ -15,8 +15,8 @@ var billTypeIdList = [];
 var billTypeIdHash = {};
 var settTypeIdList = [];
 var settTypeIdHash = {};
-var isSupplier = 0;
-var isClient = 0;
+var isSupplier = null;
+var isClient = null;
 $(document).ready(function(v)
 {
 	grid = nui.get("datagrid1");

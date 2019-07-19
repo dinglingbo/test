@@ -240,9 +240,9 @@ layui.use('layim', function(layim){
     		                	window.parent.activeTabAndInit(opt,params);
     		                }
     		            },{
-    		                text: '取消',
+    		                text: '朕已阅',
     		                click: function (e) {
-    		                    e.closeNotification()
+    		                    e.closeNotification();
     					    }
     				    }]
     				})
@@ -282,7 +282,7 @@ layui.use('layim', function(layim){
     		                	window.parent.activeTabAndInit(opt,params);
     		                }
     		            },{
-    		                text: '取消',
+    		                text: '朕已阅',
     		                click: function (e) {
     		                    e.closeNotification()
     					    }
@@ -294,7 +294,7 @@ layui.use('layim', function(layim){
    		            text: group.content,
    		            timeout: "keep",
    		            buttons: [{
-   		                text: '确定',
+   		                text: '配件出库详情',
    		                click: function (e) {
    		                	var opt = {};
    		                		opt.iconCls= "fa fa-file-text";
@@ -307,7 +307,7 @@ layui.use('layim', function(layim){
    		                	window.parent.activeTabAndInit(opt,params);
    		                }
    		            },{
-   		                text: '取消',
+   		                text: '朕已阅',
    		                click: function (e) {
    		                    e.closeNotification()
    					    }

@@ -12,7 +12,7 @@
 <head> 
     <title>检查开单详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.2.9"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.3.7"></script>
     <style type="text/css">
     
     body { 
@@ -129,6 +129,81 @@
 	margin-top: 8px;
 	
 }
+
+	    .divImg{
+	    	width: 120px;
+    		margin: auto;
+	    }
+	    .imgStyle{
+	    	border: none;
+	    	width:150px;
+	    	height:100px;
+/* 		    max-width: 100%;
+		    height: auto; */
+		    vertical-align: middle;
+	    }
+	    .windowsss{
+	    	z-index: 100;
+	    	margin: auto;
+	    	position: absolute;
+	    	top: 0;
+	    	left: 0;
+	    	right: 0;
+	    	bottom: 0;
+	    }
+	    .imgList{
+	    	overflow: auto;
+	    	border: 1px solid #B8B8B8;
+		    border-radius: 5%;
+		    height: 380px;
+		    width: 315px;
+		    padding: 10px;
+	    }
+	    .imgListA{
+	    	display: flex;
+	    	border-bottom: 2px solid #f2f5f7;
+	    	cursor: pointer;
+	    	width:150px;
+	    	height: 100px;
+	    	display:inline-block;
+	    }
+	    .imgListOneDiv{
+	    	background: none repeat scroll 0 0 rgba(229, 229, 229, 0.85);
+    		position: absolute;
+    		width: 278px;
+    		
+    		height: 182px;
+    		padding-top: 50px;
+	    }
+	    .imgListone{
+		    width: 28px;
+    		height: 28px;
+    		position: relative;
+    		margin-bottom: -90px;
+    		margin-left: 35%;
+    		cursor: pointer;
+	    }
+	    .imgListtwo{
+		   	width: 28px;
+    		height: 28px;
+    		position: relative;
+    		margin-bottom: 100px;
+    		margin-left: 50%;
+    		cursor: pointer;
+	    }
+
+	    body .mini-tabs-plain .mini-tabs-scrollCt{
+	    	background-color: DEEDF7;
+	    }
+	    .mini-tabs-position-top .mini-tabs-plain .mini-tabs-header{
+	    	margin-top: 4px;
+	    }
+	    .mini-checkboxlist{
+	    	padding-top:2px;
+	    }
+	    table{
+	    	font-size: 12px !important;
+	    }
 </style>
 </head>
 
@@ -336,18 +411,17 @@
         <span>客户描述</span>
     </div>
     <div class="nui-fit">
-        <input class="nui-textarea " style="width:100%;height:100%;border:0px;" />
+        <input class="nui-textarea " name="remark" id="remark" style="width:100%;height:100%;border:0px;" />
     </div>
 </div>
 <div style="clear: both;">
-    <div class="vpanel" style="width:calc(100% - 2px);height:100px;margin-left: auto;margin-right: auto;margin-top: 20px;">
+    <div class="vpanel" >
         <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;">
             <span>检测照片</span>
         </div>
-        <div class="vpanel_body"> 
+            <div id="photos" class="photos" style="width:300px; display:block;word-break: break-all;word-wrap: break-word;">
 
-
-        </div> 
+			</div>
     </div> 
 
 </div>

@@ -266,5 +266,26 @@
         </isNotEmpty>
 		
 	 </select>
+	<!-->更新租户门店数量</!-->
+	 <update id="updateTenantOrgqty" parameterClass="java.util.HashMap" >
+		update com_tenant a
+		inner join (
+		SELECT count(orgid) as ct, tenant_id
+		from com_company
+		where tenant_id = #tenantId#
+		group by tenant_id
+		) b
+		on a.tenant_id = b.tenant_id
+		set a.org_qty = b.ct
+		where a.tenant_id = #tenantId#
+	</update>
+	<!-->定时更新租户是否到期</!-->
+	<update id="updateTenantIsdisable" parameterClass="java.util.HashMap" >
+		update wb_common.com_tenant a set a.is_disabled = 1 where  DATEDIFF(a.end_date,now())=0 and a.end_date is not null
+	</update>
+	<!-->查询所有需要定时更新的租户</!-->
+	<select id="queryTenant" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		update wb_common.com_tenant a set a.is_disabled = 1 where  DATEDIFF(a.end_date,now())=0 and a.end_date is not null
+	</select>	
 	
 </sqlMap>

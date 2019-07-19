@@ -14,7 +14,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@ include file="/common/sysCommon.jsp"%>
       <link rel="stylesheet" type="text/css" href="<%=webPath + contextPath%>/common/css/book.css?v=1.0.0">
-      <script src="<%=webPath + contextPath%>/common/js/customer.js?v=1.0.0" type="text/javascript"></script>
+      <script src="<%=webPath + contextPath%>/common/js/customer.js?v=1.0.1" type="text/javascript"></script>
       <script src="<%=webPath + contextPath%>/common/js/book.js?v=1.0.0" type="text/javascript"></script>
       <style type="text/css">
       	.bookWord p{

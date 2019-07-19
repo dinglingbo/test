@@ -108,6 +108,7 @@
                 <div field="code" width="80" headerAlign="center" align="center" visible="false">租户ID</div>
                 <div field="tenantType" width="120" headerAlign="center" align="center">租户类型</div>
                 <div field="tenantName" width="120" headerAlign="center" align="center">租户名称</div>
+                <div field="orgQty" width="80" headerAlign="center" align="center">门店数量</div>
                 <div field="provinceId" width="80" headerAlign="center" align="center">省份</div>
                 <div field="cityId" width="80" headerAlign="center" align="center">城市</div>
                 <div field="manager" width="80" headerAlign="center" align="center">管理员</div>
@@ -127,7 +128,6 @@
                  <div field="firstPayAmt" width="80" headerAlign="center" align="center">首次付费金额</div>
                 <div field="nextRenewDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm">下次续费时间</div>
                <div field="nextRenewAmt" width="80" headerAlign="center" align="center">下次续费金额</div>
-               <div field=" storesQty" width="80" headerAlign="center" align="center">门店数量</div>
             </div>
         </div>
     </div>

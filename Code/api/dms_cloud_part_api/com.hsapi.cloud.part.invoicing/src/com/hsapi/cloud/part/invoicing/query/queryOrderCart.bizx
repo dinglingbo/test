@@ -23,13 +23,13 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="62" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="59" y="186"/>
+    <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="613" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="610" y="186"/>
+    <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
@@ -63,7 +63,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">cond/_expr[3]/orgid</process:to>
+      <process:to type="query">cond/_expr[3]/orgId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
@@ -76,6 +76,14 @@
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[4]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/shopType</process:from>
+      <process:to type="query">cond/_expr[5]/shopType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[5]/_op</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">pageSize</process:from>
@@ -99,8 +107,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="167" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="164" y="186"/>
+    <figSize height="20" width="31"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="queryEntitiesByCriteriaEntityWithPage" displayName="queryEntitiesByCriteriaEntityWithPage" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
@@ -126,8 +134,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="218" y="186"/>
-    <figSize height="17" width="217"/>
+    <location x="188" y="186"/>
+    <figSize height="20" width="277"/>
     <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
@@ -149,8 +157,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="493" y="186"/>
-    <figSize height="17" width="32"/>
+    <location x="489" y="186"/>
+    <figSize height="20" width="40"/>
     <node>assign1</node>
   </nodes>
   <topRuler/>

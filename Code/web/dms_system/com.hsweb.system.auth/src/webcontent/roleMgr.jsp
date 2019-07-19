@@ -89,9 +89,9 @@
                 showPagerButtonIcon="true" >
                 <div property="columns">
                     <div type="indexcolumn" name="index" width="30px" headeralign="center" ><strong>序号</strong></div>
+                    <div field="tenantId" width="50" headeralign="left" visible="true"><strong>租户ID</strong></div>
                     <div field=tenantName width="140" headeralign="left" ><strong>租户名称</strong></div>
                     <div field="tenantType" width="100" headeralign="left" visible="true"><strong>租户类型</strong></div>
-                    <div field="tenantId" width="50" headeralign="left" visible="true"><strong>租户ID</strong></div>
                     
                 </div>
             </div> 

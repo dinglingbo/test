@@ -11,7 +11,7 @@
 <title>首页客服人员</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <%@ include file="/common/sysCommon.jsp"%>		
-     <script src="<%=webPath + contextPath%>/common/js/setCustomer.js?v=1.0.8" type="text/javascript"></script>  
+     <script src="<%=webPath + contextPath%>/common/js/setCustomer.js?v=1.0.9" type="text/javascript"></script>  
 </head>
 <body>
 	<div class="nui-toolbar" style="border-bottom: 0; padding: 0px;">

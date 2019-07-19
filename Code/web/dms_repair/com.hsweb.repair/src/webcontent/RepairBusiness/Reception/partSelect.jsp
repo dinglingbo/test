@@ -592,6 +592,7 @@
             }); 
         }else{  
             showMsg('请填写需要出库的配件数量!','W'); 
+            nui.unmask(document.body);
         } 
     } 
 

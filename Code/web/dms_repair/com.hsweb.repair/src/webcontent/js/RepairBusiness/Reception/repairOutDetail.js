@@ -559,12 +559,35 @@ function itemPick(row_uid){
     var r = row.prdtId;
 	var c = row.prdtCode;
 	var recordId = row.id;
-	if(r){
-		openPartSelect(r,"Id",recordId,mainRow,row, 'PICK');
-	}else if(c){ 
-		openPartSelect(c,"Code",recordId,mainRow,row, 'PICK');
-	}else{
-		openPartSelect(c,"Name",recordId,mainRow,row, 'PICK');
+	var qty = row.qty||0;
+	var pickQty = row.pickQty||0;
+	var unitPrice = row.unitPrice||0;
+	if(pickQty == qty) {
+		showMsg("此配件已领料,不能再领料","W");
+		return;
+	}
+	if(unitPrice == 0) {
+		nui.confirm("销售单价为0，是否继续领料？", "友情提示",function(action){
+			 if(action == "ok"){
+				if(r){
+					openPartSelect(r,"Id",recordId,mainRow,row, 'PICK');
+				}else if(c){ 
+					openPartSelect(c,"Code",recordId,mainRow,row, 'PICK');
+				}else{
+					openPartSelect(c,"Name",recordId,mainRow,row, 'PICK');
+				}
+			 }else {
+					return;
+			 }
+		}); 
+	}else {
+		if(r){
+			openPartSelect(r,"Id",recordId,mainRow,row, 'PICK');
+		}else if(c){ 
+			openPartSelect(c,"Code",recordId,mainRow,row, 'PICK');
+		}else{
+			openPartSelect(c,"Name",recordId,mainRow,row, 'PICK');
+		}
 	}
 }
 function LLSave(argument) {

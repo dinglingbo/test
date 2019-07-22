@@ -21,6 +21,8 @@ var isShowSave = null;
 var checkTypeList=[];
 var  fguestId =null;
 var lastUrl=baseUrl+"com.hsapi.repair.baseData.query.queryLastCheckModel.biz.ext";
+var beforeList = [];//图片的集合
+var index = 0;//图片下标
 $(document).ready(function ()
 {
 
@@ -536,8 +538,9 @@ function isCheckMainY(){
                 temp.guestMobile = guest.mobile;
                 temp.contactorName = contactor.name;
                 temp.mobile = contactor.mobile;
-                temp.carModel = car.carModel;
+                temp.carModel = car.carModel;             
                 billForm.setData(temp);
+                nui.get("remark").setValue(temp.remark||"");
                
                 fguestId=temp.guestId;
 //                if(!temp.lastKilometers && !temp.serviceId){
@@ -557,7 +560,27 @@ function isCheckMainY(){
                     nui.get("checkMainId").setText(temp.checkMainName);
                     checkMainId.setEnabled(false);
                     mainGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
-                    mainGrid.load({mainId:mainParams.id,token:token});
+                    mainGrid.load({mainId:mainParams.id,token:token},function(){
+                    	var dlist = mainGrid.getData();
+                    	var html="";
+                    	for(var i = 0;i<dlist.length;i++){
+                    		if(dlist[i].pictureOne!=null){
+                    			$(".photos").before('<p style="font-size:16;font-weight:bold;">'+dlist[i].checkName+'</p>');
+                    			imageHtml(dlist[i].pictureOne);
+                    		}
+                    		if(dlist[i].pictureTwo!=null){    
+                    			imageHtml(dlist[i].pictureTwo);
+                    		}
+                    		if(dlist[i].pictureThree!=null){    
+                    			imageHtml(dlist[i].pictureThree);
+                    		}
+                    		$(".photos").before("<br>");
+
+                    		 if(i==dlist.length-1){
+                        		 mouseImage();                  			 
+                    		 }
+                    	}
+                    });
                   
                     
                 }
@@ -887,6 +910,7 @@ function saveCheckMain(){//isCheckMain == "Y"
 		}
 	}
     var mdata = billForm.getData(true);
+    mdata.remark = nui.get("remark").getValue();
     if(mdata.lastChekDate){
     	mdata.lastChekDate = format(mdata.lastChekDate, 'yyyy-MM-dd HH:mm:ss');
     }
@@ -929,6 +953,7 @@ function saveCheckMain(){//isCheckMain == "Y"
 function finish(){
 	
 	var data = billForm.getData(true);
+	mdata.remark = nui.get("remark").getValue();
 	if(data.isFinish != 1){		
 		saveDetailB();
 	}
@@ -1308,3 +1333,58 @@ function addPicture(){
 
     });
 }
+
+function mouseImage(){
+	//鼠标移动到图片上时触发
+	$(".imgListA").mouseover(function(){
+    		$(this).css("cursor","default");
+		$(this).find(".imgListOneDiv").show();
+		
+		var height = $(this).find(".imgStyle").height();
+		var width = $(this).find(".imgStyle").width();
+		$( $(this).find(".imgListOneDiv") ).css("height","100px");
+		$( $(this).find(".imgListOneDiv") ).css("width","150px");
+		var heightTo=height/2;
+		if( heightTo>20 ){
+			heightTo-=20;
+			$( $(this).find(".imgListOneDiv") ).css("padding-top",heightTo+"px");
+		}else{
+			$( $(this).find(".imgListOneDiv") ).css("padding-top",heightTo+"px");
+		}
+	});
+
+	//鼠标从图片上离开时触发
+	$(".imgListA").mouseout(function(){
+		$(this).css("cursor","pointer");
+		$(this).find(".imgListOneDiv").hide();
+		
+	});
+	//预览选择的图片
+	$(".preview").click(function(e){
+		var num=$(this).attr("num");
+			for(var i =0;i<beforeList.length;i++){
+				if(beforeList[i].index==num){
+					preview(beforeList[i].imageUrl); 
+				}
+			}
+	});
+}
+
+function imageHtml(imageUrl){
+	var html="";
+	html+='<a href="#" class="imgListA" >';
+	html+='		<div class="" style="width:150px;height: 100px;float: left;" >';
+	html+='		<div class="imgListOneDiv" style="display:none;" >';
+	html+='			<img id="" alt="" src="'+webPath + contextPath +'/repair/prototype/images/preview.png" class="imgListone preview" num="'+index+'" >';
+	html+='		</div>';
+	html+='			<img id=""  alt="" src="'+imageUrl+'" class="imgStyle" >';
+	html+='		</div>';
+	html+='</a>';
+	 $(".photos").before(html);
+	 var before = {
+			 imageUrl : imageUrl,
+			 index : index
+	 }
+	 index++;
+	 beforeList.push(before);
+};

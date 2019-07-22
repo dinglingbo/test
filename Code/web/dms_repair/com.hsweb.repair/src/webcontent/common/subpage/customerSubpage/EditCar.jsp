@@ -76,6 +76,24 @@
 	    table{
 	    	font-size: 12px !important;
 	    }
+
+            .print_btn  {
+            text-align: center;
+                width: 230px;
+                height: 34px;
+                display: inline-block;
+                background: #ff6600b3;
+                line-height: 35px;
+                border-radius: 5px;
+                color: #fff;
+                font-size: 16px;
+                text-decoration: none;
+                margin: 0 10px;
+            }
+
+            a:hover {
+                color: #fff;
+            }
     </style>
     <div title="车辆信息" class="nui-window" id="carview" style="width:100%;height:100%">
         <div class="nui-tabs" activeIndex="0" style="width:100%;height: 100%;">
@@ -109,6 +127,7 @@
                             <td colspan="3">
                                 <input class="nui-textbox" name="carNo" id="carNo" onvaluechanged="onCarNoChanged" />
                                 <a class="nui-button" onclick="parsingCarNo()">获取车架号(VIN)</a>
+                                <a class="print_btn" href="#" id="faker5">上传行驶证识别车辆信息</a>
                             </td>
                         </tr>
                         <tr>

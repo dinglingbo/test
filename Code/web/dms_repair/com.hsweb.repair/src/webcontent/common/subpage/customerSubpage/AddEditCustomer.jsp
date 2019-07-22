@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.5.5"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.5.7"></script>
       	<script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
   	    <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
  	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
@@ -44,6 +44,23 @@ table {
 a{
 cursor: pointer;
 }
+            .print_btn  {
+            text-align: center;
+                width: 230px;
+                height: 37px;
+                display: inline-block;
+                background: #ff6600b3;
+                line-height: 35px;
+                border-radius: 5px;
+                color: #fff;
+                font-size: 15px;
+                text-decoration: none;
+                margin: 0 100px;
+            }
+
+            a:hover {
+                color: #fff;
+            }
 </style>
 </head>
 <body>
@@ -189,6 +206,12 @@ cursor: pointer;
                         <input class="nui-hidden" name="carModelIdLy" id="carModelIdLy"/>
                         <input class="nui-hidden" name="insureCompName" id="insureCompName"/>
                         <table class="nui-form-table" style="width:100%;">
+                             <tr>
+                                <td colspan="4">
+                                     <a class="print_btn" href="#" id="faker4">上传行驶证识别车辆信息</a>
+									
+                                </td>
+                            </tr>                       	
                             <tr>
                                 <td class="form_label required">
                                     <label>车牌号：</label>

@@ -306,6 +306,10 @@
 		<!--LEFT JOIN wb_repair.rpb_contactor c on a.guest_id = c.guest_id-->
 		where a.is_disabled = 0
 			<dynamic>
+			   <isNotEmpty prepend="and" property="id">  
+                    (a.id = #id#)
+                </isNotEmpty>
+			
 			    <isNotEmpty prepend="and" property="mobile"> 
                     (b.mobile like '%$mobile$%')
                 </isNotEmpty>

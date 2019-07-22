@@ -352,7 +352,7 @@ function settleOK() {
 				totalAmt:row.totalAmt,
 				useRemark:row.useRemark,
 				carId:guestData.carId,
-				carNo:guestData.carNo,
+				carNo:guestData.carNo
 		};
 		json={
 				payAmt:count,
@@ -379,7 +379,9 @@ function settleOK() {
 					periodValidity : row.periodValidity,
 					sellAmt :count,
 					carId:guestData.carId,
-					carNo:guestData.carNo
+					carNo:guestData.carNo,
+					contactorId :guestData.contactorId,
+					contactorName : guestData.contactorName
 			};
 		}else{
 			card={
@@ -394,7 +396,9 @@ function settleOK() {
 					periodValidity : row.periodValidity,
 					sellAmt :count,
 					carId:guestData.carId,
-					carNo:guestData.carNo
+					carNo:guestData.carNo,
+					contactorId :guestData.contactorId,
+					contactorName : guestData.contactorName
 			};
 		}
 		json={
@@ -603,7 +607,9 @@ function noPayOk(){
 					periodValidity : row.periodValidity,
 					balaAmt : parseFloat(payAmt)+parseFloat(editSetAmt),
 					carId:guestData.carId,
-					carNo:guestData.carNo
+					carNo:guestData.carNo,
+					contactorId :guestData.contactorId,
+					contactorName : guestData.contactorName
 			};
 		}else{
 			var stored={
@@ -617,7 +623,9 @@ function noPayOk(){
 					periodValidity : row.periodValidity,
 					balaAmt : parseFloat(payAmt)+parseFloat(row.giveAmt),
 					carId:guestData.carId,
-					carNo:guestData.carNo
+					carNo:guestData.carNo,
+					contactorId :guestData.contactorId,
+					contactorName : guestData.contactorName
 			};
 		}
 

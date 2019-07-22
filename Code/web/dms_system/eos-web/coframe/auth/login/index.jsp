@@ -202,9 +202,9 @@
                      <li><a href="javascript:updateSkin('#42485b');"><div style="width:10px;height:15px;background-color: #42485b;float:left;"></div>炫酷黑</a></li>
                 </ul>
             </li>
-            <li class="dropdown">
+            <!-- <li class="dropdown">
            		<a class="" style="padding-top: 18px; " onclick="customer()" title="客服信息"><i class="fa fa-user-circle-o"></i></a>
-           	</li>
+           	</li> -->
             <li class="dropdown">
            		<a class="feedback-bt FeedBackButton" style="padding-top: 18px; ">
 				    反馈

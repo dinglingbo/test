@@ -25,7 +25,7 @@
 </head>
 <body>
 	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-	    <table style="width:100%;">
+	    <table style="width:90%;">
 	        <tr>
                 <td style="width:80%;">
 					<a class="nui-button" iconCls="" plain="true" onclick="onOk()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>

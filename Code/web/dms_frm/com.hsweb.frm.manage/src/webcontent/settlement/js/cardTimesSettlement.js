@@ -444,7 +444,9 @@ function settleOK() {
 				carId:guestData.carId,
 				carNo:guestData.carNo,
 				buySource:1,
-				discountAmt:deductionAmt
+				discountAmt:deductionAmt,
+				contactorId :guestData.contactorId,
+				contactorName : guestData.contactorName
                 
 		};
 		json={
@@ -667,7 +669,9 @@ function noPayOk(){
 				useRemark:row.useRemark,
 				carId:guestData.carId,
 				carNo:guestData.carNo,
-				buySource:1
+				buySource:1,
+				contactorId :guestData.contactorId,
+				contactorName : guestData.contactorName
 		    };
 		//整理数据
 		 var amountAmt = parseFloat(netInAmt) - parseFloat(deductionAmt);

@@ -163,7 +163,8 @@
                 </a>
                 <ul class="dropdown-menu pull-right" id="orgsname">
                     <!-- <li>
-                        <a href="javascript:openGuestOrder();"><i class="fa fa-pencil-square-o"></i> 待处理客户订单</a>
+                        <a href="javascript:openGuestOrder();"><i class="fa fa-pencil-square-o"></i> 待处理
+订单</a>
                     </li>
                     <li>
                         <a href="javascript:openSellOrder();"><i class="fa fa-pencil-square-o"></i> 待收货单</a>
@@ -202,9 +203,9 @@
                      <li><a href="javascript:updateSkin('#42485b');"><div style="width:10px;height:15px;background-color: #42485b;float:left;"></div>炫酷黑</a></li>
                 </ul>
             </li>
-            <li class="dropdown">
+<!--             <li class="dropdown">
            		<a class="" style="padding-top: 18px; " onclick="customer()" title="客服信息"><i class="fa fa-user-circle-o"></i></a>
-           	</li>
+           	</li> -->
             <li class="dropdown">
            		<a class="feedback-bt FeedBackButton" style="padding-top: 18px; ">
 				    反馈

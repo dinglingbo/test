@@ -174,7 +174,7 @@ function addPartName(){
 	
 	var namestd =nui.get('searchKey').getValue().replace(/\s+/g, "");
 	nui.open({
-		url : webPath+ partDomain+ "/commonPart/partNameAdd.jsp?token"+ token,
+		url : webPath+ partDomain+ "/common/partNameAdd.jsp?token"+ token,
 		title : "新增配件名称",
 		width : 425,
 		height : 300,

@@ -11,7 +11,7 @@
 
 <head>
 	<title>计次卡/储值卡结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardSettlement.js?v=1.6.2"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardSettlement.js?v=1.6.4"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {

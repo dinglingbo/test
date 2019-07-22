@@ -11,6 +11,7 @@ var zongAmt = 0;//实时填写的结算金额
 var typeUrl = 0;//结算逻辑流，2退货.3预收预付
 var guestData = null;
 var deductible = 0;
+var contact = {};//查询出来的联系人，用于微信结算
 $(document).ready(function (){
 	$("body").on("blur","input[name='amount']",function(){
 		onChanged();
@@ -33,17 +34,60 @@ function setData(data){
 		netInAmt = parseFloat(data[0].nowAmt||0);
 	}
 	typeUrl =  data[0].typeUrl;
-	if(typeUrl==2){
-		$("#wxbtnsettle").show();
-	}else{
-		$("#wxbtnsettle").hide();
-	}
 	var rechargeBalaAmt = 0;
 	document.getElementById('carNo').innerHTML = data[0].carNo;
 	document.getElementById('guest').innerHTML = data[0].guestName;
 	document.getElementById('totalAmt').innerHTML = "￥"+netInAmt;
 	document.getElementById('totalAmt1').innerHTML = netInAmt;
 	document.getElementById('amount').innerHTML = netInAmt;
+	/*	if(typeUrl==2){
+		$("#wxbtnsettle").show();
+	}else{
+		$("#wxbtnsettle").hide();
+	}*/
+	//判断是什么结算，定义微信结算的按钮颜色
+	var json1 = {};
+	var isContacter = true;//是否查询联系人
+	if(data[0].billTypeId==103||data[0].billTypeId==106||data[0].billTypeId==107||data[0].billTypeId==108||data[0].billTypeId==109||data[0].billTypeId==119){
+		json1 = {
+				type:1,
+				serviceId : data[0].billMainId,
+				token : token
+			}
+	}else if(data[0].billTypeId==104){
+		json1 = {
+				type:3,
+				serviceId : data[0].billMainId,
+				token : token
+			}
+	}else if(data[0].billTypeId==104){
+		json1 = {
+				type:2,
+				serviceId : data[0].billMainId,
+				token : token
+			}
+	}else{
+		isContacter = false;
+		$("#wxbtnsettle").hide();
+	}
+	if(isContacter){
+		nui.ajax({
+			url : apiPath + repairApi + "/com.hsapi.repair.repairService.crud.queryContacter.biz.ext" ,
+			type : "post",
+			data : json1,
+			success : function(data) {
+				if(data.errCode == "S") {
+					contact = data.contact;
+				}else{
+					$("#wxbtnsettle").hide();
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				console.log(jqXHR.responseText);
+			}
+		});
+	}
+
 	
 	var json = {
 		guestId:data[0].guestId,
@@ -532,4 +576,32 @@ function print(accountDetailList,netInAmt){
 			 }
 		 }); 
 
+}
+
+function weChatSettle(){
+	if(contact.id){
+		var json1 = {
+				"token":token,
+				"fisId":guestData[0].billMainId,
+				"openId":contact.wechatOpenId,
+				"amt":zongAmt
+			}
+		nui.ajax({
+			url : apiPath + repairApi + "/com.hsapi.repair.repairService.sendWeChat.sWcSettleBill.biz.ext" ,
+			type : "post",
+			data : json1,
+			success : function(data) {
+				if(data.errCode == "S") {
+					showMsg(data.errMsg||"推送微信成功，请到绑定微信付款！","S");
+				}else{
+					showMsg(data.errMsg||"推送微信失败！","W");
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				console.log(jqXHR.responseText);
+			}
+		});
+	}else{
+		showMsg("用户未绑定微信！","W");
+	}
 }

@@ -215,11 +215,12 @@ function dispatchOk(){
 	var emlpsz = $("a.empl1");//所选技师数组
 	var emlpszId ="";
 	var emlpszName ="";
-	var serviceTypeIdList = serviceTypeIds.getValue();
-	serviceTypeIdList = serviceTypeIdList.split(",");
+	var serviceTypeIdList = serviceTypeIds.getValue() || "";
+	/*实时保存时，传的是字符串*/
+	/*serviceTypeIdList = serviceTypeIdList.split(",");
 	if(serviceTypeIdList==""){
 		serviceTypeIdList = [];	
-	};
+	};*/
 	if(emlpsz.length==0){
 		showMsg("请选择施工员！","W");
 		return;
@@ -249,7 +250,7 @@ function dispatchOk(){
     if(nui.get("sendWechat").getValue() != "0" ||nui.get("sendApp").getValue() != "0"){
     	sendInfo(userList);
     }
-	data = {
+	/*data = {
 			emlpszId :emlpszId,
 			emlpszName:emlpszName,
 			planFinishDate:nui.get("planFinishDate").getValue(),
@@ -257,15 +258,15 @@ function dispatchOk(){
 	};
 	resultData = data;
 	CloseWindow("ok");
-
-/*	var json = {
+  */
+    var json = {
 			serviceId :serviceId,
 			workerIds :emlpszId,
 			workers: emlpszName,
 			serviceTypeIds:serviceTypeIdList,
 			type:type,
 			planFinishDate:nui.get("planFinishDate").getValue()
-	}
+	};
 	nui.ajax({	
 		url : setItemWorkersBatch,
 		type : 'POST',
@@ -276,13 +277,13 @@ function dispatchOk(){
 			nui.unmask(document.body);
 			if (text.errCode == 'S') {
 				showMsg("派工成功","S");
-				var data = {
+				/*var data = {
 						saveSuccess :"saveSuccess"
-				}
-				CloseWindow(data);
+				}*/
+				CloseWindow("ok");
 	
 			} else {
-				showMsg(returnJson.errMsg||"保存失败","W");
+				showMsg(returnJson.errMsg||"派工失败","E");
 				//if(returnJson.errCode == 'E' && returnJson.errMsg==null){
 					//showMsg("保存失败","W");
 					//nui.alert("卡已经存在,请修改卡名");
@@ -290,7 +291,7 @@ function dispatchOk(){
 			}
 
 		}
-	});*/
+	});
 }
 
 function getData(){

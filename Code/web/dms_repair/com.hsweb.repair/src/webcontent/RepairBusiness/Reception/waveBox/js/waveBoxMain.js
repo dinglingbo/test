@@ -97,294 +97,295 @@ var prdtTypeHash = {
 	"2" : "项目",
 	"3" : "配件"
 };
-$(document)
-		.ready(
-				function() {
-					//是否显示预结算
-					balaAuditSign = nui.get("balaAuditSign");
-					mainGrid = nui.get("mainGrid");
-					mainGrid.setUrl(mainGridUrl);
-					beginDateEl = nui.get("sRecordDate");
-					endDateEl = nui.get("eRecordDate");
-					mtAdvisorIdEl = nui.get("mtAdvisorId");
-					serviceTypeIdEl = nui.get("serviceTypeId");
-					serviceTypeIds = nui.get("serviceTypeIds");
-					advancedMore = nui.get("advancedMore");
-					advancedSearchForm = new nui.Form("#advancedSearchForm");
-					editFormDetail = document.getElementById("editFormDetail");
-					advancedSearchWin = nui.get("advancedSearchWin");
-					innerItemGrid = nui.get("innerItemGrid");
-					innerpackGrid = nui.get("innerpackGrid");
-					innerItemGrid.setUrl(getRpsItemUrl);
-					innerpackGrid.setUrl(getdRpsPackageUrl);
-					beginDateEl.setValue(getMonthStartDate());
-					endDateEl.setValue(addDate(getMonthEndDate(), 1));
+$(document).ready(function() {
+	//是否显示预结算
+	balaAuditSign = nui.get("balaAuditSign");
+	mainGrid = nui.get("mainGrid");
+	mainGrid.setUrl(mainGridUrl);
+	beginDateEl = nui.get("sRecordDate");
+	endDateEl = nui.get("eRecordDate");
+	mtAdvisorIdEl = nui.get("mtAdvisorId");
+	serviceTypeIdEl = nui.get("serviceTypeId");
+	serviceTypeIds = nui.get("serviceTypeIds");
+	advancedMore = nui.get("advancedMore");
+	advancedSearchForm = new nui.Form("#advancedSearchForm");
+	editFormDetail = document.getElementById("editFormDetail");
+	advancedSearchWin = nui.get("advancedSearchWin");
+	innerItemGrid = nui.get("innerItemGrid");
+	innerpackGrid = nui.get("innerpackGrid");
+	innerItemGrid.setUrl(getRpsItemUrl);
+	innerpackGrid.setUrl(getdRpsPackageUrl);
+	beginDateEl.setValue(getMonthStartDate());
+	endDateEl.setValue(addDate(getMonthEndDate(), 1));
 
-					initMember("mtAdvisorId", function() {
-						mtAdvisorIdEl.setValue(currEmpId);
-						mtAdvisorIdEl.setText(currUserName);
+	initMember("mtAdvisorId", function() {
+		mtAdvisorIdEl.setValue(currEmpId);
+		mtAdvisorIdEl.setText(currUserName);
 
-						initServiceType("serviceTypeId",
-								function(data) {
-									servieTypeList = nui.get("serviceTypeId")
-											.getData();
-									servieTypeList.forEach(function(v) {
-										servieTypeHash[v.id] = v;
-									});
-									serviceTypeIds.setData(servieTypeList);
-
-									initCarBrand("carBrandId", function(data) {
-										brandList = nui.get("carBrandId")
-												.getData();
-										brandList.forEach(function(v) {
-											brandHash[v.id] = v;
-										});
-
-										if (seeBill) {
-											quickSearch(0);
-										}
-									});
-								});
-
+		initServiceType("serviceTypeId",
+				function(data) {
+					servieTypeList = nui.get("serviceTypeId")
+							.getData();
+					servieTypeList.forEach(function(v) {
+						servieTypeHash[v.id] = v;
 					});
+					serviceTypeIds.setData(servieTypeList);
 
-					var filter = new HeaderFilter(mainGrid, {
-						columns : [ {
-							name : 'status'
-						}, {
-							name : 'mtAdvisor'
-						}, {
-							name : 'balaAuditSign'
-						} ],
-						callback : function(column, filtered) {
-						},
+					initCarBrand("carBrandId", function(data) {
+						brandList = nui.get("carBrandId")
+								.getData();
+						brandList.forEach(function(v) {
+							brandHash[v.id] = v;
+						});
 
-						tranCallBack : function(field) {
-							var value = null;
-							switch (field) {
-							case "status":// 状态
-								value = prebookStatusHash;// [{ name: '待确认',
-															// id: '0' }, {
-															// name: '已确认', id:
-															// '1' }, {name:
-															// '已取消' , id: '2'
-															// }, { name: '已开单',
-															// id: '3' }, {
-															// name: '已评价', id:
-															// '4' }];
-								break;
-							case "balaAuditSign":// 状态
-								value = headerHash;// [{ name: '待确认', id: '0'
-													// }, { name: '已确认', id: '1'
-													// }, {name: '已取消' , id: '2'
-													// }, { name: '已开单', id: '3'
-													// }, { name: '已评价', id: '4'
-													// }];
-								break;
-
-							}
-							return value;
+						if (seeBill) {
+							quickSearch(0);
 						}
 					});
-					// initCustomDicts("receTypeId", "0415",function(data) {
-					// receTypeIdList = nui.get("receTypeId").getData();
-					// receTypeIdList.forEach(function(v) {
-					// receTypeIdHash[v.customid] = v;
-					// });
-					// });
-
-					mainGrid
-							.on(
-									"drawcell",
-									function(e) {
-										var record = e.record;
-										if (e.field == "status") {
-											e.cellHtml = statusHash[e.value];
-										} else if (e.field == "boxBrandId") {
-											if (brandHash && brandHash[e.value]) {
-												e.cellHtml = brandHash[e.value].name;
-											}
-										} else if (e.field == "boxServiceTypeId") {
-											if (e.value) {
-												e.cellHtml = boxServiceTypeId[e.value - 1].name;
-											} else {
-												e.cellHtml = "";
-											}
-										} else if (e.field == "balaAuditSign") {
-											if (e.value == 1) {
-												e.cellHtml = "预结算";
-											} else {
-												e.cellHtml = "未结算";
-											}
-										} else if (e.field == "contactMobile") {
-											var value = e.value
-											value = "" + value;
-											var reg = /(\d{3})\d{4}(\d{4})/;
-											var value = value.replace(reg,
-													"$1****$2");
-											// e.cellHtml = value;
-											if (e.value) {
-												if (record.openId) {
-													e.cellHtml = "<span id='wechatTag' class='fa fa-wechat fa-lg'></span>"
-															+ value;
-												} else {
-													e.cellHtml = "<span  id='wechatTag1' class='fa fa-wechat fa-lg'></span>"
-															+ value;
-
-												}
-											} else {
-												e.cellHtml = "";
-											}
-
-										} else if (e.field == "serviceCode") {
-											e.cellHtml = '<a href="##" onclick="edit('
-													+ e.record._uid
-													+ ')">'
-													+ e.record.serviceCode
-													+ '</a>';
-										} else if (e.field == "carNo") {
-											e.cellHtml = '<a href="##" onclick="showCarInfo('
-													+ e.record._uid
-													+ ')">'
-													+ e.record.carNo + '</a>';
-										} else if (e.field == "driveType") {
-											if (e.value) {
-												e.cellHtml = QD[e.value - 1].text;
-											} else {
-												e.cellHtml = "";
-											}
-										}
-									});
-
-					innerItemGrid.on("drawcell", function(e) {
-						var grid = e.sender;
-						var record = e.record;
-						var uid = record._uid;
-						var rowIndex = e.rowIndex;
-						switch (e.field) {
-						case "prdtName":
-							var cardDetailId = record.cardDetailId || 0;
-							if (cardDetailId > 0) {
-								e.cellHtml = e.value
-										+ "<font color='red'>(预存)</font>";
-							}
-							break;
-						case "serviceTypeId":
-							var type = record.type || 0;
-							if (type > 2) {
-								e.cellHtml = "--";
-								e.cancel = false;
-							} else {
-								e.cellHtml = servieTypeHash[e.value].name;
-							}
-							break;
-						case "workers":
-							var type = record.type || 0;
-							if (type != 2) {
-								e.cellHtml = "--";
-							} else {
-								e.cellHtml = e.value;
-							}
-							break;
-						case "rate":
-							var value = e.value || "";
-							if (value && value != "0") {
-								e.cellHtml = e.value + '%';
-							}
-							break;
-						default:
-							break;
-						}
-
-					});
-
-					innerpackGrid.on("drawcell", function(e) {
-						var grid = e.sender;
-						var record = e.record;
-						var uid = record._uid;
-						var rowIndex = e.rowIndex;
-						switch (e.field) {
-						case "prdtName":
-							var cardDetailId = record.cardDetailId || 0;
-							if (cardDetailId > 0) {
-								e.cellHtml = e.value
-										+ "<font color='red'>(预存)</font>";
-							}
-							break;
-						case "serviceTypeId":
-							var type = record.type || 0;
-							if (type > 1) {
-								e.cellHtml = "--";
-							} else {
-								e.cellHtml = servieTypeHash[e.value].name;
-							}
-							break;
-						case "saleMan":
-							var type = record.type || 0;
-							var cardDetailId = record.cardDetailId || 0;
-							if (type > 1 || cardDetailId > 0) {
-								e.cellHtml = "--";
-							}
-							break;
-						case "workers":
-							var type = record.type || 0;
-							var cardDetailId = record.cardDetailId || 0;
-							if (type != 2) {
-								e.cellHtml = "--";
-							} else {
-								e.cellHtml = e.value;
-							}
-							break;
-						case "serviceTypeId":
-							if (servieTypeHash[e.value]) {
-								e.cellHtml = servieTypeHash[e.value].name;
-							}
-							break;
-						case "rate":
-							var value = e.value || "";
-							if (value && value != "0") {
-								e.cellHtml = e.value + '%';
-							}
-							break;
-						case "type":
-							if (e.value == 1) {
-								e.cellHtml = "--";
-							} else {
-								e.cellHtml = prdtTypeHash[e.value];
-							}
-							break;
-						default:
-							break;
-						}
-					});
-
-					mainGrid.on("rowdblclick", function(e) {
-						edit();
-					});
-
-					document.onkeyup = function(event) {
-						var e = event || window.event;
-						var keyCode = e.keyCode || e.which;
-						if ((keyCode == 27)) { // ESC
-							advancedSearchWin.hide();
-						}
-						;
-					};
-					mainGrid.on("rowclick", function(e) {
-						var record = e.record;
-					    if(record.status>1){
-					    	nui.get("deletBtn").setVisible(false); 
-					    }else{
-					    	nui.get("deletBtn").setVisible(true); 
-					    }
-						 
-					});
-					/*
-					 * var statusList = "0,1,2,3"; var p =
-					 * {statusList:statusList}; doSearch(p);
-					 */
-
 				});
+
+	});
+
+	var filter = new HeaderFilter(mainGrid, {
+		columns : [ {
+			name : 'status'
+		}, {
+			name : 'mtAdvisor'
+		}, {
+			name : 'balaAuditSign'
+		} ],
+		callback : function(column, filtered) {
+		},
+
+		tranCallBack : function(field) {
+			var value = null;
+			switch (field) {
+			case "status":// 状态
+				value = prebookStatusHash;// [{ name: '待确认',
+											// id: '0' }, {
+											// name: '已确认', id:
+											// '1' }, {name:
+											// '已取消' , id: '2'
+											// }, { name: '已开单',
+											// id: '3' }, {
+											// name: '已评价', id:
+											// '4' }];
+				break;
+			case "balaAuditSign":// 状态
+				value = headerHash;// [{ name: '待确认', id: '0'
+									// }, { name: '已确认', id: '1'
+									// }, {name: '已取消' , id: '2'
+									// }, { name: '已开单', id: '3'
+									// }, { name: '已评价', id: '4'
+									// }];
+				break;
+
+			}
+			return value;
+		}
+	});
+	// initCustomDicts("receTypeId", "0415",function(data) {
+	// receTypeIdList = nui.get("receTypeId").getData();
+	// receTypeIdList.forEach(function(v) {
+	// receTypeIdHash[v.customid] = v;
+	// });
+	// });
+
+	mainGrid.on("drawcell",function(e) {
+		var record = e.record;
+		if (e.field == "status") {
+			if(record.status == 0 && record.noMtFileSign == 1) {
+        		e.cellHtml = "<font color='red'>"+statusHash[e.value]+"(已报价)</font>"
+        	}else if(record.status == 1 && record.partAuditSign ==1) {
+            	e.cellHtml = "<font color='red'>"+statusHash[e.value]+"(配件已审)</font>"
+            }else {
+            	e.cellHtml = statusHash[e.value];
+            }
+		} else if (e.field == "boxBrandId") {
+			if (brandHash && brandHash[e.value]) {
+				e.cellHtml = brandHash[e.value].name;
+			}
+		} else if (e.field == "boxServiceTypeId") {
+			if (e.value) {
+				e.cellHtml = boxServiceTypeId[e.value - 1].name;
+			} else {
+				e.cellHtml = "";
+			}
+		} else if (e.field == "balaAuditSign") {
+			if (e.value == 1) {
+				e.cellHtml = "预结算";
+			} else {
+				e.cellHtml = "未结算";
+			}
+		} else if (e.field == "contactMobile") {
+			var value = e.value
+			value = "" + value;
+			var reg = /(\d{3})\d{4}(\d{4})/;
+			var value = value.replace(reg,
+					"$1****$2");
+			// e.cellHtml = value;
+			if (e.value) {
+				if (record.openId) {
+					e.cellHtml = "<span id='wechatTag' class='fa fa-wechat fa-lg'></span>"
+							+ value;
+				} else {
+					e.cellHtml = "<span  id='wechatTag1' class='fa fa-wechat fa-lg'></span>"
+							+ value;
+
+				}
+			} else {
+				e.cellHtml = "";
+			}
+
+		} else if (e.field == "serviceCode") {
+			e.cellHtml = '<a href="##" onclick="edit('
+					+ e.record._uid
+					+ ')">'
+					+ e.record.serviceCode
+					+ '</a>';
+		} else if (e.field == "carNo") {
+			e.cellHtml = '<a href="##" onclick="showCarInfo('
+					+ e.record._uid
+					+ ')">'
+					+ e.record.carNo + '</a>';
+		} else if (e.field == "driveType") {
+			if (e.value) {
+				e.cellHtml = QD[e.value - 1].text;
+			} else {
+				e.cellHtml = "";
+			}
+		}
+	});
+
+	innerItemGrid.on("drawcell", function(e) {
+		var grid = e.sender;
+		var record = e.record;
+		var uid = record._uid;
+		var rowIndex = e.rowIndex;
+		switch (e.field) {
+		case "prdtName":
+			var cardDetailId = record.cardDetailId || 0;
+			if (cardDetailId > 0) {
+				e.cellHtml = e.value
+						+ "<font color='red'>(预存)</font>";
+			}
+			break;
+		case "serviceTypeId":
+			var type = record.type || 0;
+			if (type > 2) {
+				e.cellHtml = "--";
+				e.cancel = false;
+			} else {
+				e.cellHtml = servieTypeHash[e.value].name;
+			}
+			break;
+		case "workers":
+			var type = record.type || 0;
+			if (type != 2) {
+				e.cellHtml = "--";
+			} else {
+				e.cellHtml = e.value;
+			}
+			break;
+		case "rate":
+			var value = e.value || "";
+			if (value && value != "0") {
+				e.cellHtml = e.value + '%';
+			}
+			break;
+		default:
+			break;
+		}
+
+	});
+
+	innerpackGrid.on("drawcell", function(e) {
+		var grid = e.sender;
+		var record = e.record;
+		var uid = record._uid;
+		var rowIndex = e.rowIndex;
+		switch (e.field) {
+		case "prdtName":
+			var cardDetailId = record.cardDetailId || 0;
+			if (cardDetailId > 0) {
+				e.cellHtml = e.value
+						+ "<font color='red'>(预存)</font>";
+			}
+			break;
+		case "serviceTypeId":
+			var type = record.type || 0;
+			if (type > 1) {
+				e.cellHtml = "--";
+			} else {
+				e.cellHtml = servieTypeHash[e.value].name;
+			}
+			break;
+		case "saleMan":
+			var type = record.type || 0;
+			var cardDetailId = record.cardDetailId || 0;
+			if (type > 1 || cardDetailId > 0) {
+				e.cellHtml = "--";
+			}
+			break;
+		case "workers":
+			var type = record.type || 0;
+			var cardDetailId = record.cardDetailId || 0;
+			if (type != 2) {
+				e.cellHtml = "--";
+			} else {
+				e.cellHtml = e.value;
+			}
+			break;
+		case "serviceTypeId":
+			if (servieTypeHash[e.value]) {
+				e.cellHtml = servieTypeHash[e.value].name;
+			}
+			break;
+		case "rate":
+			var value = e.value || "";
+			if (value && value != "0") {
+				e.cellHtml = e.value + '%';
+			}
+			break;
+		case "type":
+			if (e.value == 1) {
+				e.cellHtml = "--";
+			} else {
+				e.cellHtml = prdtTypeHash[e.value];
+			}
+			break;
+		default:
+			break;
+		}
+	});
+
+	mainGrid.on("rowdblclick", function(e) {
+		edit();
+	});
+
+	document.onkeyup = function(event) {
+		var e = event || window.event;
+		var keyCode = e.keyCode || e.which;
+		if ((keyCode == 27)) { // ESC
+			advancedSearchWin.hide();
+		}
+		;
+	};
+	mainGrid.on("rowclick", function(e) {
+		var record = e.record;
+	    if(record.status>1){
+	    	nui.get("deletBtn").setVisible(false); 
+	    }else{
+	    	nui.get("deletBtn").setVisible(true); 
+	    }
+		 
+	});
+	/*
+	 * var statusList = "0,1,2,3"; var p =
+	 * {statusList:statusList}; doSearch(p);
+	 */
+
+});
 
 function onAdvancedAddCancel() {
 	advancedAddWin.hide();

@@ -6,7 +6,7 @@ var serviceId = 0;//工单号
 var planFinishDate = new Date();//派工从现在时间开始
 var workers={};
 var workersId={};
-var tempItem = null;//单独派工
+var tempItem = {};//单独派工
 var type = null;
 $(document).ready(function(v) {
 	 //serviceTypeIds = nui.get("serviceTypeIds");
@@ -79,7 +79,7 @@ function setData(data){
 		}	
 	}
 	nui.get("planFinishDate").setValue(mini.formatDate ( new Date(),"yyyy-MM-dd HH:mm:ss"));
-	tempItem = data.itemList;
+	tempItem = data.itemList||{};
 	type = data.type;
 }
 function init(){
@@ -195,7 +195,7 @@ function dispatchOk(){
 		}
 		userList.push(temp);
 	}
-    nui.unmask(document.body);
+  
 	/*data = {
 			emlpszId :emlpszId,
 			emlpszName:emlpszName,

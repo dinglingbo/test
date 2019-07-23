@@ -246,7 +246,7 @@ function dispatchOk(){
 		userList.push(temp);
 	}
 
-    nui.unmask(document.body);
+
 
 	/*data = {
 			emlpszId :emlpszId,

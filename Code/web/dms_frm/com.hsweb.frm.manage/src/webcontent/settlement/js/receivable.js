@@ -60,7 +60,7 @@ function setData(data){
 				serviceId : data[0].billMainId,
 				token : token
 			}
-	}else if(data[0].billTypeId==104){
+	}else if(data[0].billTypeId==105){
 		json1 = {
 				type:2,
 				serviceId : data[0].billMainId,
@@ -78,6 +78,9 @@ function setData(data){
 			success : function(data) {
 				if(data.errCode == "S") {
 					contact = data.contact;
+					if(contact.wechatOpenId==""||contact.wechatOpenId==null){
+						document.getElementById("wxbtnsettle").style.background = "#3c3c3c3c";
+					}
 				}else{
 					$("#wxbtnsettle").hide();
 				}
@@ -579,29 +582,42 @@ function print(accountDetailList,netInAmt){
 }
 
 function weChatSettle(){
-	if(contact.id){
-		var json1 = {
-				"token":token,
-				"fisId":guestData[0].billMainId,
-				"openId":contact.wechatOpenId,
-				"amt":zongAmt
-			}
-		nui.ajax({
-			url : apiPath + repairApi + "/com.hsapi.repair.repairService.sendWeChat.sWcSettleBill.biz.ext" ,
-			type : "post",
-			data : json1,
-			success : function(data) {
-				if(data.errCode == "S") {
-					showMsg(data.errMsg||"推送微信成功，请到绑定微信付款！","S");
-				}else{
-					showMsg(data.errMsg||"推送微信失败！","W");
-				}
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-				console.log(jqXHR.responseText);
-			}
-		});
-	}else{
+	if(contact.wechatOpenId==""||contact.wechatOpenId==null){
 		showMsg("用户未绑定微信！","W");
+	}else{
+		  nui.confirm("是否确定推送支付?", "友情提示",function(action){
+		       if(action == "ok"){
+					nui.mask({
+						el : document.body,
+						cls : 'mini-mask-loading',
+						html : '数据处理中...'
+					});
+					var json1 = {
+							"token":token,
+							"fisId":guestData[0].id,
+							"openId":contact.wechatOpenId,
+							"amt":zongAmt
+						}
+					nui.ajax({
+						url : apiPath + repairApi + "/com.hsapi.repair.repairService.sendWeChat.sWcSettleBill.biz.ext" ,
+						type : "post",
+						data : json1,
+						success : function(data) {
+							nui.unmask(document.body);
+							if(data.res.errCode == "S") {
+								showMsg(data.res.errMsg||"推送微信成功，请到绑定微信付款！","S");
+							}else{
+								showMsg(data.res.errMsg||"推送微信失败！","W");
+							}
+						},
+						error : function(jqXHR, textStatus, errorThrown) {
+							console.log(jqXHR.responseText);
+						}
+					});
+	
+		     }else {
+					return;
+			 }
+			 }); 
 	}
 }

@@ -24,7 +24,7 @@
 	<div class="tips">
 		<span class="fa fa-exclamation-triangle fa-lg"></span>数据导入功能通常只在系统初次使用时使用，导入完成后数据无法撤回，请检查数据正确性，谨慎操作！<br>
 		<span class="fa fa-exclamation-triangle fa-lg"></span>数据导入前请下载我们的导入模板整理文件,选中文件时会加载几秒，导入需要大概一分钟，请耐心等待！<br>
-		<span class="fa fa-exclamation-triangle fa-lg"></span>每次导入最多4000条数据， 如果数量超过4000，请分批导入，规定 导入时间为23:00:00-05:00:00<br>
+		<span class="fa fa-exclamation-triangle fa-lg"></span>每次导入最多4000条数据， 如果数量超过4000，请分批导入，规定 导入时间为19:00:00-07:00:00<br>
 		<span class="fa fa-exclamation-triangle fa-lg"></span>表头标*为必填项，请按正常数据格式整理文件（如：数量请用数字，勿用中文.日期格式：2018-10-24）。<br>
 	</div>
 	<div id ="tabs" class="nui-tabs" width="100%" height="100%">

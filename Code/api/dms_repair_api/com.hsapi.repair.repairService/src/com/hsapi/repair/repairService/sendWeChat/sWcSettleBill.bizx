@@ -24,6 +24,7 @@
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
       <process:return id="2" language="java.util.HashMap" name="res" type="query" valueType="Java">res</process:return>
+      <process:return id="3" language="com.alibaba.fastjson.JSONObject" name="PreBill" type="query" valueType="Java">PreBill</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -73,8 +74,12 @@
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">fisId</process:from>
+      <process:from type="query" pattern="reference">fisPreId</process:from>
       <process:to type="query">pMap/id</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">pMap/paramsType</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -115,7 +120,7 @@
       <targetNode>assign4</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="NULLOREMPTY">
-          <process:leftOperand type="query">openId</process:leftOperand>
+          <process:leftOperand type="query">fisResMap/data/wechatOpenId</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -125,7 +130,7 @@
       <targetNode>assign5</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -135,6 +140,10 @@
     <size height="28" width="28"/>
     <nodeLabel>assign12label</nodeLabel>
     <process:copy>
+      <process:from type="query" pattern="reference">fisResMap/data/totalAmt</process:from>
+      <process:to type="query">amt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">firstText</process:from>
       <process:to type="query">tempData/first</process:to>
     </process:copy>
@@ -143,7 +152,7 @@
       <process:to type="query">tempData/keyword1</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">fisResMap/detailList/rpBillId</process:from>
+      <process:from type="query" pattern="reference">fisResMap/data/billCode</process:from>
       <process:to type="query">tempData/keyword2</process:to>
     </process:copy>
     <process:copy>
@@ -155,7 +164,7 @@
       <process:to type="query">tempData/remark</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">openId</process:from>
+      <process:from type="query" pattern="reference">fisResMap/data/wechatOpenId</process:from>
       <process:to type="query">tempData/openid</process:to>
     </process:copy>
     <process:copy>
@@ -216,7 +225,7 @@
       <targetNode>assign10</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -312,16 +321,6 @@
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign6</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link19" name="link19" displayName="连接线" type="transition">
-      <sourceNode>subprocess1</sourceNode>
-      <targetNode>assign8</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NE">
-          <process:leftOperand type="query">fisResMap/detailList/id</process:leftOperand>
-          <process:rightOperand type="query">fisId</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" lineType="note" type="exception">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign7</targetNode>
@@ -334,7 +333,7 @@
       <process:partner type="literal">this.sendPostUrl</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="key" type="literal" value="String" valueType="Primitive" pattern="reference">FRM</process:inputVariable>
-        <process:inputVariable id="1" name="apiName" type="literal" value="String" valueType="Primitive" pattern="reference">com.hsapi.frm.frmService.crud.queryRPAccountList.biz.ext</process:inputVariable>
+        <process:inputVariable id="1" name="apiName" type="literal" value="String" valueType="Primitive" pattern="reference">com.hsapi.frm.frmService.crud.queryFisPreBill.biz.ext</process:inputVariable>
         <process:inputVariable id="2" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">pMap</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
@@ -355,13 +354,27 @@
       <sourceNode>assign6</sourceNode>
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link19" name="link19" displayName="连接线" type="transition">
+      <sourceNode>assign6</sourceNode>
+      <targetNode>assign8</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">fisResMap/data/billCode</process:leftOperand>
+          <process:rightOperand type="query">fisId</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link14</targetConnections>
     <location x="300" y="75"/>
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">fisResMap/detailList/carId</process:from>
+      <process:from type="query" pattern="reference">fisResMap/data/carId</process:from>
       <process:to type="query">car/id</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">fisResMap/data</process:from>
+      <process:to type="query">PreBill</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
@@ -369,25 +382,8 @@
     <figSize height="20" width="40"/>
     <node>assign6</node>
   </nodes>
-  <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
-    <targetConnections>link17</targetConnections>
-    <targetConnections>link20</targetConnections>
-    <location x="193" y="240"/>
-    <size height="28" width="28"/>
-    <nodeLabel>end1label</nodeLabel>
-    <process:returns>
-      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
-      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-      <process:return id="2" language="java.util.HashMap" name="res" type="query" valueType="Java">res</process:return>
-    </process:returns>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="187" y="276"/>
-    <figSize height="20" width="40"/>
-    <node>end1</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值6" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign7</sourceNode>
       <targetNode>end1</targetNode>
     </sourceConnections>
@@ -410,7 +406,7 @@
     <node>assign7</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值7" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
       <targetNode>end1</targetNode>
     </sourceConnections>
@@ -425,6 +421,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">找不到此应收单</process:from>
       <process:to type="query">errMsg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">fisResMap/data</process:from>
+      <process:to type="query">ttt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
@@ -483,6 +483,24 @@
     <figSize height="20" width="49"/>
     <node>assign11</node>
   </nodes>
+  <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
+    <targetConnections>link2</targetConnections>
+    <targetConnections>link3</targetConnections>
+    <location x="194" y="255"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end1label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="java.util.HashMap" name="res" type="query" valueType="Java">res</process:return>
+      <process:return id="3" language="java.util.HashMap" name="ttt" type="query" valueType="Java">ttt</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
+    <location x="188" y="291"/>
+    <figSize height="20" width="40"/>
+    <node>end1</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-07-03 11:00:19" date="2019-07-03Z" description="" name="sStoreManReming" version="7.0.0.0"/>
@@ -498,16 +516,16 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="pMap"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="fisResMap"/>
     <process:variable description="消息详情页面地址" historyStateLocation="client" isArray="false" name="turl" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="amt" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="预收单id" isArray="false" name="fisId" primitiveType="String"/>
-    <process:input description="" isArray="false" name="openId" primitiveType="String"/>
-    <process:input description="结算金额" isArray="false" name="amt" primitiveType="String"/>
+    <process:input description="预收单id" isArray="false" name="fisPreId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
     <process:output anyType="java.util.HashMap" description="" isArray="false" name="res"/>
+    <process:output anyType="com.alibaba.fastjson.JSONObject" description="" isArray="false" name="PreBill"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

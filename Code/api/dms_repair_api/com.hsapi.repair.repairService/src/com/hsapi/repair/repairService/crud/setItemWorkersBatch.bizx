@@ -21,6 +21,8 @@
     <targetConnections>link13</targetConnections>
     <targetConnections>link16</targetConnections>
     <targetConnections>link17</targetConnections>
+    <targetConnections>link18</targetConnections>
+    <targetConnections>link19</targetConnections>
     <location x="780" y="151"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
@@ -213,6 +215,16 @@
       <sourceNode>subprocess0</sourceNode>
       <targetNode>subprocess3</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link18" name="link18" displayName="连接线" type="transition">
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>end0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">E</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link11</targetConnections>
     <location x="440" y="58"/>
     <size height="27" width="27"/>
@@ -262,6 +274,16 @@
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>subprocess2</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link19" name="link19" displayName="连接线" type="transition">
+      <sourceNode>subprocess1</sourceNode>
+      <targetNode>end0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">E</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link14</targetConnections>
     <location x="536" y="235"/>

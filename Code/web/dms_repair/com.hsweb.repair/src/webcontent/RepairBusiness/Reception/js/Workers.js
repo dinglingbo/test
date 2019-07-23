@@ -6,6 +6,8 @@ var serviceId = 0;//工单号
 var planFinishDate = new Date();//派工从现在时间开始
 var workers={};
 var workersId={};
+var tempItem = null;//单独派工
+var type = null;
 $(document).ready(function(v) {
 	 //serviceTypeIds = nui.get("serviceTypeIds");
 	nui.get("sendWechat").setValue(currIsOpenWeChatRemind);
@@ -77,6 +79,8 @@ function setData(data){
 		}	
 	}
 	nui.get("planFinishDate").setValue(mini.formatDate ( new Date(),"yyyy-MM-dd HH:mm:ss"));
+	tempItem = data.itemList;
+	type = data.type;
 }
 function init(){
     nui.mask({
@@ -195,12 +199,46 @@ function dispatchOk(){
     if(nui.get("sendWechat").getValue() != "0" ||nui.get("sendApp").getValue() != "0"){
     	sendInfo(userList);
     }
-	data = {
+	/*data = {
 			emlpszId :emlpszId,
 			emlpszName:emlpszName,
 			planFinishDate:nui.get("planFinishDate").getValue(),
 	};
-	CloseWindow("ok");
+	
+	CloseWindow("ok");*/
+	
+	
+	    var itemList = [];
+	    tempItem.workerIds = emlpszId;
+    	tempItem.workers = emlpszName;
+    	tempItem.planFinishDate = nui.get("planFinishDate").getValue();
+    	itemList.push(tempItem);
+    	var json = {
+    			serviceId :serviceId,
+    			type:type,
+    			itemList:itemList
+    	}
+    	nui.ajax({	
+    		url : setItemWorkersBatch,
+    		type : 'POST',
+    		data:json,
+    		cache : false,
+    		contentType : 'text/json',
+    		success : function(text) {
+    			nui.unmask(document.body);
+    			if (text.errCode == 'S') {
+    				showMsg("派工成功","S");
+    				/*var data = {
+    						saveSuccess :"saveSuccess"
+    				}*/
+    				CloseWindow("ok");
+    	
+    			} else {
+    				showMsg(returnJson.errMsg||"派工失败","E");
+    			}
+
+    		}
+    	});
 }
 function getData(){
 	return data;

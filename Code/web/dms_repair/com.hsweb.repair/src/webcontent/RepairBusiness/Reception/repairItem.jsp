@@ -58,7 +58,7 @@
                 </div>                
                 <div field="saleMan" headerAlign="center"
                      allowSort="false" visible="true" width="50" header="" align="center" name="saleMan">
-                      销售员<a href="javascript:setItemSaleMan()" title="批量设置施工员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
+                      销售员<a href="javascript:setItemSaleMan()" title="批量设置销售员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
                      <input class="nui-textbox" property="editor" id="saleMansName" name="saleMansName"  onclick="openItemSaleMans" width="60%"/> 
                 </div>
                 <div field="saleManId" headerAlign="center"

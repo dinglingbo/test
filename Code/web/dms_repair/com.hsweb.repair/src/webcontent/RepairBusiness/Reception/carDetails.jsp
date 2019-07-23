@@ -499,24 +499,24 @@
 				                        <td class="title">
 				                            <label>车&nbsp;牌&nbsp;&nbsp;号：</label>
 				                        </td>
-				                        <td class="" ><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
+				                        <td class="" ><input  class="nui-textbox" name="carNo2" id="carNo2" enabled="false" width="100%"/></td>
 				                        <td class="title">
 				                            <label >进厂时间：</label>
 				                        </td>
 				                        <td style="width:15%">
-				                            <input id="enterDate" name="enterDate" enabled="false" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
+				                            <input id="enterDate2" name="enterDate2" enabled="false" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
 				                        </td>
 				                        <td class="title" >
 				                           <label>品牌车型：</label>
 				                        </td>
 				                        <td class="" colspan="1">
-				                             <input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/>
+				                             <input  class="nui-textbox" name="carModel2" id="carModel2" enabled="false" width="100%"/>
 				                       </td>
 				                        <td class="title" >
 				                           <label>车架号(VIN)：</label>
 				                        </td>
 				                        <td class="" colspan="1">
-				                            <input  class="nui-textbox" name="carVin" id="carVin" enabled="false" width="100%"/>
+				                            <input  class="nui-textbox" name="carVin2" id="carVin2" enabled="false" width="100%"/>
 				                        </td>
 				                        <td class="title">
 				                            <label>业务类型：</label>
@@ -530,7 +530,7 @@
 				                            <label>进厂油量：</label>
 				                        </td>
 				                        <td>
-				                          <input class="nui-combobox" id="enterOilMass" emptyText="请选择..." name="enterOilMass"
+				                          <input class="nui-combobox" id="enterOilMass2" emptyText="请选择..." name="enterOilMass2"
 				                           data="[{enterOilMass:'F',text:'F'},{enterOilMass:'3/4',text:'3/4'},{enterOilMass:'1/2',text:'1/2'},{enterOilMass:'1/4',text:'1/4'},{enterOilMass:'N',text:'N'}]"
 				                           width="100%"   textField="text" valueField="enterOilMass" value="" enabled="false"/>
 				               
@@ -539,27 +539,27 @@
 				                              <label>进厂里程：</label>
 				                          </td>
 				                          <td >
-				                               <input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"  width="30%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" enabled="false"/>
-				                               <label class="title">(上次里程：<span id="lastComeKilometers">0</span>)</label>
+				                               <input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="1000000000"  width="30%" id="enterKilometers2" name="enterKilometers2" allowNull="false" showButton="false" enabled="false"/>
+				                               <label class="title">(上次里程：<span id="lastComeKilometers2">0</span>)</label>
 				                          </td>
 				                        
 				                        <td class="title">
 				                            <label>预计交车：</label>
 				                        </td>
 				                        <td>
-				                            <input id="planFinishDate" enabled="false" name="planFinishDate" class="nui-datepicker" value="" format="yyyy-MM-dd HH:mm" nullValue="null" timeFormat="HH:mm:ss" showTime="true" showOkButton="false" showClearButton="true" width="100%"/>
+				                            <input id="planFinishDate2" enabled="false" name="planFinishDate2" class="nui-datepicker" value="" format="yyyy-MM-dd HH:mm" nullValue="null" timeFormat="HH:mm:ss" showTime="true" showOkButton="false" showClearButton="true" width="100%"/>
 				                        </td>
 				                    	<td class="title">
 				                            <label>服&nbsp;务&nbsp;&nbsp;顾&nbsp;问：</label>
 				                        </td>
 				                        <td>
-				                            <input class="nui-textbox" width="100%" id="mtAdvisor" name="mtAdvisor" enabled="false"/>
+				                            <input class="nui-textbox" width="100%" id="mtAdvisor2" name="mtAdvisor2" enabled="false"/>
 				                        </td>
 				                        <td class="title">
 				                            <label>备注：</label>
 				                        </td>
 				                        <td >
-				                            <input class="nui-textbox" width="100%" id="remark" name="remark" enabled="false"/>
+				                            <input class="nui-textbox" width="100%" id="remark2" name="remark2" enabled="false"/>
 				                        </td>
 				                    </tr>
 				                    
@@ -569,15 +569,15 @@
 				                          <label>商业险投保公司：</label>
 				                      </td>
 				                      <td >
-				                          <input class="nui-textbox" enabled="false" width="100%" id="annualInspectionCompName" name="annualInspectionCompName"/>
+				                          <input class="nui-textbox" enabled="false" width="100%" id="annualInspectionCompName2" name="annualInspectionCompName2"/>
 				                      </td>
 				                     
 				                      <td class="title" style="width: 100px">
 				                          <label>商业险到期：</label>
 				                      </td>
 				                      <td width="">
-				                          <input name="annualInspectionDate"
-				                                 id="annualInspectionDate"
+				                          <input name="annualInspectionDate2"
+				                                 id="annualInspectionDate2"
 				                                 width="100%"
 				                                 showTime="false"
 				                                 enabled="false"
@@ -588,14 +588,14 @@
 				                          <label>交强险投保公司：</label>
 				                      </td>
 				                      <td >
-				                          <input class="nui-textbox" enabled="false" width="100%" id="insureCompName" name="insureCompName" enabled="false"/>
+				                          <input class="nui-textbox" enabled="false" width="100%" id="insureCompName2" name="insureCompName2" enabled="false"/>
 				                      </td>
 				                      <td class="title" style="width: 100px">
 				                          <label>交强险到期：</label>
 				                      </td>
 				                      <td width="">
-				                          <input name="insureDueDate"
-				                                 id="insureDueDate"
+				                          <input name="insureDueDate2"
+				                                 id="insureDueDate2"
 				                                 width="100%"
 				                                 showTime="false"
 				                                 enabled="false"
@@ -608,12 +608,12 @@
 				                        <td class="title">
 				                            <label>联系人名称</label>
 				                        </td>
-				                        <td class="" ><input  class="nui-textbox" name="contactorName" id="contactorName" enabled="false" width="100%"/></td>
+				                        <td class="" ><input  class="nui-textbox" name="contactorName2" id="contactorName2" enabled="false" width="100%"/></td>
 				                        <td class="title">
 				                          <label>联系手机：</label>
 				                      </td>
 				                      <td >
-				                          <input class="nui-textbox" enabled="false" width="100%" id="contactorMobile" name="contactorMobile" />
+				                          <input class="nui-textbox" enabled="false" width="100%" id="contactorMobile2" name="contactorMobile2" />
 				                      </td>
 				                       <td class="title">
 				                          <label>证件号：</label>
@@ -625,8 +625,8 @@
 				                          <label>性别：</label>
 				                      </td>
 				                      <td>
-				                          <input name="sex"
-				                                 id="sex"
+				                          <input name="sex2"
+				                                 id="sex2"
 				                                 enabled="false"
 				                                 class="nui-combobox width1"
 				                                 textField="text"
@@ -646,7 +646,7 @@
 				                          <label>客户描述：</label>
 				                  </td>
 				                  <td >
-				                      <textarea class="nui-textarea" name="guestDesc"
+				                      <textarea class="nui-textarea" name="guestDesc2"
 				                                style="width:100%;height: 40px;" enabled="false"></textarea>
 				                  </td>
 				                  
@@ -654,14 +654,14 @@
 				                      <label>故障现象：</label>
 				                  </td>
 				                   <td>
-				                      <textarea class="nui-textarea" name="faultPhen"
+				                      <textarea class="nui-textarea" name="faultPhen2"
 				                                style="width:100%;height: 40px;" enabled="false"></textarea>
 				                  </td>
 				                  <td class="title">
 				                      <label>解决措施：</label>
 				                  </td>
 				                   <td>
-				                      <textarea class="nui-textarea" name="solveMethod"
+				                      <textarea class="nui-textarea" name="solveMethod2"
 				                                style="width:100%;height: 40px;" enabled="false"></textarea>
 				                  </td>
 				              </tr>

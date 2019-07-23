@@ -196,6 +196,7 @@
 		a.sign as sign,
 		a.qq as qq,
 		a.wechat as wechat,
+		a.wechat_photo as wechatPhoto,
 		a.sex as sex,
 		a.mobile as mobile,
 		a.fax as fax,

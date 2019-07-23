@@ -18,8 +18,13 @@
 <body>
          <div id ="tabs" class="nui-tabs" width="100%" height="100%">
 					<div title="我的消息提醒" >
-						<div id="workOrder"  dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" showPager="false" pageSize="20" showPageInfo="true"
-						 onDrawCell="onDrawCell" onselectionchanged="selectionChanged" allowSortColumn="false">
+						<div id="workOrder"  dataField="data" class="nui-datagrid" style="width: 100%; height: 100%;" 
+						showPager="true" pageSize="20" 
+						sizeList=[20,50,100,200]
+						 onDrawCell="onDrawCell" onselectionchanged="selectionChanged" 
+						 allowSortColumn="false"
+						 totalField="page.count"
+						 >
 							<div property="columns">
 								<div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
 								<div type="checkcolumn" class="mini-radiobutton" header="选择"></div>
@@ -34,7 +39,7 @@
 				</div>
 				<div title="我的反馈记录" url="<%=request.getContextPath() %>/com.hs.common.userFeedbackList.flow">
 		        </div>
-		        <div title="历史日志" url="<%=request.getContextPath() %>/com.hs.common.updateLogList.flow">
+		        <div title="历史日志" url="<%=request.getContextPath() %>/common/updateLogList.jsp">
 		        </div>
        </div>
 	<script type="text/javascript">

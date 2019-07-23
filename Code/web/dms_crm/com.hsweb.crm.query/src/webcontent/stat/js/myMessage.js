@@ -14,7 +14,12 @@ var params = {
 });
 function query (params){
 	var queryMaintainUrl = baseUrl+"com.hsapi.repair.repairService.query.queryRemind.biz.ext";
-	nui.ajax({
+	workOrder.setUrl(queryMaintainUrl);
+	workOrder.load({
+		params:params,
+        token: token
+    });
+	/*nui.ajax({
 		url : queryMaintainUrl,
 		type : "post",
 		cache : false,
@@ -29,20 +34,27 @@ function query (params){
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR.responseText);
 		}
-	});
+	});*/
 }
+
+
+
 //查询消息提醒，msg_Type消息类型
 function queryRemind (list){
 	var queryworkOrderList = [];//1
 
 	
 	for(var i =0;i<list.length;i++){
-		if(list[i].msgType==1){
+		/*if(list[i].msgType==1){
         	if(list[i].recordDate.indexOf(".") > -1){
         		list[i].recordDate = list[i].recordDate.substring(0, list[i].recordDate.indexOf(".")-3);
         	}
         	queryworkOrderList.push(list[i]);
-		}
+		}*/
+		if(list[i].recordDate.indexOf(".") > -1){
+    		list[i].recordDate = list[i].recordDate.substring(0, list[i].recordDate.indexOf(".")-3);
+    	}
+    	queryworkOrderList.push(list[i]);
 	}
 
 	workOrder.setData(queryworkOrderList);

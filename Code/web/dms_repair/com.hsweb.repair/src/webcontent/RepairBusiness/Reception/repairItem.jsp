@@ -66,7 +66,7 @@
                 </div> 
                 <div field="remark" headerAlign="center" name="remark"
                      allowSort="false" visible="true" width="80" header="备注" align="center"  >
-                      <input class="nui-textbox" property="editor" id="remark" name="remark"  onvaluechanged="remarkChang" width="80%"/> 
+                      <input class="nui-textbox" property="editor" id="remark2" name="remark"  onvaluechanged="remarkChang" width="80%"/> 
                 </div> 
                 <div field="itemOptBtn" name="itemOptBtn" width="80" headerAlign="center" header="操作" align="center" ></div>
             </div>

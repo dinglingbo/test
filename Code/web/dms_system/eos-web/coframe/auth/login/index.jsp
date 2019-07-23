@@ -11,7 +11,7 @@
       
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/common/nui/boot.js" type="text/javascript"></script>
-
+	<link href="<%=request.getContextPath()%>/coframe/auth/login/css/kefu.css" rel="stylesheet" type="text/css" />
     <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menu/menu.css" rel="stylesheet" type="text/css" />
     <script src="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menu/menu.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menupop.js" type="text/javascript"></script>
@@ -98,7 +98,9 @@
     	height:50px;
     	overflow:auto;
     } 
- 
+    
+
+
 </style>
 </head>
 <body>
@@ -190,6 +192,20 @@
                     <li><a href="<%=request.getContextPath()%>/coframe/auth/login/logout.jsp"><i class="fa fa-user"></i> 退出登录</a></li>
                 </ul>
             </li>
+            <!-- <li class="dropdown">
+           		<a class="" style="padding-top: 18px; " onclick="customer()" title="客服信息"><i class="fa fa-user-circle-o"></i></a>
+           	</li> -->
+           	<li>
+				<a href="#click" class="kefu" >
+				<h2 class="kefu-title">客服</h2>
+				<ul class="kefu-dropdown">
+				<li ><span class="fa fa-user-circle-o"></span>&nbsp;&nbsp;&nbsp;熊鹰</li>
+				<li><span class="fa fa-qq"></span>&nbsp;&nbsp;&nbsp;1074331924</li>
+				<li><span class="fa fa-wechat"></span>&nbsp;&nbsp;&nbsp;qq1074331924</li>
+				<li><span class="fa fa-volume-control-phone"></span>&nbsp;&nbsp;&nbsp;&nbsp;13260632181</li>
+				</ul>
+				</a>
+			</li>
             <li class="dropdown" width="10px">
                 <a class="dropdown-toggle" style="padding-top: 18px;" >
                     <span >换肤</span><i class="fa fa-angle-down" ></i>
@@ -202,9 +218,6 @@
                      <li><a href="javascript:updateSkin('#42485b');"><div style="width:10px;height:15px;background-color: #42485b;float:left;"></div>炫酷黑</a></li>
                 </ul>
             </li>
-            <!-- <li class="dropdown">
-           		<a class="" style="padding-top: 18px; " onclick="customer()" title="客服信息"><i class="fa fa-user-circle-o"></i></a>
-           	</li> -->
             <li class="dropdown">
            		<a class="feedback-bt FeedBackButton" style="padding-top: 18px; ">
 				    反馈

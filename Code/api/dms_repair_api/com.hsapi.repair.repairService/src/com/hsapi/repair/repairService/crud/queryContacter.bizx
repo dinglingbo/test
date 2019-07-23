@@ -113,7 +113,7 @@
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query">type</process:leftOperand>
-          <process:rightOperand type="literal">2</process:rightOperand>
+          <process:rightOperand type="literal">3</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>

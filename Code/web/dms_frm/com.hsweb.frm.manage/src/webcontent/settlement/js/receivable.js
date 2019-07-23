@@ -596,6 +596,7 @@ function weChatSettle(){
 							"token":token,
 							"fisId":guestData[0].id,
 							"openId":contact.wechatOpenId,
+							"contactorId":contact.id,
 							"amt":zongAmt
 						}
 					nui.ajax({
@@ -604,10 +605,10 @@ function weChatSettle(){
 						data : json1,
 						success : function(data) {
 							nui.unmask(document.body);
-							if(data.res.errCode == "S") {
+							if(data.errCode == "S") {
 								showMsg(data.res.errMsg||"推送微信成功，请到绑定微信付款！","S");
 							}else{
-								showMsg(data.res.errMsg||"推送微信失败！","W");
+								showMsg(data.errMsg||"推送微信失败！","W");
 							}
 						},
 						error : function(jqXHR, textStatus, errorThrown) {

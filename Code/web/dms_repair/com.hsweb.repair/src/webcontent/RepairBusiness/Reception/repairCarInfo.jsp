@@ -188,7 +188,7 @@
                           <label>备注：</label>
                       </td>
                       <td colspan="3">
-                          <input class="nui-textbox" enabled="false" width="100%" id="contactRemark" name="remark"/>
+                          <input class="nui-textbox" enabled="false" width="100%" id="contactRemark" name="contactRemark"/>
                       </td>
                   </tr>
               </table>

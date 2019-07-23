@@ -196,7 +196,7 @@
 	                                <!-- <li><a href="javascript:resetIM();"><i class="fa fa-pencil-square-o"></i> 登录IM</a></li> -->
 	                                <!-- <li><a href="javascript:updateSkin();"><i class="fa fa-pencil-square-o"></i> 皮肤中心</a></li> -->
 	                                <!-- <li><a href="#"><i class="fa fa-eye "></i> 用户信息</a></li> -->
-	                                <li onclick="myMessage()">
+	                                <li onclick="cancellation()">
 <%-- 	                                    <a href="<%=request.getContextPath()%>/coframe/auth/login/logout.jsp"> --%>
 	                                        <span class="fa fa-user"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;退出登录
 	                                </li>
@@ -986,4 +986,7 @@
                     error: function (jqXHR, textStatus, errorThrown) {
                     }
                 });
+ 	function cancellation(){
+ 		window.location="<%=request.getContextPath()%>/coframe/auth/login/logout.jsp";
+ 	}               
         </script>

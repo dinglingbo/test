@@ -222,6 +222,11 @@
                             </a> -->
                         </li>
                         <li class="dropdown">
+                            <a class="feedback-bt FeedBackButton" style="padding-top: 18px; ">
+                                反馈
+                            </a>
+                        </li>
+                        <li class="dropdown">
                             <a class="kefu">
                                 <span class="kefu-title">换肤</span>
                             <ul class="kefu-dropdown">
@@ -241,11 +246,6 @@
                                         <div style="width:10px;height:15px;background-color: #42485b;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;炫酷黑
                                 </li>
                             </ul>
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                            <a class="feedback-bt FeedBackButton" style="padding-top: 18px; ">
-                                反馈
                             </a>
                         </li>
                     </ul>

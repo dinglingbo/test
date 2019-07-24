@@ -11,6 +11,7 @@ var zongAmt = 0;//实时填写的结算金额
 var typeUrl = 0;//结算逻辑流，2退货.3预收预付
 var guestData = null;
 var deductible = 0;
+var enterTypeIdHash = [];//billTyleId的数组 用于微信结算
 var contact = {};//查询出来的联系人，用于微信结算
 $(document).ready(function (){
 	$("body").on("blur","input[name='amount']",function(){
@@ -19,8 +20,8 @@ $(document).ready(function (){
 });
 
 //页面传值，放入本页面
-function setData(data){
-	
+function setData(data,TypeIdHash){
+	enterTypeIdHash = TypeIdHash;
 	var s = data.length;
 	guestData = data;
 	if (s > 1) {
@@ -592,21 +593,20 @@ function weChatSettle(){
 						cls : 'mini-mask-loading',
 						html : '数据处理中...'
 					});
+				   var pData = getPustParams(guestData);
 					var json1 = {
-							"token":token,
-							"fisId":guestData[0].id,
-							"openId":contact.wechatOpenId,
-							"contactorId":contact.id,
-							"amt":zongAmt
-						}
+						"fisPreBill": pData.main,
+						"detailList" : pData.guestList
+				   }
+				   
 					nui.ajax({
-						url : apiPath + repairApi + "/com.hsapi.repair.repairService.sendWeChat.sWcSettleBill.biz.ext" ,
+						url : apiPath + frmApi + "/com.hsapi.frm.frmService.rpsettle.sWcSettleBill.biz.ext" ,
 						type : "post",
 						data : json1,
 						success : function(data) {
 							nui.unmask(document.body);
 							if(data.errCode == "S") {
-								showMsg(data.res.errMsg||"推送微信成功，请到绑定微信付款！","S");
+								showMsg(data.errMsg||"推送微信成功，请到绑定微信付款！","S");
 							}else{
 								showMsg(data.errMsg||"推送微信失败！","W");
 							}
@@ -621,4 +621,52 @@ function weChatSettle(){
 			 }
 			 }); 
 	}
+}
+
+
+function getPustParams(guestPreData) {
+	//拼接主表数据 
+	var rpBillIds = '';
+	var rpBillNames = '';
+	var remarkText = '';
+	var guestList = [];
+
+	for (var i = 0; i < guestPreData.length; i++) {
+		var temp =  nui.clone(guestPreData[i]);
+		var BillNamesText = (enterTypeIdHash[temp.billTypeId]&&enterTypeIdHash[temp.billTypeId].name) || "" ;
+		if (i == 0) {
+			rpBillIds = nui.clone(temp.id);
+			rpBillNames = BillNamesText;
+			remarkText = BillNamesText+ " " + temp.nowAmt + "元";
+		}
+		rpBillIds += ("," + nui.clone(temp.id));
+		rpBillNames += ("," + BillNamesText);
+		remarkText += "," + BillNamesText + " " + temp.nowAmt + "元 ";
+		temp.fisId = nui.clone(temp.id);
+		temp.id = '';//清空 为保存用
+		guestList.push(temp);
+	}
+
+	var timestamp = new Date().getTime(); //当前的时间戳
+	//格式化时间获取年月日
+	var dateAfter = new Date(timestamp + 1 * 60 * 60 * 1000);//一个小时后
+
+	var main = {
+		orgid: guestPreData[0].orgid,
+		guestId:guestPreData[0].guestId,
+		guestName: guestPreData[0].guestName,
+		rpBillIds: rpBillIds,
+		rpBillNames: rpBillNames,
+		contactorId: contact.id,
+		wechatOpenId: contact.wechatOpenId,
+		carId:guestPreData[0].carId,
+		carNo:guestPreData[0].carNo,
+		carVin: guestPreData[0].carVin,
+		totalAmt: zongAmt,
+		enableSettleDate: nui.formatDate(dateAfter,"yyyy-MM-dd HH:mm:ss"),
+		createDate:nui.formatDate(timestamp,"yyyy-MM-dd HH:mm:ss"),
+		remark:remarkText
+	};
+
+	return { main:main ,guestList:guestList};
 }

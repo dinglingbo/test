@@ -54,6 +54,8 @@
                 <a class="nui-button" plain="true" onclick="addMorePart()" id="fastEnterBtn"><span class="fa fa-hand-o-right fa-lg"></span>&nbsp;快速录入配件</a>
                 <a class="nui-button" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
                 <a class="nui-button" plain="true" onclick="chooseMember()" visible="false" id="chooseMemBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选择提成成员</a>
+                <input class="nui-checkbox"  id="isBilling" trueValue="1" falseValue="0" text="开单" value="" oncheckedchanged="billingChange()"/>
+                <input class="nui-checkbox"  id="isEditPart" trueValue="1" falseValue="0" text="修改配件" value="" oncheckedchanged="partChange()"/>
                 <span id="status"></span>
                 <span class="separator"></span>
            		<a onclick="showDueDetail()"  style="cursor:pointer"><span id="dueAmt">客户欠款：</span></a>
@@ -239,7 +241,7 @@
                            idField="id"
                            showSummaryRow="true"
                            frozenStartColumn="0"
-                           frozenEndColumn="10"
+                           frozenEndColumn="11"
                            ondrawcell="onRightGridDraw"
                            allowCellSelect="true"
                            allowCellEdit="true"
@@ -278,31 +280,58 @@
                                       <div field="orderAmt" summaryType="sum" numberFormat="0.0000" width="95" headerAlign="center" header="金额">
                                           <input property="editor" vtype="float" class="nui-textbox"/>
                                       </div>
-                                      <div field="remark" width="30" headerAlign="center" allowSort="true">
-                                      备注<input property="editor" class="nui-textbox"/>
+                                      <div field="remark" width="50" headerAlign="center" allowSort="true">
+                                      	备注<input property="editor" class="nui-textbox"/>
                                       </div>
                                   </div>
                               </div>
+                               <div header="开单信息" headerAlign="center" visible="false">
+                                  <div property="columns">
+                                   
+                                       <div field="showPrice" name="showPrice" numberFormat="0.0000" width="90" headerAlign="center" header="开单单价">
+                                          <input property="editor" vtype="float" class="nui-textbox"/>
+                                      </div>
+                                      <div field="showAmt"name="showAmt" summaryType="sum" numberFormat="0.0000" width="95" headerAlign="center" header="开单金额">
+                                          <input property="editor" vtype="float" class="nui-textbox"/>
+                                      </div>
+                                     
+                                  </div>
+                              </div>
+                              
                               <div header="辅助信息" headerAlign="center">
                                   <div property="columns">
-                                      <div type="comboboxcolumn" field="storeId" width="30" headerAlign="center" allowSort="true">
-                                      仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" 
+                                      <div type="comboboxcolumn" field="storeId" width="80" headerAlign="center" allowSort="true">
+                                     		 仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" 
                                               url="" data="storehouse"
                                               onvaluechanged="onStoreValueChange" emptyText=""  vtype="required"
                                               /> 
                                       </div>  
-                                       <div field="storeShelf" width="20" headerAlign="center" allowSort="true" header="仓位">
+                                       <div field="storeShelf" width="50" headerAlign="center" allowSort="true" header="仓位">
 		                             	 仓位<input  property="editor" id="storeShelf" name='storeShelf'  class="nui-textbox"/>
-		                          </div>  
-                                      <div field="stockOutQty" summaryType="sum" numberFormat="0.00" width="25" headerAlign="center" header="缺货数量">
+		                          	  </div>  
+                                      <div field="stockOutQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="缺货数量">
                                       </div>
-                                      <div type="checkboxcolumn" field="isMarkBatch" trueValue="1" falseValue="0" width="15" headerAlign="center" header="批次">
+                                      <div type="checkboxcolumn" field="isMarkBatch" trueValue="1" falseValue="0" width="35" headerAlign="center" header="批次">
                                       </div>
-                                      <div field="occupyQty" visible="false" width="20" headerAlign="center" allowSort="true" header="占用数量"></div>
-                                      <div field="comOemCode" width="30" headerAlign="center" allowSort="true" header="OEM码"></div>   
-                                      <div field="comSpec" width="30" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>                                                        
+                                      <div field="occupyQty" visible="false" width="70" headerAlign="center" allowSort="true" header="占用数量"></div>
+                                      <div field="comOemCode" width="90" headerAlign="center" allowSort="true" header="OEM码"></div>   
+                                      <div field="comSpec" width="90" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>                                                        
                                   </div>
                               </div>
+                              
+                               <div header="修改的配件信息" headerAlign="center" visible="false">
+                                  <div property="columns">
+                                  	  <div field="showPartId" name="showPartId" width="100" visible="false" headerAlign="center" header="配件编码"></div>
+                                      <div field="showPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码">
+                                          <input property="editor" class="nui-textbox" />
+                                      </div>
+                                       <div field="showFullName"width="220"  headerAlign="center" header="配件全称"></div>
+                                      <div field="showBrandName" visible="false" width="60" headerAlign="center" header="品牌"></div>
+                                      <div field="showCarModel" width="60" headerAlign="center" header="品牌车型"></div>
+                            
+                                  </div>
+                              </div>
+                              
                           </div>
                       </div>
                 </div>

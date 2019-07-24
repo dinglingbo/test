@@ -1,5 +1,0 @@
-ALTER TABLE rps_maintain_bill ADD engine_no VARCHAR(20);
-ALTER TABLE rps_maintain_bill ADD engine_model VARCHAR(50);
-ALTER TABLE rps_maintain_bill ADD drive_type VARCHAR(20);
-ALTER TABLE rps_maintain_bill ADD box_service_type_id INT(11);
-ALTER TABLE rps_maintain_bill ADD car_brand_id VARCHAR(20);

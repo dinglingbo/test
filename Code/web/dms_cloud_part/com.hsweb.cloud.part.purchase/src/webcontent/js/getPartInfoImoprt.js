@@ -133,6 +133,10 @@ function close(){
 }
 
 var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.paramcrud.getPartInfoByCodes.biz.ext";
+//开启app
+if(currIsOpenApp ==1){
+	saveUrl =baseUrl + "com.hsapi.cloud.part.invoicing.paramcrud.getPartInfoByCodesForCang.biz.ext";
+}
 function saveEnterPart(partList){
 	advancedTipForm.setData([]);
 	if(partList && partList.length>0) {

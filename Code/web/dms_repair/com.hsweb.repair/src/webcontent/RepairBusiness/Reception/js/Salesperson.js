@@ -5,6 +5,8 @@ var serviceId = 0;//工单号
 var planFinishDate = new Date();//派工从现在时间开始
 var workers="";
 var workersId="";
+var type = null;
+var serviceIdF = null;
 $(document).ready(function(v) {
 	 //serviceTypeIds = nui.get("serviceTypeIds");
     $(document).on("click",".none",function(e){
@@ -68,6 +70,8 @@ function setData(data){
 	}else{
 		document.getElementById(workersId).setAttribute("class", "empl1");
 	}
+	type = data.type || "";
+	serviceIdF = data.serviceId || 0;
 }
 function init(){
     nui.mask({
@@ -167,7 +171,25 @@ function dispatchOk(){
 			emlpszId :emlpszId,
 			emlpszName:emlpszName
 	};
-	CloseWindow("ok");
+	if(type=="pkg"){
+		data.serviceId = serviceIdF;
+	   data.saleManId = emlpszId;
+       data.saleMan = emlpszName; 
+       data.type = "package";
+	   var params = {};
+	   params.data = data;
+	   svrSetPkgSaleMansBatch(params,function(text){
+	    	if(text.errCode == "S"){
+	    		showMsg("保存成功","S");
+	    		CloseWindow("ok");
+	       }else{
+		       showMsg("保存失败","E");
+		  }
+	      nui.unmask(document.body);
+	  });
+	}else{
+		CloseWindow("ok");
+	}
 }
 function getData(){
 	return data;

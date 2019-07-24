@@ -177,6 +177,7 @@ function onSearch(){
 }
 function doSearch(params)
 {
+	params.orgid =currOrgid;
     params.orderTypeId = 2;
     params.isDiffOrder = 0;
 	params.sortField = "audit_date";

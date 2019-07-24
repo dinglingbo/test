@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件查询</title>
-<script src="<%=webPath + contextPath%>/common/js/embed/containPartInfo.js?v=2.0.9"></script>
+<script src="<%=webPath + contextPath%>/common/js/embed/containPartInfo.js?v=2.0.12"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

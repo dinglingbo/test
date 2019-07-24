@@ -11,7 +11,7 @@
 <title>客服信息</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<%@ include file="/common/sysCommon.jsp"%>	
-    <script src="<%=webPath + contextPath%>/common/js/editCustomer.js?v=1.0.5" type="text/javascript"></script> 
+    <script src="<%=webPath + contextPath%>/common/js/editCustomer.js?v=1.0.7" type="text/javascript"></script> 
   	<script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
   	<script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
  	<script src="<%= request.getContextPath() %>/common/qiniu/qiniu1.0.14.js" type="text/javascript"></script>
@@ -82,7 +82,22 @@
                 <td ><input class="nui-textbox"  id="email" name="email"  /></td>
                 <td align="right">签名：<span></span></td>
                 <td ><input class="nui-textbox" name="sign" id="sign" /></td>
-            </tr>           
+            </tr>   
+            <tr >
+                <td class="tbtext">微信二维码<span class="spanwidth"></span>   </td>
+                <td   class="tabwidth" >
+                <div class="page-header" id="btn-uploader">
+	                	<div class="div1" id="faker" onchange="xmTanUploadImg(this)">
+				            <img id="xmTanImg" style="width: 100px;height: 100px" onchange="xmTanUploadImg(this)" src="/default/common/images/logo.jpg"/>
+				            <div id="xmTanDiv"></div>
+				        </div>
+			        </div>
+
+
+						 <input  class="nui-textbox" id="wechatPhoto" name="wechatPhoto"  style="display:none" >
+                </td>
+				
+            </tr>         
         </table>
 
 </div>

@@ -215,11 +215,12 @@ function dispatchOk(){
 	var emlpsz = $("a.empl1");//所选技师数组
 	var emlpszId ="";
 	var emlpszName ="";
-	var serviceTypeIdList = serviceTypeIds.getValue();
-	serviceTypeIdList = serviceTypeIdList.split(",");
+	var serviceTypeIdList = serviceTypeIds.getValue() || "";
+	/*实时保存时，传的是字符串*/
+	/*serviceTypeIdList = serviceTypeIdList.split(",");
 	if(serviceTypeIdList==""){
 		serviceTypeIdList = [];	
-	};
+	};*/
 	if(emlpsz.length==0){
 		showMsg("请选择施工员！","W");
 		return;
@@ -245,11 +246,9 @@ function dispatchOk(){
 		userList.push(temp);
 	}
 
-    nui.unmask(document.body);
-    if(nui.get("sendWechat").getValue() != "0" ||nui.get("sendApp").getValue() != "0"){
-    	sendInfo(userList);
-    }
-	data = {
+
+
+	/*data = {
 			emlpszId :emlpszId,
 			emlpszName:emlpszName,
 			planFinishDate:nui.get("planFinishDate").getValue(),
@@ -257,15 +256,22 @@ function dispatchOk(){
 	};
 	resultData = data;
 	CloseWindow("ok");
-
-/*	var json = {
+  */
+    var sendParams = {
+			isWc:nui.get("sendWechat").getValue() ,
+			isApp:nui.get("sendApp").getValue(),
+    }
+	
+    var json = {
 			serviceId :serviceId,
 			workerIds :emlpszId,
 			workers: emlpszName,
 			serviceTypeIds:serviceTypeIdList,
 			type:type,
-			planFinishDate:nui.get("planFinishDate").getValue()
-	}
+			planFinishDate:nui.get("planFinishDate").getValue(),
+			sendParams:sendParams,//推送参数
+			userList:userList//推送参数
+	};
 	nui.ajax({	
 		url : setItemWorkersBatch,
 		type : 'POST',
@@ -276,13 +282,13 @@ function dispatchOk(){
 			nui.unmask(document.body);
 			if (text.errCode == 'S') {
 				showMsg("派工成功","S");
-				var data = {
+				/*var data = {
 						saveSuccess :"saveSuccess"
-				}
-				CloseWindow(data);
+				}*/
+				CloseWindow("ok");
 	
 			} else {
-				showMsg(returnJson.errMsg||"保存失败","W");
+				showMsg("派工失败","E");
 				//if(returnJson.errCode == 'E' && returnJson.errMsg==null){
 					//showMsg("保存失败","W");
 					//nui.alert("卡已经存在,请修改卡名");
@@ -290,7 +296,7 @@ function dispatchOk(){
 			}
 
 		}
-	});*/
+	});
 }
 
 function getData(){
@@ -319,42 +325,4 @@ function times(id){
 			nui.get("planFinishDate").setValue(mini.formatDate ( yjDate,"yyyy-MM-dd HH:mm:ss"));
 	}
 }
-
-
-//推送消息
-function sendInfo(userList){
-    nui.mask({
-        el: document.body,
-        cls: 'mini-mask-loading',
-        html: '消息推送中...'
-    });
-	nui.ajax({
-		url:sendInfoUrl,
-		type:"psot",
-		async:false,
-		data:{
-			serviceId:serviceId,
-			workerIdList:userList,
-			isWc:nui.get("sendWechat").getValue(),
-			isApp:nui.get("sendApp").getValue(),
-		},
-		success : function(data) {
-			nui.unmask(document.body);
-			if(data.errCode == "S"){
-				showMsg("推送成功","S");
-			}else{
-				showMsg("推送失败","E");
-			}
-			console.log(data);
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			nui.unmask(document.body);
-			// nui.alert(jqXHR.responseText);
-			console.log(jqXHR.responseText);
-			
-		}
-	})
-}
-
-
 

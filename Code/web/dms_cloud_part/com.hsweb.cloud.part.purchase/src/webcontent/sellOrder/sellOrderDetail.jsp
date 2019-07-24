@@ -56,7 +56,7 @@
                 <a class="nui-button" plain="true" onclick="chooseMember()" visible="false" id="chooseMemBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选择提成成员</a>
                 <span id="status"></span>
                 <span class="separator"></span>
-           		<span id="dueAmt"></span>
+           		<a onclick="showDueDetail()"  style="cursor:pointer"><span id="dueAmt">客户欠款：</span></a>
             </td>
         </tr>
     </table>

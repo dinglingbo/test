@@ -2482,10 +2482,10 @@ function addMorePart(){
         return;
     }
     var data = rightGrid.getChanges()||[];
-    if (data.length>0) {
-        showMsg("请先保存数据!","W");
-        return;
-    }
+//    if (data.length>0) {
+//        showMsg("请先保存数据!","W");
+//        return;
+//    }
     advancedAddForm.setData([]);
     advancedAddWin.show();
     quickAddShow=1;
@@ -3073,4 +3073,32 @@ function rightGridSet(){
     rightGrid.set({
         columns: columnsList
     });
+}
+
+function showDueDetail(){
+	var row =leftGrid.getSelected();
+	if(!row){
+		showMsg("请选择一条记录");
+		return;
+	}
+	
+	 nui.open({
+         url: webBaseUrl+"com.hsweb.cloud.part.common.showDueDetail.flow?token="+token,
+         title: "客户欠款记录", 
+         width: 880, height: 650,
+         showHeader:true,
+         allowDrag:true,
+         allowResize:true,
+         onload: function ()
+         {
+        	 var params={}
+        	 params.guestId =row.guestId;
+             var iframe = this.getIFrameEl();
+             iframe.contentWindow.setData(params);
+         },
+         ondestroy: function (action)
+         {
+
+         }
+     });
 }

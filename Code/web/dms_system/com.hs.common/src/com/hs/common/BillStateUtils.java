@@ -71,7 +71,7 @@ public class BillStateUtils {
 	public static String importTimeLimit() {
 		Date operateDate = new Date();
 		int hours = operateDate.getHours();
-		if((hours>=23&&hours<24)||(hours>=0&&hours<5)){
+		if((hours>=19&&hours<24)||(hours>=0&&hours<7)){
 			return "S";
 		}else{
 			return "E";

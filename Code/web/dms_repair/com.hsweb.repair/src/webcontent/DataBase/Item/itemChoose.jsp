@@ -188,6 +188,7 @@
 								<a class="nui-button" plain="true" iconCls="" onclick="onClear()"><span class="fa fa-trash-o"></span>&nbsp;清空</a>
 								<a class="nui-button" id="selectBtn" iconCls="" onclick="choose()" plain="true" visible="true"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
 								<a class="nui-button" id="" iconCls="" onclick="" plain="true" visible="true"><span class="fa fa-user-circle-o fa-lg"></span>&nbsp;语音输入</a>
+								<a class="nui-button" onclick="onCancel" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</a>
 							</td>
 							
 						</tr>

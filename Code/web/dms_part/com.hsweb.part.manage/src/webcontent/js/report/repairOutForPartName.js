@@ -31,7 +31,7 @@ $(document).ready(function(v) {
 	sPickDateEl.setValue(getMonthStartDate());
 	ePickDateEl.setValue(addDate(getMonthEndDate(), 1));
 
-	initGrid();
+	//initGrid();
 
     keyEnterList = [];
   

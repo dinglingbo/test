@@ -855,39 +855,41 @@ function activechangedmain2(){
             });
 			 var billForm = new nui.Form("#billForm");
 			 var setData = {};
+			 var lastComeKilometers2 = 0;
 			 if(main){
-				 setData.carNo = main.carNo;
-				 setData.enterDate = main.enterDate;
-				 setData.enterOilMass = main.enterOilMass;
-				 setData.enterKilometers = main.enterKilometers;
-				 setData.lastComeKilometers = main.lastEnterKilometers || 0;
-				 setData.planFinishDate = main.planFinishDate;
-				 setData.mtAdvisor = main.mtAdvisor;
-				 setData.guestDesc = main.guestDesc;
-				 setData.faultPhen = main.faultPhen;
-				 setData.solveMethod = main.solveMethod; 
+				 setData.carNo2 = main.carNo;
+				 setData.enterDate2 = main.enterDate;
+				 setData.enterOilMass2 = main.enterOilMass;
+				 setData.enterKilometers2 = main.enterKilometers;
+				 lastComeKilometers2 = main.lastEnterKilometers || 0;
+				 setData.planFinishDate2 = main.planFinishDate;
+				 setData.mtAdvisor2 = main.mtAdvisor;
+				 setData.guestDesc2 = main.guestDesc;
+				 setData.faultPhen2 = main.faultPhen;
+				 setData.solveMethod2 = main.solveMethod; 
 				 setData.serviceTypeId2= servieTypeHash[main.serviceTypeId].name;
 			 }
 			
 			 if(car){
-				 setData.carModel = car.carModel;
-				 setData.carVin = car.vin;
+				 setData.carModel2 = car.carModel;
+				 setData.carVin2 = car.vin;
 			 }
 			 
 			 if(carExd){
-				 setData.annualInspectionDate = carExd.annualInspectionDate || "";
-				 setData.annualInspectionCompName = carExd.annualInspectionCompName || "";
-				 setData.insureCompName = carExd.insureCompName || "";
-				 setData.insureDueDate = carExd.insureDueDate || "";
+				 setData.annualInspectionDate2 = carExd.annualInspectionDate || "";
+				 setData.annualInspectionCompName2 = carExd.annualInspectionCompName || "";
+				 setData.insureCompName2 = carExd.insureCompName || "";
+				 setData.insureDueDate2 = carExd.insureDueDate || "";
 			 }
 			 if(conta){
-				 setData.contactorName = conta.name;
-				 setData.contactorMobile = conta.mobile;
-				 setData.idNo = conta.idNo;
-				 setData.sex = conta.sex; 
+				 setData.contactorName2 = conta.name;
+				 setData.contactorMobile2 = conta.mobile;
+				 setData.idNo2 = conta.idNo;
+				 setData.sex2 = conta.sex; 
 			 }
 			
 			 billForm.setData(setData);
+			 $("#lastComeKilometers2").html(lastComeKilometers2);
 			 nui.unmask(document.body);
 		}
 	}

@@ -568,4 +568,43 @@
 				
 	</select>
 	
+	<!--查询客户欠款明细 -->
+	<select id="queryBillsDueDetail" parameterClass="java.util.HashMap"  resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id as id,
+			a.orgid as orgid,
+			a.rp_bill_id as rpBillId,
+			a.bill_type_code as billTypeCode,
+			a.bill_type_id as billTypeId,
+			a.guest_id as guestId,
+			a.guest_name as guestName,
+			a.bill_main_id as billMainId,
+			a.bill_service_id as billServiceId,
+			a.create_date as createDate,
+			a.no_char_off_amt as noCharoffAmt
+		FROM
+			fi_rp_bill a
+		WHERE
+			a.no_char_off_amt > 0
+		 and a.is_disabled =0	
+			<dynamic>
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="guestId">  
+                    (a.guest_id = #guestId#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="billDc"> 
+                    (a.bill_dc = #billDc#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isDisabled"> 
+                    (a.is_disabled = #isDisabled#)
+                </isNotEmpty>
+                               
+            </dynamic> 
+				
+	</select>
+	
 </sqlMap>

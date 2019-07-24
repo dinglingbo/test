@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售订单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/sellOrder/sellOrder.js?v=1.0.39"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/sellOrder/sellOrder.js?v=1.0.49"></script>
 <style type="text/css">
 .title {
 	width: 70px;
@@ -62,7 +62,7 @@ body .mini-grid-row-selected{
             <!--采购订单信息-->
             <%@include file="/purchase/sellOrder/sellOrderDetail.jsp" %>
         </div>
-        <div title="待处理客户订单" name="guestOrdrTab" url="" >
+        <div title="待处理客户订单" name="guestOrdrTab" url="" visible="false" >
           <!-- <div class="nui-fit">
                 <iframe id="formIframePchs" src="" frameborder="0" scrolling="yes" height="height: 110px;" width="100%" noresize="noresize"></iframe>
           </div> -->
@@ -85,13 +85,15 @@ body .mini-grid-row-selected{
         	<tr>
                 <td class="title">订单日期:</td>
                 <td>
-                    <input name="sOrderDate"
+                    <input id="sOrderDate"
+                    	   name="sOrderDate"
                            width="100%"
                            class="nui-datepicker"/>
                 </td>
                 <td class="">至:</td>
                 <td>
-                    <input name="eOrderDate"
+                    <input id="eOrderDate"
+                    	   name="eOrderDate"
                            class="nui-datepicker"
                            format="yyyy-MM-dd"
                            timeFormat="H:mm:ss"

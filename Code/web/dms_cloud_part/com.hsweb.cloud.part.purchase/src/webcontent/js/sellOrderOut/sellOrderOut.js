@@ -2334,10 +2334,10 @@ function addMorePart(){
         return;
     }
     var data = rightGrid.getChanges()||[];
-    if (data.length>0) {
-        showMsg("请先保存数据!","W");
-        return;
-    }
+//    if (data.length>0) {
+//        showMsg("请先保存数据!","W");
+//        return;
+//    }
     advancedAddForm.setData([]);
     advancedAddWin.show();
     quickAddShow=1;
@@ -2720,4 +2720,8 @@ function getDueAmt(params){
         }
     });
 	return dueAmt;
+}
+
+function showDueDetail(){
+	
 }

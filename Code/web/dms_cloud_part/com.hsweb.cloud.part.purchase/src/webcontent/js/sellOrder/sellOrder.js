@@ -3102,3 +3102,10 @@ function showDueDetail(){
          }
      });
 }
+
+function billingChange(){
+	var isBilling =nui.get("isBilling").getValue();
+}
+function partChange(){
+	var isEditPart =nui.get("isEditPart").getValue();
+}

@@ -329,8 +329,8 @@ function importTimeLimit(){
 		var month = d2.getMonth()+1;
 		var date = d2.getDate();
 		
-		var limitMinData = fullYear+"-"+month+"-"+date+" 23:00:00";
-		var limitMaxData = fullYear+"-"+month+"-"+(date+1)+" 05:00:00";
+		var limitMinData = fullYear+"-"+month+"-"+date+" 19:00:00";
+		var limitMaxData = fullYear+"-"+month+"-"+(date+1)+" 07:00:00";
 		limitMinData = limitMinData.replace("-","/");//替换字符，变成标准格式  
 		limitMaxData = limitMaxData.replace("-","/");//替换字符，变成标准格式   
 		var d1 = new Date(Date.parse(limitMinData)); 

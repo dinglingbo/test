@@ -6,7 +6,7 @@ var serviceId = 0;//工单号
 var planFinishDate = new Date();//派工从现在时间开始
 var workers={};
 var workersId={};
-var tempItem = null;//单独派工
+var tempItem = {};//单独派工
 var type = null;
 $(document).ready(function(v) {
 	 //serviceTypeIds = nui.get("serviceTypeIds");
@@ -79,7 +79,7 @@ function setData(data){
 		}	
 	}
 	nui.get("planFinishDate").setValue(mini.formatDate ( new Date(),"yyyy-MM-dd HH:mm:ss"));
-	tempItem = data.itemList;
+	tempItem = data.itemList||{};
 	type = data.type;
 }
 function init(){
@@ -195,10 +195,7 @@ function dispatchOk(){
 		}
 		userList.push(temp);
 	}
-    nui.unmask(document.body);
-    if(nui.get("sendWechat").getValue() != "0" ||nui.get("sendApp").getValue() != "0"){
-    	sendInfo(userList);
-    }
+  
 	/*data = {
 			emlpszId :emlpszId,
 			emlpszName:emlpszName,
@@ -206,7 +203,10 @@ function dispatchOk(){
 	};
 	
 	CloseWindow("ok");*/
-	
+    var sendParams = {
+			isWc:nui.get("sendWechat").getValue() ,
+			isApp:nui.get("sendApp").getValue(),
+    }
 	
 	    var itemList = [];
 	    tempItem.workerIds = emlpszId;
@@ -216,7 +216,9 @@ function dispatchOk(){
     	var json = {
     			serviceId :serviceId,
     			type:type,
-    			itemList:itemList
+    			itemList:itemList,
+    			sendParams:sendParams,//推送参数
+    			userList:userList//推送参数
     	}
     	nui.ajax({	
     		url : setItemWorkersBatch,
@@ -234,7 +236,7 @@ function dispatchOk(){
     				CloseWindow("ok");
     	
     			} else {
-    				showMsg(returnJson.errMsg||"派工失败","E");
+    				showMsg("派工失败","E");
     			}
 
     		}
@@ -316,39 +318,3 @@ function timeStamp(StatusMinute){
 		}
 	}
 }
-
-//推送消息
-function sendInfo(userList){
-    nui.mask({
-        el: document.body,
-        cls: 'mini-mask-loading',
-        html: '消息推送中...'
-    });
-	nui.ajax({
-		url:sendInfoUrl,
-		type:"psot",
-		async:false,
-		data:{
-			serviceId:serviceId,
-			workerIdList:userList,
-			isWc:nui.get("sendWechat").getValue(),
-			isApp:nui.get("sendApp").getValue(),
-		},
-		success : function(data) {
-			nui.unmask(document.body);
-			if(data.errCode == "S"){
-				showMsg("推送成功","S");
-			}else{
-				showMsg("推送失败","E");
-			}
-			console.log(data);
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			nui.unmask(document.body);
-			// nui.alert(jqXHR.responseText);
-			console.log(jqXHR.responseText);
-			
-		}
-	})
-}
-

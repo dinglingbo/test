@@ -1009,7 +1009,7 @@ function setInitData(params){
                         data.annualInspectionNo = car.annualInspectionNo || "";
                         data.annualInspectionDate = car.annualInspectionDate || "";
                         data.idNo = contactor.idNo;
-                        data.remark = contactor.remark;
+                        data.contactRemark = contactor.remark;
                         
                         $("#guestNameEl").html(guest.fullName);
                         $("#showCarInfoEl").html(data.carNo);
@@ -2556,7 +2556,19 @@ function addGuest(){
     });
  
 }
+
 function setPkgRate(){
+	nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '数据加载中...'
+    });
+	savePkg(function(){
+		nui.unmask(document.body);
+		openSetPkgRate();
+	});
+}
+function openSetPkgRate(){
     var main =  billForm.getData();
     if(!main.id){
         return;
@@ -2575,7 +2587,7 @@ function closePkgRateSetWin(){
     advancedPkgRateSetWin.hide();
 }
 
-function surePkgRateSetWin(){
+/*function surePkgRateSetWin(){
     var data =  billForm.getData();
     var serviceId = 0;
     if(!data.id){
@@ -2612,10 +2624,84 @@ function surePkgRateSetWin(){
             advancedPkgRateSetWin.hide();
         }
     } 
+}*/
+
+function surePkgRateSetWin(){
+    var data =  billForm.getData();
+    var serviceId = 0;
+    if(!data.id){
+        return;
+    }else{
+        var status = data.status||0;
+        if(status == 2){
+            showMsg("本单已完工,不能修改!","W");
+            advancedPkgRateSetWin.hide();
+            return;
+        }else{
+            var isSettle = data.isSettle||0;
+            if(isSettle == 1){
+                showMsg("本工单已经结算,不能修改!","W");
+                return;
+            }
+            serviceId = data.id||0;
+            nui.mask({
+                el: document.body,
+                cls: 'mini-mask-loading',
+                html: '处理中...'
+            });
+            var rate = pkgRateEl.getValue()||0;
+            rate = rate/100;
+            rate = rate.toFixed(4);
+            var params = {
+                data:{
+                    serviceId:data.id||0,
+                    rate: rate
+                }
+            };
+            svrSetPkgRateBatch(params, function(data){
+                data = data||{};
+                var errCode = data.errCode||"";
+                var errMsg = data.errMsg||"";
+                if(errCode == 'S'){
+                    
+                    var p1 = {
+                        interType: "package",
+                        data:{
+                            serviceId: serviceId||0
+                        }
+                    }
+                    var p2 = {
+                    }
+                    var p3 = {
+                    }
+                    loadDetail(p1, p2, p3,status);
+
+                    advancedPkgRateSetWin.hide();
+                }else{
+                    showMsg(errMsg||"批量修改优惠率失败!!","W");
+                }
+                nui.unmask(document.body);
+            }, function(){
+                nui.unmask(document.body);
+            });
+        }
+    } 
 }
 
 //新套餐派工
 function setPkgWorkers(){
+	nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '数据加载中...'
+    });
+	savePkg(function(){
+		nui.unmask(document.body);
+		openSetPkgWorkers();
+		
+	});
+}
+function openSetPkgWorkers(){
 	var main =  billForm.getData();
     if(!main.id){
         return;
@@ -2641,7 +2727,7 @@ function setPkgWorkers(){
         		},
         		ondestroy : function(action) {// 弹出页面关闭前
         			if (action=="ok"){
-        				var iframe = this.getIFrameEl(); 
+        				/*var iframe = this.getIFrameEl(); 
         				var data = iframe.contentWindow.getData();
         				var serviceTypeIds = data.serviceTypeIds;
         				if(serviceTypeIds.length>0){
@@ -2669,7 +2755,16 @@ function setPkgWorkers(){
     	            	        	}
         						}
         			        });
-        				}
+        				}*/
+        		        var p1 = { 
+        		    		interType: "package",
+        		            data:{
+        		                serviceId: main.id||0
+        		            }
+        		        };
+        		        var p2 = {};
+        		        var p3 = {};
+        		        loadDetail(p1, p2, p3,main.status);
         			}
         		}
         	});
@@ -2678,6 +2773,18 @@ function setPkgWorkers(){
 }
 
 function setPkgSaleMans(){
+	nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '数据加载中...'
+    });
+	savePkg(function(){
+		nui.unmask(document.body);
+		openSetPkgSaleMans();
+		
+	});
+}
+function openSetPkgSaleMans(){
     var main =  billForm.getData();
     if(!main.id){
         return;
@@ -2698,12 +2805,15 @@ function setPkgSaleMans(){
         		onload : function() {
         			var iframe = this.getIFrameEl(); 
         			var data = {
-        			};// 传入页面的json数据
+        					type:"pkg",
+        					serviceId:main.id || 0
+        			 };
+        			// 传入页面的json数据
         			iframe.contentWindow.setData(data);
         		},
         		ondestroy : function(action) {// 弹出页面关闭前
         			if (action == "ok") {
-        				var iframe = this.getIFrameEl();
+        				/*var iframe = this.getIFrameEl();
         	        	var data = iframe.contentWindow.getData();
         	        	saleManNameBat = data.emlpszName;
         	        	saleManIdBat = data.emlpszId;
@@ -2713,8 +2823,17 @@ function setPkgSaleMans(){
                     			saleMan.setValue(data.emlpszName);
                 		        row.saleManId = data.emlpszId;
                     		}
-                        });
-        	        	//surePkgSaleMansSetWin(main);
+                        });*/
+        				var p1 = { 
+    						 interType: "package",
+     			             data:{
+     			                serviceId: main.id||0
+     			            }
+        				};
+    			        var p2 = {
+    			        };
+    			        var p3 = {};
+    			        loadDetail(p1, p2, p3,main.status);
         			}
         		}
         	});
@@ -2834,7 +2953,7 @@ function sureItemPartSaleManSetWin(){
 		    	   showMsg("保存失败","E");
 		    	}
 		     nui.unmask(document.body);
-		    })
+		    });
         }
     } 
 }
@@ -3122,7 +3241,6 @@ function openSetItemWorkers(){
         	});
         }
     }
-	
 }
 
 function addCardTimesToBill(){
@@ -5198,15 +5316,35 @@ function GuestTabShow(){
         }
     });
 }
-
 function openPkgWorkers(e){
+	nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '数据加载中...'
+    });
+	savePkg(function(){
+		nui.unmask(document.body);
+		saveOpenPkgWorkers(e);
+	});
+}
+function saveOpenPkgWorkers(e){
 	var el = e.sender;
     var row = rpsPackageGrid.getEditorOwnerRow(el);
 	var workers = rpsPackageGrid.getCellEditor("workers", row);
-    var data = {};
+    /*var data = {};
     data = {
     	workers:row.workers,
     	workersId:row.workersId
+    };*/
+    var itemList = {};
+	itemList.id = row.id;
+    var data = {};
+    data = {
+    	serviceId:fserviceId,
+    	workers:row.workers,
+    	workersId:row.workersId,
+    	type:"item",
+    	itemList:itemList
     };
  	 $('.mini-textbox-input').blur();
      nui.open({
@@ -5221,12 +5359,22 @@ function openPkgWorkers(e){
         ondestroy: function (action)
         {
         	if(action=="ok"){
-        		var iframe = this.getIFrameEl();
+        		/*var iframe = this.getIFrameEl();
 	        	var data = iframe.contentWindow.getData();
 	        	//__workerIds = data.emlpszId;
 	        	workers.setValue(data.emlpszName);
 	        	row.workersId = data.emlpszId;
-	        	row.planFinishDate = data.planFinishDate;
+	        	row.planFinishDate = data.planFinishDate;*/
+        		var main = billForm.getData();
+ 		        var p1 = { 
+ 		    		interType: "package",
+ 		            data:{
+ 		                serviceId: main.id||0
+ 		            }
+ 		        };
+ 		        var p2 = {};
+ 		        var p3 = {};
+ 		        loadDetail(p1, p2, p3,main.status);
         	}
         }
     });

@@ -51,7 +51,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
                 <span id="status"></span>
        		 	<span class="separator"></span>
-           		<span id="dueAmt"></span>
+           		<a onclick="showDueDetail()"  style="cursor:pointer"><span id="dueAmt">客户欠款：</span></a>
             </td>
         </tr>
     </table>

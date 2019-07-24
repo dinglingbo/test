@@ -414,13 +414,8 @@
     <figSize height="20" width="40"/>
     <node>end2</node>
   </nodes>
-  <topRuler>
-    <guides position="270" horizontal="true"/>
-    <guides position="293" horizontal="true"/>
-  </topRuler>
-  <leftRuler>
-    <guides position="353" horizontal="true"/>
-  </leftRuler>
+  <topRuler/>
+  <leftRuler/>
   <process:info author="Administrator" createTime="2018-12-10 12:43:11" date="2018-12-10Z" description="" name="setItemWorkersBatch" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="main"/>

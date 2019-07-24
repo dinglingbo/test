@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%=webPath + contextPath%>/basic/js/supplierDetail.js?v=1.1.8"></script>
+<script src="<%=webPath + contextPath%>/basic/js/supplierDetail.js?v=1.1.9"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -33,7 +33,7 @@
     width: 90px;
 }
 .fwidthb{
-    width: 90px;
+    width: 120px;
 }
 .htr{
     height: 20px;
@@ -163,7 +163,7 @@
                           <tr class="htr">
                               <td class=" right fwidthb required">联系人:</td>
                               <td ><input id="manager" name="manager" width="100%" class="nui-textbox" ></td>
-                              <td class=" right fwidthb required">联系人手机:</td>
+                              <td class=" right fwidthb required">选择手机/固定电话:</td>
                               <td ><input id="mobile" name="mobile" width="100%" vtype="int" class="nui-textbox" ></td>
                           </tr>
                           <tr class="htr">

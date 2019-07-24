@@ -84,7 +84,14 @@ $(document).ready(function(v)
 });
 function getSearchParam(){
     var params = {};
-   
+    var storeGuest =nui.get("storeGuest").getValue();
+    var chainGuest = nui.get("chainGuest").getValue();
+    if(storeGuest==1){
+    	params.orgid =currOrgid;
+    }
+    if(chainGuest ==1){
+    	params.tenantId =currTenantId;
+    }
     return params;
 }
 function onSearch(){
@@ -92,8 +99,36 @@ function onSearch(){
 
     doSearch(params);
 }
+function storeChange(){
+	var storeGuest =nui.get("storeGuest").getValue();
+	if(storeGuest==1){
+		nui.get("chainGuest").setValue(0);
+	}
+	else{
+		nui.get("chainGuest").setValue(1);
+	}
+}
+
+function chainChange(){
+	var chainGuest = nui.get("chainGuest").getValue();
+	if(chainGuest ==1){
+		nui.get("storeGuest").setValue(0);
+	}else{
+		nui.get("storeGuest").setValue(1);
+	}
+}
 function doSearch(params)
 {
+	var storeGuest =nui.get("storeGuest").getValue() || "";
+    var chainGuest = nui.get("chainGuest").getValue()|| "";
+    if(storeGuest==1){
+    	params.orgid =currOrgid;
+    	params.tenantId=null;
+    }
+    if(chainGuest ==1){
+    	params.orgid =null;
+    	params.tenantId =currTenantId;
+    }
 	params.sortField = "a.audit_date";
 	params.sortOrder = "desc";
     rightGrid.load({

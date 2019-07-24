@@ -649,7 +649,7 @@
     <targetConnections>link17</targetConnections>
     <targetConnections>link20</targetConnections>
     <targetConnections>link22</targetConnections>
-    <location x="483" y="225"/>
+    <location x="485" y="225"/>
     <size height="28" width="28"/>
     <nodeLabel>assign9label</nodeLabel>
     <process:copy>
@@ -658,7 +658,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
-    <location x="485" y="261"/>
+    <location x="487" y="261"/>
     <figSize height="17" width="25"/>
     <node>assign9</node>
   </nodes>
@@ -745,10 +745,12 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.frm.FisPreBill" name="fisPreBill"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="预收单id" isArray="false" name="fisPreId" primitiveType="String"/>
+    <process:input description="财务单据ID拼接" isArray="false" name="rpBillIds" primitiveType="String"/>
+    <process:input description="单据类型名称拼接" isArray="false" name="rpBillNames" primitiveType="String"/>
     <process:input description="" isArray="false" name="openId" primitiveType="String"/>
     <process:input description="应收金额" isArray="false" name="ARamt" primitiveType="String"/>
-    <process:input description="" isArray="false" name="param1" primitiveType="String"/>
+    <process:input description="" isArray="false" name="contactorId" primitiveType="String"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.common.FisRpBill" name="fisRpbill"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

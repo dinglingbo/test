@@ -473,7 +473,8 @@
 		where a.audit_sign = 1
 				
 			<dynamic>
-            <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+			<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="tenantId">(d.tenant_id = #tenantId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="orderTypeId">(a.order_type_id = #orderTypeId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
             <isNotEmpty prepend="and" property="isOut">(a.is_out = #isOut#)</isNotEmpty>
@@ -705,7 +706,7 @@
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="rtnableQty">(e.rtnable_qty &gt; 0)</isNotEmpty>
-            <isNotEmpty prepend="order by" property="sortField">a.$sortField$ $sortOrder$</isNotEmpty>
+            <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
         </dynamic>
      </select>
     <select id="queryPjPchsRtnMainDetailList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">

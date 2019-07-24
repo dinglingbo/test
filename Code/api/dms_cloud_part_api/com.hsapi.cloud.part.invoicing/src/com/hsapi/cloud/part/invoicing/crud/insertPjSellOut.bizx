@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="insertPjSellOut" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="主表 和 明细表&#xD;&#xA;含税和不含税信息在界面上进行计算&#xD;&#xA;&#xD;&#xA;采购退货  050201；  销售出库  050202；   盘亏出库  050203； 移仓出库  050207；  调拨出库  050204； 加工出库  050209" title="Administrator&#x9;18-2-25 下午5:09">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="主表 和 明细表&#xD;&#xA;含税和不含税信息在界面上进行计算&#xD;&#xA;&#xD;&#xA;采购退货  050201；  销售出库  050202；   盘亏出库  050203； 移仓出库  050207；  调拨出库  050204； 加工出库  050209；  调入退货   050211   DRC； 调出退货  050111  DCR" title="Administrator&#x9;18-2-25 下午5:09">
     <location x="-390" y="-110"/>
     <size height="121" width="706"/>
   </nodes>
@@ -597,7 +597,7 @@
       <targetNode>assign7</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

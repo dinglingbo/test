@@ -4,7 +4,7 @@
 
 <head>
 <title>配件出库分析表</title>
-<script src="<%=webPath + contextPath%>/manage/js/report/repairOutForPartName.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/manage/js/report/repairOutForPartName.js?v=1.0.1"></script>
 </head>
 
 <body>

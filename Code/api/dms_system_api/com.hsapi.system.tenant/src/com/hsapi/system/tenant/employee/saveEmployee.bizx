@@ -214,7 +214,7 @@
       <process:to type="query">emp/orgid</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">tenantId</process:from>
+      <process:from type="query" pattern="reference">m:userObject/attributes/tenantId</process:from>
       <process:to type="query">emp/tenantId</process:to>
     </process:copy>
     <process:copy>
@@ -337,7 +337,7 @@
       <process:to type="query">empOrg/orgid</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">tenantId</process:from>
+      <process:from type="query" pattern="reference">emp/tenantId</process:from>
       <process:to type="query">empOrg/tenantId</process:to>
     </process:copy>
     <process:copy>
@@ -1013,8 +1013,8 @@
         <process:inputVariable id="2" name="systemAccount" type="query" value="String" valueType="Primitive" pattern="reference">emp/systemAccount</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

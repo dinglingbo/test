@@ -1130,7 +1130,7 @@ function doSettle() {
 		         width: "100%", height: "100%", 
 		        onload: function () {
 		            var iframe = this.getIFrameEl();
-		            iframe.contentWindow.setData(rows);
+		            iframe.contentWindow.setData(rows,enterTypeIdHash);
 		        },
 				ondestroy : function(action) {// 弹出页面关闭前
 					if (action == "saveSuccess") {

@@ -421,4 +421,36 @@
 	        order by b.audit_date desc 
 	</select>	
 	
+	
+	   <!--推送微信支付  插入业务表的 判断 -->
+		<select id="queryFisPreBillDetailA" parameterMap="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id,
+			a.bill_code,
+			a.orgid,
+			a.guest_id,
+			a.guest_name,
+			a.contactor_id,
+			a.wechat_open_id,
+			a.car_id,
+			a.car_no,
+			a.car_vin,
+			a.enable_settle_date,
+			a.settle_date,
+			a.settle_status,
+			a.remark,
+			b.fis_id,
+			b.bill_service_id,
+			b.bill_type_id,
+			a.rp_bill_ids,
+			a.rp_bill_names
+		FROM
+			fis_pre_bill AS a
+		INNER JOIN fis_pre_bill_detail AS b ON a.id = b.pre_bill_id
+		WHERE a.orgid = #orgid#
+			AND a.settle_status &lt;&gt;  2
+			AND b.fis_id in (#ids#)
+			
+		</select>	
+	
 </sqlMap>

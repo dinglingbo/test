@@ -69,6 +69,8 @@ var queryMemberLevel = apiPath + repairApi + "/com.hsapi.repair.baseData.team.ge
     
 function setData(data){
 	serviceId =data.serviceId;
+	tempItem = data.itemList||{};
+	type = data.type;
 	var workersStr =data.workers||"";
 	var workersIdStr =data.workersId||"";
 	workers =workersStr.split(",");
@@ -79,8 +81,6 @@ function setData(data){
 		}	
 	}
 	nui.get("planFinishDate").setValue(mini.formatDate ( new Date(),"yyyy-MM-dd HH:mm:ss"));
-	tempItem = data.itemList||{};
-	type = data.type;
 }
 function init(){
     nui.mask({

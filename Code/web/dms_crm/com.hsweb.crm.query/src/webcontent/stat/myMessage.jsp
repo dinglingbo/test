@@ -39,7 +39,7 @@
 				</div>
 				<div title="我的反馈记录" url="<%=request.getContextPath() %>/com.hs.common.userFeedbackList.flow">
 		        </div>
-		        <div title="历史日志" url="<%=request.getContextPath() %>/common/updateLogList.jsp">
+		        <div title="系统更新日志" url="<%=request.getContextPath() %>/common/updateLogList.jsp">
 		        </div>
        </div>
 	<script type="text/javascript">

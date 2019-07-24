@@ -2721,3 +2721,7 @@ function getDueAmt(params){
     });
 	return dueAmt;
 }
+
+function showDueDetail(){
+	
+}

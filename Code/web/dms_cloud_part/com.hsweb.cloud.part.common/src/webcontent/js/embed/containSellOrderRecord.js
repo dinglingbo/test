@@ -8,7 +8,7 @@ var billTypeIdList = [];
 var settTypeIdList = [];
 var brandHash = {};
 var brandList = null;
-
+var guestId =null;
 $(document).ready(function(v){
     sellOrderRecordGrid = nui.get("sellOrderRecordGrid");
     sellOrderRecordGrid.setUrl(sellOrderRecordUrl);
@@ -93,12 +93,44 @@ $(document).ready(function(v){
     });
 
 });
+
+function chainChange(){
+	var chainGuest = nui.get("chainGuest").getValue();
+	if(chainGuest ==1){
+		nui.get("nowGuest").setValue(0);
+	}else{
+		nui.get("nowGuest").setValue(1);
+	}
+}
+
+function nowGuestChange(){
+	var nowGuest = nui.get("chainGuest").getValue();
+	if(nowGuest ==1){
+		nui.get("chainGuest").setValue(0);
+	}else{
+		nui.get("chainGuest").setValue(1);
+	}
+}
+
 function doSearch(params)
 {
+	
     if(!params.partId || params.partId<=0){
         sellOrderRecordGrid.setData([]);
         return;
     }
+    guestId = params.guestId || "";
+    var nowGuest =nui.get("nowGuest").getValue() || "";
+    var chainGuest=nui.get("chainGuest").getValue() || "";
+    if(nowGuest ==1){
+//    	params.guestId =null;
+    	params.tenantId =currTenantId;
+    }
+    if(chainGuest==1){
+    	params.guestId =null;
+    	params.tenantId =currTenantId;
+    }
+    params.tenantId =currTenantId;
     params.isOut = 1;
     params.orderTypeId = 2;
     params.sortField = "a.audit_date";

@@ -1463,7 +1463,15 @@
 			B.apply_car_model AS comApplyCarModel,
 			B.unit AS comUnit,
 			B.spec AS comSpec,
-			B.direction AS comDirection
+			B.direction AS comDirection,
+			a.show_part_id as showPartId,
+			a.show_part_code as showPartCode,
+			a.show_brand_name as showBrandName,
+			a.show_full_name as showFullName,
+			a.show_brand_name as showBrandName,
+			a.show_car_model as showCarModel,
+			a.show_price as showPrice,
+			a.show_amt as showAmt
 			FROM
 			DMS_CLOUD_PART.PJ_SELL_ORDER_DETAIL A
 			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
@@ -1523,7 +1531,15 @@
 			B.apply_car_model AS comApplyCarModel,
 			B.unit AS comUnit,
 			B.spec AS comSpec,
-			B.direction AS comDirection
+			B.direction AS comDirection,
+			a.show_part_id as showPartId,
+			a.show_part_code as showPartCode,
+			a.show_brand_name as showBrandName,
+			a.show_full_name as showFullName,
+			a.show_brand_name as showBrandName,
+			a.show_car_model as showCarModel,
+			a.show_price as showPrice,
+			a.show_amt as showAmt
 			FROM
 			DMS_CLOUD_PART.PJ_SELL_ORDER_DETAIL_chk A
 			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID

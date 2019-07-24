@@ -13,7 +13,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>班组选择</title>
 <script
-	src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/Workers.js?v=1.1.6"></script>
+	src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/Workers.js?v=1.1.7"></script>
 	<style type="text/css">
 
 				body,

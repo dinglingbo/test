@@ -423,7 +423,7 @@
 	
 	
 	   <!--推送微信支付  插入业务表的 判断 -->
-		<select id="queryFisPreBillDetailA" parameterMap="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		<select id="queryFisPreBillDetailA" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		SELECT
 			a.id,
 			a.bill_code,

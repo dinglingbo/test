@@ -563,6 +563,7 @@
                 <isNotEmpty prepend="and" property="isDisabled"> 
                     (is_disabled = #isDisabled#)
                 </isNotEmpty>
+                
                                
             </dynamic> 
 				
@@ -578,6 +579,10 @@
 			a.bill_type_id as billTypeId,
 			a.guest_id as guestId,
 			a.guest_name as guestName,
+			a.remark as remark,
+			a.settle_status as settleStatus,
+			a.rp_amt as rpAmt,
+			a.char_off_amt as charOffAmt,
 			a.bill_main_id as billMainId,
 			a.bill_service_id as billServiceId,
 			a.create_date as createDate,
@@ -602,7 +607,19 @@
                 <isNotEmpty prepend="and" property="isDisabled"> 
                     (a.is_disabled = #isDisabled#)
                 </isNotEmpty>
-                               
+                 <isNotEmpty prepend="and" property="sCreateDate">  
+                    (a.create_date &gt;= #sCreateDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eCreateDate">  
+                    (a.create_date &lt; #eCreateDate#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="balanceSign"> 
+                    (a.balance_sign  = #balanceSign#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="settleStatus"> 
+                    (a.settle_status  = #settleStatus#)
+                </isNotEmpty>
+             ORDER BY a.create_date desc             
             </dynamic> 
 				
 	</select>

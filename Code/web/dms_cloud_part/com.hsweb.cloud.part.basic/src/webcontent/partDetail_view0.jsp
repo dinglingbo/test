@@ -201,9 +201,13 @@
                 </tr>
                 <tr class="htr">
                     <td class=" right fwidthb">通用编码:</td>
-                    <td ><input name="commonCode" class="nui-textbox" width="150px"/></td>
+                    <td colspan="3"><input name="commonCode" class="nui-textbox" width="370px"/></td>
+                </tr>
+                <tr class="htr">  
                     <td class=" right fwidthb">生产厂家:</td>
                     <td ><input name="produceFactory" class="nui-textbox" width="150px"/></td>
+                    <td class=" right fwidthb">产地:</td>
+                    <td ><input name="origin" class="nui-textbox" width="150px"/></td>
                 </tr>
                 <tr>
                     <td class=" right fwidthb">配件全称:</td>

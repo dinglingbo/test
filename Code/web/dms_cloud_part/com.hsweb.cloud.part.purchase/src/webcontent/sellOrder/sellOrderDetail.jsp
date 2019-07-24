@@ -54,6 +54,8 @@
                 <a class="nui-button" plain="true" onclick="addMorePart()" id="fastEnterBtn"><span class="fa fa-hand-o-right fa-lg"></span>&nbsp;快速录入配件</a>
                 <a class="nui-button" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
                 <a class="nui-button" plain="true" onclick="chooseMember()" visible="false" id="chooseMemBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选择提成成员</a>
+                <input class="nui-checkbox"  id="isBilling" trueValue="1" falseValue="0" text="是否开单" value="" oncheckedchanged="billingChange()"/>
+                <input class="nui-checkbox"  id="isEditPart" trueValue="1" falseValue="0" text="是否修改配件" value="" oncheckedchanged="partChange()"/>
                 <span id="status"></span>
                 <span class="separator"></span>
            		<a onclick="showDueDetail()"  style="cursor:pointer"><span id="dueAmt">客户欠款：</span></a>
@@ -276,6 +278,12 @@
                                           <input property="editor" vtype="float" class="nui-textbox"/>
                                       </div>
                                       <div field="orderAmt" summaryType="sum" numberFormat="0.0000" width="95" headerAlign="center" header="金额">
+                                          <input property="editor" vtype="float" class="nui-textbox"/>
+                                      </div>
+                                       <div field="showPrice" name="showPrice" numberFormat="0.0000" width="90" headerAlign="center" header="开单单价">
+                                          <input property="editor" vtype="float" class="nui-textbox"/>
+                                      </div>
+                                      <div field="showAmt"name="showAmt" summaryType="sum" numberFormat="0.0000" width="95" headerAlign="center" header="开单金额">
                                           <input property="editor" vtype="float" class="nui-textbox"/>
                                       </div>
                                       <div field="remark" width="30" headerAlign="center" allowSort="true">

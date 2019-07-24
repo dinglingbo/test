@@ -3074,3 +3074,31 @@ function rightGridSet(){
         columns: columnsList
     });
 }
+
+function showDueDetail(){
+	var row =leftGrid.getSelected();
+	if(!row){
+		showMsg("请选择一条记录");
+		return;
+	}
+	
+	 nui.open({
+         url: webBaseUrl+"com.hsweb.cloud.part.common.showDueDetail.flow?token="+token,
+         title: "客户欠款记录", 
+         width: 880, height: 650,
+         showHeader:true,
+         allowDrag:true,
+         allowResize:true,
+         onload: function ()
+         {
+        	 var params={}
+        	 params.guestId =row.guestId;
+             var iframe = this.getIFrameEl();
+             iframe.contentWindow.setData(params);
+         },
+         ondestroy: function (action)
+         {
+
+         }
+     });
+}

@@ -1245,6 +1245,7 @@ function showBottomTabInfo(partId){
         case "outRecordTab":
             var params = {};
             params.partId=partId;
+            params.guestId =guestId;
             if(!url){
                 mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containSellOrderRecord.jsp?partId="+partId, tab);
             }else{

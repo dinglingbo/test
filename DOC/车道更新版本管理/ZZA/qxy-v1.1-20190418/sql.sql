@@ -1,1 +1,0 @@
-﻿ALTER TABLE rps_gearbox_attach ADD type INT(11) default 0;

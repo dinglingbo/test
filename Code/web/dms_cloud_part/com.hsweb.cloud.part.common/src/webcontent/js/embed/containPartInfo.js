@@ -383,15 +383,15 @@ function onGridSelectionChanged(){
     var row = partGrid.getSelected(); 
     if(row){
         row.partId = row.id;  
-    }else{
-        row.partId = 0;
+        row.storeId = null;
+        row.guestId = null;
+        row.type = "pchs";
+
+        parent.setBottomData(row);
     }
+  
 
-    row.storeId = null;
-    row.guestId = null;
-    row.type = "pchs";
-
-    parent.setBottomData(row);
+    
     /*if(row){
     }else{
         row = {};

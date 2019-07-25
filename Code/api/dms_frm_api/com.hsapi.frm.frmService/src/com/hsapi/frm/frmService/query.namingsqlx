@@ -448,9 +448,50 @@
 			fis_pre_bill AS a
 		INNER JOIN fis_pre_bill_detail AS b ON a.id = b.pre_bill_id
 		WHERE a.orgid = #orgid#
-			AND a.settle_status &lt;&gt;  2
+			AND a.settle_status =  0
 			AND b.fis_id in (#ids#)
 			
 		</select>	
-	
+		
+		<!--查询线上支付表 -->
+		<select id="queryFisPreBill" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id as id,
+			a.bill_code as billCode,
+			a.orgid as orgid,
+			a.guest_id as guestId,
+			a.guest_name as guestName,
+			a.contactor_id as contactorId,
+			a.wechat_open_id as wechatOpenId,
+			a.car_id as carId,
+			a.car_no as carNo,
+			a.car_vin as carVin,
+			a.total_amt as totalAmt,
+			a.enable_settle_date as enableSettleDate,
+			a.settle_date as settleDate,
+			a.settle_status as settleStatus,
+			a.remark as remark,
+			a.rp_bill_ids as rpBillIds,
+			a.rp_bill_names as rpBillNames,
+			a.creator as creator,
+			a.create_date as createDate
+		FROM
+			fis_pre_bill AS a
+		WHERE a.orgid = #orgid#
+		    <dynamic>
+                <isNotEmpty prepend="and" property="guestName">  
+                    (a.guest_name like '%$guestName$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="carNo">  
+                    (a.car_no like '%$carNo$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="id">  
+                    (a.id = #id#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="settleStatus">  
+                    (a.settle_status = #settleStatus#)
+                </isNotEmpty>		                                                
+            </dynamic> 
+			
+		</select>	
 </sqlMap>

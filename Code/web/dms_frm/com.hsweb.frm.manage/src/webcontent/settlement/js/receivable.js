@@ -638,10 +638,11 @@ function getPustParams(guestPreData) {
 			rpBillIds = nui.clone(temp.id);
 			rpBillNames = BillNamesText;
 			remarkText = BillNamesText+ " " + temp.nowAmt + "元";
+		}else{
+			rpBillIds += ("," + nui.clone(temp.id));
+			rpBillNames += ("," + BillNamesText);
+			remarkText += "," + BillNamesText + " " + temp.nowAmt + "元 ";
 		}
-		rpBillIds += ("," + nui.clone(temp.id));
-		rpBillNames += ("," + BillNamesText);
-		remarkText += "," + BillNamesText + " " + temp.nowAmt + "元 ";
 		temp.fisId = nui.clone(temp.id);
 		temp.id = '';//清空 为保存用
 		guestList.push(temp);

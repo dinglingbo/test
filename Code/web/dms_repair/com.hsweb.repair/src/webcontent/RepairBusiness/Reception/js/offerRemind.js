@@ -77,7 +77,11 @@ function addRemind(){
 	var saveRpsPartUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveOffer.biz.ext";
 	var updList=mainGrid.getData();
 	var num = 0;
-	for(var i =0;i<updList.length;i++){
+	for(var i =0;i<updList.length;i++){	
+		//查询接口优惠率乘100，最后数据必须除一百
+		var rate = updList[i].rate/100;
+		rate = rate.toFixed(4);
+		updList[i].rate = rate;
 		if(updList[i].noMtType==1){
 			num++;
 		}

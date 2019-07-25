@@ -12,7 +12,7 @@
 
 			<head>
 				<title>违章查询</title>
-				<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/violation.js?v=1.0.3"></script>
+				<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/violation.js?v=1.0.4"></script>
 				<style>
 						.title {
 							min-width: 130px;
@@ -128,7 +128,7 @@
 					</table>
 				</div>
 				<div class="nui-fit">
-					<div id="datagrid1" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" pageSize="20" allowcellwrap="true"
+					<div id="datagrid1" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" showPager="false" pageSize="20" allowcellwrap="true"
 					 onselectionchanged="selectionChanged" totalCount="page.count" onrowdblclick="edit()">
 						<div property="columns">
 							<div width="40px" type="indexcolumn">序号</div>
@@ -152,18 +152,18 @@
 								<div name="WFLX" field="WFLX" headerAlign="center" visible="true" width="80px"></div>-->
 								<div name="status" field="status" headerAlign="center" visible="true" width="80px">违章状态</div>
 								<div field="CarNumber" headerAlign="center" visible="true" width="100px">车牌号</div>
-								<div name="Reason" field="Reason" headerAlign="center" visible="true" width="200px">违章原因</div>
+								<div name="Reason" field="Reason" headerAlign="center" visible="true" width="220px">违章原因</div>
 								<div field="CanProcess" headerAlign="center" width="80px">是否可代办</div>
 								<div name="Degree" field="Degree"  headerAlign="center" visible="true" width="60px">扣分</div>
 								<div name="count" field="count" headerAlign="center" visible="true" width="80px">罚款</div>
 								<div name="Poundage" field="Poundage" headerAlign="center" visible="true" width="80px">手续费</div>
-								<div name="Poundage1" field="Poundage1" headerAlign="center" visible="true" width="100px">非扣分单的首笔代办费</div>
-								<div name="Poundage2" field="NeedMakeDataEnum" headerAlign="center" visible="true" width="100px">非扣分单的非首笔代办费</div>
-								<div field="Archive" headerAlign="center" visible="true" width="150px">文书编号</div>
+								<div name="Poundage1" field="Poundage1" headerAlign="center" visible="true" width="120px">非扣分单的首笔代办费</div>
+								<div name="Poundage2" field="NeedMakeDataEnum" headerAlign="center" visible="true" width="120px">非扣分单的非首笔代办费</div>
+								<div field="Archive" headerAlign="center" visible="true" width="160px">文书编号</div>
 								<div name="Time" field="Time" headerAlign="center" visible="true" width="150px">违章时间</div>
-								<div name="Location" field="Location" headerAlign="center" visible="true" width="150px">违章地址</div>
+								<div name="Location" field="Location" headerAlign="center" visible="true" width="170px">违章地址</div>
 								<div name="LocationName" field="LocationName" headerAlign="center" visible="true" width="80px">城市名称</div>								
-								<div name="department" field="department" headerAlign="center" visible="true" width="120px">处罚单位</div>
+								<div name="department" field="department" headerAlign="center" visible="true" width="150px">处罚单位</div>
 						</div>
 					</div>
 				</div>

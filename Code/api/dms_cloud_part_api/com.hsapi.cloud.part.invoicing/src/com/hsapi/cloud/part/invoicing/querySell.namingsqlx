@@ -1483,6 +1483,7 @@
 			a.show_brand_name as showBrandName,
 			a.show_car_model as showCarModel,
 			a.show_oem_code as showOemCode,
+			a.show_spec as showSpec,
 			a.show_price as showPrice,
 			a.show_amt as showAmt
 			FROM
@@ -1552,6 +1553,7 @@
 			a.show_brand_name as showBrandName,
 			a.show_car_model as showCarModel,
 			a.show_oem_code as showOemCode,
+			a.show_spec as showSpec,
 			a.show_price as showPrice,
 			a.show_amt as showAmt
 			FROM

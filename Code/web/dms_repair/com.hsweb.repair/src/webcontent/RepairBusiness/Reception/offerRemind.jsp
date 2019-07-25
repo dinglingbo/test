@@ -13,7 +13,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         	<script src="<%=request.getContextPath()%>/coframe/imjs/message.js"></script>
 	<script src="<%=request.getContextPath()%>/coframe/imjs/messagebody.js"></script>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/offerRemind.js?v=1.1.1"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/offerRemind.js?v=1.1.3"></script>
     
 </head>
 <body>

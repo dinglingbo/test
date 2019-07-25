@@ -8,8 +8,8 @@ var mainGrid1Url = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainLi
 var mainGrid2Url = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
 
 var queryRepairOutListGridUrl = baseUrl + "com.hsapi.repair.repairService.report.queryRepairOutList.biz.ext";
-var queryPjPchsOrderEnterDetailChkListGridUrl = apiPath + repairApi + "/com.hsapi.part.invoice.paramcrud.queryPjPchsOrderEnterDetailChkList.biz.ext";
-var queryPartStoreStockGridUrl = apiPath + repairApi + "/com.hsapi.part.invoice.query.queryPartStoreStock.biz.ext";
+var queryPjPchsOrderEnterDetailChkListGridUrl = apiPath + partApi + "/com.hsapi.part.invoice.paramcrud.queryPjPchsOrderEnterDetailChkList.biz.ext";
+var queryPartStoreStockGridUrl = apiPath + partApi + "/com.hsapi.part.invoice.query.queryPartStoreStock.biz.ext";
 var xyguest = {};
 var billForm = null;
 var servieTypeHash = {};
@@ -1368,7 +1368,7 @@ function activechangedmain(){
 				sortField : "a.record_date",
 				sortOrder : "desc"
 	    }
-	    queryRepairOutListGrid.load({params:params});
+	    queryRepairOutListGrid.load({params:params,token:token});
 	}else if(tabs.name=="queryPjPchsOrderEnterDetailChkList"){
 	    //入库
 	    var params={
@@ -1376,13 +1376,13 @@ function activechangedmain(){
 				sortField : "a.audit_date",
 				sortOrder : "desc"
 	    }
-	    queryPjPchsOrderEnterDetailChkListGrid.load({params:params});
+	    queryPjPchsOrderEnterDetailChkListGrid.load({params:params,token:token});
 	}else if(tabs.name=="queryPartStoreStock"){
 		//库存
 	    var params={
 				pickName : pickName
 	    }
-	    queryPartStoreStockGrid.load({params:params});
+	    queryPartStoreStockGrid.load({params:params,token:token});
 	}
 }
 

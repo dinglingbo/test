@@ -452,5 +452,43 @@
 			AND b.fis_id in (#ids#)
 			
 		</select>	
-	
+		
+		<!--查询线上支付表 -->
+		<select id="queryFisPreBill" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id,
+			a.bill_code,
+			a.orgid,
+			a.guest_id,
+			a.guest_name,
+			a.contactor_id,
+			a.wechat_open_id,
+			a.car_id,
+			a.car_no,
+			a.car_vin,
+			a.enable_settle_date,
+			a.settle_date,
+			a.settle_status,
+			a.remark,
+			a.rp_bill_ids,
+			a.rp_bill_names
+		FROM
+			fis_pre_bill AS a
+		WHERE a.orgid = #orgid#
+		    <dynamic>
+                <isNotEmpty prepend="and" property="guestName">  
+                    (a.guest_name like '%$guestName$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="carNo">  
+                    (a.car_no like '%$carNo$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="id">  
+                    (a.id = #id#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="settleStatus">  
+                    (a.settle_status = #settleStatus#)
+                </isNotEmpty>		                                                
+            </dynamic> 
+			
+		</select>	
 </sqlMap>

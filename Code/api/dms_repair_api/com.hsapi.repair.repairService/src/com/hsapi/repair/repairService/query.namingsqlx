@@ -1508,5 +1508,11 @@
 				GROUP BY a.worker_id
 			</select>
 			
-			
+			<select id="queryMaxFileNo" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+			    SELECT
+				   MAX(a.file_no) as fileNo
+				FROM
+				   rpb_car AS a
+				WHERE a.tenant_id = #tenantId#
+			</select>
 </sqlMap>

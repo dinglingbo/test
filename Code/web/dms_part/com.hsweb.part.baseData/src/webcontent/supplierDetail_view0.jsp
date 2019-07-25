@@ -163,7 +163,7 @@
                           <tr class="htr">
                               <td class=" right fwidthb required">联系人:</td>
                               <td ><input id="manager" name="manager" width="100%" class="nui-textbox" ></td>
-                              <td class=" right fwidthb required">联系人方式:</td>
+                              <td class=" right fwidthb required">联系方式:</td>
                               <td ><input id="mobile" name="mobile" width="100%" vtype="int" class="nui-textbox" ></td>
                           </tr>
                           <tr class="htr">

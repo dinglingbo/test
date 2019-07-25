@@ -51,6 +51,8 @@
         <result column="guestShortName" javaType="string" property="guestShortName"/>
         <result column="versionNo" javaType="string" property="versionNo"/>
         <result column="rtnReasonId" javaType="string" property="rtnReasonId"/>
+        <result column="isBilling" javaType="int" property="isBilling"/>
+        <result column="showAmt" javaType="double" property="showAmt"/>
     </resultMap>
     <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
     <select id="queryPjSellOrderMainList" parameterClass="java.util.HashMap" resultMap="pjSellOrderMainList">
@@ -96,7 +98,9 @@
 			M.isNeedPack,
             M.guestFullName,
             M.guestShortName,
-            M.rtnReasonId
+            M.rtnReasonId,
+            M.isBilling,
+            M.showAmt
         FROM (
             SELECT DISTINCT
 				A.id as id,
@@ -138,6 +142,8 @@
 				A.settle_type_id as settleTypeId,
 				A.is_need_pack as isNeedPack,
 				A.rtn_reason_id as rtnReasonId,
+				A.is_billing as isBilling,
+				A.show_amt as showAmt,
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName
 				FROM
@@ -254,6 +260,8 @@
 				A.settle_type_id as settleTypeId,
 				A.is_need_pack as isNeedPack,
 				A.rtn_reason_id as rtnReasonId,
+				A.is_billing as isBilling,
+				A.show_amt as showAmt,
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName
 				FROM
@@ -1187,7 +1195,9 @@
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName,
                 a.is_diff_order as isDiffOrder,
-                a.rtn_sign_date as rtnSignDate
+                a.rtn_sign_date as rtnSignDate,
+                a.is_billing as isBilling,
+                a.show_amt as showAmt
 				FROM
 				DMS_CLOUD_PART.pj_sell_order_main A
 				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
@@ -1325,7 +1335,9 @@
 				B.SHORT_NAME AS guestShortName,
                 a.is_diff_order as isDiffOrder,
                 a.rtn_sign_date as rtnSignDate,
-                a.is_out as isOut
+                a.is_out as isOut,
+                a.is_billing as isBilling,
+                a.show_amt as showAmt
 				FROM
 				DMS_CLOUD_PART.pj_sell_order_main_chk A
 				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
@@ -1463,7 +1475,16 @@
 			B.apply_car_model AS comApplyCarModel,
 			B.unit AS comUnit,
 			B.spec AS comSpec,
-			B.direction AS comDirection
+			B.direction AS comDirection,
+			a.show_part_id as showPartId,
+			a.show_part_code as showPartCode,
+			a.show_brand_name as showBrandName,
+			a.show_full_name as showFullName,
+			a.show_brand_name as showBrandName,
+			a.show_car_model as showCarModel,
+			a.show_oem_code as showOemCode,
+			a.show_price as showPrice,
+			a.show_amt as showAmt
 			FROM
 			DMS_CLOUD_PART.PJ_SELL_ORDER_DETAIL A
 			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
@@ -1523,7 +1544,16 @@
 			B.apply_car_model AS comApplyCarModel,
 			B.unit AS comUnit,
 			B.spec AS comSpec,
-			B.direction AS comDirection
+			B.direction AS comDirection,
+			a.show_part_id as showPartId,
+			a.show_part_code as showPartCode,
+			a.show_brand_name as showBrandName,
+			a.show_full_name as showFullName,
+			a.show_brand_name as showBrandName,
+			a.show_car_model as showCarModel,
+			a.show_oem_code as showOemCode,
+			a.show_price as showPrice,
+			a.show_amt as showAmt
 			FROM
 			DMS_CLOUD_PART.PJ_SELL_ORDER_DETAIL_chk A
 			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID

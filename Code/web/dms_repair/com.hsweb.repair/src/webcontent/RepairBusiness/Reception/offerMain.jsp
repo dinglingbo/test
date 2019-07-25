@@ -14,7 +14,7 @@
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
                     	<script src="<%=request.getContextPath()%>/coframe/imjs/message.js"></script>
 	<script src="<%=request.getContextPath()%>/coframe/imjs/messagebody.js"></script>
-            <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/offerMain.js?v=1.2.6"></script>
+            <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/offerMain.js?v=1.2.8"></script>
             <style type="text/css">
                 body {
                     margin: 0;

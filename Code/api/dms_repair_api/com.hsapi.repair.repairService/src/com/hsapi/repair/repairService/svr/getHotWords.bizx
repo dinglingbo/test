@@ -143,7 +143,7 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
-    <location x="658" y="202"/>
+    <location x="660" y="202"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
@@ -152,7 +152,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="656" y="238"/>
+    <location x="658" y="238"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>

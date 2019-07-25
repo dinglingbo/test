@@ -440,6 +440,10 @@ function loadMainAndDetailInfo(row)
 
        var row = leftGrid.getSelected();
 
+	   nui.get("isBilling").setValue(row.isBilling);
+	   billingChange();
+       
+
 
        if(row.codeId && row.codeId>0){
             //可以编辑票据类型和结算方式，是否需要打包，备注，业务员；明细不能修改；如果需要，则退回
@@ -600,6 +604,45 @@ function addInsertRow(value, row) {
     }
 
     return false;
+}
+//给修改的配件用
+function addInsertRow2(value,row) {    
+
+    var params = {partCode:value.replace(/\s+/g, "")};
+	var part = getPartInfo(params);
+
+	if(part){
+					
+		var newRow = {
+			showPartId : part.id,
+			showPartCode : part.code,
+			showCarModel : part.applyCarModel,
+			showOemCode : part.oemCode,
+			showFullName : part.fullName
+		};
+		if(brandHash[part.partBrandId]){
+			newRow.showBrandName=brandHash[part.partBrandId].name|| "";
+		}
+		
+		if(row){
+			rightGrid.updateRow(row,newRow);
+			//rightGrid.beginEditCell(row, "comUnit");
+		}else{
+			rightGrid.addRow(newRow);
+			//rightGrid.beginEditCell(row, "comUnit");
+		}
+	
+		return true;
+	}else{
+		var newRow = {showPartCode:""};
+		if(row){
+			rightGrid.updateRow(row,newRow);
+		}
+
+		return true;
+	}
+
+	return false;
 }
 //var partInfoUrl = baseUrl + "com.hsapi.cloud.part.invoicing.paramcrud.queryPartInfoByParam.biz.ext";
 function getPartInfo(params, callback){
@@ -1239,11 +1282,16 @@ function getMainData()
   //是否开单
 	if(isBilling ==1){
 		data.isBilling=1;
+	}else{
+		data.isBilling=0;
 	}
 	var showAmt =0;
 	var rows =rightGrid.getData();
 	for (var i = 0; i < rows.length; i++) {
-		showAmt += parseFloat(rows[i].showAmt);
+		if(rows[i].showAmt){
+			showAmt += parseFloat(rows[i].showAmt);
+		}
+		
 	}
 	data.showAmt =showAmt;
 	
@@ -1628,6 +1676,20 @@ function onCellEditEnter(e){
                     }*/
                 }
             }
+        }else if(column.field == "showPartCode"){
+        	var partCode = record.showPartCode||"";
+            partCode = partCode.replace(/\s+/g, "");
+			if(!partCode){
+				showMsg("请输入编码!","W");
+				return;
+			}else{
+				var rs = addInsertRow2(partCode,record);
+				if(!rs){
+					var newRow = {showPartCode: ""};
+					rightGrid.updateRow(record, newRow);
+					return;
+				}
+			}
         }
     }
 }
@@ -1656,8 +1718,14 @@ function onCellCommitEdit(e) {
             }
             
             var orderAmt = orderQty * orderPrice;                  
-                                
-            newRow = { orderAmt: orderAmt};
+            //开单
+            if(isBilling==1){
+            	newRow = { orderAmt: orderAmt};
+            }else{
+            	var showAmt = orderAmt;
+            	newRow = { orderAmt: orderAmt,showAmt:showAmt};
+            }
+//            newRow = { orderAmt: orderAmt};
             rightGrid.updateRow(e.row, newRow);
             
             //record.enteramt.cellHtml = enterqty * enterprice;
@@ -1674,8 +1742,17 @@ function onCellCommitEdit(e) {
             }
             
             var orderAmt = orderQty * orderPrice; 
-                           
-            newRow = { orderAmt: orderAmt};
+            
+          //开单
+            if(isBilling==1){
+            	newRow = { orderAmt: orderAmt};
+            }else{
+            	var showAmt = orderAmt;
+            	var showPrice=orderPrice;
+            	newRow = { orderAmt: orderAmt,showAmt:showAmt,showPrice:showPrice };
+            }
+            
+//            newRow = { orderAmt: orderAmt};
             rightGrid.updateRow(e.row, newRow);
 
             if(orderPrice){
@@ -1697,9 +1774,18 @@ function onCellCommitEdit(e) {
             
             //e.cellHtml = enterqty * enterprice;
             var orderPrice = (orderAmt*1.0/orderQty).toFixed(4);
-
+          
             if(orderQty) {
-                newRow = { orderPrice: orderPrice};
+            	//开单
+                if(isBilling==1){
+                	newRow = { orderPrice: orderPrice};
+                }else{
+                	var showAmt = orderAmt;
+                	var showPrice=orderPrice;
+                	newRow = { orderPrice: orderPrice,showAmt:showAmt,showPrice:showPrice };
+                }
+                
+//                newRow = { orderPrice: orderPrice};
                 rightGrid.updateRow(e.row, newRow);
             }
             

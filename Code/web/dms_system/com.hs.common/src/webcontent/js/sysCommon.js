@@ -200,7 +200,7 @@ function selectCarModel(callBack) {
 	});
 }
 
-//车牌验证
+//车牌验证  免验证权限
 function isVehicleNumber(vehicleNumber) {
 	vehicleNumber = CtoH(vehicleNumber)//全角转半角
 	vehicleNumber = vehicleNumber.toUpperCase();//小写转大写
@@ -211,6 +211,20 @@ function isVehicleNumber(vehicleNumber) {
 		data.vehicleNumber = vehicleNumber;
 		return data; //有自由输入权限
 	}
+      //var express = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/;
+    	var express = /(^[\u4E00-\u9FA5]{1}[A-Z_0-9]{1}[A-Z_0-9]{4}[A-Z_0-9_挂学警港澳领]{1}$)|(^WJ[A-Z_0-9_\u4e00-\u9fa5]{1}[A-Z_0-9]{5}$)|(^WJ[A-Z_0-9]{2}[A-Z_0-9_\u4e00-\u9fa5]{1}[A-Z_0-9]{4}$)|(^[A-Z]{2}[0-9]{5}$)|(^[\u4E00-\u9FA5]{1}[A-Z]{1}[A-Z_0-9]{5}[A-Z_0-9_警领]{1}$)/;
+      result = express.test(vehicleNumber);
+      data.result=result;
+      data.vehicleNumber = vehicleNumber;
+    return data;
+}
+
+//车牌验证不受免验证权限控制
+function isVehicleNumberNoJurisdiction(vehicleNumber) {
+	vehicleNumber = CtoH(vehicleNumber)//全角转半角
+	vehicleNumber = vehicleNumber.toUpperCase();//小写转大写
+	var data = {};
+    var result = false;
       //var express = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/;
     	var express = /(^[\u4E00-\u9FA5]{1}[A-Z_0-9]{1}[A-Z_0-9]{4}[A-Z_0-9_挂学警港澳领]{1}$)|(^WJ[A-Z_0-9_\u4e00-\u9fa5]{1}[A-Z_0-9]{5}$)|(^WJ[A-Z_0-9]{2}[A-Z_0-9_\u4e00-\u9fa5]{1}[A-Z_0-9]{4}$)|(^[A-Z]{2}[0-9]{5}$)|(^[\u4E00-\u9FA5]{1}[A-Z]{1}[A-Z_0-9]{5}[A-Z_0-9_警领]{1}$)/;
       result = express.test(vehicleNumber);

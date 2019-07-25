@@ -442,12 +442,12 @@ $(document).ready(function ()
 		document.getElementById("showE1").style.display = "";
 		document.getElementById("showE").style.display='none';
 	}
-	if(currIsOpenOfferRemind == "1") {
+	/*if(currIsOpenOfferRemind == "1") {
 		document.getElementById("carRemind").style.display = "";
 	}else{
 		document.getElementById("carRemind").style.display='none';
 		
-	}
+	}*/
 	nui.get("enterDate").setValue(now);
     doSearchItem();
     //钣喷项目隐藏

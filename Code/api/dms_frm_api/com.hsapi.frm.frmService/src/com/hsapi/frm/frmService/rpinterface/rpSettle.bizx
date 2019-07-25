@@ -682,7 +682,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hs.common.com.ComBillRecord[]" valueType="DataObject"/>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hs.common.com.ComBillRecord[]" valueType="DataObject"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -753,7 +753,7 @@
     <figSize height="17" width="32"/>
     <node>assign8</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign9" name="赋值9" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign9" name="赋值9" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link25" name="link25" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign9</sourceNode>
       <targetNode>assign27</targetNode>
@@ -1818,7 +1818,7 @@
     <figSize height="17" width="39"/>
     <node>assign27</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign28" name="赋值28" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign28" name="赋值28" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link62" name="link62" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign28</sourceNode>
       <targetNode>end2</targetNode>

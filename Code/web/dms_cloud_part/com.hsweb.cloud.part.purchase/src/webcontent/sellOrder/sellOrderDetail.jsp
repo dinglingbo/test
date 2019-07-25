@@ -54,8 +54,8 @@
                 <a class="nui-button" plain="true" onclick="addMorePart()" id="fastEnterBtn"><span class="fa fa-hand-o-right fa-lg"></span>&nbsp;快速录入配件</a>
                 <a class="nui-button" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
                 <a class="nui-button" plain="true" onclick="chooseMember()" visible="false" id="chooseMemBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选择提成成员</a>
-                <input class="nui-checkbox"  id="isBilling" trueValue="1" falseValue="0" text="开单" value="" oncheckedchanged="billingChange()"/>
-                <input class="nui-checkbox"  id="isEditPart" trueValue="1" falseValue="0" text="修改配件" value="" oncheckedchanged="partChange()"/>
+                <input class="nui-checkbox"  id="isBilling" trueValue="1" falseValue="0" text="开单" value="" oncheckedchanged="billingChange()" onvaluechanged="billingChange()"/>
+                <input class="nui-checkbox"  id="isEditPart" trueValue="1" falseValue="0" text="修改配件" value="" oncheckedchanged="partChange()"onvaluechanged="partChange()"/>
                 <span id="status"></span>
                 <span class="separator"></span>
            		<a onclick="showDueDetail()"  style="cursor:pointer"><span id="dueAmt">客户欠款：</span></a>
@@ -328,7 +328,7 @@
                                        <div field="showFullName"width="220"  headerAlign="center" header="配件全称"></div>
                                       <div field="showBrandName" visible="false" width="60" headerAlign="center" header="品牌"></div>
                                       <div field="showCarModel" width="60" headerAlign="center" header="品牌车型"></div>
-                            
+                            		  <div field="showOemCode" width="60" headerAlign="center" header="oem码" visibel="false"></div>
                                   </div>
                               </div>
                               

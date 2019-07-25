@@ -606,7 +606,7 @@ function weChatSettle(){
 						success : function(data) {
 							nui.unmask(document.body);
 							if(data.errCode == "S") {
-								showMsg(data.res.errMsg||"推送微信成功，请到绑定微信付款！","S");
+								showMsg(data.errMsg||"推送微信成功，请到绑定微信付款！","S");
 							}else{
 								showMsg(data.errMsg||"推送微信失败！","W");
 							}
@@ -633,14 +633,15 @@ function getPustParams(guestPreData) {
 
 	for (var i = 0; i < guestPreData.length; i++) {
 		var temp =  nui.clone(guestPreData[i]);
+		var BillNamesText = (enterTypeIdHash[temp.billTypeId]&&enterTypeIdHash[temp.billTypeId].name) || "" ;
 		if (i == 0) {
 			rpBillIds = nui.clone(temp.id);
-			rpBillNames = (enterTypeIdHash[temp.billTypeId].name || "");
-			remarkText = enterTypeIdHash[temp.billTypeId].name + " " + temp.nowAmt + "元";
+			rpBillNames = BillNamesText;
+			remarkText = BillNamesText+ " " + temp.nowAmt + "元";
 		}
 		rpBillIds += ("," + nui.clone(temp.id));
-		rpBillNames += ("," + (enterTypeIdHash[temp.billTypeId].name || ""));
-		remarkText += "," + enterTypeIdHash[temp.billTypeId].name + " " + temp.nowAmt + "元 ";
+		rpBillNames += ("," + BillNamesText);
+		remarkText += "," + BillNamesText + " " + temp.nowAmt + "元 ";
 		temp.fisId = nui.clone(temp.id);
 		temp.id = '';//清空 为保存用
 		guestList.push(temp);

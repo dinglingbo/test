@@ -162,7 +162,13 @@ $(document).ready(function(v) {
 		var sender=e.sender;
 		var columnsList = [];
 	    columnsList=sender.columns;
-	    columnsObjList=columnsList[3].columns;
+	    for(var i=0;i<columnsList.length;i++){
+	    	if(columnsList[i].header=="辅助信息"){
+	    		 columnsObjList=columnsList[i].columns;
+	    		 break;
+	    	}
+	    }
+//	    columnsObjList=columnsList[3].columns;
 	    //获取下标
 	    var index=null;
 	    for(var i=0;i<columnsObjList.length;i++){
@@ -365,7 +371,13 @@ function getSellStrategy(){
 function rightGridSet(){
 	var columnsList = [];
     columnsList=rightGrid.columns;
-    columnsObjList=columnsList[3].columns;
+    for(var i=0;i<columnsList.length;i++){
+    	if(columnsList[i].header=="辅助信息"){
+    		 columnsObjList=columnsList[i].columns;
+    		 break;
+    	}
+    }
+//    columnsObjList=columnsList[3].columns;
     //获取下标
     var index=null;
     for(var i=0;i<columnsObjList.length;i++){

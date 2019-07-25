@@ -11,12 +11,26 @@ $(document).ready(function(v) {
 	
 	grid.on("drawcell", function (e) {
         var record = e.record;
-        if (e.field == "sex") {
+        if (e.field == "settleStatus") {
         	if(e.value==1) {
-        		e.cellHtml = "男";
+        		e.cellHtml = "已结算";
         	}else if(e.value==0) {
-            	e.cellHtml = "女";
+            	e.cellHtml = "未结算";
+            }else if(e.value==2) {
+            	e.cellHtml = "已作废";
             }
         }
     });
 });
+
+
+function search(){
+	var params = {};
+	params.guestName = nui.get("guestName").getValue();
+	params.carNo = nui.get("carNo").getValue();
+	grid.load({params : params,token:token});
+}
+
+function invalid(){
+	
+}

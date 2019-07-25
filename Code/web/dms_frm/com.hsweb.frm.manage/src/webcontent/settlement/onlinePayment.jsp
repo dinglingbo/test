@@ -19,13 +19,13 @@
 			<tr>
 				<td style="width: 100%">
 					<label style="font-family:Verdana;">姓名：</label>
-					<input class="nui-textbox" width="100px" id="name" name="name" onenter="search()"/>
-					<label style="font-family:Verdana;">手机号码：</label>
-					<input class="nui-textbox" width="100px" id="mobile" name="mobile" onenter="search()" />
+					<input class="nui-textbox" width="100px" id="guestName" name="guestName" onenter="search()"/>
+					<label style="font-family:Verdana;">车牌：</label>
+					<input class="nui-textbox" width="100px" id="carNo" name="carNo" onenter="search()" />
 					<a class="nui-button"  iconCls="" onclick="search()" plain="true"><span class="fa fa-search"></span>&nbsp;查询</a>
-					<a class="nui-button" plain="true" iconCls="" onclick="add()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-					<a class="nui-button" plain="true" iconCls="" onclick="edit()"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
-					<a class="nui-button" onclick="save('edit')" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</ a>
+					<a class="nui-button" plain="true" iconCls="" onclick="invalid()"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
+<!-- 					<a class="nui-button" plain="true" iconCls="" onclick="edit()"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
+					<a class="nui-button" onclick="save('edit')" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</ a> -->
 					<!-- <a class="nui-button"  iconCls="" onclick="addTenantId()" plain="true"><span class="fa fa-user-o"></span>&nbsp;添加租户</a> -->
 				</td>
 			</tr>
@@ -38,17 +38,22 @@
 					class="nui-datagrid"
 					style="width: 100%; height: 100%;"
 					url=""
+					showPager = "false"
 					showModified="false" onrowclick="setTenantId()"
 					pageSize="50" showPageInfo="true" multiSelect="false"
 					showReloadButton="true" showPagerButtonIcon="true"
 					totalField="page.count" 
 					allowSortColumn="true">
 					<div property="columns">			
-						<div id="name" field="name" headerAlign="center" allowSort="true" visible="true" width="60px">姓名</div>
-						<div id="tel" field="mobile" headerAlign="center" allowSort="true" visible="true" width="100px">手机号码</div>
-						<div id="sex" field="sex" headerAlign="center" allowSort="true" visible="true" width="40px">性别</div>					
-						<div id="recorder" field="recorder" headerAlign="center" allowSort="true" visible="true" width="60px">建档人</div>
-						<div id="recordDate" field="recordDate" headerAlign="center" allowSort="true" visible="true" width="100px" dateFormat="yyyy-MM-dd HH:mm">建档日期</div>											
+						<div  field="billCode" headerAlign="center" allowSort="true" visible="true" width="150px">单据编号</div>
+						<div  field="settleStatus" headerAlign="center" allowSort="true" visible="true" width="80px">结算状态</div>
+						<div  field="guestName" headerAlign="center" allowSort="true" visible="true" width="80px">客户名称</div>
+						<div  field="carNo" headerAlign="center" allowSort="true" visible="true" width="100px">车牌</div>
+						<div  field="totalAmt" headerAlign="center" allowSort="true" visible="true" width="80px">金额</div>
+						<div  field="remark" headerAlign="center" allowSort="true" visible="true" width="120px">备注</div>					
+						<div  field="settleDate" headerAlign="center" allowSort="true" visible="true" width="150px">结算日期</div>
+						<div  field="creator" headerAlign="center" allowSort="true" visible="true" width="60px">建档人</div>
+						<div  field="createDate" headerAlign="center" allowSort="true" visible="true" width="120px" dateFormat="yyyy-MM-dd HH:mm">建档日期</div>											
 					</div>
 				</div>
 			</div>       	

@@ -406,5 +406,25 @@
             
         ORDER BY a.id asc
     </select>
+    
+    <!-- 根据主表ID查询，用于释放占用库存 -->
+    <select id="getPjAllotAcceptPartLockList" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.pts.LockRecord">
+    	
+         SELECT 
+			a.id as detailId,
+			a.main_id as mainId,
+			a.store_id as storeId,
+			a.part_id as partId,
+			a.accept_qty as billQty,
+			a.occupy_qty as lockStockQty,
+			b.orgid as orgid,
+			b.service_id as serviceId
+		FROM pj_allot_accept_detail A
+		inner join pj_allot_accept_main b
+		on a.main_id = b.id
+		where 1=1 and (A.MAIN_ID = #mainId#)
+            
+        ORDER BY a.id asc
+    </select>
 
 </sqlMap>

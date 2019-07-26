@@ -426,5 +426,15 @@
             
         ORDER BY a.id asc
     </select>
+    
+    <select id="queryAcceptMainIsFinish" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">   	
+		SELECT
+			id
+		FROM
+			pj_allot_accept_detail
+		WHERE
+			is_finished = 0
+           	and main_id = #mainId#
+    </select>
 
 </sqlMap>

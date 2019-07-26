@@ -17,6 +17,7 @@ var formJson = null;
 var brandHash = {};
 var brandList = [];
 var storehouse = null;
+var storeHash={};
 var gsparams = {};
 var sOrderDate = null;
 var eOrderDate = null;
@@ -143,6 +144,9 @@ $(document).ready(function(v)
         storehouse = data.storehouse||[];
         if(storehouse && storehouse.length>0){
             FStoreId = storehouse[0].id;
+            storehouse.forEach(function(v){
+            	storeHash[v.id]=v;
+            });
         }else{
             isNeedSet = true;
         }
@@ -520,9 +524,9 @@ function onRightGridDraw(e)
             }
             break;
         case "storeId":
-            if(storehouse && storehouse[e.value])
+            if(storeHash && storeHash[e.value])
             {
-                e.cellHtml = storehouse[e.value].name;
+                e.cellHtml = storeHash[e.value].name;
             }
             break;
         case "accountSign":
@@ -1098,9 +1102,9 @@ function onDrawCell(e)
             }
             break;
         case "storeId":
-            if(storehouse && storehouse[e.value])
+            if(storeHash && storeHash[e.value])
             {
-                e.cellHtml = storehouse[e.value].name;
+                e.cellHtml = storeHash[e.value].name;
             }
             break;
         case "accountSign":
@@ -1173,7 +1177,7 @@ function setInitExportData(main, detail){
         var row = detail[i];
         
         var tr = $("<tr></tr>");
-        tr.append(tds.replace("[typeCode]", detail[i].typeCode?detail[i].typeCode:"")
+        tr.append(tds.replace("[typeCode]", detail[i].typeCode? enterTypeIdHash[detail[i].typeCode]:"")
                      .replace("[billAmt]", detail[i].billAmt?detail[i].billAmt:"")
                      .replace("[orderMan]", detail[i].orderMan?detail[i].orderMan:"")
                      .replace("[billDate]", detail[i].billDate?format(detail[i].billDate, 'yyyy-MM-dd HH:mm:ss'):"")

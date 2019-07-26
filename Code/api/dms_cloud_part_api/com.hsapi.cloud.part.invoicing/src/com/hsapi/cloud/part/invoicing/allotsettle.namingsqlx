@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    
+    <!-- 可以调拨 调拨申请 调出退回  调拨入库  调出退货 -->
+    <select id="queryPjAllotApplyMainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+
+            SELECT DISTINCT
+				a.id as id,
+				a.service_id as serviceId,
+				a.orgid as orgid,
+				a.guest_id as guestId,
+				a.guest_orgid as guestOrgid,
+				a.store_id as storeId,
+				a.code_id as codeId,
+				a.`code` as code,
+				a.order_type_id as orderTypeId,
+				a.order_date as orderDate,
+				a.is_finished as isFinished,
+				a.finish_date as finishDate,
+				a.is_diff_order as isDiffOrder,
+				a.tax_amt as taxAmt,
+				a.no_tax_amt as noTaxAmt,
+				a.order_amt as orderAmt,
+				a.audit_sign as auditSign,
+				a.auditor_id as auditorId,
+				a.auditor as auditor,
+				a.audit_date as auditDate,
+				a.remark as remark,
+				a.version_no as versionNo,
+				a.is_disabled as isDisabled,
+				a.creator_id as creatorId,
+				a.creator as creator,
+				a.create_date as createDate,
+				a.operator_id as operatorId,
+				a.operator as operator,
+				a.operate_date as operateDate,
+				a.is_state as isState,
+				a.state_man_id as stateManId,
+				a.state_man as stateMan,
+				a.state_sign as stateSign,
+				a.state_date as stateDate,
+				a.source_type as sourceType,
+				B.FULL_NAME AS guestFullName,
+				B.SHORT_NAME AS guestShortName
+			FROM
+				DMS_CLOUD_PART.pj_allot_apply_main A
+				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
+				LEFT JOIN DMS_CLOUD_PART.pj_allot_apply_detail C ON A.ID = C.MAIN_ID
+				LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
+            where 1=1
+            <dynamic>
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="id"> 
+                    (a.id = #id#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isDisabled"> 
+                    (a.is_disabled = #isDisabled#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isFinished"> 
+                    (a.is_finished = #isFinished#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="orderTypeId"> 
+                    (a.order_type_id = #orderTypeId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isDiffOrder"> 
+                    (a.is_diff_order = #isDiffOrder#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isState"> 
+                    (a.is_state = #isState#)
+                </isNotEmpty>
+
+                <!--订货日期 -->
+                <isNotEmpty prepend="and" property="sOrderDate">  
+                    A.ORDER_DATE &gt;= #sOrderDate#
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eOrderDate">  
+                    (A.ORDER_DATE &lt; #eOrderDate#)
+                </isNotEmpty>
+                <!--对账日期 -->
+                <isNotEmpty prepend="and" property="sStateDate">  
+                    A.state_date &gt;= #sStateDate#
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eStateDate">  
+                    (A.state_date &lt; #eStateDate#)
+                </isNotEmpty>
+                <!--创建日期 -->
+                <isNotEmpty prepend="and" property="sCreateDate">  
+                    (A.CREATE_DATE &gt;= #sCreateDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eCreateDate">  
+                    (A.CREATE_DATE &lt; #eCreateDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceId">  
+                    (a.service_id like '%$serviceId$%')
+                </isNotEmpty>
+                <!--审核日期 -->
+                <isNotEmpty prepend="and" property="sAuditDate">  
+                    (A.AUDIT_DATE &gt;= #sAuditDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eAuditDate">  
+                    (A.AUDIT_DATE &lt; #eAuditDate#)
+                </isNotEmpty>
+                <!--本日 昨日 本周 上周 本月 下月 -->
+                <isNotEmpty prepend="and" property="startDate">  
+                    (A.CREATE_DATE &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (A.CREATE_DATE &lt; #endDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="partId">  
+                    (C.PART_ID = #partId#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="partCode">  
+                    (D.CODE like '%$partCode$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="guestId">  
+                    (A.guest_id = #guestId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="partName">  
+                    (D.FULL_NAME like '%$partName$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="auditSign">  
+                <!--审核状态-->
+                    (A.AUDIT_SIGN = #auditSign#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceIdList">  
+                    (A.service_id in ($serviceIdList$))
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="partCodeList">  
+                    (D.CODE in ($partCodeList$))
+                </isNotEmpty> 
+                 <isNotEmpty prepend="and" property="creator">  
+                    (a.creator = #creator#)
+                </isNotEmpty>
+            </dynamic>  
+            
+    	
+        
+        ORDER BY A.operate_date DESC
+    </select>
+    
+    <!-- 根据主表ID查询 -->
+    <select id="queryPjAllotApplyDetailList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+         SELECT 
+			a.id,
+			a.main_id as mainId,
+			a.store_id as storeId,
+			a.part_id as partId,
+			a.part_code as partCode,
+			a.part_name as partName,
+			a.full_name as fullName,
+			a.enter_unit_id as enterUnitId,
+			a.system_unit_id as systemUnitId,
+			a.apply_qty as applyQty,
+			a.order_price as orderPrice,
+			a.order_amt as orderAmt,
+			a.tax_price as taxPrice,
+			a.tax_amt as taxAmt,
+			a.no_tax_price as noTaxPrice,
+			a.no_tax_amt as noTaxAmt,
+			a.has_accept_qty as hasAcceptQty,
+			a.has_cancel_qty as hasCancelQty,
+			a.has_out_qty as hasOutQty,
+			a.has_in_qty as hasInQty,
+			a.store_shelf as storeShelf,
+			a.is_finished as isFinished,
+			a.finish_date as finishDate,
+			a.prev_detail_id as prevDetailId,
+			a.source_main_id as sourceMainId,
+			a.source_detail_id as sourceDetailId,
+			a.remark as remark,
+			B.`code` AS comPartCode,
+			B.`name` AS comPartName,
+			B.full_name AS comFullName,
+			B.brand_code AS comBrandCode,
+			B.oem_code AS comOemCode,
+			B.quality_type_id AS comQualityTypeId,
+			B.part_brand_id AS comPartBrandId,
+			B.apply_car_model AS comApplyCarModel,
+			B.unit AS comUnit,
+			B.spec AS comSpec,
+			B.direction AS comDirection
+		FROM
+			DMS_CLOUD_PART.pj_allot_apply_detail A
+			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
+			where 1=1 and (A.MAIN_ID = #mainId#)
+            
+        ORDER BY a.id asc
+    </select>
+    
+    <!-- 更新调拨申请主表的金额信息  -->
+    <update id="updatePjAllotApplyMainAmt" parameterClass="java.util.HashMap" >
+		update pj_allot_apply_main a
+		inner join (
+			select main_id as mainId, sum(order_amt) as orderAmt, sum(tax_amt) as taxAmt, sum(no_tax_amt) as noTaxAmt
+			from pj_allot_apply_detail 
+			where main_id = #mainId#
+			group by main_id
+		)b
+		on a.id = b.mainId
+		set a.order_amt = b.orderAmt, a.tax_amt = b.taxAmt, a.no_tax_amt = b.noTaxAmt
+		where a.id = #mainId#
+	</update>
+	
+	<!-- 可以调拨 调拨受理 调入退回   -->
+    <select id="queryPjAllotAcceptMainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+
+            SELECT DISTINCT
+				a.id as id,
+				a.service_id as serviceId,
+				a.orgid as orgid,
+				a.guest_id as guestId,
+				a.guest_orgid as guestOrgid,
+				a.store_id as storeId,
+				a.code_id as codeId,
+				a.`code` as code,
+				a.order_type_id as orderTypeId,
+				a.order_date as orderDate,
+				a.plan_send_date as planSendDate,
+				a.plan_arrive_date as planArriveDate,
+				a.is_finished as isFinished,
+				a.finish_date as finishDate,
+				a.is_diff_order as isDiffOrder,
+				a.tax_amt as taxAmt,
+				a.no_tax_amt as noTaxAmt,
+				a.order_amt as orderAmt,
+				a.is_enter as isEnter,
+				a.audit_sign as auditSign,
+				a.auditor_id as auditorId,
+				a.auditor as auditor,
+				a.audit_date as auditDate,
+				a.remark as remark,
+				a.version_no as versionNo,
+				a.is_disabled as isDisabled,
+				a.creator_id as creatorId,
+				a.creator as creator,
+				a.create_date as createDate,
+				a.operator_id as operatorId,
+				a.operator as operator,
+				a.operate_date as operateDate,
+				a.is_state as isState,
+				a.state_man_id as stateManId,
+				a.state_man as stateMan,
+				a.state_sign as stateSign,
+				a.state_date as stateDate,
+				a.source_type as sourceType,
+				B.FULL_NAME AS guestFullName,
+				B.SHORT_NAME AS guestShortName
+			FROM
+				DMS_CLOUD_PART.pj_allot_accept_main A
+				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
+				LEFT JOIN DMS_CLOUD_PART.pj_allot_accept_detail C ON A.ID = C.MAIN_ID
+				LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
+            where 1=1
+            <dynamic>
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="id"> 
+                    (a.id = #id#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isDisabled"> 
+                    (a.is_disabled = #isDisabled#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isFinished"> 
+                    (a.is_finished = #isFinished#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="orderTypeId"> 
+                    (a.order_type_id = #orderTypeId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isDiffOrder"> 
+                    (a.is_diff_order = #isDiffOrder#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isState"> 
+                    (a.is_state = #isState#)
+                </isNotEmpty>
+
+                <!--订货日期 -->
+                <isNotEmpty prepend="and" property="sOrderDate">  
+                    A.ORDER_DATE &gt;= #sOrderDate#
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eOrderDate">  
+                    (A.ORDER_DATE &lt; #eOrderDate#)
+                </isNotEmpty>
+                <!--对账日期 -->
+                <isNotEmpty prepend="and" property="sStateDate">  
+                    A.state_date &gt;= #sStateDate#
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eStateDate">  
+                    (A.state_date &lt; #eStateDate#)
+                </isNotEmpty>
+                <!--创建日期 -->
+                <isNotEmpty prepend="and" property="sCreateDate">  
+                    (A.CREATE_DATE &gt;= #sCreateDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eCreateDate">  
+                    (A.CREATE_DATE &lt; #eCreateDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceId">  
+                    (a.service_id like '%$serviceId$%')
+                </isNotEmpty>
+                <!--审核日期 -->
+                <isNotEmpty prepend="and" property="sAuditDate">  
+                    (A.AUDIT_DATE &gt;= #sAuditDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eAuditDate">  
+                    (A.AUDIT_DATE &lt; #eAuditDate#)
+                </isNotEmpty>
+                <!--本日 昨日 本周 上周 本月 下月 -->
+                <isNotEmpty prepend="and" property="startDate">  
+                    (A.CREATE_DATE &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (A.CREATE_DATE &lt; #endDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="partId">  
+                    (C.PART_ID = #partId#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="partCode">  
+                    (D.CODE like '%$partCode$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="guestId">  
+                    (A.guest_id = #guestId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="partName">  
+                    (D.FULL_NAME like '%$partName$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="auditSign">  
+                <!--审核状态-->
+                    (A.AUDIT_SIGN = #auditSign#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceIdList">  
+                    (A.service_id in ($serviceIdList$))
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="partCodeList">  
+                    (D.CODE in ($partCodeList$))
+                </isNotEmpty> 
+                 <isNotEmpty prepend="and" property="creator">  
+                    (a.creator = #creator#)
+                </isNotEmpty>
+            </dynamic>  
+            
+    	
+        
+        ORDER BY A.operate_date DESC
+    </select>
+    
+    <!-- 根据主表ID查询 -->
+    <select id="queryPjAllotAcceptDetailList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+         SELECT 
+			a.id as id,
+			a.main_id as mainId,
+			a.store_id as storeId,
+			a.part_id as partId,
+			a.part_code as partCode,
+			a.part_name as partName,
+			a.full_name as fullName,
+			a.out_unit_id as outUnitId,
+			a.system_unit_id as systemUnitId,
+			a.apply_qty as applyQty,
+			a.accept_qty as acceptQty,
+			a.order_price as orderPrice,
+			a.order_amt as orderAmt,
+			a.tax_price as taxPrice,
+			a.tax_amt as taxAmt,
+			a.no_tax_price as noTaxPrice,
+			a.no_tax_amt as noTaxAmt,
+			a.has_cancel_qty as hasCancelQty,
+			a.has_out_qty as hasOutQty,
+			a.has_in_qty as hasInQty,
+			a.occupy_qty as occupyQty,
+			a.stock_out_qty as stockOutQty,
+			a.store_shelf as storeShelf,
+			a.is_finished as isFinished,
+			a.finish_date as finishDate,
+			a.prev_detail_id as prevDetailId,
+			a.source_main_id as sourceMainId,
+			a.source_detail_id as sourceDetailId,
+			a.remark as remark,
+			B.`code` AS comPartCode,
+			B.`name` AS comPartName,
+			B.full_name AS comFullName,
+			B.brand_code AS comBrandCode,
+			B.oem_code AS comOemCode,
+			B.quality_type_id AS comQualityTypeId,
+			B.part_brand_id AS comPartBrandId,
+			B.apply_car_model AS comApplyCarModel,
+			B.unit AS comUnit,
+			B.spec AS comSpec,
+			B.direction AS comDirection
+		FROM
+			DMS_CLOUD_PART.pj_allot_accept_detail A
+			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
+			where 1=1 and (A.MAIN_ID = #mainId#)
+            
+        ORDER BY a.id asc
+    </select>
+    
+    <!-- 根据主表ID查询，用于释放占用库存 -->
+    <select id="getPjAllotAcceptPartLockList" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.pts.LockRecord">
+    	
+         SELECT 
+			a.id as detailId,
+			a.main_id as mainId,
+			a.store_id as storeId,
+			a.part_id as partId,
+			a.accept_qty as billQty,
+			a.occupy_qty as lockStockQty,
+			b.orgid as orgid,
+			b.service_id as serviceId
+		FROM pj_allot_accept_detail A
+		inner join pj_allot_accept_main b
+		on a.main_id = b.id
+		where 1=1 and (A.MAIN_ID = #mainId#)
+            
+        ORDER BY a.id asc
+    </select>
+
+</sqlMap>

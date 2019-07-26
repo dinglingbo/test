@@ -448,7 +448,7 @@
 			fis_pre_bill AS a
 		INNER JOIN fis_pre_bill_detail AS b ON a.id = b.pre_bill_id
 		WHERE a.orgid = #orgid#
-			AND a.settle_status &lt;&gt;  2
+			AND a.settle_status =  0
 			AND b.fis_id in (#ids#)
 			
 		</select>	

@@ -1038,7 +1038,9 @@ function addDetail(rows)
             settleTypeId:row.settleTypeId,
             orderMan:row.orderMan,
             billDate:row.auditDate,
-            remark:row.remark
+            remark:row.remark,
+            guestId : row.guestId,
+            guestName :row.fullName
         };
 
 
@@ -1156,37 +1158,179 @@ function onExport(){
 
 	var detail = rightGrid.getData();
 	if(detail && detail.length > 0){
-		setInitExportData(main, detail);
+		var partHash =getPartHash();
+		setInitExportData(main,detail,partHash);
 	}else{
 		showMsg("请添加对账明细!","W");
 	}
 }
-function setInitExportData(main, detail){
-	document.getElementById("eServiceId").innerHTML = main.serviceId?main.serviceId:"";
-	document.getElementById("eGuestName").innerHTML = main.guestName?main.guestName:"";
-	document.getElementById("eRemark").innerHTML = main.remark?main.remark:"";
-    var tds = '<td  colspan="1" align="left">[typeCode]</td>' +
-        "<td  colspan='1' align='left'>[billAmt]</td>" +
-        "<td  colspan='1' align='left'>[orderMan]</td>" +
-        "<td  colspan='1' align='left'>[billDate]</td>" +
-        "<td  colspan='1' align='left'>[remark]</td>" +
-        "<td  colspan='1' align='left'>[billServiceId]</td>" ;
-    var tableExportContent = $("#tableExportContent");
-    tableExportContent.empty();
-    for (var i = 0; i < detail.length; i++) {
-        var row = detail[i];
-        
-        var tr = $("<tr></tr>");
-        tr.append(tds.replace("[typeCode]", detail[i].typeCode? enterTypeIdHash[detail[i].typeCode]:"")
-                     .replace("[billAmt]", detail[i].billAmt?detail[i].billAmt:"")
-                     .replace("[orderMan]", detail[i].orderMan?detail[i].orderMan:"")
-                     .replace("[billDate]", detail[i].billDate?format(detail[i].billDate, 'yyyy-MM-dd HH:mm:ss'):"")
-                     .replace("[remark]", detail[i].remark?detail[i].remark:"")
-                     .replace("[billServiceId]", detail[i].billServiceId?detail[i].billServiceId:""));
-        tableExportContent.append(tr);
-    
-    }
-
-    var serviceId = main.serviceId?main.serviceId:"";
-    method5('tableExcel',"月结对账"+serviceId,'tableExportA');
+function getPartHash(){
+	var partHash={};
+	var pchHash={};
+	var sellHash ={};
+	var detail = rightGrid.getData();
+	var pchMainIds ="";
+	var sellMainIds ="";
+	var pchList=[];
+	var sellList=[];
+	for(var i=0;i<detail.length;i++){
+		if(detail[i].rpDc == -1){
+			pchMainIds =pchMainIds +detail[i].billMainId+","
+		}else{
+			sellMainIds = sellMainIds +detail[i].billMainId+","
+		}
+		
+	}
+	$.ajaxSettings.async = false;
+	if(pchMainIds !=""){		
+		pchMainIds =pchMainIds.substring(0,pchMainIds.length-1);
+		$.post(innerPchsGridUrl+"?params/mainIds="+pchMainIds+"&params/auditSign=1&token="+token,{},function(text){
+			pchList =text.pjPchsOrderDetailList; 
+			pchList.forEach(function(v){
+				pchHash[v.mainId+"-"+v.id]=v;
+			});
+		});
+	}
+	if(sellMainIds !=""){		
+		sellMainIds =sellMainIds.substring(0,sellMainIds.length-1);
+		$.post(innerSellGridUrl+"?params/mainIds="+sellMainIds+"&params/auditSign=1&token="+token,{},function(text){
+			sellList =text.pjSellOrderDetailList;  	
+			sellList.forEach(function(v){
+				sellHash[v.mainId+"-"+v.id]=v;
+			});
+		});
+	}
+	
+	partHash.pchHash=pchHash;
+	partHash.sellHash = sellHash;
+	return partHash;
 }
+function setInitExportData(main,detail,partHash){
+	var pchHash = partHash.pchHash;
+	var sellHash = partHash.sellHash;
+	document.getElementById("eServiceId").innerHTML = main.serviceId?main.serviceId:"";
+	document.getElementById("eRemark").innerHTML = main.remark?main.remark:"";
+	var tableExportContent =  $("#tableExportContent");
+	tableExportContent.empty();
+	var tr0 = $("<tr></tr>");
+	var tds0='<td colspan="1" align="center">往来单位</td>'+ 
+			 '<td colspan="1" align="center">业务类型</td>'+
+			 '<td colspan="1" align="center">金额</td>'+
+			 '<td colspan="1" align="center">业务员</td>'+
+			 '<td colspan="1" align="center">审核日期</td>'+
+			 '<td colspan="1" align="center">备注</td>'+
+			 '<td colspan="1" align="center">业务单号</td>';
+	tr0.append(tds0);
+	var tr1 =$("<tr></tr>");
+	var tds1='<td colspan="1" align="center">配件编码</td>'+ 
+			 '<td colspan="1" align="center">配件名称</td>'+
+			 '<td colspan="1" align="center">OEM码</td>'+
+			 '<td colspan="1" align="center">品牌</td>'+
+			 '<td colspan="1" align="center">品牌车型</td>'+
+			 '<td colspan="1" align="center">单位</td>'+
+			 '<td colspan="1" align="center">仓库</td>'+
+			 '<td colspan="1" align="center">数量</td>'+
+			 '<td colspan="1" align="center">单价</td>'+
+			 '<td colspan="1" align="center">金额</td>'+
+			 '<td colspan="1" align="center">备注</td>';
+	tds1.append(tds1);
+	//单据
+	var tds = '<td  colspan="1" align="left">[guestName]</td>' +
+			  '<td  colspan="1" align="left">[typeCode]</td>' +
+			  "<td  colspan='1' align='left'>[billAmt]</td>" +
+			  "<td  colspan='1' align='left'>[orderMan]</td>" +
+			  "<td  colspan='1' align='left'>[billDate]</td>" +
+			  "<td  colspan='1' align='left'>[remark]</td>" +
+			  "<td  colspan='1' align='left'>[billServiceId]</td>" ;
+	//配件
+	var tdsp ='<td  colspan="1" align="left">[partCode]</td>' +
+			  '<td  colspan="1" align="left">[fullName]</td>' +
+			  "<td  colspan='1' align='left'>[oemCode]</td>" +
+			  "<td  colspan='1' align='left'>[partBrand]</td>" +
+			  "<td  colspan='1' align='left'>[carModel]</td>" +
+			  "<td  colspan='1' align='left'>[unit]</td>" +
+			  "<td  colspan='1' align='left'>[storeId]</td>" +
+			  "<td  colspan='1' align='left'>[qty]</td>" +
+			  "<td  colspan='1' align='left'>[price]</td>" +
+			  "<td  colspan='1' align='left'>[amt]</td>" +
+			  "<td  colspan='1' align='left'>[remark]</td>" ;
+	for(var i=0;i<detail.length;i++){
+		var row = detail[i];
+		tableExportContent.append(tr0);
+		var tr = $("<tr></tr>");
+		tr.append(tds.replace("[guestName]", row.guestName?row.guestName:"")
+					 .replace("[typeCode]", row.typeCode? enterTypeIdHash[row.typeCode]:"")
+		             .replace("[billAmt]", row.billAmt?row.billAmt:"")
+		             .replace("[orderMan]", row.orderMan?row.orderMan:"")
+		             .replace("[billDate]", row.billDate?format(row.billDate, 'yyyy-MM-dd HH:mm:ss'):"")
+		             .replace("[remark]", row.remark?row.remark:"")
+		             .replace("[billServiceId]", row.billServiceId?row.billServiceId:""));
+		tableExportContent.append(tr);
+		tableExportContent.append(tdsp);
+		var trp = $("<tr></tr>");
+		//销售单
+		if(row.typeCode==2){
+			trp.append(tdsp.replace("[partCode]", sellHash.showPartCode?sellHash.showPartCode:"")
+						   .replace("[fullName]", sellHash.showFullName?sellHash.showFullName:"")
+			               .replace("[oemCode]", sellHash.showOemCode?sellHash.showOemCode:"")
+			               .replace("[partBrand]",sellHash.showBrandName?sellHash.showBrandName:"")
+			               .replace("[carModel]", sellHash.showCarModel?sellHash.showCarModel :"")
+			               .replace("[unit]", sellHash.comUnit?sellHash.comUnit:"")
+			               .replace("[storeId]",sellHash.storeHash[]?sellHash.showPartCode:"")
+			               .replace("[qty]",sellHash.showPartCode?sellHash.showPartCode:"")
+			               .replace("[price]",sellHash.showPartCode?sellHash.showPartCode:"")
+			               .replace("[unit]", sellHash.showPartCode?sellHash.showPartCode:"")
+			               .replace("[storeId]", sellHash.showPartCode?sellHash.showPartCode:"")
+			               .replace("[qty]",sellHash.showPartCode?sellHash.showPartCode:"")
+		                   .replace("[price]", sellHash.showPartCode?sellHash.showPartCode:"")
+		                   .replace("[amt]",sellHash.showPartCode?sellHash.showPartCode:"")
+			               .replace("[remark]",sellHash.showPartCode?sellHash.showPartCode:""));
+		}
+		//其他类型
+		else{
+			
+		}
+		
+		
+	}
+
+}
+//function setInitExportData(main, detail){
+//	var tableExportContent0 = $("#tableExportContent0");
+//	tableExportContent0.empty();
+//	var tds = '<td  colspan="1" align="left">[serviceId]</td>' +
+//     "<td  colspan='1' align='left'>[guestName]</td>" +
+//     "<td  colspan='1' align='left'>[remark]</td>"  ;
+//	var tr = $("<tr></tr>");
+//	tr.append(tds.replace("[serviceId]",  main.serviceId?main.serviceId:"")
+//             .replace("[guestName]", main.guestName?main.guestName:"")
+//             .replace("[remark]", main.remark?main.remark:""));
+//	tableExportContent0.append(tr);
+////	document.getElementById("eServiceId").innerHTML = main.serviceId?main.serviceId:"";
+////	document.getElementById("eGuestName").innerHTML = main.guestName?main.guestName:"";
+////	document.getElementById("eRemark").innerHTML = main.remark?main.remark:"";
+//    var tds = '<td  colspan="1" align="left">[typeCode]</td>' +
+//        "<td  colspan='1' align='left'>[billAmt]</td>" +
+//        "<td  colspan='1' align='left'>[orderMan]</td>" +
+//        "<td  colspan='1' align='left'>[billDate]</td>" +
+//        "<td  colspan='1' align='left'>[remark]</td>" +
+//        "<td  colspan='1' align='left'>[billServiceId]</td>" ;
+//    var tableExportContent = $("#tableExportContent");
+//    tableExportContent.empty();
+//    for (var i = 0; i < detail.length; i++) {
+//        var row = detail[i];
+//        
+//        var tr = $("<tr></tr>");
+//        tr.append(tds.replace("[typeCode]", detail[i].typeCode? enterTypeIdHash[detail[i].typeCode]:"")
+//                     .replace("[billAmt]", detail[i].billAmt?detail[i].billAmt:"")
+//                     .replace("[orderMan]", detail[i].orderMan?detail[i].orderMan:"")
+//                     .replace("[billDate]", detail[i].billDate?format(detail[i].billDate, 'yyyy-MM-dd HH:mm:ss'):"")
+//                     .replace("[remark]", detail[i].remark?detail[i].remark:"")
+//                     .replace("[billServiceId]", detail[i].billServiceId?detail[i].billServiceId:""));
+//        tableExportContent.append(tr);
+//    
+//    }
+//
+//    var serviceId = main.serviceId?main.serviceId:"";
+//    method5('tableExcel',"月结对账"+serviceId,'tableExportA');
+//}

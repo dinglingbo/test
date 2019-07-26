@@ -65,7 +65,7 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="updatePjPchsOrder" displayName="insertPjPchsPlan" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="updatePjPchsPlan" displayName="updatePjPchsPlan" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign2</targetNode>
@@ -85,12 +85,12 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.updatePjPchsOrder</process:partner>
+      <process:partner type="literal">this.updatePjPchsPlan</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="pchsOrderMain" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderMain" valueType="DataObject" pattern="reference">pchsOrderMain</process:inputVariable>
-        <process:inputVariable id="1" name="pchsOrderDetailAdd" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderDetail[]" valueType="DataObject" pattern="reference">pchsOrderDetailAdd</process:inputVariable>
-        <process:inputVariable id="2" name="pchsOrderDetailUpdate" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderDetail[]" valueType="DataObject" pattern="reference">pchsOrderDetailUpdate</process:inputVariable>
-        <process:inputVariable id="3" name="pchsOrderDetailDelete" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsOrderDetail[]" valueType="DataObject" pattern="reference">pchsOrderDetailDelete</process:inputVariable>
+        <process:inputVariable id="0" name="main" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsPlanMain" valueType="DataObject" pattern="reference">main</process:inputVariable>
+        <process:inputVariable id="1" name="detailAdd" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsPlanDetail[]" valueType="DataObject" pattern="reference">detailAdd</process:inputVariable>
+        <process:inputVariable id="2" name="detailUpdate" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsPlanDetail[]" valueType="DataObject" pattern="reference">detailUpdate</process:inputVariable>
+        <process:inputVariable id="3" name="detailDelete" type="query" value="com.hsapi.cloud.part.data.pts.PjPchsPlanDetail[]" valueType="DataObject" pattern="reference">detailDelete</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -100,11 +100,11 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="512" y="215"/>
-    <figSize height="17" width="113"/>
+    <location x="517" y="215"/>
+    <figSize height="17" width="102"/>
     <node>subprocess1</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="insertPjPchsPlan" displayName="insertPjPchsPlan" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="insertPjPchsPlan" displayName="updatePjPchsPlan" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess2</sourceNode>
       <targetNode>assign2</targetNode>
@@ -286,7 +286,7 @@
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign3" name="赋值5" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值5" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>end0</targetNode>

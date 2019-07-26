@@ -960,10 +960,15 @@
     <node>assign17</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo6" name="getNextSequence" displayName="getNextSequence" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo6</sourceNode>
       <targetNode>invokePojo7</targetNode>
-      <process:transitionCondition/>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link37</targetConnections>
     <targetConnections>link34</targetConnections>

@@ -18,6 +18,33 @@
 		<table style="width: 100%">
 			<tr>
 				<td style="width: 100%">
+					<label style="font-family: Verdana;">快速查询：</label>
+						<a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+
+						<ul id="popupMenuDate" class="nui-menu" style="display: none;">
+							<li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
+							<li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
+							<li class="separator"></li>
+							<li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
+							<li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
+							<li class="separator"></li>
+							<li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
+							<li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
+							<li class="separator"></li>
+							<li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
+							<li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
+						</ul>
+						<input class="nui-combobox"
+						data="[{value:'0',text:'未收款',},{value:'1',text:'已收款'},{value:'2',text:'作废'},{value:'3',text:'全部'}]"
+						textField="text" valueField="value" name="settleStatus" id="settleStatus" width="80px"
+						value="0" onvalidation="search()"  />
+						<label style="font-family: Verdana;">单据日期 从：</label>
+						<input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false"
+						 showOkButton="false" showClearButton="false" />
+						<label style="font-family: Verdana;">至</label>
+						<input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false"
+						 showOkButton="false" showClearButton="false" />
+						<span class="separator"></span>
 					<label style="font-family:Verdana;">姓名：</label>
 					<input class="nui-textbox" width="100px" id="guestName" name="guestName" onenter="search()"/>
 					<label style="font-family:Verdana;">车牌：</label>

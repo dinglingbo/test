@@ -1278,6 +1278,14 @@
       <process:to type="query">cd/_expr[2]/_op</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">mainenter/serviceId</process:from>
+      <process:to type="query">cd/_expr[3]/serviceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cd/_expr[3]/_op</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">mNoTaxAmt</process:from>
       <process:to type="query">outmain/noTaxAmt</process:to>
     </process:copy>

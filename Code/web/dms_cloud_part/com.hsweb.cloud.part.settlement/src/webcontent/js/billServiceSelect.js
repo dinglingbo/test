@@ -10,6 +10,8 @@ var editFormPchsEnterDetail = null;
 var innerPchsEnterGrid = null;
 var editFormPchsRtnDetail = null;
 var innerPchsRtnGrid = null;
+var editFormSellOutDetail = null;
+var innerSellOutGrid = null;
 var orderTypeId = 1;
 
 var brandHash = {};
@@ -41,6 +43,10 @@ $(document).ready(function(v)
     innerPchsRtnGrid = nui.get("innerPchsRtnGrid");
     editFormPchsRtnDetail = document.getElementById("editFormPchsRtnDetail");
     innerPchsRtnGrid.setUrl(innerSellGridUrl);
+    
+    innerSellOutGrid = nui.get("innerSellOutGrid");
+    editFormSellOutDetail = document.getElementById("editFormSellOutDetail");
+    innerSellOutGrid.setUrl(innerSellGridUrl);
 
     billTypeIdEl = nui.get("billTypeId");
     settleTypeIdEl = nui.get("settleTypeId");
@@ -204,7 +210,7 @@ function onShowRowDetail(e) {
     //将editForm元素，加入行详细单元格内
     var td = notStatementGrid.getRowDetailCellEl(row);
     var dc = row.dc;    
-
+    var orderTypeId =row.orderTypeId;
     switch (dc)
     {
         case -1:
@@ -220,16 +226,30 @@ function onShowRowDetail(e) {
             });
             break;
         case 1:
-            td.appendChild(editFormPchsRtnDetail);
-            editFormPchsRtnDetail.style.display = "";
+        	//销售
+        	if(orderTypeId ==2){
+        		td.appendChild(editFormSellOutDetail);
+        		editFormSellOutDetail.style.display = "";
 
-            var params = {};
-            params.mainId = mainId;
-            params.auditSign = 1;
-            innerPchsRtnGrid.load({
-                params:params,
-                token: token
-            });
+                var params = {};
+                params.mainId = mainId;
+                params.auditSign = 1;
+                innerSellOutGrid.load({
+                    params:params,
+                    token: token
+                });
+        	}else{
+        		td.appendChild(editFormPchsRtnDetail);
+                editFormPchsRtnDetail.style.display = "";
+
+                var params = {};
+                params.mainId = mainId;
+                params.auditSign = 1;
+                innerPchsRtnGrid.load({
+                    params:params,
+                    token: token
+                });
+        	}           
             break;
         default:
             break;

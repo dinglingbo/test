@@ -684,7 +684,7 @@
 </div>
 
 <div id="settleWin" class="nui-window"
-     title="结算" style="width:650px;height:500px;"
+     title="结算" style="width:650px;height:620px;"
      showModal="true"
      allowResize="false"
      allowDrag="false">
@@ -805,7 +805,7 @@
                 <tr>
                     <td style="text-align:center" width="60px">备注:</td>
                     <td id="rpRemark" style="text-align:left;" width="500px">
-                        <input id="rpTextRemark" width="80%" emptyText="" class="nui-textbox"/>
+                        <input id="rpTextRemark" width="100%" height="180px" emptyText="" class="nui-textArea"/>
                     </td>
                 </tr>
             </table>

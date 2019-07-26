@@ -91,6 +91,7 @@
         <process:inputVariable id="1" name="detailAdd" type="query" value="com.hsapi.cloud.part.data.pts.PjAllotAcceptDetail[]" valueType="DataObject" pattern="reference">detailAdd</process:inputVariable>
         <process:inputVariable id="2" name="detailUpdate" type="query" value="com.hsapi.cloud.part.data.pts.PjAllotAcceptDetail[]" valueType="DataObject" pattern="reference">detailUpdate</process:inputVariable>
         <process:inputVariable id="3" name="detailDelete" type="query" value="com.hsapi.cloud.part.data.pts.PjAllotAcceptDetail[]" valueType="DataObject" pattern="reference">detailDelete</process:inputVariable>
+        <process:inputVariable id="4" name="detailList" type="query" value="com.hsapi.cloud.part.data.pts.PjAllotAcceptDetail[]" valueType="DataObject" pattern="reference">detailList</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -353,6 +354,7 @@
     <process:input description="新增" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjAllotAcceptDetail" name="detailAdd"/>
     <process:input description="修改" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjAllotAcceptDetail" name="detailUpdate"/>
     <process:input description="删除" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjAllotAcceptDetail" name="detailDelete"/>
+    <process:input description="未修改部分" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjAllotAcceptDetail" name="detailList"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

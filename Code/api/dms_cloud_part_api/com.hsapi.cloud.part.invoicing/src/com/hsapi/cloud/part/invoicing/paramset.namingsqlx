@@ -537,7 +537,10 @@
 		on a.id = b.erp_detail_id and a.main_id = b.erp_main_id
 		inner join wb_common.com_attribute c
 		on b.part_id = c.cang_part_id and a.part_id = c.id
-		where a.main_id = #erpId# and b.main_id = #mainId#
+		inner join pj_wms_params_main d
+		on b.main_id = d.id 
+		where a.main_id = #erpId# and b.main_id = #mainId# 
+		      and d.bill_type_id = #billTypeId#
     	
     </select>
     
@@ -559,7 +562,52 @@
 		on a.id = b.erp_detail_id and a.main_id = b.erp_main_id
 		inner join wb_common.com_attribute c
 		on b.part_id = c.cang_part_id and a.part_id = c.id
-		where a.main_id = #erpId# and b.main_id = #mainId#
+		inner join pj_wms_params_main d
+		on b.main_id = d.id 
+		where a.main_id = #erpId# and b.main_id = #mainId# 
+		      and d.bill_type_id = #billTypeId#
+    	
+    </select>
+    
+    <!--
+                    调拨受理出库
+    	根据订单明细ID进行出库，需要更新订单来源ID，来源单据类型，外部来源ID
+    -->
+    <select id="queryAcceptDetailInfoByDetailId" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		
+		SELECT a.id, a.main_id as mainId, a.store_id as storeId, a.part_id as partId, 
+			   a.part_code as partCode, a.part_name as partName, a.full_name as fullName, 
+			   a.out_unit_id as outUnitId, a.system_unit_id as systemUnitId, a.accept_qty as orderQty, 
+			   a.order_price as orderPrice, a.has_out_qty as hasOutQty,
+			   a.has_cancel_qty as hasCancelQty, a.is_finished as isFinished, a.prev_detail_id as prevDetailId, 
+		     a.remark as remark, a.store_shelf as storeShelf, b.source_detail_id as sourceDetailId, b.qty as qty
+		from dms_cloud_part.pj_allot_accept_detail a
+		inner join dms_cloud_part.pj_wms_params_detail b
+		on a.id = b.erp_detail_id and a.main_id = b.erp_main_id
+		inner join wb_common.com_attribute c
+		on b.part_id = c.cang_part_id and a.part_id = c.id
+		inner join pj_wms_params_main d
+		on b.main_id = d.id 
+		where a.main_id = #erpId# and b.main_id = #mainId# 
+		      and d.bill_type_id = #billTypeId#
+    	
+    </select>
+    
+    <!--
+                    调拨受理出库
+    	根据订单明细ID进行出库，需要更新订单来源ID，来源单据类型，外部来源ID
+    -->
+    <select id="getAcceptDetailInfoByDetailId" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		
+		SELECT a.id, a.main_id as mainId, a.store_id as storeId, a.part_id as partId, 
+			   a.part_code as partCode, a.part_name as partName, a.full_name as fullName, 
+			   a.out_unit_id as outUnitId, a.system_unit_id as systemUnitId, a.accept_qty as orderQty, 
+			   a.order_price as orderPrice, a.has_out_qty as hasOutQty,
+			   a.has_cancel_qty as hasCancelQty, a.is_finished as isFinished, a.prev_detail_id as prevDetailId, 
+		       a.remark as remark, a.store_shelf as storeShelf, 
+		       a.id as sourceDetailId, a.accept_qty as qty
+		from dms_cloud_part.pj_allot_accept_detail a
+		where a.main_id = #erpId#
     	
     </select>
     
@@ -575,7 +623,10 @@
 		on a.id = b.erp_detail_id and a.main_id = b.erp_main_id
 		inner join wb_common.com_attribute c
 		on b.part_id = c.cang_part_id and a.part_id = c.id
-		where a.main_id = #erpId# and b.main_id = #mainId#
+		inner join pj_wms_params_main d
+		on b.main_id = d.id 
+		where a.main_id = #erpId# and b.main_id = #mainId# 
+		      and d.bill_type_id = #billTypeId#
     	
     </select>
     

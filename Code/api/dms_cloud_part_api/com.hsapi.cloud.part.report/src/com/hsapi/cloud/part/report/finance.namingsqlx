@@ -11,7 +11,7 @@
     <!--账户结算明细-->
 	<select id="queryAccountDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	
-            SELECT a.sett_account_id as settAccountId,a.orgid as orgid, a.rp_dc as rpDc, a.char_off_amt as charOffAmt,
+            SELECT a.sett_account_id as settAccountId,b.orgid as orgid, a.rp_dc as rpDc, a.char_off_amt as charOffAmt,
 				   b.guest_id as guestId, b.auditor as auditor, b.audit_date as auditDate,
 				   c.full_name as fullName, c.short_name as shortName
 			from fi_rp_account_d_type a
@@ -21,7 +21,7 @@
 			on b.guest_id = c.id
 			where b.audit_sign = 1
 				<isNotEmpty prepend="and" property="orgid">
-                (a.orgid = #orgid#)
+                (b.orgid = #orgid#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="orgids">
                 (a.orgid in ($orgids$))

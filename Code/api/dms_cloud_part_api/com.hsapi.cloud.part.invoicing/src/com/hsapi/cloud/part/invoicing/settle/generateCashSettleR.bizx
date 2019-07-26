@@ -35,6 +35,16 @@
       <sourceNode>assign10</sourceNode>
       <targetNode>subprocess9</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link3" name="销售单" displayName="连接线" type="transition">
+      <sourceNode>assign10</sourceNode>
+      <targetNode>assign3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">main/orderTypeId</process:leftOperand>
+          <process:rightOperand type="literal">2</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link7</targetConnections>
     <location x="313" y="153"/>
     <size height="28" width="28"/>
@@ -181,6 +191,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
+    <targetConnections>link4</targetConnections>
     <location x="415" y="153"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess9label</nodeLabel>
@@ -354,6 +365,37 @@
     <location x="639" y="36"/>
     <figSize height="20" width="40"/>
     <node>assign2</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign3</sourceNode>
+      <targetNode>subprocess9</targetNode>
+    </sourceConnections>
+    <targetConnections>link3</targetConnections>
+    <location x="415" y="255"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign3label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/showAmt</process:from>
+      <process:to type="query">stateMain/rAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/showAmt</process:from>
+      <process:to type="query">stateMain/rpAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/showAmt</process:from>
+      <process:to type="query">stateMain/trueRpAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/showAmt</process:from>
+      <process:to type="query">stateDetail/billAmt</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
+    <location x="409" y="291"/>
+    <figSize height="20" width="40"/>
+    <node>assign3</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

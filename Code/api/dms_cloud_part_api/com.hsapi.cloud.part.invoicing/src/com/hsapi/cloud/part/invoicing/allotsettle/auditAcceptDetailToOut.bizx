@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="auditAcceptDetailToOut" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="调拨出库，调入退货&#xD;&#xA;1、调拨受理审核后的调拨出库处理&#xD;&#xA;2、1调拨申请 QDD  DBR；2调拨受理 QDC  DBC；3调出退回  DCT  DCR；4调入退回  DRT  DRC&#xD;&#xA;3、此逻辑流只处理调拨出库的批次问题，生成出库流水，更新库存&#xD;&#xA;4、更新调拨受理的出库人，调拨明细的出库数量，已入库数量等，需要在其他逻辑流处理&#xD;&#xA;5、此处 pj_allot_accept_main 中的 is_diff_order 应该等于 1&#xD;&#xA;6、出完库后需要更新 pj_allot_accept_main，pj_allot_accept_detail 的金额信息" title="Administrator&#x9;18-5-23 下午7:30">
-    <location x="-120" y="-128"/>
+    <location x="-120" y="-45"/>
     <size height="166" width="616"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
@@ -21,6 +21,7 @@
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="Int" name="outMainId" type="query" valueType="Primitive">outMainId</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -55,7 +56,7 @@
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">main</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
@@ -141,7 +142,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>end2</targetNode>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
     <targetConnections>link5</targetConnections>
@@ -161,23 +162,6 @@
     <location x="250" y="384"/>
     <figSize height="17" width="32"/>
     <node>assign1</node>
-  </nodes>
-  <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
-    <targetConnections>link6</targetConnections>
-    <targetConnections>link32</targetConnections>
-    <targetConnections>link12</targetConnections>
-    <location x="356" y="348"/>
-    <size height="28" width="28"/>
-    <nodeLabel>end1label</nodeLabel>
-    <process:returns>
-      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
-      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-    </process:returns>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="354" y="384"/>
-    <figSize height="17" width="32"/>
-    <node>end1</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="allotBatchOfOutChk" displayName="allotBatchOfAcceptOutChk" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
@@ -219,7 +203,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>end2</targetNode>
     </sourceConnections>
     <targetConnections>link11</targetConnections>
     <targetConnections>link14</targetConnections>
@@ -318,7 +302,7 @@
       <targetNode>assign4</targetNode>
     </sourceConnections>
     <targetConnections>link16</targetConnections>
-    <location x="870" y="150"/>
+    <location x="896" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -332,7 +316,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="845" y="186"/>
+    <location x="871" y="186"/>
     <figSize height="17" width="73"/>
     <node>invokePojo3</node>
   </nodes>
@@ -362,7 +346,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link32" name="link32" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>end2</targetNode>
     </sourceConnections>
     <targetConnections>link31</targetConnections>
     <location x="356" y="240"/>
@@ -463,6 +447,24 @@
     <figSize height="17" width="39"/>
     <node>assign16</node>
   </nodes>
+  <nodes xsi:type="process:tEnd" id="end2" name="结束2" displayName="结束" type="end">
+    <targetConnections>link12</targetConnections>
+    <targetConnections>link32</targetConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="356" y="348"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end2label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="Int" name="outMainId" type="query" valueType="Primitive">outMainId</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end2label" name="label" nodeType="label">
+    <location x="354" y="384"/>
+    <figSize height="17" width="32"/>
+    <node>end2</node>
+  </nodes>
   <topRuler>
     <guides position="370" horizontal="true"/>
     <guides position="133" horizontal="true"/>
@@ -471,7 +473,6 @@
   <process:info author="Administrator" createTime="2018-05-20 20:28:22" date="2018-05-20Z" description="" name="auditSellOrderToOut" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="outMainId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="stockOutList" primitiveType="String"/>
   </process:variables>
@@ -483,6 +484,7 @@
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
+    <process:output description="" isArray="false" name="outMainId" primitiveType="Int"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

@@ -1382,7 +1382,15 @@ function settleOK(){
     //bill_rp_id, bill_main_id  bill_service_id  bill_type_id  rp_dc  char_off_amt  void_amt
     var account = {};
     var accountDetailList = [];
+    var stateMentList=[];
     var rows = rightGrid.getSelecteds();
+    //更新对账单的回款
+    for(var i=0;i<rows.length;i++){
+    	var stateHash ={};
+    	stateHash.id =rows[i].billMainId;
+    	stateHash.amt =rows[i].nowAmt;
+    	stateMentList.push(stateHash);
+    }
     var s = rows.length;
     if(s > 0){
         
@@ -1522,6 +1530,7 @@ function settleOK(){
                 account : account,
                 accountDetailList : accountDetailList,
                 accountTypeList: accountTypeList,
+                stateMentList  : stateMentList,
                 token : token
             }),
             success : function(data) {

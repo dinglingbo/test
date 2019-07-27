@@ -93,7 +93,19 @@
       <process:to type="query">templateId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">www.baidu.com</process:from>
+      <process:from type="literal" pattern="reference">http://tomato.harsonserver.com/app/chedaoWeixin/settleMaitain?id=</process:from>
+      <process:to type="query">turl</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">turl + fisPreBill/id</process:from>
+      <process:to type="query">turl</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">turl+ &quot;&amp;openId=&quot;</process:from>
+      <process:to type="query">turl</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">turl + fisPreBill/wechatOpenId</process:from>
       <process:to type="query">turl</process:to>
     </process:copy>
   </nodes>
@@ -584,7 +596,7 @@
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
         <process:outputVariable id="2" name="result" type="query" value="java.util.HashMap" valueType="Java">result</process:outputVariable>
-        <process:outputVariable id="3" name="turl" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="3" name="turl" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -802,7 +814,7 @@
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">car</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">

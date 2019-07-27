@@ -44,8 +44,12 @@
                         overflow: auto;
                     }
 
-.layui-layim-close{    z-index: 99 !important;}
-#layui-layer2{    z-index: 99 !important;}
+					.layui-layim-close{
+					    z-index: 99 !important;
+					  }
+					#layui-layer2{    
+						z-index: 99 !important;
+					}
                     #_sys_tip_msg_ {
                         z-index: 9999;
                         position: fixed;

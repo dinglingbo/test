@@ -93,11 +93,19 @@
       <process:to type="query">templateId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">fisPreBill/id</process:from>
+      <process:to type="query">tid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">fisPreBill/wechatOpenId</process:from>
+      <process:to type="query">wechatOpenId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">http://tomato.harsonserver.com/app/chedaoWeixin/settleMaitain?id=</process:from>
       <process:to type="query">turl</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">turl + fisPreBill/id</process:from>
+      <process:from type="expression" pattern="reference">turl + tid</process:from>
       <process:to type="query">turl</process:to>
     </process:copy>
     <process:copy>
@@ -105,7 +113,7 @@
       <process:to type="query">turl</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">turl + fisPreBill/wechatOpenId</process:from>
+      <process:from type="expression" pattern="reference">turl + wechatOpenId</process:from>
       <process:to type="query">turl</process:to>
     </process:copy>
   </nodes>
@@ -931,6 +939,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.frm.data.fis.FisPreBillDetail" name="detail"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="p"/>
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="true" name="fisPreBillList"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="tid" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="wechatOpenId" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.frm.data.fis.FisPreBill" name="fisPreBill"/>

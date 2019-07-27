@@ -630,7 +630,26 @@ function getPustParams(guestPreData) {
 	var rpBillNames = '';
 	var remarkText = '';
 	var guestList = [];
-
+	var accountTypeList =[];
+	var count = scount();
+	for(var i = 0;i<tableNum+1;i++){
+		var  Sel=document.getElementById("optaccount"+i);
+		if(Sel!=null){
+			var index=Sel.selectedIndex ;
+			var selectValue =  Sel.options[index].value;
+			var seletText = Sel.options[index].text;
+		}
+		for(var j =1;j<typeList.length;j++){
+			var dtype = typeList[j].split("p");
+			var typeF = dtype[0].substring(0,1);
+			if(typeF==i){
+				var deductible1 = dtype[1];
+				var TypeCode = dtype[0].substring(1,dtype[0].length);
+				var list={balaTypeCode:TypeCode,charOffAmt:deductible1,settAccountId:selectValue,settAccountName:seletText};
+				accountTypeList.push(list);
+			}
+		}
+	}
 	for (var i = 0; i < guestPreData.length; i++) {
 		var temp =  nui.clone(guestPreData[i]);
 		var BillNamesText = (enterTypeIdHash[temp.billTypeId]&&enterTypeIdHash[temp.billTypeId].name) || "" ;
@@ -664,6 +683,9 @@ function getPustParams(guestPreData) {
 		carNo:guestPreData[0].carNo,
 		carVin: guestPreData[0].carVin,
 		totalAmt: zongAmt,
+		balaTypeCode : accountTypeList[0].balaTypeCode,
+		settAccountName :accountTypeList[0].settAccountName,
+		settAccountId :accountTypeList[0].settAccountId,
 		enableSettleDate: nui.formatDate(dateAfter,"yyyy-MM-dd HH:mm:ss"),
 		createDate:nui.formatDate(timestamp,"yyyy-MM-dd HH:mm:ss"),
 		remark:remarkText

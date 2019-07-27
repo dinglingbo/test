@@ -247,7 +247,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">orderNO</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -360,7 +360,6 @@
     <location x="930" y="220"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
-    <process:condition/>
     <process:iterate iterable="detailList" iterableElement="listTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -862,16 +861,16 @@
       <process:to type="query">trueOutQty</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="expression" pattern="reference">orderQty-adjustQty</process:from>
+      <process:to type="query">orderQty</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">sourceOrderDetail/isFinished</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">value</process:from>
       <process:to type="query">sourceOrderDetail/finishDate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">orderQty-adjustQty</process:from>
-      <process:to type="query">orderQty</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">

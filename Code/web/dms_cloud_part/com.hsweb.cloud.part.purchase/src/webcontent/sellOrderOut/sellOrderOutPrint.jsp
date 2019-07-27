@@ -296,7 +296,7 @@ hr {
                         <tr>
                         	<td id="index">序号</td>
 							<td id="comPartCode">配件编码</td>
-							<td id="comOemCode" >OEM码</td>
+							<td id="comOemCode" >OE码</td>
 							<td id="comPartName">配件名称</td>
 							<td id="comPartBrandId">品牌</td>
 							<td id="comApplyCarModel">品牌车型</td>

@@ -55,7 +55,7 @@
                     <div allowSort="true" field="lastOutDate" width="120" headerAlign="center" header="最近出库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div allowSort="true" field="upLimit" width="60" headerAlign="center" header="库存上限"></div>
                     <div allowSort="true" field="downLimit" width="60" headerAlign="center" header="库存下限"></div>
-                    <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
+                    <div allowSort="true" field="comOemCode" headerAlign="center" header="OE码"></div>
                     <div allowSort="true" field="applyCarModel" width="150" headerAlign="center" header="品牌车型"></div>
                     <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
                     <div allowSort="true" field="detailRemark" width="200" headerAlign="center" header="备注"></div>
@@ -93,7 +93,7 @@
                             <div field="storeId" width="80" headerAlign="center" allowSort="true" header="仓库"></div>
                             <div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true" header="仓位"></div>
                             <div field="enterUnitId" width="30" headerAlign="center" header="单位"></div>
-                            <div field="comOemCode" name="oemCode" width="150" headerAlign="center" header="OEM码"></div>
+                            <div field="comOemCode" name="oemCode" width="150" headerAlign="center" header="OE码"></div>
                             <div field="applyCarModel" name="applyCarModel" width="200" headerAlign="center" header="品牌车型"></div>
                             <div field="enterDate" allowSort="true" width="120" dateFormat="yyyy-MM-dd HH:mm" width="120px" header="入库日期" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
                             <div field="guestFullName" width="150px" headerAlign="center" allowSort="true" header="供应商"></div>  

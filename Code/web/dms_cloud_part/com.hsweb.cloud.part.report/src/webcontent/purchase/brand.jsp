@@ -32,7 +32,7 @@
         
         <div field="menulabel" width="100" headerAlign="center" allowSort="true">适用车型</div> 
         
-        <div field="menulabel" width="100" headerAlign="center" allowSort="true">OEM码</div>
+        <div field="menulabel" width="100" headerAlign="center" allowSort="true">OE码</div>
         
         <div field="menulabel" width="100" headerAlign="center" allowSort="true">实物码</div>
                 

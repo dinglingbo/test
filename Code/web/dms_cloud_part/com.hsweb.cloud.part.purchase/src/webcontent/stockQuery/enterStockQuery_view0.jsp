@@ -89,7 +89,7 @@
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <div field="partCode" name="partCode" width="150" headerAlign="center" summaryType="count" header="配件编码"></div>
-            <div field="oemCode" name="oemCode" width="180" headerAlign="center" header="OEM码"></div>
+            <div field="oemCode" name="oemCode" width="180" headerAlign="center" header="OE码"></div>
             <div field="partName" partName="name" width="120" headerAlign="center" header="配件名称"></div>
             <div allowSort="true" datatype="float" width="60" field="stockQty" name="stockQty" summaryType="sum" headerAlign="center" header="库存数量"></div>
             <div allowSort="true" datatype="float" width="60" field="preOutQty" headerAlign="center" summaryType="sum" header="待出库数量"></div>
@@ -211,7 +211,7 @@
         <tr>  
             <td colspan="1" align="center">配件编码</td>
             <td colspan="1" align="center">配件名称</td>
-            <td colspan="1" align="center">OEM码</td>
+            <td colspan="1" align="center">OE码</td>
             <td colspan="1" align="center">品牌</td>
             <td colspan="1" align="center">品牌车型</td>
             <td colspan="1" align="center">单位</td>

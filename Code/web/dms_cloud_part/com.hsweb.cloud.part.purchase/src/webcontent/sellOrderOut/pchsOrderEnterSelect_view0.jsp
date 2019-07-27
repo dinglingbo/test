@@ -133,7 +133,7 @@
             <div type="indexcolumn">序号</div>
             <div type="checkcolumn"></div>
             <div field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
-            <div field="comOemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
+            <div field="comOemCode" name="oemCode" width="100" headerAlign="center" header="OE码"></div>
             <div field="partName" partName="name" width="100" headerAlign="center" header="配件名称"></div>
             <div allowSort="true" datatype="float" width="60" field="outableQty" name="outableQty" headerAlign="center" header="库存数量"></div>
             <div allowSort="true" datatype="float" width="60" field="preOutQty" headerAlign="center" header="待出库数量"></div>

@@ -170,7 +170,7 @@
                         showNullItem="false"
                         nullItemText="请选择..."/>
                     </td> -->
-                    <td class=" right fwidthb">OEM码:</td>
+                    <td class=" right fwidthb">OE码:</td>
                     <td ><input name="oemCode" class="nui-textbox" width="150px"/></td>
                     </tr>
                     <tr>

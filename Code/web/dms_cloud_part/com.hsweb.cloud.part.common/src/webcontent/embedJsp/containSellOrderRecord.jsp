@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售记录</title>
-<script src="<%=webPath + contextPath%>/common/js/embed/containSellOrderRecord.js?v=1.0.12"></script>
+<script src="<%=webPath + contextPath%>/common/js/embed/containSellOrderRecord.js?v=1.0.19"></script>
 <style type="text/css">
 .title {
   width: 90px;
@@ -29,7 +29,11 @@
 <div class="nui-fit">
 	<div  class="nui-splitter" style="width:100%;height:100%;" style="border:0;" handlerSize="0">
         <div size="130px" showCollapseButton="false">
-        	<input class="nui-checkbox"  id="nowGuest" trueValue="1" falseValue="0" text="当前客户" value="1" oncheckedchanged="nowGuestChange()"/>
+        	<input class="nui-checkbox"  id="nowStoreGuest" trueValue="1" falseValue="0" text="本地当前客户" value="1" oncheckedchanged="nowStoreGuestChange()"/>
+        	<br>
+        	<input class="nui-checkbox"  id="storeGuest" trueValue="1" falseValue="0" text="本店所有客户" oncheckedchanged="storeChange()"/>
+        	<br>
+        	<input class="nui-checkbox"  id="nowGuest" trueValue="1" falseValue="0" text="连锁当前客户" value="" oncheckedchanged="nowGuestChange()"/>
         	<br>
         	<input class="nui-checkbox"  id="chainGuest" trueValue="1" falseValue="0" text="连锁所有客户" oncheckedchanged="chainChange()"/>
         </div>
@@ -54,7 +58,7 @@
 		            <div field="billTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="票据类型"></div>
 		            <div field="settleTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="结算方式"></div>
 		            <div field="storeId" width="60" headerAlign="center" allowSort="true" header="仓库"></div>
-		            <div field="comOemCode" name="comOemCode" width="100" headerAlign="center" header="OEM码"></div>
+		            <div field="comOemCode" name="comOemCode" width="100" headerAlign="center" header="OE码"></div>
 		            <!-- <div field="partBrandId" name="partBrandId" width="60" headerAlign="center" header="品牌"></div> -->
 		            <div field="applyCarModel" name="applyCarModel" width="150" headerAlign="center" header="品牌车型"></div>
 		            <div field="outUnitId" width="30" headerAlign="center" header="单位"></div>

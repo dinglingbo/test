@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售出库</title>
-<script src="<%=webPath + contextPath%>/purchase/js/sellOrderOut/sellOrderOut.js?v=1.1.95"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/sellOrderOut/sellOrderOut.js?v=1.1.101"></script>
 <style type="text/css">
 .title {
 	width: 70px;
@@ -251,7 +251,7 @@ body .mini-grid-row-selected{
                   <div property="columns">
                       <div type="indexcolumn">序号</div>
                       <div field="code" name="code" width="100" headerAlign="center" header="配件编码"></div>
-                      <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
+                      <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OE码"></div>
                       <div field="name" name="name" width="100" headerAlign="center" header="配件名称"></div>
                       <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
                       <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div>
@@ -300,7 +300,7 @@ body .mini-grid-row-selected{
                 <div type="indexcolumn">序号</div>
 <!--                 <div type="expandcolumn" width="50" >替换件</div> -->
                 <div field="code" name="code" width="100" headerAlign="center" header="配件编码"></div>
-                <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
+                <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OE码"></div>
                 <div field="name" name="name" width="100" headerAlign="center" header="配件名称"></div>
                 <div field="partBrandId" name="partBrandId" width="100" headerAlign="center" header="品牌"></div>
                 <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="品牌车型"></div>

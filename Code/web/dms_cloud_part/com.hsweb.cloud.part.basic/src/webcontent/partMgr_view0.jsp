@@ -83,7 +83,7 @@
 <!--                         </div> -->
                         <div title="本地配件资料" name="local" id="local">
 <!--                             <div class="nui-fit"> -->
-                                <div id="partLoalGrid" class="nui-datagrid" style="width:100%;height:100%;" frozenStartColumn="0" frozenEndColumn="7" borderStyle="border:0;"
+                                <div id="partLoalGrid" class="nui-datagrid" style="width:100%;height:100%;" frozenStartColumn="0" frozenEndColumn="9" borderStyle="border:0;"
                                     dataField="parts" url="" onrowdblclick="onPartGridRowDblClick" onrowclick="onPartGridRowClick"allowCellWrap = true
                                     idField="id" totalField="page.count" selectOnLoad="true" pageSize="50" sortMode="client"
                                     showFilterRow="false" allowCellSelect="true" allowCellEdit="false">
@@ -97,6 +97,8 @@
                                                 <div allowSort="true" field="code" name="code" width="100" headerAlign="center" allowSort="true">编码</div>
                                                 <div allowSort="true" field="name" name="name" width="120" headerAlign="center" allowSort="true">名称</div>
                                                 <div allowSort="true" field="fullName" name="fullName" width="280" headerAlign="center" allowSort="true">全称</div>
+                                                <div allowSort="true" field="oemCode" name="oemCode" width="100" headerAlign="center" allowSort="true">OE码</div>
+                                                <div allowSort="true" field="origin" name="origin" width="100" headerAlign="center" allowSort="true">规格</div>
                                                 <div allowSort="true" field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
                                             </div>
                                         </div>
@@ -139,7 +141,7 @@
                         
                         <div title="云配件资料" id="main" name="main">
 <!--                             <div class="nui-fit"> -->
-                                <div id="partGrid" class="nui-datagrid" style="width:100%;height:100%;" frozenStartColumn="0" frozenEndColumn="7" borderStyle="border:0;"
+                                <div id="partGrid" class="nui-datagrid" style="width:100%;height:100%;" frozenStartColumn="0" frozenEndColumn="9" borderStyle="border:0;"
                                     dataField="parts" url="" onrowdblclick="onPartGridRowDblClick" onrowclick="onPartGridRowClick"
                                     idField="id" totalField="page.count" selectOnLoad="true" pageSize="50" sortMode="client"allowCellWrap = true
                                     showFilterRow="false" allowCellSelect="true" allowCellEdit="false">
@@ -153,6 +155,8 @@
                                                 <div allowSort="true" field="code" name="code" width="100" headerAlign="center" allowSort="true">编码</div>
                                                 <div allowSort="true" field="name" name="name" width="120" headerAlign="center" allowSort="true">名称</div>
                                                 <div allowSort="true" field="fullName" name="fullName" width="280" headerAlign="center" allowSort="true">全称</div>
+                                                <div allowSort="true" field="oemCode" name="oemCode" width="100" headerAlign="center" allowSort="true">OE码</div>
+                                                <div allowSort="true" field="origin" name="origin" width="100" headerAlign="center" allowSort="true">规格</div>
                                                 <div allowSort="true" field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
                                             </div>
                                         </div>

@@ -312,7 +312,7 @@
                         <div field="storeShelf" width="60" headerAlign="center" allowSort="true">
                               仓位
                               </div>  
-                      <div field="comOemCode" allowSelect="false" width="60" headerAlign="center" allowSort="true" header="OEM码"></div> 
+                      <div field="comOemCode" allowSelect="false" width="60" headerAlign="center" allowSort="true" header="OE码"></div> 
                       <div field="comSpec" allowSelect="false" width="100" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>                             
                                 </div>
                             </div>

@@ -108,7 +108,7 @@
                 <div property="columns">
                     <div allowSort="true" field="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
                     <div allowSort="true" field="comPartName" width="180"headerAlign="center" header="配件名称"></div>
-                    <div allowSort="true" field="comOemCode" width="200"headerAlign="center" header="OEM码"></div>
+                    <div allowSort="true" field="comOemCode" width="200"headerAlign="center" header="OE码"></div>
                     <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
                     <div allowSort="true" field="applyCarModel" width="220" headerAlign="center" header="品牌车型"></div>
                     <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>

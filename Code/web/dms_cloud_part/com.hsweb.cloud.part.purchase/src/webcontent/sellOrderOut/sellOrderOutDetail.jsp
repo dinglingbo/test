@@ -308,7 +308,7 @@
                                       <div type="checkboxcolumn" field="isMarkBatch" trueValue="1" falseValue="0" width="65" headerAlign="center" header="批次">
                                       </div>
                                       <div field="occupyQty" visible="false" width="90" headerAlign="center" allowSort="true" header="占用数量"></div>
-                                      <div field="comOemCode" width="80" headerAlign="center" allowSort="true" header="OEM码"></div>   
+                                      <div field="comOemCode" width="80" headerAlign="center" allowSort="true" header="OE码"></div>   
                                       <div field="comSpec" width="60" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>                                                        
                                   </div>
                               </div>

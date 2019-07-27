@@ -94,21 +94,37 @@ $(document).ready(function(v){
 
 });
 
+function nowStoreGuestChange(){
+	var nowStoreGuest = nui.get("nowStoreGuest").getValue();
+	if(nowStoreGuest ==1){
+		nui.get("storeGuest").setValue(0);
+		nui.get("nowGuest").setValue(0);
+		nui.get("chainGuest").setValue(0);
+	}
+}
+function storeChange(){
+	var storeGuest = nui.get("storeGuest").getValue();
+	if(storeGuest ==1){
+		nui.get("nowStoreGuest").setValue(0);
+		nui.get("nowGuest").setValue(0);
+		nui.get("chainGuest").setValue(0);
+	}
+}
 function chainChange(){
 	var chainGuest = nui.get("chainGuest").getValue();
 	if(chainGuest ==1){
+		nui.get("nowStoreGuest").setValue(0);
+		nui.get("storeGuest").setValue(0);
 		nui.get("nowGuest").setValue(0);
-	}else{
-		nui.get("nowGuest").setValue(1);
 	}
 }
 
 function nowGuestChange(){
-	var nowGuest = nui.get("chainGuest").getValue();
+	var nowGuest = nui.get("nowGuest").getValue();
 	if(nowGuest ==1){
+		nui.get("nowStoreGuest").setValue(0);
+		nui.get("storeGuest").setValue(0);
 		nui.get("chainGuest").setValue(0);
-	}else{
-		nui.get("chainGuest").setValue(1);
 	}
 }
 
@@ -120,8 +136,17 @@ function doSearch(params)
         return;
     }
     guestId = params.guestId || "";
+    var nowStoreGuest = nui.get("nowStoreGuest").getValue()|| "";
+    var storeGuest =nui.get("storeGuest").getValue() || "";
     var nowGuest =nui.get("nowGuest").getValue() || "";
     var chainGuest=nui.get("chainGuest").getValue() || "";
+    if(nowStoreGuest==1){
+    	params.orgid =currOrgId;
+    }
+    if(storeGuest ==1){
+    	params.guestId =null;
+    	params.orgid =currOrgId;
+    }
     if(nowGuest ==1){
 //    	params.guestId =null;
     	params.tenantId =currTenantId;

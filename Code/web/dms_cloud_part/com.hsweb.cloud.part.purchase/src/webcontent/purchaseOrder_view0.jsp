@@ -337,7 +337,7 @@
                                       onvaluechanged="" emptyText=""  vtype="required"
                                       /> 
                         </div>  
-                      <div field="comOemCode" width="60" headerAlign="center" allowSort="true" header="OEM码"></div> 
+                      <div field="comOemCode" width="60" headerAlign="center" allowSort="true" header="OE码"></div> 
                       <div field="comSpec" width="100" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>                               
                                 </div>
                             </div>

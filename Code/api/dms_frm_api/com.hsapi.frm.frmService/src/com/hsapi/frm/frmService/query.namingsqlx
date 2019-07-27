@@ -426,30 +426,30 @@
 		<select id="queryFisPreBillDetailA" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		SELECT
 			a.id,
-			a.bill_code,
+			a.bill_code billCode,
 			a.orgid,
-			a.guest_id,
-			a.guest_name,
-			a.contactor_id,
-			a.wechat_open_id,
-			a.car_id,
-			a.car_no,
-			a.car_vin,
-			a.enable_settle_date,
-			a.settle_date,
-			a.settle_status,
+			a.guest_id guestId,
+			a.guest_name guestName,
+			a.contactor_id contactorId,
+			a.wechat_open_id wechatOpenId,
+			a.car_id carId,
+			a.car_no carNo,
+			a.car_vin carVin,
+			a.enable_settle_date enableSettleDate,
+			a.settle_date settleDate,
+			a.settle_status settleStatus ,
 			a.remark,
-			b.fis_id,
-			b.bill_service_id,
-			b.bill_type_id,
-			a.rp_bill_ids,
-			a.rp_bill_names
+			b.main_id mainId,
+			b.bill_service_id billServiceId,
+			b.bill_type_id billTypeId,
+			a.rp_bill_ids rpBillIds,
+			a.rp_bill_names rpBillNames
 		FROM
 			fis_pre_bill AS a
 		INNER JOIN fis_pre_bill_detail AS b ON a.id = b.pre_bill_id
 		WHERE a.orgid = #orgid#
 			AND a.settle_status =  0
-			AND b.fis_id in (#ids#)
+			AND b.main_id in (#ids#)
 			
 		</select>	
 		
@@ -526,14 +526,14 @@
 			a.rp_bill_names as rpBillNames,
 			a.creator as creator,
 			a.create_date as createDate,
-			b.fis_id as fisId,
+			b.main_id as mainId,
 			b.bill_service_id as billServiceId,
 			b.bill_type_id as billTypeId,
 			b.now_amt as nowAmt
 		FROM
 			fis_pre_bill AS a
 			INNER JOIN fis_pre_bill_detail AS b ON a.id = b.pre_bill_id
-		WHERE a.orgid = #orgid# and b.fis_id = #fisId# and a.settle_status = 0
+		WHERE a.orgid = #orgid# and b.main_id = #fisId# and a.settle_status = 0
 		    <dynamic>
                 <isNotEmpty prepend="and" property="guestName">  
                     (a.guest_name like '%$guestName$%')

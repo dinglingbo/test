@@ -213,7 +213,7 @@
               <div property="columns">
                   <div type="indexcolumn">序号</div>
                   <div field="code" name="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
-                  <div field="oemCode" name="comPartCode" width="100" headerAlign="center" header="OEM码"></div>
+                  <div field="oemCode" name="comPartCode" width="100" headerAlign="center" header="OE码"></div>
                   <div field="fullName" name="comPartCode" width="200" headerAlign="center" header="配件全称"></div>
               </div>
           </div>

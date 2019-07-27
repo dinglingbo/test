@@ -142,7 +142,7 @@
 							<div field="rpCode" allowSort="true" headerAlign="center"
 								width="120"  >规格</div>
 							<div field="rpCode" allowSort="true" headerAlign="center"
-								width="120"  >OEM码</div>
+								width="120"  >OE码</div>
 							<div field="rpCode" allowSort="true" headerAlign="center"
 								width="120"  >实物码</div>
 							<div field="rpCode" allowSort="true" headerAlign="center"

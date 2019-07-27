@@ -17,6 +17,7 @@ var formJson = null;
 var brandHash = {};
 var brandList = [];
 var storehouse = null;
+var storeHash={};
 var gsparams = {};
 var sOrderDate = null;
 var eOrderDate = null;
@@ -102,11 +103,11 @@ $(document).ready(function(v)
        
         
     });
-/*    innerSellOutGrid = nui.get("innerSellOutGrid");
+	innerSellOutGrid = nui.get("innerSellOutGrid");
     editFormSellOutDetail = document.getElementById("editFormSellOutDetail");
     innerSellOutGrid.setUrl(innerSellGridUrl);
 
-    innerSellRtnGrid = nui.get("innerSellRtnGrid");
+/*  innerSellRtnGrid = nui.get("innerSellRtnGrid");
     editFormSellRtnDetail = document.getElementById("editFormSellRtnDetail");
     innerSellRtnGrid.setUrl(innerPchsGridUrl);*/
 
@@ -143,6 +144,9 @@ $(document).ready(function(v)
         storehouse = data.storehouse||[];
         if(storehouse && storehouse.length>0){
             FStoreId = storehouse[0].id;
+            storehouse.forEach(function(v){
+            	storeHash[v.id]=v;
+            });
         }else{
             isNeedSet = true;
         }
@@ -520,9 +524,9 @@ function onRightGridDraw(e)
             }
             break;
         case "storeId":
-            if(storehouse && storehouse[e.value])
+            if(storeHash && storeHash[e.value])
             {
-                e.cellHtml = storehouse[e.value].name;
+                e.cellHtml = storeHash[e.value].name;
             }
             break;
         case "accountSign":
@@ -634,16 +638,29 @@ function onShowRowDetail(e) {
             });
             break;
         case 1:
-            td.appendChild(editFormPchsRtnDetail);
-            editFormPchsRtnDetail.style.display = "";
+        	//销售单
+        	if(row.typeCode ==2){
+        		td.appendChild(editFormSellOutDetail);
+        		editFormSellOutDetail.style.display = "";
 
-            var params = {};
-            params.mainId = mainId;
-            innerPchsRtnGrid.load({
-                params:params,
-                token: token
-            });
-            break;
+                var params = {};
+                params.mainId = mainId;
+                innerSellOutGrid.load({
+                    params:params,
+                    token: token
+                });  
+        	}else{
+        		td.appendChild(editFormPchsRtnDetail);
+                editFormPchsRtnDetail.style.display = "";
+
+                var params = {};
+                params.mainId = mainId;
+                innerPchsRtnGrid.load({
+                    params:params,
+                    token: token
+                });               
+        	}
+        	break;
         default:
             break;
     }
@@ -1034,7 +1051,9 @@ function addDetail(rows)
             settleTypeId:row.settleTypeId,
             orderMan:row.orderMan,
             billDate:row.auditDate,
-            remark:row.remark
+            remark:row.remark,
+            guestId : row.guestId,
+            guestName :row.fullName
         };
 
 
@@ -1098,9 +1117,9 @@ function onDrawCell(e)
             }
             break;
         case "storeId":
-            if(storehouse && storehouse[e.value])
+            if(storeHash && storeHash[e.value])
             {
-                e.cellHtml = storehouse[e.value].name;
+                e.cellHtml = storeHash[e.value].name;
             }
             break;
         case "accountSign":
@@ -1152,37 +1171,180 @@ function onExport(){
 
 	var detail = rightGrid.getData();
 	if(detail && detail.length > 0){
-		setInitExportData(main, detail);
+		var partHash =getPartHash();
+		setInitExportData(main,detail,partHash);
 	}else{
 		showMsg("请添加对账明细!","W");
 	}
 }
-function setInitExportData(main, detail){
+function getPartHash(){
+	var partHash={};
+	var detail = rightGrid.getData();
+	var pchMainIds ="";
+	var sellMainIds ="";
+	var pchList=[];
+	var sellList=[];
+	for(var i=0;i<detail.length;i++){
+		if(detail[i].rpDc == -1){
+			pchMainIds =pchMainIds +detail[i].billMainId+","
+		}else{
+			sellMainIds = sellMainIds +detail[i].billMainId+","
+		}
+		
+	}
+	$.ajaxSettings.async = false;
+	if(pchMainIds !=""){		
+		pchMainIds =pchMainIds.substring(0,pchMainIds.length-1);
+		$.post(innerPchsGridUrl+"?params/mainIds="+pchMainIds+"&params/auditSign=1&token="+token,{},function(text){
+			pchList =text.pjPchsOrderDetailList; 
+			
+		});
+	}
+	if(sellMainIds !=""){		
+		sellMainIds =sellMainIds.substring(0,sellMainIds.length-1);
+		$.post(innerSellGridUrl+"?params/mainIds="+sellMainIds+"&params/auditSign=1&token="+token,{},function(text){
+			sellList =text.pjSellOrderDetailList;  	
+			
+		});
+	}
+	
+	partHash.pchList=pchList;
+	partHash.sellList = sellList;
+	return partHash;
+}
+function setInitExportData(main,detail,partHash){
+	var pchList = partHash.pchList;
+	var sellList = partHash.sellList;
 	document.getElementById("eServiceId").innerHTML = main.serviceId?main.serviceId:"";
-	document.getElementById("eGuestName").innerHTML = main.guestName?main.guestName:"";
 	document.getElementById("eRemark").innerHTML = main.remark?main.remark:"";
-    var tds = '<td  colspan="1" align="left">[typeCode]</td>' +
-        "<td  colspan='1' align='left'>[billAmt]</td>" +
-        "<td  colspan='1' align='left'>[orderMan]</td>" +
-        "<td  colspan='1' align='left'>[billDate]</td>" +
-        "<td  colspan='1' align='left'>[remark]</td>" +
-        "<td  colspan='1' align='left'>[billServiceId]</td>" ;
-    var tableExportContent = $("#tableExportContent");
-    tableExportContent.empty();
-    for (var i = 0; i < detail.length; i++) {
-        var row = detail[i];
-        
-        var tr = $("<tr></tr>");
-        tr.append(tds.replace("[typeCode]", detail[i].typeCode?detail[i].typeCode:"")
-                     .replace("[billAmt]", detail[i].billAmt?detail[i].billAmt:"")
-                     .replace("[orderMan]", detail[i].orderMan?detail[i].orderMan:"")
-                     .replace("[billDate]", detail[i].billDate?format(detail[i].billDate, 'yyyy-MM-dd HH:mm:ss'):"")
-                     .replace("[remark]", detail[i].remark?detail[i].remark:"")
-                     .replace("[billServiceId]", detail[i].billServiceId?detail[i].billServiceId:""));
-        tableExportContent.append(tr);
-    
-    }
+	var tableExportContent =  $("#tableExportContent");
+	tableExportContent.empty();
+	
+	//单据
+	var tds = '<td  colspan="1" align="left">[guestName]</td>' +
+			  '<td  colspan="1" align="left">[typeCode]</td>' +
+			  "<td  colspan='1' align='left'>[billAmt]</td>" +
+			  "<td  colspan='1' align='left'>[orderMan]</td>" +
+			  "<td  colspan='1' align='left'>[billDate]</td>" +
+			  "<td  colspan='1' align='left'>[remark]</td>" +
+			  "<td  colspan='1' align='left'>[billServiceId]</td>" ;
+	//配件
+	var tdsp ='<td  colspan="1" align="left">[partCode]</td>' +
+			  '<td  colspan="1" align="left">[fullName]</td>' +
+			  "<td  colspan='1' align='left'>[oemCode]</td>" +
+			  "<td  colspan='1' align='left'>[partBrand]</td>" +
+			  "<td  colspan='1' align='left'>[carModel]</td>" +
+			  "<td  colspan='1' align='left'>[unit]</td>" +
+			  "<td  colspan='1' align='left'>[storeId]</td>" +
+			  "<td  colspan='1' align='left'>[qty]</td>" +
+			  "<td  colspan='1' align='left'>[price]</td>" +
+			  "<td  colspan='1' align='left'>[amt]</td>" +
+			  "<td  colspan='1' align='left'>[remark]</td>" ;
+	for(var i=0;i<detail.length;i++){
+		var row = detail[i];
+		var tr0 = $("<tr></tr>");
+		var tds0='<td colspan="1" align="center">往来单位</td>'+ 
+				 '<td colspan="1" align="center">业务类型</td>'+
+				 '<td colspan="1" align="center">金额</td>'+
+				 '<td colspan="1" align="center">业务员</td>'+
+				 '<td colspan="1" align="center">审核日期</td>'+
+				 '<td colspan="1" align="center">备注</td>'+
+				 '<td colspan="1" align="center">业务单号</td>';
+		tr0.append(tds0);
+		var tr1 =$("<tr></tr>");
+		var tds1='<td colspan="1" align="center">配件编码</td>'+ 
+				 '<td colspan="1" align="center">配件名称</td>'+
+				 '<td colspan="1" align="center">OEM码</td>'+
+				 '<td colspan="1" align="center">品牌</td>'+
+				 '<td colspan="1" align="center">品牌车型</td>'+
+				 '<td colspan="1" align="center">单位</td>'+
+				 '<td colspan="1" align="center">仓库</td>'+
+				 '<td colspan="1" align="center">数量</td>'+
+				 '<td colspan="1" align="center">单价</td>'+
+				 '<td colspan="1" align="center">金额</td>'+
+				 '<td colspan="1" align="center">备注</td>';
+		tr1.append(tds1);
+		tableExportContent.append(tr0);
+		var tr = $("<tr></tr>");
+		tr.append(tds.replace("[guestName]", row.guestName?row.guestName:"")
+					 .replace("[typeCode]", row.typeCode? enterTypeIdHash[row.typeCode]:"")
+		             .replace("[billAmt]", row.billAmt?row.billAmt:"")
+		             .replace("[orderMan]", row.orderMan?row.orderMan:"")
+		             .replace("[billDate]", row.billDate?format(row.billDate, 'yyyy-MM-dd HH:mm:ss'):"")
+		             .replace("[remark]", row.remark?row.remark:"")
+		             .replace("[billServiceId]", row.billServiceId?row.billServiceId:""));
+		tableExportContent.append(tr);
+		tableExportContent.append(tr1);
+		
+		//销售单
+		if(row.typeCode==2){
+			for(var j =0;j<sellList.length;j++){
+				var sellHash =sellList[j];
+				if(sellHash.mainId ==row.billMainId){
+					var trp = $("<tr></tr>");
+					trp.append(tdsp.replace("[partCode]", sellHash.showPartCode?sellHash.showPartCode:"")
+								   .replace("[fullName]", sellHash.showFullName?sellHash.showFullName:"")
+					               .replace("[oemCode]", sellHash.showOemCode?sellHash.showOemCode:"")
+					               .replace("[partBrand]",sellHash.showBrandName?sellHash.showBrandName:"")
+					               .replace("[carModel]", sellHash.showCarModel?sellHash.showCarModel :"")
+					               .replace("[unit]", sellHash.comUnit?sellHash.comUnit:"")
+					               .replace("[storeId]",storeHash[sellHash.storeId].name?storeHash[sellHash.storeId].name:"")
+					               .replace("[qty]",sellHash.orderQty?sellHash.orderQty:"")
+					               .replace("[price]",sellHash.showPrice?sellHash.showPrice:"")
+				                   .replace("[amt]",sellHash.showAmt?sellHash.showAmt:"")
+					               .replace("[remark]",sellHash.remark?sellHash.remark:""));
+					tableExportContent.append(trp);
+				}
+			}
+			
+		}
+		
+		//其他类型
+		else {
+			//采购退货
+			if(row.typeCode==3){
+				for(var j =0;j<sellList.length;j++){
+					var sellHash =sellList[j];
+					if(sellHash.mainId ==row.billMainId){
+						var trp = $("<tr></tr>");
+						trp.append(tdsp.replace("[partCode]", sellHash.comPartCode?sellHash.comPartCode:"")
+									   .replace("[fullName]", sellHash.fullName?sellHash.fullName:"")
+						               .replace("[oemCode]", sellHash.comOemCode?sellHash.comOemCode:"")
+						               .replace("[partBrand]",brandHash[sellHash.comPartBrandId].name?brandHash[sellHash.comPartBrandId].name:"")
+						               .replace("[carModel]", sellHash.comApplyCarModel?sellHash.comApplyCarModel :"")
+						               .replace("[unit]", sellHash.comUnit?sellHash.comUnit:"")
+						               .replace("[storeId]",storeHash[sellHash.storeId].name?storeHash[sellHash.storeId].name:"")
+						               .replace("[qty]",sellHash.orderQty?sellHash.orderQty:"")
+						               .replace("[price]",sellHash.orderPrice?sellHash.orderPrice:"")
+					                   .replace("[amt]",sellHash.orderAmt?sellHash.orderAmt:"")
+						               .replace("[remark]",sellHash.remark?sellHash.remark:""));
+						tableExportContent.append(trp);
+					}
+				}
+			}else{
+				for(var j =0;j<pchList.length;j++){
+					var pchHash =pchList[j];
+					if(pchHash.mainId ==row.billMainId){
+						var trp = $("<tr></tr>");
+						trp.append(tdsp.replace("[partCode]", pchHash.comPartCode?pchHash.comPartCode:"")
+									   .replace("[fullName]", pchHash.fullName?pchHash.fullName:"")
+						               .replace("[oemCode]", pchHash.comOemCode?pchHash.comOemCode:"")
+						               .replace("[partBrand]",brandHash[pchHash.comPartBrandId].name?brandHash[pchHash.comPartBrandId].name:"")
+						               .replace("[carModel]", pchHash.comApplyCarModel?pchHash.comApplyCarModel :"")
+						               .replace("[unit]", pchHash.comUnit?pchHash.comUnit:"")
+						               .replace("[storeId]",storeHash[pchHash.storeId].name?storeHash[pchHash.storeId].name:"")
+						               .replace("[qty]",pchHash.orderQty?pchHash.orderQty:"")
+						               .replace("[price]",pchHash.orderPrice?pchHash.orderPrice:"")
+					                   .replace("[amt]",pchHash.orderAmt?pchHash.orderAmt:"")
+						               .replace("[remark]",pchHash.remark?pchHash.remark:""));
+						tableExportContent.append(trp);
+					}
+				}
+			}
+		}
+			
+	}
+	 var serviceId = main.serviceId?main.serviceId:"";
+     method5('tableExcel',"月结对账"+"-"+main.guestName+"-"+serviceId,'tableExportA');
 
-    var serviceId = main.serviceId?main.serviceId:"";
-    method5('tableExcel',"月结对账"+serviceId,'tableExportA');
 }

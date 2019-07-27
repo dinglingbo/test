@@ -78,7 +78,7 @@ body {
 				        <div property="columns">
 				            <div field="partCode"  name="" headeralign="center" align="center" width="100">配件编码 </div>
 				            <div field="partName"  name="" headeralign="center" align="center" width="100">配件名称 </div>
-				            <div field="oemCode"  name="" headeralign="center" align="center" width="100">OEM码 </div>
+				            <div field="oemCode"  name="" headeralign="center" align="center" width="100">OE码 </div>
 				            <!-- <div field="partBrandId"  name="" headeralign="center" align="center" width="100">品牌 </div> -->
 				            <div field="applyCarModel"  name="" headeralign="center" align="center" width="150">品牌车型 </div>
 				            <div field="enterUnitId"  name="" headeralign="center" align="center" width="100">单位 </div>

@@ -54,7 +54,7 @@
 		            <div field="billTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="票据类型"></div>
 		            <div field="settleTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="结算方式"></div>
 		            <div field="storeId" width="60" headerAlign="center" allowSort="true" header="仓库"></div>
-		            <div field="comOemCode" name="comOemCode" width="100" headerAlign="center" header="OEM码"></div>
+		            <div field="comOemCode" name="comOemCode" width="100" headerAlign="center" header="OE码"></div>
 		            <!-- <div field="partBrandId" name="partBrandId" width="60" headerAlign="center" header="品牌"></div> -->
 		            <div field="applyCarModel" name="applyCarModel" width="150" headerAlign="center" header="品牌车型"></div>
 		            <div field="outUnitId" width="30" headerAlign="center" header="单位"></div>

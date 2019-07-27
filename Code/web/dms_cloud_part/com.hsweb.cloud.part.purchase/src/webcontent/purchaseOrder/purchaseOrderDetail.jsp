@@ -335,7 +335,7 @@
                         <div field="storeShelf" width="20" headerAlign="center" allowSort="true" header="仓位">
                               仓位<input id="storeShelf" allowInput="true" name='storeShelf' property="editor" class="nui-textbox"/>
                           </div>  
-                      <div field="comOemCode" allowSelect="false" width="60" headerAlign="center" visible="false"  allowSort="true" header="OEM码"></div> 
+                      <div field="comOemCode" allowSelect="false" width="60" headerAlign="center" visible="false"  allowSort="true" header="OE码"></div> 
                       <div field="comSpec" allowSelect="false" width="100" headerAlign="center" visible="false" allowSort="true" header="规格/方向/颜色"></div>
                       <div field="sellUnitPrice" name="sellUnitPrice" allowSelect="false" width="20" headerAlign="center" visible="true" allowSort="true" header="统一售价">
                       	<input property="editor" class="nui-textbox"/>

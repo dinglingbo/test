@@ -490,7 +490,70 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="settleStatus">  
                     (a.settle_status = #settleStatus#)
-                </isNotEmpty>		                                                
+                </isNotEmpty>	
+                <!--创建日期 -->
+                <isNotEmpty prepend="and" property="sCreateDate">  
+                    (a.create_date &gt;= #sCreateDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eCreateDate">  
+                    (a.create_date &lt; #eCreateDate#)
+                </isNotEmpty>	                                                
+            </dynamic> 
+			
+		</select>	
+				<!--查询财务是否有线上支付表 -->
+		<select id="queryIsFisPreBill" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id as id,
+			a.bill_code as billCode,
+			a.orgid as orgid,
+			a.guest_id as guestId,
+			a.guest_name as guestName,
+			a.contactor_id as contactorId,
+			a.wechat_open_id as wechatOpenId,
+			a.car_id as carId,
+			a.car_no as carNo,
+			a.car_vin as carVin,
+			a.total_amt as totalAmt,
+			a.enable_settle_date as enableSettleDate,
+			a.sett_account_code as settAccountCode,
+			a.sett_account_id as settAccountId,
+			a.sett_account_name as settAccountName,
+			a.settle_date as settleDate,
+			a.settle_status as settleStatus,
+			a.remark as remark,
+			a.rp_bill_ids as rpBillIds,
+			a.rp_bill_names as rpBillNames,
+			a.creator as creator,
+			a.create_date as createDate,
+			b.fis_id as fisId,
+			b.bill_service_id as billServiceId,
+			b.bill_type_id as billTypeId,
+			b.now_amt as nowAmt
+		FROM
+			fis_pre_bill AS a
+			INNER JOIN fis_pre_bill_detail AS b ON a.id = b.pre_bill_id
+		WHERE a.orgid = #orgid# and b.fis_id = #fisId# and a.settle_status = 0
+		    <dynamic>
+                <isNotEmpty prepend="and" property="guestName">  
+                    (a.guest_name like '%$guestName$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="carNo">  
+                    (a.car_no like '%$carNo$%')
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="id">  
+                    (a.id = #id#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="settleStatus">  
+                    (a.settle_status = #settleStatus#)
+                </isNotEmpty>	
+                <!--创建日期 -->
+                <isNotEmpty prepend="and" property="sCreateDate">  
+                    (a.create_date &gt;= #sCreateDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eCreateDate">  
+                    (a.create_date &lt; #eCreateDate#)
+                </isNotEmpty>	                                                
             </dynamic> 
 			
 		</select>	

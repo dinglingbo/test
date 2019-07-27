@@ -44,7 +44,7 @@ pageEncoding="UTF-8" session="false" %>
             <div type="indexcolumn"  headeralign="center" width="20">序号</div>
             <div field="id" name="id" width="80"  visible="false" >id</div>
             <div field="code" name="code" width="80"  headeralign="center" >配件编码</div>
-            <div field="name" name="name" width="140"  headeralign="center" >OEM码</div>
+            <div field="name" name="name" width="140"  headeralign="center" >OE码</div>
             <div field="accountTypeId" name="accountTypeId" width="40" renderer="onAccount"  headeralign="center" >配件全称</div>
             <div field="isDisabled" name="isDisabled" width="40" renderer="onRenderer"  headeralign="center" >统一售价</div>
             <div field="remark" name="remark" width="80"  headeralign="center" >备注</div>

@@ -9,7 +9,9 @@ var partInfoUrl = baseUrl + "com.hsapi.cloud.part.invoicing.paramcrud.queryBillP
 var enterUrl = baseUrl + "com.hsapi.cloud.part.invoicing.stockcal.queryOutableEnterGridWithPage.biz.ext";
 var advancedSearchWin = null;
 var advancedMorePartWin = null;
+var advancedMorePartWin2 = null;
 var advancedAddWin = null;
+var advancedMorePartWin2 = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
 var basicInfoForm = null;
@@ -25,11 +27,14 @@ var sOrderDate = null;
 var eOrderDate = null;
 var dataList = null;
 var morePartGrid = null;
+var morePartGrid2 =null;
 var enterGrid = null;
 var FStoreId = null;
 var isNeedSet = false;
 var oldValue = null;
+var oldValue2 =null;
 var oldRow = null;
+var oldRow2 =null;
 var morePartCodeEl = null;
 var morePartNameEl = null;
 var showStockEl = null;
@@ -48,6 +53,11 @@ var AuditSignHash = {
   "1":"已出库"
 };
 var storeLimitMap={};
+//是否开单
+var isBilling=0;
+//是否修改配件
+var isEditPart =0;
+var partIn =false;
 $(document).ready(function(v)
 {
     nui.mask({
@@ -63,8 +73,11 @@ $(document).ready(function(v)
     rightGrid.setUrl(rightGridUrl);
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedMorePartWin = nui.get("advancedMorePartWin");
+    advancedMorePartWin2 = nui.get("advancedMorePartWin2");
+    
     advancedAddWin = nui.get("advancedAddWin");
     morePartGrid = nui.get("morePartGrid");
+    morePartGrid2 = nui.get("morePartGrid2");
     enterGrid = nui.get("enterGrid");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     basicInfoForm = new nui.Form("#basicInfoForm");
@@ -244,7 +257,20 @@ $(document).ready(function(v)
             }
             if(advancedSearchShow==1){
             	onAdvancedSearchCancel();
+            }if(partShow ==1){
+            	onPartClose2();
             }
+        }
+        if((keyCode==13))  { 
+        	if(partShow==1){
+        		if(partIn==true){
+                	addSelectPart2();
+                	
+                }
+        		partIn=true;
+        	}
+            
+            
         }
      
     }
@@ -362,6 +388,10 @@ function loadMainAndDetailInfo(row)
        nui.get("guestId").setText(row.guestFullName);
 
        var row = leftGrid.getSelected();
+       
+       nui.get("isBilling").setValue(row.isBilling);
+	   billingChange();
+       
 
 
        if(row.codeId && row.codeId>0){
@@ -492,6 +522,47 @@ function addInsertRow(value, row) {
 
     return false;
 }
+
+//给修改的配件用
+function addInsertRow2(value,row) {    
+
+    var params = {partCode:value.replace(/\s+/g, "")};
+	var part = getPartInfo2(params);
+
+	if(part){
+					
+		var newRow = {
+			showPartId : part.id,
+			showPartCode : part.code,
+			showCarModel : part.applyCarModel,
+			showOemCode : part.oemCode,
+			showFullName : part.fullName,
+			showSpec    : part.spec
+		};
+		if(brandHash[part.partBrandId]){
+			newRow.showBrandName=brandHash[part.partBrandId].name|| "";
+		}
+		
+		if(row){
+			rightGrid.updateRow(row,newRow);
+			//rightGrid.beginEditCell(row, "comUnit");
+		}else{
+			rightGrid.addRow(newRow);
+			//rightGrid.beginEditCell(row, "comUnit");
+		}
+	
+		return true;
+	}else{
+		var newRow = {showPartCode:oldValue2};
+		if(row){
+			rightGrid.updateRow(row,newRow);
+		}
+
+		return true;
+	}
+
+	return false;
+}
 //var partInfoUrl = baseUrl + "com.hsapi.cloud.part.invoicing.paramcrud.queryPartInfoByParam.biz.ext";
 function getPartInfo(params, callback){
     var part = null;
@@ -536,6 +607,132 @@ function getPartInfo(params, callback){
 
     return part;
 }
+
+function getPartInfo2(params){
+	var part = null;
+	var page = {size:100,length:100};
+	params.sortField = "b.stock_qty";
+	params.sortOrder = "desc";
+	//仓先生
+	if(currIsOpenApp ==1){
+	params.showStock=2;
+	}
+	nui.ajax({
+	url : partInfoUrl,
+	type : "post",
+	async: false,
+	data : {
+		params: params,
+		token: token
+	},
+	success : function(data) {
+		var partlist = data.parts;
+		if(partlist && partlist.length>0){
+			//如果只返回一条数据，直接添加；否则切换到配件选择界面按输入的条件输出
+			//如果有替换件(不直接添加)
+			if(partlist.length==1 && partlist[0].commonId==0){
+				part = partlist[0];
+	
+			}else{
+				advancedMorePartWin2.show();
+				morePartGrid2.setData(partlist);
+				partShow = 1;
+			    var row = morePartGrid2.getRow(0);
+		        if(row){
+		            morePartGrid2.select(row,true);
+		        }
+		        partIn=false;
+				//mainTabs.activeTab(partInfoTab);
+				//var partCode = params.partCode;
+				//var partName = params.partName;
+				//var param = {code:partCode, name:partName};
+				//document.getElementById("formIframePart").contentWindow.initData(params.partCode);
+				//mainTabs.getTabIFrameEl(partInfoTab).contentWindow.initData(params.partCode);
+			}
+			
+		}else{
+			//清空行数据
+			// nui.confirm("没有搜索到配件信息，是否需要新增?", "友情提示", function(action) {
+			// 	if (action == "ok") {
+	
+			// 		var row = rightGrid.getSelected();
+			// 		rightGrid.removeRow(row);
+			// 		addNewRow(false);
+			// 	} else {
+			// 		var row = rightGrid.getSelected();
+			// 		rightGrid.removeRow(row);
+			// 		addNewRow(false);
+			// 		return;
+			// 	}
+			// });
+			showMsg("没有搜索到配件信息!","W");
+			var newRow = {showPartCode: oldValue2};
+			rightGrid.updateRow(oldRow2, newRow);
+//			var row = rightGrid.getSelected();
+//			
+//			nui.confirm("是否添加配件?", "友情提示", function(action) {
+//				
+//				if (action == "ok") {
+//					addOrEditPart(row);
+//				}
+//				else{
+//					return;
+//				}
+//				});
+//	//		rightGrid.removeRow(row);
+	//		addNewRow(false);
+			/*var row = rightGrid.getSelected();
+			var newRow = {comPartCode: ""};
+	
+			rightGrid.cancelEdit();
+			rightGrid.updateRow(row, newRow);
+			rightGrid.beginEditCell(row,"comPartCode");*/
+		}
+	
+	},
+	error : function(jqXHR, textStatus, errorThrown) {
+		// nui.alert(jqXHR.responseText);
+		console.log(jqXHR.responseText);
+	}
+	});
+	
+	return part;
+}
+
+function addSelectPart2(){
+	
+	var row = morePartGrid2.getSelected();
+	row.partId =row.id;
+	if(row){			
+		var newRow = {
+			showPartId : row.id,
+			showPartCode : row.code,
+			showBrandName :"",
+			showCarModel : row.applyCarModel,
+			showOemCode : row.oemCode,
+			showFullName : row.fullName
+		};
+		if(brandHash[row.partBrandId]){
+			newRow.showBrandName =brandHash[row.partBrandId].name;
+		}
+		advancedMorePartWin2.hide();
+		morePartGrid2.setData([]);
+		partShow = 0;
+
+		if(rightGrid.getSelected()){
+			rightGrid.updateRow(rightGrid.getSelected(),newRow);
+		}else{
+			rightGrid.addRow(newRow);
+		}
+	
+		
+	}else{
+		showMsg("请选择配件!","W");
+		return;
+	}
+	
+}
+
 function showPartInfo(row, value, mainId){
 	partShow =1;
     nui.open({
@@ -1114,6 +1311,21 @@ function getMainData()
     if (data.orderDate) {
   	  data.orderDate = format(data.orderDate, 'yyyy-MM-dd HH:mm:ss');
   	}
+   //是否开单
+	if(isBilling ==1){
+		data.isBilling=1;
+	}else{
+		data.isBilling=0;
+	}
+	var showAmt =0;
+	var rows =rightGrid.getData();
+	for (var i = 0; i < rows.length; i++) {
+		if(rows[i].showAmt){
+			showAmt += parseFloat(rows[i].showAmt);
+		}
+		
+	}
+	data.showAmt =showAmt;
 
     rightGrid.findRow(function(row){
         var partId = row.partId;
@@ -1476,6 +1688,22 @@ function onCellEditEnter(e){
                 }
             }
         }
+        else if(column.field == "showPartCode"){
+        	var partCode = record.showPartCode||"";
+            partCode = partCode.replace(/\s+/g, "");
+			if(!partCode){
+				showMsg("请输入编码!","W");
+				return;
+			}else{
+				var rs = addInsertRow2(partCode,record);
+				if(!rs){
+					var newRow = {showPartCode: oldValue2};
+					rightGrid.updateRow(record, newRow);
+					return;
+				}
+			}
+        }
+             
     }
 }
 //提交单元格编辑数据前激发
@@ -1503,8 +1731,16 @@ function onCellCommitEdit(e) {
             }
             
             var orderAmt = orderQty * orderPrice;                  
-                                
-            newRow = { orderAmt: orderAmt};
+            var showPrice =  record.showPrice;
+            var showAmt = orderQty* showPrice;
+            //开单
+            if(isBilling==1){
+            	newRow = { orderAmt: orderAmt,showAmt:showAmt};
+            }else{
+            	var showAmt = orderAmt;
+            	newRow = { orderAmt: orderAmt,showAmt:showAmt};
+            }
+//            newRow = { orderAmt: orderAmt};
             rightGrid.updateRow(e.row, newRow);
             
             //record.enteramt.cellHtml = enterqty * enterprice;
@@ -1522,7 +1758,15 @@ function onCellCommitEdit(e) {
             
             var orderAmt = orderQty * orderPrice; 
                            
-            newRow = { orderAmt: orderAmt};
+            //开单
+            if(isBilling==1){
+            	newRow = { orderAmt: orderAmt};
+            }else{
+            	var showAmt = orderAmt;
+            	var showPrice=orderPrice;
+            	newRow = { orderAmt: orderAmt,showAmt:showAmt,showPrice:showPrice };
+            }
+            
             rightGrid.updateRow(e.row, newRow);
 
             if(orderPrice){
@@ -1545,7 +1789,16 @@ function onCellCommitEdit(e) {
             var orderPrice = (orderAmt*1.0/orderQty).toFixed(4);
 
             if(orderQty) {
-                newRow = { orderPrice: orderPrice};
+            	//开单
+                if(isBilling==1){
+                	newRow = { orderPrice: orderPrice};
+                }else{
+                	var showAmt = orderAmt;
+                	var showPrice=orderPrice;
+                	newRow = { orderPrice: orderPrice,showAmt:showAmt,showPrice:showPrice };
+                }
+                
+//                newRow = { orderPrice: orderPrice};
                 rightGrid.updateRow(e.row, newRow);
             }
             
@@ -1570,7 +1823,50 @@ function onCellCommitEdit(e) {
                 }
             }*/
             
-        }
+       }else if(e.field == "showPartCode"){
+       	 oldValue2 = e.oldValue;
+            oldRow2 = row;
+       }else if(e.field =="showPrice"){
+       	 var orderQty = record.orderQty;
+            var showPrice = e.value;
+            
+            if(e.value==null || e.value=='') {
+                e.value = 0;
+                showPrice = 0;
+            }else if(e.value < 0) {
+                e.value = 0;
+                showPrice = 0;
+            }
+            
+            var showAmt = orderQty * showPrice;             
+          //开单             
+        	newRow = { showAmt: showAmt};
+        	rightGrid.updateRow(e.row, newRow);
+            
+       }else if(e.field =="showAmt"){
+       	 var orderQty = record.orderQty;
+            var showAmt = e.value;
+            
+            if(e.value==null || e.value=='') {
+                e.value = 0;
+                showAmt = 0;
+            }else if(e.value < 0) {
+                e.value = 0;
+                showAmt = 0;
+            }
+            
+            //e.cellHtml = enterqty * enterprice;
+            var showPrice = (showAmt*1.0/orderQty).toFixed(4);
+          
+            if(orderQty) {
+            	//开单
+                if(isBilling==1){
+                	newRow = { showPrice: showPrice};
+                	rightGrid.updateRow(e.row, newRow);
+                }
+               
+            }
+       }
     }
 }
 function selectPart(callback,checkcallback)
@@ -1639,6 +1935,19 @@ function addDetail(row,data,ck)
     enterDetail.fullName = data.fullName;
     enterDetail.serviceId = row.serviceId;
     enterDetail.mainId = row.mainId;
+    
+    //开单和修改配件的信息赋默认值
+    enterDetail.showPrice = enterDetail.orderPrice;
+    enterDetail.showAmt = enterDetail.orderAmt;
+    enterDetail.showPartId = enterDetail.partId;
+    enterDetail.showPartCode = enterDetail.comPartCode;
+    enterDetail.showFullName = enterDetail.fullName;
+    enterDetail.showCarModel = enterDetail.comApplyCarModel;
+    enterDetail.showOemCode = enterDetail.comOemCode;
+    enterDetail.showSpec = enterDetail.comSpec;
+    if(brandHash[data.partBrandId]){
+    	enterDetail.showBrandName =brandHash[data.partBrandId].name;
+    }
 
     //if(row){
         //rightGrid.updateRow(row,enterDetail);
@@ -2291,6 +2600,16 @@ function onPartClose(){
     rightGrid.updateRow(oldRow, newRow);
     rightGrid.beginEditCell(oldRow, "comPartCode");
 }
+
+function onPartClose2(){
+    advancedMorePartWin2.hide();
+    morePartGrid2.setData([]);
+    partShow = 0;
+	var newRow = {showPartCode: oldValue2};
+	rightGrid.updateRow(oldRow2, newRow);
+	rightGrid.beginEditCell(oldRow2, "comPartCode");
+}
+
 function OnrpMainGridCellBeginEdit(e){
     var field=e.field; 
     var editor = e.editor;
@@ -2310,11 +2629,13 @@ function OnrpMainGridCellBeginEdit(e){
 
     if(row.partId) {
         if(row.isMarkBatch && row.isMarkBatch == 1){
-            if(column.field != "remark" && column.field != "orderPrice" && column.field != "orderAmt" && column.field != "orderQty"){
+            if(column.field != "remark" && column.field != "orderPrice" && column.field != "orderAmt" && column.field != "orderQty"
+            	&& column.field != "showPrice" && column.field != "showAmt" && column.field != "showPartCode"){
                 e.cancel = true;
             }
         }else{
-            if(column.field != "remark" && column.field != "orderQty" && column.field != "orderPrice" && column.field != "orderAmt" && column.field != "storeId"){
+            if(column.field != "remark" && column.field != "orderQty" && column.field != "orderPrice" && column.field != "orderAmt" && column.field != "storeId"
+            	&& column.field != "showPrice" && column.field != "showAmt" && column.field != "showPartCode"){
                 e.cancel = true;
             }
         }  
@@ -2748,4 +3069,63 @@ function showDueDetail(){
 
          }
      });
+}
+
+//是否开单
+function billingChange(){
+	isBilling =nui.get("isBilling").getValue();
+	var columnsList = [];
+    columnsList=rightGrid.columns;
+    var index =0;
+    var billingList=[];
+    for(var i=0;i<columnsList.length;i++){
+    	if(columnsList[i].header=="开单信息"){
+    		billingList=columnsList[i];
+    		index=i;
+    		 break;
+    	}
+    }
+	if(isBilling==1){
+		billingList.visible=true;
+		columnsList[index]=billingList;
+		rightGrid.set({
+	        columns: columnsList
+	    });
+	}else{
+		billingList.visible=false;
+		columnsList[index]=billingList;
+		rightGrid.set({
+	        columns: columnsList
+	    });
+	}
+	
+}
+//是否修改配件
+function partChange(){
+	isEditPart =nui.get("isEditPart").getValue();
+	var columnsList = [];
+    columnsList=rightGrid.columns;
+    var index =0;
+    var editPartList=[];
+    for(var i=0;i<columnsList.length;i++){
+    	if(columnsList[i].header=="修改的配件信息"){
+    		editPartList=columnsList[i];
+    		index=i;
+    		 break;
+    	}
+    }
+	if(isEditPart==1){
+		editPartList.visible=true;
+		columnsList[index]=editPartList;
+		rightGrid.set({
+	        columns: columnsList
+	    });
+	}else{
+		editPartList.visible=false;
+		columnsList[index]=editPartList;
+		rightGrid.set({
+	        columns: columnsList
+	    });
+	}
+	
 }

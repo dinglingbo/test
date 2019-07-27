@@ -305,7 +305,7 @@
                         <div field="storeShelf" width="30" headerAlign="center" allowSort="true">
                               仓位<input property="editor" class="nui-textbox"/>
                               </div>
-                      <div field="comOemCode" allowSelect="false" width="30" headerAlign="center" visible="false" allowSort="true" header="OEM码"></div> 
+                      <div field="comOemCode" allowSelect="false" width="30" headerAlign="center" visible="false" allowSort="true" header="OE码"></div> 
                       <div field="comSpec" allowSelect="false" width="30" headerAlign="center"  visible="false" allowSort="true" header="规格/方向/颜色"></div>
                       <div field="sourceMainId" allowSelect="false" width="100" headerAlign="center"  visible="false" allowSort="true" header="来源主表ID"></div>
                       <div field="sourceDetailId" allowSelect="false" width="100" headerAlign="center"  visible="false" allowSort="true" header="来源明细ID"></div>                             

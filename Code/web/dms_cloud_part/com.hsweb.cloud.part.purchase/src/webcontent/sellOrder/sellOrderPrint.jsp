@@ -294,7 +294,7 @@ hr {
                         <tr>
                         	<td id="index">序号</td>
 							<td id="comPartCode">配件编码</td>
-							<td id="comOemCode" >OEM码</td>
+							<td id="comOemCode" >OE码</td>
 							<td id="comPartName">配件名称</td>
 							<td id="comPartBrandId">品牌</td>
 							<td id="comApplyCarModel">品牌车型</td>
@@ -383,12 +383,12 @@ hr {
         	});
         	});
 	        	
-    		getAllPartBrand(function(data) {
-				brandList = data.brand;
-				brandList.forEach(function(v) {
-					brandHash[v.id] = v;
-			});
-			});
+//     		getAllPartBrand(function(data) {
+// 				brandList = data.brand;
+// 				brandList.forEach(function(v) {
+// 					brandHash[v.id] = v;
+// 			});
+// 			});
 	         document.onkeyup = function(event) {
 		        var e = event || window.event;
 		        var keyCode = e.keyCode || e.which;// 38向上 40向下
@@ -512,22 +512,22 @@ hr {
 							var tr=$("<tr></tr>");
 							tr.append(
 								tds.replace("[index]",i+1 ||"")
-									.replace("[comPartCode]",data[i].comPartCode ||"")
-									.replace("[comOemCode]",data[i].comOemCode ||"")
-									.replace("[comPartName]",data[i].comPartName ||"")
-									.replace("[comPartBrindId]",data[i].comPartBrandId?brandHash[data[i].comPartBrandId].name :"")
-									.replace("[comApplyCarModel]",data[i].comApplyCarModel ||"")
-									.replace("[comSpec]",data[i].comSpec ||"")
+									.replace("[comPartCode]",data[i].showPartCode ||"")
+									.replace("[comOemCode]",data[i].showOemCode ||"")
+									.replace("[comPartName]",data[i].showFullName ||"")
+									.replace("[comPartBrindId]",data[i].showBrandName || "")
+									.replace("[comApplyCarModel]",data[i].showCarModel ||"")
+									.replace("[comSpec]",data[i].showSpec ||"")
 									.replace("[comUnit]",data[i].comUnit ||"")
 									.replace("[orderQty]",data[i].orderQty ||"")
-									.replace("[orderPrice]",data[i].orderPrice ||"")
-									.replace("[orderAmt]",data[i].orderAmt ||"")
+									.replace("[orderPrice]",data[i].showPrice ||"")
+									.replace("[orderAmt]",data[i].showAmt ||"")
 									.replace("[remark]",data[i].remark ||"")
 									.replace("[storehouse]",data[i].storeId?storeHash[data[i].storeId].name :"")
 									.replace("[storeShelf]",data[i].storeShelf ||""));
 							tBody.append(tr);
 							sumOrderQty +=parseFloat(data[i].orderQty);
-							sumOrderAmt +=parseFloat(data[i].orderAmt);
+							sumOrderAmt +=parseFloat(data[i].showAmt);
 						}
 						var sum=transform(parseFloat(sumOrderAmt).toFixed(1)+"");
 						$('#sumOrderQty').text("合计:"+parseFloat(sumOrderQty).toFixed(1));

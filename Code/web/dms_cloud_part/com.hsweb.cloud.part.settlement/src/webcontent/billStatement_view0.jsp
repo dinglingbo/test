@@ -9,7 +9,7 @@
 -->
 <head>
 <title>月结对账</title>
-<script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.2.30"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.2.27"></script>
 <style type="text/css">
 .title {
   width: 85px;
@@ -278,8 +278,6 @@
                            dataField="detailList"
                            idField="id"
                            showSummaryRow="true"
-                           frozenStartColumn="0"
-                           frozenEndColumn="10"
                            ondrawcell="onRightGridDraw"
                            allowCellSelect="true"
                            allowCellEdit="false"
@@ -296,6 +294,8 @@
                               <div type="indexcolumn">序号</div>
                               <div type="checkcolumn" width="20"></div>
                               <div type="expandcolumn" width="20" >#</div>
+                              <div field="guestId" width="60" headerAlign="center" header="客户ID" visible="false"></div>
+                              <div field="guestName" width="60" headerAlign="center" header="客户名称" visible="false"></div>
                               <div field="typeCode" width="60" headerAlign="center" header="业务类型"></div>
                               <div field="billAmt" width="60" headerAlign="center" summaryType="sum" header="金额"></div>
                               <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
@@ -399,7 +399,7 @@
               <div type="indexcolumn">序号</div>
               <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
               <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
-              <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
+              <div allowSort="true" field="comOemCode" headerAlign="center" header="OE码"></div>
               <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
               <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
               <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
@@ -422,10 +422,9 @@
            url=""
            showSummaryRow="true">
           <div property="columns">
-              <div type="indexcolumn">序号</div>
               <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
               <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
-              <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
+              <div allowSort="true" field="comOemCode" headerAlign="center" header="OE码"></div>
               <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
               <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
               <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
@@ -441,7 +440,7 @@
   <div id="editFormSellOutDetail" style="display:none;">
       <div id="innerSellOutGrid" class="nui-datagrid" style="width:100%;height:150px;"
            showPager="false"
-           dataField="pjSellOutDetailList"
+           dataField="pjSellOrderDetailList"
            idField="detailId"
            ondrawcell="onDrawCell"
            sortMode="client"
@@ -449,16 +448,16 @@
            showSummaryRow="true">
           <div property="columns">
               <div type="indexcolumn">序号</div>
-              <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
-              <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
-              <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
-              <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
-              <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
+              <div allowSort="true" field="showPartCode" width="60" headerAlign="center" header="配件编码"></div>
+              <div allowSort="true" field="showFullName" headerAlign="center" header="配件名称"></div>
+              <div allowSort="true" field="showOemCode" headerAlign="center" header="OE码"></div>
+              <div allowSort="true" field="showBrandName" width="60" headerAlign="center" header="品牌"></div>
+              <div allowSort="true" field="showCarModel" width="60" headerAlign="center" header="品牌车型"></di
               <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
               <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
-              <div allowSort="true" datatype="float" field="sellQty" summaryType="sum" width="60" headerAlign="center" header="销售数量"></div>
-              <div allowSort="true" datatype="float" field="sellPrice" width="60" headerAlign="center" header="销售单价"></div>
-              <div allowSort="true" datatype="float" field="sellAmt" summaryType="sum" width="60" headerAlign="center" header="销售金额"></div>
+              <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="销售数量"></div>
+              <div allowSort="true" datatype="float" field="showPrice" width="60" headerAlign="center" header="销售单价"></div>
+              <div allowSort="true" datatype="float" field="showAmt" summaryType="sum" width="60" headerAlign="center" header="销售金额"></div>
               <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
               <!-- <div field="enterPrice" width="60" headerAlign="center" header="成本单价"></div>
               <div field="enterAmt" width="60" headerAlign="center" summaryType="sum" header="成本金额"></div>
@@ -486,7 +485,7 @@
               <div type="indexcolumn">序号</div>
               <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
               <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
-              <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
+              <div allowSort="true" field="comOemCode" headerAlign="center" header="OE码"></div>
               <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
               <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
               <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
@@ -515,28 +514,14 @@
         <tr>
             <td colspan="1" align="left">单号：</td>
             <td colspan="1" align="left"><span id="eServiceId"></span></td>
-        </tr>
-        <tr>
-            <td colspan="1" align="left">往来单位：</td>
-            <td colspan="1" align="left"><span id="eGuestName"></span></td>
-        </tr>
-        <tr>
             <td colspan="1" align="left">备注：</td>
             <td colspan="1" align="left"><span id="eRemark"></span></td>
         </tr>
-        <tr>  
-            <td colspan="1" align="center">业务类型</td>
-            <td colspan="1" align="center">金额</td>
-            <td colspan="1" align="center">业务员</td>
-            <td colspan="1" align="center">审核日期</td>
-            <td colspan="1" align="center">备注</td>
-            <td colspan="1" align="center">业务单号</td>
-        </tr>
+              
         <tbody id="tableExportContent">
         </tbody>
     </table>  
     <a href="" id="tableExportA"></a>
 </div> 
-
 </body>
 </html>

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>应收应付结算</title>
-<script src="<%=webPath + contextPath%>/settlement/js/rpAccountSettle.js?v=2.3.9"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/rpAccountSettle.js?v=2.3.10"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -105,6 +105,9 @@
 
                 <span class="separator"></span> 
                 <input id="serviceId" width="120px" emptyText="业务单号" class="nui-textbox"/>
+                <input class="nui-combobox" id ="settleStatus" name="settleStatus" value="0"
+                     		nullitemtext="请选择..." emptyText="结算状态" data="settleStatusList" width="100px" />
+		
                 <!-- <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择结算单位..."
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" /> -->
@@ -344,7 +347,7 @@
               <div type="indexcolumn">序号</div>
               <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
               <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
-              <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
+              <div allowSort="true" field="comOemCode" headerAlign="center" header="OE码"></div>
               <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
               <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
               <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
@@ -374,7 +377,7 @@
             <div type="indexcolumn">序号</div>
             <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
             <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
-            <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
+            <div allowSort="true" field="comOemCode" headerAlign="center" header="OE码"></div>
             <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
             <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
             <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
@@ -405,7 +408,7 @@
               <div type="indexcolumn">序号</div>
               <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
               <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
-              <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
+              <div allowSort="true" field="comOemCode" headerAlign="center" header="OE码"></div>
               <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
               <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
               <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
@@ -436,7 +439,7 @@
             <div type="indexcolumn">序号</div>
             <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
             <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
-            <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
+            <div allowSort="true" field="comOemCode" headerAlign="center" header="OE码"></div>
             <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
             <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
             <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
@@ -468,7 +471,7 @@
             <div type="indexcolumn">序号</div>
             <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
             <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
-            <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
+            <div allowSort="true" field="comOemCode" headerAlign="center" header="OE码"></div>
             <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
             <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
             <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
@@ -684,7 +687,7 @@
 </div>
 
 <div id="settleWin" class="nui-window"
-     title="结算" style="width:650px;height:500px;"
+     title="结算" style="width:650px;height:620px;"
      showModal="true"
      allowResize="false"
      allowDrag="false">
@@ -805,7 +808,7 @@
                 <tr>
                     <td style="text-align:center" width="60px">备注:</td>
                     <td id="rpRemark" style="text-align:left;" width="500px">
-                        <input id="rpTextRemark" width="80%" emptyText="" class="nui-textbox"/>
+                        <input id="rpTextRemark" width="100%" height="180px" emptyText="" class="nui-textArea"/>
                     </td>
                 </tr>
             </table>

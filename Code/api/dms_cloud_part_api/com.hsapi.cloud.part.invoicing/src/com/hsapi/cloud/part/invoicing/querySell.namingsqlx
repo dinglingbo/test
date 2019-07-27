@@ -1483,6 +1483,7 @@
 			a.show_brand_name as showBrandName,
 			a.show_car_model as showCarModel,
 			a.show_oem_code as showOemCode,
+			a.show_spec as showSpec,
 			a.show_price as showPrice,
 			a.show_amt as showAmt
 			FROM
@@ -1493,6 +1494,10 @@
             <dynamic>
                 <isNotEmpty prepend="and" property="mainId">  
                     (A.MAIN_ID = #mainId#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="mainIds">  
+                    (A.MAIN_ID in ($mainIds$))
                 </isNotEmpty>
                 
             </dynamic>  
@@ -1552,6 +1557,7 @@
 			a.show_brand_name as showBrandName,
 			a.show_car_model as showCarModel,
 			a.show_oem_code as showOemCode,
+			a.show_spec as showSpec,
 			a.show_price as showPrice,
 			a.show_amt as showAmt
 			FROM

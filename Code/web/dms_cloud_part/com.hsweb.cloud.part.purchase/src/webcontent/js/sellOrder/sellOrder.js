@@ -471,14 +471,20 @@ function loadMainAndDetailInfo(row)
        basicInfoForm.setData(row);
        var billStatusId=row.billStatusId;
 	   $('#status').text(StatusHash[billStatusId]);
-	   var params ={
-			guestId : row.guestId,
-			orgid : currOrgId,
-			billDc : -1,
-			isDisabled :0
-	   }
-	   var dueAmt = getDueAmt(params);
-	   $('#dueAmt').text("客户欠款: "+dueAmt);
+	   var pr ={
+	   			guestId : row.guestId,
+	   			orgid : currOrgId,
+	   			isDisabled :0,
+	   			billDc   :1,
+	   	   }
+   	   var pp ={
+   			guestId : row.guestId,
+   			orgid : currOrgId,
+   			isDisabled :0,
+   			billDc : -1
+   	   }
+	   var dueAmt = getDueAmt(pr,pp);
+	   $('#dueAmt').html("客户欠款: "+"<a style='text-decoration:underline;color:#0066cc'><span>"+dueAmt+"<span></a>");
        //bottomInfoForm.setData(row);
        nui.get("guestId").setText(row.guestFullName);
 
@@ -3010,13 +3016,13 @@ function setInitExportData(main, detail){
     document.getElementById("eServiceId").innerHTML = main.serviceId?main.serviceId:"";
     document.getElementById("eGuestName").innerHTML = main.guestFullName?main.guestFullName:"";
     document.getElementById("eRemark").innerHTML = main.remark?main.remark:"";
-    var tds = '<td  colspan="1" align="left">[comPartCode]</td>' +
-        "<td  colspan='1' align='left'>[comFullName]</td>" +
-        "<td  colspan='1' align='left'>[comApplyCarModel]</td>" +
+    var tds = '<td  colspan="1" align="left">[showPartCode]</td>' +
+        "<td  colspan='1' align='left'>[showFullName]</td>" +
+        "<td  colspan='1' align='left'>[showCarModel]</td>" +
         "<td  colspan='1' align='left'>[comUnit]</td>" +
         "<td  colspan='1' align='left'>[orderQty]</td>" +
-        "<td  colspan='1' align='left'>[orderPrice]</td>" +
-        "<td  colspan='1' align='left'>[orderAmt]</td>" +
+        "<td  colspan='1' align='left'>[showPrice]</td>" +
+        "<td  colspan='1' align='left'>[showAmt]</td>" +
         "<td  colspan='1' align='left'>[remark]</td>";
     var tableExportContent = $("#tableExportContent");
     tableExportContent.empty();
@@ -3024,13 +3030,13 @@ function setInitExportData(main, detail){
         var row = detail[i];
         if(row.partId){
             var tr = $("<tr></tr>");
-            tr.append(tds.replace("[comPartCode]", detail[i].comPartCode?detail[i].comPartCode:"")
-                         .replace("[comFullName]", detail[i].comFullName?detail[i].comFullName:"")
-                         .replace("[comApplyCarModel]", detail[i].comApplyCarModel?detail[i].comApplyCarModel:"")
+            tr.append(tds.replace("[showPartCode]", detail[i].showPartCode?detail[i].showPartCode:"")
+                         .replace("[showFullName]", detail[i].showFullName?detail[i].showFullName:"")
+                         .replace("[showCarModel]", detail[i].showCarModel?detail[i].showCarModel:"")
                          .replace("[comUnit]", detail[i].comUnit?detail[i].comUnit:"")
                          .replace("[orderQty]", detail[i].orderQty?detail[i].orderQty:"")
-                         .replace("[orderPrice]", detail[i].orderPrice?detail[i].orderPrice:"")
-                         .replace("[orderAmt]", detail[i].orderAmt?detail[i].orderAmt:"")
+                         .replace("[showPrice]", detail[i].showPrice?detail[i].showPrice:"")
+                         .replace("[showAmt]", detail[i].showAmt?detail[i].showAmt:"")
                          .replace("[remark]", detail[i].remark?detail[i].remark:""));
             tableExportContent.append(tr);
         }
@@ -3202,12 +3208,12 @@ function packOut(){
     }
 }
 
-function getDueAmt(params){
+function getDueAmt(pr,pp){
 	var dueAmt =0;
 	nui.ajax({
         url : baseUrl+ "com.hsapi.cloud.part.settle.svr.queryBillsDue.biz.ext",
         type : "post",
-        data : {params: params, token: token},
+        data : {pr: pr,pp:pp ,token: token},
         async: false,
         success : function(data) {
             nui.unmask(document.body);

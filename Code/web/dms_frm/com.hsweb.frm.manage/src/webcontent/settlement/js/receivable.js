@@ -79,8 +79,11 @@ function setData(data,TypeIdHash){
 			success : function(data) {
 				if(data.errCode == "S") {
 					contact = data.contact;
-					if(contact.wechatOpenId==""||contact.wechatOpenId==null){
+					if(contact.wechatOpenId==""||contact.wechatOpenId==null ){
 						document.getElementById("wxbtnsettle").style.background = "#3c3c3c3c";
+					}
+					if(currOrgId != '242' ){
+						$("#wxbtnsettle").hide();
 					}
 				}else{
 					$("#wxbtnsettle").hide();
@@ -662,7 +665,7 @@ function getPustParams(guestPreData) {
 			rpBillNames += ("," + BillNamesText);
 			remarkText += "," + BillNamesText + " " + temp.nowAmt + "元 ";
 		}
-		temp.fisId = nui.clone(temp.id);
+		temp.mainId = nui.clone(temp.id);
 		temp.id = '';//清空 为保存用
 		guestList.push(temp);
 	}

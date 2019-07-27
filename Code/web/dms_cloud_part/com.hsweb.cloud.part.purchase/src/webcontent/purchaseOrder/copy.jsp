@@ -402,7 +402,7 @@
                                           onvaluechanged="" emptyText=""  vtype="required"
                                           /> 
                             </div>  
-                          <div field="comOemCode" allowSelect="false" width="60" headerAlign="center" allowSort="true" header="OEM码"></div> 
+                          <div field="comOemCode" allowSelect="false" width="60" headerAlign="center" allowSort="true" header="OE码"></div> 
                           <div field="comSpec" allowSelect="false" width="100" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div> 
                                         <div field="partId" summaryType="count" width="50" headerAlign="center" header="配件ID"></div>                              
                                     </div>

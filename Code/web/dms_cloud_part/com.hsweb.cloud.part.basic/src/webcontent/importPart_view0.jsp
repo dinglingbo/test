@@ -118,8 +118,8 @@
 					型号<input property="editor" class="nui-textbox"/></div>
 				<div field="实物码" width="100px" headerAlign="center" allowSort="true">
 					实物码<input property="editor" class="nui-textbox"/></div>
-				<div field="OEM码" width="100px" headerAlign="center" allowSort="true">
-					OEM码<input property="editor" class="nui-textbox"/></div>
+				<div field="OE码" width="100px" headerAlign="center" allowSort="true">
+					OE码<input property="editor" class="nui-textbox"/></div>
 				<div field="适用车型" width="120px" headerAlign="center" allowSort="true">
 					适用车型<input property="editor" class="nui-textbox"/></div>
                 <div field="通用编码" width="120px" headerAlign="center" allowSort="true">

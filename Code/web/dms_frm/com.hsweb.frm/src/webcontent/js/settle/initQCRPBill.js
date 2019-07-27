@@ -93,8 +93,15 @@ function addGuest(){
                     var fullName = supplier.fullName;
                     var shortName  = supplier.shortName;
                     var code = supplier.code;
-
-                    var newRow = {guestId: guestId, guestFullName: fullName,  carNo: carNo,guestShortName: shortName, code: code, rpTypeId: 3};
+                    var carNo = supplier.carNo||"";
+                    var newRow = {
+                    		"guestId" : guestId, 
+                    		"guestFullName" : fullName,  
+                    		"carNo" : carNo,
+                    		"guestShortName" : shortName,
+                    		"code" : code, 
+                    		"rpTypeId" : 3
+                    		};
                     mainGrid.addRow(newRow);
                 }
                 

@@ -169,7 +169,7 @@ body .mini-grid-row-selected{
                 <div type="indexcolumn">序号</div>
                 <div type="expandcolumn" width="50" >替换件</div>
                 <div field="code" name="code" width="120" headerAlign="center" header="配件编码"></div>
-                <div field="oemCode" name="oemCode" width="220" headerAlign="center" header="OEM码"></div>
+                <div field="oemCode" name="oemCode" width="220" headerAlign="center" header="OE码"></div>
                 <div field="name" name="name" width="180" headerAlign="center" header="配件名称"></div>
                 <div field="partBrandId" name="partBrandId" width="180" headerAlign="center" header="品牌"></div>
                 <div field="applyCarModel" name="applyCarModel" width="250" headerAlign="center" header="品牌车型"></div>
@@ -249,7 +249,7 @@ body .mini-grid-row-selected{
       <div property="columns">
             <div type="indexcolumn">序号</div>
             <div field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
-            <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
+            <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OE码"></div>
             <div field="partName" name="partName" width="100" headerAlign="center" header="配件名称"></div>
             <div field="partBrandId" name="partBrandId" width="80" headerAlign="center" header="品牌"></div>
             <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="品牌车型"></div>

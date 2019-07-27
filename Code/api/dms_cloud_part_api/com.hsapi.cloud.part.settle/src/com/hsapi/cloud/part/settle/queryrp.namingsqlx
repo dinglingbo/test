@@ -547,7 +547,8 @@
 			sum(no_char_off_amt) as dueAmt
 		FROM
 			fi_rp_bill
-		WHERE 1=1				
+		WHERE 1=1 and 
+		and a.is_disabled =0			
 			<dynamic>
             	<isNotEmpty prepend="and" property="orgid"> 
                     (orgid = #orgid#)
@@ -572,21 +573,27 @@
 	<!--查询客户欠款明细 -->
 	<select id="queryBillsDueDetail" parameterClass="java.util.HashMap"  resultClass="commonj.sdo.DataObject">
 		SELECT
-			a.id as id,
-			a.orgid as orgid,
-			a.rp_bill_id as rpBillId,
-			a.bill_type_code as billTypeCode,
-			a.bill_type_id as billTypeId,
-			a.guest_id as guestId,
-			a.guest_name as guestName,
-			a.remark as remark,
-			a.settle_status as settleStatus,
-			a.rp_amt as rpAmt,
-			a.char_off_amt as charOffAmt,
-			a.bill_main_id as billMainId,
-			a.bill_service_id as billServiceId,
-			a.create_date as createDate,
-			a.no_char_off_amt as noCharoffAmt
+			a.id AS id,
+			a.orgid AS orgid,
+			a.rp_bill_id AS rpBillId,
+			a.bill_type_code AS billTypeCode,
+			a.bill_type_id AS billTypeId,
+			a.guest_id AS guestId,
+			a.guest_name AS guestName,
+			a.remark AS remark,
+			a.settle_status AS settleStatus,
+			CASE
+			WHEN a.bill_dc =- 1 THEN
+				- (a.rp_amt)
+			ELSE
+				a.rp_amt
+			END AS rpAmt,
+			 a.char_off_amt AS charOffAmt,
+			 a.bill_main_id AS billMainId,
+			 a.bill_service_id AS billServiceId,
+			 a.create_date AS createDate,
+			 a.no_char_off_amt AS noCharoffAmt,
+			 a.bill_dc AS billDc
 		FROM
 			fi_rp_bill a
 		WHERE
@@ -623,6 +630,12 @@
             </dynamic> 
 				
 	</select>
+	<!--更新对账单回款金额 -->
+	<update id="updateReceiveAmt" parameterClass="java.util.HashMap">			
+		UPDATE pj_statement_main 
+			SET receive_amt= (receive_amt+ #amt#)
+		WHERE id = #id#	
+	</update>
 	
 	
 </sqlMap>

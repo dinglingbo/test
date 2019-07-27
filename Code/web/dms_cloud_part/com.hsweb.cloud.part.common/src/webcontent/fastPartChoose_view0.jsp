@@ -94,7 +94,7 @@ body .mini-grid-row-selected{
                                         <div type="indexcolumn">序号</div>
                                         <div type="expandcolumn" width="50" >替换件</div>
                                         <div field="code" name="code" width="100" headerAlign="center" header="配件编码"></div>
-                                        <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
+                                        <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OE码"></div>
                                         <div field="name" name="name" width="100" headerAlign="center" header="配件名称"></div>
                                         <div field="partBrandId" name="partBrandId" width="80" headerAlign="center" header="品牌"></div>
                                         <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="品牌车型"></div>
@@ -130,7 +130,7 @@ body .mini-grid-row-selected{
                                     <div type="indexcolumn">序号</div>
                                     <div type="expandcolumn" width="50" >替换件</div>
                                     <div field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
-                                    <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
+                                    <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OE码"></div>
                                     <div field="partName" partName="name" width="100" headerAlign="center" header="配件名称"></div>
                                     <div allowSort="true" datatype="float" width="60" field="stockQty" name="stockQty" headerAlign="center" header="库存数量"></div>
                                     <div allowSort="true" datatype="float" width="60" field="preOutQty" headerAlign="center" header="待出库数量"></div>
@@ -301,7 +301,7 @@ body .mini-grid-row-selected{
       <div property="columns">
             <div type="indexcolumn">序号</div>
             <div field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
-            <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
+            <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OE码"></div>
             <div field="partName" name="partName" width="100" headerAlign="center" header="配件名称"></div>
             <div field="partBrandId" name="partBrandId" width="80" headerAlign="center" header="品牌"></div>
             <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="品牌车型"></div>
@@ -327,7 +327,7 @@ body .mini-grid-row-selected{
        allowSortColumn="true">
       <div property="columns">
             <div field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
-            <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
+            <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OE码"></div>
             <div field="partName" partName="name" width="100" headerAlign="center" header="配件名称"></div>
             <div allowSort="true" datatype="float" width="60" field="stockQty" name="stockQty" headerAlign="center" header="库存数量"></div>
             <div allowSort="true" datatype="float" width="60" field="preOutQty" headerAlign="center" header="待出库数量"></div>

@@ -133,7 +133,7 @@
                     <div allowSort="true" field="partCode" summaryType="count" width="80" headerAlign="center" header="配件编码"></div>
                     <div allowSort="true" field="partName" width="80" headerAlign="center" header="配件名称"></div>
                     <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="配件品牌"></div>
-                    <div allowSort="true" field="oemCode" width="80" headerAlign="center" header="OEM码"></div>
+                    <div allowSort="true" field="oemCode" width="80" headerAlign="center" header="OE码"></div>
                     <div field="sellQty" allowSort="true" headerAlign="center"
                       width="60" summaryType="sum" >销售数量</div>
                     <div field="sellAmt" allowSort="true" headerAlign="center"
@@ -251,7 +251,7 @@
             <td colspan="1" align="center">配件编码</td>
             <td colspan="1" align="center">配件名称</td>
             <td colspan="1" align="center">配件品牌</td>
-            <td colspan="1" align="center">OEM码</td>
+            <td colspan="1" align="center">OE码</td>
             <td colspan="1" align="center">入库数量</td>
             <td colspan="1" align="center">入库金额</td>
             <td colspan="1" align="center">退货数量</td>

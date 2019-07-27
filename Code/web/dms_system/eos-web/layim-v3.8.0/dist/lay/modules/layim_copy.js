@@ -788,7 +788,9 @@ layui.define(['layer', 'laytpl', 'upload'], function(exports){
         layimClose = layero;
         if(cache.base.right){
           layero.css('margin-left', '-' + cache.base.right);
+          layero.style("z-index:99");
         }
+        layero.style("z-index:99");
         layero.on('click', function(){
           layer.close(index);
           layimMain.show();

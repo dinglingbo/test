@@ -516,13 +516,20 @@
 			a.car_vin as carVin,
 			a.total_amt as totalAmt,
 			a.enable_settle_date as enableSettleDate,
+			a.sett_account_code as settAccountCode,
+			a.sett_account_id as settAccountId,
+			a.sett_account_name as settAccountName,
 			a.settle_date as settleDate,
 			a.settle_status as settleStatus,
 			a.remark as remark,
 			a.rp_bill_ids as rpBillIds,
 			a.rp_bill_names as rpBillNames,
 			a.creator as creator,
-			a.create_date as createDate
+			a.create_date as createDate,
+			b.fis_id as fisId,
+			b.bill_service_id as billServiceId,
+			b.bill_type_id as billTypeId,
+			b.now_amt as nowAmt
 		FROM
 			fis_pre_bill AS a
 			INNER JOIN fis_pre_bill_detail AS b ON a.id = b.pre_bill_id

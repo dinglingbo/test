@@ -44,7 +44,8 @@
                         overflow: auto;
                     }
 
-
+.layui-layim-close{    z-index: 99 !important;}
+#layui-layer2{    z-index: 99 !important;}
                     #_sys_tip_msg_ {
                         z-index: 9999;
                         position: fixed;
@@ -157,8 +158,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- <li><a href="#"><i class="fa fa-paper-plane"></i> 代办事项</a></li>
             <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li> -->
-                        <li class="dropdown">
-                            <a onClick="OrgShow()" style="padding-top: 18px; ">
+                        <li class="dropdown" style="margin-top: 3px;">
+                            <a onClick="OrgShow()" >
                                 <span class="org_hover" id="currOrgName">公司</span>
                             </a>
                             <ul class="dropdown-menu pull-right" id="orgsname">
@@ -206,7 +207,7 @@
                         <!-- <li class="dropdown">
            		<a class="" style="padding-top: 18px; " onclick="customer()" title="客服信息"><i class="fa fa-user-circle-o"></i></a>
            	</li> -->
-                        <li id="customer">
+                        <li id="customer" class="dropdown">
 <!--                             <a href="#click" class="kefu">
                                 <h2 class="kefu-title">客服</h2>
                                 <ul class="kefu-dropdown">
@@ -222,7 +223,7 @@
                             </a> -->
                         </li>
                         <li class="dropdown">
-                            <a class="feedback-bt FeedBackButton" style="padding-top: 18px; ">
+                            <a class="feedback-bt FeedBackButton" style="padding-top: 19px; ">
                                 反馈
                             </a>
                         </li>

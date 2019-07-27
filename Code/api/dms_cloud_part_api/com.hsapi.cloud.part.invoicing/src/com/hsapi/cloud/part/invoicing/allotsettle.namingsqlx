@@ -482,7 +482,10 @@
 		from pj_allot_accept_detail a
 		inner join pj_allot_apply_detail b
 		on a.prev_detail_id = b.id
-		where a.main_id = #mainId# and a.accept_qty + b.has_accept_qty + b.has_cancel_qty > b.apply_qty
+		inner join pj_allot_accept_main c
+		on a.main_id = c.id
+		where a.main_id = #mainId# and c.source_type = 1
+		      and a.accept_qty + b.has_accept_qty + b.has_cancel_qty > b.apply_qty
 		    
     </select>
     
@@ -492,10 +495,12 @@
 		update pj_allot_accept_detail a
 		inner join pj_allot_apply_detail b
 		on a.prev_detail_id = b.id
+		inner join pj_allot_accept_main c
+		on a.main_id = c.id
 		set b.has_accept_qty = b.has_accept_qty + a.accept_qty,
 		    b.is_allot_finished = case when b.has_accept_qty + a.accept_qty + b.has_cancel_qty = b.apply_qty then 1 else 0 end,
 		    b.allot_finished_date = case when b.has_accept_qty + a.accept_qty + b.has_cancel_qty = b.apply_qty then SYSDATE() else NULL end
-		where a.main_id = #mainId# 
+		where a.main_id = #mainId# and c.source_type = 1
 		
 	</update>
 	

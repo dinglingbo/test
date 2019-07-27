@@ -1496,6 +1496,10 @@
                     (A.MAIN_ID = #mainId#)
                 </isNotEmpty>
                 
+                <isNotEmpty prepend="and" property="mainIds">  
+                    (A.MAIN_ID in ($mainIds$))
+                </isNotEmpty>
+                
             </dynamic>  
             
         

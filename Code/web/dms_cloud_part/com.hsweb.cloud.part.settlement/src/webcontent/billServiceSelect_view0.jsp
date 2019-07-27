@@ -9,7 +9,7 @@
 -->
 <head>
 <title>业务单选择</title>
-<script src="<%=webPath + contextPath%>/settlement/js/billServiceSelect.js?v=1.0.27"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/billServiceSelect.js?v=1.0.33"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -153,6 +153,34 @@
           </div>
       </div>
   </div>
+  
+  <div id="editFormSellOutDetail" style="display:none;">
+      <div id="innerSellOutGrid" class="nui-datagrid" style="width:100%;height:150px;"
+           showPager="false"
+           dataField="pjSellOrderDetailList"
+           idField="detailId"
+           ondrawcell="onDrawCell"
+           sortMode="client"
+           url=""
+           showSummaryRow="true">
+          <div property="columns">
+              <div type="indexcolumn">序号</div>
+              <div allowSort="true" field="showPartCode" width="60" headerAlign="center" header="配件编码"></div>
+              <div allowSort="true" field="showFullName" headerAlign="center" header="配件名称"></div>
+              <div allowSort="true" field="showOemCode" headerAlign="center" header="OEM码"></div>
+              <div allowSort="true" field="showBrandName" width="60" headerAlign="center" header="品牌"></div>
+              <div allowSort="true" field="showCarModel" width="60" headerAlign="center" header="品牌车型"></di
+              <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
+              <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
+              <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="销售数量"></div>
+              <div allowSort="true" datatype="float" field="showPrice" width="60" headerAlign="center" header="销售单价"></div>
+              <div allowSort="true" datatype="float" field="showAmt" summaryType="sum" width="60" headerAlign="center" header="销售金额"></div>
+              <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
+             
+          </div>
+      </div>
+  </div>
+  
 
 </div>
 

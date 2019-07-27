@@ -47,6 +47,8 @@
 				a.state_sign as stateSign,
 				a.state_date as stateDate,
 				a.source_type as sourceType,
+				a.is_allot_finished as isAllotFinished,
+				a.finish_date as finishDate,
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName
 			FROM
@@ -254,10 +256,12 @@
 				a.state_sign as stateSign,
 				a.state_date as stateDate,
 				a.source_type as sourceType,
+				a.is_allot_finished as isAllotFinished,
+				a.finish_date as finishDate,
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName
 			FROM
-				DMS_CLOUD_PART.pj_allot_accept_main A
+				pj_allot_accept_main A
 				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
 				LEFT JOIN DMS_CLOUD_PART.pj_allot_accept_detail C ON A.ID = C.MAIN_ID
 				LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
@@ -425,6 +429,96 @@
 		where 1=1 and (A.MAIN_ID = #mainId#)
             
         ORDER BY a.id asc
+    </select>
+    
+    <select id="queryAcceptMainIsFinish" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">   	
+		SELECT
+			id
+		FROM
+			pj_allot_accept_detail
+		WHERE
+			is_finished = 0
+           	and main_id = #mainId#
+    </select>
+    
+    <!-- 更新调拨受理主表的金额信息  -->
+    <update id="updatePjAllotAcceptMainAmt" parameterClass="java.util.HashMap" >
+		update pj_allot_accept_main a
+		inner join (
+			select main_id as mainId, sum(order_amt) as orderAmt, sum(tax_amt) as taxAmt, sum(no_tax_amt) as noTaxAmt
+			from pj_allot_accept_detail 
+			where main_id = #mainId#
+			group by main_id
+		)b
+		on a.id = b.mainId
+		set a.order_amt = b.orderAmt, a.tax_amt = b.taxAmt, a.no_tax_amt = b.noTaxAmt
+		where a.id = #mainId#
+	</update>
+    
+    <!-- 调拨受理出库后，根据出库单金额汇总调拨单金额 -->
+    <update id="updatePjAllotAcceptAmt" parameterClass="java.util.HashMap" >
+		update pj_allot_accept_detail a
+		inner join pj_allot_accept_main b
+		on a.main_id = b.id 
+		inner join (SELECT a.order_detail_id, a.order_main_id, b.code, 
+		       sum(a.tax_amt) as taxAmt, sum(a.no_tax_amt) as noTaxAmt, sum(a.enter_amt) as enterAmt
+		from pj_out_detail_chk a
+		inner join pj_out_main_chk b
+		on a.main_id = b.id
+		where a.main_id = #outMainId#
+		group by a.order_detail_id, a.order_main_id, b.code) c
+		on a.id = c.order_detail_id and a.main_id = c.order_main_id and b.service_id = c.code
+		set a.order_amt = c.enterAmt, a.tax_amt = c.taxAmt, a.no_tax_amt = c.noTaxAmt,
+		    a.order_price = c.enterAmt/a.accept_qty, a.tax_price = c.taxAmt/a.accept_qty,
+		    a.no_tax_price = c.noTaxAmt/a.accept_qty
+		where a.main_id = #acceptMainId#
+		
+	</update>
+	
+	<!-- 判断调拨申请受理是否超数  -->
+    <select id="checkAllotAcceptApply" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+        SELECT a.part_id as partId, a.part_code as partCode, a.part_name as partName
+		from pj_allot_accept_detail a
+		inner join pj_allot_apply_detail b
+		on a.prev_detail_id = b.id
+		where a.main_id = #mainId# and a.accept_qty + b.has_accept_qty + b.has_cancel_qty > b.apply_qty
+		    
+    </select>
+    
+    <!-- 调拨受理出库后，更新调拨申请已受理数据 -->
+    <update id="updatePjAllotAcceptApplyQty" parameterClass="java.util.HashMap" >
+		
+		update pj_allot_accept_detail a
+		inner join pj_allot_apply_detail b
+		on a.prev_detail_id = b.id
+		set b.has_accept_qty = b.has_accept_qty + a.accept_qty,
+		    b.is_allot_finished = case when b.has_accept_qty + a.accept_qty + b.has_cancel_qty = b.apply_qty then 1 else 0 end,
+		    b.allot_finished_date = case when b.has_accept_qty + a.accept_qty + b.has_cancel_qty = b.apply_qty then SYSDATE() else NULL end
+		where a.main_id = #mainId# 
+		
+	</update>
+	
+	<!-- 调拨受理出库后，更新调拨申请主表状态 -->
+    <update id="updatePjAllotAcceptApply" parameterClass="java.util.HashMap" >
+		
+		update pj_allot_apply_main a
+		set a.is_allot_finished = 1, a.allot_finished_date = SYSDATE()
+		where not exists (SELECT 1 from pj_allot_apply_detail b 
+		      where a.id = b.main_id and b.is_allot_finished = 0 and b.main_id = #mainId#)
+		and a.id = #mainId#
+		
+	</update>
+    
+    <!-- 判断调入申退受理是否超数  -->
+    <select id="checkAllotAcceptRtn" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+        SELECT a.part_id as partId, a.part_code as partCode, a.part_name as partName
+		from pj_allot_apply_detail a
+		inner join pj_allot_accept_detail b
+		on a.prev_detail_id = b.id
+		where a.main_id = #mainId# and a.apply_qty + b.has_accept_qty + b.has_cancel_qty > b.accept_qty
+		 
     </select>
 
 </sqlMap>

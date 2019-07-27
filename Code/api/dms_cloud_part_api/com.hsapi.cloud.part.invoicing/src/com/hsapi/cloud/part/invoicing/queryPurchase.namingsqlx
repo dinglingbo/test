@@ -1695,6 +1695,9 @@
                     (A.MAIN_ID = #mainId#)
                 </isNotEmpty>
             </dynamic>  
+            <isNotEmpty prepend="and" property="mainIds">  
+                    (A.MAIN_ID in ($mainIds$))
+            </isNotEmpty>
            
         
         ORDER BY a.id asc

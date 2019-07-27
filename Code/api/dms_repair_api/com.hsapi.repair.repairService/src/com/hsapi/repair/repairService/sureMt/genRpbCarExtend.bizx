@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="genRpbCarExtend" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="chain_come_times 本店来店次数&#xD;&#xA;&#xD;&#xA;rpb_car_extend&#xD;&#xA;同一天确认维修多次，算一次" title="Administrator&#x9;18-8-7 下午7:07">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="chain_come_times 本店来店次数&#xD;&#xA;&#xD;&#xA;rpb_car_extend&#xD;&#xA;同一天确认维修多次，算一次&#xD;&#xA;&#xD;&#xA;进厂里程为0不更新车辆的上次里程" title="Administrator&#x9;18-8-7 下午7:07">
     <location x="30" y="-75"/>
     <size height="121" width="406"/>
   </nodes>
@@ -71,7 +71,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="expandEntityByCriteriaEntity" displayName="expandEntityByCriteriaEntity" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
-      <targetNode>assign1</targetNode>
+      <targetNode>assign9</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link3" name="link3" displayName="连接线" type="transition">
       <sourceNode>invokePojo0</sourceNode>
@@ -126,14 +126,11 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link1</targetConnections>
-    <location x="225" y="240"/>
+    <targetConnections>link24</targetConnections>
+    <targetConnections>link26</targetConnections>
+    <location x="270" y="240"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">maintain/enterKilometers</process:from>
-      <process:to type="query">carExtend/lastComeKilometers</process:to>
-    </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">maintain/id</process:from>
       <process:to type="query">carExtend/lastServiceId</process:to>
@@ -164,7 +161,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="223" y="276"/>
+    <location x="268" y="276"/>
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
@@ -174,7 +171,7 @@
       <targetNode>invokePojo2</targetNode>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
-    <location x="225" y="150"/>
+    <location x="215" y="159"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
@@ -239,7 +236,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="223" y="186"/>
+    <location x="213" y="195"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
@@ -332,7 +329,7 @@
       <targetNode>invokePojo3</targetNode>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
-    <location x="225" y="324"/>
+    <location x="254" y="324"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
@@ -345,7 +342,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
-    <location x="223" y="360"/>
+    <location x="252" y="360"/>
     <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
@@ -602,6 +599,50 @@
     <location x="652" y="276"/>
     <figSize height="17" width="80"/>
     <node>invokePojo6</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign9" name="赋值9" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign9</sourceNode>
+      <targetNode>assign1</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link25" name="link25" displayName="连接线" type="transition">
+      <sourceNode>assign9</sourceNode>
+      <targetNode>assign10</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">maintain/enterKilometers</process:leftOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <location x="188" y="240"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign9label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
+    <location x="186" y="276"/>
+    <figSize height="17" width="32"/>
+    <node>assign9</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign10" name="赋值10" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link26" name="link26" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign10</sourceNode>
+      <targetNode>assign1</targetNode>
+    </sourceConnections>
+    <targetConnections>link25</targetConnections>
+    <location x="188" y="315"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign10label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/enterKilometers</process:from>
+      <process:to type="query">carExtend/lastComeKilometers</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
+    <location x="183" y="351"/>
+    <figSize height="17" width="39"/>
+    <node>assign10</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

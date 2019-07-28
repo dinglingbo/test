@@ -260,6 +260,14 @@
       <process:from type="query" pattern="reference">maintain/planFinishDate</process:from>
       <process:to type="query">data/planFinishDate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/insureCompName</process:from>
+      <process:to type="query">data/mainInsureCompName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/insureCompId</process:from>
+      <process:to type="query">data/mainInsureCompId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="355" y="186"/>
@@ -270,6 +278,7 @@
     <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>end0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
     <location x="707" y="150"/>
@@ -422,7 +431,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
         <process:outputVariable id="2" name="comp" type="query" value="java.util.HashMap" valueType="Java">comp</process:outputVariable>
       </process:outputVariables>
     </process:flow>

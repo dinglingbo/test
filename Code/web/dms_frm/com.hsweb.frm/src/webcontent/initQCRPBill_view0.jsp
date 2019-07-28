@@ -8,7 +8,7 @@
 -->
 <head>
 <title>期初应收应付</title>
-<script src="<%=webPath + contextPath%>/frm/js/settle/initQCRPBill.js?v=1.1.9"></script>
+<script src="<%=webPath + contextPath%>/frm/js/settle/initQCRPBill.js?v=1.1.0"></script>
 <style type="text/css">
 .title {
   width: 60px;

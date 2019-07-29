@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="diffAllotAccept" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据具体的明细出库&#xD;&#xA;根据已经提交的订单数据和当前应入库的数据生成 is_diff_order = 1 的数据，在循环处理的过程中判断是否超数&#xD;&#xA;适用于调拨受理直接出库，或是调拨受理到APP的出库任务，出库后的回调处理&#xD;&#xA;&#xD;&#xA;判断主表是否完成，取版本号用于后面更新用，如果更新的数据条数为0，则失败&#xD;&#xA;明细数据生成后重新汇总主表的含税和不含税数据&#xD;&#xA;com.hsapi.cloud.part.invoicing.paramset.queryAcceptDetailInfoByDetailId  调拨受理APP回调&#xD;&#xA;com.hsapi.cloud.part.invoicing.paramset.getAcceptDetailInfoByDetailId    调拨受理直接出库&#xD;&#xA;取出库明细，判断参数的记录数与查询出的记录数是否相等，如果不相等提示获取入库数据失败&#xD;&#xA;取主表的版本号，根据版本号更新订单主表数据，如果影响的行数不等于1，则返回失败，提示数据处理频繁请稍后再处理&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.queryAcceptMainIsFinish（查询是否存在未完成的订单明细）&#xD;&#xA;是否需要根据outCode判断已经存在单据（暂不考虑）&#xD;&#xA;库存占用记录的处理&#xD;&#xA;cloudPartPjAllotAcceptDetail.id" title="Administrator&#x9;19-6-25 上午10:19">
-    <location x="-19" y="-165"/>
-    <size height="256" width="694"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据具体的明细出库&#xD;&#xA;根据已经提交的订单数据和当前应入库的数据生成 is_diff_order = 1 的数据，在循环处理的过程中判断是否超数&#xD;&#xA;适用于调拨受理直接出库，或是调拨受理到APP的出库任务，出库后的回调处理&#xD;&#xA;0调拨申请；1来源于调入申退；2来源于调拨申请;3来源于直发&#xD;&#xA;settle_status 2全部出库          status  3全部受理   source_type 2来源于调拨受理&#xD;&#xA;判断主表是否完成，取版本号用于后面更新用，如果更新的数据条数为0，则失败&#xD;&#xA;明细数据生成后重新汇总主表的含税和不含税数据&#xD;&#xA;com.hsapi.cloud.part.invoicing.paramset.queryAcceptDetailInfoByDetailId  调拨受理APP回调&#xD;&#xA;com.hsapi.cloud.part.invoicing.paramset.getAcceptDetailInfoByDetailId    调拨受理直接出库&#xD;&#xA;取出库明细，判断参数的记录数与查询出的记录数是否相等，如果不相等提示获取入库数据失败&#xD;&#xA;取主表的版本号，根据版本号更新订单主表数据，如果影响的行数不等于1，则返回失败，提示数据处理频繁请稍后再处理&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.queryAcceptMainIsFinish（查询是否存在未完成的订单明细）&#xD;&#xA;是否需要根据outCode判断已经存在单据（暂不考虑）&#xD;&#xA;库存占用记录的处理&#xD;&#xA;cloudPartPjAllotAcceptDetail.id" title="Administrator&#x9;19-6-25 上午10:19">
+    <location x="-43" y="-210"/>
+    <size height="301" width="694"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -278,8 +278,28 @@
       <process:to type="query">main/isFinished</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">main/finishDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">main/isAllotFinished</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">main/allotFinishedDate</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">main/isDiffOrder</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">2</process:from>
+      <process:to type="query">main/settleStatus</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">3</process:from>
+      <process:to type="query">main/status</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">operateDate</process:from>
@@ -560,6 +580,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">detailTemp/hasCancelQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">detailTemp/hasInQty</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">qty</process:from>
@@ -1457,7 +1481,7 @@
       <sourceNode>assign22</sourceNode>
       <targetNode>invokePojo3</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link57" name="diff==1" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link57" name="diff==1表示不走APP" displayName="连接线" type="transition">
       <sourceNode>assign22</sourceNode>
       <targetNode>invokePojo14</targetNode>
       <process:transitionCondition>

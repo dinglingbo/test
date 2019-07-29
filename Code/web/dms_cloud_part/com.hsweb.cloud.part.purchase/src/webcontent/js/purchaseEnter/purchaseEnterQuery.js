@@ -189,6 +189,7 @@ function onSearch(){
 }
 function doSearch(params)
 {
+	params.orderTypeId =1;
 	params.sortField = "audit_date";
 	params.sortOrder = "desc";
     rightGrid.load({

@@ -380,10 +380,11 @@
 		WHERE
 			a.audit_sign = 1
 			and a.is_diff_order =1
- 			and a.order_type_id =1
  		<dynamic>
+ 		    <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
             <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orderTypeId">(a.order_type_id = #orderTypeId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="idList">(A.id in ($idList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="mainId">(b.main_id = #mainId#)</isNotEmpty>
             <!--入库日期 -->
@@ -680,10 +681,11 @@
 			inner join pj_out_detail_chk e on e.order_main_id =a.id and e.order_detail_id =b.id
 			where a.audit_sign = 1
 			and a.is_diff_order =1
-			and a.order_type_id =2
 		<dynamic>
+			<isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
             <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orderTypeId">(a.order_type_id = #orderTypeId#)</isNotEmpty>
             <!--订货日期 -->
             <isNotEmpty prepend="and" property="sOutDate">A.out_date &gt;= #sOutDate#</isNotEmpty>
             <isNotEmpty prepend="and" property="eOutDate">(A.out_date &lt; #eOutDate#)</isNotEmpty>

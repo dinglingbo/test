@@ -668,6 +668,7 @@ function loadRightGridData(mainId, auditSign) {
 	var params = {};
 	params.mainId = mainId;
 	params.auditSign = auditSign;
+	params.orderTypeId =1;
 	rightGrid.load({
 		params : params,
 		token : token

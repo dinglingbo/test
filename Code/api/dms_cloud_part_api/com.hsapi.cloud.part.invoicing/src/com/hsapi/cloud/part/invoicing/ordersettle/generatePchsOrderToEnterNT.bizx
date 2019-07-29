@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="generatePchsOrderToEnterNT" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、采购订单直接点击入库&#xD;&#xA;     isDiffOrder = 0 生成 isDiffOrder = 1&#xD;&#xA;     生成新的采购订单，然后根据新的采购订单进行入库&#xD;&#xA;     导入对方的销售单，不导入对方销售单也可以更新为已导入（is_finished=1）&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;2、050101&#xD;&#xA;3、origin_id赋值的问题&#xD;&#xA;4、如果orderMainId>0，则需要根据订单ID先获取主表和明细表的数据&#xD;&#xA;5、判断如果是Inner，则直接更新销售订单为全部入库；&#xD;&#xA;     在仓库做入库才有可能部分入库&#xD;&#xA;6、生成流水后，更新订单状态，订单已入库数量&#xD;&#xA;7、更新originId&#xD;&#xA;8、如果isInner=1，则更新销售订单表的状态为" title="Administrator&#x9;18-5-25 上午10:36">
-    <location x="-135" y="-390"/>
-    <size height="286" width="504"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、采购订单直接点击入库&#xD;&#xA;     isDiffOrder = 0 生成 isDiffOrder = 1&#xD;&#xA;     生成新的采购订单，然后根据新的采购订单进行入库&#xD;&#xA;     导入对方的销售单，不导入对方销售单也可以更新为已导入（is_finished=1）&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;2、050101&#xD;&#xA;3、origin_id赋值的问题&#xD;&#xA;4、如果orderMainId>0，则需要根据订单ID先获取主表和明细表的数据&#xD;&#xA;5、判断如果是Inner，则直接更新销售订单为全部入库；&#xD;&#xA;     在仓库做入库才有可能部分入库&#xD;&#xA;6、生成流水后，更新订单状态，订单已入库数量&#xD;&#xA;7、更新originId&#xD;&#xA;8、如果isInner=1，则更新销售订单表的状态为&#xD;&#xA;cloudPartPjEnterDetail.id" title="Administrator&#x9;18-5-25 上午10:36">
+    <location x="-128" y="-435"/>
+    <size height="301" width="504"/>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link66</targetConnections>

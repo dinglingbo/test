@@ -102,6 +102,7 @@ function doSearch(params)
 {
     params.sortField = "audit_date";
     params.sortOrder = "desc";
+    params.orderTypeId =1
     rightGrid.load({
         pageSize: 100,
         params:params,

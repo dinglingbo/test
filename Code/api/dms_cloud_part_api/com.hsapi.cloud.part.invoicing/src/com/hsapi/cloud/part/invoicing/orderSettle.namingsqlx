@@ -10,24 +10,18 @@
     
 	<update id="updatePchsOrderAllIn" parameterClass="java.util.HashMap" >
 		update pj_pchs_order_detail_chk 
-			set true_enter_qty = order_qty, 
-				true_enter_amt = order_amt,
+			set true_enter_qty = order_qty - adjust_qty, 
+				true_enter_amt = order_amt - adjust_qty * order_price,
 				not_enter_amt = 0, 
 				not_enter_qty = 0, 
 				is_finished = 1, 
 				finish_date = SYSDATE()
-			where 1 = 1
-			<isNotNull prepend = "and" property = "mainId">
-					main_id = #mainId#					
-			</isNotNull>
+			where 1 = 1 and main_id = #mainId#		
 	</update>
 	
 	<update id="updatePchsEnterOriginId" parameterClass="java.util.HashMap" >
 		update pj_enter_detail_chk set origin_id = id 
-		where 1 = 1
-			<isNotNull prepend = "and" property = "mainId">
-					main_id = #mainId#					
-			</isNotNull>
+		where 1 = 1 and main_id = #mainId#	
 	</update>
 	
 	<update id="updatePchsOrderQty" parameterClass="java.util.HashMap" >
@@ -38,10 +32,7 @@
 			 not_enter_qty =#notEnterQty#,
 			 is_finished = #isFinished#,
 			 finish_date = #finishDate#
-		 WHERE 1=1
-			<isNotNull prepend = "and" property = "id">
-					id = #id#					
-			</isNotNull>
+		 WHERE 1=1 and id = #id#	
 	</update>
 	
 	<update id="updatePchsMainFinish" parameterClass="java.util.HashMap" >
@@ -53,10 +44,7 @@
 	
 	<update id="updateSellRtnOriginId" parameterClass="java.util.HashMap" >
 		update pj_enter_detail_chk set origin_id = id 
-		where IFNULL(origin_id,0) = 0
-			<isNotNull prepend = "and" property = "mainId">
-					main_id = #mainId#					
-			</isNotNull>
+		where IFNULL(origin_id,0) = 0 and main_id = #mainId#
 	</update>
 	
 	<!--更新盘点单的实盘数量-->

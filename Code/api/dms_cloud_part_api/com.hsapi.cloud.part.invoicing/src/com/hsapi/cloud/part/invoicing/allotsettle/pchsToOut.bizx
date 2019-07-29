@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="pchsToOut" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据 采购入库数据 is_diff_order = 1 生成 调拨出库数据&#xD;&#xA;cloudPartPjEnterMain.id&#xD;&#xA;cloudPartPjEnterDetail.id" title="Administrator&#x9;18-5-25 上午10:36">
-    <location x="-125" y="-90"/>
-    <size height="166" width="504"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据 采购入库数据 is_diff_order = 1 生成 调拨出库数据&#xD;&#xA;cloudPartPjEnterMain.id&#xD;&#xA;cloudPartPjEnterDetail.id&#xD;&#xA;&#xD;&#xA;入库明细的可出库数量 = 0&#xD;&#xA;&#xD;&#xA;暂不考虑添加 IsDenyBatch" title="Administrator&#x9;18-5-25 上午10:36">
+    <location x="-120" y="-97"/>
+    <size height="166" width="606"/>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link30</targetConnections>
     <targetConnections>link53</targetConnections>
     <targetConnections>link37</targetConnections>
-    <location x="1245" y="349"/>
+    <targetConnections>link69</targetConnections>
+    <location x="1406" y="349"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -16,10 +17,12 @@
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
       <process:return id="2" language="com.hsapi.cloud.part.data.pts.PjAllotAcceptMain" name="acceptMain" type="query" valueType="DataObject">acceptMain</process:return>
       <process:return id="3" language="com.hsapi.cloud.part.data.pts.PjAllotAcceptDetail[]" name="acceptDetail" type="query" valueType="DataObject">acceptDetail</process:return>
+      <process:return id="4" language="com.hsapi.cloud.part.data.pts.PjOutMainChk" name="outMain" type="query" valueType="DataObject">outMain</process:return>
+      <process:return id="5" language="com.hsapi.cloud.part.data.pts.PjOutDetailChk[]" name="outDetail" type="query" valueType="DataObject">outDetail</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="1247" y="385"/>
+    <location x="1408" y="385"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -29,7 +32,7 @@
       <targetNode>invokePojo3</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -51,12 +54,16 @@
       <process:to type="query">enterMain/serviceId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">main/orgid</process:from>
+      <process:from type="query" pattern="reference">pchsMain/orgid</process:from>
       <process:to type="query">enterMain/orgid</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">main/guestId</process:from>
+      <process:from type="query" pattern="reference">pchsMain/guestId</process:from>
       <process:to type="query">enterMain/guestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pchsMain/storeId</process:from>
+      <process:to type="query">enterMain/storeId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">050101</process:from>
@@ -176,7 +183,7 @@
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="getCompBillNO" displayName="getCompBillNO" collapsed="false" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="CGR" displayName="getCompBillNO" collapsed="false" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign0</targetNode>
@@ -208,8 +215,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="17" y="184"/>
-    <figSize height="17" width="92"/>
+    <location x="50" y="184"/>
+    <figSize height="17" width="26"/>
     <node>subprocess1</node>
   </nodes>
   <nodes xsi:type="process:tLoopStart" description="" id="loopstart0" name="循环" displayName="循环" grouped="true" type="loopstart" matchedName="loopend0" loopType="iterate">
@@ -330,7 +337,7 @@
       <process:to type="query">enterTemp/enterAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">temp/orderQty</process:from>
+      <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">enterTemp/outableQty</process:to>
     </process:copy>
     <process:copy>
@@ -456,7 +463,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link60" name="link60" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
-      <targetNode>end2</targetNode>
+      <targetNode>end1</targetNode>
     </sourceConnections>
     <targetConnections>link11</targetConnections>
     <location x="-33" y="254"/>
@@ -475,7 +482,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link64" name="link64" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
-      <targetNode>end2</targetNode>
+      <targetNode>end1</targetNode>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
     <location x="49" y="254"/>
@@ -498,7 +505,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link68" name="link68" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
-      <targetNode>end2</targetNode>
+      <targetNode>end1</targetNode>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
     <targetConnections>link50</targetConnections>
@@ -552,8 +559,8 @@
       <sourceNode>assign5</sourceNode>
       <targetNode>end0</targetNode>
     </sourceConnections>
-    <targetConnections>link16</targetConnections>
-    <location x="1245" y="149"/>
+    <targetConnections>link57</targetConnections>
+    <location x="1406" y="149"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
     <process:copy>
@@ -562,7 +569,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="1243" y="185"/>
+    <location x="1404" y="185"/>
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
@@ -629,7 +636,7 @@
       <targetNode>loopend1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -665,8 +672,8 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="sdInvocingB" type="query" value="com.hsapi.cloud.part.data.pts.PjStoreInvocing" valueType="DataObject"></process:outputVariable>
-        <process:outputVariable id="3" name="dInvocingB" type="query" value="com.hsapi.cloud.part.data.pts.PjInvocing" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="2" name="sdInvocingB" type="query" value="com.hsapi.cloud.part.data.pts.PjStoreInvocing" valueType="DataObject"/>
+        <process:outputVariable id="3" name="dInvocingB" type="query" value="com.hsapi.cloud.part.data.pts.PjInvocing" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -727,6 +734,18 @@
       <process:from type="query" pattern="reference">mainId</process:from>
       <process:to type="query">pe/mainId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjEnterDetailChk</process:from>
+      <process:to type="query">cond/_entity</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">enterMain/id</process:from>
+      <process:to type="query">cond/_expr[1]/mainId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[1]/_op</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
     <location x="988" y="184"/>
@@ -763,7 +782,7 @@
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo7</sourceNode>
-      <targetNode>assign5</targetNode>
+      <targetNode>invokePojo1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query"/>
@@ -882,24 +901,95 @@
     <figSize height="17" width="45"/>
     <node>invokePojo0</node>
   </nodes>
-  <nodes xsi:type="process:tEnd" id="end2" name="结束2" displayName="结束" type="end">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="pchsDiffAllotAccept" displayName="pchsDiffAllotAccept" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link57" name="link57" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>assign5</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link69" name="link69" displayName="连接线" type="transition">
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>end0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="OBJNE">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link54</targetConnections>
+    <location x="1320" y="150"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess0label</nodeLabel>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.pchsDiffAllotAccept</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="enterMain" type="query" value="com.hsapi.cloud.part.data.pts.PjEnterMainChk" valueType="DataObject" pattern="reference">enterMain</process:inputVariable>
+        <process:inputVariable id="1" name="enterDetail" type="query" value="com.hsapi.cloud.part.data.pts.PjEnterDetailChk[]" valueType="DataObject" pattern="reference">enterDetail</process:inputVariable>
+        <process:inputVariable id="2" name="guestId" type="query" value="String" valueType="Primitive" pattern="reference">pchsMain/directGuestId</process:inputVariable>
+        <process:inputVariable id="3" name="guestOrgid" type="query" value="String" valueType="Primitive" pattern="reference">pchsMain/directOrgid</process:inputVariable>
+        <process:inputVariable id="4" name="enterSign" type="query" value="Int" valueType="Primitive" pattern="reference">enterSign</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="acceptMain" type="query" value="com.hsapi.cloud.part.data.pts.PjAllotAcceptMain" valueType="DataObject">acceptMain</process:outputVariable>
+        <process:outputVariable id="1" name="acceptDetail" type="query" value="com.hsapi.cloud.part.data.pts.PjAllotAcceptDetail[]" valueType="DataObject">acceptDetail</process:outputVariable>
+        <process:outputVariable id="2" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="3" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+        <process:outputVariable id="4" name="outMain" type="query" value="com.hsapi.cloud.part.data.pts.PjOutMainChk" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="5" name="outDetail" type="query" value="com.hsapi.cloud.part.data.pts.PjOutDetailChk[]" valueType="DataObject"></process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
+    <location x="1277" y="185"/>
+    <figSize height="17" width="113"/>
+    <node>subprocess0</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="查询入库明细" displayName="queryEntitiesByCriteriaEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link54" name="link54" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo1</sourceNode>
+      <targetNode>subprocess0</targetNode>
+    </sourceConnections>
+    <targetConnections>link16</targetConnections>
+    <location x="1215" y="150"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo1label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.queryEntitiesByCriteriaEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
+      <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cond</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java">enterDetail</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
+    <location x="1190" y="186"/>
+    <figSize height="17" width="73"/>
+    <node>invokePojo1</node>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
     <targetConnections>link68</targetConnections>
     <targetConnections>link64</targetConnections>
     <targetConnections>link60</targetConnections>
-    <location x="222" y="376"/>
+    <location x="222" y="385"/>
     <size height="28" width="28"/>
-    <nodeLabel>end2label</nodeLabel>
+    <nodeLabel>end1label</nodeLabel>
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
       <process:return id="2" language="com.hsapi.cloud.part.data.pts.PjAllotAcceptMain" name="acceptMain" type="query" valueType="DataObject">acceptMain</process:return>
       <process:return id="3" language="com.hsapi.cloud.part.data.pts.PjAllotAcceptDetail[]" name="acceptDetail" type="query" valueType="DataObject">acceptDetail</process:return>
+      <process:return id="4" language="com.hsapi.cloud.part.data.pts.PjOutMainChk" name="outMain" type="query" valueType="DataObject">outMain</process:return>
+      <process:return id="5" language="com.hsapi.cloud.part.data.pts.PjOutDetailChk[]" name="outDetail" type="query" valueType="DataObject">outDetail</process:return>
     </process:returns>
   </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="end2label" name="label" nodeType="label">
-    <location x="220" y="412"/>
+  <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
+    <location x="220" y="421"/>
     <figSize height="17" width="32"/>
-    <node>end2</node>
+    <node>end1</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -915,16 +1005,20 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="pe"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="codeId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="detailId" primitiveType="Long"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="采购入库主表" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" name="pchsMain"/>
     <process:input description="采购入库明细表" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk" name="pchsDetail"/>
+    <process:input description="" isArray="false" name="enterSign" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
     <process:output description="调拨出库主表" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjAllotAcceptMain" name="acceptMain"/>
     <process:output description="调拨出库明细表" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjAllotAcceptDetail" name="acceptDetail"/>
+    <process:output description="销售出库主表数据" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjOutMainChk" name="outMain"/>
+    <process:output description="销售出库明细表数据" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjOutDetailChk" name="outDetail"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

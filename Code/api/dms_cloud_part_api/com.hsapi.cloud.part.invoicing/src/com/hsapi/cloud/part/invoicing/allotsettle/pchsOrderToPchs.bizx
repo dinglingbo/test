@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="pchsOrderToPchs" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据采购订单数据 is_diff_order = 0 生成 采购入库数据 is_diff_order = 1&#xD;&#xA;将订单主表复制到入库主表，然后修改入库主表的ID、单号等信息；将订单明细表复制到入库明细表，然后修改入库明细表的ID、mainId等信息&#xD;&#xA;&#xD;&#xA;source_type&#xD;&#xA;0普通单据；1来源于采购订单；2来源于销售出库;3来源于WMS;4来源于直发；5来源于预销售&#xD;&#xA;&#xD;&#xA;直发的采购订单必须要是月结&#xD;&#xA;&#xD;&#xA;cloudPartPjPchsOrderMain.id&#xD;&#xA;cloudPartPjPchsOrderMain.versionNo&#xD;&#xA;&#xD;&#xA;cloudPartPjPchsOrderDetail.id&#xD;&#xA;com.hsapi.cloud.part.invoicing.orderSettle.updatePchsOrderAllIn" title="Administrator&#x9;19-6-25 上午10:19">
-    <location x="11" y="-90"/>
-    <size height="250" width="800"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据采购订单数据 is_diff_order = 0 生成 采购入库数据 is_diff_order = 1&#xD;&#xA;将订单主表复制到入库主表，然后修改入库主表的ID、单号等信息；将订单明细表复制到入库明细表，然后修改入库明细表的ID、mainId等信息&#xD;&#xA;&#xD;&#xA;source_type&#xD;&#xA;0普通单据；1来源于采购订单；2来源于销售出库;3来源于WMS;4来源于直发；5来源于预销售&#xD;&#xA;&#xD;&#xA;直发的采购订单必须要是月结&#xD;&#xA;&#xD;&#xA;cloudPartPjPchsOrderMain.id&#xD;&#xA;cloudPartPjPchsOrderMain.versionNo&#xD;&#xA;&#xD;&#xA;cloudPartPjPchsOrderDetail.id&#xD;&#xA;com.hsapi.cloud.part.invoicing.orderSettle.updatePchsOrderAllIn&#xD;&#xA;&#xD;&#xA;20190729目前只考虑全部到货，如果只到部分，传入参数按部分入库传递，根据采购入库和采购订单数据关联更新源订单完成情况" title="Administrator&#x9;19-6-25 上午10:19">
+    <location x="-34" y="-135"/>
+    <size height="331" width="800"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -134,7 +134,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">orderNO</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -840,7 +840,7 @@
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
       <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.cloud.part.invoicing.orderSettle.updatePchsOrderAllIn</process:inputVariable>
-      <process:inputVariable id="2" name="parameterObject" type="query" value="java.lang.Object" valueType="Java" pattern="reference">pa</process:inputVariable>
+      <process:inputVariable id="2" name="parameterObject" type="query" value="java.lang.Object" valueType="Java" pattern="reference">params</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>

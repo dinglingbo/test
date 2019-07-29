@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购记录</title>
-<script src="<%=webPath + contextPath%>/common/js/embed/containBottomPchsRecord.js?v=2.0.0"></script>
+<script src="<%=webPath + contextPath%>/common/js/embed/containBottomPchsRecord.js?v=2.0.1"></script>
 <style type="text/css">
 .title {
   width: 90px;

@@ -5,5 +5,5 @@ eos-webCtxPath: test
 Bundle-Version: 1.0.0
 Bundle-Name: com.hsapi.system.test
 Bundle-Description: 
-Bundle-SymbolicName: com.hsapi.system.test
+Bundle-SymbolicName: com.hsapi.system.dataProcessing
 

@@ -727,5 +727,82 @@
 		WHERE id = #id#	
 	</update>
 	
+	<!--查询对账单明细 -->
+	<select id="queryStatementDetails" parameterClass="java.util.HashMap"  resultClass="commonj.sdo.DataObject">
+		SELECT
+			b.tenant_id as tenantId,
+			b.orgid as  orgid,
+			b.service_id as serviceId,
+			a.id as id,
+			a.main_id as mainId,
+			a.bill_main_id as billMainId,
+			a.bill_service_id as billServiceId,
+			a.type_id as typeId,
+			a.type_code as typeCode,
+			a.rp_dc as rpDc,
+			a.bill_amt as billAmt,
+			a.bill_type_id as billTypeId ,
+			a.settle_type_id as settleTypeId, 
+			a.order_man as orderMan,
+			a.bill_date as billDate,
+			a.remark as remark,
+			a.guest_id as guestId,
+			a.guest_name as guestName
+		FROM pj_statement_detail a
+		INNER JOIN pj_statement_main b
+		on a.main_id =b.id
+		WHERE 1=1 
+			<dynamic>
+				
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (b.orgid = #orgid#)
+                </isNotEmpty>
+                                               
+                <isNotEmpty prepend="and" property="tenantId"> 
+                    (b.tenant_id = #tenantId#)
+                </isNotEmpty>
+                
+                 <isNotEmpty prepend="and" property="auditSign"> 
+                    (b.audit_sign = #auditSign#)
+                </isNotEmpty>
+                
+                 <isNotEmpty prepend="and" property="auditSign"> 
+                    (b.audit_sign = #auditSign#)
+                </isNotEmpty>
+                <!-- 月结 020502 -->
+                 <isNotEmpty prepend="and" property="settleTypeId"> 
+                    (a.settle_type_id = #settleTypeId#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="guestId">  
+                    (a.guest_id = #guestId#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="guestName">  
+	                (a.guest_name like '%$guestName$%')
+	            </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="billDc"> 
+                    (b.bill_dc = #billDc#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isDisabled"> 
+                    (a.is_disabled = #isDisabled#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="sAuditDate">  
+                    (b.audit_date &gt;= #sAuditDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eAuditDate">  
+                    (b.audit_date &lt; #eAuditDate#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="balanceSign"> 
+                    (b.balance_sign  = #balanceSign#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="settleStatus"> 
+                    (b.settle_status  = #settleStatus#)
+                </isNotEmpty>
+             ORDER BY b.audit_date desc             
+            </dynamic> 
+				
+	</select>
 	
 </sqlMap>

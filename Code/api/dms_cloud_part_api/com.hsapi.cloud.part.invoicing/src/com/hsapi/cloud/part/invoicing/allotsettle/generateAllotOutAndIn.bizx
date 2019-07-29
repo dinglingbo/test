@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="generateAllotOutAndIn.bizx" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据采购入库（取采购订单表 is_diff_order = 1 的数据）生成调拨出库，根据调拨出库生成调拨入库&#xD;&#xA;调拨受理 和 调拨申请表  只生成 is_diff_order = 1 的数据&#xD;&#xA;调拨受理的明细与采购入库明细一致，调拨入库明细与调拨出库明细一致&#xD;&#xA;source_type  3来源于直发（调拨受理和调拨申请都取3）&#xD;&#xA;暂不考虑添加 IsDenyBatch" title="Administrator&#x9;19-7-26 下午8:52">
-    <location x="45" y="0"/>
-    <size height="121" width="616"/>
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="generateAllotOutAndIn.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、根据调拨出库生成调拨申请，根据调拨申请生成APP入库任务 生成 is_diff_order = 0 的数据&#xD;&#xA;2、根据调拨出库生成调拨入库  生成 is_diff_order = 1 的数据&#xD;&#xA;&#xD;&#xA;取对方调拨受理未完成的单据，根据未完成的调拨受理取未完成的调拨出库单据&#xD;&#xA;调拨申请入库除了数量，还需要取成本&#xD;&#xA;根据调拨申请入库&#xD;&#xA;根据调拨出库入库" title="Administrator&#x9;19-7-26 下午8:52">
+    <location x="-15" y="-75"/>
+    <size height="181" width="616"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <location x="45" y="181"/>
@@ -29,7 +29,11 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-07-26 20:52:53" date="2019-07-26Z" description="根据采购入库生成调拨出库，根据调拨出库生成调拨入库" name="generateAllotOutAndIn" version="7.0.0.0"/>
   <process:variables/>
-  <process:inputs/>
+  <process:inputs varArgs="false">
+    <process:input description="调拨出库主表数据" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjAllotAcceptMain" name="acceptMain"/>
+    <process:input description="调拨出库明细表数据" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjAllotAcceptDetail" name="acceptDetail"/>
+  </process:inputs>
   <process:outputs/>
   <process:extAttribute1>public</process:extAttribute1>
+  <process:transactionType>true</process:transactionType>
 </process:tBusinessLogic>

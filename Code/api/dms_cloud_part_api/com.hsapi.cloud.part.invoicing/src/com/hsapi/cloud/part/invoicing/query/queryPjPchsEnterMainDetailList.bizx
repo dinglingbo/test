@@ -20,24 +20,25 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" collapsed="false" type="end">
     <targetConnections>link3</targetConnections>
-    <location x="680" y="100"/>
+    <location x="793" y="100"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
       <process:return id="0" language="commonj.sdo.DataObject[]" name="detailList" type="query" valueType="Java">detailList</process:return>
       <process:return id="1" language="Int" name="total" type="query" valueType="Primitive">total</process:return>
       <process:return id="2" language="Int" name="totalPage" type="query" valueType="Primitive">totalPage</process:return>
+      <process:return id="3" language="com.eos.foundation.PageCond" name="page" type="query" valueType="DataObject">page</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
-    <location x="679" y="136"/>
+    <location x="792" y="136"/>
     <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="link3" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
-      <targetNode>invokePojo0</targetNode>
+      <targetNode>assign4</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
@@ -64,10 +65,6 @@
       <process:from type="query" pattern="reference">pageSize</process:from>
       <process:to type="query">page/length</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">params/orgid</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="247" y="136"/>
@@ -80,8 +77,9 @@
       <targetNode>assign1</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <targetConnections>link4</targetConnections>
-    <location x="395" y="100"/>
+    <targetConnections>link1</targetConnections>
+    <targetConnections>link7</targetConnections>
+    <location x="508" y="100"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -99,7 +97,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="303" y="136"/>
+    <location x="416" y="136"/>
     <figSize height="20" width="206"/>
     <node>invokePojo0</node>
   </nodes>
@@ -109,7 +107,7 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
-    <location x="545" y="100"/>
+    <location x="658" y="100"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
@@ -122,9 +120,54 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="539" y="136"/>
+    <location x="652" y="136"/>
     <figSize height="20" width="40"/>
     <node>assign1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link0</targetConnections>
+    <location x="502" y="210"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign2label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">params/orgid</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <location x="496" y="246"/>
+    <figSize height="20" width="40"/>
+    <node>assign2</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign4" name="赋值4" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link0" name="link0" displayName="连接线" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign2</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">params/orgids</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link4</targetConnections>
+    <location x="364" y="100"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign4label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <location x="358" y="136"/>
+    <figSize height="20" width="40"/>
+    <node>assign4</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -140,6 +183,7 @@
     <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="detailList"/>
     <process:output description="" isArray="false" name="total" primitiveType="Int"/>
     <process:output description="" isArray="false" name="totalPage" primitiveType="Int"/>
+    <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

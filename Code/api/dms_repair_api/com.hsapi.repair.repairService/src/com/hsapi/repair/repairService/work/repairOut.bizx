@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="repairOut.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="维修出库领料&#xD;&#xA;销售出库领料&#xD;&#xA;耗材出库领料&#xD;&#xA;&#xD;&#xA;只区别是维修领料  还是耗材出库&#xD;&#xA;050206 维修出库， 工单领料    050106 维修归库&#xD;&#xA;050207 耗材出库                    050107 耗材归库&#xD;&#xA;050208 精品出库                    050108 精品归库&#xD;&#xA;耗材出库需要生成单号；判断数量有没有超数，更新已领料数量&#xD;&#xA;&#xD;&#xA;销售开单的配件领完后，需要更新工单status = 2" title="Administrator&#x9;18-9-12 上午9:27">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="维修出库领料&#xD;&#xA;销售出库领料&#xD;&#xA;耗材出库领料&#xD;&#xA;&#xD;&#xA;只区别是维修领料  还是耗材出库&#xD;&#xA;050206 维修出库， 工单领料    050106 维修归库&#xD;&#xA;050207 耗材出库                    050107 耗材归库&#xD;&#xA;050208 精品出库                    050108 精品归库&#xD;&#xA;耗材出库需要生成单号；判断数量有没有超数，更新已领料数量&#xD;&#xA;&#xD;&#xA;销售开单的配件领完后，需要更新工单status = 2 &#xD;&#xA;改为销售开单的配件领完后，需要更新工单配件审核partAuditSign = 1（还没修改）" title="Administrator&#x9;18-9-12 上午9:27">
     <location x="65" y="-225"/>
     <size height="226" width="496"/>
   </nodes>

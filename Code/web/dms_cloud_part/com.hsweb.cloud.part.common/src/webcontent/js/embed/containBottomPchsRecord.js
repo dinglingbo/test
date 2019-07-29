@@ -100,8 +100,10 @@ function onSearch(){
 }
 function doSearch(params)
 {
+	params.orgid = currOrgid;
     params.sortField = "audit_date";
     params.sortOrder = "desc";
+    params.orderTypeId =1
     rightGrid.load({
         pageSize: 100,
         params:params,

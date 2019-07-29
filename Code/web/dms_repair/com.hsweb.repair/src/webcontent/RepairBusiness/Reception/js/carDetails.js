@@ -867,20 +867,26 @@ function activechangedmain2(){
 				 setData.guestDesc2 = main.guestDesc;
 				 setData.faultPhen2 = main.faultPhen;
 				 setData.solveMethod2 = main.solveMethod; 
-				 setData.serviceTypeId2= servieTypeHash[main.serviceTypeId].name;
+				 if(main.serviceTypeId){
+					 setData.serviceTypeId2= servieTypeHash[main.serviceTypeId].name;
+				 }
 			 }
 			
 			 if(car){
 				 setData.carModel2 = car.carModel;
 				 setData.carVin2 = car.vin;
+				 setData.annualInspectionDate2 = car.annualInspectionDate || "";
+				 setData.annualInspectionCompName2 = car.annualInspectionCompName || "";
+				 setData.insureCompName2 = car.insureCompName || "";
+				 setData.insureDueDate2 = car.insureDueDate || "";
 			 }
 			 
-			 if(carExd){
+			 /*if(carExd){
 				 setData.annualInspectionDate2 = carExd.annualInspectionDate || "";
 				 setData.annualInspectionCompName2 = carExd.annualInspectionCompName || "";
 				 setData.insureCompName2 = carExd.insureCompName || "";
 				 setData.insureDueDate2 = carExd.insureDueDate || "";
-			 }
+			 }*/
 			 if(conta){
 				 setData.contactorName2 = conta.name;
 				 setData.contactorMobile2 = conta.mobile;

@@ -123,7 +123,7 @@ function sure() {
 			newRow.applyCarbrandId = data[i].厂牌||"";
 			newRow.model = data[i].型号||"";
 			newRow.goodsCode = data[i].实物码||"";
-			newRow.oemCode = data[i].OEM码||"";
+			newRow.oemCode = data[i].OE码||"";
 			newRow.applyCarModel = data[i].适用车型||"";
 			newRow.produceFactory = data[i].生产厂家||"";
 			newRow.commonCode = data[i].通用编码||"";

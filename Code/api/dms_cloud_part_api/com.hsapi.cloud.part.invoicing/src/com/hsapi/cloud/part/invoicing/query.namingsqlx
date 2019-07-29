@@ -401,6 +401,7 @@
             <isNotEmpty prepend="and" property="endDate">(A.AUDIT_DATE &lt; #endDate#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partId">(b.PART_ID = #partId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="guestId">(A.guest_id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestName">(d.full_name like '%$guestName$%' or d.short_name like '%$guestName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or c.name_py like '%$partNameAndPY$%')</isNotEmpty>
@@ -788,6 +789,7 @@
             <isNotEmpty prepend="and" property="endDate">(A.AUDIT_DATE &lt; #endDate#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partId">(b.PART_ID = #partId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="guestId">(A.guest_id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestName">(d.FULL_NAME like '%$guestName$%' or d.short_name like '%$guestName$%' )</isNotEmpty>
             <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or c.name_py like '%$partNameAndPY$%')</isNotEmpty>

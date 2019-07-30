@@ -216,6 +216,10 @@
       <process:from type="query" pattern="reference">paramsMain/id</process:from>
       <process:to type="query">params/mainId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">paramsMain/billTypeId</process:from>
+      <process:to type="query">params/billTypeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="268" y="254"/>

@@ -221,7 +221,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
-    <location x="333" y="321"/>
+    <location x="333" y="317"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
     <process:copy>
@@ -230,7 +230,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="331" y="357"/>
+    <location x="331" y="353"/>
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
@@ -324,8 +324,8 @@
     <chidren>loopend0</chidren>
     <chidren>loopstart0</chidren>
     <chidren>assign4</chidren>
-    <chidren>assign5</chidren>
     <chidren>invokePojo3</chidren>
+    <chidren>assign5</chidren>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess4" name="获取仓库人员" displayName="queryMember" collapsed="false" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">

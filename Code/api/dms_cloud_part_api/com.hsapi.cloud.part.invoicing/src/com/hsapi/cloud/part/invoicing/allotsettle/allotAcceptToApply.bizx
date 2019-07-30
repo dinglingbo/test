@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="allotAcceptToApply.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="方案一：取 pj_allot_accept_main 中未完成导入的单据 is_enter = 0，取明细 pj_allot_accept_detail 未导入数量 (accept_qty - has_in_qty); &#xD;&#xA;然后根据 未导入 pj_allot_accept_detail 中明细ID，取 pj_out_detail_chk 未导入数量 (sell_qty - out_to_in_qty) 自动分配批次;&#xD;&#xA;更新 pj_out_detail_chk 已入库数量 out_to_in_qty，更新 pj_allot_accept_detail 已入库数量 has_in_qty&#xD;&#xA;&#xD;&#xA;cloudPartPjAllotApplyMain.versionNo&#xD;&#xA;cloudPartPjAllotApplyDetail.id&#xD;&#xA;&#xD;&#xA;方案二：生成的 is_diff_order = 1 的数据包含了成本信息，APP入库过程中根据 调拨申请里面的成本进行入库&#xD;&#xA;更新对方调拨出库数据的已入库数据，判断是否超数&#xD;&#xA;&#xD;&#xA;目前只考虑方案二" title="Administrator&#x9;19-7-29 上午9:27">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="方案一：取 pj_allot_accept_main 中未完成导入的单据 is_enter = 0，取明细 pj_allot_accept_detail 未导入数量 (accept_qty - has_in_qty); &#xD;&#xA;然后根据 未导入 pj_allot_accept_detail 中明细ID，取 pj_out_detail_chk 未导入数量 (sell_qty - out_to_in_qty) 自动分配批次;&#xD;&#xA;更新 pj_out_detail_chk 已入库数量 out_to_in_qty，更新 pj_allot_accept_detail 已入库数量 has_in_qty&#xD;&#xA;&#xD;&#xA;cloudPartPjAllotApplyMain.versionNo&#xD;&#xA;cloudPartPjAllotApplyDetail.id&#xD;&#xA;&#xD;&#xA;方案二：生成的 is_diff_order = 1 的数据包含了成本信息，APP入库过程中根据 调拨申请里面的成本进行入库&#xD;&#xA;更新对方调拨出库数据的已入库数据，判断是否超数&#xD;&#xA;&#xD;&#xA;目前只考虑方案二.&#xD;&#xA;sourceType=3  0调拨申请；1来源于调入申退；2来源于调拨申请;3来源于直发" title="Administrator&#x9;19-7-29 上午9:27">
     <location x="59" y="-75"/>
     <size height="226" width="785"/>
   </nodes>
@@ -179,7 +179,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">applyMain/serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

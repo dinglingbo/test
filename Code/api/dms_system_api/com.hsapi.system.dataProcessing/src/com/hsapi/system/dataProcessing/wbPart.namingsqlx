@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
+    
+       <!--采购   删除pj_pchs_order_main + detail-->
+    <delete id="deletePjPchsOrderMain" parameterClass="HashMap">
+     DELETE wb_part.pj_pchs_order_main , wb_part.pj_pchs_order_detail  FROM wb_part.pj_pchs_order_main 
+			INNER JOIN wb_part.pj_pchs_order_detail on wb_part.pj_pchs_order_main.id = wb_part.pj_pchs_order_detail.main_id
+ 			where wb_part.pj_pchs_order_main.orgid = #orgid#
+    </delete>
+    
+    <!-- 删除pj_pchs_order_main_chk +detail -->
+    <delete id="deletePjPchsOrderMainChk" parameterClass="HashMap">
+     DELETE wb_part.pj_pchs_order_main_chk , wb_part.pj_pchs_order_detail_chk  FROM wb_part.pj_pchs_order_main_chk 
+			INNER JOIN wb_part.pj_pchs_order_detail_chk on wb_part.pj_pchs_order_main_chk.id = wb_part.pj_pchs_order_detail_chk.main_id
+ 			where wb_part.pj_pchs_order_main_chk.orgid = #orgid#
+    </delete>
+    
+           <!--入库   删除pj_enter_main + detail-->
+    <delete id="deletePjEnterMain" parameterClass="HashMap">
+     DELETE wb_part.pj_enter_main , wb_part.pj_enter_detail  FROM wb_part.pj_enter_main 
+			INNER JOIN wb_part.pj_enter_detail on wb_part.pj_enter_main.id = wb_part.pj_enter_detail.main_id
+ 			where wb_part.pj_enter_main.orgid = #orgid#
+    </delete>
+    
+        <!-- 删除pj_enter_main_chk +detail -->
+    <delete id="deletePjEnterMainChk" parameterClass="HashMap">
+     DELETE wb_part.pj_enter_main_chk , wb_part.pj_enter_detail_chk  FROM wb_part.pj_enter_main_chk 
+			INNER JOIN wb_part.pj_enter_detail_chk on wb_part.pj_enter_main_chk.id = wb_part.pj_enter_detail_chk.main_id
+ 			where wb_part.pj_enter_main_chk.orgid = #orgid#
+    </delete>
+    
+               <!--出库   删除pj_out_main + detail-->
+    <delete id="deletePjOutMain" parameterClass="HashMap">
+     DELETE wb_part.pj_out_main , wb_part.pj_out_detail  FROM wb_part.pj_out_main 
+			INNER JOIN wb_part.pj_out_detail on wb_part.pj_out_main.id = wb_part.pj_out_detail.main_id
+ 			where wb_part.pj_out_main.orgid = #orgid#
+    </delete>
+    
+        <!-- 删除pj_out_main_chk +detail -->
+    <delete id="deletePjOutMainChk" parameterClass="HashMap">
+     DELETE wb_part.pj_out_main_chk , wb_part.pj_out_detail_chk  FROM wb_part.pj_out_main_chk 
+			INNER JOIN wb_part.pj_out_detail_chk on wb_part.pj_out_main_chk.id = wb_part.pj_out_detail_chk.main_id
+ 			where wb_part.pj_out_main_chk.orgid = #orgid#
+    </delete>
+    
+                   <!--流水   删除pj_store_invocing-->
+    <delete id="deletepjStoreInvocing" parameterClass="HashMap">
+     DELETE wb_part.pj_store_invocing   FROM wb_part.pj_store_invocing 			
+ 			where wb_part.pj_store_invocing.orgid = #orgid#
+    </delete>
+    
+                       <!--流水   删除pj_store-->
+    <delete id="deletepjStore" parameterClass="HashMap">
+     DELETE wb_part.pj_store   FROM wb_part.pj_store 			
+ 			where wb_part.pj_store.orgid = #orgid#
+    </delete>
+    
+                           <!--库存   删除pj_part_stock-->
+    <delete id="deletepjPartStock" parameterClass="HashMap">
+     DELETE wb_part.pj_part_stock   FROM wb_part.pj_part_stock 			
+ 			where wb_part.pj_part_stock.orgid = #orgid#
+    </delete>
+                           <!--库存   删除pj_part_store_stock-->
+    <delete id="deletepjPartStoreStock" parameterClass="HashMap">
+     DELETE wb_part.pj_part_store_stock   FROM wb_part.pj_part_store_stock 			
+ 			where wb_part.pj_part_store_stock.orgid = #orgid#
+    </delete>
+    
+                               <!--工单出库   删除pj_repair_out-->
+    <delete id="deletepjRepairOut" parameterClass="HashMap">
+     DELETE wb_part.pj_repair_out   FROM wb_part.pj_repair_out			
+ 			where wb_part.pj_repair_out.orgid = #orgid#
+    </delete>
+    
+                   <!--退货   删除pj_sell_order_main + detail-->
+    <delete id="deletePjSellOrderMain" parameterClass="HashMap">
+     DELETE wb_part.pj_sell_order_main , wb_part.pj_sell_order_detail  FROM wb_part.pj_sell_order_main 
+			INNER JOIN wb_part.pj_sell_order_detail on wb_part.pj_sell_order_main.id = wb_part.pj_sell_order_detail.main_id
+ 			where wb_part.pj_sell_order_main.orgid = #orgid#
+    </delete>
+    
+        <!-- 删除pj_sell_order_main_chk +detail -->
+    <delete id="deletePjSellOrderMainChk" parameterClass="HashMap">
+     DELETE wb_part.pj_sell_order_main_chk , wb_part.pj_sell_order_detail_chk  FROM wb_part.pj_sell_order_main_chk 
+			INNER JOIN wb_part.pj_sell_order_detail_chk on wb_part.pj_sell_order_main_chk.id = wb_part.pj_sell_order_detail_chk.main_id
+ 			where wb_part.pj_sell_order_main_chk.orgid = #orgid#
+    </delete>
+    
+                           <!--盘点   删除pj_stock_check_main + detail-->
+    <delete id="deletePjStockCheckMain" parameterClass="HashMap">
+     DELETE wb_part.pj_stock_check_main , wb_part.pj_stock_check_detail  FROM wb_part.pj_stock_check_main 
+			INNER JOIN wb_part.pj_stock_check_detail on wb_part.pj_stock_check_main.id = wb_part.pj_stock_check_detail.main_id
+ 			where wb_part.pj_stock_check_main.orgid = #orgid#
+    </delete>
+    
+        <!-- 删除pj_stock_check_main_chk +detail -->
+    <delete id="deletePjStockCheckMainChk" parameterClass="HashMap">
+     DELETE wb_part.pj_stock_check_main_chk , wb_part.pj_stock_check_detail_chk  FROM wb_part.pj_stock_check_main_chk 
+			INNER JOIN wb_part.pj_stock_check_detail_chk on wb_part.pj_stock_check_main_chk.id = wb_part.pj_stock_check_detail_chk.main_id
+ 			where wb_part.pj_stock_check_main_chk.orgid = #orgid#
+    </delete>   
+    
+                   <!--对账   删除pj_statement_main + detail-->
+    <delete id="deletePjStatementMain" parameterClass="HashMap">
+     DELETE wb_part.pj_statement_main , wb_part.pj_statement_detail  FROM wb_part.pj_statement_main 
+			INNER JOIN wb_part.pj_statement_detail on wb_part.pj_statement_main.id = wb_part.pj_statement_detail.main_id
+ 			where wb_part.pj_statement_main.orgid = #orgid#
+    </delete>
+    
+                   <!--移仓   删除pj_stock_shift_main + detail-->
+    <delete id="deletePjStockShiftMain" parameterClass="HashMap">
+     DELETE wb_part.pj_stock_shift_main , wb_part.pj_stock_shift_detail  FROM wb_part.pj_stock_shift_main 
+			INNER JOIN wb_part.pj_stock_shift_detail on wb_part.pj_stock_shift_main.id = wb_part.pj_stock_shift_detail.main_id
+ 			where wb_part.pj_stock_shift_main.orgid = #orgid#
+    </delete>     
+</sqlMap>

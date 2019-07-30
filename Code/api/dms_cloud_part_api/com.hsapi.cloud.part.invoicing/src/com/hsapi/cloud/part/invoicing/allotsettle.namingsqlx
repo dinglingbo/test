@@ -555,5 +555,61 @@
 		set e.accept_main_id = b.id, e.accept_detail_id = a.id
 		where b.id = #acceptMainId# and d.source_type = 4
 	</update>
+	
+	<!--
+		取入库信息及销售单价,用于生成直发的销售出库
+	-->
+	<select id="getEnterOutDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+        SELECT
+			a.id as id,
+			a.main_id as mainId,
+			a.source_id as sourceId,
+			a.root_id as rootId,
+			a.store_id as storeId,
+			a.part_id as partId,
+			a.part_code as partCode,
+			a.part_name as partName,
+			a.full_name as fullName,
+			a.enter_unit_id as enterUnitId,
+			a.system_unit_id as systemUnitId,
+			a.enter_qty as enterQty,
+			a.enter_price as enterPrice,
+			a.enter_amt as enterAmt,
+			a.outable_qty as outableQty,
+			a.tax_sign as taxSign,
+			a.tax_rate as taxRate,
+			a.tax_price as taxPrice,
+			a.tax_amt as taxAmt,
+			a.no_tax_price as noTaxPrice,
+			a.no_tax_amt as noTaxAmt,
+			a.tax_diff as taxDiff,
+			a.rtn_price as rtnPrice,
+			a.rtn_amt as rtnAmt,
+			a.enter_date as enterDate,
+			a.prev_detail_id as prevDetailId,
+			a.order_detail_id as orderDetailId,
+			a.order_main_id as orderMainId,
+			a.branch_stock_age as branchStockAge,
+			a.chain_stock_age as chainStockAge,
+			a.guest_id as guestId,
+			a.guest_name as guestName,
+			a.store_shelf as storeShelf,
+			a.origin_id as originId,
+			a.origin_guest_id as originGuestId,
+			a.sell_price as sellPrice,
+			d.order_qty as orderQty,
+			d.order_price as orderPrice,
+			d.remark as remark
+		from pj_enter_detail_chk a
+			INNER JOIN pj_enter_main_chk b
+			on a.main_id = b.id
+			inner join pj_out_detail_chk c
+			on a.prev_detail_id = c.id
+			inner join pj_guest_order_detail d
+			on c.order_detail_id = d.accept_detail_id and c.order_main_id = d.accept_main_id
+		where b.id = #enterMainId#
+
+    </select>
 
 </sqlMap>

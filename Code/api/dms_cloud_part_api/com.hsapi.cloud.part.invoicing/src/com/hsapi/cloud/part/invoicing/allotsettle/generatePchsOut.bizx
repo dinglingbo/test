@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="generatePchsOut" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="急件直发（门店发起预销售，总部受理生成采购订单，供应商发货给客户，门店确定完成预销售，生成总部采购入库、调拨出库，生成门店调拨入库，销售出库）&#xD;&#xA;更新预销售单的   accept_main_id   accept_detail_id&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.updatePjGuestOrderDetailAcceptId" title="Administrator&#x9;19-7-26 下午9:00">
-    <location x="16" y="0"/>
-    <size height="106" width="630"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="急件直发（门店发起预销售，总部受理生成采购订单，供应商发货给客户，门店确定完成预销售，生成总部采购入库、调拨出库，生成门店调拨入库，销售出库）&#xD;&#xA;更新预销售单的   accept_main_id   accept_detail_id&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.updatePjGuestOrderDetailAcceptId&#xD;&#xA;&#xD;&#xA;" title="Administrator&#x9;19-7-26 下午9:00">
+    <location x="-15" y="-15"/>
+    <size height="136" width="630"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -87,6 +87,10 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+        <process:outputVariable id="2" name="enterMain" type="query" value="com.hsapi.cloud.part.data.pts.PjEnterMainChk" valueType="DataObject">enterMain</process:outputVariable>
+        <process:outputVariable id="3" name="enterDetail" type="query" value="com.hsapi.cloud.part.data.pts.PjEnterDetailChk[]" valueType="DataObject">enterDetail</process:outputVariable>
+        <process:outputVariable id="4" name="applyMain" type="query" value="com.hsapi.cloud.part.data.pts.PjAllotApplyMain" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="5" name="applyDetail" type="query" value="com.hsapi.cloud.part.data.pts.PjAllotApplyDetail[]" valueType="DataObject"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -257,11 +261,19 @@
     <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign5" name="赋值5" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" type="assign">
     <targetConnections>link12</targetConnections>
     <location x="237" y="255"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">预销售单数据更新失败</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
     <location x="235" y="291"/>
@@ -322,6 +334,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjGuestOrderMain" name="guestOrder"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk" name="orderMain"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk" name="orderDetail"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjEnterMainChk" name="enterMain"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjEnterDetailChk" name="enterDetail"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="id" primitiveType="Int"/>

@@ -169,7 +169,7 @@
 		       FROM com_guest a
 		       WHERE 1 = 1 
 		       <!-- 汽配不共享 -->
-		       and (a.orgid = #orgid#)
+		    
 		     <!-- a.is_supplier = 1   AND a.guest_type = '01020202'-->
     	<dynamic>	
     		<isNotEmpty prepend="and" property="tenantId">  
@@ -303,7 +303,7 @@
 		       FROM com_guest a
 		       WHERE a.is_client = 1  
 		       <!-- 汽配客户不共享-->
-		       and (a.orgid = #orgid#)
+		 
     	<dynamic>
     		<isNotEmpty prepend="and" property="tenantId">  
                 (a.tenant_id = #tenantId#)

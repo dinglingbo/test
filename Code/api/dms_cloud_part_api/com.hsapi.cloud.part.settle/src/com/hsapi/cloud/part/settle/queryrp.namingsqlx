@@ -847,11 +847,14 @@
 			a.f_year as fYear,
 			a.f_month as fMonth,
 			a.is_disabled as isDisabled,
-			a.rp_type_id as rpTypeId
+			a.rp_type_id as rpTypeId,
+			b.name as orgName
 		FROM
 			fi_rp_bill a
 		INNER JOIN wb_common.com_company b 
 		on a.orgid =b.orgid
+		Inner join pj_statement_main c 
+		on a.bill_main_id =c.id
 		WHERE 1=1
 			<dynamic>
 				
@@ -903,6 +906,12 @@
                 <isNotEmpty prepend="and" property="settleStatus"> 
                     (a.settle_status  = #settleStatus#)
                 </isNotEmpty>
+                
+                 <!-- 月结 020502 -->
+                 <isNotEmpty prepend="and" property="settleTypeId"> 
+                    (c.settle_type_id = #settleTypeId#)
+                </isNotEmpty>
+                
              ORDER BY a.audit_date desc             
             </dynamic> 
 				

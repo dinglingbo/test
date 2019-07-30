@@ -18,6 +18,7 @@ import com.eos.system.annotation.Bizlet;
 
 
 
+
 import commonj.sdo.DataObject;
 
 @Bizlet("")
@@ -601,6 +602,38 @@ public class ArrayUtils {
 		   return null;
 		}
 	   
-
+	   @Bizlet("map转化为DataObject")
+	   public static DataObject transDataObject( DataObject obj,HashMap<String,Object> map) {
+		  
+		  if(map != null && obj!=null){
+			  for(String key : map.keySet()){
+				  obj.set(key, map.get(key));
+				 
+			  }
+			  return obj;
+		  }
+		   return null;
+		}
+	   
+	   @Bizlet("map[]转化为DataObject[]")
+	   public static DataObject[] transDataObjects( DataObject[] objs,HashMap<String,Object>[] maps,String entityName) {
+		 
+		 
+		  ArrayList list = new ArrayList<DataObject>(Arrays.asList(objs ));
+		  //清除数据
+		  list.clear();
+		  if( maps!=null){			
+			  for(HashMap<String,Object> map : maps){
+				  DataObject obj = com.eos.foundation.data.DataObjectUtil
+							.createDataObject(entityName);
+				  obj =transDataObject(obj,map); 
+				  list.add(obj);
+			  }
+			  
+			  return (DataObject[]) list.toArray(new DataObject[list.size()]);
+		  }
+		   return null;
+		}
+	   
 }
 

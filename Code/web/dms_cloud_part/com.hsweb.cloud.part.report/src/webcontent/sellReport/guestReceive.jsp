@@ -13,7 +13,7 @@
 <head>
 <title>客户回款报表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/report/js/guestReceive.js?v=1.0.57"></script>
+    <script src="<%=webPath + contextPath%>/report/js/guestReceive.js?v=1.0.62"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -27,7 +27,7 @@
 			             	<label style="font-family:Verdana;">快速查询：</label>
 			            	<input class="nui-combobox" id ="orgids" name="orgids" value="" allowInput="true" showNullItem="false" 
 			            		 valueFromSelect="true" nullitemtext="请选择..." emptyText="选择公司" data="" width="200px"
-			            		 textField="name" valueField="orgid" />
+			            		 textField="name" valueField="orgid" onEnter="onSearch()" />
 			               
 			                <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">全部</a>
 			
@@ -50,7 +50,7 @@
 			                <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
 			               
 			                <span class="separator"></span> 
- 		                    <input id="guestName" width="120px" emptyText="客户" class="nui-textbox"/> 
+ 		                    <input id="guestName" width="120px" emptyText="客户" onEnter="onSearch()" class="nui-textbox"/> 
 	
 			                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 			                
@@ -59,7 +59,7 @@
 			    </table>
 			</div>
 			
-			 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
+			 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:92%;"
 		         showPager="true"
 		         dataField="list"
 		         sortMode="client"
@@ -93,17 +93,18 @@
                     style="width:100%; height:100%;" 
                     plain="false" 
                     onactivechanged="">
-                <div title="应收" id="receiveTab" name=""receiveTab"" url="" >
+                <div title="应收" id="receiveTab" name="receiveTab" url="" >
                	                	
                       <div id="leftGrid" class="nui-datagrid" style="width:100%;height:100%;"
-				         showPager="false"
+				         showPager="true"
 				         dataField="detailList"
 				         idField="detailId"
 				         ondrawcell="onDrawCell"
 				         sortMode="client"
 				         url=""
-				         pageSize="10000"
-				         sizeList="[1000,5000,10000]"
+				         totalField="page.count"
+						 pageSize="100"
+						 sizeList=[100,200,500,1000]
 				         showSummaryRow="false">
 				        <div property="columns">
 				            <div type="indexcolumn">序号</div>
@@ -132,14 +133,15 @@
                 <div title="应付" id="payTab" name=""receiveTab"" url="" >
                 
                 	<div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
-				         showPager="false"
+				         showPager="true"
 				         dataField="detailList"
 				         idField="detailId"
 				         ondrawcell="onDrawCell"
 				         sortMode="client"
 				         url=""
-				         pageSize="10000"
-				         sizeList="[1000,5000,10000]"
+				         totalField="page.count"
+						 pageSize="100"
+						 sizeList=[100,200,500,1000]
 				         showSummaryRow="false">
 				        <div property="columns">
 				            <div type="indexcolumn">序号</div>

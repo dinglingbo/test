@@ -160,7 +160,7 @@
       <process:inputVariables>
         <process:inputVariable id="0" name="tempDataList" type="query" value="java.util.HashMap[]" valueType="Java" pattern="reference">tempDataList</process:inputVariable>
         <process:inputVariable id="1" name="templateId" type="query" value="String" valueType="Primitive" pattern="reference">templateId</process:inputVariable>
-        <process:inputVariable id="2" name="url" type="expression" value="String" valueType="Primitive" pattern="reference"></process:inputVariable>
+        <process:inputVariable id="2" name="url" type="expression" value="String" valueType="Primitive" pattern="reference"/>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -202,12 +202,12 @@
     <location x="704" y="54"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
-    <process:pojo methodType="static" synchronization="true" transactionType="join">
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
       <process:partner type="literal">com.hs.common.ArrayUtils.add2Array</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="sourceDO" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">tempData</process:inputVariable>
+      <process:inputVariable id="0" name="sourceDO" type="query" value="java.util.HashMap" valueType="Java" pattern="value">tempData</process:inputVariable>
       <process:inputVariable id="1" name="dos" type="query" value="java.util.HashMap[]" valueType="Java" pattern="reference">tempDataList</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -546,12 +546,12 @@
     <location x="779" y="248"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo5label</nodeLabel>
-    <process:pojo methodType="static" synchronization="true" transactionType="join">
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
       <process:partner type="literal">com.hs.common.ArrayUtils.add2Array</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="sourceDO" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">tempData</process:inputVariable>
+      <process:inputVariable id="0" name="sourceDO" type="query" value="java.util.HashMap" valueType="Java" pattern="value">tempData</process:inputVariable>
       <process:inputVariable id="1" name="dos" type="query" value="java.util.HashMap[]" valueType="Java" pattern="reference">tempDataList</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>

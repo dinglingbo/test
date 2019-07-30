@@ -1254,7 +1254,7 @@ function setInitExportData(main,detail,partHash){
 		var tr1 =$("<tr></tr>");
 		var tds1='<td colspan="1" align="center">配件编码</td>'+ 
 				 '<td colspan="1" align="center">配件名称</td>'+
-				 '<td colspan="1" align="center">OEM码</td>'+
+				 '<td colspan="1" align="center">OE码</td>'+
 				 '<td colspan="1" align="center">品牌</td>'+
 				 '<td colspan="1" align="center">品牌车型</td>'+
 				 '<td colspan="1" align="center">单位</td>'+

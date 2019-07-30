@@ -54,7 +54,10 @@ $(document).ready(function () {
 			}
 		}
 		if(field == "invoiceType"){
-			e.cellHtml = servieTypeHash[value].name;
+			if(value){
+				e.cellHtml = servieTypeHash[value].name;
+			}
+			
 		}
 	});
 	

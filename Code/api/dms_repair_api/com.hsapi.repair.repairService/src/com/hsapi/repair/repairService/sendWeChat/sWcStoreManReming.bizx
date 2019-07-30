@@ -139,10 +139,6 @@
       <process:from type="literal" pattern="reference">WOh1vejIb6CdDm25G46BZ4JyRo1Snfl78CRD1PPpTTg</process:from>
       <process:to type="query">templateId</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">null</process:from>
-      <process:to type="query">tempDataList</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">
     <location x="535" y="186"/>

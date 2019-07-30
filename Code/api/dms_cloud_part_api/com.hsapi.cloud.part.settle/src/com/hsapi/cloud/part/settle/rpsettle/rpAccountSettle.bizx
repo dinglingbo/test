@@ -332,12 +332,13 @@
     <location x="359" y="150"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess3label</nodeLabel>
-    <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.insertAccountDType</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="accountTypeList" type="query" value="com.hsapi.cloud.part.data.pts.FiRpAccountDType[]" valueType="DataObject" pattern="reference">accountTypeList</process:inputVariable>
         <process:inputVariable id="1" name="mainId" type="query" value="Int" valueType="Primitive" pattern="reference">mainId</process:inputVariable>
         <process:inputVariable id="2" name="rpDc" type="query" value="Int" valueType="Primitive" pattern="reference">account/rpDc</process:inputVariable>
+        <process:inputVariable id="3" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">account/orgid</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

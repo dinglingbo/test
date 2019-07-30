@@ -12,7 +12,7 @@
 <head>
 <title>Title</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/settlement/js/statementDetails.js?v=1.0.20"></script>
+    <script src="<%=webPath + contextPath%>/settlement/js/statementDetails.js?v=1.0.22"></script>
     
 </head>
 <body>

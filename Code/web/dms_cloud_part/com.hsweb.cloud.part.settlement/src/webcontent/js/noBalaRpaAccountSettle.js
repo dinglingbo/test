@@ -1414,6 +1414,7 @@ function settleOK(){
         var s2 = 0;  //合计付
         
         firstRow = rows[0];
+        account.orgid = currOrgid;
         account.guestId = firstRow.guestId;
         account.guestName = firstRow.guestName;
         account.itemQty = s;

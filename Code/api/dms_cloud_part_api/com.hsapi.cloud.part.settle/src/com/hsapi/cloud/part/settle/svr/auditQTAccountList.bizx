@@ -420,6 +420,7 @@
         <process:inputVariable id="2" name="FMonth" type="query" value="Int" valueType="Primitive" pattern="reference">f/fMonth</process:inputVariable>
         <process:inputVariable id="3" name="dc" type="query" value="Int" valueType="Primitive" pattern="reference">f/rpDc</process:inputVariable>
         <process:inputVariable id="4" name="BillAmt" type="query" value="Float" valueType="Primitive" pattern="reference">f/charOffAmt</process:inputVariable>
+        <process:inputVariable id="5" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

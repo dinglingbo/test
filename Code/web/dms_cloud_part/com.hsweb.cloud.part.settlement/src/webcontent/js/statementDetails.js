@@ -136,6 +136,8 @@ function getSearchParam(){
     if(!params.orgid){
     	params.orgid =null;
     }
+    params.auditSign =1;
+    params.settleTypeId = '020502';
     params.tenantId =currTenantId;
     return params;
 }

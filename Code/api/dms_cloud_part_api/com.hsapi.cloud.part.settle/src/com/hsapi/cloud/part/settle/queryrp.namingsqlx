@@ -766,9 +766,6 @@
                     (b.audit_sign = #auditSign#)
                 </isNotEmpty>
                 
-                 <isNotEmpty prepend="and" property="auditSign"> 
-                    (b.audit_sign = #auditSign#)
-                </isNotEmpty>
                 <!-- 月结 020502 -->
                  <isNotEmpty prepend="and" property="settleTypeId"> 
                     (a.settle_type_id = #settleTypeId#)
@@ -801,6 +798,112 @@
                     (b.settle_status  = #settleStatus#)
                 </isNotEmpty>
              ORDER BY b.audit_date desc             
+            </dynamic> 
+				
+	</select>
+	
+	<!--查询应收应付 -->
+	<select id="queryRPAccounts" parameterClass="java.util.HashMap"  resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id as id ,
+			a.rp_bill_id as rpBillId,
+			a.orgid as orgid,
+			a.guest_id as guestId,
+			a.guest_name as guestName,
+			a.bill_main_id as billMainId,
+			a.bill_service_id as billServiceId,
+			a.bill_type_id as billTypeId,
+			a.bill_type_code as billTypeCode,
+			a.bill_code as billCode,
+			a.bill_dc as billDc,
+			a.rp_amt as rpAmt,
+			a.char_off_amt as charOffAmt,
+			a.true_char_off_amt as trueCharOffAmt,
+			a.no_char_off_amt as noCharOffAmt,
+			a.pre_char_off_amt as preCharOffAmt,
+			a.void_amt as voidAmt,
+			a.print_times as printTimes,
+			a.balance_sign as balanceSign,
+			a.balancer_id as balancerId,
+			a.balancer as balancer,
+			a.balance_date as balanceDate,
+			a.settle_sign as settleSign,
+			a.settler_id as settlerId,
+			a.settler as settler,
+			a.settle_date as  settleDate,
+			a.settle_status as settleStatus,
+			a.audit_sign as auditSign,
+			a.auditor_id as auditorId,
+			a.auditor as auditor,
+			a.audit_date as auditDate,
+			a.remark as remark, 
+			a.version_no as versionNo,
+			a.creator_id as creatorId, 
+			a.creator as creator,
+			a.create_date as createDate,
+			a.operator_id as operatorId,
+			a.operator as operator,
+			a.operate_date as operateDate,
+			a.f_year as fYear,
+			a.f_month as fMonth,
+			a.is_disabled as isDisabled,
+			a.rp_type_id as rpTypeId
+		FROM
+			fi_rp_bill a
+		INNER JOIN wb_common.com_company b 
+		on a.orgid =b.orgid
+		WHERE 1=1
+			<dynamic>
+				
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
+                                               
+                <isNotEmpty prepend="and" property="tenantId"> 
+                    (b.tenant_id = #tenantId#)
+                </isNotEmpty>
+                
+                 <isNotEmpty prepend="and" property="billDc"> 
+                    (a.bill_dc = #billDc#)
+                </isNotEmpty>               
+                
+                <isNotEmpty prepend="and" property="guestId">  
+                    (a.guest_id = #guestId#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="billServiceId">  
+	                (a.bill_service_id = #billServiceId#)
+	            </isNotEmpty>
+	            
+	             <isNotEmpty prepend="and" property="billServiceIdList">  
+	                (a.bill_service_id in ($billServiceIdList$) )
+	            </isNotEmpty>
+     
+                <isNotEmpty prepend="and" property="balancer"> 
+                    (a.balancer = #balancer#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="sCreateDate">  
+                    (a.create_date &gt;= #sCreateDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eCreateDate">  
+                    (a.create_date &lt; #eCreateDate#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="sBalanceDate">  
+                    (a.balance_date &gt;= #sBalanceDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eBalanceDate">  
+                    (a.balance_date &lt; #eBalanceDate#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="auditSign"> 
+                    (a.audit_sign  = #auditSign#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="rpTypeId"> 
+                    (a.rp_type_id  = #rpTypeId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="settleStatus"> 
+                    (a.settle_status  = #settleStatus#)
+                </isNotEmpty>
+             ORDER BY a.audit_date desc             
             </dynamic> 
 				
 	</select>

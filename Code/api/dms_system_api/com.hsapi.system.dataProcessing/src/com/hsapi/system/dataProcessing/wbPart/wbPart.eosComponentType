@@ -2,9 +2,9 @@
 <com.primeton.studio.component.core.EosComponentTypeInfo>
   <description>
     <version>6.0</version>
-    <displayName>demo</displayName>
-    <author>Guine</author>
-    <createdTime>2018-01-23 14:17:19</createdTime>
+    <displayName>wbPart</displayName>
+    <author>Administrator</author>
+    <createdTime>2019-07-29 15:14:14</createdTime>
     <description></description>
     <detailDescription></detailDescription>
     <demo></demo>

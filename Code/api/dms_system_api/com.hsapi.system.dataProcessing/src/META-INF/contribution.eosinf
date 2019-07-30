@@ -28,6 +28,14 @@
 				and the field value 'default' of 'configValue' node stands for an application datasource. 
 			-->
 			<configValue key="default">default</configValue>
+			<configValue key="DB01_ORA_WB_SYSTEM">DB01_ORA_WB_SYSTEM</configValue>
+			<configValue key="DB02_ORA_WB_COMMON">DB02_ORA_WB_COMMON</configValue>
+			<configValue key="DB03_ORA_WB_PART">DB03_ORA_WB_PART</configValue>
+			<configValue key="DB04_ORA_WB_REPAIR">DB04_ORA_WB_REPAIR</configValue>
+			<configValue key="DB05_ORA_WB_SALES">DB05_ORA_WB_SALES</configValue>
+			<configValue key="DB06_MYSQL_WB_FRM">DB06_MYSQL_WB_FRM</configValue>
+			<configValue key="DB10_MYSQL_WB_CRM">DB10_MYSQL_WB_CRM</configValue>
+			<configValue key="DB01_MYSQL_WB_SLOG">DB01_MYSQL_WB_SLOG</configValue>
 		</group>
 	</module>
 </contribution>

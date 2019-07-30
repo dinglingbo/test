@@ -525,5 +525,35 @@
 		where a.main_id = #mainId# and a.apply_qty + b.has_accept_qty + b.has_cancel_qty > b.accept_qty
 		 
     </select>
+    
+    <!-- 
+    	根据预销售单生成采购订单后，回填预销售单的 pchs_main_id  pchs_detail_id
+    	直发入库中，调拨出库数据生成后，根据调拨出库关联采购入库，然后根据采购入库关联采购订单
+    	select *
+		from pj_allot_accept_detail a
+		inner join pj_allot_accept_main b
+		on a.main_id = b.id
+		inner join pj_pchs_order_detail_chk c
+		on a.source_detail_id = c.id and a.source_main_id = c.main_id
+		inner join pj_pchs_order_main_chk d
+		on c.main_id = d.id
+		inner join pj_guest_order_detail e
+		on c.source_detail_id = e.pchs_detail_id and c.source_main_id = e.pchs_main_id
+     
+        source_type 0普通单据；1来源于采购订单；2来源于销售出库;3来源于WMS;4来源于直发；5来源于预销售
+      -->
+    <update id="updatePjGuestOrderDetailAcceptId" parameterClass="java.util.HashMap" >
+		update pj_allot_accept_detail a
+		inner join pj_allot_accept_main b
+		on a.main_id = b.id
+		inner join pj_pchs_order_detail_chk c
+		on a.source_detail_id = c.id and a.source_main_id = c.main_id
+		inner join pj_pchs_order_main_chk d
+		on c.main_id = d.id
+		inner join pj_guest_order_detail e
+		on c.source_detail_id = e.pchs_detail_id and c.source_main_id = e.pchs_main_id
+		set e.accept_main_id = b.id, e.accept_detail_id = a.id
+		where b.id = #acceptMainId# and d.source_type = 4
+	</update>
 
 </sqlMap>

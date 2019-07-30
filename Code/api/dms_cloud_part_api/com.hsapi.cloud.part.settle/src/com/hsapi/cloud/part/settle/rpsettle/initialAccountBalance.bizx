@@ -29,7 +29,7 @@
       <process:to type="query">cd/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">cd/_expr[1]/orgid</process:to>
     </process:copy>
     <process:copy>
@@ -334,7 +334,7 @@
       <process:to type="query">prevCd/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">prevCd/_expr[1]/orgid</process:to>
     </process:copy>
     <process:copy>

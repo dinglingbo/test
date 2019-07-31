@@ -3,9 +3,7 @@
  */
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var rightGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.queryRPAccounts.biz.ext";
-/*var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjEnterDetailList.biz.ext";
-var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOutDetailList.biz.ext";
-*/
+
 var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
 var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList.biz.ext";
 var innerStateGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.getPJStatementDetailById.biz.ext";
@@ -1705,7 +1703,14 @@ function settleOK(rows){
         for(var i=0;i<accountTypeList.length;i++){
         	var row=accountTypeList[i];
         	var cAmt = parseFloat(account.charOffAmt); 
-        	row.charOffAmt =parseFloat(cAmt*(row.charOffAmt/sumcharOffAmt)).toFixed(1); //按权重分配
+        	if(row.charOffAmt ==0){
+        		row.charOffAmt=cAmt;
+        		break;
+        	}
+        	else{
+        		row.charOffAmt =parseFloat(cAmt*(row.charOffAmt/sumcharOffAmt)).toFixed(1); //按权重分配
+        	}
+        	
         
         }
         

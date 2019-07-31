@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
+    
+    <!--收支项目定义   删除wb_frm.fib_income_expenses  -->
+    <delete id="deletFibIncomeExpenses" parameterClass="HashMap">
+     DELETE wb_frm.fib_income_expenses  FROM wb_frm.fib_income_expenses
+ 			where wb_frm.fib_income_expenses.orgid = #orgid#
+    </delete>
+    
+    <!--结算账户定义   删除wb_frm.fib_settle_account + fib_settle_account_rela-->
+    <delete id="deletFibSettleAccount" parameterClass="HashMap">
+     DELETE wb_frm.fib_settle_account,wb_frm.fib_settle_account_rela  FROM wb_frm.fib_settle_account
+     	INNER JOIN wb_frm.fib_settle_account_rela  on wb_frm.fib_settle_account.id = wb_frm.fib_settle_account_rela.id
+ 			where wb_frm.fib_settle_account.orgid = #orgid#
+    </delete>
+    
+    <!--往来单位余额表   删除wb_frm.fis_guest_balance  -->
+    <delete id="deletFisGuestBalance" parameterClass="HashMap">
+     DELETE wb_frm.fis_guest_balance  FROM wb_frm.fis_guest_balance
+ 			where wb_frm.fis_guest_balance.orgid = #orgid#
+    </delete>
+    
+     <!--线上支付表   删除wb_frm.fis_pre_bill + wb_frm.fis_pre_bill_detail  -->
+    <delete id="deletFisPreBill" parameterClass="HashMap">
+     DELETE wb_frm.fis_pre_bill, wb_frm.fis_pre_bill_detail FROM wb_frm.fis_pre_bill
+     	INNER JOIN wb_frm.fis_pre_bill_detail  on wb_frm.fis_pre_bill.id = wb_frm.fis_pre_bill_detail.pre_bill_id
+ 			where wb_frm.fis_pre_bill.orgid = #orgid#
+    </delete>
+    
+     <!--收付款单表   删除wb_frm.fis_rp_account + wb_frm.fis_rp_account_d_type + wb_frm.fis_rp_account_detail  -->
+    <delete id="deletFisRpAccount" parameterClass="HashMap">
+     DELETE wb_frm.fis_rp_account, wb_frm.fis_rp_account_d_type , wb_frm.fis_rp_account_detail FROM wb_frm.fis_rp_account
+     	INNER JOIN wb_frm.fis_rp_account_d_type  on wb_frm.fis_rp_account.id = wb_frm.fis_rp_account_d_type.main_id
+     	INNER JOIN wb_frm.fis_rp_account_detail  on wb_frm.fis_rp_account.id = wb_frm.fis_rp_account_detail.main_id
+ 			where wb_frm.fis_rp_account.orgid = #orgid#
+    </delete>
+    
+        <!--   删除wb_frm.fis_rp_advance  -->
+    <delete id="deletFisRpAdvancee" parameterClass="HashMap">
+     DELETE wb_frm.fis_rp_advance  FROM wb_frm.fis_rp_advance
+ 			where wb_frm.fis_rp_advance.orgid = #orgid#
+    </delete>
+    
+     <!--  应收应付表  删除wb_frm.fis_rp_bill  -->
+    <delete id="deletFisRpBill" parameterClass="HashMap">
+     DELETE wb_frm.fis_rp_bill  FROM wb_frm.fis_rp_bill
+ 			where wb_frm.fis_rp_bill.orgid = #orgid#
+    </delete>
+    
+    <!--   删除wb_frm.fis_rp_bill_online  -->
+    <delete id="deletFisRpBillOnline" parameterClass="HashMap">
+     DELETE wb_frm.fis_rp_bill_online  FROM wb_frm.fis_rp_bill_online
+ 			where wb_frm.fis_rp_bill_online.orgid = #orgid#
+    </delete>
+    
+     <!--内部转账   删除wb_frm.fis_rp_internal_transfer  -->
+    <delete id="deletFisRpInternalTransfer" parameterClass="HashMap">
+     DELETE wb_frm.fis_rp_internal_transfer  FROM wb_frm.fis_rp_internal_transfer
+ 			where wb_frm.fis_rp_internal_transfer.orgid = #orgid#
+    </delete>
+    
+     <!--结算账户余额表   删除wb_frm.fis_settle_account_bala  -->
+    <delete id="deletFisSettleAccountBala" parameterClass="HashMap">
+     DELETE wb_frm.fis_settle_account_bala FROM wb_frm.fis_settle_account_bala
+ 			where wb_frm.fis_settle_account_bala.orgid = #orgid#
+    </delete>
+</sqlMap>

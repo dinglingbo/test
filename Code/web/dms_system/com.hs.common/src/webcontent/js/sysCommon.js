@@ -345,11 +345,17 @@ function importTimeLimit(){
 		
 		var limitMinData = fullYear+"-"+month+"-"+date+" 19:00:00";
 		var limitMaxData = fullYear+"-"+month+"-"+(date+1)+" 07:00:00";
+		var mixMinDate = fullYear+"-"+month+"-"+date+" 23:59:59";
+		var mixMaxDate = fullYear+"-"+month+"-"+date+" 00:00:00";
 		limitMinData = limitMinData.replace("-","/");//替换字符，变成标准格式  
 		limitMaxData = limitMaxData.replace("-","/");//替换字符，变成标准格式   
+		mixMinDate = mixMinDate.replace("-","/");
+		mixMaxDate = mixMaxDate.replace("-","/");
 		var d1 = new Date(Date.parse(limitMinData)); 
 		var d3 = new Date(Date.parse(limitMaxData)); 
-		if(d2>d1&&d2<d3){
+		var d4 = new Date(Date.parse(mixMinDate)); 
+		var d5 = new Date(Date.parse(mixMaxDate)); 
+		if((d2>d1&&d2<d4)||(d2<d3&&d2>d5)){
 			return true;
 		}else{
 			return false;

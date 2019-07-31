@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
+    
+    <!--储值卡   删除wb_repair.rps_card_stored-->
+    <delete id="deleteRpsCardStored" parameterClass="HashMap">
+     DELETE wb_repair.rps_card_stored   FROM wb_repair.rps_card_stored			
+ 			where wb_repair.rps_card_stored.orgid = #orgid#
+    </delete>
+    
+     <!--计次流水表   删除wb_repair.rps_card_times_invocing-->
+    <delete id="deleteRpsCardTimesInvocingd" parameterClass="HashMap">
+     DELETE wb_repair.rps_card_times_invocing   FROM wb_repair.rps_card_times_invocing		
+ 			where wb_repair.rps_card_times_invocing.orgid = #orgid#
+    </delete>
+    
+    <!--提醒记录表   删除wb_repair.rps_care_record-->
+    <delete id="deleteRpsCareRecord" parameterClass="HashMap">
+     DELETE wb_repair.rps_care_record   FROM wb_repair.rps_care_record		
+ 			where wb_repair.rps_care_record.orgid = #orgid#
+    </delete>
+    
+        <!--车主变更   删除wb_repair.rps_carguest_change_record-->
+    <delete id="deleteRpsCarguestChangeRecord" parameterClass="HashMap">
+     DELETE wb_repair.rps_carguest_change_record   FROM wb_repair.rps_carguest_change_record	
+ 			where wb_repair.rps_carguest_change_record.orgid = #orgid#
+    </delete>
+    
+     <!--车架号 变更   删除wb_repair.rps_carvin_change_record-->
+    <delete id="deleteRpsCarvinChangeRecord" parameterClass="HashMap">
+     DELETE wb_repair.rps_carvin_change_record  FROM wb_repair.rps_carvin_change_record	
+ 			where wb_repair.rps_carvin_change_record.orgid = #orgid#
+    </delete>
+    
+     <!--车牌号 变更   删除wb_repair.rps_carno_change_record-->
+    <delete id="deleteRpsCarnoChangeRecord" parameterClass="HashMap">
+     DELETE wb_repair.rps_carno_change_record  FROM wb_repair.rps_carno_change_record	
+ 			where wb_repair.rps_carno_change_record.orgid = #orgid#
+    </delete>
+    
+    <!--优惠券使用记录表   删除wb_repair.rps_coupon_record-->
+    <delete id="deleteRpsCouponRecord" parameterClass="HashMap">
+     DELETE wb_repair.rps_coupon_record  FROM wb_repair.rps_coupon_record
+ 			where wb_repair.rps_coupon_record.orgid = #orgid#
+    </delete>
+    
+      <!--人员提成明细表   删除wb_repair.rps_deduct_prdt_detail-->
+    <delete id="deleteRpsDeductPrdtDetail" parameterClass="HashMap">
+     DELETE wb_repair.rps_deduct_prdt_detail  FROM wb_repair.rps_deduct_prdt_detail
+ 			where wb_repair.rps_deduct_prdt_detail.orgid = #orgid#
+    </delete>
+    
+      <!--本店维修客户档案   删除wb_repair.rps_guest_file-->
+    <delete id="deleteRpsGuestFile" parameterClass="HashMap">
+     DELETE wb_repair.rps_guest_file  FROM wb_repair.rps_guest_file
+ 			where wb_repair.rps_guest_file.orgid = #orgid#
+    </delete>
+    
+     <!--线上服务项目表   删除wb_repair.rps_item_times-->
+    <delete id="deleteRpsItemTimes" parameterClass="HashMap">
+     DELETE wb_repair.rps_item_times  FROM wb_repair.rps_item_times
+ 			where wb_repair.rps_item_times.orgid = #orgid#
+    </delete>
+    
+     <!--工单推修记录   删除wb_repair.rps_push_bill-->
+    <delete id="deleteRpsPushBill" parameterClass="HashMap">
+     DELETE wb_repair.rps_push_bill  FROM wb_repair.rps_push_bill
+ 			where wb_repair.rps_push_bill.orgid = #orgid#
+    </delete>
+    
+     <!--充值办卡退款记录表   删除wb_repair.rps_refund_record-->
+    <delete id="deleteRpsRefundRecord" parameterClass="HashMap">
+     DELETE wb_repair.rps_refund_record  FROM wb_repair.rps_refund_record
+ 			where wb_repair.rps_refund_record.orgid = #orgid#
+    </delete>
+    
+     <!--结算表   删除wb_repair.rps_settlement-->
+    <delete id="deleteRpsSettlement" parameterClass="HashMap">
+     DELETE wb_repair.rps_settlement  FROM wb_repair.rps_settlement
+ 			where wb_repair.rps_settlement.orgid = #orgid#
+    </delete>  
+    
+     <!--客户会员卡消费记录   删除wb_repair.rps_stored_consume_record-->
+    <delete id="deleteRpsStoredConsumeRecord" parameterClass="HashMap">
+     DELETE wb_repair.rps_stored_consume_record  FROM wb_repair.rps_stored_consume_record
+ 			where wb_repair.rps_stored_consume_record.orgid = #orgid#
+    </delete> 
+    
+     <!--储值卡流水表   删除wb_repair.rps_stored_invocing-->
+    <delete id="deleteRpsStoredInvocing" parameterClass="HashMap">
+     DELETE wb_repair.rps_stored_invocing  FROM wb_repair.rps_stored_invocing
+ 			where wb_repair.rps_stored_invocing.orgid = #orgid#
+    </delete>  
+    
+     <!--客户办卡记录   删除wb_repair.rps_stored_record-->
+    <delete id="deleteRpsStoredRecord" parameterClass="HashMap">
+     DELETE wb_repair.rps_stored_record  FROM wb_repair.rps_stored_record
+ 			where wb_repair.rps_stored_record.orgid = #orgid#
+    </delete> 
+    
+      <!--计次卡   删除wb_repair.rps_card_times + detail-->
+    <delete id="deleteRpsCardTimes" parameterClass="HashMap">
+     DELETE wb_repair.rps_card_times , wb_repair.rps_card_times_detail  FROM wb_repair.rps_card_times
+			INNER JOIN wb_repair.rps_card_times_detail on wb_repair.rps_card_times.id = wb_repair.rps_card_times_detail.main_id
+ 			where wb_repair.rps_card_times.orgid = #orgid#
+    </delete>  
+    
+     <!--查车主表  删除wb_repair.rps_check_main + detail-->
+    <delete id="deleteRpsCheckMain" parameterClass="HashMap">
+     DELETE wb_repair.rps_check_main , wb_repair.rps_check_detail  FROM wb_repair.rps_check_main 
+			INNER JOIN wb_repair.rps_check_detail on wb_repair.rps_check_main.id = wb_repair.rps_check_detail.main_id
+ 			where wb_repair.rps_check_main.orgid = #orgid#
+    </delete> 
+    
+    <!--保险单主表   删除wb_repair.rps_insurance_main + detail-->
+    <delete id="deleteRpsInsuranceMain" parameterClass="HashMap">
+     DELETE wb_repair.rps_insurance_main , wb_repair.rps_insurance_detail  FROM wb_repair.rps_insurance_main 
+			INNER JOIN wb_repair.rps_insurance_detail on wb_repair.rps_insurance_main.id = wb_repair.rps_insurance_detail.main_id
+ 			where wb_repair.rps_insurance_main.orgid = #orgid#
+    </delete>
+    
+     <!--工单表   删除wb_repair.rps_maintain-->
+    <delete id="deleteRpsMaintain" parameterClass="HashMap">
+     DELETE wb_repair.rps_maintain , wb_repair.rps_expense ,wb_repair.rps_items,wb_repair.rps_item_quote,wb_repair.rps_part_quote, wb_repair.rps_item_workers,wb_repair.rps_package,wb_repair.rps_part,wb_repair.rps_repair_record,wb_repair.rps_service_type 
+     FROM wb_repair.rps_maintain 
+			INNER JOIN wb_repair.rps_expense on wb_repair.rps_maintain.id = wb_repair.rps_expense.service_id
+			INNER JOIN wb_repair.rps_expense on wb_repair.rps_maintain.id = wb_repair.rps_items.service_id
+			INNER JOIN wb_repair.rps_expense on wb_repair.rps_maintain.id = wb_repair.rps_item_quote.service_id
+			INNER JOIN wb_repair.rps_expense on wb_repair.rps_maintain.id = wb_repair.rps_part_quote.service_id
+			INNER JOIN wb_repair.rps_expense on wb_repair.rps_maintain.id = wb_repair.rps_item_workers.service_id
+			INNER JOIN wb_repair.rps_expense on wb_repair.rps_maintain.id = wb_repair.rps_package.service_id
+			INNER JOIN wb_repair.rps_expense on wb_repair.rps_maintain.id = wb_repair.rps_part.service_id
+			INNER JOIN wb_repair.rps_expense on wb_repair.rps_maintain.id = wb_repair.rps_repair_record.service_id
+			INNER JOIN wb_repair.rps_expense on wb_repair.rps_maintain.id = wb_repair.rps_service_type.service_id
+			
+ 			where wb_repair.rps_maintain.orgid = #orgid#
+    </delete>  
+    
+     <!--报销单主表   删除wb_repair.rps_maintain_bill-->
+    <delete id="deleteRpsMaintainBill" parameterClass="HashMap">
+     DELETE wb_repair.rps_maintain_bill , wb_repair.rps_items_bill,wb_repair.rps_package_bill  FROM wb_repair.rps_maintain_bill
+			INNER JOIN  wb_repair.rps_items_bill on wb_repair.rps_maintain_bill.id = wb_repair.rps_items_bill.service_id
+			INNER JOIN  wb_repair.rps_package_bill on wb_repair.rps_maintain_bill.id = wb_repair.rps_package_bill.service_id
+ 			where wb_repair.rps_maintain_bill.orgid = #orgid#
+    </delete> 
+    
+     <!--接车单   删除wb_repair.rps_pick_main + detail-->
+    <delete id="deleteRpsPickMain" parameterClass="HashMap">
+     DELETE wb_repair.rps_pick_main , wb_repair.rps_pick_detail  FROM wb_repair.rps_pick_main 
+			INNER JOIN wb_repair.rps_pick_detail on wb_repair.rps_pick_main.id = wb_repair.rps_pick_detail.main_id
+ 			where wb_repair.rps_pick_main.orgid = #orgid#
+    </delete> 
+    
+    <!--预约表   删除wb_repair.rps_prebook + tel_scout-->
+    <delete id="deleteRpsPrebook" parameterClass="HashMap">
+     DELETE wb_repair.rps_prebook , wb_repair.rps_prebook_tel_scout  FROM wb_repair.rps_prebook
+			INNER JOIN wb_repair.rps_prebook_tel_scout on wb_repair.rps_prebook.id = wb_repair.rps_prebook_tel_scout.main_id
+ 			where wb_repair.rps_prebook.orgid = #orgid#
+    </delete> 
+    
+    
+     <!--开票   删除wb_repair.rps_ticket_main + detail-->
+    <delete id="deleteRpsTicketMain" parameterClass="HashMap">
+     DELETE wb_repair.rps_ticket_main , wb_repair.rps_ticket_detail  FROM wb_repair.rps_ticket_main 
+			INNER JOIN wb_repair.rps_ticket_detail on wb_repair.rps_ticket_main.id = wb_repair.rps_ticket_detail.main_id
+ 			where wb_repair.rps_ticket_main.orgid = #orgid#
+    </delete> 
+    
+         <!--车辆   删除wb_repair.rpb_car -->
+    <delete id="deleteRpbCar" parameterClass="HashMap">
+     DELETE wb_repair.rpb_car , wb_repair.rpb_car_extend ,rpb_car_photo 
+     FROM wb_repair.rpb_car 
+			INNER JOIN wb_repair.rpb_car_extend on wb_repair.rpb_car.id = wb_repair.rpb_car_extend.car_id
+			INNER JOIN rpb_car_photo on wb_repair.rpb_car.id = rpb_car_photo.car_id
+			
+ 			where wb_repair.rpb_car.orgid = #orgid#
+    </delete> 
+    
+         <!--工时定义表  删除wb_repair.rpb_item-->
+    <delete id="deleteRpbItem" parameterClass="HashMap">
+     DELETE wb_repair.rpb_item  FROM wb_repair.rpb_item
+ 			where wb_repair.rpb_item.orgid = #orgid#
+    </delete> 
+    
+       <!--配件定义表  删除wb_repair.rpb_part-->
+    <delete id="deleteRpbPart" parameterClass="HashMap">
+     DELETE wb_repair.rpb_part  FROM wb_repair.rpb_part
+ 			where wb_repair.rpb_part.orgid = #orgid#
+    </delete> 
+    
+       <!--会员卡(储值)定义  删除wb_repair.rpb_card_stored-->
+    <delete id="deleteRpbCardStored" parameterClass="HashMap">
+     DELETE wb_repair.rpb_card_stored  FROM wb_repair.rpb_card_stored
+ 			where wb_repair.rpb_card_stored.orgid = #orgid#
+    </delete> 
+    
+     <!--套餐定义表   删除wb_repair.rpb_package-->
+    <delete id="deleteRpbPackage" parameterClass="HashMap">
+     DELETE wb_repair.rpb_package , wb_repair.rpb_package_item ,wb_repair.rpb_package_part  FROM wb_repair.rpb_package 
+			INNER JOIN wb_repair.rpb_package_item on wb_repair.rpb_package.id = wb_repair.rpb_package_item.package_id
+			INNER JOIN wb_repair.rpb_package_part on wb_repair.rpb_package.id = wb_repair.rpb_package_part.package_id
+ 			where wb_repair.rpb_package.orgid = #orgid#
+    </delete> 
+    
+         <!--计次卡定义   删除wb_repair.rpb_card_times-->
+    <delete id="deleteRpbCardTimes" parameterClass="HashMap">
+     DELETE wb_repair.rpb_card_times , wb_repair.rpb_card_times_detail  FROM wb_repair.rpb_card_times 
+			INNER JOIN wb_repair.rpb_card_times_detail on wb_repair.rpb_card_times.id = wb_repair.rpb_card_times_detail.card_id
+
+ 			where wb_repair.rpb_card_times.orgid = #orgid#
+    </delete> 
+</sqlMap>

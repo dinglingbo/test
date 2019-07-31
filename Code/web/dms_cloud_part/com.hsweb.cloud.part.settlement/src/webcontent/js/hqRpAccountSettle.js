@@ -1448,7 +1448,49 @@ function settle(){
 	accountBatch.creator = currUserName;
 	accountBatch.creatorId = currUserId;
 	accountBatch.remark = account.remark;
-	return;
+	
+	//汇总金额
+	var sumAmt=0;
+	//应收金额
+	var rAmt =0;
+	//应付金额
+	var pAmt = 0;
+	//应收单据数量
+	var rBillQty =0;
+	//应付单据数量
+	var pBillQty = 0;
+	//应收应付标志
+	var rpDc= 0;
+	for(var i=0;i<accountList.length;i++){
+		var account =accountList[i].account;
+		var rpDc = account.rpDc;
+		//收
+		if(rpDc==1){
+			rAmt= parseFloat(rAmt+account.rpDc*account.trueCharOffAmt);
+			rBillQty +=account.itemQty;
+		}
+		//付
+		else if(rpDc==-1){
+			pAmt= parseFloat(pAmt+account.rpDc* account.trueCharOffAmt);
+			pBillQty +=account.itemQty;
+		}
+		
+			
+	}
+	sumAmt = parseFloat(rAmt+pAmt);
+	if(sumAmt<0){
+		rpDc = -1;
+	}else{
+		rpDc = 1;
+	}
+		
+	accountBatch.rpDc = rpDc;
+	accountBatch.rAmt = rAmt;
+	accountBatch.pAmt = Math.abs(pAmt);
+	accountBatch.sumAmt = Math.abs(sumAmt);
+	accountBatch.rBillQty = rBillQty;
+	accountBatch.pBillQty = pBillQty;
+
 	   nui.mask({
            el: document.body,
            cls: 'mini-mask-loading',

@@ -415,7 +415,7 @@
     <nodeLabel>assign7label</nodeLabel>
     <process:copy>
       <process:from type="expression" pattern="reference">new Date()</process:from>
-      <process:to type="query">accountBatch/creatorDate</process:to>
+      <process:to type="query">accountBatch/createDate</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">

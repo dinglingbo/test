@@ -87,7 +87,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">E</process:from>
+      <process:from type="literal" pattern="reference">E</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>

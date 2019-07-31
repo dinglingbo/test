@@ -131,14 +131,14 @@
      DELETE wb_repair.rps_maintain , wb_repair.rps_expense ,wb_repair.rps_items,wb_repair.rps_item_quote,wb_repair.rps_part_quote, wb_repair.rps_item_workers,wb_repair.rps_package,wb_repair.rps_part,wb_repair.rps_repair_record,wb_repair.rps_service_type 
      FROM wb_repair.rps_maintain 
 			INNER JOIN wb_repair.rps_expense on wb_repair.rps_maintain.id = wb_repair.rps_expense.service_id
-			INNER JOIN wb_repair.rps_expense on wb_repair.rps_maintain.id = wb_repair.rps_items.service_id
-			INNER JOIN wb_repair.rps_expense on wb_repair.rps_maintain.id = wb_repair.rps_item_quote.service_id
-			INNER JOIN wb_repair.rps_expense on wb_repair.rps_maintain.id = wb_repair.rps_part_quote.service_id
-			INNER JOIN wb_repair.rps_expense on wb_repair.rps_maintain.id = wb_repair.rps_item_workers.service_id
-			INNER JOIN wb_repair.rps_expense on wb_repair.rps_maintain.id = wb_repair.rps_package.service_id
-			INNER JOIN wb_repair.rps_expense on wb_repair.rps_maintain.id = wb_repair.rps_part.service_id
-			INNER JOIN wb_repair.rps_expense on wb_repair.rps_maintain.id = wb_repair.rps_repair_record.service_id
-			INNER JOIN wb_repair.rps_expense on wb_repair.rps_maintain.id = wb_repair.rps_service_type.service_id
+			INNER JOIN wb_repair.rps_items on wb_repair.rps_maintain.id = wb_repair.rps_items.service_id
+			INNER JOIN wb_repair.rps_item_quote on wb_repair.rps_maintain.id = wb_repair.rps_item_quote.service_id
+			INNER JOIN wb_repair.rps_part_quote on wb_repair.rps_maintain.id = wb_repair.rps_part_quote.service_id
+			INNER JOIN wb_repair.rps_item_workers on wb_repair.rps_maintain.id = wb_repair.rps_item_workers.service_id
+			INNER JOIN wb_repair.rps_package on wb_repair.rps_maintain.id = wb_repair.rps_package.service_id
+			INNER JOIN wb_repair.rps_part on wb_repair.rps_maintain.id = wb_repair.rps_part.service_id
+			INNER JOIN wb_repair.rps_repair_record on wb_repair.rps_maintain.id = wb_repair.rps_repair_record.service_id
+			INNER JOIN wb_repair.rps_service_type on wb_repair.rps_maintain.id = wb_repair.rps_service_type.service_id
 			
  			where wb_repair.rps_maintain.orgid = #orgid#
     </delete>  

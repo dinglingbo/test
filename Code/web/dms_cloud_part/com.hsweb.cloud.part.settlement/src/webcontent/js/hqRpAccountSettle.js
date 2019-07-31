@@ -3,9 +3,7 @@
  */
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var rightGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.queryRPAccounts.biz.ext";
-/*var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjEnterDetailList.biz.ext";
-var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOutDetailList.biz.ext";
-*/
+
 var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
 var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList.biz.ext";
 var innerStateGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.getPJStatementDetailById.biz.ext";
@@ -1448,7 +1446,49 @@ function settle(){
 	accountBatch.creator = currUserName;
 	accountBatch.creatorId = currUserId;
 	accountBatch.remark = account.remark;
-	return;
+	
+	//汇总金额
+	var sumAmt=0;
+	//应收金额
+	var rAmt =0;
+	//应付金额
+	var pAmt = 0;
+	//应收单据数量
+	var rBillQty =0;
+	//应付单据数量
+	var pBillQty = 0;
+	//应收应付标志
+	var rpDc= 0;
+	for(var i=0;i<accountList.length;i++){
+		var account =accountList[i].account;
+		var rpDc = account.rpDc;
+		//收
+		if(rpDc==1){
+			rAmt= parseFloat(rAmt+account.rpDc*account.trueCharOffAmt);
+			rBillQty +=account.itemQty;
+		}
+		//付
+		else if(rpDc==-1){
+			pAmt= parseFloat(pAmt+account.rpDc* account.trueCharOffAmt);
+			pBillQty +=account.itemQty;
+		}
+		
+			
+	}
+	sumAmt = parseFloat(rAmt+pAmt);
+	if(sumAmt<0){
+		rpDc = -1;
+	}else{
+		rpDc = 1;
+	}
+		
+	accountBatch.rpDc = rpDc;
+	accountBatch.rAmt = rAmt;
+	accountBatch.pAmt = Math.abs(pAmt);
+	accountBatch.sumAmt = Math.abs(sumAmt);
+	accountBatch.rBillQty = rBillQty;
+	accountBatch.pBillQty = pBillQty;
+
 	   nui.mask({
            el: document.body,
            cls: 'mini-mask-loading',
@@ -1663,7 +1703,14 @@ function settleOK(rows){
         for(var i=0;i<accountTypeList.length;i++){
         	var row=accountTypeList[i];
         	var cAmt = parseFloat(account.charOffAmt); 
-        	row.charOffAmt =parseFloat(cAmt*(row.charOffAmt/sumcharOffAmt)).toFixed(1); //按权重分配
+        	if(row.charOffAmt ==0){
+        		row.charOffAmt=cAmt;
+        		break;
+        	}
+        	else{
+        		row.charOffAmt =parseFloat(cAmt*(row.charOffAmt/sumcharOffAmt)).toFixed(1); //按权重分配
+        	}
+        	
         
         }
         

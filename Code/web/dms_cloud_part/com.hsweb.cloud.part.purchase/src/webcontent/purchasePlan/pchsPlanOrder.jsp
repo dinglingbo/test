@@ -64,6 +64,7 @@ body .mini-grid-row-selected{
                 	<span class="separator"></span>
                     <li iconCls="" onclick="quickSearch(6)" id="type6">草稿</li>
                     <li iconCls="" onclick="quickSearch(7)" id="type7">已提交</li>
+                    <li iconCls="" onclick="quickSearch(8)" id="type8">已作废</li>
                     <span class="separator"></span>
                     <li iconCls="" onclick="quickSearch(8)" id="type8">部分转订单</li>
                     <li iconCls="" onclick="quickSearch(9)" id="type9">全部转订单</li>
@@ -82,8 +83,8 @@ body .mini-grid-row-selected{
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="submit()" visible="false"  id="submitBtn"><span class="fa fa-check fa-lg""></span>&nbsp;提交</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible="false" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;退货</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="submit()" visible="true"  id="submitBtn"><span class="fa fa-check fa-lg""></span>&nbsp;提交</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible="true" id="auditBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
            
             </td>
@@ -120,11 +121,10 @@ body .mini-grid-row-selected{
                       	<div field="auditSign" width="65" visible="false" headerAlign="center" header="状态"></div>
                         <div field="guestFullName" width="120" headerAlign="center" header="供应商"></div>
                         <div field="orderDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="创建日期"></div>
-                        <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
-                        <div field="serviceId" headerAlign="center" width="150" header="计划采购单号"></div>
-                        <div field="printTimes" width="60" headerAlign="center" header="打印次数"></div>
-                        <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
-                        <div field="auditDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="审核日期"></div>
+                        <div field="orderMan" width="60" headerAlign="center" header="计划员"></div>
+                        <div field="serviceId" headerAlign="center" width="150" header="计划单号"></div>
+                        <div field="auditor" width="60" headerAlign="center" header="提交人"></div>
+                        <div field="auditDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="提交日期"></div>
                     </div>
                 </div>
             </div>
@@ -290,7 +290,7 @@ body .mini-grid-row-selected{
     <div id="advancedSearchForm" class="form">
         <table style="width:100%;">
           <tr>
-                <td class="title">退货日期:</td>
+                <td class="title">创建日期:</td>
                 <td>
                     <input id="sOrderDate"
                            name="sCreateDate"
@@ -311,7 +311,7 @@ body .mini-grid-row-selected{
                 </td>
             </tr>
             <tr>
-                <td class="title">审核日期:</td>
+                <td class="title">提交日期:</td>
                 <td>
                     <input name="sAuditDate"
                            width="100%"
@@ -344,7 +344,7 @@ body .mini-grid-row-selected{
                 </td>
             </tr>
             <tr>
-                <td class="title">退货单号:</td>
+                <td class="title">计划单号:</td>
                 <td colspan="3">
                     <textarea class="nui-textarea" emptyText="" width="100%" style="height: 60px;" id="serviceIdList" name="serviceIdList"></textarea>
                 </td>

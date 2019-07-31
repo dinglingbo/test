@@ -561,7 +561,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link15</targetConnections>
-    <location x="495" y="285"/>
+    <location x="495" y="287"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess4label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
@@ -575,7 +575,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess4label" name="label" nodeType="label">
-    <location x="417" y="320"/>
+    <location x="417" y="322"/>
     <figSize height="17" width="183"/>
     <node>subprocess4</node>
   </nodes>

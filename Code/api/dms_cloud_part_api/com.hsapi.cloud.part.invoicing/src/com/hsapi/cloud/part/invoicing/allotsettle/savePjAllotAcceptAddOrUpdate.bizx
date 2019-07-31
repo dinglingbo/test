@@ -65,7 +65,7 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="updatePjAllotApply" displayName="updatePjAllotAccept" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="pdatePjAllotAccept" displayName="updatePjAllotAccept" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign2</targetNode>
@@ -102,7 +102,7 @@
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
     <location x="513" y="215"/>
-    <figSize height="17" width="111"/>
+    <figSize height="17" width="110"/>
     <node>subprocess1</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="insertPjAllotAccept" displayName="insertPjAllotAccept" type="subprocess">

@@ -780,7 +780,7 @@
     <figSize height="17" width="73"/>
     <node>invokePojo6</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign9" name="赋值4" displayName="赋值" grouped="true" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign9" name="赋值4" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="连接线" lineType="inheritance" isDefault="true" type="break">
       <bendPoint heightToEnd="33" heightToStart="1" widthToEnd="-42" widthToStart="123"/>
       <sourceNode>assign9</sourceNode>

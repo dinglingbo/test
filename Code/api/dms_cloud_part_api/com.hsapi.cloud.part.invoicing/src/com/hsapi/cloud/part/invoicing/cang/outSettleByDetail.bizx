@@ -217,7 +217,7 @@
       <process:to type="query">params/mainId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">paramsMain/billTypeId</process:from>
       <process:to type="query">params/billTypeId</process:to>
     </process:copy>
   </nodes>

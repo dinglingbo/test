@@ -555,5 +555,236 @@
 		set e.accept_main_id = b.id, e.accept_detail_id = a.id
 		where b.id = #acceptMainId# and d.source_type = 4
 	</update>
+	
+	<!--
+		取入库信息及销售单价,用于生成直发的销售出库
+	-->
+	<select id="getEnterOutDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+        SELECT
+			a.id as id,
+			a.main_id as mainId,
+			a.source_id as sourceId,
+			a.root_id as rootId,
+			a.store_id as storeId,
+			a.part_id as partId,
+			a.part_code as partCode,
+			a.part_name as partName,
+			a.full_name as fullName,
+			a.enter_unit_id as enterUnitId,
+			a.system_unit_id as systemUnitId,
+			a.enter_qty as enterQty,
+			a.enter_price as enterPrice,
+			a.enter_amt as enterAmt,
+			a.outable_qty as outableQty,
+			a.tax_sign as taxSign,
+			a.tax_rate as taxRate,
+			a.tax_price as taxPrice,
+			a.tax_amt as taxAmt,
+			a.no_tax_price as noTaxPrice,
+			a.no_tax_amt as noTaxAmt,
+			a.tax_diff as taxDiff,
+			a.rtn_price as rtnPrice,
+			a.rtn_amt as rtnAmt,
+			a.enter_date as enterDate,
+			a.prev_detail_id as prevDetailId,
+			a.order_detail_id as orderDetailId,
+			a.order_main_id as orderMainId,
+			a.branch_stock_age as branchStockAge,
+			a.chain_stock_age as chainStockAge,
+			a.guest_id as guestId,
+			a.guest_name as guestName,
+			a.store_shelf as storeShelf,
+			a.origin_id as originId,
+			a.origin_guest_id as originGuestId,
+			a.sell_price as sellPrice,
+			d.id as guestOrderDetailid,
+			d.order_qty as orderQty,
+			d.order_price as orderPrice,
+			d.remark as remark
+		from pj_enter_detail_chk a
+			INNER JOIN pj_enter_main_chk b
+			on a.main_id = b.id
+			inner join pj_out_detail_chk c
+			on a.prev_detail_id = c.id
+			inner join pj_guest_order_detail d
+			on c.order_detail_id = d.accept_detail_id and c.order_main_id = d.accept_main_id
+		where b.id = #enterMainId# and b.enter_type_id = '050104'
+
+    </select>
+    
+    <!-- 根据调拨申请单号查询调拨受理信息，查询调拨出库成本信息   直发-->
+    <select id="getAcceptOutEnterable" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+
+        SELECT
+			a.id as id,
+			a.main_id as mainId,
+			a.source_id as sourceId,
+			a.root_id as rootId,
+			a.store_id as storeId,
+			a.part_id as partId,
+			a.part_code as partCode,
+			a.part_name as partName,
+			a.full_name as fullName,
+			a.out_unit_id as outUnitId,
+			a.system_unit_id as systemUnitId,
+			a.sell_qty as sellQty,
+			a.sell_price as sellPrice,
+			a.sell_amt as sellAmt,
+			a.rtnable_qty as rtnableQty,
+			a.tax_sign as taxSign,
+			a.tax_rate as taxRate,
+			a.tax_price as taxPrice,
+			a.tax_amt as taxAmt,
+			a.no_tax_price as noTaxPrice,
+			a.no_tax_amt as noTaxAmt,
+			a.tax_diff as taxDiff,
+			a.enter_price as enterPrice,
+			a.enter_amt as enterAmt,
+			a.out_to_in_qty as outToInQty,
+			a.enter_date as enterDate,
+			a.prev_detail_id as prevDetailId,
+			a.order_detail_id as orderDetailId,
+			a.order_main_id as orderMainId,
+			a.guest_id as guestId,
+			a.guest_name as guestName,
+			a.origin_id as originId,
+			a.origin_guest_id as originGuestId
+		from pj_out_detail_chk a
+			inner join pj_out_main_chk b
+			on a.main_id = b.id
+			inner join pj_allot_accept_main c
+			on b.code = c.service_id
+			inner join pj_allot_accept_detail d
+			on c.id = d.main_id and a.order_detail_id = d.id
+		where 1=1 and c.service_id = #applyServiceId#
+		      and d.prev_detail_id = #applyDetailId#
+		      and a.sell_qty > a.out_to_in_qty
+        ORDER BY c.audit_date asc
+    </select>
+    
+    <!-- 根据调拨申请单号查询调拨受理信息，查询调拨出库成本信息   非直发 -->
+    <select id="getAcceptOutEnterableT" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+
+        SELECT
+			a.id as id,
+			a.main_id as mainId,
+			a.source_id as sourceId,
+			a.root_id as rootId,
+			a.store_id as storeId,
+			a.part_id as partId,
+			a.part_code as partCode,
+			a.part_name as partName,
+			a.full_name as fullName,
+			a.out_unit_id as outUnitId,
+			a.system_unit_id as systemUnitId,
+			a.sell_qty as sellQty,
+			a.sell_price as sellPrice,
+			a.sell_amt as sellAmt,
+			a.rtnable_qty as rtnableQty,
+			a.tax_sign as taxSign,
+			a.tax_rate as taxRate,
+			a.tax_price as taxPrice,
+			a.tax_amt as taxAmt,
+			a.no_tax_price as noTaxPrice,
+			a.no_tax_amt as noTaxAmt,
+			a.tax_diff as taxDiff,
+			a.enter_price as enterPrice,
+			a.enter_amt as enterAmt,
+			a.out_to_in_qty as outToInQty,
+			a.enter_date as enterDate,
+			a.prev_detail_id as prevDetailId,
+			a.order_detail_id as orderDetailId,
+			a.order_main_id as orderMainId,
+			a.guest_id as guestId,
+			a.guest_name as guestName,
+			a.origin_id as originId,
+			a.origin_guest_id as originGuestId
+		from pj_out_detail_chk a
+			inner join pj_out_main_chk b
+			on a.main_id = b.id
+			inner join pj_allot_accept_main c
+			on b.code = c.service_id
+			inner join pj_allot_accept_detail d
+			on c.id = d.main_id and a.order_detail_id = d.id
+			inner join pj_allot_accept_main e
+			on c.code = e.service_id
+			inner join pj_allot_accept_detail f
+			on e.id = f.main_id and f.id = d.source_detail_id and f.main_id = d.source_main_id
+		where 1=1 and e.service_id = #applyServiceId#
+		      and f.prev_detail_id = #applyDetailId#
+		      and a.sell_qty > a.out_to_in_qty
+        ORDER BY c.audit_date asc
+    </select>
+    
+    <!--
+    	调拨入库后，更新对方受理单的 has_in_qty 数量
+    	直发
+    -->
+    <update id="updatePjAllotAcceptInQty" parameterClass="java.util.HashMap" >
+		update pj_allot_accept_detail a
+		inner join pj_allot_accept_main b
+		on a.main_id = b.id
+		inner join (
+		select b.code as code, a.order_detail_id as orderDetailId, 
+		       sum(a.sell_qty) as sellQty, sum(a.out_to_in_qty) as outToInQty
+		from pj_out_detail_chk a
+		inner join pj_out_main_chk b
+		on a.main_id = b.id
+		GROUP BY b.code, a.order_detail_id) c
+		on b.service_id = c.code and a.id = c.orderDetailId
+		set a.has_in_qty = c.outToInQty
+		where b.code = #applyServiceId#
+	</update>
+	
+	<!--
+    	调拨入库后，更新对方受理单的 has_in_qty 数量
+    	非直发 更新调拨出库
+    -->
+    <update id="updatePjAllotAcceptInQtyT" parameterClass="java.util.HashMap" >
+		update pj_allot_accept_detail a
+		inner join pj_allot_accept_main b
+		on a.main_id = b.id
+		inner join (
+		select b.code as code, a.order_detail_id as orderDetailId, 
+		       sum(a.sell_qty) as sellQty, sum(a.out_to_in_qty) as outToInQty
+		from pj_out_detail_chk a
+		inner join pj_out_main_chk b
+		on a.main_id = b.id
+		GROUP BY b.code, a.order_detail_id) c
+		on b.service_id = c.code and a.id = c.orderDetailId
+		inner join pj_allot_accept_main d
+		on b.code = d.service_id
+		set a.has_in_qty = c.outToInQty
+		where d.code = #applyServiceId#
+	</update>
+	
+	<!--
+    	调拨入库后，更新对方受理单的 has_in_qty 数量
+    	非直发 更新调拨受理
+    -->
+    <update id="updatePjAllotAcceptInQtyF" parameterClass="java.util.HashMap" >
+		update pj_allot_accept_detail a
+		inner join pj_allot_accept_main b
+		on a.main_id = b.id
+		inner join (
+				select b.code as code, a.source_detail_id as sourceDetailId, 
+							 sum(has_in_qty) as hasInQty
+				from pj_allot_accept_detail a
+				inner join pj_allot_accept_main b
+				on a.main_id = b.id
+				inner join (
+						select b.code as code, a.order_detail_id as orderDetailId, 
+									 sum(a.sell_qty) as sellQty, sum(a.out_to_in_qty) as outToInQty
+						from pj_out_detail_chk a
+						inner join pj_out_main_chk b
+						on a.main_id = b.id
+						GROUP BY b.code, a.order_detail_id) c
+				on b.service_id = c.code and a.id = c.orderDetailId
+		group by b.code, a.source_detail_id) c
+		on b.service_id = c.code and a.id = c.sourceDetailId
+		set a.has_in_qty = c.hasInQty
+		where b.code = #applyServiceId#
+	</update>
 
 </sqlMap>

@@ -169,9 +169,16 @@
 		       FROM com_guest a
 		       WHERE 1 = 1 
 		       <!-- 汽配不共享 -->
-		       and (a.orgid = #orgid#)
+		    
 		     <!-- a.is_supplier = 1   AND a.guest_type = '01020202'-->
     	<dynamic>	
+    		<isNotEmpty prepend="and" property="tenantId">  
+                (a.tenant_id = #tenantId#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="orgid">  
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            
     		<isNotEmpty prepend="and" property="isSupplier">  
                 (a.is_supplier = #isSupplier#)
             </isNotEmpty>
@@ -179,52 +186,52 @@
                 (a.is_client = #isClient#)
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="code">  
-                (code like '%$code$%')
+                (a.code like '%$code$%')
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="supplierType">  
-                (supplier_type = #supplierType#)
+                (a.supplier_type = #supplierType#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="icClient">  
-                (is_client = #icClient#)
+                (a.is_client = #icClient#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="cityId">  
-                (city_id = #cityId#)
+                (a.city_id = #cityId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="provinceId">  
-                (province_id = #provinceId#)
+                (a.province_id = #provinceId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="isDisabled">  
-                (is_disabled = #isDisabled#)
+                (a.is_disabled = #isDisabled#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="memLevel">  
-                (mem_level = #memLevel#)
+                (a.mem_level = #memLevel#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="memCarNo">  
-                (mem_car_no like '%$memCarNo$%')
+                (a.mem_car_no like '%$memCarNo$%')
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="fullName">  
-                (full_name like '%$fullName$%')
+                (a.full_name like '%$fullName$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="advantageCarbrandId">  
-                (advantage_carbrand_id like '%$advantageCarbrandId$%')
+                (a.advantage_carbrand_id like '%$advantageCarbrandId$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="mobile">  
-                (mobile like '%$mobile$%')
+                (a.mobile like '%$mobile$%')
             </isNotEmpty>
              <isNotEmpty prepend="and" property="guestType">  
-                (guest_type = #guestType#)
+                (a.guest_type = #guestType#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="shortName">  
-                (short_name like '%$shortName$%')
+                (a.short_name like '%$shortName$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="manager">  
-                (manager like '%$manager$%')
+                (a.manager like '%$manager$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="name">  
-                (full_name like '%$name$%' or short_name like '%$name$%')
+                (a.full_name like '%$name$%' or a.short_name like '%$name$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="pny">  
-                (full_name like '%$pny$%' or short_name like '%$pny$%' or code like '%$pny$%' or a.py_name like '%$pny$%')
+                (a.full_name like '%$pny$%' or a.short_name like '%$pny$%' or a.code like '%$pny$%' or a.py_name like '%$pny$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="sortField">  
                 $sortField$ $sortOrder$
@@ -296,49 +303,55 @@
 		       FROM com_guest a
 		       WHERE a.is_client = 1  
 		       <!-- 汽配客户不共享-->
-		       and (a.orgid = #orgid#)
+		 
     	<dynamic>
+    		<isNotEmpty prepend="and" property="tenantId">  
+                (a.tenant_id = #tenantId#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="orgid">  
+                (a.orgid = #orgid#)
+            </isNotEmpty>
     		<isNotEmpty prepend="and" property="code">  
-                (code = #code#)
+                (a.code = #code#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="guestType">  
-                (guest_type = #guestType#)
+                (a.guest_type = #guestType#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="cityId">  
-                (city_id = #cityId#)
+                (a.city_id = #cityId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="provinceId">  
-                (province_id = #provinceId#)
+                (a.province_id = #provinceId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="isDisabled">  
-                (is_disabled = #isDisabled#)
+                (a.is_disabled = #isDisabled#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="name">  
-                (full_name like '%$name$%' or short_name like '%$name$%')
+                (a.full_name like '%$name$%' or short_name like '%$name$%')
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="fullName">  
-                (full_name like '%$fullName$%')
+                (a.full_name like '%$fullName$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="mobile">  
-                (mobile like '%$mobile$%')
+                (a.mobile like '%$mobile$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="shortName">  
-                (short_name like '%$shortName$%')
+                (a.short_name like '%$shortName$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="memLevel">  
-                (mem_Level = #memLevel#)
+                (a.mem_Level = #memLevel#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="manager">  
-                (manager like '%$manager$%')
+                (a.manager like '%$manager$%')
             </isNotEmpty>  
             <isNotEmpty prepend="and" property="licenseCode">  
-                (license_code = #licenseCode#)
+                (a.license_code = #licenseCode#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="idCard">  
-                (id_card = #idCard#)
+                (a.id_card = #idCard#)
             </isNotEmpty>
              <isNotEmpty prepend="and" property="modifier">  
-                (modifier = #modifier#)
+                (a.modifier = #modifier#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="sortField">  
                 $sortField$ $sortOrder$

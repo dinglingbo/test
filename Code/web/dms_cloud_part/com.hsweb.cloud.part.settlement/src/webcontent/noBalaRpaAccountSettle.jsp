@@ -9,7 +9,7 @@
 -->
 <head>
 <title>未对账的应收应付结算</title>
-<script src="<%=webPath + contextPath%>/settlement/js/noBalaRpaAccountSettle.js?v=2.3.16"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/noBalaRpaAccountSettle.js?v=2.3.19"></script>
 <style type="text/css">
 .title {
     width: 90px;

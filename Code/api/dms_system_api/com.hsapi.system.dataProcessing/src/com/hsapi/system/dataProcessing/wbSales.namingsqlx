@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
+    
+     <!--车型表  删除wb_sales.csb_car_model-->
+    <delete id="deleteCsbCarModel" parameterClass="HashMap">
+     DELETE wb_sales.csb_car_model  FROM wb_sales.csb_car_model
+ 			where wb_sales.csb_car_model.orgid = #orgid#
+    </delete>  
+    
+    <!--精品定义表   删除wb_sales.csb_gift -->
+    <delete id="deleteCsbGiftr" parameterClass="HashMap">
+     DELETE wb_sales.csb_gift  FROM wb_sales.csb_gift
+ 			where wb_sales.csb_gift.orgid = #orgid#
+    </delete>  
+    <!-- pdi检查定义表   删除wb_sales.csb_pdi -->
+    <delete id="deleteCsbPdi" parameterClass="HashMap">
+     DELETE wb_sales.csb_pdi  FROM wb_sales.csb_pdi
+ 			where wb_sales.csb_pdi.orgid = #orgid#
+    </delete>  
+     <!-- 返利   删除wb_sales.csb_rebate -->
+    <delete id="deleteCsbRebate" parameterClass="HashMap">
+     DELETE wb_sales.csb_rebate  FROM wb_sales.csb_rebate
+ 			where wb_sales.csb_rebate.orgid = #orgid#
+    </delete> 
+      
+     <!-- 车辆库存表   删除wb_sales.css_check_enter -->
+    <delete id="deleteCssCheckEnter" parameterClass="HashMap">
+     DELETE wb_sales.css_check_enter  FROM wb_sales.css_check_enter
+ 			where wb_sales.css_check_enter.orgid = #orgid#
+    </delete> 
+    
+      <!--pdi检测主表  删除wb_sales.css_check_pdi_main -->
+    <delete id="deleteCssCheckPdiMain" parameterClass="HashMap">
+     DELETE wb_sales.css_check_pdi_main , wb_sales.css_factory_order_detail 
+     FROM wb_sales.css_check_pdi_main  
+			INNER JOIN  wb_sales.css_factory_order_detail  on wb_sales.css_check_pdi_main.id =  wb_sales.css_factory_order_detail.order_id
+ 			where wb_sales.css_check_pdi_main .orgid = #orgid#
+    </delete> 
+    
+    <!--验车入库主表  删除wb_sales.css_factory_order_main -->
+    <delete id="deleteCssFactoryOrderMain" parameterClass="HashMap">
+     DELETE wb_sales.css_factory_order_main , wb_sales.css_factory_rebate_detail
+     FROM wb_sales.css_factory_order_main  
+			INNER JOIN  wb_sales.css_factory_rebate_detail  on wb_sales.css_factory_order_main.id =  wb_sales.css_factory_rebate_detail.order_id
+ 			where wb_sales.css_factory_order_main .orgid = #orgid#
+    </delete> 
+    
+        <!--厂家订货  删除wb_sales.css_factory_return_main -->
+    <delete id="deleteCssFactoryReturnMain" parameterClass="HashMap">
+     DELETE wb_sales.css_factory_return_main , wb_sales.css_factory_return_detail
+     FROM wb_sales.css_factory_return_main  
+			INNER JOIN  wb_sales.css_factory_return_detail  on wb_sales.css_factory_return_main.id = wb_sales.css_factory_return_detail.order_id
+ 			where wb_sales.css_factory_return_main.orgid = #orgid#
+    </delete> 
+    
+    
+    
+    
+    
+     <!--客户拓展表   删除wb_sales.csb_contactor -->
+    <delete id="deleteCsbContactor" parameterClass="HashMap">
+     DELETE wb_sales.csb_contactor  FROM wb_sales.csb_contactor
+ 			where wb_sales.csb_contactor.orgid = #orgid#
+    </delete> 
+     
+     <!--来访登记表   删除wb_sales.css_guest_come + css_sale_calc +css_sale_gift_apply-->
+    <delete id="deleteCssGuestCome" parameterClass="HashMap">
+     DELETE wb_sales.css_guest_come ,wb_sales.css_sale_calc ,wb_sales.css_sale_gift_apply FROM wb_sales.css_guest_come
+     	INNER JOIN  wb_sales.css_sale_calc  on wb_sales.css_guest_come.id = wb_sales.css_sale_calc.service_id
+     	INNER JOIN  wb_sales.css_sale_gift_apply  on wb_sales.css_sale_calc.id = wb_sales.css_sale_gift_apply.service_id
+ 			where wb_sales.css_guest_come.orgid = #orgid# and wb_sales.css_sale_calc.billType = 1
+    </delete>
+    
+     <!--来访跟进表   删除wb_sales.css_guest_scout -->
+    <delete id="deleteCssGuestScout" parameterClass="HashMap">
+     DELETE wb_sales.css_guest_scout  FROM wb_sales.css_guest_scout
+ 			where wb_sales.css_guest_scout.orgid = #orgid#
+    </delete>  
+    
+         <!--费用信息表   删除wb_sales.css_sale_cost_list  -->
+    <delete id="deleteCssSaleCostList " parameterClass="HashMap">
+     DELETE wb_sales.css_sale_cost_list  FROM wb_sales.css_sale_cost_list 
+ 			where wb_sales.css_sale_cost_list .orgid = #orgid#
+    </delete>
+    
+         <!--销售主表    删除wb_sales.css_sale_main + css_sale_extend + css_sale_calc + css_sale_gift_apply-->
+    <delete id="deleteCssSaleMain" parameterClass="HashMap">
+     DELETE wb_sales.css_sale_main ,wb_sales.css_sale_extend ,wb_sales.css_sale_calc ,wb_sales.css_sale_gift_apply
+     FROM wb_sales.css_sale_main
+     	INNER JOIN  wb_sales.css_sale_extend  on wb_sales.css_sale_main.id = wb_sales.css_sale_extend.id
+     	INNER JOIN  wb_sales.css_sale_calc  on wb_sales.css_sale_main.id = wb_sales.css_sale_calc.service_id
+     	INNER JOIN  wb_sales.css_sale_gift_apply  on wb_sales.css_sale_main.id = wb_sales.css_sale_gift_apply.service_id
+     	
+ 			where wb_sales.css_sale_main.orgid = #orgid# and wb_sales.css_sale_calc.billType = 2
+    </delete> 
+    
+    <!--精品出库表  删除wb_sales.css_sale_gift_out_main + css_sale_gift_out_item-->
+    <delete id="deleteCssSaleGiftOutMain" parameterClass="HashMap">
+     DELETE wb_sales.css_sale_gift_out_main , wb_sales.css_sale_gift_out_item
+     FROM wb_sales.css_sale_gift_out_main 
+			INNER JOIN css_sale_gift_out_item  on css_sale_gift_out_main.id = css_sale_gift_out_item.service_id
+ 			where css_sale_gift_out_main.orgid = #orgid#
+    </delete> 
+    
+    <!--   删除wb_sales.css_sale_return  -->
+    <delete id="deletCssSaleReturnt " parameterClass="HashMap">
+     DELETE wb_sales.css_sale_return  FROM wb_sales.css_sale_return 
+ 			where wb_sales.css_sale_return.orgid = #orgid#
+    </delete>
+    
+        <!--   删除wb_sales.css_sale_visiting  -->
+    <delete id="deletCssSaleVisiting " parameterClass="HashMap">
+     DELETE wb_sales.css_sale_visiting  FROM wb_sales.css_sale_visiting 
+ 			where wb_sales.css_sale_visiting.orgid = #orgid#
+    </delete>
+</sqlMap>

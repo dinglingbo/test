@@ -37,7 +37,7 @@
  			where wb_part.pj_enter_main_chk.orgid = #orgid#
     </delete>
     
-               <!--出库   删除pj_out_main + detail-->
+      <!--出库   删除pj_out_main + detail-->
     <delete id="deletePjOutMain" parameterClass="HashMap">
      DELETE wb_part.pj_out_main , wb_part.pj_out_detail  FROM wb_part.pj_out_main 
 			INNER JOIN wb_part.pj_out_detail on wb_part.pj_out_main.id = wb_part.pj_out_detail.main_id
@@ -51,19 +51,19 @@
  			where wb_part.pj_out_main_chk.orgid = #orgid#
     </delete>
     
-                   <!--流水   删除pj_store_invocing-->
+      <!--流水   删除pj_store_invocing-->
     <delete id="deletepjStoreInvocing" parameterClass="HashMap">
      DELETE wb_part.pj_store_invocing   FROM wb_part.pj_store_invocing 			
  			where wb_part.pj_store_invocing.orgid = #orgid#
     </delete>
     
-                       <!--流水   删除pj_store-->
+       <!--流水   删除pj_store-->
     <delete id="deletepjStore" parameterClass="HashMap">
      DELETE wb_part.pj_store   FROM wb_part.pj_store 			
  			where wb_part.pj_store.orgid = #orgid#
     </delete>
     
-                           <!--库存   删除pj_part_stock-->
+      <!--库存   删除pj_part_stock-->
     <delete id="deletepjPartStock" parameterClass="HashMap">
      DELETE wb_part.pj_part_stock   FROM wb_part.pj_part_stock 			
  			where wb_part.pj_part_stock.orgid = #orgid#
@@ -74,13 +74,13 @@
  			where wb_part.pj_part_store_stock.orgid = #orgid#
     </delete>
     
-                               <!--工单出库   删除pj_repair_out-->
+      <!--工单出库   删除pj_repair_out-->
     <delete id="deletepjRepairOut" parameterClass="HashMap">
      DELETE wb_part.pj_repair_out   FROM wb_part.pj_repair_out			
  			where wb_part.pj_repair_out.orgid = #orgid#
     </delete>
     
-                   <!--退货   删除pj_sell_order_main + detail-->
+       <!--退货   删除pj_sell_order_main + detail-->
     <delete id="deletePjSellOrderMain" parameterClass="HashMap">
      DELETE wb_part.pj_sell_order_main , wb_part.pj_sell_order_detail  FROM wb_part.pj_sell_order_main 
 			INNER JOIN wb_part.pj_sell_order_detail on wb_part.pj_sell_order_main.id = wb_part.pj_sell_order_detail.main_id
@@ -94,7 +94,7 @@
  			where wb_part.pj_sell_order_main_chk.orgid = #orgid#
     </delete>
     
-                           <!--盘点   删除pj_stock_check_main + detail-->
+         <!--盘点   删除pj_stock_check_main + detail-->
     <delete id="deletePjStockCheckMain" parameterClass="HashMap">
      DELETE wb_part.pj_stock_check_main , wb_part.pj_stock_check_detail  FROM wb_part.pj_stock_check_main 
 			INNER JOIN wb_part.pj_stock_check_detail on wb_part.pj_stock_check_main.id = wb_part.pj_stock_check_detail.main_id
@@ -108,17 +108,31 @@
  			where wb_part.pj_stock_check_main_chk.orgid = #orgid#
     </delete>   
     
-                   <!--对账   删除pj_statement_main + detail-->
+      <!--对账   删除pj_statement_main + detail-->
     <delete id="deletePjStatementMain" parameterClass="HashMap">
      DELETE wb_part.pj_statement_main , wb_part.pj_statement_detail  FROM wb_part.pj_statement_main 
 			INNER JOIN wb_part.pj_statement_detail on wb_part.pj_statement_main.id = wb_part.pj_statement_detail.main_id
  			where wb_part.pj_statement_main.orgid = #orgid#
     </delete>
     
-                   <!--移仓   删除pj_stock_shift_main + detail-->
+      <!--移仓   删除pj_stock_shift_main + detail-->
     <delete id="deletePjStockShiftMain" parameterClass="HashMap">
      DELETE wb_part.pj_stock_shift_main , wb_part.pj_stock_shift_detail  FROM wb_part.pj_stock_shift_main 
 			INNER JOIN wb_part.pj_stock_shift_detail on wb_part.pj_stock_shift_main.id = wb_part.pj_stock_shift_detail.main_id
  			where wb_part.pj_stock_shift_main.orgid = #orgid#
-    </delete>     
+    </delete> 
+    
+     <!--供应商   删除com_guest-->
+    <delete id="deleteComGuest" parameterClass="HashMap">
+     DELETE wb_common.com_guest , wb_repair.rpb_guest FROM wb_common.com_guest	
+     		INNER JOIN wb_common.com_guest on wb_common.com_guest.id =wb_repair.rpb_guest.id		
+ 			where wb_common.com_guest.orgid = #orgid# and wb_common.com_guest.is_supplier = 1
+    </delete> 
+    
+         <!--客户   删除com_guest-->
+    <delete id="deleteGuest" parameterClass="HashMap">
+     DELETE wb_common.com_guest , wb_repair.rpb_guest FROM wb_common.com_guest	
+     		INNER JOIN wb_common.com_guest on wb_common.com_guest.id =wb_repair.rpb_guest.id		
+ 			where wb_common.com_guest.orgid = #orgid# and wb_common.com_guest.is_client = 1 and wb_common.com_guest.guest_type = '01020103'
+    </delete>   
 </sqlMap>

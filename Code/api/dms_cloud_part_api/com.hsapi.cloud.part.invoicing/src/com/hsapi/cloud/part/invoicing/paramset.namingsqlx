@@ -40,6 +40,9 @@
 			1 = 1 and a.is_disabled=0
 				
 			<dynamic>
+				<isNotEmpty prepend="and" property="tenantId"> 
+                    (a.tenant_id = #tenantId# or a.orgid = 0)
+                </isNotEmpty>
             	<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid# or a.orgid = 0)
                 </isNotEmpty>

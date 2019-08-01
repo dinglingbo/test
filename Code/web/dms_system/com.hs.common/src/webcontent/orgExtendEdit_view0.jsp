@@ -264,7 +264,8 @@ position:relative;
             </tr>           
             <tr>
                 <td class="tbtext">公司电话<span style="color:red">*</span></td>
-                <td colspan="4"><input class="nui-textbox tabwidth" name="tel" id="tel" onvalidation="onMobileValidation"/></td>
+                <!-- <td colspan="4"><input class="nui-textbox tabwidth" name="tel" id="tel" onvalidation="onMobileValidation"/></td> -->
+                <td colspan="4"><input class="nui-textbox tabwidth" name="tel" id="tel" /></td>
             </tr>           
             <tr>
                 <td class="tbtext">网站<span class="spanwidth"></span></td>

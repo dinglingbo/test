@@ -111,13 +111,12 @@
             <isNotEmpty prepend="and" property="namePy">  
                 (name_py like '%$namePy$' or name_py like '$namePy$%')
             </isNotEmpty>  
-            <isNotEmpty prepend="order by " property="sortField">  
-                $sortField$ $sortOrder$
-            </isNotEmpty>  
             <isNotEmpty prepend="limit" property="limitCount">  
                 $limitCount$
             </isNotEmpty>  
         </dynamic>  
+        
+        order by use_times desc
         
     </select>
     
@@ -172,7 +171,7 @@
 		       a.modify_date           modifyDate,
 		       a.is_need_pack          isNeedPack
 		 FROM com_guest a
-		       WHERE 1 = 1 and (a.tenant_id = #tenantId# or a.orgid = 0)
+		       WHERE 1 = 1 and a.tenant_id = #tenantId#
 		     <!-- a.is_supplier = 1   AND a.guest_type = '01020202'-->
     	<dynamic>	
     		<isNotEmpty prepend="and" property="isSupplier">  

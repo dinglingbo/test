@@ -452,7 +452,8 @@
             <tr>
                 <td width="30px" height="30" align="center" bgcolor="#f5f5f5">序号</td>
                 <td width="40%" align="center" bgcolor="#f5f5f5">配件名称</td>           
-                <td align="center" bgcolor="#f5f5f5">配件编号</td>
+                <td align="center" bgcolor="#f5f5f5">配件编码</td>
+                <td align="center" bgcolor="#f5f5f5">品牌/车型</td>
                 <td align="center" bgcolor="#f5f5f5">OEM码</td>
                 <td width="40px" align="center" bgcolor="#f5f5f5">单位</td>
                 <td width="40px" align="center" bgcolor="#f5f5f5">数量</td>
@@ -580,6 +581,7 @@ function SetData(params){
 	               var tds =  '<td align="center">[id]</td>' +
 				    			"<td align='center'>[partName]</td>"+ 
 				    		   "<td>[partCode]</td>"+
+				    		   "<td>[carModel]</td>"+
 				    		   "<td>[oemCode]</td>"+				    		 
 				    			"<td align='center'>[unit]</td>"+
 				    			"<td align='center'>[qty]</td>"+
@@ -589,6 +591,7 @@ function SetData(params){
 		    				tds.replace("[id]",i +1)
 				    			.replace("[partName]",data[i].partName || "")
 				    			.replace("[partCode]",data[i].partCode || "")
+				    			.replace("[carModel]",data[i].applyCarModel || "")
 				    			.replace("[oemCode]",data[i].oemCode || "")
 				    			.replace("[unit]",data[i].unit || "")
 				    			.replace("[qty]",data[i].qty || "")

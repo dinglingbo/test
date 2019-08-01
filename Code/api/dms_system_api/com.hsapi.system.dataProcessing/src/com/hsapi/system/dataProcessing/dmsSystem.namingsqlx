@@ -13,10 +13,10 @@
     <delete id="deleteComMember" parameterClass="HashMap">
      DELETE wb_common.com_member , dms_system.org_employee ,dms_system.org_emporg,dms_system.cap_user,dms_system.com_cap_partyauth 
      FROM wb_common.com_member  
-			INNER JOIN dms_system.org_employee on wb_common.com_member.empid = dms_system.org_employee.EMPID
-			INNER JOIN dms_system.org_emporg on wb_common.com_member.empid = dms_system.org_emporg.EMPID
-			INNER JOIN dms_system.cap_user on dms_system.org_employee.USERID = dms_system.cap_user.USER_ID
-			INNER JOIN dms_system.com_cap_partyauth  on dms_system.org_employee.USERID =dms_system.com_cap_partyauth.PARTY_ID
+			LEFT JOIN dms_system.org_employee on wb_common.com_member.empid = dms_system.org_employee.EMPID
+			LEFT JOIN dms_system.org_emporg on wb_common.com_member.empid = dms_system.org_emporg.EMPID
+			LEFT JOIN dms_system.cap_user on dms_system.org_employee.USERID = dms_system.cap_user.USER_ID
+			LEFT JOIN dms_system.com_cap_partyauth  on dms_system.org_employee.USERID =dms_system.com_cap_partyauth.PARTY_ID
 
 			
  			where wb_common.com_member.orgid = #orgid#

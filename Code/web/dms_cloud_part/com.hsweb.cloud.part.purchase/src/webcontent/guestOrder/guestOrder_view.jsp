@@ -9,7 +9,7 @@
 -->
 <head>
 <title>预售单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/guestOrder/guestOrder.js?v=1.0.27"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/guestOrder/guestOrder.js?v=1.0.49"></script>
 <style type="text/css">
 .title {
 	width: 70px;
@@ -63,7 +63,8 @@ body .mini-grid-row-selected{
                 	<li iconCls="" onclick="quickSearch(10)" id="type10">所有</li>
                     <li iconCls="" onclick="quickSearch(6)" id="type6">草稿</li>
                     <li iconCls="" onclick="quickSearch(7)" id="type7">已提交</li>
-                    <li iconCls="" onclick="quickSearch(8)" id="type8">已完成</li>
+                    <li iconCls="" onclick="quickSearch(8)" id="type8">已受理</li>
+                    <li iconCls="" onclick="quickSearch(9)" id="type9">已完成</li>
         
                 </ul>
                 <input id="searchGuestId" class="nui-buttonedit"
@@ -80,11 +81,11 @@ body .mini-grid-row-selected{
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="submit()" visible=""  id="submitBtn"><span class="fa fa-check fa-lg""></span>&nbsp;提交</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible=""  id="auditBtn"><span class="fa fa-check fa-lg""></span>&nbsp;提交</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
                 <a class="nui-button" plain="true" iconCls="" onclick="importPart()" id="importPartBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible="" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;完成销售</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="finish()" visible="" id=""><span class="fa fa-check fa-lg"></span>&nbsp;完成销售</a>
       
                 <span id="status"></span>
                 <!-- <span class="separator"></span>
@@ -117,6 +118,7 @@ body .mini-grid-row-selected{
                      ondrawcell="onLeftGridDrawCell"
                      onrowdblclick=""
                      onselectionchanged="onLeftGridSelectionChanged"
+                     onbeforedeselect="onLeftGridBeforeDeselect"
                      onbeforedeselect=""
                      dataField="guestOrderMainList"
                      url="">
@@ -126,8 +128,8 @@ body .mini-grid-row-selected{
                       	<div field="auditSign" width="65" visible="false" headerAlign="center" header="状态"></div>
                         <div field="guestFullName" width="120" headerAlign="center" header="供应商"></div>
                         <div field="orderDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="退货日期"></div>
-                        <div field="orderMan" width="60" headerAlign="center" header="退货员"></div>
-                        <div field="serviceId" headerAlign="center" width="150" header="采退单号"></div>
+                        <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
+                        <div field="serviceId" headerAlign="center" width="150" header="预售单号"></div>
                         <div field="printTimes" width="60" headerAlign="center" header="打印次数"></div>
                         <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
                         <div field="auditDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="审核日期"></div>
@@ -293,7 +295,7 @@ body .mini-grid-row-selected{
                   <div class="nui-fit">
                       <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
                            showPager="false"
-                           dataField="pjSellOrderDetailList"
+                           dataField="guestOrderDetailList"
                            idField="id"
                            showSummaryRow="true"
                            frozenStartColumn="0"
@@ -487,6 +489,24 @@ body .mini-grid-row-selected{
     </div>
 </div>
 
+<div id="advancedTipWin" class="nui-window"
+        title="未成功导入配件" style="width:400px;height:200px;"
+        showModal="true"
+        allowResize="false"
+        allowDrag="true">
+        <div id="advancedTipForm" class="form">
+            <table style="width:100%;height: 100%;">
+            
+                <tr>
+                    <td colspan="3">
+                        <textarea class="nui-textarea" emptyText="" width="100%" style="height: 100%;" id="imprtPastCodeList" name="imprtPastCodeList"></textarea>
+                    </td>
+                </tr>
+                
+            </table>
+        </div>
+    </div>
+    
 <div id="advancedAddWin" class="nui-window"
      title="快速录入配件" style="width:400px;height:200px;"
      showModal="true"

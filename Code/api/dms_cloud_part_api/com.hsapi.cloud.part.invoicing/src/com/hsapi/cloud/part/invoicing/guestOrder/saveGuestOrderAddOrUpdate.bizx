@@ -24,7 +24,7 @@
       <targetNode>assign1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="GT">
-          <process:leftOperand type="query">pchsOrderMain/id</process:leftOperand>
+          <process:leftOperand type="query">guestOrderMain/id</process:leftOperand>
           <process:rightOperand type="literal">0</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -167,8 +167,8 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="conColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">id</process:inputVariable>
-      <process:inputVariable id="1" name="conContent" type="query" value="int" valueType="Java" pattern="reference">pchsOrderMain/id</process:inputVariable>
-      <process:inputVariable id="2" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.cloud.part.data.pts.PjPchsOrderMainChk</process:inputVariable>
+      <process:inputVariable id="1" name="conContent" type="query" value="int" valueType="Java" pattern="reference">guestOrderMain/id</process:inputVariable>
+      <process:inputVariable id="2" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.cloud.part.data.pts.PjGuestOrderMain</process:inputVariable>
       <process:inputVariable id="3" name="resColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">auditSign</process:inputVariable>
       <process:inputVariable id="4" name="dataSource" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
     </process:inputVariables>
@@ -191,7 +191,7 @@
       <targetNode>assign5</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="NE">
-          <process:leftOperand type="query">pchsOrderMain/operateDate</process:leftOperand>
+          <process:leftOperand type="query">guestOrderMain/operateDate</process:leftOperand>
           <process:rightOperand type="query">operateDate</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -206,8 +206,8 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="conColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">id</process:inputVariable>
-      <process:inputVariable id="1" name="conContent" type="query" value="int" valueType="Java" pattern="reference">pchsOrderMain/id</process:inputVariable>
-      <process:inputVariable id="2" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.cloud.part.data.pts.PjPchsOrderMain</process:inputVariable>
+      <process:inputVariable id="1" name="conContent" type="query" value="int" valueType="Java" pattern="reference">guestOrderMain/id</process:inputVariable>
+      <process:inputVariable id="2" name="entityName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.cloud.part.data.pts.PjGuestOrderMain</process:inputVariable>
       <process:inputVariable id="3" name="resColumn" type="literal" value="java.lang.String" valueType="Java" pattern="reference">operateDate</process:inputVariable>
       <process:inputVariable id="4" name="dataSource" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
     </process:inputVariables>

@@ -50,7 +50,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
-      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">pchsOrderMain</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">guestOrderMain</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>
@@ -78,7 +78,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
-      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">pchsOrderDetailAdd</process:inputVariable>
+      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">guestOrderDetailAdd</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>
@@ -132,7 +132,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
-      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">pchsOrderDetailUpdate</process:inputVariable>
+      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">guestOrderDetailUpdate</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>
@@ -160,7 +160,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
-      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">pchsOrderDetailDelete</process:inputVariable>
+      <process:inputVariable id="1" name="dataObjects" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">guestOrderDetailDelete</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>
@@ -204,7 +204,7 @@
       <process:to type="query">guestOrderMain/operateDate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">pchsOrderMain/id</process:from>
+      <process:from type="query" pattern="reference">guestOrderMain/id</process:from>
       <process:to type="query">mainId</process:to>
     </process:copy>
     <process:copy>
@@ -415,7 +415,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">pchsOrderMain/billTypeId</process:from>
+      <process:from type="query" pattern="reference">guestOrderMain/billTypeId</process:from>
       <process:to type="query">billTypeId</process:to>
     </process:copy>
     <process:copy>
@@ -526,7 +526,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign10label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">pchsOrderMain/guestId</process:from>
+      <process:from type="query" pattern="reference">guestOrderMain/guestId</process:from>
       <process:to type="query">guest/id</process:to>
     </process:copy>
   </nodes>
@@ -582,11 +582,11 @@
     <nodeLabel>assign16label</nodeLabel>
     <process:copy>
       <process:from type="query" pattern="reference">mOrderAmt</process:from>
-      <process:to type="query">pchsOrderMain/orderAmt</process:to>
+      <process:to type="query">guestOrderMain/orderAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">mOrderQty</process:from>
-      <process:to type="query">pchsOrderMain/orderQty</process:to>
+      <process:to type="query">guestOrderMain/orderQty</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign16label" name="label" nodeType="label">

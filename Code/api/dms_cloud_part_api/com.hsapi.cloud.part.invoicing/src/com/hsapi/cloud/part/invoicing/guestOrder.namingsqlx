@@ -8,7 +8,7 @@
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
     <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
-    <select id="queryGuestOrderMainList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    <select id="queryGuestOrderMainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT DISTINCT
 			A.id AS id,
 			A.service_id AS serviceId,
@@ -126,5 +126,53 @@
       	
         
         ORDER BY A.operate_date DESC
+    </select>
+    
+    <select id="queryPjGuestOrderDetailList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">   	
+            SELECT
+				A.id as id,
+				A.main_id as mainId,
+				A.store_id as storeId,
+				A.part_id as partId,
+				A.part_code as partCode,
+				A.part_name as partName,
+				A.full_name as fullName,
+				A.out_unit_id as outUnitId,
+				A.system_unit_id as systemUnitId,
+				A.order_qty as orderQty,
+				A.order_price as orderPrice,
+				A.order_amt as orderAmt,
+				A.pchs_main_id as pchsMainId,
+				A.pchs_detail_id as pchsDetailId,
+				A.accept_main_id as acceptMainId,
+				A.accept_detail_id as acceptDetailId,
+				A.remark as remark,
+				B.`code` AS comPartCode,
+				B.`name` AS comPartName,
+				B.full_name AS comFullName,
+				B.brand_code AS comBrandCode,
+				B.oem_code AS comOemCode,
+				B.quality_type_id AS comQualityTypeId,
+				B.part_brand_id AS comPartBrandId,
+				B.apply_car_model AS comApplyCarModel,
+				B.unit AS comUnit,
+				B.spec AS comSpec,
+				B.direction AS comDirection
+			FROM
+				DMS_CLOUD_PART.pj_guest_order_detail A
+			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
+			WHERE
+				1 = 1      
+            <dynamic>
+                <isNotEmpty prepend="and" property="mainId">  
+                    (A.MAIN_ID = #mainId#)
+                </isNotEmpty>
+            </dynamic>  
+            <isNotEmpty prepend="and" property="mainIds">  
+                    (A.MAIN_ID in ($mainIds$))
+            </isNotEmpty>
+           
+        
+        ORDER BY a.id asc
     </select>
 </sqlMap>

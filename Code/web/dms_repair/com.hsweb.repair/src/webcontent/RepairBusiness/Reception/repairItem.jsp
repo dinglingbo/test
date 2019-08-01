@@ -14,10 +14,10 @@
      >
     <div property="columns">
         <div type="indexcolumn" headerAlign="center" name="index" visible="false">序号</div>
-        <div headerAlign="center" field="orderIndex" width="25" align="right" name="num">序号</div>
+        <div headerAlign="center" field="orderIndex" width="20" align="right" name="num">序号</div>
         <div header="项目信息">
             <div property="columns">
-                <div field="prdtName" name="prdtName" headerAlign="center" allowSort="false" visible="true" width="100">项目名称</div>
+                <div field="prdtName" name="prdtName" headerAlign="center" allowSort="false" visible="true" width="150">项目名称</div>
                 <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="50" align="center">业务类型
                     <input  property="editor" enabled="true" dataField="servieTypeList" 
                              class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
@@ -32,14 +32,14 @@
                 <div field="unitPrice" name="itemUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">单价
                     <input property="editor" vtype="float" class="nui-textbox"  onvaluechanged="onValueChangedItemUnitPrice" selectOnFocus="true" width="60%"/>
                 </div>
-                <div field="rate" name="itemRate" headerAlign="center" allowSort="false" visible="true" width="50" datatype="float" align="center" >
+                <div field="rate" name="itemRate" headerAlign="center" allowSort="false" visible="true" width="40" datatype="float" align="center" >
                     优惠率%<a href="javascript:setItemPartRate()" title="批量设置优化率" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
                     <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemRate" selectOnFocus="true" width="60%"/>
                 </div>
-                <div field="subtotal"  name="itemSubtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">金额
+                <div field="subtotal"  name="itemSubtotal" headerAlign="center" allowSort="false" visible="true" width="50" datatype="float" align="center">金额
                     <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemSubtotal" selectOnFocus="true" width="60%"/>
                 </div>
-                <div field="amt"  name="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">项目总金额
+                <div field="amt"  name="amt" headerAlign="center" allowSort="false" visible="false" width="50" datatype="float" align="center">项目总金额
                 </div>
                <div field="workers" headerAlign="center"
                      allowSort="false" visible="true" width="60" header="" align="center" name="workers">

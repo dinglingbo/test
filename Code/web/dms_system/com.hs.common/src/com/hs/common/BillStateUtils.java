@@ -196,6 +196,13 @@ public class BillStateUtils {
 
 	}
 	
+	@Bizlet("")
+	public static String stringReplaceAll(String str){
+		str = str.replaceAll("\\s*", "");
+		return str;
+		
+	}
+	
 }
 	
 

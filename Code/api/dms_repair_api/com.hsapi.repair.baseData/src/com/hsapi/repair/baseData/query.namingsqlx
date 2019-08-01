@@ -200,7 +200,7 @@
 		SELECT id, tenant_id as tenantId, orgid as orgid, name as name, 
 		       is_disabled as isDisabled, is_share as isShare
 		from rpb_check_main
-		where is_disabled = 0 and (orgid = #orgid# or (tenant_id = #tenantId# and is_share = 1) )
+		where is_disabled = 0 and (orgid = #orgid# or (tenant_id = #tenantId# and is_share = 1) or orgid = 0)
 	</select>
 	
 	<select id="queryCheckDetailById" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">

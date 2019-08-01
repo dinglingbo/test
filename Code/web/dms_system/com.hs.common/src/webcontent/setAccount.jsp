@@ -70,26 +70,28 @@
     	if (!data.empid) return;
     	form.setData(data);
     }
-    setAccountUrl=baseUrl+"com.hsapi.system.tenant.employee.openOrCloseUser.biz.ext"
+    setAccountUrl=baseUrl+"com.hsapi.system.tenant.employee.openOrCloseUser.biz.ext";
     function OnOk(){
     	var tmpAccount=nui.get("Account").getValue();
     	var tmpempid=nui.get("empid").getValue();
+        tmpAccount = tmpAccount.replace(/\s+/g,"");
     	var s={};
     	s.systemAccount=tmpAccount;
-      s.name = nui.get("name").getValue();
+        s.name = nui.get("name").getValue();
     	s.empid=tmpempid;
-      s.isOpenAccount = 1;
-    		if(tmpAccount=="")
-    		{
-    		nui.alert("请输入帐号！");
-    		return ; 
-    		}
+        s.isOpenAccount = 1;
+		if(tmpAccount=="")
+		{
+		  showMsg("请输入帐号！","W");
+		  return ; 
+		}
     	 nui.mask({
 	        el : document.body,
 	        cls : 'mini-mask-loading',
 	        html : '开通账户中...'
 	    });
- 		nui.ajax({
+	    
+ 		 nui.ajax({
             url: setAccountUrl,
             type: 'post',
             data: nui.encode({
@@ -110,7 +112,7 @@
             error: function (jqXHR, textStatus, errorThrown) {
                 nui.alert(jqXHR.responseText);
             }
-		});
+		}); 
  	
     }
   	function Oncancel(){

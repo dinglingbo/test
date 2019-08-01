@@ -36,9 +36,12 @@ $(document).ready(function(v)
     leftGrid.on("cellbeginedit",function(e){
 		var field=e.field; 
 		var row = e.row;
-        if(row.orgid != currOrgId){
-			e.cancel = true;
+		if(row.orgid || row.orgid==0){
+			if(row.orgid != currOrgId){
+				e.cancel = true;
+			}
 		}
+        
 	});
     
     leftGrid.on("drawcell",function(e){
@@ -169,7 +172,8 @@ function getSearchParam(){
 }
 function onSearch(){
 	var params = getSearchParam();
-
+	params.tenantId = currTenantId;
+	params.orgid = currOrgId;
     doSearch(params);
 }
 function doSearch(params)

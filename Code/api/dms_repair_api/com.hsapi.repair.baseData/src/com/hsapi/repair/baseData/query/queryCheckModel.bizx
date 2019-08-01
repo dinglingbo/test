@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryCheckModel.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="维护功能：查询本机构下的模板&#xD;&#xA;查车开单：查询租户下共享和本机构的模板，而且是取缓存&#xD;&#xA;&#xD;&#xA;如果修改了模板，需要更新租户下所有机构对应的模板缓存数据&#xD;&#xA;&#xD;&#xA;缓存1：机构对应的模板数据；缓存2：模板对应的模板详情数据&#xD;&#xA;缓存3：模板详情对应的常用说明缓存&#xD;&#xA;&#xD;&#xA;com.hsapi.repair.baseData.query.queryOrgCheckMain&#xD;&#xA;com.hsapi.repair.baseData.query.queryCheckDetailById&#xD;&#xA;com.hsapi.repair.baseData.query.queryCheckDetailContentById" title="Administrator&#x9;19-3-22 下午4:42">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="维护功能：查询本机构下的模板&#xD;&#xA;查车开单：查询租户下共享和本机构的模板，而且是取缓存&#xD;&#xA;&#xD;&#xA;如果修改了模板，需要更新租户下所有机构对应的模板缓存数据&#xD;&#xA;&#xD;&#xA;缓存1：机构对应的模板数据；缓存2：模板对应的模板详情数据&#xD;&#xA;缓存3：模板详情对应的常用说明缓存&#xD;&#xA;&#xD;&#xA;com.hsapi.repair.baseData.query.queryOrgCheckMain&#xD;&#xA;com.hsapi.repair.baseData.query.queryCheckDetailById&#xD;&#xA;com.hsapi.repair.baseData.query.queryCheckDetailContentById&#xD;&#xA;&#xD;&#xA;设置检查模板时查询tenantId=0的以及本店的&#xD;&#xA;" title="Administrator&#x9;19-3-22 下午4:42">
     <location x="30" y="-270"/>
     <size height="226" width="586"/>
   </nodes>
@@ -79,24 +79,36 @@
       <process:to type="query">cond/_expr[2]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">params/tenantId</process:from>
-      <process:to type="query">cond/_expr[3]/tenantId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">cond/_expr[3]/_op</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">params/orgid</process:from>
-      <process:to type="query">cond/_expr[4]/orgid</process:to>
+      <process:to type="query">cond/_or[1]/_and[2]/_expr[1]/orgid</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">cond/_expr[4]/_op</process:to>
+      <process:to type="query">cond/_or[1]/_and[2]/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">true</process:from>
-      <process:to type="query">page/isCount</process:to>
+      <process:from type="query" pattern="reference">params/tenantId</process:from>
+      <process:to type="query">cond/_or[1]/_and[1]/_expr[1]/tenantId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_or[1]/_and[1]/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">cond/_or[1]/_and[1]/_expr[2]/isShare</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_or[1]/_and[1]/_expr[2]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">cond/_or[1]/_and[3]/_expr[1]/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_or[1]/_and[3]/_expr[1]/_op</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">

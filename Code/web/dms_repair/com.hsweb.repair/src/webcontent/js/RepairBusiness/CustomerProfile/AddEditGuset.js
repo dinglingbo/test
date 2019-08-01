@@ -890,8 +890,7 @@ function setData(data)
     });
 
 }
-function onParseUnderpanNo()
-{
+function onParseUnderpanNo(){
     var vin = nui.get("vin").getValue();
     //判断VIN
     var data = {};
@@ -904,13 +903,11 @@ function onParseUnderpanNo()
             cls: 'mini-mask-loading',
             html: '车型解析中...'
         });
-        getCarVinModel(vin,function(data)
-        {
+        getCarVinModel(vin,function(data){
             data = data||{};
-            if(data.errCode == "S")
-            {
+            var carVinModel = data.data.SuitCar||[];//list[0];
+            if(carVinModel.length > 0){
                 //var list = data.rs||[];
-                var carVinModel = data.data.SuitCar||[];//list[0];
                 var carModelId = data.data.carModelId;
                 carVinModel = carVinModel[0]||{};
                 carVinModel.vin = vin;
@@ -931,10 +928,33 @@ function onParseUnderpanNo()
                 nui.get("carModelIdLy").setValue(carModelId);
                 nui.unmask(document.body);
             }else{
-            	nui.unmask(document.body);
-            	showMsg("车型解析失败，请手工维护车型信息！","W");
+        			var getStandardCarmodelByVINUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.svr.getStandardCarmodelByVIN.biz.ext";
+        			var json = {
+        					params:{
+        						vin:vin
+        					},
+        			token : token
+        			};
+        			nui.ajax({
+        				url : getStandardCarmodelByVINUrl,
+        				type : "post",
+        				aynsc:false,
+        				data : json,
+        				success : function(data) {     					
+        					data = data || {};
+        	                nui.unmask(document.body);
+        					if (data.errCode == "S") {
+        						
+        					} else {
+        						showMsg("车型解析失败，请手动维护车型!","W");
+        					}
+        				},
+        				error : function(jqXHR, textStatus, errorThrown) {
+        					console.log(jqXHR.responseText);
+        				}
+        			});
             }
-        });
+        }); 
     }else{
     	showMsg("VIN不规范，请确认！","W");
     	return;

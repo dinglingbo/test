@@ -111,13 +111,12 @@
             <isNotEmpty prepend="and" property="namePy">  
                 (name_py like '%$namePy$' or name_py like '$namePy$%')
             </isNotEmpty>  
-            <isNotEmpty prepend="order by " property="sortField">  
-                $sortField$ $sortOrder$
-            </isNotEmpty>  
             <isNotEmpty prepend="limit" property="limitCount">  
                 $limitCount$
             </isNotEmpty>  
         </dynamic>  
+        
+        order by use_times desc
         
     </select>
     

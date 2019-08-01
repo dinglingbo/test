@@ -8,7 +8,7 @@
 -->
 <head>
     <title>门店进销存明细</title>
-    <script src="<%=webPath + contextPath%>/manage/js/report/shopInvoingDetail.js?v=1.0.20"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/report/shopInvoingDetail.js?v=1.0.1"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -81,7 +81,8 @@
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                 
 				
-                <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>            
+                <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>    
+                <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>        
         </td>
     </tr>
 </table>
@@ -146,5 +147,28 @@
 </div>
 </div>
 
-
+<div id="exportDiv" style="display:none">  
+    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
+        <tr>  
+            <td colspan="1" align="center">配件编码</td>
+             <td colspan="1" align="center">配件名称</td>          
+            <td colspan="1" align="center">品牌</td>
+            <td colspan="1" align="center">品牌车型</td>                     
+            <td colspan="1" align="center">方向</td>
+            <td colspan="1" align="center">操作日期</td>
+            <td colspan="1" align="center">数量</td>
+            <td colspan="1" align="center">单价</td>
+            <td colspan="1" align="center">金额</td>
+            <td colspan="1" align="center">结存数量</td>
+            <td colspan="1" align="center">结存单价</td>
+            <td colspan="1" align="center">结存金额</td>            
+            <td colspan="1" align="center">操作类型</td>
+            <td colspan="1" align="center">操作员</td>            
+            <td colspan="1" align="center">客户/供应商</td>         
+        </tr>
+        <tbody id="tableExportContent">
+        </tbody>
+    </table>  
+    <a href="" id="tableExportA"></a>
+</div> 
 </html>

@@ -247,8 +247,8 @@ function getSearchParams(){
     params.carNo = nui.get("carNo").getValue();
     params.serviceTypeId=nui.get("serviceTypeId").value;
     params.billTypeId =nui.get("billTypeId").value;
-    if(eOutDateEl.getValue()){ 	
-    	params.ePickDate=addDate(eOutDateEl.getValue(),1);
+    if(ePickDateEl.getValue()){ 	
+    	params.ePickDate=addDate(ePickDateEl.getValue(),1);
     }
     params.sOutDate=nui.get("sOutDate").getFormValue();
     if(eOutDateEl.getValue()){
@@ -441,4 +441,125 @@ function changed(){
         token :token     
     });
 	
+}
+
+function onExport(){
+	
+
+	var detail = rightGrid.getData();
+	
+	for(var i=0;i<detail.length;i++){
+		for(var j in servieTypeHash) {
+		    if(detail[i].serviceTypeId ==servieTypeHash[j].id ){
+		    	detail[i].serviceTypeId=servieTypeHash[j].name;
+		    }
+		}
+		for(var j in storeHash) {
+		    if(detail[i].storeId ==storeHash[j].id ){
+		    	detail[i].storeId=storeHash[j].name;
+		    }
+		}
+		if(detail[i].returnSign==0){
+			detail[i].returnSign="否";
+		}else{
+			detail[i].returnSign="是";
+		}
+		for(var j in partTypeHash) {
+			if(detail[i].carTypeIdF==partTypeHash[j].code){
+				detail[i].carTypeIdF=partTypeHash[j].name;
+			}
+			if(detail[i].carTypeIdS==partTypeHash[j].code){
+				detail[i].carTypeIdS=partTypeHash[j].name;
+			}
+			if(detail[i].carTypeIdT==partTypeHash[j].code){
+				detail[i].carTypeIdT=partTypeHash[j].name;
+			}
+		}
+	}
+	if(detail && detail.length > 0){
+		setInitExportData( detail);
+	}
+	
+}
+
+function setInitExportData( detail){
+
+    var tds = '<td  colspan="1" align="left">[serviceCode]</td>' +
+        "<td  colspan='1' align='left'>[carNo]</td>" +
+        "<td  colspan='1' align='left'>[serviceTypeId]</td>" +
+        "<td  colspan='1' align='left'>[storeId]</td>" +
+        "<td  colspan='1' align='left'>[partCode]</td>" +
+        "<td  colspan='1' align='left'>[partName]</td>" +
+        "<td  colspan='1' align='left'>[oemCode]</td>" +       
+        "<td  colspan='1' align='left'>[outQty]</td>" +
+        
+        "<td  colspan='1' align='left'>[trueUnitPrice]</td>" +
+        "<td  colspan='1' align='left'>[trueCost]</td>" +
+        "<td  colspan='1' align='left'>[sellUnitPrice]</td>" +
+        
+        "<td  colspan='1' align='left'>[sellAmt]</td>" +
+        "<td  colspan='1' align='left'>[gross]</td>" +
+        "<td  colspan='1' align='left'>[grossRate]</td>"+
+        "<td  colspan='1' align='left'>[costRate]</td>"+
+        "<td  colspan='1' align='left'>[pickMan]</td>"+
+        "<td  colspan='1' align='left'>[pickDate]</td>"+      
+        "<td  colspan='1' align='left'>[recorder]</td>" +
+        "<td  colspan='1' align='left'>[recordDate]</td>" +
+        "<td  colspan='1' align='left'>[returnSign]</td>" +
+        "<td  colspan='1' align='left'>[returnDate]</td>" +                     
+        "<td  colspan='1' align='left'>[partBrandId]</td>" +
+        
+        "<td  colspan='1' align='left'>[applyCarModel]</td>" +
+        "<td  colspan='1' align='left'>[unit]</td>"+
+        "<td  colspan='1' align='left'>[carTypeIdF]</td>"+
+        "<td  colspan='1' align='left'>[carTypeIdS]</td>"+
+        "<td  colspan='1' align='left'>[carTypeIdT]</td>"+
+        "<td  colspan='1' align='left'>[spec]</td>";
+        
+        
+    var tableExportContent = $("#tableExportContent");
+    tableExportContent.empty();
+    for (var i = 0; i < detail.length; i++) {
+        var row = detail[i];
+        if(row.id){
+            var tr = $("<tr></tr>");
+            tr.append(tds.replace("[serviceCode]", detail[i].serviceCode?detail[i].serviceCode:"")
+                         .replace("[carNo]", detail[i].carNo?detail[i].carNo:"")
+                         .replace("[serviceTypeId]", detail[i].serviceTypeId?detail[i].serviceTypeId:"")
+                         .replace("[storeId]", detail[i].storeId?detail[i].storeId:"")                        
+                         .replace("[partCode]", detail[i].partCode?detail[i].partCode:"")
+                         .replace("[partName]", detail[i].partName?detail[i].partName:"")
+                         .replace("[oemCode]", detail[i].oemCode?detail[i].oemCode:"")
+                         //.replace("[collectMoneyDate]", nui.formatDate(detail[i].collectMoneyDate?detail[i].collectMoneyDate:"",'yyyy-MM-dd HH:mm'))
+                         
+                         .replace("[outQty]", detail[i].outQty?detail[i].outQty:"")                       
+                         .replace("[trueUnitPrice]", detail[i].trueUnitPrice?detail[i].trueUnitPrice:"")
+                         .replace("[trueCost]", detail[i].trueCost?detail[i].trueCost:"") 
+                         
+                         .replace("[sellUnitPrice]", detail[i].sellUnitPrice?detail[i].sellUnitPrice:"")                        
+                         .replace("[sellAmt]", detail[i].sellAmt?detail[i].sellAmt:"")
+                         .replace("[gross]", detail[i].gross?detail[i].gross:"")
+                         
+                         .replace("[grossRate]", detail[i].grossRate?detail[i].grossRate:"")
+                         .replace("[costRate]", detail[i].costRate?detail[i].costRate:"")
+                         .replace("[pickMan]", detail[i].pickMan?detail[i].pickMan:"")
+                         .replace("[pickDate]", nui.formatDate(detail[i].pickDate?detail[i].pickDate:"",'yyyy-MM-dd HH:mm'))
+                         
+                         .replace("[recorder]", detail[i].recorder?detail[i].recorder:"")  
+                         .replace("[recordDate]", nui.formatDate(detail[i].recordDate?detail[i].recordDate:"",'yyyy-MM-dd HH:mm'))                         
+                         .replace("[returnSign]", detail[i].returnSign?detail[i].returnSign:"")
+                         .replace("[returnDate]", nui.formatDate(detail[i].returnDate?detail[i].returnDate:"",'yyyy-MM-dd HH:mm'))                          
+                         .replace("[partBrandId]", detail[i].partBrandId?detail[i].partBrandId:"")
+                         .replace("[applyCarModel]", detail[i].applyCarModel?detail[i].applyCarModel:"")    
+                         .replace("[unit]", detail[i].unit?detail[i].unit:"")                     
+                         .replace("[carTypeIdF]", detail[i].carTypeIdF?detail[i].carTypeIdF:"")
+                         .replace("[carTypeIdS]", detail[i].carTypeIdS?detail[i].carTypeIdS:"")
+                         .replace("[carTypeIdT]", detail[i].carTypeIdT?detail[i].carTypeIdT:"")
+                         .replace("[spec]", detail[i].spec?detail[i].spec:""));
+            tableExportContent.append(tr);
+        }
+    }
+
+ 
+    method5('tableExcel',"维修出库明细表导出",'tableExportA');
 }

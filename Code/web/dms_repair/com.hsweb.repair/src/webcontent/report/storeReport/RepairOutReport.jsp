@@ -1,4 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+
 <%@include file="/common/commonRepair.jsp"%>
 <%@include file="/common/common.jsp"%>
 <html>
@@ -9,7 +10,7 @@
 -->
 <head>
     <title>维修出库明细</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.1.12"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.0.7"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -145,6 +146,7 @@
     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
     <input type="checkbox" id="ReturnSign" class="mini-checkbox"  onclick="changed()" >
 	<span >是否显示归库</span>
+	 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a> 
 </div>
 
 <div class="nui-fit">
@@ -223,5 +225,44 @@
 </div>
 </div>
 
-
+<div id="exportDiv" style="display:none">  
+<!--     <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
+        <tr>  
+        	<td colspan="1" align="center">业务单号</td>
+            <td colspan="1" align="center">车牌号</td>
+            <td colspan="1" align="center">业务类型</td>
+            <td colspan="1" align="center">仓库</td>
+            <td colspan="1" align="center">配件编码</td>
+             <td colspan="1" align="center">配件名称</td>
+             
+            <td colspan="1" align="center">OEM码</td>          
+            <td colspan="1" align="center">数量</td>
+            <td colspan="1" align="center">成本单价</td>
+                        
+            <td colspan="1" align="center">成本金额</td>
+            <td colspan="1" align="center">销售单价</td>
+            <td colspan="1" align="center">销售金额</td>
+            <td colspan="1" align="center">毛利</td>
+            <td colspan="1" align="center">配件毛利率</td>
+            <td colspan="1" align="center">成本率</td>
+            <td colspan="1" align="center">出库人</td>
+            <td colspan="1" align="center">出库日期</td>            
+            <td colspan="1" align="center">创建人</td>         
+            <td colspan="1" align="center">创建日期</td>
+            <td colspan="1" align="center">是否归库</td>
+            
+            <td colspan="1" align="center">归库日期</td>
+            <td colspan="1" align="center">品牌</td>
+            <td colspan="1" align="center">适用车型</td>
+            <td colspan="1" align="center">单位</td>
+            <td colspan="1" align="center">配件分类一级</td>
+            <td colspan="1" align="center">配件分类二级</td>
+            <td colspan="1" align="center">配件分类三级</td>
+            <td colspan="1" align="center">规格</td>
+        </tr>
+        <tbody id="tableExportContent">
+        </tbody>
+    </table>  
+    <a href="" id="tableExportA"></a> -->
+</div>  
 </html>

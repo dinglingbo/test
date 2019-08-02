@@ -8,7 +8,7 @@
 -->
 <head>
 <title>库存查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockQuery/partStoreStockQuery.js?v=2.2.32"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockQuery/partStoreStockQuery.js?v=1.0.1"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -42,7 +42,7 @@
 	            <!-- <label style="font-family:Verdana;">配件ID：</label> -->
 	            
 	            <!-- <label style="font-family:Verdana;">订单单号：</label> -->
-                <input id="partBrandId"
+                <input id="partBrandId" width="100px"
                            name="partBrandId"
                            class="nui-combobox width1"
                            textField="name"
@@ -53,7 +53,8 @@
                            allowInput="true"
                            showNullItem="false"
                            nullItemText="请选择..."/>
-                 <input id="storeId"
+                  <input id="applyCarModel" width="120px"  emptyText="品牌车型" class="nui-textbox"/>                           
+                 <input id="storeId"  width="100px"
                            name="storeId"
                            class="nui-combobox width1"
                            textField="name"
@@ -65,8 +66,9 @@
                            showNullItem="false"
                            nullItemText="请选择..."/>
                  
-                <input id="storeShelf" width="120px" emptyText="仓位" class="nui-textbox"/>
+                <input id="storeShelf" width="80px" emptyText="仓位" class="nui-textbox"/>
                 <input id="upOrDown"
+               			 width="100px"
                            name="upOrDown"
                            class="nui-combobox width1"
                            textField="name"

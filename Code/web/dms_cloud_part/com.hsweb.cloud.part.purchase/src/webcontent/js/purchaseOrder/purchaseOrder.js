@@ -83,6 +83,8 @@ var storeShelfList=[];
 var storeShelfHash={}
 var partHash={};
 var orderTypeList=[{"id":1,"name":"常规订单"},{"id":2,"name":"备货订单"},{"id":3,"name":"急件订单"}];
+
+var directOrgidEl =null;
 $(document).ready(function(v) {
 	nui.mask({
         el: document.body,
@@ -113,6 +115,9 @@ $(document).ready(function(v) {
 	sOrderDate = nui.get("sOrderDate");
 	eOrderDate = nui.get("eOrderDate");
 
+	directOrgidEl = nui.get("directOrgid");
+	getCompany();
+	 
 	mainTabs = nui.get("mainTabs");
 	billmainTab = mainTabs.getTab("billmain");
 	partInfoTab = mainTabs.getTab("partInfoTab");
@@ -3510,5 +3515,32 @@ function getStratePriceList(params){
 			// nui.alert(jqXHR.responseText);
 			console.log(jqXHR.responseText);
 		}
+	});
+}
+
+var companyUrl = apiPath + sysApi + "/"+"com.hsapi.system.basic.organization.getCompanyAll.biz.ext";
+function getCompany(){
+	var params = {};
+	nui.ajax({
+        url: companyUrl,
+        type: 'post',
+        async:false,
+        data: nui.encode({
+        	params: params,
+            token: token
+        }),
+        cache: false,
+        success: function (data) {
+            if (data.errCode == "S"){
+            	var orgList =data.companyList;
+            	directOrgidEl.setData(data.companyList);
+               
+            }else {
+            	
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
 	});
 }

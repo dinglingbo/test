@@ -208,13 +208,17 @@
                     <td colspan="3"><input name="fullName" class="nui-textbox" width="370px" enabled="false"/></td>
                 </tr>
                 <tr class="htr">
+                    <td class=" right fwidthb">配件热度:</td>
+                    <td ><input name="useTimes" class="nui-textbox" width="150px" /></td>               
                     <td class=" right fwidthb">是否禁用:</td>
                     <td ><input name="isDisabled" class="nui-checkbox" width="150px" trueValue="1" falseValue="0"/><!-- </td><td class=" right fwidthb">统一售价:</td>
                     <td ><input name="isUniform" class="nui-checkbox" width="150px" trueValue="1" falseValue="0"/></td> -->
-                    <td class=" right fwidthb">备注:</td>
-                    <td ><input name="remark" class="nui-textbox" width="150px" enabled="true"/></td>
-                </tr>
 
+                </tr>
+				<tr>
+                    <td class=" right fwidthb">备注:</td>
+                    <td colspan="3"><input name="remark" class="nui-textbox" width="370px" enabled="true"/></td>
+				</tr>
             </table>
     </div>
 </div>

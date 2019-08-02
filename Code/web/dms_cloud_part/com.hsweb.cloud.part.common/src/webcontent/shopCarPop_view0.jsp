@@ -10,7 +10,7 @@
 <head>
 <title>添加采购车/销售车</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%=webPath + contextPath%>/common/js/shopCartPop.js?v=1.0.3"></script>
+<script src="<%=webPath + contextPath%>/common/js/shopCartPop.js?v=1.0.7"></script>
 <style type="text/css">
 .title {
 	width: 80px;
@@ -44,6 +44,11 @@
     </table>
 </div>
 <div id="batchInfoForm" class="form">
+	<input class="nui-hidden" name="directGuestId"/>
+	<input class="nui-hidden" name="directOrgid"/>
+	<input class="nui-hidden" name="sourceType"/>
+	<input class="nui-hidden" name="code"/>
+	<input class="nui-hidden" name="codeId"/>
     <table style="width: 100%" id="list_table">
         <tr>
             <td class="title required">

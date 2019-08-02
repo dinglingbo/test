@@ -71,18 +71,6 @@
       <process:from type="literal" pattern="reference">3</process:from>
       <process:to type="query">guestOrderMain/status</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">new Date()</process:from>
-      <process:to type="query">guestOrderMain/settleDate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
-      <process:to type="query">guestOrderMain/settleMan</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userId</process:from>
-      <process:to type="query">guestOrderMain/settleManId</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="219" y="218"/>

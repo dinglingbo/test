@@ -444,10 +444,8 @@ function changed(){
 }
 
 function onExport(){
-	
-
 	var detail = rightGrid.getData();
-	
+	exportMultistage(rightGrid.columns)
 	for(var i=0;i<detail.length;i++){
 		for(var j in servieTypeHash) {
 		    if(detail[i].serviceTypeId ==servieTypeHash[j].id ){
@@ -477,89 +475,78 @@ function onExport(){
 		}
 	}
 	if(detail && detail.length > 0){
-		setInitExportData( detail);
+		setInitExportData( detail,rightGrid.columns);
 	}
 	
 }
 
-function setInitExportData( detail){
+function setInitExportData( detail,columns){
+	var tds = "";
+	for(var i = 0;i<columns.length;i++){
+		var columnsList = columns[i].columns||[];
+		if(columnsList.length>0){			
+			for(var j = 0;j<columnsList.length;j++){	
+				var str = columnsList[j].field;
+				//如果是日期
+					tds+='			<td colspan="1" align="center">'+str+'</td>';		
 
-    var tds = '<td  colspan="1" align="left">[serviceCode]</td>' +
-        "<td  colspan='1' align='left'>[carNo]</td>" +
-        "<td  colspan='1' align='left'>[serviceTypeId]</td>" +
-        "<td  colspan='1' align='left'>[storeId]</td>" +
-        "<td  colspan='1' align='left'>[partCode]</td>" +
-        "<td  colspan='1' align='left'>[partName]</td>" +
-        "<td  colspan='1' align='left'>[oemCode]</td>" +       
-        "<td  colspan='1' align='left'>[outQty]</td>" +
-        
-        "<td  colspan='1' align='left'>[trueUnitPrice]</td>" +
-        "<td  colspan='1' align='left'>[trueCost]</td>" +
-        "<td  colspan='1' align='left'>[sellUnitPrice]</td>" +
-        
-        "<td  colspan='1' align='left'>[sellAmt]</td>" +
-        "<td  colspan='1' align='left'>[gross]</td>" +
-        "<td  colspan='1' align='left'>[grossRate]</td>"+
-        "<td  colspan='1' align='left'>[costRate]</td>"+
-        "<td  colspan='1' align='left'>[pickMan]</td>"+
-        "<td  colspan='1' align='left'>[pickDate]</td>"+      
-        "<td  colspan='1' align='left'>[recorder]</td>" +
-        "<td  colspan='1' align='left'>[recordDate]</td>" +
-        "<td  colspan='1' align='left'>[returnSign]</td>" +
-        "<td  colspan='1' align='left'>[returnDate]</td>" +                     
-        "<td  colspan='1' align='left'>[partBrandId]</td>" +
-        
-        "<td  colspan='1' align='left'>[applyCarModel]</td>" +
-        "<td  colspan='1' align='left'>[unit]</td>"+
-        "<td  colspan='1' align='left'>[carTypeIdF]</td>"+
-        "<td  colspan='1' align='left'>[carTypeIdS]</td>"+
-        "<td  colspan='1' align='left'>[carTypeIdT]</td>"+
-        "<td  colspan='1' align='left'>[spec]</td>";
-        
-        
+			}
+		}
+	}      
     var tableExportContent = $("#tableExportContent");
     tableExportContent.empty();
     for (var i = 0; i < detail.length; i++) {
         var row = detail[i];
         if(row.id){
             var tr = $("<tr></tr>");
-            tr.append(tds.replace("[serviceCode]", detail[i].serviceCode?detail[i].serviceCode:"")
-                         .replace("[carNo]", detail[i].carNo?detail[i].carNo:"")
-                         .replace("[serviceTypeId]", detail[i].serviceTypeId?detail[i].serviceTypeId:"")
-                         .replace("[storeId]", detail[i].storeId?detail[i].storeId:"")                        
-                         .replace("[partCode]", detail[i].partCode?detail[i].partCode:"")
-                         .replace("[partName]", detail[i].partName?detail[i].partName:"")
-                         .replace("[oemCode]", detail[i].oemCode?detail[i].oemCode:"")
-                         //.replace("[collectMoneyDate]", nui.formatDate(detail[i].collectMoneyDate?detail[i].collectMoneyDate:"",'yyyy-MM-dd HH:mm'))
-                         
-                         .replace("[outQty]", detail[i].outQty?detail[i].outQty:"")                       
-                         .replace("[trueUnitPrice]", detail[i].trueUnitPrice?detail[i].trueUnitPrice:"")
-                         .replace("[trueCost]", detail[i].trueCost?detail[i].trueCost:"") 
-                         
-                         .replace("[sellUnitPrice]", detail[i].sellUnitPrice?detail[i].sellUnitPrice:"")                        
-                         .replace("[sellAmt]", detail[i].sellAmt?detail[i].sellAmt:"")
-                         .replace("[gross]", detail[i].gross?detail[i].gross:"")
-                         
-                         .replace("[grossRate]", detail[i].grossRate?detail[i].grossRate:"")
-                         .replace("[costRate]", detail[i].costRate?detail[i].costRate:"")
-                         .replace("[pickMan]", detail[i].pickMan?detail[i].pickMan:"")
-                         .replace("[pickDate]", nui.formatDate(detail[i].pickDate?detail[i].pickDate:"",'yyyy-MM-dd HH:mm'))
-                         
-                         .replace("[recorder]", detail[i].recorder?detail[i].recorder:"")  
-                         .replace("[recordDate]", nui.formatDate(detail[i].recordDate?detail[i].recordDate:"",'yyyy-MM-dd HH:mm'))                         
-                         .replace("[returnSign]", detail[i].returnSign?detail[i].returnSign:"")
-                         .replace("[returnDate]", nui.formatDate(detail[i].returnDate?detail[i].returnDate:"",'yyyy-MM-dd HH:mm'))                          
-                         .replace("[partBrandId]", detail[i].partBrandId?detail[i].partBrandId:"")
-                         .replace("[applyCarModel]", detail[i].applyCarModel?detail[i].applyCarModel:"")    
-                         .replace("[unit]", detail[i].unit?detail[i].unit:"")                     
-                         .replace("[carTypeIdF]", detail[i].carTypeIdF?detail[i].carTypeIdF:"")
-                         .replace("[carTypeIdS]", detail[i].carTypeIdS?detail[i].carTypeIdS:"")
-                         .replace("[carTypeIdT]", detail[i].carTypeIdT?detail[i].carTypeIdT:"")
-                         .replace("[spec]", detail[i].spec?detail[i].spec:""));
+            		for(var k = 0; k < columns.length; k++) {
+            			var columnsList = columns[k].columns||[];
+            			if(columnsList.length>0){			
+            				for(var j = 0;j<columnsList.length;j++){	
+            					var str = columnsList[j].field;
+            					//如果是日期
+            					if(columnsList[j].dateFormat){
+            						tds = tds.replace("["+str+"]", nui.formatDate(detail[i][""+str]?detail[i][""+str]:"",'yyyy-MM-dd HH:mm'));
+            						//tds.replace('['+str+']', nui.formatDate(detail[i][str]?detail[i][str]:"",'yyyy-MM-dd HH:mm'))
+            					}else{
+            						tds = tds.replace("["+str+"]", detail[i][""+str]?detail[i][""+str]:"");
+            						//tds.replace('['+str+']', detail[i][str]?detail[i][str]:"")
+            					}			
+
+            				}
+            			}
+            		} 
+            		tr.append(tds);
             tableExportContent.append(tr);
         }
     }
 
- 
     method5('tableExcel',"维修出库明细表导出",'tableExportA');
+}
+
+//dataGrid多级列集合对象
+function exportMultistage(columns){
+	var html="";
+	html+='	<table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0"> ';
+	html+='		<tr> ';
+	for(var i = 0;i<columns.length;i++){
+		var columnsList = columns[i].columns||[];
+		if(columnsList.length>0){			
+			for(var j = 0;j<columnsList.length;j++){	
+				var str = columnsList[j].header;
+				str = str.replace('<div class="icon-filter headerfilter-trigger"></div>',"")			
+				html+='			<td colspan="1" align="center">'+str+'</td>';
+			}
+		}
+	}
+	html+='		</tr> ';
+	html+='	<tbody id="tableExportContent"> ';	
+	html+='	</tbody> ';	
+	html+='	</table> ';	
+	html+='	<a href="" id="tableExportA"></a> ';	
+	$("#exportDiv").append(html);
+}
+//dataGrid单级列集合对象
+function exportNoMultistage(){
+	
 }

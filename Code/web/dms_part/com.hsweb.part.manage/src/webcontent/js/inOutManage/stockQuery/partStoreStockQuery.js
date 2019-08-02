@@ -102,7 +102,11 @@ $(document).ready(function(v)
             onSearch();
         }
     });
-    
+    $("#applyCarModel").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
 });
 function getSearchParam(){
     var params = {};
@@ -126,6 +130,7 @@ function getSearchParam(){
     }
     params.partNameAndPY = nui.get("comPartNameAndPY").getValue();
 	params.partCode = (nui.get("comPartCode").getValue()).replace(/\s+/g, "");
+	params.applyCarModel = nui.get("applyCarModel").getValue();
 	params.partBrandId = nui.get("partBrandId").getValue();
 	params.storeId = nui.get("storeId").getValue();
 	params.storeShelf = nui.get("storeShelf").getValue();

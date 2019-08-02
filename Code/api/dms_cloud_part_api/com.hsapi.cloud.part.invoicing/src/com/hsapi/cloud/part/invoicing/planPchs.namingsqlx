@@ -146,6 +146,11 @@
 			a.order_qty as orderQty,
 			a.order_price as orderPrice,
 			a.order_amt as orderAmt,
+			a.true_enter_qty as trueEnterQty,
+			a.true_enter_amt as trueEnterAmt,
+			a.not_enter_qty as notEnterQty,
+			a.not_enter_amt as notEnterAmt,
+			a.adjust_qty as adjustQty,
 			a.is_finished as isFinished,
 			a.finish_date as finishDate,
 			a.last_enter_date as lastEnterDate,
@@ -166,6 +171,10 @@
 			DMS_CLOUD_PART.pj_pchs_plan_detail A
 			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
 			where 1=1 and (A.MAIN_ID = #mainId#)
+                <isNotEmpty prepend="and" property="isFinished">  
+                <!--审核状态-->
+                    (A.is_finished = #isFinished#)
+                </isNotEmpty>
             
         ORDER BY a.id asc
     </select>
@@ -285,14 +294,44 @@
 		where m.main_id = #mainId#
 	</update>
 	
-	<!-- 更新计划采购的建议采购单价  -->
+	<!-- 更新计划采购的建议采购单价  4 - 9 月  -->
     <update id="updatePchsPlanPrice" parameterClass="java.util.HashMap" >
 		update pj_pchs_plan_detail m
 		inner join pj_part_stock n
 		on m.part_id = n.part_id
-		set m.order_price = n.last_enter_price,
-		    m.order_amt = m.order_qty * n.last_enter_price
+		set m.order_qty = case when down_limit - master_stock_qty - on_way_qty >= 0 then
+                      down_limit - master_stock_qty - on_way_qty else 0 end,
+        m.order_price = (case when down_limit - master_stock_qty - on_way_qty >= 0 then
+                      down_limit - master_stock_qty - on_way_qty else 0 end)*n.last_enter_price,
+		    m.order_amt = (case when down_limit - master_stock_qty - on_way_qty >= 0 then
+                      down_limit - master_stock_qty - on_way_qty else 0 end) * n.last_enter_price
 		where m.main_id = #mainId# and n.orgid = #orgid#
+	</update>
+	
+	<!-- 更新计划采购的建议采购单价  10 - 3 月  -->
+    <update id="updatePchsPlanPriceT" parameterClass="java.util.HashMap" >
+		update pj_pchs_plan_detail m
+		inner join pj_part_stock n
+		on m.part_id = n.part_id
+		set m.order_qty = case when down_limit_winter - master_stock_qty - on_way_qty >= 0 then
+                      down_limit_winter - master_stock_qty - on_way_qty else 0 end,
+        m.order_price = (case when down_limit_winter - master_stock_qty - on_way_qty >= 0 then
+                      down_limit_winter - master_stock_qty - on_way_qty else 0 end)*n.last_enter_price,
+		    m.order_amt = (case when down_limit_winter - master_stock_qty - on_way_qty >= 0 then
+                      down_limit_winter - master_stock_qty - on_way_qty else 0 end) * n.last_enter_price
+		where m.main_id = #mainId# and n.orgid = #orgid#
+	</update>
+	
+	<!-- 更新计划采购的调整数量 
+		adjust_qty = adjust_qty + #adjQty# 要放在最后更新
+		如果放前台，adjust_qty + #adjQty# 中 adjust_qty 已经添加 +#adjQty# 之后的结果
+	 -->
+    <update id="updatePchsPlanAdjustQty" parameterClass="java.util.HashMap" >
+		update pj_pchs_plan_detail 
+		set is_finished = case when adjust_qty + #adjQty# + true_enter_qty >= order_qty then 1 else 0 end,
+		    finish_date = case when adjust_qty + #adjQty# + true_enter_qty >= order_qty then sysdate() else null end,
+		    adjust_qty = adjust_qty + #adjQty#
+		where main_id = #mainId# and id = #detailId#
 	</update>
 
 </sqlMap>

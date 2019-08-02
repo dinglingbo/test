@@ -88,14 +88,12 @@
                         <div header="基础信息" headerAlign="center">
                             <div property="columns">
                                 <div type="indexcolumn">序号</div>
-                                <div field="isDisabled" width="50" headerAlign="center">状态</div>
                                 <div field="qualityTypeId" width="60" headerAlign="center">品质</div>
                                 <div field="partBrandId" width="70" headerAlign="center">品牌</div>
-                                <div field="id" width="50" headerAlign="center">配件ID</div>
                                 <div field="code" width="80" headerAlign="center" allowSort="true">编码</div>
                                 <div field="name" width="80" headerAlign="center" allowSort="true">名称</div>
                                 <div field="fullName" width="120" headerAlign="center" allowSort="true">全称</div>
-                                <div field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
+                                <div field="unit" width="40" headerAlign="center" allowSort="true">单位</div>
                             </div>
                         </div>
                         <div header="" headerAlign="center">
@@ -107,6 +105,7 @@
                                 <div field="carTypeIdT" width="80" headerAlign="center" allowSort="true">三级分类</div>
                                 <div field="produceFactory" width="80" headerAlign="center" allowSort="true">生产厂家</div>
                                 <div field="position_name" width="60" headerAlign="center" allowSort="true">型号</div>
+                                <div field="id" width="50" headerAlign="center">配件ID</div>
                             </div>
                         </div>
                     </div>

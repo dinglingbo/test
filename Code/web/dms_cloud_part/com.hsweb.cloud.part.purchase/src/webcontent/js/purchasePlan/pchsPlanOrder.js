@@ -64,7 +64,7 @@ $(document).ready(function(v)
     morePartGrid = nui.get("morePartGrid");
     guestIdEl=nui.get('guestId');
     guestIdEl.setUrl(getGuestInfo);
-	guestIdEl.on("beforeload",function(e){
+    guestIdEl.on("beforeload",function(e){
       
         var data = {};
         var params = {};
@@ -75,15 +75,15 @@ $(document).ready(function(v)
             return;
         }
         var params = {};
-    	params.pny = e.data.key.replace(/\s+/g, "");
-    	params.isSupplier = 1;
+        params.pny = e.data.key.replace(/\s+/g, "");
+        params.isSupplier = 1;
 
         data.params = params;
         e.data =data;
         return;
         
     });
-	
+    
     gsparams.startDate = getNowStartDate();
     gsparams.endDate = addDate(getNowEndDate(), 1);
     //gsparams.isOut = 0;
@@ -100,7 +100,7 @@ $(document).ready(function(v)
                 brandHash[v.id] = v;
             });
 
-            quickSearch(11);
+            quickSearch(6);
 
             nui.unmask();
         });
@@ -128,7 +128,7 @@ function loadMainAndDetailInfo(row)
            if(row.auditSign == 1 && row.status == 0) {
                $('#status').text("已提交");
            }else{
-        	   $('#status').text(AuditSignHash[row.status]);
+               $('#status').text(AuditSignHash[row.status]);
            }
        }
        //bottomInfoForm.setData(row);
@@ -146,9 +146,13 @@ function loadMainAndDetailInfo(row)
        }
 
        if(row.isDisabled == 1) {
-            document.getElementById("delBtn").childNodes[0].innerHTML = '<span class="fa fa-reply fa-lg"></span>&nbsp;反作废';
+            nui.get("delBtn").setVisible(false);
+            nui.get("undelBtn").setVisible(true);
+            //document.getElementById("delBtn").childNodes[0].innerHTML = '<span class="fa fa-reply fa-lg"></span>&nbsp;反作废';
        }else {
-            document.getElementById("delBtn").childNodes[0].innerHTML = '<span class="fa fa-remove fa-lg"></span>&nbsp;作废';
+            nui.get("delBtn").setVisible(true);
+            nui.get("undelBtn").setVisible(false);
+            //document.getElementById("delBtn").childNodes[0].innerHTML = '<span class="fa fa-remove fa-lg"></span>&nbsp;作废';
        }
         
        //序列化入库主表信息，保存时判断主表信息有没有修改，没有修改则不需要保存
@@ -183,8 +187,8 @@ function loadRightGridData(mainId)
         var data = rightGrid.getData();
         
         if(autoNew == 0){
-			//add();
-			autoNew = 1;
+            //add();
+            autoNew = 1;
         }
         if(data && data.length <= 0){
             addNewRow(false);
@@ -288,14 +292,15 @@ function quickSearch(type){
             gsparams.endDate = addDate(getLastMonthEndDate(), 1);
             break;
         case 6:
-        	gsparams.billStatusId = 0;
+            gsparams.billStatusId = 0;
             querytypename = "草稿";
             querysign = 2;
             gsparams.auditSign = 0;
+            gsparams.isDisabled = 0;
             gsparams.status = null;
             break;
         case 7:
-        	gsparams.billStatusId = 1;
+            gsparams.billStatusId = 1;
             querytypename = "已提交";
             querysign = 2;
             gsparams.auditSign = 1;
@@ -310,21 +315,21 @@ function quickSearch(type){
             gsparams.auditSign = null;
             break;
         case 9:
-        	gsparams.billStatusId = 6;
+            gsparams.billStatusId = 6;
             querytypename = "部分转订单";
             querysign = 2;
             gsparams.status = 1;
             gsparams.auditSign = 1;
             break;
         case 10:
-        	gsparams.billStatusId = 2;
+            gsparams.billStatusId = 2;
             querytypename = "全部转订单";
             querysign = 2;
             gsparams.status = 2;
             gsparams.auditSign = 1;
             break;
         case 11:
-        	gsparams.billStatusId = null;
+            gsparams.billStatusId = null;
             querytypename = "所有";
             querysign = 2;
             gsparams.status = null;
@@ -413,10 +418,12 @@ function save(type) {
         return;
     }
 
-    var msg = checkRightData();
-    if(msg){
-        showMsg(msg,"W");
-        return;
+    if(type == 1) {
+        var msg = checkRightData();
+        if(msg){
+            showMsg(msg,"W");
+            return;
+        }
     }
     
     var rightRow =rightGrid.getData();
@@ -481,14 +488,14 @@ function save(type) {
 function getMainData()
 {
     var data = basicInfoForm.getData();
-    delete data.createDate;	
+    delete data.createDate; 
     if(data.operateDate) {
         data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
     }
 
     if (data.orderDate) {
-  	  data.orderDate = format(data.orderDate, 'yyyy-MM-dd HH:mm:ss');
-  	}
+      data.orderDate = format(data.orderDate, 'yyyy-MM-dd HH:mm:ss');
+    }
     
     rightGrid.findRow(function(row){
         var partId = row.partId;
@@ -527,9 +534,9 @@ function doSearch(params)
             setEditable(false);
             
             if(autoNew == 0){
-				//add();
-				autoNew = 1;
-			}
+                //add();
+                autoNew = 1;
+            }
             
         }else {
             var row = leftGrid.getSelected();
@@ -624,9 +631,9 @@ function onAdvancedSearchOk()
     searchData.status = gsparams.status;
   //去除空格
     for(var key in searchData){
-    	if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
-    		searchData[key]=searchData[key].replace(/\s+/g, "");
-    	}
+        if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){          
+            searchData[key]=searchData[key].replace(/\s+/g, "");
+        }
     }
     advancedSearchFormData = advancedSearchForm.getData();
     advancedSearchWin.hide();
@@ -650,15 +657,15 @@ function onRightGridDraw(e)
     switch (e.field)
     {
         case "comPartBrandId":
-        	if(brandHash[e.value])
+            if(brandHash[e.value])
             {
 //                e.cellHtml = brandHash[e.value].name||"";
-            	if(brandHash[e.value].imageUrl){
-            		
-            		e.cellHtml = "<img src='"+ brandHash[e.value].imageUrl+ "'alt='配件图片' height='25px' width=' '/><br> "+brandHash[e.value].name||"";
-            	}else{
-            		e.cellHtml = brandHash[e.value].name||"";
-            	}
+                if(brandHash[e.value].imageUrl){
+                    
+                    e.cellHtml = "<img src='"+ brandHash[e.value].imageUrl+ "'alt='配件图片' height='25px' width=' '/><br> "+brandHash[e.value].name||"";
+                }else{
+                    e.cellHtml = brandHash[e.value].name||"";
+                }
             }
             else{
                 e.cellHtml = "";
@@ -714,12 +721,16 @@ function del()
                 basicInfoForm.setData(row);
 
                 if(isDisabled == 1) {
-                    document.getElementById("delBtn").childNodes[0].innerHTML = '<span class="fa fa-reply fa-lg"></span>&nbsp;反作废';
+                    //document.getElementById("delBtn").childNodes[0].innerHTML = '<span class="fa fa-reply fa-lg"></span>&nbsp;反作废';
+                    nui.get("delBtn").setVisible(false);
+                    nui.get("undelBtn").setVisible(true);
                     setBtnable(false);
                     setEditable(false);
                     document.getElementById("basicInfoForm").disabled=false;
                 }else {
-                    document.getElementById("delBtn").childNodes[0].innerHTML = '<span class="fa fa-remove fa-lg"></span>&nbsp;作废';
+                    //document.getElementById("delBtn").childNodes[0].innerHTML = '<span class="fa fa-remove fa-lg"></span>&nbsp;作废';
+                    nui.get("delBtn").setVisible(true);
+                    nui.get("undelBtn").setVisible(false);
                     setBtnable(true);
                     setEditable(true);
                     document.getElementById("basicInfoForm").disabled=true;
@@ -771,25 +782,25 @@ function addGuest(){
     });
 }
 function onPrint(){
-	var from = basicInfoForm.getData();
-	var params={
-			id : from.id,
-		auditSign:from.auditSign,
-		guestId :from.guestId,
-		currRepairSettorderPrintShow : currRepairSettorderPrintShow,
-		currOrgName : currOrgName,
-		currUserName : currUserName,
-		currCompAddress : currCompAddress,
-		currCompTel : currCompTel,
-		currCompLogoPath : currCompLogoPath,
-		storeHash : storeHash,
-		brandHash: brandHash
-	};
-	var detailParams={
-			mainId :from.id,
-			auditSign:from.auditSign
-	};
-	var openUrl = webPath + contextPath+"/purchase/purchaseOrderRtn/purchaseOrderRtnPrint.jsp";
+    var from = basicInfoForm.getData();
+    var params={
+            id : from.id,
+        auditSign:from.auditSign,
+        guestId :from.guestId,
+        currRepairSettorderPrintShow : currRepairSettorderPrintShow,
+        currOrgName : currOrgName,
+        currUserName : currUserName,
+        currCompAddress : currCompAddress,
+        currCompTel : currCompTel,
+        currCompLogoPath : currCompLogoPath,
+        storeHash : storeHash,
+        brandHash: brandHash
+    };
+    var detailParams={
+            mainId :from.id,
+            auditSign:from.auditSign
+    };
+    var openUrl = webPath + contextPath+"/purchase/purchaseOrderRtn/purchaseOrderRtnPrint.jsp";
 
     nui.open({
        url: openUrl,
@@ -804,11 +815,11 @@ function onPrint(){
        },
    });
     if(checkNew() > 0){
-    	return;
+        return;
     }
     rightGrid.setData([]);
-	//add();
-	
+    //add();
+    
 }
 function add()
 {
@@ -1013,7 +1024,7 @@ function onCellEditEnter(e){
 }
 
 function addNewRow(check){
-	rightGridSet();
+ 
     var data = basicInfoForm.getData();
 
     if(data.auditSign == 1){
@@ -1158,7 +1169,7 @@ function getPartInfo(params){
                     advancedMorePartWin.show();
                     morePartGrid.setData(partlist);
                     partShow = 1;
-					event.keyCode = null;
+                    event.keyCode = null;
                 }
                 
             }else{
@@ -1320,74 +1331,24 @@ function onGuestValueChanged(e)
 //    params.pny = e.value;
 //    params.isSupplier = 1;
 //    setGuestInfo(params);
-	var data = e.selected;
-	if (data) { 
-		var id = data.id;
-		var text = data.fullName;
-		var row = leftGrid.getSelected();
-		var newRow = {
-			guestFullName : text
-		};
-		leftGrid.updateRow(row, newRow);
+    var data = e.selected;
+    if (data) { 
+        var id = data.id;
+        var text = data.fullName;
+        var row = leftGrid.getSelected();
+        var newRow = {
+            guestFullName : text
+        };
+        leftGrid.updateRow(row, newRow);
 
-		var billTypeIdV = data.billTypeId;
-		var settTypeIdV = data.settTypeId;
+        var billTypeIdV = data.billTypeId;
+        var settTypeIdV = data.settTypeId;
 
-		nui.get("billTypeId").setValue(billTypeIdV);
-		nui.get("settleTypeId").setValue(settTypeIdV);
+        nui.get("billTypeId").setValue(billTypeIdV);
+        nui.get("settleTypeId").setValue(settTypeIdV);
 
-		addNewRow(true);
+        addNewRow(true);
     }
-}
-function onStoreValueChange(e){
-	var data = e.selected;
-	if(data){
-		var id = data.id;
-		var orderMan =nui.get('orderMan').value;
-		if(orderMan !=currUserName){
-			getStoreLimit();
-		}
-		if(Object.getOwnPropertyNames(storeLimitMap ).length ==0){
-			//不做限制
-		}
-		if(Object.getOwnPropertyNames(storeLimitMap ).length >0){
-			if(!storeLimitMap.hasOwnProperty(id) && storeHash[id].name){
-				showMsg("没有选择"+storeHash[id].name+"的权限","W");
-				return;
-			}
-		}
-	}
-		
-}
-var storeLimtUrl  = baseUrl +"com.hsapi.system.tenant.employee.queryStoreManOne.biz.ext";
-function getStoreLimit(){
-	storeLimitMap={};
-	var orderMan =nui.get('orderMan').value;
-	if(!orderMan){
-		return;
-	}
-	nui.ajax({
-		url : storeLimtUrl,
-		async:false,
-		data : {
-			orgid : currOrgId,
-			name : orderMan,
-			token : token
-		},
-		type : "post",
-		success : function(text) {
-			var data =text.data;
-			for(var i=0;i<data.length;i++){
-				storeLimitMap[data[i].storeId] =data [i];
-			}
-			
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			// nui.alert(jqXHR.responseText);
-			console.log(jqXHR.responseText);
-		}
-	});
-	return storeLimitMap;
 }
 var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
 function setGuestInfo(params)
@@ -1536,29 +1497,29 @@ function OnrpMainGridCellBeginEdit(e){
         e.cancel = true;
     }
     if(e.field == 'storeId'){
-    	editor.setData(storehouse);
+        editor.setData(storehouse);
     }
     if(advancedMorePartWin.visible) {
-		e.cancel = true;
-		morePartGrid.focus();
-		var row = morePartGrid.getRow(0);   //默认不能选中，回车事件会有影响
+        e.cancel = true;
+        morePartGrid.focus();
+        var row = morePartGrid.getRow(0);   //默认不能选中，回车事件会有影响
         if(row){
             morePartGrid.select(row,true);
         }
         partIn=false;
-	}
+    }
     if (field == "storeShelf") {
-	    var value = e.record.storeId;
-	    var editor = e.editor;
-	    if(editor.type=='textbox'){
-	    	return;
-	    }
-	    getLocationListByStoreId(value,function(data) {
-			storeShelfList = data.locationList || [];
-			nui.get('storeShelf').setData(storeShelfList);
-			
-	
-		});
+        var value = e.record.storeId;
+        var editor = e.editor;
+        if(editor.type=='textbox'){
+            return;
+        }
+        getLocationListByStoreId(value,function(data) {
+            storeShelfList = data.locationList || [];
+            nui.get('storeShelf').setData(storeShelfList);
+            
+    
+        });
     }
 
 }
@@ -1633,7 +1594,7 @@ function selectPart(callback,checkcallback)
                 orderTypeId: 1,
                 guestId: nui.get("guestId").getValue()
             };
-            iframe.contentWindow.setInitData(data,callback,checkcallback);
+            iframe.contentWindow.setCloudPartData("cloudPart",callback,checkcallback);
         },
         ondestroy: function (action)
         {
@@ -1667,7 +1628,7 @@ function addPart() {
     },function(data) {
         var part = data.part;
         var partid = part.id;
-        //var rtn = checkPartIDExists(partid);
+        var rtn = checkPartIDExists(partid);
         return rtn;
     });
 }
@@ -1691,26 +1652,25 @@ function addDetail(rows)
 {
     //var iframe = this.getIFrameEl();
     //var data = iframe.contentWindow.getData();
-    for(var i=0; i<rows.length; i++){
-        var row = rows[i];
+    var row = rows.part||{};
+    if(row) {
         var newRow = {
-            partId : row.partId,
-            comPartCode : row.comPartCode,
-            comPartName : row.comPartName,
-            comPartBrandId : row.comFullName,
-            comApplyCarModel : row.comApplyCarModel,
-            comUnit : row.comUnit,
-            orderQty : row.orderQty,
-            orderPrice : row.orderPrice,
-            orderAmt : row.orderAmt,
-            storeId : row.storeId,
-            comOemCode : row.comOemCode,
-            comSpec : row.comSpec,
-            partCode : row.comPartCode,
-            partName : row.comPartName,
-            fullName : row.comFullName,
-            systemUnitId : row.comUnit,
-            outUnitId : row.comUnit
+            partId : row.id,
+            comPartCode : row.code,
+            comPartName : row.name,
+            comPartBrandId : row.fullName,
+            comApplyCarModel : row.applyCarModel,
+            comUnit : row.unit,
+            orderQty : 1,
+            orderPrice : 0,
+            orderAmt : 0,
+            comOemCode : row.oemCode,
+            comSpec : row.spec,
+            partCode : row.code,
+            partName : row.name,
+            fullName : row.fullName,
+            systemUnitId : row.unit,
+            outUnitId : row.unit
         };
 
 
@@ -1776,24 +1736,24 @@ var phone ="";
 var addr ="";
 var supplierUrl=baseUrl +"com.hsapi.cloud.part.baseDataCrud.crud.queryGuestList.biz.ext";
 function getGuest(guestId){
-	$.ajaxSettings.async = false;
-	$.post(supplierUrl+"?params/guestId="+guestId+"&token="+token,{},function(text){
-		var guest=text.guest[0];
-		company =guest.fullName || "";
-		phone =guest.mobile ||"";
-		addr =guest.addr || "";
-	});
+    $.ajaxSettings.async = false;
+    $.post(supplierUrl+"?params/guestId="+guestId+"&token="+token,{},function(text){
+        var guest=text.guest[0];
+        company =guest.fullName || "";
+        phone =guest.mobile ||"";
+        addr =guest.addr || "";
+    });
 }
 
 var partUrl=baseUrl +"com.hsapi.cloud.part.baseDataCrud.crud.queryPartListByOrgid.biz.ext";
 function getPart(partIdList){
-//	$.ajaxSettings.async = false;
-//	$.post(partUrl+"?params/orgid="+currOrgid+"&params/noPage="+1+"&token="+token,{},function(text){
-//		var parts=text.parts;
-//		parts.forEach(function(v){
-//			partHash[v.id]=v;			
-//		});
-//	});
+//  $.ajaxSettings.async = false;
+//  $.post(partUrl+"?params/orgid="+currOrgid+"&params/noPage="+1+"&token="+token,{},function(text){
+//      var parts=text.parts;
+//      parts.forEach(function(v){
+//          partHash[v.id]=v;           
+//      });
+//  });
   var params={};
   var page ={};
   page.length =1000;
@@ -1804,20 +1764,20 @@ function getPart(partIdList){
         type : "post",
         async:false,
         data : JSON.stringify({
-        	params : params,
-        	page   : page,
+            params : params,
+            page   : page,
             token : token
         }),
         success : function(data) {
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-            	var parts=data.parts;
-        		parts.forEach(function(v){
-        			partHash[v.id]=v;			
-        		});
+                var parts=data.parts;
+                parts.forEach(function(v){
+                    partHash[v.id]=v;           
+                });
             } else {
-            	 nui.unmask(document.body);
+                 nui.unmask(document.body);
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -1827,47 +1787,36 @@ function getPart(partIdList){
     });
 //  return partHash;
 }
+function adjustPart(){
+    var row = leftGrid.getSelected();
+    if(row){
+        if(row.auditSign != 1) {
+            showMsg("此单未提交,不能调整!","W");
+            return;
+        } 
+        if(row.status == 2) {
+            showMsg("此单已全部转订单,不能调整!","W");
+            return; 
+        }
 
-function rightGridSet(){
-	var columnsList = [];
-    columnsList=rightGrid.columns;
-    for(var i=0;i<columnsList.length;i++){
-    	if(columnsList[i].header=="辅助信息"){
-    		 columnsObjList=columnsList[i].columns;
-    		 break;
-    	}
+        nui.open({
+            // targetWindow: window,
+            url: webPath + contextPath + "/com.hsweb.cloud.part.purchase.pchsPlanOrderAdjust.flow?token=" + token,
+            title: "计划采购调整",
+            width: 900, height: 400,
+            allowDrag:true,
+            allowResize:false,
+            onload: function ()
+            {
+                var iframe = this.getIFrameEl();
+                iframe.contentWindow.setInitData(row.id);
+            },
+            ondestroy: function (action)
+            {
+              
+            }
+        });
+    }else{
+        return;
     }
-//    columnsObjList=columnsList[3].columns;
-    //获取下标
-    var index=null;
-    
-    //开启APP，处理仓位
-    if(currIsOpenApp ==1){
-    	var shelfObj={};
-    	var editor={};
-    	var flag=null;
-    	for(var i=0;i<columnsObjList.length;i++){
- 	    	if(columnsObjList[i].field=="storeShelf"){
- 	    		shelfObj=columnsObjList[i];
- 	    		editor=shelfObj.editor;
- 	    		flag =i;
- 	    		break;
- 	    	}
- 	    }
-    	editor.cls="nui-combobox";
-    	editor.data="storeShelfList";
-    	editor.dataField="storeShelfList";
-    	editor.enabled=true;
-    	editor.id ="storeShelf";
-    	editor.name="storeShelf";
-    	editor.textField="name";
-    	editor.type="combobox";
-    	editor.valueField="name";
-    	columnsObjList[flag].editor=editor;
-    	
-    }
-    
-    rightGrid.set({
-        columns: columnsList
-    });
 }

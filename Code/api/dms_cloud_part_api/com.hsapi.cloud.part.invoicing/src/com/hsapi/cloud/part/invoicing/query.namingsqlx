@@ -2069,6 +2069,16 @@
            	and main_id = #mainId#
     </select>
     
+    <select id="queryPchsPlanMainIsFinish" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">   	
+		SELECT
+			id
+		FROM
+			pj_pchs_plan_detail
+		WHERE
+			is_finished = 0
+           	and main_id = #mainId#
+    </select>
+    
     <select id="queryAllotApplyMainIsFinish" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">   	
 		SELECT
 			id

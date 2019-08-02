@@ -95,6 +95,10 @@
       <process:to type="query">params/eAuditDate</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">limitCount</process:from>
+      <process:to type="query">params/limitCount</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">mainId</process:from>
       <process:to type="query">main/id</process:to>
     </process:copy>
@@ -234,7 +238,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">计划采购已经审核，不能修改</process:from>
+      <process:from type="literal" pattern="reference">计划采购已经提交，不能修改</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -464,8 +468,8 @@
         <process:inputVariable id="0" name="mainId" type="query" value="String" valueType="Primitive" pattern="reference">mainId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -518,6 +522,7 @@
     <process:input description="销售数据开始日期" isArray="false" name="startDate" primitiveType="Date"/>
     <process:input description="销售数据结束日期" isArray="false" name="endDate" primitiveType="Date"/>
     <process:input description="" isArray="false" name="mainId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="limitCount" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

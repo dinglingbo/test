@@ -49,10 +49,6 @@
       <process:to type="query">page/isCount</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">params/orgid</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">params/auditSign</process:from>
       <process:to type="query">auditSign</process:to>
     </process:copy>

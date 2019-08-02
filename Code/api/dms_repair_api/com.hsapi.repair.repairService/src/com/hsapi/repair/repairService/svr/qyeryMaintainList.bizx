@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="qyeryMaintainList.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.repair.repairService.rpsQuery.queryMaintainList&#xD;&#xA;&#xD;&#xA;所有在厂  isSettle = 0 and isDisabled = 0&#xD;&#xA;报价        status = 0&#xD;&#xA;施工        status = 1&#xD;&#xA;完工        status = 2 and balaAuditSign = 0&#xD;&#xA;待结算     status = 2 and balaAuditSign = 1" title="Administrator&#x9;18-8-6 上午10:13">
-    <location x="87" y="202"/>
-    <size height="166" width="560"/>
-  </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -124,6 +120,10 @@
     <location x="351" y="186"/>
     <figSize height="17" width="32"/>
     <node>assign1</node>
+  </nodes>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.repair.repairService.rpsQuery.queryMaintainList&#xD;&#xA;&#xD;&#xA;所有在厂  isSettle = 0 and isDisabled = 0&#xD;&#xA;报价        status = 0&#xD;&#xA;施工        status = 1&#xD;&#xA;完工        status = 2 and balaAuditSign = 0&#xD;&#xA;待结算     status = 2 and balaAuditSign = 1" title="Administrator&#x9;18-8-6 上午10:13">
+    <location x="87" y="202"/>
+    <size height="166" width="560"/>
   </nodes>
   <topRuler>
     <guides position="324" horizontal="true"/>

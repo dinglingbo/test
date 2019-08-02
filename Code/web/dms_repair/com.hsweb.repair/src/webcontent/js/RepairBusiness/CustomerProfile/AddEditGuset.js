@@ -944,7 +944,14 @@ function onParseUnderpanNo(){
         					data = data || {};
         	                nui.unmask(document.body);
         					if (data.errCode == "S") {
-        						
+        						carVinModel =  data.result[0]||[];
+        		                var carModelId = carVinModel.carModelId;
+        		                carVinModel.vin = vin;
+        		                var carModelInfo = "品牌:"+carVinModel.carBrandName+"\n";
+        		                carModelInfo += "车型:"+carVinModel.carModelName+"\n";
+        		                carModelInfo += "车系:"+carVinModel.carLineName+"\n";
+        		                nui.get("carModel").setValue(carVinModel.carModelName);
+
         					} else {
         						showMsg("车型解析失败，请手动维护车型!","W");
         					}

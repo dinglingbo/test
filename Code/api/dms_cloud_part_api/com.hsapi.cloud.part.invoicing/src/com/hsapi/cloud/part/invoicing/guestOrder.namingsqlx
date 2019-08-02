@@ -42,19 +42,25 @@
 			A.operator_id AS operatorId,
 			A.operator AS operator,
 			A.operate_date AS operateDate,
-			A.settle_type_id AS settleTypeId,		
+			A.settle_type_id AS settleTypeId,	
+			A.pchs_main_code as pchsMainCode,	
 			B.FULL_NAME AS guestFullName,
-			B.SHORT_NAME AS guestShortName
+			B.SHORT_NAME AS guestShortName,
+			E.name as orgName
 		FROM
 			DMS_CLOUD_PART.pj_guest_order_main A
 		INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
 		LEFT JOIN DMS_CLOUD_PART.pj_guest_order_detail C ON A.ID = C.MAIN_ID
 		LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
+		LEFT JOIN WB_COMMON.COM_COMPANY E ON E.ORGID = A.ORGID
 		WHERE
 			1 = 1
 		 <dynamic>
         	<isNotEmpty prepend="and" property="orgid"> 
                 (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="tenantId"> 
+                (a.tenant_id = #tenantId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="id"> 
                 (a.id = #id#)
@@ -105,6 +111,9 @@
             <isNotEmpty prepend="and" property="guestId">  
                 (A.guest_id = #guestId#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestName">  
+                (B.FULL_NAME  like '%$guestName$%' or B.SHORT_NAME like '%$guestName$%')
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="partName">  
                 (D.FULL_NAME like '%$partName$%')
             </isNotEmpty>
@@ -147,6 +156,7 @@
 				A.accept_main_id as acceptMainId,
 				A.accept_detail_id as acceptDetailId,
 				A.remark as remark,
+				B.`code` AS code,
 				B.`code` AS comPartCode,
 				B.`name` AS comPartName,
 				B.full_name AS comFullName,

@@ -410,6 +410,7 @@ function getSearchParam(){
     var params = {};
     params = gsparams;
     params.guestId = nui.get("searchGuestId").getValue();
+    params.orgid= currOrgid;
   //是业务员且业务员禁止可见
 	if(currIsSalesman ==1 && currIsOnlySeeOwn==1){
 		params.creator= currUserName;
@@ -591,6 +592,12 @@ function getMainData()
     if (data.orderDate) {
   	  data.orderDate = format(data.orderDate, 'yyyy-MM-dd HH:mm:ss');
   	}
+    if (data.planSendDate) {
+	  data.planSendDate = format(data.planSendDate, 'yyyy-MM-dd HH:mm:ss');
+	}
+    if (data.planArriveDate) {
+	  data.planArriveDate = format(data.planArriveDate, 'yyyy-MM-dd HH:mm:ss');
+	}
     if(!data.billTypeId){
         data.billTypeId = "010103";
     }
@@ -949,7 +956,8 @@ function finish()
     }
 
     data = getMainData();
-
+    var guestOrderMain ={};
+    guestOrderMain.id = data.id;
    
     var cangHash ="";
 	if(currIsOpenApp ==1){
@@ -966,7 +974,7 @@ function finish()
         url : finishUrl,
         type : "post",
         data : JSON.stringify({
-            guestOrderMain : data,
+            guestOrderMain : guestOrderMain,
             token : token
         }),
         success : function(data) {

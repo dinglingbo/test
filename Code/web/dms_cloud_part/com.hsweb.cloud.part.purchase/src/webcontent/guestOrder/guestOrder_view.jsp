@@ -9,10 +9,10 @@
 -->
 <head>
 <title>预售单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/guestOrder/guestOrder.js?v=1.0.49"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/guestOrder/guestOrder.js?v=1.0.57"></script>
 <style type="text/css">
 .title {
-	width: 70px;
+	width: 90px;
 	text-align: right;
 }
 
@@ -141,7 +141,7 @@ body .mini-grid-row-selected{
             
 
              <div class="nui-fit">
-                  <fieldset id="fd1" style="width:99.5%;height:100px;">
+                  <fieldset id="fd1" style="width:99.5%;height:120px;">
                       <legend><span>采购退货信息</span></legend>
                       <div class="fieldset-body">
                           <div id="basicInfoForm" class="form" contenteditable="false">
@@ -269,10 +269,35 @@ body .mini-grid-row-selected{
                                                  nullItemText="请选择..."/>
                                                 
                                       </td>
+                                      
+                                      <td class="title ">
+                                          <label>预计发货日期：</label>
+                                      </td>
+                                      <td width="120">
+                                      <input name="planSendDate"
+                                             id="planSendDate"
+                                             width="100%"
+                                             showTime="true"
+                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
+                                  	</td>
+                                  	
+                                  	 <td class="title ">
+                                          <label>预计到货日期：</label>
+                                      </td>
+                                      <td width="120">
+                                      <input name="planArriveDate"
+                                             id="planArriveDate"
+                                             width="100%"
+                                             showTime="true"
+                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
+                                  	</td>
+                                   </tr>
+                                   
+                                   <tr>
                                       <td class="title">
                                           <label>备注：</label>
                                       </td>
-                                      <td colspan="3">
+                                      <td colspan="9">
                                           <input class="nui-textbox" selectOnFocus="true" width="100%" id="remark" name="remark" enabled="true"/>
                                       </td>
                                       

@@ -40,6 +40,7 @@ $(document).ready(function(v)
 function setInitData(data)
 {
     FStoreId = data.storeId;
+    batchInfoForm.setData(data.main);
     partList = data.partList;
     type = data.type;//采购订单  销售订单  采购车  销售车    EPC采购订单，EPC销售订单，EPC采购车，EPC销售车
     
@@ -292,12 +293,20 @@ function onCellCommitEdit(e) {
     var editor = e.editor;
     var record = e.record;
     var row = e.row;
-
+    
+    var sourceType =batchInfoForm.getData().sourceType;
+    //预售单
+    if(sourceType ==5){
+    	if(e.field =='orderQty'){
+    		e.cancel = true;
+    	}
+    }
     editor.validate();
     if (editor.isValid() == false) {
         parent.showMsg("请输入数字!","W");
         e.cancel = true;
     }
+    
 }
 var generateOrderUrl = baseUrl
         + "com.hsapi.cloud.part.invoicing.paramcrud.generateOrderByBatch.biz.ext";
@@ -366,6 +375,14 @@ function onOk()
     main.remark = data.remark;
     main.billTypeId = data.billTypeId;
     main.settleTypeId = data.settleTypeId;
+    //预售单
+    if(data.sourceType==5){
+    	main.directGuestId =data.directGuestId;
+    	main.directOrgid =data.directOrgid;
+    	main.sourceType = data.sourceType;
+    	main.code  =data.code;
+    	main.codeId =data.codeId;
+    }
 
     var rows = mainGrid.findRows(function(row) {
         if (row.partId == -1)

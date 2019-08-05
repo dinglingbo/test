@@ -1,7 +1,7 @@
 var baseUrl = apiPath + cloudPartApi + "/";
 var companyUrl = apiPath + sysApi + "/"+"com.hsapi.system.basic.organization.getCompanyAll.biz.ext";
 var mainGridUrl =baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryPjAllotApplyMains.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryPjAllotApplyDetailList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.getAllotApplyDetail.biz.ext";
 var orgidsEl =null;
 var orgids="";
 var mainGrid =null;
@@ -226,7 +226,7 @@ function loadRightGridData(row){
 	params.sortField ="a.audit_date";
 	params.sortOrder ="desc";
     rightGrid.load({
-        params:params,
+        mainId:row.id,
         token:token
     });
 }
@@ -294,6 +294,7 @@ function onDrawCell(e){
     }
 }
 
+var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.insertAllotAccepts.biz.ext";
 function audit(){
 	var row =mainGrid.getSelected();
 	if(!row){

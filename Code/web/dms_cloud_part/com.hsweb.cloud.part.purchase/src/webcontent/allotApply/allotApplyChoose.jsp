@@ -120,6 +120,7 @@ pageEncoding="UTF-8" session="false"%>
             <div field="applyQty" headerAlign="center" allowSort="true" visible="true" width="50" summaryType="sum" header="申请数量"></div>
             <div field="hasAcceptQty" headerAlign="center" allowSort="true" visible="true" width="50" summaryType="sum" header="受理数量"></div>
             <div field="hasCancelQty" headerAlign="center" allowSort="true" visible="true" width="50" summaryType="sum" header="调整数量"></div>
+            <div field="hasInQty" headerAlign="center" allowSort="true" visible="true" width="50" summaryType="sum" header="已入库数量"></div>
             <div field="remark" id="remark" name="remark" headerAlign="center" allowSort="true" visible="true" width="200" header="备注"></div>
            
        </div>

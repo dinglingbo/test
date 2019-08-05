@@ -461,7 +461,7 @@ function getMainData()
 {
     var data = basicInfoForm.getData();
     data.orderTypeId = 1;
-    data.isDiffOrder = 0;
+    data.isDiffOrder = 1;
     delete data.createDate; 
     if(data.operateDate) {
         data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
@@ -495,7 +495,7 @@ function setEditable(flag)
 function doSearch(params) 
 {
     params.orderTypeId = 1;
-    params.isDiffOrder= 0;
+    params.isDiffOrder= 1;
     leftGrid.load({
         params : params,
         token : token
@@ -720,6 +720,7 @@ function del()
 
 function submit()
 {
+    //com.hsapi.cloud.part.invoicing.allotsettle.auditAllotApplyEnter
     save(1);
 }
 
@@ -832,6 +833,8 @@ function add()
                     var guestId = nui.get("guestId");
                     guestId.focus();
 
+                    selectApply();
+
                 }else {
                     return;
                 }
@@ -859,6 +862,8 @@ function add()
 
         var guestId = nui.get("guestId");
         guestId.focus();
+
+        selectApply();
     }
 
     
@@ -976,6 +981,18 @@ function getGuest(guestId){
 }
 
 function selectApply() {
+    var data = basicInfoForm.getData();
+    var mainId = data.id;
+    var row = leftGrid.getSelected();
+    if(row){
+        if(row.auditSign == 1) {
+            showMsg("此单已提交!","W");
+            return;
+        } 
+    }else{
+        return;
+    }
+
     nui.open({
         // targetWindow: window,,
         url : webPath+contextPath+"/com.hsweb.cloud.part.purchase.allotApplyChoose.flow?token="+token,
@@ -993,9 +1010,51 @@ function selectApply() {
                 var iframe = this.getIFrameEl();
                 var data = iframe.contentWindow.getData();
 
-                
+                generateApplyToEnter(data.apply.id, mainId);
 
             }
+        }
+    });
+}
+
+var geneUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.allotApplyEnter.biz.ext";
+function generateApplyToEnter(mainId, id) {
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '处理中...'
+    });
+
+    nui.ajax({
+        url : geneUrl,
+        type : "post",
+        data : JSON.stringify({
+            mainId : mainId,
+            id : id,
+            token : token
+        }),
+        success : function(data) {
+            nui.unmask(document.body);
+            data = data || {};
+            if (data.errCode == "S") {
+                var pjAllotApplyMainList = data.pjAllotApplyMainList;
+                if(pjAllotApplyMainList && pjAllotApplyMainList.length>0) {
+                    var leftRow = pjAllotApplyMainList[0];
+                    var row = leftGrid.getSelected();
+                    leftGrid.updateRow(row,leftRow);
+
+                    //保存成功后重新加载数据
+                    loadMainAndDetailInfo(leftRow);
+
+                    
+                }
+
+            } else {
+                showMsg(data.errMsg || "操作失败!","W");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
         }
     });
 }

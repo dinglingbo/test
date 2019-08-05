@@ -8,6 +8,7 @@ var workers={};
 var workersId={};
 var tempItem = {};//单独派工
 var type = null;
+var dispatch = 0;
 $(document).ready(function(v) {
 	 //serviceTypeIds = nui.get("serviceTypeIds");
 	nui.get("sendWechat").setValue(currIsOpenWeChatRemind);
@@ -69,6 +70,7 @@ var queryMemberLevel = apiPath + repairApi + "/com.hsapi.repair.baseData.team.ge
     
 function setData(data){
 	serviceId =data.serviceId;
+	dispatch = data.dispatch || 0;
 	tempItem = data.itemList||{};
 	type = data.type;
 	var workersStr =data.workers||"";
@@ -218,7 +220,8 @@ function dispatchOk(){
     			type:type,
     			itemList:itemList,
     			sendParams:sendParams,//推送参数
-    			userList:userList//推送参数
+    			userList:userList,//推送参数
+    			dispatch:dispatch
     	}
     	nui.ajax({	
     		url : setItemWorkersBatch,

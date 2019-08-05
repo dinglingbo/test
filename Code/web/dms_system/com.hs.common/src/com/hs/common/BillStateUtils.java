@@ -200,6 +200,15 @@ public class BillStateUtils {
 	public static String stringReplaceAll(String str){
 		str = str.replaceAll("\\s*", "");
 		return str;
+	}
+	
+	@Bizlet("")
+	public static long getMillisecond(Date startDate){
+		long eMillis = new Date().getTime();
+		long sMillis = startDate.getTime(); 
+		long millisecond = 0;
+		millisecond = eMillis - sMillis;
+		return millisecond;
 		
 	}
 	

@@ -14,7 +14,7 @@ var billTypeIdHash = {};
 var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
-var statusList=[{"id":1,"name":"待受理"},{"id":2,"name":"部分受理"},{"id":3,"name":"全部受理"},{"id":3,"name":"已完成"}];
+var statusList=[{"id":1,"name":"待受理"},{"id":2,"name":"部分受理"},{"id":3,"name":"全部受理"},{"id":4,"name":"已拒绝"}];
 var statusHash={"1":"待受理","2":"部分受理","3":"全部受理","4":"已拒绝"};
 
 $(document).ready(function(v) {
@@ -307,15 +307,98 @@ function audit(){
 		return;
 	}
 	var rows =rightGrid.getData();
+	var detail=[];
+	var applyDetails =[];
 	for(var i=0;i<rows.length;i++){
-		rows[i].id =rows[i].partId;
+		var temp={};
+		var apply={};
+		temp.partId = rows[i].partId;
+		temp.partCode = rows[i].partCode;
+		temp.partName = rows[i].partName;
+		temp.fullName = rows[i].fullName;
+		temp.outUniId = rows[i].systemUnitId;
+		temp.systemUnitId = rows[i].systemUnitId;
+		temp.applyQty = rows[i].applyQty;
+		temp.acceptQty = parseFloat(rows[i].applyQty-rows[i].hasAcceptQty-rows[i].hasCancelQty);
+ 		temp.prevDetailId =rows[i].id;	
+ 		apply.id = rows[i].id;	
+ 		apply.hasAcceptQty=  temp.acceptQty;
+		detail.push(temp);
+		applyDetails.push(apply);
 	}
 	var main={};
 	main.code =row.serviceId;
 	main.codeId = row.id;
-	main.sourceType =5;
-	main.directGuestId=row.guestId;
-	main.directOrgid =row.orgid;
+	main.orderTypeId =  2;
+	main.sourceType =0;
+	main.guestOrgid = row.orgid;
+	
+	
+	nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : "受理中"
+	});
+	nui.ajax({
+		url : auditUrl,
+		type : "post",
+		data : JSON.stringify({
+			main : main,
+			detail : detail,
+			applyDetails : applyDetails,
+			token: token
+		}),
+		success : function(data) {
+			nui.unmask(document.body);
+			data = data || {};
+			if (data.errCode == "S") {
+				showMsg("受理成功!"||data.errMsg,"S");
+				rightGrid.setData([]);
+				mainGrid.removeRow(mainGrid.getSelected());
+			} else {
+				showMsg(data.errMsg || ("受理失败!"),"W");
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+
+var refuseUrl=baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.refuseAllotApply.biz.ext";
+function refuse(){
+	var row =mainGrid.getSelected();
+	var main={};
+	main.id=row.id;
+	nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : "拒绝中"
+	});
+	nui.ajax({
+		url : refuseUrl,
+		type : "post",
+		data : JSON.stringify({
+			main : main,
+			token: token
+		}),
+		success : function(data) {
+			nui.unmask(document.body);
+			data = data || {};
+			if (data.errCode == "S") {
+				showMsg("拒绝成功!"||data.errMsg,"S");
+				rightGrid.setData([]);
+				mainGrid.removeRow(mainGrid.getSelected());
+			} else {
+				showMsg(data.errMsg || ("拒绝失败!"),"W");
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
 }
 
 function onMainDrawCell(e){

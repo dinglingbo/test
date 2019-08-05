@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="insRpsItem" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="修改时删除  rps_item_workers 数据，重新添加&#xD;&#xA;新增时 直接添加 rps_item_workers 数据&#xD;&#xA;不能添加相同的工时；&#xD;&#xA;不能添加相同的预存信息，因为“不能添加相同的工时”已经判断，所以不需要单独判断&#xD;&#xA;&#xD;&#xA;20190413工单项目中添加  card_detail_type  预存类型（1计次卡；2服务项目）" title="Administrator&#x9;18-8-8 下午3:30">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="修改时删除  rps_item_workers 数据，重新添加&#xD;&#xA;新增时 直接添加 rps_item_workers 数据&#xD;&#xA;不能添加相同的工时；&#xD;&#xA;不能添加相同的预存信息，因为“不能添加相同的工时”已经判断，所以不需要单独判断&#xD;&#xA;&#xD;&#xA;20190413工单项目中添加  card_detail_type  预存类型（1计次卡；2服务项目）&#xD;&#xA;&#xD;&#xA;项目开始施工时间的赋值已删除，2019/08/05" title="Administrator&#x9;18-8-8 下午3:30">
     <location x="-735" y="-66"/>
     <size height="158" width="556"/>
   </nodes>
@@ -769,10 +769,6 @@
     <process:copy>
       <process:from type="query" pattern="reference">serviceId</process:from>
       <process:to type="query">insItem/serviceId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">d</process:from>
-      <process:to type="query">insItem/beginDate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">rpbItem/advisorDeductValue</process:from>

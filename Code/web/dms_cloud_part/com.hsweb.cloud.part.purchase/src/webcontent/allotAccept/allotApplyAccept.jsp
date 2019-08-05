@@ -13,7 +13,7 @@
 <head>
 <title>调拨申请受理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotApplyAccept.js?v=1.0.6"></script>
+    <script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotApplyAccept.js?v=1.0.8"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -99,7 +99,7 @@
                	                	
                       <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
 				         showPager="true"
-				         dataField="pjAllotApplyDetailList"
+				         dataField="data"
 				         idField="detailId"
 				         ondrawcell="onDrawCell"
 				         sortMode="client"
@@ -110,12 +110,10 @@
 				         showSummaryRow="false">
 				        <div property="columns">
 				            <div type="indexcolumn">序号</div>
-				            <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
+				            <div field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
                             <div field="comPartName" visible="false" headerAlign="center" header="配件名称"></div>
                             <div field="fullName"  width="200" headerAlign="center" header="配件全称"></div>
-                            <div field="comPartBrandId" visible="false"width="60" headerAlign="center" header="品牌"></div>
-                            <div field="comApplyCarModel" width="80" headerAlign="center" header="品牌车型"></div>
-                            <div field="comUnit" name="comUnit" width="40" headerAlign="center" header="单位"></div>
+                            <div field="systemUnitId" name="comUnit" width="40" headerAlign="center" header="单位"></div>
 				            <div field="applyQty" name="applyQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="申请数量"></div>
                             <div field="hasAcceptQty" name="hasAcceptQty" numberFormat="0.0000" width="50" headerAlign="center" header="已受理数量"></div>
                             <div field="hasCancelQty" summaryType="sum" numberFormat="0.0000" width="50" headerAlign="center" header="已拒绝数量"> </div>

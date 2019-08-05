@@ -185,6 +185,9 @@
             <isNotEmpty prepend="and" property="isClient">  
                 (a.is_client = #isClient#)
             </isNotEmpty>
+    		<isNotEmpty prepend="and" property="isInternal">  
+                (a.is_internal = #isInternal#)
+            </isNotEmpty>
     		<isNotEmpty prepend="and" property="code">  
                 (a.code like '%$code$%')
             </isNotEmpty>
@@ -629,6 +632,7 @@
     
      <select id="queryGuestList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT a.orgid,
+    		 a.tenant_id as tenantId,
 			 a.short_name shortName,
 			 a.full_name fullName,
 			 a.code      code,
@@ -679,8 +683,14 @@
 		     a.default_logistics as defaultLogistics,
 		     a.is_need_pack          isNeedPack
 		FROM com_guest a
-		WHERE (a.orgid = #orgid#)
+		WHERE 1 = 1
     	<dynamic>
+    		<isNotEmpty prepend="and" property="tenantId">  
+                (a.tenant_id = #tenantId#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="orgid">  
+                (a.orgid = #orgid#)
+            </isNotEmpty>
     		<isNotEmpty prepend="and" property="guestId">  
                 (id = #guestId#)
             </isNotEmpty>
@@ -695,6 +705,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="guestType">  
                 (guest_type = #guestType#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="isInternal">  
+                (a.is_internal = #isInternal#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="isSupplier">  
                 (a.is_supplier = #isSupplier#)

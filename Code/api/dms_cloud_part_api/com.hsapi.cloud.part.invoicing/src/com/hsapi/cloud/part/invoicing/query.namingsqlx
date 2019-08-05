@@ -384,6 +384,7 @@
  		    <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
             <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isState">(a.is_state = #isState#)</isNotEmpty>
             <isNotEmpty prepend="and" property="orderTypeId">(a.order_type_id = #orderTypeId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="idList">(A.id in ($idList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="mainId">(b.main_id = #mainId#)</isNotEmpty>
@@ -774,6 +775,7 @@
 			<isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
             <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isState">(a.is_state = #isState#)</isNotEmpty>
             <isNotEmpty prepend="and" property="orderTypeId">(a.order_type_id = #orderTypeId#)</isNotEmpty>
             <!--订货日期 -->
             <isNotEmpty prepend="and" property="sOutDate">A.out_date &gt;= #sOutDate#</isNotEmpty>
@@ -2099,4 +2101,15 @@
 			is_finished = 0
            	and main_id = #mainId#
     </select>
+    
+    <select id="queryAllotApplyMainIsAllotFinish" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">   	
+		SELECT
+			id
+		FROM
+			pj_allot_apply_detail
+		WHERE
+			is_allot_finished = 0
+           	and main_id = #mainId#
+    </select>
+    
 </sqlMap>

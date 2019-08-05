@@ -449,3 +449,133 @@ var tableToExcel = (function() {
 		document.getElementById(tagName).click();
 	}
 })()
+
+//多级导出
+function setInitExportData( detail,columns,tableName){
+	var tds = "";
+	for(var i = 0;i<columns.length;i++){
+		var columnsList = columns[i].columns||[];
+		if(columnsList.length>0){			
+			for(var j = 0;j<columnsList.length;j++){
+				if(columnsList[j].field=="orgid"){
+					
+				}else{
+					var str = columnsList[j].field;
+					tds+='<td colspan="1" align="center">['+str+']</td>';	
+				}
+	
+			}
+		}
+	}   
+    var tableExportContent = $("#tableExportContent");
+    tableExportContent.empty();
+    for (var i = 0; i < detail.length; i++) {
+    	var temp = tds;//y循环完重新赋值
+        var row = detail[i];
+        if(row.id){
+            var tr = $("<tr></tr>");
+            		for(var k = 0; k < columns.length; k++) {
+            			var columnsList = columns[k].columns||[];
+            			if(columnsList.length>0){			
+            				for(var j = 0;j<columnsList.length;j++){	
+            					var str = columnsList[j].field;
+            					//如果是日期
+            					if(columnsList[j].dateFormat){
+            						temp = temp.replace("["+str+"]", nui.formatDate(detail[i][str]?detail[i][str]:"",'yyyy-MM-dd HH:mm'));
+            					}else{
+            						temp = temp.replace("["+str+"]", detail[i][str]?detail[i][str]:"");
+            					}			
+
+            				}
+            			}
+            		} 
+            		tr.append(temp);
+            tableExportContent.append(tr);
+        }
+    }
+
+    method5('tableExcel',tableName,'tableExportA');
+}
+
+//dataGrid多级列集合对象
+function exportMultistage(columns){
+	var html="";
+	html+='	<table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0"> ';
+	html+='		<tr> ';
+	for(var i = 0;i<columns.length;i++){
+		var columnsList = columns[i].columns||[];
+		if(columnsList.length>0){			
+			for(var j = 0;j<columnsList.length;j++){
+				var str = columnsList[j].header;
+				if(str=="所属公司"){
+					
+				}else{					
+					str = str.replace('<div class="icon-filter headerfilter-trigger"></div>',"");		
+					html+='			<td colspan="1" align="center">'+str+'</td>';
+				}
+			}
+		}
+	}
+	html+='		</tr> ';
+	html+='	<tbody id="tableExportContent"> ';	
+	html+='	</tbody> ';	
+	html+='	</table> ';	
+	html+='	<a href="" id="tableExportA"></a> ';	
+	$("#exportDiv").append(html);
+}
+
+
+function setInitExportDataNoMultistage( detail,columns,tableName){
+	var tds = "";
+	for(var i = 0;i<columns.length;i++){
+		if(columns[i].field&&columns[i].field != "orgid"){
+			var str = columns[i].field;
+			tds+='<td colspan="1" align="center">['+str+']</td>';
+		}
+		
+	}   
+    var tableExportContent = $("#tableExportContent");
+    tableExportContent.empty();
+    for (var i = 0; i < detail.length; i++) {
+    	var temp = tds;//y循环完重新赋值
+        var row = detail[i];
+        if(row.orgid||row.id){
+            var tr = $("<tr></tr>");
+            		for(var k = 0; k < columns.length; k++) {			
+    					var str = columns[k].field;
+    					//如果是日期
+    					if(columns[k].dateFormat){
+    						temp = temp.replace("["+str+"]", nui.formatDate(detail[i][str]?detail[i][str]:"",'yyyy-MM-dd HH:mm'));
+    					}else{
+    						temp = temp.replace("["+str+"]", detail[i][str]?detail[i][str]:"");
+    					}			
+
+            		} 
+            		tr.append(temp);
+            tableExportContent.append(tr);
+        }
+        
+    }
+
+    method5('tableExcel',tableName,'tableExportA');
+}
+
+//dataGrid单级列集合对象
+function exportNoMultistage(columns){
+	var html="";
+	html+='	<table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0"> ';
+	html+='		<tr> ';
+	for(var i = 0;i<columns.length;i++){	
+		if(columns[i].field&&columns[i].header!="所属公司"){
+			var str = columns[i].header;
+			str = str.replace('<div class="icon-filter headerfilter-trigger"></div>',"");		
+			html+='			<td colspan="1" align="center">'+str+'</td>';
+		}
+	}
+	html+='		</tr> ';
+	html+='	<tbody id="tableExportContent"> ';	
+	html+='	</tbody> ';	
+	html+='	</table> ';	
+	html+='	<a href="" id="tableExportA"></a> ';	
+	$("#exportDiv").append(html);
+}

@@ -197,7 +197,7 @@
     	SELECT id as id, orgid as orgid, code as code, name as name, parent_id as parentId,
 			   typelevel as typelevel, carbrandid as carbrandid 
 		from com_part_type 
-		where isdisabled = 0 and orgid = 0
+		where isdisabled = 0 and (orgid = 0 or orgid = #orgid#)
 		order by code 
     </select>
     <!--本机构配件品质   parent_id is null and is_disabled = 0 -->

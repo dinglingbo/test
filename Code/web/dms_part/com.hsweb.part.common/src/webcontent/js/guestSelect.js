@@ -16,6 +16,7 @@ var isClient = null;
 var supplierType = null;
 var guestType = null;
 var nameEl = null;
+var isInternal = null;
 
 var billTypeIdList = [];
 var billTypeIdHash = {};
@@ -170,6 +171,9 @@ function setGuestData(data){
         if(data.supplierType){
             supplierType = data.supplierType;
         }
+        if(data.isInternal) {
+        	isInternal = data.isInternal;
+        }
 
         if(data.expense && data.expense == 1){
         	nameEl.setValue(data.guestName);
@@ -219,10 +223,11 @@ function doSearch(params)
     if(showgys == 1)
     {
     	
-    }else{
+    }else{ 
     	params.isClient = isClient;
     }
 
+    params.isInternal = isInternal;
     params.supplierType = supplierType;
     params.guestType = nui.get("type").getValue();
     grid.load({

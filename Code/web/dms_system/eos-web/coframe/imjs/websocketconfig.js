@@ -1,8 +1,8 @@
 //var websocketurl="ws://192.168.122.68:2048/ws";   //ws://{ip}:{端口}/{java后端websocket配置的上下文}
 //var websocketurl="ws://192.168.122.51:8090/ws";
 //var websocketurl="ws://192.168.111.60:8090/ws";   
-//var websocketurl="wss://qxy60.hszb.harsons.cn/ws";
-var websocketurl="wss://qxy.cloud.7xdr.com/ws";
+var websocketurl="wss://qxy60.hszb.harsons.cn/ws";
+//var websocketurl="wss://qxy.cloud.7xdr.com/ws";
 var reconnectflag = false;//避免重复连接
 var socket; 
 var currentsession= currImCode;
@@ -319,6 +319,15 @@ layui.use('layim', function(layim){
 	        var data = event.data;                //后端返回的是文本帧时触发
 	      } 
 	  };
+	  //连接关闭
+	  socket.onclose = function(event) {
+		  console.log("关闭成功...");
+		  document.getElementById("limiStatus").style.backgroundColor="#cccccccc";
+		  //layer.confirm('您已下线，重新上线?', function(index){
+		  //  reconnect(websocketurl,initEventHandle); 
+		  //  layer.close(index);
+		  //}); 
+	  };
 	  //连接后
 	  socket.onopen = function(event) {
 		   var message = new proto.Model();
@@ -335,16 +344,9 @@ layui.use('layim', function(layim){
 	       var bytes = message.serializeBinary();  
 	       
 	       console.log("连接成功...");
+	       document.getElementById("limiStatus").style.backgroundColor="#09f1a6";
 		   socket.send(bytes);
 	       showOfflineMsg(layim);
-	  };
-	  //连接关闭
-	  socket.onclose = function(event) {
-	  	console.log("关闭成功...");
-		//layer.confirm('您已下线，重新上线?', function(index){
-		//  reconnect(websocketurl,initEventHandle); 
-		//  layer.close(index);
-	    //}); 
 	  };
 	  socket.onerror = function () {
 		  //layer.msg("服务器连接出错，请检查websocketconfig.js里面的IP地址");  
@@ -635,3 +637,10 @@ layui.use('layim', function(layim){
 
 
 }); 
+
+
+function saveLimiStatus(){
+	//reconnectflag  =  false;
+	document.location.reload();
+	//createWebSocket(websocketurl,null);
+}

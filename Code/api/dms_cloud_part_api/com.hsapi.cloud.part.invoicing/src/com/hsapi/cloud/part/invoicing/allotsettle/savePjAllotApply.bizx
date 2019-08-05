@@ -59,7 +59,7 @@
       <sourceNode>transactioncommit0</sourceNode>
       <targetNode>subprocess0</targetNode>
     </sourceConnections>
-    <targetConnections>link20</targetConnections>
+    <targetConnections>link11</targetConnections>
     <location x="570" y="74"/>
     <size height="28" width="28"/>
     <nodeLabel>transactioncommit0label</nodeLabel>
@@ -101,19 +101,45 @@
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
-      <targetNode>transactioncommit0</targetNode>
+      <targetNode>invokePojo1</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link3" name="link3" displayName="连接线" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>assign3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">auditSign</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
-    <location x="421" y="74"/>
+    <location x="372" y="74"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
       <process:from type="query" pattern="reference">mainId</process:from>
       <process:to type="query">params/id</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjAllotApplyDetail</process:from>
+      <process:to type="query">cond/_entity</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainId</process:from>
+      <process:to type="query">cond/_expr[1]/mainId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/storeId</process:from>
+      <process:to type="query">detail/storeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="419" y="110"/>
+    <location x="370" y="110"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
@@ -194,6 +220,7 @@
       <targetNode>end1</targetNode>
     </sourceConnections>
     <targetConnections>link10</targetConnections>
+    <targetConnections>link9</targetConnections>
     <location x="255" y="238"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionrollback0label</nodeLabel>
@@ -202,6 +229,128 @@
     <location x="245" y="274"/>
     <figSize height="17" width="49"/>
     <node>transactionrollback0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign3</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link3</targetConnections>
+    <location x="372" y="155"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign3label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainId</process:from>
+      <process:to type="query">applyMain/id</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">applyMain/auditSign</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">applyMain/auditDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">applyMain/auditor</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userId</process:from>
+      <process:to type="query">applyMain/auditorId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">applyMain/status</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">applyMain/settleStatus</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
+    <location x="370" y="191"/>
+    <figSize height="17" width="32"/>
+    <node>assign3</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="updateEntity" displayName="updateEntity" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>invokePojo1</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" lineType="note" type="exception">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>assign4</targetNode>
+    </sourceConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="466" y="155"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo0label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.updateEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">applyMain</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
+    <location x="441" y="191"/>
+    <figSize height="17" width="73"/>
+    <node>invokePojo0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>transactionrollback0</targetNode>
+    </sourceConnections>
+    <targetConnections>link8</targetConnections>
+    <location x="372" y="212"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign4label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">单据提交失败</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <location x="370" y="248"/>
+    <figSize height="17" width="32"/>
+    <node>assign4</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="更新明细仓库" displayName="updateEntityByCriteriaEntity" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo1</sourceNode>
+      <targetNode>transactioncommit0</targetNode>
+    </sourceConnections>
+    <targetConnections>link20</targetConnections>
+    <targetConnections>link7</targetConnections>
+    <location x="466" y="74"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo1label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.updateEntityByCriteriaEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
+      <process:inputVariable id="1" name="value" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">detail</process:inputVariable>
+      <process:inputVariable id="2" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cond</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
+    <location x="441" y="110"/>
+    <figSize height="17" width="73"/>
+    <node>invokePojo1</node>
   </nodes>
   <topRuler>
     <guides position="545" horizontal="true"/>
@@ -212,16 +361,19 @@
   </leftRuler>
   <process:info author="chenziming" createTime="2018-01-29 16:48:07" date="2018-01-29Z" description="" name="savePstEnter" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="auditSign" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="mainId" primitiveType="Long"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjAllotApplyMain" name="applyMain"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjAllotApplyDetail" name="detail"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="主表信息" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjAllotApplyMain" name="main"/>
     <process:input description="新增" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjAllotApplyDetail" name="detailAdd"/>
     <process:input description="修改" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjAllotApplyDetail" name="detailUpdate"/>
     <process:input description="删除" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjAllotApplyDetail" name="detailDelete"/>
+    <process:input description="" isArray="false" name="auditSign" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

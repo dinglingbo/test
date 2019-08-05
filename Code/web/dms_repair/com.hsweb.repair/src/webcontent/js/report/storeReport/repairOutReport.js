@@ -463,90 +463,19 @@ function onExport(){
 			detail[i].returnSign="是";
 		}
 		for(var j in partTypeHash) {
-			if(detail[i].carTypeIdF==partTypeHash[j].code){
+			if(detail[i].carTypeIdF==partTypeHash[j].id){
 				detail[i].carTypeIdF=partTypeHash[j].name;
 			}
-			if(detail[i].carTypeIdS==partTypeHash[j].code){
+			if(detail[i].carTypeIdS==partTypeHash[j].id){
 				detail[i].carTypeIdS=partTypeHash[j].name;
 			}
-			if(detail[i].carTypeIdT==partTypeHash[j].code){
+			if(detail[i].carTypeIdT==partTypeHash[j].id){
 				detail[i].carTypeIdT=partTypeHash[j].name;
 			}
 		}
 	}
 	if(detail && detail.length > 0){
-		setInitExportData( detail,rightGrid.columns);
+		setInitExportData( detail,rightGrid.columns,"配件出库明细表");
 	}
-	
-}
-
-function setInitExportData( detail,columns){
-	var tds = "";
-	for(var i = 0;i<columns.length;i++){
-		var columnsList = columns[i].columns||[];
-		if(columnsList.length>0){			
-			for(var j = 0;j<columnsList.length;j++){	
-				var str = columnsList[j].field;
-				//如果是日期
-					tds+='			<td colspan="1" align="center">'+str+'</td>';		
-
-			}
-		}
-	}      
-    var tableExportContent = $("#tableExportContent");
-    tableExportContent.empty();
-    for (var i = 0; i < detail.length; i++) {
-        var row = detail[i];
-        if(row.id){
-            var tr = $("<tr></tr>");
-            		for(var k = 0; k < columns.length; k++) {
-            			var columnsList = columns[k].columns||[];
-            			if(columnsList.length>0){			
-            				for(var j = 0;j<columnsList.length;j++){	
-            					var str = columnsList[j].field;
-            					//如果是日期
-            					if(columnsList[j].dateFormat){
-            						tds = tds.replace("["+str+"]", nui.formatDate(detail[i][""+str]?detail[i][""+str]:"",'yyyy-MM-dd HH:mm'));
-            						//tds.replace('['+str+']', nui.formatDate(detail[i][str]?detail[i][str]:"",'yyyy-MM-dd HH:mm'))
-            					}else{
-            						tds = tds.replace("["+str+"]", detail[i][""+str]?detail[i][""+str]:"");
-            						//tds.replace('['+str+']', detail[i][str]?detail[i][str]:"")
-            					}			
-
-            				}
-            			}
-            		} 
-            		tr.append(tds);
-            tableExportContent.append(tr);
-        }
-    }
-
-    method5('tableExcel',"维修出库明细表导出",'tableExportA');
-}
-
-//dataGrid多级列集合对象
-function exportMultistage(columns){
-	var html="";
-	html+='	<table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0"> ';
-	html+='		<tr> ';
-	for(var i = 0;i<columns.length;i++){
-		var columnsList = columns[i].columns||[];
-		if(columnsList.length>0){			
-			for(var j = 0;j<columnsList.length;j++){	
-				var str = columnsList[j].header;
-				str = str.replace('<div class="icon-filter headerfilter-trigger"></div>',"")			
-				html+='			<td colspan="1" align="center">'+str+'</td>';
-			}
-		}
-	}
-	html+='		</tr> ';
-	html+='	<tbody id="tableExportContent"> ';	
-	html+='	</tbody> ';	
-	html+='	</table> ';	
-	html+='	<a href="" id="tableExportA"></a> ';	
-	$("#exportDiv").append(html);
-}
-//dataGrid单级列集合对象
-function exportNoMultistage(){
 	
 }

@@ -58,7 +58,7 @@
         <result column="guestFullName" javaType="string" property="guestFullName"/>
         <result column="guestShortName" javaType="string" property="guestShortName"/>
         <result column="versionNo" javaType="string" property="versionNo"/>
-        <result column="sourceType" javaType="int" property="int"/>
+        <result column="sourceType" javaType="int" property="sourceType"/>
         <result column="rtnReasonId" javaType="string" property="rtnReasonId"/>
         <result column="orderType" javaType="string" property="orderType"/>
         <result column="directOrgid" javaType="string" property="directOrgid"/>

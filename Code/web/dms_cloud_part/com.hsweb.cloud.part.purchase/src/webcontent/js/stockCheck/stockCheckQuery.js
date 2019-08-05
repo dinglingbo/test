@@ -77,7 +77,7 @@ function getSearchParam(){
 	params.partCode = comPartCode.getValue().replace(/\s+/g, "");
 	params.partNameAndPY = comPartNameAndPY.getValue().replace(/\s+/g, "");
 	params.guestId = comSearchGuestId.getValue();
-	params.endDate = searchEndDate.getValue();
+	params.endDate = searchEndDate.getFormValue();
 	params.startDate = searchBeginDate.getFormValue();
     return params;
 }

@@ -73,7 +73,7 @@ function doSearch() {
     params.guestId = comSearchGuestId.getValue();
     
     params.sCreateDate = searchBeginDate.getFormValue();
-    params.eCreateDate = searchEndDate.getValue();
+    params.eCreateDate = searchEndDate.getFormValue();
 
     mainGrid.load({
         params: params,

@@ -78,6 +78,7 @@
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                 
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a> 
             
         </td>
     </tr>
@@ -127,5 +128,7 @@
 </div>
 
 
+<div id="exportDiv" style="display:none">  
 
+</div> 
 </html>

@@ -1,8 +1,8 @@
 /**
  * Created by Administrator on 2018/2/1.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryPjSellOutRtnMainDetailList.biz.ext";
+var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.guestOrder.queryPjGuestOrderMainDetails.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -20,11 +20,11 @@ var billTypeIdHash = {};
 var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
-var billStatusHash = {
-    "0":"未审",
-    "1":"已审",
-    "2":"已过账",
-    "3":"已取消"
+var statusHash = {
+    "0":"草稿",
+    "1":"已提交",
+    "2":"已受理",
+    "3":"已完成"
 };
 $(document).ready(function(v)
 {
@@ -64,7 +64,6 @@ $(document).ready(function(v)
         var dictIdList = [];
         dictIdList.push('DDT20130703000008');//票据类型
         dictIdList.push('DDT20130703000035');//结算方式
-        dictIdList.push('DDT20130703000064');//入库类型
         getDictItems(dictIdList,function(data)
         {
             if(data && data.dataItems)
@@ -87,15 +86,6 @@ $(document).ready(function(v)
                         return true;
                     }
                 });
-          //      nui.get("settType").setData(settTypeIdList);
-                var enterTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000064")
-                    {
-                        enterTypeIdHash[v.customid] = v;
-                        return true;
-                    }
-                });
                 quickSearch(currType);
             }
         });
@@ -103,11 +93,11 @@ $(document).ready(function(v)
 });
 function getSearchParam(){
     var params = {};
-    var outableQty = nui.get("outableQty").getValue();
-    if(outableQty == 1)
+    /*var outableQtyGreaterThanZero = nui.get("outableQtyGreaterThanZero").getValue();
+    if(outableQtyGreaterThanZero == 1)
     {
-        params.outableQty = 1;
-    }
+        params.outableQtyGreaterThanZero = 1;
+    }*/
     params.serviceId = comServiceId.getValue().replace(/\s+/g, "");
 	params.partCode = comPartCode.getValue().replace(/\s+/g, "");
 	params.partNameAndPY = comPartNameAndPY.getValue().replace(/\s+/g, "");
@@ -187,6 +177,9 @@ function onSearch(){
 }
 function doSearch(params)
 {
+	params.orgid =currOrgid;
+    params.orderTypeId = 2;
+    params.isDiffOrder = 0;
 	params.sortField = "audit_date";
 	params.sortOrder = "desc";
     rightGrid.load({
@@ -260,10 +253,10 @@ function onAdvancedSearchOk()
         }
         searchData.partCodeList = tmpList.join(",");
     }
-    if(searchData.outableQty == 0)
+    /*if(searchData.outableQtyGreaterThanZero == 0)
     {
-        delete searchData.outableQty;
-    }
+        delete searchData.outableQtyGreaterThanZero;
+    }*/
   //去除空格
     for(var key in searchData){
     	if(searchData[key]!=null && searchData[key]!="" && typeof(searchData[key])=='string'){    		
@@ -284,7 +277,7 @@ function selectSupplier(elId)
     nui.open({
         // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.cloud.part.common.customerSelect.flow",
-        title: "供应商资料", width: 980, height: 560,
+        title: "客户资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
         onload: function ()
@@ -303,6 +296,42 @@ function selectSupplier(elId)
                 var el = nui.get(elId);
                 el.setValue(value);
                 el.setText(text);
+            }
+        }
+    });
+}
+var supplier = null;    
+function selectSupplier(elId)
+{
+    supplier = null;
+    nui.open({
+        // targetWindow: window,
+        url: webPath+contextPath+"/com.hsweb.cloud.part.common.guestSelect.flow?token="+token,
+        title: "客户资料", width: 980, height: 560,
+        allowDrag:true,
+        allowResize:true,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            var params = {
+                isClient: 1,
+                guestType:'01020102'
+            };
+            iframe.contentWindow.setGuestData(params);
+        },
+        ondestroy: function (action)
+        {
+            if(action == 'ok')
+            {
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+                supplier = data.supplier;
+                var value = supplier.id;
+                var text = supplier.fullName;
+                var el = nui.get(elId);
+                el.setValue(value);
+                el.setText(text);
+
             }
         }
     });
@@ -327,16 +356,10 @@ function onDrawCell(e)
 	            e.cellHtml = "";
 	        }
 	        break;
-        case "billTypeId":
-            if(billTypeIdHash && billTypeIdHash[e.value])
-            {
-                e.cellHtml = billTypeIdHash[e.value].name;
-            }
-            break;
-	    case "billStatus":
-	        if(billStatusHash && billStatusHash[e.value])
+	    case "status":
+	        if(statusHash && statusHash[e.value])
 	        {
-	            e.cellHtml = billStatusHash[e.value];
+	            e.cellHtml = statusHash[e.value];
 	        }
 	        break;
         case "enterTypeId":
@@ -349,6 +372,12 @@ function onDrawCell(e)
             if(settTypeIdHash && settTypeIdHash[e.value])
             {
                 e.cellHtml = settTypeIdHash[e.value].name;
+            }
+            break;
+        case "billTypeId":
+            if(billTypeIdHash && billTypeIdHash[e.value])
+            {
+                e.cellHtml = billTypeIdHash[e.value].name;
             }
             break;
         case "storeId":

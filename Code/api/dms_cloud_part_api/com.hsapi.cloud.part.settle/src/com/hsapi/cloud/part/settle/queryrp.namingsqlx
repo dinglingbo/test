@@ -565,6 +565,96 @@
 				
 	</select>
 	
+	<!-- 未对账列表 -->
+	<select id="queryNoSettleBill" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.orgid AS orgid,
+			CASE
+		WHEN a.dc = 1 THEN
+			IFNULL(sum(a.billAmt), 0)
+		END AS rAmt,
+		 CASE
+		WHEN a.dc = - 1 THEN
+			IFNULL(-sum(a.billAmt), 0)
+		END AS pAmt,
+		 '' as billAmt,
+		 a.guestId AS guestId,
+		 a.fullName AS fullName,
+		 a.shortName AS shortName
+		FROM
+			vw_pchs_sell_order_main AS a
+			inner join wb_common.com_company b on a.orgid =b.orgid
+		WHERE
+			1 = 1
+		
+			<dynamic>
+				<isNotEmpty prepend="and" property="tenantId"> 
+                    (b.tenant_id = #tenantId#)
+                </isNotEmpty>
+            	<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="id"> 
+                    (a.mainId = #id#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isState"> 
+                    (a.isState = #isState#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="settleTypeId"> 
+                    (a.settleTypeId = #settleTypeId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="orderTypeIdList">  
+                    (a.orderTypeId in ($orderTypeIdList$))
+                </isNotEmpty>
+                
+                <!--本日 昨日 本周 上周 本月 下月 -->
+                <isNotEmpty prepend="and" property="startDate">  
+                    (a.createDate &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (a.createDate &lt; #endDate#)
+                </isNotEmpty>
+                
+                <!--创建日期 -->
+                <isNotEmpty prepend="and" property="sCreateDate">  
+                    (a.createDate &gt;= #sCreateDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eCreateDate">  
+                    (a.createDate &lt; #eCreateDate#)
+                </isNotEmpty>
+                <!--审核日期 -->
+                <isNotEmpty prepend="and" property="sAuditDate">  
+                    (a.auditDate &gt;= #sAuditDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="eAuditDate">  
+                    (a.auditDate &lt; #eAuditDate#)
+                </isNotEmpty>
+
+                <isNotEmpty prepend="and" property="guestId">  
+                    (a.guestId = #guestId#)
+                </isNotEmpty>
+                
+                 <isNotEmpty prepend="and" property="guestIdList">  
+                    (a.guestId  in ($guestIdList$))
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="serviceMan">  
+                    (a.orderMan = #serviceMan#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceId">  
+                    (a.serviceId = #serviceId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="serviceIdList">  
+                    (a.serviceId in ($serviceIdList$))
+                </isNotEmpty>
+                
+	            <isNotEmpty prepend="order by" property="sortField">  
+	                $sortField$ $sortOrder$
+	            </isNotEmpty> 
+            </dynamic> 
+		GROUP BY a.guestId	
+	</select>
+	
 	<select id="queryNotStateBillAmtCopy" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
 		SELECT sum(IFNULL(a.billAmt,0)*(case when a.dc = -1 then -1 else 0 end)) as pAmt,
 	     	   sum(IFNULL(a.billAmt,0)*(case when a.dc = 1 then 1 else 0 end)) as rAmt

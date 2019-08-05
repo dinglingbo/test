@@ -43,6 +43,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link35</targetConnections>
+    <targetConnections>link6</targetConnections>
     <location x="150" y="176"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
@@ -346,6 +347,16 @@
       <sourceNode>assign14</sourceNode>
       <targetNode>loopstart0</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link2" name="link2" displayName="连接线" type="transition">
+      <sourceNode>assign14</sourceNode>
+      <targetNode>assign4</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">main/sourceType</process:leftOperand>
+          <process:rightOperand type="literal">5</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link34</targetConnections>
     <location x="75" y="174"/>
     <size height="28" width="28"/>
@@ -419,7 +430,7 @@
       <process:to type="query">orderMain/isDiffOrder</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
+      <process:from type="query" pattern="reference">main/sourceType</process:from>
       <process:to type="query">orderMain/sourceType</process:to>
     </process:copy>
     <process:copy>
@@ -580,6 +591,33 @@
     <location x="-370" y="396"/>
     <figSize height="20" width="40"/>
     <node>end1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>loopstart0</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="76" y="250"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign4label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/sourceType</process:from>
+      <process:to type="query">orderMain/sourceType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/directGuestId</process:from>
+      <process:to type="query">orderMain/directGuestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/directOrgid</process:from>
+      <process:to type="query">orderMain/directOrgid</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <location x="70" y="286"/>
+    <figSize height="20" width="40"/>
+    <node>assign4</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

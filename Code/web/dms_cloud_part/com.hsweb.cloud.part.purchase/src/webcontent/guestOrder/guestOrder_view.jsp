@@ -9,7 +9,7 @@
 -->
 <head>
 <title>预售单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/guestOrder/guestOrder.js?v=1.0.57"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/guestOrder/guestOrder.js?v=1.0.62"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -149,6 +149,8 @@ body .mini-grid-row-selected{
                               <input class="nui-hidden" name="operateDate"/>
                               <input class="nui-hidden" name="auditSign"/>
                               <input class="nui-hidden" name="createDate"/>
+                              <input class="nui-hidden" name="orderAmt"/>
+                              <input class="nui-hidden" name="orderQty"/>
                               <table style="width: 100%;">
                                   <tr>
                                       <td class="title required">

@@ -1,22 +1,22 @@
 var baseUrl = apiPath + cloudPartApi + "/";
 var companyUrl = apiPath + sysApi + "/"+"com.hsapi.system.basic.organization.getCompanyAll.biz.ext";
-var mainGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.queryNoSettleBill.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryPjPchsEnterMainDetailList.biz.ext";
-var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryReceiveMainDetails.biz.ext";
+var mainGridUrl =baseUrl+"com.hsapi.cloud.part.invoicing.guestOrder.queryGuestOrderMainList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.guestOrder.queryPjGuestOrderDetailList.biz.ext";
 var orgidsEl =null;
 var orgids="";
 var mainGrid =null;
 var searchBeginDate = null;
 var searchEndDate = null;
-var leftGrid = null;
 var rightGrid =null;
-var mainTabs =null;
 
 var storehouseHash = {};
 var billTypeIdHash = {};
 var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
+var statusList=[{"id":1,"name":"已提交"},{"id":2,"name":"已受理"},{"id":3,"name":"已完成"}];
+var statusHash={"1":"已提交","2":"已受理","3":"已完成"};
+
 $(document).ready(function(v) {
 	orgidsEl = nui.get("orgids");
 	getCompany();
@@ -24,21 +24,11 @@ $(document).ready(function(v) {
 	mainGrid.setUrl(mainGridUrl);
     searchBeginDate = nui.get("beginDate");
     searchEndDate = nui.get("endDate");
-    leftGrid =nui.get("leftGrid");
     rightGrid = nui.get("rightGrid");
-    leftGrid.setUrl(leftGridUrl);
     rightGrid.setUrl(rightGridUrl);
-    mainTabs =nui.get("mainTabs");
-    mainTabs.on("activechanged",function(e){
-    	var tab = mainTabs.getActiveTab();
-    	var name = tab.name;
-        var url = tab.url;
-        if(name == 'receiveTab'){
-        	loadLeftGridData();
-        }else{
-        	loadRightGridData();
-        }
-    });
+    nui.get("status").setData(statusList);
+    nui.get("status").setValue(1);
+   
     
     getAllPartBrand(function(data)
     {
@@ -134,15 +124,13 @@ function getCompany(){
 function getSearchParam(){
     var params = {};
 
-    params.sCreateDate = searchBeginDate.getFormValue();
-    params.eCreateDate = searchEndDate.getFormValue();
+    params.sAuditDate = searchBeginDate.getFormValue();
+    params.eAuditDate  = searchEndDate.getFormValue();
     params.guestName =nui.get('guestName').getValue().replace(/\s+/g, "");
     params.orgid =nui.get('orgids').getValue();
-    if(!params.orgid){
-    	params.orgid =null;
-    }
+    params.status = nui.get("status").getValue();
+    params.auditSign=1;
     params.tenantId =currTenantId;
-    params.isState = 0;
     return params;
 }
 var currType = 2;
@@ -153,57 +141,57 @@ function quickSearch(type){
     {
         case 0:
 //            params.today = 1;
-            params.sCreateDate =  null;
-            params.eCreateDate = null;
+            params.sAuditDate  =  null;
+            params.eAuditDate  = null;
             var queryname = "全部";
             break;
         case 1:
             params.yesterday = 1;
-            params.sCreateDate = getPrevStartDate();
-            params.eCreateDate = addDate(getPrevEndDate(), 1);
+            params.sAuditDate  = getPrevStartDate();
+            params.eAuditDate  = addDate(getPrevEndDate(), 1);
             var queryname = "昨日";
             break;
         case 2:
             params.thisWeek = 1;
-            params.sCreateDate = getWeekStartDate();
-            params.eCreateDate = addDate(getWeekEndDate(), 1);
+            params.sAuditDate  = getWeekStartDate();
+            params.eAuditDate  = addDate(getWeekEndDate(), 1);
             var queryname = "本周";
             break;
         case 3:
             params.lastWeek = 1;
-            params.sCreateDate = getLastWeekStartDate();
-            params.eCreateDate = addDate(getLastWeekEndDate(), 1);
+            params.sAuditDate  = getLastWeekStartDate();
+            params.eAuditDate  = addDate(getLastWeekEndDate(), 1);
             var queryname = "上周";
             break;
         case 4:
             params.thisMonth = 1;
-            params.sCreateDate = getMonthStartDate();
-            params.eCreateDate = addDate(getMonthEndDate(), 1);
+            params.sAuditDate  = getMonthStartDate();
+            params.eAuditDate  = addDate(getMonthEndDate(), 1);
             var queryname = "本月";
             break;
         case 5:
             params.lastMonth = 1;
-            params.sCreateDate = getLastMonthStartDate();
-            params.eCreateDate = addDate(getLastMonthEndDate(), 1);
+            params.sAuditDate  = getLastMonthStartDate();
+            params.eAuditDate  = addDate(getLastMonthEndDate(), 1);
             var queryname = "上月";
             break;
         case 10:
             params.thisYear = 1;
-            params.sCreateDate = getYearStartDate();
-            params.eCreateDate = getYearEndDate();
+            params.sAuditDate = getYearStartDate();
+            params.eAuditDate = getYearEndDate();
             var queryname = "本年";
             break;
         case 11:
             params.lastYear = 1;
-            params.sCreateDate = getPrevYearStartDate();
-            params.eCreateDate = getPrevYearEndDate();
+            params.sAuditDate = getPrevYearStartDate();
+            params.eAuditDate = getPrevYearEndDate();
             var queryname = "上年";
             break;
         default:
             break;
     }
-    searchBeginDate.setValue(params.sCreateDate);
-    searchEndDate.setValue(params.eCreateDate);
+    searchBeginDate.setValue(params.sAuditDate);
+    searchEndDate.setValue(params.eAuditDate);
     currType = type;
     var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);
@@ -222,18 +210,18 @@ function doSearch(params)
         token: token
     });
 	
-	var tab = mainTabs.getActiveTab();
-	var name = tab.name;
-    var url = tab.url;
-    if(name == 'receiveTab'){
-    	loadLeftGridData();
-    }else{
-    	loadRightGridData();
-    }
+    
 }
 
-function loadRightGridData(){
-	var params = getSearchParam();
+function onMainGridSelectionChanged() {
+	var row = mainGrid.getSelected();
+
+	loadRightGridData(row);
+}
+
+function loadRightGridData(row){
+	var params ={};
+	params.mainId = row.id;
 	params.sortField ="a.audit_date";
 	params.sortOrder ="desc";
     rightGrid.load({
@@ -242,20 +230,12 @@ function loadRightGridData(){
     });
 }
 
-function loadLeftGridData(){
-	var params = getSearchParam();
-	params.sortField ="a.audit_date";
-	params.sortOrder ="desc";
-    leftGrid.load({
-        params:params,
-        token:token
-    });
-}
 
 
 function onDrawCell(e){
 	switch (e.field)
     {
+	   
 	    case "partBrandId":
 	        if(partBrandIdHash[e.value])
 	        {
@@ -271,12 +251,12 @@ function onDrawCell(e){
 	            e.cellHtml = "";
 	        }
 	        break;
-        case "billTypeId":
-            if(billTypeIdHash && billTypeIdHash[e.value])
-            {
-                e.cellHtml = billTypeIdHash[e.value].name;
-            }
-            break;
+	    case "billTypeId":
+	        if(billTypeIdHash && billTypeIdHash[e.value])
+	        {
+	            e.cellHtml = billTypeIdHash[e.value].name;
+	        }
+	        break;
         case "billStatus":
             if(billStatusHash && billStatusHash[e.value])
             {
@@ -313,30 +293,86 @@ function onDrawCell(e){
     }
 }
 
+function audit(){
+	var row =mainGrid.getSelected();
+	if(!row){
+		showMsg("请选择一条单据","W");
+		return;
+	}
+	if(currIsMaster !=1){
+		showMsg("总部才可以受理","W");
+		return;
+	}
+	if(row.status !=1){
+		showMsg("单据状态为已提交才可以受理","W");
+		return;
+	}
+	var rows =rightGrid.getData();
+	for(var i=0;i<rows.length;i++){
+		rows[i].id =rows[i].partId;
+	}
+	var main={};
+	main.code =row.serviceId;
+	main.codeId = row.id;
+	main.sourceType =5;
+	main.directGuestId=row.guestId;
+	main.directOrgid =row.orgid;
+	openGeneratePop(main,rows, "pchsOrder", "新增直发"+row.orgName+"的采购订单");
+}
+
+function openGeneratePop(main,partList, type, title){
+	
+    nui.open({
+//        // targetWindow: window,,
+        url : webPath+contextPath+"/com.hsweb.cloud.part.common.shopCarPop.flow?token="+token,
+        title : title,
+        width : 600,
+        height : 400,
+        allowDrag : true,
+        allowResize : true,
+        onload : function() {
+            var iframe = this.getIFrameEl();
+            var params = {
+            	main    : main,
+                partList: partList,
+                type: type
+            };
+            iframe.contentWindow.setInitData(params);
+        },
+        ondestroy : function(action) {
+            if (action == 'ok') {
+                var iframe = this.getIFrameEl();
+                mainGrid.removeRow(mainGrid.getSelected());
+                rightGrid.setData([]);
+                //var data = iframe.contentWindow.getData();
+            }
+        }
+    });
+}
+
 function onMainDrawCell(e){
 	switch (e.field)
     {
-	    case "rAmt":
-	    	if(e.value==null || e.value==""){
-	    		 e.cellHtml = 0;
-	    	     e.value = 0;
-	    	}
-	    		
-	        break;
-        case "pAmt":
-        	if(e.value==null || e.value==""){
-        		 e.cellHtml = 0;
-	    	     e.value = 0;
-        	}
-	    		
+	   
+        case "status":
+            if(statusHash && statusHash[e.value])
+            {
+                e.cellHtml = statusHash[e.value];
+            }
             break;
-        case "billAmt":
-        	if(e.value==null || e.value==""){
-       		 	e.cellHtml = 0;
-	    	    e.value = 0;
-        	}
-        	e.cellHtml = e.record.rAmt + e.record.pAmt;
-   	        e.value = e.record.rAmt + e.record.pAmt;
+       
+        case "storeId":
+            if(storehouseHash && storehouseHash[e.value])
+            {
+                e.cellHtml = storehouseHash[e.value].name;
+            }
+            break;
+        case "enterDayCount":
+            var row = e.record;
+            var enterTime = (new Date(row.enterDate)).getTime();
+            var nowTime = (new Date()).getTime();
+            var dayCount = parseInt((nowTime - enterTime) / 1000 / 60 / 60 / 24);
+            e.cellHtml = dayCount+1;
             break;
         default:
             break;

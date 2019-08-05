@@ -141,6 +141,7 @@
                           <input class="nui-hidden" name="auditSign" id="auditSign"/>
                           <input class="nui-hidden" name="billStatusId" id="billStatusId"/>
                           <input class="nui-textbox" visible="false" width="100%" id="isInner" name="isInner"/>
+                          <input class="nui-hidden" name="sourceType" id="sourceType"/>
                           <table style="width: 100%;">
                               <tr>
                                   <td class="title required">

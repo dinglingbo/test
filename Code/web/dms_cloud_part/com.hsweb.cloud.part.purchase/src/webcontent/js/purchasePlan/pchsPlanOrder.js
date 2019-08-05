@@ -305,6 +305,7 @@ function quickSearch(type){
             querysign = 2;
             gsparams.auditSign = 1;
             gsparams.status = null;
+            gsparams.isDisabled = null;
             break;
         case 8:
             gsparams.billStatusId = 1;
@@ -320,6 +321,7 @@ function quickSearch(type){
             querysign = 2;
             gsparams.status = 1;
             gsparams.auditSign = 1;
+            gsparams.isDisabled = null;
             break;
         case 10:
             gsparams.billStatusId = 2;
@@ -327,6 +329,7 @@ function quickSearch(type){
             querysign = 2;
             gsparams.status = 2;
             gsparams.auditSign = 1;
+            gsparams.isDisabled = null;
             break;
         case 11:
             gsparams.billStatusId = null;
@@ -334,6 +337,7 @@ function quickSearch(type){
             querysign = 2;
             gsparams.status = null;
             gsparams.auditSign = null;
+            gsparams.isDisabled = 0;
             break;
         default:
             params.today = 1;
@@ -437,7 +441,7 @@ function save(type) {
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
-        html: '保存中...'
+        html: '数据处理中...'
     });
 
     var stip = "保存成功";

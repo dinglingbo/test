@@ -14,11 +14,7 @@ $(document).ready(function(v) {
 	mainForm = new nui.Form("#editForm");
 	parentidEl = nui.get("parentId");
 	nui.get('code').focus();
-	getComPartType(function(data) {
-		partTypeHash = data.type || [];
-		parentidEl.setData(partTypeHash);
-
-	});
+	
 	
     document.onkeyup = function(event) {
         var e = event || window.event;
@@ -34,6 +30,12 @@ function SetData(row, newRow){
 	rowT = row;
 	newRowT = newRow;
 	mainForm.setData(rowT);
+	
+	getComPartType(function(data) {
+		partTypeHash = data.type || [];
+		parentidEl.setData(partTypeHash);
+		parentidEl.setValue(rowT.parentId);
+	});
 }
 function getComPartType(callback) {
 	nui.ajax({

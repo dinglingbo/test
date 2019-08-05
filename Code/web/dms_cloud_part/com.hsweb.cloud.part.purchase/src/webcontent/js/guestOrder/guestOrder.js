@@ -499,7 +499,7 @@ function save() {
     var guestOrderDetailUpdate = rightGrid.getChanges("modified");
     var guestOrderDetailDelete = rightGrid.getChanges("removed");
     var guestOrderDetailList = rightGrid.getData();
-    guestOrderDetailList = removeChanges(guestOrderDetailAdd, guestOrderDetailUpdate, guestOrderDetailDelete, guestOrderDetailList);
+    guestOrderDetailUpdate =  getModifyData(guestOrderDetailList, guestOrderDetailAdd, guestOrderDetailDelete);
 
     nui.mask({
         el: document.body,
@@ -544,6 +544,32 @@ function save() {
         }
     });
 }
+function getModifyData(data, addList, delList){
+	var arr = [];
+    if(data==addList) return arr;
+	for(var i=0; i<addList.length; i++) {
+	
+	   var val = addList[i];
+	   for(var j=0; j<data.length; j++) {
+    	
+    	   if(data[j] == val)
+		   data.splice(j, 1);
+		}
+	}
+			
+	for(var i=0; i<delList.length; i++) {
+	
+	   var val = delList[i];
+	   for(var j=0; j<data.length; j++) {
+    	
+    	   if(data[j] == val)
+		   data.splice(j, 1);
+		}
+	}
+
+	return data;
+}
+
 function removeChanges(added, modified, removed, all) {
     for(var i=0; i<added.length; i++) {
     
@@ -872,7 +898,7 @@ function audit()
 
 	}
 	
-    guestOrderDetailList = removeChanges(guestOrderDetailAdd, guestOrderDetailUpdate, guestOrderDetailDelete, guestOrderDetailList);
+	 guestOrderDetailUpdate =  getModifyData(guestOrderDetailList, guestOrderDetailAdd, guestOrderDetailDelete);
 
    
     nui.mask({
@@ -889,7 +915,6 @@ function audit()
             guestOrderDetailAdd : guestOrderDetailAdd,
             guestOrderDetailUpdate : guestOrderDetailUpdate,
             guestOrderDetailDelete : guestOrderDetailDelete,
-            guestOrderDetailList : guestOrderDetailList,
             token : token
         }),
         success : function(data) {

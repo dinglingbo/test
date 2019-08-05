@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>配件分类设置</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/partTypeSet.js?v=2.0.2"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/partTypeSet.js?v=2.0.3"></script>
     <style type="text/css">
     body {
         margin: 0;

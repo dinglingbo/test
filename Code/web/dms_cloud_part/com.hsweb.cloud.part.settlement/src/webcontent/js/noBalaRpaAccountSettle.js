@@ -1,6 +1,6 @@
 var baseUrl = apiPath + cloudPartApi + "/";
 var companyUrl = apiPath + sysApi + "/"+"com.hsapi.system.basic.organization.getCompanyAll.biz.ext";
-var mainGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.queryGuestReceiveAmt.biz.ext";
+var mainGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.queryNoSettleBill.biz.ext";
 var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryPjPchsEnterMainDetailList.biz.ext";
 var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.query.queryReceiveMainDetails.biz.ext";
 var orgidsEl =null;
@@ -140,9 +140,9 @@ function getSearchParam(){
     params.orgid =nui.get('orgids').getValue();
     if(!params.orgid){
     	params.orgid =null;
-    	params.orgids = orgids;
     }
     params.tenantId =currTenantId;
+    params.isState = 0;
     return params;
 }
 var currType = 2;
@@ -307,6 +307,36 @@ function onDrawCell(e){
             var nowTime = (new Date()).getTime();
             var dayCount = parseInt((nowTime - enterTime) / 1000 / 60 / 60 / 24);
             e.cellHtml = dayCount+1;
+            break;
+        default:
+            break;
+    }
+}
+
+function onMainDrawCell(e){
+	switch (e.field)
+    {
+	    case "rAmt":
+	    	if(e.value==null || e.value==""){
+	    		 e.cellHtml = 0;
+	    	     e.value = 0;
+	    	}
+	    		
+	        break;
+        case "pAmt":
+        	if(e.value==null || e.value==""){
+        		 e.cellHtml = 0;
+	    	     e.value = 0;
+        	}
+	    		
+            break;
+        case "billAmt":
+        	if(e.value==null || e.value==""){
+       		 	e.cellHtml = 0;
+	    	    e.value = 0;
+        	}
+        	e.cellHtml = e.record.rAmt + e.record.pAmt;
+   	        e.value = e.record.rAmt + e.record.pAmt;
             break;
         default:
             break;

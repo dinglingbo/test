@@ -14,12 +14,21 @@ $(document).ready(function(v) {
 	disableEl = nui.get("disable");
 	undisableEl = nui.get("undisable");
 	
-	if(currOrgId != "0") {
-		nui.get("add").disable();
-		nui.get("mod").disable();
-		nui.get("disable").disable();
-		nui.get("undisable").disable();
-	}
+	mainGrid.on("rowlclick", function(e) {
+        var row = mainGrid.getSelected();
+        var rowc = nui.clone(row);
+        if(row.orgid != currOrgId && currOrgId != '0') {
+        	nui.get("mod").disable();
+    		nui.get("disable").disable();
+    		nui.get("undisable").disable();
+        }else {
+        	nui.get("mod").enable();
+    		nui.get("disable").enable();
+    		nui.get("undisable").enable();
+        }
+
+
+    });
 	
 	mainGrid.on("rowdblclick", function(e) {
 	        var row = mainGrid.getSelected();
@@ -107,7 +116,7 @@ function edit(){
 	var newRow = {};
 
 	var orgid = row.orgid;
-	if(currOrgId != "0" && orgid == 0) {
+	if(currOrgId != "0" && orgid != currOrgId) {
 		showMsg("此记录不能修改!","W");
 		return;
 	}
@@ -121,7 +130,7 @@ function disablePlay(isDisabled){
 	var row = mainGrid.getSelected();
 	if(row && row.id){
 		var orgid = row.orgid;
-		if(currOrgId != "0" && orgid == 0) {
+		if(currOrgId != "0" && orgid != currOrgId) {
 			showMsg("不能进行此操作!","W");
 			return;
 		}

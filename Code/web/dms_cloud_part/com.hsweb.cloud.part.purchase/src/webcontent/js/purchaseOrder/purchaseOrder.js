@@ -617,7 +617,14 @@ function loadMainAndDetailInfo(row) {
 			setBtnable(true);
 			setEditable(true);
 		}
-
+		//预售单转的单
+		if(row.sourceType ==5){
+			nui.get("guestId").disable();
+			nui.get("directOrgid").disable();
+		}else{
+			nui.get("guestId").enable();
+			nui.get("directOrgid").enable();
+		}
 		// 序列化入库主表信息，保存时判断主表信息有没有修改，没有修改则不需要保存
 		var data = basicInfoForm.getData();
 		data.orderAmt = data.orderAmt||0;
@@ -2817,6 +2824,12 @@ function OnrpMainGridCellBeginEdit(e){
 	
 		});
     }
+	 //预售单
+	 if(data.sourceType==5){
+		 if(field == "comPartCode" || field == "orderQty"){
+			 e.cancel = true; 
+		 }
+	 }
 
 }
 function addMorePart(){

@@ -54,6 +54,8 @@ pageEncoding="UTF-8" session="false"%>
                                    selectOnFocus="true" />
                             <input class="nui-textbox" width="120px" id="serviceId" emptyText="申请单号" selectOnFocus="true" name="serviceId"/>
                             <a class="nui-button" iconCls="" plain="true" onclick="morePartSearch" id="saveBtn"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                            <a class="nui-button" iconCls="" plain="true" onclick="onOk()"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
+                            <a class="nui-button" iconCls="" plain="true" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
                             
                         </td>
                     </tr>
@@ -114,10 +116,10 @@ pageEncoding="UTF-8" session="false"%>
             <div allowSort="true" type="indexcolumn" headerAlign="center" width="30">序号</div> 
             
             <div allowSort="true" field="partCode" name="partCode" width="80" headerAlign="center" header="配件编码" summaryType="count"></div>
-            <div field="partName" name="partName" headerAlign="center" allowSort="true" visible="true" width="150" header="配件全称"></div>
-            <div field="outQty" headerAlign="center" allowSort="true" visible="true" width="50" summaryType="sum" header="申请数量"></div>
-            <div field="outQty" headerAlign="center" allowSort="true" visible="true" width="50" summaryType="sum" header="受理数量"></div>
-            <div field="outQty" headerAlign="center" allowSort="true" visible="true" width="50" summaryType="sum" header="调整数量"></div>
+            <div field="partName" name="fullName" headerAlign="center" allowSort="true" visible="true" width="150" header="配件全称"></div>
+            <div field="applyQty" headerAlign="center" allowSort="true" visible="true" width="50" summaryType="sum" header="申请数量"></div>
+            <div field="hasAcceptQty" headerAlign="center" allowSort="true" visible="true" width="50" summaryType="sum" header="受理数量"></div>
+            <div field="hasCancelQty" headerAlign="center" allowSort="true" visible="true" width="50" summaryType="sum" header="调整数量"></div>
             <div field="remark" id="remark" name="remark" headerAlign="center" allowSort="true" visible="true" width="200" header="备注"></div>
            
        </div>

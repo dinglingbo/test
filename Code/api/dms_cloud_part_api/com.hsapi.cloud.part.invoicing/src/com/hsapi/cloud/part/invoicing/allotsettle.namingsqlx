@@ -161,7 +161,7 @@
     
     <select id="queryPjAllotApplyMains" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 
-            SELECT DISTINCT
+            SELECT 
 				a.id as id,
 				a.service_id as serviceId,
 				a.orgid as orgid,
@@ -171,6 +171,8 @@
 				a.code_id as codeId,
 				a.`code` as code,
 				a.out_code as outCode,
+				a.order_man_id as orderManId,
+				a.order_man as orderMan,
 				a.order_type_id as orderTypeId,
 				a.order_date as orderDate,
 				a.status as status,
@@ -223,8 +225,14 @@
                 <isNotEmpty prepend="and" property="status"> 
                     (a.status = #status#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="isAllotFinished"> 
+                    (a.is_allot_finished = #isAllotFinished#)
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="isDiffOrder"> 
                     (a.is_diff_order = #isDiffOrder#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="auditSign"> 
+                    (a.audit_sign = #auditSign#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="isState"> 
                     (a.is_state = #isState#)

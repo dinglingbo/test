@@ -2099,4 +2099,15 @@
 			is_finished = 0
            	and main_id = #mainId#
     </select>
+    
+    <select id="queryAllotApplyMainIsAllotFinish" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">   	
+		SELECT
+			id
+		FROM
+			pj_allot_apply_detail
+		WHERE
+			is_allot_finished = 0
+           	and main_id = #mainId#
+    </select>
+    
 </sqlMap>

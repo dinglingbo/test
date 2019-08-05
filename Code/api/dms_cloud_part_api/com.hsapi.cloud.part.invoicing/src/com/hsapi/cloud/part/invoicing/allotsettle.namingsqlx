@@ -20,10 +20,15 @@
 				a.store_id as storeId,
 				a.code_id as codeId,
 				a.`code` as code,
+				a.out_code as outCode,
 				a.order_type_id as orderTypeId,
 				a.order_date as orderDate,
+				a.status as status,
+				a.settle_status as settleStatus,
 				a.is_finished as isFinished,
 				a.finish_date as finishDate,
+				a.is_allot_finished as isAllotFinished,
+				a.allot_finished_date as allotFinishedDate,
 				a.is_diff_order as isDiffOrder,
 				a.tax_amt as taxAmt,
 				a.no_tax_amt as noTaxAmt,
@@ -47,8 +52,6 @@
 				a.state_sign as stateSign,
 				a.state_date as stateDate,
 				a.source_type as sourceType,
-				a.is_allot_finished as isAllotFinished,
-				a.finish_date as finishDate,
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName
 			FROM
@@ -72,6 +75,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="orderTypeId"> 
                     (a.order_type_id = #orderTypeId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="status"> 
+                    (a.status = #status#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="isDiffOrder"> 
                     (a.is_diff_order = #isDiffOrder#)
@@ -177,6 +183,8 @@
 			a.store_shelf as storeShelf,
 			a.is_finished as isFinished,
 			a.finish_date as finishDate,
+			a.is_allot_finished as isAllotFinished,
+			a.allot_finished_date as allotFinishedDate,
 			a.prev_detail_id as prevDetailId,
 			a.source_main_id as sourceMainId,
 			a.source_detail_id as sourceDetailId,
@@ -191,12 +199,23 @@
 			B.apply_car_model AS comApplyCarModel,
 			B.unit AS comUnit,
 			B.spec AS comSpec,
-			B.direction AS comDirection
+			B.direction AS comDirection,
+			c.stock_qty as storeStockQty,
+			c.up_limit as upLimit,
+			c.down_limit as downLimit,
+			c.up_limit_winter as upLimitWinter,
+			c.down_limit_winter as downLimitWinter
 		FROM
-			DMS_CLOUD_PART.pj_allot_apply_detail A
+			pj_allot_apply_detail A
 			INNER JOIN WB_COMMON.COM_ATTRIBUTE B ON A.PART_ID = B.ID
+			left join pj_part_store_stock c 
+			on a.store_id = c.store_id and a.part_id = c.part_id
 			where 1=1 and (A.MAIN_ID = #mainId#)
-            
+            <isNotEmpty prepend="and" property="isAllotFinished">  
+                <!--审核状态-->
+                    (a.is_allot_finished = #isAllotFinished#)
+                </isNotEmpty>
+                
         ORDER BY a.id asc
     </select>
     
@@ -785,6 +804,16 @@
 		on b.service_id = c.code and a.id = c.sourceDetailId
 		set a.has_in_qty = c.hasInQty
 		where b.code = #applyServiceId#
+	</update>
+	
+	<!-- 更新调拨申请的调整数量 
+	 -->
+    <update id="updateAllotApplyAdjustQty" parameterClass="java.util.HashMap" >
+		update pj_allot_apply_detail 
+		set is_allot_finished = case when has_cancel_qty + #adjQty# + has_accept_qty >= apply_qty then 1 else 0 end,
+		    allot_finished_date = case when has_cancel_qty + #adjQty# + has_accept_qty >= apply_qty then sysdate() else null end,
+		    has_cancel_qty = has_cancel_qty + #adjQty#
+		where main_id = #mainId# and id = #detailId#
 	</update>
 
 </sqlMap>

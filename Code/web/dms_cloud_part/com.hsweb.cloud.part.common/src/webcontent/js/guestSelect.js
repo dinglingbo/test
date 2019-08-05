@@ -16,6 +16,7 @@ var isClient = null;
 var supplierType = null;
 var guestType = null;
 var nameEl = null;
+var isInternal = null;
 
 var billTypeIdList = [];
 var billTypeIdHash = {};
@@ -166,6 +167,9 @@ function setGuestData(data){
         if(data.supplierType){
             supplierType = data.supplierType;
         }
+        if(data.isInternal) {
+        	isInternal = data.isInternal;
+        }
 
     }
 
@@ -196,6 +200,7 @@ function getSearchParam()
 }
 function doSearch(params)
 {
+	params.isInternal = isInternal;
     params.isSupplier = isSupplier;
     params.isClient = isClient;
     params.supplierType = supplierType;

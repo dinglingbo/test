@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryPjAllotApplyMains.bizx" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryPjAllotApplyMains.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="com.hsapi.cloud.part.invoicing.allotsettle.queryPjAllotApplyMainList&#xD;&#xA;&#xD;&#xA;调拨申请受理界面查询" title="Administrator&#x9;19-7-24 下午3:50">
     <location x="35" y="-70"/>
     <size height="100" width="466"/>
@@ -8,6 +8,16 @@
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="link2" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="连接线" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign2</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">params/searchType</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <location x="100" y="100"/>
     <size height="28" width="28"/>
@@ -69,6 +79,10 @@
       <process:from type="query" pattern="reference">pageSize</process:from>
       <process:to type="query">page/length</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">params/guestOrgId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="250" y="136"/>
@@ -81,6 +95,7 @@
       <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
+    <targetConnections>link6</targetConnections>
     <location x="410" y="100"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
@@ -126,6 +141,45 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link4</targetConnections>
+    <location x="248" y="189"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign2label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">pageSize</process:from>
+      <process:to type="query">page/size</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pageIndex</process:from>
+      <process:to type="query">page/currentPage</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="value">true</process:from>
+      <process:to type="query">page/isCount</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">pageSize*pageIndex</process:from>
+      <process:to type="query">page/begin</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pageSize</process:from>
+      <process:to type="query">page/length</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">params/orgid</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <location x="246" y="225"/>
+    <figSize height="17" width="32"/>
+    <node>assign2</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-08-05 16:26:10" date="2019-08-05Z" description="" name="queryPjAllotApplyMains" version="7.0.0.0"/>
@@ -144,4 +198,5 @@
     <process:output description="" isArray="false" name="totalPage" primitiveType="Int"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
+  <process:transactionType>true</process:transactionType>
 </process:tBusinessLogic>

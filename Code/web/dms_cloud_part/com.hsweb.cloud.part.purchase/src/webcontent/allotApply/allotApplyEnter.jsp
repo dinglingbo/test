@@ -153,7 +153,7 @@ body .mini-grid-row-selected{
                                       <td colspan="3">
                                           <input id="guestId" name="guestId" class="nui-buttonedit"
                                               emptyText="请选择调拨申请单..." visible="true" width="100%"
-                                              onbuttonclick="selectSupplier('searchGuestId')"  selectOnFocus="true" allowInput="false" />
+                                              onbuttonclick="selectApply()"  selectOnFocus="true" allowInput="false" />
                                       </td>
                                       <td class="title required">
                                           <label>调入仓库：</label>
@@ -344,7 +344,7 @@ body .mini-grid-row-selected{
             </tr>
             <tr>
                 <td class="title">
-                    <span style="letter-spacing: 6px;">供应</span>商:
+                    <span style="letter-spacing: 6px;">调出</span>方:
                 </td>
                 <td colspan="3">
                     <input id="advanceGuestId"
@@ -357,7 +357,7 @@ body .mini-grid-row-selected{
                 </td>
             </tr>
             <tr>
-                <td class="title">计划单号:</td>
+                <td class="title">申请单号:</td>
                 <td colspan="3">
                     <textarea class="nui-textarea" emptyText="" width="100%" style="height: 60px;" id="serviceIdList" name="serviceIdList"></textarea>
                 </td>

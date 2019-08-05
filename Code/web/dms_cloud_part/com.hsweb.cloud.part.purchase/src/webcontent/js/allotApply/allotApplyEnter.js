@@ -974,3 +974,28 @@ function getGuest(guestId){
         addr =guest.addr || "";
     });
 }
+
+function selectApply() {
+    nui.open({
+        // targetWindow: window,,
+        url : webPath+contextPath+"/com.hsweb.cloud.part.purchase.allotApplyChoose.flow?token="+token,
+        title : "调拨申请单选择",
+        width : 980,
+        height : 560,
+        allowDrag : true,
+        allowResize : true,
+        onload : function() {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setInitData();
+        },
+        ondestroy : function(action) {
+            if (action == 'ok') {
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+
+                
+
+            }
+        }
+    });
+}

@@ -13,7 +13,7 @@
 <head>
 <title>未对账业务单</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/settlement/js/noBalaRpaAccountSettle.js?v=1.0.62"></script>
+    <script src="<%=webPath + contextPath%>/settlement/js/noBalaRpaAccountSettle.js?v=1.0.69"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -61,8 +61,9 @@
 			
 			 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:92%;"
 		         showPager="true"
-		         dataField="list"
+		         dataField="detailList"
 		         sortMode="client"
+		         ondrawcell="onMainDrawCell"
 		         showReloadButton="false"
 		         pageSize="50" 
 		         multiSelect="false"				
@@ -71,15 +72,10 @@
 		         sizeList="[50,100,200]">
 		        <div property="columns">
 		            <div type="indexcolumn">序号</div>
-		            <div field="guestName" width="120" headerAlign="center" header="客户"></div>
+		            <div field="fullName" width="120" headerAlign="center" header="往来单位"></div>
 		            <div field="rAmt" width="55px" headerAlign="center" allowSort="true" header="应收金额"></div>
 		            <div field="pAmt" width="55px" headerAlign="center" allowSort="true" header="应付金额"></div>
-		            <div field="rpAmt" width="55px" headerAlign="center" allowSort="true" header="对账金额"></div>
-		            <div field="voidAmt" width="55px" headerAlign="center" allowSort="true" header="优惠金额"></div>
-		            <div field="trueRpAmt" width="55px" headerAlign="center" allowSort="true" header="应结金额"></div>
-		            <div field="receiveAmt" width="55px" headerAlign="center" allowSort="true" header="回款金额"></div>
-		            <div field="dueAmt" width="55px" headerAlign="center" allowSort="true" header="欠款金额"></div>
-		            <div field="receiveRate" width="55px" headerAlign="center" allowSort="true" header="回款率%"></div>
+		            <div field="billAmt" width="55px" headerAlign="center" allowSort="true" header="未对账金额"></div>
 		        </div>
 		     </div>
 			
@@ -88,7 +84,11 @@
         <div size="40%" showCollapseButton="false">
         
         	<div class="nui-fit">
-        	
+        	 <div id="mainTabs" class="nui-tabs" name="mainTabs"
+                    activeIndex="0" 
+                    style="width:100%; height:100%;" 
+                    plain="false" 
+                    onactivechanged="">
                 <div title="应收" id="receiveTab" name="receiveTab" url="" >
                	                	
                       <div id="leftGrid" class="nui-datagrid" style="width:100%;height:100%;"
@@ -123,8 +123,52 @@
 				            
 				        </div>
 				    </div>
+                	
+                	
+                </div>
+                <div title="应付" id="payTab" name=""receiveTab"" url="" >
                 
-
+                	<div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
+				         showPager="true"
+				         dataField="detailList"
+				         idField="detailId"
+				         ondrawcell="onDrawCell"
+				         sortMode="client"
+				         url=""
+				         totalField="page.count"
+						 pageSize="100"
+						 sizeList=[100,200,500,1000]
+				         showSummaryRow="false">
+				        <div property="columns">
+				            <div type="indexcolumn">序号</div>
+				            <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="采购单号"></div>
+				            <div field="guestFullName" width="150" headerAlign="center" header="供应商"></div>
+				            <div allowSort="true" field="enterDate" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+				            <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div> 
+				            <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>-->
+				            <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
+				            <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
+				            <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
+				            <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
+				            <div allowSort="true" datatype="float" field="enterQty" summaryType="sum" width="60" headerAlign="center" header="采购数量"></div>
+				            <div allowSort="true" datatype="float" field="enterPrice" width="60" headerAlign="center" header="采购单价"></div>
+				            <div allowSort="true" datatype="float" field="enterAmt" summaryType="sum" width="60" headerAlign="center" header="采购金额"></div>
+				            <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可出库数量"></div>
+				            <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
+				            <div allowSort="true" field="detailRemark" width="60" headerAlign="center" header="备注"></div>
+				            <div allowSort="true" type="checkboxcolumn" field="taxSign" width="40" headerAlign="center" header="是否含税" trueValue="1" falseValue="0"></div>
+				            <div allowSort="true" field="taxRate" width="40" headerAlign="center" header="税点"></div>
+				            <div field="taxPrice" width="60" headerAlign="center" header="含税单价"></div>
+				            <div field="taxAmt" width="60" headerAlign="center" summaryType="sum" header="含税金额"></div>
+				            <div field="noTaxPrice" width="60" headerAlign="center" header="不含税单价"></div>
+				            <div field="noTaxAmt" width="60" headerAlign="center" summaryType="sum" header="不含税金额"></div>
+				            <div allowSort="true" field="manualCode" width="150" headerAlign="center" header="手工单号"></div>
+				            <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
+				            <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+				        </div>
+				    </div>
+                      
+                </div>
                 
              </div>
            </div>

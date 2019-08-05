@@ -285,8 +285,11 @@
                 <isNotEmpty prepend="and" property="serviceId">  
                     (c.service_id like '%$serviceId$%')
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="partNameAndPY">  
+                    (B.FULL_NAME like '%$partNameAndPY$%')
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="partName">  
-                    (D.FULL_NAME like '%$partName$%')
+                    (B.FULL_NAME like '%$partName$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="auditSign">  
                 <!--审核状态-->
@@ -294,6 +297,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
                     (c.service_id in ($serviceIdList$))
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="partCode">  
+                    (b.CODE = #partCode#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (b.CODE in ($partCodeList$))

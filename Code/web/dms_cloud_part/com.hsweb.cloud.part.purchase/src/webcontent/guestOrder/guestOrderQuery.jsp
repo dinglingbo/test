@@ -8,7 +8,7 @@
   - Description:
 -->
 <head>
-<title>预售单查询</title>
+<title>预销售单明细查询</title>
 <script src="<%=webPath + contextPath%>/purchase/js/guestOrder/guestOrderQuery.js?v=2.0.7"></script>
 <style type="text/css">
 .title {
@@ -60,11 +60,11 @@
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
 
                 <span class="separator"></span> 
-                <input id="partNameAndPY" width="120px" emptyText="配件名称/拼音"  class="nui-textbox"/>
+                <input id="partNameAndPY" width="120px" emptyText="配件名称/拼音"  class="nui-textbox" onenter="onSearch()"/>
                 <!-- <label style="font-family:Verdana;">配件编码：</label> -->
-                <input id="partCode" width="120px" emptyText="配件编码"  class="nui-textbox"/>
+                <input id="partCode" width="120px" emptyText="配件编码"  class="nui-textbox" onenter="onSearch()"/>
                <!--  <label style="font-family:Verdana;">订单单号：</label> -->
-                <input id="serviceId" width="120px" emptyText="订单单号"  class="nui-textbox"/>
+                <input id="serviceId" width="120px" emptyText="订单单号"  class="nui-textbox" onenter="onSearch()"/>
                 <!-- <label style="font-family:Verdana;">客户：</label> -->
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择客户..."

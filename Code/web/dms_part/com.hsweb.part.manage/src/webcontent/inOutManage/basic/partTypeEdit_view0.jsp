@@ -8,7 +8,7 @@
 -->
 <head>
 <title>新增分类</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/partTypeEdit.js?v=2.0.1"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/partTypeEdit.js?v=2.0.3"></script>
 <style type="text/css">
 .title {
     width: 90px;

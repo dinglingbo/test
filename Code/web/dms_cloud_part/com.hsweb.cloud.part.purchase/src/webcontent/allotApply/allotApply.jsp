@@ -366,20 +366,20 @@ body .mini-grid-row-selected{
             </tr>
             <tr>
                 <td class="title">
-                    <span style="letter-spacing: 6px;">供应</span>商:
+                    <span style="letter-spacing: 6px;">调出</span>方:
                 </td>
                 <td colspan="3">
                     <input id="advanceGuestId"
                            name="guestId"
                            class="nui-buttonedit"
-                           emptyText="请选择供应商..."
+                           emptyText="请选择调出方..."
                            onbuttonclick="selectSupplier('advanceGuestId')"
                            width="100%"
                            selectOnFocus="true" />
                 </td>
             </tr>
             <tr>
-                <td class="title">计划单号:</td>
+                <td class="title">申请单号:</td>
                 <td colspan="3">
                     <textarea class="nui-textarea" emptyText="" width="100%" style="height: 60px;" id="serviceIdList" name="serviceIdList"></textarea>
                 </td>

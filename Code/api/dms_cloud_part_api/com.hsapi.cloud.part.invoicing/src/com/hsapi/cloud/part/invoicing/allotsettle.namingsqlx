@@ -22,6 +22,8 @@
 				a.`code` as code,
 				a.out_code as outCode,
 				a.order_type_id as orderTypeId,
+				a.order_man_id as orderManId,
+				a.order_man as orderMan,
 				a.order_date as orderDate,
 				a.status as status,
 				a.settle_status as settleStatus,

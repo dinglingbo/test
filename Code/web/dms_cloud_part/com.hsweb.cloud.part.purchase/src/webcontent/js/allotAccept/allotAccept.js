@@ -505,7 +505,7 @@ function save() {
 function getMainData()
 {
     var data = basicInfoForm.getData();
-    data.orderTypeId = 1;
+    data.orderTypeId = 2;
     data.isDiffOrder = 0;
     delete data.createDate; 
     if(data.operateDate) {

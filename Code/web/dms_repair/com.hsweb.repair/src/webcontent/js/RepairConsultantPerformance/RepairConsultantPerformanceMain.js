@@ -325,3 +325,34 @@ function selectCustomer(elId) {
         }
     });
 }
+function onExport(){
+	var detail = grid.getData();
+//多级
+	exportMultistage(grid.columns)
+//单级
+       //exportNoMultistage(grid.columns)
+	for(var i=0;i<detail.length;i++){
+		detail[i].id=1;
+/*		detail[i].status=statusHash[detail[i].status]
+
+		detail[i].billTypeId=billTypeIdList[detail[i].billTypeId].name;
+        if(detail[i].isSettle== 1){
+        	detail[i].isSettle = "已结算";
+        }else{
+        	detail[i].isSettle = "未结算";
+        }
+
+		if(detail[i].isCollectMoney==1){
+			detail[i].isCollectMoney="√";
+		}else{
+			detail[i].isCollectMoney="";
+		}*/
+	}
+	if(detail && detail.length > 0){
+//多级表头类型
+		setInitExportData( detail,grid.columns,"已结算工单明细表导出");
+//单级表头类型  与上二选一
+//setInitExportDataNoMultistage( detail,grid.columns,"已结算工单明细表导出");
+	}
+	
+}

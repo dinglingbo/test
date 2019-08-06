@@ -144,7 +144,7 @@ function loadMainAndDetailInfo(row)
        if(row.isDisabled == 1) {
             $('#status').text("已作废");
        }else {
-           $('#status').text(AuditSignHash[row.status]);
+           $('#status').text(AuditSignHash[row.settleStatus]);
        }
        //bottomInfoForm.setData(row);
        nui.get("guestId").setText(row.guestFullName);
@@ -169,6 +169,7 @@ function loadMainAndDetailInfo(row)
             nui.get("undelBtn").setVisible(false);
             //document.getElementById("delBtn").childNodes[0].innerHTML = '<span class="fa fa-remove fa-lg"></span>&nbsp;作废';
        }
+       
         
        //序列化入库主表信息，保存时判断主表信息有没有修改，没有修改则不需要保存
        formJson = nui.encode(basicInfoForm.getData());
@@ -303,6 +304,7 @@ function quickSearch(type){
             querysign = 2;
             gsparams.isDisabled = 0;
             gsparams.status = 0;
+            gsparams.settleStatus=0;
             gsparams.auditSign = null;
             break;
         case 7:
@@ -310,6 +312,7 @@ function quickSearch(type){
             querysign = 2;
             gsparams.isDisabled = 0;
             gsparams.status = null;
+            gsparams.settleStatus=null;
             gsparams.auditSign = 1;
             break;
         case 8:
@@ -341,6 +344,7 @@ function quickSearch(type){
             querysign = 2;
             gsparams.isDisabled = 0;
             gsparams.status = null;
+            gsparams.settleStatus=null;
             gsparams.auditSign = null;
             break;
         default:
@@ -746,6 +750,10 @@ var delUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.updatePjAllotAc
 function del()
 {
     var data = basicInfoForm.getData();
+    if(!data.storeId){
+    	showMsg("请选择仓库","W");
+    	return;
+    }
     var isDisabled = 1;
     if(data.isDisabled == 1){
         isDisabled = 0;
@@ -808,11 +816,11 @@ function submit()
 
 var auditUrl= baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.auditPjAllotAcceptOut.biz.ext";
 function audit(){
-	 var data = basicInfoForm.getData();
 	 var flag =save(1);
 	 if(flag !=true){
 		 return;
 	 }
+	 var data = getMainData();
 	 nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
@@ -836,7 +844,7 @@ function audit(){
 		                showMsg("出库成功!","S");
 	
 		                var row = leftGrid.getSelected();
-		                leftGrid.updateRow(row,data);
+		                leftGrid.updateRow(row,leftRow);
 		                loadMainAndDetailInfo(leftRow);
                   }
 
@@ -1154,7 +1162,8 @@ function getPartInfo(params){
 
     return part;
 }
-function addInsertRow(value, row) {    
+function addInsertRow(value, row) { 
+	value=value.replace(/\s+/g, "");
     var guestId = nui.get("guestId").getValue();
     if(!guestId) {
         showMsg("请先选择调出方再添加配件!","W");
@@ -1401,9 +1410,13 @@ function OnrpMainGridCellBeginEdit(e){
         e.cancel = true;
     }
 
-    if(data.codeId && data.codeId>0){
-        e.cancel = true;
+    if(data.codeId && data.codeId>0 ){
+    	if(e.field =="comPartCode"  || e.field =="applyQty"){
+    		 e.cancel = true;
+    	}
+       
     }
+    
     if(e.field == 'storeId'){
         editor.setData(storehouse);
     }
@@ -1415,19 +1428,6 @@ function OnrpMainGridCellBeginEdit(e){
             morePartGrid.select(row,true);
         }
         partIn=false;
-    }
-    if (field == "storeShelf") {
-        var value = e.record.storeId;
-        var editor = e.editor;
-        if(editor.type=='textbox'){
-            return;
-        }
-        getLocationListByStoreId(value,function(data) {
-            storeShelfList = data.locationList || [];
-            nui.get('storeShelf').setData(storeShelfList);
-            
-    
-        });
     }
 
 }

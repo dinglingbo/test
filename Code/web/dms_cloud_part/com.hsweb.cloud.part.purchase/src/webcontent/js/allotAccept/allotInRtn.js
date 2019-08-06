@@ -877,6 +877,59 @@ function submit()
 
 }
 
+var outUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.auditPjAllotAcceptOut.biz.ext";
+function auditOut() {
+    var row = leftGrid.getSelected();
+    if(row){
+        if(row.status != 3 || row.settleStatus == 2) {
+            showMsg("此单未受理，或已经完成出库!","W");
+            return;
+        } 
+    }else{
+        return;
+    }
+
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '处理中...'
+    });
+
+    nui.ajax({
+        url : outUrl,
+        type : "post",
+        data : JSON.stringify({
+            mainId : row.id,
+            token : token
+        }),
+        success : function(data) {
+            nui.unmask(document.body);
+            data = data || {};
+            if (data.errCode == "S") {
+                showMsg("出库成功!","S");
+
+                var pjAllotAcceptMainList = data.pjAllotAcceptMainList;
+                if(pjAllotAcceptMainList && pjAllotAcceptMainList.length>0) {
+                    var leftRow = pjAllotAcceptMainList[0];
+                    var row = leftGrid.getSelected();
+                    leftGrid.updateRow(row,leftRow);
+
+                    //保存成功后重新加载数据
+                    loadMainAndDetailInfo(leftRow);
+
+                    
+                }
+
+            } else {
+                showMsg(data.errMsg || "提交失败!","W");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
+    });
+}
+
 function addGuest(){
     nui.open({
         // targetWindow: window,

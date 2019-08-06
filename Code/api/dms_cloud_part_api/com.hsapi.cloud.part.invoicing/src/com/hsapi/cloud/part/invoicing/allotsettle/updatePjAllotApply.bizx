@@ -185,6 +185,16 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link7" name="link7" displayName="连接线" type="transition">
+      <sourceNode>assign3</sourceNode>
+      <targetNode>assign0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="OBJEQ">
+          <process:leftOperand type="query">main/orgid</process:leftOperand>
+          <process:rightOperand type="literal">main/guestOrgid</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link12</targetConnections>
     <location x="-40" y="57"/>
     <size height="28" width="28"/>
@@ -434,6 +444,7 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" collapsed="false" type="end">
     <targetConnections>link41</targetConnections>
+    <targetConnections>link15</targetConnections>
     <location x="-180" y="234"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
@@ -599,6 +610,29 @@
     <location x="94" y="94"/>
     <figSize height="17" width="45"/>
     <node>invokePojo7</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>end1</targetNode>
+    </sourceConnections>
+    <targetConnections>link7</targetConnections>
+    <location x="-39" y="152"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign0label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">调出方和调入方不能相同</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
+    <location x="-37" y="188"/>
+    <figSize height="17" width="25"/>
+    <node>assign0</node>
   </nodes>
   <topRuler>
     <guides position="-558" horizontal="true"/>

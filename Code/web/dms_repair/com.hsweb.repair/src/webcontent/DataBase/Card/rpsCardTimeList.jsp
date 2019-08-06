@@ -11,7 +11,7 @@
 <head>
 <title>计次卡查询</title>
 
-<script src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.2.4"></script>
+<script src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.0.1"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 	
@@ -78,7 +78,7 @@
 							电话</div>		 
 						<div field="cardName" name="cardName" headerAlign="center" allowSort="true">
 						  计次卡名称</div>
-						<div field="periodValidity" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm">
+						<div field="periodValidity" headerAlign="center" allowSort="true" >
 							有效期</div>
 						<div field="prdtType" headerAlign="center" allowSort="true">
 							项目类型
@@ -138,26 +138,7 @@
 </div>
 
 <div id="exportDiv" style="display:none">  
-    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
-        <tr>  
-               
-        	<td colspan="1" align="center">客户名称</td>
-            <td colspan="1" align="center">车牌号</td>
-            <td colspan="1" align="center">电话</td>
-            <td colspan="1" align="center">计次卡名称</td>
-             <td colspan="1" align="center">有效期</td>            
-            <td colspan="1" align="center">项目类型</td>
-            <td colspan="1" align="center">项目名称</td>
-            <td colspan="1" align="center">总次数</td>                                 
-            <td colspan="1" align="center">已使用次数</td>
-            <td colspan="1" align="center">剩余次数</td>
-            <td colspan="1" align="center">总金额</td>  
-            <td colspan="1" align="center">剩余金额</td>  
-        </tr>
-        <tbody id="tableExportContent">
-        </tbody>
-    </table>  
-    <a href="" id="tableExportA"></a>
+
 </div>
 </body>
 </html>

@@ -104,6 +104,7 @@ function getSearchParam(){
 	params.guestId = comSearchGuestId.getValue();
 	params.endDate = searchEndDate.getFormValue();
 	params.startDate = searchBeginDate.getFormValue();
+	params.auditSign=1;
     return params;
 }
 var currType = 2;

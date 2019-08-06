@@ -749,6 +749,10 @@ var delUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.updatePjAllotAc
 function del()
 {
     var data = basicInfoForm.getData();
+    if(!data.storeId){
+    	showMsg("请选择仓库","W");
+    	return;
+    }
     var isDisabled = 1;
     if(data.isDisabled == 1){
         isDisabled = 0;
@@ -1157,7 +1161,8 @@ function getPartInfo(params){
 
     return part;
 }
-function addInsertRow(value, row) {    
+function addInsertRow(value, row) { 
+	value=value.replace(/\s+/g, "");
     var guestId = nui.get("guestId").getValue();
     if(!guestId) {
         showMsg("请先选择调出方再添加配件!","W");

@@ -283,7 +283,7 @@
     <location x="90" y="58"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart2label</nodeLabel>
-    <process:iterate iterable="pchsOrderDetailUpdate" iterableElement="tmp"/>
+    <process:iterate iterable="detailUpdate" iterableElement="tmp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend2label" name="label" nodeType="label">
     <location x="515" y="90"/>

@@ -37,10 +37,8 @@ var isNeedSet = false;
 
 var AuditSignHash = {
   "0":"草稿",
-  "1":"待受理",
-  "2":"部分受理",
-  "3":"全部受理",
-  "4":"已拒绝"
+  "1":"部分出库",
+  "2":"全部出库"
 };
 var storeLimitMap={};
 var storeShelfList=[];
@@ -223,7 +221,7 @@ function onLeftGridDrawCell(e)
 {
     var record = e.record;
     switch (e.field){
-        case "status":
+        case "settleStatus":
             if(record.isDisabled == 1) {
                 e.cellHtml = "已作废";
             }else {
@@ -322,36 +320,21 @@ function quickSearch(type){
             gsparams.auditSign = null;
             break;
         case 9:
-            querytypename = "待受理";
+            querytypename = "部分出库";
             querysign = 2;
             gsparams.isDisabled = null;
-            gsparams.status = 1;
+            gsparams.settleStatus = 1;
             gsparams.auditSign = null;
             break;
         case 10:
             gsparams.billStatusId = 2;
-            querytypename = "部分受理";
+            querytypename = "全部出库";
             querysign = 2;
             gsparams.isDisabled = null;
-            gsparams.status = 2;
+            gsparams.settleStatus = 2;
             gsparams.auditSign = null;
             break;
-        case 11:
-            gsparams.billStatusId = null;
-            querytypename = "全部受理";
-            querysign = 2;
-            gsparams.isDisabled = null;
-            gsparams.status = 3;
-            gsparams.auditSign = null;
-            break;
-        case 12:
-            gsparams.billStatusId = null;
-            querytypename = "已拒绝";
-            querysign = 2;
-            gsparams.isDisabled = null;
-            gsparams.status = 4;
-            gsparams.auditSign = null;
-            break;
+
         case 13:
             gsparams.billStatusId = null;
             querytypename = "所有";

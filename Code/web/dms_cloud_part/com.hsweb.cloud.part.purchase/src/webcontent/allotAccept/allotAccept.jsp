@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调拨受理</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotAccept.js?v=1.0.14"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotAccept.js?v=1.0.19"></script>
 <style type="text/css">
 .title {
   width: 70px;
@@ -66,10 +66,8 @@ body .mini-grid-row-selected{
                     <li iconCls="" onclick="quickSearch(7)" id="type7">已提交</li>
                     <li iconCls="" onclick="quickSearch(8)" id="type8">已作废</li>
                     <span class="separator"></span>
-                    <li iconCls="" onclick="quickSearch(9)" id="type8">待受理</li>
-                    <li iconCls="" onclick="quickSearch(10)" id="type8">部分受理</li>
-                    <li iconCls="" onclick="quickSearch(11)" id="type9">全部受理</li>
-                    <li iconCls="" onclick="quickSearch(12)" id="type9">已拒绝</li>
+                    <li iconCls="" onclick="quickSearch(9)" id="type9">部分出库</li>
+                    <li iconCls="" onclick="quickSearch(10)" id="type10">全部出库</li>
                 </ul>
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择调出机构..." visible="false"
@@ -124,7 +122,7 @@ body .mini-grid-row-selected{
                      url="">
                     <div property="columns">
                       <div type="indexcolumn">序号</div>
-                        <div field="status" width="60" headerAlign="center" header="状态"></div>
+                        <div field="settleStatus" width="60" headerAlign="center" header="状态"></div>
                         <div field="auditSign" width="65" visible="false" headerAlign="center" header="状态"></div>
                         <div field="guestFullName" width="120" headerAlign="center" header="调出方"></div>
                         <div field="orderDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="创建日期"></div>
@@ -151,6 +149,7 @@ body .mini-grid-row-selected{
                               <input class="nui-hidden" name="operateDate"/>
                               <input class="nui-hidden" name="versionNo"/>
                               <input class="nui-hidden" name="status" id="status"/>
+                              <input class="nui-hidden" name="settleStatus" id="settleStatus"/>
                               <input class="nui-hidden" name="isDisabled" id="isDisabled"/>
                               <input class="nui-hidden" name="guestOrgid" id="guestOrgid"/>
                               <input class="nui-hidden" name="auditSign"/>

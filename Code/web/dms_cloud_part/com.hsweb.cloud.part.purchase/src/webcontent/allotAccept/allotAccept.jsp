@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调拨受理</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotAccept.js?v=1.0.7"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotAccept.js?v=1.0.8"></script>
 <style type="text/css">
 .title {
   width: 70px;
@@ -145,6 +145,9 @@ body .mini-grid-row-selected{
                       <div class="fieldset-body">
                           <div id="basicInfoForm" class="form" contenteditable="false">
                               <input class="nui-hidden" name="id"/>
+                              <input class="nui-hidden" name="orgid"/>
+                              <input class="nui-hidden" name="codeId"/>
+                              <input class="nui-hidden" name="code"/>
                               <input class="nui-hidden" name="operateDate"/>
                               <input class="nui-hidden" name="versionNo"/>
                               <input class="nui-hidden" name="status" id="status"/>

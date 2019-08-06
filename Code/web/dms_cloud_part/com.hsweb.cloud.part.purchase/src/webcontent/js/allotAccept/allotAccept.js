@@ -444,13 +444,6 @@ function save() {
         return;
     }
 
-    if(type == 1) {
-        var msg = checkRightData();
-        if(msg){
-            showMsg(msg,"W");
-            return;
-        }
-    }
     
     var rightRow =rightGrid.getData();
 
@@ -500,6 +493,7 @@ function save() {
                 }
             } else {
                 showMsg(data.errMsg || etip,"E");
+                return flag;
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -779,7 +773,7 @@ function submit()
     save(1);
 }
 
-var auditUrl= baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.updatePjAllotAcceptDisabled.biz.ext";
+var auditUrl= baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.auditPjAllotAcceptOut.biz.ext";
 function audit(){
 	 var data = basicInfoForm.getData();
 	 var flag =save();
@@ -806,7 +800,7 @@ function audit(){
 
 	                var row = leftGrid.getSelected();
 	                leftGrid.updateRow(row,data);
-	                basicInfoForm.setData(row);
+	                loadMainAndDetailInfo(leftRow);
 
 
 	            } else {

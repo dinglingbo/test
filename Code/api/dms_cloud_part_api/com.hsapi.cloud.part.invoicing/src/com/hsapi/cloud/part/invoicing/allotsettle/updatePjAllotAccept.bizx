@@ -953,7 +953,7 @@
       <process:inputVariables>
         <process:inputVariable id="0" name="detailId" type="query" value="Long" valueType="Primitive" pattern="reference">tmp/id</process:inputVariable>
         <process:inputVariable id="1" name="mainId" type="query" value="Long" valueType="Primitive" pattern="reference">main/id</process:inputVariable>
-        <process:inputVariable id="2" name="billQty" type="query" value="Float" valueType="Primitive" pattern="reference">tmp/orderQty</process:inputVariable>
+        <process:inputVariable id="2" name="billQty" type="query" value="Float" valueType="Primitive" pattern="reference">tmp/acceptQty</process:inputVariable>
         <process:inputVariable id="3" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">main/orgid</process:inputVariable>
         <process:inputVariable id="4" name="storeId" type="query" value="Long" valueType="Primitive" pattern="reference">tmp/storeId</process:inputVariable>
         <process:inputVariable id="5" name="partId" type="query" value="Long" valueType="Primitive" pattern="reference">tmp/partId</process:inputVariable>

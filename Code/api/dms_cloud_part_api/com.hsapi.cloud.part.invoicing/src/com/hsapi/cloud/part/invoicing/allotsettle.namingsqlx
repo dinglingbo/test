@@ -112,6 +112,9 @@
                 <isNotEmpty prepend="and" property="serviceId">  
                     (a.service_id like '%$serviceId$%')
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="applyCode">  
+                    (a.code like '%$applyCode$%')
+                </isNotEmpty>
                 <!--审核日期 -->
                 <isNotEmpty prepend="and" property="sAuditDate">  
                     (A.AUDIT_DATE &gt;= #sAuditDate#)
@@ -224,6 +227,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="status"> 
                     (a.status = #status#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="nstatus"> 
+                    (a.status != #nstatus#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="isAllotFinished"> 
                     (a.is_allot_finished = #isAllotFinished#)
@@ -708,7 +714,7 @@
 		inner join pj_allot_apply_main c
 		on a.main_id = c.id and b.main_id = c.code_id
 		set b.is_finished = case when b.has_in_qty + a.apply_qty + b.has_cancel_qty = b.apply_qty then 1 else 0 end,
-		    b.finish_date = case when b.has_accept_qty + a.accept_qty + b.has_cancel_qty = b.apply_qty then SYSDATE() else NULL end,
+		    b.finish_date = case when b.has_in_qty + a.apply_qty + b.has_cancel_qty = b.apply_qty then SYSDATE() else NULL end,
 			b.has_in_qty = b.has_in_qty + a.apply_qty
 		where a.main_id = #mainId# 
 		

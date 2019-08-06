@@ -9,7 +9,7 @@
       <sourceNode>start0</sourceNode>
       <targetNode>subprocess0</targetNode>
     </sourceConnections>
-    <location x="31" y="202"/>
+    <location x="-55" y="202"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
@@ -25,7 +25,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="33" y="238"/>
+    <location x="-53" y="238"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -56,7 +56,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="173" y="202"/>
+    <location x="87" y="202"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -71,11 +71,13 @@
         <process:outputVariable id="2" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="3" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
         <process:outputVariable id="4" name="isDirect" type="query" value="Int" valueType="Primitive">isDirect</process:outputVariable>
+        <process:outputVariable id="5" name="applyServiceId" type="query" value="String" valueType="Primitive">applyServiceId</process:outputVariable>
+        <process:outputVariable id="6" name="acceptServiceId" type="query" value="String" valueType="Primitive">acceptServiceId</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="129" y="237"/>
+    <location x="43" y="237"/>
     <figSize height="17" width="115"/>
     <node>subprocess0</node>
   </nodes>
@@ -104,6 +106,8 @@
         <process:inputVariable id="0" name="main" type="query" value="com.hsapi.cloud.part.data.pts.PjAllotApplyMain" valueType="DataObject" pattern="reference">orderMain</process:inputVariable>
         <process:inputVariable id="1" name="detail" type="query" value="com.hsapi.cloud.part.data.pts.PjAllotApplyDetail[]" valueType="DataObject" pattern="reference">orderDetail</process:inputVariable>
         <process:inputVariable id="2" name="isDirect" type="query" value="Int" valueType="Primitive" pattern="reference">isDirect</process:inputVariable>
+        <process:inputVariable id="3" name="applyServiceId" type="query" value="String" valueType="Primitive" pattern="reference">applyServiceId</process:inputVariable>
+        <process:inputVariable id="4" name="acceptServiceId" type="query" value="String" valueType="Primitive" pattern="reference">acceptServiceId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -142,12 +146,12 @@
     </sourceConnections>
     <targetConnections>link6</targetConnections>
     <targetConnections>link7</targetConnections>
-    <location x="173" y="345"/>
+    <location x="87" y="345"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="171" y="381"/>
+    <location x="85" y="381"/>
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
@@ -157,18 +161,18 @@
       <targetNode>subprocess3</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
-    <location x="266" y="202"/>
+    <location x="180" y="202"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="264" y="238"/>
+    <location x="178" y="238"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
@@ -179,6 +183,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjAllotApplyMain" name="orderMain"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjAllotApplyDetail" name="orderDetail"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="isDirect" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="applyServiceId" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="acceptServiceId" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjWmsParamsMain" name="paramsMain"/>

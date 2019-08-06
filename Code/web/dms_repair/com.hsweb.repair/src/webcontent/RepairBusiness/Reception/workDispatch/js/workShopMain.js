@@ -5,6 +5,7 @@ var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.dispatchQyeryMai
 var mainGrid = null;
 var mtAdvisorIdEl = null;
 var rightGrid = null;
+var rightGrid2 = null;
 var workList=[];
 var advancedStopWin = null;
 var stop_uid = null;
@@ -24,6 +25,7 @@ $(document).ready(function() {
 	//是否显示预结算
 	mainGrid = nui.get("mainGrid");
 	rightGrid = nui.get("rightGrid");
+	rightGrid2 = nui.get("rightGrid2");
 	mtAdvisorIdEl = nui.get("mtAdvisorId");
 	advancedStopWin = nui.get("advancedStopWin");
 	mainGrid.setUrl(mainGridUrl);
@@ -31,17 +33,19 @@ $(document).ready(function() {
 	rightGrid.on("drawcell",function(e) {
 		var record = e.record;
 		var status = record.status;
+		var isBack = record.isBack;
 		var uid = record._uid;
 		if (e.field == "status") {
 			if(status == 2) {
-				e.cellHtml = record.stopReason;
-        	}else {
+				if(isBack==1){
+					e.cellHtml = "质检打回"
+				}else{
+					e.cellHtml = record.stopReason;
+				}
+				
+        	}else{
             	e.cellHtml = statusHash[e.value];
             }
-		}else if (e.field == "boxBrandId") {
-			if (brandHash && brandHash[e.value]) {
-				e.cellHtml = brandHash[e.value].name;
-			}
 		}else if(e.field == "itemOptBtn"){
         	var s = "";
         	if(status == 0){
@@ -101,6 +105,70 @@ $(document).ready(function() {
 	            }
 	            e.cellHtml = s;
            }
+        }
+	});
+	rightGrid2.on("drawcell",function(e) {
+		var record = e.record;
+		var isBack = record.isBack;
+		var uid = record._uid;
+		if (e.field == "isBack") {
+			if(isBack==0){
+				e.cellHtml = "等待质检";
+			}else if(isBack==2){
+				e.cellHtml = "质检通过";
+			}
+		}else if(e.field == "itemOptBtn"){
+        	var s = "";
+            s =  s + ' <a class="optbtn" href="javascript:passWork(\'' + uid + '\')">通过</a>';
+            s =  s + ' <a class="optbtn" href="javascript:backWork(\'' + uid + '\')">打回</a>';
+            e.cellHtml = s;
+        }else if(e.field == "workTime"){
+        	var s = "";
+        	var workTime = record.workTime;
+            if(workTime>0){
+	        	var days = Math.floor(workTime / (24 * 3600)); // 计算出天数
+	        	if(days>0){
+	        		s = days + '天';
+	        	}
+	            var leavel = workTime % (24 * 3600); // 计算天数后剩余的时间
+	            var hours = Math.floor(leavel / 3600); // 计算剩余的小时数
+	            if(hours>0){
+	            	s = s + hours + '小时';
+	            }
+	            var leavel2 = leavel % 3600; // 计算剩余小时后剩余的毫秒数
+	            var minutes = Math.floor(leavel2 / 60); // 计算剩余的分钟数
+	            if(minutes>0){
+	            	s = s + minutes + '分';
+	            }
+	            e.cellHtml = s;
+           }
+        }else if(e.field == "stopTime"){
+        	var s = "";
+        	var stopTime = record.stopTime;
+            if(stopTime>0){
+	        	var days = Math.floor(stopTime / (24 * 3600)); // 计算出天数
+	        	if(days>0){
+	        		s = days + '天';
+	        	}
+	            var leavel = stopTime % (24 * 3600); // 计算天数后剩余的时间
+	            var hours = Math.floor(leavel / 3600); // 计算剩余的小时数
+	            if(hours>0){
+	            	s = s + hours + '小时';
+	            }
+	            var leavel2 = leavel % 3600; // 计算剩余小时后剩余的毫秒数
+	            var minutes = Math.floor(leavel2 / 60); // 计算剩余的分钟数
+	            if(minutes>0){
+	            	s = s + minutes + '分';
+	            }
+	            e.cellHtml = s;
+           }
+        }else if(e.field == "checkers"){
+        	var s = "";
+        	if(e.value){
+        		s = e.value;
+        	}
+        	s = s + '<a href="javascript:checkerSelect(\'' + uid + '\')" title="设置质检员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>';
+        	e.cellHtml = s;
         }
 	});
 	mainGrid.on("drawcell",function(e) {
@@ -203,9 +271,21 @@ function selectionChanged() {
             {
             	var itemList = data.rpsItem;
             	if(itemList.length>0){
-            		rightGrid.setData(itemList);
+            		var finishData = [];
+            		var notFinish = [];
+            		for(var i=0;i<itemList.length;i++){
+            			var temp = itemList[i];
+            			if(temp.status==3){
+            				finishData.push(temp);
+            			}else{
+            				notFinish.push(temp);
+            			}
+            		}
+            		rightGrid.setData(notFinish);
+            		rightGrid2.setData(finishData);
             	}else{
             		rightGrid.setData([]);
+            		rightGrid2.setData([]);
             	}
             	nui.unmask(document.body);
             },
@@ -430,4 +510,96 @@ function lookWork(row_uid){
         	}*/
         }
     });
+}
+
+function backWork(row_uid){
+	 var row = rightGrid2.getRowByUID(row_uid);
+     nui.open({
+        url: webPath + contextPath + "/repair/RepairBusiness/Reception/workDispatch/qualityReturn.jsp?token="+token,
+        title: '质检打回',
+        width: 500, height: 200,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(row);
+        },
+        ondestroy: function (action){
+        	if(action=="ok"){
+        		selectionChanged();
+        	}
+        }
+    });
+}
+function passWork(row_uid){
+	 var row = rightGrid2.getRowByUID(row_uid);
+     var remark = null;
+	 nui.confirm("是否确定通过？", "友情提示",function(action){
+	       if(action == "ok"){
+			    nui.mask({
+			        el : document.body,
+				    cls : 'mini-mask-loading',
+				    html : '处理中...'
+			    });
+	    		nui.ajax({
+	    			url:apiPath + repairApi + "/" +"com.hsapi.repair.repairService.sureMt.updateItemDispatch.biz.ext",
+	    			type : "post",
+	    			data:JSON.stringify({
+	                	rpsItem:row,
+	                	status:5,
+	                	remark:remark,
+	                	token: token
+	                }),
+			        cache : false,
+			        contentType : 'text/json',
+	    			success : function(data) {
+	    				nui.unmask(document.body);
+	    				if(data.errCode=="S"){  					
+	    					showMsg("通过成功","S");
+	    				}else{
+	    					showMsg("通过失败","E");
+	    				}
+
+	    			},
+	    			error : function(jqXHR, textStatus, errorThrown) {
+	    				// nui.alert(jqXHR.responseText);
+	    				console.log(jqXHR.responseText);
+	    			}
+	    		});	
+	     }else {
+				return;
+		 }
+	});
+}
+//repair/RepairBusiness/Reception/workDispatch/checkerSelect.jsp
+function  checkerSelect(e){
+	var row = mainGrid.getSelected();
+	var itemList = rightGrid2.getData();
+	var data = {};
+	data.checkers = "";
+	data.checkerIds = "";
+	data.serviceId = row.id;
+	if(e){
+		var item = rightGrid2.getRowByUID(e);
+		data.item = item;
+		data.checkers = item.checkers || "";
+		data.checkerIds = item.checkerIds || "";
+		
+	}
+	if(itemList.length>0){
+	  nui.open({
+	       url: webPath + contextPath + "/repair/RepairBusiness/Reception/workDispatch/checkerSelect.jsp?token="+token,
+	       title: '选择质检员',
+	        width : 600,
+			height : 380,
+	       onload: function () {
+	           var iframe = this.getIFrameEl();
+	           iframe.contentWindow.setData(data);
+	       },
+	       ondestroy: function (action){
+	       	if(action=="ok"){
+	       		selectionChanged();
+	       	}
+	       }
+	   });
+	}
+    
 }

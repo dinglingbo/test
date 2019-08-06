@@ -169,6 +169,7 @@ function loadMainAndDetailInfo(row)
             nui.get("undelBtn").setVisible(false);
             //document.getElementById("delBtn").childNodes[0].innerHTML = '<span class="fa fa-remove fa-lg"></span>&nbsp;作废';
        }
+       
         
        //序列化入库主表信息，保存时判断主表信息有没有修改，没有修改则不需要保存
        formJson = nui.encode(basicInfoForm.getData());
@@ -1409,9 +1410,13 @@ function OnrpMainGridCellBeginEdit(e){
         e.cancel = true;
     }
 
-    if(data.codeId && data.codeId>0){
-        e.cancel = true;
+    if(data.codeId && data.codeId>0 ){
+    	if(e.field =="comPartCode"  || e.field =="applyQty"){
+    		 e.cancel = true;
+    	}
+       
     }
+    
     if(e.field == 'storeId'){
         editor.setData(storehouse);
     }
@@ -1423,19 +1428,6 @@ function OnrpMainGridCellBeginEdit(e){
             morePartGrid.select(row,true);
         }
         partIn=false;
-    }
-    if (field == "storeShelf") {
-        var value = e.record.storeId;
-        var editor = e.editor;
-        if(editor.type=='textbox'){
-            return;
-        }
-        getLocationListByStoreId(value,function(data) {
-            storeShelfList = data.locationList || [];
-            nui.get('storeShelf').setData(storeShelfList);
-            
-    
-        });
     }
 
 }

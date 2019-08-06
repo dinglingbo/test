@@ -14,7 +14,7 @@ var billTypeIdHash = {};
 var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
-var statusList=[{"id":1,"name":"待受理"},{"id":2,"name":"部分受理"},{"id":3,"name":"全部受理"},{"id":4,"name":"已拒绝"}];
+var statusList=[{"id":0,"name":"全部"},{"id":1,"name":"待受理"},{"id":2,"name":"部分受理"},{"id":3,"name":"全部受理"},{"id":4,"name":"已拒绝"}];
 var statusHash={"1":"待受理","2":"部分受理","3":"全部受理","4":"已拒绝"};
 
 $(document).ready(function(v) {
@@ -129,6 +129,9 @@ function getSearchParam(){
     params.guestName =nui.get('guestName').getValue().replace(/\s+/g, "");
     params.orgid =nui.get('orgids').getValue();
     params.status = nui.get("status").getValue();
+    if(params.status ==0){
+    	 params.status=null;
+    }
     params.auditSign=1;
     params.guestOrgId = currOrgId;
     params.tenantId =currTenantId;
@@ -302,36 +305,36 @@ function audit(){
 		return;
 	}
 	
-	if(row.status !=1){
-		showMsg("单据状态为待受理才可以受理","W");
+	if(row.status ==3|| row.status ==4){
+		showMsg("单据状态为待受理或部分受理时才可以受理","W");
 		return;
 	}
-	var rows =rightGrid.getData();
-	var detail=[];
-	var applyDetails =[];
-	for(var i=0;i<rows.length;i++){
-		var temp={};
-		var apply={};
-		temp.partId = rows[i].partId;
-		temp.partCode = rows[i].partCode;
-		temp.partName = rows[i].partName;
-		temp.fullName = rows[i].fullName;
-		temp.outUniId = rows[i].systemUnitId;
-		temp.systemUnitId = rows[i].systemUnitId;
-		temp.applyQty = rows[i].applyQty;
-		temp.acceptQty = parseFloat(rows[i].applyQty-rows[i].hasAcceptQty-rows[i].hasCancelQty);
- 		temp.prevDetailId =rows[i].id;	
- 		apply.id = rows[i].id;	
- 		apply.hasAcceptQty=  temp.acceptQty;
-		detail.push(temp);
-		applyDetails.push(apply);
-	}
-	var main={};
-	main.code =row.serviceId;
-	main.codeId = row.id;
-	main.orderTypeId =  2;
-	main.sourceType =1;
-	main.guestOrgid = row.orgid;
+//	var rows =rightGrid.getData();
+//	var detail=[];
+//	var applyDetails =[];
+//	for(var i=0;i<rows.length;i++){
+//		var temp={};
+//		var apply={};
+//		temp.partId = rows[i].partId;
+//		temp.partCode = rows[i].partCode;
+//		temp.partName = rows[i].partName;
+//		temp.fullName = rows[i].fullName;
+//		temp.outUniId = rows[i].systemUnitId;
+//		temp.systemUnitId = rows[i].systemUnitId;
+//		temp.applyQty = rows[i].applyQty;
+//		temp.acceptQty = parseFloat(rows[i].applyQty-rows[i].hasAcceptQty-rows[i].hasCancelQty);
+// 		temp.prevDetailId =rows[i].id;	
+// 		apply.id = rows[i].id;	
+// 		apply.hasAcceptQty=  temp.acceptQty;
+//		detail.push(temp);
+//		applyDetails.push(apply);
+//	}
+//	var main={};
+//	main.code =row.serviceId;
+//	main.codeId = row.id;
+//	main.orderTypeId =  2;
+//	main.sourceType =1;
+//	main.guestOrgid = row.orgid;
 	
 	
 	nui.mask({
@@ -343,9 +346,8 @@ function audit(){
 		url : auditUrl,
 		type : "post",
 		data : JSON.stringify({
-			main : main,
-			detail : detail,
-			applyDetails : applyDetails,
+			mainId :  row.id,
+			orderTypeId :2,
 			token: token
 		}),
 		success : function(data) {

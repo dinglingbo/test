@@ -380,11 +380,38 @@
         ORDER BY a.id asc
     </select>
     
+    <!-- 调拨受理获取主表 -->
+    <select id="queryAllotAcceptMain" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.pts.PjAllotAcceptMain">
+    	SELECT
+			service_id as code,
+			id as codeId,
+			orgid as guestOrgid
+		FROM
+			pj_allot_apply_main
+		WHERE id = #mainId#
+    </select>
+    <!-- 调拨受理获取明细 -->
+    <select id="queryAllotAcceptDetailsById" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.pts.PjAllotAcceptDetail">
+    	SELECT
+			part_id as partId,
+			part_code as partCode,
+			part_name as partName,
+			full_name as fullName,
+			system_unit_id as outUnitId,
+			apply_qty as applyQty,
+			(apply_qty-has_accept_qty-has_cancel_qty) as acceptQty,
+			id as prevDetailId
+		FROM
+			pj_allot_apply_detail
+		WHERE
+			main_id = #mainId#
+    </select>
+    
     
     <!-- 调拨受理明细查询 -->
     <select id="queryAllotAcceptDetails" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	
-         SELECT
+	    SELECT
 			b.guest_id as guestId,
 			b.guest_orgid as guestOrgId,
 			c.`name` as name,
@@ -414,11 +441,12 @@
 			a.is_finished as isFinished,
 			a.finish_date as finishDate,
 			a.is_allot_finished as isAllotFinished,
-			a.remark
+			a.remark as remark
 		FROM
 			pj_allot_accept_detail a
 		INNER JOIN pj_allot_accept_main b ON a.main_id = b.id
 		INNER JOIN wb_common.com_company c on b.guest_orgid = c.orgid
+		INNER JOIN wb_common.com_attribute d on d.id = a.part_id
 		WHERE 1=1
 		 <dynamic>
         	<isNotEmpty prepend="and" property="orgid"> 

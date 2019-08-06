@@ -283,8 +283,6 @@ body .mini-grid-row-selected{
                                       <div field="acceptQty" name="acceptQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="申请数量">
                                         <input property="editor" vtype="float" class="nui-textbox"/>
                                       </div>
-                                      <div field="stockOutQty" name="stockOutQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="缺货数量">
-                                      </div>
                                       <div field="remark" width="120" headerAlign="center" allowSort="true" header="备注">
                                         <input property="editor" class="nui-textbox"/>
                                       </div>
@@ -292,6 +290,8 @@ body .mini-grid-row-selected{
                               </div>
                               <div header="辅助信息" headerAlign="center">
                                   <div property="columns">
+                                      <div field="stockOutQty" name="stockOutQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="缺货数量">
+                                      </div>
                                       <div field="comApplyCarModel" width="80" headerAlign="center" header="品牌车型"></div>
                                       <div field="comUnit" name="comUnit" width="60" headerAlign="center" header="单位"></div>
                                       <div field="comOemCode" width="50" headerAlign="center" allowSort="true" header="OE码"></div>   

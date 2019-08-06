@@ -167,16 +167,6 @@
       <sourceNode>loopstart1</sourceNode>
       <targetNode>invokePojo7</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link49" name="link49" displayName="连接线" type="transition">
-      <sourceNode>loopstart1</sourceNode>
-      <targetNode>assign15</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NULLOREMPTY">
-          <process:leftOperand type="query">tmp/storeId</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <targetConnections>link35</targetConnections>
     <location x="705" y="59"/>
     <size height="24" width="24"/>
@@ -204,6 +194,16 @@
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="link1" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>invokePojo4</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link49" name="link49" displayName="连接线" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign15</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">tmp/storeId</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link46</targetConnections>
     <location x="810" y="58"/>

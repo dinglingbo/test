@@ -398,54 +398,60 @@
     <select id="queryPjAllotAcceptMainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 
             SELECT DISTINCT
-				a.id as id,
-				a.service_id as serviceId,
-				a.orgid as orgid,
-				a.guest_id as guestId,
-				a.guest_orgid as guestOrgid,
-				a.store_id as storeId,
-				a.code_id as codeId,
-				a.`code` as code,
-				a.order_type_id as orderTypeId,
-				a.order_date as orderDate,
-				a.plan_send_date as planSendDate,
-				a.plan_arrive_date as planArriveDate,
-				a.is_finished as isFinished,
-				a.finish_date as finishDate,
-				a.is_diff_order as isDiffOrder,
-				a.tax_amt as taxAmt,
-				a.no_tax_amt as noTaxAmt,
-				a.order_amt as orderAmt,
-				a.is_enter as isEnter,
-				a.audit_sign as auditSign,
-				a.auditor_id as auditorId,
-				a.auditor as auditor,
-				a.audit_date as auditDate,
-				a.remark as remark,
-				a.version_no as versionNo,
-				a.is_disabled as isDisabled,
-				a.creator_id as creatorId,
-				a.creator as creator,
-				a.create_date as createDate,
-				a.operator_id as operatorId,
-				a.operator as operator,
-				a.operate_date as operateDate,
-				a.is_state as isState,
-				a.state_man_id as stateManId,
-				a.state_man as stateMan,
-				a.state_sign as stateSign,
-				a.state_date as stateDate,
-				a.source_type as sourceType,
-				a.is_allot_finished as isAllotFinished,
-				a.finish_date as finishDate,
-				B.FULL_NAME AS guestFullName,
-				B.SHORT_NAME AS guestShortName
-			FROM
-				pj_allot_accept_main A
-				INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
-				LEFT JOIN DMS_CLOUD_PART.pj_allot_accept_detail C ON A.ID = C.MAIN_ID
-				LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
-            where 1=1
+					A.id AS id,
+					A.service_id AS serviceId,
+					A.orgid AS orgid,
+					A.guest_id AS guestId,
+					A.guest_orgid AS guestOrgid,
+					A.store_id AS storeId,
+					A.code_id AS codeId,
+					A.`code` AS `code`,
+					A.order_type_id AS orderTypeId,
+					A.order_date AS orderDate,
+					A.plan_send_date AS planSendDate,
+					A.plan_arrive_date AS planArriveDate,
+					A.is_finished AS isFinished,
+					A.finish_date AS finishDate,
+					A.is_diff_order AS isDiffOrder,
+					A.tax_amt AS taxAmt,
+					A.no_tax_amt AS noTaxAmt,
+					A.order_amt AS orderAmt,
+					A.is_enter AS isEnter,
+					A.audit_sign AS auditSign,
+					A.auditor_id AS auditorId,
+					A.auditor AS auditor,
+					A.audit_date AS auditDate,
+					A.remark AS remark,
+					A.version_no AS versionNo,
+					A.is_disabled AS isDisabled,
+					A.creator_id AS creatorId,
+					A.creator AS creator,
+					A.create_date AS createDate,
+					A.operator_id AS operatorId,
+					A.operator AS operator,
+					A.operate_date AS operateDate,
+					A.is_state AS isState,
+					A.state_man_id AS stateManId,
+					A.state_man AS stateMan,
+					A.state_sign AS stateSign,
+					A.state_date AS stateDate,
+					A.source_type AS sourceType,
+					A.is_allot_finished AS isAllotFinished,
+					A.finish_date AS finishDate,
+					B.full_name AS guestFullName,
+					B.short_name AS guestShortName,
+					A.`status` as status,
+					A.settle_status as settleStatus,
+					A.out_code as outCode,
+					A.order_man_id as orderManId,
+					A.order_man as orderMan,
+					A.allot_finished_date as allotFinisheDate
+					FROM
+					pj_allot_accept_main A
+					INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
+					LEFT JOIN DMS_CLOUD_PART.pj_allot_accept_detail C ON A.ID = C.MAIN_ID
+					LEFT JOIN WB_COMMON.COM_ATTRIBUTE D ON C.PART_ID = D.ID
+			where 1=1
             <dynamic>
             	<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid#)

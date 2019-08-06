@@ -695,7 +695,7 @@ var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.auditAllotApp
 function submit()
 {
     var formJsonThis = nui.encode(basicInfoForm.getData());
-    var rows = rightGrid.getChanges()
+    var rows = rightGrid.getChanges();
 
     if(formJson != formJsonThis) {
         showMsg("请先保存数据再入库","W");

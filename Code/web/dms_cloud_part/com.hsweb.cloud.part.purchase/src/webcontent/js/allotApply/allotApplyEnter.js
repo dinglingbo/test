@@ -267,52 +267,25 @@ function quickSearch(type){
             querytypename = "草稿";
             querysign = 2;
             gsparams.isDisabled = 0;
-            gsparams.status = 0;
-            gsparams.auditSign = null;
+            gsparams.auditSign = 0;
             break;
         case 7:
-            querytypename = "已提交";
+            querytypename = "已入库";
             querysign = 2;
             gsparams.isDisabled = 0;
-            gsparams.status = null;
             gsparams.auditSign = 1;
             break;
         case 8:
             querytypename = "已作废";
             querysign = 2;
             gsparams.isDisabled = 1;
-            gsparams.status = null;
             gsparams.auditSign = null;
             break;
         case 9:
-            querytypename = "待受理";
-            querysign = 2;
-            gsparams.isDisabled = null;
-            gsparams.status = 1;
-            gsparams.auditSign = null;
-            break;
-        case 10:
-            gsparams.billStatusId = 2;
-            querytypename = "部分受理";
-            querysign = 2;
-            gsparams.isDisabled = null;
-            gsparams.status = 2;
-            gsparams.auditSign = null;
-            break;
-        case 11:
-            gsparams.billStatusId = null;
-            querytypename = "全部受理";
-            querysign = 2;
-            gsparams.isDisabled = null;
-            gsparams.status = 3;
-            gsparams.auditSign = null;
-            break;
-        case 12:
             gsparams.billStatusId = null;
             querytypename = "所有";
             querysign = 2;
-            gsparams.isDisabled = 0;
-            gsparams.status = null;
+            gsparams.isDisabled = null;
             gsparams.auditSign = null;
             break;
         default:
@@ -322,8 +295,8 @@ function quickSearch(type){
             querytypename = "草稿";
             gsparams.startDate = getNowStartDate();
             gsparams.endDate = addDate(getNowEndDate(), 1);
+            gsparams.isDisabled = 0;
             gsparams.auditSign = 0;
-            gsparams.status = null;
             break;
     }
     currType = type;
@@ -718,10 +691,71 @@ function del()
     });
 }
 
+var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.auditAllotApplyEnter.biz.ext";
 function submit()
 {
-    //com.hsapi.cloud.part.invoicing.allotsettle.auditAllotApplyEnter
-    save(1);
+    var formJsonThis = nui.encode(basicInfoForm.getData());
+    var rows = rightGrid.getChanges()
+
+    if(formJson != formJsonThis) {
+        showMsg("请先保存数据再入库","W");
+        return;
+    }
+    if(rows && rows.length > 0) {
+        if(rows.length > 1 || (rows.length == 1 && rows[0].partId)) {
+            showMsg("请先保存数据再入库","W");
+            return;
+        }
+    }
+
+    var row = leftGrid.getSelected();
+    if(row){
+        if(row.auditSign == 1) {
+            showMsg("此单已入库!","W");
+            return;
+        } 
+    }else{
+        return;
+    }
+
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '数据处理中...'
+    });
+
+    nui.ajax({
+        url : auditUrl,
+        type : "post",
+        data : JSON.stringify({
+            mainId : row.id,
+            token : token
+        }),
+        success : function(data) {
+            nui.unmask(document.body);
+            data = data || {};
+            if (data.errCode == "S") {
+                showMsg("入库成功","S");
+                //onLeftGridRowDblClick({});
+                var pjAllotApplyMainList = data.pjAllotApplyMainList;
+                if(pjAllotApplyMainList && pjAllotApplyMainList.length>0) {
+                    var leftRow = pjAllotApplyMainList[0];
+                    var row = leftGrid.getSelected();
+                    leftGrid.updateRow(row,leftRow);
+
+                    //保存成功后重新加载数据
+                    loadMainAndDetailInfo(leftRow);
+
+                    
+                }
+            } else {
+                showMsg(data.errMsg || "入库失败","E");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            nui.unmask(document.body);
+        }
+    });
 }
 
 function addGuest(){

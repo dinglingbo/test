@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="applyToEnterSettle.bizx" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="applyToEnterSettle.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="调拨申请单入库（生成调拨入库成本数据，更新调拨申请成本信息）&#xD;&#xA;cloudPartPjEnterMain.id  cloudPartPjEnterDetail.id&#xD;&#xA;如果是直发的单，总部只有调拨出库没有调拨受理  com.hsapi.cloud.part.invoicing.allotsettle.getAcceptOutEnterable&#xD;&#xA;如果不是直发的单，总部有调拨受理，有调拨出库  com.hsapi.cloud.part.invoicing.allotsettle.getAcceptOutEnterableT&#xD;&#xA;总部做采购订单直发门店，总部主动调出给门店&#xD;&#xA;总部主动调出给门店，需要生成门店的调拨申请单，然后将生成的调拨申请单回填到总部的主动调出单&#xD;&#xA;门店调拨申请总部受理&#xD;&#xA;更新出库表的已导入数据 has_in_qty&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.updatePjAllotAcceptInQty&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.updatePjAllotAcceptInQtyT&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.updatePjAllotAcceptInQtyF" title="Administrator&#x9;19-7-30 下午4:18">
     <location x="-14" y="-115"/>
     <size height="245" width="706"/>
@@ -102,7 +102,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">enterMain/serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1424,4 +1424,5 @@
     <process:output description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjEnterDetailChk" name="enterDetail"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
+  <process:transactionType>true</process:transactionType>
 </process:tBusinessLogic>

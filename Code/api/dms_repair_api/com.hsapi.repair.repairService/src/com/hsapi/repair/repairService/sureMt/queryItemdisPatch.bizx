@@ -51,7 +51,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">itemId</process:from>
-      <process:to type="query">cond/_exp[2]/itemId</process:to>
+      <process:to type="query">cond/_expr[2]/itemId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
@@ -62,7 +62,7 @@
       <process:to type="query">cond/_orderby[1]/_property</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">DESC</process:from>
+      <process:from type="literal" pattern="reference">desc</process:from>
       <process:to type="query">cond/_orderby[1]/_sort</process:to>
     </process:copy>
   </nodes>

@@ -176,3 +176,22 @@ function quickSearch(type){
  grid1.setData([]);
  onSearch();
 }
+
+function onExport(){
+	var detail = grid1.getData();
+	
+	for(var i=0;i<detail.length;i++){
+		detail[i].billTypeId=servieTypeHash[detail[i].billTypeId].name;
+	}
+//多级
+	//exportMultistage(grid.columns)
+//单级
+       exportNoMultistage(grid1.columns)
+	if(detail && detail.length > 0){
+//多级表头类型
+		//setInitExportData( detail,grid1.columns,"客户计次卡明细表导出");
+//单级表头类型  与上二选一
+setInitExportDataNoMultistage( detail,grid1.columns,"计次卡明细导出");
+	}
+	
+}

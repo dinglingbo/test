@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>查车单明细表</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkMainDetail.js?v=1.0.7"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkMainDetail.js?v=1.0.0"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -69,6 +69,7 @@ pageEncoding="UTF-8" session="false"%>
 	                <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                     <a class="nui-button" iconCls="" onclick="onSearch()" plain="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a> 
                     <!-- <a class="nui-button" iconCls="" onclick="advancedSearch()" plain="true"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> -->
                 <input  class="nui-combobox" style="display:none; width:100%;" name="checkTypeA" id="checkTypeA"
 	                     textfield="name" valuefield="customid" dataFile="data"  allowInput="true" visible="false"/>
@@ -98,7 +99,7 @@ pageEncoding="UTF-8" session="false"%>
                     <div type="expandcolumn" width="20" visible="true"><span class="fa fa-plus fa-lg"></span></div>
                     <div header="客户车辆信息" headerAlign="center">
                        <div property="columns" >	
-		                <div field="id" headeralign="center" allowsort="true" visible="false" >主键</div>
+<!-- 		                <div field="id" headeralign="center" allowsort="true" visible="false" >主键</div> -->
 		                <div field="contactName" name="contactName" headeralign="center" allowsort="true" visible="true" >客户名称</div>
 		                <div field="contactMobile" headeralign="center" allowsort="true" visible="true" >客户手机</div>
 		                <div field="carNo"  name="carNo" headeralign="center" allowsort="true" visible="true" >车牌号</div>
@@ -141,5 +142,8 @@ pageEncoding="UTF-8" session="false"%>
              </div>
          </div>
        </div>
+		 <div id="exportDiv" style="display:none">  
+		
+		</div>       
 </body>
 </html>

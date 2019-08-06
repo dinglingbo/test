@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
-<%@include file="/common/commonPart.jsp"%>
+<%@include file="/common/commonRepair.jsp"%>
+<%@include file="/common/common.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -10,7 +11,7 @@
 -->
 <head>
 <title>已结算工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.1.2"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.1.4"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -132,7 +133,6 @@
                   <div type="indexcolumn">序号</div>
                   <div header="工单信息" headerAlign="center">
                   	 <div property="columns" >
-	                  <div type="checkcolumn" name="checkcolumn" visible="false"></div>
 	                  <div field="serviceCode" name="serviceCode" width="170" headerAlign="center" allowsort="true" header="工单号" summaryType="count"></div>
 	                  <div field="billTypeId" name="billTypeId" width="70" headerAlign="center" allowsort="true"  header="工单类型"></div>
 	                  <div field="serviceTypeName" name="serviceTypeName" width="70" headerAlign="center" allowsort="true" header="业务类型"></div>
@@ -146,7 +146,6 @@
                   <div type="checkcolumn" name="checkcolumn" visible="false"></div>
                   <div header="客户车辆信息" headerAlign="center">
 	                  <div property="columns" > 
-
 		                  <div field="carModel" name="carModel" width="120" headerAlign="center" allowsort="true" header="品牌/车型"></div>
 						  <div field="carVin" name="carVin" width="150" headerAlign="center" allowsort="true" header="车架号(VIN)"></div>
 		                  <div field="enterKilometers" name="enterKilometers" width="150" headerAlign="center" allowsort="true" dataType="float" header="进厂里程"></div>
@@ -566,60 +565,7 @@
    </div> 
 </div> -->
 <div id="exportDiv" style="display:none">  
-    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
-        <tr>  
-        	<td colspan="1" align="center">工单号</td>
-            <td colspan="1" align="center">工单类型</td>
-            <td colspan="1" align="center">业务类型</td>
-            <td colspan="1" align="center">客户姓名</td>
-            <td colspan="1" align="center">车牌号</td>
-            <td colspan="1" align="center">服务顾问</td>
-            <td colspan="1" align="center">是否收款</td>
-             <td colspan="1" align="center">收款日期</td>
-             
-            <td colspan="1" align="center">品牌/车型</td>          
-            <td colspan="1" align="center">车架号(VIN)</td>
-            <td colspan="1" align="center">进厂里程</td>
-                        
-            <td colspan="1" align="center">套餐销售金额</td>
-            <td colspan="1" align="center">套餐优惠</td>
-            <td colspan="1" align="center">套餐销售小计</td>
-            <td colspan="1" align="center">项目销售金额</td>
-            <td colspan="1" align="center">项目优惠</td>
-            <td colspan="1" align="center">项目销售小计</td>
-            <td colspan="1" align="center">配件销售金额</td>
-            <td colspan="1" align="center">配件优惠</td>            
-            <td colspan="1" align="center">配件销售小计</td>         
-            <td colspan="1" align="center">其它费用收入</td>
-            <td colspan="1" align="center">收入合计</td>
-            
-            <td colspan="1" align="center">配件含税成本</td>
-            <td colspan="1" align="center">配件不含税成本</td>
-            <td colspan="1" align="center">配件实际成本</td>
-            <td colspan="1" align="center">销售提成</td>
-            <td colspan="1" align="center">服务顾问提成</td>
-            <td colspan="1" align="center">施工员提成</td>
-            <td colspan="1" align="center">其它费用支出</td>
-            <td colspan="1" align="center">成本合计</td>
-            <td colspan="1" align="center">其他优惠</td>
-            <td colspan="1" align="center">营收金额</td>
-            <td colspan="1" align="center">计次卡抵扣</td>
-            <td colspan="1" align="center">收款金额</td>        
-            <td colspan="1" align="center">毛利</td>
-            <td colspan="1" align="center">毛利率</td>
-            <td colspan="1" align="center">毛利备注</td> 
-                      
-			<td colspan="1" align="center">备注</td>
-            <td colspan="1" align="center">进厂时间</td>
-            <td colspan="1" align="center">完工时间</td> 
-            <td colspan="1" align="center">出厂日期</td>           
-            <td colspan="1" align="center">报销单</td>
-            <td colspan="1" align="center">所属公司 </td>
-        </tr>
-        <tbody id="tableExportContent">
-        </tbody>
-    </table>  
-    <a href="" id="tableExportA"></a>
+
 </div>  
 
 <div id="advancedSearchWin" class="nui-window" title="高级查询" style="width: 630px; height: 400px;" showModal="true" allowResize="false"

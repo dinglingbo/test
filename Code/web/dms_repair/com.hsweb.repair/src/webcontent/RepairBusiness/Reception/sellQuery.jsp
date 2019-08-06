@@ -10,7 +10,7 @@
 -->
 <head>
 <title>销售开单查询</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellQuery.js?v=1.0.21"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellQuery.js?v=1.0.0"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
 <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -85,6 +85,7 @@
 	                <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                     <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a> 
 <!--                     <span class="separator"></span> -->
 <!--                     <a class="nui-button" iconCls="" plain="true" onclick="addSell()" id="addBtn" ><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a> -->
 <!--                     <a class="nui-button" iconCls="" plain="true" onclick="editSell()" id="editBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;查看</a> -->
@@ -117,11 +118,11 @@
                   <div type="indexcolumn" width="20">序号</div>
                   <div header="客户车辆信息" headerAlign="center">
                       <div property="columns" >	
-		                <div field="id" headeralign="center" allowsort="true" visible="false" >主键</div>
+		               <!--  <div field="id" headeralign="center" allowsort="true" visible="false" >主键</div> -->
 		                <div field="contactName" name="contactName" headeralign="center" allowsort="false" visible="true" >客户名称</div>
 		                <div field="contactMobile" headeralign="center" allowsort="false" visible="true" >客户手机</div>
 		                <div field="carNo" name="carNo" headeralign="center" allowsort="false" visible="true" >车牌号</div>
-		                <div field="carModel" name="carModel" headeralign="center" allowsort="false" visible="false">品牌车型</div>
+		              <!--   <div field="carModel" name="carModel" headeralign="center" allowsort="false" visible="false">品牌车型</div> -->
 		                <div field="carVin" headeralign="center" allowsort="true" visible="true">车架号(VIN)</div>
                       </div>
                     </div>
@@ -139,12 +140,12 @@
                       <div property="columns" >	
                          <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
                          <div field="partCode" headerAlign="center" allowSort="false"  width="80px" header="配件编码" align="center"></div>
-                         <div field="partCodel" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件类型" align="center"></div>
+                         <!-- <div field="partCodel" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件类型" align="center"></div> -->
                          <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="数量" name="partQty" summaryType="sum" > </div>
                          <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="销售单价" name="partUnitPrice" dataType="float"> </div>
                          <div field="amt" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="销售金额" summaryType="sum" dataType="float"> </div>
-                         <div field="camt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center" header="成本" summaryType="sum" dataType="float"> </div>
-                         <div field="mamt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center" header="毛利" summaryType="sum" dataType="float"> </div>
+<!--                          <div field="camt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center" header="成本" summaryType="sum" dataType="float"> </div>
+                         <div field="mamt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center" header="毛利" summaryType="sum" dataType="float"> </div> -->
                       </div>
                    </div>
                  </div>
@@ -169,6 +170,9 @@
       </div>
   </div>
 </div>
+</div>
+<div id="exportDiv" style="display:none">  
+
 </div>
 </body>
 </html>

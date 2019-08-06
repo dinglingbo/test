@@ -289,5 +289,22 @@ function onShowRowDetail(e) {
     });
 }
 
+function onExport(){
+	var detail = leftGrid.getData();
+//多级
+	exportMultistage(leftGrid.columns)
+//单级
+       //exportNoMultistage(leftGrid.columns)
+	for(var i=0;i<detail.length;i++){
+		
 
+	}
+	if(detail && detail.length > 0){
+//多级表头类型
+		setInitExportData( detail,leftGrid.columns,"查车开单明细表导出");
+//单级表头类型  与上二选一
+//setInitExportDataNoMultistage( detail,leftGrid.columns,"查车开单明细表导出");
+	}
+	
+}
 

@@ -182,5 +182,22 @@ function getSearchParam() {
 
  
 
-  
+ function onExport(){
+		var detail = grid.getData();
+		
+		for(var i=0;i<detail.length;i++){
+			detail[i].type=hash[detail[i].type-1];
+		}
+	//多级
+		//exportMultistage(datagrid1.columns)
+	//单级
+	       exportNoMultistage(grid.columns)
+		if(detail && detail.length > 0){
+	//多级表头类型
+			//setInitExportData( detail,grid.columns,"客户计次卡明细表导出");
+	//单级表头类型  与上二选一
+	setInitExportDataNoMultistage( detail,grid.columns,"客户退款明细表导出");
+		}
+		
+	}
 

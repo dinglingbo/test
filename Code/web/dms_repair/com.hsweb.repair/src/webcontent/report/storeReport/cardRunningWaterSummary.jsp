@@ -11,7 +11,7 @@
 <head>
 <title>储值卡流水汇总</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/cardRunningWaterSummary.js?v=1.0.8"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/cardRunningWaterSummary.js?v=1.0.0"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
         <style>
@@ -71,6 +71,7 @@
      <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd" style="width:100px" /> 至
      <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" />
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+     <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a> 
  </div>
     <div style="height: 150px;" class="parent">
 
@@ -103,7 +104,7 @@
                     selectOnLoad="true" sortMode="client" showReloadButton="false" showPagerButtonIcon="true" totalField="page.count" showSummaryRow = "true"
                     allowSortColumn="true" >
                     <div property="columns"> 
-                        <div field="id" name="id" headerAlign="center"  visible="false" width="">id </div>
+<!--                         <div field="id" name="id" headerAlign="center"  visible="false" width="">id </div> -->
                         <div field="billServiceId" name="billServiceId" headerAlign="center"  visible="true" width="130" id="updStatus" summaryType="count">单号</div>
                         <div field="billTypeId" name="billTypeId" headerAlign="center"  visible="true" width="80">类型</div>
                         <div field="guestName"  name="guestName"headerAlign="center"  visible="true" width="80">客户名称 </div>
@@ -118,4 +119,7 @@
                     </div>
                 </div>
     </div>
+    <div id="exportDiv" style="display:none">  
+
+</div> 
 </html>

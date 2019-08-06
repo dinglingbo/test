@@ -54,7 +54,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
-      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">pchsOrderMain</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">main</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>
@@ -167,16 +167,6 @@
       <sourceNode>loopstart1</sourceNode>
       <targetNode>invokePojo7</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link49" name="link49" displayName="连接线" type="transition">
-      <sourceNode>loopstart1</sourceNode>
-      <targetNode>assign15</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NULLOREMPTY">
-          <process:leftOperand type="query">tmp/storeId</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <targetConnections>link35</targetConnections>
     <location x="705" y="59"/>
     <size height="24" width="24"/>
@@ -205,10 +195,24 @@
       <sourceNode>assign4</sourceNode>
       <targetNode>invokePojo4</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link49" name="link49" displayName="连接线" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign15</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">tmp/storeId</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link46</targetConnections>
     <location x="810" y="58"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">detailId</process:from>
+      <process:to type="query">tmp/id</process:to>
+    </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">mainId</process:from>
       <process:to type="query">tmp/mainId</process:to>
@@ -236,6 +240,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">tmp/hasOutQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/storeId</process:from>
+      <process:to type="query">tmp/storeId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
@@ -275,7 +283,7 @@
     <location x="90" y="58"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart2label</nodeLabel>
-    <process:iterate iterable="pchsOrderDetailUpdate" iterableElement="tmp"/>
+    <process:iterate iterable="detailUpdate" iterableElement="tmp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend2label" name="label" nodeType="label">
     <location x="515" y="90"/>
@@ -330,6 +338,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">tmp/hasOutQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/storeId</process:from>
+      <process:to type="query">tmp/storeId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
@@ -941,7 +953,7 @@
       <process:inputVariables>
         <process:inputVariable id="0" name="detailId" type="query" value="Long" valueType="Primitive" pattern="reference">tmp/id</process:inputVariable>
         <process:inputVariable id="1" name="mainId" type="query" value="Long" valueType="Primitive" pattern="reference">main/id</process:inputVariable>
-        <process:inputVariable id="2" name="billQty" type="query" value="Float" valueType="Primitive" pattern="reference">tmp/orderQty</process:inputVariable>
+        <process:inputVariable id="2" name="billQty" type="query" value="Float" valueType="Primitive" pattern="reference">tmp/acceptQty</process:inputVariable>
         <process:inputVariable id="3" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">main/orgid</process:inputVariable>
         <process:inputVariable id="4" name="storeId" type="query" value="Long" valueType="Primitive" pattern="reference">tmp/storeId</process:inputVariable>
         <process:inputVariable id="5" name="partId" type="query" value="Long" valueType="Primitive" pattern="reference">tmp/partId</process:inputVariable>
@@ -1243,7 +1255,7 @@
         <process:inputVariable id="1" name="mainId" type="query" value="Long" valueType="Primitive" pattern="reference">main/id</process:inputVariable>
         <process:inputVariable id="2" name="billQty" type="query" value="Float" valueType="Primitive" pattern="reference">tmp/acceptQty</process:inputVariable>
         <process:inputVariable id="3" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">main/orgid</process:inputVariable>
-        <process:inputVariable id="4" name="storeId" type="query" value="Long" valueType="Primitive" pattern="reference">tmp/storeId</process:inputVariable>
+        <process:inputVariable id="4" name="storeId" type="query" value="Long" valueType="Primitive" pattern="reference">main/storeId</process:inputVariable>
         <process:inputVariable id="5" name="partId" type="query" value="Long" valueType="Primitive" pattern="reference">tmp/partId</process:inputVariable>
         <process:inputVariable id="6" name="partCode" type="query" value="String" valueType="Primitive" pattern="reference">tmp/partCode</process:inputVariable>
         <process:inputVariable id="7" name="partName" type="query" value="String" valueType="Primitive" pattern="reference">tmp/partName</process:inputVariable>
@@ -1284,6 +1296,10 @@
     <process:copy>
       <process:from type="expression" pattern="reference">orderQty-occupyQty</process:from>
       <process:to type="query">tmp/stockOutQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/storeId</process:from>
+      <process:to type="query">tmp/storeId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign21label" name="label" nodeType="label">
@@ -1338,6 +1354,10 @@
     <location x="1636" y="58"/>
     <size height="28" width="28"/>
     <nodeLabel>assign22label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">保存成功</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign22label" name="label" nodeType="label">
     <location x="1631" y="94"/>

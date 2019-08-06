@@ -8,7 +8,7 @@
   - Description:
 -->
 <head>
-<title>调拨申请</title>
+<title>调拨入库</title>
 <script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotApplyEnter.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
@@ -60,7 +60,7 @@ body .mini-grid-row-selected{
                 <a class="nui-menubutton " menu="#popupMenuType" id="menunametype">所有</a>
 
                 <ul id="popupMenuType" class="nui-menu" style="display:none;">
-                  <li iconCls="" onclick="quickSearch(12)" id="type10">所有</li>
+                  <li iconCls="" onclick="quickSearch(9)" id="type10">所有</li>
                   <span class="separator"></span>
                     <li iconCls="" onclick="quickSearch(6)" id="type6">草稿</li>
                     <li iconCls="" onclick="quickSearch(7)" id="type7">已入库</li>
@@ -123,7 +123,7 @@ body .mini-grid-row-selected{
                         <div field="guestFullName" width="120" headerAlign="center" header="调出方"></div>
                         <div field="orderDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="创建日期"></div>
                         <div field="creator" width="60" headerAlign="center" header="申请人"></div>
-                        <div field="serviceId" headerAlign="center" width="150" header="申请单号"></div>
+                        <div field="serviceId" headerAlign="center" width="150" header="入库单号"></div>
                         <div field="auditor" width="60" headerAlign="center" header="提交人"></div>
                         <div field="auditDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="提交日期"></div>
                     </div>
@@ -135,7 +135,7 @@ body .mini-grid-row-selected{
 
              <div class="nui-fit">
                   <fieldset id="fd1" style="width:99.5%;height:100px;">
-                      <legend><span>调拨申请信息</span></legend>
+                      <legend><span>调拨入库信息</span></legend>
                       <div class="fieldset-body">
                           <div id="basicInfoForm" class="form" contenteditable="false">
                               <input class="nui-hidden" name="id"/>
@@ -189,7 +189,7 @@ body .mini-grid-row-selected{
                                       <td class="title">
                                           <label>备注：</label>
                                       </td>
-                                      <td colspan="3">
+                                      <td colspan="1">
                                           <input class="nui-textbox" selectOnFocus="true" width="100%" id="remark" name="remark" enabled="true"/>
                                       </td>
                                       <td class="title">
@@ -200,6 +200,12 @@ body .mini-grid-row-selected{
                                       </td>  
                                       <td class="title">
                                           <label>申请单号：</label>
+                                      </td>
+                                      <td style="width:180px">
+                                          <input class="nui-textbox" width="100%" id="code" name="code" enabled="false" />
+                                      </td>
+                                      <td class="title">
+                                          <label>入库单号：</label>
                                       </td>
                                       <td style="width:180px">
                                           <input class="nui-textbox" width="100%" id="serviceId" name="serviceId" enabled="false" placeholder="新计划采购单"/>
@@ -296,7 +302,7 @@ body .mini-grid-row-selected{
 </div>
 
 <div id="advancedSearchWin" class="nui-window"
-     title="高级查询" style="width:416px;height:330px;"
+     title="高级查询" style="width:416px;height:350px;"
      showModal="true"
      allowResize="false"
      allowDrag="true">
@@ -357,9 +363,18 @@ body .mini-grid-row-selected{
                 </td>
             </tr>
             <tr>
-                <td class="title">申请单号:</td>
+                <td class="title">入库单号:</td>
                 <td colspan="3">
                     <textarea class="nui-textarea" emptyText="" width="100%" style="height: 60px;" id="serviceIdList" name="serviceIdList"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">申请单号:</td>
+                <td colspan="3">
+                    <input id="applyCode"
+                           name="applyCode"
+                           class="nui-textbox" 
+                           width="100%"/>
                 </td>
             </tr>
             <tr>

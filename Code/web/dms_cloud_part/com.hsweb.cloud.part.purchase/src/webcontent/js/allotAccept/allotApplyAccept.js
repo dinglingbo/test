@@ -369,6 +369,10 @@ function audit(){
 var refuseUrl=baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.refuseAllotApply.biz.ext";
 function refuse(){
 	var row =mainGrid.getSelected();
+	if(row.status !=1){
+		showMsg("单据状态为待受理才可以拒绝","W");
+		return;
+	}
 	var main={};
 	main.id=row.id;
 	nui.mask({

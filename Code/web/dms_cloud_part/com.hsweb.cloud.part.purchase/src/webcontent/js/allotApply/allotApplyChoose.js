@@ -57,8 +57,9 @@ function getSearchParams() {
 	params.sOrderDate = sOrderDateEl.getValue();
 	params.eOrderDate = addDate(eOrderDateEl.getValue(),1);
 	params.isDiffOrder=0;
-	params.isAllotFinished = 0;
+	params.isFinished = 0;
 	params.auditSign = 1;
+	params.nstatus = 4;
 	params.serviceId = nui.get('serviceId').getValue();
 	params.guestId = nui.get('guestId').getValue();
 	params.searchType = "applyEnter";

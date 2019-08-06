@@ -212,6 +212,10 @@
       <process:to type="query">tmp/mainId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">main/storeId</process:from>
+      <process:to type="query">tmp/storeId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">tmp/hasCancelQty</process:to>
     </process:copy>
@@ -343,6 +347,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">main/guestId</process:from>
       <process:to type="query">guest/id</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">保存成功</process:from>
+      <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">

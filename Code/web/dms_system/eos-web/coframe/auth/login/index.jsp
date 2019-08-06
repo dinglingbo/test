@@ -249,12 +249,12 @@
                             </a>
                         </li>
                         
-                        <li class="dropdown">
+<!--                         <li class="dropdown">
 	                        <div  onclick="reload()" style="padding-top: 21px;">                    
 	                            <div  id="limiStatus" title="聊天工具，点击连接" style="width:12px; height:12px; border-radius:50%; background-color:#cccccccc;">                           
 	                            </div>
 	                        </div>
-                        </li>
+                        </li> -->
                         <li class="dropdown">
                             <a class="feedback-bt FeedBackButton" style="padding-top: 19px; ">
                                 反馈

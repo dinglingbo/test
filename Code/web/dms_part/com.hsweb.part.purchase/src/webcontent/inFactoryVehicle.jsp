@@ -10,7 +10,7 @@
 -->
 <head>
 <title>未结算工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/inFactoryVehicle.js?v=1.0.51"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/inFactoryVehicle.js?v=1.0.1"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -105,7 +105,8 @@
      	<a class="nui-button" plain="true" onclick="advancedSearch()">
 		<span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>  
                     <span class="separator"></span>
-                    <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;查看</a>          
+                    <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;查看</a>   
+                    <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>        
                 </td>
             </tr>
         </table>
@@ -132,8 +133,7 @@
              	<div property="columns">
 				<div type="indexcolumn" width="40" >序号</div>
                   <div header="工单信息" headerAlign="center">
-                  	 <div property="columns" >
-	                  <div type="checkcolumn" name="checkcolumn" visible="false"></div>  
+                  	 <div property="columns" > 
 	                  <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div> 
 	                  <div field="serviceCode" name="serviceCode" width="170" headerAlign="center" header="工单号" summaryType="sum" allowsort="true"></div>
 	                  <div field="billTypeId" name="billTypeId" width="70" headerAlign="center" allowsort="true"  header="工单类型"></div>
@@ -416,5 +416,8 @@
 			</div>
 		</div>
 	</div>
+	<div id="exportDiv" style="display:none">  
+
+</div> 
 </body>
 </html>

@@ -9,7 +9,7 @@
 -->
 <head>
     <title>未结算配件明细表</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/notSettledPartDetail.js?v=1.0.4"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/notSettledPartDetail.js?v=1.0.0"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -100,6 +100,7 @@
     <input class="nui-datepicker" width="100px"id="eOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
  -->    
     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+    <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a> 
     <!-- <input type="checkbox" id="ReturnSign" class="mini-checkbox"  onclick="changed()" > -->
     <input type="checkbox" id="ReturnSign" class="mini-checkbox">
 	<span >是否显示归库</span>
@@ -177,4 +178,7 @@
     </div>
 </div>
 </div>
+<div id="exportDiv" style="display:none">  
+
+</div> 
 </html>

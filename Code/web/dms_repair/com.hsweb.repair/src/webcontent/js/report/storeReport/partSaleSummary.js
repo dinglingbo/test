@@ -143,3 +143,24 @@ function quickSearch(type){
 grid1.load({params:params});
 updateGridColoumn(cType);
 }
+
+function onExport(){
+	var detail = grid1.getData();
+//多级
+	//exportMultistage(grid1.columns)
+//单级
+       exportNoMultistage(grid1.columns)
+	for(var i=0;i<detail.length;i++){
+		detail[i].id = 1;
+        if(cType == 1){
+        	detail[i].groupName = servieTypeHash[detail[i].groupName].name;
+        }
+	}
+	if(detail && detail.length > 0){
+//多级表头类型
+		//setInitExportData( detail,grid1.columns,"配件销售汇总表导出");
+//单级表头类型  与上二选一
+setInitExportDataNoMultistage( detail,grid1.columns,"配件销售汇总表导出");
+	}
+	
+}

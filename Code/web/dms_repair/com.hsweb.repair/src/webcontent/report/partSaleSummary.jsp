@@ -10,7 +10,7 @@
     <title>配件销售汇总表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
-  <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/partSaleSummary.js?v=1.0.5"></script>
+  <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/partSaleSummary.js?v=1.0.0"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -61,10 +61,10 @@
      <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd" style="width:100px" /> 至
      <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" />
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+<!--      <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a> -->
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(0)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按日期汇总</a>
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(1)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按业务类型汇总</a>
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(2)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按配件编码汇总</a>
-<!--      <a class="nui-button" iconcls=""  name="" plain="true" onclick=""><span class="fa fa-mail-forward fa-lg"></span>&nbsp;导出</a> -->
  </div>
  <div class="nui-fit">
     <div id="grid1" class="nui-datagrid" style="width:100%;height:100%;"
@@ -88,7 +88,9 @@
     </div>
 </div>
 </div>
+<div id="exportDiv" style="display:none">  
 
+</div> 
 
 </body>
 </html>

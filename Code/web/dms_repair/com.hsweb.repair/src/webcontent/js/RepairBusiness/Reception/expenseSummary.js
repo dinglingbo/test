@@ -202,3 +202,28 @@ function openDetail(row_uid){
 		
 		})*/
 }
+
+function onExport(){
+	var detail = mainGrid.getData();
+//多级
+	//exportMultistage(mainGrid.columns)
+//单级
+       exportNoMultistage(mainGrid.columns)
+/*	for(var i=0;i<detail.length;i++){
+		var num = parseInt(detail[i].typeId);
+		detail[i].typeId = typeIdHash[num].name;
+		if(detail[i].dc==1){
+			detail[i].dc="应收";
+		}else{
+			detail[i].dc="应付";
+		}
+		
+	}*/
+	if(detail && detail.length > 0){
+//多级表头类型
+		//setInitExportData( detail,mainGrid.columns,"费用汇总表导出");
+//单级表头类型  与上二选一
+setInitExportDataNoMultistage( detail,mainGrid.columns,"费用汇总表导出");
+	}
+	
+}

@@ -10,7 +10,7 @@
 -->
 <head>
 <title>退货开单查询</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnQuery.js?v=1.0.9"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnQuery.js?v=1.0.1"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
 <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -92,6 +92,7 @@
 	                <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
 <!--                     <span class="separator"></span> -->
 <!--                     <a class="nui-button" iconCls="" plain="true" onclick="addSell()" id="addBtn" ><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a> -->
 <!--                     <a class="nui-button" iconCls="" plain="true" onclick="editSell()" id="editBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;查看</a> -->
@@ -123,7 +124,7 @@
                   <div type="indexcolumn" width="50">序号</div>
                   <div header="客户车辆信息" headerAlign="center">
                       <div property="columns" >	
-		                <div field="id" headeralign="center" allowsort="true" visible="false" >主键</div>
+<!-- 		                <div field="id" headeralign="center" allowsort="true" visible="false" >主键</div> -->
 		                <div field="contactName" name="contactName" headeralign="center" allowsort="false" visible="true" >客户名称</div>
 		                <div field="contactMobile" headeralign="center" allowsort="false" visible="true" >客户手机</div>
 		                <div field="carNo" name="carNo" headeralign="center" allowsort="false" visible="true" >车牌号</div>
@@ -177,5 +178,9 @@
   </div>
 </div>
 </div>
+
+<div id="exportDiv" style="display:none">  
+
+</div> 
 </body>
 </html>

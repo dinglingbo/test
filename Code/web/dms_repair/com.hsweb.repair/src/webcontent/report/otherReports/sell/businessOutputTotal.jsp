@@ -12,7 +12,7 @@
 <head>
     <title>已结算工单汇总表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/repair/js/sell/businessOutputTotal.js?v=1.0.36"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/sell/businessOutputTotal.js?v=1.0.1"></script>
 
     <style>
 		.title {
@@ -100,6 +100,7 @@
                     <a class="nui-button" plain="true" onclick="onSearch()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <a class="nui-button" plain="true" onclick="advancedSearch()">
 					<span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>  
+					 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a> 
                     </br>
      				<a class="nui-button" iconcls=""  name="" plain="true" onclick="summary(0)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按日期汇总</a>
      				<a class="nui-button" iconcls=""  name="" plain="true" onclick="summary(3)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按业务类型汇总</a>
@@ -117,7 +118,6 @@
             allowCellSelect="true" editNextOnEnterKey="true" onshowrowdetail="onShowRowDetail" url="" showSummaryRow="true" allowCellWrap=true  sortMode="client">
             <div property="columns">
             	<div type="indexcolumn">序号</div>
-                <div field="id" name="id" visible="false" width="100">id</div>
                 <div  field="groupName" name="groupName"  width="100" headerAlign="center" header="业务类型" allowsort="true" ></div>
                 <div field="ct" name="ct" width="100" headerAlign="center" align="center" summaryType="sum" allowsort="true" dataType="float">单数</div>
                 <div field="totalPrefAmt" name="totalPrefAmt" width="100" headerAlign="center" align="center" summaryType="sum" allowsort="true" dataType="float">优惠合计&nbsp;
@@ -339,6 +339,9 @@
 			</div>
 		</div>
 	</div>
+	<div id="exportDiv" style="display:none">  
+
+</div> 
     <script type="text/javascript">
         nui.parse();
         var con8 = '这是一个提示';

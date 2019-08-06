@@ -353,75 +353,40 @@ function refresh(){
 
 
 		
-		
-		function onExport(){
-			
-			
-			var billTypeIdHash = [{name:"套餐",id:"1"},{name:"项目",id:"2"},{name:"配件",id:"3"}]; 
 
-			var detail = grid.getData();
-			
-			for(var i=0;i<detail.length;i++){
-				for(var j=0;j<billTypeIdHash.length;j++){
-					if(detail[i].prdtType==billTypeIdHash[j].id){
-						detail[i].prdtType=billTypeIdHash[j].name;
-					}
+
+
+ function onExport(){
+		var billTypeIdHash = [{name:"套餐",id:"1"},{name:"项目",id:"2"},{name:"配件",id:"3"}]; 
+
+		var detail = grid.getData();
+		
+		for(var i=0;i<detail.length;i++){
+			for(var j=0;j<billTypeIdHash.length;j++){
+				if(detail[i].prdtType==billTypeIdHash[j].id){
+					detail[i].prdtType=billTypeIdHash[j].name;
 				}
 			}
-			for(var i=0;i<detail.length;i++){
-
-					if(detail[i].periodValidity==-1){
-						detail[i].periodValidity="永久有效";
-					}
+			if(detail[i].periodValidity==-1){
+				detail[i].periodValidity="永久有效";
 			}
-
-			
-			if(detail && detail.length > 0){
-				setInitExportData( detail);
-			}
+        	   if(detail[i].buySource == 1){
+        		   detail[i].buySource = "pc";
+        	   }else if(detail[i].buySource == 2){
+        		   detail[i].buySource = "微信";
+        	   }else if(detail[i].buySource == 3){
+        		   detail[i].buySource = "APP";
+        	   }
 		}
-
-
-		function setInitExportData( detail){
-			
-
-		    var tds = '<td  colspan="1" align="left">[fullName]</td>' +
-		        "<td  colspan='1' align='left'>[carNo]</td>" +
-		        "<td  colspan='1' align='left'>[mobile]</td>" +
-		        "<td  colspan='1' align='left'>[cardName]</td>" +
-		        "<td  colspan='1' align='left'>[periodValidity]</td>" +        
-		        "<td  colspan='1' align='left'>[prdtType]</td>" +
-		        "<td  colspan='1' align='left'>[prdtName]</td>" +		        
-		        "<td  colspan='1' align='left'>[totalTimes]</td>" +
-		        "<td  colspan='1' align='left'>[useTimes]</td>" +        
-		        "<td  colspan='1' align='left'>[balaTimes]</td>" +
-		        "<td  colspan='1' align='left'>[sellAmt]</td>" +
-		        "<td  colspan='1' align='left'>[remainAmt]</td>" ;
-		        
-		        
-		    var tableExportContent = $("#tableExportContent");
-		    tableExportContent.empty();
-		    for (var i = 0; i < detail.length; i++) {
-		        var row = detail[i];
-		        if(row.id){
-		            var tr = $("<tr></tr>");
-		            tr.append(tds.replace("[fullName]", detail[i].fullName?detail[i].fullName:"")
-		                         .replace("[carNo]", detail[i].carNo?detail[i].carNo:"")
-		                         .replace("[mobile]", detail[i].mobile?detail[i].mobile:"")
-		                         .replace("[cardName]", detail[i].cardName?detail[i].cardName:"")
-		                         .replace("[periodValidity]", detail[i].periodValidity?detail[i].periodValidity:"")
-		                         .replace("[prdtType]", detail[i].prdtType?detail[i].prdtType:"")
-		                         .replace("[prdtName]", detail[i].prdtName?detail[i].prdtName:"")
-		                         .replace("[totalTimes]", detail[i].totalTimes?detail[i].totalTimes:0)
-		                         .replace("[useTimes]", detail[i].useTimes?detail[i].useTimes:0)	
-		                         .replace("[balaTimes]", detail[i].balaTimes?detail[i].balaTimes:0)
-		                         .replace("[sellAmt]", detail[i].sellAmt?detail[i].sellAmt:0)		                         
-		                         .replace("[remainAmt]", detail[i].remainAmt?detail[i].remainAmt:0));                        
-
-		            tableExportContent.append(tr);
-		        }
-		    }
-
-		 
-		    method5('tableExcel',"客户计次卡明细表导出",'tableExportA');
+	//多级
+		//exportMultistage(grid.columns)
+	//单级
+	       exportNoMultistage(grid.columns)
+		if(detail && detail.length > 0){
+	//多级表头类型
+			//setInitExportData( detail,grid.columns,"客户计次卡明细表导出");
+	//单级表头类型  与上二选一
+	setInitExportDataNoMultistage( detail,grid.columns,"客户计次卡明细表导出");
 		}
+		
+	}

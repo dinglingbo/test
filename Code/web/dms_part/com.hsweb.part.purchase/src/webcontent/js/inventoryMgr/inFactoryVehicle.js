@@ -598,3 +598,35 @@ function cancelData(){
     nui.get("sEnterDate1").setValue(getMonthStartDate());
     nui.get("eEnterDate1").setValue(getMonthEndDate());
 }
+function onExport(){
+	var detail = mainGrid.getData();
+//多级
+	exportMultistage(mainGrid.columns)
+//单级
+       //exportNoMultistage(rightGrid.columns)
+	for(var i=0;i<detail.length;i++){
+		
+		
+		detail[i].status=statusHash[detail[i].status]
+
+		detail[i].billTypeId=billTypeIdList[detail[i].billTypeId].name;
+        if(detail[i].isSettle== 1){
+        	detail[i].isSettle = "已结算";
+        }else{
+        	detail[i].isSettle = "未结算";
+        }
+
+		if(detail[i].isOutBill==1){
+			detail[i].isOutBill="√";
+		}else{
+			detail[i].isOutBill="";
+		}
+	}
+	if(detail && detail.length > 0){
+//多级表头类型
+		setInitExportData( detail,mainGrid.columns,"未结算工单明细表导出");
+//单级表头类型  与上二选一
+//setInitExportDataNoMultistage( detail,rightGrid.columns,"已结算工单明细表导出");
+	}
+	
+}

@@ -13,7 +13,7 @@
 <head>
 <title>调拨申请受理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotApplyAccept.js?v=1.0.23"></script>
+    <script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotApplyAccept.js?v=1.0.29"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -83,11 +83,11 @@
 		            <div field="id" width="40" visible="false" headerAlign="center" header="id"></div>
 		            <div field="orgid" width="40" visible="false" headerAlign="center" header="id"></div>
 		            <div field="orgName" width="60" headerAlign="center" header="申请调入公司"></div>
-		            <div field="serviceId" width="100px" headerAlign="center" allowSort="true" header="预售单号"></div>
+		            <div field="serviceId" width="100px" headerAlign="center" allowSort="true" header="调拨申请单号"></div>
 		            <div field="status" width="40px" headerAlign="center" allowSort="true" header="状态"></div>
 		            <div field="auditDate" width="65px" headerAlign="center" allowSort="true" header="审核日期"  dateFormat="yyyy-MM-dd HH:mm"></div>
+		            <div field="orderDate" width="65px" headerAlign="center" allowSort="true" header="申请日期"  dateFormat="yyyy-MM-dd HH:mm"></div>
 		            <div field="remark" width="55px" headerAlign="center" allowSort="true" header="备注"></div>  
-		            <div field="code" width="100px" headerAlign="center" allowSort="true" header="调拨受理单号"></div>
 		        </div>
 		     </div>
 			

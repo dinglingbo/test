@@ -506,7 +506,7 @@ function exportMultistage(columns){
 		var columnsList = columns[i].columns||[];
 		if(columnsList.length>0){			
 			for(var j = 0;j<columnsList.length;j++){
-				var str = columnsList[j].header;
+				var str = columnsList[j].header||"";
 				if(str=="所属公司"){
 					
 				}else{					
@@ -567,7 +567,7 @@ function exportNoMultistage(columns){
 	html+='		<tr> ';
 	for(var i = 0;i<columns.length;i++){	
 		if(columns[i].field&&columns[i].header!="所属公司"){
-			var str = columns[i].header;
+			var str = columns[i].header||"";
 			str = str.replace('<div class="icon-filter headerfilter-trigger"></div>',"");		
 			html+='			<td colspan="1" align="center">'+str+'</td>';
 		}

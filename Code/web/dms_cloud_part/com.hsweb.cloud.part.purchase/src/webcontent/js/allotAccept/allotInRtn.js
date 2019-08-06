@@ -39,7 +39,7 @@ var StatusHash = {
   "0":"草稿",
   "1":"待受理",
   "2":"部分受理",
-  "3":"全部受理",
+  "3":"已受理",
   "4":"已拒绝"
 };
 var SettleStatusHash = {
@@ -853,7 +853,7 @@ function submit()
             data = data || {};
             if (data.errCode == "S") {
                 showMsg("提交成功，等待受理!","S");
-                
+
                 var pjAllotAcceptMainList = data.pjAllotAcceptMainList;
                 if(pjAllotAcceptMainList && pjAllotAcceptMainList.length>0) {
                     var leftRow = pjAllotAcceptMainList[0];

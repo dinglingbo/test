@@ -473,6 +473,12 @@
                 <isNotEmpty prepend="and" property="isState"> 
                     (a.is_state = #isState#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="status"> 
+                    (a.status = #status#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="settleStatus"> 
+                    (a.settle_status = #settleStatus#)
+                </isNotEmpty>
 
                 <!--订货日期 -->
                 <isNotEmpty prepend="and" property="sOrderDate">  

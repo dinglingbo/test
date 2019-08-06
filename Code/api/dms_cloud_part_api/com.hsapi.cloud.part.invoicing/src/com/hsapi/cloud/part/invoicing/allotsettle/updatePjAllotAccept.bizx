@@ -210,6 +210,10 @@
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
+      <process:from type="query" pattern="reference">detailId</process:from>
+      <process:to type="query">tmp/id</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">mainId</process:from>
       <process:to type="query">tmp/mainId</process:to>
     </process:copy>

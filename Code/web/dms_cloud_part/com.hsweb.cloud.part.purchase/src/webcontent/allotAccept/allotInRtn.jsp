@@ -240,8 +240,7 @@ body .mini-grid-row-selected{
                               <td style="white-space:nowrap;" style="width:120px;">
                                   <a class="nui-button" plain="true" iconCls="" onclick="addPart()" id="addPartBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>
                                   <a class="nui-button" plain="true" iconCls="" onclick="deletePart()" id="deletePartBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
-                                  <span class="separator"></span>
-                                  <a class="nui-button" plain="true" iconCls="" onclick="adjustPart()" id="adjustPartBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;计划调整</a>
+                                  <a class="nui-button" plain="true" iconCls="" onclick="adjustPart()" id="adjustPartBtn" visible="false"><span class="fa fa-edit fa-lg"></span>&nbsp;计划调整</a>
                               </td>
                           </tr>
                       </table>

@@ -808,6 +808,7 @@ function del()
     });
 }
 
+var submitUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.auditPjAllotInRtn.biz.ext";
 function submit()
 {
     var formJsonThis = nui.encode(basicInfoForm.getData());
@@ -834,6 +835,45 @@ function submit()
         return;
     }
 
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '处理中...'
+    });
+
+    nui.ajax({
+        url : submitUrl,
+        type : "post",
+        data : JSON.stringify({
+            mainId : row.id,
+            token : token
+        }),
+        success : function(data) {
+            nui.unmask(document.body);
+            data = data || {};
+            if (data.errCode == "S") {
+                showMsg("提交成功，等待受理!","S");
+                
+                var pjAllotAcceptMainList = data.pjAllotAcceptMainList;
+                if(pjAllotAcceptMainList && pjAllotAcceptMainList.length>0) {
+                    var leftRow = pjAllotAcceptMainList[0];
+                    var row = leftGrid.getSelected();
+                    leftGrid.updateRow(row,leftRow);
+
+                    //保存成功后重新加载数据
+                    loadMainAndDetailInfo(leftRow);
+
+                    
+                }
+
+            } else {
+                showMsg(data.errMsg || "提交失败!","W");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
+    });
 
 }
 

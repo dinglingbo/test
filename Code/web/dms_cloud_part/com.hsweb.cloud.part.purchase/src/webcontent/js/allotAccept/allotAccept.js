@@ -452,7 +452,9 @@ function save() {
     var detailAdd = rightGrid.getChanges("added");
     var detailUpdate = rightGrid.getChanges("modified");
     var detailDelete = rightGrid.getChanges("removed");
-
+    var detailList = rightGrid.getData();
+    detailList = removeChanges(detailAdd, detailUpdate, detailDelete, detailList);
+    
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
@@ -470,6 +472,7 @@ function save() {
             detailAdd : detailAdd,
             detailUpdate : detailUpdate,
             detailDelete : detailDelete,
+            detailList   : detailList,
             token : token
         }),
         success : function(data) {
@@ -478,9 +481,9 @@ function save() {
             if (data.errCode == "S") {
                 showMsg(stip,"S");
                 //onLeftGridRowDblClick({});
-                var pjAllotApplyMainList = data.pjAllotApplyMainList;
-                if(pjAllotApplyMainList && pjAllotApplyMainList.length>0) {
-                    var leftRow = pjAllotApplyMainList[0];
+                var pjAllotAcceptMainList = data.pjAllotAcceptMainList;
+                if(pjAllotAcceptMainList && pjAllotAcceptMainList.length>0) {
+                    var leftRow = pjAllotAcceptMainList[0];
                     var row = leftGrid.getSelected();
                     leftGrid.updateRow(row,leftRow);
 
@@ -502,6 +505,41 @@ function save() {
         }
     });
 }
+
+function removeChanges(added, modified, removed, all) {
+    for(var i=0; i<added.length; i++) {
+    
+       var val = added[i];
+       for(var j=0; j<all.length; j++) {
+        
+           if(all[j] == val)
+           all.splice(j, 1);
+        }
+    }
+    
+    for(var i=0; i<modified.length; i++) {
+    
+       var val = modified[i];
+       for(var j=0; j<all.length; j++) {
+        
+           if(all[j] == val)
+           all.splice(j, 1);
+        }
+    }
+    
+    for(var i=0; i<removed.length; i++) {
+    
+       var val = removed[i];
+       for(var j=0; j<all.length; j++) {
+        
+           if(all[j] == val)
+           all.splice(j, 1);
+        }
+    }
+
+    return all;
+}
+
 function getMainData()
 {
     var data = basicInfoForm.getData();

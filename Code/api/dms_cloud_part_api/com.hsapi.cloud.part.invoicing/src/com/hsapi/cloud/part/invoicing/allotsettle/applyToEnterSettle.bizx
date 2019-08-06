@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="applyToEnterSettle.bizx" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="调拨申请单入库（生成调拨入库成本数据，更新调拨申请成本信息）&#xD;&#xA;cloudPartPjEnterMain.id  cloudPartPjEnterDetail.id&#xD;&#xA;如果是直发的单，总部只有调拨出库没有调拨受理  com.hsapi.cloud.part.invoicing.allotsettle.getAcceptOutEnterable&#xD;&#xA;如果不是直发的单，总部有调拨受理，有调拨出库  com.hsapi.cloud.part.invoicing.allotsettle.getAcceptOutEnterableT&#xD;&#xA;总部做采购订单直发门店，总部主动调出给门店&#xD;&#xA;总部主动调出给门店，需要生成门店的调拨申请单，然后将生成的调拨申请单回填到总部的主动调出单&#xD;&#xA;门店调拨申请总部受理&#xD;&#xA;更新出库表的已导入数据 has_in_qty&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.updatePjAllotAcceptInQty&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.updatePjAllotAcceptInQtyT&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.updatePjAllotAcceptInQtyF" title="Administrator&#x9;19-7-30 下午4:18">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="applyToEnterSettle.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="调拨申请单入库（生成调拨入库成本数据，更新调拨申请成本信息）&#xD;&#xA;cloudPartPjEnterMain.id  cloudPartPjEnterDetail.id&#xD;&#xA;如果是直发的单，总部只有调拨出库没有调拨受理  com.hsapi.cloud.part.invoicing.allotsettle.getAcceptOutEnterable&#xD;&#xA;如果不是直发的单，总部有调拨受理，有调拨出库  com.hsapi.cloud.part.invoicing.allotsettle.getAcceptOutEnterableT&#xD;&#xA;总部做采购订单直发门店，总部主动调出给门店&#xD;&#xA;总部主动调出给门店，需要生成门店的调拨申请单，然后将生成的调拨申请单回填到总部的主动调出单&#xD;&#xA;门店调拨申请总部受理&#xD;&#xA;更新出库表的已导入数据 has_in_qty&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.updatePjAllotAcceptInQty&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.updatePjAllotAcceptInQtyT&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.updatePjAllotAcceptInQtyF&#xD;&#xA;&#xD;&#xA;20190806  调出退货用不到，采用另外的处理方式" title="Administrator&#x9;19-7-30 下午4:18">
     <location x="-14" y="-115"/>
     <size height="245" width="706"/>
   </nodes>
@@ -102,7 +102,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">enterMain/serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -313,6 +313,7 @@
     <chidren>assign11</chidren>
     <chidren>loopstart0</chidren>
     <chidren>loopend0</chidren>
+    <chidren>assign14</chidren>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
     <location x="499" y="257"/>
@@ -353,14 +354,15 @@
       <targetNode>loopstart1</targetNode>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
+    <targetConnections>link47</targetConnections>
     <location x="620" y="223"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.getOutEntableDetail</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="applyServiceId" type="query" value="String" valueType="Primitive" pattern="reference">main/serviceId</process:inputVariable>
-        <process:inputVariable id="1" name="applyDetailId" type="query" value="Long" valueType="Primitive" pattern="reference">detailTemp/sourceDetailId</process:inputVariable>
+        <process:inputVariable id="0" name="applyServiceId" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="1" name="applyDetailId" type="query" value="Long" valueType="Primitive" pattern="reference">applyDetailId</process:inputVariable>
         <process:inputVariable id="2" name="isDirect" type="query" value="Long" valueType="Primitive" pattern="reference">isDirect</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
@@ -378,6 +380,16 @@
       <sourceNode>assign4</sourceNode>
       <targetNode>subprocess0</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link46" name="link46" displayName="连接线" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign14</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">isDirect</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link12</targetConnections>
     <location x="545" y="222"/>
     <size height="28" width="28"/>
@@ -385,6 +397,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">detailTemp/applyQty</process:from>
       <process:to type="query">qty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">detailTemp/sourceDetailId</process:from>
+      <process:to type="query">applyDetailId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
@@ -420,6 +436,7 @@
     <location x="695" y="228"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="entableDetail" iterableElement="entableTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend1label" name="label" nodeType="label">
@@ -1380,6 +1397,25 @@
     <figSize height="17" width="105"/>
     <node>invokePojo13</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign14" name="赋值11" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link47" name="link47" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign14</sourceNode>
+      <targetNode>subprocess0</targetNode>
+    </sourceConnections>
+    <targetConnections>link46</targetConnections>
+    <location x="545" y="156"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign14label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">detailTemp/prevDetailId</process:from>
+      <process:to type="query">applyDetailId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign14label" name="label" nodeType="label">
+    <location x="540" y="192"/>
+    <figSize height="17" width="39"/>
+    <node>assign14</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-07-30 21:02:15" date="2019-07-30Z" description="根据调拨申请和调拨出库取入库明细" name="applyToEnterSettle" version="7.0.0.0"/>
@@ -1411,6 +1447,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="dsumTaxAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="dsumOrderAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="dsumNoTaxAmt" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="applyDetailId" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjAllotApplyMain" name="main"/>
@@ -1424,4 +1461,5 @@
     <process:output description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjEnterDetailChk" name="enterDetail"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
+  <process:transactionType>true</process:transactionType>
 </process:tBusinessLogic>

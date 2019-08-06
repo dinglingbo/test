@@ -60,7 +60,7 @@
                 </td>
                 <td style="white-space:nowrap;">
                 	<input id="resName" name="resName" class="nui-textbox" style="width:200px;" onenter="queryRole" emptyText="请输入资源名称" />
-					<a class="nui-button" style="width:60px;" iconCls="icon-search" onclick="queryRole()">查询</a>
+					<a class="nui-button" style="width:60px;" iconCls="icon-search" onclick="refresh()">查询</a>
                 </td>
             </tr>
         </table> 
@@ -247,7 +247,7 @@
 				},
 				ondestroy : function(action) {
 				    if(action=="ok"){
-				      queryRole();
+				      refresh();
 				    }
 					
 				}

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调拨申请</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotApply.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotApply.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
   width: 70px;
@@ -60,7 +60,7 @@ body .mini-grid-row-selected{
                 <a class="nui-menubutton " menu="#popupMenuType" id="menunametype">所有</a>
 
                 <ul id="popupMenuType" class="nui-menu" style="display:none;">
-                  <li iconCls="" onclick="quickSearch(12)" id="type10">所有</li>
+                  <li iconCls="" onclick="quickSearch(13)" id="type10">所有</li>
                   <span class="separator"></span>
                     <li iconCls="" onclick="quickSearch(6)" id="type6">草稿</li>
                     <li iconCls="" onclick="quickSearch(7)" id="type7">已提交</li>
@@ -69,6 +69,7 @@ body .mini-grid-row-selected{
                     <li iconCls="" onclick="quickSearch(9)" id="type8">待受理</li>
                     <li iconCls="" onclick="quickSearch(10)" id="type8">部分受理</li>
                     <li iconCls="" onclick="quickSearch(11)" id="type9">全部受理</li>
+                    <li iconCls="" onclick="quickSearch(12)" id="type9">已拒绝</li>
                 </ul>
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择调出机构..." visible="false"

@@ -346,6 +346,14 @@ function quickSearch(type){
             break;
         case 12:
             gsparams.billStatusId = null;
+            querytypename = "已拒绝";
+            querysign = 2;
+            gsparams.isDisabled = null;
+            gsparams.status = 4;
+            gsparams.auditSign = null;
+            break;
+        case 13:
+            gsparams.billStatusId = null;
             querytypename = "所有";
             querysign = 2;
             gsparams.isDisabled = 0;

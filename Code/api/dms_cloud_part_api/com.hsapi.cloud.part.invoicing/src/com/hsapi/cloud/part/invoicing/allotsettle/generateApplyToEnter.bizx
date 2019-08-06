@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="generateApplyToEnter.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="调拨申请单入库（生成调拨入库成本数据，更新调拨申请成本信息）&#xD;&#xA;cloudPartPjEnterMain.id  cloudPartPjEnterDetail.id&#xD;&#xA;如果是直发的单，总部只有调拨出库没有调拨受理  com.hsapi.cloud.part.invoicing.allotsettle.getAcceptOutEnterable&#xD;&#xA;如果不是直发的单，总部有调拨受理，有调拨出库  com.hsapi.cloud.part.invoicing.allotsettle.getAcceptOutEnterableT&#xD;&#xA;总部做采购订单直发门店，总部主动调出给门店&#xD;&#xA;总部主动调出给门店，需要生成门店的调拨申请单，然后将生成的调拨申请单回填到总部的主动调出单&#xD;&#xA;门店调拨申请总部受理&#xD;&#xA;更新出库表的已导入数据 has_in_qty&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.updatePjAllotAcceptInQty&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.updatePjAllotAcceptInQtyT&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.updatePjAllotAcceptInQtyF" title="Administrator&#x9;19-7-30 下午4:18">
-    <location x="-34" y="-135"/>
+    <location x="-35" y="-165"/>
     <size height="245" width="706"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
@@ -81,7 +81,7 @@
     <location x="118" y="193"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.applyToEnterSettle</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="main" type="query" value="com.hsapi.cloud.part.data.pts.PjAllotApplyMain" valueType="DataObject" pattern="reference">main</process:inputVariable>
@@ -126,6 +126,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link51</targetConnections>
+    <targetConnections>link2</targetConnections>
     <location x="236" y="195"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
@@ -333,6 +334,16 @@
       <sourceNode>assign3</sourceNode>
       <targetNode>subprocess0</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link0" name="link0" displayName="连接线" type="transition">
+      <sourceNode>assign3</sourceNode>
+      <targetNode>subprocess1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">main/orderTypeId</process:leftOperand>
+          <process:rightOperand type="literal">3</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link1</targetConnections>
     <location x="30" y="193"/>
     <size height="28" width="28"/>
@@ -346,6 +357,36 @@
     <location x="28" y="229"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="applyRtnToEnterSettle" displayName="applyRtnToEnterSettle" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess1</sourceNode>
+      <targetNode>loopstart1</targetNode>
+    </sourceConnections>
+    <targetConnections>link0</targetConnections>
+    <location x="118" y="113"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess1label</nodeLabel>
+    <process:flow index="4" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.applyRtnToEnterSettle</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="main" type="query" value="com.hsapi.cloud.part.data.pts.PjAllotApplyMain" valueType="DataObject" pattern="reference">main</process:inputVariable>
+        <process:inputVariable id="1" name="detail" type="query" value="com.hsapi.cloud.part.data.pts.PjAllotApplyDetail[]" valueType="DataObject" pattern="reference">detail</process:inputVariable>
+        <process:inputVariable id="2" name="applyServiceId" type="query" value="String" valueType="Primitive" pattern="reference">applyServiceId</process:inputVariable>
+        <process:inputVariable id="3" name="acceptServiceId" type="query" value="String" valueType="Primitive" pattern="reference">acceptServiceId</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+        <process:outputVariable id="2" name="enterMain" type="query" value="com.hsapi.cloud.part.data.pts.PjEnterMainChk" valueType="DataObject">enterMain</process:outputVariable>
+        <process:outputVariable id="3" name="enterDetail" type="query" value="com.hsapi.cloud.part.data.pts.PjEnterDetailChk[]" valueType="DataObject">enterDetail</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
+    <location x="67" y="148"/>
+    <figSize height="17" width="129"/>
+    <node>subprocess1</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -362,6 +403,8 @@
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjAllotApplyMain" name="main"/>
     <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjAllotApplyDetail" name="detail"/>
     <process:input description="是否直发单" isArray="false" name="isDirect" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="applyServiceId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="acceptServiceId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

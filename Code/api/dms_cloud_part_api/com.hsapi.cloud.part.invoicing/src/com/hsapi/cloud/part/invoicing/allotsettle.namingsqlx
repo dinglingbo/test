@@ -437,7 +437,6 @@
 					A.state_date AS stateDate,
 					A.source_type AS sourceType,
 					A.is_allot_finished AS isAllotFinished,
-					A.finish_date AS finishDate,
 					B.full_name AS guestFullName,
 					B.short_name AS guestShortName,
 					A.`status` as status,

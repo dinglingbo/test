@@ -144,7 +144,7 @@ function loadMainAndDetailInfo(row)
        if(row.isDisabled == 1) {
             $('#status').text("已作废");
        }else {
-           $('#status').text(AuditSignHash[row.status]);
+           $('#status').text(AuditSignHash[row.settleStatus]);
        }
        //bottomInfoForm.setData(row);
        nui.get("guestId").setText(row.guestFullName);
@@ -303,6 +303,7 @@ function quickSearch(type){
             querysign = 2;
             gsparams.isDisabled = 0;
             gsparams.status = 0;
+            gsparams.settleStatus=0;
             gsparams.auditSign = null;
             break;
         case 7:
@@ -310,6 +311,7 @@ function quickSearch(type){
             querysign = 2;
             gsparams.isDisabled = 0;
             gsparams.status = null;
+            gsparams.settleStatus=null;
             gsparams.auditSign = 1;
             break;
         case 8:
@@ -341,6 +343,7 @@ function quickSearch(type){
             querysign = 2;
             gsparams.isDisabled = 0;
             gsparams.status = null;
+            gsparams.settleStatus=null;
             gsparams.auditSign = null;
             break;
         default:
@@ -808,11 +811,11 @@ function submit()
 
 var auditUrl= baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.auditPjAllotAcceptOut.biz.ext";
 function audit(){
-	 var data = basicInfoForm.getData();
 	 var flag =save(1);
 	 if(flag !=true){
 		 return;
 	 }
+	 var data = getMainData();
 	 nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
@@ -836,7 +839,7 @@ function audit(){
 		                showMsg("出库成功!","S");
 	
 		                var row = leftGrid.getSelected();
-		                leftGrid.updateRow(row,data);
+		                leftGrid.updateRow(row,leftRow);
 		                loadMainAndDetailInfo(leftRow);
                   }
 

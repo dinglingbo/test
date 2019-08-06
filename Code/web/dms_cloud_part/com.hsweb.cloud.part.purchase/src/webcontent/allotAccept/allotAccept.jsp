@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调拨受理</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotAccept.js?v=1.0.19"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotAccept.js?v=1.0.28"></script>
 <style type="text/css">
 .title {
   width: 70px;
@@ -124,10 +124,10 @@ body .mini-grid-row-selected{
                       <div type="indexcolumn">序号</div>
                         <div field="settleStatus" width="60" headerAlign="center" header="状态"></div>
                         <div field="auditSign" width="65" visible="false" headerAlign="center" header="状态"></div>
-                        <div field="guestFullName" width="120" headerAlign="center" header="调出方"></div>
+                        <div field="guestFullName" width="120" headerAlign="center" header="调入方"></div>
                         <div field="orderDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="创建日期"></div>
-                        <div field="creator" width="60" headerAlign="center" header="申请人"></div>
-                        <div field="serviceId" headerAlign="center" width="150" header="申请单号"></div>
+                        <div field="creator" width="60" headerAlign="center" header="受理人"></div>
+                        <div field="serviceId" headerAlign="center" width="150" header="受理单号"></div>
                         <div field="auditor" width="60" headerAlign="center" header="提交人"></div>
                         <div field="auditDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="提交日期"></div>
                     </div>
@@ -375,20 +375,20 @@ body .mini-grid-row-selected{
             </tr>
             <tr>
                 <td class="title">
-                    <span style="letter-spacing: 6px;">调出</span>方:
+                    <span style="letter-spacing: 6px;">调入</span>方:
                 </td>
                 <td colspan="3">
                     <input id="advanceGuestId"
                            name="guestId"
                            class="nui-buttonedit"
-                           emptyText="请选择调出方..."
+                           emptyText="请选择调入方..."
                            onbuttonclick="selectSupplier('advanceGuestId')"
                            width="100%"
                            selectOnFocus="true" />
                 </td>
             </tr>
             <tr>
-                <td class="title">申请单号:</td>
+                <td class="title">受理单号:</td>
                 <td colspan="3">
                     <textarea class="nui-textarea" emptyText="" width="100%" style="height: 60px;" id="serviceIdList" name="serviceIdList"></textarea>
                 </td>

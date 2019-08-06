@@ -13,7 +13,7 @@
     <title>编辑整车销售</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/workDispatch/js/workShopMain.js?v=1.0.4" type="text/javascript"></script>  
+    <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/workDispatch/js/workShopMain.js?v=1.0.3" type="text/javascript"></script>  
 
 </head>
 <style type="text/css">
@@ -37,9 +37,9 @@
     <body>
         <div class="nui-fit" style="padding-top:10px," >
             <div class="mini-tabs" activeIndex="0" style="width:100%;height:100%;"  id="mainTabs" name="mainTabs">
-               <div title="维修派工" id="editForm" name="editForm">
+               <div title="购车计算" id="editForm" name="editForm">
                <div class="nui-fit" style="padding-top:0px">
-               <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+                <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
 			    <table class="table" id="table1">
 			     <tr>
 		            <td>
@@ -55,8 +55,8 @@
 		        </tr>
 			    </table>
 				</div>
-			   <div class="nui-splitter" style="width: 100%; height: 96%;">
-		          <div size="330" showcollapsebutton="true">
+				 <div class="nui-splitter" style="width: 100%; height: 96%;">
+		         <div size="430" showcollapsebutton="true">
 		           <div class="nui-fit" >
 		            <div id="mainGrid" class="nui-datagrid" dataField="list" style="width: 100%; height: 100%;" 
 		             idField="id" allowResize="true"
@@ -77,14 +77,11 @@
 		           </div> 
 		         </div>
 		         </div>
-		        </div>
-		        
-		        <div showcollapsebutton="true">
-		        <!--  <div class="nui-splitter" vertical="true"
-		               style="width: 100%; height: 100%;" allowResize="true">
-		         
-		         <div size="70%" showCollapseButton="false"> -->
-		           <div class="nui-fit" >
+		         <div showcollapsebutton="true">
+  
+		         <div class="nui-splitter" style="width: 100%; height: 100%;" vertical="true">
+		         <div size="430" showcollapsebutton="true">
+		         <div class="nui-fit" >
 		            <div id="rightGrid" class="nui-datagrid" dataField="itemList" style="width: 100%; height: 100%;" 
 		             idField="id" 
 		                sizeList="[20,50,100]" 
@@ -104,15 +101,13 @@
 		                    <div field="stopTime" width="70" headeralign="left" visible="true"><strong>中断耗时</strong></div>
 		                    <div field="finishDate" width="70" headeralign="left" visible="true" dateFormat="  yyyy-MM-dd HH:mm"><strong>实际完工时间</strong></div>
 		                    <div field="status" width="70" headeralign="left" visible="true"><strong>状态</strong></div>
-		                    <div field="itemOptBtn" width="100px" headeralign="left" visible="true"><strong>操作</strong></div>
+		                    <div field="itemOptBtn" width="100" headeralign="left" visible="true"><strong>操作</strong></div>
 		                </div>
 		           </div> 
 		           </div>
-		        <!--  </div>
-		       </div> -->
-		      
-		      <!-- <div showCollapseButton="false">
-		            <div class="nui-fit" >
+		          </div>
+		           <div showcollapsebutton="true">
+		               <div class="nui-fit" >
 		            <div id="rightGrid2" class="nui-datagrid" dataField="itemList" style="width: 100%; height: 100%;" 
 		             idField="id" 
 		                sizeList="[20,50,100]" 
@@ -124,37 +119,39 @@
 		                    <div type="indexcolumn" name="index" width="30px" headeralign="center" >  <strong>序号</strong></div>
 		                    <div field="id" width="70" headeralign="left" visible="false"><strong>项目ID</strong></div>
 		                    <div field="itemName" width="70" headeralign="left" visible="true"><strong>项目</strong></div>
-		                    <div field="beginDate" width="70" headeralign="left" visible="true"><strong>派工时间</strong></div>
+		                   <!--  <div field="beginDate" width="70" headeralign="left" visible="true"><strong>派工时间</strong></div> -->
 		                    <div field="workers" width="70" headeralign="left" visible="true"><strong>施工员</strong></div>
 		                    <div field="planFinishDate" width="70" headeralign="left" visible="true" dateFormat="  yyyy-MM-dd HH:mm"><strong>预计完工时间</strong></div>
 		                    <div field="beginDate" width="70" headeralign="left" visible="true" dateFormat="  yyyy-MM-dd HH:mm"><strong>开始施工</strong></div>
 		                    <div field="workTime" width="70" headeralign="left" visible="true"><strong>施工耗时</strong></div>
 		                    <div field="stopTime" width="70" headeralign="left" visible="true"><strong>中断耗时</strong></div>
 		                    <div field="finishDate" width="70" headeralign="left" visible="true" dateFormat="  yyyy-MM-dd HH:mm"><strong>实际完工时间</strong></div>
-		                    <div field="status" width="70" headeralign="left" visible="true"><strong>状态</strong></div>
-		                    <div field="itemOptBtn" width="100px" headeralign="left" visible="true"><strong>操作</strong></div>
+		                    <div field="isBack" width="70" headeralign="left" visible="true"><strong>状态</strong></div>
+		                     <div field="checkers" width="70" headeralign="left" visible="true"><strong>质检员
+		                     <a href="javascript:checkerSelect()" title="批量设置质检员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
+		                     </strong></div>
+		                     <div field="checkerIds" width="70" headeralign="left" visible="false">质检员</div>
+		                     <div field="itemOptBtn" width="100" headeralign="left" visible="true"><strong>操作</strong></div>
 		                </div>
-		           </div> 
-		           </div>
-		      </div> -->
-		      </div>
+		            </div> 
+		            </div>
+		            </div>
+		          </div>	           
+		         </div>
+		         </div>
 		     </div>
             </div> 
-             
-             <div title="购车计算" id="editForm" name="editForm">
+               <div title="购车计算" id="editForm" name="editForm">
                   <iframe id="caCalculation" src="" style="width: 100%;height: 100%; border:0px" ></iframe>
               </div>
         </div>
      </div>
-     
-     
       <div id="advancedStopWin" class="nui-window" bodyStyle="padding:0"
       title="" style="height:198px;width:184px;"
       showModal="false"
       showHeader="false"
       allowResize="false"
       allowDrag="true">
-     
        <div class="zhongduan" style="display: block;">
         <ul style="padding:0px;list-style: none;">
             <li ><a href="javascript:stopWork(1);" name="projectpause" serviceprojectid="309810" statusid="8">等待客户答复</a></li>
@@ -164,23 +161,8 @@
             <li ><a href="javascript:stopWork(5);" name="projectpause" serviceprojectid="309810" statusid="11">等待洗车</a></li>
         </ul>
       </div>
-     </div>    
-     <!--  <table id="advancedStopWin" style="text-align:left;width: 100%; height: 100%;padding-left:6px;display:none;">
-        <tr>
-            <td align="center" >
-               <div class="zhongduan" >
-                <ul style="padding:0px;list-style: none;">
-                    <li ><a href="javascript:;" name="projectpause" serviceprojectid="309810" statusid="8">等待客户答复</a></li>
-                    <li ><a href="javascript:;" name="projectpause" serviceprojectid="309810" statusid="9">等待保险公司定损</a></li>
-                    <li ><a href="javascript:;" name="projectpause" serviceprojectid="309810" statusid="10">等待配件</a></li>
-                    <li ><a href="javascript:;" name="projectpause" serviceprojectid="309810" statusid="1">等待施工</a></li>
-                    <li ><a href="javascript:;" name="projectpause" serviceprojectid="309810" statusid="11">等待洗车</a></li>
-                </ul>
-              </div>
-            </td> 
-         </tr>
-    </table> -->
-                                
+    
+      </div>                               
 <script type="text/javascript">
    
 </script>

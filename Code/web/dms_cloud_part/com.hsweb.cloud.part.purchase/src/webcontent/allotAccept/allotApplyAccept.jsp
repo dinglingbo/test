@@ -59,7 +59,7 @@
 			                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 			                <span class="separator"></span>
         			        <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible=""  id="auditBtn"><span class="fa fa-check fa-lg""></span>&nbsp;受理</a>
-        			        <a class="nui-button" iconCls="" plain="true" onclick="refuse()" visible="true" id="delBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
+        			        <a class="nui-button" iconCls="" plain="true" onclick="refuse()" visible="true" id="refuseBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;拒绝</a>
 			                
 			            </td>
 			        </tr>

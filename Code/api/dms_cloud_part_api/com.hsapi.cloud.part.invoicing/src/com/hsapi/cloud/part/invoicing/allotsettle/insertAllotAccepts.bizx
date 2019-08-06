@@ -671,6 +671,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="guestId" primitiveType="Int"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjAllotApplyMain" name="applyMain"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjAllotAcceptMain" name="main"/>

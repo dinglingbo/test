@@ -457,6 +457,7 @@ function setBtnable(flag)
 }
 var requiredField = {
     guestId : "调出方",
+    storeId : "调出仓库",
     orderDate : "申请退回日期"
 };
 var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.allotsettle.savePjAllotAccept.biz.ext";
@@ -1158,7 +1159,7 @@ function addInsertRow(value, row) {
             comPartBrandId : part.partBrandId,
             comApplyCarModel : part.applyCarModel,
             comUnit : part.unit,
-            applyQty : 1,
+            acceptQty : 1,
             storeId : FStoreId,
             comOemCode : part.oemCode,
             comSpec : part.spec,
@@ -1219,8 +1220,8 @@ function checkRightData()
     var msg = '';
     var rows = rightGrid.findRows(function(row){
         if(row.partId){
-            if(row.applyQty){
-                if(row.applyQty <= 0) return true;
+            if(row.acceptQty){
+                if(row.acceptQty <= 0) return true;
             }else{
                 return true;
             }
@@ -1334,7 +1335,7 @@ function addSelectPart(){
             comPartBrandId : row.partBrandId,
             comApplyCarModel : row.applyCarModel,
             comUnit : row.unit,
-            applyQty : 1,
+            acceptQty : 1,
             storeId : FStoreId,
             comOemCode : row.oemCode,
             comSpec : row.spec,
@@ -1354,7 +1355,7 @@ function addSelectPart(){
         }else{
             rightGrid.addRow(newRow);
         }
-        rightGrid.beginEditCell(rightGrid.getSelected(), "applyQty");
+        rightGrid.beginEditCell(rightGrid.getSelected(), "acceptQty");
         
         advancedMorePartWin.hide();
         morePartGrid.setData([]);
@@ -1555,7 +1556,7 @@ function addDetail(rows)
             comPartBrandId : row.fullName,
             comApplyCarModel : row.applyCarModel,
             comUnit : row.unit,
-            applyQty : 1,
+            acceptQty : 1,
             orderPrice : 0,
             orderAmt : 0,
             comOemCode : row.oemCode,

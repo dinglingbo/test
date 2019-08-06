@@ -109,7 +109,7 @@ body .mini-grid-row-selected{
          allowResize="true"
          handlerSize="6"
          style="width:100%;height:100%;">
-        <div size="350" showCollapseButton="true">
+        <div size="300" showCollapseButton="true">
           <div title="调拨申请列表" class="nui-panel"
                  showFooter="true"
                  style="width:100%;height:100%;border: 0;">
@@ -151,6 +151,7 @@ body .mini-grid-row-selected{
                               <input class="nui-hidden" name="operateDate"/>
                               <input class="nui-hidden" name="versionNo"/>
                               <input class="nui-hidden" name="status" id="status"/>
+                              <input class="nui-hidden" name="settleStatus" id="settleStatus"/>
                               <input class="nui-hidden" name="isDisabled" id="isDisabled"/>
                               <input class="nui-hidden" name="guestOrgid" id="guestOrgid"/>
                               <input class="nui-hidden" name="auditSign"/>
@@ -199,7 +200,7 @@ body .mini-grid-row-selected{
                                       <td class="title required" style="width:120px">
                                           <label>申请退回日期：</label>
                                       </td>
-                                      <td width="150" style="width:120px">
+                                      <td width="120" style="width:120px">
                                         <input name="orderDate"
                                                id="orderDate"
                                                width="100%"
@@ -223,7 +224,7 @@ body .mini-grid-row-selected{
                                       <td class="title">
                                           <label>申请单号：</label>
                                       </td>
-                                      <td style="width:180px">
+                                      <td style="width:120px">
                                           <input class="nui-textbox" width="100%" id="serviceId" name="serviceId" enabled="false" placeholder="新计划采购单"/>
                                       </td>
 

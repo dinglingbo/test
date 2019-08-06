@@ -87,7 +87,7 @@ $(document).ready(function(v) {
             }
         });
     });
-    quickSearch(0);
+    quickSearch(3);
 });
 
 function getCompany(){
@@ -330,7 +330,7 @@ function audit(){
 	main.code =row.serviceId;
 	main.codeId = row.id;
 	main.orderTypeId =  2;
-	main.sourceType =0;
+	main.sourceType =1;
 	main.guestOrgid = row.orgid;
 	
 	

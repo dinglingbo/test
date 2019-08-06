@@ -13,7 +13,7 @@
 <head>
 <title>调拨申请受理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotApplyAccept.js?v=1.0.22"></script>
+    <script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotApplyAccept.js?v=1.0.23"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -54,7 +54,7 @@
 		            		 valueFromSelect="true" nullitemtext="请选择..." emptyText="选择订单状态" data="" width="100px" data="statusList" dataField="statusList"
 		            		 textField="name" valueField="id" onEnter="onSearch()" />
 		               
- 		                    <input id="guestName" width="120px" emptyText="客户" onEnter="onSearch()" class="nui-textbox"/> 
+ 		                    <input id="guestName" width="120px" emptyText="客户" onEnter="onSearch()" visible="false" class="nui-textbox"/> 
 	
 			                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 			                <span class="separator"></span>

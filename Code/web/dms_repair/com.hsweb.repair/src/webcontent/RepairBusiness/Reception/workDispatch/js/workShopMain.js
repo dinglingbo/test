@@ -52,13 +52,55 @@ $(document).ready(function() {
             	var stid = "stopWork" + record.id;
             	s =  ' <a class="optbtn" id="' + stid + '" '+'href="javascript:selectStopReason(\'' + uid + '\')">中断</a>';
             	/*s =  ' <a class="optbtn" id="stopWork" href="javascript:stopWork(\'' + uid + '\')">中断</a>';*/
-                s =  s + ' <a class="optbtn" href="javascript:startWork(\'' + uid + '\')">完成</a>';
+                s =  s + ' <a class="optbtn" href="javascript:finishWork(\'' + uid + '\')">完成</a>';
                 s =  s + ' <a class="optbtn" href="javascript:lookWork(\'' + uid + '\')">查看</a>';
             } else if(status == 2){
             	s =  ' <a class="optbtn" href="javascript:startWork(\'' + uid + '\')">开始</a>';
                 s =  s + ' <a class="optbtn" href="javascript:lookWork(\'' + uid + '\')">查看</a>';
+            }else if(status == 3){
+            	 s =  s + ' <a class="optbtn" href="javascript:lookWork(\'' + uid + '\')">查看</a>';
             }
             e.cellHtml = s;
+        }else if(e.field == "workTime"){
+        	var s = "";
+        	var workTime = record.workTime;
+            if(workTime>0){
+	        	var days = Math.floor(workTime / (24 * 3600)); // 计算出天数
+	        	if(days>0){
+	        		s = days + '天';
+	        	}
+	            var leavel = workTime % (24 * 3600); // 计算天数后剩余的时间
+	            var hours = Math.floor(leavel / 3600); // 计算剩余的小时数
+	            if(hours>0){
+	            	s = s + hours + '小时';
+	            }
+	            var leavel2 = leavel % 3600; // 计算剩余小时后剩余的毫秒数
+	            var minutes = Math.floor(leavel2 / 60); // 计算剩余的分钟数
+	            if(minutes>0){
+	            	s = s + minutes + '分';
+	            }
+	            e.cellHtml = s;
+           }
+        }else if(e.field == "stopTime"){
+        	var s = "";
+        	var stopTime = record.stopTime;
+            if(stopTime>0){
+	        	var days = Math.floor(stopTime / (24 * 3600)); // 计算出天数
+	        	if(days>0){
+	        		s = days + '天';
+	        	}
+	            var leavel = stopTime % (24 * 3600); // 计算天数后剩余的时间
+	            var hours = Math.floor(leavel / 3600); // 计算剩余的小时数
+	            if(hours>0){
+	            	s = s + hours + '小时';
+	            }
+	            var leavel2 = leavel % 3600; // 计算剩余小时后剩余的毫秒数
+	            var minutes = Math.floor(leavel2 / 60); // 计算剩余的分钟数
+	            if(minutes>0){
+	            	s = s + minutes + '分';
+	            }
+	            e.cellHtml = s;
+           }
         }
 	});
 	mainGrid.on("drawcell",function(e) {
@@ -208,6 +250,12 @@ function againWork(row_uid){
 
 function startWork(row_uid){
 	var row = rightGrid.getRowByUID(row_uid);
+	var second = 0;
+	if(row.status==0){
+		second = 1;
+	}else{
+		second = 2;
+	}
     if(row){
     	nui.mask({
             el: document.body,
@@ -222,6 +270,7 @@ function startWork(row_uid){
             	rpsItem:row,
             	status:1,
             	remark:"作业中",
+            	second:second,
             	token: token
             }),
             success:function(data)
@@ -257,7 +306,7 @@ function selectStopReason(row_uid){
 
 function stopWork(e){
 	var row = rightGrid.getRowByUID(stop_uid);
-    if(!row){
+    if(row){
     	nui.mask({
             el: document.body,
             cls: 'mini-mask-loading',
@@ -303,6 +352,42 @@ function stopWork(e){
     }
 }
 
+function finishWork(row_uid){
+	var row = rightGrid.getRowByUID(row_uid);
+    if(row){
+    	nui.mask({
+            el: document.body,
+            cls: 'mini-mask-loading',
+            html: '保存中...'
+        });
+    	nui.ajax({
+            url:baseUrl +"com.hsapi.repair.repairService.sureMt.updateItemDispatch.biz.ext",
+            type:"post",
+            async:false,
+            data:JSON.stringify({
+            	rpsItem:row,
+            	status:3,
+            	remark:"已完工",
+            	token: token
+            }),
+            success:function(data)
+            {
+            	if(data.errCode == "S"){
+            		showMsg("完成成功","S");
+            		selectionChanged();
+            	}else{
+            		showMsg("完成失败","E")
+            	}
+            	nui.unmask(document.body);
+            },
+            error:function(jqXHR, textStatus, errorThrown){
+            	nui.unmask(document.body);
+                console.log(jqXHR.responseText);
+            }
+        });
+    }
+}
+
 document.onmousemove = function(e){
     if(advancedStopWin.visible){
         var mx = e.pageX;
@@ -323,3 +408,26 @@ document.onmousemove = function(e){
     }
 }
 
+
+function lookWork(row_uid){
+	var row = rightGrid.getRowByUID(row_uid);
+	var mainRow = mainGrid.getSelected();
+    var  data = {
+    	serviceId:mainRow.id,
+    	itemId:row.id
+    };
+     nui.open({
+        url: webPath + contextPath + "/repair/RepairBusiness/Reception/workDispatch/lookDispatch.jsp?token="+token,
+        title: '查看调度',
+        width: 500, height: 450,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(data);
+        },
+        ondestroy: function (action){
+        	/*if(action=="ok"){
+        		selectionChanged();
+        	}*/
+        }
+    });
+}

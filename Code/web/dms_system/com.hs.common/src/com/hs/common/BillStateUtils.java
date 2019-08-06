@@ -203,13 +203,13 @@ public class BillStateUtils {
 	}
 	
 	@Bizlet("")
-	public static long getMillisecond(Date startDate){
-		long eMillis = new Date().getTime();
-		long sMillis = startDate.getTime(); 
-		long millisecond = 0;
-		millisecond = eMillis - sMillis;
-		return millisecond;
-		
+	public static int getMillisecond(Date startDate){
+		double eMillis = new Date().getTime();
+		double sMillis =  startDate.getTime(); 
+		double millisecond = 0;
+		millisecond = (eMillis - sMillis)/1000;
+		int resultMillisecond = (int) millisecond;
+		return resultMillisecond;
 	}
 	
 }

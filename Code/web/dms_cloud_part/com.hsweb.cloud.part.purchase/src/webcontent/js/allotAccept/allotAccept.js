@@ -37,10 +37,8 @@ var isNeedSet = false;
 
 var AuditSignHash = {
   "0":"草稿",
-  "1":"待受理",
-  "2":"部分受理",
-  "3":"全部受理",
-  "4":"已拒绝"
+  "1":"部分出库",
+  "2":"全部出库"
 };
 var storeLimitMap={};
 var storeShelfList=[];
@@ -146,7 +144,7 @@ function loadMainAndDetailInfo(row)
        if(row.isDisabled == 1) {
             $('#status').text("已作废");
        }else {
-           $('#status').text(AuditSignHash[row.status]);
+           $('#status').text(AuditSignHash[row.settleStatus]);
        }
        //bottomInfoForm.setData(row);
        nui.get("guestId").setText(row.guestFullName);
@@ -223,7 +221,7 @@ function onLeftGridDrawCell(e)
 {
     var record = e.record;
     switch (e.field){
-        case "status":
+        case "settleStatus":
             if(record.isDisabled == 1) {
                 e.cellHtml = "已作废";
             }else {
@@ -305,6 +303,7 @@ function quickSearch(type){
             querysign = 2;
             gsparams.isDisabled = 0;
             gsparams.status = 0;
+            gsparams.settleStatus=0;
             gsparams.auditSign = null;
             break;
         case 7:
@@ -312,6 +311,7 @@ function quickSearch(type){
             querysign = 2;
             gsparams.isDisabled = 0;
             gsparams.status = null;
+            gsparams.settleStatus=null;
             gsparams.auditSign = 1;
             break;
         case 8:
@@ -322,42 +322,28 @@ function quickSearch(type){
             gsparams.auditSign = null;
             break;
         case 9:
-            querytypename = "待受理";
+            querytypename = "部分出库";
             querysign = 2;
             gsparams.isDisabled = null;
-            gsparams.status = 1;
+            gsparams.settleStatus = 1;
             gsparams.auditSign = null;
             break;
         case 10:
             gsparams.billStatusId = 2;
-            querytypename = "部分受理";
+            querytypename = "全部出库";
             querysign = 2;
             gsparams.isDisabled = null;
-            gsparams.status = 2;
+            gsparams.settleStatus = 2;
             gsparams.auditSign = null;
             break;
-        case 11:
-            gsparams.billStatusId = null;
-            querytypename = "全部受理";
-            querysign = 2;
-            gsparams.isDisabled = null;
-            gsparams.status = 3;
-            gsparams.auditSign = null;
-            break;
-        case 12:
-            gsparams.billStatusId = null;
-            querytypename = "已拒绝";
-            querysign = 2;
-            gsparams.isDisabled = null;
-            gsparams.status = 4;
-            gsparams.auditSign = null;
-            break;
+
         case 13:
             gsparams.billStatusId = null;
             querytypename = "所有";
             querysign = 2;
             gsparams.isDisabled = 0;
             gsparams.status = null;
+            gsparams.settleStatus=null;
             gsparams.auditSign = null;
             break;
         default:
@@ -825,11 +811,11 @@ function submit()
 
 var auditUrl= baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.auditPjAllotAcceptOut.biz.ext";
 function audit(){
-	 var data = basicInfoForm.getData();
 	 var flag =save(1);
 	 if(flag !=true){
 		 return;
 	 }
+	 var data = getMainData();
 	 nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
@@ -853,7 +839,7 @@ function audit(){
 		                showMsg("出库成功!","S");
 	
 		                var row = leftGrid.getSelected();
-		                leftGrid.updateRow(row,data);
+		                leftGrid.updateRow(row,leftRow);
 		                loadMainAndDetailInfo(leftRow);
                   }
 

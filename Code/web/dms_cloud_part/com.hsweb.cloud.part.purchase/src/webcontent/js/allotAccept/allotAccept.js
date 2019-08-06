@@ -424,7 +424,7 @@ var requiredField = {
     orderDate : "调拨受理日期"
 };
 var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.allotsettle.savePjAllotAccept.biz.ext";
-function save() {
+function save(type) {
     var data = basicInfoForm.getData();
     var flag=false;
     for ( var key in requiredField) {
@@ -443,7 +443,13 @@ function save() {
     }else{
         return;
     }
-
+    if(type==1){
+    	 var msg = checkRightData();
+         if(msg){
+             showMsg(msg,"W");
+             return;
+         }
+    }
     
     var rightRow =rightGrid.getData();
 
@@ -479,7 +485,7 @@ function save() {
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                showMsg(stip,"S");
+            	               
                 //onLeftGridRowDblClick({});
                 var pjAllotAcceptMainList = data.pjAllotAcceptMainList;
                 if(pjAllotAcceptMainList && pjAllotAcceptMainList.length>0) {
@@ -489,13 +495,18 @@ function save() {
 
                     //保存成功后重新加载数据
                     loadMainAndDetailInfo(leftRow);
+                    if(type !=1){
+                    	showMsg(stip,"S");
+                    }                    
                     flag =true;
                     return flag;
 
                     
                 }
             } else {
-                showMsg(data.errMsg || etip,"E");
+            	if(type !=1){
+            		showMsg(data.errMsg || etip,"E");
+                }                    
                 return flag;
             }
         },
@@ -504,6 +515,7 @@ function save() {
             console.log(jqXHR.responseText);
         }
     });
+    return flag;
 }
 
 function removeChanges(added, modified, removed, all) {
@@ -814,7 +826,7 @@ function submit()
 var auditUrl= baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.auditPjAllotAcceptOut.biz.ext";
 function audit(){
 	 var data = basicInfoForm.getData();
-	 var flag =save();
+	 var flag =save(1);
 	 if(flag !=true){
 		 return;
 	 }
@@ -833,13 +845,17 @@ function audit(){
 	        success : function(data) {
 	            nui.unmask(document.body);
 	            data = data || {};
+	          
 	            if (data.errCode == "S") {
-	                showMsg("出库成功!","S");
-
-	                var row = leftGrid.getSelected();
-	                leftGrid.updateRow(row,data);
-	                loadMainAndDetailInfo(leftRow);
-
+            	  var pjAllotAcceptMainList = data.pjAllotAcceptMainList;
+                  if(pjAllotAcceptMainList && pjAllotAcceptMainList.length>0) {
+	                    var leftRow = pjAllotAcceptMainList[0];
+		                showMsg("出库成功!","S");
+	
+		                var row = leftGrid.getSelected();
+		                leftGrid.updateRow(row,data);
+		                loadMainAndDetailInfo(leftRow);
+                  }
 
 	            } else {
 	                showMsg(data.errMsg || "出库失败!","W");
@@ -849,6 +865,7 @@ function audit(){
 	            console.log(jqXHR.responseText);
 	        }
 	    });
+	  
 
 }
 
@@ -1560,6 +1577,7 @@ function addDetail(rows)
 {
     //var iframe = this.getIFrameEl();
     //var data = iframe.contentWindow.getData();
+	var data =basicInfoForm.getData();
     var row = rows.part||{};
     if(row) {
         var newRow = {
@@ -1578,7 +1596,8 @@ function addDetail(rows)
             partName : row.name,
             fullName : row.fullName,
             systemUnitId : row.unit,
-            outUnitId : row.unit
+            outUnitId : row.unit,
+            storeId   : storeId 
         };
 
 

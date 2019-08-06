@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调拨受理</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotAccept.js?v=1.0.9"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotAccept.js?v=1.0.14"></script>
 <style type="text/css">
 .title {
   width: 70px;
@@ -87,7 +87,7 @@ body .mini-grid-row-selected{
             <td style="width:100%;">
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="save('0')" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="submit()" visible="false"  id="submitBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible="true"  id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;出库</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="del()" visible="true" id="delBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
@@ -307,7 +307,7 @@ body .mini-grid-row-selected{
                               </div>
                               <div header="辅助信息" headerAlign="center">
                                   <div property="columns">
-                                  	  <div field="stockOutQty" summaryType="sum" numberFormat="0.00" width="25" headerAlign="center" header="缺货数量"></div>
+                                  	  <div field="stockOutQty" summaryType="sum" numberFormat="0.00" width="35" headerAlign="center" header="缺货数量"></div>
                                       <div field="comApplyCarModel" width="80" headerAlign="center" header="品牌车型"></div>
                                       <div field="comUnit" name="comUnit" width="60" headerAlign="center" header="单位"></div>
                                       <div field="comOemCode" width="50" headerAlign="center" allowSort="true" header="OE码"></div>   

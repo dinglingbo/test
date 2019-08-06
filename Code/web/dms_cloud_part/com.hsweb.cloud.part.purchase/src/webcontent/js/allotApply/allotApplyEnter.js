@@ -190,11 +190,12 @@ function onLeftGridDrawCell(e)
             if(record.isDisabled == 1) {
                 e.cellHtml = "已作废";
             }else {
-                if(AuditSignHash && AuditSignHash[e.value])
-                {
-                    e.cellHtml = AuditSignHash[e.value];
-                }else {
+                if(record.status == 0) {
                     e.cellHtml = "草稿";
+                } else if(record.settleStatus == 1) {
+                    e.cellHtml = "部分入库";
+                } else if(record.settleStatus == 2) {
+                    e.cellHtml = "已入库";
                 }
             }
             

@@ -811,7 +811,7 @@
 	<!-- 判断调拨申请受理是否超数  -->
     <select id="checkAllotAcceptApply" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     	
-        SELECT a.part_id as partId, a.part_code as partCode, a.part_name as partName
+        SELECT a.part_id as partId, a.part_code as partCode, a.part_name as partName, b.has_accept_qty as hasAcceptQty
 		from pj_allot_accept_detail a
 		inner join pj_allot_apply_detail b
 		on a.prev_detail_id = b.id
@@ -864,7 +864,7 @@
 		
 		update pj_allot_apply_detail a
 		inner join pj_allot_apply_detail b
-		on a.prev_detail_id = b.id
+		on a.source_detail_id = b.id
 		inner join pj_allot_apply_main c
 		on a.main_id = c.id and b.main_id = c.code_id
 		set b.is_finished = case when b.has_in_qty + a.apply_qty + b.has_cancel_qty = b.apply_qty then 1 else 0 end,
@@ -987,7 +987,7 @@
          and c.code = #applyServiceId#
                        applyDetailId  调拨出库ID 
          -->
-    <select id="getAcceptOutEnterable" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    <select id="getAcceptOutEnterable" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.pts.PjOutDetailChk">
 
         SELECT
 			a.id as id,
@@ -1040,7 +1040,7 @@
           and e.code = #applyServiceId#
           applyDetailId 调拨申请的明细ID
           -->
-    <select id="getAcceptOutEnterableT" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    <select id="getAcceptOutEnterableT" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.pts.PjOutDetailChk">
 
         SELECT
 			a.id as id,
@@ -1098,7 +1098,7 @@
     		调出退回 prev_detail_id 会关联调入退回的明细ID
     	
     -->
-    <select id="getAllotInRtnable" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    <select id="getAllotInRtnable" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.pts.PjOutDetailChk">
 
         SELECT
 			a.id as id,

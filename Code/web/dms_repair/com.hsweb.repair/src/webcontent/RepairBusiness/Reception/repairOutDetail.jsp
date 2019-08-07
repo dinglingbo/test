@@ -24,6 +24,9 @@
         height: 100%;
         overflow: hidden;
     }
+        .required {
+            color: red;
+        }
     .tbtext {
         text-align: center;
         width:80px;
@@ -211,17 +214,17 @@
             <td class="tbCtrl">
                 <input class="nui-textbox tabwidth" name="mtAdvisor" id="mtAdvisor"style="width:100%" allowInput="false"/>
             </td>
-            <td class="tbtext">车架号(VIN):</td>
+            <td class="tbtext required">配件审核状态:</td>
             <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" id="carVin" name="carVin"style="width:100%" allowInput="false"/>
+                <input class="nui-textbox tabwidth" name="partAuditSign" id="partAuditSign" style="width:100%" allowInput="false"/>
             </td>
             <td class="tbtext">品牌车型:</td>
             <td class="tbCtrl">
                 <input class="nui-textbox tabwidth" name="carModel" id="carModel" style="width:100%" allowInput="false"/>
             </td>
-            <td class="tbtext">配件审核状态:</td>
+            <td class="tbtext">车架号(VIN):</td>
             <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" name="partAuditSign" id="partAuditSign" style="width:100%" allowInput="false"/>
+                <input class="nui-textbox tabwidth" id="carVin" name="carVin"style="width:100%" allowInput="false"/>
             </td>
         </tr>
 

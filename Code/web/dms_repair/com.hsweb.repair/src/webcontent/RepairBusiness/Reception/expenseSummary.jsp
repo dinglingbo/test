@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>费用登记汇总表</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/expenseSummary.js?v=1.0.7"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/expenseSummary.js?v=1.0.2"></script>
     <style type="text/css">
 
     table {
@@ -87,6 +87,7 @@ pageEncoding="UTF-8" session="false"%>
 	                <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                     <a class="nui-button" iconCls="" onclick="onSearch()" plain="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                   <!--  <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a> -->
                 </td>
             </tr>
         </table> 
@@ -118,5 +119,8 @@ pageEncoding="UTF-8" session="false"%>
                 </div>
             </div>
        </div>
+       <div id="exportDiv" style="display:none">  
+
+		</div> 
 </body>
 </html>

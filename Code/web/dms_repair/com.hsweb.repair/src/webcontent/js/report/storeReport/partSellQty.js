@@ -201,3 +201,34 @@ function editSell(){
     };
     window.parent.activeTabAndInit(part,params);
 }
+
+function onExport(){
+	var detail = rightGrid.getData();
+//多级
+	exportMultistage(rightGrid.columns)
+//单级
+       //exportNoMultistage(rightGrid.columns)
+	for(var i=0;i<detail.length;i++){
+/*		detail[i].status=statusHash[detail[i].status]
+
+		detail[i].billTypeId=billTypeIdList[detail[i].billTypeId].name;
+        if(detail[i].isSettle== 1){
+        	detail[i].isSettle = "已结算";
+        }else{
+        	detail[i].isSettle = "未结算";
+        }
+
+		if(detail[i].isCollectMoney==1){
+			detail[i].isCollectMoney="√";
+		}else{
+			detail[i].isCollectMoney="";
+		}*/
+	}
+	if(detail && detail.length > 0){
+//多级表头类型
+		setInitExportData( detail,rightGrid.columns,"配件销售明细表导出");
+//单级表头类型  与上二选一
+//setInitExportDataNoMultistage( detail,rightGrid.columns,"已结算工单明细表导出");
+	}
+	
+}

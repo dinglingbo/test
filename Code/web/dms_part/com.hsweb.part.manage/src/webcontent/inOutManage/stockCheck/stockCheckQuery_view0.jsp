@@ -79,6 +79,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <span class="separator"></span>
                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a> 
             </td>
         </tr>
     </table>
@@ -228,7 +229,37 @@
     </div>
 </div>
 
-
+<div id="exportDiv" style="display:none">  
+    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
+        <tr>  
+        	<td colspan="1" align="center">盘点单号</td>
+            <td colspan="1" align="center">盘点日期</td>
+            <td colspan="1" align="center">盘点员</td>
+            <td colspan="1" align="center">盘点仓库</td>
+            <td colspan="1" align="center">配件编码</td>
+             <td colspan="1" align="center">配件名称</td>
+             
+            <td colspan="1" align="center">OEM码</td>          
+            <td colspan="1" align="center">品牌</td>
+            <td colspan="1" align="center">品牌车型</td>
+                        
+            <td colspan="1" align="center">单位</td>
+            <td colspan="1" align="center">系统数量</td>
+            <td colspan="1" align="center">实盘数量</td>
+            <td colspan="1" align="center">盈亏数量</td>
+            <td colspan="1" align="center">盈亏单价</td>
+            <td colspan="1" align="center">盈亏金额</td>
+            <td colspan="1" align="center">盈亏状态</td>
+            <td colspan="1" align="center">备注</td>            
+            <td colspan="1" align="center">审核人</td>         
+            <td colspan="1" align="center">审核日期</td>
+            <td colspan="1" align="center">配件ID</td>
+        </tr>
+        <tbody id="tableExportContent">
+        </tbody>
+    </table>  
+    <a href="" id="tableExportA"></a>
+</div> 
 
 </body>
 </html>

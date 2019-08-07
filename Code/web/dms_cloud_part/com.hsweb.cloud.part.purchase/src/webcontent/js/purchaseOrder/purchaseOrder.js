@@ -83,6 +83,8 @@ var storeShelfList=[];
 var storeShelfHash={}
 var partHash={};
 var orderTypeList=[{"id":1,"name":"常规订单"},{"id":2,"name":"备货订单"},{"id":3,"name":"急件订单"}];
+
+var directOrgidEl =null;
 $(document).ready(function(v) {
 	nui.mask({
         el: document.body,
@@ -113,6 +115,9 @@ $(document).ready(function(v) {
 	sOrderDate = nui.get("sOrderDate");
 	eOrderDate = nui.get("eOrderDate");
 
+	directOrgidEl = nui.get("directOrgid");
+	getCompany();
+	 
 	mainTabs = nui.get("mainTabs");
 	billmainTab = mainTabs.getTab("billmain");
 	partInfoTab = mainTabs.getTab("partInfoTab");
@@ -612,7 +617,14 @@ function loadMainAndDetailInfo(row) {
 			setBtnable(true);
 			setEditable(true);
 		}
-
+		//预售单转的单
+		if(row.sourceType ==5){
+			nui.get("guestId").disable();
+			nui.get("directOrgid").disable();
+		}else{
+			nui.get("guestId").enable();
+			nui.get("directOrgid").enable();
+		}
 		// 序列化入库主表信息，保存时判断主表信息有没有修改，没有修改则不需要保存
 		var data = basicInfoForm.getData();
 		data.orderAmt = data.orderAmt||0;
@@ -928,6 +940,14 @@ function doSearch(params) {
 				setBtnable(true);
 				setEditable(true);
 			}
+			//预售单转的单
+			if(row.sourceType ==5){
+				nui.get("guestId").disable();
+				nui.get("directOrgid").disable();
+			}else{
+				nui.get("guestId").enable();
+				nui.get("directOrgid").enable();
+			}
 		}
 	});
 }
@@ -1046,7 +1066,10 @@ function add() {
 		showMsg("请先保存数据!","W");
 		return;
 	}
-
+	
+	nui.get("guestId").enable();
+	nui.get("directOrgid").enable();
+	
 	var formJsonThis = nui.encode(basicInfoForm.getData());
 	var len = rightGrid.getData().length;
 
@@ -2033,11 +2056,11 @@ function checkRightData() {
 					return true;
 				}
 			}
-
-			if (row.storeId) {
-			} else {
-				return true;
-			}	
+			 if (row.storeId) {
+	        } else {
+	            return true;
+	        }
+			
 		}
 
 	});
@@ -2812,6 +2835,12 @@ function OnrpMainGridCellBeginEdit(e){
 	
 		});
     }
+	 //预售单
+	 if(data.sourceType==5){
+		 if(field == "comPartCode" || field == "orderQty"){
+			 e.cancel = true; 
+		 }
+	 }
 
 }
 function addMorePart(){
@@ -3510,5 +3539,32 @@ function getStratePriceList(params){
 			// nui.alert(jqXHR.responseText);
 			console.log(jqXHR.responseText);
 		}
+	});
+}
+
+var companyUrl = apiPath + sysApi + "/"+"com.hsapi.system.basic.organization.getCompanyAll.biz.ext";
+function getCompany(){
+	var params = {};
+	nui.ajax({
+        url: companyUrl,
+        type: 'post',
+        async:false,
+        data: nui.encode({
+        	params: params,
+            token: token
+        }),
+        cache: false,
+        success: function (data) {
+            if (data.errCode == "S"){
+            	var orgList =data.companyList;
+            	directOrgidEl.setData(data.companyList);
+               
+            }else {
+            	
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
 	});
 }

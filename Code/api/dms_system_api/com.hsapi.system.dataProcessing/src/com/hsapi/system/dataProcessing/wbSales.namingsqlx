@@ -41,7 +41,7 @@
     <delete id="deleteCssCheckPdiMain" parameterClass="HashMap">
      DELETE wb_sales.css_check_pdi_main , wb_sales.css_check_pdi_detail 
      FROM wb_sales.css_check_pdi_main  
-			INNER JOIN  wb_sales.css_check_pdi_detail  on wb_sales.css_check_pdi_main.id =  wb_sales.css_check_pdi_detail.order_id
+			LEFT JOIN  wb_sales.css_check_pdi_detail  on wb_sales.css_check_pdi_main.id =  wb_sales.css_check_pdi_detail.order_id
  			where wb_sales.css_check_pdi_main .orgid = #orgid#
     </delete> 
     
@@ -49,7 +49,7 @@
     <delete id="deleteCssFactoryOrderMain" parameterClass="HashMap">
      DELETE wb_sales.css_factory_order_main , css_factory_order_detail
      FROM wb_sales.css_factory_order_main  
-			INNER JOIN  css_factory_order_detail  on wb_sales.css_factory_order_main.id = css_factory_order_detail.order_id
+			LEFT JOIN  css_factory_order_detail  on wb_sales.css_factory_order_main.id = css_factory_order_detail.order_id
  			where wb_sales.css_factory_order_main .orgid = #orgid#
     </delete>
     
@@ -57,7 +57,7 @@
     <delete id="deleteCssFactoryRebateMain" parameterClass="HashMap">
      DELETE wb_sales.css_factory_rebate_main , css_factory_rebate_detail
      FROM wb_sales.css_factory_rebate_main 
-			INNER JOIN  wb_sales.css_factory_rebate_detail  on wb_sales.css_factory_rebate_main.id =  wb_sales.css_factory_rebate_detail.order_id
+			LEFT JOIN  wb_sales.css_factory_rebate_detail  on wb_sales.css_factory_rebate_main.id =  wb_sales.css_factory_rebate_detail.order_id
  			where wb_sales.css_factory_rebate_detail.orgid = #orgid#
     </delete>  
     
@@ -65,7 +65,7 @@
     <delete id="deleteCssFactoryReturnMain" parameterClass="HashMap">
      DELETE wb_sales.css_factory_return_main , wb_sales.css_factory_return_detail
      FROM wb_sales.css_factory_return_main  
-			INNER JOIN  wb_sales.css_factory_return_detail  on wb_sales.css_factory_return_main.id = wb_sales.css_factory_return_detail.order_id
+			LEFT JOIN  wb_sales.css_factory_return_detail  on wb_sales.css_factory_return_main.id = wb_sales.css_factory_return_detail.order_id
  			where wb_sales.css_factory_return_main.orgid = #orgid#
     </delete> 
     
@@ -82,8 +82,8 @@
      <!--来访登记表   删除wb_sales.css_guest_come + css_sale_calc +css_sale_gift_apply-->
     <delete id="deleteCssGuestCome" parameterClass="HashMap">
      DELETE wb_sales.css_guest_come ,wb_sales.css_sale_calc ,wb_sales.css_sale_gift_apply FROM wb_sales.css_guest_come
-     	INNER JOIN  wb_sales.css_sale_calc  on wb_sales.css_guest_come.id = wb_sales.css_sale_calc.service_id
-     	INNER JOIN  wb_sales.css_sale_gift_apply  on wb_sales.css_sale_calc.id = wb_sales.css_sale_gift_apply.service_id
+     	LEFT JOIN  wb_sales.css_sale_calc  on wb_sales.css_guest_come.id = wb_sales.css_sale_calc.service_id
+     	LEFT JOIN  wb_sales.css_sale_gift_apply  on wb_sales.css_sale_calc.id = wb_sales.css_sale_gift_apply.service_id
  			where wb_sales.css_guest_come.orgid = #orgid# and wb_sales.css_sale_calc.billType = 1
     </delete>
     
@@ -103,9 +103,9 @@
     <delete id="deleteCssSaleMain" parameterClass="HashMap">
      DELETE wb_sales.css_sale_main ,wb_sales.css_sale_extend ,wb_sales.css_sale_calc ,wb_sales.css_sale_gift_apply
      FROM wb_sales.css_sale_main
-     	INNER JOIN  wb_sales.css_sale_extend  on wb_sales.css_sale_main.id = wb_sales.css_sale_extend.id
-     	INNER JOIN  wb_sales.css_sale_calc  on wb_sales.css_sale_main.id = wb_sales.css_sale_calc.service_id
-     	INNER JOIN  wb_sales.css_sale_gift_apply  on wb_sales.css_sale_main.id = wb_sales.css_sale_gift_apply.service_id
+     	LEFT JOIN  wb_sales.css_sale_extend  on wb_sales.css_sale_main.id = wb_sales.css_sale_extend.id
+     	LEFT JOIN  wb_sales.css_sale_calc  on wb_sales.css_sale_main.id = wb_sales.css_sale_calc.service_id
+     	LEFT JOIN  wb_sales.css_sale_gift_apply  on wb_sales.css_sale_main.id = wb_sales.css_sale_gift_apply.service_id
      	
  			where wb_sales.css_sale_main.orgid = #orgid# and wb_sales.css_sale_calc.billType = 2
     </delete> 
@@ -114,7 +114,7 @@
     <delete id="deleteCssSaleGiftOutMain" parameterClass="HashMap">
      DELETE wb_sales.css_sale_gift_out_main , wb_sales.css_sale_gift_out_item
      FROM wb_sales.css_sale_gift_out_main 
-			INNER JOIN css_sale_gift_out_item  on css_sale_gift_out_main.id = wb_sales.css_sale_gift_out_item.service_id
+			LEFT JOIN css_sale_gift_out_item  on css_sale_gift_out_main.id = wb_sales.css_sale_gift_out_item.service_id
  			where css_sale_gift_out_main.orgid = #orgid#
     </delete> 
     

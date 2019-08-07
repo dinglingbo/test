@@ -1029,9 +1029,9 @@ function onParseUnderpanNo()
         getCarVinModel(vin,function(data)
         {
             data = data||{};
-            if(data.errCode == "S")
+            var carVinModel = data.data.SuitCar||[];//list[0];
+            if(carVinModel.length > 0)
             {
-            	var carVinModel = data.data.SuitCar||[];//list[0];
             	var carModelId = data.data.carModelId;
                 carVinModel = carVinModel[0]||{};
                 carVinModel.vin = vin;
@@ -1049,8 +1049,38 @@ function onParseUnderpanNo()
                 nui.get("carModelIdLy").setValue(carModelId);
                 nui.unmask(document.body);
             }else{
-            	nui.unmask(document.body);
-            	showMsg("车型解析失败，请手工维护车型信息！","W");
+    			var getStandardCarmodelByVINUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.svr.getStandardCarmodelByVIN.biz.ext";
+    			var json = {
+    					params:{
+    						vin:vin
+    					},
+    			token : token
+    			};
+    			nui.ajax({
+    				url : getStandardCarmodelByVINUrl,
+    				type : "post",
+    				aynsc:false,
+    				data : json,
+    				success : function(data) {     					
+    					data = data || {};
+    	                nui.unmask(document.body);
+    					if (data.errCode == "S") {
+    						carVinModel =  data.result[0]||[];
+    		                var carModelId = carVinModel.carModelId;
+    		                carVinModel.vin = vin;
+    		                var carModelInfo = "品牌:"+carVinModel.carBrandName+"\n";
+    		                carModelInfo += "车型:"+carVinModel.carModelName+"\n";
+    		                carModelInfo += "车系:"+carVinModel.carLineName+"\n";
+    		                nui.get("carModel").setValue(carVinModel.carModelName);
+
+    					} else {
+    						showMsg("车型解析失败，请手动维护车型!","W");
+    					}
+    				},
+    				error : function(jqXHR, textStatus, errorThrown) {
+    					console.log(jqXHR.responseText);
+    				}
+    			});           	
             }
         });
     }else{

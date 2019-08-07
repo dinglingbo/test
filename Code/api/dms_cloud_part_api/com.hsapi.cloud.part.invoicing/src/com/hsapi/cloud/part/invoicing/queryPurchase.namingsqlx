@@ -58,9 +58,10 @@
         <result column="guestFullName" javaType="string" property="guestFullName"/>
         <result column="guestShortName" javaType="string" property="guestShortName"/>
         <result column="versionNo" javaType="string" property="versionNo"/>
-        <result column="sourceType" javaType="int" property="int"/>
+        <result column="sourceType" javaType="int" property="sourceType"/>
         <result column="rtnReasonId" javaType="string" property="rtnReasonId"/>
         <result column="orderType" javaType="string" property="orderType"/>
+        <result column="directOrgid" javaType="string" property="directOrgid"/>
     </resultMap>
     <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
     <select id="queryPjPchsOrderMainList" parameterClass="java.util.HashMap" resultMap="pjPchsOrderMainList">
@@ -116,7 +117,8 @@
             M.guestShortName,
             M.versionNo,
             M.rtnReasonId,
-            M.orderType
+            M.orderType,
+            M.directOrgid
         FROM (
             SELECT DISTINCT
                 A.ID as id,
@@ -169,7 +171,8 @@
                 B.SHORT_NAME AS guestShortName,
                 a.version_no as versionNo,
                 a.rtn_reason_id as rtnReasonId,
-                a.order_type as orderType
+                a.order_type as orderType,
+                a.direct_orgid as directOrgid
                 FROM
                 DMS_CLOUD_PART.PJ_PCHS_ORDER_MAIN A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
@@ -298,7 +301,8 @@
                 B.SHORT_NAME AS guestShortName,
                 a.version_no as versionNo,
                 a.rtn_reason_id as rtnReasonId,
-                a.order_type as orderType
+                a.order_type as orderType,
+                a.direct_orgid as directOrgid
                 FROM
                 DMS_CLOUD_PART.PJ_PCHS_ORDER_MAIN_CHK A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
@@ -1414,7 +1418,8 @@
                 B.SHORT_NAME AS guestShortName,
                 a.version_no as versionNo,
                 a.is_diff_order as isDiffOrder,
-                a.order_type as orderType
+                a.order_type as orderType,
+                a.direct_orgid as directOrgid
                 FROM
                 DMS_CLOUD_PART.PJ_PCHS_ORDER_MAIN A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID
@@ -1554,7 +1559,8 @@
                 B.SHORT_NAME AS guestShortName,
                 a.version_no as versionNo,
                 a.is_diff_order as isDiffOrder,
-                a.order_type as orderType
+                a.order_type as orderType,
+                a.direct_orgid as directOrgid
                 FROM
                 DMS_CLOUD_PART.PJ_PCHS_ORDER_MAIN_chk A
                 INNER JOIN WB_COMMON.COM_GUEST B ON A.GUEST_ID = B.ID

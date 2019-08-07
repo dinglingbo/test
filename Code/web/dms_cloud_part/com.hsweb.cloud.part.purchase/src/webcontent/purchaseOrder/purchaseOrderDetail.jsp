@@ -125,7 +125,7 @@
       <div showCollapseButton="false">
           
           <div class="nui-fit">
-              <fieldset id="fd1" style="width:99.5%;min-width:800px;height:100px;">
+              <fieldset id="fd1" style="width:99.5%;min-width:800px;height:120px;">
                   <legend><span>采购订单信息</span></legend>
                   <div class="fieldset-body">
                   
@@ -141,6 +141,7 @@
                           <input class="nui-hidden" name="auditSign" id="auditSign"/>
                           <input class="nui-hidden" name="billStatusId" id="billStatusId"/>
                           <input class="nui-textbox" visible="false" width="100%" id="isInner" name="isInner"/>
+                          <input class="nui-hidden" name="sourceType" id="sourceType"/>
                           <table style="width: 100%;">
                               <tr>
                                   <td class="title required">
@@ -251,16 +252,27 @@
                                              onvalidation="onComboValidation"/>
                                   </td>
                                   <td class="title">
-                                      <label>备注：</label>
+                                      <label>直发门店：</label>
                                   </td>
                                   <td colspan="3">
-                                      <input class="nui-textbox" width="100%" id="remark" name="remark"/>
+                                     <input class="nui-combobox" id ="directOrgid" name="directOrgid" value="" allowInput="true" showNullItem="false" 
+				            		 valueFromSelect="true" nullitemtext="请选择..." emptyText="选择直发门店" data="" width="100%"
+				            		 textField="name" valueField="orgid" />
                                   </td>
                                   <td class="title" width="120">
                                       <label>订单号：</label>
                                   </td>
                                   <td>
                                       <input class="nui-textbox" width="100%" id="serviceId" name="serviceId" enabled="false" placeholder="新采购订单"/>
+                                  </td>
+                              </tr>
+                              
+                              <tr>
+                              	 <td class="title">
+                                      <label>备注：</label>
+                                  </td>
+                                  <td colspan="9">
+                                      <input class="nui-textbox" width="100%" id="remark" name="remark"/>
                                   </td>
                               </tr>
                           </table>

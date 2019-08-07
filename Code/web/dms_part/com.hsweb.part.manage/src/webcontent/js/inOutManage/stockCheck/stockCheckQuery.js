@@ -365,3 +365,98 @@ function edit(){
     var params = row; 
     window.parent.activeTabAndInit(item,params);
 }
+
+function onExport(){
+	
+
+	var detail = rightGrid.getData();
+	
+	for(var i=0;i<detail.length;i++){
+		for(var j in storehouseHash) {
+			if(detail[i].storeId ==storehouseHash[j].id ){
+				detail[i].storeId=storehouseHash[j].name;
+			}
+		}
+		for(var j in partBrandIdHash) {
+			if(detail[i].partBrandId ==partBrandIdHash[j].id ){
+				detail[i].partBrandId=partBrandIdHash[j].name;
+			}
+		}		
+		if(detail[i].dc==""){
+			detail[i].dc="无盈亏";
+		}else if(detail[i].dc==1){
+			detail[i].dc="盘盈";
+		}else if(detail[i].dc==-1){
+			detail[i].dc="盘亏";
+		}
+	}
+	if(detail && detail.length > 0){
+		setInitExportData( detail);
+	}
+	
+}
+
+function setInitExportData( detail){
+
+    var tds = '<td  colspan="1" align="left">[serviceId]</td>' +
+        "<td  colspan='1' align='left'>[createDate]</td>" +
+        "<td  colspan='1' align='left'>[orderMan]</td>" +
+        "<td  colspan='1' align='left'>[storeId]</td>" +
+        "<td  colspan='1' align='left'>[comPartCode]</td>" +       
+        "<td  colspan='1' align='left'>[comPartName]</td>" +
+        
+        "<td  colspan='1' align='left'>[comOemCode]</td>" +
+        "<td  colspan='1' align='left'>[partBrandId]</td>" +
+        "<td  colspan='1' align='left'>[applyCarModel]</td>" +
+        
+        "<td  colspan='1' align='left'>[enterUnitId]</td>" +
+        "<td  colspan='1' align='left'>[sysQty]</td>" +
+        "<td  colspan='1' align='left'>[trueQty]</td>"+
+        "<td  colspan='1' align='left'>[exhibitQty]</td>"+
+        "<td  colspan='1' align='left'>[exhibitPrice]</td>"+
+        "<td  colspan='1' align='left'>[exhibitAmt]</td>"+      
+        "<td  colspan='1' align='left'>[dc]</td>" +
+        "<td  colspan='1' align='left'>[detailRemark]</td>" +
+        "<td  colspan='1' align='left'>[auditor]</td>" +
+        "<td  colspan='1' align='left'>[auditDate]</td>" +                     
+        "<td  colspan='1' align='left'>[partId]</td>";
+        
+        
+    var tableExportContent = $("#tableExportContent");
+    tableExportContent.empty();
+    for (var i = 0; i < detail.length; i++) {
+        var row = detail[i];
+        if(row.id){
+            var tr = $("<tr></tr>");
+            tr.append(tds.replace("[serviceId]", detail[i].serviceId?detail[i].serviceId:"")
+                         .replace("[createDate]", nui.formatDate(detail[i].createDate?detail[i].createDate:"",'yyyy-MM-dd HH:mm'))
+                         .replace("[orderMan]", detail[i].orderMan?detail[i].orderMan:"")
+                         .replace("[storeId]", detail[i].storeId?detail[i].storeId:"")
+                         .replace("[comPartCode]", detail[i].comPartCode?detail[i].comPartCode:"")
+                         //.replace("[collectMoneyDate]", nui.formatDate(detail[i].collectMoneyDate?detail[i].collectMoneyDate:"",'yyyy-MM-dd HH:mm'))
+                         
+                         .replace("[comPartName]", detail[i].comPartName?detail[i].comPartName:"")                       
+                         .replace("[comOemCode]", detail[i].comOemCode?detail[i].comOemCode:"")
+                         .replace("[partBrandId]", detail[i].partBrandId?detail[i].partBrandId:"") 
+                         
+                         .replace("[applyCarModel]", detail[i].applyCarModel?detail[i].applyCarModel:"")                        
+                         .replace("[enterUnitId]", detail[i].enterUnitId?detail[i].enterUnitId:"")
+                         .replace("[sysQty]", detail[i].sysQty?detail[i].sysQty:"")
+                         
+                         .replace("[trueQty]", detail[i].trueQty?detail[i].trueQty:"")
+                         .replace("[exhibitQty]", detail[i].exhibitQty?detail[i].exhibitQty:"")
+                         .replace("[exhibitPrice]", detail[i].exhibitPrice?detail[i].exhibitPrice:"")
+                         .replace("[exhibitAmt]", detail[i].exhibitAmt?detail[i].exhibitAmt:"")
+                         
+                         .replace("[dc]", detail[i].dc?detail[i].dc:"")  
+                         .replace("[detailRemark]", detail[i].detailRemark?detail[i].detailRemark:"")                         
+                         .replace("[auditor]", detail[i].auditor?detail[i].auditor:"")
+                         .replace("[auditDate]", nui.formatDate(detail[i].auditDate?detail[i].auditDate:"",'yyyy-MM-dd HH:mm'))                          
+                         .replace("[partId]", detail[i].partId?detail[i].partId:""));
+            tableExportContent.append(tr);
+        }
+    }
+
+ 
+    method5('tableExcel',"盘点单明细表导出",'tableExportA');
+}

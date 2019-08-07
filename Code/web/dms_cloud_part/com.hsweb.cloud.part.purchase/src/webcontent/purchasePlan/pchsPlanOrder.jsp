@@ -60,14 +60,14 @@ body .mini-grid-row-selected{
                 <a class="nui-menubutton " menu="#popupMenuType" id="menunametype">所有</a>
 
                 <ul id="popupMenuType" class="nui-menu" style="display:none;">
-                	<li iconCls="" onclick="quickSearch(10)" id="type10">所有</li>
+                	<li iconCls="" onclick="quickSearch(11)" id="type10">所有</li>
                 	<span class="separator"></span>
                     <li iconCls="" onclick="quickSearch(6)" id="type6">草稿</li>
                     <li iconCls="" onclick="quickSearch(7)" id="type7">已提交</li>
                     <li iconCls="" onclick="quickSearch(8)" id="type8">已作废</li>
                     <span class="separator"></span>
-                    <li iconCls="" onclick="quickSearch(8)" id="type8">部分转订单</li>
-                    <li iconCls="" onclick="quickSearch(9)" id="type9">全部转订单</li>
+                    <li iconCls="" onclick="quickSearch(9)" id="type8">部分转订单</li>
+                    <li iconCls="" onclick="quickSearch(10)" id="type9">全部转订单</li>
                 </ul>
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择供应商..." visible="false"
@@ -78,15 +78,19 @@ body .mini-grid-row-selected{
                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
                 <!-- <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                 <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->
+                <input name="billTypeId" id="billTypeId" class="nui-combobox width1" textField="name"
+                       valueField="customid" visible="false" />
+                <input name="settleTypeId" id="settleTypeId" class="nui-combobox width1" textField="name" valueField="customid" visible="false" />
             </td>
             <td style="width:100%;">
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="submit()" visible="true"  id="submitBtn"><span class="fa fa-check fa-lg""></span>&nbsp;提交</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible="true" id="auditBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="save('0')" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="submit()" visible="true"  id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="del()" visible="true" id="delBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="del()" visible="true" id="undelBtn"><span class="fa fa-reply fa-lg"></span>&nbsp;反作废</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
-           
+                <span id="status"></span>
             </td>
         </tr>
     </table>
@@ -113,15 +117,15 @@ body .mini-grid-row-selected{
                      onrowdblclick=""
                      onselectionchanged="onLeftGridSelectionChanged"
                      onbeforedeselect=""
-                     dataField="pjSellOrderMainList"
+                     dataField="pjPchsPlanMainList"
                      url="">
                     <div property="columns">
                       <div type="indexcolumn">序号</div>
-                        <div field="billStatusId" width="60" headerAlign="center" header="状态"></div>
+                        <div field="status" width="60" headerAlign="center" header="状态"></div>
                       	<div field="auditSign" width="65" visible="false" headerAlign="center" header="状态"></div>
                         <div field="guestFullName" width="120" headerAlign="center" header="供应商"></div>
                         <div field="orderDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="创建日期"></div>
-                        <div field="orderMan" width="60" headerAlign="center" header="计划员"></div>
+                        <div field="creator" width="60" headerAlign="center" header="计划员"></div>
                         <div field="serviceId" headerAlign="center" width="150" header="计划单号"></div>
                         <div field="auditor" width="60" headerAlign="center" header="提交人"></div>
                         <div field="auditDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="提交日期"></div>
@@ -139,9 +143,10 @@ body .mini-grid-row-selected{
                           <div id="basicInfoForm" class="form" contenteditable="false">
                               <input class="nui-hidden" name="id"/>
                               <input class="nui-hidden" name="operateDate"/>
-                              <input class="nui-hidden" name="storeId" id="storeId"/>
+                              <input class="nui-hidden" name="versionNo"/>
+                              <input class="nui-hidden" name="status" id="status"/>
+                              <input class="nui-hidden" name="isDisabled" id="isDisabled"/>
                               <input class="nui-hidden" name="auditSign"/>
-                              <input class="nui-hidden" name="createDate"/>
                               <table style="width: 100%;">
                                   <tr>
                                       <td class="title required">
@@ -150,7 +155,6 @@ body .mini-grid-row-selected{
                                       <td colspan="3">
                                           <input id="guestId"
                                              name="guestId"
-                                            
                                              dataField="suppliers"
                                              textField="fullName"
                                              loadingText="查询中"
@@ -161,28 +165,28 @@ body .mini-grid-row-selected{
                                              onvaluechanged="onGuestValueChanged"
                                              popupEmptyText="未找到供应商"
                                              url=""  searchField="key"
-                                             width="86%"
+                                             width="80%"
                                              placeholder="请选择供应商"
                                              selectOnFocus="true" />
-                                           <a class="nui-button" iconCls="" plain="false" onclick="selectSupplier('guestId')" id="addBtn"><span class="fa fa-check fa-lg"></span></a>
+                                           <a class="nui-button" iconCls="" plain="false" onclick="selectSupplier('guestId')" id="selectSupplierBtn"><span class="fa fa-check fa-lg"></span></a>
                                        <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn"><span class="fa fa-plus fa-lg"></span></a>
                                       </td>
+                                      <td class="title required" style="width:120px">
+                                          <label>计划采购日期：</label>
+                                      </td>
+                                      <td width="150" style="width:120px">
+                                      <input name="orderDate"
+                                             id="orderDate"
+                                             width="100%"
+                                             showTime="true"
+                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
+                                    </td>  
                                       <td class="title required">
                                           <label>计划员：</label>
                                       </td>
-                                      <td colspan="1" style="width:100px">
+                                      <td colspan="1" style="width:180px">
                                           <input class="nui-textbox" selectOnFocus="true" width="100%" id="creator" name="creator" enabled="false"/>
-                                      </td>
-                                      <td class="title required">
-                                          <label>创建日期：</label>
-                                      </td>
-                                      <td width="150" style="width:120px">
-                                      <input name="createDate"
-                                             id="createDate"
-                                             width="100%"
-                                             showTime="true"
-                                             class="nui-datepicker" enabled="false" format="yyyy-MM-dd HH:mm"/>
-                                  	</td>                                  </tr>
+                                      </td>                           </tr>
                                   <tr>
                                       <td class="title">
                                           <label>备注：</label>
@@ -193,7 +197,7 @@ body .mini-grid-row-selected{
                                       <td class="title">
                                           <label>计划单号：</label>
                                       </td>
-                                      <td style="width:150px">
+                                      <td style="width:180px">
                                           <input class="nui-textbox" width="100%" id="serviceId" name="serviceId" enabled="false" placeholder="新计划采购单"/>
                                       </td>
 
@@ -206,9 +210,29 @@ body .mini-grid-row-selected{
                   <div class="nui-toolbar" style="padding:2px;border-left:0;">
                       <table style="width:100%;">
                           <tr>
-                              <td style="white-space:nowrap;">
+                              <td style="white-space:nowrap;" style="width:120px;">
                                   <a class="nui-button" plain="true" iconCls="" onclick="addPart()" id="addPartBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>
                                   <a class="nui-button" plain="true" iconCls="" onclick="deletePart()" id="deletePartBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
+                                  <span class="separator"></span>
+                                  <label>配件品牌:</label>
+                                  <input name="partBrandId"
+                                         id="partBrandId"
+                                         class="nui-combobox"
+                                         textField="name"
+                                         valueField="id"
+                                         emptyText="请选择..."
+                                         url=""
+                                         allowInput="true"
+                                         showNullItem="false"
+                                         width="100px"
+                                         valueFromSelect="true"
+                                         onvaluechanged=""
+                                         nullItemText="请选择..."/>
+                                  &nbsp;
+                                  <label>销量排名前:</label>
+                                  <input property="editor" id="limitCount" class="nui-textbox" vtype="int" width="50px" value="100"/>
+                                  <a class="nui-button" plain="true" iconCls="" onclick="genePart()" id="genePartBtn"><span class="fa fa-download fa-lg"></span>&nbsp;获取配件</a>
+                                  <a class="nui-button" plain="true" iconCls="" onclick="adjustPart()" id="adjustPartBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;计划调整</a>
                               </td>
                           </tr>
                       </table>
@@ -216,11 +240,11 @@ body .mini-grid-row-selected{
                   <div class="nui-fit">
                       <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
                            showPager="false"
-                           dataField="pjSellOrderDetailList"
+                           dataField="pjPchsPlanDetailList"
                            idField="id"
+                           frozenStartColumn="0"
+                           frozenEndColumn="3"
                            showSummaryRow="true"
-                           frozenStartColumn=""
-                           frozenEndColumn=""
                            ondrawcell="onRightGridDraw"
                            allowCellSelect="true"
                            allowCellEdit="true"
@@ -230,19 +254,39 @@ body .mini-grid-row-selected{
                            oncellbeginedit="OnrpMainGridCellBeginEdit"
                            showModified="false"
                            editNextOnEnterKey="true"
-                           allowCellWrap = true
+                           allowCellWrap = "true"
                            url="">
                           <div property="columns">
                               <div type="indexcolumn">序号</div>
                               <div header="配件信息" headerAlign="center">
                                   <div property="columns">
                                     <div field="operateBtn" name="operateBtn" width="50" headerAlign="center" header="删除"></div>
-                                      <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码">
+                                      <div field="comPartCode" name="comPartCode" width="100" summaryType="count" headerAlign="center" header="配件编码">
                                           <input property="editor" class="nui-textbox" />
                                       </div>
                                       <div field="comPartName" visible="false" headerAlign="center" header="配件名称"></div>
                                       <div field="fullName"  width="200" headerAlign="center" header="配件全称"></div>
                                       <div field="comPartBrandId" visible="false"width="60" headerAlign="center" header="品牌"></div>
+                                  </div>
+                              </div>
+                              <div header="库存信息" headerAlign="center">
+                                  <div property="columns">
+                                      <div field="totalStockQty" name="totalStockQty" summaryType="sum" width="60" headerAlign="center" header="连锁库存">
+                                      </div>
+                                      <div field="masterStockQty" width="60" headerAlign="center" header="总部库存">
+                                      </div>
+                                      <div field="branchStockQty" summaryType="sum"  width="60" headerAlign="center" header="门店库存">
+                                      </div>
+                                      <div field="onWayQty" width="60" headerAlign="center" allowSort="true" header="在途库存">
+                                      </div>
+                                      <div field="upLimit" width="60" headerAlign="center" allowSort="true" header="库存上限">
+                                      </div>
+                                      <div field="downLimit" width="60" headerAlign="center" allowSort="true" header="库存下限">
+                                      </div>
+                                      <div field="upLimitWinter" width="80" headerAlign="center" allowSort="true" header="库存上限(冬季)">
+                                      </div>
+                                      <div field="downLimitWinter" width="80" headerAlign="center" allowSort="true" header="库存下限(冬季)">
+                                      </div>
                                   </div>
                               </div>
                               <div header="数量金额信息" headerAlign="center">
@@ -381,7 +425,7 @@ body .mini-grid-row-selected{
         <table style="width:100%;">
             <tr>
                 <td style="width:100%;">
-                    <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="closeBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
                 </td>
             </tr>

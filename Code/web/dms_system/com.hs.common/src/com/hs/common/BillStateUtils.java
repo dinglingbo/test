@@ -196,6 +196,22 @@ public class BillStateUtils {
 
 	}
 	
+	@Bizlet("")
+	public static String stringReplaceAll(String str){
+		str = str.replaceAll("\\s*", "");
+		return str;
+	}
+	
+	@Bizlet("")
+	public static int getMillisecond(Date startDate){
+		double eMillis = new Date().getTime();
+		double sMillis =  startDate.getTime(); 
+		double millisecond = 0;
+		millisecond = (eMillis - sMillis)/1000;
+		int resultMillisecond = (int) millisecond;
+		return resultMillisecond;
+	}
+	
 }
 	
 

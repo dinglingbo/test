@@ -293,7 +293,7 @@
 	   <isEqual  prepend="" property="groupByType"  compareValue="2">
 	     	 b.part_code as groupName,
 	     	 b.part_name as partName,
-	    </isEqual>       
+	    </isEqual>      
  			SUM(a.true_cost) as trueCost,
 			SUM(b.subtotal) as subtotal,
 			SUM(b.qty) as qty,
@@ -332,6 +332,7 @@
 	<select id="queryPartSummaryBy2" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT  	     
 	   <isEqual  prepend="" property="groupByType"  compareValue="2">
+	   		 b.id as id,
 	     	 b.part_code as groupName,
 	     	 b.part_name as partName,
 	    </isEqual>       

@@ -384,6 +384,7 @@
  		    <isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
             <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isState">(a.is_state = #isState#)</isNotEmpty>
             <isNotEmpty prepend="and" property="orderTypeId">(a.order_type_id = #orderTypeId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="idList">(A.id in ($idList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="mainId">(b.main_id = #mainId#)</isNotEmpty>
@@ -774,6 +775,7 @@
 			<isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
             <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isState">(a.is_state = #isState#)</isNotEmpty>
             <isNotEmpty prepend="and" property="orderTypeId">(a.order_type_id = #orderTypeId#)</isNotEmpty>
             <!--订货日期 -->
             <isNotEmpty prepend="and" property="sOutDate">A.out_date &gt;= #sOutDate#</isNotEmpty>
@@ -1277,6 +1279,7 @@
             <isNotEmpty prepend="and" property="partId">(a.PART_ID = #partId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(b.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(b.FULL_NAME like '%$partNameAndPY$%' or b.name_py like '%$partNameAndPY$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="applyCarModel">(b.apply_car_model like '%$applyCarModel$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partCode">(b.query_code like '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partBrandId">(b.part_brand_id = #partBrandId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(b.code in ($partCodeList$))</isNotEmpty>
@@ -2069,6 +2072,16 @@
            	and main_id = #mainId#
     </select>
     
+    <select id="queryPchsPlanMainIsFinish" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">   	
+		SELECT
+			id
+		FROM
+			pj_pchs_plan_detail
+		WHERE
+			is_finished = 0
+           	and main_id = #mainId#
+    </select>
+    
     <select id="queryAllotApplyMainIsFinish" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">   	
 		SELECT
 			id
@@ -2088,4 +2101,15 @@
 			is_finished = 0
            	and main_id = #mainId#
     </select>
+    
+    <select id="queryAllotApplyMainIsAllotFinish" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">   	
+		SELECT
+			id
+		FROM
+			pj_allot_apply_detail
+		WHERE
+			is_allot_finished = 0
+           	and main_id = #mainId#
+    </select>
+    
 </sqlMap>

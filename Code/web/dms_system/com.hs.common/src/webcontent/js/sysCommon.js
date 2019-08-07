@@ -345,15 +345,237 @@ function importTimeLimit(){
 		
 		var limitMinData = fullYear+"-"+month+"-"+date+" 19:00:00";
 		var limitMaxData = fullYear+"-"+month+"-"+(date+1)+" 07:00:00";
+		var mixMinDate = fullYear+"-"+month+"-"+date+" 23:59:59";
+		var mixMaxDate = fullYear+"-"+month+"-"+date+" 00:00:00";
 		limitMinData = limitMinData.replace("-","/");//替换字符，变成标准格式  
 		limitMaxData = limitMaxData.replace("-","/");//替换字符，变成标准格式   
+		mixMinDate = mixMinDate.replace("-","/");
+		mixMaxDate = mixMaxDate.replace("-","/");
 		var d1 = new Date(Date.parse(limitMinData)); 
 		var d3 = new Date(Date.parse(limitMaxData)); 
-		if(d2>d1&&d2<d3){
+		var d4 = new Date(Date.parse(mixMinDate)); 
+		var d5 = new Date(Date.parse(mixMaxDate)); 
+		if((d2>d1&&d2<d4)||(d2<d3&&d2>d5)){
 			return true;
 		}else{
 			return false;
 		}
 	}
 
+}
+function method5(tableid, name, tagName) {
+	if (getExplorer() == 'ie') {
+		var curTbl = document.getElementById(tableid);
+		var oXL = new ActiveXObject("Excel.Application");
+		var oWB = oXL.Workbooks.Add();
+		var xlsheet = oWB.Worksheets(1);
+		var sel = document.body.createTextRange();
+		sel.moveToElementText(curTbl);
+		sel.select();
+		sel.execCommand("Copy");
+		xlsheet.Paste();
+		oXL.Visible = true;
+
+		try {
+			var fname = oXL.Application.GetSaveAsFilename("Excel.xls", "Excel Spreadsheets (*.xls), *.xls");
+		} catch (e) {
+			print("Nested catch caught " + e);
+		} finally {
+			oWB.SaveAs(fname);
+			oWB.Close(savechanges = false);
+			oXL.Quit();
+			oXL = null;
+			idTmr = window.setInterval("Cleanup();", 1);
+		}
+
+	} else {
+		tableToExcel(tableid,name,tagName);
+
+	}
+}
+
+//用于数据导出成EXCEL
+var idTmr;
+function getExplorer() {
+	var explorer = window.navigator.userAgent;
+	//ie  
+	if (explorer.indexOf("MSIE") >= 0) {
+		return 'ie';
+	}
+	//firefox  
+	else if (explorer.indexOf("Firefox") >= 0) {
+		return 'Firefox';
+	}
+	//Chrome  
+	else if (explorer.indexOf("Chrome") >= 0) {
+		return 'Chrome';
+	}
+	//Opera  
+	else if (explorer.indexOf("Opera") >= 0) {
+		return 'Opera';
+	}
+	//Safari  
+	else if (explorer.indexOf("Safari") >= 0) {
+		return 'Safari';
+	}
+}
+
+var tableToExcel = (function() {
+	var uri = 'data:application/vnd.ms-excel;base64,',
+		template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel"' +
+        'xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet>'
+        + '<x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets>'
+        + '</x:ExcelWorkbook></xml><![endif]-->' +
+        '<head><meta charset="UTF-8"></head><body><table>{table}</table></body></html>',
+		base64 = function(s) {
+			return window.btoa(unescape(encodeURIComponent(s)))
+		},
+		format = function(s, c) {
+			return s.replace(/{(\w+)}/g,
+				function(m, p) {
+					return c[p];
+				});
+		};
+	return function(table, name, tagName) {
+		if (!table.nodeType) table = document.getElementById(table);
+		var ctx = {
+			worksheet: name || 'Worksheet',
+			table: table.innerHTML
+		};
+		//window.location.href = uri + base64(format(template, ctx));
+
+		document.getElementById(tagName).href = uri + base64(format(template, ctx));
+		document.getElementById(tagName).download = name;
+		document.getElementById(tagName).click();
+	}
+})()
+
+//多级导出
+function setInitExportData( detail,columns,tableName){
+	var tds = "";
+	for(var i = 0;i<columns.length;i++){
+		var columnsList = columns[i].columns||[];
+		if(columnsList.length>0){			
+			for(var j = 0;j<columnsList.length;j++){
+				if(columnsList[j].field=="orgid"){
+					
+				}else{
+					var str = columnsList[j].field;
+					tds+='<td colspan="1" align="center">['+str+']</td>';	
+				}
+	
+			}
+		}
+	}   
+    var tableExportContent = $("#tableExportContent");
+    tableExportContent.empty();
+    for (var i = 0; i < detail.length; i++) {
+    	var temp = tds;//y循环完重新赋值
+        var row = detail[i];
+        if(row.id){
+            var tr = $("<tr></tr>");
+            		for(var k = 0; k < columns.length; k++) {
+            			var columnsList = columns[k].columns||[];
+            			if(columnsList.length>0){			
+            				for(var j = 0;j<columnsList.length;j++){	
+            					var str = columnsList[j].field;
+            					//如果是日期
+            					if(columnsList[j].dateFormat){
+            						temp = temp.replace("["+str+"]", nui.formatDate(detail[i][str]?detail[i][str]:"",'yyyy-MM-dd HH:mm'));
+            					}else{
+            						temp = temp.replace("["+str+"]", detail[i][str]?detail[i][str]:"");
+            					}			
+
+            				}
+            			}
+            		} 
+            		tr.append(temp);
+            tableExportContent.append(tr);
+        }
+    }
+
+    method5('tableExcel',tableName,'tableExportA');
+}
+
+//dataGrid多级列集合对象
+function exportMultistage(columns){
+	var html="";
+	html+='	<table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0"> ';
+	html+='		<tr> ';
+	for(var i = 0;i<columns.length;i++){
+		var columnsList = columns[i].columns||[];
+		if(columnsList.length>0){			
+			for(var j = 0;j<columnsList.length;j++){
+				var str = columnsList[j].header||"";
+				if(str=="所属公司"){
+					
+				}else{					
+					str = str.replace('<div class="icon-filter headerfilter-trigger"></div>',"");		
+					html+='			<td colspan="1" align="center">'+str+'</td>';
+				}
+			}
+		}
+	}
+	html+='		</tr> ';
+	html+='	<tbody id="tableExportContent"> ';	
+	html+='	</tbody> ';	
+	html+='	</table> ';	
+	html+='	<a href="" id="tableExportA"></a> ';	
+	$("#exportDiv").append(html);
+}
+
+
+function setInitExportDataNoMultistage( detail,columns,tableName){
+	var tds = "";
+	for(var i = 0;i<columns.length;i++){
+		if(columns[i].field&&columns[i].field != "orgid"){
+			var str = columns[i].field;
+			tds+='<td colspan="1" align="center">['+str+']</td>';
+		}
+		
+	}   
+    var tableExportContent = $("#tableExportContent");
+    tableExportContent.empty();
+    for (var i = 0; i < detail.length; i++) {
+    	var temp = tds;//y循环完重新赋值
+        var row = detail[i];
+        if(row.orgid||row.id){
+            var tr = $("<tr></tr>");
+            		for(var k = 0; k < columns.length; k++) {			
+    					var str = columns[k].field;
+    					//如果是日期
+    					if(columns[k].dateFormat){
+    						temp = temp.replace("["+str+"]", nui.formatDate(detail[i][str]?detail[i][str]:"",'yyyy-MM-dd HH:mm'));
+    					}else{
+    						temp = temp.replace("["+str+"]", detail[i][str]?detail[i][str]:"");
+    					}			
+
+            		} 
+            		tr.append(temp);
+            tableExportContent.append(tr);
+        }
+        
+    }
+
+    method5('tableExcel',tableName,'tableExportA');
+}
+
+//dataGrid单级列集合对象
+function exportNoMultistage(columns){
+	var html="";
+	html+='	<table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0"> ';
+	html+='		<tr> ';
+	for(var i = 0;i<columns.length;i++){	
+		if(columns[i].field&&columns[i].header!="所属公司"){
+			var str = columns[i].header||"";
+			str = str.replace('<div class="icon-filter headerfilter-trigger"></div>',"");		
+			html+='			<td colspan="1" align="center">'+str+'</td>';
+		}
+	}
+	html+='		</tr> ';
+	html+='	<tbody id="tableExportContent"> ';	
+	html+='	</tbody> ';	
+	html+='	</table> ';	
+	html+='	<a href="" id="tableExportA"></a> ';	
+	$("#exportDiv").append(html);
 }

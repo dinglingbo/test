@@ -80,7 +80,7 @@
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(0)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按日期汇总</a>
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(1)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按服务顾问汇总</a>
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(2)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按品牌车型汇总</a>
-<!--      <a class="nui-button" iconcls=""  name="" plain="true" onclick=""><span class="fa fa-mail-forward fa-lg"></span>&nbsp;导出</a> -->
+<!-- 	 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>  -->
  </div>
  <div class="nui-fit">
     <div id="grid1" class="nui-datagrid" style="width:100%;height:100%;"
@@ -105,6 +105,9 @@
                 <div allowSort="true" field="isOpenBillSum" width="60" headerAlign="center" header="已开单" summaryType="sum" dataType="float"></div>
             </div>
 </div>
+</div>
+<div id="exportDiv" style="display:none">  
+
 </div>
 <script type="text/javascript">
     nui.parse();
@@ -296,6 +299,36 @@ grid1.load({params:params});
 updateGridColoumn(cType);
 }
 
+function onExport(){
+	var detail = mainGrid.getData();
+//多级
+	//exportMultistage(mainGrid.columns)
+//单级
+       exportNoMultistage(mainGrid.columns)
+	for(var i=0;i<detail.length;i++){
+/* 		detail[i].status=statusHash[detail[i].status]
+
+		detail[i].billTypeId=billTypeIdList[detail[i].billTypeId].name;
+        if(detail[i].isSettle== 1){
+        	detail[i].isSettle = "已结算";
+        }else{
+        	detail[i].isSettle = "未结算";
+        }
+
+		if(detail[i].isCollectMoney==1){
+			detail[i].isCollectMoney="√";
+		}else{
+			detail[i].isCollectMoney="";
+		} */
+	}
+	if(detail && detail.length > 0){
+//多级表头类型
+		//setInitExportData( detail,mainGrid.columns,"已结算工单明细表导出");
+//单级表头类型  与上二选一
+setInitExportDataNoMultistage( detail,mainGrid.columns,"已结算工单明细表导出");
+	}
+	
+}
 
 </script>
 

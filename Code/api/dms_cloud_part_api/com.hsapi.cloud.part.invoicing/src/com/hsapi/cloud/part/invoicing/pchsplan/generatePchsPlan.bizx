@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="generatePchsPlan.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="按销量取计划采购配件，生计划采购单&#xD;&#xA;&#xD;&#xA;获取一次会更新所有的数据，确定获取好后再进行手动修改&#xD;&#xA;不用考虑更新辅助数据是否成功，如果不成功前端保存获取&#xD;&#xA;com.hsapi.cloud.part.invoicing.planPchs.updatePchsPlanPrice" title="Administrator&#x9;19-7-24 下午5:59">
-    <location x="30" y="-120"/>
-    <size height="136" width="391"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="按销量取计划采购配件，生计划采购单&#xD;&#xA;&#xD;&#xA;获取一次会更新所有的数据，确定获取好后再进行手动修改&#xD;&#xA;不用考虑更新辅助数据是否成功，如果不成功前端保存获取&#xD;&#xA;根据当前月份调用不同的更新语句&#xD;&#xA;com.hsapi.cloud.part.invoicing.planPchs.updatePchsPlanPrice&#xD;&#xA;com.hsapi.cloud.part.invoicing.planPchs.updatePchsPlanPriceT&#xD;&#xA;&#xD;&#xA;down_limit  库存下限(夏)（4-9）&#xD;&#xA;down_limit_winter  库存下限(冬)（10-3）" title="Administrator&#x9;19-7-24 下午5:59">
+    <location x="15" y="-165"/>
+    <size height="196" width="545"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -19,7 +19,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <location x="0" y="149"/>
+    <location x="-30" y="148"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
@@ -35,7 +35,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="2" y="185"/>
+    <location x="-28" y="184"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -71,11 +71,11 @@
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
-      <targetNode>invokePojo0</targetNode>
+      <targetNode>invokePojo4</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
     <targetConnections>link2</targetConnections>
-    <location x="75" y="149"/>
+    <location x="45" y="148"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
@@ -95,12 +95,24 @@
       <process:to type="query">params/eAuditDate</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">limitCount</process:from>
+      <process:to type="query">params/limitCount</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">mainId</process:from>
       <process:to type="query">main/id</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">operateDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.invoicing.planPchs.updatePchsPlanPriceT</process:from>
+      <process:to type="query">updateSqlId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="77" y="185"/>
+    <location x="47" y="184"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
@@ -110,7 +122,7 @@
       <targetNode>assign0</targetNode>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
-    <location x="75" y="59"/>
+    <location x="45" y="58"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
@@ -119,7 +131,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="73" y="95"/>
+    <location x="43" y="94"/>
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
@@ -142,7 +154,8 @@
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign2</targetNode>
     </sourceConnections>
-    <targetConnections>link3</targetConnections>
+    <targetConnections>link22</targetConnections>
+    <targetConnections>link24</targetConnections>
     <location x="172" y="148"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
@@ -234,7 +247,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">计划采购已经审核，不能修改</process:from>
+      <process:from type="literal" pattern="reference">计划采购已经提交，不能修改</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -464,8 +477,8 @@
         <process:inputVariable id="0" name="mainId" type="query" value="String" valueType="Primitive" pattern="reference">mainId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -489,7 +502,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
-      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.cloud.part.invoicing.planPchs.updatePchsPlanPrice</process:inputVariable>
+      <process:inputVariable id="1" name="nameSqlId" type="query" value="java.lang.String" valueType="Java" pattern="reference">updateSqlId</process:inputVariable>
       <process:inputVariable id="2" name="parameterObject" type="query" value="java.lang.Object" valueType="Java" pattern="reference">pu</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
@@ -498,6 +511,60 @@
     <location x="1028" y="184"/>
     <figSize height="17" width="97"/>
     <node>invokePojo3</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo4" name="取月份" displayName="format" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link22" name="link22" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo4</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link23" name="link23" displayName="连接线" type="transition">
+      <sourceNode>invokePojo4</sourceNode>
+      <targetNode>assign8</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>FMonth>=4&amp;&amp;FMonth&lt;=9</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link3</targetConnections>
+    <location x="105" y="148"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo4label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.common.utils.DateUtil.format</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="date" type="query" value="java.util.Date" valueType="Java" pattern="reference">operateDate</process:inputVariable>
+      <process:inputVariable id="1" name="pattern" type="literal" value="java.lang.String" valueType="Java" pattern="reference">MM</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java">FMonth</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo4label" name="label" nodeType="label">
+    <location x="98" y="184"/>
+    <figSize height="17" width="37"/>
+    <node>invokePojo4</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign8</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link23</targetConnections>
+    <location x="103" y="58"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign8label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.invoicing.planPchs.updatePchsPlanPrice</process:from>
+      <process:to type="query">updateSqlId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
+    <location x="101" y="94"/>
+    <figSize height="17" width="32"/>
+    <node>assign8</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -511,6 +578,9 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjPchsPlanMain" name="main"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="len" primitiveType="Int"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="pu"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="FMonth" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="updateSqlId" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="租户" isArray="false" name="tenantId" primitiveType="String"/>
@@ -518,6 +588,7 @@
     <process:input description="销售数据开始日期" isArray="false" name="startDate" primitiveType="Date"/>
     <process:input description="销售数据结束日期" isArray="false" name="endDate" primitiveType="Date"/>
     <process:input description="" isArray="false" name="mainId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="limitCount" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

@@ -247,8 +247,8 @@ function getSearchParams(){
     params.carNo = nui.get("carNo").getValue();
     params.serviceTypeId=nui.get("serviceTypeId").value;
     params.billTypeId =nui.get("billTypeId").value;
-    if(eOutDateEl.getValue()){ 	
-    	params.ePickDate=addDate(eOutDateEl.getValue(),1);
+    if(ePickDateEl.getValue()){ 	
+    	params.ePickDate=addDate(ePickDateEl.getValue(),1);
     }
     params.sOutDate=nui.get("sOutDate").getFormValue();
     if(eOutDateEl.getValue()){
@@ -440,5 +440,42 @@ function changed(){
         params:params,
         token :token     
     });
+	
+}
+
+function onExport(){
+	var detail = rightGrid.getData();
+	exportMultistage(rightGrid.columns)
+	for(var i=0;i<detail.length;i++){
+		for(var j in servieTypeHash) {
+		    if(detail[i].serviceTypeId ==servieTypeHash[j].id ){
+		    	detail[i].serviceTypeId=servieTypeHash[j].name;
+		    }
+		}
+		for(var j in storeHash) {
+		    if(detail[i].storeId ==storeHash[j].id ){
+		    	detail[i].storeId=storeHash[j].name;
+		    }
+		}
+		if(detail[i].returnSign==0){
+			detail[i].returnSign="否";
+		}else{
+			detail[i].returnSign="是";
+		}
+		for(var j in partTypeHash) {
+			if(detail[i].carTypeIdF==partTypeHash[j].id){
+				detail[i].carTypeIdF=partTypeHash[j].name;
+			}
+			if(detail[i].carTypeIdS==partTypeHash[j].id){
+				detail[i].carTypeIdS=partTypeHash[j].name;
+			}
+			if(detail[i].carTypeIdT==partTypeHash[j].id){
+				detail[i].carTypeIdT=partTypeHash[j].name;
+			}
+		}
+	}
+	if(detail && detail.length > 0){
+		setInitExportData( detail,rightGrid.columns,"配件出库明细表");
+	}
 	
 }

@@ -1,4 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+
 <%@include file="/common/commonRepair.jsp"%>
 <%@include file="/common/common.jsp"%>
 <html>
@@ -9,7 +10,7 @@
 -->
 <head>
     <title>维修出库明细</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.1.12"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.0.7"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -145,6 +146,7 @@
     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
     <input type="checkbox" id="ReturnSign" class="mini-checkbox"  onclick="changed()" >
 	<span >是否显示归库</span>
+	 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a> 
 </div>
 
 <div class="nui-fit">
@@ -223,5 +225,7 @@
 </div>
 </div>
 
+<div id="exportDiv" style="display:none">  
 
+</div>  
 </html>

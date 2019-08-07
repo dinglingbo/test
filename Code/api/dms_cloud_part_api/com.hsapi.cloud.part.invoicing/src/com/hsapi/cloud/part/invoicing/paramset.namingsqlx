@@ -40,6 +40,9 @@
 			1 = 1 and a.is_disabled=0
 				
 			<dynamic>
+				<isNotEmpty prepend="and" property="tenantId"> 
+                    (a.tenant_id = #tenantId# or a.orgid = 0)
+                </isNotEmpty>
             	<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid# or a.orgid = 0)
                 </isNotEmpty>
@@ -594,6 +597,25 @@
 		on b.main_id = d.id 
 		where a.main_id = #erpId# and b.main_id = #mainId# 
 		      and d.bill_type_id = #billTypeId#
+    	
+    </select>
+    
+    <!--
+                    调出退回入库
+    -->
+    <select id="getApplyDetailInfoByDetailId" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		
+		SELECT a.id, a.main_id as mainId, a.store_id as storeId, a.part_id as partId, 
+		       a.part_code as partCode, a.part_name as partName, a.full_name as fullName, 
+		       a.enter_unit_id as enterUnitId, a.system_unit_id as systemUnitId, a.apply_qty as orderQty, 
+		       a.order_price as orderPrice, a.tax_sign as taxSign, a.tax_rate as taxRate, 
+		       a.tax_price as taxPrice, a.no_tax_price as noTaxPrice,
+			   a.has_in_qty as trueEnterQty, a.has_in_qty * a.order_price as trueEnterAmt, a.apply_qty - a.has_in_qty as notEnterQty,
+			   (a.apply_qty - a.has_in_qty)*a.order_price as notEnterAmt,
+			   a.has_cancel_qty as adjustQty, a.is_finished as isFinished, a.prev_detail_id as prevDetailId,
+			   a.remark as remark, a.store_shelf as storeShelf, a.id as sourceDetailId, a.apply_qty as qty
+		from pj_allot_apply_detail  a
+		where a.main_id = #erpId#
     	
     </select>
     

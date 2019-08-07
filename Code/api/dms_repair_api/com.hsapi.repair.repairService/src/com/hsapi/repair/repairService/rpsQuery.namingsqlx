@@ -176,6 +176,9 @@
             <isNotEmpty prepend="and" property="billTypeId">  
                 (a.bill_type_id = #billTypeId#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="notBillTypeId">  
+                (a.bill_type_id != #notBillTypeId#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="serviceTypeId">  
                 (a.service_type_id = #serviceTypeId#)
             </isNotEmpty>
@@ -2761,6 +2764,91 @@
 					        )
 		order by b.modify_date desc
 	
+	</select>
+	
+	
+	 <select id="dispatchQueryMaintainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id AS id,
+			a.guest_id AS guestId,
+			a.contactor_id as contactorId,
+			a.service_code AS serviceCode,
+			a.enter_date AS enterDate,
+			a.no_mt_type as noMtType,
+			a.no_mt_file_sign as noMtFileSign,
+			a.engine_no as boxNo,
+			a.engine_model as boxModel,
+			a.drive_type as driveType,
+			a.car_brand_id as boxBrandId,
+			a.car_id as carId,
+			a.car_vin AS carVin,
+			a.car_no AS carNo,
+			a.mt_advisor AS mtAdvisor,
+			a.`status` AS `status`,
+			a.service_type_id AS serviceTypeId,
+			a.is_settle AS isSettle,
+			a.is_judge AS isJudge,
+			a.remark AS remark,
+			a.bill_type_id AS billTypeId,
+			a.modifier AS modifier,
+			a.modify_date AS modifyDate,
+			a.recorder AS recorder,
+			a.record_date AS recordDate,
+			a.plan_finish_date AS planFinishDate,
+			a.bala_audit_sign AS balaAuditSign,
+			a.bala_auditor AS balaAuditor,
+			a.bala_audit_date AS balaAuditDate,
+			a.insure_comp_id as insureClaimCompId,
+			a.insure_comp_name as insureClaimCompName,
+			a.package_amt AS packageAmt,
+			a.is_check AS isCheck,
+			a.enter_oil_mass AS enterOilMass,
+			a.enter_kilometers AS enterKilometers,
+			a.part_amt AS partAmt,
+			a.sure_mt_sign as sureMtSign,
+			a.sure_mt_date as sureMtDate,
+			a.sure_mt_man as sureMtMan,
+			a.checker as checker,
+			a.check_sign as checkSign,
+			a.check_date as checkDate,
+			a.draw_out_report as drawOutReport,
+			a.out_date as outDate,
+			a.is_out_bill as isOutBill,
+			a.mt_advisor_id as mtAdvisorId,
+			a.is_disabled as isDisabled,
+			a.guest_desc guestDesc,
+			a.fault_phen faultPhen,
+			a.solve_method solveMethod
+		FROM
+			wb_repair.rps_maintain a
+		WHERE  a.orgid = #orgid#
+		       and a.bill_type_id in(0,2,4,6)
+		       and a.status != 2
+		<dynamic>
+            <isNotEmpty prepend="and" property="mtAuditorId">
+                (a.mt_advisor_id = #mtAuditorId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="balaAuditSign">
+                (a.bala_audit_sign = #balaAuditSign#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isDisabled">
+                (a.is_disabled = #isDisabled#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAuditor">
+                (a.mt_advisor = #mtAuditor#)
+            </isNotEmpty> 
+             <isNotEmpty prepend="and" property="carNo">  
+                (a.car_no like '%$carNo$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="memberGroupId">  
+                exists(
+					select 1 from wb_repair.rps_item_workers b 
+					       INNER JOIN wb_common.com_member c ON  c.empid = b.worker_id
+					where  a.id = b.service_id  and (c.member_group_id = #memberGroupId#)
+				)
+            </isNotEmpty>
+         </dynamic>
+           order by a.record_date desc
 	</select>
 	
 	

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getOutEntableDetail" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="取调拨出库可入库的信息&#xD;&#xA;&#xD;&#xA;applyServiceId&#xD;&#xA;applyDetailId&#xD;&#xA;&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.getAcceptOutEnterable&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.getAcceptOutEnterableT" title="DLB">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="取调拨出库可入库的信息&#xD;&#xA;&#xD;&#xA;applyServiceId&#xD;&#xA;applyDetailId&#xD;&#xA;&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.getAcceptOutEnterable 直发&#xD;&#xA;com.hsapi.cloud.part.invoicing.allotsettle.getAcceptOutEnterableT 非直发" title="DLB">
     <location x="30" y="-60"/>
     <size height="181" width="496"/>
   </nodes>
@@ -20,7 +20,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
-      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.cloud.part.invoicing.stockcal.getEnterOutableDetail</process:inputVariable>
+      <process:inputVariable id="1" name="nameSqlId" type="query" value="java.lang.String" valueType="Java" pattern="reference">nameSqlId</process:inputVariable>
       <process:inputVariable id="2" name="parameterObject" type="query" value="java.lang.Object" valueType="Java" pattern="reference">p</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -90,7 +90,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="java.util.HashMap[]" name="detail" type="query" valueType="Java">detail</process:return>
+      <process:return id="0" language="commonj.sdo.DataObject[]" name="detail" type="query" valueType="Java">detail</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
@@ -130,7 +130,7 @@
     <process:input description="" isArray="false" name="isDirect" primitiveType="Long"/>
   </process:inputs>
   <process:outputs>
-    <process:output anyType="java.util.HashMap" description="" isArray="true" name="detail"/>
+    <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="detail"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

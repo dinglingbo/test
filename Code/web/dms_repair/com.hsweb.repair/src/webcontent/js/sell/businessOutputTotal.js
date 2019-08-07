@@ -284,3 +284,30 @@ function cancelData(){
     nui.get("sEnterDate1").setValue(getMonthStartDate());
     nui.get("eEnterDate1").setValue(getMonthEndDate());
 }
+
+
+function onExport(){
+	var detail = mainGrid.getData();
+	//多级
+	//exportMultistage(mainGrid.columns);
+	//单级
+    exportNoMultistage(mainGrid.columns);
+	for(var i=0;i<detail.length;i++){
+		    if(cType == 3){
+		      	 if(detail[i].groupName){
+		       		detail[i].groupName=servieTypeHash[detail[i].groupName].name;
+		      	 }else{
+		      		detail[i].groupName=""; 
+		         }
+		    }else if(cType == 4){
+		    	detail[i].groupName=billTypeHash[detail[i].groupName].name;
+	        }
+	}
+	if(detail && detail.length > 0){
+//多级表头类型
+		//setInitExportData( detail,mainGrid.columns,"已结算工单明细表导出");
+//单级表头类型  与上二选一
+setInitExportDataNoMultistage( detail,mainGrid.columns,"已结算工单汇总表导出");
+	}
+	
+}

@@ -374,3 +374,19 @@ function mergeCells(){//动态合并行
 
 
 
+function onExport(){
+	var detail = leftGrid.getData();
+//多级
+	exportMultistage(leftGrid.columns)
+//单级
+       //exportNoMultistage(rightGrid.columns)
+	for(var i=0;i<detail.length;i++){
+		detail[i].settleTypeId=settleTypeIdList[detail[i].settleTypeId-1].name;
+	}
+	if(detail && detail.length > 0){
+//多级表头类型
+		setInitExportData( detail,leftGrid.columns,"车险开单明细表导出");
+//单级表头类型  与上二选一
+//setInitExportDataNoMultistage( detail,rightGrid.columns,"已结算工单明细表导出");
+	}
+}

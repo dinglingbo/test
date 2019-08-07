@@ -296,6 +296,16 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link63" name="调拨入库" displayName="连接线" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign17</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">enterTypeId</process:leftOperand>
+          <process:rightOperand type="literal">050104</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link10</targetConnections>
     <targetConnections>link56</targetConnections>
     <location x="610" y="238"/>
@@ -900,6 +910,16 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link61" name="link61" displayName="连接线" type="transition">
+      <sourceNode>assign11</sourceNode>
+      <targetNode>assign18</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">enterTypeId</process:leftOperand>
+          <process:rightOperand type="literal">050104</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link27</targetConnections>
     <location x="941" y="105"/>
     <size height="28" width="28"/>
@@ -1116,6 +1136,7 @@
     </sourceConnections>
     <targetConnections>link36</targetConnections>
     <targetConnections>link5</targetConnections>
+    <targetConnections>link63</targetConnections>
     <location x="690" y="174"/>
     <size height="28" width="28"/>
     <nodeLabel>assign17label</nodeLabel>
@@ -1148,6 +1169,7 @@
     </sourceConnections>
     <targetConnections>link38</targetConnections>
     <targetConnections>link0</targetConnections>
+    <targetConnections>link61</targetConnections>
     <location x="1037" y="174"/>
     <size height="28" width="28"/>
     <nodeLabel>assign18label</nodeLabel>

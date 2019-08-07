@@ -323,3 +323,40 @@ function editSell(){
     window.parent.activeTabAndInit(part,params);
 }
 
+function onExport(){
+	var detail = rightGrid.getData();
+//多级
+	exportMultistage(rightGrid.columns)
+//单级
+       //exportNoMultistage(mainGrid.columns)
+	for(var i=0;i<detail.length;i++){
+		for(var j in storeHash) {
+		    if(detail[i].storeId ==storeHash[j].id ){
+		    	detail[i].storeId=storeHash[j].name;
+		    }
+		}
+		if(detail[i].returnSign==0){
+			detail[i].returnSign="否";
+		}else{
+			detail[i].returnSign="是";
+		}
+		for(var j in partTypeHash) {
+			if(detail[i].carTypeIdF==partTypeHash[j].id){
+				detail[i].carTypeIdF=partTypeHash[j].name;
+			}
+			if(detail[i].carTypeIdS==partTypeHash[j].id){
+				detail[i].carTypeIdS=partTypeHash[j].name;
+			}
+			if(detail[i].carTypeIdT==partTypeHash[j].id){
+				detail[i].carTypeIdT=partTypeHash[j].name;
+			}
+		}
+	}
+	if(detail && detail.length > 0){
+//多级表头类型
+		setInitExportData( detail,rightGrid.columns,"未结算配件明细表导出");
+//单级表头类型  与上二选一
+//setInitExportDataNoMultistage( detail,mainGrid.columns,"已结算工单明细表导出");
+	}
+	
+}

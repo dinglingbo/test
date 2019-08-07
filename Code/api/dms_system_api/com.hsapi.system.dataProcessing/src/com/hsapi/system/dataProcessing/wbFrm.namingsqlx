@@ -18,7 +18,7 @@
     <!--结算账户定义   删除wb_frm.fib_settle_account + fib_settle_account_rela-->
     <delete id="deletFibSettleAccount" parameterClass="HashMap">
      DELETE wb_frm.fib_settle_account,wb_frm.fib_settle_account_rela  FROM wb_frm.fib_settle_account
-     	INNER JOIN wb_frm.fib_settle_account_rela  on wb_frm.fib_settle_account.id = wb_frm.fib_settle_account_rela.id
+     	LEFT JOIN wb_frm.fib_settle_account_rela  on wb_frm.fib_settle_account.id = wb_frm.fib_settle_account_rela.id
  			where wb_frm.fib_settle_account.orgid = #orgid#
     </delete>
     
@@ -31,15 +31,15 @@
      <!--线上支付表   删除wb_frm.fis_pre_bill + wb_frm.fis_pre_bill_detail  -->
     <delete id="deletFisPreBill" parameterClass="HashMap">
      DELETE wb_frm.fis_pre_bill, wb_frm.fis_pre_bill_detail FROM wb_frm.fis_pre_bill
-     	INNER JOIN wb_frm.fis_pre_bill_detail  on wb_frm.fis_pre_bill.id = wb_frm.fis_pre_bill_detail.pre_bill_id
+     	LEFT JOIN wb_frm.fis_pre_bill_detail  on wb_frm.fis_pre_bill.id = wb_frm.fis_pre_bill_detail.pre_bill_id
  			where wb_frm.fis_pre_bill.orgid = #orgid#
     </delete>
     
      <!--收付款单表   删除wb_frm.fis_rp_account + wb_frm.fis_rp_account_d_type + wb_frm.fis_rp_account_detail  -->
     <delete id="deletFisRpAccount" parameterClass="HashMap">
      DELETE wb_frm.fis_rp_account, wb_frm.fis_rp_account_d_type , wb_frm.fis_rp_account_detail FROM wb_frm.fis_rp_account
-     	INNER JOIN wb_frm.fis_rp_account_d_type  on wb_frm.fis_rp_account.id = wb_frm.fis_rp_account_d_type.main_id
-     	INNER JOIN wb_frm.fis_rp_account_detail  on wb_frm.fis_rp_account.id = wb_frm.fis_rp_account_detail.main_id
+     	LEFT JOIN wb_frm.fis_rp_account_d_type  on wb_frm.fis_rp_account.id = wb_frm.fis_rp_account_d_type.main_id
+     	LEFT JOIN wb_frm.fis_rp_account_detail  on wb_frm.fis_rp_account.id = wb_frm.fis_rp_account_detail.main_id
  			where wb_frm.fis_rp_account.orgid = #orgid#
     </delete>
     

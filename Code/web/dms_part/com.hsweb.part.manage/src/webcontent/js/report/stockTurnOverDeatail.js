@@ -181,3 +181,42 @@ function getDate(wantDay){
 	var returnSting=year+"-"+(month<10 ? "0"+month :month)+"-"+(day<10 ?"0"+day:day);
 	return returnSting;
 }
+function onExport(){
+	var detail = rightGrid.getData();
+	exportNoMultistage(rightGrid.columns)
+	for(var i=0;i<detail.length;i++){
+/*		for(var j in servieTypeHash) {
+		    if(detail[i].serviceTypeId ==servieTypeHash[j].id ){
+		    	detail[i].serviceTypeId=servieTypeHash[j].name;
+		    }
+		}
+		for(var j in storeHash) {
+		    if(detail[i].storeId ==storeHash[j].id ){
+		    	detail[i].storeId=storeHash[j].name;
+		    }
+		}
+		if(detail[i].returnSign==0){
+			detail[i].returnSign="否";
+		}else{
+			detail[i].returnSign="是";
+		}
+		for(var j in partTypeHash) {
+			if(detail[i].carTypeIdF==partTypeHash[j].code){
+				detail[i].carTypeIdF=partTypeHash[j].name;
+			}
+			if(detail[i].carTypeIdS==partTypeHash[j].code){
+				detail[i].carTypeIdS=partTypeHash[j].name;
+			}
+			if(detail[i].carTypeIdT==partTypeHash[j].code){
+				detail[i].carTypeIdT=partTypeHash[j].name;
+			}
+		}*/
+	}
+	if(detail && detail.length > 0){
+		setInitExportDataNoMultistage( detail,rightGrid.columns,"库存周转明细表导出");
+	}
+	
+}
+
+
+

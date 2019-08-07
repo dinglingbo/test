@@ -9,7 +9,7 @@
 -->
 <head>
     <title>门店进销存统计</title>
-    <script src="<%=webPath + contextPath%>/manage/js/report/shopInvoingCount.js?v=1.0.13"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/report/shopInvoingCount.js?v=1.0.3"></script>
     <style type="text/css">
     .title {
       width: 60px;
@@ -55,7 +55,7 @@
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 
-            
+            <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a> 
         </td>
     </tr>
 </table>
@@ -182,5 +182,63 @@
 </div>
 </div>
 
+<div id="exportDiv" style="display:none">  
+    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
+        <tr>  
+            <td colspan="1" align="center">配件编码</td>
+             <td colspan="1" align="center">配件名称</td>          
+            <td colspan="1" align="center">OEM码</td>
+            <td colspan="1" align="center">品牌</td>
+            
+            <td colspan="1" align="center">期初数量</td>
+            <td colspan="1" align="center">期初金额</td>
 
+            <td colspan="1" align="center">采购入库数量</td>
+            <td colspan="1" align="center">采购入库金额</td>
+            
+            <td colspan="1" align="center">采购退货数量</td>
+            <td colspan="1" align="center">采购退货金额</td>  
+            
+            <td colspan="1" align="center">工单归库数量</td>
+            <td colspan="1" align="center">工单归库金额</td>                      
+
+            <td colspan="1" align="center">工单出库数量</td>
+            <td colspan="1" align="center">工单出库金额</td>
+            
+            <td colspan="1" align="center">工单退货数量</td>
+            <td colspan="1" align="center">工单退货金额</td>
+            
+             <td colspan="1" align="center">移仓入库数量</td>
+            <td colspan="1" align="center">移仓入库金额</td>
+            
+            <td colspan="1" align="center">移仓出库数量</td>
+            <td colspan="1" align="center">移仓出库金额</td>
+            
+<!--             <td colspan="1" align="center">精品入库数量</td>
+            <td colspan="1" align="center">精品入库金额</td>
+            
+            <td colspan="1" align="center">精品出库数量</td>
+            <td colspan="1" align="center">精品出库金额</td>  -->
+             
+             <td colspan="1" align="center">耗材入库数量</td>
+            <td colspan="1" align="center">耗材入库金额</td>
+            
+            <td colspan="1" align="center">耗材出库数量</td>
+            <td colspan="1" align="center">耗材出库金额</td>
+            
+            <td colspan="1" align="center">盘盈数量</td>
+            <td colspan="1" align="center">盘盈金额</td>
+            
+            <td colspan="1" align="center">盘亏数量</td>
+            <td colspan="1" align="center">盘亏金额</td> 
+                                                                           
+            <td colspan="1" align="center">结存数量</td>
+            <td colspan="1" align="center">结存金额</td>
+                               
+        </tr>
+        <tbody id="tableExportContent">
+        </tbody>
+    </table>  
+    <a href="" id="tableExportA"></a>
+</div> 
 </html>

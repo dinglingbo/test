@@ -32,7 +32,7 @@
                 <script src="<%=request.getContextPath()%>/coframe/imjs/message.js"></script>
                 <script src="<%=request.getContextPath()%>/coframe/imjs/messagebody.js"></script>
                 <script src="<%=request.getContextPath()%>/layim-v3.8.0/dist/layui.js"></script>
-                <script src="<%=request.getContextPath()%>/coframe/imjs/websocketconfig.js?v=1.2.8"></script>
+                <script src="<%=request.getContextPath()%>/coframe/imjs/websocketconfig.js?v=1.3.2"></script>
                 <style type="text/css">
                     a {
                         cursor: pointer;
@@ -227,11 +227,6 @@
                             </a> -->
                         </li>
                         <li class="dropdown">
-                            <a class="feedback-bt FeedBackButton" style="padding-top: 19px; ">
-                                反馈
-                            </a>
-                        </li>
-                        <li class="dropdown">
                             <a class="kefu">
                                 <span class="kefu-title">换肤</span>
                             <ul class="kefu-dropdown">
@@ -251,6 +246,18 @@
                                         <div style="width:10px;height:15px;background-color: #42485b;float:left;"></div>&nbsp;&nbsp;&nbsp;&nbsp;炫酷黑
                                 </li>
                             </ul>
+                            </a>
+                        </li>
+                        
+<!--                         <li class="dropdown">
+	                        <div  onclick="reload()" style="padding-top: 21px;">                    
+	                            <div  id="limiStatus" title="聊天工具，点击连接" style="width:12px; height:12px; border-radius:50%; background-color:#cccccccc;">                           
+	                            </div>
+	                        </div>
+                        </li> -->
+                        <li class="dropdown">
+                            <a class="feedback-bt FeedBackButton" style="padding-top: 19px; ">
+                                反馈
                             </a>
                         </li>
                     </ul>
@@ -993,5 +1000,24 @@
                 });
  	function cancellation(){
  		window.location="<%=request.getContextPath()%>/coframe/auth/login/logout.jsp";
- 	}               
+ 	}     
+ 	        var scriptList=[
+            {src:defDomin + "/coframe/imjs/websocketconfig.js",id:"js1"},
+            {src:defDomin + "/coframe/imjs/util.js",id:"js2"},
+            {src:defDomin + "/coframe/imjs/message.js",id:"js3"},
+            {src:defDomin + "/coframe/imjs/messagebody.js",id:"js4"},
+            {src:defDomin + "/layim-v3.8.0/dist/layui.js",id:"js5"}
+            
+            ]
+        function reload() {
+            scriptList.forEach(x=>{
+                loadJs(x.src,x.id);
+            })
+        }
+        //重新加载js        
+        function loadJs(file,id)
+        {
+            $("#"+id).remove();
+            $("<scri"+"pt >"+"</scr"+"ipt>").attr({id:id,src:file,type:'text/javascript'}).appendTo($('body'));
+        }          
         </script>

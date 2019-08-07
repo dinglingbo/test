@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryFiSettleAccount" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="orgid = 0&#xD;&#xA;or m:userObject/userOrgId &#xD;&#xA;如果结算账户为空，则生成一个默认的结算账户" title="Administrator&#x9;18-5-5 下午2:24">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="orgid = 0&#xD;&#xA;or m:userObject/userOrgId &#xD;&#xA;如果结算账户为空，则生成一个默认的结算账户&#xD;&#xA;com.hsapi.frm.frmSetting.queryFibSettleAccount" title="Administrator&#x9;18-5-5 下午2:24">
     <location x="-30" y="-45"/>
     <size height="100" width="451"/>
   </nodes>
@@ -52,7 +52,7 @@
       <targetNode>subprocess1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

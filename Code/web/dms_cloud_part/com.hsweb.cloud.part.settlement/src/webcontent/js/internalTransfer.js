@@ -117,7 +117,7 @@ function doSearch() {
     params.auditSign = auditSignEl.getValue();
     
     params.sCreateDate = searchBeginDate.getFormValue();
-    params.eCreateDate = searchEndDate.getValue();
+    params.eCreateDate = searchEndDate.getFormValue();
 
     mainGrid.load({
         params: params,

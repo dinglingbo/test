@@ -124,8 +124,17 @@ function getCompany(){
 function getSearchParam(){
     var params = {};
 
-    params.sAuditDate = searchBeginDate.getFormValue();
-    params.eAuditDate  = searchEndDate.getFormValue();
+    if(searchBeginDate.getFormValue())
+    {
+        params.sAuditDate = formatDate(new Date(searchBeginDate.getFormValue()));
+    }
+    if(searchEndDate.getFormValue())
+    {
+        var date = new Date(searchEndDate.getFormValue());
+        params.eAuditDate = addDate(date, 1);
+        
+    }
+
     params.guestName =nui.get('guestName').getValue().replace(/\s+/g, "");
     params.orgid =nui.get('orgids').getValue();
     params.status = nui.get("status").getValue();
@@ -297,7 +306,7 @@ function onDrawCell(e){
     }
 }
 
-var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.insertAllotAccepts.biz.ext";
+var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.generateAllotInRtn.biz.ext";
 function audit(){
 	var row =mainGrid.getSelected();
 	if(!row){

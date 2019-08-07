@@ -25,15 +25,10 @@
 			        <tr>
 			            <td style="white-space:nowrap;">
 			             	<label style="font-family:Verdana;">快速查询：</label>
-			            	<input class="nui-combobox" id ="orgids" name="orgids" value="" allowInput="true" showNullItem="false" 
-			            		 valueFromSelect="true" nullitemtext="请选择..." emptyText="选择公司" data="" width="200px"
-			            		 textField="name" valueField="orgid" onEnter="onSearch()" />
 			               
-			                <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">全部</a>
+			                <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">上周</a>
 			
 			                <ul id="popupMenuDate" class="nui-menu" style="display:none;">
-			                    <li iconCls="" onclick="quickSearch(0)" id="type0">全部</li>
-			                    <li class="separator"></li>
 			                    <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
 			                    <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
 			                    <li class="separator"></li>
@@ -44,7 +39,7 @@
 			                    <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
 			                </ul>
 			
-			                <label style="font-family:Verdana;">日期 从：</label>
+			                <label style="font-family:Verdana;">申请日期 从：</label>
 			                <input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
 			                <label style="font-family:Verdana;">至</label>
 			                <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
@@ -55,10 +50,28 @@
 		            		 textField="name" valueField="id" onEnter="onSearch()" />
 		               
  		                    <input id="guestName" width="120px" emptyText="客户" onEnter="onSearch()" visible="false" class="nui-textbox"/> 
+			            	<input class="nui-combobox" id ="orgids" name="orgids" value="" allowInput="true" showNullItem="false" 
+			            		 valueFromSelect="true" nullitemtext="请选择..." emptyText="选择公司" data="" width="150px"
+			            		 textField="name" valueField="orgid" onEnter="onSearch()" />
 	
 			                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 			                <span class="separator"></span>
-        			        <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible=""  id="auditBtn"><span class="fa fa-check fa-lg""></span>&nbsp;受理</a>
+			                <input name="storeId"
+                                                 id="storeId"
+                                                 class="nui-combobox"
+                                                 textField="name"
+                                                 valueField="id"
+                                                 emptyText="请选择受理仓库..."
+                                                 url=""
+                                                 allowInput="true"
+                                                 showNullItem="false"
+                                                 width="100px"
+                                                 valueFromSelect="true"
+                                                 onvaluechanged=""
+                                                 nullItemText="请选择受理仓库..."
+                                                />
+                            <span class="separator"></span>                    
+        			        <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible=""  id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;受理</a>
         			        <a class="nui-button" iconCls="" plain="true" onclick="refuse()" visible="true" id="refuseBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;拒绝</a>
 			                
 			            </td>
@@ -66,7 +79,8 @@
 			    </table>
 			</div>
 			
-			 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:92%;"
+			<div class="nui-fit">
+			 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
 		         showPager="true"
 		         dataField="pjAllotAcceptMainList"
 		         ondrawcell="onMainDrawCell"
@@ -90,6 +104,7 @@
 		            <div field="remark" width="55px" headerAlign="center" allowSort="true" header="备注"></div>  
 		        </div>
 		     </div>
+		    </div>
 			
         </div>
         
@@ -115,7 +130,7 @@
                             <div field="fullName"  width="200" headerAlign="center" header="配件全称"></div>
                             <div field="systemUnitId" name="comUnit" width="40" headerAlign="center" header="单位"></div>
 				            <div field="acceptQty" name="applyQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="申请数量"></div>
-                            <div field="remark" width="30" headerAlign="center" allowSort="true" header="备注"></div>
+                            <div field="remark" width="200" headerAlign="center" allowSort="true" header="备注"></div>
 				            
 				        </div>
 				    </div>

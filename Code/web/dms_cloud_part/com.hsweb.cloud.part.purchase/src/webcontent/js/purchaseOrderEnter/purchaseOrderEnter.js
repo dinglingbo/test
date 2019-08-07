@@ -2799,7 +2799,7 @@ function addOrderToEnter(data){
 	nui.get("settleTypeId").setValue(data.settleTypeId);
 	nui.get("taxRate").setValue(data.taxRate);
 	nui.get("taxSign").setValue(data.taxSign);
-	nui.get("createDate").setValue(new Date());
+//	nui.get("createDate").setValue(new Date());
 	nui.get("orderMan").setValue(data.orderMan);
 	
 	var guestId = nui.get("guestId");

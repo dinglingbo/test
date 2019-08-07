@@ -2,6 +2,7 @@
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.dispatchQyeryMaintainList.biz.ext";
+var mainGridUrl2 = baseUrl + "com.hsapi.repair.repairService.repairInterface.QueryCheckMainList.biz.ext";
 var mainGrid = null;
 var mtAdvisorIdEl = null;
 var rightGrid = null;
@@ -9,6 +10,7 @@ var rightGrid2 = null;
 var workList=[];
 var advancedStopWin = null;
 var stop_uid = null;
+var mainGrid2 = null;
 var prdtTypeHash = {
 	"1" : "套餐",
 	"2" : "项目",
@@ -24,11 +26,13 @@ var billTypeIdList = [{name:"综合开单"},{name:"检查开单"},{name:"洗美�
 $(document).ready(function() {
 	//是否显示预结算
 	mainGrid = nui.get("mainGrid");
+	mainGrid2 = nui.get("mainGrid2"); 
 	rightGrid = nui.get("rightGrid");
 	rightGrid2 = nui.get("rightGrid2");
 	mtAdvisorIdEl = nui.get("mtAdvisorId");
 	advancedStopWin = nui.get("advancedStopWin");
 	mainGrid.setUrl(mainGridUrl);
+	mainGrid2.setUrl(mainGridUrl2);
 	initTearm();
 	rightGrid.on("drawcell",function(e) {
 		var record = e.record;
@@ -38,7 +42,11 @@ $(document).ready(function() {
 		if (e.field == "status") {
 			if(status == 2) {
 				if(isBack==1){
-					e.cellHtml = "质检打回"
+					var s = "质检打回";
+					if(record.stopReason){
+						s = s+"("+record.stopReason+")";
+					}
+					e.cellHtml = s;
 				}else{
 					e.cellHtml = record.stopReason;
 				}
@@ -174,9 +182,38 @@ $(document).ready(function() {
 	mainGrid.on("drawcell",function(e) {
 		var record = e.record;
 		if (e.field == "billTypeId") {
-        	e.cellHtml = billTypeIdList[e.value].name; 
+			e.cellHtml = billTypeIdList[e.value].name; 
+        	
         }
 	});
+	mainGrid2.on("drawcell",function(e){
+		var record = e.record;
+		var uid = record._uid;
+		var checkStatus = record.checkStatus;
+        switch (e.field)
+        {
+            case "checkOptBtn":
+            	var s = "";
+            	if(checkStatus){
+            		s =  s + ' <a class="optbtn" href="javascript:edit(\'' + uid + '\')">查看</a>';
+            	}else{
+            		s =  s + ' <a class="optbtn" href="javascript:edit(\'' + uid + '\')">查看</a>';
+                    s =  s + ' <a class="optbtn" href="javascript:checkBackWork(\'' + uid + '\')">重新派工</a>';
+            	}
+                e.cellHtml = s;
+            break;
+            case "checkStatus":
+            	if(checkStatus){
+            		 e.cellHtml = "检查完成";
+            	}else{
+            		 e.cellHtml = "未检";
+            	}
+            break;
+            default:
+                break;
+        }
+
+    });
    /* mainGrid.on("selectionchanged",function(){
     	SelectionChanged();
 	});*/
@@ -223,6 +260,16 @@ function doSearch() {
 	});
 }
 
+function doSearch2() {
+	var gsparams ={};
+    var carNo = nui.get("carNo-search").getValue();
+    gsparams.carNo = carNo;
+    gsparams.orgid = currOrgId;
+	mainGrid2.load({
+		token : token,
+		params : gsparams
+	});
+}
 function initTearm(){
    nui.ajax({
         url:baseUrl +"com.hsapi.repair.baseData.team.queryWorkTeam.biz.ext",
@@ -602,4 +649,55 @@ function  checkerSelect(e){
 	   });
 	}
     
+}
+
+function activechangedmain(){
+	var tabs = nui.get("mainTabs").getActiveTab();
+	if(tabs.name=="repairWork"){
+		doSearch();
+	}else if(tabs.name=="checkWork"){
+		doSearch2();
+	};
+}
+
+function edit(rowu_id){
+    var row = mainGrid2.getRowByUID(rowu_id);
+    if(!row) return;
+    var part={};
+    part.id = "checkPrecheckDetail";
+    part.text = "查车开单详情";
+    part.url = webPath + contextPath + "/com.hsweb.RepairBusiness.checkDetail.flow?token="+token;
+    part.iconCls = "fa fa-file-text";
+    //window.parent.activeTab(item);
+    var params = {
+        id: row.id,
+        isCheckMain:"Y"
+    };
+    window.parent.activeTabAndInit(part,params);
+}
+
+function checkBackWork(rowu_id){
+	var row = mainGrid2.getRowByUID(rowu_id);
+    data = {
+    	saleMan:row.checkMan,
+    	saleManId:row.checkManId,
+    	checkMain:row,
+    	type:"check",
+    };
+     nui.open({
+ 		url :  webPath + contextPath + "/com.hsweb.repair.DataBase.Salesperson.flow?token="+token,
+ 		title : "设置检查人",
+ 		width : 600,
+ 		height : 380,
+ 		allowResize: false,
+ 		onload : function() {
+ 			var iframe = this.getIFrameEl(); 
+ 			iframe.contentWindow.setData(data);
+ 		},
+ 		ondestroy : function(action) {// 弹出页面关闭前
+ 			if (action == "ok") {
+ 				doSearch2();
+ 			}
+ 		}
+ 	});
 }

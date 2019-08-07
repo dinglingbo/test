@@ -88,7 +88,6 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link40</targetConnections>
-    <targetConnections>link9</targetConnections>
     <location x="718" y="173"/>
     <size height="28" width="28"/>
     <nodeLabel>transactioncommit0label</nodeLabel>
@@ -327,16 +326,6 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link8" name="来源于预售单" displayName="连接线" type="transition">
-      <sourceNode>assign4</sourceNode>
-      <targetNode>assign11</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">main/sourceType</process:leftOperand>
-          <process:rightOperand type="literal">5</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <targetConnections>link24</targetConnections>
     <targetConnections>link39</targetConnections>
     <targetConnections>link38</targetConnections>
@@ -421,7 +410,6 @@
       <targetNode>transactionrollback1</targetNode>
     </sourceConnections>
     <targetConnections>link47</targetConnections>
-    <targetConnections>link10</targetConnections>
     <location x="611" y="279"/>
     <size height="28" width="28"/>
     <nodeLabel>assign7label</nodeLabel>
@@ -547,62 +535,6 @@
     <location x="316" y="307"/>
     <figSize height="20" width="73"/>
     <node>subprocess4</node>
-  </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess5" name="acceptGuestOrder" displayName="acceptGuestOrder" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess5</sourceNode>
-      <targetNode>transactioncommit0</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" lineType="note" type="exception">
-      <sourceNode>subprocess5</sourceNode>
-      <targetNode>assign7</targetNode>
-    </sourceConnections>
-    <targetConnections>link11</targetConnections>
-    <location x="718" y="69"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess5label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.cloud.part.invoicing.guestOrder.acceptGuestOrder</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="guestOrderMain" type="query" value="com.hsapi.cloud.part.data.pts.PjGuestOrderMain" valueType="DataObject" pattern="reference">guestOrderMain</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess5label" name="label" nodeType="label">
-    <location x="664" y="104"/>
-    <figSize height="20" width="135"/>
-    <node>subprocess5</node>
-  </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign11" name="赋值11" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign11</sourceNode>
-      <targetNode>subprocess5</targetNode>
-    </sourceConnections>
-    <targetConnections>link8</targetConnections>
-    <location x="611" y="69"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign11label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">main/codeId</process:from>
-      <process:to type="query">guestOrderMain/id</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">pchMainId</process:from>
-      <process:to type="query">guestOrderMain/pchsMainId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">pchsMainCode</process:from>
-      <process:to type="query">guestOrderMain/pchsMainCode</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
-    <location x="601" y="105"/>
-    <figSize height="20" width="49"/>
-    <node>assign11</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

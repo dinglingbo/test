@@ -41,51 +41,15 @@ $(document).ready(function(v) {
     getStorehouse(function(data)
     {
         var storehouse = data.storehouse||[];
-     //   nui.get("storeId").setData(storehouse);
-        storehouse.forEach(function(v)
-        {
-            if(v && v.id)
-            {
-                storehouseHash[v.id] = v;
-            }
-        });
-        var dictIdList = [];
-        dictIdList.push('DDT20130703000008');//票据类型
-        dictIdList.push('DDT20130703000035');//结算方式
-        dictIdList.push('DDT20130703000064');//入库类型
-        getDictItems(dictIdList,function(data)
-        {
-            if(data && data.dataItems)
-            {
-                var dataItems = data.dataItems||[];
-                var billTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000008")
-                    {
-                        billTypeIdHash[v.customid] = v;
-                        return true;
-                    }
-                });
-          //      nui.get("billTypeId").setData(billTypeIdList);
-                var settTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000035")
-                    {
-                        settTypeIdHash[v.customid] = v;
-                        return true;
-                    }
-                });
-          //      nui.get("settType").setData(settTypeIdList);
-                var enterTypeIdList = dataItems.filter(function(v)
-                {
-                    if(v.dictid == "DDT20130703000064")
-                    {
-                        enterTypeIdHash[v.customid] = v;
-                        return true;
-                    }
-                });
-            }
-        });
+        nui.get("storeId").setData(storehouse);
+
+        if(storehouse && storehouse.length>0){
+            nui.get('storeId').setValue(storehouse[0].id);
+            storehouse.forEach(function(v){
+                storehouseHash[v.id]=v;
+            });
+        }
+        
     });
     quickSearch(3);
 });
@@ -124,8 +88,17 @@ function getCompany(){
 function getSearchParam(){
     var params = {};
 
-    params.sAuditDate = searchBeginDate.getFormValue();
-    params.eAuditDate  = searchEndDate.getFormValue();
+    if(searchBeginDate.getFormValue())
+    {
+        params.sAuditDate = formatDate(new Date(searchBeginDate.getFormValue()));
+    }
+    if(searchEndDate.getFormValue())
+    {
+        var date = new Date(searchEndDate.getFormValue());
+        params.eAuditDate = addDate(date, 1);
+        
+    }
+
     params.guestName =nui.get('guestName').getValue().replace(/\s+/g, "");
     params.orgid =nui.get('orgids').getValue();
     params.status = nui.get("status").getValue();
@@ -297,7 +270,7 @@ function onDrawCell(e){
     }
 }
 
-var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.insertAllotAccepts.biz.ext";
+var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.generateAllotInAccept.biz.ext";
 function audit(){
 	var row =mainGrid.getSelected();
 	if(!row){
@@ -308,34 +281,7 @@ function audit(){
 	if(row.status ==3|| row.status ==4){
 		showMsg("单据状态为待受理或部分受理时才可以受理","W");
 		return;
-	}
-//	var rows =rightGrid.getData();
-//	var detail=[];
-//	var applyDetails =[];
-//	for(var i=0;i<rows.length;i++){
-//		var temp={};
-//		var apply={};
-//		temp.partId = rows[i].partId;
-//		temp.partCode = rows[i].partCode;
-//		temp.partName = rows[i].partName;
-//		temp.fullName = rows[i].fullName;
-//		temp.outUniId = rows[i].systemUnitId;
-//		temp.systemUnitId = rows[i].systemUnitId;
-//		temp.applyQty = rows[i].applyQty;
-//		temp.acceptQty = parseFloat(rows[i].applyQty-rows[i].hasAcceptQty-rows[i].hasCancelQty);
-// 		temp.prevDetailId =rows[i].id;	
-// 		apply.id = rows[i].id;	
-// 		apply.hasAcceptQty=  temp.acceptQty;
-//		detail.push(temp);
-//		applyDetails.push(apply);
-//	}
-//	var main={};
-//	main.code =row.serviceId;
-//	main.codeId = row.id;
-//	main.orderTypeId =  2;
-//	main.sourceType =1;
-//	main.guestOrgid = row.orgid;
-	
+	}	
 	
 	nui.mask({
 		el : document.body,
@@ -354,9 +300,7 @@ function audit(){
 			nui.unmask(document.body);
 			data = data || {};
 			if (data.errCode == "S") {
-				showMsg("受理成功!"||data.errMsg,"S");
-				rightGrid.setData([]);
-				mainGrid.removeRow(mainGrid.getSelected());
+				showMsg("受理成功!，生成的受理单号为：" + data.serviceId,"S");
 			} else {
 				showMsg(data.errMsg || ("受理失败!"),"W");
 			}
@@ -394,8 +338,8 @@ function refuse(){
 			data = data || {};
 			if (data.errCode == "S") {
 				showMsg("拒绝成功!"||data.errMsg,"S");
-				rightGrid.setData([]);
-				mainGrid.removeRow(mainGrid.getSelected());
+                var newRow = {status: 4};
+                mainGrid.updateRow(row, newRow);
 			} else {
 				showMsg(data.errMsg || ("拒绝失败!"),"W");
 			}

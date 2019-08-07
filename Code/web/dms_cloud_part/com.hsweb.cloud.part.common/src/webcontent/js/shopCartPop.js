@@ -116,8 +116,9 @@ function initGridData(data){
             var unit = part.unit;
             var orderQty = part.orderQty||1;
             var orderPrice = part.orderPrice||0;
+            var prevDetailId =part.prevDetailId || 0;
             var row = {partId: partId, partCode: partCode, partName: partName, 
-                       fullName: fullName, unit: unit, orderQty: orderQty, orderPrice: orderPrice};
+                       fullName: fullName, unit: unit, orderQty: orderQty, orderPrice: orderPrice,prevDetailId:prevDetailId};
             rows.push(row);
         }
     }

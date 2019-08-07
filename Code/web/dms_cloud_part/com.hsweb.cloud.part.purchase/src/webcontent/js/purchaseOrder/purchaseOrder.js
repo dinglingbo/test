@@ -940,6 +940,14 @@ function doSearch(params) {
 				setBtnable(true);
 				setEditable(true);
 			}
+			//预售单转的单
+			if(row.sourceType ==5){
+				nui.get("guestId").disable();
+				nui.get("directOrgid").disable();
+			}else{
+				nui.get("guestId").enable();
+				nui.get("directOrgid").enable();
+			}
 		}
 	});
 }
@@ -1058,7 +1066,10 @@ function add() {
 		showMsg("请先保存数据!","W");
 		return;
 	}
-
+	
+	nui.get("guestId").enable();
+	nui.get("directOrgid").enable();
+	
 	var formJsonThis = nui.encode(basicInfoForm.getData());
 	var len = rightGrid.getData().length;
 
@@ -2045,11 +2056,11 @@ function checkRightData() {
 					return true;
 				}
 			}
-
-			if (row.storeId) {
-			} else {
-				return true;
-			}	
+			 if (row.storeId) {
+	        } else {
+	            return true;
+	        }
+			
 		}
 
 	});

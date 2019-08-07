@@ -10,7 +10,7 @@
 -->
 
 <head>
-    <title>编辑整车销售</title>
+    <title>车间调度</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
     <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/workDispatch/js/workShopMain.js?v=1.0.3" type="text/javascript"></script>  
@@ -36,8 +36,8 @@
 </style>
     <body>
         <div class="nui-fit" style="padding-top:10px," >
-            <div class="mini-tabs" activeIndex="0" style="width:100%;height:100%;"  id="mainTabs" name="mainTabs">
-               <div title="购车计算" id="editForm" name="editForm">
+            <div class="mini-tabs" activeIndex="0" style="width:100%;height:100%;"  id="mainTabs" name="mainTabs" onactivechanged="activechangedmain()">
+               <div title="维修派工" id="repairWork" name="repairWork">
                <div class="nui-fit" style="padding-top:0px">
                 <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
 			    <table class="table" id="table1">
@@ -78,7 +78,24 @@
 		         </div>
 		         </div>
 		         <div showcollapsebutton="true">
-  
+		         
+                 <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+			     <table class="table" id="table1">
+			     <tr>
+		            <td>
+		                <label>车牌号：</label>
+		                <input class="nui-textbox" id="carNo-search" emptyText="" width="120"  onenter="doSearch()"/>
+		                <label>服务顾问：</label>
+	                    <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
+	                        emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="120" valueFromSelect="true"  onenter="doSearch()"/>
+	                     <label>班组：</label>
+	                     <input class="nui-combobox"  allowInput="true" required="false" id="memberGroupId" name="memberGroupId" textField="name" valueField="id" emptyText="选择工作组" onenter="doSearch()" />
+	                     <a class="nui-button" iconCls="" plain="true" onclick="doSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+		            </td>
+		         </tr>
+			     </table>
+				 </div>
+				 
 		         <div class="nui-splitter" style="width: 100%; height: 100%;" vertical="true">
 		         <div size="430" showcollapsebutton="true">
 		         <div class="nui-fit" >
@@ -141,8 +158,43 @@
 		         </div>
 		     </div>
             </div> 
-               <div title="购车计算" id="editForm" name="editForm">
-                  <iframe id="caCalculation" src="" style="width: 100%;height: 100%; border:0px" ></iframe>
+               <div title="车检派工" id="checkWork" name="checkWork">
+                  <div class="nui-fit">
+                  <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+			    <table class="table" id="table1">
+			     <tr>
+		            <td>
+		                <label>车牌号：</label>
+		                <input class="nui-textbox" id="carNo-search" emptyText="" width="120"  onenter="doSearch()"/>
+		                <!-- <label>服务顾问：</label>
+	                    <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
+	                        emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="120" valueFromSelect="true"  onenter="doSearch()"/>
+	                     <label>班组：</label>
+	                     <input class="nui-combobox"  allowInput="true" required="false" id="memberGroupId" name="memberGroupId" textField="name" valueField="id" emptyText="选择工作组" onenter="doSearch()" /> -->
+	                     <a class="nui-button" iconCls="" plain="true" onclick="doSearch2"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+		            </td>
+		        </tr>
+			    </table>
+				</div>
+				  <div id="mainGrid2" class="nui-datagrid" style="width:100%;height:96%;" selectOnLoad="true" showPager="true" pageSize="50"
+				  totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true"
+				  onshowrowdetail="onShowRowDetail" url="" allowCellWrap=true>
+				  <div property="columns">
+					<div width="10" type="indexcolumn">序号</div>
+				    <div field="id" name="id" visible="false">id</div>
+				    <div field="carNo" name="carNo" width="40" headerAlign="center" align="center">车牌</div>
+				    <div field="carModel" name="carModel" width="80" headerAlign="center" align="center">接待人</div>
+				    <div field="recordDate" name="recordDate" width="60" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm">派工时间</div>
+				    <div field="checkMainName" name="checkMainName" width="80" headerAlign="center" align="center">检查名称</div>
+				    <div field="checkMan" name="checkMan" width="80" headerAlign="center" align="center">检查人</div>
+				    <div field="checkManId" name="checkManId" width="60" headerAlign="center" align="center" visible="false">查车技师Id</div>
+				    <div field="checkPoint" name="checkPoint" width="60" headerAlign="center" align="center" visible="false">本次检查得分</div>
+				    <div field="finishDate" name="finishDate" width="60" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm">检查完成时间</div>
+				    <div field="checkStatus" name="checkStatus" width="40" headerAlign="center" align="center">状态</div>
+				    <div field="checkOptBtn" name="checkOptBtn" width="60" headerAlign="center" align="center">操作</div>
+				 </div>
+				 </div>
+				 </div>
               </div>
         </div>
      </div>

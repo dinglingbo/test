@@ -32,13 +32,14 @@ a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}
                     <input class="nui-textbox" width="100" id="search-code" name="code"/>
                     <label style="font-family:Verdana;">名称：</label>
                     <input class="nui-textbox" width="100" id="search-name" name="name"/>
-                    <label style="font-family:Verdana;">品牌车型：</label>
+                    <!-- <label style="font-family:Verdana;">品牌车型：</label>
                     <input class="nui-textbox" width="100" id="search-applyCarModel" name="applyCarModel"/>
                     <label style="font-family:Verdana;">拼音：</label>
                     <input class="nui-textbox" width="100" id="search-namePy" name="namePy"/>
                     <label style="font-family:Verdana;">规格：</label>
-                    <input class="nui-textbox" width="100" id="search-spec" name="spec"/>
-                    </br>
+                    <input class="nui-textbox" width="100" id="search-spec" name="spec"/> -->
+                    <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
+                    <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120"  onenter="onSearch()"/>
                     <label style="font-family:Verdana;">品牌：</label>
                      <input id="partBrandId"
                            name="partBrandId"
@@ -61,8 +62,10 @@ a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}
                            allowInput="true"
                            showNullItem="false"
                            nullItemText="请选择..."/>
+                      &nbsp;&nbsp;
+                    <input type="checkbox" id="qtySign" class="mini-checkbox" trueValue="1" falseValue="0" >
+	                <span >显示0库存</span>
                     <span class="separator"></span>
-                    
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <!--<a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>-->
                 </td>
@@ -108,7 +111,7 @@ a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}
 		                     totalField="page.count"
 		                     onrowdblclick="onOk()"
 		                     selectOnLoad="true"
-		                     pageSize="50"
+		                     pageSize="55"
 		                     sortMode="client"
 		                     showFilterRow="false" allowCellSelect="true" allowCellEdit="false">
 		                    <div property="columns">
@@ -119,7 +122,7 @@ a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}
 		                                <div allowSort="true" field="qualityTypeId" width="50" headerAlign="center">品质</div>
 		                                <div allowSort="true" field="partBrandId" width="50" headerAlign="center">品牌</div>
 		                                <div allowSort="true" field="code" width="100" headerAlign="center" allowSort="true">编码</div>
-		       							<div allowSort="true" field="stockQty" width="50" headerAlign="center" allowSort="true">本店库存</div>
+		       							<div allowSort="true" field="stockQty" width="55" headerAlign="center" allowSort="true">本店库存</div>
 		                                <div allowSort="true" field="applyCarModel" width="70" headerAlign="center" allowSort="true">品牌车型</div>
 		                                
 		                                <div allowSort="true" field="unit" width="30" headerAlign="center" allowSort="true">单位</div>

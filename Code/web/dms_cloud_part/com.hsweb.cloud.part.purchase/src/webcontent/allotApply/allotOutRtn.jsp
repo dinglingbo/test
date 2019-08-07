@@ -65,7 +65,6 @@ body .mini-grid-row-selected{
                     <li iconCls="" onclick="quickSearch(6)" id="type6">未入库</li>
                     <li iconCls="" onclick="quickSearch(7)" id="type7">部分入库</li>
                     <li iconCls="" onclick="quickSearch(8)" id="type7">已入库</li>
-                    <li iconCls="" onclick="quickSearch(9)" id="type8">已作废</li>
                 </ul>
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择调出机构..." visible="false"

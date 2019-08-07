@@ -408,6 +408,7 @@ function setBtnable(flag)
 }
 var requiredField = {
     guestId : "调入方",
+    storeId : "调出仓库",
     orderDate : "调拨受理日期"
 };
 var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.allotsettle.savePjAllotAccept.biz.ext";

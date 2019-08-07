@@ -36,11 +36,9 @@ var partIn=null;
 var isNeedSet = false;
 
 var AuditSignHash = {
-  "0":"草稿",
-  "1":"待受理",
-  "2":"部分受理",
-  "3":"全部受理",
-  "4":"已拒绝"
+  "0":"未入库",
+  "1":"部分入库",
+  "2":"已入库"
 };
 var storeLimitMap={};
 var storeShelfList=[];
@@ -146,7 +144,7 @@ function loadMainAndDetailInfo(row)
        if(row.isDisabled == 1) {
             $('#status').text("已作废");
        }else {
-           $('#status').text(AuditSignHash[row.status]);
+           $('#status').text(AuditSignHash[row.settleStatus]);
        }
        //bottomInfoForm.setData(row);
        nui.get("guestId").setText(row.guestFullName);
@@ -234,6 +232,8 @@ function onLeftGridDrawCell(e)
                         e.cellHtml = "部分入库";
                     }else if(record.settleStatus == 2) {
                         e.cellHtml = "已入库";
+                    }else if(record.settleStatus == 0) {
+                        e.cellHtml = "未入库";
                     }
                 }
             }
@@ -378,7 +378,7 @@ function setBtnable(flag)
 {
     if(flag)
     {
-        nui.get("auditBtn").enable();
+        //nui.get("auditBtn").enable();
         //nui.get("saveBtn").enable();
         nui.get("addPartBtn").enable();
         nui.get("deletePartBtn").enable();
@@ -388,7 +388,7 @@ function setBtnable(flag)
     }
     else
     {
-        nui.get("auditBtn").disable();
+        //nui.get("auditBtn").disable();
         //nui.get("saveBtn").disable();
         nui.get("addPartBtn").disable();
         nui.get("deletePartBtn").disable();
@@ -757,7 +757,7 @@ function del()
     });
 }
 
-var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.auditAllotApplyEnter.biz.ext";
+var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.auditAllotApplyRtnEnter.biz.ext";
 function submit()
 {
     var formJsonThis = nui.encode(basicInfoForm.getData());
@@ -776,13 +776,52 @@ function submit()
 
     var row = leftGrid.getSelected();
     if(row){
-        if(row.auditSign == 1) {
+        if(row.settleStatus != 0) {
             showMsg("此单已入库!","W");
             return;
         } 
     }else{
         return;
     }
+
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '处理中...'
+    });
+
+    nui.ajax({
+        url : auditUrl,
+        type : "post",
+        data : JSON.stringify({
+            mainId : row.id,
+            token : token
+        }),
+        success : function(data) {
+            nui.unmask(document.body);
+            data = data || {};
+            if (data.errCode == "S") {
+                showMsg("入库成功!","S");
+                var pjAllotApplyMainList = data.pjAllotApplyMainList;
+                if(pjAllotApplyMainList && pjAllotApplyMainList.length>0) {
+                    var leftRow = pjAllotApplyMainList[0];
+                    var row = leftGrid.getSelected();
+                    leftGrid.updateRow(row,leftRow);
+
+                    //保存成功后重新加载数据
+                    loadMainAndDetailInfo(leftRow);
+
+                    
+                }
+
+            } else {
+                showMsg(data.errMsg || "操作失败!","W");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
+    });
 }
 
 function addGuest(){

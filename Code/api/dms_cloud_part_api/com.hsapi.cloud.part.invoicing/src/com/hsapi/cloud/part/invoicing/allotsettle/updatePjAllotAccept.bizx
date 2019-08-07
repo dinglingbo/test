@@ -358,6 +358,16 @@
       <sourceNode>assign6</sourceNode>
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link14" name="link14" displayName="连接线" type="transition">
+      <sourceNode>assign6</sourceNode>
+      <targetNode>assign26</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">main/storeId</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link44</targetConnections>
     <location x="-587" y="56"/>
     <size height="28" width="28"/>
@@ -382,6 +392,7 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" collapsed="false" type="end">
     <targetConnections>link41</targetConnections>
+    <targetConnections>link68</targetConnections>
     <location x="-497" y="232"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
@@ -435,6 +446,16 @@
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>invokePojo1</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link8" name="link8" displayName="连接线" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>assign17</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">len</process:leftOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link2</targetConnections>
     <location x="-494" y="56"/>
     <size height="28" width="22"/>
@@ -448,7 +469,7 @@
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">guest</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java">len</process:outputVariable>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
@@ -462,6 +483,7 @@
       <targetNode>end1</targetNode>
     </sourceConnections>
     <targetConnections>link40</targetConnections>
+    <targetConnections>link8</targetConnections>
     <location x="-496" y="146"/>
     <size height="28" width="28"/>
     <nodeLabel>assign17label</nodeLabel>
@@ -1438,6 +1460,29 @@
     <figSize height="17" width="32"/>
     <node>end5</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign26" name="赋值22" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link68" name="link68" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign26</sourceNode>
+      <targetNode>end1</targetNode>
+    </sourceConnections>
+    <targetConnections>link14</targetConnections>
+    <location x="-587" y="146"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign26label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">仓库不能为空</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign26label" name="label" nodeType="label">
+    <location x="-592" y="182"/>
+    <figSize height="17" width="39"/>
+    <node>assign26</node>
+  </nodes>
   <topRuler>
     <guides position="-558" horizontal="true"/>
   </topRuler>
@@ -1456,6 +1501,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="occupyQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="orderQty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="stockOutQty" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="len" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjAllotAcceptMain" name="main"/>

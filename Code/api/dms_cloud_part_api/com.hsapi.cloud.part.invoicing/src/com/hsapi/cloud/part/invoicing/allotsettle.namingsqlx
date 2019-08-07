@@ -318,7 +318,7 @@
             
     	
         
-        ORDER BY A.operate_date DESC
+        ORDER BY A.operate_date asc
     </select>
     
     <select id="queryPjAllotAcceptMains" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
@@ -850,6 +850,9 @@
                     (a.settle_status = #settleStatus#)
                 </isNotEmpty>
 
+                <isNotEmpty prepend="and" property="applyCode">  
+                    (a.code like '%$applyCode$%')
+                </isNotEmpty>
                 <!--订货日期 -->
                 <isNotEmpty prepend="and" property="sOrderDate">  
                     A.ORDER_DATE &gt;= #sOrderDate#

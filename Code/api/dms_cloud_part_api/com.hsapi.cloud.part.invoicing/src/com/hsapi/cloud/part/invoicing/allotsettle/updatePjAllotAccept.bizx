@@ -137,6 +137,10 @@
       <process:from type="query" pattern="reference">guest/isInternalId</process:from>
       <process:to type="query">main/guestOrgid</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">main/orgid</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
     <location x="-367" y="91"/>

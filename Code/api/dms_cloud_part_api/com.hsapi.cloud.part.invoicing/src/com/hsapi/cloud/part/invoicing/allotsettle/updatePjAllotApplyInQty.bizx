@@ -16,7 +16,7 @@
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link5</targetConnections>
     <targetConnections>link8</targetConnections>
-    <location x="555" y="330"/>
+    <location x="634" y="330"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -30,7 +30,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="557" y="366"/>
+    <location x="636" y="366"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -48,7 +48,7 @@
       <process:to type="query">params/mainId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">mainId</process:from>
+      <process:from type="query" pattern="reference">applyMainId</process:from>
       <process:to type="query">main/id</process:to>
     </process:copy>
     <process:copy>
@@ -99,8 +99,8 @@
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>assign3</targetNode>
     </sourceConnections>
-    <targetConnections>link3</targetConnections>
-    <location x="480" y="202"/>
+    <targetConnections>link10</targetConnections>
+    <location x="559" y="202"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -115,7 +115,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="443" y="238"/>
+    <location x="522" y="238"/>
     <figSize height="17" width="97"/>
     <node>invokePojo1</node>
   </nodes>
@@ -125,7 +125,7 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
-    <location x="585" y="202"/>
+    <location x="664" y="202"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
@@ -134,7 +134,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="583" y="238"/>
+    <location x="662" y="238"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
@@ -167,7 +167,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="updateEntity" displayName="updateEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
-      <targetNode>invokePojo1</targetNode>
+      <targetNode>assign1</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo2</sourceNode>
@@ -192,6 +192,25 @@
     <figSize height="17" width="73"/>
     <node>invokePojo2</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>invokePojo1</targetNode>
+    </sourceConnections>
+    <targetConnections>link3</targetConnections>
+    <location x="450" y="202"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">applyMainId</process:from>
+      <process:to type="query">params/mainId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
+    <location x="448" y="238"/>
+    <figSize height="17" width="32"/>
+    <node>assign1</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-07-26 16:41:00" date="2019-07-26Z" description="更新调拨申请的已受理数量及完成情况" name="updatePjAllotApplyAcceptQty" version="7.0.0.0"/>
@@ -200,7 +219,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjAllotApplyMain" name="main"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="调拨申请ID" isArray="false" name="mainId" primitiveType="String"/>
+    <process:input description="调拨入库ID" isArray="false" name="mainId" primitiveType="String"/>
+    <process:input description="调拨申请ID" isArray="false" name="applyMainId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

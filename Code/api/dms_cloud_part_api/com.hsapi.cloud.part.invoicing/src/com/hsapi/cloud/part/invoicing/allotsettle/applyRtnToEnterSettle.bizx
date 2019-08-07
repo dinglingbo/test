@@ -324,7 +324,7 @@
         <process:inputVariable id="0" name="acceptDetailId" type="query" value="Long" valueType="Primitive" pattern="reference">detailTemp/prevDetailId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="detail" type="query" value="java.util.HashMap[]" valueType="Java">entableDetail</process:outputVariable>
+        <process:outputVariable id="0" name="detail" type="query" value="commonj.sdo.DataObject[]" valueType="Java">entableDetail</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -345,6 +345,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">detailTemp/applyQty</process:from>
       <process:to type="query">qty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">detailTemp/applyQty</process:from>
+      <process:to type="query">applyQty</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
@@ -523,7 +527,7 @@
       <process:to type="query">enterTemp/fullName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">detailTemp/enterUnitId</process:from>
+      <process:from type="query" pattern="reference">detailTemp/outUnitId</process:from>
       <process:to type="query">enterTemp/enterUnitId</process:to>
     </process:copy>
     <process:copy>
@@ -690,7 +694,7 @@
       <process:to type="query">enterTemp/fullName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">detailTemp/enterUnitId</process:from>
+      <process:from type="query" pattern="reference">detailTemp/outUnitId</process:from>
       <process:to type="query">enterTemp/enterUnitId</process:to>
     </process:copy>
     <process:copy>
@@ -863,11 +867,11 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="sourceDO" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="value">enterTemp</process:inputVariable>
-      <process:inputVariable id="1" name="dos" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">enterDetail</process:inputVariable>
+      <process:inputVariable id="0" name="sourceDO" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="value">outTemp</process:inputVariable>
+      <process:inputVariable id="1" name="dos" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">outDetail</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java">enterDetail</process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java">outDetail</process:outputVariable>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo4label" name="label" nodeType="label">
@@ -915,11 +919,11 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="sourceDO" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="value">enterTemp</process:inputVariable>
-      <process:inputVariable id="1" name="dos" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">enterDetail</process:inputVariable>
+      <process:inputVariable id="0" name="sourceDO" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="value">outTemp</process:inputVariable>
+      <process:inputVariable id="1" name="dos" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">outDetail</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java">enterDetail</process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java">outDetail</process:outputVariable>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo6label" name="label" nodeType="label">
@@ -951,7 +955,7 @@
       <process:to type="query">detailTemp/orderAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">dsumOrderAmt/qty</process:from>
+      <process:from type="expression" pattern="reference">dsumOrderAmt/applyQty</process:from>
       <process:to type="query">detailTemp/orderPrice</process:to>
     </process:copy>
     <process:copy>
@@ -959,7 +963,7 @@
       <process:to type="query">detailTemp/taxAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">dsumTaxAmt/qty</process:from>
+      <process:from type="expression" pattern="reference">dsumTaxAmt/applyQty</process:from>
       <process:to type="query">detailTemp/taxPrice</process:to>
     </process:copy>
     <process:copy>
@@ -967,7 +971,7 @@
       <process:to type="query">detailTemp/noTaxAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">dsumNoTaxAmt/qty</process:from>
+      <process:from type="expression" pattern="reference">dsumNoTaxAmt/applyQty</process:from>
       <process:to type="query">detailTemp/noTaxPrice</process:to>
     </process:copy>
     <process:copy>
@@ -1310,8 +1314,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="operateDate" primitiveType="Date"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="enterTypeId" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjAllotApplyDetail" name="detailTemp"/>
-    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="true" name="entableDetail"/>
-    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="entableTemp"/>
+    <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="true" name="entableDetail"/>
+    <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="entableTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="qty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="detailId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="entableQty" primitiveType="Float"/>
@@ -1331,6 +1335,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="dsumTaxAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="dsumOrderAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="dsumNoTaxAmt" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="applyQty" primitiveType="Float"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.pts.PjAllotApplyMain" name="main"/>

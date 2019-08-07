@@ -3,9 +3,9 @@
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
-      <targetNode>assign0</targetNode>
+      <targetNode>assign2</targetNode>
     </sourceConnections>
-    <location x="100" y="150"/>
+    <location x="60" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
@@ -19,7 +19,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="102" y="186"/>
+    <location x="62" y="186"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -33,7 +33,7 @@
       <sourceNode>assign0</sourceNode>
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
-    <targetConnections>link0</targetConnections>
+    <targetConnections>link3</targetConnections>
     <location x="195" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
@@ -42,7 +42,7 @@
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">serviceId</process:from>
+      <process:from type="query" pattern="reference">params/serviceId</process:from>
       <process:to type="query">cond/_expr[1]/serviceId</process:to>
     </process:copy>
     <process:copy>
@@ -50,8 +50,16 @@
       <process:to type="query">cond/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">itemId</process:from>
+      <process:from type="query" pattern="reference">params/itemId</process:from>
       <process:to type="query">cond/_expr[2]/itemId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[2]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/status</process:from>
+      <process:to type="query">cond/_expr[2]/status</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
@@ -62,7 +70,7 @@
       <process:to type="query">cond/_orderby[1]/_property</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">desc</process:from>
+      <process:from type="query" pattern="reference">params/sort</process:from>
       <process:to type="query">cond/_orderby[1]/_sort</process:to>
     </process:copy>
   </nodes>
@@ -77,6 +85,7 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
+    <targetConnections>link5</targetConnections>
     <location x="315" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
@@ -97,6 +106,66 @@
     <figSize height="17" width="162"/>
     <node>invokePojo0</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link4</targetConnections>
+    <location x="210" y="262"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rps.RpsItemDispatch</process:from>
+      <process:to type="query">cond/_entity</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/serviceId</process:from>
+      <process:to type="query">cond/_expr[1]/serviceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/itemId</process:from>
+      <process:to type="query">cond/_expr[2]/itemId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[2]/_op</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
+    <location x="208" y="298"/>
+    <figSize height="17" width="32"/>
+    <node>assign1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign2" name="赋值2" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="连接线" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>assign1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">params/look</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link0</targetConnections>
+    <location x="126" y="150"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign2label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <location x="124" y="186"/>
+    <figSize height="17" width="32"/>
+    <node>assign2</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-08-05 19:17:59" date="2019-08-05Z" description="" name="queryItemdisPatch" version="7.0.0.0"/>
@@ -104,8 +173,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>
-    <process:input description="" isArray="false" name="itemId" primitiveType="Int"/>
+    <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsItemDispatch" name="itemDispatchList"/>

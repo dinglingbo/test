@@ -533,7 +533,7 @@ function save(type) {
                     
                 }
             } else {
-                showMsg(data.errMsg || etip,"E");
+                showMsg(data.errMsg || "保存失败","E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {

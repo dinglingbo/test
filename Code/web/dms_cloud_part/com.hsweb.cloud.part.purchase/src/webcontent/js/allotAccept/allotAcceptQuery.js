@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/2/1.
  */
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.guestOrder.queryPjGuestOrderMainDetails.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryAllotAcceptDetails.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -20,11 +20,11 @@ var billTypeIdHash = {};
 var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
+
 var statusHash = {
     "0":"草稿",
-    "1":"已提交",
-    "2":"已受理",
-    "3":"已完成"
+    "1":"部分出库",
+    "2":"全部出库"
 };
 $(document).ready(function(v)
 {
@@ -301,30 +301,28 @@ function selectSupplier(elId)
         }
     });
 }
-var supplier = null;    
-function selectSupplier(elId)
-{
+function selectSupplier(elId) {
     supplier = null;
     nui.open({
-        // targetWindow: window,
-        url: webPath+contextPath+"/com.hsweb.cloud.part.common.guestSelect.flow?token="+token,
-        title: "客户资料", width: 980, height: 560,
-        allowDrag:true,
-        allowResize:true,
-        onload: function ()
-        {
+        // targetWindow: window,,
+        url : webPath+contextPath+"/com.hsweb.cloud.part.common.guestSelect.flow?token="+token,
+        title : "供应商资料",
+        width : 980,
+        height : 560,
+        allowDrag : true,
+        allowResize : true,
+        onload : function() {
             var iframe = this.getIFrameEl();
             var params = {
-                isClient: 1,
-                guestType:'01020102'
+                isSupplier: 1,
+                guestType:'01020202',
+                isInternal: 1
             };
             iframe.contentWindow.setGuestData(params);
         },
-        ondestroy: function (action)
-        {
-            if(action == 'ok')
-            {
-                var iframe = this.getIFrameEl();
+        ondestroy : function(action) {
+            if (action == 'ok') {
+            	var iframe = this.getIFrameEl();
                 var data = iframe.contentWindow.getData();
                 supplier = data.supplier;
                 var value = supplier.id;
@@ -332,11 +330,13 @@ function selectSupplier(elId)
                 var el = nui.get(elId);
                 el.setValue(value);
                 el.setText(text);
-
             }
         }
     });
 }
+
+    
+
 
 function onDrawCell(e)
 {
@@ -357,7 +357,7 @@ function onDrawCell(e)
 	            e.cellHtml = "";
 	        }
 	        break;
-	    case "status":
+	    case "settleStatus":
 	        if(statusHash && statusHash[e.value])
 	        {
 	            e.cellHtml = statusHash[e.value];

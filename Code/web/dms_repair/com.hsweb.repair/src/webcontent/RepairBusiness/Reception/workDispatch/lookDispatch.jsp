@@ -7,7 +7,6 @@
     <title>查看调度</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/workDispatch/js/workShopMain.js?v=1.0.3" type="text/javascript"></script>  
 </head>
 <body>
    <div class="nui-fit" >
@@ -33,6 +32,16 @@
     	$(document).ready(function (){
 		mainGrid = nui.get("mainGrid");
 		mainGrid.setUrl(mainGridUrl);
+		mainGrid.on("drawcell",function(e) {
+		    var record = e.record;
+		    var status = record.status;
+		    if (e.field == "remark") {
+				if(status == 4) {
+				   e.cellHtml = "质检打回("+e.value+")";
+		    	}
+		  }
+		});
+		
         document.onkeyup = function(event) {
 	        var e = event || window.event;
 	        var keyCode = e.keyCode || e.which;// 38向上 40向下
@@ -43,10 +52,13 @@
 	    }
 	});	
 	function setData(data){
+	    var params = {};
+	    params.serviceId = data.serviceId;
+	    params.itemId = data.itemId;
+	    params.look = 1;
 	    mainGrid.load({
 		token : token,
-		serviceId : data.serviceId,
-		itemId:data.itemId
+		params:params
 	});
 	}
     </script>

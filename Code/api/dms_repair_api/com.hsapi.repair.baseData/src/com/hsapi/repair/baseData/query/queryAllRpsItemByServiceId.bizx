@@ -98,7 +98,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cr"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="工单中的维修工单号" isArray="false" name="serviceId" primitiveType="String"/>
+    <process:input description="工单中的维修工单号" isArray="false" name="serviceId" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsItem" name="rpsItem"/>

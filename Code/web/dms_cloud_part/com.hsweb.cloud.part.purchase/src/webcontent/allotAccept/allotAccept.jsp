@@ -172,7 +172,7 @@ body .mini-grid-row-selected{
                                              onvaluechanged="onGuestValueChanged"
                                              popupEmptyText="未找到调出机构"
                                              url=""  searchField="key"
-                                             width="90%"
+                                             width="80%"
                                              placeholder="请选择调出机构"
                                              selectOnFocus="true" />
                                            <a class="nui-button" iconCls="" plain="false" onclick="selectSupplier('guestId')" id="selectSupplierBtn"><span class="fa fa-check fa-lg"></span></a>
@@ -211,7 +211,7 @@ body .mini-grid-row-selected{
                                       <td class="title">
                                           <label>备注：</label>
                                       </td>
-                                      <td colspan="3">
+                                      <td colspan="1">
                                           <input class="nui-textbox" selectOnFocus="true" width="100%" id="remark" name="remark" enabled="true"/>
                                       </td>
                                       <td class="title">
@@ -220,6 +220,12 @@ body .mini-grid-row-selected{
                                       <td colspan="1" style="width:120px">
                                           <input class="nui-textbox" selectOnFocus="true" width="100%" id="orderMan" name="orderMan" enabled="true"/>
                                       </td>  
+                                      <td class="title">
+                                          <label>申请单号：</label>
+                                      </td>
+                                      <td style="width:180px">
+                                          <input class="nui-textbox" width="100%" id="code" name="code" enabled="false" />
+                                      </td>
                                       <td class="title">
                                           <label>受理单号：</label>
                                       </td>
@@ -328,7 +334,7 @@ body .mini-grid-row-selected{
 </div>
 
 <div id="advancedSearchWin" class="nui-window"
-     title="高级查询" style="width:416px;height:330px;"
+     title="高级查询" style="width:416px;height:350px;"
      showModal="true"
      allowResize="false"
      allowDrag="true">
@@ -392,6 +398,15 @@ body .mini-grid-row-selected{
                 <td class="title">受理单号:</td>
                 <td colspan="3">
                     <textarea class="nui-textarea" emptyText="" width="100%" style="height: 60px;" id="serviceIdList" name="serviceIdList"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="title">申请单号:</td>
+                <td colspan="3">
+                    <input id="applyCode"
+                           name="applyCode"
+                           class="nui-textbox" 
+                           width="100%"/>
                 </td>
             </tr>
             <tr>

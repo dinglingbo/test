@@ -56,6 +56,21 @@
 	
 			                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 			                <span class="separator"></span>
+			                <input name="storeId"
+                                                 id="storeId"
+                                                 class="nui-combobox"
+                                                 textField="name"
+                                                 valueField="id"
+                                                 emptyText="请选择受理仓库..."
+                                                 url=""
+                                                 allowInput="true"
+                                                 showNullItem="false"
+                                                 width="100px"
+                                                 valueFromSelect="true"
+                                                 onvaluechanged=""
+                                                 nullItemText="请选择受理仓库..."
+                                                />
+                            <span class="separator"></span>  
         			        <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible=""  id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;受理</a>
         			        <a class="nui-button" iconCls="" plain="true" onclick="refuse()" visible="true" id="refuseBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;拒绝</a>
 			                

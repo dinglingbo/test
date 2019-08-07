@@ -269,16 +269,17 @@
       <targetNode>end1</targetNode>
     </sourceConnections>
     <targetConnections>link52</targetConnections>
-    <location x="117" y="360"/>
+    <targetConnections>link3</targetConnections>
+    <location x="168" y="345"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="119" y="396"/>
+    <location x="170" y="381"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign1" name="赋值1" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link57" name="link57" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>end1</targetNode>
@@ -363,8 +364,18 @@
       <sourceNode>subprocess1</sourceNode>
       <targetNode>loopstart1</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link3" name="link3" displayName="连接线" type="transition">
+      <sourceNode>subprocess1</sourceNode>
+      <targetNode>assign0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="OBJNE">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="118" y="113"/>
+    <location x="169" y="113"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="4" synchronization="true" transactionType="join" varArgs="false">
@@ -384,7 +395,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="67" y="148"/>
+    <location x="118" y="148"/>
     <figSize height="17" width="129"/>
     <node>subprocess1</node>
   </nodes>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryPjAllotApplyMains.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="com.hsapi.cloud.part.invoicing.allotsettle.queryPjAllotApplyMainList&#xD;&#xA;&#xD;&#xA;调拨申请受理界面查询" title="Administrator&#x9;19-7-24 下午3:50">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="com.hsapi.cloud.part.invoicing.allotsettle.queryPjAllotApplyMains" title="Administrator&#x9;19-7-24 下午3:50">
     <location x="35" y="-70"/>
     <size height="100" width="466"/>
   </nodes>
@@ -82,6 +82,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">params/guestOrgId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">params/orderTypeId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -173,6 +177,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">params/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">params/orderTypeId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">

@@ -16,6 +16,7 @@ var enterTypeIdHash = {};
 var partBrandIdHash = {};
 var statusList=[{"id":1,"name":"已提交"},{"id":2,"name":"已受理"},{"id":3,"name":"已完成"}];
 var statusHash={"1":"已提交","2":"已受理","3":"已完成"};
+var FStoreId = null;
 
 $(document).ready(function(v) {
 	orgidsEl = nui.get("orgids");
@@ -42,6 +43,9 @@ $(document).ready(function(v) {
     {
         var storehouse = data.storehouse||[];
      //   nui.get("storeId").setData(storehouse);
+        if(storehouse.length>0){
+        	  FStoreId = storehouse[0].id;
+        }      
         storehouse.forEach(function(v)
         {
             if(v && v.id)
@@ -309,7 +313,10 @@ function audit(){
 	}
 	var rows =rightGrid.getData();
 	for(var i=0;i<rows.length;i++){
+		rows[i].prevDetailId = rows[i].id;
 		rows[i].id =rows[i].partId;
+		rows[i].name = rows[i].partName;
+		rows[i].unit = rows[i].systemUnitId;	
 	}
 	var main={};
 	main.code =row.serviceId;
@@ -317,6 +324,7 @@ function audit(){
 	main.sourceType =5;
 	main.directGuestId=row.guestId;
 	main.directOrgid =row.orgid;
+	main.storeId =FStoreId;
 	openGeneratePop(main,rows, "pchsOrder", "新增直发"+row.orgName+"的采购订单");
 }
 

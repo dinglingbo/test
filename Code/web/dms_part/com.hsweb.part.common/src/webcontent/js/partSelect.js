@@ -4,6 +4,7 @@
 var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var treeUrl = baseUrl+"com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
 var partGridUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.queryPartList.biz.ext";
+var partGridStockUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.queryPartListStock.biz.ext";
 var partGrid = null;
 //var stockUrl = baseUrl+"com.hsapi.part.invoice.partInterface.queryStockByCode.biz.ext";
 var stockUrl = baseUrl + "com.hsapi.part.invoice.query.queryInventoryAccessPart.biz.ext";
@@ -19,15 +20,16 @@ var codeEl = null;
 var tempGrid = null;
 var rightGrid = null;
 var protoken = "";
-
+var qtySign = null;
 var isChooseClose = 1;//默认选择后就关闭窗体
+var statusList = [{id:"0",name:"品牌车型"},{id:"1",name:"拼音"},{id:"2",name:"规格"}];
 
 var queryForm = null;
 $(document).ready(function(v)
 {
     queryForm = new nui.Form("#queryForm");
     partGrid = nui.get("partGrid");
-    partGrid.setUrl(partGridUrl);
+    qtySign = nui.get("qtySign");
     tempGrid=nui.get("tempGrid");
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(stockUrl);
@@ -272,9 +274,19 @@ function getSearchParams()
     var params = queryForm.getData();
     params.code = (params.code||"").replace(/\s+/g, "");
     params.name = (params.name||"").replace(/\s+/g, "");
-    params.applyCarModel = (params.applyCarModel||"").replace(/\s+/g, "");
+   /* params.applyCarModel = (params.applyCarModel||"").replace(/\s+/g, "");
     params.namePy = (params.namePy||"").replace(/\s+/g, "");
-    params.spec = (params.spec||"").replace(/\s+/g, "");
+    params.spec = (params.spec||"").replace(/\s+/g, "");*/
+    
+    var type = nui.get("search-type").getValue();
+    var typeValue = nui.get("carNo-search").getValue();
+    if(type==0){
+        params.applyCarModel = (typeValue ||"").replace(/\s+/g, "");
+    }else if(type==1){
+        params.namePy = (typeValue||"").replace(/\s+/g, "");
+    }else if(type==2){
+    	params.spec = (typeValue||"").replace(/\s+/g, "");
+    }
     return params;
 }
 function onSearch()
@@ -289,6 +301,13 @@ function doSearch(params)
     if(params.namePy)
     {
         params.namePy = params.namePy.toUpperCase();
+    }
+    /*显示0库存*/
+    if(qtySign.checked){
+    	partGrid.setUrl(partGridUrl);
+    }else{
+    	partGrid.setUrl(partGridStockUrl);
+    	
     }
     partGrid.load({
         params:params,

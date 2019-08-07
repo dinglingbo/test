@@ -240,7 +240,7 @@ function onDrawCell(e)
     }
 }
 function onExport(){
-    var detail = rightGrid.getData();
+    var detail = nui.clone(rightGrid.getData());
     if(detail && detail.length > 0){
         setInitExportData(detail);
     }

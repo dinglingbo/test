@@ -521,7 +521,7 @@ function exportMultistage(columns){
 	html+='	</tbody> ';	
 	html+='	</table> ';	
 	html+='	<a href="" id="tableExportA"></a> ';	
-	$("#exportDiv").append(html);
+	document.getElementById("exportDiv").innerHTML=html;
 }
 
 
@@ -577,5 +577,5 @@ function exportNoMultistage(columns){
 	html+='	</tbody> ';	
 	html+='	</table> ';	
 	html+='	<a href="" id="tableExportA"></a> ';	
-	$("#exportDiv").append(html);
+	document.getElementById("exportDiv").innerHTML=html;
 }

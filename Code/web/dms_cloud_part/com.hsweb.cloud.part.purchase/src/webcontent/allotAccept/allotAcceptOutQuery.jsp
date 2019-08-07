@@ -88,6 +88,7 @@
          idField="detailId"
          ondrawcell="onDrawCell"
          sortMode="client"
+         totalField="page.count"
          url=""
          pageSize="10000"
          sizeList="[1000,5000,10000]"
@@ -99,7 +100,7 @@
                     <div allowSort="true" field="serviceId" width="190" summaryType="count" headerAlign="center" header="订单单号"></div>
                     <div field="orgName" width="200" headerAlign="center" header="调入方"></div>
                     <div field="orderMan" width="80" headerAlign="center" header="受理人"></div>
-                    <div allowSort="true" field="settleStatus" width="60" headerAlign="center" header="状态"></div>
+                    <div allowSort="true" field="settleStatus" width="80" headerAlign="center" header="状态"></div>
                     <div allowSort="true" field="orderDate"width="120" headerAlign="center" header="订单日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div allowSort="true" field="storeId" width="120" headerAlign="center" header="仓库"></div>
                 </div>
@@ -118,6 +119,10 @@
                 <div property="columns">
                     <div allowSort="true" datatype="float" summaryType="sum" field="applyQty" width="60" headerAlign="center" header="申请数量"></div>
                     <div allowSort="true" datatype="float" summaryType="sum" field="acceptQty" width="90" headerAlign="center" header="调拨受理数量"></div>
+                	<div allowSort="true" datatype="float" summaryType="sum" field="hasAcceptQty" width="60" headerAlign="center" header="已受理数量"></div>
+                	<div allowSort="true" datatype="float" summaryType="sum" field="hasCamcelQty" width="60" headerAlign="center" header="已拒绝数量"></div>
+                	<div allowSort="true" datatype="float" summaryType="sum" field="hasOutQty" width="60" headerAlign="center" header="已出库数量" visible="true"></div>
+                	<div allowSort="true" datatype="float" summaryType="sum" field="hasInQty" width="60" headerAlign="center" header="已入库数量"  visible="false"></div>
                     <div allowSort="true" field="detailRemark" width="60" headerAlign="center" header="备注"></div>
                 </div>
             </div>

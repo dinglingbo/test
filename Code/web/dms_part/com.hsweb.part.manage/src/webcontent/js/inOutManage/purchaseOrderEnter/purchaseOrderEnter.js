@@ -2365,7 +2365,7 @@ function onExport(){
 	var main = leftGrid.getSelected();
 	if(!main) return;
 
-	var detail = rightGrid.getData();
+	var detail = nui.clone(rightGrid.getData());
 	for(var i=0;i<detail.length;i++){
 		for(var j=0;j<storehouse.length;j++){
 			if(detail[i].storeId==storehouse[j].id){

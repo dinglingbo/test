@@ -19,6 +19,9 @@ var enterTypeIdHash = {};
 var partBrandIdHash = {};
 $(document).ready(function(v) {
 	orgidsEl = nui.get("orgids");
+	if(currIsMaster!=1){
+
+	}
 	getCompany();
 	mainGrid =nui.get("mainGrid");
 	mainGrid.setUrl(mainGridUrl);

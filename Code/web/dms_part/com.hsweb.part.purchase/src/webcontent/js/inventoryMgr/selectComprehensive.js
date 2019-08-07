@@ -667,7 +667,7 @@ function onExport(){
 	
 	var billTypeIdHash = [{name:"综合",id:"0"},{name:"检查",id:"1"},{name:"洗美",id:"2"},{name:"销售",id:"3"},{name:"理赔",id:"4"},{name:"退货",id:"5"},{name:"波箱",id:"6"}];
 
-	var detail = mainGrid.getData();
+	var detail = nui.clone(mainGrid.getData());
 	//多级
 	exportMultistage(mainGrid.columns)
 	//单级

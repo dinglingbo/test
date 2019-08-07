@@ -176,6 +176,9 @@
             <isNotEmpty prepend="and" property="billTypeId">  
                 (a.bill_type_id = #billTypeId#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="notBillTypeId">  
+                (a.bill_type_id != #notBillTypeId#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="serviceTypeId">  
                 (a.service_type_id = #serviceTypeId#)
             </isNotEmpty>

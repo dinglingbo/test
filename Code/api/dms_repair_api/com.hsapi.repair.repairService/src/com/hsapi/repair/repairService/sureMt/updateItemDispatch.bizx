@@ -719,7 +719,7 @@
       <targetNode>assign3</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -852,6 +852,10 @@
       <process:to type="query">rpsItem/status</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">remark</process:from>
+      <process:to type="query">rpsItem/stopReason</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
       <process:to type="query">rpsItem/modifier</process:to>
     </process:copy>
@@ -950,7 +954,7 @@
       <targetNode>assign13</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

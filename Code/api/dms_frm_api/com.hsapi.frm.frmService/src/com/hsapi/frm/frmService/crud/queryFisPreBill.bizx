@@ -9,19 +9,29 @@
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link8" name="link8" displayName="连接线" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign2</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>id == null &amp; billCode == null</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <location x="100" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link3</targetConnections>
-    <location x="615" y="150"/>
+    <targetConnections>link9</targetConnections>
+    <location x="617" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-      <process:return id="2" language="com.hsapi.frm.data.fis.FisPreBill" name="data" type="query" valueType="DataObject">data</process:return>
+      <process:return id="2" language="com.hsapi.frm.data.fis.FisPreBill[]" name="data" type="query" valueType="DataObject">data</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -30,7 +40,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="614" y="186"/>
+    <location x="616" y="186"/>
     <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
@@ -44,8 +54,16 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
+      <process:from type="literal" pattern="reference">com.hsapi.frm.data.fis.FisPreBill</process:from>
+      <process:to type="query">ct/_entity</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">id</process:from>
-      <process:to type="query">data/id</process:to>
+      <process:to type="query">ct/_expr[1]/id</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billCode</process:from>
+      <process:to type="query">ct/_expr[2]/billCode</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -53,8 +71,8 @@
     <figSize height="20" width="31"/>
     <node>assign0</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="运算逻辑" displayName="Query according to the dataObject" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="运算逻辑" displayName=" Query according to  criteria Entity" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign1</targetNode>
     </sourceConnections>
@@ -63,15 +81,15 @@
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.expandEntity</process:partner>
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.queryEntitiesByCriteriaEntity</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">frm</process:inputVariable>
-      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">data</process:inputVariable>
+      <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">ct</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java">data</process:outputVariable>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
@@ -84,8 +102,8 @@
       <sourceNode>assign1</sourceNode>
       <targetNode>end0</targetNode>
     </sourceConnections>
-    <targetConnections>link2</targetConnections>
-    <location x="538" y="150"/>
+    <targetConnections>link7</targetConnections>
+    <location x="540" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
@@ -98,21 +116,47 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="532" y="186"/>
+    <location x="534" y="186"/>
     <figSize height="20" width="40"/>
     <node>assign1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link8</targetConnections>
+    <location x="373" y="258"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign2label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">参数为空</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <location x="367" y="294"/>
+    <figSize height="20" width="40"/>
+    <node>assign2</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="lsq" createTime="2019-07-24 16:37:08" date="2019-07-24Z" description="" name="queryFisPreBill" version="7.0.0.0"/>
-  <process:variables/>
+  <process:variables>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="ct"/>
+  </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="id" primitiveType="String"/>
+    <process:input description="" isArray="false" name="billCode" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
-    <process:output description="" isArray="false" modelType="com.hsapi.frm.data.fis.FisPreBill" name="data"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.frm.data.fis.FisPreBill" name="data"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

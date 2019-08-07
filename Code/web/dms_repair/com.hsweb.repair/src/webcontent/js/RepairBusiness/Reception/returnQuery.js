@@ -356,7 +356,7 @@ function mergeCells(){//动态合并行
 
 
 function onExport(){
-	var detail = mainGrid.getData();
+	var detail = nui.clone(mainGrid.getData());
 //多级
 	exportMultistage(mainGrid.columns)
 //单级

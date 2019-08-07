@@ -1770,9 +1770,7 @@ function OnrpMainGridCellBeginEdit(e){
         e.cancel = true;
     }
 
-    if(data.codeId && data.codeId>0){
-        e.cancel = true;
-    }
+ 
     if(e.field == 'storeId'){
     	editor.setData(storehouse);
     }
@@ -2206,7 +2204,7 @@ function onExport(){
 	var main = leftGrid.getSelected();
 	if(!main) return;
 
-	var detail = rightGrid.getData();
+	var detail = nui.clone(rightGrid.getData());
 	if(detail && detail.length > 0){
 		setInitExportData(main, detail);
 	}

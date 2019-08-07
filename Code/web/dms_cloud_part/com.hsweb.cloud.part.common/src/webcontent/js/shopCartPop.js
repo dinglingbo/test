@@ -355,7 +355,7 @@ function onOk()
         return;
     }
 
-    var detail = mainGrid.getData();
+    var detail = nui.clone(mainGrid.getData());
     if(detail.length <= 0){
         parent.showMsg("明细为空!","W");
         return;

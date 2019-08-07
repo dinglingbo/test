@@ -743,7 +743,7 @@
 	</update>
 	
     <select id="queryPartStockByIds" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
-    	SELECT orgid, part_id as partId, stock_qty as stockQty, stock_amt as stockAmt 
+    	SELECT orgid, part_id as partId, stock_qty as stockQty, stock_amt as stockAmt ,last_out_price as lastOutPrice
     	from wb_part.pj_part_stock
 		WHERE
 			1 = 1
@@ -776,5 +776,124 @@
 	            </isNotEmpty>
 	        </dynamic>
     </select> 
+    
+    <!--用于查询有库存的-->
+     <select id="queryPartListStock" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT a.id id,
+    		   a.orgid orgid,
+		       a.code code,
+		       a.name name,
+		       a.full_name fullName,
+		       a.brand_code brandCode,
+		       a.oem_code oemCode,
+		       a.common_code commonCode,
+		       a.query_code queryCode,
+		       a.quality_type_id qualityTypeId,
+		       a.part_name_id partNameId,
+		       a.name_py namePy,
+		       a.name_en nameEn,
+		       a.part_brand_id partBrandId,
+		       a.apply_carbrand_id applyCarBrandId,
+		       a.apply_car_model applyCarModel,
+		       a.part_type_id partTypeId,
+		       a.car_type_id_f carTypeIdF,
+		       a.car_type_id_s carTypeIdS,
+		       a.car_type_id_t carTypeIdT,
+		       a.produce_type_id produceTypeId,
+		       a.abc_type abcType,
+		       a.produce_factory produceFactory,
+		       a.unit unit,
+		       a.liquidity liquidity,
+		       a.newest_quote newestQuote,
+		       a.newest_quote_date newestQuoteDate,
+		       a.uniform_sell_price uniformSellPrice,
+		       a.is_uniform isUniform,
+		       a.uniform_date uniformDate,
+		       a.uniform_man uniformMan,
+		       a.retail_price retailPrice,
+		       a.whole_sale_price wholeSalePrice,
+		       a.spec spec,
+		       a.is_disabled isDisabled,
+		       a.is_host isHost,
+		       a.common_id as commonId,
+		       b.last_out_price as newestSellPrice,
+		       b.stock_qty as stockQty
+		    FROM
+			pj_part_store_stock b
+			inner join wb_common.com_attribute a
+			on b.part_id = a.id
+			where 1=1 and a.is_disabled=0
+			and b.stock_qty &gt; 0
+    	<dynamic>
+    		<isNotEmpty prepend="and" property="orgid">  
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">  
+                (a.orgid = #orgids# or a.orgid = 0)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="tenantId">  
+                (a.tenant_id = #tenantId# or a.orgid = 0)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="isDisabled">  
+                (is_disabled = #isDisabled#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="commonId">  
+                (a.common_id = #commonId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="commonIds">  
+               (a.common_id in ($commonIds$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partBrandId">  
+                (PART_BRAND_ID = #partBrandId#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="carTypeIdF">  
+                (car_type_id_f = #carTypeIdF#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carTypeIdS">  
+                (car_type_id_s = #carTypeIdS#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carTypeIdT">  
+                (car_type_id_t = #carTypeIdT#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="partId">  
+                (a.id = #partId#)
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="partIds">  
+                (a.id in ($partIds$))
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="code">  
+                (a.code like '%$code$%')
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="lcode">  
+                (a.code like '$code$%')
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="rcode">  
+                (a.code like '%$code$')
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="acode">  
+                (code  = #acode#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCodeList">
+            	(a.code in ($partCodeList$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="name">  
+                (name like '%$name$%' or full_name like '%$name$%')
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="spec">  
+                (a.spec like '%$spec$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="applyCarModel">  
+                (apply_car_model like '%$applyCarModel$' or apply_car_model like '$applyCarModel$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="namePy">  
+                (name_py like '%$namePy$' or name_py like '$namePy$%')
+            </isNotEmpty>  
+            <isNotEmpty prepend="limit" property="limitCount">  
+                $limitCount$
+            </isNotEmpty>  
+        </dynamic>  
+        order by use_times desc
+    </select>
+    
     
 </sqlMap>

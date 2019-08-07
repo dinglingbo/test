@@ -9,7 +9,7 @@
 -->
 <head>
 <title>预售单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/guestOrder/guestOrder.js?v=1.0.67"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/guestOrder/guestOrder.js?v=1.0.70"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -127,7 +127,7 @@ body .mini-grid-row-selected{
                         <div field="status" width="60" headerAlign="center" header="状态"></div>
                       	<div field="auditSign" width="65" visible="false" headerAlign="center" header="状态"></div>
                         <div field="guestFullName" width="120" headerAlign="center" header="供应商"></div>
-                        <div field="orderDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="退货日期"></div>
+                        <div field="orderDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="订单日期"></div>
                         <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
                         <div field="serviceId" headerAlign="center" width="150" header="预售单号"></div>
                         <div field="printTimes" width="60" headerAlign="center" header="打印次数"></div>
@@ -151,6 +151,7 @@ body .mini-grid-row-selected{
                               <input class="nui-hidden" name="createDate"/>
                               <input class="nui-hidden" name="orderAmt"/>
                               <input class="nui-hidden" name="orderQty"/>
+            				  <input class="nui-hidden" name="status"/>
                               <table style="width: 100%;">
                                   <tr>
                                       <td class="title required">

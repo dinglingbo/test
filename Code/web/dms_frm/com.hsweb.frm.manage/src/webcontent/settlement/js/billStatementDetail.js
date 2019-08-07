@@ -944,7 +944,7 @@ function onLeftGridBeforeDeselect(e)
 	var main = leftGrid.getSelected();
 	if(!main) return;
 
-	var detail = rightGrid.getData();
+	var detail = nui.clone(rightGrid.getData());
 	if(detail && detail.length > 0){
 		setInitExportData(main, detail);
 	}
@@ -958,7 +958,7 @@ function onExport(){
 		showMsg("清先保存数据!","W");
 		return;
 	}*/
-	var detail = rightGrid.getData();
+	var detail = nui.clone(rightGrid.getData());
 	
 	/*for(var i=0;i<detail.length;i++){
 		for(var j=0;j<storehouse.length;j++){

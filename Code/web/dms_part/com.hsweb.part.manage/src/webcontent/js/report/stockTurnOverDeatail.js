@@ -182,7 +182,7 @@ function getDate(wantDay){
 	return returnSting;
 }
 function onExport(){
-	var detail = rightGrid.getData();
+	var detail = nui.clone(rightGrid.getData());
 	exportNoMultistage(rightGrid.columns)
 	for(var i=0;i<detail.length;i++){
 /*		for(var j in servieTypeHash) {

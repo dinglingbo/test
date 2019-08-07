@@ -300,7 +300,7 @@ updateGridColoumn(cType);
 }
 
 function onExport(){
-	var detail = mainGrid.getData();
+	var detail = nui.clone(mainGrid.getData());
 //多级
 	//exportMultistage(mainGrid.columns)
 //单级

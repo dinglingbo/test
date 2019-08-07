@@ -250,7 +250,7 @@ function doSearch(params)
 function onExport(){
 	
 
-	var detail = rightGrid.getData();
+	var detail = nui.clone(rightGrid.getData());
 	
 	for(var i=0;i<detail.length;i++){
 		for(var j in billTypeIdHash) {

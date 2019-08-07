@@ -248,7 +248,7 @@ function getItemType(callback) {
 
 function onExport(){
 
-	var detail = mainGrid.getData();
+	var detail = nui.clone(mainGrid.getData());
 	
 	if(detail && detail.length > 0){
 		setInitExportData(detail);

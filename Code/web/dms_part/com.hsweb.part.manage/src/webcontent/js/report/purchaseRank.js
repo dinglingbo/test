@@ -478,3 +478,61 @@ function selectSupplier(elId) {
         }
     });
 }
+
+function onExport(){
+	var tabs = nui.get("mainTabs").getActiveTab();
+	if(tabs.name=="supplierGridTab"){
+		//按供应商排行
+		var detail = supplierGrid.getData();
+		//单级
+		exportNoMultistage(supplierGrid.columns);
+		for(var i=0;i<detail.length;i++){
+			detail[i].id=1;
+			if(detail[i].supplierType){
+				detail[i].supplierType = supplierTypeHash[detail[i].supplierType].name;				
+			}
+
+		}
+		if(detail && detail.length > 0){
+			//单级表头类型
+			setInitExportDataNoMultistage( detail,supplierGrid.columns,"按供应商排行导出");
+		}		
+	}else if(tabs.name=="partGridTab"){
+	    //按商品排行
+		var detail = partGrid.getData();
+		//单级
+		exportNoMultistage(partGrid.columns);
+		for(var i=0;i<detail.length;i++){
+			detail[i].id=1;
+		}
+		if(detail && detail.length > 0){
+			//单级表头类型
+			setInitExportDataNoMultistage( detail,partGrid.columns,"按商品排行导出");
+		}
+	}else if(tabs.name=="partBrandGridTab"){
+	    //批次
+		var detail = partBrandGrid.getData();
+		//单级
+		exportNoMultistage(partBrandGrid.columns);
+		for(var i=0;i<detail.length;i++){
+			detail[i].id=1;
+		}
+		if(detail && detail.length > 0){
+			//单级表头类型
+			setInitExportDataNoMultistage( detail,partBrandGrid.columns,"按品牌排行导出");
+		}
+	}else if(tabs.name=="partTypeGridTab"){
+	    //批次
+		var detail = partTypeGrid.getData();
+		//单级
+		exportNoMultistage(partTypeGrid.columns);
+		for(var i=0;i<detail.length;i++){
+			detail[i].id=1;
+		}
+		if(detail && detail.length > 0){
+			//单级表头类型
+			setInitExportDataNoMultistage( detail,partTypeGrid.columns,"按配件类型排行导出");
+		}
+	}
+	
+}

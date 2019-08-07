@@ -217,7 +217,9 @@
 	                    <td rowspan="2" style="">
 	                        <div style="font-size: 20px; font-family: 华文中宋;padding-top: 5px;"><b><span id="spstorename"></span></b></div>
 	                        <div style="padding-top: 2px; font-size: 13px;font-family: Arial;">
-	                          №:<span id="serviceCode"></span>  
+	                          №:<span id="serviceCode"></span> 
+	                          <br> 
+	                          <span style="font-size:8px;">打印时间：<span id="date"></span></span> 
 	                        </div>
 	                    </td>
 	                </tr>
@@ -237,12 +239,12 @@
             <tr>
                 <td style="font-size:8px;" >地址：<span id="guestAddr"></span></td>
                 <td style="font-size:8px;">开户银行：<span id="openBank"></span></td>
-                <td style="font-size:8px;">打印时间：<span id="date"></span></td>
+                <td style="font-size:8px;">进厂时间：<span id="enterDate"></span></td>
             </tr> 
             <tr>
                 <td style="font-size:8px;">电话：<span id="phone"></span></td>
                 <td style="font-size:8px;" >银行账号：<span id="bankNo"></span></td>
-             	<td style="font-size:8px;">进厂时间：<span id="enterDate"></span></td>
+             	<td style="font-size:8px;">结算时间：<span id="outDate"></span></td>
             </tr>
         </table>
 
@@ -443,6 +445,7 @@
 		var partAmt = 0;
 		var partSubtotal = 0;
 		var enterDate = null;
+		var outDate = null;
 		var weChatData = {};
 		var wechatOpenId = null;
 		var infoData = {};
@@ -575,6 +578,7 @@
 	        		infoData.serviceType = 11;
 	        		infoData.mainId = params.serviceId;
 	        		enterDate = list.enterDate || "";
+	        		outDate = list.outDate || "";
 	        		wechatOpenId = list.openId || "";
 	        		if(wechatOpenId == "" || wechatOpenId == null){
 	        		    document.getElementById("openId").style.background="#999999"; 
@@ -594,6 +598,13 @@
 	        			enterDate = format(enterDate, "yyyy-MM-dd HH:mm");
 	        		}else{
 	        		  enterDate='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+	        		}
+	        		if(outDate){
+	        			outDate = outDate.replace(/-/g,"/");
+	        			outDate = new Date(outDate);
+	        			outDate = format(outDate, "yyyy-MM-dd HH:mm");
+	        		}else{
+	        		  outDate='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
 	        		}
 	        		var guestFullName = list.guestFullName || "";
 	        		var guestMobile = list.guestMobile || "";
@@ -638,6 +649,7 @@
 	        		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
 	        		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
 	        		document.getElementById("enterDate").innerHTML = enterDate;
+	        		document.getElementById("outDate").innerHTML = outDate;
 	        		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
 	        		document.getElementById("contactName").innerHTML = document.getElementById("contactName").innerHTML + contactName;
 	        		

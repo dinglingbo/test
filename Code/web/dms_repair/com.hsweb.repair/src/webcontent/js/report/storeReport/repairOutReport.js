@@ -444,7 +444,7 @@ function changed(){
 }
 
 function onExport(){
-	var detail = rightGrid.getData();
+	var detail = nui.clone(rightGrid.getData());
 	exportMultistage(rightGrid.columns)
 	for(var i=0;i<detail.length;i++){
 		for(var j in servieTypeHash) {

@@ -953,7 +953,7 @@ function saveCheckMain(){//isCheckMain == "Y"
 function finish(){
 	
 	var data = billForm.getData(true);
-	mdata.remark = nui.get("remark").getValue();
+	data.remark = nui.get("remark").getValue();
 	if(data.isFinish != 1){		
 		saveDetailB();
 	}

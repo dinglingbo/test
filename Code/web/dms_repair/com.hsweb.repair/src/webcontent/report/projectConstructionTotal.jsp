@@ -66,7 +66,7 @@
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(0)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按日期汇总</a>
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(1)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按业务类型汇总</a>
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(2)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按项目名称汇总</a>
-<!--      <a class="nui-button" iconcls=""  name="" plain="true" onclick=""><span class="fa fa-mail-forward fa-lg"></span>&nbsp;导出</a> -->
+     <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a> 
  </div>
  <div class="nui-fit">
     <div id="grid1" class="nui-datagrid" style="width:100%;height:100%;"
@@ -97,6 +97,9 @@
     </div>
 </div>
 </div>
+<div id="exportDiv" style="display:none">  
+
+</div> 
 <script type="text/javascript">
     nui.parse();
     var orgidsEl = null;
@@ -261,7 +264,41 @@
      grid1.load({params:params});
      updateGridColoumn(cType);
 }
+function onExport(){
+	var detail = grid1.getData();
+		var grid1columns = grid1.columns;
+//多级
+	exportMultistage(grid1.columns)
+//单级
+       //exportNoMultistage(grid1.columns)
+	for(var i=0;i<detail.length;i++){
+		detail[i].id=1;
+		 if(cType == 1){
+            detail[i].groupName=servieTypeHash[detail[i].groupName].name;
+        }
+		/* detail[i].groupName=servieTypeHash[detail[i].groupName].name;
 
+		detail[i].billTypeId=billTypeIdList[detail[i].billTypeId].name;
+        if(detail[i].isSettle== 1){
+        	detail[i].isSettle = "已结算";
+        }else{
+        	detail[i].isSettle = "未结算";
+        }
+
+		if(detail[i].isCollectMoney==1){
+			detail[i].isCollectMoney="√";
+		}else{
+			detail[i].isCollectMoney="";
+		} */
+	}
+	if(detail && detail.length > 0){
+//多级表头类型
+		setInitExportData( detail,grid1.columns,"施工项目汇总表导出");
+//单级表头类型  与上二选一
+//setInitExportDataNoMultistage( detail,grid1.columns,"已结算工单明细表导出");
+	}
+	
+}
 
 </script>
 

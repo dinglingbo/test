@@ -1169,7 +1169,7 @@ function onExport(){
 	var main = leftGrid.getSelected();
 	if(!main) return;
 
-	var detail = rightGrid.getData();
+	var detail = nui.clone(rightGrid.getData());
 	if(detail && detail.length > 0){
 		var partHash =getPartHash();
 		setInitExportData(main,detail,partHash);
@@ -1179,7 +1179,7 @@ function onExport(){
 }
 function getPartHash(){
 	var partHash={};
-	var detail = rightGrid.getData();
+	var detail = nui.clone(rightGrid.getData());
 	var pchMainIds ="";
 	var sellMainIds ="";
 	var pchList=[];

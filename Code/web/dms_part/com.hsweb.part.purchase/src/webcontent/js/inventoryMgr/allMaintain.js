@@ -759,7 +759,7 @@ function queryExpense(){
 		window.parent.activeTabAndInit(item,row);
 }
 function onExport(){
-	var detail = mainGrid.getData();
+	var detail = nui.clone(mainGrid.getData());
 	exportMultistage(mainGrid.columns)
 	for(var i=0;i<detail.length;i++){
 			

@@ -8,8 +8,8 @@
   - Description:
 -->
 <head>
-<title>调拨受理明细查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotAcceptQuery.js?v=2.0.17"></script>
+<title>调拨入库明细查询</title>
+<script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotApplyInQuery.js?v=2.0.17"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -88,7 +88,6 @@
          idField="detailId"
          ondrawcell="onDrawCell"
          sortMode="client"
-          totalField="page.count"
          url=""
          pageSize="10000"
          sizeList="[1000,5000,10000]"
@@ -118,11 +117,10 @@
             <div header="数量单价" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" datatype="float" summaryType="sum" field="applyQty" width="60" headerAlign="center" header="申请数量"></div>
-                    <div allowSort="true" datatype="float" summaryType="sum" field="acceptQty" width="90" headerAlign="center" header="调拨受理数量"></div>
-                                    	<div allowSort="true" datatype="float" summaryType="sum" field="hasAcceptQty" width="60" headerAlign="center" header="已受理数量"></div>
+                	<div allowSort="true" datatype="float" summaryType="sum" field="hasAcceptQty" width="60" headerAlign="center" header="已受理数量"></div>
                 	<div allowSort="true" datatype="float" summaryType="sum" field="hasCamcelQty" width="60" headerAlign="center" header="已拒绝数量"></div>
-                	<div allowSort="true" datatype="float" summaryType="sum" field="hasOutQty" width="60" headerAlign="center" header="已出库数量" visible="true"></div>
-                	<div allowSort="true" datatype="float" summaryType="sum" field="hasInQty" width="60" headerAlign="center" header="已入库数量"  visible="false"></div>
+                	<div allowSort="true" datatype="float" summaryType="sum" field="hasOutQty" width="60" headerAlign="center" header="已出库数量" visible="false"></div>
+                	<div allowSort="true" datatype="float" summaryType="sum" field="hasInQty" width="60" headerAlign="center" header="已入库数量"  visible="true"></div>
                     <div allowSort="true" field="detailRemark" width="60" headerAlign="center" header="备注"></div>
                 </div>
             </div>

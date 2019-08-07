@@ -291,7 +291,78 @@ function onDrawCell(e)
             break;
     }
 }
-
+function onDrawCell2(e)
+{
+    switch (e.field)
+    {
+	    case "manualCode":
+			e.cellHtml ='<a href="##" onclick="edit()">'+e.value+'</a>';
+			break;
+	    case "partBrandId":
+	    	if(partBrandIdHash[e.value])
+            {
+//                e.cellHtml = partBrandIdHash[e.value].name||"";
+            	if(partBrandIdHash[e.value].imageUrl){
+            		
+            		e.cellHtml = "<img src='"+ partBrandIdHash[e.value].imageUrl+ "'alt='配件图片' height='25px' weight=' '/><br> "+partBrandIdHash[e.value].name||"";
+            	}else{
+            		e.cellHtml =partBrandIdHash[e.value].name||"";
+            	}
+            }
+            else{
+                e.cellHtml = "";
+            }
+            break;
+	    case "billStatus":
+	        if(billStatusHash && billStatusHash[e.value])
+	        {
+	            e.cellHtml = billStatusHash[e.value];
+	        }
+	        break;
+        case "enterTypeId":
+            if(enterTypeIdHash && enterTypeIdHash[e.value])
+            {
+                e.cellHtml = enterTypeIdHash[e.value].name;
+            }
+            break;
+        case "taxSign":
+            if(e.value==1) {
+                e.cellHtml = "是";
+            }else{
+            	e.cellHtml = "否";
+            }
+            break;
+        case "billTypeId":
+            if(billTypeIdHash && billTypeIdHash[e.value])
+            {
+                e.cellHtml = billTypeIdHash[e.value].name;
+            }
+            break;
+        case "settleTypeId":
+            if(settTypeIdHash && settTypeIdHash[e.value])
+            {
+                e.cellHtml = settTypeIdHash[e.value].name;
+            }
+            break;
+        case "storeId":
+            if(storehouseHash && storehouseHash[e.value])
+            {
+                e.cellHtml = storehouseHash[e.value].name;
+            }
+            break;
+        case  "orgid":
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].shortName || "";
+        		}
+        	}
+        case "enterAmt":
+                e.cellHtml = (e.row.outableQty||0) * (e.row.enterPrice||0);         
+            break;       	
+        default:
+            break;
+    }
+}
 
 //查看入库记录
 function onEnter(){
@@ -377,7 +448,7 @@ function onExport(){
 	var tabs = nui.get("mainTabs").getActiveTab();
 	if(tabs.name=="inventory"){
 		//库存
-		var detail = rightGrid.getData();
+		var detail = nui.clone(rightGrid.getData());
 		//多级
 		exportMultistage(rightGrid.columns);
 		for(var i=0;i<detail.length;i++){

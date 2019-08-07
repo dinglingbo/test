@@ -299,27 +299,15 @@ pageEncoding="UTF-8" session="false" %>
             });
         }
         
- function onExport(){
-	
-	var billTypeIdHash = [{name:"综合",id:"0"},{name:"检查",id:"1"},{name:"洗美",id:"2"},{name:"销售",id:"3"},{name:"理赔",id:"4"},{name:"退货",id:"5"}];
 
-	var detail = grid.getData();
-	
-
-	
-
-	
-	if(detail && detail.length > 0){
-		setInitExportData( detail);
-	}
-}
 
 function onExport(){
 	var detail = grid.getData();
+	var billTypeIdHash = [{name:"综合",id:"0"},{name:"检查",id:"1"},{name:"洗美",id:"2"},{name:"销售",id:"3"},{name:"理赔",id:"4"},{name:"退货",id:"5"}];
 //多级
-	exportMultistage(grid.columns)
+	//exportMultistage(grid.columns)
 //单级
-       //exportNoMultistage(grid.columns)
+       exportNoMultistage(grid.columns)
 	for(var i=0;i<detail.length;i++){
 		for(var j=0;j<billTypeIdHash.length;j++){
 			if(detail[i].billTypeId==billTypeIdHash[j].id){
@@ -337,13 +325,18 @@ function onExport(){
 				detail[i].status=statusList[j].text;
 			}
 		}
+		if(detail[i].onIsBackRenderer==1){
+			detail[i].onIsBackRenderer=="已返工"
+		}else{
+			detail[i].onIsBackRenderer=="未返工"
+		}
 
 	}
 	if(detail && detail.length > 0){
 //多级表头类型
-		setInitExportData( detail,grid.columns,"施工项目明细表导出");
+		//setInitExportData( detail,grid.columns,"施工项目明细表导出");
 //单级表头类型  与上二选一
-//setInitExportDataNoMultistage( detail,grid.columns,"施工项目明细表导出");
+setInitExportDataNoMultistage( detail,grid.columns,"施工项目明细表导出");
 	}
 	
 }

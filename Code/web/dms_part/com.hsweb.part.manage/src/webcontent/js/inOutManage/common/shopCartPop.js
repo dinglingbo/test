@@ -398,7 +398,7 @@ function onOk()
     	parent.parent.showMsg("请选择结算方式!","W");
         return;
     }
-    var detail = mainGrid.getData();
+    var detail = nui.clone(mainGrid.getData());
     if(detail.length <= 0){
     	parent.parent.showMsg("明细为空!","W");
         return;

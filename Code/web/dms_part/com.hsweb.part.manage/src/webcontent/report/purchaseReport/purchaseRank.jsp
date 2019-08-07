@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购排行</title>
-<script src="<%=webPath + contextPath%>/manage/js/report/purchaseRank.js?v=1.2.9"></script>
+<script src="<%=webPath + contextPath%>/manage/js/report/purchaseRank.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -71,7 +71,7 @@
 				<input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-
+				<a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
             </td>
         </tr>
     </table>
@@ -191,78 +191,9 @@
     </div>
 </div>
 
-<div id="exportSupplierDiv" style="display:none">  
-    <table id="tableSupplierExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
-        <tr>  
-            <td colspan="1" align="center">供应商名称</td>
-            <td colspan="1" align="center">供应商编码</td>
-            <td colspan="1" align="center">供应商类型</td>
-            <td colspan="1" align="center">入库数量</td>
-            <td colspan="1" align="center">入库金额</td>
-            <td colspan="1" align="center">退货数量</td>
-            <td colspan="1" align="center">退货金额</td>
-            <td colspan="1" align="center">实际入库数量</td>
-            <td colspan="1" align="center">实际入库金额</td>
-        </tr>
-        <tbody id="tableExportSupplierContent">
-        </tbody>
-    </table>  
-    <a href="" id="tableExportA"></a>
-</div>  
+<div id="exportDiv"  style="display:none">  
 
-<div id="exportPartDiv" style="display:none">  
-    <table id="tablePartExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
-        <tr>  
-            <td colspan="1" align="center">配件编码</td>
-            <td colspan="1" align="center">配件名称</td>
-            <td colspan="1" align="center">配件品牌</td>
-            <td colspan="1" align="center">OEM码</td>
-            <td colspan="1" align="center">入库数量</td>
-            <td colspan="1" align="center">入库金额</td>
-            <td colspan="1" align="center">退货数量</td>
-            <td colspan="1" align="center">退货金额</td>
-            <td colspan="1" align="center">实际入库数量</td>
-            <td colspan="1" align="center">实际入库金额</td>
-        </tr>
-        <tbody id="tableExportPartContent">
-        </tbody>
-    </table>  
-    <a href="" id="tableExportB"></a>
 </div>  
-
-<div id="exportPartBrandDiv" style="display:none">  
-    <table id="tablePartBrandExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
-        <tr>  
-            <td colspan="1" align="center">配件品牌</td>
-            <td colspan="1" align="center">入库数量</td>
-            <td colspan="1" align="center">入库金额</td>
-            <td colspan="1" align="center">退货数量</td>
-            <td colspan="1" align="center">退货金额</td>
-            <td colspan="1" align="center">实际入库数量</td>
-            <td colspan="1" align="center">实际入库金额</td>
-        </tr>
-        <tbody id="tableExportPartBrandContent">
-        </tbody>
-    </table>  
-    <a href="" id="tableExportC"></a>
-</div>  
-
-<div id="exportPartTypeDiv" style="display:none">  
-    <table id="tablePartTypeExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
-        <tr>  
-            <td colspan="1" align="center">配件类型</td>
-            <td colspan="1" align="center">入库数量</td>
-            <td colspan="1" align="center">入库金额</td>
-            <td colspan="1" align="center">退货数量</td>
-            <td colspan="1" align="center">退货金额</td>
-            <td colspan="1" align="center">实际入库数量</td>
-            <td colspan="1" align="center">实际入库金额</td>
-        </tr>
-        <tbody id="tableExportPartTypeContent">
-        </tbody>
-    </table>  
-    <a href="" id="tableExportD"></a>
-</div> 
 
 </body>
 </html>

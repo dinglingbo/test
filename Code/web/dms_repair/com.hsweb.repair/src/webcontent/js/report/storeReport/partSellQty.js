@@ -203,7 +203,7 @@ function editSell(){
 }
 
 function onExport(){
-	var detail = rightGrid.getData();
+	var detail = nui.clone(rightGrid.getData());
 //多级
 	exportMultistage(rightGrid.columns)
 //单级

@@ -81,6 +81,9 @@
                 <isNotEmpty prepend="and" property="status"> 
                     (a.status = #status#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="settleStatus"> 
+                    (a.settle_status= #settleStatus#)
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="isDiffOrder"> 
                     (a.is_diff_order = #isDiffOrder#)
                 </isNotEmpty>

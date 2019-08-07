@@ -1770,9 +1770,7 @@ function OnrpMainGridCellBeginEdit(e){
         e.cancel = true;
     }
 
-    if(data.codeId && data.codeId>0){
-        e.cancel = true;
-    }
+ 
     if(e.field == 'storeId'){
     	editor.setData(storehouse);
     }

@@ -235,6 +235,10 @@
       <process:to type="query">acceptMain/orderTypeId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">acceptMain/orderDate</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">enterMain/taxAmt</process:from>
       <process:to type="query">sumTaxAmt</process:to>
     </process:copy>

@@ -3,8 +3,10 @@
  */
 var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var rightGridUrl = baseUrl+"com.hsapi.part.invoice.query.queryPartStoreStock.biz.ext";
+var rightGrid2Url = baseUrl+"com.hsapi.part.invoice.paramcrud.queryPjPchsOrderEnterDetailChkList.biz.ext";
 var basicInfoForm = null;
 var rightGrid = null;
+var rightGrid2 = null;
 var searchBeginDate = null;
 var searchEndDate = null;
 var comPartNameAndPY = null;
@@ -14,7 +16,7 @@ var storeId = null;
 var storeShelf = null;
 var partId = null;
 var showAll = null;
-
+var comSearchGuestId = null;
 var storehouseHash = {};
 var billTypeIdHash = {};
 var settTypeIdHash = {};
@@ -30,10 +32,12 @@ var UpOrDownList=[{id:1,"name" :"低于下限"},{id:2,"name" :"高于上限"}]
 $(document).ready(function(v)
 {
 	rightGrid = nui.get("rightGrid");
+	rightGrid2 = nui.get("rightGrid2");
     rightGrid.setUrl(rightGridUrl);
-
+    rightGrid2.setUrl(rightGrid2Url);
     comPartNameAndPY = nui.get("comPartNameAndPY");
     comPartCode = nui.get("comPartCode");
+    comSearchGuestId = nui.get("searchGuestId");
     partBrandId = nui.get("partBrandId");
     storeId = nui.get("storeId");
     storeShelf = nui.get("storeShelf");
@@ -118,6 +122,12 @@ function getSearchParam(){
     var showZero = nui.get("showAll").getValue();
 //    var showUp=nui.get('showUp').getValue();
 //    var showDown=nui.get('showDown').getValue();
+	if(typeof comSearchGuestId.getValue() !== 'number'){
+    	params.guestId=null;
+    	params.guestName = comSearchGuestId.getValue();
+    }else{
+    	params.guestId = comSearchGuestId.getValue();
+    }
     var upOrDown=nui.get('upOrDown').getValue();
     if(showZero == 0){
         params.notShowAll = 1;
@@ -144,13 +154,23 @@ function onSearch(){
 }
 function doSearch(params)
 {
-	//params.sortField = "audit_date";
-	//params.sortOrder = "desc";
-    rightGrid.load({
-        params:params,
-        token:token
-    });
-    
+	var tabs = nui.get("mainTabs").getActiveTab();
+	if(tabs.name=="inventory"){
+		//库存
+		//var params = getSearchParam();
+	    rightGrid.load({
+	        params:params,
+	        token:token
+	    });
+	}else if(tabs.name=="batch"){
+	    //批次
+		//var params = getSearchParam();
+		params.outableQty = 0;
+	    rightGrid2.load({
+	        params:params,
+	        token:token
+	    });
+	}  
 }
 function advancedSearch()
 {
@@ -271,76 +291,7 @@ function onDrawCell(e)
             break;
     }
 }
-function onExport(){
-    var detail = rightGrid.getData();
-    if(detail && detail.length > 0){
-        setInitExportData(detail);
-    }
-}
-function setInitExportData(detail){
-    var tds = '<td  colspan="1" align="left">[comPartCode]</td>' +
-        "<td  colspan='1' align='left'>[comPartName]</td>" +
-        "<td  colspan='1' align='left'>[comOemCode]</td>" +
-        "<td  colspan='1' align='left'>[partBrandId]</td>" +
-        "<td  colspan='1' align='left'>[applyCarModel]</td>" +
-        "<td  colspan='1' align='left'>[unit]</td>" +
-        "<td  colspan='1' align='left'>[storeId]</td>" +
-        "<td  colspan='1' align='left'>[shelf]</td>" +
-        "<td  colspan='1' align='left'>[stockQty]</td>" +
-        "<td  colspan='1' align='left'>[stockAmt]</td>" +
-        "<td  colspan='1' align='left'>[orderQty]</td>" +
-        "<td  colspan='1' align='left'>[outableQty]</td>" +
-        "<td  colspan='1' align='left'>[onRoadQty]</td>" +
-        "<td  colspan='1' align='left'>[lastEnterDate]</td>" +
-        "<td  colspan='1' align='left'>[lastOutDate]</td>" +
-        "<td  colspan='1' align='left'>[upLimit]</td>" +
-        "<td  colspan='1' align='left'>[downLimit]</td>" +
-        "<td  colspan='1' align='left'>[remark]</td>";
-    var tableExportContent = $("#tableExportContent");
-    tableExportContent.empty();
-    for (var i = 0; i < detail.length; i++) {
-        var row = detail[i];
-        if(row.partId){
-            var tr = $("<tr></tr>");
-            var brandName = "";
-            var storeName = "";
-            if(detail[i].partBrandId && partBrandIdHash[detail[i].partBrandId]){
-                brandName = partBrandIdHash[detail[i].partBrandId].name;
-            }
-            if(detail[i].storeId && storehouseHash[detail[i].storeId]){
-                storeName = storehouseHash[detail[i].storeId].name;
-            }
-            var lastEnterDate = "";
-            var lastOutDate = "";
-            if(detail[i].lastEnterDate){
-                lastEnterDate = format(detail[i].lastEnterDate, 'yyyy-MM-dd HH:mm:ss');
-            }
-            if(detail[i].lastOutDate){
-                lastOutDate = format(detail[i].lastOutDate, 'yyyy-MM-dd HH:mm:ss');
-            }
-            tr.append(tds.replace("[comPartCode]", detail[i].comPartCode?detail[i].comPartCode:"")
-                         .replace("[comPartName]", detail[i].comPartName?detail[i].comPartName:"")
-                         .replace("[comOemCode]", detail[i].comOemCode?detail[i].comOemCode:"")
-                         .replace("[partBrandId]", brandName)
-                         .replace("[applyCarModel]", detail[i].applyCarModel?detail[i].applyCarModel:"")
-                         .replace("[unit]", detail[i].unit?detail[i].unit:"")
-                         .replace("[storeId]", storeName)
-                         .replace("[shelf]", detail[i].shelf?detail[i].shelf:"")
-                         .replace("[stockQty]", detail[i].stockQty?detail[i].stockQty:"")
-                         .replace("[stockAmt]", detail[i].stockAmt?detail[i].stockAmt:"")
-                         .replace("[orderQty]", detail[i].orderQty?detail[i].orderQty:"")
-                         .replace("[outableQty]", detail[i].outableQty?detail[i].outableQty:"")
-                         .replace("[onRoadQty]", detail[i].onRoadQty?detail[i].onRoadQty:"")
-                         .replace("[lastEnterDate]", lastEnterDate)
-                         .replace("[lastOutDate]", lastOutDate)
-                         .replace("[upLimit]", detail[i].upLimit?detail[i].upLimit:"")
-                         .replace("[downLimit]", detail[i].downLimit?detail[i].downLimit:"")
-                         .replace("[remark]", detail[i].remark?detail[i].remark:""));
-            tableExportContent.append(tr);
-        }
-    }
-    method5('tableExcel',"库存查询"+(format((new Date()), 'yyyy-MM-dd HH:mm:ss')),'tableExportA');
-}
+
 
 //查看入库记录
 function onEnter(){
@@ -367,4 +318,87 @@ function onOut(){
 	onOutRecord(partId);
 }
 
+var supplier = null;
+function selectSupplier(elId)
+{
+    supplier = null;
+    nui.open({
+        // targetWindow: window,
+        url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        title: "供应商资料", width: 980, height: 560,
+        allowDrag:true,
+        allowResize:true,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            var params = {
+                isSupplier: 1,
+                guestType:'01020202'
+            };
+            iframe.contentWindow.setGuestData(params);
+        },
+        ondestroy: function (action)
+        {
+            if(action == 'ok')
+            {
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+                supplier = data.supplier;
+                var value = supplier.id;
+                var text = supplier.fullName;
+                var el = nui.get(elId);
+                el.setValue(value);
+                el.setText(text);
+            }
+        }
+    });
+}
+function activechangedmain(){
+	var tabs = nui.get("mainTabs").getActiveTab();
+	if(tabs.name=="inventory"){
+		//库存
+		var params = getSearchParam();
+	    rightGrid.load({
+	        params:params,
+	        token:token
+	    });
+	}else if(tabs.name=="batch"){
+	    //批次
+		var params = getSearchParam();
+		params.outableQty = 0;
+	    rightGrid2.load({
+	        params:params,
+	        token:token
+	    });
+	}
+}
 
+function onExport(){
+	var tabs = nui.get("mainTabs").getActiveTab();
+	if(tabs.name=="inventory"){
+		//库存
+		var detail = rightGrid.getData();
+		//多级
+		exportMultistage(rightGrid.columns);
+		for(var i=0;i<detail.length;i++){
+			detail[i].id=1;
+		}
+		if(detail && detail.length > 0){
+			//多级表头类型
+			setInitExportData( detail,rightGrid.columns,"库存查询导出");
+		}		
+	}else if(tabs.name=="batch"){
+	    //批次
+		var detail = rightGrid2.getData();
+		//多级
+		exportMultistage(rightGrid2.columns);
+		for(var i=0;i<detail.length;i++){
+			detail[i].id=1;
+		}
+		if(detail && detail.length > 0){
+			//多级表头类型
+			setInitExportData( detail,rightGrid2.columns,"批次查询导出");
+		}
+	}
+	
+}

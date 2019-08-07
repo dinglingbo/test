@@ -7,6 +7,7 @@ var workers="";
 var workersId="";
 var type = null;
 var serviceIdF = null;
+var checkMain = null;
 $(document).ready(function(v) {
 	 //serviceTypeIds = nui.get("serviceTypeIds");
     $(document).on("click",".none",function(e){
@@ -63,6 +64,7 @@ $(document).ready(function(v) {
     var queryServiceType = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryServiceType.biz.ext";
     var setItemWorkersBatch = apiPath + repairApi + "/com.hsapi.repair.repairService.crud.setItemWorkersBatch.biz.ext";
 function setData(data){
+	checkMain = data.checkMain;
 	workers =data.saleMan||"";
 	workersId =data.saleManId||"";
 	if(workersId==""){
@@ -144,11 +146,67 @@ function onClose(){
 }
 var data={};
 function dispatchOk(){
+	if(type="check"){
+		dispatchOk2();
+	}else{
+		var emlpsz = $("a.empl1");//所选技师数组
+		var emlpszId = "";
+		var emlpszName = "";
+		if(emlpsz.length==0){
+			showMsg("请选择销售员！","W");
+			return;
+		}
+	    nui.mask({
+	        el: document.body,
+	        cls: 'mini-mask-loading',
+	        html: '处理中...'
+	    });
+		for(var i = 0;i<emlpsz.length;i++){
+			if(i==0){
+				emlpszId = emlpsz[i].id;
+				emlpszName = emlpsz[i].innerText;
+			}else{
+				emlpszId = emlpszId+","+emlpsz[i].id;	
+				emlpszName = emlpszName+","+emlpsz[i].innerText;
+			}
+			
+		}
+	    nui.unmask(document.body);
+		data = {
+				emlpszId :emlpszId,
+				emlpszName:emlpszName
+		};
+		if(type=="pkg"){
+			data.serviceId = serviceIdF;
+		   data.saleManId = emlpszId;
+	       data.saleMan = emlpszName; 
+	       data.type = "package";
+		   var params = {};
+		   params.data = data;
+		   svrSetPkgSaleMansBatch(params,function(text){
+		    	if(text.errCode == "S"){
+		    		showMsg("保存成功","S");
+		    		CloseWindow("ok");
+		       }else{
+			       showMsg("保存失败","E");
+			  }
+		      nui.unmask(document.body);
+		  });
+		}else{
+			CloseWindow("ok");
+		}
+	}
+}
+function getData(){
+	return data;
+}
+
+function dispatchOk2(){
 	var emlpsz = $("a.empl1");//所选技师数组
 	var emlpszId = "";
 	var emlpszName = "";
 	if(emlpsz.length==0){
-		showMsg("请选择销售员！","W");
+		showMsg("请选择检查人！","W");
 		return;
 	}
     nui.mask({
@@ -166,33 +224,34 @@ function dispatchOk(){
 		}
 		
 	}
-    nui.unmask(document.body);
-	data = {
-			emlpszId :emlpszId,
-			emlpszName:emlpszName
-	};
-	if(type=="pkg"){
-		data.serviceId = serviceIdF;
-	   data.saleManId = emlpszId;
-       data.saleMan = emlpszName; 
-       data.type = "package";
-	   var params = {};
-	   params.data = data;
-	   svrSetPkgSaleMansBatch(params,function(text){
-	    	if(text.errCode == "S"){
-	    		showMsg("保存成功","S");
-	    		CloseWindow("ok");
-	       }else{
-		       showMsg("保存失败","E");
-		  }
-	      nui.unmask(document.body);
-	  });
-	}else{
-		CloseWindow("ok");
-	}
-}
-function getData(){
-	return data;
-}
+    
+    if(checkMain){
+    	checkMain.checkManId = emlpszId,
+    	checkMain.checkMan = emlpszName
+    	nui.ajax({
+    		url:apiPath + repairApi + "/" +"com.hsapi.repair.repairService.repairInterface.saveCheckMainA.biz.ext",
+    		type : "post",
+    		data:JSON.stringify({
+    			data:checkMain,
+    			token:token
+            }),
+            cache : false,
+            contentType : 'text/json',
+    		success : function(data) {
+    			nui.unmask(document.body);
+    			if(data.errCode=="S"){  					
+    				showMsg("派工成功","S");
+    				CloseWindow("ok");
+    			}else{
+    				showMsg("派工失败","E");
+    			}
 
-
+    		},
+    		error : function(jqXHR, textStatus, errorThrown) {
+    			// nui.alert(jqXHR.responseText);
+    			console.log(jqXHR.responseText);
+    		}
+    	});	
+    }
+	
+}

@@ -445,7 +445,7 @@
              
              <!--纯字母   车牌，车驾号    数字+字母 车牌，车驾号-->
             <isNotEmpty prepend="and" property="letters">  
-                (a.car_no like '%$letters$%' or b.full_name like '%$nums$%' or a.vin like '%$letters$%')
+                (a.car_no like '%$letters$%' or b.full_name like '%$letters$%' or a.vin like '%$letters$%')
             </isNotEmpty>
              
              <!--包含中文   只按名称查询 -->

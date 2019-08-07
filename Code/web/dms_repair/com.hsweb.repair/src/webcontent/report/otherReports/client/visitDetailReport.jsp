@@ -88,13 +88,14 @@
                     <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid" nullItemText="请选择..."
                     emptyText="兼职公司" url="" allowInput="true" showNullItem="true" width="130" valueFromSelect="true"/>
                     <a class="nui-button" iconcls="" name="" plain="true" onclick="load()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a> 
                 </td>
             </tr> 
         </table>
     </div> 
     <div class="nui-fit">
         <div id="grid1" class="nui-datagrid" style="width:100%;height:100%;" showPager="true" dataField="list" idField="detailId"
-            ondrawcell="" sortMode="client" url="" totalField="page.count" pageSize="20" sizeList="[10,20,50,100]"
+            ondrawcell="" sortMode="client" url="" totalField="page.count" pageSize="500" sizeList="[500,1000,2000]"
             showSummaryRow="true">
             <div property="columns">
                 <div type="indexcolumn" headerAlign="center" align="center">序号</div>
@@ -114,6 +115,9 @@
             </div>
         </div>
     </div>
+    <div id="exportDiv" style="display:none">  
+
+</div> 
     <script type="text/javascript">
         
         var visStatus = [{customid:"060701",name:"继续跟踪"},
@@ -282,7 +286,46 @@
             }
             grid1.load({params:data,token :token});
         }
-
+		function onExport(){
+			var detail = grid1.getData();
+			var visitResultList = nui.get("visitResult").getData();
+			var visitModeList = nui.get("visitMode").getData();
+			var visitStatusList = nui.get("visitStatus").getData();
+			var serviceTypeList = nui.get("serviceType").getData(); 
+		//多级
+			//exportMultistage(grid1.columns)
+		//单级
+		       exportNoMultistage(grid1.columns)
+			for(var i=0;i<detail.length;i++){
+				for(var j in visitResultList) {
+				    if(detail[i].visitResult ==visitResultList[j].value ){
+				    	detail[i].visitResult=visitResultList[j].text;
+				    }
+				}
+				for(var j in visitModeList) {
+				    if(detail[i].visitMode ==visitModeList[j].customid ){
+				    	detail[i].visitMode=visitModeList[j].name;
+				    }
+				}
+				for(var j in visitStatusList) {
+				    if(detail[i].visitStatus ==visitStatusList[j].customid ){
+				    	detail[i].visitStatus=visitStatusList[j].name;
+				    }
+				}	
+				for(var j in serviceTypeList) {
+				    if(detail[i].serviceType ==serviceTypeList[j].id ){
+				    	detail[i].serviceType=serviceTypeList[j].text;
+				    }
+				}								
+			}
+			if(detail && detail.length > 0){
+		//多级表头类型
+				//setInitExportData( detail,grid1.columns,"已结算工单明细表导出");
+		//单级表头类型  与上二选一
+		setInitExportDataNoMultistage( detail,grid1.columns,"回访明细表导出");
+			}
+			
+		}
     </script>
 
 </body>

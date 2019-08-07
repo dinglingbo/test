@@ -11,9 +11,9 @@
   - Description:
 -->
 <head>
-<title>调入退回受理</title>
+<title>调拨出库受理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotlnRtnAccept.js?v=1.0.29"></script>
+    <script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotDirectOutEnter.js?v=1.0.0"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -72,7 +72,6 @@
                                                 />
                             <span class="separator"></span>                    
         			        <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible=""  id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;受理</a>
-        			        <a class="nui-button" iconCls="" plain="true" onclick="refuse()" visible="true" id="refuseBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;拒绝</a>
 			                
 			            </td>
 			        </tr>
@@ -131,7 +130,7 @@
                             <div field="comPartName" visible="false" headerAlign="center" header="配件名称"></div>
                             <div field="fullName"  width="200" headerAlign="center" header="配件全称"></div>
                             <div field="systemUnitId" name="comUnit" width="40" headerAlign="center" header="单位"></div>
-				            <div field="acceptQty" name="applyQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="申请数量"></div>
+				            <div field="acceptQty" name="applyQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="出库数量"></div>
                             <div field="remark" width="200" headerAlign="center" allowSort="true" header="备注"></div>
 				            
 				        </div>

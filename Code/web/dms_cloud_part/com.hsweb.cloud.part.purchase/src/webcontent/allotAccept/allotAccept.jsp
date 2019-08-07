@@ -89,7 +89,7 @@ body .mini-grid-row-selected{
                 <a class="nui-button" iconCls="" plain="true" onclick="submit()" visible="false"  id="submitBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible="true"  id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;出库</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="del()" visible="true" id="delBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="del()" visible="true" id="undelBtn"><span class="fa fa-reply fa-lg"></span>&nbsp;反作废</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="del()" visible="false" id="undelBtn"><span class="fa fa-reply fa-lg"></span>&nbsp;反作废</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
                 <span id="status"></span>
             </td>
@@ -245,7 +245,6 @@ body .mini-grid-row-selected{
                               <td style="white-space:nowrap;" style="width:120px;">
                                   <a class="nui-button" plain="true" iconCls="" onclick="addPart()" id="addPartBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>
                                   <a class="nui-button" plain="true" iconCls="" onclick="deletePart()" id="deletePartBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
-                                  <span class="separator"></span>
                                   <a class="nui-button" plain="true" visible="false" iconCls="" onclick="adjustPart()" id="adjustPartBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;计划调整</a>
                               </td>
                           </tr>
@@ -300,9 +299,6 @@ body .mini-grid-row-selected{
                               </div>
                               <div header="数量信息" headerAlign="center">
                                   <div property="columns">
-                                      <div field="applyQty" name="applyQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="申请数量">
-                                        <input property="editor" vtype="float" class="nui-textbox"/>
-                                      </div>
                                       <div field="acceptQty" name="acceptQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="受理数量">
                                         <input property="editor" vtype="float" class="nui-textbox"/>
                                       </div>
@@ -314,6 +310,8 @@ body .mini-grid-row-selected{
                               <div header="辅助信息" headerAlign="center">
                                   <div property="columns">
                                   	  <div field="stockOutQty" summaryType="sum" numberFormat="0.00" width="35" headerAlign="center" header="缺货数量"></div>
+                                      <div field="applyQty" name="applyQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="申请数量">
+                                      </div>
                                       <div field="comApplyCarModel" width="80" headerAlign="center" header="品牌车型"></div>
                                       <div field="comUnit" name="comUnit" width="60" headerAlign="center" header="单位"></div>
                                       <div field="comOemCode" width="50" headerAlign="center" allowSort="true" header="OE码"></div>   

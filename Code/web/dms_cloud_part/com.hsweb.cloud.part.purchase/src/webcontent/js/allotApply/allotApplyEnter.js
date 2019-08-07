@@ -925,8 +925,6 @@ function deletePart(){
         } 
     }
 
-    if(row.codeId && data.codeId>0) return;
-
     var part = rightGrid.getSelected();
     if(!part)
     {

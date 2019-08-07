@@ -83,10 +83,6 @@
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">params/guestOrgId</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">4</process:from>
-      <process:to type="query">params/orderTypeId</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="250" y="136"/>
@@ -177,10 +173,6 @@
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">params/orgid</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">4</process:from>
-      <process:to type="query">params/orderTypeId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">

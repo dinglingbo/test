@@ -19,6 +19,11 @@ var AuditSignHash = {
   "3":"全部受理",
   "4":"已拒绝"
 };
+var SettleStatusHash = {
+  "0":"未入库",
+  "1":"部分入库",
+  "2":"已入库"
+};
 $(document).ready(function(v) {
 
 	mainGrid = nui.get("mainGrid");
@@ -42,6 +47,14 @@ $(document).ready(function(v) {
 	                e.cellHtml = AuditSignHash[e.value];
 	            }else {
 	                e.cellHtml = "草稿";
+	            }
+	            break;
+			case "settleStatus":
+				if(SettleStatusHash && SettleStatusHash[e.value])
+	            {
+	                e.cellHtml = SettleStatusHash[e.value];
+	            }else {
+	                e.cellHtml = "未入库";
 	            }
 	            break;
 			default:
@@ -84,7 +97,7 @@ function setInitData() {
 	sOrderDateEl=nui.get("sOrderDate");
 	eOrderDateEl=nui.get("eOrderDate");
 	sOrderDateEl.setValue(getLastWeekStartDate());
-	eOrderDateEl.setValue(addDate(getLastWeekEndDate(), 1));
+	eOrderDateEl.setValue(addDate(now, 1));
 
 	onSearch();
 

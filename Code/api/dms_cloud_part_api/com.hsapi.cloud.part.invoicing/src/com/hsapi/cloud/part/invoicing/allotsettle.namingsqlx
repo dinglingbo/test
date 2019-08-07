@@ -375,6 +375,9 @@
                 <isNotEmpty prepend="and" property="id"> 
                     (a.id = #id#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="codeId"> 
+                    (a.code_id = #codeId#)
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="isDisabled"> 
                     (a.is_disabled = #isDisabled#)
                 </isNotEmpty>
@@ -1082,7 +1085,7 @@
     <update id="updatePjAllotAcceptApply" parameterClass="java.util.HashMap" >
 		
 		update pj_allot_apply_main a
-		set a.is_allot_finished = 1, a.allot_finished_date = SYSDATE()
+		set a.status = 3, a.is_allot_finished = 1, a.allot_finished_date = SYSDATE()
 		where not exists (SELECT 1 from pj_allot_apply_detail b 
 		      where a.id = b.main_id and b.is_allot_finished = 0 and b.main_id = #mainId#)
 		and a.id = #mainId#

@@ -372,6 +372,10 @@
       <process:from type="query" pattern="reference">m:userObject/userId</process:from>
       <process:to type="query">main/auditorId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">main/status</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
     <location x="62" y="213"/>

@@ -85,7 +85,7 @@ body .mini-grid-row-selected{
                 <a class="nui-button" iconCls="" plain="true" onclick="save('0')" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="submit()" visible="true"  id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;入库</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="del()" visible="true" id="delBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="del()" visible="true" id="undelBtn"><span class="fa fa-reply fa-lg"></span>&nbsp;反作废</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="del()" visible="false" id="undelBtn"><span class="fa fa-reply fa-lg"></span>&nbsp;反作废</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
                 <span id="status"></span>
             </td>

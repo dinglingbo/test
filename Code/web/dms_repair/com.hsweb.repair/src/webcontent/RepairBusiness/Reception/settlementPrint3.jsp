@@ -103,14 +103,14 @@
                 <tr>
                     <td width="23%"><div class="hctop_right" style="width:85px;"><em>车牌号：</em></div><div class="hctop_right" id="carNo"></div></td>
                     <td colspan="1"><div class="hctop_right" style="width:85px;"><em>品牌车型：</em></div><div class="hctop_right" id="carModel"></div></td>
-                     <td colspan="1" ><div class="hctop_right" style="width:110px"><em>车架号(VIN)：</em></div><div class="hctop_right" id="carVin"></div></td>
-                    
-                    
+                    <td colspan="1" ><div class="hctop_right" style="width:110px"><em>结算日期：</em></div><div class="hctop_right" id="outDate"></div></td>
                 </tr>
                 <tr>
-                    <td><div class="hctop_right"><em>进厂里程：</em></div><div class="hctop_right" id="enterKilometers"></div></td>
-                    <td><div class="hctop_right"><em>进厂油量：</em></div><div class="hctop_right" id="enterOilMass"></div></td>
                     <td><div class="hctop_right"><em>服务顾问：</em></div><div class="hctop_right" id="mtAdvisor"></div></td>
+                    <td colspan="1" ><div class="hctop_right" style="width:110px"><em>车架号(VIN)：</em></div><div class="hctop_right" id="carVin"></div></td>
+                    <td><div class="hctop_right"><em>进厂油量：</em></div><div class="hctop_right" id="enterOilMass">
+                     <div class="hctop_right"><em>进厂里程：</em></div><div class="hctop_right" id="enterKilometers"></div>
+                    </div></td>
                     <!-- <td colspan="2"><div class="hctop_right" style="width:150px"><em>车架号(VIN)：</em></div><div class="hctop_right" id="carVin"></div></td> --> 
                    <!--  <td><div class="hctop_left"><em>发动机号：</em><br />Engine No.</div><div class="hctop_right">175*****045</div></td>
                     <td rowspan="2"><div class="hctop_left"><em>服务顾问：</em><br />Adviser.</div><div class="hctop_right" id="mtAdvisor"></div></td> -->

@@ -951,7 +951,7 @@ function audit()
     });
 }
 
-var finishUrl = baseUrl+"com.hsapi.cloud.part.invoicing.guestOrder.finishGuestOrder.biz.ext";
+var finishUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.generatePchsOut.biz.ext";
 //完成销售
 function finish()
 {
@@ -981,8 +981,6 @@ function finish()
     }
 
     data = getMainData();
-    var guestOrderMain ={};
-    guestOrderMain.id = data.id;
    
     var cangHash ="";
 	if(currIsOpenApp ==1){
@@ -999,7 +997,7 @@ function finish()
         url : finishUrl,
         type : "post",
         data : JSON.stringify({
-            guestOrderMain : guestOrderMain,
+            id : data.id,
             token : token
         }),
         success : function(data) {
@@ -1007,26 +1005,18 @@ function finish()
             data = data || {};
             if (data.errCode == "S") {
                 showMsg("成功!","S");
-                //onLeftGridRowDblClick({});
-                var guestOrderMainList = data.guestOrderMainList;
-                if(guestOrderMainList && guestOrderMainList.length>0) {
-                    var leftRow = guestOrderMainList[0];
-                    var row = leftGrid.getSelected();
-                    leftGrid.updateRow(row,leftRow);
 
-                    //保存成功后重新加载数据
-                    loadMainAndDetailInfo(leftRow);
-                    nui.confirm("是否打印？", "友情提示", function(action) {
-    					if(action== 'ok'){
-    						onPrint();
-    					}else{
-    						rightGrid.setData([]);
-    						add();
-    					}
-    				});
-                }
+                var row = leftGrid.getSelected();
+                var newRow =nui.clone(row);
+                newRow.status=3;
+                leftGrid.updateRow(row,newRow);
+
+                //保存成功后重新加载数据
+                loadMainAndDetailInfo(newRow);
+       
+                
             } else {
-                showMsg(data.errMsg || "提交失败!","W");
+                showMsg(data.errMsg || "失败!","W");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -1479,6 +1469,7 @@ function getPartPrice(params){
     return price;
 }
 function addInsertRow(value, row) {    
+	value=value.replace(/\s+/g, "");
     var guestId = nui.get("guestId").getValue();
     if(!guestId) {
         showMsg("请先选择供应商再添加配件!","W");

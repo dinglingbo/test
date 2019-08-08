@@ -11,7 +11,7 @@
   - Description:
 -->
 <head>
-<title>调拨出库受理</title>
+<title>总部直调受理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotDirectOutEnter.js?v=1.0.0"></script>
 </head>

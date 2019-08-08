@@ -126,9 +126,13 @@ $(document).ready(function() {
 				e.cellHtml = "质检通过";
 			}
 		}else if(e.field == "itemOptBtn"){
-        	var s = "";
-            s =  s + ' <a class="optbtn" href="javascript:passWork(\'' + uid + '\')">通过</a>';
-            s =  s + ' <a class="optbtn" href="javascript:backWork(\'' + uid + '\')">打回</a>';
+			var s = "";
+			if(isBack==2){
+				s =  s + ' <a class="optbtn" href="javascript:lookWork2(\'' + uid + '\')">查看</a>';
+			}else{
+				s =  s + ' <a class="optbtn" href="javascript:passWork(\'' + uid + '\')">通过</a>';
+		        s =  s + ' <a class="optbtn" href="javascript:backWork(\'' + uid + '\')">打回</a>';
+			}
             e.cellHtml = s;
         }else if(e.field == "workTime"){
         	var s = "";
@@ -559,6 +563,29 @@ function lookWork(row_uid){
     });
 }
 
+function lookWork2(row_uid){
+	var row = rightGrid2.getRowByUID(row_uid);
+	var mainRow = mainGrid.getSelected();
+    var  data = {
+    	serviceId:mainRow.id,
+    	itemId:row.id
+    };
+     nui.open({
+        url: webPath + contextPath + "/repair/RepairBusiness/Reception/workDispatch/lookDispatch.jsp?token="+token,
+        title: '查看调度',
+        width: 500, height: 450,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(data);
+        },
+        ondestroy: function (action){
+        	/*if(action=="ok"){
+        		selectionChanged();
+        	}*/
+        }
+    });
+}
+
 function backWork(row_uid){
 	 var row = rightGrid2.getRowByUID(row_uid);
      nui.open({
@@ -578,7 +605,7 @@ function backWork(row_uid){
 }
 function passWork(row_uid){
 	 var row = rightGrid2.getRowByUID(row_uid);
-     var remark = null;
+     var remark = "质检通过";
 	 nui.confirm("是否确定通过？", "友情提示",function(action){
 	       if(action == "ok"){
 			    nui.mask({
@@ -601,8 +628,9 @@ function passWork(row_uid){
 	    				nui.unmask(document.body);
 	    				if(data.errCode=="S"){  					
 	    					showMsg("通过成功","S");
+	    					selectionChanged();
 	    				}else{
-	    					showMsg("通过失败","E");
+	    					showMsg(data.errMsg,"E");
 	    				}
 
 	    			},

@@ -228,7 +228,7 @@ hr {
     <script src="<%=request.getContextPath()%>/common/js/numberFormat.js"  type="text/javascript"></script>    
     
 </head>
-<body>
+<body onafterprint="CloseWindow('ok')">
 	<input name="billTypeIdE"id="billTypeIdE"  visible="false"class="nui-combobox" />
 	<input name="settleTypeIdE" id="settleTypeIdE"  visible="false" class="nui-combobox"/>
 	<div id="query-table" style="margin: 0 10px;overflow: scroll;" class="printny">

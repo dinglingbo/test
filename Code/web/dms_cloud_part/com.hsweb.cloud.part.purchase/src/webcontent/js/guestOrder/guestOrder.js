@@ -931,7 +931,7 @@ function audit()
 
                     //保存成功后重新加载数据
                     loadMainAndDetailInfo(leftRow);
-                    nui.confirm("是否打印？", "友情提示", function(action) {
+                    nui.confirm("提交成功,是否打印？", "友情提示", function(action) {
     					if(action== 'ok'){
     						onPrint();
     					}else{

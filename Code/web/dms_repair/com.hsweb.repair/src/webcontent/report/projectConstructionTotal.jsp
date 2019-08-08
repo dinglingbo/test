@@ -37,6 +37,19 @@
    .mini-panel-body {
        padding: 0;
    }
+    a.optbtn {
+        width: 52px;
+        /* height: 26px; */
+        border: 1px #d2d2d2 solid;
+        background: #f2f6f9;
+        text-align: center;
+        display: inline-block;
+        /* line-height: 26px; */
+        margin: 0 4px;
+        color: #000000;
+        text-decoration: none;
+        border-radius: 5px;
+    }
 </style>
 </head>
 <body>
@@ -66,6 +79,8 @@
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(0)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按日期汇总</a>
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(1)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按业务类型汇总</a>
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(2)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按项目名称汇总</a>
+     <!-- <input type="checkbox" id="isSettle" class="mini-checkbox" trueValue="1" falseValue="0" >
+	 <span >包含未结算</span> -->
      <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a> 
  </div>
  <div class="nui-fit">
@@ -87,10 +102,15 @@
                 <div allowSort="true" field="groupName" name="groupName" width="60" headerAlign="center" header="业务类型"></div>
                 <div allowSort="true" field="tc" width="60" headerAlign="center" summaryType="sum" header="施工台次" dataType="float"></div>
                 <div allowSort="true" field="itemTime" width="60" headerAlign="center" summaryType="sum" header="工时时间" dataType="float"></div>
+                <div allowSort="workTime" field="workTime" width="60" headerAlign="center" summaryType="sum" header="平均施工时间" dataType="float"></div>
+                <div allowSort="stopTime" field="stopTime" width="60" headerAlign="center" summaryType="sum" header="平均中断时间" dataType="float"></div>
                 <div allowSort="true" field="subtotal" width="60" headerAlign="center" summaryType="sum" header="工时收入" dataType="float"></div>
                 <div allowSort="true" field="costAmt" width="60" headerAlign="center" summaryType="sum" header="工时成本" dataType="float"></div>
                 <div allowSort="true" field="retc" width="60" headerAlign="center" summaryType="sum" header="返工台次" dataType="float"></div>
                 <div allowSort="true" field="retcRate" width="60" headerAlign="center" header="返工占比" dataType="float"></div>
+                <div allowSort="true" field="outTimeTc" width="60" headerAlign="center" summaryType="sum" header="超时台次" dataType="float"></div>
+                <div allowSort="true" field="outTimeRate" width="60" headerAlign="center" header="超时占比" dataType="float"></div>
+                <div allowSort="true" field="itemOptBtn" width="60" headerAlign="center" header="操作" dataType="float"></div>
                 <!-- <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div> -->
             </div>
         </div>
@@ -105,6 +125,8 @@
     var orgidsEl = null;
     orgidsEl = nui.get("orgids");
     orgidsEl.setData(currOrgList);
+   /*  var isSettle = null;
+    isSettle = nui.get("isSettle"); */
     if(currOrgList.length==1){
     	orgidsEl.hide();
     }else{
@@ -117,7 +139,7 @@
     var cType = 2;
     var startDateEl = nui.get("startDate");
     var endDateEl = nui.get("endDate");
-        var serviceTypeIdEl = nui.get("serviceTypeId");
+    var serviceTypeIdEl = nui.get("serviceTypeId");
     var servieTypeList = [];
     var servieTypeHash = {};
     var gridUrl = apiPath + repairApi+'/com.hsapi.repair.repairService.report.queryItemTotalReport.biz.ext';
@@ -138,6 +160,10 @@
 
 
     grid1.on("drawcell", function (e) {
+        var record = e.record;
+        var tc = record.tc;
+        var outTimeTc = record.outTimeTc;
+        var uid = record._uid;
         if(e.field =="groupName" && cType == 1){
             e.cellHtml = servieTypeHash[e.value].name;
         }
@@ -149,7 +175,59 @@
         	}
         	
         }
-
+        if(e.field =="outTimeRate"){
+            var outTimeRate = 0;
+            if(outTimeTc){
+               outTimeRate = outTimeTc/tc;
+               outTimeTc = outTimeTc.toFixed(4);
+            }
+            e.cellHtml =outTimeTc;
+        }
+        if(e.field =="itemOptBtn"){
+            e.cellHtml = ' <a class="optbtn" href="javascript:openDetail(\'' + uid + '\')">查看明细</a>';
+        }
+        if(e.field == "workTime"){
+        	var s = "";
+        	var workTime = record.workTime;
+            if(workTime>0){
+	        	var days = Math.floor(workTime / (24 * 3600)); // 计算出天数
+	        	if(days>0){
+	        		s = days + '天';
+	        	}
+	            var leavel = workTime % (24 * 3600); // 计算天数后剩余的时间
+	            var hours = Math.floor(leavel / 3600); // 计算剩余的小时数
+	            if(hours>0){
+	            	s = s + hours + '小时';
+	            }
+	            var leavel2 = leavel % 3600; // 计算剩余小时后剩余的毫秒数
+	            var minutes = Math.floor(leavel2 / 60); // 计算剩余的分钟数
+	            if(minutes>0){
+	            	s = s + minutes + '分';
+	            }
+	            e.cellHtml = s;
+           }
+        }
+        if(e.field == "stopTime"){
+        	var s = "";
+        	var stopTime = record.stopTime;
+            if(stopTime>0){
+	        	var days = Math.floor(stopTime / (24 * 3600)); // 计算出天数
+	        	if(days>0){
+	        		s = days + '天';
+	        	}
+	            var leavel = stopTime % (24 * 3600); // 计算天数后剩余的时间
+	            var hours = Math.floor(leavel / 3600); // 计算剩余的小时数
+	            if(hours>0){
+	            	s = s + hours + '小时';
+	            }
+	            var leavel2 = leavel % 3600; // 计算剩余小时后剩余的毫秒数
+	            var minutes = Math.floor(leavel2 / 60); // 计算剩余的分钟数
+	            if(minutes>0){
+	            	s = s + minutes + '分';
+	            }
+	            e.cellHtml = s;
+           }
+        }
     });
 
     //load(cType);
@@ -174,6 +252,7 @@
 
     function updateGridColoumn(e){
         var column = grid1.getColumn("groupName");
+        grid1.setData([]);
         if(e == 0){
             grid1.updateColumn(column,{header:"日期"});
         }
@@ -261,8 +340,12 @@
       }else{
     	 params.orgid=orgidsElValue;
       }
-     grid1.load({params:params});
-     updateGridColoumn(cType);
+      /* if(!isSettle.checked){
+         params.isSettle = 1;
+      } */
+      params.isSettle = 1;
+      grid1.load({params:params});
+      updateGridColoumn(cType);
 }
 function onExport(){
 	var detail = grid1.getData();
@@ -298,6 +381,24 @@ function onExport(){
 //setInitExportDataNoMultistage( detail,grid1.columns,"已结算工单明细表导出");
 	}
 	
+}
+
+function openDetail(row_uid){
+	var row = grid1.getRowByUID(row_uid);
+	if(row ){
+		var data = {};
+		data.sRecordDate = startDateEl.getFormValue();
+		data.eRecordDate = addDate(endDateEl.getFormValue(),1);
+		//data.eRecordDate = endDateEl.getFormValue();
+		data.cType = cType;
+		data.item = row;
+		var item={};
+		item.id = "dms_workshop_detail";
+	    item.text = "施工项目明细表";
+		item.url =webPath + contextPath + "/repair/report/projectConstructionDetail.jsp?token="+token;
+		item.iconCls = "fa fa-file-text";
+		window.parent.parent.activeTabAndInit(item,data);
+	}
 }
 
 </script>

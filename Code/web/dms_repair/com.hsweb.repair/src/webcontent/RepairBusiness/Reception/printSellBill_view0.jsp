@@ -16,7 +16,7 @@
     <link href="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/mian.css" rel="stylesheet" type="text/css" /> 
     
 </head>
-<body>
+<body onafterprint="CloseWindow('ok')">
 <style>
     * {
         margin: 0;

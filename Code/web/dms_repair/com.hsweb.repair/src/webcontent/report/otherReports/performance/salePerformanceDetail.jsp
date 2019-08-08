@@ -13,7 +13,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>销售提成明细表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/salePerformanceDetail.js?v=1.0.12"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/salePerformanceDetail.js?v=1.0.0"></script>
 
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
@@ -72,6 +72,7 @@ pageEncoding="UTF-8" session="false" %>
                     <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                     <a class="nui-button" plain="true" onclick="onSearch()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
     </div>
 
 
@@ -104,6 +105,9 @@ pageEncoding="UTF-8" session="false" %>
 	 		</div>
         </div>
      </div>
+<div id="exportDiv" style="display:none">  
+
+</div> 
 </body>
 
 </html>

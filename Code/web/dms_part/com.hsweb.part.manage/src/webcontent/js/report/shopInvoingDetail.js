@@ -247,12 +247,16 @@ function doSearch(params)
         token :token     
     });
 }
-function onExport(){
-	
 
+
+function onExport(){
 	var detail = nui.clone(rightGrid.getData());
-	
+//多级
+	exportMultistage(rightGrid.columns)
+//单级
+       //exportNoMultistage(rightGrid.columns)
 	for(var i=0;i<detail.length;i++){
+		detail[i].id=1;
 		for(var j in billTypeIdHash) {
 			if(detail[i].billTypeId ==billTypeIdHash[j].id ){
 				detail[i].billTypeId=billTypeIdHash[j].name;
@@ -270,60 +274,10 @@ function onExport(){
 		}
 	}
 	if(detail && detail.length > 0){
-		setInitExportData( detail);
+//多级表头类型
+		setInitExportData( detail,rightGrid.columns,"进销存明细表导出");
+//单级表头类型  与上二选一
+//setInitExportDataNoMultistage( detail,rightGrid.columns,"已结算工单明细表导出");
 	}
 	
-}
-
-function setInitExportData( detail){
-
-    var tds = '<td  colspan="1" align="left">[partCode]</td>' +
-        "<td  colspan='1' align='left'>[partName]</td>" +
-        "<td  colspan='1' align='left'>[partBrandId]</td>" +
-        "<td  colspan='1' align='left'>[applyCarModel]</td>" +
-        "<td  colspan='1' align='left'>[dc]</td>" +       
-        "<td  colspan='1' align='left'>[operateDate]</td>" +
-        
-        "<td  colspan='1' align='left'>[qty]</td>" +
-        "<td  colspan='1' align='left'>[costPrice]</td>" +
-        "<td  colspan='1' align='left'>[costAmt]</td>" +
-        
-        "<td  colspan='1' align='left'>[balaQty]</td>" +
-        "<td  colspan='1' align='left'>[balaPrice]</td>" +
-        "<td  colspan='1' align='left'>[balaAmt]</td>"+
-        "<td  colspan='1' align='left'>[billTypeId]</td>"+
-        "<td  colspan='1' align='left'>[operator]</td>"+
-        "<td  colspan='1' align='left'>[guestName]</td>";
-        
-        
-    var tableExportContent = $("#tableExportContent");
-    tableExportContent.empty();
-    for (var i = 0; i < detail.length; i++) {
-        var row = detail[i];
-        if(row.orgid){
-            var tr = $("<tr></tr>");
-            tr.append(tds.replace("[partCode]", detail[i].partCode?detail[i].partCode:"")
-                          .replace("[partName]", detail[i].partName?detail[i].partName:"")
-                         .replace("[partBrandId]", detail[i].partBrandId?detail[i].partBrandId:"")
-                         .replace("[applyCarModel]", detail[i].applyCarModel?detail[i].applyCarModel:"")
-                         .replace("[dc]", detail[i].dc?detail[i].dc:"")
-                         //.replace("[collectMoneyDate]", nui.formatDate(detail[i].collectMoneyDate?detail[i].collectMoneyDate:"",'yyyy-MM-dd HH:mm'))
-                         
-                         .replace("[operateDate]", nui.formatDate(detail[i].operateDate?detail[i].operateDate:"",'yyyy-MM-dd HH:mm'))
-                         .replace("[qty]", detail[i].qty?detail[i].qty:"")
-                         .replace("[costPrice]", detail[i].costPrice?detail[i].costPrice:"") 
-                         .replace("[costAmt]", detail[i].costAmt?detail[i].costAmt:"") 
-                         .replace("[balaQty]", detail[i].balaQty?detail[i].balaQty:"")                        
-                         .replace("[balaPrice]", detail[i].balaPrice?detail[i].balaPrice:"")
-                         .replace("[balaAmt]", detail[i].balaAmt?detail[i].balaAmt:"")
-                         
-                         .replace("[billTypeId]", detail[i].billTypeId?detail[i].billTypeId:"")
-                         .replace("[operator]", detail[i].operator?detail[i].operator:"")
-                         .replace("[guestName]", detail[i].guestName?detail[i].guestName:""));
-            tableExportContent.append(tr);
-        }
-    }
-
- 
-    method5('tableExcel',"门店进销存明细表导出",'tableExportA');
 }

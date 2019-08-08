@@ -220,7 +220,7 @@ hr {
     <script src="<%=request.getContextPath()%>/common/js/numberFormat.js"  type="text/javascript"></script>    
     
 </head>
-<body>
+<body onafterprint="CloseWindow('ok')">
 
 	<div id="query-table" style="margin: 0 10px;overflow: scroll;" class="printny">
 

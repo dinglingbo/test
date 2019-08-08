@@ -1206,7 +1206,8 @@ function savePrice(){
             url : saveUrl,
             type : "post",
             data : JSON.stringify({
-                data : data
+                data : data,
+                token :token
             }),
             success : function(data) {
                 nui.unmask(document.body);

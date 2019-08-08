@@ -183,62 +183,6 @@
 </div>
 
 <div id="exportDiv" style="display:none">  
-    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
-        <tr>  
-            <td colspan="1" align="center">配件编码</td>
-             <td colspan="1" align="center">配件名称</td>          
-            <td colspan="1" align="center">OEM码</td>
-            <td colspan="1" align="center">品牌</td>
-            
-            <td colspan="1" align="center">期初数量</td>
-            <td colspan="1" align="center">期初金额</td>
 
-            <td colspan="1" align="center">采购入库数量</td>
-            <td colspan="1" align="center">采购入库金额</td>
-            
-            <td colspan="1" align="center">采购退货数量</td>
-            <td colspan="1" align="center">采购退货金额</td>  
-            
-            <td colspan="1" align="center">工单归库数量</td>
-            <td colspan="1" align="center">工单归库金额</td>                      
-
-            <td colspan="1" align="center">工单出库数量</td>
-            <td colspan="1" align="center">工单出库金额</td>
-            
-            <td colspan="1" align="center">工单退货数量</td>
-            <td colspan="1" align="center">工单退货金额</td>
-            
-             <td colspan="1" align="center">移仓入库数量</td>
-            <td colspan="1" align="center">移仓入库金额</td>
-            
-            <td colspan="1" align="center">移仓出库数量</td>
-            <td colspan="1" align="center">移仓出库金额</td>
-            
-<!--             <td colspan="1" align="center">精品入库数量</td>
-            <td colspan="1" align="center">精品入库金额</td>
-            
-            <td colspan="1" align="center">精品出库数量</td>
-            <td colspan="1" align="center">精品出库金额</td>  -->
-             
-             <td colspan="1" align="center">耗材入库数量</td>
-            <td colspan="1" align="center">耗材入库金额</td>
-            
-            <td colspan="1" align="center">耗材出库数量</td>
-            <td colspan="1" align="center">耗材出库金额</td>
-            
-            <td colspan="1" align="center">盘盈数量</td>
-            <td colspan="1" align="center">盘盈金额</td>
-            
-            <td colspan="1" align="center">盘亏数量</td>
-            <td colspan="1" align="center">盘亏金额</td> 
-                                                                           
-            <td colspan="1" align="center">结存数量</td>
-            <td colspan="1" align="center">结存金额</td>
-                               
-        </tr>
-        <tbody id="tableExportContent">
-        </tbody>
-    </table>  
-    <a href="" id="tableExportA"></a>
 </div> 
 </html>

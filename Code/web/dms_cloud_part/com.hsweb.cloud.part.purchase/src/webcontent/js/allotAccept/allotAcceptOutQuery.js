@@ -398,3 +398,24 @@ function onDrawCell(e)
             break;
     }
 }
+
+function onExport(){
+	var detail = nui.clone(rightGrid.getData());
+	//多级
+	exportMultistage(rightGrid.columns)
+	//单级
+	//exportNoMultistage(rightGrid.columns)
+	for(var i=0;i<detail.length;i++){
+		detail[i].settleStatus=statusHash[detail[i].settleStatus];
+		
+		detail[i].storeId=storehouseHash[detail[i].storeId].name;
+		detail[i].partBrandId = partBrandIdHash[detail[i].partBrandId].name;
+		
+	}
+	if(detail && detail.length > 0){
+		//多级表头类型
+		setInitExportData( detail,rightGrid.columns,"调拨出库明细表导出");
+		//单级表头类型 与上二选一
+		//setInitExportDataNoMultistage( detail,rightGrid.columns,"调拨受理明细表导出");
+	}
+}

@@ -53,7 +53,7 @@
       <targetNode>assign2</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -108,7 +108,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">enterMain/serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -666,6 +666,18 @@
     <process:copy>
       <process:from type="expression" pattern="reference">outToInQty+entableQty</process:from>
       <process:to type="query">outTemp/outToInQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">dsumOrderAmt+(entableQty*sellPrice)</process:from>
+      <process:to type="query">dsumOrderAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">dsumTaxAmt+entableQty*taxPrice</process:from>
+      <process:to type="query">dsumTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">dsumNoTaxAmt+entableQty*noTaxPrice</process:from>
+      <process:to type="query">dsumNoTaxAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">qty-entableQty</process:from>

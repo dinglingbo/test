@@ -138,7 +138,7 @@
                 margin: 4px 5px 0 0;
             }
     </style>
-<body ><!-- oncontextmenu = "return false" -->
+<body onafterprint="CloseWindow('ok')" ><!-- oncontextmenu = "return false" -->
 <div class="boxbg" style="display:none"></div>
     <div class="print_btn">
         <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>

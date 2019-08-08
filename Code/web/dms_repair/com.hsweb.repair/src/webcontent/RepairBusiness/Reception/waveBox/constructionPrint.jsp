@@ -381,7 +381,7 @@
 		    }
 	    }
     </style>
-<body>
+<body onafterprint="CloseWindow('ok')">
     <div class="print_btn">
         <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
         <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>

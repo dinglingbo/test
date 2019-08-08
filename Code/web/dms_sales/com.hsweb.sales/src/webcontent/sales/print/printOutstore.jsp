@@ -149,7 +149,7 @@
         }
     </style>
 
-    <body>
+    <body onafterprint="CloseWindow('ok')">
         <input id="frameColorId1" name="frameColorId1" style="width: 100%" class="nui-combobox" textField="name" valueField="customid" visible="false">
         <input id="interialColorId1" name="interialColorId1" style="width: 100%" class="nui-combobox" textField="name" valueField="customid" visible="false">
         <input class="nui-combobox" id="saleAdvisorId1" name="saleAdvisorId1" style="width: 100%;" textField="empName" valueField="empId" visible="false">

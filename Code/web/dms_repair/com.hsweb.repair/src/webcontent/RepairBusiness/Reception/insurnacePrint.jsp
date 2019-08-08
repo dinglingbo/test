@@ -15,7 +15,7 @@ pageEncoding="UTF-8" session="false" %>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"  type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/numberFormat.js"  type="text/javascript"></script> 
 </head>
-<body oncontextmenu = "return true">
+<body onafterprint="CloseWindow('ok')" oncontextmenu = "return true">
     <style> 
     * {
         margin: 0;

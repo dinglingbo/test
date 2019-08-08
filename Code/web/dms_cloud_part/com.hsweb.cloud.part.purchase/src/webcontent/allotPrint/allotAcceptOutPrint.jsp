@@ -75,13 +75,11 @@ table#ybk td{
 	width:55%;
 	text-align:left;
 }
-#sumApplyQty{
+
+#sumAcceptQty{
 	width:175px;
 	text-align:right;
 	padding-right:65px;
-}
-#sumAcceptQty{
-	width:8%;
 }
  #currOrgName{
 /* 	padding-left:80px; */
@@ -294,8 +292,7 @@ hr {
 							<td id="comApplyCarModel">品牌车型</td>
 							<td id="comSpec">规格</td>
 							<td id="comUnit">单位</td>
-							<td id="applyQty">申请数量</td>
-							<td id="acceptQty">受理数量</td>
+							<td id="acceptQty">数量</td>
 							<td id="remark">备注</td>
 						</tr>
                         <tbody id="tbodyId">
@@ -307,7 +304,6 @@ hr {
             <div>
             	<table id="" width="100%">
 				  <tr>
-				    <td id="sumApplyQty" ></td>
 				    <td id="sumAcceptQty" ></td>
 				  </tr>
 				</table>
@@ -436,7 +432,6 @@ hr {
 							'<td id="CarModel"align="center">[comApplyCarModel]</td>'+
 							'<td align="center">[comSpec]</td>'+		  			
 							'<td align="center">[comUnit]</td>'+
-							'<td align="center">[applyQty]</td>'+
 							'<td align="center">[acceptQty]</td>'+
 							'<td align="center">[remark]</td>';
 						for(var i = 0; i < data.length; i++ ){ 
@@ -450,16 +445,14 @@ hr {
 									.replace("[comApplyCarModel]",data[i].comApplyCarModel ||"")
 									.replace("[comSpec]",data[i].comSpec ||"")
 									.replace("[comUnit]",data[i].comUnit ||"")
-									.replace("[applyQty]",data[i].applyQty ||"")
 									.replace("[acceptQty]",data[i].acceptQty ||"")
 									.replace("[remark]",data[i].remark ||""));
 							tBody.append(tr);
-							sumApplyQty +=parseFloat(data[i].applyQty);
 							sumAcceptQty +=parseFloat(data[i].acceptQty);
 						}
 
-						$('#sumApplyQty').text("合计:"+parseFloat(sumApplyQty).toFixed(1));
-						$('#sumAcceptQty').text(parseFloat(sumAcceptQty).toFixed(1));
+
+						$('#sumAcceptQty').text("合计:"+parseFloat(sumAcceptQty).toFixed(1));
 						setTimeout(function(){
 					    	$(".print_btn").hide();
 				            document.getElementById("query-table").style.overflow="hidden"

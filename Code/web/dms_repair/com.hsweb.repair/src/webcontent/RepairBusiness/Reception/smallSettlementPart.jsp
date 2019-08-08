@@ -76,7 +76,7 @@
             padding-bottom: 5px;
         }
     </style>
-<body>
+<body onafterprint="CloseWindow('ok')">
 
 <div class="boxbg" id ="show" style="display:none"></div>
  <div class="popbox" id ="show1" style="height:220px; width:480px; margin:-210px 0 0 -240px; display:none">

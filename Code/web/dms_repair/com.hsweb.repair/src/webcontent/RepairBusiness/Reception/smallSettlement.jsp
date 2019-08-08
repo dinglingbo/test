@@ -75,7 +75,7 @@
             padding-bottom: 5px;
         }
     </style>
-<body>
+<body onafterprint="CloseWindow('ok')">
 
 
 <div class="boxbg" id ="show" style="display:none"></div>

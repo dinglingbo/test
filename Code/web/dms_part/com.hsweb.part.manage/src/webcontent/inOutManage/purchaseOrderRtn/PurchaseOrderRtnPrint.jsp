@@ -235,7 +235,7 @@ hr {
 }
 </style>
 </head>
-<body>
+<body onafterprint="CloseWindow('ok')">
 	<div id="query-table" style="margin: 0 10px;overflow: scroll;" class="printny" >
 <!--         <div class="nui-fit" height="100%"> -->
         	<div id="queryTable" >

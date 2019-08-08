@@ -139,7 +139,7 @@
                 margin: 4px 5px 0 0;
             }
     </style>
-<body ><!-- oncontextmenu = "return false" -->
+<body onafterprint="CloseWindow('ok')"><!-- oncontextmenu = "return false" -->
 <div class="boxbg" style="display:none"></div>
 <input  class="nui-combobox" name="carBrandId" id="carBrandId"  valueField="id" textField="name"width="100%" visible="false"/>
     <div class="print_btn">

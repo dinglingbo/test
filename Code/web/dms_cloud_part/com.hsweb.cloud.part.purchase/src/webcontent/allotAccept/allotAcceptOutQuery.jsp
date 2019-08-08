@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调拨出库明细查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotAcceptOutQuery.js?v=2.0.17"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotAcceptOutQuery.js?v=2.0.18"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -75,7 +75,8 @@
 
                 <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-<!--                 <span class="separator" ></span> -->
+                <span class="separator" ></span>
+                <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</ a> 
 <!--                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> -->
             </td>
         </tr>
@@ -122,7 +123,7 @@
                 	<div allowSort="true" datatype="float" summaryType="sum" field="hasAcceptQty" width="60" headerAlign="center" header="已受理数量"></div>
                 	<div allowSort="true" datatype="float" summaryType="sum" field="hasCamcelQty" width="60" headerAlign="center" header="已拒绝数量"></div>
                 	<div allowSort="true" datatype="float" summaryType="sum" field="hasOutQty" width="60" headerAlign="center" header="已出库数量" visible="true"></div>
-                	<div allowSort="true" datatype="float" summaryType="sum" field="hasInQty" width="60" headerAlign="center" header="已入库数量"  visible="false"></div>
+<!--                 	<div allowSort="true" datatype="float" summaryType="sum" field="hasInQty" width="60" headerAlign="center" header="已入库数量"  visible="false"></div> -->
                     <div allowSort="true" field="detailRemark" width="60" headerAlign="center" header="备注"></div>
                 </div>
             </div>
@@ -233,7 +234,7 @@
     </div>
 </div>
 
-
+<div id="exportDiv" style="display:none"> 
 
 </body>
 </html>

@@ -220,7 +220,7 @@ hr {
     <script src="<%=request.getContextPath()%>/common/js/numberFormat.js"  type="text/javascript"></script>    
     
 </head>
-<body>
+<body onafterprint="CloseWindow('ok')">
 
 	<div id="query-table" style="margin: 0 10px;overflow: scroll;" class="printny">
 
@@ -292,7 +292,7 @@ hr {
 							<td id="comApplyCarModel">品牌车型</td>
 							<td id="comSpec">规格</td>
 							<td id="comUnit">单位</td>
-							<td id="acceptQty">申请数量</td>
+							<td id="acceptQty">数量</td>
 							<td id="remark">备注</td>
 						</tr>
                         <tbody id="tbodyId">

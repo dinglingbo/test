@@ -142,7 +142,7 @@
                 margin: 4px 5px 0 0;
             }
     </style>
-<body ><!-- oncontextmenu = "return false" -->
+<body onafterprint="CloseWindow('ok')"><!-- oncontextmenu = "return false" -->
 <div class="boxbg" style="display:none"></div>
  <div class="popbox" style="height:420px; width:480px; margin:-210px 0 0 -240px; display:none">
         <h2><a class="close2" href="javascript:box_setup_close()" title="关闭">&nbsp;</a>修改</h2>
@@ -172,6 +172,10 @@
                     <tr>
                         <td class="color999" height="46">打印时间：</td>
                         <td><input id="meeting" type="datetime-local" value=""/></td>
+                    </tr>
+                    <tr>
+                        <td class="color999" height="46">结算时间：</td>
+                        <td><input id="updateOutDate" type="datetime-local" value=""/></td>
                     </tr>
                 </tbody>
             </table>
@@ -954,6 +958,12 @@
     		}else{
     			document.getElementById("updateEnterDate").value = enterDate.replace(" ","T");
     		}
+    		if(outDate > 16){
+    			var value = outDate.substring(0, outDate-3);
+    			document.getElementById("updateOutDate").value = value.replace(" ","T");
+    		}else{
+    			document.getElementById("updateOutDate").value = outDate.replace(" ","T");
+    		}
     	}
     	
     	function save(){
@@ -970,6 +980,7 @@
     		}
 			document.getElementById("date").innerHTML =  document.getElementById("meeting").value.replace("T"," ");
             document.getElementById("enterDate").innerHTML = document.getElementById("updateEnterDate").value.replace("T"," ");
+            document.getElementById("outDate").innerHTML = document.getElementById("updateOutDate").value.replace("T"," ");
     	}
     	
     	function box_setup_close(){

@@ -54,6 +54,10 @@
                         <td class="color999" height="46">进厂时间：</td>
                         <td><input id="updateEnterDate" type="datetime-local" value=""/></td>
                     </tr>
+                     <tr>
+                        <td class="color999" height="46">结算时间：</td>
+                        <td><input id="updateOutDate" type="datetime-local" value=""/></td>
+                    </tr>
                     <!-- <tr>
                         <td class="color999" height="46">打印时间：</td>
                         <td><input id="meeting" type="datetime-local" value=""/></td>
@@ -101,16 +105,16 @@
                     <td><div class="hctop_left"><em>出车日期：</em><br />Date Of Prdctn.</div><div class="hctop_right" id="outDate"></div></td>
                 </tr> -->
                 <tr>
-                    <td width="23%"><div class="hctop_right" style="width:85px;"><em>车牌号：</em></div><div class="hctop_right" id="carNo"></div></td>
+                    <td width="23%"><div class="hctop_right" ><em>车牌号：</em></div><div class="hctop_right" id="carNo"></div></td>
                     <td colspan="1"><div class="hctop_right" style="width:85px;"><em>品牌车型：</em></div><div class="hctop_right" id="carModel"></div></td>
-                    <td colspan="1" ><div class="hctop_right" style="width:110px"><em>结算日期：</em></div><div class="hctop_right" id="outDate"></div></td>
+                    <td colspan="1" ><div class="hctop_right" ><em>结算日期：</em></div><div class="hctop_right" id="outDate"></div></td>
                 </tr>
                 <tr>
                     <td><div class="hctop_right"><em>服务顾问：</em></div><div class="hctop_right" id="mtAdvisor"></div></td>
                     <td colspan="1" ><div class="hctop_right" style="width:110px"><em>车架号(VIN)：</em></div><div class="hctop_right" id="carVin"></div></td>
-                    <td><div class="hctop_right"><em>进厂油量：</em></div><div class="hctop_right" id="enterOilMass">
-                     <div class="hctop_right"><em>进厂里程：</em></div><div class="hctop_right" id="enterKilometers"></div>
-                    </div></td>
+                    <td><div class="hctop_right"><em>进厂油量：</em></div><div class="hctop_right" id="enterOilMass"></div>
+                    <div class="hctop_right"><em>&nbsp;&nbsp;&nbsp;进厂里程：</em></div><div class="hctop_right" id="enterKilometers"></div>
+                    </td>
                     <!-- <td colspan="2"><div class="hctop_right" style="width:150px"><em>车架号(VIN)：</em></div><div class="hctop_right" id="carVin"></div></td> --> 
                    <!--  <td><div class="hctop_left"><em>发动机号：</em><br />Engine No.</div><div class="hctop_right">175*****045</div></td>
                     <td rowspan="2"><div class="hctop_left"><em>服务顾问：</em><br />Adviser.</div><div class="hctop_right" id="mtAdvisor"></div></td> -->
@@ -252,6 +256,7 @@
 	var partAmt = 0;
 	var partSubtotal = 0;
 	var enterDate = null;
+	var outDate = null;
 	var weChatData = {};
 	var wechatOpenId = null;
 	var infoData = {};
@@ -361,6 +366,7 @@
 	        		infoData.serviceType = 11;
 	        		infoData.mainId = params.serviceId; */
 	        		enterDate = list.enterDate || "";
+	        		outDate = list.outDate || "";
 	        		wechatOpenId = list.openId || "";
 	        		if(wechatOpenId == "" || wechatOpenId == null){
 	        		   // document.getElementById("openId").style.background="#999999"; 
@@ -375,6 +381,13 @@
 	        			enterDate = format(enterDate, "yyyy-MM-dd HH:mm");
 	        		}else{
 	        		  enterDate='&nbsp;'
+	        		}
+	        		if(outDate){
+	        			outDate = outDate.replace(/-/g,"/");
+	        			outDate = new Date(outDate);
+	        			outDate = format(outDate, "yyyy-MM-dd HH:mm");
+	        		}else{
+	        		  outDate='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
 	        		}
 	        		var guestFullName = list.guestFullName || "";
 	        		var guestMobile = list.guestMobile || "";
@@ -419,6 +432,7 @@
 	        		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
 	        		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
 	        		document.getElementById("enterDate").innerHTML = enterDate;
+	        		document.getElementById("outDate").innerHTML = outDate;
 	        		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + contactName;
 	        		//document.getElementById("contactName").innerHTML = document.getElementById("contactName").innerHTML + contactName;
 	        		
@@ -759,6 +773,12 @@
     		}else{
     			document.getElementById("updateEnterDate").value = enterDate.replace(" ","T");
     		}
+    		if(outDate > 16){
+    			var value = outDate.substring(0, outDate-3);
+    			document.getElementById("updateOutDate").value = value.replace(" ","T");
+    		}else{
+    			document.getElementById("updateOutDate").value = outDate.replace(" ","T");
+    		}
     	}
     	function save(){
 			box_setup_close();
@@ -774,6 +794,7 @@
     		}
 			document.getElementById("date").innerHTML =  document.getElementById("meeting").value.replace("T"," "); */
             document.getElementById("enterDate").innerHTML = document.getElementById("updateEnterDate").value.replace("T"," ");
+            document.getElementById("outDate").innerHTML = document.getElementById("updateOutDate").value.replace("T"," ");
     	}
     	function box_setup_close(){
     		$(".boxbg").hide();

@@ -116,7 +116,8 @@ function getSearchParam() {
 function doSearch(params) {
 	params.isSupplier = 1;
 	grid.load({
-		params : params
+		params : params,
+		toekn: token
 	});
 }
 function advancedSearch() {

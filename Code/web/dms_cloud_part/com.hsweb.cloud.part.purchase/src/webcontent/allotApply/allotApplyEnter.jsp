@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调拨入库</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotApplyEnter.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotApplyEnter.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
   width: 70px;
@@ -145,6 +145,7 @@ body .mini-grid-row-selected{
                               <input class="nui-hidden" name="isDisabled" id="isDisabled"/>
                               <input class="nui-hidden" name="guestOrgid" id="guestOrgid"/>
                               <input class="nui-hidden" name="auditSign"/>
+                              <input name="partBrandId"id="partBrandId"  visible="false"class="nui-combobox" />
                               <table style="width: 100%;">
                                   <tr>
                                       <td class="title required">

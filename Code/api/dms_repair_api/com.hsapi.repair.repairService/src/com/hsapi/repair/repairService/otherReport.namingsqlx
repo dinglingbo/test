@@ -118,6 +118,7 @@
        d.full_name as guestName, b.car_vin as carVin, a.item_time as itemTime, a.unit_price as unitPrice,
        a.amt as amt, a.rate as rate, a.subtotal as subtotal, a.workers as workers, a.status, a.is_back as isBack,
        a.finish_date as finishDate, b.mt_advisor as mtAdvisor, b.service_code as serviceCode, b.out_date as outDate,
+       a.stop_time as stopTime,a.work_time as workTime,a.back_times as backTimes,
        b.enter_date as enterDate
 		from wb_repair.rps_item a
 		inner join wb_repair.rps_maintain b on a.service_id = b.id
@@ -145,6 +146,10 @@
             
             <isNotEmpty prepend="and" property="mtAdvisor">  
                 b.mt_advisor =  #mtAdvisor#
+            </isNotEmpty>
+            
+             <isNotEmpty prepend="and" property="serviceTypeId">  
+                a.service_type_id =  #serviceTypeId#
             </isNotEmpty>
             
             <isNotEmpty prepend="and" property="serviceCode">  

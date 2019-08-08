@@ -186,6 +186,48 @@
         if(e.field =="itemOptBtn"){
             e.cellHtml = ' <a class="optbtn" href="javascript:openDetail(\'' + uid + '\')">查看明细</a>';
         }
+        if(e.field == "workTime"){
+        	var s = "";
+        	var workTime = record.workTime;
+            if(workTime>0){
+	        	var days = Math.floor(workTime / (24 * 3600)); // 计算出天数
+	        	if(days>0){
+	        		s = days + '天';
+	        	}
+	            var leavel = workTime % (24 * 3600); // 计算天数后剩余的时间
+	            var hours = Math.floor(leavel / 3600); // 计算剩余的小时数
+	            if(hours>0){
+	            	s = s + hours + '小时';
+	            }
+	            var leavel2 = leavel % 3600; // 计算剩余小时后剩余的毫秒数
+	            var minutes = Math.floor(leavel2 / 60); // 计算剩余的分钟数
+	            if(minutes>0){
+	            	s = s + minutes + '分';
+	            }
+	            e.cellHtml = s;
+           }
+        }
+        if(e.field == "stopTime"){
+        	var s = "";
+        	var stopTime = record.stopTime;
+            if(stopTime>0){
+	        	var days = Math.floor(stopTime / (24 * 3600)); // 计算出天数
+	        	if(days>0){
+	        		s = days + '天';
+	        	}
+	            var leavel = stopTime % (24 * 3600); // 计算天数后剩余的时间
+	            var hours = Math.floor(leavel / 3600); // 计算剩余的小时数
+	            if(hours>0){
+	            	s = s + hours + '小时';
+	            }
+	            var leavel2 = leavel % 3600; // 计算剩余小时后剩余的毫秒数
+	            var minutes = Math.floor(leavel2 / 60); // 计算剩余的分钟数
+	            if(minutes>0){
+	            	s = s + minutes + '分';
+	            }
+	            e.cellHtml = s;
+           }
+        }
     });
 
     //load(cType);
@@ -347,6 +389,7 @@ function openDetail(row_uid){
 		var data = {};
 		data.sRecordDate = startDateEl.getFormValue();
 		data.eRecordDate = addDate(endDateEl.getFormValue(),1);
+		//data.eRecordDate = endDateEl.getFormValue();
 		data.cType = cType;
 		data.item = row;
 		var item={};

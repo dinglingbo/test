@@ -262,6 +262,7 @@ a#car{
             status:1,
             serviceTypeId:nui.get("serviceTypeId").value,
 //             isSettle:isSettle.value,
+            notBillTypeId:5,
             token:token
         };
         mainGrid.load({params:params,token:token});

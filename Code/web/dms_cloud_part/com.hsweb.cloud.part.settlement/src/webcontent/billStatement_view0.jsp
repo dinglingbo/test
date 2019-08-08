@@ -506,6 +506,52 @@
           </div>
       </div>
   </div>
+
+  <div id="editFormAllotEnterDetail" style="display:none;">
+      <div id="innerAllotEnterGrid" class="nui-datagrid" style="width:100%;height:150px;"
+           showPager="false"
+           dataField="data"
+           idField="detailId"
+           ondrawcell="onDrawCell"
+           sortMode="client"
+           url=""
+           showSummaryRow="true">
+          <div property="columns">
+              <div type="indexcolumn">序号</div>
+              <div allowSort="true" field="partCode" width="60" headerAlign="center" header="配件编码"></div>
+              <div allowSort="true" field="fullName" headerAlign="center" header="配件全称"></div>
+              <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
+              <div allowSort="true" datatype="float" field="applyQty" summaryType="sum" width="60" headerAlign="center" header="数量"></div>
+              <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="单价"></div>
+              <div allowSort="true" datatype="float" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="金额"></div>
+              <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
+          </div>
+      </div>
+  </div>
+
+  <div id="editFormAllotOutDetail" style="display:none;">
+      <div id="innerAllotOutGrid" class="nui-datagrid" style="width:100%;height:150px;"
+           showPager="false"
+           dataField="data"
+           idField="detailId"
+           ondrawcell="onDrawCell"
+           sortMode="client"
+           url=""
+           showSummaryRow="true">
+          <div property="columns">
+              <div type="indexcolumn">序号</div>
+              <div allowSort="true" field="partCode" width="60" headerAlign="center" header="配件编码"></div>
+              <div allowSort="true" field="fullName" headerAlign="center" header="配件全称"></div>
+              <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
+              <div allowSort="true" datatype="float" field="acceptQty" summaryType="sum" width="60" headerAlign="center" header="数量"></div>
+              <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="单价"></div>
+              <div allowSort="true" datatype="float" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="金额"></div>
+              <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
+          </div>
+      </div>
+  </div>
+
+
 </div>
 
 

@@ -6,6 +6,8 @@ var leftGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.queryPJStatementList.
 var rightGridUrl = baseUrl+"com.hsapi.cloud.part.settle.svr.getPJStatementDetailById.biz.ext";
 var innerPchsGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
 var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList.biz.ext";
+var innerAllotEnterGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.getAllotApplyDetail.biz.ext";
+var innerAllotOutGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.getAllotAcceptDetailById.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -37,6 +39,10 @@ var editFormSellOutDetail = null;
 var innerSellOutGrid = null;
 var editFormSellRtnDetail = null;
 var innerSellRtnGrid = null;
+var editFormAllotEnterDetail = null;
+var innerAllotEnterGrid = null;
+var editFormAllotOutDetail = null;
+var innerAllotOutGrid = null;
 var guestIdEl=null;
 //单据状态
 var AuditSignList = [
@@ -57,7 +63,8 @@ var accountSignHash = {
     "0":"未对账",
     "1":"已对账"
 };
-var enterTypeIdHash = {1:"采购订单",2:"销售订单",3:"采购退货",4:"销售退货"};
+var enterTypeIdHash = {1:"采购订单",2:"销售订单",3:"采购退货",4:"销售退货",
+                       5:"调拨申请",6:"调拨受理",7:"调出退回",8:"调入退回"};
 
 $(document).ready(function(v)
 {
@@ -77,6 +84,14 @@ $(document).ready(function(v)
     innerPchsRtnGrid = nui.get("innerPchsRtnGrid");
     editFormPchsRtnDetail = document.getElementById("editFormPchsRtnDetail");
     innerPchsRtnGrid.setUrl(innerSellGridUrl);
+
+    innerAllotEnterGrid = nui.get("innerAllotEnterGrid");
+    editFormAllotEnterDetail = document.getElementById("editFormAllotEnterDetail");
+    innerAllotEnterGrid.setUrl(innerAllotEnterGridUrl);
+
+    innerAllotOutGrid = nui.get("innerAllotOutGrid");
+    editFormAllotOutDetail = document.getElementById("editFormAllotOutDetail");
+    innerAllotOutGrid.setUrl(innerAllotOutGridUrl);
     
     sOrderDate =nui.get("sOrderDate");
     eOrderDate = nui.get("eOrderDate");
@@ -622,11 +637,13 @@ function onShowRowDetail(e) {
     
     //将editForm元素，加入行详细单元格内
     var td = rightGrid.getRowDetailCellEl(row);
-    var rpDc = row.rpDc;    
+    var rpDc = row.rpDc;   
+    var orderTypeId =row.typeCode; 
 
-    switch (rpDc)
+    switch (orderTypeId)
     {
-        case -1:
+        case "1":
+        case "4":
             td.appendChild(editFormPchsEnterDetail);
             editFormPchsEnterDetail.style.display = "";
 
@@ -637,7 +654,8 @@ function onShowRowDetail(e) {
                 token: token
             });
             break;
-        case 1:
+        case "2":
+        case "3":
         	//销售单
         	if(row.typeCode ==2){
         		td.appendChild(editFormSellOutDetail);
@@ -661,6 +679,26 @@ function onShowRowDetail(e) {
                 });               
         	}
         	break;
+        case "5":
+        case "7":
+            td.appendChild(editFormAllotEnterDetail);
+            editFormAllotEnterDetail.style.display = "";
+
+            innerAllotEnterGrid.load({
+                mainId:mainId,
+                token: token
+            });
+            break;
+        case "6":
+        case "8":
+            td.appendChild(editFormAllotOutDetail);
+            editFormAllotOutDetail.style.display = "";
+
+            innerAllotOutGrid.load({
+                mainId:mainId,
+                token: token
+            });
+            break;
         default:
             break;
     }

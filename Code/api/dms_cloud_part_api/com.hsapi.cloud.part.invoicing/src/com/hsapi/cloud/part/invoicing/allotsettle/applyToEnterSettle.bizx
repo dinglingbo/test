@@ -718,6 +718,18 @@
       <process:to type="query">outTemp/outToInQty</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="expression" pattern="reference">dsumOrderAmt+(entableQty*sellPrice)</process:from>
+      <process:to type="query">dsumOrderAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">dsumTaxAmt+entableQty*taxPrice</process:from>
+      <process:to type="query">dsumTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">dsumNoTaxAmt+entableQty*noTaxPrice</process:from>
+      <process:to type="query">dsumNoTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="expression" pattern="reference">qty-entableQty</process:from>
       <process:to type="query">qty</process:to>
     </process:copy>

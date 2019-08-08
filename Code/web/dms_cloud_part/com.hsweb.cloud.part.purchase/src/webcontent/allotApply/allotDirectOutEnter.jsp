@@ -11,7 +11,7 @@
   - Description:
 -->
 <head>
-<title>调拨出库受理</title>
+<title>总部直调受理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotDirectOutEnter.js?v=1.0.0"></script>
 </head>
@@ -44,7 +44,6 @@
 			                <label style="font-family:Verdana;">至</label>
 			                <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
 			               
-			                <span class="separator"></span> 
 			                <input class="nui-combobox" id ="status" name="status" value="" allowInput="true" showNullItem="false" 
 		            		 valueFromSelect="true" nullitemtext="请选择..." emptyText="选择订单状态" data="" width="100px" data="statusList" dataField="statusList"
 		            		 textField="name" valueField="id" onEnter="onSearch()" />
@@ -97,8 +96,8 @@
 		            <div type="indexcolumn">序号</div>
 		            <div field="id" width="40" visible="false" headerAlign="center" header="id"></div>
 		            <div field="orgid" width="40" visible="false" headerAlign="center" header="id"></div>
-		            <div field="orgName" width="60" headerAlign="center" header="申请调入退回公司"></div>
-		            <div field="serviceId" width="100px" headerAlign="center" allowSort="true" header="调入退回单号"></div>
+		            <div field="orgName" width="60" headerAlign="center" header="调出方"></div>
+		            <div field="serviceId" width="100px" headerAlign="center" allowSort="true" header="调拨出库单号"></div>
 		            <div field="status" width="40px" headerAlign="center" allowSort="true" header="状态"></div>
 		            <div field="auditDate" width="65px" headerAlign="center" allowSort="true" header="审核日期"  dateFormat="yyyy-MM-dd HH:mm"></div>
 		            <div field="orderDate" width="65px" headerAlign="center" allowSort="true" header="申请日期"  dateFormat="yyyy-MM-dd HH:mm"></div>

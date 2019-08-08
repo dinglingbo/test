@@ -33,7 +33,8 @@
 			d.short_name as shortName,
 			a.is_diff_order as isDiffOrder,
 			a.source_type as sourceType,
-			a.rtn_reason_id as rtnReasonId
+			a.rtn_reason_id as rtnReasonId,
+			a.is_finished as isFinished
 		FROM
 			pj_pchs_order_main_chk a
 		INNER JOIN wb_common.com_guest d ON a.guest_id = d.id
@@ -43,6 +44,7 @@
 			<dynamic>
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
             <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="isDiffOrder">(a.is_diff_order = #isDiffOrder#)</isNotEmpty>
             <isNotEmpty prepend="and" property="billStatusId">(a.bill_status_id = #billStatusId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="billStatusIdList">(a.bill_status_id in ($billStatusIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="notFinished">(a.is_finished = #notFinished#)</isNotEmpty>
@@ -62,6 +64,7 @@
             <isNotEmpty prepend="and" property="guestId">(A.guest_id = #guestId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceMan">(A.order_man = #serviceMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">(A.service_id = #serviceId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="directOrgid">(A.direct_orgid = #directOrgid#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
         </dynamic>

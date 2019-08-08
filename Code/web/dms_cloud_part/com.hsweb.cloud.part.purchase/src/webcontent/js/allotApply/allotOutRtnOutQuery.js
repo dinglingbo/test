@@ -22,7 +22,7 @@ var enterTypeIdHash = {};
 var partBrandIdHash = {};
 
 var statusHash = {
-    "0":"草稿",
+    "0":"未入库",
     "1":"部分入库",
     "2":"全部入库"
 };

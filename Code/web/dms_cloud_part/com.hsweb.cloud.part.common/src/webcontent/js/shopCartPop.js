@@ -299,6 +299,7 @@ function onCellCommitEdit(e) {
     //预售单
     if(sourceType ==5){
     	if(e.field =='orderQty'){
+		    parent.showMsg("数量不能修改!","W");
     		e.cancel = true;
     	}
     }

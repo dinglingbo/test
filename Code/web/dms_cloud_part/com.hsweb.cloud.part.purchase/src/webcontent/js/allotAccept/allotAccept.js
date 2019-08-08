@@ -910,7 +910,7 @@ function onPrint(){
             mainId :from.id,
             auditSign:from.auditSign
     };
-    var openUrl = webPath + contextPath+"/purchase/purchaseOrderRtn/purchaseOrderRtnPrint.jsp";
+    var openUrl = webPath + contextPath+"/purchase/allotPrint/allotAcceptOutPrint.jsp";
 
     nui.open({
        url: openUrl,

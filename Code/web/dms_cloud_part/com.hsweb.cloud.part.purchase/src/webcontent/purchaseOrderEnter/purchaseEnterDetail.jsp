@@ -166,7 +166,7 @@
                                       <input class="nui-textbox" id="orderMan" name="orderMan" width="100%">
                                   </td>
                                   <td class="title required">
-                                      <label>建单日期：</label>
+                                      <label>订单日期：</label>
                                   </td>
                                   <td width="120">
                                       <input name="orderDate"

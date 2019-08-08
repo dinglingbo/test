@@ -1,9 +1,6 @@
 var baseUrl = apiPath + cloudPartApi + "/";
-var companyUrl = apiPath + sysApi + "/"+"com.hsapi.system.basic.organization.getCompanyAll.biz.ext";
-var mainGridUrl =baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryPjAllotAcceptMains.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.getAllotAcceptDetailById.biz.ext";
-var orgidsEl =null;
-var orgids="";
+var mainGridUrl =baseUrl+"com.hsapi.cloud.part.invoicing.paramcrud.queryPchsOrderMain.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.paramcrud.queryPjPchsOrderDetailChkList.biz.ext";
 var mainGrid =null;
 var searchBeginDate = null;
 var searchEndDate = null;
@@ -14,12 +11,13 @@ var billTypeIdHash = {};
 var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
-var statusList=[{"id":0,"name":"全部"},{"id":1,"name":"待受理"},{"id":2,"name":"部分受理"},{"id":3,"name":"全部受理"}];
-var statusHash={"1":"待受理","2":"部分受理","3":"全部受理","4":"已拒绝"};
+var statusList=[{"id":0,"name":"全部"},{"id":1,"name":"待受理"},{"id":2,"name":"已受理"}];
+var billStatusHash = {
+    "0":"待受理",
+    "1":"已受理"
+};
 
 $(document).ready(function(v) {
-	orgidsEl = nui.get("orgids");
-	getCompany();
 	mainGrid =nui.get("mainGrid");
 	mainGrid.setUrl(mainGridUrl);
     searchBeginDate = nui.get("beginDate");
@@ -29,60 +27,52 @@ $(document).ready(function(v) {
     nui.get("status").setData(statusList);
     nui.get("status").setValue(1);
    
-    
-    getStorehouse(function(data)
-    {
-        var storehouse = data.storehouse||[];
-        nui.get("storeId").setData(storehouse);
+    var dictDefs ={"billTypeId":"DDT20130703000008", "settleTypeId":"DDT20130703000035"};
+    initDicts(dictDefs, function(){
+        var billTypeIdList = nui.get("billTypeId").getData();
+        var settTypeIdList = nui.get("settleTypeId").getData();
+        billTypeIdList.forEach(function(v)
+        {
+            billTypeIdHash[v.customid] = v;
+        });
+        settTypeIdList.forEach(function(v)
+        {
+            settTypeIdHash[v.customid] = v;
+        });
 
-        if(storehouse && storehouse.length>0){
-            nui.get('storeId').setValue(storehouse[0].id);
-            storehouse.forEach(function(v){
-                storehouseHash[v.id]=v;
-            });
-        }
-        
-    });
-    quickSearch(2);
-});
+        getStorehouse(function(data)
+        {
+            var storehouse = data.storehouse||[];
+            nui.get("storeId").setData(storehouse);
 
-function getCompany(){
-	var params = {};
-	nui.ajax({
-        url: companyUrl,
-        type: 'post',
-        async:false,
-        data: nui.encode({
-        	params: params,
-            token: token
-        }),
-        cache: false,
-        success: function (data) {
-            if (data.errCode == "S"){
-            	var orgList =data.companyList;
-            	orgidsEl = nui.get("orgids");
-                orgidsEl.setData(data.companyList);
-                orgList.forEach(function(v){
-                	orgids =orgids+v.orgid+","
+            if(storehouse && storehouse.length>0){
+                nui.get('storeId').setValue(storehouse[0].id);
+                storehouse.forEach(function(v){
+                    storehouseHash[v.id]=v;
                 });
-                orgids = orgids.substring(0,orgids.length-1);
-            }else {
-            	orgidsEl = nui.get("orgids");
-                orgidsEl.setData([]);
             }
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log(jqXHR.responseText);
-        }
-	});
-}
+            
+        });
+
+        getAllPartBrand(function(data)
+        {
+            var partBrandList = data.brand;
+            partBrandList.forEach(function(v)
+            {
+                partBrandIdHash[v.id] = v;
+            });
+        });
+
+        quickSearch(2);
+
+    });
+    
+    
+});
 
 function getSearchParam(){
     var params = {};
 
-    //params.sAuditDate = searchBeginDate.getFormValue();
-    //params.eAuditDate  = searchEndDate.getFormValue();
-    //审核日期
     if(searchBeginDate.getFormValue())
     {
         params.sAuditDate = formatDate(new Date(searchBeginDate.getFormValue()));
@@ -94,18 +84,16 @@ function getSearchParam(){
         
     }
 
-    params.guestName =nui.get('guestName').getValue().replace(/\s+/g, "");
-    params.orgid =nui.get('orgids').getValue();
-    params.status = nui.get("status").getValue();
-    if(params.status ==0){
-    	 params.status=null;
-    }
-    params.auditSign=1;
-    params.guestOrgId = currOrgId;
-    params.tenantId =currTenantId;
-    params.orderTypeId = 2;
+    params.serviceId = nui.get('serviceId').getValue().replace(/\s+/g, "");
+    params.directOrgid = currOrgId;
     params.isDiffOrder = 0;
-    params.codeId = 0;
+
+    if(nui.get('status').getValue() == 1) {
+        params.notFinished = 0;
+    }else if(nui.get('status').getValue() == 2) {
+        params.notFinished = 1;
+    }
+
     return params;
 }
 var currType = 2;
@@ -180,6 +168,7 @@ function onSearch(){
 }
 function doSearch(params)
 {
+    rightGrid.setData([]);
 	mainGrid.load({
         params:params,
         token: token
@@ -197,10 +186,8 @@ function onMainGridSelectionChanged() {
 function loadRightGridData(row){
 	var params ={};
 	params.mainId = row.id;
-	params.sortField ="a.audit_date";
-	params.sortOrder ="desc";
     rightGrid.load({
-        mainId:row.id,
+        params:params,
         token:token
     });
 }
@@ -211,10 +198,9 @@ function onDrawCell(e){
 	switch (e.field)
     {
 	   
-	    case "partBrandId":
+	    case "comPartBrandId":
 	        if(partBrandIdHash[e.value])
 	        {
-	//            e.cellHtml = partBrandIdHash[e.value].name||"";
 	        	if(partBrandIdHash[e.value].imageUrl){
 	        		
 	        		e.cellHtml = "<img src='"+ partBrandIdHash[e.value].imageUrl+ "'alt='配件图片' height='25px' width=' '/><br> "+partBrandIdHash[e.value].name||"";
@@ -250,25 +236,18 @@ function onDrawCell(e){
                 e.cellHtml = settTypeIdHash[e.value].name;
             }
             break;
-        case "storeId":
-            if(storehouseHash && storehouseHash[e.value])
+        case "isFinished":
+            if(billStatusHash && billStatusHash[e.value])
             {
-                e.cellHtml = storehouseHash[e.value].name;
+                e.cellHtml = billStatusHash[e.value];
             }
-            break;
-        case "enterDayCount":
-            var row = e.record;
-            var enterTime = (new Date(row.enterDate)).getTime();
-            var nowTime = (new Date()).getTime();
-            var dayCount = parseInt((nowTime - enterTime) / 1000 / 60 / 60 / 24);
-            e.cellHtml = dayCount+1;
-            break;
+            break;  
         default:
             break;
     }
 }
 
-var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.generateAllotOutEnter.biz.ext";
+var auditUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.generatePchsAllotIn.biz.ext";
 function audit(){
 	var row =mainGrid.getSelected();
 	if(!row){
@@ -281,7 +260,7 @@ function audit(){
         return;
     }
 	
-	if(row.status != 1){
+	if(row.isFinished != 0){
 		showMsg("单据状态为待受理时才可以受理","W");
 		return;
 	}
@@ -295,7 +274,7 @@ function audit(){
 		url : auditUrl,
 		type : "post",
 		data : JSON.stringify({
-			mainId :  row.id,
+			id :  row.id,
             storeId : nui.get('storeId').getValue(),
 			token: token
 		}),
@@ -303,8 +282,8 @@ function audit(){
 			nui.unmask(document.body);
 			data = data || {};
 			if (data.errCode == "S") {
-				showMsg("受理成功，生成的调拨入库单号为：" + data.serviceId ||data.errMsg,"S");
-				var newRow = {status: 3};
+				showMsg("受理成功，生成的调拨入库单号为：" + data.serviceId,"S");
+				var newRow = {isFinished: 1};
 				mainGrid.updateRow(row, newRow);
 			} else {
 				showMsg(data.errMsg || ("受理失败!"),"W");
@@ -317,68 +296,3 @@ function audit(){
 	});
 }
 
-var refuseUrl=baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.refuseAllotInRtn.biz.ext";
-function refuse(){
-	var row =mainGrid.getSelected();
-	if(row.status !=1){
-		showMsg("单据状态为待受理才可以拒绝","W");
-		return;
-	}
-	nui.mask({
-		el : document.body,
-		cls : 'mini-mask-loading',
-		html : "拒绝中"
-	});
-	nui.ajax({
-		url : refuseUrl,
-		type : "post",
-		data : JSON.stringify({
-			mainId : row.id,
-			token: token
-		}),
-		success : function(data) {
-			nui.unmask(document.body);
-			data = data || {};
-			if (data.errCode == "S") {
-				showMsg("拒绝成功!"||data.errMsg,"S");
-				var newRow = {status: 4};
-                mainGrid.updateRow(row, newRow);
-			} else {
-				showMsg(data.errMsg || ("拒绝失败!"),"W");
-			}
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			// nui.alert(jqXHR.responseText);
-			console.log(jqXHR.responseText);
-		}
-	});
-}
-
-function onMainDrawCell(e){
-	switch (e.field)
-    {
-	   
-        case "status":
-            if(statusHash && statusHash[e.value])
-            {
-                e.cellHtml = statusHash[e.value];
-            }
-            break;
-       
-        case "storeId":
-            if(storehouseHash && storehouseHash[e.value])
-            {
-                e.cellHtml = storehouseHash[e.value].name;
-            }
-            break;
-        case "enterDayCount":
-            var row = e.record;
-            var enterTime = (new Date(row.enterDate)).getTime();
-            var nowTime = (new Date()).getTime();
-            var dayCount = parseInt((nowTime - enterTime) / 1000 / 60 / 60 / 24);
-            e.cellHtml = dayCount+1;
-            break;
-        default:
-            break;
-    }
-}

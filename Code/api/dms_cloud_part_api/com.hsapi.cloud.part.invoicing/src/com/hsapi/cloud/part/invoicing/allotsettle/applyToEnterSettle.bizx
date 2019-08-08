@@ -397,7 +397,7 @@
       <sourceNode>assign4</sourceNode>
       <targetNode>subprocess0</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link46" name="link46" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link46" name="isDirect=1" displayName="连接线" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>assign14</targetNode>
       <process:transitionCondition>

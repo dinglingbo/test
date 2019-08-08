@@ -240,3 +240,31 @@ function doSearch(params)
         token :token     
     });
 }
+function onExport(){
+	var detail = nui.clone(rightGrid.getData());
+//多级
+	exportMultistage(rightGrid.columns)
+//单级
+       //exportNoMultistage(rightGrid.columns)
+	for(var i=0;i<detail.length;i++){
+		detail[i].id=1;
+		if(detail[i].dc==1){
+			detail[i].dc = "入库";
+		}else{
+			detail[i].dc = "出库";
+		}	
+		detail[i].billTypeId=billTypeIdHash[detail[i].billTypeId]|| "";
+		for(var j in brandHash) {
+			if(detail[i].partBrandId ==brandHash[j].id ){
+				detail[i].partBrandId=brandHash[j].name;
+			}
+		}		
+	}
+	if(detail && detail.length > 0){
+//多级表头类型
+		setInitExportData( detail,rightGrid.columns,"分仓进销存明细表导出");
+//单级表头类型  与上二选一
+//setInitExportDataNoMultistage( detail,rightGrid.columns,"已结算工单明细表导出");
+	}
+	
+}

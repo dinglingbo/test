@@ -464,3 +464,25 @@ function queryTypeRela(){
         }
     });
 }
+
+function onExport(){
+	var detail = nui.clone(mainGrid.getData());
+	exportNoMultistage(mainGrid.columns)
+	for(var i=0;i<detail.length;i++){
+        if(enterTypeIdHash && enterTypeIdHash[detail[i].billTypeId]){
+        	detail[i].billTypeId = enterTypeIdHash[detail[i].billTypeId].name;
+        }
+        if(pHash && pHash[detail[i].isPrimaryBusiness]){
+        	detail[i].isPrimaryBusiness = pHash[detail[i].isPrimaryBusiness];
+        }
+        for(var j=0;j<typeRela.length;j++){
+        	if(typeRela[j].customId==detail[i].balaTypeCode){
+        		detail[i].balaTypeCode = typeRela[j].customName;
+        	}
+        }
+	}
+	if(detail && detail.length > 0){
+		setInitExportDataNoMultistage( detail,mainGrid.columns,"付款明细表导出");
+	}
+	
+}

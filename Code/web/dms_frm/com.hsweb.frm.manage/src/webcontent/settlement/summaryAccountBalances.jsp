@@ -12,7 +12,7 @@
 <head>
 <title>结算账户余额汇总表</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/summaryAccountBalances.js?v=1.1.7">
+	src="<%=request.getContextPath()%>/manage/settlement/js/summaryAccountBalances.js?v=1.0.0">
 	</script>
 </head>
 <body>
@@ -48,7 +48,7 @@
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
 				<a class="nui-button" onclick="search()" plain="true">
 						<span class="fa fa-search fa-lg"></span> 查询 </a> 
-					
+				<a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>					
 					</td>
 				</tr>
 			</table>
@@ -77,7 +77,8 @@
 			</div>
 		</div>
 	</div>
-
+<div id="exportDiv" style="display:none">  
+</div>
 
 </body>
 </html>

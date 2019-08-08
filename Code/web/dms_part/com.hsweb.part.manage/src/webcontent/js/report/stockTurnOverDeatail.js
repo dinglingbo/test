@@ -185,32 +185,22 @@ function onExport(){
 	var detail = nui.clone(rightGrid.getData());
 	exportNoMultistage(rightGrid.columns)
 	for(var i=0;i<detail.length;i++){
-/*		for(var j in servieTypeHash) {
-		    if(detail[i].serviceTypeId ==servieTypeHash[j].id ){
-		    	detail[i].serviceTypeId=servieTypeHash[j].name;
-		    }
-		}
-		for(var j in storeHash) {
-		    if(detail[i].storeId ==storeHash[j].id ){
-		    	detail[i].storeId=storeHash[j].name;
-		    }
-		}
-		if(detail[i].returnSign==0){
-			detail[i].returnSign="否";
-		}else{
-			detail[i].returnSign="是";
-		}
 		for(var j in partTypeHash) {
-			if(detail[i].carTypeIdF==partTypeHash[j].code){
+			if(detail[i].carTypeIdF==partTypeHash[j].id){
 				detail[i].carTypeIdF=partTypeHash[j].name;
 			}
-			if(detail[i].carTypeIdS==partTypeHash[j].code){
+			if(detail[i].carTypeIdS==partTypeHash[j].id){
 				detail[i].carTypeIdS=partTypeHash[j].name;
 			}
-			if(detail[i].carTypeIdT==partTypeHash[j].code){
+			if(detail[i].carTypeIdT==partTypeHash[j].id){
 				detail[i].carTypeIdT=partTypeHash[j].name;
 			}
-		}*/
+		}
+		for(var j in brandHash) {
+			if(detail[i].partBrandId ==brandHash[j].id ){
+				detail[i].partBrandId=brandHash[j].name;
+			}
+		}
 	}
 	if(detail && detail.length > 0){
 		setInitExportDataNoMultistage( detail,rightGrid.columns,"库存周转明细表导出");

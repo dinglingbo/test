@@ -483,7 +483,11 @@ function setInitExportData( detail,columns,tableName){
             					if(columnsList[j].dateFormat){
             						temp = temp.replace("["+str+"]", nui.formatDate(detail[i][str]?detail[i][str]:"",'yyyy-MM-dd HH:mm'));
             					}else{
-            						temp = temp.replace("["+str+"]", detail[i][str]?detail[i][str]:"");
+            						if(detail[i][str]!=0){   							
+            							temp = temp.replace("["+str+"]", detail[i][str]?detail[i][str]:"");
+            						}else{
+            							temp = temp.replace("["+str+"]", detail[i][str]);
+            						}
             					}			
 
             				}
@@ -547,7 +551,11 @@ function setInitExportDataNoMultistage( detail,columns,tableName){
     					if(columns[k].dateFormat){
     						temp = temp.replace("["+str+"]", nui.formatDate(detail[i][str]?detail[i][str]:"",'yyyy-MM-dd HH:mm'));
     					}else{
-    						temp = temp.replace("["+str+"]", detail[i][str]?detail[i][str]:"");
+    						if(detail[i][str]!=0){   							
+    							temp = temp.replace("["+str+"]", detail[i][str]?detail[i][str]:"");
+    						}else{
+    							temp = temp.replace("["+str+"]", 0);
+    						}
     					}			
 
             		} 

@@ -158,3 +158,30 @@ function getDate(wantDay){
 	var returnSting=year+"-"+(month<10 ? "0"+month :month)+"-"+(day<10 ?"0"+day:day);
 	return returnSting;
 }
+function onExport(){
+	var detail = nui.clone(rightGrid.getData());
+	exportNoMultistage(rightGrid.columns)
+	for(var i=0;i<detail.length;i++){
+		detail[i].id=1;
+/*		for(var j in partTypeHash) {
+			if(detail[i].carTypeIdF==partTypeHash[j].id){
+				detail[i].carTypeIdF=partTypeHash[j].name;
+			}
+			if(detail[i].carTypeIdS==partTypeHash[j].id){
+				detail[i].carTypeIdS=partTypeHash[j].name;
+			}
+			if(detail[i].carTypeIdT==partTypeHash[j].id){
+				detail[i].carTypeIdT=partTypeHash[j].name;
+			}
+		}
+		for(var j in brandHash) {
+			if(detail[i].partBrandId ==brandHash[j].id ){
+				detail[i].partBrandId=brandHash[j].name;
+			}
+		}*/
+	}
+	if(detail && detail.length > 0){
+		setInitExportDataNoMultistage( detail,rightGrid.columns,"库存周转汇总表导出");
+	}
+	
+}

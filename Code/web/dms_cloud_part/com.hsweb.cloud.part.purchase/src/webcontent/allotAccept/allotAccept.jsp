@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调拨受理</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotAccept.js?v=1.0.40"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotAccept.js?v=1.0.42"></script>
 <style type="text/css">
 .title {
   width: 70px;
@@ -154,6 +154,7 @@ body .mini-grid-row-selected{
                               <input class="nui-hidden" name="guestOrgid" id="guestOrgid"/>
                               <input class="nui-hidden" name="auditSign"/>
                               <input class="nui-hidden" name="sourceType" id="sourceType"/>
+                              <input name="partBrandId"id="partBrandId"  visible="false"class="nui-combobox" />
                               <table style="width: 100%;">
                                   <tr>
                                       <td class="title required">

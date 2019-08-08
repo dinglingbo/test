@@ -109,17 +109,17 @@ $(document).ready(function(v)
                 isNeedSet = true;
             }
     
-            //getAllPartBrand(function(data) {
-            //    brandList = data.brand;
-            //    nui.get("partBrandId").setData(brandList);
-            //    brandList.forEach(function(v) {
-            //        brandHash[v.id] = v;
-            //    });
-
+            getAllPartBrand(function(data) {
+                brandList = data.brand;
+                nui.get("partBrandId").setData(brandList);
+                brandList.forEach(function(v) {
+                    brandHash[v.id] = v;
+                });
+            });
                 quickSearch(6);
 
                 nui.unmask();
-            //});
+           
             
         });
         
@@ -928,7 +928,7 @@ function onPrint(){
         return;
     }
     rightGrid.setData([]);
-    //add();
+    add();
     
 }
 function add()

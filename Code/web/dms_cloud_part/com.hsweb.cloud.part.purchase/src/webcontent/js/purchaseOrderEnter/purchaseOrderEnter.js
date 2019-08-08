@@ -404,7 +404,12 @@ function addNewRow(check){
         e.cancel = true;
         return;
     }
-    
+    //来源于采购单
+    if(data.sourceType ==1){
+    	e.cancel = true;
+    	showMsg("来源于采购订单的明细不能添加","W");
+        return;
+    }
 	var rows = [];
 	if(check){
 		rows = rightGrid.findRows(function(row) {
@@ -2476,6 +2481,11 @@ function OnrpMainGridCellBeginEdit(e){
     if(data.auditSign == 1){
         e.cancel = true;
 	}
+    if(data.sourceType==1){
+	   if(field=="comPartCode"){
+		   e.cancel = true;
+	   }
+    }
 	if(advancedMorePartWin.visible) {
 		e.cancel = true;
 		morePartGrid.focus();

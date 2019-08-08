@@ -65,6 +65,7 @@
             <isNotEmpty prepend="and" property="serviceMan">(A.order_man = #serviceMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">(A.service_id = #serviceId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="directOrgid">(A.direct_orgid = #directOrgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="noDirectGuestId">(A.direct_guest_id =0 )</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
         </dynamic>

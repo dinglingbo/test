@@ -3367,16 +3367,29 @@ function addOrEditPart(row)
 }
 
 function adjustOrderQty(){
+	 var row = leftGrid.getSelected();
+	 if(!row){		 
+		 showMsg("请选择一条数据","W");
+		 return;
+	 }
+    if(row){
+        if(row.auditSign != 1) {
+            showMsg("此单未提交,不能调整!","W");
+            return;
+        } 
+    }
+       
 	nui.open({
         // targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.cloud.part.purchase.adjustQty.flow?token=" + token,
-        title: "调整订单数量",
+        url: webPath + contextPath + "/purchase/purchaseOrder/adjustPurQty.jsp",
+        title: "采购申请调整",
         width: 900, height: 400,
         allowDrag:true,
         allowResize:false,
         onload: function ()
         {
             var iframe = this.getIFrameEl();
+            iframe.contentWindow.setInitData(row.id);
            
         },
         ondestroy: function (action)

@@ -61,6 +61,19 @@ pageEncoding="UTF-8" session="false" %>
         <!-- <input class="nui-textbox" id=""name=""emptytext="配件分类"> -->
          <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
+         <label>业务类型：</label>
+         <input name="serviceTypeId"
+           id="serviceTypeId"
+           class="nui-combobox width1"
+           textField="name"
+           valueField="id"
+           emptyText="请选择..."
+           url=""
+           allowInput="true"
+           showNullItem="false"
+           width="5%"
+           valueFromSelect="true"
+           nullItemText="请选择..."/>
         <a class="nui-button" iconcls="" plain="true" name="" onclick="Search()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
        <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>  
     </div>
@@ -340,6 +353,11 @@ setInitExportDataNoMultistage( detail,grid.columns,"施工项目明细表导出"
 	}
 	
 }
+    function setInitData(params){
+    
+    }
+    
+    
     </script>
 </body>
 

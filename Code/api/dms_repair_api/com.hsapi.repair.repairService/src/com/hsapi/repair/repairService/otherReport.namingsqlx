@@ -20,20 +20,26 @@
      </isEqual>
               <isEqual  prepend="" property="groupByType"   compareValue="2">
      a.item_name as groupName, 
-     </isEqual>
-        count(DISTINCT b.id) as tc, sum(a.item_time) as itemTime,
-        sum(a.subtotal) as subtotal, sum(total_deduct_amt) as costAmt,
+     </isEqual> 
+         count(b.id) as tc, sum(a.item_time) as itemTime,
+        sum(a.subtotal) as subtotal, sum(a.total_deduct_amt) as costAmt,avg(a.work_time) as workTime,avg(a.stop_time) as stopTime,
+        sum(case when a.finish_date is null  or a.plan_finish_date is null then 0 else
+        	(case when a.finish_date  &gt; a.plan_finish_date then 1 else 0 end) end
+        ) outTimeTc,
         b.orgid as orgid
         from wb_repair.rps_item a
 		inner join wb_repair.rps_maintain b
 		on a.service_id = b.id
-		where b.is_settle = 1
+		where 1 = 1
 		     <dynamic>
 		     <isNotEmpty prepend="and" property="orgid">
                 (b.orgid = #orgid#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="orgids">
                 (b.orgid in ($orgids$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isSettle">
+                (b.is_settle = #isSettle#)
             </isNotEmpty>
 			<isNotEmpty prepend="and" property="startDate"> 
                 b.out_date &gt;= #startDate#
@@ -57,6 +63,7 @@
 	  order by tc
 	</isEqual>  
  </select>
+ 
        <!--  返工台次，返工台次占比-->
     <select id="selectItemTotalreportB" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     SELECT

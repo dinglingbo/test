@@ -456,6 +456,7 @@
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopstart0</sourceNode>
       <targetNode>invokePojo3</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
     <location x="630" y="211"/>

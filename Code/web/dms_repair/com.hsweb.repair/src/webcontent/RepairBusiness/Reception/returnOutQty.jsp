@@ -9,7 +9,7 @@
 -->
 <head>
     <title>退货归库查询</title>
-    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnOutQty.js?v=1.0.39"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnOutQty.js?v=1.0.0"></script>
     <style type="text/css">
     .title {
       width: 60px;
@@ -100,6 +100,7 @@
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
 				
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
             </td>
             
         </td>
@@ -184,5 +185,7 @@
 </div>
 </div>
 
+<div id="exportDiv" style="display:none">  
 
+</div> 
 </html>

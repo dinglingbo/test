@@ -22,7 +22,7 @@ var enterTypeIdHash = {};
 var partBrandIdHash = {};
 
 var statusHash = {
-    "0":"草稿",
+    "0":"未出库",
     "1":"部分出库",
     "2":"全部出库"
 };
@@ -397,4 +397,26 @@ function onDrawCell(e)
         default:
             break;
     }
+}
+
+
+function onExport(){
+	var detail = nui.clone(rightGrid.getData());
+	//多级
+	exportMultistage(rightGrid.columns)
+	//单级
+	//exportNoMultistage(rightGrid.columns)
+	for(var i=0;i<detail.length;i++){
+		detail[i].settleStatus=statusHash[detail[i].settleStatus];
+	
+		detail[i].storeId=storehouseHash[detail[i].storeId].name;
+		detail[i].partBrandId = partBrandIdHash[detail[i].partBrandId].name;
+	
+	}
+	if(detail && detail.length > 0){
+		//多级表头类型
+		setInitExportData( detail,rightGrid.columns,"调拨申请明细表导出");
+		//单级表头类型 与上二选一
+		setInitExportDataNoMultistage( detail,rightGrid.columns,"调拨申请明细表导出");
+	}
 }

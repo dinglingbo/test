@@ -1053,7 +1053,7 @@ function setGuestInfo(params)
     params.token = token;
     nui.ajax({
         url:getGuestInfo,
-        data: {params: params},
+        data: {params: params,token:token},
         type:"post",
         success:function(text)
         {

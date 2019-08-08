@@ -226,3 +226,32 @@ function selectSupplier(elId) {
         }
     });
 }
+function onExport(){
+	var detail = nui.clone(datagrid1.getData());
+	exportNoMultistage(datagrid1.columns)
+	for(var i=0;i<detail.length;i++){
+
+
+        if(auditSignHash && auditSignHash[detail[i].auditSign]){
+        	detail[i].auditSign = auditSignHash[detail[i].auditSign];
+        } else {
+        	detail[i].auditSign = "";
+        }
+        
+        if(settleStatusHash && settleStatusHash[detail[i].settleStatus]){
+        	detail[i].settleStatus = settleStatusHash[detail[i].settleStatus];
+        } else {
+        	detail[i].auditSign = "";
+        }
+        if(detail[i].billDc == 1){
+        	detail[i].billDc = "应收";
+        }else{
+        	detail[i].billDc = "应付";
+        }
+
+	}
+	if(detail && detail.length > 0){
+		setInitExportDataNoMultistage( detail,datagrid1.columns,"其他收支明细表导出");
+	}
+	
+}

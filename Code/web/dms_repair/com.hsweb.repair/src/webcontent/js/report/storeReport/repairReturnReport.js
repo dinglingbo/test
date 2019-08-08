@@ -353,3 +353,36 @@ function editSell(){
     };
     window.parent.activeTabAndInit(part,params);
 }
+
+function onExport(){
+	var detail = nui.clone(rightGrid.getData());
+	exportMultistage(rightGrid.columns)
+	for(var i=0;i<detail.length;i++){
+		for(var j in storeHash) {
+		    if(detail[i].storeId ==storeHash[j].id ){
+		    	detail[i].storeId=storeHash[j].name;
+		    }
+		}
+		if(detail[i].returnSign==0){
+			detail[i].returnSign="否";
+		}else{
+			detail[i].returnSign="是";
+		}
+		for(var j in partTypeHash) {
+			if(detail[i].carTypeIdF==partTypeHash[j].id){
+				detail[i].carTypeIdF=partTypeHash[j].name;
+			}
+			if(detail[i].carTypeIdS==partTypeHash[j].id){
+				detail[i].carTypeIdS=partTypeHash[j].name;
+			}
+			if(detail[i].carTypeIdT==partTypeHash[j].id){
+				detail[i].carTypeIdT=partTypeHash[j].name;
+			}
+		}
+		detail[i].outReturnSign="已归库";
+	}
+	if(detail && detail.length > 0){
+		setInitExportData( detail,rightGrid.columns,"配件归库明细表");
+	}
+	
+}

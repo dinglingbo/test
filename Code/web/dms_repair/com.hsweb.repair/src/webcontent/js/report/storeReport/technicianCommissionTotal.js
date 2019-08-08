@@ -165,3 +165,18 @@ function quickSearch(type){
 grid1.load({params:params});
 updateGridColoumn(cType);
 }
+
+function onExport(){
+	var detail = nui.clone(grid1.getData());
+	exportNoMultistage(grid1.columns)
+	for(var i=0;i<detail.length;i++){
+		detail[i].id=1;
+	    if(cType == 1){
+	    	detail[i].groupName=servieTypeHash[detail[i].groupName].name;
+	    }
+	}
+	if(detail && detail.length > 0){
+		setInitExportDataNoMultistage( detail,grid1.columns,"技师提成汇总表导出");
+	}
+	
+}

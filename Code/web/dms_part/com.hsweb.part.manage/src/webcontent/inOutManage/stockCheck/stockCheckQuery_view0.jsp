@@ -8,7 +8,7 @@
 -->
 <head>
 <title>盘点单明细</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockCheck/stockCheckQuery.js?v=1.0.3"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockCheck/stockCheckQuery.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -230,35 +230,7 @@
 </div>
 
 <div id="exportDiv" style="display:none">  
-    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
-        <tr>  
-        	<td colspan="1" align="center">盘点单号</td>
-            <td colspan="1" align="center">盘点日期</td>
-            <td colspan="1" align="center">盘点员</td>
-            <td colspan="1" align="center">盘点仓库</td>
-            <td colspan="1" align="center">配件编码</td>
-             <td colspan="1" align="center">配件名称</td>
-             
-            <td colspan="1" align="center">OEM码</td>          
-            <td colspan="1" align="center">品牌</td>
-            <td colspan="1" align="center">品牌车型</td>
-                        
-            <td colspan="1" align="center">单位</td>
-            <td colspan="1" align="center">系统数量</td>
-            <td colspan="1" align="center">实盘数量</td>
-            <td colspan="1" align="center">盈亏数量</td>
-            <td colspan="1" align="center">盈亏单价</td>
-            <td colspan="1" align="center">盈亏金额</td>
-            <td colspan="1" align="center">盈亏状态</td>
-            <td colspan="1" align="center">备注</td>            
-            <td colspan="1" align="center">审核人</td>         
-            <td colspan="1" align="center">审核日期</td>
-            <td colspan="1" align="center">配件ID</td>
-        </tr>
-        <tbody id="tableExportContent">
-        </tbody>
-    </table>  
-    <a href="" id="tableExportA"></a>
+
 </div> 
 
 </body>

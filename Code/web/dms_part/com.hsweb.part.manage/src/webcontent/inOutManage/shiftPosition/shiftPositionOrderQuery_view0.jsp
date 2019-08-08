@@ -8,7 +8,7 @@
 -->
 <head>
 <title>移仓单明细</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/shiftPosition/shiftPositionOrderQuery.js?v=1.0.2"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/shiftPosition/shiftPositionOrderQuery.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -80,6 +80,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <span class="separator"></span>
                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
             </td>
         </tr>
     </table>
@@ -226,6 +227,8 @@
 </div>
 
 
+<div id="exportDiv" style="display:none">  
 
+</div> 
 </body>
 </html>

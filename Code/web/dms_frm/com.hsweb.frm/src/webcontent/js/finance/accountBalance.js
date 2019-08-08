@@ -154,3 +154,15 @@ function quickSearch(type){
     }
     doSearch();
 }
+
+function onExport(){
+	var detail = nui.clone(mainGrid.getData());
+	exportNoMultistage(mainGrid.columns)
+	for(var i=0;i<detail.length;i++){
+        	detail[i].id = 1;
+	}
+	if(detail && detail.length > 0){
+		setInitExportDataNoMultistage( detail,mainGrid.columns,"账户余额汇总表导出");
+	}
+	
+}

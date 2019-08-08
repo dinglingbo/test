@@ -65,6 +65,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
+    <targetConnections>link6</targetConnections>
     <location x="221" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign10label</nodeLabel>
@@ -211,6 +212,16 @@
       <sourceNode>assign2</sourceNode>
       <targetNode>assign10</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="连接线" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>assign1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">params/directOrgid</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="108" y="150"/>
     <size height="28" width="28"/>
@@ -218,10 +229,6 @@
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">auditSign</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">params/orgid</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
@@ -257,6 +264,25 @@
     <location x="259" y="186"/>
     <figSize height="17" width="164"/>
     <node>invokePojo1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>assign10</targetNode>
+    </sourceConnections>
+    <targetConnections>link5</targetConnections>
+    <location x="108" y="225"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">params/orgid</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
+    <location x="106" y="261"/>
+    <figSize height="17" width="32"/>
+    <node>assign1</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

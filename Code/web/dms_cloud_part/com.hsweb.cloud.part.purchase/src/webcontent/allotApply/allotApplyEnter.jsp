@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调拨入库</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotApplyEnter.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotApplyEnter.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
   width: 70px;
@@ -85,7 +85,7 @@ body .mini-grid-row-selected{
                 <a class="nui-button" iconCls="" plain="true" onclick="save('0')" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="submit()" visible="true"  id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;入库</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="del()" visible="true" id="delBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;作废</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="del()" visible="true" id="undelBtn"><span class="fa fa-reply fa-lg"></span>&nbsp;反作废</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="del()" visible="false" id="undelBtn"><span class="fa fa-reply fa-lg"></span>&nbsp;反作废</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
                 <span id="status"></span>
             </td>
@@ -145,6 +145,7 @@ body .mini-grid-row-selected{
                               <input class="nui-hidden" name="isDisabled" id="isDisabled"/>
                               <input class="nui-hidden" name="guestOrgid" id="guestOrgid"/>
                               <input class="nui-hidden" name="auditSign"/>
+                              <input name="partBrandId"id="partBrandId"  visible="false"class="nui-combobox" />
                               <table style="width: 100%;">
                                   <tr>
                                       <td class="title required">

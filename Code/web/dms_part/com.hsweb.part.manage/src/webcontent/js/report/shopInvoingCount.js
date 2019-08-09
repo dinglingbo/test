@@ -172,139 +172,26 @@ function doSearch(params)
     });
 }
 
-function onExport(){
-	
 
-	var detail = rightGrid.getData();
-	
+function onExport(){
+	var detail = nui.clone(rightGrid.getData());
+//多级
+	exportMultistage(rightGrid.columns)
+//单级
+       //exportNoMultistage(rightGrid.columns)
 	for(var i=0;i<detail.length;i++){
+		detail[i].id=1;	
 		for(var j in brandHash) {
 			if(detail[i].partBrandId ==brandHash[j].id ){
 				detail[i].partBrandId=brandHash[j].name;
 			}
 		}		
-/*		for(var j in billTypeIdHash) {
-			if(detail[i].billTypeId ==billTypeIdHash[j].id ){
-				detail[i].billTypeId=billTypeIdHash[j].name;
-			}
-		}	
-		if(detail[i].dc==1){
-			detail[i].dc="入库";
-		}else if(detail[i].dc==-1){
-			detail[i].dc="出库";
-		}*/
 	}
 	if(detail && detail.length > 0){
-		setInitExportData( detail);
+//多级表头类型
+		setInitExportData( detail,rightGrid.columns,"进销存汇总表导出");
+//单级表头类型  与上二选一
+//setInitExportDataNoMultistage( detail,rightGrid.columns,"已结算工单明细表导出");
 	}
 	
-}
-
-function setInitExportData( detail){
-
-    var tds = '<td  colspan="1" align="left">[partCode]</td>' +
-        "<td  colspan='1' align='left'>[partName]</td>" +
-        "<td  colspan='1' align='left'>[oemCode]</td>" +
-        "<td  colspan='1' align='left'>[partBrandId]</td>" +
-        "<td  colspan='1' align='left'>[qcQty]</td>" +       
-        "<td  colspan='1' align='left'>[qcAmt]</td>" +
-        
-        "<td  colspan='1' align='left'>[purchaseEnterQty]</td>" +
-        "<td  colspan='1' align='left'>[purchaseEnterAmt]</td>" +
-
-        "<td  colspan='1' align='left'>[purchaseOutQty]</td>" +
-        "<td  colspan='1' align='left'>[purchaseOutAmt]</td>" +
-        
-        "<td  colspan='1' align='left'>[repairEnterQty]</td>" +
-        "<td  colspan='1' align='left'>[repairEnterAmt]</td>" +
-        
-        "<td  colspan='1' align='left'>[repairOutQty]</td>" +
-        "<td  colspan='1' align='left'>[repairOutAmt]</td>" +
-        
-        "<td  colspan='1' align='left'>[returnOutQty]</td>" +
-        "<td  colspan='1' align='left'>[returnOutAmt]</td>" +
-        
-        "<td  colspan='1' align='left'>[shiftEnterQty]</td>" +
-        "<td  colspan='1' align='left'>[shiftEnterAmt]</td>" +
-        
-        "<td  colspan='1' align='left'>[shiftOutQty]</td>" +
-        "<td  colspan='1' align='left'>[shiftOutAmt]</td>" +
-        
-/*        "<td  colspan='1' align='left'>[purchaseEnterQty]</td>" +
-        "<td  colspan='1' align='left'>[purchaseEnterAmt]</td>" +
-        
-        "<td  colspan='1' align='left'>[purchaseEnterQty]</td>" +
-        "<td  colspan='1' align='left'>[purchaseEnterAmt]</td>" +*/
-        
-        "<td  colspan='1' align='left'>[consumableEnterQty]</td>" +
-        "<td  colspan='1' align='left'>[consumableEnterAmt]</td>" +
-        
-        "<td  colspan='1' align='left'>[consumableOutQty]</td>" +
-        "<td  colspan='1' align='left'>[consumableOutAmt]</td>" +
-        
-        "<td  colspan='1' align='left'>[inventoryProfitQty]</td>" +
-        "<td  colspan='1' align='left'>[inventoryProfitAmt]</td>" +
-        
-        "<td  colspan='1' align='left'>[inventoryLossQty]</td>" +
-        "<td  colspan='1' align='left'>[inventoryLossAmt]</td>" +
-        
-        "<td  colspan='1' align='left'>[balaQty]</td>" +
-        "<td  colspan='1' align='left'>[balaAmt]</td>";
-        
-        
-    var tableExportContent = $("#tableExportContent");
-    tableExportContent.empty();
-    for (var i = 0; i < detail.length; i++) {
-        var row = detail[i];
-        if(row.orgid){
-            var tr = $("<tr></tr>");
-            tr.append(tds.replace("[partCode]", detail[i].partCode?detail[i].partCode:"")
-                          .replace("[partName]", detail[i].partName?detail[i].partName:"")
-                         .replace("[oemCode]", detail[i].oemCode?detail[i].oemCode:"")
-                         .replace("[partBrandId]", detail[i].partBrandId?detail[i].partBrandId:"")
-                         
-                         .replace("[qcQty]", detail[i].qcQty?detail[i].qcQty:0)
-                         .replace("[qcAmt]", detail[i].qcAmt?detail[i].qcAmt:0)
-                         
-                         .replace("[purchaseEnterQty]", detail[i].purchaseEnterQty?detail[i].purchaseEnterQty:0)
-                         .replace("[purchaseEnterAmt]", detail[i].purchaseEnterAmt?detail[i].purchaseEnterAmt:0)
-                         
-                         .replace("[purchaseOutQty]", detail[i].purchaseOutQty?detail[i].purchaseOutQty:0)
-                         .replace("[purchaseOutAmt]", detail[i].purchaseOutAmt?detail[i].purchaseOutAmt:0)
-                         
-                         .replace("[repairEnterQty]", detail[i].repairEnterQty?detail[i].repairEnterQty:0)
-                         .replace("[repairEnterAmt]", detail[i].repairEnterAmt?detail[i].repairEnterAmt:0)
-                         
-                         .replace("[repairOutQty]", detail[i].repairOutQty?detail[i].repairOutQty:0)
-                         .replace("[repairOutAmt]", detail[i].repairOutAmt?detail[i].repairOutAmt:0)
-                         
-                         .replace("[returnOutQty]", detail[i].returnOutQty?detail[i].returnOutQty:0)
-                         .replace("[returnOutAmt]", detail[i].returnOutAmt?detail[i].returnOutAmt:0)
-                         
-                         .replace("[shiftEnterQty]", detail[i].shiftEnterQty?detail[i].shiftEnterQty:0)
-                         .replace("[shiftEnterAmt]", detail[i].shiftEnterAmt?detail[i].shiftEnterAmt:0)
-                         
-                         .replace("[shiftOutQty]", detail[i].shiftOutQty?detail[i].shiftOutQty:0)
-                         .replace("[shiftOutAmt]", detail[i].shiftOutAmt?detail[i].shiftOutAmt:0)
-                         
-                         .replace("[consumableEnterQty]", detail[i].consumableEnterQty?detail[i].consumableEnterQty:0)
-                         .replace("[consumableEnterAmt]", detail[i].consumableEnterAmt?detail[i].consumableEnterAmt:0)
-                         
-                         .replace("[consumableOutQty]", detail[i].consumableOutQty?detail[i].consumableOutQty:0)
-                         .replace("[consumableOutAmt]", detail[i].consumableOutAmt?detail[i].consumableOutAmt:0)
-                         
-                         .replace("[inventoryProfitQty]", detail[i].inventoryProfitQty?detail[i].inventoryProfitQty:0)
-                         .replace("[inventoryProfitAmt]", detail[i].inventoryProfitAmt?detail[i].inventoryProfitAmt:0)
-                         
-                         .replace("[inventoryLossQty]", detail[i].inventoryLossQty?detail[i].inventoryLossQty:0)
-                         .replace("[inventoryLossAmt]", detail[i].inventoryLossAmt?detail[i].inventoryLossAmt:0)
-                         
-                         .replace("[balaQty]", detail[i].balaQty?detail[i].balaQty:0)
-                         .replace("[balaAmt]", detail[i].balaAmt?detail[i].balaAmt:0));
-            tableExportContent.append(tr);
-        }
-    }
-
- 
-    method5('tableExcel',"门店进销存明细表导出",'tableExportA');
 }

@@ -8,7 +8,7 @@
 -->
 <head>
     <title>门店进销存明细</title>
-    <script src="<%=webPath + contextPath%>/manage/js/report/shopInvoingDetail.js?v=1.0.1"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/report/shopInvoingDetail.js?v=1.0.0"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -148,27 +148,6 @@
 </div>
 
 <div id="exportDiv" style="display:none">  
-    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
-        <tr>  
-            <td colspan="1" align="center">配件编码</td>
-             <td colspan="1" align="center">配件名称</td>          
-            <td colspan="1" align="center">品牌</td>
-            <td colspan="1" align="center">品牌车型</td>                     
-            <td colspan="1" align="center">方向</td>
-            <td colspan="1" align="center">操作日期</td>
-            <td colspan="1" align="center">数量</td>
-            <td colspan="1" align="center">单价</td>
-            <td colspan="1" align="center">金额</td>
-            <td colspan="1" align="center">结存数量</td>
-            <td colspan="1" align="center">结存单价</td>
-            <td colspan="1" align="center">结存金额</td>            
-            <td colspan="1" align="center">操作类型</td>
-            <td colspan="1" align="center">操作员</td>            
-            <td colspan="1" align="center">客户/供应商</td>         
-        </tr>
-        <tbody id="tableExportContent">
-        </tbody>
-    </table>  
-    <a href="" id="tableExportA"></a>
+
 </div> 
 </html>

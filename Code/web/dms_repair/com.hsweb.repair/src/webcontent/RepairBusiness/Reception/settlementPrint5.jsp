@@ -37,10 +37,10 @@
                         <td class="color999" height="46">门店名称：</td>
                         <td><input type="text" id="txtstorename" class="peijianss" value="" /></td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td class="color999" height="46">地址：</td>
                         <td><input type="text" id="txtaddress" class="peijianss" value="" /></td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td class="color999" height="46">电话：</td>
                         <td><input type="text" id="txtphoneno" class="peijianss" value="" /></td>
@@ -52,6 +52,10 @@
                     <tr>
                         <td class="color999" height="46">打印时间：</td>
                         <td><input id="meeting" type="datetime-local" value=""/></td>
+                    </tr>
+                    <tr>
+                        <td class="color999" height="46">结算时间：</td>
+                        <td><input id="updateOutDate" type="datetime-local" value=""/></td>
                     </tr>
                 </tbody>
             </table>
@@ -118,12 +122,13 @@
                         
                         
                         
-                        <tr>
-                            <td width="50%" height="24" align="center" bgcolor="#b4b4b4" colspan="2"><span class="hei">工单号</span></td>
-                            <!-- <td width="50%" align="center" bgcolor="#b4b4b4"><span class="hei">服务编号</span> File No.</td> -->
+                         <tr>
+                            <td width="50%" height="24" align="center" bgcolor="#b4b4b4" colspan="1"><span class="hei">工单号</span></td>
+                            <td width="50%" align="center" bgcolor="#b4b4b4"><span class="hei">结算时间</span></td>
                         </tr>
                         <tr>
-                            <td height="24" align="center" colspan="2"><span id="serviceCode"></span></td>
+                            <td height="24" align="center" colspan="1"><span id="serviceCode"></span></td>
+                            <td align="center"><span id="outDate"></span></td>
                             <!-- <td align="center">235404</td> -->
                         </tr>
                         <tr>
@@ -359,6 +364,7 @@
 		var partAmt = 0;
 		var partSubtotal = 0;
 		var enterDate = null;
+		var outDate = null;
 		var weChatData = {};
 		var wechatOpenId = null;
 		var infoData = {};
@@ -433,10 +439,10 @@
 		        if(params.printName){
 			        if(params.printName == "结账单"){
 		        	   document.getElementById("spstorename").innerHTML = "结账单";
-		        	   document.getElementById("show").innerHTML = params.currRepairSettPrintContent||"";
+		        	  // document.getElementById("show").innerHTML = params.currRepairSettPrintContent||"";
 		        	}else if(params.printName == "报价单"){
 		        	   document.getElementById("spstorename").innerHTML = "报价单";
-		        	   document.getElementById("show").innerHTML = params.currRepairEntrustPrintContent||"";
+		        	  // document.getElementById("show").innerHTML = params.currRepairEntrustPrintContent||"";
 		        	}
 		        }
 	           
@@ -493,6 +499,7 @@
 	        		infoData.serviceType = 11;
 	        		infoData.mainId = params.serviceId;
 	        		enterDate = list.enterDate || "";
+	        		outDate = list.outDate || "";
 	        		wechatOpenId = list.openId || "";
 	        		/* if(wechatOpenId == "" || wechatOpenId == null){
 	        		    document.getElementById("openId").style.background="#999999"; 
@@ -512,6 +519,13 @@
 	        			enterDate = format(enterDate, "yyyy-MM-dd HH:mm");
 	        		}else{
 	        		  enterDate='';
+	        		}
+	        		if(outDate){
+	        			outDate = outDate.replace(/-/g,"/");
+	        			outDate = new Date(outDate);
+	        			outDate = format(outDate, "yyyy-MM-dd HH:mm");
+	        		}else{
+	        		  outDate=''
 	        		}
 	        		var guestFullName = list.guestFullName || "";
 	        		var contactorAddress = list.streetAddress || "";
@@ -557,6 +571,7 @@
 	        		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
 	        		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
 	        		document.getElementById("enterDate").innerHTML = enterDate;
+	        		document.getElementById("outDate").innerHTML = outDate;
 	        		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
 	        		document.getElementById("contactorAddress").innerHTML = document.getElementById("contactorAddress").innerHTML + contactorAddress;
 	        	//	document.getElementById("contactName").innerHTML = document.getElementById("contactName").innerHTML + contactName;
@@ -842,7 +857,7 @@
 	        $(".popbox").show();
 	        document.getElementById("txtno").value = document.getElementById("serviceCode").innerHTML;
     		document.getElementById("txtstorename").value = document.getElementById("comp").innerHTML;
-    		document.getElementById("txtaddress").value = document.getElementById("guestAddr").innerHTML;
+    		/* document.getElementById("txtaddress").value = document.getElementById("guestAddr").innerHTML; */
     		document.getElementById("txtphoneno").value = document.getElementById("phone").innerHTML;
     		if(document.getElementById("date").innerHTML.length > 16){
     			var value = document.getElementById("date").innerHTML.substring(0, document.getElementById("date").innerHTML.length-3);
@@ -856,22 +871,30 @@
     		}else{
     			document.getElementById("updateEnterDate").value = enterDate.replace(" ","T");
     		}
+    		if(outDate > 16){
+    			var value = outDate.substring(0, outDate-3);
+    			document.getElementById("updateOutDate").value = value.replace(" ","T");
+    		}else{
+    			document.getElementById("updateOutDate").value = outDate.replace(" ","T");
+    		}
     	}
     	
     	function save(){
 			box_setup_close(); 
     		document.getElementById("serviceCode").innerHTML = document.getElementById("txtno").value;
     		document.getElementById("comp").innerHTML = document.getElementById("txtstorename").value;
-    		var txtaddress = document.getElementById("txtaddress").value;
-    		if(txtaddress != null && txtaddress != ""){ 
+    		/* var txtaddress = document.getElementById("txtaddress").value; */
+    		/* if(txtaddress != null && txtaddress != ""){ 
     		    document.getElementById("guestAddr").innerHTML = txtaddress;
-    		}
+    		} */
     		var txtphoneno = document.getElementById("txtphoneno").value;
     		if(txtphoneno != null && txtphoneno != ""){
     		    document.getElementById("phone").innerHTML = txtphoneno;
     		}
 			document.getElementById("date").innerHTML =  document.getElementById("meeting").value.replace("T"," ");
             document.getElementById("enterDate").innerHTML = document.getElementById("updateEnterDate").value.replace("T"," ");
+            document.getElementById("outDate").innerHTML = document.getElementById("updateOutDate").value.replace("T"," ");
+            
     	}
     	
     	function box_setup_close(){

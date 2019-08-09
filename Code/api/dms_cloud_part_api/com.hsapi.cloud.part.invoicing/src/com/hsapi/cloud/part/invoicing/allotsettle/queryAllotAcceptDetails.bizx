@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryAllotAcceptDetails.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="com.hsapi.cloud.part.invoicing.allotsettle.queryPjAllotAcceptMainList&#xD;&#xA;&#xD;&#xA;调拨受理，调入退回业务操作界面列表查询" title="Administrator&#x9;19-7-24 下午3:50">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="com.hsapi.cloud.part.invoicing.allotsettle.queryAllotAcceptDetails&#xD;&#xA;&#xD;&#xA;调拨受理，调入退回 报表列表查询" title="Administrator&#x9;19-7-24 下午3:50">
     <location x="35" y="-70"/>
     <size height="100" width="466"/>
   </nodes>

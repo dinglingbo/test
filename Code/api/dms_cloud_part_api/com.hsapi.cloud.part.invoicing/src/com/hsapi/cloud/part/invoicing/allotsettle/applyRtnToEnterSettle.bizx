@@ -38,13 +38,33 @@
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="mainId" displayName="mainId" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" description="" id="link33" name="3" displayName="3" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link33" name="3" displayName="3" isDefault="false" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign3</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query">main/orderTypeId</process:leftOperand>
           <process:rightOperand type="literal">3</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link31" name="link31" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>assign2</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link41" name="1" displayName="连接线" isDefault="false" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>assign14</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">main/orderTypeId</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -75,6 +95,8 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link24</targetConnections>
+    <targetConnections>link32</targetConnections>
+    <targetConnections>link46</targetConnections>
     <location x="280" y="222"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
@@ -86,7 +108,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">enterMain/serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -227,7 +249,7 @@
       <targetNode>subprocess1</targetNode>
     </sourceConnections>
     <targetConnections>link33</targetConnections>
-    <location x="210" y="222"/>
+    <location x="210" y="156"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
@@ -240,7 +262,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="211" y="258"/>
+    <location x="211" y="192"/>
     <figSize height="17" width="26"/>
     <node>assign3</node>
   </nodes>
@@ -644,6 +666,18 @@
     <process:copy>
       <process:from type="expression" pattern="reference">outToInQty+entableQty</process:from>
       <process:to type="query">outTemp/outToInQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">dsumOrderAmt+(entableQty*sellPrice)</process:from>
+      <process:to type="query">dsumOrderAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">dsumTaxAmt+entableQty*taxPrice</process:from>
+      <process:to type="query">dsumTaxAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">dsumNoTaxAmt+entableQty*noTaxPrice</process:from>
+      <process:to type="query">dsumNoTaxAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">qty-entableQty</process:from>
@@ -1330,6 +1364,44 @@
     <location x="1488" y="258"/>
     <figSize height="17" width="105"/>
     <node>invokePojo13</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值11" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link32" name="link32" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>subprocess1</targetNode>
+    </sourceConnections>
+    <targetConnections>link31</targetConnections>
+    <location x="210" y="222"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign2label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <location x="205" y="258"/>
+    <figSize height="17" width="39"/>
+    <node>assign2</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign14" name="DBR" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link46" name="link46" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign14</sourceNode>
+      <targetNode>subprocess1</targetNode>
+    </sourceConnections>
+    <targetConnections>link41</targetConnections>
+    <location x="210" y="300"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign14label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">DBR</process:from>
+      <process:to type="query">billNoPreFix</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">050104</process:from>
+      <process:to type="query">enterTypeId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign14label" name="label" nodeType="label">
+    <location x="211" y="336"/>
+    <figSize height="17" width="26"/>
+    <node>assign14</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

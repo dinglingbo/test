@@ -147,7 +147,7 @@
             }
         </style>
 
-        <body>
+        <body onafterprint="CloseWindow('ok')">
             <!-- oncontextmenu = "return false" -->
             <div class="print_btn">
                 <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>

@@ -517,7 +517,17 @@ function addNewRow(check){
 	var data = basicInfoForm.getData();
 
     if(data.auditSign == 1){
-        e.cancel = true;
+        return;
+    }
+    //预售单
+    if(data.sourceType == 5){
+        showMsg("预售单生成的采购订单不能新增明细！","W");
+        return;
+    }
+    
+    //计划采购单
+    if(data.sourceType == 6){
+        showMsg("计划采购单生成的采购订单不能新增明细！","W");
         return;
     }
     
@@ -624,6 +634,12 @@ function loadMainAndDetailInfo(row) {
 		}else{
 			nui.get("guestId").enable();
 			nui.get("directOrgid").enable();
+		}		
+		//计划采购单转的单
+		if(row.sourceType ==6){
+			nui.get("guestId").disable();
+		}else{
+			nui.get("guestId").enable();
 		}
 		// 序列化入库主表信息，保存时判断主表信息有没有修改，没有修改则不需要保存
 		var data = basicInfoForm.getData();
@@ -948,6 +964,13 @@ function doSearch(params) {
 				nui.get("guestId").enable();
 				nui.get("directOrgid").enable();
 			}
+			//计划采购单转的单
+			if(row.sourceType ==6){
+				nui.get("guestId").disable();
+			}else{
+				nui.get("guestId").enable();
+			}
+			
 		}
 	});
 }
@@ -1232,7 +1255,8 @@ function savePrice(){
         url : savePriceUrl,
         type : "post",
         data : JSON.stringify({
-            data : data
+            data : data,
+            token :token
         }),
         success : function(data) {
             nui.unmask(document.body);
@@ -1990,6 +2014,17 @@ function deletePart() {
 		if (row.auditSign == 1) {
 			return;
 		}
+		  //预售单
+	    if(row.sourceType == 5){
+	        showMsg("预售单生成的采购订单不能删除明细！","W");
+	        return;
+	    }
+	    
+	  //计划采购单
+	    if(row.sourceType == 6){
+	        showMsg("计划采购单生成的采购订单不能删除明细！","W");
+	        return;
+	    }
 	}
 
 	var part = rightGrid.getSelected();
@@ -2841,6 +2876,13 @@ function OnrpMainGridCellBeginEdit(e){
 			 e.cancel = true; 
 		 }
 	 }
+	 
+	//计划采购单
+	 if(data.sourceType==6){
+		 if(field == "comPartCode"){
+			 e.cancel = true; 
+		 }
+	 }
 
 }
 function addMorePart(){
@@ -3067,6 +3109,15 @@ function importPart(){
 		return;
 	}
 
+	if(row.sourceType == 5){
+		showMsg("此单来源预售单不能添加明细!","W");
+		return;
+	}
+	if(row.sourceType == 6){
+		showMsg("此单来源计划采购单不能添加明细!","W");
+		return;
+	}
+
 	var main = basicInfoForm.getData();
 	if(!main.id){
 		showMsg("请先保存单据!","W");
@@ -3157,7 +3208,7 @@ function onExport(){
 	var main = leftGrid.getSelected();
 	if(!main) return;
 
-	var detail = rightGrid.getData();
+	var detail = nui.clone(rightGrid.getData());
 	if(detail && detail.length > 0){
 		setInitExportData(main, detail);
 	}
@@ -3366,16 +3417,29 @@ function addOrEditPart(row)
 }
 
 function adjustOrderQty(){
+	 var row = leftGrid.getSelected();
+	 if(!row){		 
+		 showMsg("请选择一条数据","W");
+		 return;
+	 }
+    if(row){
+        if(row.auditSign != 1) {
+            showMsg("此单未提交,不能调整!","W");
+            return;
+        } 
+    }
+       
 	nui.open({
         // targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.cloud.part.purchase.adjustQty.flow?token=" + token,
-        title: "调整订单数量",
+        url: webPath + contextPath + "/purchase/purchaseOrder/adjustPurQty.jsp",
+        title: "采购申请调整",
         width: 900, height: 400,
         allowDrag:true,
         allowResize:false,
         onload: function ()
         {
             var iframe = this.getIFrameEl();
+            iframe.contentWindow.setInitData(row.id);
            
         },
         ondestroy: function (action)
@@ -3567,4 +3631,82 @@ function getCompany(){
             console.log(jqXHR.responseText);
         }
 	});
+}
+
+
+function addPlanOrder(){
+	var data = basicInfoForm.getData();
+    var mainId = data.id;
+	var row = leftGrid.getSelected();
+	if(row.auditSign == 1){
+		showMsg("此单已提交!","W");
+		return;
+	}
+
+	 nui.open({
+	        // targetWindow: window,,
+	        url : webPath+contextPath+"/com.hsweb.cloud.part.purchase.pchPlanChoose.flow?token="+token,
+	        title : "计划采购单选择",
+	        width : 980,
+	        height : 560,
+	        allowDrag : true,
+	        allowResize : true,
+	        onload : function() {
+	            var iframe = this.getIFrameEl();
+	            iframe.contentWindow.setInitData();
+	        },
+	        ondestroy : function(action) {
+	            if (action == 'ok') {
+	                var iframe = this.getIFrameEl();
+	                var data = iframe.contentWindow.getData();
+
+	                generateApplyToEnter(data.apply.id, mainId);
+
+	            }
+	        }
+	    });
+
+}
+
+
+var geneUrl = baseUrl+"com.hsapi.cloud.part.invoicing.pchsplan.planToOrder.biz.ext";
+function generateApplyToEnter(planId, mainId) {
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '处理中...'
+    });
+
+    nui.ajax({
+        url : geneUrl,
+        type : "post",
+        data : JSON.stringify({
+        	planId : planId,
+        	mainId : mainId,
+            token : token
+        }),
+        success : function(data) {
+            nui.unmask(document.body);
+            data = data || {};
+            if (data.errCode == "S") {
+                var pjPchsOrderMainList = data.pjPchsOrderMainList;
+                if(pjPchsOrderMainList && pjPchsOrderMainList.length>0) {
+                    var leftRow = pjPchsOrderMainList[0];
+                    var row = leftGrid.getSelected();
+                    leftGrid.updateRow(row,leftRow);
+
+                    //保存成功后重新加载数据
+                    loadMainAndDetailInfo(leftRow);
+
+                    
+                }
+
+            } else {
+                showMsg(data.errMsg || "操作失败!","W");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
+    });
 }

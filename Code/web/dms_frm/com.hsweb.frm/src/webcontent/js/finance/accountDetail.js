@@ -281,3 +281,24 @@ function getItemType(callback) {
         }
     });
 }
+function onExport(){
+	var detail = nui.clone(mainGrid.getData());
+	exportNoMultistage(mainGrid.columns)
+	for(var i=0;i<detail.length;i++){
+        if (dcHash[detail[i].rpDc]) {
+        	detail[i].rpDc = dcHash[detail[i].rpDc] || "";
+        } else {
+        	detail[i].rpDc = "";
+        }
+        if(enterTypeIdHash && enterTypeIdHash[detail[i].billTypeId])
+        {
+        	detail[i].billTypeId = enterTypeIdHash[detail[i].billTypeId].name;
+        } else {
+        	detail[i].billTypeId = "";
+        }
+	}
+	if(detail && detail.length > 0){
+		setInitExportDataNoMultistage( detail,mainGrid.columns,"结算账户余额汇总表导出");
+	}
+	
+}

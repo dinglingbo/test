@@ -2909,15 +2909,19 @@ function choosePart(row_uid){
 }
 
 function addToBillPart(row, callback, unmaskcall){
-    var main = billForm.getData();
-    var data = {};
-    var insPart = {
+	 var main = billForm.getData();
+     var data = {};
+     var subtotal = row.newestSellPrice || 0;
+     var insPart = {
         serviceId:main.id||0,
         partId:row.id,
         billItemId:row.billItemId,     
         cardDetailId:0,
-        qty:1
-    };
+        qty:1,
+        subtotal:subtotal,
+	    amt:subtotal,
+	    unitPrice:subtotal
+     };
     data.insPart = insPart;
     data.serviceId = main.id||0;
     

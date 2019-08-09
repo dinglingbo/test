@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>供应商欠款明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/frm/js/finance/accountPBillDetail.js?v=1.0.4"></script>
+    <script src="<%=webPath + contextPath%>/frm/js/finance/accountPBillDetail.js?v=1.0.1"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -82,22 +82,7 @@ pageEncoding="UTF-8" session="false" %>
     </div>
     
     <div id="exportDiv" style="display:none">  
-	    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
-	        <tr>  
-	            <td colspan="1" align="center">业务单号</td>
-	            <td colspan="1" align="center">收支类型</td>
-	            <td colspan="1" align="center">供应商简称</td>
-	            <td colspan="1" align="center">应付金额</td>
-	            <td colspan="1" align="center">已付金额</td>
-	            <td colspan="1" align="center">未付金额</td>
-	            <td colspan="1" align="center">结算状态</td>
-	            <td colspan="1" align="center">单据日期</td>
-	            <td colspan="1" align="center">供应商全称</td>
-	        </tr>
-	        <tbody id="tableExportContent">
-	        </tbody>
-	    </table>  
-	    <a href="" id="tableExportA"></a>
+
 	</div>
 
 </body>

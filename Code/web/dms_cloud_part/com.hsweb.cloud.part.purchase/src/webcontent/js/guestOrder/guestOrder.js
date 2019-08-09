@@ -931,7 +931,7 @@ function audit()
 
                     //保存成功后重新加载数据
                     loadMainAndDetailInfo(leftRow);
-                    nui.confirm("是否打印？", "友情提示", function(action) {
+                    nui.confirm("提交成功,是否打印？", "友情提示", function(action) {
     					if(action== 'ok'){
     						onPrint();
     					}else{
@@ -1115,7 +1115,7 @@ function onPrint(){
 			mainId :from.id,
 			auditSign:from.auditSign
 	};
-	var openUrl = webPath + contextPath+"/purchase/purchaseOrderRtn/purchaseOrderRtnPrint.jsp";
+	var openUrl = webPath + contextPath+"/purchase/guestOrder/guestOrderPrint.jsp";
 
     nui.open({
        url: openUrl,
@@ -1770,9 +1770,7 @@ function OnrpMainGridCellBeginEdit(e){
         e.cancel = true;
     }
 
-    if(data.codeId && data.codeId>0){
-        e.cancel = true;
-    }
+ 
     if(e.field == 'storeId'){
     	editor.setData(storehouse);
     }
@@ -2206,7 +2204,7 @@ function onExport(){
 	var main = leftGrid.getSelected();
 	if(!main) return;
 
-	var detail = rightGrid.getData();
+	var detail = nui.clone(rightGrid.getData());
 	if(detail && detail.length > 0){
 		setInitExportData(main, detail);
 	}

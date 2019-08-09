@@ -277,6 +277,11 @@ function audit(){
 		showMsg("请选择一条单据","W");
 		return;
 	}
+
+    if(!nui.get('storeId').getValue()) {
+        showMsg("请选择受理仓库","W");
+        return;
+    }
 	
 	if(row.status ==3|| row.status ==4){
 		showMsg("单据状态为待受理或部分受理时才可以受理","W");
@@ -294,6 +299,7 @@ function audit(){
 		data : JSON.stringify({
 			mainId :  row.id,
 			orderTypeId :2,
+            storeId : nui.get('storeId').getValue(),
 			token: token
 		}),
 		success : function(data) {

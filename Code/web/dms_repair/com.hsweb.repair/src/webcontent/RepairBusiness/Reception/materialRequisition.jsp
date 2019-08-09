@@ -14,7 +14,7 @@
     <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/jquery-1.8.3.min.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"  type="text/javascript"></script>
 </head>
-<body oncontextmenu = "return false">
+<body onafterprint="CloseWindow('ok')" oncontextmenu = "return false">
     <style>
         * {
             margin: 0;

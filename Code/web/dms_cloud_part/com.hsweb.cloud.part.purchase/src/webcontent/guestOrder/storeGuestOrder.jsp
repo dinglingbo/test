@@ -11,7 +11,7 @@
   - Description:
 -->
 <head>
-<title>门店预销售单</title>
+<title>预销售单受理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%=webPath + contextPath%>/purchase/js/guestOrder/storeGuestOrder.js?v=1.0.106"></script>
 </head>

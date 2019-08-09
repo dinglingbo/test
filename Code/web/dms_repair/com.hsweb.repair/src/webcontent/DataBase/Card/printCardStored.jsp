@@ -142,7 +142,7 @@
                 margin: 4px 5px 0 0;
             }
     </style>
-<body ><!-- oncontextmenu = "return false" -->
+<body onafterprint="CloseWindow('ok')" ><!-- oncontextmenu = "return false" -->
 <div class="boxbg" style="display:none"></div>
  <div class="popbox" style="height:420px; width:480px; margin:-210px 0 0 -240px; display:none">
         <h2><a class="close2" href="javascript:box_setup_close()" title="关闭">&nbsp;</a>修改</h2> 

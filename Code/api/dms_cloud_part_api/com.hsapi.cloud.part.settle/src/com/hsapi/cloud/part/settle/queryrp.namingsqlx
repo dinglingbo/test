@@ -569,18 +569,12 @@
 	<select id="queryNoSettleBill" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
 		SELECT
 			a.orgid AS orgid,
-			CASE
-		WHEN a.dc = 1 THEN
-			IFNULL(sum(a.billAmt), 0)
-		END AS rAmt,
-		 CASE
-		WHEN a.dc = - 1 THEN
-			IFNULL(-sum(a.billAmt), 0)
-		END AS pAmt,
-		 '' as billAmt,
-		 a.guestId AS guestId,
-		 a.fullName AS fullName,
-		 a.shortName AS shortName
+			sum(case WHEN a.dc='1'THEN a.billAmt ELSE 0 end) as rAmt,
+			sum(case WHEN a.dc='-1'THEN (-a.billAmt) ELSE 0 end) as pAmt,	
+			 '' as billAmt,
+			 a.guestId AS guestId,
+			 a.fullName AS fullName,
+			 a.shortName AS shortName
 		FROM
 			vw_pchs_sell_order_main AS a
 			inner join wb_common.com_company b on a.orgid =b.orgid

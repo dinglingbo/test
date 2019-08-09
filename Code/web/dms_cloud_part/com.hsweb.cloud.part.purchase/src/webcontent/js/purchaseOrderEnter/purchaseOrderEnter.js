@@ -404,7 +404,12 @@ function addNewRow(check){
         e.cancel = true;
         return;
     }
-    
+    //来源于采购单
+    if(data.sourceType ==1){
+    	e.cancel = true;
+    	showMsg("来源于采购订单的明细不能添加","W");
+        return;
+    }
 	var rows = [];
 	if(check){
 		rows = rightGrid.findRows(function(row) {
@@ -1039,7 +1044,8 @@ function savePrice(){
         url : savePriceUrl,
         type : "post",
         data : JSON.stringify({
-            data : data
+            data : data,
+            token : token,
         }),
         success : function(data) {
             nui.unmask(document.body);
@@ -2475,6 +2481,11 @@ function OnrpMainGridCellBeginEdit(e){
     if(data.auditSign == 1){
         e.cancel = true;
 	}
+    if(data.sourceType==1){
+	   if(field=="comPartCode"){
+		   e.cancel = true;
+	   }
+    }
 	if(advancedMorePartWin.visible) {
 		e.cancel = true;
 		morePartGrid.focus();
@@ -2671,7 +2682,7 @@ function onExport(){
 	var main = leftGrid.getSelected();
 	if(!main) return;
 
-	var detail = rightGrid.getData();
+	var detail = nui.clone(rightGrid.getData());
 	if(detail && detail.length > 0){
 		setInitExportData(main, detail);
 	}
@@ -2800,13 +2811,14 @@ function addOrderToEnter(data){
 	nui.get("taxRate").setValue(data.taxRate);
 	nui.get("taxSign").setValue(data.taxSign);
 //	nui.get("createDate").setValue(new Date());
+	nui.get("orderDate").setValue(data.orderDate);
 	nui.get("orderMan").setValue(data.orderMan);
 	
 	var guestId = nui.get("guestId");
 	guestId.setValue(data.guestId);
 	guestId.setText(data.fullName);
 
-	var params = {mainId: data.orderMainId};
+	var params = {mainId: data.orderMainId,notFinished:0};
 	if(data && data.type == 'pchs'){
 		nui.get("sourceType").setValue(1);
 		getOrderDetail(params);
@@ -2842,7 +2854,7 @@ function getOrderDetail(params)
 							comPartBrandId : row.comPartBrandId,
 							comApplyCarModel : row.comApplyCarModel,
 							comUnit : row.comUnit,
-							orderQty : row.orderQty,
+							orderQty : row.canInQty,
 							orderPrice : row.orderPrice,
 							orderAmt : parseFloat(row.orderQty) * parseFloat(row.orderPrice),
 							storeId : row.storeId,

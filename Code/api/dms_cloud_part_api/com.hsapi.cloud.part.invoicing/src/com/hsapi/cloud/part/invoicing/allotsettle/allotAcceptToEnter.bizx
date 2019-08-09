@@ -331,6 +331,10 @@
       <process:to type="query">applyMain/code</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">直发处理</process:from>
+      <process:to type="query">applyMain/orderMan</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">enterMain/orgid</process:to>
     </process:copy>
@@ -456,6 +460,7 @@
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopstart0</sourceNode>
       <targetNode>invokePojo3</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
     <location x="630" y="211"/>

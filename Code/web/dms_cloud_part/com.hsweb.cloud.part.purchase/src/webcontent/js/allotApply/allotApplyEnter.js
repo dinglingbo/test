@@ -90,17 +90,17 @@ $(document).ready(function(v)
                 isNeedSet = true;
             }
     
-            //getAllPartBrand(function(data) {
-            //    brandList = data.brand;
-            //    nui.get("partBrandId").setData(brandList);
-            //    brandList.forEach(function(v) {
-            //        brandHash[v.id] = v;
-            //    });
-
+            getAllPartBrand(function(data) {
+                brandList = data.brand;
+                nui.get("partBrandId").setData(brandList);
+                brandList.forEach(function(v) {
+                    brandHash[v.id] = v;
+                });
+            });
                 quickSearch(6);
 
                 nui.unmask();
-            //});
+            
             
         });
         
@@ -808,7 +808,7 @@ function onPrint(){
             mainId :from.id,
             auditSign:from.auditSign
     };
-    var openUrl = webPath + contextPath+"/purchase/purchaseOrderRtn/purchaseOrderRtnPrint.jsp";
+    var openUrl = webPath + contextPath+"/purchase/allotPrint/allotApplyInPrint.jsp";
 
     nui.open({
        url: openUrl,
@@ -825,8 +825,8 @@ function onPrint(){
     if(checkNew() > 0){
         return;
     }
-    rightGrid.setData([]);
-    //add();
+//    rightGrid.setData([]);
+//    add();
     
 }
 function add()
@@ -924,8 +924,6 @@ function deletePart(){
             return;
         } 
     }
-
-    if(row.codeId && data.codeId>0) return;
 
     var part = rightGrid.getSelected();
     if(!part)

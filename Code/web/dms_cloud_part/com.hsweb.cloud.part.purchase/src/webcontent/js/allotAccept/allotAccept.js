@@ -109,17 +109,17 @@ $(document).ready(function(v)
                 isNeedSet = true;
             }
     
-            //getAllPartBrand(function(data) {
-            //    brandList = data.brand;
-            //    nui.get("partBrandId").setData(brandList);
-            //    brandList.forEach(function(v) {
-            //        brandHash[v.id] = v;
-            //    });
-
+            getAllPartBrand(function(data) {
+                brandList = data.brand;
+                nui.get("partBrandId").setData(brandList);
+                brandList.forEach(function(v) {
+                    brandHash[v.id] = v;
+                });
+            });
                 quickSearch(6);
 
                 nui.unmask();
-            //});
+           
             
         });
         
@@ -707,7 +707,7 @@ function onAdvancedSearchCancel()
 function checkNew() 
 {
     var rows = leftGrid.findRows(function(row){
-        if(row.serviceId == "新调拨申请") return true;
+        if(row.serviceId == "新调拨受理") return true;
     });
     
     return rows.length;
@@ -910,7 +910,7 @@ function onPrint(){
             mainId :from.id,
             auditSign:from.auditSign
     };
-    var openUrl = webPath + contextPath+"/purchase/purchaseOrderRtn/purchaseOrderRtnPrint.jsp";
+    var openUrl = webPath + contextPath+"/purchase/allotPrint/allotAcceptOutPrint.jsp";
 
     nui.open({
        url: openUrl,
@@ -928,7 +928,7 @@ function onPrint(){
         return;
     }
     rightGrid.setData([]);
-    //add();
+    add();
     
 }
 function add()
@@ -956,12 +956,12 @@ function add()
                     basicInfoForm.reset();
                     rightGrid.clearRows();
                     
-                    var newRow = { serviceId: '新调拨申请', auditSign: 0, status: 0, isDisabled: 0};
+                    var newRow = { serviceId: '新调拨受理', auditSign: 0, status: 0, isDisabled: 0};
                     leftGrid.addRow(newRow, 0);
                     leftGrid.clearSelect(false);
                     leftGrid.select(newRow, false);
                     
-                    nui.get("serviceId").setValue("新调拨申请");
+                    nui.get("serviceId").setValue("新调拨受理");
                     nui.get("status").setValue(0); 
                     nui.get("orderDate").setValue(new Date());
                     nui.get("orderMan").setValue(currUserName);
@@ -985,12 +985,12 @@ function add()
         basicInfoForm.reset();
         rightGrid.clearRows();
         
-        var newRow = { serviceId: '新调拨申请', auditSign: 0, status: 0, isDisabled: 0};
+        var newRow = { serviceId: '新调拨受理', auditSign: 0, status: 0, isDisabled: 0};
         leftGrid.addRow(newRow, 0);
         leftGrid.clearSelect(false);
         leftGrid.select(newRow, false);
         
-        nui.get("serviceId").setValue("新调拨申请");
+        nui.get("serviceId").setValue("新调拨受理");
         nui.get("status").setValue(0);  
         nui.get("orderDate").setValue(new Date());
         nui.get("orderMan").setValue(currUserName);
@@ -1046,7 +1046,7 @@ function onCellEditEnter(e){
     var orderPrice = record.orderPrice;
     if(cell && cell.length >= 2){
         var column = cell[1];
-        if(column.field == "applyQty"){
+        if(column.field == "acceptQty"){
             if(orderPrice){
                 addNewKeyRow();
             }
@@ -1182,7 +1182,7 @@ function addInsertRow(value, row) {
             comPartBrandId : part.partBrandId,
             comApplyCarModel : part.applyCarModel,
             comUnit : part.unit,
-            applyQty : 1,
+            acceptQty : 1,
             storeId : FStoreId,
             comOemCode : part.oemCode,
             comSpec : part.spec,
@@ -1243,8 +1243,8 @@ function checkRightData()
     var msg = '';
     var rows = rightGrid.findRows(function(row){
         if(row.partId){
-            if(row.applyQty){
-                if(row.applyQty <= 0) return true;
+            if(row.acceptQty){
+                if(row.acceptQty <= 0) return true;
             }else{
                 return true;
             }
@@ -1254,7 +1254,7 @@ function checkRightData()
     });
     
     if(rows && rows.length > 0){
-        msg = "请填写申请数量！";
+        msg = "请填写受理数量！";
     }
     return msg;
 }
@@ -1358,7 +1358,7 @@ function addSelectPart(){
             comPartBrandId : row.partBrandId,
             comApplyCarModel : row.applyCarModel,
             comUnit : row.unit,
-            applyQty : 1,
+            acceptQty : 1,
             storeId : FStoreId,
             comOemCode : row.oemCode,
             comSpec : row.spec,
@@ -1378,7 +1378,7 @@ function addSelectPart(){
         }else{
             rightGrid.addRow(newRow);
         }
-        rightGrid.beginEditCell(rightGrid.getSelected(), "applyQty");
+        rightGrid.beginEditCell(rightGrid.getSelected(), "acceptQty");
         
         advancedMorePartWin.hide();
         morePartGrid.setData([]);
@@ -1412,7 +1412,7 @@ function OnrpMainGridCellBeginEdit(e){
     }
 
     if(data.codeId && data.codeId>0 ){
-    	if(e.field =="comPartCode"  || e.field =="applyQty"){
+    	if(e.field =="comPartCode"  || e.field =="acceptQty"){
     		 e.cancel = true;
     	}
        
@@ -1571,7 +1571,7 @@ function addDetail(rows)
             comPartBrandId : row.fullName,
             comApplyCarModel : row.applyCarModel,
             comUnit : row.unit,
-            applyQty : 1,
+            acceptQty : 1,
             orderPrice : 0,
             orderAmt : 0,
             comOemCode : row.oemCode,

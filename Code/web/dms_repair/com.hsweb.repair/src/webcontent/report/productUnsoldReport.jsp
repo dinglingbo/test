@@ -55,7 +55,7 @@ body {
                 emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
       
         <a class="nui-button" iconcls=""  name="" onclick="Search()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-        <!-- <a class="nui-button" iconcls=""  name="" onclick=""><span class="fa fa-mail-forward fa-lg"></span>&nbsp;导出</a> -->
+      <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
     </div>
 
     <div class="nui-fit">
@@ -84,6 +84,9 @@ body {
     </div>
 </div>
 
+
+<div id="exportDiv" style="display:none">  
+</div>
 <script type="text/javascript">
 
     nui.parse();
@@ -256,6 +259,33 @@ function getDate(wantDay){
 	var day=returnDate.getDate();
 	var returnSting=year+"-"+(month<10 ? "0"+month :month)+"-"+(day<10 ?"0"+day:day);
 	return returnSting;
+}
+function onExport(){
+	var detail = nui.clone(grid.getData());
+	exportNoMultistage(grid.columns)
+	for(var i=0;i<detail.length;i++){
+
+		for(var j in storeHash) {
+		    if(detail[i].storeId ==storeHash[j].id ){
+		    	detail[i].storeId=storeHash[j].name;
+		    }
+		}
+		for(var j in partTypeHash) {
+			if(detail[i].carTypeIdF==partTypeHash[j].id){
+				detail[i].carTypeIdF=partTypeHash[j].name;
+			}
+			if(detail[i].carTypeIdS==partTypeHash[j].id){
+				detail[i].carTypeIdS=partTypeHash[j].name;
+			}
+			if(detail[i].carTypeIdT==partTypeHash[j].id){
+				detail[i].carTypeIdT=partTypeHash[j].name;
+			}
+		}
+	}
+	if(detail && detail.length > 0){
+		setInitExportDataNoMultistage( detail,grid.columns,"滞销产品统计汇总表导出");
+	}
+	
 }
 </script>
 </body>

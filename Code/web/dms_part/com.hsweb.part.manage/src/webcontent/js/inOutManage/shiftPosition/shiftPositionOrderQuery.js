@@ -411,3 +411,33 @@ function edit(){
     var params = row; 
     window.parent.activeTabAndInit(item,params);
 }
+
+function onExport(){
+	var detail = nui.clone(rightGrid.getData());
+//多级
+	exportMultistage(rightGrid.columns)
+//单级
+       //exportNoMultistage(rightGrid.columns)
+	for(var i=0;i<detail.length;i++){
+		for(var j in storehouseHash) {
+			if(detail[i].storeId ==storehouseHash[j].id ){
+				detail[i].storeId=storehouseHash[j].name;
+			}
+			if(detail[i].receiveStoreId ==storehouseHash[j].id ){
+				detail[i].receiveStoreId=storehouseHash[j].name;
+			}
+		}
+		for(var j in partBrandIdHash) {
+			if(detail[i].partBrandId ==partBrandIdHash[j].id ){
+				detail[i].partBrandId=partBrandIdHash[j].name;
+			}
+		}		
+	}
+	if(detail && detail.length > 0){
+//多级表头类型
+		setInitExportData( detail,rightGrid.columns,"移仓单明细表导出");
+//单级表头类型  与上二选一
+//setInitExportDataNoMultistage( detail,rightGrid.columns,"已结算工单明细表导出");
+	}
+	
+}

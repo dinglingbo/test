@@ -142,7 +142,7 @@
                 margin: 4px 5px 0 0;
             }
     </style>
-<body ><!-- oncontextmenu = "return false" -->
+<body onafterprint="CloseWindow('ok')" ><!-- oncontextmenu = "return false" -->
 <div class="boxbg" style="display:none"></div>
  <div class="popbox" style="height:420px; width:480px; margin:-210px 0 0 -240px; display:none">
         <h2><a class="close2" href="javascript:box_setup_close()" title="关闭">&nbsp;</a>修改</h2>
@@ -172,6 +172,10 @@
                     <tr>
                         <td class="color999" height="46">打印时间：</td>
                         <td><input id="meeting" type="datetime-local" value=""/></td>
+                    </tr>
+                    <tr>
+                        <td class="color999" height="46">结算时间：</td>
+                        <td><input id="updateOutDate" type="datetime-local" value=""/></td>
                     </tr>
                 </tbody>
             </table>
@@ -217,7 +221,9 @@
 	                    <td rowspan="2" style="">
 	                        <div style="font-size: 20px; font-family: 华文中宋;padding-top: 5px;"><b><span id="spstorename"></span></b></div>
 	                        <div style="padding-top: 2px; font-size: 13px;font-family: Arial;">
-	                          №:<span id="serviceCode"></span>  
+	                          №:<span id="serviceCode"></span> 
+	                          <br> 
+	                          <span style="font-size:8px;">打印时间：<span id="date"></span></span> 
 	                        </div>
 	                    </td>
 	                </tr>
@@ -237,12 +243,12 @@
             <tr>
                 <td style="font-size:8px;" >地址：<span id="guestAddr"></span></td>
                 <td style="font-size:8px;">开户银行：<span id="openBank"></span></td>
-                <td style="font-size:8px;">打印时间：<span id="date"></span></td>
+                <td style="font-size:8px;">进厂时间：<span id="enterDate"></span></td>
             </tr> 
             <tr>
                 <td style="font-size:8px;">电话：<span id="phone"></span></td>
                 <td style="font-size:8px;" >银行账号：<span id="bankNo"></span></td>
-             	<td style="font-size:8px;">进厂时间：<span id="enterDate"></span></td>
+             	<td style="font-size:8px;">结算时间：<span id="outDate"></span></td>
             </tr>
         </table>
 
@@ -443,6 +449,7 @@
 		var partAmt = 0;
 		var partSubtotal = 0;
 		var enterDate = null;
+		var outDate = null;
 		var weChatData = {};
 		var wechatOpenId = null;
 		var infoData = {};
@@ -575,6 +582,7 @@
 	        		infoData.serviceType = 11;
 	        		infoData.mainId = params.serviceId;
 	        		enterDate = list.enterDate || "";
+	        		outDate = list.outDate || "";
 	        		wechatOpenId = list.openId || "";
 	        		if(wechatOpenId == "" || wechatOpenId == null){
 	        		    document.getElementById("openId").style.background="#999999"; 
@@ -594,6 +602,13 @@
 	        			enterDate = format(enterDate, "yyyy-MM-dd HH:mm");
 	        		}else{
 	        		  enterDate='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+	        		}
+	        		if(outDate){
+	        			outDate = outDate.replace(/-/g,"/");
+	        			outDate = new Date(outDate);
+	        			outDate = format(outDate, "yyyy-MM-dd HH:mm");
+	        		}else{
+	        		  outDate='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
 	        		}
 	        		var guestFullName = list.guestFullName || "";
 	        		var guestMobile = list.guestMobile || "";
@@ -638,6 +653,7 @@
 	        		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
 	        		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
 	        		document.getElementById("enterDate").innerHTML = enterDate;
+	        		document.getElementById("outDate").innerHTML = outDate;
 	        		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
 	        		document.getElementById("contactName").innerHTML = document.getElementById("contactName").innerHTML + contactName;
 	        		
@@ -982,6 +998,12 @@
     		}else{
     			document.getElementById("updateEnterDate").value = enterDate.replace(" ","T");
     		}
+    		if(outDate > 16){
+    			var value = outDate.substring(0, outDate-3);
+    			document.getElementById("updateOutDate").value = value.replace(" ","T");
+    		}else{
+    			document.getElementById("updateOutDate").value = outDate.replace(" ","T");
+    		}
     	}
     	
     	function save(){
@@ -998,6 +1020,7 @@
     		}
 			document.getElementById("date").innerHTML =  document.getElementById("meeting").value.replace("T"," ");
             document.getElementById("enterDate").innerHTML = document.getElementById("updateEnterDate").value.replace("T"," ");
+            document.getElementById("outDate").innerHTML = document.getElementById("updateOutDate").value.replace("T"," ");
     	}
     	
     	function box_setup_close(){

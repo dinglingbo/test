@@ -245,52 +245,22 @@ function getItemType(callback) {
     });
 }
 
-
 function onExport(){
-
-	var detail = mainGrid.getData();
-	
-	if(detail && detail.length > 0){
-		setInitExportData(detail);
-	}else{
-		showMsg("没有可导出数据！","W");
-	}
-}
-function setInitExportData(detail){
-    var tds = '<td  colspan="1" align="left">[billServiceId]</td>' +
-        "<td  colspan='1' align='left'>[billTypeId]</td>" +
-        "<td  colspan='1' align='left'>[shortName]</td>" +
-        "<td  colspan='1' align='left'>[rpAmt]</td>" +
-        "<td  colspan='1' align='left'>[trueCharOffAmt]</td>" +
-        "<td  colspan='1' align='left'>[noCharOffAmt]</td>" +
-        "<td  colspan='1' align='left'>[settleStatus]</td>" +
-        "<td  colspan='1' align='left'>[auditDate]</td>"+
-        "<td  colspan='1' align='left'>[fullName]</td>";
-        
-    var tableExportContent = $("#tableExportContent");
-    tableExportContent.empty();
-    for (var i = 0; i < detail.length; i++) {
-        var row = detail[i];
-        if(row){
-        	var billTypeName = detail[i].billTypeId;
-        	var settleStatus = detail[i].settleStatus;
-        	if(billTypeName) {
-        		billTypeName = enterTypeIdHash[billTypeName].name;
-        	}
-        	settleStatus = settleStatusHash[settleStatus];
-            var tr = $("<tr></tr>");
-            tr.append(tds.replace("[billServiceId]", detail[i].billServiceId?detail[i].billServiceId:"")
-                         .replace("[billTypeId]", billTypeName?billTypeName:"")
-                         .replace("[shortName]", detail[i].shortName?detail[i].shortName:"")
-                         .replace("[rpAmt]", detail[i].rpAmt?detail[i].rpAmt:"")
-                         .replace("[trueCharOffAmt]", detail[i].trueCharOffAmt?detail[i].trueCharOffAmt:"")
-                         .replace("[noCharOffAmt]", detail[i].noCharOffAmt?detail[i].noCharOffAmt:0)
-                         .replace("[settleStatus]", settleStatus?settleStatus:"")
-                         .replace("[auditDate]", detail[i].auditDate?detail[i].auditDate.Format("yyyy-MM-dd HH:mm:ss"):"")
-                         .replace("[fullName]", detail[i].fullName?detail[i].fullName:""));
-            tableExportContent.append(tr);
+	var detail = nui.clone(mainGrid.getData());
+	exportNoMultistage(mainGrid.columns)
+	for(var i=0;i<detail.length;i++){
+        if(enterTypeIdHash && enterTypeIdHash[detail[i].billTypeId]){
+        	detail[i].billTypeId = enterTypeIdHash[detail[i].billTypeId].name;
         }
-    }
 
-    method5('tableExcel',"供应商欠款明细",'tableExportA');
+        if(settleStatusHash && settleStatusHash[detail[i].settleStatus]){
+        	detail[i].settleStatus = settleStatusHash[detail[i].settleStatus];
+        }
+	}
+	if(detail && detail.length > 0){
+		setInitExportDataNoMultistage( detail,mainGrid.columns,"供应商欠款明细表导出");
+	}
+	
 }
+
+

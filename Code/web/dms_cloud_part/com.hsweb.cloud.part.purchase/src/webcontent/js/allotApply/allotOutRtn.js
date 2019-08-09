@@ -109,18 +109,18 @@ $(document).ready(function(v)
                 isNeedSet = true;
             }
     
-            //getAllPartBrand(function(data) {
-            //    brandList = data.brand;
-            //    nui.get("partBrandId").setData(brandList);
-            //    brandList.forEach(function(v) {
-            //        brandHash[v.id] = v;
-            //    });
+            getAllPartBrand(function(data) {
+                brandList = data.brand;
+                nui.get("partBrandId").setData(brandList);
+                brandList.forEach(function(v) {
+                    brandHash[v.id] = v;
+                });
+          });
 
                 quickSearch(6);
 
                 nui.unmask();
-            //});
-            
+                        
         });
         
     });
@@ -873,7 +873,7 @@ function onPrint(){
             mainId :from.id,
             auditSign:from.auditSign
     };
-    var openUrl = webPath + contextPath+"/purchase/purchaseOrderRtn/purchaseOrderRtnPrint.jsp";
+    var openUrl = webPath + contextPath+"/purchase/allotPrint/allotOutRtnPrint.jsp";
 
     nui.open({
        url: openUrl,
@@ -890,7 +890,7 @@ function onPrint(){
     if(checkNew() > 0){
         return;
     }
-    rightGrid.setData([]);
+//    rightGrid.setData([]);
     //add();
     
 }
@@ -1152,7 +1152,7 @@ function addInsertRow(value, row) {
             partName : part.name,
             fullName : part.fullName,
             systemUnitId : part.unit,
-            outUnitId : part.unit
+            enterUnitId : part.unit
         };
 
         if(row){
@@ -1328,7 +1328,7 @@ function addSelectPart(){
             partName : row.name,
             fullName : row.fullName,
             systemUnitId : row.unit,
-            outUnitId : row.unit
+            enterUnitId : row.unit
         };
         
         advancedMorePartWin.hide();
@@ -1550,7 +1550,7 @@ function addDetail(rows)
             partName : row.name,
             fullName : row.fullName,
             systemUnitId : row.unit,
-            outUnitId : row.unit
+            enterUnitId : row.unit
         };
 
 
@@ -1695,3 +1695,4 @@ function adjustPart(){
         return;
     }
 }
+

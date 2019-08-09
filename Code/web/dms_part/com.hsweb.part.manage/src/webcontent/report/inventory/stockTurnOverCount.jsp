@@ -9,7 +9,7 @@
 -->
 <head>
     <title>库存周转汇总</title>
-    <script src="<%=webPath + contextPath%>/manage/js/report/stockTurnOverCount.js?v=1.0.41"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/report/stockTurnOverCount.js?v=1.0.1"></script>
     <style type="text/css">
     .title {
       width: 60px;
@@ -65,6 +65,7 @@
                         emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                 
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a> 
             </td>
             
         </td>
@@ -105,6 +106,9 @@
     </div>
 </div>
 
+</div>
 
+
+<div id="exportDiv" style="display:none">  
 
 </html>

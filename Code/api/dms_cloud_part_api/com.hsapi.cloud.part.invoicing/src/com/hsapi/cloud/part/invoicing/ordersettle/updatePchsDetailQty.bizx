@@ -525,11 +525,15 @@
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">E</process:from>
+      <process:from type="literal" pattern="reference">E</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">实际入库数量超过采购单做的数量</process:from>
+      <process:from type="query" pattern="reference">temp/partCode</process:from>
+      <process:to type="query">partCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">&quot;配件编码&quot;+partCode+&quot;实际入库数量超过采购单做的数量&quot;</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -581,15 +585,20 @@
     <figSize height="20" width="49"/>
     <node>assign10</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign11" name="赋值11" displayName="赋值" grouped="true" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign11" name="赋值11" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" lineType="inheritance" isDefault="true" type="break">
       <sourceNode>assign11</sourceNode>
       <targetNode>loopend0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
     <location x="398" y="219"/>
     <size height="28" width="28"/>
     <nodeLabel>assign11label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
     <location x="388" y="255"/>
@@ -632,6 +641,7 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="p4"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="mainId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="orderPrice" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="partCode" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk" name="detail"/>

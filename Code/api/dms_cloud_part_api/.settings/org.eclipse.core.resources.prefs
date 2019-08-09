@@ -3,6 +3,7 @@ encoding//com.hsapi.cloud.part.baseDataCrud/eosdebug/com/hsapi/cloud/part/baseDa
 encoding//com.hsapi.cloud.part.baseDataCrud/eosdebug/com/hsapi/cloud/part/baseDataCrud/crud/querySellStrategy.bizx.eosdebug=UTF-8
 encoding//com.hsapi.cloud.part.baseDataCrud/eosdebug/com/hsapi/cloud/part/baseDataCrud/crud/savePart.bizx.eosdebug=UTF-8
 encoding//com.hsapi.cloud.part.baseDataCrud/eosdebug/com/hsapi/cloud/part/baseDataCrud/crud/savePartBrand.bizx.eosdebug=UTF-8
+encoding//com.hsapi.cloud.part.invoicing/eosdebug/com/hsapi/cloud/part/invoicing/allotsettle/generatePchsOut.bizx.eosdebug=UTF-8
 encoding//com.hsapi.cloud.part.invoicing/eosdebug/com/hsapi/cloud/part/invoicing/allotsettle/updatePjAllotAcceptDisabled.bizx.eosdebug=UTF-8
 encoding//com.hsapi.cloud.part.invoicing/eosdebug/com/hsapi/cloud/part/invoicing/allotsettle/updatePjAllotApply.bizx.eosdebug=UTF-8
 encoding//com.hsapi.cloud.part.invoicing/eosdebug/com/hsapi/cloud/part/invoicing/crud/savePjEnter.bizx.eosdebug=UTF-8

@@ -89,7 +89,8 @@ pageEncoding="UTF-8" session="false"%>
                    <div type="indexcolumn" width="40" headerAlign="center">序号</div>
                    <div allowSort="true" field="serviceId" name="serviceId" width="150" headerAlign="center" header="申请单号" summaryType="count"></div>
                    <div allowSort="true" field="guestFullName" name="guestFullName" width="120" headerAlign="center" header="调出方"></div>
-                   <div allowSort="true" field="status" name="status" width="50" headerAlign="center" header="状态"></div>
+                   <div allowSort="true" field="status" name="status" width="60" headerAlign="center" header="受理状态"></div>
+                   <div allowSort="true" field="settleStatus" name="status" width="60" headerAlign="center" header="入库状态"></div>
                    <div allowSort="true" field="orderMan" name="orderMan" width="50" headerAlign="center" header="申请人"></div>
                    <div allowSort="true" field="orderDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="120px" header="申请日期" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
                    <div allowSort="true" field="auditor" name="auditor" width="50" headerAlign="center" header="提交人"></div>

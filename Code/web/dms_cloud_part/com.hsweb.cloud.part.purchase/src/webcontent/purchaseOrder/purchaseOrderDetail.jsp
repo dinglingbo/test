@@ -39,8 +39,8 @@
                     <li iconCls="" onclick="quickSearch(12)" id="type12">待收货</li>
                     <li iconCls="" onclick="quickSearch(13)" id="type13">部分入库</li> 
                     <li iconCls="" onclick="quickSearch(14)" id="type14">已入库</li>
-                    <li iconCls="" onclick="quickSearch(15)" id="type15">已退回</li>
-                    <li iconCls="" onclick="quickSearch(16)" id="type16">已关闭</li>
+<!--                     <li iconCls="" onclick="quickSearch(15)" id="type15">已退回</li> -->
+<!--                     <li iconCls="" onclick="quickSearch(16)" id="type16">已关闭</li> -->
                     
                     <!-- <li class="separator"></li>
                     <li iconCls="" onclick="quickSearch(17)" id="type17">全部</li> -->
@@ -74,7 +74,14 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="unAudit()" id="uAuditBtn" visible="true"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返单</a>
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="addMorePart()" id="fastEnterBtn"><span class="fa fa-hand-o-right fa-lg"></span>&nbsp;快速录入配件</a>
-                <a class="nui-button" plain="true" iconCls="" onclick="importPart()" id="importPartBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
+              	<a class="nui-menubutton " menu="#popupMenuPrint" id="menuprint"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
+
+                <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
+                    <li iconCls="" onclick="addPlanOrder()" id="addImp1"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入计划采购</li>
+                    <li iconCls="" onclick="importPart()" id="importPartBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入配件</li>
+                </ul>
+                
+<!--                 <a class="nui-button" plain="true" iconCls="" onclick="importPart()" id="importPartBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="adjustOrderQty()" id="exportBtn"><span class="fa fa-adjust fa-lg"></span>&nbsp;订单数量调整</a>
 <!--                 <a class="nui-button" iconCls="" plain="true" onclick="loadPartPrice()" id="exportBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;设置价格</a> -->
@@ -147,7 +154,7 @@
                                   <td class="title required">
                                       <label>供应商：</label>
                                   </td>
-                                  <td colspan="1">
+                                  <td colspan="3">
                                       <input id="guestId"
                                              name="guestId"
                                                dataField="suppliers"
@@ -160,7 +167,7 @@
                                              onvaluechanged="onGuestValueChanged"
                                              popupEmptyText="未找到供应商"
                                              url=""  searchField="key"
-                                             width="55%"
+                                             width="80%"
                                              placeholder="请选择供应商"
                                              selectOnFocus="true" />
                                       <a class="nui-button" iconCls="" plain="false" onclick="selectSupplier('guestId')" id="addBtn"><span class="fa fa-check fa-lg"></span></a>
@@ -191,26 +198,6 @@
                                   </td>
                                   <td colspan="1">
                                       <input class="nui-textbox" id="orderMan" name="orderMan" width="100%">
-                                  </td>
-                                  <td class="title required">
-                                      <label>订货日期：</label>
-                                  </td>
-                                  <td width="120">
-                                      <input name="orderDate"
-                                             id="orderDate"
-                                             width="100%"
-                                             showTime="true"
-                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
-                                  </td>
-                                  <td class="title wide">
-                                      <label>预计到货日期：</label>
-                                  </td>
-                                  <td width="160">
-                                      <input name="planArriveDate"
-                                             id="planArriveDate"
-                                             width="100%"
-                                             showTime="true"
-                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd"/>
                                   </td>
                               </tr>
                               <tr>
@@ -251,19 +238,25 @@
                                              nullItemText="请选择..."
                                              onvalidation="onComboValidation"/>
                                   </td>
-                                  <td class="title">
-                                      <label>直发门店：</label>
+                                  <td class="title required">
+                                      <label>订货日期：</label>
                                   </td>
-                                  <td colspan="3">
-                                     <input class="nui-combobox" id ="directOrgid" name="directOrgid" value="" allowInput="true" showNullItem="false" 
-				            		 valueFromSelect="true" nullitemtext="请选择..." emptyText="选择直发门店" data="" width="100%"
-				            		 textField="name" valueField="orgid" />
+                                  <td width="120">
+                                      <input name="orderDate"
+                                             id="orderDate"
+                                             width="100%"
+                                             showTime="true"
+                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
                                   </td>
-                                  <td class="title" width="120">
-                                      <label>订单号：</label>
+                                  <td class="title wide">
+                                      <label>预计到货日期：</label>
                                   </td>
-                                  <td>
-                                      <input class="nui-textbox" width="100%" id="serviceId" name="serviceId" enabled="false" placeholder="新采购订单"/>
+                                  <td width="160">
+                                      <input name="planArriveDate"
+                                             id="planArriveDate"
+                                             width="100%"
+                                             showTime="true"
+                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd"/>
                                   </td>
                               </tr>
                               
@@ -271,8 +264,22 @@
                               	 <td class="title">
                                       <label>备注：</label>
                                   </td>
-                                  <td colspan="9">
+                                  <td colspan="3">
                                       <input class="nui-textbox" width="100%" id="remark" name="remark"/>
+                                  </td>
+                                  <td class="title">
+                                      <label>直发门店：</label>
+                                  </td>
+                                  <td colspan="1">
+                                     <input class="nui-combobox" id ="directOrgid" name="directOrgid" value="" allowInput="true" showNullItem="false" 
+                         valueFromSelect="true" nullitemtext="请选择..." emptyText="选择直发门店" data="" width="100%"
+                         textField="name" valueField="orgid" />
+                                  </td>
+                                  <td class="title" width="120">
+                                      <label>订单号：</label>
+                                  </td>
+                                  <td>
+                                      <input class="nui-textbox" width="100%" id="serviceId" name="serviceId" enabled="false" placeholder="新采购订单"/>
                                   </td>
                               </tr>
                           </table>

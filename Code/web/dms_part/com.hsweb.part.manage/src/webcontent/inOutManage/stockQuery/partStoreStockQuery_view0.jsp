@@ -126,7 +126,7 @@
 				                <div property="columns">
 				                    <div allowSort="true" field="comPartCode" width="120" headerAlign="center" header="配件编码"></div>
 				                    <div allowSort="true" field="comPartFullName" width="150" headerAlign="center" header="配件全称"></div>
-				                    <div allowSort="true" field="comOemCode" width="150"headerAlign="center" header="OEM码"></div>
+				                    <div allowSort="true" field="comOemCode" width="150"headerAlign="center" header="OE码"></div>
 				                    <div allowSort="true" field="partBrandId" width="90" headerAlign="center" header="品牌"></div>
 				                    <div allowSort="true" field="applyCarModel" width="200" headerAlign="center" header="品牌车型"></div>
 				                    <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
@@ -166,7 +166,7 @@
 				         showPager="true"
 				         dataField="detailList"
 				         idField="detailId"
-				         ondrawcell="onDrawCell"
+				         ondrawcell="onDrawCell2"
 				         sortMode="client"
 				         totalField="page.count"
 				         url=""
@@ -180,7 +180,7 @@
 				                <div property="columns">
 				                    <div allowSort="true" field="comPartCode" headerAlign="center" header="配件编码"></div>
 				                    <div allowSort="true"width="100" field="comPartName" headerAlign="center" header="配件名称"></div>
-				                    <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
+				                    <div allowSort="true" field="comOemCode" headerAlign="center" header="OE码"></div>
 				                    <div allowSort="true" field="partBrandId" width="80" headerAlign="center" header="品牌"></div>
 				                    <div allowSort="true" field="applyCarModel" name="applyCarModel" width="140" headerAlign="center" header="品牌车型"></div>
 				                    <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
@@ -188,22 +188,25 @@
 				            </div>
 				            <div header="库存信息" headerAlign="center">
 				                <div property="columns">
+				                    <!-- <div allowSort="true" datatype="float" summaryType="sum" field="enterQty" width="60" headerAlign="center" header="数量"></div> -->
+				                    <div allowSort="true" datatype="float" summaryType="sum" field="outableQty" width="60" headerAlign="center" header="数量"></div>
+				                    <div allowSort="true" datatype="float" field="enterPrice" width="60" headerAlign="center" header="单价"></div>
+				                    <div allowSort="true" datatype="float" summaryType="sum" field="enterAmt" width="60" headerAlign="center" header="金额"></div>
+				                    <div allowSort="true" field="detailRemark" width="120" headerAlign="center" header="备注"></div>
+				                </div>
+				            </div>
+				            <div header="其他信息" headerAlign="center">
+				                <div property="columns">
 				                   <!--  <div allowSort="true" field="manualCode" width="180" summaryType="count" headerAlign="center" header="入库单号"></div> -->
+				                    <div allowSort="true" field="storeId" width="90" headerAlign="center" header="仓库"></div>
+				                    <div allowSort="true" field="storeShelf" width="60" headerAlign="center" header="仓位"></div>
+				                    <div allowSort="true" field="chainStockAge" width="60" headerAlign="center" header="库龄"></div>
 				                    <div field="guestFullName" name="guestFullName" width="180" headerAlign="center" header="供应商" allowSort="true"></div>
 				                    <div field="orderMan" name="orderMan" width="60" headerAlign="center" header="采购员"></div>
+				                    <div field="taxSign" name="taxSign" width="60" headerAlign="center" header="是否含税"></div>
 <!-- 				                    <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
 				                    <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div> -->
 				                    <div allowSort="true" field="enterDate"width="140" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-				                    <div allowSort="true" field="storeId" width="90" headerAlign="center" header="仓库"></div>
-				                </div>
-				            </div>
-				            <div header="数量单价" headerAlign="center">
-				                <div property="columns">
-				                    <div allowSort="true" datatype="float" summaryType="sum" field="enterQty" width="60" headerAlign="center" header="入库数量"></div>
-				                    <div allowSort="true" datatype="float" field="enterPrice" width="60" headerAlign="center" header="入库单价"></div>
-				                    <div allowSort="true" datatype="float" summaryType="sum" field="enterAmt" width="60" headerAlign="center" header="入库金额"></div>
-				                    <div allowSort="true" datatype="float" summaryType="sum" field="outableQty" width="60" headerAlign="center" header="剩余库存"></div>
-				                    <div allowSort="true" field="detailRemark" width="120" headerAlign="center" header="备注"></div>
 				                </div>
 				            </div>
 <!-- 				            <div header="其他" headerAlign="center">

@@ -82,9 +82,11 @@
 			<div class="nui-fit">
 			 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
 		         showPager="true"
+		         selectOnLoad="true"
 		         dataField="pjAllotAcceptMainList"
 		         ondrawcell="onMainDrawCell"
 		         sortMode="client"
+		         showModified="false"
 		         showReloadButton="false"
 		         pageSize="50" 
 		         multiSelect="false"				

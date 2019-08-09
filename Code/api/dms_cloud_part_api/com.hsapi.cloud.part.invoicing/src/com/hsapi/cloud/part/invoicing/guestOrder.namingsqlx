@@ -43,7 +43,7 @@
 			A.operator AS operator,
 			A.operate_date AS operateDate,
 			A.settle_type_id AS settleTypeId,	
-			A.pchs_main_code as pchsMainCode,	
+			A.pchs_main_code as pchsMainCode,
 			B.FULL_NAME AS guestFullName,
 			B.SHORT_NAME AS guestShortName,
 			E.name as orgName

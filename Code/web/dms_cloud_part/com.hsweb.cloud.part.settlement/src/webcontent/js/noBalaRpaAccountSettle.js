@@ -19,7 +19,13 @@ var enterTypeIdHash = {};
 var partBrandIdHash = {};
 $(document).ready(function(v) {
 	orgidsEl = nui.get("orgids");
-	getCompany();
+	if(currIsMaster!=1){
+		orgidsEl.setVisible(false);
+	}
+	else{
+		getCompany();
+	}
+	
 	mainGrid =nui.get("mainGrid");
 	mainGrid.setUrl(mainGridUrl);
     searchBeginDate = nui.get("beginDate");
@@ -140,9 +146,17 @@ function getSearchParam(){
     params.orgid =nui.get('orgids').getValue();
     if(!params.orgid){
     	params.orgid =null;
+    	params.orgids=orgids;
     }
     params.tenantId =currTenantId;
+    //非总部
+    if(orgidsEl.visible==false){
+    	params.orgid =currOrgid;
+    	params.orgids=null;
+    	params.tenantId =null;
+    }
     params.isState = 0;
+    params.settleTypeId='020502';
     return params;
 }
 var currType = 2;

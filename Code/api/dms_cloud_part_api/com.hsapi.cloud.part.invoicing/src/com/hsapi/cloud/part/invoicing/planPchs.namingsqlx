@@ -333,5 +333,41 @@
 		    adjust_qty = adjust_qty + #adjQty#
 		where main_id = #mainId# and id = #detailId#
 	</update>
+	
+	
+	<!-- 更新计划采购的已下单数量
+	 -->
+    <update id="updatePchsPlanTrueEnterQty" parameterClass="java.util.HashMap" >
+		update pj_pchs_order_detail_chk a
+		inner join pj_pchs_order_main_chk b
+		on a.main_id = b.id
+		inner join pj_pchs_plan_detail c
+		on a.prev_detail_id = c.id and b.code_id = c.main_id
+		set c.is_finished = case when c.true_enter_qty + a.order_qty + c.adjust_qty = c.order_qty then 1 else 0 end,
+		    c.finish_date = case when c.true_enter_qty + a.order_qty + c.adjust_qty = c.order_qty then SYSDATE() else null end,
+		    c.true_enter_qty = c.true_enter_qty + a.order_qty, c.true_enter_amt = c.true_enter_amt + a.order_amt
+		where b.source_type = 6 and b.id = #mainId#
+	</update>
+	
+	<!-- 采购订单提交后，更新计划采购主表状态 -->
+    <update id="updatePchsPlanFinished" parameterClass="java.util.HashMap" >
+		
+		update pj_pchs_plan_main a
+		set a.is_finished = 1, a.finish_date = SYSDATE(), status = 2
+		where not exists (SELECT 1 from pj_pchs_plan_detail b 
+		      where a.id = b.main_id and b.is_finished = 0 and b.main_id = #mainId#)
+		and a.id = #mainId#
+		
+	</update>
+	
+	<!-- 判断计划采购导入数量是否超数  -->
+    <select id="checkPchsPlanInQty" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+        SELECT a.part_id as partId, a.part_code as partCode, a.part_name as partName
+		from pj_pchs_plan_detail a
+		where a.main_id = #mainId# 
+		      and a.true_enter_qty + a.adjust_qty > a.order_qty
+		    
+    </select>
 
 </sqlMap>

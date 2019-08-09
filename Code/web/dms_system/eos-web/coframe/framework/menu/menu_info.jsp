@@ -82,7 +82,7 @@
         nui.parse();
         var form = new nui.Form("form1");
         var menuid = "<%= StringUtil.htmlFilter(request.getParameter("id")) %>";
-        var json = nui.encode({template:{menuid:menuid}});
+        var json = nui.encode({template:{menuid:menuid},token:token});
         var tempMenuCode = "";
         $.ajax({
                 url: "org.gocom.components.coframe.framework.MenuManager.getMenu.biz.ext",
@@ -136,6 +136,7 @@
     		var COF_APPTYPE =[{dictID:"0",dictName:"本地"},{dictID:"1",dictName:"远程"}];
             form.validate();
             if (form.isValid() == false) return;
+            o.token = token;
 
             var json = nui.encode(o);
             $.ajax({
@@ -158,7 +159,7 @@
         function SetData(data) {
             //跨页面传递的数据对象，克隆后才可以安全使用
                 data = nui.clone(data);
-				var json = nui.encode({template:data});
+				var json = nui.encode({template:data,token:token});
                 $.ajax({
                     url: "org.gocom.components.coframe.framework.MenuManager.getMenu.biz.ext",
                     type: 'POST',
@@ -186,7 +187,7 @@
         	if(e.value == tempMenuCode) return;
         	if(e.isValid){
         		var data = {menucode:e.value};
-        		var json = nui.encode({template:data});
+        		var json = nui.encode({template:data,token:token});
 	        	$.ajax({
                     url: "org.gocom.components.coframe.framework.MenuManager.validateMenu.biz.ext",
                     type: 'POST',

@@ -226,3 +226,20 @@ function search(){
 	
 
 }
+
+function onExport(){
+	var detail = nui.clone(datagrid1.getData());
+	exportNoMultistage(datagrid1.columns)
+	for(var i=0;i<detail.length;i++){
+    	detail[i].id = 1;
+        if(detail[i].rpDc==1){
+        	detail[i].rpDc = "应收";
+        }else{
+        	detail[i].rpDc = "应付";
+        }
+	}
+	if(detail && detail.length > 0){
+		setInitExportDataNoMultistage( detail,datagrid1.columns,"结算账户余额汇总表导出");
+	}
+	
+}

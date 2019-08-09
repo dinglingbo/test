@@ -235,3 +235,28 @@ function getSearchParam() {
     }
     return params;
 }
+
+function onExport(){
+	var detail = nui.clone(grid.getData());
+//多级
+	exportMultistage(grid.columns)
+//单级
+       //exportNoMultistage(grid.columns)
+	for(var i=0;i<detail.length;i++){
+		detail[i].id=1;
+		if(detail[i].serviceTypeId){
+			detail[i].serviceTypeId = servieTypeHash[detail[i].serviceTypeId].name; 
+		}else{
+			detail[i].serviceTypeId = "";
+		}
+		detail[i].billTypeId=billTypeIdList[detail[i].billTypeId].name;
+		
+	}
+	if(detail && detail.length > 0){
+//多级表头类型
+		setInitExportData( detail,grid.columns,"技师提成明细表导出");
+//单级表头类型  与上二选一
+//setInitExportDataNoMultistage( detail,grid.columns,"已结算工单明细表导出");
+	}
+	
+}

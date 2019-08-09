@@ -85,6 +85,7 @@
 		         dataField="pjAllotApplyMainList"
 		         ondrawcell="onMainDrawCell"
 		         sortMode="client"
+		         showModified="false"
 		         showReloadButton="false"
 		         pageSize="50" 
 		         multiSelect="false"				

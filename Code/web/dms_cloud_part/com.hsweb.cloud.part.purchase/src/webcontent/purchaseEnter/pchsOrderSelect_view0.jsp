@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购订单选择</title>
-<script src="<%=webPath + contextPath%>/purchase/js/purchaseEnter/pchsOrderSelect.js?v=2.5.15"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/purchaseEnter/pchsOrderSelect.js?v=2.5.21"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -120,7 +120,7 @@
                         <div type="indexcolumn">序号</div>
                         
                         <div type="expandcolumn" width="20" >#</div>
-                        <div field="operateBtn" name="operateBtn" align="center" width="70" headerAlign="center" align="center" header="操作"></div>
+                        <div field="operateBtn" name="operateBtn" align="center" width="70" headerAlign="center" align="center" header="操作" visible="false"></div>
                         <div field="fullName" width="150" headerAlign="center" header="供应商名称"></div>
                         <div allowSort="true" summaryType="count" field="serviceId" width="150" summaryType="count" headerAlign="center" header="业务单号"></div>
                         <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>

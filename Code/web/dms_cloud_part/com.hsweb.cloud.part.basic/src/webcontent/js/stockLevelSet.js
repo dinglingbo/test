@@ -5,7 +5,7 @@ var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:
 var rightUnifyGrid = null;
 var straGrid = null;
 
-var rightUnifyGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.query.queryDeductPart.biz.ext";
+var rightUnifyGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.query.queryStockLevelPart.biz.ext";
 var straGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.query.queryStockLevel.biz.ext";
 
 var salesDeductTypeEl= null;
@@ -29,7 +29,6 @@ $(document).ready(function(v)
         
     });
     
-    onUnifySearch();
     
     rightUnifyGrid.on("drawcell",function(e){
     	switch(e.field){
@@ -94,7 +93,7 @@ function onSaveNode(){
     });
 }
 //删除策略价格节点
-var delNodeUrl=baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.deleteSellStratefy.biz.ext";
+var delNodeUrl=baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.deleteStockLevel.biz.ext";
 function onDeleteNode(){
 	var data = straGrid.getSelected();
 	if(data._id==1) return;
@@ -211,6 +210,7 @@ function addUnifyPart() {
     });
 }
 function addUnifyDetail(row){
+	var strRow = straGrid.getSelected();
 	var data =rightUnifyGrid.getData();
 	for(var i=0;i<data.length;i++){
 		if(row.id==data[i].partId){
@@ -219,6 +219,7 @@ function addUnifyDetail(row){
 		}
 	}
     var newRow = {
+    	levelId :strRow.id,
         partId: row.id,
         partCode: row.code,
         partName: row.name,
@@ -227,37 +228,24 @@ function addUnifyDetail(row){
     rightUnifyGrid.addRow(newRow);
 }
 
-var saveUnifyUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.savePjdeductPart.biz.ext";
+var saveUnifyUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveStockLevelPart.biz.ext";
 function saveUnifyPart(){
-	
+	var row = straGrid.getSelected();
+    if(!row.id) {
+        showMsg("请先选择对应备货级别再操作!","W");
+        return;
+    }
 	rightUnifyGrid.validate();
     if (rightUnifyGrid.isValid() == false) return;
-    
-	var data=rightUnifyGrid.getData();
-	for(var i=0;i<data.length;i++){
-//		if(!data[i].sellPrice )
-//        {
-//            showMsg("售价不能为空", "W");
-//            return;
-//        }
-		if(!data[i].type )
-        {
-            showMsg("提成类型不能为空", "W");
-            return;
-        }
-		if(!data[i].deductRate )
-        {
-            showMsg("提成比例不能为空", "W");
-            return;
-        }
-		
-	}
 
     var data = rightUnifyGrid.getChanges();
     if(data.length<=0) return;
+    
+   
     var addList = rightUnifyGrid.getChanges("added");
     var deleteList = rightUnifyGrid.getChanges("removed");
     var updateList = rightUnifyGrid.getChanges("modified");
+
 
     nui.mask({
         el : document.body,
@@ -327,4 +315,12 @@ function importUnifyPart(){
 
 function onSearch(){
 	onUnifySearch();
+}
+
+function onStraGridClick(e){
+	var params={};
+	var row = e.row;
+	var levelId = row.id||0;
+	var params = {levelId: levelId,token:token};	
+	rightUnifyGrid.load({params:params,token:token});
 }

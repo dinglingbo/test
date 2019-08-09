@@ -146,7 +146,7 @@ function onClose(){
 }
 var data={};
 function dispatchOk(){
-	if(type="check"){
+	if(type=="check"){
 		dispatchOk2();
 	}else{
 		var emlpsz = $("a.empl1");//所选技师数组
@@ -252,6 +252,9 @@ function dispatchOk2(){
     			console.log(jqXHR.responseText);
     		}
     	});	
+    }else{
+    	nui.unmask(document.body);
+    	showMsg("数据有误，请重新操作","W");
     }
 	
 }

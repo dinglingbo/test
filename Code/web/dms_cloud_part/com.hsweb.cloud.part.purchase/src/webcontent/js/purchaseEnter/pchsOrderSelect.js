@@ -35,6 +35,7 @@ var billStatusHash = {
     "0":"草稿",
     "1":"待发货",
     "2":"待收货",
+    "3":"部分入库",
     "4":"已入库",
     "5":"已退回",
     "6":"已关闭"
@@ -52,9 +53,8 @@ var billStatusIdList = [
     {id:0,name:"草稿"},
     {id:1,name:"待发货"},
     {id:2,name:"待收货"},
-    {id:4,name:"已入库"},
-    {id:5,name:"已退回"},
-    {id:6,name:"已关闭"}
+    {id:3,name:"部分入库"},
+    {id:4,name:"已入库"}
 ];
 $(document).ready(function(v)
 {
@@ -349,6 +349,7 @@ function ontopTabChanged(e){
             "0":"草稿",
             "1":"待发货",
             "2":"待收货",
+            "3":"部分入库",
             "4":"已入库",
             "5":"已退回",
             "6":"已关闭"
@@ -357,9 +358,8 @@ function ontopTabChanged(e){
             {id:0,name:"草稿"},
             {id:1,name:"待发货"},
             {id:2,name:"待收货"},
-            {id:4,name:"已入库"},
-            {id:5,name:"已退回"},
-            {id:6,name:"已关闭"}
+            {id:3,name:"部分入库"},
+            {id:4,name:"已入库"}
         ];
         billStatusIdEl.setData(billStatusIdList);
     }else if(name == "sellOrderTab"){
@@ -440,6 +440,7 @@ function onOk()
                 settleTypeId:node.settleTypeId,
                 guestId:node.guestId,
                 fullName:node.fullName,
+                orderDate : node.orderDate,
                 type:"pchs"
             };
             //  return;

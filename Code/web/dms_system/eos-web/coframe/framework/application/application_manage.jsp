@@ -38,7 +38,7 @@
 			<ul id="tree1" class="nui-tree" url="org.gocom.components.coframe.framework.ApplicationManager.queryApplicationTreeNode.biz.ext" 
 			style="width:98%;height:98%;padding:5px;" showTreeIcon="true" textField="text" idField="id" resultAsTree="false" 
 			parentField="pid" showTreeLines="true" onnodeclick="onNodeClick" allowDrag="true" allowDrop="true" 
-			contextMenu="#applicaitonTreeMenu" onbeforeload="onBeforeTreeLoad" ongivefeedback="onGiveFeedback" ondrop="onDrop" style="background:#fafafa;">
+			contextMenu="#applicaitonTreeMenu" ajaxData="setToken" onbeforeload="onBeforeTreeLoad" ongivefeedback="onGiveFeedback" ondrop="onDrop" style="background:#fafafa;">
 	    	</ul>
 	    	<ul id="applicaitonTreeMenu" class="nui-contextmenu"  onbeforeopen="onBeforeOpen">
 			</ul>
@@ -90,6 +90,10 @@
 			return url + "?" + paramsStr.join("&");
 		}
 	
+	}
+	
+	function setToken(){
+		return {"token":token};
 	}
 	
 	function refreshTab(node){

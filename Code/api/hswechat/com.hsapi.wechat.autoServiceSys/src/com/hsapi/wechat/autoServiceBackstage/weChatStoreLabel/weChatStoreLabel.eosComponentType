@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.primeton.studio.component.core.EosComponentTypeInfo>
+  <description>
+    <version>6.0</version>
+    <displayName>weChatStoreLabel</displayName>
+    <author>lidongsheng</author>
+    <createdTime>2019-03-25 15:37:51</createdTime>
+    <description>门店标签</description>
+    <detailDescription></detailDescription>
+    <demo></demo>
+    <links></links>
+  </description>
+  <serviceReferences/>
+</com.primeton.studio.component.core.EosComponentTypeInfo>

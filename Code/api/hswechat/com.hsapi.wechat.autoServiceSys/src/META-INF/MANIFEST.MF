@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Require-Bundle: com.primeton.eos.richweb,com.eos.foundation,com.eos.wo
+ rkflow
+Bundle-Vendor: lidongsheng
+eos-webCtxPath: autoServiceeSys
+Bundle-Version: 1.0.0
+Bundle-Name: com.hsapi.wechat.autoServiceSys
+Bundle-Description: 后台功能代码
+Bundle-SymbolicName: com.hsapi.wechat.autoServiceSys
+

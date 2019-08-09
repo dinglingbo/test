@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="weChatPrePay" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
+    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <location x="100" y="150"/>
+    <size height="28" width="28"/>
+    <nodeLabel>start0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
+    <targetConnections>link1</targetConnections>
+    <location x="885" y="150"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end0label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="java.util.HashMap" name="userWechatOrder" type="query" valueType="Java">userWechatOrder</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
+    <location x="99" y="186"/>
+    <figSize height="20" width="31"/>
+    <node>start0</node>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
+    <location x="884" y="186"/>
+    <figSize height="20" width="31"/>
+    <node>end0</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="微信订单生成" displayName="" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>end0</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link7</targetConnections>
+    <location x="705" y="150"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo0label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.huasheng.userOrder.payDeve.generationQM</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="timeExpire" type="query" value="java.lang.String" valueType="Java" pattern="reference">timeExpire</process:inputVariable>
+      <process:inputVariable id="1" name="timeStart" type="query" value="java.lang.String" valueType="Java" pattern="reference">timeStart</process:inputVariable>
+      <process:inputVariable id="2" name="getOpenid" type="query" value="java.lang.String" valueType="Java" pattern="reference">userOpenid</process:inputVariable>
+      <process:inputVariable id="3" name="dishesPrice" type="query" value="java.lang.String" valueType="Java" pattern="reference">itemAmountPrice</process:inputVariable>
+      <process:inputVariable id="4" name="ordersCode" type="query" value="java.lang.String" valueType="Java" pattern="reference">ordersCode</process:inputVariable>
+      <process:inputVariable id="5" name="attach" type="query" value="java.lang.String" valueType="Java" pattern="reference">orderId</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.util.Map&lt;java.lang.String,java.lang.String>" valueType="Java">userWechatOrder</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
+    <location x="671" y="186"/>
+    <figSize height="20" width="91"/>
+    <node>invokePojo0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link0</targetConnections>
+    <location x="212" y="150"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
+    <location x="211" y="186"/>
+    <figSize height="20" width="31"/>
+    <node>assign0</node>
+  </nodes>
+  <topRuler/>
+  <leftRuler/>
+  <process:info author="lidongsheng" createTime="2019-04-11 11:42:57" date="2019-04-11Z" description="微信支付订单生成" name="weChatPay" version="7.0.0.0"/>
+  <process:variables/>
+  <process:inputs varArgs="false">
+    <process:input description="订单号" isArray="false" name="ordersCode" primitiveType="String"/>
+    <process:input description="订单生效时间" isArray="false" name="timeStart" primitiveType="String"/>
+    <process:input description="订单失效时间" isArray="false" name="timeExpire" primitiveType="String"/>
+    <process:input description="订单主键" isArray="false" name="orderId" primitiveType="String"/>
+    <process:input description="用户openid" isArray="false" name="userOpenid" primitiveType="String"/>
+    <process:input description="订单总金额" isArray="false" name="itemAmountPrice" primitiveType="String"/>
+  </process:inputs>
+  <process:outputs>
+    <process:output anyType="java.util.HashMap" description="" isArray="false" name="userWechatOrder"/>
+  </process:outputs>
+  <process:extAttribute1>public</process:extAttribute1>
+  <process:transactionType>true</process:transactionType>
+</process:tBusinessLogic>

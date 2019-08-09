@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:lidongsheng -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    
+    <!-- 查询服务项目 -->
+    <select id ="queryAutoServiceItem" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_service_item.service_item_id serviceItemId,
+		  wxb_service_item.service_type_id serviceTypeId,
+		  wxb_service_item.card_id cardId,
+		  wxb_service_item.card_name cardName,
+		  wxb_service_item.card_period_validity cardPeriodValidity,
+		  wxb_service_item.card_sell_amt cardSellAmt,
+		  wxb_service_item.card_total_amt cardTotalAmt,
+		  wxb_service_item.item_id itemId,
+		  wxb_service_item.item_name itemName,
+		  wxb_service_item.item_type itemType,
+		  wxb_service_item.item_price itemPrice,
+		  wxb_service_item.item_amt itemAmt,
+		  wxb_service_item.item_qty itemQty,
+  		  wxb_service_item.car_model_id carModelId,
+  		  wxb_service_item.car_model_name carModelName,
+		  wxb_service_item.store_id storeId,
+		  (SELECT wxb_store.store_name FROM wxb_store WHERE wxb_store.store_id = wxb_service_item.store_id ) storeName,
+		  wxb_service_item.orgid,
+		  wxb_service_item.tenant_id tenantId,
+		  wxb_service_item.service_item_picture serviceItemPicture,
+		  wxb_service_item.service_item_name serviceItemName,
+		  wxb_service_item.service_type_name serviceTypeName,
+		  wxb_service_item.coupon_type couponType,
+		  wxb_service_item.coupon_percentage couponPercentage,
+		  wxb_service_item.coupon_price couponPrice,
+		  wxb_service_item.service_extent_begin_price serviceExtentBeginPrice,
+		  wxb_service_item.service_extent_end_price serviceExtentEndPrice,
+		  wxb_service_item.service_item_intro serviceItemIntro,
+		  wxb_service_item.service_item_explain serviceItemExplain,
+		  wxb_service_item.service_item_remark serviceItemRemark,
+		  wxb_service_item.item_on_date itemOnDate,
+		  wxb_service_item.item_off_date itemOffDate,
+		  wxb_service_item.item_number itemNumber,
+		  wxb_service_item.item_number_status itemNumberStatus,
+		  wxb_service_item.item_total_number itemTotalNumber,
+		  wxb_service_item.is_delete isDelete,
+		  wxb_service_item.is_coupon isCoupon,
+		  wxb_service_item.service_item_type serviceItemType,
+		  wxb_service_item.create_date createDate,
+		  wxb_service_item.creator_id creatorId,
+		  wxb_service_item.creator creator,
+		  wxb_service_item.modify_date modifyDate,
+		  wxb_service_item.modifier_id modifierId,
+		  wxb_service_item.modifier
+		FROM
+		  wxb_service_item
+		WHERE wxb_service_item.is_delete = 0
+		  AND wxb_service_item.store_id = #storeId#
+		<isNotNull property="serviceTypeId"><!-- 根据业务类型查询 -->
+		  	AND wxb_service_item.service_type_id = #serviceTypeId#
+		</isNotNull>
+		<isNotNull property="serviceItemName"><!-- 根据服务项目名称模糊查询 -->
+			AND wxb_service_item.service_item_name LIKE '%$serviceItemName$%'
+		</isNotNull>
+		<isNotNull property="serviceItemType"><!-- 根据项目类型查询 -->
+		  	AND wxb_service_item.service_item_type = '$serviceItemType$'
+		</isNotNull>
+		<isNotNull property="isCoupon"><!-- 查询项目是否优惠 -->
+		  	AND wxb_service_item.is_coupon = #isCoupon#
+		</isNotNull>
+    </select>
+    
+    <!-- 判断服务项目数据 -->
+    <select id ="judgeAutoServiceItem" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_service_item.service_item_id serviceItemId,
+		  wxb_service_item.service_type_id serviceTypeId,
+		  wxb_service_item.card_id cardId,
+		  wxb_service_item.item_id itemId,
+		  wxb_service_item.item_name itemName,
+		  wxb_service_item.item_type itemType,
+  		  wxb_service_item.car_model_id carModelId,
+  		  wxb_service_item.car_model_name carModelName,
+		  wxb_service_item.store_id storeId,
+		  wxb_service_item.tenant_id tenantId,
+		  wxb_service_item.service_item_picture serviceItemPicture,
+		  wxb_service_item.service_item_name serviceItemName,
+		  wxb_service_item.service_type_name serviceTypeName,
+		  wxb_service_item.coupon_type couponType,
+		  wxb_service_item.coupon_percentage couponPercentage,
+		  wxb_service_item.coupon_price couponPrice,
+		  wxb_service_item.service_extent_begin_price serviceExtentBeginPrice,
+		  wxb_service_item.service_extent_end_price serviceExtentEndPrice,
+		  wxb_service_item.service_item_intro serviceItemIntro,
+		  wxb_service_item.service_item_explain serviceItemExplain,
+		  wxb_service_item.service_item_remark serviceItemRemark,
+		  wxb_service_item.item_on_date itemOnDate,
+		  wxb_service_item.item_off_date itemOffDate,
+		  wxb_service_item.item_number itemNumber,
+		  wxb_service_item.item_total_number itemTotalNumber,
+		  wxb_service_item.is_delete isDelete,
+		  wxb_service_item.is_coupon isCoupon,
+		  wxb_service_item.service_item_type serviceItemType,
+		  wxb_service_item.create_date createDate,
+		  wxb_service_item.creator_id creatorId,
+		  wxb_service_item.creator creator,
+		  wxb_service_item.modify_date modifyDate,
+		  wxb_service_item.modifier_id modifierId,
+		  wxb_service_item.modifier MODIFIER
+		FROM
+		  wxb_service_item
+		WHERE wxb_service_item.is_delete = 0
+		  AND wxb_service_item.store_id = 1
+		  AND wxb_service_item.service_type_id = 1
+		  AND wxb_service_item.service_type_name LIKE '%%'
+		  AND wxb_service_item.item_id = 1
+		  AND wxb_service_item.service_item_type = 1
+    </select>
+
+	<!-- 查询微信项目维护的业务类型 -->
+    <select id ="queryWechatServiceType" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  service_type_id serviceTypeId,
+		  card_id cardId,
+		  service_type_name serviceTypeName,
+		  service_item_type serviceItemType
+		FROM
+		  wxb_service_item
+		WHERE wxb_service_item.store_id = #storeId#
+		  AND wxb_service_item.is_delete = 0
+		  AND '$nowData$' &gt;= wxb_service_item.item_on_date
+		  AND '$nowData$' &lt; wxb_service_item.item_off_date
+		GROUP BY wxb_service_item.service_type_id
+    </select>
+    
+    <!-- 查询用户车型的项目-->
+    <select id ="queryUserCarWechatServiceTypeItem" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_service_item.service_item_id serviceItemId,
+		  wxb_service_item.service_type_id serviceTypeId,
+		  wxb_service_item.card_id cardId,
+		  wxb_service_item.card_name cardName,
+		  wxb_service_item.card_period_validity cardPeriodValidity,
+		  wxb_service_item.card_sell_amt cardSellAmt,
+		  wxb_service_item.card_total_amt cardTotalAmt,
+		  wxb_service_item.item_id itemId,
+		  wxb_service_item.item_name itemName,
+		  wxb_service_item.item_type itemType,
+		  wxb_service_item.item_price itemPrice,
+		  wxb_service_item.item_amt itemAmt,
+		  wxb_service_item.item_qty itemQty,
+  		  wxb_service_item.car_model_id carModelId,
+  		  wxb_service_item.car_model_name carModelName,
+		  wxb_service_item.store_id storeId,
+		  wxb_service_item.tenant_id tenantId,
+		  wxb_service_item.service_item_picture serviceItemPicture,
+		  wxb_service_item.service_item_name serviceItemName,
+		  wxb_service_item.service_type_name serviceTypeName,
+		  wxb_service_item.coupon_type couponType,
+		  wxb_service_item.coupon_percentage couponPercentage,
+		  wxb_service_item.coupon_price couponPrice,
+		  wxb_service_item.service_extent_begin_price serviceExtentBeginPrice,
+		  wxb_service_item.service_extent_end_price serviceExtentEndPrice,
+		  wxb_service_item.service_item_intro serviceItemIntro,
+		  wxb_service_item.service_item_explain serviceItemExplain,
+		  wxb_service_item.service_item_remark serviceItemRemark,
+		  wxb_service_item.item_on_date itemOnDate,
+		  wxb_service_item.item_off_date itemOffDate,
+		  wxb_service_item.item_number itemNumber,
+		  wxb_service_item.item_number_status itemNumberStatus,
+		  wxb_service_item.item_total_number itemTotalNumber,
+		  wxb_service_item.is_delete isDelete,
+		  wxb_service_item.is_coupon isCoupon,
+		  wxb_service_item.service_item_type serviceItemType,
+		  (SELECT service_item_num FROM wxb_item_shopping_cart WHERE wxb_item_shopping_cart.service_item_id = wxb_service_item.service_item_id AND wxb_item_shopping_cart.user_id = #userId# ) serviceItemNum,
+		  wxb_service_item.create_date createDate,
+		  wxb_service_item.creator_id creatorId,
+		  wxb_service_item.creator creator,
+		  wxb_service_item.modify_date modifyDate,
+		  wxb_service_item.modifier_id modifierId,
+		  wxb_service_item.modifier MODIFIER
+		FROM
+		  wxb_service_item
+		WHERE wxb_service_item.is_delete = 0
+		  AND '$nowData$' &gt;= wxb_service_item.item_on_date
+		  AND '$nowData$' &lt; wxb_service_item.item_off_date
+		  AND wxb_service_item.store_id = #storeId#
+  		  AND wxb_service_item.service_item_type = #serviceItemType#
+  		  AND wxb_service_item.item_type = 2<!-- 车道系统的服务项目类型（1.标准项目，2.本地项目） -->
+		  <isNotNull property="serviceTypeId"><!-- 业务类型id -->
+		  	AND wxb_service_item.service_type_id = #serviceTypeId#
+		  </isNotNull>
+		  <isNotNull property="serviceItemId">
+		  	AND wxb_service_item.service_item_id = #serviceItemId#
+		  </isNotNull>
+		  
+		  
+		  UNION
+		  
+		  SELECT
+			  wxb_service_item.service_item_id serviceItemId,
+			  wxb_service_item.service_type_id serviceTypeId,
+			  wxb_service_item.card_id cardId,
+			  wxb_service_item.card_name cardName,
+		 	  wxb_service_item.card_period_validity cardPeriodValidity,
+		  	  wxb_service_item.card_sell_amt cardSellAmt,
+		  	  wxb_service_item.card_total_amt cardTotalAmt,
+			  wxb_service_item.item_id itemId,
+			  wxb_service_item.item_name itemName,
+			  wxb_service_item.item_type itemType,
+			  wxb_service_item.item_price itemPrice,
+		  	  wxb_service_item.item_amt itemAmt,
+		  	  wxb_service_item.item_qty itemQty,
+	  		  wxb_service_item.car_model_id carModelId,
+	  		  wxb_service_item.car_model_name carModelName,
+			  wxb_service_item.store_id storeId,
+			  wxb_service_item.tenant_id tenantId,
+			  wxb_service_item.service_item_picture serviceItemPicture,
+			  wxb_service_item.service_item_name serviceItemName,
+			  wxb_service_item.service_type_name serviceTypeName,
+			  wxb_service_item.coupon_type couponType,
+			  wxb_service_item.coupon_percentage couponPercentage,
+			  wxb_service_item.coupon_price couponPrice,
+			  wxb_service_item.service_extent_begin_price serviceExtentBeginPrice,
+			  wxb_service_item.service_extent_end_price serviceExtentEndPrice,
+			  wxb_service_item.service_item_intro serviceItemIntro,
+			  wxb_service_item.service_item_explain serviceItemExplain,
+			  wxb_service_item.service_item_remark serviceItemRemark,
+			  wxb_service_item.item_on_date itemOnDate,
+			  wxb_service_item.item_off_date itemOffDate,
+			  wxb_service_item.item_number itemNumber,
+			  wxb_service_item.item_number_status itemNumberStatus,
+			  wxb_service_item.item_total_number itemTotalNumber,
+			  wxb_service_item.is_delete isDelete,
+			  wxb_service_item.is_coupon isCoupon,
+			  wxb_service_item.service_item_type serviceItemType,
+			  (SELECT service_item_num FROM wxb_item_shopping_cart WHERE wxb_item_shopping_cart.service_item_id = wxb_service_item.service_item_id AND wxb_item_shopping_cart.user_id = #userId# ) serviceItemNum,
+			  wxb_service_item.create_date createDate,
+			  wxb_service_item.creator_id creatorId,
+			  wxb_service_item.creator creator,
+			  wxb_service_item.modify_date modifyDate,
+			  wxb_service_item.modifier_id modifierId,
+			  wxb_service_item.modifier MODIFIER
+			FROM
+			  wxb_service_item
+			WHERE wxb_service_item.is_delete = 0
+			  AND '$nowData$' &gt;= wxb_service_item.item_on_date
+			  AND '$nowData$' &lt; wxb_service_item.item_off_date
+			  AND wxb_service_item.store_id = #storeId#
+	  		  AND wxb_service_item.service_item_type = #serviceItemType#
+	  		  AND wxb_service_item.item_type = 1 <!-- 车道系统的服务项目类型（1.标准项目，2.本地项目） -->
+	  		  AND ( wxb_service_item.car_model_id = '$carModelId$' OR wxb_service_item.car_model_id = '00000000')
+			<isNotNull property="serviceTypeId"><!-- 业务类型id -->
+				AND wxb_service_item.service_type_id = #serviceTypeId#
+			</isNotNull>
+			<isNotNull property="serviceItemId">
+		  		AND wxb_service_item.service_item_id = #serviceItemId#
+			</isNotNull>
+    </select>
+    
+    <!-- 查询服务项目的项目简介图片 -->
+    <select id ="queryServiceItemWechatPicture" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_picture.picture_id pictureId,
+		  wxb_picture.picture_name pictureName,
+		  wxb_picture.picture_url pictureUrl,
+		  wxb_picture.picture_type pictureType,
+		  wxb_picture.picture_size pictureSize,
+		  wxb_picture.create_date createDate,
+		  wxb_picture.creator_id creatorId,
+		  wxb_picture.creator
+		FROM
+		  wxb_picture,
+		  wxb_service_item
+		WHERE FIND_IN_SET(
+		    wxb_picture.picture_id,
+		    wxb_service_item.service_item_intro
+		  )
+		  AND wxb_service_item.service_item_id = #serviceItemId#
+    </select>
+    
+    <!-- 删除项目简介图片 -->
+    <delete id ="deleteServiceItemPicture" parameterClass="java.util.HashMap">
+    	DELETE
+		FROM
+		  wxb_picture
+		WHERE FIND_IN_SET( wxb_picture.picture_id,( SELECT wxb_service_item.service_item_intro FROM wxb_service_item WHERE wxb_service_item.service_item_id = #serviceItemId# ) )
+		<isNotNull property="oldPictureIdArray"><!-- 删除旧的的图片 -->
+		  	AND NOT FIND_IN_SET(wxb_picture.picture_id, '$oldPictureIdArray$')
+		</isNotNull>
+    </delete>
+    
+    
+    <!-- 查询购物车里的服务项目 -->
+    <select id ="queryServiceItemShoppingCart" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_item_shopping_cart.shopping_cart_id shoppingCartId,
+		  wxb_item_shopping_cart.store_id storeId,
+		  wxb_item_shopping_cart.service_item_id serviceItemId,
+		  wxb_item_shopping_cart.service_item_price serviceItemPrice,
+		  wxb_item_shopping_cart.service_item_num serviceItemNum,
+		  wxb_item_shopping_cart.user_id userId,
+		  wxb_item_shopping_cart.user_opid userOpid,
+		  wxb_item_shopping_cart.shopping_cart_total shoppingCartTotal
+		FROM
+		  wxb_item_shopping_cart
+		WHERE wxb_item_shopping_cart.store_id = #storeId#
+		  AND wxb_item_shopping_cart.service_item_id = #serviceItemId#
+		  AND wxb_item_shopping_cart.user_id = #userId#
+    </select>
+    
+    
+    <!-- 查询当前用户购物车的总金额和总数 -->
+    <select id ="queryUserShoppingCartTotal" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  SUM(
+		    wxb_item_shopping_cart.service_item_num
+		  ) totalNumber,
+		  wxb_item_shopping_cart.shopping_cart_total shoppingCartTotal
+		FROM
+		  wxb_item_shopping_cart
+		WHERE wxb_item_shopping_cart.store_id = #storeId#
+		  AND wxb_item_shopping_cart.user_id = #userId#
+    </select>
+    
+    <!-- 查询当前用户的购物车-->
+    <select id ="queryUserShoppingCartList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		 SELECT
+			  wxb_item_shopping_cart.shopping_cart_id shoppingCartId,
+			  wxb_item_shopping_cart.store_id storeId,
+			  wxb_item_shopping_cart.service_item_id serviceItemId,
+			  wxb_service_item.service_item_name serviceItemName,
+			  wxb_service_item.item_number itemNumber,
+			  wxb_service_item.item_number_status itemNumberStatus,
+			  wxb_service_item.item_total_number itemTotalNumber,
+			  wxb_item_shopping_cart.service_item_price serviceItemPrice,
+			  wxb_item_shopping_cart.service_item_num serviceItemNum,
+			  wxb_item_shopping_cart.user_id userId,
+			  wxb_item_shopping_cart.user_opid userOpid,
+			  wxb_item_shopping_cart.shopping_cart_total shoppingCartTotal,
+			  'true' showShoppingBool
+		FROM
+		  wxb_item_shopping_cart,
+		  wxb_service_item
+		WHERE wxb_item_shopping_cart.store_id = #storeId#
+		  AND wxb_item_shopping_cart.user_id = #userId#
+		  AND wxb_service_item.service_item_id = wxb_item_shopping_cart.service_item_id
+    </select>
+    
+    <!-- 更改项目的总金额 -->
+    <update id ="updateUserShoppingCartTotal" parameterClass="java.util.HashMap">
+    	UPDATE
+		  wxb_item_shopping_cart
+		SET
+		  wxb_item_shopping_cart.shopping_cart_total = #shoppingCartTotal#
+		WHERE wxb_item_shopping_cart.store_id = #storeId#
+		  AND wxb_item_shopping_cart.user_id = #userId#
+    </update>
+    
+</sqlMap>

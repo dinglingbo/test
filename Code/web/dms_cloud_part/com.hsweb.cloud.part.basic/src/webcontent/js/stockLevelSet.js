@@ -96,7 +96,6 @@ function onSaveNode(){
 var delNodeUrl=baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.deleteStockLevel.biz.ext";
 function onDeleteNode(){
 	var data = straGrid.getSelected();
-	if(data._id==1) return;
 	var id=data.id;
 	nui.mask({
         el : document.body,

@@ -2811,13 +2811,14 @@ function addOrderToEnter(data){
 	nui.get("taxRate").setValue(data.taxRate);
 	nui.get("taxSign").setValue(data.taxSign);
 //	nui.get("createDate").setValue(new Date());
+	nui.get("orderDate").setValue(data.orderDate);
 	nui.get("orderMan").setValue(data.orderMan);
 	
 	var guestId = nui.get("guestId");
 	guestId.setValue(data.guestId);
 	guestId.setText(data.fullName);
 
-	var params = {mainId: data.orderMainId};
+	var params = {mainId: data.orderMainId,notFinished:0};
 	if(data && data.type == 'pchs'){
 		nui.get("sourceType").setValue(1);
 		getOrderDetail(params);
@@ -2853,7 +2854,7 @@ function getOrderDetail(params)
 							comPartBrandId : row.comPartBrandId,
 							comApplyCarModel : row.comApplyCarModel,
 							comUnit : row.comUnit,
-							orderQty : row.orderQty,
+							orderQty : row.canInQty,
 							orderPrice : row.orderPrice,
 							orderAmt : parseFloat(row.orderQty) * parseFloat(row.orderPrice),
 							storeId : row.storeId,

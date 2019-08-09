@@ -525,6 +525,12 @@ function addNewRow(check){
         return;
     }
     
+    //计划采购单
+    if(data.sourceType == 6){
+        showMsg("计划采购单生成的采购订单不能新增明细！","W");
+        return;
+    }
+    
 	var rows = [];
 	if(check){
 		rows = rightGrid.findRows(function(row) {
@@ -628,6 +634,12 @@ function loadMainAndDetailInfo(row) {
 		}else{
 			nui.get("guestId").enable();
 			nui.get("directOrgid").enable();
+		}		
+		//计划采购单转的单
+		if(row.sourceType ==6){
+			nui.get("guestId").disable();
+		}else{
+			nui.get("guestId").enable();
 		}
 		// 序列化入库主表信息，保存时判断主表信息有没有修改，没有修改则不需要保存
 		var data = basicInfoForm.getData();
@@ -952,6 +964,13 @@ function doSearch(params) {
 				nui.get("guestId").enable();
 				nui.get("directOrgid").enable();
 			}
+			//计划采购单转的单
+			if(row.sourceType ==6){
+				nui.get("guestId").disable();
+			}else{
+				nui.get("guestId").enable();
+			}
+			
 		}
 	});
 }
@@ -2000,6 +2019,12 @@ function deletePart() {
 	        showMsg("预售单生成的采购订单不能删除明细！","W");
 	        return;
 	    }
+	    
+	  //计划采购单
+	    if(row.sourceType == 6){
+	        showMsg("计划采购单生成的采购订单不能删除明细！","W");
+	        return;
+	    }
 	}
 
 	var part = rightGrid.getSelected();
@@ -2851,6 +2876,13 @@ function OnrpMainGridCellBeginEdit(e){
 			 e.cancel = true; 
 		 }
 	 }
+	 
+	//计划采购单
+	 if(data.sourceType==6){
+		 if(field == "comPartCode"){
+			 e.cancel = true; 
+		 }
+	 }
 
 }
 function addMorePart(){
@@ -3079,6 +3111,10 @@ function importPart(){
 
 	if(row.sourceType == 5){
 		showMsg("此单来源预售单不能添加明细!","W");
+		return;
+	}
+	if(row.sourceType == 6){
+		showMsg("此单来源计划采购单不能添加明细!","W");
 		return;
 	}
 

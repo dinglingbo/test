@@ -367,7 +367,7 @@ function checkObjExists(id, key){
 }
 function setDataToHash(data,key,idFiled)
 {
-	if(_initDmsHash[key] && data.forEach)
+	if(_initDmsHash[key] && data && data.forEach)
 	{
 		data.forEach(function(v)
 		{

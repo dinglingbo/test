@@ -74,7 +74,7 @@
 </head>
 <body>
     <div class="nui-toolbar" style="padding:10px;border-top:0;border-left:0;border-right:0;text-align:center;">
-        <a class="nui-button" iconCls="" plain="true" onclick="query_vin(0)" id="query0">车架号查询</a>
+        <a class="nui-button" iconCls="" plain="true" onclick="query_vin(0)" id="query0">车架号查询7777</a>
         <a class="nui-button" iconCls="" plain="true" onclick="query_vin(1)" id="query1">车型查询</a>
         <a class="nui-button" iconCls="" plain="true" onclick="query_vin(2)" id="query2">零件号查询</a>
         <a class="nui-button" iconCls="" plain="true" onclick="showPanel('')" id="query2">（购物车）</a>

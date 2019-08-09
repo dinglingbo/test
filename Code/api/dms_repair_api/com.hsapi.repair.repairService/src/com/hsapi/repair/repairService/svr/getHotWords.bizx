@@ -181,7 +181,7 @@
     <figSize height="17" width="94"/>
     <node>subprocess1</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="sendPost1" displayName="doGet" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="doGet" displayName="doGet" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>invokePojo0</targetNode>
@@ -207,8 +207,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="386" y="186"/>
-    <figSize height="17" width="61"/>
+    <location x="398" y="186"/>
+    <figSize height="17" width="37"/>
     <node>invokePojo2</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="getMaintenanceAuthorization" displayName="getMaintenanceAuthorization" type="subprocess">

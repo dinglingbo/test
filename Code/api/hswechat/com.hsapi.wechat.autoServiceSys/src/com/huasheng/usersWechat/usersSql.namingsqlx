@@ -1,0 +1,1722 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:lidongsheng -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    
+    <!-- 查询微信的菜单的业务字典 -->
+    <select id ="queryWechatBusinessDictMenu" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_business_dict.dict_id dictId,
+		  wxb_business_dict.dict_name dictName,
+		  wxb_business_dict.dict_content dictContent,
+		  wxb_business_dict.dict_notes dictNotes,
+		  wxb_business_dict.dict_url dictUrl
+		FROM
+		  wxb_business_dict
+		WHERE wxb_business_dict.dict_name = '$dictName$'
+    </select>
+    
+    <!-- 查询门店项目活动 -->
+    <select id ="queryStoreItemActivity" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+		  wxb_item_activity.item_activity_id itemActivityId,
+		  wxb_item_activity.store_id storeId,
+		  (SELECT wxb_store.store_name FROM wxb_store WHERE wxb_store.store_id = wxb_item_activity.store_id ) storeName,
+		  wxb_item_activity.tenant_id tenantId,
+		  wxb_item_activity.service_item_id serviceItemId,
+		  wxb_item_activity.item_activity_title itemActivityTitle,
+		  wxb_item_activity.item_url itemUrl,
+		  wxb_item_activity.item_activity_describe itemActivityDescribe,
+		  wxb_item_activity.create_date createDate,
+		  wxb_item_activity.creator creator,
+		  wxb_item_activity.modify_date modifyDate,
+		  wxb_item_activity.modifier,
+		  wxb_item_activity.is_delete isDelete,
+		  wxb_service_item.service_item_name serviceItemName,
+		  wxb_service_item.service_type_name serviceTypeName,
+		  wxb_service_item.item_type itemType,
+		  wxb_service_item.service_item_type serviceItemType
+		FROM 
+		  wxb_item_activity,
+		  wxb_service_item
+		WHERE wxb_item_activity.is_delete = 0
+		  AND wxb_item_activity.service_item_id = wxb_service_item.service_item_id 
+		  AND wxb_item_activity.store_id = #storeId#
+		  AND wxb_item_activity.item_activity_title LIKE '%$itemActivityTitle$%'
+    </select>
+    
+     <!-- 查询门店标签 -->
+    <select id ="queryStoreLabel" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+		  wxb_store_tab_style.tab_id tabId,
+		  wxb_store_tab_style.store_id storeId,
+		  (SELECT wxb_store.store_name FROM wxb_store WHERE wxb_store.store_id = wxb_store_tab_style.store_id ) storeName,
+		  wxb_store_tab_style.tab_content tabContent,
+		  wxb_store_tab_style.create_date createDate,
+		  wxb_store_tab_style.creator,
+		  wxb_store_tab_style.modify_date modifyDate,
+		  wxb_store_tab_style.modifier
+		FROM
+		  wxb_store_tab_style
+		WHERE wxb_store_tab_style.store_id = #storeId#
+    </select>
+    
+     <!-- 查询门店下的所有订单 -->
+    <select id ="queryStoreOrderList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+		  wxs_order_main.order_code orderCode,
+		  wxs_order_main.order_id orderId,
+		  wxs_order_main.store_id storeId,
+		  wxs_order_main.user_id userId,
+		  wxs_order_main.car_id carId,
+		  wxs_order_main.order_time orderTime,
+		  wxs_order_main.order_amount orderAmount,
+		  wxs_order_main.order_status orderStatus,
+		  wxb_store.store_name storeName,
+		  wxb_store.tenant_id tenantId,
+		  wxb_user.user_nickname userNickname,
+		  wxb_user.user_name userName,
+		  wxb_user_cars.car_no carNo
+		FROM
+		  wxs_order_main,
+		  wxb_store,
+		  wxb_user,
+		  wxb_user_cars
+		WHERE wxs_order_main.store_id = wxb_store.store_id
+		  AND wxs_order_main.user_id = wxb_user.user_id
+		  AND wxs_order_main.car_id = wxb_user_cars.car_id
+		  AND wxs_order_main.store_id = #storeId#
+		<isNotNull property="userNickname">
+	  		AND wxb_user.user_nickname LIKE '%$userNickname$%' 
+	 	</isNotNull>
+	 	<isNotNull property="carNo">
+	  		AND wxb_user_cars.car_no = '$carNo$'
+	 	</isNotNull>
+	 	<isNotNull property="orderStatus">
+	  		AND wxs_order_main.order_status = '$orderStatus$'
+	 	</isNotNull>
+    </select>
+    
+    <!-- 查询订单的明细 -->
+    <select id ="queryOrderDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+		  wxs_order_detail.detail_id detailId,
+		  wxs_order_detail.order_id orderId,
+		  wxs_order_detail.service_item_id serviceItemId,
+		  wxs_order_detail.item_price itemPrice,
+		  wxs_order_detail.item_qty itemQty,
+		  wxb_service_item.service_item_name serviceItemName,
+		  wxb_service_item.service_type_name serviceTypeName,
+		  wxb_service_item.item_type itemType,
+		  wxb_service_item.service_item_type serviceItemType
+		FROM
+		  wxs_order_detail,
+		  wxb_service_item
+		WHERE wxs_order_detail.service_item_id = wxb_service_item.service_item_id
+		  AND wxs_order_detail.order_id = #orderId#
+    </select>
+    
+     <!-- 核销用户的优惠劵 -->
+    <update id ="updateUsersCouponCard" parameterClass="java.util.HashMap">
+    	UPDATE wxb_user_coupon SET coupon_use_time = '$couponUseTime$',user_coupon_status='$userCouponStatus$' WHERE user_openId = '$userOpenId$' AND FIND_IN_SET(user_coupon_code,'$userCouponCode$')
+    </update>
+    
+     <!-- 车道接口:根据车道系统的车辆id查询优惠劵 -->
+    <select id ="queryUserUseCouponCardListsChenDaoCarId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	    SELECT
+		  wxb_store.store_id storeId,
+		  wxb_store.orgid,
+		  wxb_store.tenant_id tenantId,
+		  wxb_store.store_name storeName,
+		  wxb_store.store_average_score storeAverageScore,
+		  wxb_store.store_picture storePicture,
+		  wxb_store.store_business_begin_time storeBusinessBeginTime,
+		  wxb_store.store_business_end_time storeBusinessEndTime,
+		  wxb_store.store_details_content storeDetailsContent,
+		  wxb_store.store_status storeStatus,
+		  wxb_store.store_latitude storeLatitude,
+		  wxb_store.store_longitude storeLongitude,
+		  wxb_store.store_phone storePhone,
+		  wxb_store.store_streetAddress storeStreetAddress,
+		  wxb_store.is_delete,
+		  wxb_user.contactor_id contactorId,
+		  wxb_user.contactor_name contactorName,
+		  wxb_user.guest_id guestId,
+		  wxb_user.user_marke userMarke,
+		  wxb_user.user_opid userOpid,
+		  wxb_user.user_nickname userNickname,
+		  wxb_user.user_name userName,
+		  wxb_user_cars.car_id carId,
+		  wxb_user_cars.car_vin carVin,
+		  wxb_user_cars.car_no carNo,
+		  wxb_user_cars.user_car_id userCarId,
+		  wxb_user_cars.car_brand_id carBrandId,
+		  wxb_user_cars.car_brand_name carBrandName,
+		  wxb_user_cars.car_series_id carSeriesId,
+		  wxb_user_cars.car_series_name carSeriesName,
+		  wxb_user_cars.car_model_id carModelId,
+		  wxb_user_cars.car_model_name carModelName,
+		  wxb_user_cars.last_patronage_car lastPatronageCar,
+		  wxb_user_coupon.user_coupon_id userCouponId,
+		  wxb_user_coupon.user_openId userOpenId,
+		  wxb_user_coupon.user_coupon_code userCouponCode,
+		  wxb_user_coupon.coupon_distribute_id couponDistributeId,
+		  wxb_user_coupon.coupon_use_time couponUseTime,
+		  wxb_user_coupon.user_coupon_status userCouponStatus,
+		  wxs_coupon_distribute.coupon_code couponCode,
+		  wxs_coupon_distribute.coupon_name couponName,
+		  wxs_coupon_distribute.coupon_title couponTitle,
+		  wxs_coupon_distribute.coupon_describe couponDescribe,
+		  wxs_coupon_distribute.coupon_condition_price couponConditionPrice,
+		  wxs_coupon_distribute.coupon_discounts_price couponDiscountsPrice,
+		  wxs_coupon_distribute.service_item_id serviceItemId,
+		  wxs_coupon_distribute.service_item_name serviceitemName,
+		  wxs_coupon_distribute.coupon_type couponType,
+		  wxs_coupon_distribute.coupon_number couponNumber,
+		  wxs_coupon_distribute.distribute_people_id distributePeopleId,
+		  wxs_coupon_distribute.distribute_people_name distributePeopleName,
+		  wxs_coupon_distribute.distribute_date distributeDate,
+		  wxs_coupon_distribute.distribute_status distributeStatus,
+		  wxs_coupon_distribute.coupon_status couponStatus,
+		  wxs_coupon_distribute.is_car_use isCarUse,
+		  wxs_coupon_distribute.is_store_use isStoreUse,
+		  wxs_coupon_distribute.is_tenant_use isTenantUse,
+		  wxs_coupon_distribute.coupon_begin_date couponBeginDate,
+		  wxs_coupon_distribute.coupon_end_date couponEndDate,
+		  wxs_coupon_distribute.coupon_delete_status couponDeleteStatus,
+		  wxb_service_item.card_id cardId,
+		  wxb_service_item.item_id itemId,
+		  wxb_service_item.item_type itemType,
+		  wxb_service_item.service_item_type serviceItemType
+		FROM
+		  wxb_user_coupon,
+		  wxb_store,
+		  wxb_user,
+		  wxb_user_cars,
+		  wxs_coupon_distribute,
+		  wxb_service_item
+		WHERE wxb_user_coupon.store_id = wxb_store.store_id
+		  AND wxb_user_coupon.coupon_distribute_id = wxs_coupon_distribute.coupon_distribute_id
+		  AND wxb_user_coupon.car_id = wxb_user_cars.car_id
+		  AND wxb_user_coupon.user_id = wxb_user.user_id
+		  AND wxs_coupon_distribute.service_item_id = wxb_service_item.service_item_id
+		  AND wxb_user_coupon.user_coupon_status = 0
+		  AND NOW() &gt;= wxs_coupon_distribute.coupon_begin_date
+		  AND NOW() &lt; wxs_coupon_distribute.coupon_end_date
+		  AND wxb_user_cars.user_car_id = #userCarId#
+		  AND wxb_store.orgid = #orgid#
+		  AND wxb_store.tenant_id = #tenantId#
+		  
+		UNION 
+		   
+		SELECT
+		  wxb_store.store_id storeId,
+		  wxb_store.orgid,
+		  wxb_store.tenant_id tenantId,
+		  wxb_store.store_name storeName,
+		  wxb_store.store_average_score storeAverageScore,
+		  wxb_store.store_picture storePicture,
+		  wxb_store.store_business_begin_time storeBusinessBeginTime,
+		  wxb_store.store_business_end_time storeBusinessEndTime,
+		  wxb_store.store_details_content storeDetailsContent,
+		  wxb_store.store_status storeStatus,
+		  wxb_store.store_latitude storeLatitude,
+		  wxb_store.store_longitude storeLongitude,
+		  wxb_store.store_phone storePhone,
+		  wxb_store.store_streetAddress storeStreetAddress,
+		  wxb_store.is_delete,
+		  wxb_user.contactor_id contactorId,
+		  wxb_user.contactor_name contactorName,
+		  wxb_user.guest_id guestId,
+		  wxb_user.user_marke userMarke,
+		  wxb_user.user_opid userOpid,
+		  wxb_user.user_nickname userNickname,
+		  wxb_user.user_name userName,
+		  wxb_user_cars.car_id carId,
+		  wxb_user_cars.car_vin carVin,
+		  wxb_user_cars.car_no carNo,
+		  wxb_user_cars.user_car_id userCarId,
+		  wxb_user_cars.car_brand_id carBrandId,
+		  wxb_user_cars.car_brand_name carBrandName,
+		  wxb_user_cars.car_series_id carSeriesId,
+		  wxb_user_cars.car_series_name carSeriesName,
+		  wxb_user_cars.car_model_id carModelId,
+		  wxb_user_cars.car_model_name carModelName,
+		  wxb_user_cars.last_patronage_car lastPatronageCar,
+		  wxb_user_coupon.user_coupon_id userCouponId,
+		  wxb_user_coupon.user_openId userOpenId,
+		  wxb_user_coupon.user_coupon_code userCouponCode,
+		  wxb_user_coupon.coupon_distribute_id couponDistributeId,
+		  wxb_user_coupon.coupon_use_time couponUseTime,
+		  wxb_user_coupon.user_coupon_status userCouponStatus,
+		  wxs_coupon_distribute.coupon_code couponCode,
+		  wxs_coupon_distribute.coupon_name couponName,
+		  wxs_coupon_distribute.coupon_title couponTitle,
+		  wxs_coupon_distribute.coupon_describe couponDescribe,
+		  wxs_coupon_distribute.coupon_condition_price couponConditionPrice,
+		  wxs_coupon_distribute.coupon_discounts_price couponDiscountsPrice,
+		  wxs_coupon_distribute.service_item_id serviceItemId,
+		  wxs_coupon_distribute.service_item_name serviceitemName,
+		  wxs_coupon_distribute.coupon_type couponType,
+		  wxs_coupon_distribute.coupon_number couponNumber,
+		  wxs_coupon_distribute.distribute_people_id distributePeopleId,
+		  wxs_coupon_distribute.distribute_people_name distributePeopleName,
+		  wxs_coupon_distribute.distribute_date distributeDate,
+		  wxs_coupon_distribute.distribute_status distributeStatus,
+		  wxs_coupon_distribute.coupon_status couponStatus,
+		  wxs_coupon_distribute.is_car_use isCarUse,
+		  wxs_coupon_distribute.is_store_use isStoreUse,
+		  wxs_coupon_distribute.is_tenant_use isTenantUse,
+		  wxs_coupon_distribute.coupon_begin_date couponBeginDate,
+		  wxs_coupon_distribute.coupon_end_date couponEndDate,
+		  wxs_coupon_distribute.coupon_delete_status couponDeleteStatus,
+		  NULL cardId,
+		  NULL itemId,
+		  NULL itemType,
+		  NULL serviceItemType
+		FROM
+		  wxb_user_coupon,
+		  wxb_store,
+		  wxb_user,
+		  wxb_user_cars,
+		  wxs_coupon_distribute
+		WHERE wxb_user_coupon.store_id = wxb_store.store_id
+		  AND wxb_user_coupon.coupon_distribute_id = wxs_coupon_distribute.coupon_distribute_id
+		  AND wxb_user_coupon.car_id = wxb_user_cars.car_id
+		  AND wxb_user_coupon.user_id = wxb_user.user_id
+		  AND wxb_user_coupon.user_coupon_status = 0
+		  AND wxs_coupon_distribute.coupon_type = 1
+		  AND NOW() &gt;= wxs_coupon_distribute.coupon_begin_date
+		  AND NOW() &lt; wxs_coupon_distribute.coupon_end_date
+		  AND wxb_user_cars.user_car_id = #userCarId#
+		  AND wxb_store.orgid = #orgid#
+		  AND wxb_store.tenant_id = #tenantId#
+    </select>
+    
+     <!-- 车道接口查询查专属券（普通项目的）和通用券 -->
+    <select id ="queryUserUseCouponCardLists" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		 <!-- 通用券 -->
+		 SELECT
+		  wxb_store.store_id storeId,
+		  wxb_store.orgid,
+		  wxb_store.tenant_id tenantId,
+		  wxb_store.store_name storeName,
+		  wxb_store.store_average_score storeAverageScore,
+		  wxb_store.store_picture storePicture,
+		  wxb_store.store_business_begin_time storeBusinessBeginTime,
+		  wxb_store.store_business_end_time storeBusinessEndTime,
+		  wxb_store.store_details_content storeDetailsContent,
+		  wxb_store.store_status storeStatus,
+		  wxb_store.store_latitude storeLatitude,
+		  wxb_store.store_longitude storeLongitude,
+		  wxb_store.store_phone storePhone,
+		  wxb_store.store_streetAddress storeStreetAddress,
+		  wxb_store.is_delete,
+		  wxb_user_cars.car_id carId,
+		  wxb_user_cars.car_vin carVin,
+		  wxb_user_cars.car_no carNo,
+		  wxb_user_cars.user_car_id userCarId,
+		  wxb_user_cars.car_brand_id carBrandId,
+		  wxb_user_cars.car_brand_name carBrandName,
+		  wxb_user_cars.car_series_id carSeriesId,
+		  wxb_user_cars.car_series_name carSeriesName,
+		  wxb_user_cars.car_model_id carModelId,
+		  wxb_user_cars.car_model_name carModelName,
+		  wxb_user_cars.last_patronage_car lastPatronageCar,
+		  wxb_user_coupon.user_coupon_id userCouponId,
+		  wxb_user_coupon.user_openId userOpenId,
+		  wxb_user_coupon.user_coupon_code userCouponCode,
+		  wxb_user_coupon.coupon_distribute_id couponDistributeId,
+		  wxb_user_coupon.coupon_use_time couponUseTime,
+		  wxb_user_coupon.user_coupon_status userCouponStatus,
+		  wxs_coupon_distribute.store_id storeId,
+		  wxs_coupon_distribute.coupon_code couponCode,
+		  wxs_coupon_distribute.coupon_name couponName,
+		  wxs_coupon_distribute.coupon_title couponTitle,
+		  wxs_coupon_distribute.coupon_describe couponDescribe,
+		  wxs_coupon_distribute.coupon_condition_price couponConditionPrice,
+		  wxs_coupon_distribute.coupon_discounts_price couponDiscountsPrice,
+		  wxs_coupon_distribute.service_item_id serviceItemId,
+		  wxs_coupon_distribute.service_item_name serviceitemName,
+		  wxs_coupon_distribute.coupon_type couponType,
+		  wxs_coupon_distribute.coupon_number couponNumber,
+		  wxs_coupon_distribute.distribute_people_id distributePeopleId,
+		  wxs_coupon_distribute.distribute_people_name distributePeopleName,
+		  wxs_coupon_distribute.distribute_date distributeDate,
+		  wxs_coupon_distribute.distribute_status distributeStatus,
+		  wxs_coupon_distribute.coupon_status couponStatus,
+		  wxs_coupon_distribute.is_car_use isCarUse,
+		  wxs_coupon_distribute.is_store_use isStoreUse,
+		  wxs_coupon_distribute.is_tenant_use isTenantUse,
+		  wxs_coupon_distribute.coupon_begin_date couponBeginDate,
+		  wxs_coupon_distribute.coupon_end_date couponEndDate,
+		  wxs_coupon_distribute.coupon_delete_status couponDeleteStatus,
+		  NULL itemId
+		FROM wxb_store
+			 INNER JOIN wxb_user_coupon ON wxb_user_coupon.store_id = wxb_store.store_id
+			 INNER JOIN wxs_coupon_distribute ON   wxb_user_coupon.coupon_distribute_id = wxs_coupon_distribute.coupon_distribute_id
+			 INNER JOIN wxb_user_cars ON  wxb_user_cars.car_id = wxb_user_coupon.car_id
+		WHERE wxb_user_coupon.user_coupon_status = 0
+			  AND wxs_coupon_distribute.coupon_type = 1
+			  <isNotNull property="orgid">  <!-- 门店机构id -->
+			  	AND wxb_store.orgid = #orgid#
+			  </isNotNull>
+			  <isNotNull property="tenantId"><!-- 门店租户id -->
+			  	AND wxb_store.tenant_id = #tenantId#
+			  </isNotNull>
+			  <isNotNull property="userOpenId"><!-- 用户的openId -->
+			  	AND wxb_user_coupon.user_openId = '$userOpenId$'
+			  </isNotNull>
+			  <isNotNull property="userCarId"><!-- 用户车id（车道系统的） -->
+			  	AND wxb_user_cars.user_car_id = #userCarId#
+			  </isNotNull>
+		UNION 
+		<!-- 专属券（普通项目的） -->
+		 SELECT
+		  wxb_store.store_id storeId,
+		  wxb_store.orgid,
+		  wxb_store.tenant_id tenantId,
+		  wxb_store.store_name storeName,
+		  wxb_store.store_average_score storeAverageScore,
+		  wxb_store.store_picture storePicture,
+		  wxb_store.store_business_begin_time storeBusinessBeginTime,
+		  wxb_store.store_business_end_time storeBusinessEndTime,
+		  wxb_store.store_details_content storeDetailsContent,
+		  wxb_store.store_status storeStatus,
+		  wxb_store.store_latitude storeLatitude,
+		  wxb_store.store_longitude storeLongitude,
+		  wxb_store.store_phone storePhone,
+		  wxb_store.store_streetAddress storeStreetAddress,
+		  wxb_store.is_delete,
+		  wxb_user_cars.car_id carId,
+		  wxb_user_cars.car_vin carVin,
+		  wxb_user_cars.car_no carNo,
+		  wxb_user_cars.user_car_id userCarId,
+		  wxb_user_cars.car_brand_id carBrandId,
+		  wxb_user_cars.car_brand_name carBrandName,
+		  wxb_user_cars.car_series_id carSeriesId,
+		  wxb_user_cars.car_series_name carSeriesName,
+		  wxb_user_cars.car_model_id carModelId,
+		  wxb_user_cars.car_model_name carModelName,
+		  wxb_user_cars.last_patronage_car lastPatronageCar,
+		  wxb_user_coupon.user_coupon_id userCouponId,
+		  wxb_user_coupon.user_openId userOpenId,
+		  wxb_user_coupon.user_coupon_code userCouponCode,
+		  wxb_user_coupon.coupon_distribute_id couponDistributeId,
+		  wxb_user_coupon.coupon_use_time couponUseTime,
+		  wxb_user_coupon.user_coupon_status userCouponStatus,
+		  wxs_coupon_distribute.store_id storeId,
+		  wxs_coupon_distribute.coupon_code couponCode,
+		  wxs_coupon_distribute.coupon_name couponName,
+		  wxs_coupon_distribute.coupon_title couponTitle,
+		  wxs_coupon_distribute.coupon_describe couponDescribe,
+		  wxs_coupon_distribute.coupon_condition_price couponConditionPrice,
+		  wxs_coupon_distribute.coupon_discounts_price couponDiscountsPrice,
+		  wxs_coupon_distribute.service_item_id serviceItemId,
+		  wxs_coupon_distribute.service_item_name serviceitemName,
+		  wxs_coupon_distribute.coupon_type couponType,
+		  wxs_coupon_distribute.coupon_number couponNumber,
+		  wxs_coupon_distribute.distribute_people_id distributePeopleId,
+		  wxs_coupon_distribute.distribute_people_name distributePeopleName,
+		  wxs_coupon_distribute.distribute_date distributeDate,
+		  wxs_coupon_distribute.distribute_status distributeStatus,
+		  wxs_coupon_distribute.coupon_status couponStatus,
+		  wxs_coupon_distribute.is_car_use isCarUse,
+		  wxs_coupon_distribute.is_store_use isStoreUse,
+		  wxs_coupon_distribute.is_tenant_use isTenantUse,
+		  wxs_coupon_distribute.coupon_begin_date couponBeginDate,
+		  wxs_coupon_distribute.coupon_end_date couponEndDate,
+		  wxs_coupon_distribute.coupon_delete_status couponDeleteStatus,
+		  wxb_service_item.item_id itemId
+		FROM wxb_store
+			 INNER JOIN wxb_user_coupon ON wxb_user_coupon.store_id = wxb_store.store_id
+			 INNER JOIN wxs_coupon_distribute ON   wxb_user_coupon.coupon_distribute_id = wxs_coupon_distribute.coupon_distribute_id
+			 INNER JOIN wxb_user_cars ON  wxb_user_cars.car_id = wxb_user_coupon.car_id
+			 INNER JOIN wxb_service_item ON wxs_coupon_distribute.service_item_id = wxb_service_item.service_item_id AND wxb_service_item.service_item_type = 1
+		WHERE wxb_user_coupon.user_coupon_status = 0
+			  <isNotNull property="orgid">  <!-- 门店机构id -->
+			  	AND wxb_store.orgid = #orgid#
+			  </isNotNull>
+			  <isNotNull property="tenantId"><!-- 门店租户id -->
+			  	AND wxb_store.tenant_id = #tenantId#
+			  </isNotNull>
+			  <isNotNull property="userOpenId"><!-- 用户的openId -->
+			  	AND wxb_user_coupon.user_openId = '$userOpenId$'
+			  </isNotNull>
+			  <isNotNull property="userCarId"><!-- 用户车id（车道系统的） -->
+			  	AND wxb_user_cars.user_car_id = #userCarId#
+			  </isNotNull>
+    </select>
+    
+    
+         <!-- 车道接口查询只查专属券（套餐项目） -->
+    <select id ="queryUserUseCardLists" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		 SELECT
+		  wxb_store.store_id storeId,
+		  wxb_store.orgid,
+		  wxb_store.tenant_id tenantId,
+		  wxb_store.store_name storeName,
+		  wxb_store.store_average_score storeAverageScore,
+		  wxb_store.store_picture storePicture,
+		  wxb_store.store_business_begin_time storeBusinessBeginTime,
+		  wxb_store.store_business_end_time storeBusinessEndTime,
+		  wxb_store.store_details_content storeDetailsContent,
+		  wxb_store.store_status storeStatus,
+		  wxb_store.store_latitude storeLatitude,
+		  wxb_store.store_longitude storeLongitude,
+		  wxb_store.store_phone storePhone,
+		  wxb_store.store_streetAddress storeStreetAddress,
+		  wxb_store.is_delete,
+		  wxb_user_cars.car_id carId,
+		  wxb_user_cars.car_vin carVin,
+		  wxb_user_cars.car_no carNo,
+		  wxb_user_cars.user_car_id userCarId,
+		  wxb_user_cars.car_brand_id carBrandId,
+		  wxb_user_cars.car_brand_name carBrandName,
+		  wxb_user_cars.car_series_id carSeriesId,
+		  wxb_user_cars.car_series_name carSeriesName,
+		  wxb_user_cars.car_model_id carModelId,
+		  wxb_user_cars.car_model_name carModelName,
+		  wxb_user_cars.last_patronage_car lastPatronageCar,
+		  wxb_user_coupon.user_coupon_id userCouponId,
+		  wxb_user_coupon.user_openId userOpenId,
+		  wxb_user_coupon.user_coupon_code userCouponCode,
+		  wxb_user_coupon.coupon_distribute_id couponDistributeId,
+		  wxb_user_coupon.coupon_use_time couponUseTime,
+		  wxb_user_coupon.user_coupon_status userCouponStatus,
+		  wxs_coupon_distribute.store_id storeId,
+		  wxs_coupon_distribute.coupon_code couponCode,
+		  wxs_coupon_distribute.coupon_name couponName,
+		  wxs_coupon_distribute.coupon_title couponTitle,
+		  wxs_coupon_distribute.coupon_describe couponDescribe,
+		  wxs_coupon_distribute.coupon_condition_price couponConditionPrice,
+		  wxs_coupon_distribute.coupon_discounts_price couponDiscountsPrice,
+		  wxs_coupon_distribute.service_item_id serviceItemId,
+		  wxs_coupon_distribute.service_item_name serviceitemName,
+		  wxs_coupon_distribute.coupon_type couponType,
+		  wxs_coupon_distribute.coupon_number couponNumber,
+		  wxs_coupon_distribute.distribute_people_id distributePeopleId,
+		  wxs_coupon_distribute.distribute_people_name distributePeopleName,
+		  wxs_coupon_distribute.distribute_date distributeDate,
+		  wxs_coupon_distribute.distribute_status distributeStatus,
+		  wxs_coupon_distribute.coupon_status couponStatus,
+		  wxs_coupon_distribute.is_car_use isCarUse,
+		  wxs_coupon_distribute.is_store_use isStoreUse,
+		  wxs_coupon_distribute.is_tenant_use isTenantUse,
+		  wxs_coupon_distribute.coupon_begin_date couponBeginDate,
+		  wxs_coupon_distribute.coupon_end_date couponEndDate,
+		  wxs_coupon_distribute.coupon_delete_status couponDeleteStatus,
+		  wxb_service_item.card_id itemId
+		FROM wxb_store
+			 INNER JOIN wxb_user_coupon ON wxb_user_coupon.store_id = wxb_store.store_id
+			 INNER JOIN wxs_coupon_distribute ON   wxb_user_coupon.coupon_distribute_id = wxs_coupon_distribute.coupon_distribute_id
+			 INNER JOIN wxb_user_cars ON  wxb_user_cars.car_id = wxb_user_coupon.car_id
+			 INNER JOIN wxb_service_item ON wxs_coupon_distribute.service_item_id = wxb_service_item.service_item_id AND wxb_service_item.service_item_type = 2
+		WHERE wxb_user_coupon.user_coupon_status = 0
+			  <isNotNull property="orgid">  <!-- 门店机构id -->
+			  	AND wxb_store.orgid = #orgid#
+			  </isNotNull>
+			  <isNotNull property="tenantId"><!-- 门店租户id -->
+			  	AND wxb_store.tenant_id = #tenantId#
+			  </isNotNull>
+			  <isNotNull property="userOpenId"><!-- 用户的openId -->
+			  	AND wxb_user_coupon.user_openId = '$userOpenId$'
+			  </isNotNull>
+			  <isNotNull property="userCarId"><!-- 用户车id（车道系统的） -->
+			  	AND wxb_user_cars.user_car_id = #userCarId#
+			  </isNotNull>
+    </select>
+    
+     <!-- 查询已领优惠劵的关注用户 -->
+    <select id ="queryUserSubscribeUseCouponCard" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+		  wxb_user.user_id userId,
+		  wxb_user.guest_id guestId,
+		  wxb_user.contactor_id contactorId,
+		  wxb_user.contactor_name contactorName,
+		  wxb_user.user_marke userMarke,
+		  wxb_user.user_opid userOpid,
+		  wxb_user.user_head_portrait userHeadPortrait,
+		  wxb_user.user_nickname userNickname,
+		  wxb_user.user_name userName,
+		  wxb_user.user_gender userGender,
+		  wxb_user.user_birthday userBirthday,
+		  wxb_user.user_phone userPhone,
+		  wxb_user.user_province userProvince,
+		  wxb_user.user_city userCity,
+		  wxb_user.user_address userAddress,
+		  wxb_user.user_attention_time userAttentionTime,
+		  wxb_user.user_not_attention_time userNotAttentionTime,
+		  wxb_user.user_binding_time userBindingTime,
+		  wxb_user.user_last_operation_time userLastOperation,
+		  wxb_user.user_remark userRemark,
+		  wxb_user.service_id serviceId,
+		  wxb_user.user_source userSource,
+		  wxb_user.user_subscribe userSubscribe,
+		  wxb_user.user_type userType,
+		  wxb_user.modify_date modifyDate,
+		  wxb_user_coupon.user_coupon_id userCouponId,
+		  wxb_user_coupon.user_coupon_code userCouponCode,
+		  wxb_user_coupon.coupon_distribute_id couponDistributeId,
+		  wxb_user_coupon.coupon_use_time couponUseTime,
+		  wxb_user_coupon.user_coupon_status userCouponStatus
+		FROM
+		  wxb_user,
+		  wxb_user_coupon
+		WHERE wxb_user.user_opid = wxb_user_coupon.user_openId
+		  AND wxb_user.user_type = 0
+		  AND wxb_user_coupon.coupon_distribute_id = #couponDistributeId#
+    </select>
+    
+    <!-- 查询已领优惠劵的绑定用户 -->
+    <select id ="queryUserUseCouponCard" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_store.store_id storeId,
+		  wxb_store.orgid,
+		  wxb_store.tenant_id tenantId,
+		  wxb_store.store_name storeName,
+		  wxb_store.store_average_score storeAverageScore,
+		  wxb_store.store_picture storePicture,
+		  wxb_store.store_business_begin_time storeBusinessBeginTime,
+		  wxb_store.store_business_end_time storeBusinessEndTime,
+		  wxb_store.store_details_content storeDetailsContent,
+		  wxb_store.store_status storeStatus,
+		  wxb_store.store_latitude storeLatitude,
+		  wxb_store.store_longitude storeLongitude,
+		  wxb_store.store_phone storePhone,
+		  wxb_store.store_streetAddress storeStreetAddress,
+		  wxb_store.is_delete,
+		  wxb_user.user_id userId,
+		  wxb_user.guest_id guestId,
+		  wxb_user.contactor_id contactorId,
+		  wxb_user.contactor_name contactorName,
+		  wxb_user.user_marke userMarke,
+		  wxb_user.user_opid userOpid,
+		  wxb_user.user_head_portrait userHeadPortrait,
+		  wxb_user.user_nickname userNickname,
+		  wxb_user.user_name userName,
+		  wxb_user.user_gender userGender,
+		  wxb_user.user_birthday userBirthday,
+		  wxb_user.user_phone userPhone,
+		  wxb_user.user_province userProvince,
+		  wxb_user.user_city userCity,
+		  wxb_user.user_address userAddress,
+		  wxb_user.user_attention_time userAttentionTime,
+		  wxb_user.user_not_attention_time userNotAttentionTime,
+		  wxb_user.user_binding_time userBindingTime,
+		  wxb_user.user_last_operation_time userLastOperation,
+		  wxb_user.user_remark userRemark,
+		  wxb_user.service_id serviceId,
+		  wxb_user.user_source userSource,
+		  wxb_user.user_subscribe userSubscribe,
+		  wxb_user.user_type userType,
+		  wxb_user_cars.car_id carId,
+		  wxb_user_cars.car_vin carVin,
+		  wxb_user_cars.car_no carNo,
+		  wxb_user_cars.user_car_id userCarId,
+		  wxb_user_cars.car_brand_id carBrandId,
+		  wxb_user_cars.car_brand_name carBrandName,
+		  wxb_user_cars.car_series_id carSeriesId,
+		  wxb_user_cars.car_series_name carSeriesName,
+		  wxb_user_cars.car_model_id carModelId,
+		  wxb_user_cars.car_model_name carModelName,
+		  wxb_user_cars.last_patronage_car lastPatronageCar,
+		  wxb_user_coupon.user_coupon_id userCouponId,
+		  wxb_user_coupon.user_coupon_code userCouponCode,
+		  wxb_user_coupon.coupon_distribute_id couponDistributeId,
+		  wxb_user_coupon.coupon_use_time couponUseTime,
+		  wxb_user_coupon.user_coupon_status userCouponStatus
+		FROM
+		  wxb_user,
+		  wxb_store,
+		  wxb_user_cars,
+		  wxb_user_coupon
+		WHERE wxb_user_coupon.user_id = wxb_user.user_id
+		  AND wxb_user_coupon.store_id = wxb_store.store_id
+		  AND wxb_user_cars.car_id = wxb_user_coupon.car_id
+		  AND wxb_user_coupon.coupon_distribute_id = #couponDistributeId#
+    </select>
+    
+    <!-- 查询员工下客服信息 -->
+    <select id ="queryCustomerServiceEmp" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_store_employe.employe_id employeId,
+		  wxb_store_employe.employe_name employeName,
+		  wxb_store_employe.store_id storeId,
+		  wxb_store.store_name storeName,
+		  wxb_store_employe.empid,
+		  wxb_store_employe.empName empname,
+		  wxb_store_employe.employe_picture employePicture,
+		  wxb_store_employe.employe_phone employePhone,
+		  wxb_store_employe.employe_wechat employeWechat,
+		  wxb_store_employe.employe_position employePosition,
+		  wxb_store_employe.employe_work_experience employeWorkExperience,
+		  wxb_store_employe.employe_brief_introduction employeBriefIntroduction,
+		  (SELECT COUNT(*) FROM wxb_user WHERE wxb_user.service_id = wxs_store_service.service_id OR wxb_user.technique_service_id = wxs_store_service.service_id ) manageNumber,
+		  wxs_store_service.service_id serviceId,
+		  wxs_store_service.service_type serviceType,
+		  wxs_store_service.service_manage_number serviceManageNumber,
+		  wxs_store_service.service_max_number serviceMaxNumber,
+		  wxs_store_service.create_date createDate,
+		  wxs_store_service.creator,
+		  wxs_store_service.creator_id creatorId,
+		  wxs_store_service.modify_date modifyDate,
+		  wxs_store_service.modifier,
+		  wxs_store_service.modifier_id modifierId,
+		  wxs_store_service.is_delete isDelete,
+		   wxs_store_service.employe_wechat_img employeWechatImg
+		FROM
+		  wxb_store_employe,
+		  wxs_store_service,
+		  wxb_store
+		WHERE wxb_store.store_id = wxb_store_employe.store_id
+		  AND wxs_store_service.employe_id = wxb_store_employe.employe_id
+		  AND wxs_store_service.is_delete = 0
+		  AND wxs_store_service.store_id = #storeId#
+		<isNotNull property="employeName">
+	 		AND wxb_store_employe.employe_name LIKE '%$employeName$%'
+	 	</isNotNull>
+	  	<isNotNull property="serviceType">
+	  		AND wxs_store_service.service_type = '$serviceType$'
+	 	</isNotNull>
+	  
+    </select>
+    
+    <!-- 查询用户下的服务员工 -->
+    <select id ="queryStoreServiceEmpInfo" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_user.user_id userId,
+		  wxb_user.guest_id guestId,
+		  wxb_user.contactor_id contactorId,
+		  wxb_user.contactor_name contactorName,
+		  wxb_user.user_marke userMarke,
+		  wxb_user.user_opid userOpid,
+		  wxb_user.user_head_portrait userHeadPortrait,
+		  wxb_user.user_nickname userNickname,
+		  wxb_user.user_name userName,
+		  wxb_user.user_gender userGender,
+		  wxb_user.user_birthday userBirthday,
+		  wxb_user.user_phone userPhone,
+		  wxb_user.user_province userProvince,
+		  wxb_user.user_city userCity,
+		  wxb_user.user_address userAddress,
+		  wxb_user.user_attention_time userAttentionTime,
+		  wxb_user.user_not_attention_time userNotAttentionTime,
+		  wxb_user.user_binding_time userBindingTime,
+		  wxb_user.user_last_operation_time userLastOperation,
+		  wxb_user.user_remark userRemark,
+		  wxb_user.service_id serviceId,
+		  wxb_user.user_source userSource,
+		  wxb_user.user_subscribe userSubscribe,
+		  wxb_user.user_type userType
+		FROM
+		  wxb_user
+		WHERE wxb_user.service_id = #serviceIdOne# OR wxb_user.technique_service_id = #serviceIdTwo#
+    </select>
+    
+    <!-- 查询门店下的员工 -->
+    <select id ="queryStoreServiceEmployes" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT wxs_store_service.service_id FROM wxs_store_service WHERE wxs_store_service.employe_id = #employeId# and wxs_store_service.store_id = #storeId# 
+    </select>
+    
+    <!-- 查询门店下员工信息 -->
+    <select id ="queryStoreEmpInfo" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_store_employe.employe_id employeId,
+		  wxb_store_employe.employe_name employeName,
+		  wxb_store_employe.store_id storeId,
+		  wxb_store.store_name storeName,
+		  wxb_store_employe.empid,
+		  wxb_store_employe.empName empname,
+		  wxb_store_employe.employe_picture employePicture,
+		  wxb_store_employe.employe_phone employePhone,
+		  wxb_store_employe.employe_wechat employeWechat,
+		  wxb_store_employe.employe_position employePosition,
+		  wxb_store_employe.employe_work_experience employeWorkExperience,
+		  wxb_store_employe.employe_brief_introduction employeBriefIntroduction,
+		  wxb_store_employe.create_date createDate,
+		  wxb_store_employe.creator,
+		  wxb_store_employe.creator_id creatorId,
+		  wxb_store_employe.modify_date modifyDate,
+		  wxb_store_employe.modifier,
+		  wxb_store_employe.modifier_id modifierId
+		FROM
+		  wxb_store_employe,
+		  wxb_store
+		WHERE wxb_store.store_id = wxb_store_employe.store_id
+		AND wxb_store_employe.store_id = #storeId#
+		<isNotNull property="employeName">
+	 		AND wxb_store_employe.employe_name LIKE '%$employeName$%'
+	 	</isNotNull>
+	  	<isNotNull property="employePosition">
+	  		AND wxb_store_employe.employe_position = '$employePosition$'
+	 	</isNotNull>
+	  
+    </select>
+    <!-- 根据Openid查询用户信息 -->
+    <select id ="queryUserStoreCarGetOpenid" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_store.store_id storeId,
+		  wxb_store.orgid,
+		  wxb_store.tenant_id tenantId,
+		  wxb_store.store_name storeName,
+		  wxb_store.store_average_score storeAverageScore,
+		  wxb_store.store_picture storePicture,
+		  wxb_store.store_business_begin_time storeBusinessBeginTime,
+		  wxb_store.store_business_end_time storeBusinessEndTime,
+		  wxb_store.store_details_content storeDetailsContent,
+		  wxb_store.store_status storeStatus,
+		  wxb_store.create_date createDate,
+		  wxb_store.creator_id creatorId,
+		  wxb_store.creator,
+		  wxb_store.modify_date modifyDate,
+		  wxb_store.modifier_id modifierId,
+		  wxb_store.modifier,
+		  wxb_store.store_latitude storeLatitude,
+		  wxb_store.store_longitude storeLongitude,
+		  wxb_store.store_phone storePhone,
+		  wxb_store.store_streetAddress storeStreetAddress,
+		  wxb_store.is_delete,
+		  wxb_user.user_id userId,
+		  wxb_user.guest_id guestId,
+		  wxb_user.contactor_id contactorId,
+		  wxb_user.contactor_name contactorName,
+		  wxb_user.user_marke userMarke,
+		  wxb_user.user_opid userOpid,
+		  wxb_user.user_head_portrait userHeadPortrait,
+		  wxb_user.user_nickname userNickname,
+		  wxb_user.user_name userName,
+		  wxb_user.user_gender userGender,
+		  wxb_user.user_birthday userBirthday,
+		  wxb_user.user_phone userPhone,
+		  wxb_user.user_province userProvince,
+		  wxb_user.user_city userCity,
+		  wxb_user.user_address userAddress,
+		  wxb_user.user_attention_time userAttentionTime,
+		  wxb_user.user_not_attention_time userNotAttentionTime,
+		  wxb_user.user_binding_time userBindingTime,
+		  wxb_user.user_last_operation_time userLastOperation,
+		  wxb_user.user_remark userRemark,
+		  wxb_user.service_id serviceId,
+		  wxb_user.user_source userSource,
+		  wxb_user.user_subscribe userSubscribe,
+		  wxb_user.user_type userType,
+		  wxb_user.modify_date modifyDate,
+		  wxb_user_cars.car_id carId,
+		  wxb_user_cars.car_vin carVin,
+		  wxb_user_cars.car_no carNo,
+		  wxb_user_cars.user_car_id userCarId,
+		  wxb_user_cars.car_brand_id carBrandId,
+		  wxb_user_cars.car_brand_name carBrandName,
+		  wxb_user_cars.car_series_id carSeriesId,
+		  wxb_user_cars.car_series_name carSeriesName,
+		  wxb_user_cars.car_model_id carModelId,
+		  wxb_user_cars.car_model_name carModelName,
+		  wxb_user_cars.last_patronage_car lastPatronageCar,
+		  wxb_store_user.store_user_id storeUserId,
+		  wxb_store_user.last_patronage_store lastPatronageStore
+		FROM
+		  wxb_user,
+		  wxb_store,
+		  wxb_user_cars,
+		  wxb_store_user
+		WHERE wxb_store_user.last_patronage_store = 0
+		  AND wxb_store_user.store_id = wxb_store.store_id
+		  AND wxb_store_user.user_id = wxb_user.user_id
+		  AND wxb_user_cars.last_patronage_car = 0
+		  AND wxb_user.user_id = wxb_user_cars.user_id
+		  AND wxb_user.user_opid = '$openId$'
+    </select>
+    <!-- 查询用户信息 -->
+    <select id ="queryUsersInfo" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  user_id userId,
+		  guest_id guestId,
+		  contactor_id contactorId,
+		  user_marke userMarke,
+		  user_opid userOpid,
+		  user_head_portrait userHeadPortrait,
+		  user_nickname userNickname,
+		  user_name userName,
+		  user_gender userGender,
+		  user_birthday userBirthday,
+		  user_phone userPhone,
+		  user_province userProvince,
+		  user_city userCity,
+		  user_address userAddress,
+		  user_attention_time userAttentionTime,
+		  user_not_attention_time userNotAttentionTime,
+		  user_binding_time userBindingTime,
+		  user_last_operation_time userLastOperation,
+		  user_remark userRemark,
+		  service_id serviceId,
+		  user_source userSource,
+		  user_subscribe userSubscribe,
+		  user_type userType,
+		  modify_date modifyDate
+		FROM
+		  wxb_user
+		WHERE wxb_user.user_subscribe = #userSubscribe#
+		<isNotNull property="userNickname">
+	 		AND wxb_user.user_nickname LIKE '%$userNickname$%'
+	 	</isNotNull>
+	  	<isNotNull property="userProvince">
+	  		AND wxb_user.user_province LIKE '%$userProvince$%'
+	 	</isNotNull>
+	  	<isNotNull property="userCity">
+	  		AND wxb_user.user_city LIKE '%$userCity$%'
+	 	</isNotNull>
+	  	<isNotNull property="userAttentionTimeBegin">
+	  		AND wxb_user.user_attention_time &gt;= '$userAttentionTimeBegin$'
+	 	</isNotNull>
+	  	<isNotNull property="userAttentionTimeEnd">
+	  		AND wxb_user.user_attention_time &lt;= '$userAttentionTimeEnd$'
+	 	</isNotNull>
+    </select>
+    
+    <!-- 修改用户数据 -->
+    <update id ="updateUsersData" parameterClass="java.util.HashMap">
+    	UPDATE hs_srms_user SET user_subscribe = 0
+    </update>
+    
+    <!-- 查询用户标识 -->
+    <select id ="queryUsersMarke" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT wxb_user.user_marke userMarke,user_id userId,user_opid userOpid,user_source userSource FROM wxb_user WHERE 1 = 1
+    	<isNotNull property="opid">
+	  		AND wxb_user.user_opid = '$opid$'
+	 	</isNotNull>
+    	<isNotNull property="userMarke">
+	  		AND wxb_user.user_marke = #userMarke#
+	 	</isNotNull>
+    </select>
+    
+    <!-- 根据服务号查询用户信息 -->
+    <select id ="queryUsersMarkeOnly" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT wxb_user.user_marke userMarke,user_id userId,user_opid userOpid FROM wxb_user WHERE wxb_user.user_marke = #userMarke#
+    </select>
+    
+    <!-- 根据用户和门店的主键查询中间表是否已存在其对应关系 -->
+    <select id ="queryStoreUsersOnly" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT store_user_id FROM wxb_store_user WHERE wxb_store_user.store_id = #storeId# and wxb_store_user.user_id = #userId#
+    </select>
+    
+    <!-- 查询最后的标识 -->
+    <select id ="queryUsersMaxMarke" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT MAX(wxb_user.user_marke) userMarke FROM wxb_user
+    </select>
+    
+    <!-- 查询绑定的用户信息 -->
+    <select id ="queryBoundUsersInfo" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_store.store_name storeName,
+		  wxb_user.user_id userId,
+		  wxb_user.guest_id guestId,
+		  wxb_user.contactor_id contactorId,
+		  wxb_user.user_marke userMarke,
+		  wxb_user.user_opid userOpid,
+		  wxb_user.user_head_portrait userHeadPortrait,
+		  wxb_user.user_nickname userNickname,
+		  wxb_user.user_name userName,
+		  wxb_user.user_gender userGender,
+		  wxb_user.user_birthday userBirthday,
+		  wxb_user.user_phone userPhone,
+		  wxb_user.user_province userProvince,
+		  wxb_user.user_city userCity,
+		  wxb_user.user_address userAddress,
+		  wxb_user.user_attention_time userAttentionTime,
+		  wxb_user.user_not_attention_time userNotAttentionTime,
+		  wxb_user.user_binding_time userBindingTime,
+		  wxb_user.user_last_operation_time userLastOperation,
+		  wxb_user.user_remark userRemark,
+		  wxb_user.service_id serviceId,
+		  wxb_user.user_source userSource,
+		  wxb_user.user_subscribe userSubscribe,
+		  wxb_user.user_type userType,
+		  wxb_user.modify_date modifyDate
+		FROM
+		  wxb_user,
+		  wxb_store_user,
+		  wxb_store
+		WHERE wxb_store_user.store_id = wxb_store.store_id
+		  AND wxb_store_user.user_id = wxb_user.user_id
+		  AND wxb_user.user_type = 1
+	 	  AND wxb_store.store_id = #storeId#
+	  	<isNotNull property="userMarke"><!-- 用户服务号查询 -->
+	  		AND wxb_user.user_marke = #userMarke#
+	 	</isNotNull>
+	  	<isNotNull property="userName"><!-- 用户姓名模糊查询 -->
+	  		AND wxb_user.user_name like '%$userName$%'
+	 	</isNotNull>
+	 	<isNotNull property="userGroupId"><!-- 标签下用户查询 -->
+	 		AND wxb_user.user_group_id = #userGroupId#
+	 	</isNotNull>
+	  	<isNotNull property="userBindingTimeBegin"><!-- 绑定时间查询 -->
+	  		AND wxb_user.user_binding_time &gt;= '$userBindingTimeBegin$'
+	 	</isNotNull>
+	  	<isNotNull property="userBindingTimeEnd">
+	  		AND wxb_user.user_binding_time &lt;= '$userBindingTimeEnd$'
+	 	</isNotNull>
+    </select>
+    
+     <!-- 条件查询标签 -->
+    <select id ="queryUsersGroup" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_store.store_name storeName,
+		  wxb_group.group_id groupId,
+		  wxb_group.store_id storeId,
+		  wxb_group.group_tab_id groupTabId,
+		  wxb_group.group_name groupName,
+		  wxb_group.group_describe groupDescribe,
+		  wxb_group.creator_id creatorId,
+		  wxb_group.creator,
+		  wxb_group.create_date createDate,
+		  wxb_group.modifier_id modifierId,
+		  wxb_group.modifier,
+		  wxb_group.modify_date modifyDate
+		FROM
+		  wxb_group,
+		  wxb_user_group,
+		  wxb_store,
+		  wxb_user
+		WHERE wxb_group.store_id = wxb_store.store_id
+		  AND wxb_user_group.group_id = wxb_group.group_id
+		  AND wxb_user.user_id = wxb_user_group.user_id
+		  AND wxb_group.store_id = #storeId#
+		<isNotNull property="userName"><!-- 用户姓名模糊查询 -->
+	 		AND wxb_user.user_name LIKE '%$userName$%'
+	 	</isNotNull>
+	 	<isNotNull property="groupName"><!-- 用户标签模糊查询 -->
+	 		AND wxb_group.group_name LIKE '%$groupName$%'
+	 	</isNotNull>
+		GROUP BY wxb_group.group_id
+    </select>
+    
+     <!-- 查询标签 -->
+    <select id ="queryUsersGroupss" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_store.store_name storeName,
+		  wxb_group.group_id groupId,
+		  wxb_group.store_id storeId,
+		  wxb_group.group_tab_id groupTabId,
+		  wxb_group.group_name groupName,
+		  wxb_group.group_describe groupDescribe,
+		  wxb_group.creator_id creatorId,
+		  wxb_group.creator,
+		  wxb_group.create_date createDate,
+		  wxb_group.modifier_id modifierId,
+		  wxb_group.modifier,
+		  wxb_group.modify_date modifyDate
+		FROM
+		  wxb_group,
+		  wxb_store
+		WHERE wxb_group.store_id = wxb_store.store_id
+	 	AND wxb_group.store_id = #storeId#
+	 	<isNotNull property="groupName"><!-- 用户标签模糊查询 -->
+	 		AND wxb_group.group_name LIKE '%$groupName$%'
+	 	</isNotNull>
+		GROUP BY wxb_group.group_id
+    </select>
+    
+    <!-- 查询绑定用户的标签 -->
+    <select id ="queryBoundUsersGroup" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_store.store_name storeName,
+		  wxb_user.user_id userId,
+		  wxb_user.guest_id guestId,
+		  wxb_user.contactor_id contactorId,
+		  wxb_user.user_marke userMarke,
+		  wxb_user.user_opid userOpid,
+		  wxb_user.user_head_portrait userHeadPortrait,
+		  wxb_user.user_nickname userNickname,
+		  wxb_user.user_name userName,
+		  wxb_user.user_gender userGender,
+		  wxb_user.user_birthday userBirthday,
+		  wxb_user.user_phone userPhone,
+		  wxb_user.user_province userProvince,
+		  wxb_user.user_city userCity,
+		  wxb_user.user_address userAddress,
+		  wxb_user.user_attention_time userAttentionTime,
+		  wxb_user.user_not_attention_time userNotAttentionTime,
+		  wxb_user.user_binding_time userBindingTime,
+		  wxb_user.user_last_operation_time userLastOperation,
+		  wxb_user.user_remark userRemark,
+		  wxb_user.service_id serviceId,
+		  wxb_user.user_source userSource,
+		  wxb_user.user_subscribe userSubscribe,
+		  wxb_user.user_type userType,
+		  wxb_user.modify_date modifyDate
+		FROM
+		  wxb_user,
+		  wxb_store_user,
+		  wxb_user_group,
+		  wxb_store
+		WHERE wxb_store_user.store_id = wxb_store.store_id
+		  AND wxb_store_user.user_id = wxb_user.user_id
+		  AND wxb_user.user_id = wxb_user_group.user_id
+		  AND wxb_user.user_type = 1
+		<isNotNull property="storeId"><!-- 门店下用户查询 -->
+	 		AND wxb_store.store_id = #storeId#
+	 	</isNotNull>
+	  	<isNotNull property="userMarke"><!-- 用户服务号查询 -->
+	  		AND wxb_user.user_marke = #userMarke#
+	 	</isNotNull>
+	  	<isNotNull property="userName"><!-- 用户姓名模糊查询 -->
+	  		AND wxb_user.user_name like '%$userName$%'
+	 	</isNotNull>
+	 	<isNotNull property="groupId"><!-- 标签下用户查询 -->
+	 		AND wxb_user_group.group_id = #groupId#
+	 	</isNotNull>
+    </select>
+    <!-- 通过userId查询客户所有信息 -->
+	 <select id ="queryUserMess" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT 
+				wxb_user.guest_id  guestId,
+				wxb_user.contactor_id contactorId,
+				wxb_user.user_marke userMarke,
+				wxb_user.user_opid  userOpid ,
+				wxb_user.user_head_portrait  userHeadPortrait,
+				wxb_user.user_nickname  userNickname,
+				wxb_user.user_name userName,
+				wxb_user.user_gender  userGender,
+				wxb_user.user_birthday  userBirthday,
+				wxb_user.user_phone  userphone,
+				wxb_user.user_province userProvince,
+				wxb_user.user_city userCity,
+				wxb_user.user_address  userAddress,
+				wxb_user.user_attention_time  userAttentionTime,
+				wxb_user.user_not_attention_time  userNotAttentionTime,
+				wxb_user.user_binding_time  userBindingTime,
+				wxb_user.user_last_operation_time userLastOperationTime,
+				wxb_user.user_remark  userRemark,
+				wxb_user.service_id serviceId,
+				wxb_user.user_source userSource,
+				wxb_user.user_subscribe userSubscribe,
+				wxb_user.user_type userType,
+				wxb_user.modify_date modifyDate
+			FROM
+				wxb_user
+			WHERE 
+				wxb_user.user_id = #userId#
+	</select>   
+    
+    <!-- 通过userId和guestId查询客户所有信息 -->
+	 <select id ="queryUserGuestId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	    SELECT
+			wxb_user.user_id userId,
+			wxb_user.guest_id  guestId,
+			wxb_user.contactor_id contactorId,
+			wxb_user.user_marke userMarke,
+			wxb_user.user_opid  userOpid,
+			wxb_user.user_head_portrait userHeadPortrait,
+			wxb_user.user_nickname userNickname,
+			wxb_user.user_name userName,
+			wxb_user.user_gender userGender,
+			wxb_user.user_birthday  userBirthday,
+			wxb_user.user_phone   userPhone,
+			wxb_user.user_province   userProvince,
+			wxb_user.user_address userAddress,
+			wxb_user.user_city  userCity,
+			wxb_user.user_attention_time  userAttentionTime,
+			wxb_user.user_not_attention_time userNotAttentionTime,
+			wxb_user.user_binding_time   userBindingTime,
+			wxb_user.user_province userProvince    ,
+			wxb_user.user_last_operation_time   userLastOperationTime
+		FROM
+			wxb_user 
+		WHERE 1=1
+			<isNotNull property="opendId"><!-- 根据opendId查询-->
+	 			AND wxb_user.user_opid = #opendId#
+	 		</isNotNull>
+			<isNotNull property="guestId"><!-- 根据用户id查询-->
+	 			AND wxb_user.user_id = #userId#
+	 		</isNotNull>
+			<isNotNull property="guestId"><!-- 标签下用户查询 -->
+	 			AND wxb_user.guest_id = #guestId#
+	 		</isNotNull>
+	</select>   
+    <!-- 删除标签下的所有用户 -->
+    <delete id ="deleteUsersData" parameterClass="java.util.HashMap">
+    	DELETE FROM wxb_user_group WHERE group_id = #groupId#
+    </delete>
+    <!-- 删除标签用户关系表数据 -->
+    <delete id ="deleteUserGroupDatas" parameterClass="java.util.HashMap">
+    	DELETE FROM wxb_user_group WHERE group_id = #groupId# and user_id = #userId#
+    </delete>
+    <!-- 修改客户id -->
+    <update id ="updateGuestId" parameterClass="java.util.HashMap">
+    	UPDATE wxb_user 
+		SET wxb_user.guest_id  = #guestId# 
+		WHERE
+			wxb_user.user_id = #userID# 
+    </update>
+    
+     <!-- 根据客服类型查询不同的客服员工 -->
+    <select id ="queryServiceEmpList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			  wxs_store_service.service_id serviceId,
+			  wxs_store_service.store_id storeId,
+			  wxs_store_service.service_type serviceType,
+			  wxs_store_service.service_manage_number serviceManageNumber,
+			  wxs_store_service.service_max_number serviceMaxNumber,
+			  wxb_store_employe.employe_id employeId,
+			  wxb_store_employe.employe_name employeName,
+			  wxb_store_employe.employe_picture employePicture,
+			  wxb_store_employe.employe_phone employePhone,
+			  wxb_store_employe.employe_wechat employeWechat,
+			  wxb_store_employe.employe_position employePosition,
+			  wxs_store_service.employe_wechat_img  employeWechatImg,
+			  'A' tempSort
+			FROM
+			  wxs_store_service
+			INNER JOIN wxb_store_employe ON wxs_store_service.employe_id = wxb_store_employe.employe_id
+			WHERE 
+				IFNULL(wxs_store_service.service_manage_number,0) = IFNULL(wxs_store_service.service_max_number,0)
+			  AND wxs_store_service.is_delete = 0
+			  AND wxs_store_service.store_id = #storeId#
+			  AND wxs_store_service.service_type = '$serviceType$'
+				AND wxs_store_service.service_id =  (SELECT 
+				  	<isEqual property="serviceType" compareValue="1">
+				  		service_id 
+				  	</isEqual>
+				  	<isEqual property="serviceType" compareValue="2">
+				  		technique_service_id
+				  	</isEqual>	
+		 		FROM wxb_user WHERE user_id = #userId# )
+		UNION 
+		SELECT
+			  wxs_store_service.service_id serviceId,
+			  wxs_store_service.store_id storeId,
+			  wxs_store_service.service_type serviceType,
+			  wxs_store_service.service_manage_number serviceManageNumber,
+			  wxs_store_service.service_max_number serviceMaxNumber,
+			  wxb_store_employe.employe_id employeId,
+			  wxb_store_employe.employe_name employeName,
+			  wxb_store_employe.employe_picture employePicture,
+			  wxb_store_employe.employe_phone employePhone,
+			  wxb_store_employe.employe_wechat employeWechat,
+			  wxb_store_employe.employe_position employePosition,
+			  wxs_store_service.employe_wechat_img  employeWechatImg,
+		      IF(wxs_store_service.service_id = (
+			  	SELECT 
+				  	<isEqual property="serviceType" compareValue="1">
+				  		service_id 
+				  	</isEqual>
+				  	<isEqual property="serviceType" compareValue="2">
+				  		technique_service_id
+				  	</isEqual>	
+		 		FROM wxb_user WHERE user_id = #userId# ),'A','B') tempSort
+			FROM
+			  wxs_store_service
+			INNER JOIN wxb_store_employe ON wxs_store_service.employe_id = wxb_store_employe.employe_id
+			WHERE 
+				IFNULL(wxs_store_service.service_manage_number,0) <![CDATA[<]]> IFNULL(wxs_store_service.service_max_number,0)
+			  AND wxs_store_service.is_delete = 0
+			  AND wxs_store_service.store_id = #storeId#
+			  AND wxs_store_service.service_type = '$serviceType$'
+			  ORDER BY tempSort ASC 
+    </select>
+    
+     <!-- 根据用户id和车牌 查询客 -->
+        <select id ="queryCarID" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        		SELECT
+					wxb_user_cars.user_car_id  userCarId
+				FROM
+					wxb_user_cars 
+				WHERE
+						user_id = #userId# 
+				AND car_no = '$carNo$'
+        </select>
+        
+         <!-- 查询门店下，所有用户的优惠券 -->
+    <select id ="queryUserCouponListByStore" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+  		SELECT 
+	  		 ws.store_name storeName
+	  		,wu.user_name userName
+			,wcd.coupon_title couponTitle
+			,wcd.coupon_code couponCode
+			,wucr.car_no carNo
+			,wuc.coupon_use_time couponUseTime
+			,wuc.user_coupon_status userCouponStatus 
+		FROM wxb_store ws
+		INNER JOIN wxb_store_user wsu ON ws.store_id = wsu.store_id
+		INNER JOIN wxb_user wu ON wsu.user_id = wu.user_id
+		INNER JOIN wxb_user_cars wucr ON wsu.user_id = wucr.user_id
+		INNER JOIN wxb_user_coupon wuc ON wu.user_id = wuc.user_id
+		INNER JOIN wxs_coupon_distribute wcd ON wuc.coupon_distribute_id = wcd.coupon_distribute_id
+		WHERE 1 = 1
+		<isNotNull property="storeId">
+	  		AND ws.store_id = #storeId#
+	 	</isNotNull>
+	 	<isNotNull property="userName">
+	  		AND wu.user_name  LIKE '%$userName$%'
+	 	</isNotNull>
+	 	<isNotNull property="couponName">
+	  		AND wcd.coupon_name LIKE '%$couponName$%' 
+	 	</isNotNull>
+	 	<isNotNull property="carNo">
+	  		AND wucr.car_no LIKE '%$carNo$%'
+	 	</isNotNull>
+	 	<isNotNull property="userCouponStatus">
+	  		AND wuc.user_coupon_status = '$userCouponStatus$'
+	 	</isNotNull>
+    </select>
+    
+        <!-- 根据用户ID修改默认车辆 -->
+    <update id ="updateCarDefaultByUser">
+    	update wxb_user_cars 
+    	set last_patronage_car = 1
+    	where last_patronage_car = 0
+    	 and  user_id = #userId#
+    </update>
+    
+        <!-- 根据服务外键修改到对应用户 -->
+    <update id ="updateUserBySercice">
+    	update wxb_user
+	    	<isEqual property="type" compareValue="0">
+	    		set service_id = #serviceId#
+	    	</isEqual>
+	    	<isEqual property="type" compareValue="1">
+	    		set technique_service_id = #serviceId#
+	    	</isEqual>
+    	where  user_id = #userId#
+    </update>
+    
+     <!-- 新服务管理人数+1 -->
+    <update id ="updateNewSerciceByUserCount">
+    	UPDATE wxs_store_service
+		SET service_manage_number = IFNULL(service_manage_number,0) + 1
+		WHERE IFNULL(service_max_number,0)  >= IFNULL(service_manage_number,0) + 1
+		  AND service_id = #serviceId#
+    </update>
+    
+     <!-- 旧服务管理人数-1 -->
+    <update id ="updateOldSerciceByUserCount">
+    	UPDATE wxs_store_service
+		SET service_manage_number = IFNULL(service_manage_number,0) - 1 
+		WHERE IFNULL(service_manage_number,0) - 1 >= 0
+		  AND service_id = #oldServiceId#
+    </update>
+    
+    <select id ="queryOldServiceIdByUser" parameterClass="java.util.HashMap"  resultClass="java.util.HashMap">
+	    SELECT
+	    	<isEqual property="type" compareValue="0">
+	    		service_id oldServiceId
+	    	</isEqual>
+	    	<isEqual property="type" compareValue="1">
+	    		technique_service_id  oldServiceId
+	    	</isEqual>
+			FROM wxb_user
+		WHERE user_id = #userId#
+    </select>
+    	
+    <!-- 插入工单评价表 -->
+   <insert id ="insertOrderComment">
+   	 	INSERT wxs_order_comment
+   	 	SET  order_comment_id = #orderCommentId#
+			,service_order_id = #serviceOrderId#
+			,tenant_id = #tenantId#
+			,orgid = #orgId#
+			,store_id = #storeId#
+			,car_id = #carId#
+			,comment_score = #commentScore#
+			,comment_content = #commentContent#
+			,comment_image_list = #commentImageList#
+			,comment_date = now()
+   </insert>
+   
+   	<!-- 清空购物车 -->
+    <delete id ="deleteShoppingCartItem">
+	 	DELETE FROM wxb_item_shopping_cart WHERE wxb_item_shopping_cart.store_id = #storeId# AND wxb_item_shopping_cart.user_id = #userId#
+    </delete>
+    
+    <!-- 查询门店下此用户的购物车项目的库存量和销售量 -->
+   <select id ="queryStoreUserShoppingItem" parameterClass="java.util.HashMap"  resultClass="commonj.sdo.DataObject">
+	    SELECT
+		  wxb_item_shopping_cart.shopping_cart_id shoppingCartId,
+		  wxb_item_shopping_cart.store_id storeId,
+		  wxb_item_shopping_cart.service_item_id serviceItemId,
+		  wxb_item_shopping_cart.service_item_price serviceItemPrice,
+		  wxb_item_shopping_cart.service_item_num serviceItemNum,
+		  wxb_item_shopping_cart.user_id userId,
+		  wxb_item_shopping_cart.user_opid userOpid,
+		  wxb_item_shopping_cart.shopping_cart_total shoppingCartTotal,
+		  wxb_service_item.item_number itemNumber,
+		  wxb_service_item.item_total_number itemTotalNumber,
+		  wxb_service_item.item_number_status itemNumberStatus
+		FROM
+		  wxb_item_shopping_cart,
+		  wxb_service_item
+		WHERE wxb_item_shopping_cart.service_item_id = wxb_service_item.service_item_id
+		  AND wxb_service_item.store_id = #itemStoreId#
+		  AND wxb_item_shopping_cart.store_id = #storeId#
+		  AND wxb_item_shopping_cart.user_id = #userId#
+    </select>
+   
+    <!-- 查询用户的订单主表以及关联表的信息 -->
+   <select id ="queryUserOrderMainList" parameterClass="java.util.HashMap"  resultClass="commonj.sdo.DataObject">
+	   SELECT
+		  wxb_store.store_name storeName,
+		  wxb_store.orgid,
+		  wxb_store.store_streetAddress storeStreetAddress,
+		  wxb_user.user_nickname userNickname,
+		  wxb_user.user_phone userPhone,
+		  wxb_user.guest_id guestId,
+		  wxb_user.contactor_id contactorId,
+		  wxb_user_cars.user_car_id userCarId,
+		  wxb_user_cars.car_no carNo,
+		  wxb_user_cars.car_model_name carModelName,
+		  wxs_order_main.order_id orderId,
+		  wxs_order_main.order_code orderCode,
+		  wxs_order_main.store_id storeId,
+		  wxs_order_main.tenant_id tenantId,
+		  wxs_order_main.user_id userId,
+		  wxs_order_main.car_id carId,
+		  wxs_order_main.order_time orderTime,
+		  wxs_order_main.order_amount orderAmount,
+		  wxs_order_main.order_status orderStatus
+		FROM
+		  wxs_order_main,
+		  wxb_store,
+		  wxb_user,
+		  wxb_user_cars
+		WHERE wxs_order_main.store_id = wxb_store.store_id
+		AND wxs_order_main.user_id = wxb_user.user_id
+		AND wxs_order_main.car_id = wxb_user_cars.car_id
+		AND wxs_order_main.order_id = #orderId#
+    </select>
+    
+     <!-- 查询用户的订单从表以及关联表的信息 -->
+   <select id ="queryUserOrderDetailList" parameterClass="java.util.HashMap"  resultClass="commonj.sdo.DataObject">
+	   SELECT
+		  wxs_order_detail.detail_id detailId,
+		  wxs_order_detail.order_id orderId,
+		  wxs_order_detail.service_item_id serviceItemId,
+		  wxs_order_detail.item_price itemPrice,
+		  wxs_order_detail.item_qty itemQty,
+		  wxb_service_item.service_item_picture serviceItemPicture,
+		  wxb_service_item.service_item_name serviceItemName,
+		  wxb_service_item.orgid orgid,
+		  wxb_service_item.card_id cardId,
+		  wxb_service_item.card_name cardName,
+		  wxb_service_item.card_period_validity cardPeriodValidity,
+		  wxb_service_item.card_sell_amt cardSellAmt,
+		  wxb_service_item.card_total_amt cardTotalAmt,
+		  wxb_service_item.tenant_id tenantId,
+		  wxb_service_item.service_item_type serviceItemType,
+		  wxb_service_item.item_type itemType,
+		  wxb_service_item.item_id itemId,
+		  wxb_service_item.item_name itemName,
+		  wxb_service_item.item_price serviceItemPrice,
+		  wxb_service_item.item_amt itemAmt,
+		  wxb_service_item.item_qty serviceItemQty,
+		  wxb_service_item.car_model_id carModelId,
+		  wxb_service_item.service_type_name serviceTypeName
+		FROM
+		  wxs_order_detail,
+		  wxb_service_item
+		WHERE wxs_order_detail.service_item_id = wxb_service_item.service_item_id
+		  AND wxs_order_detail.order_id = #orderId#
+    </select>
+    
+    <!-- 查询用户的订单从表并且将项目类型归类 -->
+   <select id ="queryUserOrderDetailItemType" parameterClass="java.util.HashMap"  resultClass="commonj.sdo.DataObject">
+	   SELECT
+		  wxb_service_item.service_type_name serviceTypeName
+		FROM
+		  wxs_order_detail,
+		  wxb_service_item
+		WHERE wxs_order_detail.service_item_id = wxb_service_item.service_item_id
+		  AND wxs_order_detail.order_id = #orderId# GROUP BY wxb_service_item.service_type_name
+    </select>
+    
+    <!-- 查询订单截至时间 -->
+   <select id ="queryOrderExpirationTime" parameterClass="java.util.HashMap"  resultClass="commonj.sdo.DataObject">
+	    SELECT NOW() newDate,wxb_business_dict.dict_content dictContent  FROM wxb_business_dict WHERE dict_name = '$dictName$'
+    </select>
+    
+       <!-- 查询用户订单数据 -->
+    <select id ="queryOrderInfoByUser" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+	  SELECT wom.order_code orderCode
+	  		,wom.order_id orderId
+			,wuc.car_model_name carModelName
+			,wuc.car_no carNo
+			,wom.order_time orderTime
+			,CASE 
+			  WHEN TIMESTAMPDIFF(SECOND,NOW(),DATE_ADD(wom.order_time,INTERVAL wbd.dict_content MINUTE)) <![CDATA[<]]> 60 THEN 
+				CONCAT('00:',
+					IF(TIMESTAMPDIFF(SECOND,NOW(),DATE_ADD(wom.order_time,INTERVAL wbd.dict_content MINUTE)) <![CDATA[<]]> 10
+						,CONCAT(0,TIMESTAMPDIFF(SECOND,NOW(),DATE_ADD(wom.order_time,INTERVAL wbd.dict_content MINUTE)))
+						,TIMESTAMPDIFF(SECOND,NOW(),DATE_ADD(wom.order_time,INTERVAL wbd.dict_content MINUTE))
+					  )
+				)
+				ELSE CONCAT(
+								IF(
+									 TIMESTAMPDIFF(MINUTE,NOW(),DATE_ADD(wom.order_time,INTERVAL wbd.dict_content MINUTE)) <![CDATA[<]]> 10
+									,CONCAT(0,TIMESTAMPDIFF(MINUTE,NOW(),DATE_ADD(wom.order_time,INTERVAL wbd.dict_content MINUTE)))
+									,TIMESTAMPDIFF(MINUTE,NOW(),DATE_ADD(wom.order_time,INTERVAL wbd.dict_content MINUTE))
+									)
+								,':'
+								,IF(
+									(TIMESTAMPDIFF(SECOND,NOW(),DATE_ADD(wom.order_time,INTERVAL wbd.dict_content MINUTE)) - TIMESTAMPDIFF(MINUTE,NOW(),DATE_ADD(wom.order_time,INTERVAL wbd.dict_content MINUTE))*60) <![CDATA[<]]> 10
+									,CONCAT(0,TIMESTAMPDIFF(SECOND,NOW(),DATE_ADD(wom.order_time,INTERVAL wbd.dict_content MINUTE)) - TIMESTAMPDIFF(MINUTE,NOW(),DATE_ADD(wom.order_time,INTERVAL wbd.dict_content MINUTE))*60)
+									,TIMESTAMPDIFF(SECOND,NOW(),DATE_ADD(wom.order_time,INTERVAL wbd.dict_content MINUTE)) - TIMESTAMPDIFF(MINUTE,NOW(),DATE_ADD(wom.order_time,INTERVAL wbd.dict_content MINUTE))*60
+									)
+								)
+				END lockTimeOut
+			,ws.store_name storeName
+			,wom.order_status orderStatus
+			,wom.order_amount orderAmount
+		FROM wxs_order_main wom
+		INNER JOIN wxb_store ws ON wom.store_id = ws.store_id
+		INNER JOIN wxb_user wu ON wom.user_id = wu.user_id
+		LEFT  JOIN wxb_user_cars wuc ON wom.car_id = wuc.car_id
+		LEFT  JOIN wxb_business_dict wbd ON wbd.dict_name = 'ORDER_TIME_OUT'
+		WHERE  	
+			    wu.user_opid = #userOpid#
+			AND	wom.store_id = #storeId#
+			AND	wom.tenant_id = #tenantId#
+			<isEqual property="orderStatus" compareValue="0">
+			AND wom.order_status = #orderStatus#
+			</isEqual>
+			<isEqual property="orderStatus" compareValue="1">
+			AND wom.order_status = #orderStatus#
+			</isEqual>
+			<isEqual property="orderStatus" compareValue="2">
+			AND wom.order_status = #orderStatus#
+			</isEqual>
+		ORDER BY  wom.order_time DESC
+    </select>
+    
+         <!-- 取消用户订单数据 -->
+    <delete id ="deleteOrderByOrderId">
+      DELETE wom.*,wod.* 
+	      FROM wxs_order_main wom 
+		  INNER JOIN wxs_order_detail wod ON wom.order_id = wod.order_id
+	  WHERE wom.order_id = #orderId#
+    </delete>
+    
+        <!-- 查询取消用户订单数据 -->
+    <select id ="selectTotalNumber"   resultClass="java.util.HashMap" >
+		SELECT wod.service_item_id serviceItemId 
+			 , wod.item_qty itemTotalNumber
+		FROM wxs_order_detail wod
+		WHERE wod.order_id = #orderId#
+    </select>
+    
+      <!-- 查询超时用户订单数据 -->
+    <select id ="selectTotalNumberTimeOut"   resultClass="java.util.HashMap" >
+		SELECT wod.service_item_id serviceItemId 
+			 , wod.item_qty itemTotalNumber
+		FROM wxs_order_detail wod
+		INNER JOIN wxs_order_main wom ON wod.order_id = wom.order_id
+		LEFT  JOIN wxb_business_dict wbd ON wbd.dict_name = 'ORDER_TIME_OUT'
+		WHERE wom.order_status = 0
+	  	AND wom.order_locking != 1
+	  	AND	TIMESTAMPDIFF(SECOND,wom.order_time,NOW()) >= (wbd.dict_content)*60
+    </select>
+    
+      <!-- 还原订单商品销售量 -->
+    <update id ="updateOrderTotalNumber">
+     UPDATE wxb_service_item wsi
+			SET wsi.item_total_number = wsi.item_total_number - #itemTotalNumber#
+		WHERE wsi.service_item_id = #serviceItemId#
+		AND (wsi.item_total_number - #itemTotalNumber# )  >= 0
+    </update>
+    
+     <!-- 删除超时订单数据数据 -->
+    <delete id ="deleteOrderByTimeOut">
+      DELETE wom.*,wod.* 
+	      FROM wxs_order_main wom 
+		  LEFT JOIN wxs_order_detail wod ON wom.order_id = wod.order_id
+		  LEFT  JOIN wxb_business_dict wbd ON wbd.dict_name = 'ORDER_TIME_OUT'
+	  WHERE  wom.order_status = 0
+	  	AND wom.order_locking != 1
+	  	AND	TIMESTAMPDIFF(SECOND,wom.order_time,NOW()) >= (wbd.dict_content)*60
+    </delete>
+    
+      <!-- 根据OpenId查询用户最后一次关注的门店-->
+    <select id ="queryStoreIdByOpid"  resultClass="java.util.HashMap">
+    	SELECT wsu.store_id storeId
+			FROM wxb_user wu
+			LEFT JOIN wxb_store_user wsu ON wu.user_id = wsu.user_id AND wsu.last_patronage_store = 0
+			WHERE wu.user_opid = #opid#
+			LIMIT 1
+    </select>
+    
+     <!-- 拼接关注回复内容 -->
+    <select id ="queryMsgByFollow"  resultClass="java.util.HashMap">
+    	SELECT  REPLACE(war.image_text_content,wbd.dict_content,$userMarke$) msgOut
+    		   ,$userMarke$ serviceNumber
+				FROM wxb_automatic_reply war
+				INNER JOIN wxb_business_dict wbd ON wbd.dict_name = 'PLACE_HOLDER'
+				WHERE war.is_start_using = 1 
+				  AND war.store_id = #storeId#
+				LIMIT 1
+    </select>
+    
+   	<!-- 完全匹配关键字回复 -->
+    <select id ="queryKeywordReply"  resultClass="java.util.HashMap">
+    	SELECT   wkr.keyword
+				,wkr.matching_type matchingType
+				,wkr.reply_type replyType
+				,witd.image_text_title imageTextTitle
+				,witd.image_text_describe imageTextDescribe
+				,witd.image_text_source imageTextSource
+				,wf.fodder_path fodderPath
+		FROM wxb_keyword_reply wkr 
+		LEFT JOIN wxb_image_text_main witm ON wkr.image_text_id = witm.image_text_id
+		LEFT JOIN wxb_image_text_detail witd ON witm.image_text_id = witd.image_text_id
+		LEFT JOIN wxb_fodder wf ON witd.fodder_id = wf.fodder_id
+		LEFT JOIN wxb_user wu ON wu.user_opid = #toUserName#
+		INNER JOIN wxb_store_user wsu ON wsu.user_id = wu.user_id AND wsu.last_patronage_store = 0
+		WHERE wkr.keyword  = #msgText#
+		AND wkr.store_id =  wsu.store_id
+		AND wkr.is_start_using = 1
+		AND witm.is_delete = 0
+		AND wkr.matching_type = 2
+    </select>
+    
+    <!-- 模糊匹配关键字回复 -->
+    <select id ="queryFuzzyKeywordReply"  resultClass="java.util.HashMap">
+    	SELECT   wkr.keyword
+				,wkr.matching_type matchingType
+				,wkr.reply_type replyType
+				,witd.image_text_title imageTextTitle
+				,witd.image_text_describe imageTextDescribe
+				,witd.image_text_source imageTextSource
+				,wf.fodder_path fodderPath
+		FROM wxb_keyword_reply wkr 
+		LEFT JOIN wxb_image_text_main witm ON wkr.image_text_id = witm.image_text_id
+		LEFT JOIN wxb_image_text_detail witd ON witm.image_text_id = witd.image_text_id
+		LEFT JOIN wxb_fodder wf ON witd.fodder_id = wf.fodder_id
+		LEFT JOIN wxb_user wu ON wu.user_opid = '$toUserName$'
+		INNER JOIN wxb_store_user wsu ON wsu.user_id = wu.user_id AND wsu.last_patronage_store = 0
+		WHERE 
+		 wkr.store_id =  wsu.store_id
+		AND wkr.is_start_using = 1
+		AND witm.is_delete = 0
+		AND wkr.matching_type = 1 AND LOCATE(wkr.keyword,'$msgText$') != 0
+    </select>
+    
+    <!-- 查询优惠券根据优惠券码+openId -->
+    <select id ="queryKeywordReplyByCode"  resultClass="java.util.HashMap">
+	 SELECT
+		  wxb_store.store_id storeId,
+		  wxb_store.orgid,
+		  wxb_store.tenant_id tenantId,
+		  wxb_store.store_name storeName,
+		  wxb_store.store_average_score storeAverageScore,
+		  wxb_store.store_picture storePicture,
+		  wxb_store.store_business_begin_time storeBusinessBeginTime,
+		  wxb_store.store_business_end_time storeBusinessEndTime,
+		  wxb_store.store_details_content storeDetailsContent,
+		  wxb_store.store_status storeStatus,
+		  wxb_store.store_latitude storeLatitude,
+		  wxb_store.store_longitude storeLongitude,
+		  wxb_store.store_phone storePhone,
+		  wxb_store.store_streetAddress storeStreetAddress,
+		  wxb_store.is_delete,
+		  wxb_user_cars.car_id carId,
+		  wxb_user_cars.car_vin carVin,
+		  wxb_user_cars.car_no carNo,
+		  wxb_user_cars.user_car_id userCarId,
+		  wxb_user_cars.car_brand_id carBrandId,
+		  wxb_user_cars.car_brand_name carBrandName,
+		  wxb_user_cars.car_series_id carSeriesId,
+		  wxb_user_cars.car_series_name carSeriesName,
+		  wxb_user_cars.car_model_id carModelId,
+		  wxb_user_cars.car_model_name carModelName,
+		  wxb_user_cars.last_patronage_car lastPatronageCar,
+		  wxb_user_coupon.user_coupon_id userCouponId,
+		  wxb_user_coupon.user_openId userOpenId,
+		  wxb_user_coupon.user_coupon_code userCouponCode,
+		  wxb_user_coupon.coupon_distribute_id couponDistributeId,
+		  wxb_user_coupon.coupon_use_time couponUseTime,
+		  wxb_user_coupon.user_coupon_status userCouponStatus,
+		  wxs_coupon_distribute.store_id storeId,
+		  wxs_coupon_distribute.coupon_code couponCode,
+		  wxs_coupon_distribute.coupon_name couponName,
+		  wxs_coupon_distribute.coupon_title couponTitle,
+		  wxs_coupon_distribute.coupon_describe couponDescribe,
+		  wxs_coupon_distribute.coupon_condition_price couponConditionPrice,
+		  wxs_coupon_distribute.coupon_discounts_price couponDiscountsPrice,
+		  wxs_coupon_distribute.service_item_id serviceItemId,
+		  wxs_coupon_distribute.service_item_name serviceitemName,
+		  wxs_coupon_distribute.coupon_type couponType,
+		  wxs_coupon_distribute.coupon_number couponNumber,
+		  wxs_coupon_distribute.distribute_people_id distributePeopleId,
+		  wxs_coupon_distribute.distribute_people_name distributePeopleName,
+		  wxs_coupon_distribute.distribute_date distributeDate,
+		  wxs_coupon_distribute.distribute_status distributeStatus,
+		  wxs_coupon_distribute.coupon_status couponStatus,
+		  wxs_coupon_distribute.is_car_use isCarUse,
+		  wxs_coupon_distribute.is_store_use isStoreUse,
+		  wxs_coupon_distribute.is_tenant_use isTenantUse,
+		  wxs_coupon_distribute.coupon_begin_date couponBeginDate,
+		  wxs_coupon_distribute.coupon_end_date couponEndDate,
+		  wxs_coupon_distribute.coupon_delete_status couponDeleteStatus,
+		  wxb_service_item.card_id cardId,
+		  wxb_service_item.item_id itemId,
+		  wxb_service_item.service_item_type serviceItemType
+		FROM wxb_store
+			 INNER JOIN wxb_user_coupon ON wxb_user_coupon.store_id = wxb_store.store_id
+			 INNER JOIN wxs_coupon_distribute ON   wxb_user_coupon.coupon_distribute_id = wxs_coupon_distribute.coupon_distribute_id AND NOW() &gt;= wxs_coupon_distribute.coupon_begin_date AND NOW() &lt; wxs_coupon_distribute.coupon_end_date
+			 INNER JOIN wxb_user_cars ON  wxb_user_cars.car_id = wxb_user_coupon.car_id
+			 LEFT JOIN wxb_service_item  ON wxs_coupon_distribute.service_item_id = wxb_service_item.service_item_id
+		WHERE wxb_user_coupon.user_coupon_status = 0
+		 AND wxb_user_coupon.user_coupon_code = #couponCode#
+		 AND  wxb_user_coupon.user_openId = #userOpenId#
+    </select>
+    
+      <!-- 插入菜单主表-->
+    <insert id ="insertMenuMain">
+		INSERT wxb_menu_main 
+		set menu_name = #name#
+		   ,menu_url = #url#
+    </insert>
+    
+     <!-- 插入菜单从表-->
+    <insert id ="insertMenuLine">
+    	<![CDATA[  
+			INSERT INTO wxb_menu_line(menu_main_id,menu_line_name,menu_line_url,menu_line_type) VALUES
+		]]> 
+		<iterate  property="sub_button" conjunction =",">   
+	        <![CDATA[  
+	            (LAST_INSERT_ID(),#sub_button[].name#,#sub_button[].url#,0)  
+	        ]]>   
+    	</iterate>   
+    </insert>
+    
+    
+     <!-- 清空从表-->
+    <delete id ="truncateMenuLine">
+    	TRUNCATE wxb_menu_line 
+    </delete>
+    
+     <!-- 清空主表-->
+    <delete id ="truncateMenuMain">
+   	 	TRUNCATE wxb_menu_main
+    </delete>
+    
+     <!-- 查询微信一级菜单信息 -->
+    <select id ="queryNewMenuMain"  resultClass="java.util.HashMap">
+    	SELECT wmm.menu_name name
+			  ,wmm.menu_url url
+			  ,wmm.menu_main_id mainId
+		FROM wxb_menu_main wmm
+    </select>
+    
+    <!-- 查询微信二级菜单信息 -->
+    <select id ="queryNewMenuLine"  resultClass="java.util.HashMap">
+    	SELECT wml.menu_main_id  mainId
+			  ,wml.menu_line_name name
+			  ,wml.menu_line_url url
+		FROM wxb_menu_line wml
+    </select>
+    
+</sqlMap>

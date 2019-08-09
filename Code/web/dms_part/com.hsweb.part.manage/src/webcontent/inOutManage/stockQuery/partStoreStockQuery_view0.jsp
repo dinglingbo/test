@@ -8,7 +8,7 @@
 -->
 <head>
 <title>库存查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockQuery/partStoreStockQuery.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockQuery/partStoreStockQuery.js?v=1.0.1"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -105,6 +105,7 @@
         <li name="enterBtn" iconCls="icon-add" onclick="onEnter">入库记录</li>
 	    <li name="outBtn" iconCls="icon-edit" onclick="onOut">出库记录</li>        
     </ul>
+    <div class="nui-fit">
         <div id="mainTabs" class="nui-tabs" name="mainTabs" activeIndex="0" style="width:100%; height:100%;" plain="false" onactivechanged="activechangedmain()">
 	        <div title="库存查询" id="inventory" name="inventory">
 				<div class="nui-fit">
@@ -171,7 +172,7 @@
 				         totalField="page.count"
 				         url=""
 				         allowCellWrap = true
-				         pageSize="10000"
+				         pageSize="1000"
 				         sizeList="[1000,5000,10000]"
 				         showSummaryRow="true">
 				        <div property="columns">
@@ -222,7 +223,7 @@
 				</div>	        	
 	        </div>                        
         </div>
-
+</div>
 
 <div id="advancedSearchWin" class="nui-window"
      title="高级查询" style="width:416px;height:330px;"

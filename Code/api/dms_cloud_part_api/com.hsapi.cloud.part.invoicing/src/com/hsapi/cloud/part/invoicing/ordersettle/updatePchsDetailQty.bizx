@@ -529,7 +529,11 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">实际入库数量超过采购单做的数量</process:from>
+      <process:from type="query" pattern="reference">temp/partCode</process:from>
+      <process:to type="query">partCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">&quot;配件编码&quot;+partCode+&quot;实际入库数量超过采购单做的数量&quot;</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -637,6 +641,7 @@
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="p4"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="mainId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="orderPrice" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="partCode" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.pts.PjPchsOrderDetailChk" name="detail"/>

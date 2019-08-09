@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:lidongsheng -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    
+    <!-- 删除省份信息 -->
+    <delete id ="deleteProvince" parameterClass="java.util.HashMap">
+    	DELETE FROM hs_wechat_province
+    </delete>
+    
+    <!-- 删除城市信息 -->
+    <delete id ="deleteCity" parameterClass="java.util.HashMap">
+    	DELETE FROM hs_wechat_city
+    </delete>
+    
+    <!-- 删除区域信息 -->
+    <delete id ="deleteRegion" parameterClass="java.util.HashMap">
+    	DELETE FROM hs_wechat_region
+    </delete>
+    
+    <!-- 查询门店信息 -->
+    <select id ="queryStoreInfo" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  hs_srms_store.store_id storeId,
+		  hs_srms_store.accounts_id accountsId,
+		  (SELECT hs_srms_accounts.accounts_name FROM hs_srms_accounts WHERE hs_srms_accounts.accounts_id = hs_srms_store.accounts_id ) accountsName,
+		  hs_srms_store.store_audit_id storeAuditId,
+		  hs_srms_store.store_name storeName,
+		  hs_srms_store.store_credential storeCredential,
+		  hs_srms_store.store_poi_id storePoiId,
+		  hs_srms_store.store_province storeProvince,
+		  hs_srms_store.store_city storeCity,
+		  hs_srms_store.store_region storeRegion,
+		  hs_srms_store.store_mappoi_id storeMappoiId,
+		  hs_srms_store.store_address storeAddress,
+		  hs_srms_store.store_phone storePhone,
+		  hs_srms_store.store_longitude storeLongitude,
+		  hs_srms_store.store_latitude storeLatitude,
+		  hs_srms_store.store_photo_list storePhotoList,
+		  hs_srms_store.store_open_begin_time storeOpenBeginTime,
+		  hs_srms_store.store_open_end_time storeOpenEndTime,
+		  hs_srms_store.store_updata_time storeUpdataTime,
+		  hs_srms_store.store_updata_user storeUpdataUser,
+		  hs_srms_store.store_comment storeComment,
+		  hs_srms_store.store_fail_reason storeFailReason,
+		  hs_srms_store.store_status storeStatus,
+		  hs_srms_store.store_delete_status storeDeleteStatus
+		FROM
+		  hs_srms_store
+		WHERE store_delete_status = 0
+		<isNotNull property="storeName">
+		  AND hs_srms_store.store_name LIKE '%$storeName$%'
+		</isNotNull>
+    </select>
+    
+    <!-- 查询其省份下的所有城市信息 -->
+    <select id ="queryCityAddress" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  hs_wechat_city.city_id cityId,
+		  hs_wechat_city.city_districtid cityDistrictid,
+		  hs_wechat_city.city_name cityName,
+		  hs_wechat_city.city_fullname cityFullname,
+		  hs_wechat_city.city_lat cityLat,
+		  hs_wechat_city.city_lng cityLng,
+		  hs_wechat_city.region_list_id regionListId
+		FROM
+		  hs_wechat_city
+		WHERE FIND_IN_SET(
+		    hs_wechat_city.city_districtid,
+		    (SELECT
+		      hs_wechat_province.city_list_id
+		    FROM
+		      hs_wechat_province
+		    WHERE hs_wechat_province.districtid = '$districtid$')
+		  )
+    </select>
+    
+    <!-- 查询其城市下的所有地区信息 -->
+    <select id ="queryRegionAddress" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  	hs_wechat_region.region_fullname regionFullname,
+  			hs_wechat_region.region_districtid regionDistrictid,
+  			hs_wechat_region.region_lat regionLat,
+  			hs_wechat_region.region_lng regionLng
+		FROM
+		  hs_wechat_region
+		WHERE FIND_IN_SET(
+		    hs_wechat_region.region_districtid,
+		    (SELECT
+		      hs_wechat_city.region_list_id
+		    FROM
+		      hs_wechat_city
+		    WHERE hs_wechat_city.city_districtid = '$cityDistrictid$')
+		  )
+    </select>
+    
+</sqlMap>

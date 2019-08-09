@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购订单选择</title>
-<script src="<%=webPath + contextPath%>/purchase/js/purchaseEnter/pchsOrderSelect.js?v=2.5.7"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/purchaseEnter/pchsOrderSelect.js?v=2.5.15"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -127,7 +127,7 @@
                         <div field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
                         <div field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
                         <div allowSort="true"width="120" field="createDate" headerAlign="center" header="制单日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-                        <div field="billStatusId" width="60" headerAlign="center" header="状态"></div>
+                        <div field="billStatusId" width="80" headerAlign="center" header="状态"></div>
                         <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
                         <div allowSort="true" width="120"field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                         <div field="remark" width="120" headerAlign="center" header="备注"></div>

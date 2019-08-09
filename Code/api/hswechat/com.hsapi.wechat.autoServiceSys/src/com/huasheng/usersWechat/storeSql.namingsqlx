@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:lidongsheng -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    
+    <!-- 查询门店营销的活动信息  -->
+    <select id ="queryWechatStoreActivityInfo" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_store_activity.store_activity_id storeActivityId,
+		  wxb_store_activity.store_id storeId,
+		  (SELECT wxb_store.store_name FROM wxb_store WHERE wxb_store.store_id = wxb_store_activity.store_id ) storeName,
+		  wxb_store_activity.orgid orgid,
+		  wxb_store_activity.tenant_id tenantId,
+		  wxb_store_activity.store_activity_url storeActivityUrl,
+		  wxb_store_activity.store_activity_title storeActivityTitle,
+		  wxb_store_activity.store_activity_picture storeActivityPicture,
+		  wxb_store_activity.store_activity_is_start storeActivityIsStart,
+		  wxb_store_activity.creator_id creatorId,
+		  wxb_store_activity.creator,
+		  wxb_store_activity.create_date createDate,
+		  wxb_store_activity.modifier_id modifierId,
+		  wxb_store_activity.modifier,
+		  wxb_store_activity.modify_date modifyDate
+		FROM
+		  wxb_store_activity
+		WHERE wxb_store_activity.store_id = #storeId# 
+		 <isNotNull property="storeActivityTitle">
+		  	AND wxb_store_activity.store_activity_title LIKE '%$storeActivityTitle$%'
+		 </isNotNull>
+		 <isNotNull property="storeActivityIsStart">
+		  	AND wxb_store_activity.store_activity_is_start = '$storeActivityIsStart$'
+		 </isNotNull>
+		
+    </select>
+    
+     <!-- 查询用户的最后关联门店信息  -->
+    <select id ="queryWechatStoreUser" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_store.store_id storeId,
+		  wxb_store.orgid,
+		  wxb_store.store_name storeName,
+		  wxb_store.tenant_id tenantId,
+		  wxb_store.store_phone storePhone,
+		  wxb_store.store_average_score storeAverageScore
+		FROM
+		  wxb_user,
+		  wxb_store_user,
+		  wxb_store
+		WHERE wxb_user.user_id = wxb_store_user.user_id
+		  AND wxb_store.store_id = wxb_store_user.store_id
+		  AND wxb_store_user.last_patronage_store = 0
+		  AND wxb_user.user_opid = '$openId$'
+    </select>
+    
+    <!-- 查询微信的业务字典 -->
+    <select id ="queryWechatBusinessDict" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_business_dict.dict_id dictId,
+		  wxb_business_dict.dict_name dictName,
+		  wxb_business_dict.dict_content dictContent,
+		  wxb_business_dict.dict_notes dictNotes
+		FROM
+		  wxb_business_dict
+		WHERE FIND_IN_SET(
+		    wxb_business_dict.dict_name,
+		    '$dictNameList$'
+		  )
+    </select>
+    
+    <!-- 查询定位的门店信息 -->
+    <select id ="queryMapLocationStoreInfo" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_store.store_id storeId,
+		  wxb_store.orgid,
+		  wxb_store.tenant_id tenantId,
+		  wxb_store.store_name storeName,
+		  FLOOR( calculateLineDistance( #longitudeOne#, #latitudeTwo#, wxb_store.store_longitude,wxb_store.store_latitude) ) storeDistance,
+		  wxb_store.store_average_score storeAverageScore,
+		  wxb_store.store_picture storePicture,
+		  wxb_store.store_business_begin_time storeBusinessBeginTime,
+		  wxb_store.store_business_end_time storeBusinessEndTime,
+		  wxb_store.store_details_content storeDetailsContent,
+		  wxb_store.store_status storeStatus,
+		  wxb_store.create_date createDate,
+		  wxb_store.creator_id creatorId,
+		  wxb_store.creator,
+		  wxb_store.modify_date modifyDate,
+		  wxb_store.modifier_id modifierId,
+		  wxb_store.modifier,
+		  wxb_store.store_province_name storeProvinceName,
+		  wxb_store.store_city_name storeCityName,
+		  wxb_store.store_region_name storeRegionName,
+		  wxb_store.store_latitude storeLatitude,
+		  wxb_store.store_longitude storeLongitude,
+		  wxb_store.store_phone storePhone,
+		  wxb_store.store_streetAddress storeStreetAddress,
+		  wxb_store.is_delete
+		FROM
+		  wxb_store  WHERE wxb_store.store_status = 0
+		  <isNotNull property="storeRegionName">
+		  	AND wxb_store.store_region_name LIKE '%$storeRegionName$%'
+		  </isNotNull>
+		  <isNotNull property="storeName">
+		  	AND wxb_store.store_name LIKE '%$storeName$%'
+		  </isNotNull>
+		  ORDER BY FLOOR (calculateLineDistance ( #longitude#, #latitude#, wxb_store.store_longitude, wxb_store.store_latitude ) ) ASC
+    </select>
+    
+   	<!-- 查询门店信息 -->
+    <select id ="queryStoreInfo" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_store.store_id storeId,
+		  wxb_store.orgid,
+		  wxb_store.tenant_id tenantId,
+		  wxb_store.store_name storeName,
+		  wxb_store.store_average_score storeAverageScore,
+		  wxb_store.store_picture storePicture,
+		  wxb_store.store_business_begin_time storeBusinessBeginTime,
+		  wxb_store.store_business_end_time storeBusinessEndTime,
+		  wxb_store.store_details_content storeDetailsContent,
+		  wxb_store.store_status storeStatus,
+		  wxb_store.create_date createDate,
+		  wxb_store.creator_id creatorId,
+		  wxb_store.creator,
+		  wxb_store.modify_date modifyDate,
+		  wxb_store.modifier_id modifierId,
+		  wxb_store.modifier,
+		  wxb_store.store_latitude storeLatitude,
+		  wxb_store.store_longitude storeLongitude,
+		  wxb_store.store_phone storePhone,
+		  wxb_store.store_streetAddress storeStreetAddress,
+		  wxb_store.is_delete,
+		  GROUP_CONCAT(wp.picture_url)  storeDetailImgs
+		FROM
+		  wxb_store
+		LEFT JOIN wxb_picture wp ON  CONCAT(',',wxb_store.store_details_content,',') LIKE  CONCAT('%,',wp.picture_id,',%') 
+		WHERE  wxb_store.is_delete = 0 and wxb_store.orgid = #orgid#
+		<isNotNull property="storeName">
+		  	or wxb_store.store_name  = '$storeName$'
+		</isNotNull>
+    </select>
+    
+    <!-- 查询门店的技师 -->
+    <select id ="queryStoreEmployePosition" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_store_employe.employe_id employeId,
+		  wxb_store_employe.employe_name employeName,
+		  wxb_store_employe.store_id storeId,
+		  wxb_store_employe.empid empid,
+		  wxb_store_employe.employe_picture employePicture,
+		  wxb_store_employe.employe_phone employePhone,
+		  wxb_store_employe.employe_wechat employeWechat,
+		  wxb_store_employe.employe_position employePosition,
+		  wxb_store_employe.employe_work_experience employeWorkExperience,
+		  wxb_store_employe.employe_brief_introduction employeBriefIntroduction
+		FROM
+		  wxb_store_employe
+		WHERE wxb_store_employe.employe_position = 2
+		  AND wxb_store_employe.store_id = #storeId#
+    </select>
+    
+     <!-- pc端查询门店的评分 -->
+    <select id ="queryPcStoreCommentList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxs_store_comment.comment_score commentScore,
+		  wxs_store_comment.comment_content commentContent,
+		  wxs_store_comment.comment_date commentDate,
+		  wxs_store_comment.store_comment_id storeCommentId,
+		  wxb_store.store_name storeName,
+		  wxb_user.user_name userName,
+		  wxb_user.user_nickname userNickname,
+		  wxb_user_cars.car_no carNo
+		FROM
+		  wxs_store_comment,
+		  wxb_store,
+		  wxb_user,
+		  wxb_user_cars
+		WHERE wxs_store_comment.store_id = wxb_store.store_id
+		  AND wxb_user.user_id = wxs_store_comment.user_id
+		  AND wxs_store_comment.car_id = wxb_user_cars.car_id
+		  AND wxs_store_comment.store_id = #storeId#
+    </select>
+    
+    <!-- 查询门店的评分 -->
+    <select id ="queryStoreComment" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_user.user_head_portrait userHeadPortrait,
+		  wxb_user_cars.car_no carNo,
+		  wxb_user_cars.car_model_name carModelName,
+		  wxs_store_comment.store_comment_id storeCommentId,
+		  wxs_store_comment.comment_score commentScore,
+		  wxs_store_comment.comment_content commentContent,
+		  wxs_store_comment.comment_image_list commentImageList,
+		  wxs_store_comment.comment_date commentDate
+		FROM
+		  wxs_store_comment,
+		  wxb_user,
+		  wxb_user_cars
+		WHERE wxs_store_comment.user_id = wxb_user.user_id
+		  AND wxs_store_comment.car_id = wxb_user_cars.car_id
+		  AND wxs_store_comment.store_id = #storeId#
+		  ORDER BY wxs_store_comment.store_comment_id DESC
+    </select>
+    
+    <!-- 查询门店的评分图片 -->
+    <select id ="queryStoreCommentImager" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_picture.picture_id pictureId,
+		  wxb_picture.picture_name pictureName,
+		  wxb_picture.picture_url pictureUrl,
+		  wxb_picture.picture_type pictureType,
+		  wxb_picture.picture_size pictureSize,
+		  wxb_picture.create_date createDate,
+		  wxb_picture.creator_id creatorId,
+		  wxb_picture.creator
+		FROM
+		  wxb_picture,
+		  wxs_store_comment
+		WHERE FIND_IN_SET(
+		    wxb_picture.picture_id,
+		    wxs_store_comment.comment_image_list
+		  )
+		  AND wxs_store_comment.store_comment_id = #storeCommentId#
+    </select>
+    
+     <!-- 查询门店的内容图片 -->
+    <select id ="queryStoreContentImager" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_picture.picture_id pictureId,
+		  wxb_picture.picture_name pictureName,
+		  wxb_picture.picture_url pictureUrl,
+		  wxb_picture.picture_type pictureType,
+		  wxb_picture.picture_size pictureSize,
+		  wxb_picture.create_date createDate,
+		  wxb_picture.creator_id creatorId,
+		  wxb_picture.creator
+		FROM
+		  wxb_picture,
+		  wxb_store
+		WHERE FIND_IN_SET(
+		    wxb_picture.picture_id,
+		    wxb_store.store_details_content
+		  )
+		  AND wxb_store.store_id = #storeId#
+    </select>
+    
+    <!-- 查询门店用户关系表 -->
+    <select id ="queryStoreUserOnly" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_store_user.store_user_id storeUserId,
+		  wxb_store_user.store_id storeId,
+		  wxb_store_user.tenant_id tenantId,
+		  wxb_store_user.user_id userId,
+		  wxb_store_user.last_patronage_store lastPatronageStore,
+		  wxb_store_user.modify_date modifyDate
+		FROM
+		  wxb_store_user
+		WHERE wxb_store_user.user_id = #userId#
+		  AND wxb_store_user.store_id = #storeId#
+		 
+    </select>
+    
+    <!-- 查询门店信息 -->
+    <select id ="queryStoreListInfo" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_store.store_id storeId,
+		  wxb_store.orgid,
+		  wxb_store.tenant_id tenantId,
+		  wxb_store.store_name storeName,
+		  wxb_store.store_average_score storeAverageScore,
+		  wxb_store.store_picture storePicture,
+		  wxb_store.store_business_begin_time storeBusinessBeginTime,
+		  wxb_store.store_business_end_time storeBusinessEndTime,
+		  wxb_store.store_details_content storeDetailsContent,
+		  wxb_store.store_status storeStatus,
+		  wxb_store.create_date createDate,
+		  wxb_store.creator_id creatorId,
+		  wxb_store.creator,
+		  wxb_store.modify_date modifyDate,
+		  wxb_store.modifier_id modifierId,
+		  wxb_store.modifier
+		FROM
+		  wxb_store
+		WHERE wxb_store.store_status = 0
+		<isNotNull property="tenantId">
+	  		AND wxb_store.tenant_id = #tenantId#
+	 	</isNotNull>
+		<isNotNull property="creatorId">
+	  		AND wxb_store.creator_id = #creatorId#
+	 	</isNotNull>
+    </select>
+    
+    <!-- 查询门店项目活动 -->
+    <select id ="queryStoreItemActivity" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_item_activity.item_activity_id itemActivityId,
+		  wxb_item_activity.store_id storeId,
+		  wxb_item_activity.tenant_id tenantId,
+		  wxb_item_activity.service_item_id serviceItemId,
+		  wxb_item_activity.item_activity_title itemActivityTitle,
+		  wxb_item_activity.item_url itemUrl,
+		  wxb_item_activity.item_activity_describe itemActivityDescribe,
+		  wxb_item_activity.is_delete isDelete,
+		  wxb_service_item.service_type_id serviceTypeId,
+		  wxb_service_item.service_item_type serviceItemType
+		FROM
+		  wxb_item_activity,
+		  wxb_service_item
+		WHERE wxb_item_activity.store_id = #storeId#  AND wxb_item_activity.is_delete = 0 AND wxb_service_item.service_item_id = wxb_item_activity.service_item_id
+    </select>
+    
+    
+    
+    
+     <!-- 查询所有门店 -->
+    <select id ="queryStoreList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT 
+				wxb_store.store_id,
+				wxb_store.orgid,
+				wxb_store.tenant_id,
+				wxb_store.store_name,
+				wxb_store.store_average_score,
+				wxb_store.store_picture,
+				wxb_store.store_business_begin_time,
+				wxb_store.store_business_end_time,
+				wxb_store.store_details_content,
+				wxb_store.store_status,
+				wxb_store.store_latitude,
+				wxb_store.store_longitude,
+				wxb_store.store_streetAddress,
+				wxb_store.store_phone 
+		FROM 
+				wxb_store
+		
+    </select>
+    
+     <!-- 模糊查询门店 -->
+    <select id ="fuzzyStoreList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	    SELECT
+				wxb_store.store_id storeId ,
+				wxb_store.orgid orgid,
+				wxb_store.tenant_id tenantId, 
+				wxb_store.store_name storeName,
+				wxb_store.store_average_score storeAverageScore,
+				wxb_store.store_picture storePicture,
+				wxb_store.store_business_begin_time storeBusinessBeginTime,
+				wxb_store.store_business_end_time storeBusinessEndTime,
+				wxb_store.store_details_content storeDetailsContent,
+				wxb_store.store_status storeStatus,
+				wxb_store.create_date createDate,
+		 		wxb_store.creator_id creatorId,
+				wxb_store.creator creator,
+		 		wxb_store.modify_date modifyDate,
+		 		wxb_store.modifier_id modifierId,
+		 		wxb_store.modifier modifier, 
+		 		wxb_store.store_latitude storeLatitude,
+		 		wxb_store.store_longitude storeLongitude,  		
+		 		wxb_store.store_phone storePhone, 
+		 		wxb_store.store_streetAddress storeStreetAddress
+		FROM
+			wxb_store
+		WHERE
+			store_name LIKE '%$storeName$%' And wxb_store.store_id !=#storeId# and wxb_store.store_status = 0
+    </select>
+    <!-- 查询用户最后关注门店 -->
+    <select id ="finallyUserStore" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+					 SELECT
+						wxb_store.store_id storeId,
+						wxb_store.orgid  orgid,
+						wxb_store.tenant_id tenantId,
+						wxb_store.store_name storeName,
+						wxb_store.store_average_score storeAverageScore,
+						wxb_store.store_picture storePicture,
+						wxb_store.store_details_content storeDetailsContent,
+						wxb_store.store_status storeStatus,
+						wxb_store.is_delete isDelete,
+						wxb_store.store_business_begin_time storeBusinessBeginTime,
+						wxb_store.store_business_end_time storeBusinessEndTime,
+						wxb_store_user.tenant_id tenantId,
+						wxb_store_user.user_id userId,
+						wxb_store_user.last_patronage_store lastPatronageStore,
+						wxb_store_user.modify_date modifierDate,
+						wxb_store.store_streetAddress storeStreetAddress,
+						wxb_store.store_phone storePhone,
+						wxb_store.store_latitude storeLatitude,
+						wxb_store.store_longitude storeLongitude
+				FROM
+					wxb_store_user,
+					wxb_store
+				WHERE
+					wxb_store_user.user_id = #userId#
+				and	
+					wxb_store_user.store_id = #storeId#
+				and
+					wxb_store_user.last_patronage_store = 0
+				and 
+					wxb_store_user.store_id = wxb_store.store_id
+    
+    </select>
+    
+     <!-- 查询门店标签 -->
+    <select id ="queryStoreLabel" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			wxb_store_tab_style.tab_id tabId,
+			wxb_store_tab_style.store_id storeId,
+			wxb_store_tab_style.tab_content tabContent
+		FROM
+			wxb_store_tab_style
+		WHERE 
+			 wxb_store_tab_style.store_id = #storeId#	
+	</select>	
+	
+	
+	<!-- 车道系统：同步门店基础信息  -->		
+	<update id ="updateSysteantStoreInfo" parameterClass="java.util.HashMap" >
+    	UPDATE
+		  wxb_store
+		SET
+			<isNotNull property="storePhone">
+		  		wxb_store.store_phone = '$storePhone$',
+		  	</isNotNull>
+		  	<isNotNull property="storeLongitude">
+		  		wxb_store.store_longitude =#storeLongitude#,
+		  	</isNotNull>
+		  	<isNotNull property="storeLatitude">
+		  		wxb_store.store_latitude =#storeLatitude#,
+		  	</isNotNull>
+		  	<isNotNull property="storeProvinceId">
+		  		wxb_store.store_province_id = #storeProvinceId#,
+		  		wxb_store.store_province_name = '$storeProvinceName$',
+		  	</isNotNull>
+		  	<isNotNull property="storeCityId">
+		  		wxb_store.store_city_id =#storeCityId#,
+		  		wxb_store.store_city_name = '$storeCityName$',
+		  	</isNotNull>
+		  	<isNotNull property="storeRegionId">
+		  		wxb_store.store_region_id = #storeRegionId#,
+		  		wxb_store.store_region_name = '$storeRegionName$',
+		  	</isNotNull>
+		  	<isNotNull property="storeStreetAddress">
+		  		 wxb_store.store_streetAddress ='$storeStreetAddress$',
+		  	</isNotNull>
+		  wxb_store.modifier_id =#modifierId#,
+		  wxb_store.modifier = '$modifier$'
+		WHERE store_status = 0
+		  AND is_delete = 0
+		  AND orgid = #orgid# 
+		  AND tenant_id = #tenantId# 
+    </update>
+	
+	
+	<!-- 取消 -->		
+	<update id ="updateSelect" parameterClass="java.util.HashMap" >
+    		UPDATE wxb_store_user SET last_patronage_store = '1' WHERE store_id = #storeId#  and user_id= #userId#		
+    </update>
+    
+    <!--  设置最后门店-->		
+	<update id ="updateCancel" parameterClass="java.util.HashMap" >
+    		UPDATE wxb_store_user SET last_patronage_store = '0' WHERE store_id = #storeId#  and user_id= #userId#		
+    </update>
+    
+    <!--更改个人设置-->	
+    <update id ="updateUser" parameterClass="java.util.HashMap" >
+    	UPDATE wxb_user SET user_name = '#userName#',user_gender = "#userGender#",user_birthday ="#userBirthday#",user_address ="#userAddress#",user_phone ="#userPhone#" WHERE user_id = '#userId#' 
+    </update>
+    <!--查找门店工单用户所有评价-->
+    <select id ="queryEvaluate" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+			SELECT
+				wxs_order_comment.order_comment_id orderCommentId,
+				wxs_order_comment.service_order_id serviceOrderId,
+				wxs_order_comment.tenant_id tenantId,
+				wxs_order_comment.orgid orgid,
+				wxs_order_comment.store_id storeId,
+				wxs_order_comment.car_id carId,
+				wxs_order_comment.comment_score commentScore,
+				wxs_order_comment.comment_content commentContent,
+				wxs_order_comment.comment_image_list commentImageList,
+				wxs_order_comment.comment_date commentDate,
+				wxb_user_cars.car_no carNo,
+				wxb_user_cars.car_model_name carModelName,
+				wxb_user.user_head_portrait userHeadPortrait
+			FROM
+				wxs_order_comment,
+				wxb_user_cars,
+				wxb_user
+			WHERE
+				 wxs_order_comment.store_id = #storeId#	
+			AND
+				wxs_order_comment.car_id =  wxb_user_cars.car_id 
+			AND
+			 	wxb_user.user_id = wxb_user_cars.user_id
+		 	<isNotEmpty property="serviceId">
+		 	AND wxs_order_comment.service_order_id = #serviceId#	 
+		 	</isNotEmpty>
+			 	
+			ORDER BY wxs_order_comment.comment_date DESC
+    </select>
+    <select  id ="queryEvaluateImg" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject" >
+    		SELECT
+				  wxb_picture.picture_id pictureId,
+				  wxb_picture.picture_name pictureName,
+				  wxb_picture.picture_url pictureUrl,
+				  wxb_picture.picture_type pictureType,
+				  wxb_picture.picture_size pictureSize,
+				  wxb_picture.create_date createDate,
+				  wxb_picture.creator_id creatorId,
+				  wxb_picture.creator
+			FROM
+				  wxb_picture,
+				  wxs_order_comment
+			WHERE FIND_IN_SET(
+				    wxb_picture.picture_id,
+				    wxs_order_comment.comment_image_list
+				  )
+			AND  wxs_order_comment.order_comment_id = #orderCommentId#
+    </select>
+      <select  id ="queryCoupon" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject" >
+    	 SELECT
+			wxb_user_coupon.user_coupon_id userCouponId,
+			wxb_user_coupon.user_coupon_code userCouponCode,
+			wxb_user_coupon.coupon_distribute_id couponDistributeId,
+			wxb_user_coupon.coupon_use_time couponUseTime,
+			wxb_user_coupon.user_coupon_status userCouponStatus,
+			wxs_coupon_distribute.store_id storeId,
+			wxs_coupon_distribute.tenant_id tenantId,
+			wxs_coupon_distribute.coupon_code couponCode,
+			wxs_coupon_distribute.coupon_name couponName,
+			wxs_coupon_distribute.coupon_title couponTitle,
+			wxs_coupon_distribute.coupon_describe couponDescribe,
+			wxs_coupon_distribute.coupon_condition_price couponConditionPrice,
+			wxs_coupon_distribute.coupon_discounts_price couponDiscountsPrice,
+			wxs_coupon_distribute.service_item_id serviceItemId,
+			wxs_coupon_distribute.service_item_name serviceitemName,
+			wxs_coupon_distribute.coupon_type  couponType,
+			wxs_coupon_distribute.coupon_number couponNumber,
+			wxs_coupon_distribute.distribute_people_id distributePeopleId,
+			wxs_coupon_distribute.distribute_people_name distributePeopleName,
+			wxs_coupon_distribute.distribute_date distributeDate,
+			wxs_coupon_distribute.distribute_status distributeStatus,
+			wxs_coupon_distribute.coupon_status couponStatus,
+			wxs_coupon_distribute.is_car_use isCarUse, 
+			wxs_coupon_distribute.is_store_use isStoreUse,
+			wxs_coupon_distribute.is_tenant_use isTenantUse,
+			wxs_coupon_distribute.coupon_begin_date couponBeginDate,
+			wxs_coupon_distribute.coupon_end_date couponEndDate,
+			wxs_coupon_distribute.create_date createDate,
+			wxs_coupon_distribute.creator creator,
+			wxs_coupon_distribute.creator_id creatorId,
+			wxs_coupon_distribute.coupon_delete_status couponDeleteStatus
+		FROM
+			wxb_user_coupon,
+			wxs_coupon_distribute
+			WHERE wxs_coupon_distribute.coupon_distribute_id = wxb_user_coupon.coupon_distribute_id
+			AND   wxs_coupon_distribute.store_id = #storeId#
+			AND   wxb_user_coupon.user_id = #userId#
+			<isNotNull property="overdueDate">
+		  		AND '$overdueDate$' &gt;= wxs_coupon_distribute.coupon_end_date
+		  	</isNotNull>
+		  	<isNotNull property="effectiveDate">
+		  		AND '$effectiveDate$' &lt; wxs_coupon_distribute.coupon_end_date
+		  	</isNotNull>
+			<isNotNull property="status">
+		  		AND wxb_user_coupon.user_coupon_status  = #status#
+		  	</isNotNull>
+      </select>
+      <select id = "queryStoreUser" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject" >
+      		SELECT
+				wxb_store_user.store_user_id storeUserId,
+				wxb_store_user.store_id storeId,
+				wxb_store_user.tenant_id tenantId,
+				wxb_store_user.user_id userId,
+				wxb_store_user.last_patronage_store lastPatronageStore
+			FROM  
+				wxb_store_user
+		 	WHERE
+					wxb_store_user.user_id = #userId#
+			AND wxb_store_user.store_id = #storeId#
+      </select>
+      
+</sqlMap>

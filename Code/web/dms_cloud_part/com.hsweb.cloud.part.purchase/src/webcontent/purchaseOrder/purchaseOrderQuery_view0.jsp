@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购订单查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrder/purchaseOrderQuery.js?v=2.0.8"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrder/purchaseOrderQuery.js?v=2.0.10"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -140,7 +140,8 @@
                     <div allowSort="true" datatype="float" summaryType="sum" field="orderQty" width="60" headerAlign="center" header="订单数量"></div>
                     <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="订单单价"></div>
                     <div allowSort="true" datatype="float" summaryType="sum" field="orderAmt" width="60" headerAlign="center" header="订单金额"></div>
-                    <div allowSort="true" field="detailRemark" width="60" headerAlign="center" header="备注"></div>
+                    <div allowSort="true" datatype="float" summaryType="sum" field="adjustQty" width="60" headerAlign="center" header="调整数量"></div>
+                    <div allowSort="true" field="detailRemark" width="150" headerAlign="center" header="备注"></div>
                 </div>
             </div>
             <!-- <div header="含税信息" headerAlign="center">

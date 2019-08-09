@@ -1,0 +1,9 @@
+<mapping>
+	<method name="addBoundUser">
+		<parameter index="0" name="orgid" />
+		<parameter index="1" type="commonj.sdo.DataObject" name="wechatUserData" componentType="com.hsapi.wechat.autoServiceSys.wechatUserInfo#WxbUser" />
+		<parameter index="2" type="commonj.sdo.DataObject" name="wechatUserCarsData" componentType="com.hsapi.wechat.autoServiceSys.wechatUserInfo#WxbUserCars" />
+		<parameter index="-1" name="status" />
+		<parameter index="-2" name="message" />
+	</method>
+</mapping>

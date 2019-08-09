@@ -38,7 +38,7 @@
 			<ul id="tree1" class="nui-tree" url="org.gocom.components.coframe.framework.ApplicationManager.queryApplicationTreeNode.biz.ext" 
 			style="width:98%;height:98%;padding:5px;" showTreeIcon="true" textField="text" idField="id" resultAsTree="false" 
 			parentField="pid" showTreeLines="true" onnodeclick="onNodeClick" allowDrag="true" allowDrop="true" 
-			contextMenu="#applicaitonTreeMenu" onbeforeload="onBeforeTreeLoad" ongivefeedback="onGiveFeedback" ondrop="onDrop" style="background:#fafafa;">
+			contextMenu="#applicaitonTreeMenu" ajaxData="setToken" onbeforeload="onBeforeTreeLoad" ongivefeedback="onGiveFeedback" ondrop="onDrop" style="background:#fafafa;">
 	    	</ul>
 	    	<ul id="applicaitonTreeMenu" class="nui-contextmenu"  onbeforeopen="onBeforeOpen">
 			</ul>
@@ -92,6 +92,10 @@
 	
 	}
 	
+	function setToken(){
+		return {"token":token};
+	}
+	
 	function refreshTab(node){
 		var tabs = nui.get("applicationtabs");
 		var applicationtabs = applicationtabs_map[node.type];
@@ -109,7 +113,7 @@
 		var targetNode = e.dropNode;  //目标投放节点
 		var dragAction = e.dragAction 
 		
-		var json = nui.encode({nodeId:node.realId,nodeType:node.type,targetNodeId:targetNode.realId,targetNodeType:targetNode.type});
+		var json = nui.encode({nodeId:node.realId,nodeType:node.type,targetNodeId:targetNode.realId,targetNodeType:targetNode.type,token:token});
 		$.ajax({
             url: "org.gocom.components.coframe.framework.FuncGroupManager.updateFuncGroupRelation.biz.ext",
             type: 'POST',
@@ -333,7 +337,7 @@
 	
 	function removeApplication(){
 		var node = tree.getSelectedNode();
-		var json = nui.encode({nodeId:node.realId,nodeType:node.type});
+		var json = nui.encode({nodeId:node.realId,nodeType:node.type,token:token});
 		
 		var message="";
 		if (node.type=='function'){
@@ -374,7 +378,7 @@
       $.ajax({
         url:"org.gocom.components.coframe.framework.MenuManager.validateMenu.biz.ext",
         type:'POST',
-        data:'template/funccode='+value,
+        data:'token='+token+'&template/funccode='+value,
         cache:false,
         async:false,
         dataType:'json',

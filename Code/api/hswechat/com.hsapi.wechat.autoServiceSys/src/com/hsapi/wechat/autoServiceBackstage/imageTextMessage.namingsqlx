@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:lidongsheng -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!-- 车道系统    查询图文消息的信息 -->
+    <select id ="queryImageTextMessageMainChenDao" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_image_text_main.image_text_id imageTextId,
+		  wxb_image_text_main.store_id storeId,
+		  wxb_store.store_name storeName,
+		  wxb_image_text_main.tenant_id tenantId,
+		  wxb_image_text_main.text_title textTitle,
+		  wxb_image_text_main.image_text_type imageTextType,
+		  wxb_image_text_main.image_text_status imageTextStatus,
+		  wxb_image_text_main.is_delete isDelete,
+		  wxb_image_text_main.create_date createDate,
+		  wxb_image_text_main.creator_id creatorId,
+		  wxb_image_text_main.creator,
+		  wxb_image_text_main.modify_date modifyDate,
+		  wxb_image_text_main.modifier_id modifierId,
+		  wxb_image_text_main.modifier
+		FROM
+		  wxb_image_text_main,
+		  wxb_store
+		WHERE wxb_image_text_main.is_delete = 0
+		  AND wxb_image_text_main.store_id = wxb_store.store_id
+		  AND wxb_store.orgid = #orgid#
+		<isNotNull property="imageTextTitle"><!-- 标题 -->
+		  	AND wxb_image_text_main.text_title LIKE '%$imageTextTitle$%'
+		</isNotNull>
+		<isNotNull property="imageTextId"><!-- 图片id -->
+		  	AND wxb_image_text_main.image_text_id = #imageTextId#
+		</isNotNull>
+    </select>
+    
+     <!-- 查询图文消息的信息 -->
+    <select id ="queryImageTextMessageMain" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_image_text_main.image_text_id imageTextId,
+		  wxb_image_text_main.store_id storeId,
+		  (SELECT wxb_store.store_name FROM wxb_store WHERE wxb_store.store_id = wxb_image_text_main.store_id ) storeName,
+		  wxb_image_text_main.tenant_id tenantId,
+		  wxb_image_text_main.text_title textTitle,
+		  wxb_image_text_main.image_text_type imageTextType,
+		  wxb_image_text_main.image_text_status imageTextStatus,
+		  wxb_image_text_main.is_delete isDelete,
+		  wxb_image_text_main.create_date createDate,
+		  wxb_image_text_main.creator_id creatorId,
+		  wxb_image_text_main.creator,
+		  wxb_image_text_main.modify_date modifyDate,
+		  wxb_image_text_main.modifier_id modifierId,
+		  wxb_image_text_main.modifier
+		FROM
+		  wxb_image_text_main
+		WHERE wxb_image_text_main.is_delete = 0
+		AND wxb_image_text_main.store_id = #storeId#
+			<isNotNull property="orgid"><!-- 车道微信orgid -->
+				AND (wxb_image_text_main.image_text_type = 3 OR wxb_image_text_main.image_text_type = 4 )
+			  	AND wxb_image_text_main.store_id IN (SELECT wxb_store.store_id FROM wxb_store WHERE wxb_store.orgid = #orgid# )
+			</isNotNull>
+			<isNotNull property="imageTextType"><!-- 类型ID -->
+			  	AND wxb_image_text_main.image_text_type = #imageTextType#
+			</isNotNull>
+			<isNotNull property="imageTextId"><!-- 图片id -->
+			  	AND wxb_image_text_main.image_text_id = #imageTextId#
+			</isNotNull>
+			<isNotNull property="imageTextTitle"><!-- 标题 -->
+			  	AND wxb_image_text_main.text_title LIKE '%$imageTextTitle$%'
+			</isNotNull>
+		  
+    </select>
+    
+    <!-- 查询图片，单图文，多图文消息的信息 -->
+    <select id ="queryImageTextMessageInfo" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_image_text_detail.detail_id detailId,
+		  wxb_image_text_detail.store_id storeId,
+		  wxb_image_text_detail.tenant_id tenantId,
+		  wxb_image_text_detail.image_text_id imageTextId,
+		  wxb_image_text_detail.image_text_title imageTextTitle,
+		  wxb_image_text_detail.image_text_author imageTextAuthor,
+		  wxb_image_text_detail.image_text_describe imageTextDescribe,
+		  wxb_image_text_detail.image_text_content imageTextContent,
+		  wxb_image_text_detail.is_show_cover_pic isShowCoverPic,
+		  wxb_image_text_detail.is_open_comment isOpenComment,
+		  wxb_image_text_detail.is_can_comment isCanComment,
+		  wxb_image_text_detail.image_text_source imageTextSource,
+		  wxb_image_text_detail.fodder_id fodderId,
+		  wxb_fodder.fodder_identifying fodderIdentifying,
+		  wxb_fodder.fodder_title fodderTitle,
+		  wxb_fodder.fodder_type fodderType,
+		  wxb_fodder.fodder_describe fodderDescribe,
+		  wxb_fodder.fodder_image_url fodderImageUrl,
+		  wxb_fodder.fodder_path fodderPath,
+		  wxb_fodder.fodder_stater fodderStater,
+		  wxb_fodder.create_date createDate,
+		  wxb_fodder.creator,
+		  wxb_fodder.creator_id creatorId,
+		  wxb_fodder.modify_date modifyDate,
+		  wxb_fodder.modifier,
+		  wxb_fodder.modifier_id modifierId
+		FROM
+		  wxb_image_text_detail,
+		  wxb_fodder
+		WHERE wxb_image_text_detail.image_text_id = #imageTextId#
+		  AND wxb_image_text_detail.fodder_id = wxb_fodder.fodder_id
+    </select>
+    
+    <!-- 查询文本消息的信息 -->
+    <select id ="queryTextMessageInfo" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_image_text_detail.detail_id detailId,
+		  wxb_image_text_detail.store_id storeId,
+		  wxb_image_text_detail.tenant_id tenantId,
+		  wxb_image_text_detail.image_text_id imageTextId,
+		  wxb_image_text_detail.image_text_title imageTextTitle,
+		  wxb_image_text_detail.image_text_author imageTextAuthor,
+		  wxb_image_text_detail.image_text_describe imageTextDescribe,
+		  wxb_image_text_detail.image_text_content imageTextContent,
+		  wxb_image_text_detail.is_show_cover_pic isShowCoverPic,
+		  wxb_image_text_detail.is_open_comment isOpenComment,
+		  wxb_image_text_detail.is_can_comment isCanComment,
+		  wxb_image_text_detail.image_text_source imageTextSource,
+		  wxb_image_text_detail.fodder_id fodderId
+		FROM
+		  wxb_image_text_detail
+		WHERE wxb_image_text_detail.image_text_id = #imageTextId#
+    </select>
+    
+    
+     <!-- 查询关键字信息 -->
+    <select id ="queryImgMainInfo" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			 wrk.keyword_reply_id  keywordReplyId  
+			,wrk.store_id	storeId
+			,wrk.keyword_reply_title	keywordReplyTitle
+			,wrk.keyword
+			,wrk.matching_type  matchingType
+			,wrk.trigger_type  triggerType
+			,wrk.reply_type  replyType
+			,wrk.image_text_id  imageTextId
+			,wrk.is_start_using  isStartUsing
+			,wrk.create_date  createDate
+			,wrk.creator_id  creatorId
+			,wrk.creator 
+			,wrk.modify_date modifyDate
+			,wrk.modifier_id  modifierId
+			,wrk.modifier
+			,witm.text_title imageTextName
+			,ws.store_name storeName
+		FROM
+		 wxb_keyword_reply wrk    
+		LEFT JOIN wxb_image_text_main witm ON wrk.image_text_id = witm.image_text_id
+		LEFT JOIN wxb_store ws ON wrk.store_id = ws.store_id
+		WHERE 1 = 1
+			<isNotEmpty property="keywordAcc"><!-- 精确匹配关键字 ,非表单查询-->
+			AND	wrk.keyword = #keywordAcc#
+			<isNotEmpty property="keywordReplyId"><!-- 精确匹配ID-->
+			AND	wrk.keyword_reply_id != #keywordReplyId#
+			</isNotEmpty>
+			</isNotEmpty>
+			<isEmpty property="keywordAcc"><!-- 模糊匹配关键字，表单查询条件 -->
+				<isNotNull property="keywordReplyTitle"><!-- 标题 -->
+				AND	wrk.keyword_reply_title LIKE '%$keywordReplyTitle$%'
+				</isNotNull>
+				<isNotNull property="keyword"><!-- 关键字 -->
+				AND	wrk.keyword LIKE '%$keyword$%'
+				</isNotNull>
+				AND	wrk.store_id = #storeId#
+			</isEmpty>
+    </select>
+    
+     <!-- 查询文本消息的信息 -->
+    <insert id ="insertKeyReply" >
+      INSERT wxb_keyword_reply SET
+		 keyword_reply_id = #keywordReplyId#
+		,store_id = #storeId#
+		,keyword_reply_title = #keywordReplyTitle#
+		,keyword = #keyword#
+		,matching_type = #matchingType#
+		,trigger_type = #triggerType#
+		,reply_type = #replyType#
+		,image_text_id = #imageTextId#
+		,is_start_using = #isStartUsing#
+		,create_date = now()
+		,creator_id = #creatorId#
+		,creator = #creator#
+		,modify_date = now()
+		,modifier_id = #modifierId#
+		,modifier = #modifier#
+    </insert>
+    
+    
+    <!-- 修改文本消息的信息 -->
+    <update id ="updateKeyReply" >
+      UPDATE wxb_keyword_reply SET
+		 store_id = #storeId#
+		,keyword_reply_title = #keywordReplyTitle#
+		,keyword = #keyword#
+		,matching_type = #matchingType#
+		,trigger_type = #triggerType#
+		,reply_type = #replyType#
+		,image_text_id = #imageTextId#
+		,is_start_using = #isStartUsing#
+		,modify_date = now()
+		,modifier_id = #modifierId#
+		,modifier = #modifier#
+	  WHERE keyword_reply_id = #keywordReplyId#
+    </update>
+    
+     <!-- 删除文本消息的信息 -->
+    <delete id ="deleteKeyReply" >
+      DELETE  FROM wxb_keyword_reply WHERE keyword_reply_id = #keywordReplyId#
+    </delete>
+    
+    
+     <!-- 查询关注回复 -->
+    <select id ="queryAutoReply" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			 war.automatic_reply_id	automaticReplyId
+			,war.automatic_reply_title automaticReplyTitle
+			,war.automatic_reply_type automaticReplyType
+			,war.image_text_id  imageTextId
+			,war.image_text_content  imageTextContent
+			,war.is_start_using 	isStartUsing
+			,wbd.dict_content dictContent
+			,war.store_id storeId
+			,ws.store_name storeName
+		FROM
+		 wxb_automatic_reply war
+		 LEFT JOIN wxb_store ws ON war.store_id = ws.store_id
+		 LEFT JOIN wxb_business_dict wbd ON wbd.dict_name = 'PLACE_HOLDER'
+		WHERE 1 = 1
+			<isNotEmpty property="checkCountExist"><!-- 精确匹配关键字 -->
+				AND	is_start_using  = 1
+				<isNotEmpty property="automaticReplyId"><!-- 精确匹配ID-->
+					AND	automatic_reply_id != #automaticReplyId#
+				</isNotEmpty>
+			</isNotEmpty>
+			<isEmpty property="checkCountExist"><!-- 精确匹配关键字 -->
+				<isNotNull property="automaticReplyTitle"><!-- 标题 -->
+					AND	automatic_reply_title LIKE '%$automaticReplyTitle$%'
+				</isNotNull>
+			</isEmpty>
+					AND	war.store_id = #storeId#
+    </select>
+    
+    
+     <!-- 插入关注的信息 -->
+    <insert id ="insertAutoReply" >
+      INSERT wxb_automatic_reply SET
+		 automatic_reply_title = #automaticReplyTitle#
+		,automatic_reply_type = #automaticReplyType#
+		,image_text_id = #imageTextId#
+		,image_text_content = #imageTextContent#
+		,is_start_using = #isStartUsing#
+		,store_id = #storeId#
+    </insert>
+    
+    <!-- 修改关注的信息 -->
+    <update id ="updateAutoReply" >
+      UPDATE  wxb_automatic_reply SET
+		 automatic_reply_title = #automaticReplyTitle#
+		,automatic_reply_type = #automaticReplyType#
+		,image_text_id = #imageTextId#
+		,image_text_content = #imageTextContent#
+		,is_start_using = #isStartUsing#
+		,store_id = #storeId#
+	  WHERE automatic_reply_id = #automaticReplyId#
+    </update>
+    
+     <!-- 删除关注的信息 -->
+    <delete id ="deleteAutoReply" >
+      DELETE  FROM wxb_automatic_reply WHERE automatic_reply_id = #automaticReplyId# AND is_start_using != 1
+    </delete>
+    
+     <!-- 修改关注的状态 -->
+    <update id ="updateAutoReplyStatus" >
+      UPDATE  wxb_automatic_reply SET
+		is_start_using = #isStartUsing#
+	  WHERE automatic_reply_id = #automaticReplyId#
+	  	AND store_id = #storeId#
+    </update>
+    
+     <!-- 修改关注的状态都为停用 -->
+    <update id ="updateAutoReplyEnable" >
+      UPDATE  wxb_automatic_reply SET
+		is_start_using = 0
+	  WHERE is_start_using = 1
+	  	AND store_id = #storeId#
+    </update>
+</sqlMap>

@@ -27,7 +27,7 @@
 	width="240" allowResize="false">
 		<ul id="tree1" class="nui-tree" url="org.gocom.components.coframe.framework.MenuManager.queryMenuTreeNode.biz.ext" style="width:95%;height:95%;padding:5px;" 
 	        showTreeIcon="true" textField="text" idField="id" resultAsTree="false" parentField="pid" showTreeLines="true" onnodeclick="onNodeClick" contextMenu="#menuTreeMenu"
-	          allowDrag="true" allowDrop="true" onbeforeload="onBeforeTreeLoad" ongivefeedback="onGiveFeedback" ondrop="onDrop">
+	          allowDrag="true" allowDrop="true" ajaxData="setToken" onbeforeload="onBeforeTreeLoad" ongivefeedback="onGiveFeedback" ondrop="onDrop">
     	</ul>
     	<ul id="menuTreeMenu" class="nui-contextmenu"  onbeforeopen="onBeforeOpen">
 		</ul>
@@ -78,6 +78,10 @@
 	
 	}
 	
+	function setToken(){
+		return {"token":token};
+	}
+	
 	function refreshTab(node){
 		var tabs = nui.get("menutabs");
 		var menutabs = menutabs_map[node.type];
@@ -95,7 +99,7 @@
 		var targetNode = e.dropNode;  //目标投放节点
 		var dragAction = e.dragAction 
 		
-		var json = nui.encode({nodeId:node.id,nodeType:node.type,targetNodeId:targetNode.id,targetNodeType:targetNode.type});
+		var json = nui.encode({nodeId:node.id,nodeType:node.type,targetNodeId:targetNode.id,targetNodeType:targetNode.type,token:token});
 		$.ajax({
             url: "org.gocom.components.coframe.framework.MenuManager.updateMenuRelation.biz.ext",
             type: 'POST',
@@ -190,7 +194,7 @@
 	
 	function removeMenu(){
 		var node = tree.getSelectedNode();
-		var json = nui.encode({menuid:node.id});
+		var json = nui.encode({menuid:node.id,token:token});
 		nui.confirm("该节点下的所有子节点都将被删除，确定？","删除确认",function(action){
 		    if(action!="ok") return;    
 	        $.ajax({
@@ -218,6 +222,7 @@
 		nui.confirm("是否确定刷新菜单相关缓存数据？","温馨提示",function(action){
 		    if(action!="ok") return;
 		    
+		    var json = nui.encode({token:token});
 		    nui.mask({
 		        el: document.body,
 		        cls: 'mini-mask-loading',
@@ -226,7 +231,7 @@
 	        $.ajax({
 	            url: apiPath + sysDomain + "/com.hs.common.login.clearAndResetMenuCache.biz.ext",
 	            type: 'POST',
-	            data: {},
+	            data: json,
 	            cache: false,
 	            contentType:'text/json',
 	            success: function (text) {

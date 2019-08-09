@@ -44,7 +44,7 @@
 		var grid = nui.get("menugrid");
         var parentmenuid = "<%=StringUtil.htmlFilter(request.getParameter("id")) %>";
 		document.getElementById("parentmenuid").value = parentmenuid;
-		var data = {parentmenuid:parentmenuid};
+		var data = {parentmenuid:parentmenuid,token:token};
         grid.load(data);
         function add() {
             nui.open({

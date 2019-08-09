@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    
+   	<!-- 查询轮播图信息 -->
+	 <select id ="querySlideShowInfo" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	    	SELECT 
+					wxb_slideshow.tenant_id tenantId,
+					wxb_slideshow.store_id storeId,
+					(SELECT wxb_store.store_name FROM wxb_store WHERE wxb_store.store_id = wxb_slideshow.store_id ) storeName,
+					wxb_slideshow.picture_url pictureUrl,
+					wxb_slideshow.creator_id creatorId,
+					wxb_slideshow.creator creator,
+					wxb_slideshow.create_date createDate,
+					wxb_slideshow.modifier_id modifierId,
+					wxb_slideshow.modifier modifier,
+					wxb_slideshow.modify_date modifyDate,
+					wxb_slideshow.wxb_title wxbTitle,
+					wxb_slideshow.wxb_order wxbOrder,
+					wxb_slideshow.connect_url connectUrl
+			FROM
+					wxb_slideshow
+			WHERE wxb_slideshow.tenant_id = #tenantId#
+		 		<isNotNull  property="storeId">
+		 			AND wxb_slideshow.store_id = #storeId#
+		 		</isNotNull>
+	  </select>
+	  
+	<!-- Pc端 分页查询轮播图信息 -->
+	 <select id ="querySlideShowList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+		  wxb_slideshow.tenant_id tenantId,
+		  wxb_slideshow.store_id storeId,
+		  wxb_slideshow.wxb_slideshow_id wxbSlideshowId,
+		  (SELECT
+		    wxb_store.store_name
+		  FROM
+		    wxb_store
+		  WHERE wxb_store.store_id = wxb_slideshow.store_id) storeName,
+		  wxb_slideshow.picture_url pictureUrl,
+		  wxb_slideshow.creator_id creatorId,
+		  wxb_slideshow.creator creator,
+		  wxb_slideshow.create_date createDate,
+		  wxb_slideshow.modifier_id modifierId,
+		  wxb_slideshow.modifier,
+		  wxb_slideshow.modify_date modifyDate,
+		  wxb_slideshow.wxb_title wxbTitle,
+		  wxb_slideshow.wxb_order wxbOrder,
+		  wxb_slideshow.connect_url connectUrl,
+		  wxb_slideshow.slideshow_state slideshowState
+		FROM
+		  wxb_slideshow
+		  WHERE wxb_slideshow.store_id = #storeId#
+			<isNotNull  property="wxbTitle">
+			 	AND wxb_slideshow.wxb_title = '$wxbTitle$'
+	 		</isNotNull>
+	 		<isNotNull  property="slideshowState">
+	 			AND wxb_slideshow.slideshow_state= '$slideshowState$'
+	 		</isNotNull>
+		  
+	 </select>
+	  
+	  
+	  <!-- Pc端 查询轮播图从表信息 -->
+	 <select id ="querySlideShowDetailList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+		  wxb_slideshow_detail.slideshow_detail_id slideshowDetailId,
+		  wxb_slideshow_detail.wxb_slideshow_id wxbSlideshowId,
+		  wxb_slideshow_detail.service_item_id serviceItemId,
+		  wxb_slideshow_detail.slideshow_picture_url slideshowPictureUrl,
+		  wxb_slideshow_detail.slideshow_detail_type slideshowDetailType,
+		  wxb_slideshow_detail.slideshow_detail_sequence slideshowDetailSequence,
+		  (SELECT wxb_service_item.service_item_name FROM wxb_service_item WHERE wxb_slideshow_detail.service_item_id = wxb_service_item.service_item_id) serviceItemName
+		FROM
+		  wxb_slideshow_detail
+		WHERE wxb_slideshow_detail.wxb_slideshow_id = #wxbSlideshowId#  ORDER BY wxb_slideshow_detail.slideshow_detail_sequence ASC
+	 </select>
+	 
+	  <!-- 微信端 查询轮播图从表信息 -->
+	 <select id ="queryWechatSlideShowDetailList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+		  wxb_slideshow_detail.slideshow_detail_id slideshowDetailId,
+		  wxb_slideshow_detail.wxb_slideshow_id wxbSlideshowId,
+		  wxb_slideshow_detail.service_item_id serviceItemId,
+		  wxb_slideshow_detail.slideshow_picture_url slideshowPictureUrl,
+		  wxb_slideshow_detail.slideshow_detail_type slideshowDetailType,
+		  wxb_slideshow_detail.slideshow_detail_sequence slideshowDetailSequence,
+		  (SELECT
+		    wxb_service_item.service_type_id
+		  FROM
+		    wxb_service_item
+		  WHERE wxb_slideshow_detail.service_item_id = wxb_service_item.service_item_id) serviceTypeId,
+		  (SELECT
+		    wxb_service_item.service_item_type
+		  FROM
+		    wxb_service_item
+		  WHERE wxb_slideshow_detail.service_item_id = wxb_service_item.service_item_id) serviceItemType
+		FROM
+		  wxb_slideshow_detail
+		WHERE wxb_slideshow_detail.wxb_slideshow_id = #wxbSlideshowId# ORDER BY wxb_slideshow_detail.slideshow_detail_sequence ASC
+	 </select>
+	 
+	 
+</sqlMap>

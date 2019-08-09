@@ -353,7 +353,7 @@
     <update id="updatePchsPlanFinished" parameterClass="java.util.HashMap" >
 		
 		update pj_pchs_plan_main a
-		set a.is_finished = 1, a.finish_date = SYSDATE()
+		set a.is_finished = 1, a.finish_date = SYSDATE(), status = 2
 		where not exists (SELECT 1 from pj_pchs_plan_detail b 
 		      where a.id = b.main_id and b.is_finished = 0 and b.main_id = #mainId#)
 		and a.id = #mainId#

@@ -306,6 +306,14 @@
       <process:from type="query" pattern="reference">operateDate</process:from>
       <process:to type="query">main/orderDate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">planMain/serviceId</process:from>
+      <process:to type="query">main/code</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">planMain/id</process:from>
+      <process:to type="query">main/codeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
     <location x="776" y="66"/>
@@ -547,6 +555,14 @@
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">main/orderTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">planMain/serviceId</process:from>
+      <process:to type="query">main/code</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">planMain/id</process:from>
+      <process:to type="query">main/codeId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjPchsOrderDetail</process:from>

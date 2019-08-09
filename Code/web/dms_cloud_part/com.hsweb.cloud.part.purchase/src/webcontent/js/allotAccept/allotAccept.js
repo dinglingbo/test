@@ -200,7 +200,7 @@ function loadRightGridData(mainId)
         token:token
     },function(){
 
-        var data = rightGrid.getData();
+        /*var data = rightGrid.getData();
         
         if(autoNew == 0){
             //add();
@@ -214,7 +214,7 @@ function loadRightGridData(mainId)
             if(changeData.length == 0 && guestId){
                 addNewRow(false);
             }
-        }   
+        }  */ 
 
     });
 }
@@ -967,7 +967,7 @@ function add()
                     nui.get("orderMan").setValue(currUserName);
                     nui.get("storeId").setValue(FStoreId);
                     
-                    addNewRow();
+                    //addNewRow();
                     var guestId = nui.get("guestId");
                     guestId.focus();
 
@@ -996,7 +996,7 @@ function add()
         nui.get("orderMan").setValue(currUserName);
         nui.get("storeId").setValue(FStoreId);
 
-        addNewRow();
+        //addNewRow();
         var guestId = nui.get("guestId");
         guestId.focus();
     }
@@ -1059,7 +1059,7 @@ function onCellEditEnter(e){
                 showMsg("请输入编码!","W");
                 var row = rightGrid.getSelected();
                 rightGrid.removeRow(row);
-                addNewRow(false);
+                //addNewRow(false);
                 return;
             }else{
                 var rs = addInsertRow(record.comPartCode,record);
@@ -1154,7 +1154,7 @@ function getPartInfo(params){
                 showMsg("没有搜索到配件信息!","W");
                 var row = rightGrid.getSelected();
                 rightGrid.removeRow(row);
-                addNewRow(false);
+                //addNewRow(false);
             }
 
         },
@@ -1279,7 +1279,7 @@ function onGuestValueChanged(e)
 
         nui.get("guestOrgid").setValue(data.orgid);
 
-        addNewRow(true);
+        //addNewRow(true);
     }
 }
 var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
@@ -1582,8 +1582,7 @@ function addDetail(rows)
             partName : row.name,
             fullName : row.fullName,
             systemUnitId : row.unit,
-            outUnitId : row.unit,
-            storeId   : storeId 
+            outUnitId : row.unit 
         };
 
 

@@ -3,7 +3,7 @@
  */
 var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var rightGridUrl = baseUrl+"com.hsapi.part.invoice.query.queryPartStoreStock.biz.ext";
-var rightGrid2Url = baseUrl+"com.hsapi.part.invoice.paramcrud.queryPjPchsOrderEnterDetailChkList.biz.ext";
+var rightGrid2Url = baseUrl+"com.hsapi.part.invoice.paramcrud.queryPjPchsOrderEnterDetailChkListBatch.biz.ext";
 var basicInfoForm = null;
 var rightGrid = null;
 var rightGrid2 = null;

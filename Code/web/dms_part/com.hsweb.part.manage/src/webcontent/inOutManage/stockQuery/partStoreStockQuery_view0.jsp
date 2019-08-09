@@ -8,7 +8,7 @@
 -->
 <head>
 <title>库存查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockQuery/partStoreStockQuery.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockQuery/partStoreStockQuery.js?v=1.0.1"></script>
 <style type="text/css">
 .title {
 	width: 90px;

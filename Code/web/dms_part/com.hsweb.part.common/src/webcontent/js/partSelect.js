@@ -159,7 +159,7 @@ $(document).ready(function(v)
 
     codeEl.focus();
     
-    protoken = getProToken();
+    //protoken = getProToken();
 
     $("#search-code").bind("keydown", function (e) {
         if (e.keyCode == 13) {

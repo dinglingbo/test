@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调拨受理</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotAccept.js?v=1.0.43"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotAccept.js?v=1.0.47"></script>
 <style type="text/css">
 .title {
   width: 70px;

@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:lidongsheng -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    
+    <!-- 根据优惠劵编码查询出具体分享的优惠劵  -->
+    <select id ="queryShareUseCouponMain" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+		  ISNULL(
+		    (SELECT
+		      wxs_coupon_distribute.coupon_code
+		    FROM
+		      wxb_user_coupon,
+		      wxs_coupon_distribute
+		    WHERE wxb_user_coupon.coupon_distribute_id = wxs_coupon_distribute.coupon_distribute_id
+		      AND wxb_user_coupon.user_openId = '$userOpenId$'
+		      AND wxb_user_coupon.user_coupon_status = 0
+		      AND NOW() &gt;= wxs_coupon_distribute.coupon_begin_date
+		      AND NOW() &lt; wxs_coupon_distribute.coupon_end_date
+		      AND wxs_coupon_distribute.coupon_code = wxb_coupon.coupon_code
+		    GROUP BY wxs_coupon_distribute.coupon_code)
+		  ) wxbIsCouponUse,
+		  ISNULL(
+		    (SELECT
+		  wxbCouponOne.coupon_code
+		FROM
+		  wxb_coupon wxbCouponOne,
+		  wxb_user_coupon
+		WHERE wxbCouponOne.coupon_delete_status = 0
+		AND wxb_user_coupon.coupon_id = wxbCouponOne.coupon_id AND wxb_user_coupon.share_use_coupon = 1 AND wxb_user_coupon.user_coupon_status = 0
+		  AND NOW() &gt;= wxbCouponOne.coupon_begin_date
+		  AND NOW() &lt; wxbCouponOne.coupon_end_date
+		  AND wxb_user_coupon.user_openId = '$userOpenIdOne$'
+		  AND wxbCouponOne.coupon_code = wxb_coupon.coupon_code
+		   GROUP BY wxbCouponOne.coupon_code)
+		  ) wxbIsShareCouponUse,
+		  wxb_coupon.coupon_id couponId,
+		  wxb_coupon.store_id storeId,
+		  wxb_store.orgid,
+		  wxb_store.store_name storeName,
+		  wxb_store.store_phone storePhone,
+		  wxb_store.store_streetAddress storeStreetAddress,
+		  wxb_store.store_longitude storeLongitude,
+		  wxb_store.store_latitude storeLatitude,
+		  wxb_coupon.tenant_id tenantId,
+		  wxb_coupon.coupon_code couponCode,
+		  wxb_coupon.coupon_name couponName,
+		  wxb_coupon.coupon_title couponTitle,
+		  wxb_coupon.coupon_describe couponDescribe,
+		  wxb_coupon.coupon_condition_price couponConditionPrice,
+		  wxb_coupon.coupon_discounts_price couponDiscountsPrice,
+		  wxb_coupon.service_item_id serviceItemId,
+		  wxb_coupon.service_item_name serviceItemName,
+		  wxb_coupon.coupon_type couponType,
+		  wxb_coupon.coupon_number couponNumber,
+		  IFNULL ( (SELECT SUM( wxs_coupon_distribute.distribute_people_number) FROM wxs_coupon_distribute WHERE wxs_coupon_distribute.coupon_code = wxb_coupon.coupon_code GROUP BY wxs_coupon_distribute.coupon_code), 0 ) distributeCouponUseNumber,
+			(SELECT COUNT(wxb_user_coupon.user_coupon_id) FROM wxb_user_coupon,wxb_coupon wxbCoupon WHERE wxb_user_coupon.coupon_id = wxbCoupon.coupon_id AND wxb_user_coupon.share_use_coupon = 1 AND wxbCoupon.coupon_code = wxb_coupon.coupon_code) shareCouponUseNumber,
+		  wxb_coupon.is_car_use isCarUse,
+		  wxb_coupon.is_store_use isStoreUse,
+		  wxb_coupon.is_tenant_use isTenantUse,
+		  wxb_coupon.coupon_begin_date couponBeginDate,
+		  wxb_coupon.coupon_end_date couponEndDate,
+		  wxb_coupon.distribute_status distributeStatus,
+		  wxb_coupon.create_date createDate,
+		  wxb_coupon.creator,
+		  wxb_coupon.creator_id creatorId,
+		  wxb_coupon.modify_date modifyDate,
+		  wxb_coupon.modifier,
+		  wxb_coupon.modifier_id modifierId,
+		  wxb_coupon.coupon_delete_status couponDeleteStatus
+		FROM
+		  wxb_coupon,
+		  wxb_store
+		WHERE wxb_coupon.coupon_delete_status = 0
+		  AND NOW() &gt;= wxb_coupon.coupon_begin_date
+		  AND NOW() &lt; wxb_coupon.coupon_end_date
+		  AND wxb_store.store_id = wxb_coupon.store_id
+		  AND wxb_coupon.is_share_use = 0
+		  AND wxb_coupon.coupon_code = '$couponCode$'
+    </select>
+    
+     <!-- 查询可以分享的优惠劵，并且筛选出已经领用的优惠劵  -->
+    <select id ="queryShareUseCouponList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+		  ISNULL(
+		    (SELECT
+		      wxs_coupon_distribute.coupon_code
+		    FROM
+		      wxb_user_coupon,
+		      wxs_coupon_distribute
+		    WHERE wxb_user_coupon.coupon_distribute_id = wxs_coupon_distribute.coupon_distribute_id
+		      AND wxb_user_coupon.user_openId = '$userOpenId$'
+		      AND wxb_user_coupon.user_coupon_status = 0
+		      AND NOW() &gt;= wxs_coupon_distribute.coupon_begin_date
+		      AND NOW() &lt; wxs_coupon_distribute.coupon_end_date
+		      AND wxs_coupon_distribute.coupon_code = wxb_coupon.coupon_code
+		    GROUP BY wxs_coupon_distribute.coupon_code)
+		  ) wxbIsCouponUse,
+		  ISNULL(
+		    (SELECT
+		  wxbCouponOne.coupon_code
+		FROM
+		  wxb_coupon wxbCouponOne,
+		  wxb_user_coupon
+		WHERE wxbCouponOne.coupon_delete_status = 0
+		AND wxb_user_coupon.coupon_id = wxbCouponOne.coupon_id AND wxb_user_coupon.share_use_coupon = 1 AND wxb_user_coupon.user_coupon_status = 0
+		  AND NOW() &gt;= wxbCouponOne.coupon_begin_date
+		  AND NOW() &lt; wxbCouponOne.coupon_end_date
+		  AND wxb_user_coupon.user_openId = '$userOpenIdOne$'
+		  AND wxbCouponOne.coupon_code = wxb_coupon.coupon_code
+		   GROUP BY wxbCouponOne.coupon_code)
+		  ) wxbIsShareCouponUse,
+		  wxb_coupon.coupon_id couponId,
+		  wxb_coupon.store_id storeId,
+		  wxb_store.orgid,
+		  wxb_store.store_name storeName,
+		  wxb_store.store_phone storePhone,
+		  wxb_store.store_streetAddress storeStreetAddress,
+		  wxb_store.store_longitude storeLongitude,
+		  wxb_store.store_latitude storeLatitude,
+		  wxb_coupon.tenant_id tenantId,
+		  wxb_coupon.coupon_code couponCode,
+		  wxb_coupon.coupon_name couponName,
+		  wxb_coupon.coupon_title couponTitle,
+		  wxb_coupon.coupon_describe couponDescribe,
+		  wxb_coupon.coupon_condition_price couponConditionPrice,
+		  wxb_coupon.coupon_discounts_price couponDiscountsPrice,
+		  wxb_coupon.service_item_id serviceItemId,
+		  wxb_coupon.service_item_name serviceItemName,
+		  wxb_coupon.coupon_type couponType,
+		  wxb_coupon.coupon_number couponNumber,
+		  IFNULL ( (SELECT SUM( wxs_coupon_distribute.distribute_people_number) FROM wxs_coupon_distribute WHERE wxs_coupon_distribute.coupon_code = wxb_coupon.coupon_code GROUP BY wxs_coupon_distribute.coupon_code), 0 ) distributeCouponUseNumber,
+			(SELECT COUNT(wxb_user_coupon.user_coupon_id) FROM wxb_user_coupon,wxb_coupon wxbCoupon WHERE wxb_user_coupon.coupon_id = wxbCoupon.coupon_id AND wxb_user_coupon.share_use_coupon = 1 AND wxbCoupon.coupon_code = wxb_coupon.coupon_code) shareCouponUseNumber,
+		  wxb_coupon.is_car_use isCarUse,
+		  wxb_coupon.is_store_use isStoreUse,
+		  wxb_coupon.is_tenant_use isTenantUse,
+		  wxb_coupon.coupon_begin_date couponBeginDate,
+		  wxb_coupon.coupon_end_date couponEndDate,
+		  wxb_coupon.distribute_status distributeStatus,
+		  wxb_coupon.create_date createDate,
+		  wxb_coupon.creator,
+		  wxb_coupon.creator_id creatorId,
+		  wxb_coupon.modify_date modifyDate,
+		  wxb_coupon.modifier,
+		  wxb_coupon.modifier_id modifierId,
+		  wxb_coupon.coupon_delete_status couponDeleteStatus
+		FROM
+		  wxb_coupon,
+		  wxb_store
+		WHERE wxb_coupon.coupon_delete_status = 0
+		  AND NOW() &gt;= wxb_coupon.coupon_begin_date
+		  AND NOW() &lt; wxb_coupon.coupon_end_date
+		  AND wxb_store.store_id = wxb_coupon.store_id
+		  AND wxb_coupon.is_share_use = 0
+		<isNotNull property="couponCode"><!-- 优惠劵编码 -->
+			AND wxb_coupon.coupon_code = '$couponCode$'
+		</isNotNull>
+		<isNotNull property="storeName"><!-- 门店名称 -->
+			 AND (SELECT
+			    wxb_store.store_name
+			  FROM
+			    wxb_store
+			  WHERE wxb_store.store_id = wxb_coupon.store_id) LIKE '%$storeName$%' 
+		</isNotNull>
+		<isNotNull property="storeId"><!-- 门店id -->
+			 AND wxb_coupon.store_id = #storeId#
+		</isNotNull>
+		  
+    </select>
+    
+    
+     <!-- 车道系统：根据优惠劵id字符串列表查询优惠劵 -->
+    <select id ="queryStorePushCardCouponListChenDaoCardId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_coupon.coupon_id couponId,
+		  wxb_coupon.store_id storeId,
+		  wxb_coupon.tenant_id tenantId,
+		  wxb_coupon.coupon_code couponCode,
+		  wxb_coupon.coupon_name couponName,
+		  wxb_coupon.coupon_title couponTitle,
+		  wxb_coupon.coupon_describe couponDescribe,
+		  wxb_coupon.coupon_condition_price couponConditionPrice,
+		  wxb_coupon.coupon_discounts_price couponDiscountsPrice,
+		  wxb_coupon.service_item_id serviceItemId,
+		  wxb_coupon.service_item_name serviceItemName,
+		  wxb_coupon.coupon_type couponType,
+		  wxb_coupon.coupon_number couponNumber,
+		  wxb_coupon.is_car_use isCarUse,
+		  wxb_coupon.is_store_use isStoreUse,
+		  wxb_coupon.is_tenant_use isTenantUse,
+		  wxb_coupon.coupon_begin_date couponBeginDate,
+		  wxb_coupon.coupon_end_date couponEndDate,
+		  wxb_coupon.distribute_status distributeStatus,
+		  (SELECT SUM( wxs_coupon_distribute.distribute_people_number) FROM wxs_coupon_distribute WHERE wxs_coupon_distribute.coupon_code = wxb_coupon.coupon_code GROUP BY wxs_coupon_distribute.coupon_code ) distributePeopleNumber,
+		  wxb_coupon.create_date createDate,
+		  wxb_coupon.creator,
+		  wxb_coupon.creator_id creatorId,
+		  wxb_coupon.modify_date modifyDate,
+		  wxb_coupon.modifier,
+		  wxb_coupon.modifier_id modifierId,
+		  wxb_coupon.coupon_delete_status couponDeleteStatus
+		FROM
+		  wxb_coupon
+		WHERE wxb_coupon.coupon_delete_status = 0
+		  AND NOW() &gt;= wxb_coupon.coupon_begin_date
+		  AND NOW() &lt; wxb_coupon.coupon_end_date
+		  AND FIND_IN_SET( wxb_coupon.coupon_id,"$cardIdString$" )
+    </select>
+    
+    <!-- 查询查询门店下可派发的优惠劵 -->
+    <select id ="queryStorePushCardCouponList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_coupon.coupon_id couponId,
+		  wxb_coupon.store_id storeId,
+		  (SELECT
+		    wxb_store.store_name
+		  FROM
+		    wxb_store
+		  WHERE wxb_store.store_id = wxb_coupon.store_id) storeName,
+		  wxb_coupon.tenant_id tenantId,
+		  wxb_coupon.coupon_code couponCode,
+		  wxb_coupon.coupon_name couponName,
+		  wxb_coupon.coupon_title couponTitle,
+		  wxb_coupon.coupon_describe couponDescribe,
+		  wxb_coupon.coupon_condition_price couponConditionPrice,
+		  wxb_coupon.coupon_discounts_price couponDiscountsPrice,
+		  wxb_coupon.service_item_id serviceItemId,
+		  wxb_coupon.service_item_name serviceItemName,
+		  wxb_coupon.coupon_type couponType,
+		  wxb_coupon.coupon_number couponNumber,
+		  wxb_coupon.is_car_use isCarUse,
+		  wxb_coupon.is_store_use isStoreUse,
+		  wxb_coupon.is_tenant_use isTenantUse,
+		  wxb_coupon.coupon_begin_date couponBeginDate,
+		  wxb_coupon.coupon_end_date couponEndDate,
+		  wxb_coupon.distribute_status distributeStatus,
+		  (SELECT SUM( wxs_coupon_distribute.distribute_people_number) FROM wxs_coupon_distribute WHERE wxs_coupon_distribute.coupon_code = wxb_coupon.coupon_code GROUP BY wxs_coupon_distribute.coupon_code ) distributePeopleNumber,
+		  (SELECT COUNT(wxb_user_coupon.coupon_id ) FROM wxb_user_coupon,wxb_coupon wxbCoupon WHERE wxb_user_coupon.share_use_coupon = 1 AND wxb_user_coupon.coupon_id = wxbCoupon.coupon_id AND wxbCoupon.coupon_id = wxb_coupon.coupon_id ) sharePeopleNumber,
+		  wxb_coupon.create_date createDate,
+		  wxb_coupon.creator,
+		  wxb_coupon.creator_id creatorId,
+		  wxb_coupon.modify_date modifyDate,
+		  wxb_coupon.modifier,
+		  wxb_coupon.modifier_id modifierId,
+		  wxb_coupon.coupon_delete_status couponDeleteStatus
+		FROM
+		  wxb_coupon
+		WHERE wxb_coupon.coupon_delete_status = 0
+		  AND NOW() &gt;= wxb_coupon.coupon_begin_date
+		  AND NOW() &lt; wxb_coupon.coupon_end_date
+		  AND wxb_coupon.store_id = #storeId#
+    </select>
+    
+     <!-- 车道系统   查询门店下的卡劵 -->
+    <select id="queryChenDaoStoreCardCoupon" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_coupon.coupon_id couponId,
+		  wxb_coupon.store_id storeId,
+		  wxb_store.store_name storeName,
+		  wxb_coupon.tenant_id tenantId,
+		  wxb_coupon.coupon_code couponCode,
+		  wxb_coupon.coupon_name couponName,
+		  wxb_coupon.coupon_title couponTitle,
+		  wxb_coupon.coupon_describe couponDescribe,
+		  wxb_coupon.coupon_condition_price couponConditionPrice,
+		  wxb_coupon.coupon_discounts_price couponDiscountsPrice,
+		  wxb_coupon.service_item_id serviceItemId,
+		  wxb_coupon.service_item_name serviceItemName,
+		  wxb_coupon.coupon_type couponType,
+		  wxb_coupon.coupon_number couponNumber,
+		  wxb_coupon.is_car_use isCarUse,
+		  wxb_coupon.is_store_use isStoreUse,
+		  wxb_coupon.is_tenant_use isTenantUse,
+		  wxb_coupon.coupon_begin_date couponBeginDate,
+		  wxb_coupon.coupon_end_date couponEndDate,
+		  wxb_coupon.distribute_status distributeStatus,
+		  wxb_coupon.create_date createDate,
+		  wxb_coupon.creator,
+		  wxb_coupon.creator_id creatorId,
+		  wxb_coupon.modify_date modifyDate,
+		  wxb_coupon.modifier,
+		  wxb_coupon.modifier_id modifierId,
+		  wxb_coupon.coupon_delete_status couponDeleteStatus
+		FROM
+		  wxb_coupon,
+		  wxb_store
+		WHERE wxb_coupon.coupon_delete_status = 0
+		  AND wxb_store.store_id = wxb_coupon.store_id
+		  AND wxb_store.orgid = #orgid#
+		<isNotNull property="couponTitle"><!-- 卡劵标题 -->
+			 AND wxb_coupon.coupon_title LIKE '%$couponTitle$%'
+		</isNotNull>
+    </select>
+    
+     <!-- 查询门店下的卡劵 -->
+    <select id ="queryStoreCardCoupon" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxb_coupon.coupon_id couponId,
+		  wxb_coupon.store_id storeId,
+		   (SELECT wxb_store.store_name FROM wxb_store WHERE wxb_store.store_id = wxb_coupon.store_id ) storeName,
+		  wxb_coupon.tenant_id tenantId,
+		  wxb_coupon.coupon_code couponCode,
+		  wxb_coupon.coupon_name couponName,
+		  wxb_coupon.coupon_title couponTitle,
+		  wxb_coupon.coupon_describe couponDescribe,
+		  wxb_coupon.coupon_condition_price couponConditionPrice,
+		  wxb_coupon.coupon_discounts_price couponDiscountsPrice,
+		  wxb_coupon.service_item_id serviceItemId,
+		  wxb_coupon.service_item_name serviceItemName,
+		  wxb_coupon.coupon_type couponType,
+		  wxb_coupon.coupon_number couponNumber,
+		  wxb_coupon.is_car_use isCarUse,
+		  wxb_coupon.is_store_use isStoreUse,
+		  wxb_coupon.is_tenant_use isTenantUse,
+		  wxb_coupon.is_share_use isShareUse,
+		  wxb_coupon.coupon_begin_date couponBeginDate,
+		  wxb_coupon.coupon_end_date couponEndDate,
+		  wxb_coupon.distribute_status distributeStatus,
+		  (SELECT SUM( wxs_coupon_distribute.distribute_people_number) FROM wxs_coupon_distribute WHERE wxs_coupon_distribute.coupon_code = wxb_coupon.coupon_code GROUP BY wxs_coupon_distribute.coupon_code ) distributePeopleNumber,
+		  (SELECT COUNT(wxb_user_coupon.coupon_id ) FROM wxb_user_coupon,wxb_coupon wxbCoupon WHERE wxb_user_coupon.share_use_coupon = 1 AND wxb_user_coupon.coupon_id = wxbCoupon.coupon_id AND wxbCoupon.coupon_id = wxb_coupon.coupon_id ) sharePeopleNumber,
+		  wxb_coupon.create_date createDate,
+		  wxb_coupon.creator,
+		  wxb_coupon.creator_id creatorId,
+		  wxb_coupon.modify_date modifyDate,
+		  wxb_coupon.modifier,
+		  wxb_coupon.modifier_id modifierId,
+		  wxb_coupon.coupon_delete_status couponDeleteStatus
+		FROM
+		  wxb_coupon
+		WHERE wxb_coupon.coupon_delete_status = 0
+		AND wxb_coupon.store_id = #storeId#
+		<isNotNull property="couponTitle"><!-- 卡劵标题 -->
+			 AND wxb_coupon.coupon_title LIKE '%$couponTitle$%'
+		</isNotNull>
+		  
+    </select>
+   	
+   	
+   	 <!-- 查询门店下派发的优惠劵和用户未领用的优惠劵 -->
+    <select id ="queryPushUserCoupon" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxs_coupon_distribute.coupon_distribute_id couponDistributeId,
+		  wxs_coupon_distribute.store_id storeId,
+		  (SELECT wxb_store.orgid FROM wxb_store WHERE wxb_store.store_id = wxs_coupon_distribute.store_id ) orgid,
+		  wxs_coupon_distribute.tenant_id tenantId,
+		  wxs_coupon_distribute.coupon_code couponCode,
+		  wxs_coupon_distribute.coupon_name couponName,
+		  wxs_coupon_distribute.coupon_title couponTitle,
+		  wxs_coupon_distribute.coupon_describe couponDescribe,
+		  wxs_coupon_distribute.coupon_condition_price couponConditionPrice,
+		  wxs_coupon_distribute.coupon_discounts_price couponDiscountsPrice,
+		  wxs_coupon_distribute.service_item_id serviceItemId,
+		  wxs_coupon_distribute.service_item_name serviceItemName,
+		  wxs_coupon_distribute.coupon_type couponType,
+		  wxs_coupon_distribute.coupon_number couponNumber,
+		  wxs_coupon_distribute.distribute_people_id distributePeopleId,
+		  wxs_coupon_distribute.distribute_people_name distributePeopleName,
+		  wxs_coupon_distribute.distribute_date distributeDate,
+		  wxs_coupon_distribute.distribute_status distributeStatus,
+		  wxs_coupon_distribute.coupon_status couponStatus,
+		  wxs_coupon_distribute.is_car_use isCarUse,
+		  wxs_coupon_distribute.is_store_use isStoreUse,
+		  wxs_coupon_distribute.is_tenant_use isTenantUse,
+		  wxs_coupon_distribute.coupon_begin_date couponBeginDate,
+		  wxs_coupon_distribute.coupon_end_date couponEndDate,
+		  wxs_coupon_distribute.create_date createDate,
+		  wxs_coupon_distribute.creator,
+		  wxs_coupon_distribute.creator_id creatorId,
+		  wxs_coupon_distribute.coupon_delete_status couponDeleteStatus
+		FROM
+		  wxs_coupon_distribute
+		WHERE wxs_coupon_distribute.coupon_delete_status = 0
+		  AND FIND_IN_SET(
+		    wxs_coupon_distribute.coupon_distribute_id,
+		    '$couponDistributeIdList$'
+		  ) 
+    </select>
+   
+   <!-- 查询用户是否已经领用了此优惠劵 -->
+    <select id ="queryUserUseCouponIs" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	 SELECT wxb_user_coupon.user_coupon_id FROM wxb_user_coupon WHERE wxb_user_coupon.coupon_distribute_id = #couponDistributeId# AND wxb_user_coupon.user_openId = "$openid$"
+    </select>
+   
+   <!-- 查询用户未领用的优惠劵 -->
+    <select id ="queryUserNotCoupon" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxs_coupon_distribute.coupon_distribute_id couponDistributeId,
+		  wxs_coupon_distribute.store_id storeId,
+		  wxs_coupon_distribute.tenant_id tenantId,
+		  wxs_coupon_distribute.coupon_code couponCode,
+		  wxs_coupon_distribute.coupon_name couponName,
+		  wxs_coupon_distribute.coupon_title couponTitle,
+		  wxs_coupon_distribute.coupon_describe couponDescribe,
+		  wxs_coupon_distribute.coupon_condition_price couponConditionPrice,
+		  wxs_coupon_distribute.coupon_discounts_price couponDiscountsPrice,
+		  wxs_coupon_distribute.service_item_id serviceItemId,
+		  wxs_coupon_distribute.service_item_name serviceItemName,
+		  wxs_coupon_distribute.coupon_type couponType,
+		  wxs_coupon_distribute.coupon_number couponNumber,
+		  wxs_coupon_distribute.distribute_people_id distributePeopleId,
+		  wxs_coupon_distribute.distribute_people_name distributePeopleName,
+		  wxs_coupon_distribute.distribute_date distributeDate,
+		  wxs_coupon_distribute.distribute_status distributeStatus,
+		  wxs_coupon_distribute.coupon_status couponStatus,
+		  wxs_coupon_distribute.is_car_use isCarUse,
+		  wxs_coupon_distribute.is_store_use isStoreUse,
+		  wxs_coupon_distribute.is_tenant_use isTenantUse,
+		  wxs_coupon_distribute.coupon_begin_date couponBeginDate,
+		  wxs_coupon_distribute.coupon_end_date couponEndDate,
+		  wxs_coupon_distribute.create_date createDate,
+		  wxs_coupon_distribute.creator,
+		  wxs_coupon_distribute.creator_id creatorId,
+		  wxs_coupon_distribute.coupon_delete_status couponDeleteStatus
+		FROM
+		  wxs_coupon_distribute
+		WHERE wxs_coupon_distribute.coupon_delete_status = 0
+		  AND wxs_coupon_distribute.coupon_distribute_id = #couponDistributeId#
+		  AND wxs_coupon_distribute.coupon_distribute_id IN
+		  (SELECT
+		    wxb_user_coupon.coupon_distribute_id
+		  FROM
+		    wxb_store_user,
+		    wxb_user,
+		    wxb_user_coupon
+		  WHERE wxb_store_user.user_id = wxb_user.user_id
+		    AND wxb_user.user_opid = "$openid$"
+		    AND wxb_store_user.last_patronage_store = 0
+		    AND wxb_user_coupon.store_user_id = wxb_store_user.store_user_id)
+    </select>
+    
+   
+    <!-- 查询门店下派发的优惠劵 -->
+    <select id ="queryPushCoupon" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+		  wxs_coupon_distribute.coupon_distribute_id couponDistributeId,
+		  wxs_coupon_distribute.store_id storeId,
+		  wxs_coupon_distribute.tenant_id tenantId,
+		  (SELECT
+		    wxb_store.store_name
+		  FROM
+		    wxb_store
+		  WHERE wxb_store.store_id = wxs_coupon_distribute.store_id) storeName,
+		  wxs_coupon_distribute.coupon_code couponCode,
+		  wxs_coupon_distribute.coupon_name couponName,
+		  wxs_coupon_distribute.coupon_title couponTitle,
+		  wxs_coupon_distribute.coupon_describe couponDescribe,
+		  wxs_coupon_distribute.coupon_discounts_price couponDiscountsPrice,
+		  wxs_coupon_distribute.service_item_id serviceItemId,
+		  wxs_coupon_distribute.service_item_name serviceItemName,
+		  wxs_coupon_distribute.coupon_type couponType,
+		  wxs_coupon_distribute.coupon_number couponNumber,
+		  wxs_coupon_distribute.distribute_people_id distributePeopleId,
+		  wxs_coupon_distribute.distribute_people_name distributePeopleName,
+		   wxs_coupon_distribute.distribute_people_number distributePeopleNumber,
+		  wxs_coupon_distribute.distribute_date distributeDate,
+		  wxs_coupon_distribute.distribute_status distributeStatus,
+		  wxs_coupon_distribute.coupon_status couponStatus,
+		  wxs_coupon_distribute.is_car_use isCarUse,
+		  wxs_coupon_distribute.is_store_use isStoreUse,
+		  wxs_coupon_distribute.is_tenant_use isTenantUse,
+		  wxs_coupon_distribute.coupon_begin_date couponBeginDate,
+		  wxs_coupon_distribute.coupon_end_date couponEndDate,
+		  wxs_coupon_distribute.create_date createDate,
+		  wxs_coupon_distribute.creator,
+		  wxs_coupon_distribute.creator_id creatorId,
+		  wxs_coupon_distribute.coupon_delete_status couponDeleteStatus
+		FROM
+		  wxs_coupon_distribute
+		WHERE wxs_coupon_distribute.coupon_delete_status = 0
+		 AND wxs_coupon_distribute.store_id = #storeId#
+		<isNotNull property="couponDistributeIdList"><!-- 表主键列表 -->
+			 AND FIND_IN_SET(wxs_coupon_distribute.coupon_distribute_id,'$couponDistributeIdList$')
+		</isNotNull>
+		<isNotNull property="distributePeopleName"><!-- 派发人 -->
+			 AND wxs_coupon_distribute.distribute_people_name LIKE '%$distributePeopleName$%'
+		</isNotNull>
+		<isNotNull property="beginDistributeDate"><!-- 派发时间  开始 -->
+			 AND wxs_coupon_distribute.distribute_date &gt;= '$beginDistributeDate$'
+		</isNotNull>
+		 <isNotNull property="endDistributeDate"><!-- 派发时间  结束 -->
+			AND wxs_coupon_distribute.distribute_date &lt; '$endDistributeDate$'
+		</isNotNull>
+    </select>
+   
+</sqlMap>

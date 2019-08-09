@@ -1,0 +1,69 @@
+{{#showMedlHtml}}
+<div class="rel sub-msg-item appmsgItemss imageTextTemplate{{indexTemplate}}" index="{{indexTemplate}}" id="appmsgItem2" style="">
+	<span class="thumb showImageText{{indexTemplate}}" index="{{indexTemplate}}" style="float: right;font-size: 0;">
+    	<span class="default-tipss thumed{{indexTemplate}}" style="">缩略图</span>
+		<img src="" class="i-img imageTextImg{{indexTemplate}}" style="display:none;border: 1px solid #B2B8BD;height: 70px;width: 70px;vertical-align: middle;">
+	</span>
+	<h4 class="msg-ts" style="">
+        <span class="i-title imageTextTitles{{indexTemplate}}">标题</span>
+	</h4>
+	<ul class="abs tc sub-msg-opr_detail" style="left: 100%;">
+	    <li class="b-dib sub-msg-opr-item_detail" style="">
+	        <a href="javascript:;" id="first" class="th icon18 iconEdit_detail imageTextEdit{{indexTemplate}}" index="{{indexTemplate}}" data-rid="2" style="">编辑</a></li>
+	    <li class="b-dib sub-msg-opr-item_detail" style="margin-right: -14px;">
+	        <a href="javascript:;" class="th icon18 iconDel_detail imageTextDelete{{indexTemplate}}" index="{{indexTemplate}}" data-rid="2">删除</a>
+	    </li>
+	</ul>
+</div>
+{{/showMedlHtml}}	
+
+{{#imageTextData}}
+<table id="imageTextDataTemplate{{indexTemplate}}" style="width:100%;border-collapse: separate;border-spacing: 0px 20px;display:none;" class="nui-form-table nuiTable">
+	<tr>
+		<td class="nui-form-label" colspan="1" style="width: 10%;" >
+			<label>图文标题：</label>
+		</td>
+		<td colspan="1" style="width: 24%;">
+			<input class="nui-textbox tabwidth" name="imageTextTitleMany{{indexTemplate}}" id="imageTextTitleMany{{indexTemplate}}" onvaluechanged="OnImageTextTitleManychanged('{{indexTemplate}}')" required="true"/>
+		</td>
+		<td class="nui-form-label" colspan="1" style="width: 9%;" >
+			<label>图文作者：</label>
+		</td>
+		<td colspan="1" style="width: 34%;">
+			<input class="nui-textbox tabwidth" name="imageTextAuthorMany{{indexTemplate}}" id="imageTextAuthorMany{{indexTemplate}}" required="true"/>
+		</td>
+	</tr>
+	<tr>
+		<td class="nui-form-label" colspan="1" style="" >
+			<label>是否打开评论：</label>
+		</td>
+		<td colspan="1">
+			<div id="isOpenCommentMany{{indexTemplate}}" name="isOpenCommentMany{{indexTemplate}}" class="nui-radiobuttonlist" textField="text"  valueField="id" repeatLayout="none" value="1" data='[{"id":1,"text":"打开"},{"id":0,"text":"不打开"}]' />
+		</td>
+		<td class="nui-form-label" colspan="1" style="" >
+			<label>是否粉丝才可评论：</label>
+		</td>
+		<td colspan="1">
+			<div id="isCanCommentMany{{indexTemplate}}" name="isCanCommentMany{{indexTemplate}}" class="nui-radiobuttonlist" textField="text"  valueField="id" repeatLayout="none" value="0" data='[{"id":0,"text":"所有人可评论"},{"id":1,"text":"粉丝才可评论"}]' />
+		</td>
+	</tr>
+	<tr>
+		<td class="nui-form-label" colspan="1" style="" >
+			<label>原文链接：</label>
+		</td>
+		<td colspan="3">
+			<input class="nui-textbox tabwidth" name="imageTextSourceMany{{indexTemplate}}" id="imageTextSourceMany{{indexTemplate}}" style="width:35%;" />
+		</td>
+	</tr>
+	<tr>
+		<td class="nui-form-label" colspan="4" style="" >
+			<label>图文内容：</label>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="4" style="" >
+			<textarea id="containerMony{{indexTemplate}}" name="containerMony{{indexTemplate}}" style="width:1050px;height:500px;"></textarea>
+		</td>
+	</tr>
+</table>
+{{/imageTextData}}

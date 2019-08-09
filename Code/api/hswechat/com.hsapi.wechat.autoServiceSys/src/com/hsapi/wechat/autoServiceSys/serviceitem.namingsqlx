@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    
+    <!-- 清除其用户下购物车的所有项目 -->
+    <delete id ="deleteUserShoppingCartItem" parameterClass="java.util.HashMap">
+    	DELETE FROM wxb_item_shopping_cart WHERE store_id = #storeId# AND user_id = #userId#
+    </delete>
+    
+    <select id="queryservieceitem" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			wia.item_activity_id,
+			(SELECT wxb_store.store_name FROM wxb_store WHERE wxb_store.store_id = wia.store_id ) storeName,
+			(SELECT wsi.service_item_name FROM wxb_service_item wsi WHERE wsi.service_item_id = wia.service_item_id ) serviceName,
+			wia.item_activity_title,
+			wia.create_date,
+			wia.creator,
+			wia.modify_date,
+			wia.modifier
+		FROM
+			wxb_item_activity wia
+			where 1=1
+			<isNotNull property="storeId">
+			AND wia.store_id = #storeId#
+			</isNotNull>
+			<isNotNull property="itemactivitytitle">
+			AND wia.item_activity_title = #itemactivitytitle#
+			</isNotNull>
+    </select>
+    
+    <update id="updateservieceitem">
+    	UPDATE wxs_booking_order_main SET booking_order_time = #bookingtime# WHERE booking_order_id = #bookingid#
+    </update>
+    
+    <delete id="deleteservieceitem">
+    	delete from wxs_booking_order_main where booking_order_id = #bookingid#
+    </delete>
+    
+    <insert id="insertservieceitem">
+    	insert into wxb_item_activity (store_id,tenant_id,service_item_id,item_activity_title,item_activity_describe,create_date,creator_id,creator) values(#store_id#,#tenant_id#,#service_item_id#,#item_activity_title#,#item_activity_describe#,now(),#username#,#userid#)
+    </insert>
+</sqlMap>

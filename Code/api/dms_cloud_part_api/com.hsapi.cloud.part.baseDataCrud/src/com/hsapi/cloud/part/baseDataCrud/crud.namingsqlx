@@ -852,6 +852,16 @@
            
 	</delete>
 	
+	<delete id="deleteStockLevel" parameterClass="java.util.HashMap" >
+		DELETE  FROM pj_stock_level WHERE id = #id#
+           
+	</delete>
+	
+	<delete id="deleteStockLevelPart" parameterClass="java.util.HashMap" >
+		DELETE  FROM pj_stock_level_part WHERE strategy_id = #strategyId#
+           
+	</delete>
+	
 	<select id="queryPjDeductPart" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     <!-- 物流公司 -->
    		 SELECT

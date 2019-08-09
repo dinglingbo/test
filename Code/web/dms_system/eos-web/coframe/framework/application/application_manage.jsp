@@ -109,7 +109,7 @@
 		var targetNode = e.dropNode;  //目标投放节点
 		var dragAction = e.dragAction 
 		
-		var json = nui.encode({nodeId:node.realId,nodeType:node.type,targetNodeId:targetNode.realId,targetNodeType:targetNode.type});
+		var json = nui.encode({nodeId:node.realId,nodeType:node.type,targetNodeId:targetNode.realId,targetNodeType:targetNode.type,token:token});
 		$.ajax({
             url: "org.gocom.components.coframe.framework.FuncGroupManager.updateFuncGroupRelation.biz.ext",
             type: 'POST',
@@ -333,7 +333,7 @@
 	
 	function removeApplication(){
 		var node = tree.getSelectedNode();
-		var json = nui.encode({nodeId:node.realId,nodeType:node.type});
+		var json = nui.encode({nodeId:node.realId,nodeType:node.type,token:token});
 		
 		var message="";
 		if (node.type=='function'){
@@ -374,7 +374,7 @@
       $.ajax({
         url:"org.gocom.components.coframe.framework.MenuManager.validateMenu.biz.ext",
         type:'POST',
-        data:'template/funccode='+value,
+        data:'token='+token+'&template/funccode='+value,
         cache:false,
         async:false,
         dataType:'json',

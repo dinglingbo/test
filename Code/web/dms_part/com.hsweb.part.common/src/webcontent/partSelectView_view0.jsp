@@ -64,7 +64,7 @@ a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}
                            nullItemText="请选择..."/>
                       &nbsp;&nbsp;
                     <input type="checkbox" id="qtySign" class="mini-checkbox" trueValue="1" falseValue="0" >
-	                <span >显示0库存</span>
+	                <span >显示零库存</span>
                     <span class="separator"></span>
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <!--<a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>-->
@@ -123,8 +123,8 @@ a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}
 		                                <div allowSort="true" field="partBrandId" width="50" headerAlign="center">品牌</div>
 		                                <div allowSort="true" field="code" width="100" headerAlign="center" allowSort="true">编码</div>
 		       							<div allowSort="true" field="stockQty" width="55" headerAlign="center" allowSort="true">本店库存</div>
+		       							<div allowSort="true" field="newestSellPrice" width="70" headerAlign="center" allowSort="true">最新销价</div>
 		                                <div allowSort="true" field="applyCarModel" width="70" headerAlign="center" allowSort="true">品牌车型</div>
-		                                
 		                                <div allowSort="true" field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
 		                            </div>
 		                        </div>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryPartListStock" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="库存查询，用于查询界面&#xD;&#xA;com.hsapi.part.invoice.query.queryPartStoreStockList" title="Administrator&#x9;18-3-17 上午9:48">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.part.baseDataCrud.crud.queryPartListStock" title="Administrator&#x9;19-8-6上午9:48">
     <location x="57" y="0"/>
     <size height="76" width="450"/>
   </nodes>
@@ -56,8 +56,8 @@
       <process:to type="query">params/sortOrder</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/attributes/tenantId</process:from>
-      <process:to type="query">params/tenantId</process:to>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">params/orgid</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">

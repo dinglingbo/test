@@ -67,7 +67,7 @@ $(document).ready(function(v) {
 
 function getSearchParams() {
 	var params = {};
-	params.sOrderDate = sOrderDateEl.getValue();
+	params.sOrderDate = sOrderDateEl.getFormValue();
 	params.eOrderDate = addDate(eOrderDateEl.getValue(),1);
 	params.isDiffOrder=0;
 	params.isFinished = 0;

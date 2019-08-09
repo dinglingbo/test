@@ -1152,7 +1152,7 @@ function addInsertRow(value, row) {
             partName : part.name,
             fullName : part.fullName,
             systemUnitId : part.unit,
-            outUnitId : part.unit
+            enterUnitId : part.unit
         };
 
         if(row){
@@ -1328,7 +1328,7 @@ function addSelectPart(){
             partName : row.name,
             fullName : row.fullName,
             systemUnitId : row.unit,
-            outUnitId : row.unit
+            enterUnitId : row.unit
         };
         
         advancedMorePartWin.hide();
@@ -1550,7 +1550,7 @@ function addDetail(rows)
             partName : row.name,
             fullName : row.fullName,
             systemUnitId : row.unit,
-            outUnitId : row.unit
+            enterUnitId : row.unit
         };
 
 

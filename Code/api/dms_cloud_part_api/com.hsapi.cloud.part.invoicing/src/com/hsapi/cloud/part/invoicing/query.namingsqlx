@@ -65,6 +65,7 @@
             <isNotEmpty prepend="and" property="serviceMan">(A.order_man = #serviceMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">(A.service_id = #serviceId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="directOrgid">(A.direct_orgid = #directOrgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="noDirectGuestId">(A.direct_guest_id =0 )</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
         </dynamic>
@@ -414,6 +415,10 @@
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="outableQty">(e.outable_qty &gt; 0)</isNotEmpty>
+             <!-- 月结 020502 -->
+             <isNotEmpty prepend="and" property="settleTypeId"> 
+                (a.settle_type_id = #settleTypeId#)
+            </isNotEmpty>
             <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
         </dynamic>
     </select>
@@ -774,6 +779,7 @@
 			 on a.guest_id = d.id
 		where a.audit_sign = 1
 		and a.is_diff_order =1
+		and a.is_out =1
 		<dynamic>
 			<isNotEmpty prepend="and" property="orgids">(a.orgid in ($orgids$))</isNotEmpty>
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
@@ -802,6 +808,10 @@
             <isNotEmpty prepend="and" property="serviceId">(A.service_id = #serviceId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
+            <!-- 月结 020502 -->
+             <isNotEmpty prepend="and" property="settleTypeId"> 
+                (a.settle_type_id = #settleTypeId#)
+            </isNotEmpty>
             <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
         </dynamic>
      </select>

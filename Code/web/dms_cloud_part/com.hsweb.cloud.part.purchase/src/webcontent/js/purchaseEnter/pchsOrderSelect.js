@@ -166,6 +166,8 @@ function getSearchParam(){
     	params.billStatusId =null;
     	params.billStatusIdList ='2,3';
     }
+    //无直发门店
+    params.noDirectGuestId=1;
     return params;
 }
 function onSearch(){

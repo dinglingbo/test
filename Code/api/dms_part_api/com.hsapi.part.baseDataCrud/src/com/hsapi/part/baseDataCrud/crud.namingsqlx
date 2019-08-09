@@ -777,10 +777,10 @@
 	        </dynamic>
     </select> 
     
-    <!--用于查询有库存的-->
+    <!--用于查询本店有库存的-->
      <select id="queryPartListStock" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT a.id id,
-    		   a.orgid orgid,
+    		   b.orgid orgid,
 		       a.code code,
 		       a.name name,
 		       a.full_name fullName,
@@ -822,20 +822,11 @@
 			pj_part_store_stock b
 			inner join wb_common.com_attribute a
 			on b.part_id = a.id
-			where 1=1 and a.is_disabled=0
+			where 1=1 
 			and b.stock_qty &gt; 0
     	<dynamic>
     		<isNotEmpty prepend="and" property="orgid">  
-                (a.orgid = #orgid#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="orgids">  
-                (a.orgid = #orgids# or a.orgid = 0)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="tenantId">  
-                (a.tenant_id = #tenantId# or a.orgid = 0)
-            </isNotEmpty>
-    		<isNotEmpty prepend="and" property="isDisabled">  
-                (is_disabled = #isDisabled#)
+                (b.orgid = #orgid#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="commonId">  
                 (a.common_id = #commonId#)

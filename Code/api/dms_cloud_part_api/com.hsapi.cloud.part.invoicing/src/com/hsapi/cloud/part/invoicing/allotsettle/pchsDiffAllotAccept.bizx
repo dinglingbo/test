@@ -61,7 +61,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">orderNO</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -143,6 +143,10 @@
       <process:to type="query">acceptMain/status</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">直发处理</process:from>
+      <process:to type="query">acceptMain/orderMan</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">enterMain/creator</process:from>
       <process:to type="query">acceptMain/creator</process:to>
     </process:copy>
@@ -175,7 +179,7 @@
       <process:to type="query">acceptMain/auditDate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">creator</process:from>
+      <process:from type="literal" pattern="reference">直发处理</process:from>
       <process:to type="query">acceptMain/auditor</process:to>
     </process:copy>
     <process:copy>
@@ -569,6 +573,7 @@
     <sourceConnections xsi:type="process:tLink" id="link64" name="link64" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess2</sourceNode>
       <targetNode>assign15</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link63</targetConnections>
     <location x="210" y="227"/>
@@ -582,7 +587,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">outServiceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"/>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hsapi.cloud.part.data.pts.PjBillRecord[]" valueType="DataObject"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>

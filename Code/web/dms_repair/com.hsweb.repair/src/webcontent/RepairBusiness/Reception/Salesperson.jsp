@@ -13,7 +13,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>销售员选择</title>
 <script
-	src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/Salesperson.js?v=1.0.4"></script>
+	src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/Salesperson.js?v=1.0.5"></script>
 	<style type="text/css">
 
 				body,

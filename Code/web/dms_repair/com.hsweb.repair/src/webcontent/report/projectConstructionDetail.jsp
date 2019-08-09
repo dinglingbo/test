@@ -59,9 +59,7 @@ pageEncoding="UTF-8" session="false" %>
             emptyText="服务顾问" url="" allowInput="true" showNullItem="false" style="width:90px;" valueFromSelect="true"
             nullItemText="服务顾问" />
         <!-- <input class="nui-textbox" id=""name=""emptytext="配件分类"> -->
-         <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
-                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
-         <label>业务类型：</label>
+        <label>业务类型：</label>
          <input name="serviceTypeId"
            id="serviceTypeId"
            class="nui-combobox width1"
@@ -74,6 +72,8 @@ pageEncoding="UTF-8" session="false" %>
            width="5%"
            valueFromSelect="true"
            nullItemText="请选择..."/>
+         <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
         <a class="nui-button" iconcls="" plain="true" name="" onclick="Search()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
        <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>  
     </div>
@@ -98,7 +98,9 @@ pageEncoding="UTF-8" session="false" %>
                 <!-- <div field="" name="" headeralign="center" width="100" align="center">来店途径</div> -->
                 <div field="workers" name="workers" headeralign="center" width="100" align="center" allowsort="true">施工员</div>
                 <div field="status" name="status" renderer="onStatusRenderer" headeralign="center" width="80" align="center" allowsort="true">状态</div>
-                <div field="isBack" name="isBack" renderer="onIsBackRenderer" headeralign="center" width="80" align="center" allowsort="true">是否返工</div>
+                <div field="backTimes" name="backTimes" renderer="onIsBackRenderer" headeralign="center" width="80" align="center" allowsort="true">是否返工</div>
+                <div allowSort="workTime" field="workTime" width="60" headerAlign="center" summaryType="sum" header="施工耗时" dataType="float"></div>
+                <div allowSort="stopTime" field="stopTime" width="60" headerAlign="center" summaryType="sum" header="中断耗时" dataType="float"></div>
                 <div field="mtAdvisor" name="mtAdvisor" headeralign="center" width="100" align="center" allowsort="true">服务顾问</div>
                 <div field="finishDate" name="finishDate" headeralign="center" width="100" align="center" dateFormat="yyyy-MM-dd" allowsort="true">完工日期</div>
                 <div field="outDate" name="outDate" headeralign="center" width="100" align="center" dateFormat="yyyy-MM-dd" allowsort="true">结算日期</div>
@@ -176,8 +178,11 @@ pageEncoding="UTF-8" session="false" %>
 
 
         grid.on("drawcell", function (e) {
+            var record = e.record;
             if (e.field == "serviceTypeId") {
-                e.cellHtml = servieTypeHash[e.value].name;
+                if(e.value){
+                    e.cellHtml = servieTypeHash[e.value].name;
+                }
             }
 			if (e.field == "rate") {
                 e.cellHtml = e.value+"%";
@@ -189,7 +194,52 @@ pageEncoding="UTF-8" session="false" %>
 	        		}
 	        	}
            }
-            document.onkeyup = function (event) {
+           
+           if(e.field == "workTime"){
+        	var s = "";
+        	var workTime = record.workTime;
+            if(workTime>0){
+	        	var days = Math.floor(workTime / (24 * 3600)); // 计算出天数
+	        	if(days>0){
+	        		s = days + '天';
+	        	}
+	            var leavel = workTime % (24 * 3600); // 计算天数后剩余的时间
+	            var hours = Math.floor(leavel / 3600); // 计算剩余的小时数
+	            if(hours>0){
+	            	s = s + hours + '小时';
+	            }
+	            var leavel2 = leavel % 3600; // 计算剩余小时后剩余的毫秒数
+	            var minutes = Math.floor(leavel2 / 60); // 计算剩余的分钟数
+	            if(minutes>0){
+	            	s = s + minutes + '分';
+	            }
+	            e.cellHtml = s;
+           }
+        }
+        if(e.field == "stopTime"){
+        	var s = "";
+        	var stopTime = record.stopTime;
+            if(stopTime>0){
+	        	var days = Math.floor(stopTime / (24 * 3600)); // 计算出天数
+	        	if(days>0){
+	        		s = days + '天';
+	        	}
+	            var leavel = stopTime % (24 * 3600); // 计算天数后剩余的时间
+	            var hours = Math.floor(leavel / 3600); // 计算剩余的小时数
+	            if(hours>0){
+	            	s = s + hours + '小时';
+	            }
+	            var leavel2 = leavel % 3600; // 计算剩余小时后剩余的毫秒数
+	            var minutes = Math.floor(leavel2 / 60); // 计算剩余的分钟数
+	            if(minutes>0){
+	            	s = s + minutes + '分';
+	            }
+	            e.cellHtml = s;
+           }
+          }
+        }); 
+        
+        document.onkeyup = function (event) {
                 var e = event || window.event;
                 var keyCode = e.keyCode || e.which; // 38向上 40向下
 
@@ -197,8 +247,7 @@ pageEncoding="UTF-8" session="false" %>
                 if ((keyCode == 13)) { // F9
                     Search();
                 }
-            }
-        });    
+            }   
 
 	  var filter = new HeaderFilter(grid, {
 	        columns: [
@@ -338,7 +387,7 @@ function onExport(){
 				detail[i].status=statusList[j].text;
 			}
 		}
-		if(detail[i].onIsBackRenderer==1){
+		if(detail[i].onIsBackRenderer>1){
 			detail[i].onIsBackRenderer=="已返工"
 		}else{
 			detail[i].onIsBackRenderer=="未返工"
@@ -353,9 +402,23 @@ setInitExportDataNoMultistage( detail,grid.columns,"施工项目明细表导出"
 	}
 	
 }
-    function setInitData(params){
-    
-    }
+  function setInitData(params){
+     var item = params.item;
+     var cType = params.cType;
+     if(cType==3){//结算日期
+         startDateEl.setValue(params.sRecordDate);
+         endDateEl.setValue(addDate(params.eRecordDate,-1));
+      }else if(cType==1){//业务类型
+         startDateEl.setValue(params.sRecordDate);
+         endDateEl.setValue(addDate(params.eRecordDate,-1));
+         nui.get("serviceTypeId").setValue(item.groupName);
+      }else if(cType==2){
+        startDateEl.setValue(params.sRecordDate);
+         endDateEl.setValue(addDate(params.eRecordDate,-1));
+         nui.get("itemName").setValue(item.groupName);
+      }
+      Search();
+  }
     
     
     </script>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    
+    
+    <select id="querybooking" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	    SELECT
+			wxs_booking_order_main.booking_order_id  BookingOrderId,
+			wxs_booking_order_main.booking_order_code,
+			wxs_booking_order_main.store_id storeId,
+			(select store_name from wxb_store where wxb_store.store_id = wxs_booking_order_main.store_id) storeName,
+			wxs_booking_order_main.tenant_id tenantId,
+			wxs_booking_order_main.user_id userId,
+			wxs_booking_order_main.user_phone userPhone,
+			wxs_booking_order_main.car_id  carId,
+			(select car_no from wxb_user_cars where wxb_user_cars.car_id = wxs_booking_order_main.car_id) carNo,
+			wxs_booking_order_main.booking_order_time bookingOrderTime,
+			wxs_booking_order_main.booking_order_details  bookingOrderDetails,
+			wxs_booking_order_main.booking_stater bookingStater,
+			wxs_booking_order_main.create_date  createDate
+		FROM
+			wxs_booking_order_main
+			LEFT JOIN wxb_user_cars wuc ON wuc.car_id = wxs_booking_order_main.car_id
+			LEFT JOIN wxb_user wu ON wxs_booking_order_main.user_id = wu.user_id 
+		WHERE  wxs_booking_order_main.user_id = #userId#
+			<isNotNull property="bookingstater">
+				AND wxs_booking_order_main.booking_stater = #bookingstater#
+			</isNotNull>
+    </select>
+    
+    <update id="updatebooking">
+    	UPDATE wxs_booking_order_main SET booking_order_time = #bookingtime# WHERE booking_order_id = #bookingid#
+    </update>
+    
+    <delete id="deletebooking">
+    	delete from wxs_booking_order_main where booking_order_id = #bookingid#
+    </delete>
+    
+    <insert id="insertbooking">
+    	insert into wxs_booking_order_main (booking_order_code,store_id,tenant_id,user_id,user_phone,car_id,booking_order_time,booking_order_details,booking_stater,create_date) values(#bookingordercode#,#storeid#,#tenantid#,#userid#,#userphone#,#carid#,#bookingordertime#,#bookingorderdetails#,#bookingstater#,now())
+    </insert>
+</sqlMap>

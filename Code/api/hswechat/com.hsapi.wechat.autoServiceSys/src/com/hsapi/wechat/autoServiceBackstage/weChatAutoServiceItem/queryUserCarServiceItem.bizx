@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryUserCarServiceItem.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据用户选择的业务类型查询出项目" title="lidongsheng&#x9;19-2-18 下午3:07">
+    <location x="60" y="630"/>
+    <size height="100" width="238"/>
+  </nodes>
+  <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
+    <sourceConnections xsi:type="process:tLink" id="link29" name="link29" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <location x="120" y="316"/>
+    <size height="28" width="28"/>
+    <nodeLabel>start0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
+    <targetConnections>link8</targetConnections>
+    <location x="1708" y="326"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end0label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="com.hsapi.wechat.autoServiceSys.wechatStoreInfo.WxbServiceItem[]" name="wxbServiceItemArray" type="query" valueType="DataObject">wxbServiceItemArray</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
+    <location x="119" y="352"/>
+    <figSize height="20" width="31"/>
+    <node>start0</node>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
+    <location x="1707" y="362"/>
+    <figSize height="20" width="31"/>
+    <node>end0</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="查询项目" displayName="queryByNamedSql" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>loopstart0</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link29</targetConnections>
+    <location x="240" y="316"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo0label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.queryByNamedSql</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="value">weixin</process:inputVariable>
+      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="value">com.hsapi.wechat.autoServiceBackstage.autoServiceItemSql.queryUserCarWechatServiceTypeItem</process:inputVariable>
+      <process:inputVariable id="2" name="parameterObject" type="query" value="java.lang.Object" valueType="Java" pattern="reference">map</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.Object[]" valueType="Java">wxbServiceItemArray</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
+    <location x="221" y="352"/>
+    <figSize height="20" width="61"/>
+    <node>invokePojo0</node>
+  </nodes>
+  <nodes xsi:type="process:tLoopStart" description="" id="loopstart0" name="循环" displayName="循环" grouped="true" type="loopstart" matchedName="loopend0" loopType="iterate">
+    <sourceConnections xsi:type="process:tLink" description="" id="link10" name="套餐项目" displayName="连接线" isDefault="false" type="transition">
+      <sourceNode>loopstart0</sourceNode>
+      <targetNode>assign1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">wxbServiceItem/serviceItemType</process:leftOperand>
+          <process:rightOperand type="literal">2</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link17" name="link17" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>loopstart0</sourceNode>
+      <targetNode>switch2</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <location x="387" y="320"/>
+    <size height="24" width="24"/>
+    <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
+    <process:iterate iterable="wxbServiceItemArray" iterableElement="wxbServiceItem"/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
+    <location x="384" y="352"/>
+    <figSize height="20" width="31"/>
+    <node>loopstart0</node>
+  </nodes>
+  <nodes xsi:type="process:tLoopEnd" id="loopend0" name="循环结束" displayName="循环结束" grouped="true" type="loopend" matchedName="loopstart0">
+    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>loopend0</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link25</targetConnections>
+    <targetConnections>link26</targetConnections>
+    <location x="1594" y="328"/>
+    <size height="24" width="24"/>
+    <nodeLabel>loopend0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
+    <location x="1576" y="360"/>
+    <figSize height="20" width="61"/>
+    <node>loopend0</node>
+  </nodes>
+  <nodes xsi:type="model:GroupNode" id="group0" name="group" grouped="true" gstart="loopstart0" gend="loopend0">
+    <location x="387" y="139"/>
+    <size height="402" width="1231"/>
+    <chidren>loopend0</chidren>
+    <chidren>loopstart0</chidren>
+    <chidren>assign1</chidren>
+    <chidren>assign2</chidren>
+    <chidren>assign4</chidren>
+    <chidren>assign3</chidren>
+    <chidren>assign6</chidren>
+    <chidren>switch1</chidren>
+    <chidren>switch2</chidren>
+    <chidren>assign8</chidren>
+    <chidren>assign9</chidren>
+    <chidren>assign10</chidren>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link22" name="link22" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>switch1</targetNode>
+    </sourceConnections>
+    <targetConnections>link10</targetConnections>
+    <location x="675" y="182"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">wxbServiceItem/cardSellAmt</process:from>
+      <process:to type="query">wxbServiceItem/couponTotalAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">wxbServiceItem/cardSellAmt</process:from>
+      <process:to type="query">totalAmt</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
+    <location x="669" y="218"/>
+    <figSize height="20" width="40"/>
+    <node>assign1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign2" name="赋值2" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" description="" id="link12" name="固定优惠" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>assign3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link13" name="比例优惠" displayName="连接线" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>assign4</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">wxbServiceItem/couponType</process:leftOperand>
+          <process:rightOperand type="literal">2</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link11</targetConnections>
+    <location x="1005" y="182"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign2label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <location x="999" y="218"/>
+    <figSize height="20" width="40"/>
+    <node>assign2</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign9</targetNode>
+    </sourceConnections>
+    <targetConnections>link13</targetConnections>
+    <location x="1260" y="251"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign4label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0.01</process:from>
+      <process:to type="query">var1</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">totalAmt</process:from>
+      <process:to type="query">wxbServiceItem/totalAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">wxbServiceItem/couponPercentage</process:from>
+      <process:to type="query">couponPercentage</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">totalAmt-totalAmt * couponPercentage * var1</process:from>
+      <process:to type="query">couponTotalAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">couponTotalAmt</process:from>
+      <process:to type="query">wxbServiceItem/couponTotalAmt</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <location x="1254" y="287"/>
+    <figSize height="20" width="40"/>
+    <node>assign4</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign3</sourceNode>
+      <targetNode>assign9</targetNode>
+    </sourceConnections>
+    <targetConnections>link12</targetConnections>
+    <location x="1302" y="182"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign3label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">totalAmt</process:from>
+      <process:to type="query">wxbServiceItem/totalAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">wxbServiceItem/couponPrice</process:from>
+      <process:to type="query">couponPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">totalAmt - couponPrice</process:from>
+      <process:to type="query">couponTotalAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">couponTotalAmt</process:from>
+      <process:to type="query">wxbServiceItem/couponTotalAmt</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
+    <location x="1296" y="218"/>
+    <figSize height="20" width="40"/>
+    <node>assign3</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign6</sourceNode>
+      <targetNode>switch1</targetNode>
+    </sourceConnections>
+    <targetConnections>link7</targetConnections>
+    <location x="720" y="316"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign6label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">wxbServiceItem/itemAmt</process:from>
+      <process:to type="query">wxbServiceItem/couponTotalAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">wxbServiceItem/itemAmt</process:from>
+      <process:to type="query">totalAmt</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
+    <location x="714" y="352"/>
+    <figSize height="20" width="40"/>
+    <node>assign6</node>
+  </nodes>
+  <nodes xsi:type="process:tSwitch" id="switch1" name="空操作" displayName="空操作" grouped="true" type="switch">
+    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>switch1</sourceNode>
+      <targetNode>assign9</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link11" name="是否优惠" displayName="连接线" isDefault="false" type="transition">
+      <sourceNode>switch1</sourceNode>
+      <targetNode>assign2</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">wxbServiceItem/isCoupon</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link22</targetConnections>
+    <targetConnections>link23</targetConnections>
+    <targetConnections>link18</targetConnections>
+    <location x="945" y="316"/>
+    <size height="28" width="28"/>
+    <nodeLabel>switch1label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="switch1label" name="label" nodeType="label">
+    <location x="936" y="352"/>
+    <figSize height="20" width="46"/>
+    <node>switch1</node>
+  </nodes>
+  <nodes xsi:type="process:tSwitch" id="switch2" name="空操作1" displayName="空操作" grouped="true" type="switch">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>switch2</sourceNode>
+      <targetNode>assign6</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link9" name="标准项目" displayName="连接线" type="transition">
+      <sourceNode>switch2</sourceNode>
+      <targetNode>assign8</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">wxbServiceItem/itemType</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link17</targetConnections>
+    <location x="540" y="316"/>
+    <size height="28" width="28"/>
+    <nodeLabel>switch2label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="switch2label" name="label" nodeType="label">
+    <location x="527" y="352"/>
+    <figSize height="20" width="55"/>
+    <node>switch2</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign8</sourceNode>
+      <targetNode>switch1</targetNode>
+    </sourceConnections>
+    <targetConnections>link9</targetConnections>
+    <location x="720" y="435"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign8label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">wxbServiceItem/itemAmt</process:from>
+      <process:to type="query">wxbServiceItem/couponTotalAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">wxbServiceItem/itemAmt</process:from>
+      <process:to type="query">totalAmt</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
+    <location x="714" y="471"/>
+    <figSize height="20" width="40"/>
+    <node>assign8</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign9" name="赋值9" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" description="" id="link24" name="判断此项目是否在购物车" displayName="连接线" isDefault="false" type="transition">
+      <sourceNode>assign9</sourceNode>
+      <targetNode>assign10</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">wxbServiceItem/serviceItemNum</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link25" name="link25" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign9</sourceNode>
+      <targetNode>loopend0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link4</targetConnections>
+    <targetConnections>link14</targetConnections>
+    <targetConnections>link15</targetConnections>
+    <location x="1422" y="326"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign9label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">false</process:from>
+      <process:to type="query">wxbServiceItem/shoppingNumberClass</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
+    <location x="1416" y="362"/>
+    <figSize height="20" width="40"/>
+    <node>assign9</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign10" name="赋值10" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link26" name="link26" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign10</sourceNode>
+      <targetNode>loopend0</targetNode>
+    </sourceConnections>
+    <targetConnections>link24</targetConnections>
+    <location x="1500" y="182"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign10label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">true</process:from>
+      <process:to type="query">wxbServiceItem/shoppingNumberClass</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
+    <location x="1490" y="218"/>
+    <figSize height="20" width="49"/>
+    <node>assign10</node>
+  </nodes>
+  <topRuler/>
+  <leftRuler/>
+  <process:info author="lidongsheng" createTime="2019-02-18 15:07:32" date="2019-02-18Z" description="根据用户选择的业务类型查询出项目" name="queryUserCarServiceItem" version="7.0.0.0"/>
+  <process:variables>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.wechat.autoServiceSys.wechatStoreInfo.WxbServiceItem" name="wxbServiceItem"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="mapItem"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="resMap"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="url" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="totalAmt" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="couponPercentage" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="couponPrice" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="couponTotalAmt" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="var1" primitiveType="Double"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="p"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="dictMap"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="urlString" primitiveType="String"/>
+  </process:variables>
+  <process:inputs varArgs="false">
+    <process:input anyType="java.util.HashMap" description="" isArray="false" name="map"/>
+    <process:input description="" isArray="false" name="orgId" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="tenantId" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="token" primitiveType="String"/>
+  </process:inputs>
+  <process:outputs>
+    <process:output description="" isArray="true" modelType="com.hsapi.wechat.autoServiceSys.wechatStoreInfo.WxbServiceItem" name="wxbServiceItemArray"/>
+  </process:outputs>
+  <process:extAttribute1>public</process:extAttribute1>
+  <process:transactionType>true</process:transactionType>
+</process:tBusinessLogic>

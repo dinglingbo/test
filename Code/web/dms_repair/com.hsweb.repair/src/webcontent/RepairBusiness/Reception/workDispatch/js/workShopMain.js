@@ -531,7 +531,7 @@ document.onmousemove = function(e){
             FItemRow = {};
             return;
         }
-        if(y - my > 10 || my - y > 130){
+        if(y - my > 10 || my - y > 200){
         	advancedStopWin.hide();
             FItemRow = {};
             return;

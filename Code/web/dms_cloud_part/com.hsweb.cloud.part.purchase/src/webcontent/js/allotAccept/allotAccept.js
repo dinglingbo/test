@@ -1084,7 +1084,10 @@ function addNewRow(check){
         return;
     }
 
-    if(data.codeId && data.codeId>0) return;
+    if(data.codeId && data.codeId>0){
+    	showMsg("调拨受理的订单不能添加！","W");
+    	return;
+    }
     
     var rows = [];
     if(check){
@@ -1225,7 +1228,6 @@ function deletePart(){
         } 
     }
 
-    if(row.codeId && data.codeId>0) return;
 
     var part = rightGrid.getSelected();
     if(!part)
@@ -1412,7 +1414,7 @@ function OnrpMainGridCellBeginEdit(e){
     }
 
     if(data.codeId && data.codeId>0 ){
-    	if(e.field =="comPartCode"  || e.field =="acceptQty"){
+    	if(e.field =="comPartCode" ){
     		 e.cancel = true;
     	}
        

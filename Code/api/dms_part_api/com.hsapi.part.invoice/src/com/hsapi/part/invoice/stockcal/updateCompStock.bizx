@@ -405,7 +405,7 @@
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query">enterTypeId</process:leftOperand>
-          <process:rightOperand type="literal">050202</process:rightOperand>
+          <process:rightOperand type="literal">050206</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>

@@ -165,6 +165,7 @@
 	}
 
 	function setRoleId(){
+		return {"token":token};
 		//return {"roleId":"<%= request.getParameter("roleId")%>"};
 	}
 

@@ -205,7 +205,7 @@ function getMousePos(event) {
 /*
 *通过vin获取车辆信息
 */
-function queryVin(){	
+/*function queryVin(){	
     vin = vin_input.val().replace(/\s+/g, "");
       
     brand = curr_check;
@@ -217,6 +217,24 @@ function queryVin(){
                 "brand": brand
             },
             "token": token
+        }
+        
+        $(".groupButton").hide();
+        callAjax(url, params, processAjax, setGridCfg);
+    }	
+}*/
+/*
+*维保通过vin获取车辆信息
+*/
+function queryVin(){	
+    vin = vin_input.val().replace(/\s+/g, "");
+      
+    brand = curr_check;
+    if (checkVin()){
+        var params = {
+    			url:"llq/vins/cars/vin",
+    			params:"&vin=LBVNA39014SA49922",
+    			token:token
         }
         
         $(".groupButton").hide();

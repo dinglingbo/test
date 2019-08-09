@@ -200,7 +200,6 @@ a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}
 				      		 activeIndex="0" 
 				      		 style="width:100%; height: 100%;" 
 				      		 plain="false" 
-				      		 onactivechanged="showTabInfo"
 				      		 ontabload="onMainTabLoad"
 				      		 >
 						    <div title="库存分布" name="chainStock" url="">

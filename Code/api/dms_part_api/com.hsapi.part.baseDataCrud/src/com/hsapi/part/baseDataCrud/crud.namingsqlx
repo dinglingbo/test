@@ -868,7 +868,7 @@
             	(a.code in ($partCodeList$))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="name">  
-                (name like '%$name$%' or full_name like '%$name$%')
+                (a.name like '%$name$%' or a.full_name like '%$name$%')
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="spec">  
                 (a.spec like '%$spec$%')

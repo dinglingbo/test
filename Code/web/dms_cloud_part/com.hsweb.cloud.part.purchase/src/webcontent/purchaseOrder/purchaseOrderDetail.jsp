@@ -39,8 +39,8 @@
                     <li iconCls="" onclick="quickSearch(12)" id="type12">待收货</li>
                     <li iconCls="" onclick="quickSearch(13)" id="type13">部分入库</li> 
                     <li iconCls="" onclick="quickSearch(14)" id="type14">已入库</li>
-                    <li iconCls="" onclick="quickSearch(15)" id="type15">已退回</li>
-                    <li iconCls="" onclick="quickSearch(16)" id="type16">已关闭</li>
+<!--                     <li iconCls="" onclick="quickSearch(15)" id="type15">已退回</li> -->
+<!--                     <li iconCls="" onclick="quickSearch(16)" id="type16">已关闭</li> -->
                     
                     <!-- <li class="separator"></li>
                     <li iconCls="" onclick="quickSearch(17)" id="type17">全部</li> -->
@@ -74,7 +74,14 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="unAudit()" id="uAuditBtn" visible="true"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返单</a>
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="addMorePart()" id="fastEnterBtn"><span class="fa fa-hand-o-right fa-lg"></span>&nbsp;快速录入配件</a>
-                <a class="nui-button" plain="true" iconCls="" onclick="importPart()" id="importPartBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
+              	<a class="nui-menubutton " menu="#popupMenuPrint" id="menuprint"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
+
+                <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
+                    <li iconCls="" onclick="addPlanOrder()" id="addImp1"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入计划采购</li>
+                    <li iconCls="" onclick="importPart()" id="importPartBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入配件</li>
+                </ul>
+                
+<!--                 <a class="nui-button" plain="true" iconCls="" onclick="importPart()" id="importPartBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="adjustOrderQty()" id="exportBtn"><span class="fa fa-adjust fa-lg"></span>&nbsp;订单数量调整</a>
 <!--                 <a class="nui-button" iconCls="" plain="true" onclick="loadPartPrice()" id="exportBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;设置价格</a> -->

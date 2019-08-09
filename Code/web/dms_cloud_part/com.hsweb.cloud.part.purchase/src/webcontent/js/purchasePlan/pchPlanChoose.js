@@ -6,30 +6,29 @@ var baseUrl = apiPath + cloudPartApi + "/";
 var mainGrid = null;
 var detailGrid = null;
 var queryInfoForm = null;
-var mainGridUrl = baseUrl+ "com.hsapi.cloud.part.invoicing.allotsettle.queryPjAllotApplyMains.biz.ext";
-var detailGridUrl = baseUrl+ "com.hsapi.cloud.part.invoicing.allotsettle.getAllotApplyDetail.biz.ext";
+var mainGridUrl = baseUrl+ "com.hsapi.cloud.part.invoicing.pchsplan.queryPjPchsPlanMainList.biz.ext";
+var detailGridUrl = baseUrl+ "com.hsapi.cloud.part.invoicing.pchsplan.getPjPchsPlanDetailById.biz.ext";
 
 var sOrderDateEl = null;
 var eOrderDateEl = null;
 var pickManHash={};
 var AuditSignHash = {
-  "0":"草稿",
-  "1":"待受理",
-  "2":"部分受理",
-  "3":"全部受理",
-  "4":"已拒绝"
+  "0":"未下订单",
+  "1":"部分转订单",
+  "2":"全部转订单"
 };
-var SettleStatusHash = {
-  "0":"未入库",
-  "1":"部分入库",
-  "2":"已入库"
-};
+
 $(document).ready(function(v) {
 
 	mainGrid = nui.get("mainGrid");
 	detailGrid = nui.get("detailGrid");
 	mainGrid.setUrl(mainGridUrl);
 	detailGrid.setUrl(detailGridUrl);
+	
+	sOrderDateEl=nui.get("sOrderDate");
+	eOrderDateEl=nui.get("eOrderDate");
+	sOrderDateEl.setValue(getLastWeekStartDate());
+	eOrderDateEl.setValue(addDate(now, 1));
 
 	mainGrid.on("selectionchanged", function(e) {
 		var row = mainGrid.getSelected();
@@ -47,14 +46,6 @@ $(document).ready(function(v) {
 	                e.cellHtml = AuditSignHash[e.value];
 	            }else {
 	                e.cellHtml = "草稿";
-	            }
-	            break;
-			case "settleStatus":
-				if(SettleStatusHash && SettleStatusHash[e.value])
-	            {
-	                e.cellHtml = SettleStatusHash[e.value];
-	            }else {
-	                e.cellHtml = "未入库";
 	            }
 	            break;
 			default:

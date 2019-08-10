@@ -308,6 +308,10 @@
       <process:from type="query" pattern="reference">tenantId</process:from>
       <process:to type="query">comd/tenantId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/attributes/compType</process:from>
+      <process:to type="query">comd/propertyName</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
     <location x="433" y="152"/>

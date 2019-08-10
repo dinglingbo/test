@@ -84,6 +84,10 @@
       <process:from type="query" pattern="reference">m:userObject/attributes/agencyId</process:from>
       <process:to type="query">agency_id</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/attributes/isOpenApp</process:from>
+      <process:to type="query">isOpenApp</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="267" y="141"/>
@@ -139,8 +143,8 @@
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>subprocess0</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
-          <process:leftOperand type="query">agency_id</process:leftOperand>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">isOpenApp</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -178,8 +182,8 @@
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>assign4</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
-          <process:leftOperand type="query">agency_id</process:leftOperand>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">isOpenApp</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -589,6 +593,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="tmp" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="agency_id" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="isDisabled" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="isOpenApp" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.com.ComStore" name="storehouse"/>

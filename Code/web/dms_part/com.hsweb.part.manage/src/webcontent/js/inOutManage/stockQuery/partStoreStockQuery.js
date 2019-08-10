@@ -169,6 +169,12 @@ function doSearch(params)
 	    rightGrid2.load({
 	        params:params,
 	        token:token
+	    },function(){
+	    	var detail = rightGrid2.getData();
+	    	for(var i = 0;i<detail.length;i++){
+	    		detail[i].totalAmt = (detail[i].outableQty||0) * (detail[i].enterPrice||0);
+	    	}
+	    	rightGrid2.setData(detail);
 	    });
 	}  
 }
@@ -356,9 +362,9 @@ function onDrawCell2(e)
         			e.cellHtml = currOrgList[i].shortName || "";
         		}
         	}
-        case "enterAmt":
+/*        case "totalAmt":
                 e.cellHtml = (e.row.outableQty||0) * (e.row.enterPrice||0);         
-            break;       	
+            break; */      	
         default:
             break;
     }
@@ -440,6 +446,12 @@ function activechangedmain(){
 	    rightGrid2.load({
 	        params:params,
 	        token:token
+	    },function(){
+	    	var detail = rightGrid2.getData();
+	    	for(var i = 0;i<detail.length;i++){
+	    		detail[i].totalAmt = (detail[i].outableQty||0) * (detail[i].enterPrice||0);
+	    	}
+	    	rightGrid2.setData(detail);
 	    });
 	}
 }
@@ -453,10 +465,25 @@ function onExport(){
 		exportMultistage(rightGrid.columns);
 		for(var i=0;i<detail.length;i++){
 			detail[i].id=1;
+			for(var j in storehouseHash) {
+			    if(detail[i].storeId ==storehouseHash[j].id ){
+			    	detail[i].storeId=storehouseHash[j].name;
+			    }
+			}
+/*			if(detail[i].taxSign==0){
+				detail[i].taxSign="否";
+			}else{
+				detail[i].taxSign="是";
+			}*/
+			for(var j in partBrandIdHash) {
+				if(detail[i].partBrandId ==partBrandIdHash[j].id ){
+					detail[i].partBrandId=partBrandIdHash[j].name;
+				}
+			}
 		}
 		if(detail && detail.length > 0){
 			//多级表头类型
-			setInitExportData( detail,rightGrid.columns,"库存查询导出");
+			setInitExportData( detail,rightGrid.columns,"汇总库存导出");
 		}		
 	}else if(tabs.name=="batch"){
 	    //批次
@@ -465,10 +492,26 @@ function onExport(){
 		exportMultistage(rightGrid2.columns);
 		for(var i=0;i<detail.length;i++){
 			detail[i].id=1;
+			detail[i].totalAmt=(detail[i].outableQty||0) * (detail[i].enterPrice||0);
+			for(var j in storehouseHash) {
+			    if(detail[i].storeId ==storehouseHash[j].id ){
+			    	detail[i].storeId=storehouseHash[j].name;
+			    }
+			}
+			if(detail[i].taxSign==0){
+				detail[i].taxSign="否";
+			}else{
+				detail[i].taxSign="是";
+			}
+			for(var j in partBrandIdHash) {
+				if(detail[i].partBrandId ==partBrandIdHash[j].id ){
+					detail[i].partBrandId=partBrandIdHash[j].name;
+				}
+			}
 		}
 		if(detail && detail.length > 0){
 			//多级表头类型
-			setInitExportData( detail,rightGrid2.columns,"批次查询导出");
+			setInitExportData( detail,rightGrid2.columns,"批次库存导出");
 		}
 	}
 	

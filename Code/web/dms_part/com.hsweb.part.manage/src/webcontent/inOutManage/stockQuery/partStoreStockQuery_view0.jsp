@@ -8,7 +8,7 @@
 -->
 <head>
 <title>库存查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockQuery/partStoreStockQuery.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockQuery/partStoreStockQuery.js?v=1.0.5"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -107,7 +107,7 @@
     </ul>
     <div class="nui-fit">
         <div id="mainTabs" class="nui-tabs" name="mainTabs" activeIndex="0" style="width:100%; height:100%;" plain="false" onactivechanged="activechangedmain()">
-	        <div title="库存查询" id="inventory" name="inventory">
+	        <div title="汇总库存" id="inventory" name="inventory">
 				<div class="nui-fit">
 				    <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
 				         showPager="true"
@@ -139,7 +139,7 @@
 				                <div property="columns">
 				                    <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="70" headerAlign="center" header="数量"></div>
 				                    <div allowSort="true" datatype="float" field="costPrice" width="70" headerAlign="center" header="单价"></div>
-				                    <div allowSort="true" datatype="float" field="stockAmt" summaryType="sum" width="70" headerAlign="center" header="金额"></div>
+				                    <div allowSort="true" datatype="float" field="stockAmt"  summaryType="sum" width="70" headerAlign="center" header="金额"></div>
 				                    <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
 				                </div>
 				            </div>
@@ -161,7 +161,7 @@
 				    </div>
 				</div>	        	
 	        </div>
-	        <div title="批次查询" id="batch" name="batch">
+	        <div title="批次库存" id="batch" name="batch">
 				<div class="nui-fit">
 				    <div id="rightGrid2" class="nui-datagrid" style="width:100%;height:100%;"
 				         showPager="true"
@@ -192,7 +192,7 @@
 				                    <!-- <div allowSort="true" datatype="float" summaryType="sum" field="enterQty" width="60" headerAlign="center" header="数量"></div> -->
 				                    <div allowSort="true" datatype="float" summaryType="sum" field="outableQty" width="60" headerAlign="center" header="数量"></div>
 				                    <div allowSort="true" datatype="float" field="enterPrice" width="60" headerAlign="center" header="单价"></div>
-				                    <div allowSort="true" datatype="float" summaryType="sum" field="enterAmt" width="60" headerAlign="center" header="金额"></div>
+				                    <div allowSort="true" datatype="float" summaryType="sum" field="totalAmt" width="60" headerAlign="center" header="金额"></div>
 				                    <div allowSort="true" field="detailRemark" width="120" headerAlign="center" header="备注"></div>
 				                </div>
 				            </div>

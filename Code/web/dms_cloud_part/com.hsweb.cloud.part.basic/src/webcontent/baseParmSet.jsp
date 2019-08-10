@@ -5,9 +5,8 @@
 <html>
 
 <head>
-    <title>系统参数</title>
-    <script src="<%=webPath + contextPath%>/sales/base/js/sellCarParamMgr.js?v=1.0.6"></script>
-    <link href="<%=webPath + contextPath%>/sales/base/css/botton.css" rel="stylesheet" type="text/css" />
+    <title>自定义分类</title>
+    <script src="<%=webPath + contextPath%>/basic/js/baseParamSet.js?v=1.0.6"></script>
     <style>
 
         html,
@@ -53,32 +52,9 @@
                         <div style="float:left;height:770px;width:105px;">
                     <div id="mainTabs" class="nui-tabs" name="mainTabs" activeIndex="0" style="height:100%;"
                         plain="false" tabPosition="left" showBody="false">
-                        <div title="PDI检查分类" id="PDICheck" name="PDICheck" url=""></div>
-                        <div title="身份" id="ID" name="ID" url=""></div>
-                        <div title="行业" id="work" name="work" url=""></div>
-                        <div title="职务" id="dept" name="dept" url=""></div>
-                        <div title="来源" id="source" name="source" url=""></div>
-                        <div title="关系阶段" id="relationship" name="relationship" url=""></div>
-                        <div title="关注重点" id="attention" name="attention" url=""></div>
-                        <div title="性格" id="character" name="character" url=""></div>
-                        <div title="联系状态" id="contact" name="contact" url=""></div>
-                        <div title="车辆级别" id="carLevel" name="carLevel" url=""></div>
-                        <div title="国别" id="country" name="country" url=""></div>
-                        <div title="车身结构" id="structure" name="structure" url=""></div>
-                        <div title="排量" id="displacement" name="displacement" url=""></div>
-                        <div title="座位数" id="sittingNum" name="sittingNum" url=""></div>
-                        <div title="进气形式" id="intakeType" name="intakeType" url=""></div>
-                        <div title="能源" id="useType" name="useType" url=""></div>
-                        <div title="驱动方式" id="driveType" name="driveType" url=""></div>
-                        <div title="变速箱" id="changeSpeed" name="changeSpeed" url=""></div>
-                        <div title="生产方式" id="proType" name="proType" url=""></div>
-                        <div title="车身颜色" id="carOutcolor" name="carOutcolor" url=""></div>
-                        <div title="内饰颜色" id="carIncolor" name="carIncolor" url=""></div>
-                        <div title="意向级别" id="IntentionLevel" name="IntentionLevel" url=""></div>
-                        <div title="购车方式" id="buyCarType" name="buyCarType" url=""></div>
-                        <div title="购车用途" id="buyCarUser" name="buyCarUser" url=""></div>
-                        <div title="开户银行" id="bank" name="bank" url=""></div>
-                        <div title="来访类型" id="visitType" name="visitType" url=""></div>
+                        <div title="产品线分类" id="productClass" name="PDICheck" url=""></div>
+                        <div title="维修性质分类" id="maintainProClass" name="ID" url=""></div>
+                 
                     </div>
                 </div>
                 </div>

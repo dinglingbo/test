@@ -179,7 +179,7 @@ function addPosition()
 function onNodeselect(e)
 {
     var node = e.node;
-    if(currAgencyId){	
+    if(currAgencyId && currIsOpenApp==1){	
     	if(node.cangStoreId){
     		nui.get('sys').disable();
     		

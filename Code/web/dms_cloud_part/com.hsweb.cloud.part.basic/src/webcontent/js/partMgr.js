@@ -402,7 +402,7 @@ function disablePart()
         showMsg("请选择要禁用的配件","W");
         return;
     }
-    if(currAgencyId>0 || currIsOpenApp ==1){
+    if(currAgencyId>0 && currIsOpenApp ==1){
     	cangHash.agency_id = currAgencyId;
     	cangHash.part_id = row.cangPartId;
     	cangHash.status =0;
@@ -424,7 +424,7 @@ function enablePart()
         showMsg("请选择要启用的配件","W");
         return;
     }
-    if(currAgencyId>0 || currIsOpenApp ==1){
+    if(currAgencyId>0 && currIsOpenApp ==1){
     	cangHash.agency_id = currAgencyId;
     	cangHash.part_id = row.cangPartId;
     	cangHash.status =1;

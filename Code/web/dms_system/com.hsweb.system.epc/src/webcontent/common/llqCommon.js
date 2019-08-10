@@ -1,6 +1,7 @@
 //http://14.23.35.20:6288/dms/com.hsweb.system.llq.call.doCall.biz.ext
 
-var url = apiPath + sysApi + "/com.hsapi.system.llq.call.doCallV2.biz.ext";
+var url = apiPath + sysApi + "/com.hsapi.system.llq.call.maintenanceCallV.biz.ext";
+//com.hsapi.system.llq.call.doCallV2(原)
 //var llq_pre_url = "https://llqapitm.007vin.com";//http://124.172.221.179:81  https://llqapitm.007vin.com
 var llq_pre_url = "";//"http://124.172.221.179:81";
 function loadData(url, params, callBack){

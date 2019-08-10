@@ -186,7 +186,7 @@ function doSearch(params)
     if(tab.name == "pchsOrderTab"){
         params.sortField = "a.audit_date";
         params.sortOrder = "desc";
-        params.notFinished = 0;
+//        params.notFinished = 0;
         params.orderTypeId = 1;
         rightGrid.load({
             params:params,

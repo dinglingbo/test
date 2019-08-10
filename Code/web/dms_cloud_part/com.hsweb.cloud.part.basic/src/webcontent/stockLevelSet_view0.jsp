@@ -13,7 +13,7 @@
 <head>
 <title>备货级别设置</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<script src="<%=webPath + contextPath%>/basic/js/stockLevelSet.js ?v=1.0.32"></script>
+		<script src="<%=webPath + contextPath%>/basic/js/stockLevelSet.js?v=1.0.40"></script>
    
 <style type="text/css">
 .table-label {
@@ -52,7 +52,7 @@
                            showModified="false"
                            selectOnLoad="false"
                            onrowclick="onStraGridClick"
-                           oncellbeginedit ="OnrpMainGridCellBeginEdit"
+                           oncellbeginedit =""
                            sortMode="client"
                            url="">
                           <div property="columns">
@@ -105,6 +105,8 @@
 					<div property="columns">
 						<div type="indexcolumn" width="20">序号</div>
 						<div type="checkcolumn" width="25"></div>
+						<div field="id" name="id" visible="false" headerAlign="center" allowSort="true">主键</div>
+						<div field="leveId" name="leveId" visible="false" headerAlign="center" allowSort="true">级别ID</div>
 						<div field="partCode" name="partCode" headerAlign="center" allowSort="true">配件编码</div>
 						<div field="partName" name="partName" headerAlign="center" allowSort="true">配件名称</div>
 						<div field="fullName" name="partName" headerAlign="center" allowSort="true">配件全称</div>

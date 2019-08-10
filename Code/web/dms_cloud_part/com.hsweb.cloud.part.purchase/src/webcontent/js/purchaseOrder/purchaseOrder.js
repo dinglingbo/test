@@ -1096,6 +1096,7 @@ function add() {
 	
 	nui.get("guestId").enable();
 	nui.get("directOrgid").enable();
+	nui.get("selectSupplierBtn").enable();
 	
 	var formJsonThis = nui.encode(basicInfoForm.getData());
 	var len = rightGrid.getData().length;

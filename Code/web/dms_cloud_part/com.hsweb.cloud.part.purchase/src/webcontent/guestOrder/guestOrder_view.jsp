@@ -9,7 +9,7 @@
 -->
 <head>
 <title>预售单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/guestOrder/guestOrder.js?v=1.0.72"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/guestOrder/guestOrder.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -81,11 +81,11 @@ body .mini-grid-row-selected{
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible=""  id="auditBtn"><span class="fa fa-check fa-lg""></span>&nbsp;提交</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="audit()" visible=""  id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
                 <a class="nui-button" plain="true" iconCls="" onclick="importPart()" id="importPartBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="finish()" visible="" id=""><span class="fa fa-check fa-lg"></span>&nbsp;完成销售</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="finish()" visible="" id="finishSellBtn"><span class="fa fa-check fa-lg"></span>&nbsp;完成销售</a>
       
                 <span id="status"></span>
                 <!-- <span class="separator"></span>
@@ -105,7 +105,7 @@ body .mini-grid-row-selected{
          handlerSize="6"
          style="width:100%;height:100%;">
         <div size="220" showCollapseButton="true">
-          <div title="预售单列表" class="nui-panel"
+          <div title="预销售单列表" class="nui-panel"
                  showFooter="true"
                  style="width:100%;height:100%;border: 0;">
                 <div id="leftGrid" class="nui-datagrid" style="width:100%;height:100%;"
@@ -126,7 +126,7 @@ body .mini-grid-row-selected{
                       <div type="indexcolumn">序号</div>
                         <div field="status" width="60" headerAlign="center" header="状态"></div>
                       	<div field="auditSign" width="65" visible="false" headerAlign="center" header="状态"></div>
-                        <div field="guestFullName" width="120" headerAlign="center" header="供应商"></div>
+                        <div field="guestFullName" width="120" headerAlign="center" header="客户"></div>
                         <div field="orderDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="订单日期"></div>
                         <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
                         <div field="serviceId" headerAlign="center" width="150" header="预售单号"></div>
@@ -142,7 +142,7 @@ body .mini-grid-row-selected{
 
              <div class="nui-fit">
                   <fieldset id="fd1" style="width:99.5%;height:120px;">
-                      <legend><span>采购退货信息</span></legend>
+                      <legend><span>预销售单信息</span></legend>
                       <div class="fieldset-body">
                           <div id="basicInfoForm" class="form" contenteditable="false">
                               <input class="nui-hidden" name="id"/>
@@ -166,13 +166,13 @@ body .mini-grid-row-selected{
                                              loadingText="查询中"
                                              valueField="id"
                                              class="nui-autocomplete"
-                                             emptyText="请选择供应商..."
+                                             emptyText="请选择客户..."
                                              allowInput="true"
                                              onvaluechanged="onGuestValueChanged"
-                                             popupEmptyText="未找到供应商"
+                                             popupEmptyText="未找到客户"
                                              url=""  searchField="key"
                                              width="86%"
-                                             placeholder="请选择供应商"
+                                             placeholder="请选择客户"
                                              selectOnFocus="true" />
                                            <a class="nui-button" iconCls="" plain="false" onclick="selectSupplier('guestId')" id="addBtn"><span class="fa fa-check fa-lg"></span></a>
 <!--                                       	<input id="btnEdit1" width="7.2%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/> -->
@@ -446,7 +446,7 @@ body .mini-grid-row-selected{
                     <input id="advanceGuestId"
                            name="guestId"
                            class="nui-buttonedit"
-                           emptyText="请选择供应商..."
+                           emptyText="请选择客户..."
                            onbuttonclick="selectSupplier('advanceGuestId')"
                            width="100%"
                            selectOnFocus="true" />
@@ -490,7 +490,7 @@ body .mini-grid-row-selected{
         <table style="width:100%;">
             <tr>
                 <td style="width:100%;">
-                    <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart" id="addPartBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="closeBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
                 </td>
             </tr>
@@ -565,7 +565,7 @@ body .mini-grid-row-selected{
             <td colspan="1" align="left"><span id="eServiceId"></span></td>
         </tr>
         <tr>
-            <td colspan="1" align="left">供应商名称：</td>
+            <td colspan="1" align="left">客户名称：</td>
             <td colspan="1" align="left"><span id="eGuestName"></span></td>
         </tr>
         <tr>

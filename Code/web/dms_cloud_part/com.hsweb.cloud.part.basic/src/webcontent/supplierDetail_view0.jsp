@@ -122,11 +122,11 @@
                                   <input name="fullName"
                                  id="fullName"
                                  class="nui-textbox" width="100%"/>
-                                  <input name="fullName1" class="nui-buttonedit width3" width="100%"
+                                  <input name="fullName1" class="nui-textbox width3" width="100%"
                                          id="fullName1"
                                          emptyText="请选择公司..."
-                                         allowInput="false"
-                                         onbuttonclick="selectOrg('fullName1','code')" selectOnFocus="true"
+                                         allowInput="true"
+                                         selectOnFocus="true"
                                          visible="false"/>
                               </td>
                           </tr>

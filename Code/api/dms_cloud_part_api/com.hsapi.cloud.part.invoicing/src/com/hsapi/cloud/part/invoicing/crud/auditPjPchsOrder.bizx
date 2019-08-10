@@ -728,6 +728,7 @@
     <sourceConnections xsi:type="process:tLink" id="link33" name="link33" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
       <targetNode>assign3</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link34" name="sourceType=6" displayName="连接线" type="transition">
       <sourceNode>assign8</sourceNode>

@@ -1627,8 +1627,8 @@ function adjustPart(){
             showMsg("此单未提交,不能调整!","W");
             return;
         } 
-        if(row.status == 2) {
-            showMsg("此单已全部转订单,不能调整!","W");
+        if(row.status == 3) {
+            showMsg("此单已全部受理,不能调整!","W");
             return; 
         }
 

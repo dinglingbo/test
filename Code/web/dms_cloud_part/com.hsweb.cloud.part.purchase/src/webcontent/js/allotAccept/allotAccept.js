@@ -146,6 +146,7 @@ function loadMainAndDetailInfo(row)
        }else {
            $('#status').text(AuditSignHash[row.settleStatus]);
        }
+       
        //bottomInfoForm.setData(row);
        nui.get("guestId").setText(row.guestFullName);
 
@@ -154,10 +155,20 @@ function loadMainAndDetailInfo(row)
             setBtnable(false);
             document.getElementById("basicInfoForm").disabled=true;
             setEditable(false);
+            nui.get("selectSupplierBtn").disable();
        }else {
             setBtnable(true);
             document.getElementById("basicInfoForm").disabled=false;
             setEditable(true);
+            nui.get("selectSupplierBtn").enable();
+       }
+       
+       if(row.code) {
+    	   nui.get('guestId').disable();
+    	   nui.get("selectSupplierBtn").disable();
+       }else {
+    	   nui.get('guestId').enable();
+    	   nui.get("selectSupplierBtn").enable();
        }
 
        if(row.isDisabled == 1) {
@@ -184,6 +195,14 @@ function loadMainAndDetailInfo(row)
         //form.reset();
         //grid_details.clearRows();
    }
+}
+function onLeftGridBeforeDeselect(e)
+{
+    var row = leftGrid.getSelected(); 
+    if(row.serviceId == '新调拨受理'){
+
+        leftGrid.removeRow(row);
+    }
 }
 function onLeftGridSelectionChanged(){    
    var row = leftGrid.getSelected(); 
@@ -391,7 +410,7 @@ function setBtnable(flag)
         nui.get("saveBtn").enable();
         nui.get("addPartBtn").enable();
         nui.get("deletePartBtn").enable();
-        nui.get("selectSupplierBtn").enable();
+        //nui.get("selectSupplierBtn").enable();
         //nui.get("genePartBtn").enable();
         nui.get("adjustPartBtn").disable();
     }
@@ -401,7 +420,7 @@ function setBtnable(flag)
         nui.get("saveBtn").disable();
         nui.get("addPartBtn").disable();
         nui.get("deletePartBtn").disable();
-        nui.get("selectSupplierBtn").disable();
+        //nui.get("selectSupplierBtn").disable();
         //nui.get("genePartBtn").disable();
         nui.get("adjustPartBtn").enable();
     }
@@ -1592,6 +1611,11 @@ function addDetail(rows)
 }
 var supplier = null;
 function selectSupplier(elId) {
+	var data =basicInfoForm.getData();
+	if(data.code) {
+		showMsg("不能修改调入方","W");
+		return;
+	}
     supplier = null;
     nui.open({
         // targetWindow: window,,

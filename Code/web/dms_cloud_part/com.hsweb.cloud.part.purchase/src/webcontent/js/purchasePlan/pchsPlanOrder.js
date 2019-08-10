@@ -804,7 +804,7 @@ function onPrint(){
             mainId :from.id,
             auditSign:from.auditSign
     };
-    var openUrl = webPath + contextPath+"/purchase/purchaseOrderRtn/purchaseOrderRtnPrint.jsp";
+    var openUrl = webPath + contextPath+"/purchase/purchasePlan/pchsPlanOrderPrint.jsp";
 
     nui.open({
        url: openUrl,
@@ -822,7 +822,7 @@ function onPrint(){
         return;
     }
     rightGrid.setData([]);
-    //add();
+    add();
     
 }
 function add()

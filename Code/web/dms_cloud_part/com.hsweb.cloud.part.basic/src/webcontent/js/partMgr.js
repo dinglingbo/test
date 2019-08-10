@@ -300,7 +300,7 @@ function doSearch(params)
             params:params
         });  
     }else if(tab.name == "local"){
-        params.orgid = currOrgId;
+        params.tenantId = currTenantId;
         partLoalGrid.load({
             params:params,
             token:token

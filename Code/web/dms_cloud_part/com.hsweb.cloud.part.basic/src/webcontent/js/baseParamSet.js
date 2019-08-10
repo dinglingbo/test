@@ -163,11 +163,11 @@ function showTabInfo(){
 	switch (name)
     {
         case "productClass"://产品线分类
-            DICTID = '10361';
+            DICTID = '10441';
             tit = '产品线分类';
             break;
         case "maintainProClass"://维修性质分类
-            DICTID = 'DDT20171016000001';
+            DICTID = '10442';
             tit = '维修性质分类';
             break;
         default:

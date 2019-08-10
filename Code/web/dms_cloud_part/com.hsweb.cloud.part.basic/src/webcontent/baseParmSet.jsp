@@ -6,7 +6,7 @@
 
 <head>
     <title>自定义分类</title>
-    <script src="<%=webPath + contextPath%>/basic/js/baseParamSet.js?v=1.0.6"></script>
+    <script src="<%=webPath + contextPath%>/basic/js/baseParamSet.js?v=1.0.9"></script>
     <style>
 
         html,
@@ -52,8 +52,8 @@
                         <div style="float:left;height:770px;width:105px;">
                     <div id="mainTabs" class="nui-tabs" name="mainTabs" activeIndex="0" style="height:100%;"
                         plain="false" tabPosition="left" showBody="false">
-                        <div title="产品线分类" id="productClass" name="PDICheck" url=""></div>
-                        <div title="维修性质分类" id="maintainProClass" name="ID" url=""></div>
+                        <div title="产品线分类" id="productClass" name="productClass" url=""></div>
+                        <div title="维修性质分类" id="maintainProClass" name="maintainProClass" url=""></div>
                  
                     </div>
                 </div>

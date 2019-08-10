@@ -13,7 +13,7 @@
 <head>
 <title>备货级别设置</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-		<script src="<%=webPath + contextPath%>/basic/js/stockLevelSet.js?v=1.0.40"></script>
+		<script src="<%=webPath + contextPath%>/basic/js/stockLevelSet.js?v=1.0.44"></script>
    
 <style type="text/css">
 .table-label {
@@ -37,7 +37,7 @@
                                   <label style="font-family:Verdana;">备货级别定义:</label>
                                   <a class="nui-button" plain="true" iconCls="" onclick="onAddNode()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                                   <a class="nui-button" plain="true" iconCls="" onclick="onSaveNode()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                                  <a class="nui-button" plain="true" id="deleteNode" iconCls="" onclick="onDeleteNode()"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
+<!--                                   <a class="nui-button" plain="true" id="deleteNode" iconCls="" onclick="onDeleteNode()"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a> -->
                               </td>
                           </tr>
                       </table>
@@ -45,7 +45,7 @@
                   <div class="nui-fit">
                       <div id="straGrid" class="nui-datagrid" style="width:100%;height:100%;"
                            showPager="false"
-                           dataField="list"
+                           dataField="data"
                            idField="id"
                            allowCellEdit="true"
                            allowCellSelect="true"
@@ -60,6 +60,9 @@
                               <div field="name" width="60" headerAlign="center" header="级别名称" allowSort="true">
                                   <input property="editor" class="nui-textbox" />
                               </div>
+                              <div field="isDisabled"  allowSort="true" headerAlign="center" header="状态">
+                                    <input property="editor" class="nui-combobox" textField="name" data="statusList" valueField="id" />
+                                </div>
                           </div>
                       </div>
                   </div>
@@ -71,7 +74,7 @@
 					<table style="width:100%;">
 						<tr>
 							<td style="white-space:nowrap;">
-							    <input class="nui-combobox" id="search-type" width="80" textField="name" valueField="id" value="0" data="statusList" allowInput="false" />
+							    <input class="nui-combobox" id="search-type" width="80" textField="name" valueField="id" value="0" data="statuList" allowInput="false" />
 				                <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onSearch()" />
 								<a class="nui-button" plain="true" iconCls="" onclick="onUnifySearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 								<span class="separator"></span>

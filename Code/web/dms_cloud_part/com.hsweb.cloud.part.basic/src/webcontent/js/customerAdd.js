@@ -616,8 +616,13 @@ function onOk()
     data.isSupplier = nui.get("isSupplier").getValue();
     data.isDisabled = nui.get("isDisabled").getValue();
     data.isInternal = nui.get("isInternal").getValue();
-    data.tenantId = currTenantId;
-    data.orgid = currOrgId;
+    if(!data.tenantId){
+    	data.tenantId = currTenantId;
+    }
+    if(!data.orgid){
+    	data.orgid = currOrgId;
+    }
+
     if(data.isInternal == 1)
     {
     	if(!data.fullName1)

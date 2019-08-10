@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调入退回</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotInRtn.js?v=1.0.2"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/allotAccept/allotInRtn.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
   width: 70px;
@@ -122,7 +122,7 @@ body .mini-grid-row-selected{
                      ondrawcell="onLeftGridDrawCell"
                      onrowdblclick=""
                      onselectionchanged="onLeftGridSelectionChanged"
-                     onbeforedeselect=""
+                     onbeforedeselect="onLeftGridBeforeDeselect"
                      dataField="pjAllotAcceptMainList"
                      url="">
                     <div property="columns">

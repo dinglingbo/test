@@ -17,6 +17,7 @@
     <div class="nui-fit"> 
         <div class="form" style="width:90%;height:90%;left:0;right:0;margin: 0 auto;" id="basicInfoForm">
             <input class="mini-hidden" id="empid" name="empid" />
+            <input class="mini-hidden" id="systemAccount" name="systemAccount" />
             <fieldset id="fd1" style="width:600px;">
                 <legend><span>基本信息</span></legend>
                 <table >

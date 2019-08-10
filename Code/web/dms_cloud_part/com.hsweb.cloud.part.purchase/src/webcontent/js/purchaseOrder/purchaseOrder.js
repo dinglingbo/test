@@ -629,17 +629,21 @@ function loadMainAndDetailInfo(row) {
 		}
 		//预售单转的单
 		if(row.sourceType ==5){
-			nui.get("guestId").disable();
+			//nui.get("guestId").disable();
 			nui.get("directOrgid").disable();
+			//nui.get("selectSupplierBtn").disable();
 		}else{
-			nui.get("guestId").enable();
+			//nui.get("guestId").enable();
 			nui.get("directOrgid").enable();
+			//nui.get("selectSupplierBtn").enable();
 		}		
 		//计划采购单转的单
 		if(row.sourceType ==6){
 			nui.get("guestId").disable();
+			nui.get("selectSupplierBtn").disable();
 		}else{
 			nui.get("guestId").enable();
+			nui.get("selectSupplierBtn").enable();
 		}
 		// 序列化入库主表信息，保存时判断主表信息有没有修改，没有修改则不需要保存
 		var data = basicInfoForm.getData();
@@ -1388,6 +1392,12 @@ function save() {
 }
 var supplier = null;
 function selectSupplier(elId) {
+	var data =basicInfoForm.getData();
+	if(data.sourceType == 6) {
+		showMsg("不能修改供应商","W");
+		return;
+	}
+	
 	supplier = null;
 	nui.open({
 		// targetWindow: window,,
@@ -2021,10 +2031,10 @@ function deletePart() {
 	    }
 	    
 	  //计划采购单
-	    if(row.sourceType == 6){
+	    /*if(row.sourceType == 6){
 	        showMsg("计划采购单生成的采购订单不能删除明细！","W");
 	        return;
-	    }
+	    }*/
 	}
 
 	var part = rightGrid.getSelected();

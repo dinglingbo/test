@@ -165,6 +165,8 @@ function onOk()
 {
 	
     var data = basicInfoForm.getData();
+    data.tenantId = currTenantId;
+    data.orgid = currOrgid;
     if(!data.name){    	
     	data.name = nui.get("partNameId").getText();
     }

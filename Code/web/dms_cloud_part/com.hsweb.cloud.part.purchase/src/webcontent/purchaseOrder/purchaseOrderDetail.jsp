@@ -86,6 +86,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="adjustOrderQty()" id="exportBtn"><span class="fa fa-adjust fa-lg"></span>&nbsp;订单数量调整</a>
 <!--                 <a class="nui-button" iconCls="" plain="true" onclick="loadPartPrice()" id="exportBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;设置价格</a> -->
                 <span id="status"></span>
+                <span id="sourceServiceId"></span>
             </td>
         </tr>
     </table>

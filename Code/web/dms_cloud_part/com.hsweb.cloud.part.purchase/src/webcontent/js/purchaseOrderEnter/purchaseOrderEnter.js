@@ -1026,7 +1026,7 @@ function savePrice(){
 			if(gridData[i][key]){
 				var partId=gridData[i].partId;
 				//匹配
-				if(StratePrice[partId][StrateHash[key].name]){
+				if(StratePrice[partId+"-"+StrateHash[key].name]){
 					var obj=StratePrice[partId+"-"+StrateHash[key].name][StrateHash[key].name];
 					obj.sellPrice=gridData[i][key];
 					data.push(obj);
@@ -2508,11 +2508,11 @@ function addMorePart(){
 		showMsg("请先保存数据!","W");
 		return;
 	}
-	var data = rightGrid.getChanges()||[];
-	if (data.length>0) {
-		showMsg("请先保存数据!","W");
-		return;
-	}
+//	var data = rightGrid.getChanges()||[];
+//	if (data.length>0) {
+//		showMsg("请先保存数据!","W");
+//		return;
+//	}
 	advancedAddForm.setData([]);
 	advancedAddWin.show();
 	quickAddShow = 1;

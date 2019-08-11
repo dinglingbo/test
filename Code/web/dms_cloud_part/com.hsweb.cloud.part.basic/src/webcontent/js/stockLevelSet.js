@@ -308,8 +308,12 @@ function addUnifyDetail(row){
 var saveUnifyUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveStockLevelPart.biz.ext";
 function saveUnifyPart(){
 	var row = straGrid.getSelected();
-    if(!row.id) {
+	 if(!row) {
         showMsg("请先选择对应备货级别再操作!","W");
+        return;
+    }
+    if(!row.id) {
+        showMsg("请先保存备货级别再操作!","W");
         return;
     }
 	rightUnifyGrid.validate();
@@ -397,7 +401,7 @@ function onSearch(){
 function onStraGridClick(e){
 	var params={};
 	var row = e.row;
-	var levelId = row.id||0;
+	var levelId = row.id ||0;
 	var params = {levelId: levelId,token:token};	
 	rightUnifyGrid.load({params:params,token:token});
 }

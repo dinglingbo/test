@@ -190,6 +190,9 @@ function onOk()
     
     data.fullName = data.name;    
     data.fullName = data.fullName + " " + partBrandIdHash[data.partBrandId].name;
+    
+    data.customClassId =customClassId;
+    data.customClassName =customClassName;
     if(data.spec)
     {
         data.fullName = data.fullName + " " + data.spec;
@@ -350,6 +353,11 @@ function setData(data)
     });
     qualityTypeId.setData(qualityTypeIdList);
     //unit.setData(unitList);
+    if(data.partData.customClassId){
+    	nui.get("customClassId").setText(data.partData.customClassName);
+        setHotWord(data.partData.customClassId);
+    }
+    
     
     if(data.comPartCode){
     	nui.get("code").setValue(data.comPartCode);
@@ -414,6 +422,37 @@ function onButtonEdit()
         }
     });
 }
+var customClassId ="";
+var customClassName = "";
+function onButtonEdit2()
+{
+    partName = null;
+    nui.open({
+//        // targetWindow: window,
+        url: webPath+contextPath+"/common/classTabShow.jsp",
+        title: "自定义分类",
+        width:440, height: 350,
+        allowDrag:true,
+        allowResize:true,
+        onload: function ()
+        {
+        },
+        ondestroy: function (action)
+        {
+            if(action == "ok")
+            {
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+                tmp = data.tmp;
+                customClassName = data.customClassName;
+                customClassId = data.customClassId;
+                nui.get("customClassId").setValue(customClassId);
+                nui.get("customClassId").setText(customClassName);
+                $("#addAEl").html(tmp);
+            }
+        }
+    });
+}
 function onQualityTypeIdChanged(){
     var qId = qualityTypeId.getValue();
     var list = partBrandIdList.filter(function (v) {
@@ -425,4 +464,47 @@ function onQualityTypeIdChanged(){
 function getData(){
 	var data=basicInfoForm.getData();
 	return data;
+}
+
+function setHotWord(customClassId){
+	var hotUrl = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryDict.biz.ext";
+	var customClassIdList = customClassId.split(",");
+	var dictids = ["10441","10442"];
+	nui.ajax({
+		url : hotUrl,
+		type : "post",
+		aynsc:false,
+		data : {
+			dictids:dictids,
+			tenantIds:currTenantId,
+			token:token
+		},
+		success : function(data) {
+			var temp="";
+			data = data || {};
+			if (data.errCode == "S") {
+				
+				var list = nui.clone(data.data);
+				
+				
+				for(var i=0;i<list.length;i++){
+					for(var j=0;j<customClassIdList.length;j++){
+						if(customClassIdList[i]==list[i].id){
+							var aEl = "<a href='##' id='"+list[i].id+"' value="+list[i].name+"  name='HotWord' class='hui'>"+list[i].name+"</a>";
+							temp +=aEl;
+						}
+						
+					}									
+				}
+				$("#addAEl").html(temp);
+
+				selectclick();
+			} else {
+				showMsg(data.errMsg || "设置标签失败!","E");
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+		}
+	});
 }

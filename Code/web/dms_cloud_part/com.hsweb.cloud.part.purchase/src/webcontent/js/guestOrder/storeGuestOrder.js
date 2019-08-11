@@ -91,7 +91,7 @@ $(document).ready(function(v) {
             }
         });
     });
-    quickSearch(0);
+    quickSearch(2);
 });
 
 function getCompany(){
@@ -319,13 +319,16 @@ function audit(){
 		rows[i].unit = rows[i].systemUnitId;	
 	}
 	var main={};
+	main.orderType =3;
+	main.orderMan =currUserName;
+	main.orderManId =currUserId;
 	main.code =row.serviceId;
 	main.codeId = row.id;
 	main.sourceType =5;
-	main.directGuestId=row.guestId;
+//	main.directGuestId=row.guestId;
 	main.directOrgid =row.orgid;
 	main.storeId =FStoreId;
-	openGeneratePop(main,rows, "pchsOrder", "新增直发"+row.orgName+"的采购订单");
+	openGeneratePop(main,rows, "pchsOrder", "受理"+row.orgName+"的预销售单");
 }
 
 function openGeneratePop(main,partList, type, title){

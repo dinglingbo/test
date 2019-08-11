@@ -24,13 +24,13 @@
             <tr>
                 <td style="white-space:nowrap;">
                     <!-- <label style="font-family:Verdana;">编码：</label> -->
-                    <input class="nui-textbox" emptyText="编码" width="100" id="search-code" name="code"/>
+                    <input class="nui-textbox" emptyText="编码" width="100" id="search-code" name="code"onenter="onSearch"/>
                     <!-- <label style="font-family:Verdana;">名称：</label> -->
-                    <input class="nui-textbox" emptyText="名称" width="100" id="search-name" name="name"/>
+                    <input class="nui-textbox" emptyText="名称" width="100" id="search-name" name="name"onenter="onSearch"/>
                     <!-- <label style="font-family:Verdana;">品牌车型：</label> -->
-                    <input class="nui-textbox" emptyText="品牌车型" width="100" id="search-applyCarModel" name="applyCarModel"/>
+                    <input class="nui-textbox" emptyText="品牌车型" width="100" id="search-applyCarModel" name="applyCarModel"onenter="onSearch"/>
                     <!-- <label style="font-family:Verdana;">拼音：</label> -->
-                    <input class="nui-textbox" emptyText="拼音" width="60" id="search-namePy" name="namePy"/>
+                    <input class="nui-textbox" emptyText="拼音" width="60" id="search-namePy" name="namePy"onenter="onSearch"/>
                     <!-- <label style="font-family:Verdana;">品牌：</label> -->
                     <input id="partBrandId"
                            name="partBrandId"

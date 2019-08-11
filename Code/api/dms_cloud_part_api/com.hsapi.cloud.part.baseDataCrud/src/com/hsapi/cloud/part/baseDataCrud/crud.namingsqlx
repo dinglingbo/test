@@ -560,7 +560,9 @@
 		       a.common_id as commonId,
 		       a.remark as remark,
 		       a.cang_part_id as cangPartId,
-		       a.origin as origin		       
+		       a.origin as origin,
+		       a.custom_class_id as customClassId,
+		       a.custom_class_name as customClassName	       
         FROM com_attribute a
         where 1 = 1
     	<dynamic>
@@ -568,7 +570,7 @@
                 (a.orgid = #orgid#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="tenantId">  
-                (a.tenant_id = #tenantId#)
+                (a.tenant_id = #tenantId#  or a.orgid = 0)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="orgids">  
                 (a.orgid = #orgids# or a.orgid = 0)

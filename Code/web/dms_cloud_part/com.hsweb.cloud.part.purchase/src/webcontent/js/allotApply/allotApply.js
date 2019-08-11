@@ -839,7 +839,7 @@ function onPrint(){
             mainId :from.id,
             auditSign:from.auditSign
     };
-    var openUrl = webPath + contextPath+"/purchase/allotApply/allotApplyPrint.jsp";
+    var openUrl = webPath + contextPath+"/purchase/allotPrint/allotApplyPrint.jsp";
 
     nui.open({
        url: openUrl,

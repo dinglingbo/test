@@ -1,5 +1,8 @@
-var setNature = apiPath+repairApi+"/com.hsapi.repair.repairService.svr.saveNature.biz.ext";
+
 var concator = {};
+var temp = "";
+var temp2="";
+var resultData={};
 $(document).ready(function()
 {	
 	//nui.get("auditBtn").focus();
@@ -14,45 +17,45 @@ $(document).ready(function()
     setHotWord();
 });
 function setData(params){
-	concator = params;
-	if(!concator.contactorId){
-		showMsg("联系人数据出错，请重新操作!","E");
-		return;
-	}
-	var params = {
-			id:concator.contactorId
-	};
-	nui.mask({
-		el : document.body,
-		cls : 'mini-mask-loading',
-		html : '加载中...'
-	});
-	nui.ajax({
-		url : setNature,
-		type : "post",
-		aynsc:false,
-		data : {
-			params:params,
-			token:token
-		},
-		success : function(data) {		
-			nui.unmask(document.body);
-			if (data.errCode == "S") {
-				var guestTab = data.contcator;
-				var str = guestTab.natureId;
-				//str = "1545469092700,1545469092701,1545469092702";
-				if(str){
-					showTab(str);
-				}
-				
-			}else{
-				showMsg("保存失败","E");
-			}
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			console.log(jqXHR.responseText);
-		}
-	});
+//	concator = params;
+//	if(!concator.contactorId){
+//		showMsg("联系人数据出错，请重新操作!","E");
+//		return;
+//	}
+//	var params = {
+//			id:concator.contactorId
+//	};
+//	nui.mask({
+//		el : document.body,
+//		cls : 'mini-mask-loading',
+//		html : '加载中...'
+//	});
+//	nui.ajax({
+//		url : setNature,
+//		type : "post",
+//		aynsc:false,
+//		data : {
+//			params:params,
+//			token:token
+//		},
+//		success : function(data) {		
+//			nui.unmask(document.body);
+//			if (data.errCode == "S") {
+//				var guestTab = data.contcator;
+//				var str = guestTab.natureId;
+//				//str = "1545469092700,1545469092701,1545469092702";
+//				if(str){
+//					showTab(str);
+//				}
+//				
+//			}else{
+//				showMsg("保存失败","E");
+//			}
+//		},
+//		error : function(jqXHR, textStatus, errorThrown) {
+//			console.log(jqXHR.responseText);
+//		}
+//	});
 }
 
 function CloseWindow(action)
@@ -84,13 +87,22 @@ function onCancel() {
 			if (data.errCode == "S") {
 				
 				var list = nui.clone(data.data);
-				var temp = "";
+				
 				for(var i=0;i<list.length;i++){
+					 var a="产品线分类";
+					 var b ="维修性质分类";
+					 if(list[i].dictid =="10441"){
+						 var aEl = "<a href='##' id='"+list[i].id+"' value="+list[i].name+"  name='HotWord' class='hui'>"+list[i].name+"</a>";
+						 temp +=aEl;
+					 }
+					 if(list[i].dictid =="10442"){
+						 var aEl2 = "<a href='##' id='"+list[i].id+"' value="+list[i].name+"  name='HotWord' class='hui'>"+list[i].name+"</a>";
+						 temp2 +=aEl2;
+					 }
 					
-					 var aEl = "<a href='##' id='"+list[i].id+"' value="+list[i].name+"  name='HotWord' class='hui'>"+list[i].name+"</a>";
-					 temp +=aEl;
 				}
 				$("#addAEl").html(temp);
+				$("#addAEl2").html(temp2);
 				selectclick();
 			} else {
 				showMsg(data.errMsg || "设置客户标签失败!","E");
@@ -108,15 +120,14 @@ function selectclick() {
         
     });
 }
-function save(){
-	if(!concator.contactorId){
-		showMsg("联系人数据出错，请重新操作!","E");
-		return;
-	}
+function onOk(){
+
 	var tabList = document.querySelectorAll('.xz');
+	var tmp ="";
 	var nature = "";
 	var natureId = "";
 	for(var i=0;i<tabList.length;i++){
+		tmp +=tabList[i].outerHTML;
 		if(i==0){
 			nature=tabList[i].innerHTML;
 			natureId=tabList[i].id;
@@ -128,44 +139,23 @@ function save(){
 			natureId=natureId+","+tabList[i].id;
 		}
 	}
+	var data={};
+	data.customClassName=nature;
+	data.customClassId=natureId;
+	data.tmp=tmp;
+	console.log(nature);
+	console.log(natureId);
+	console.log(tmp);
+	resultData=data;
+	CloseWindow("ok");
 	
-	var params = {
-			nature:nature,
-			natureId:natureId,
-			id:concator.contactorId
-	};
-	nui.mask({
-		el : document.body,
-		cls : 'mini-mask-loading',
-		html : '保存中...'
-	});
-	//nature，
-	nui.ajax({
-		url : setNature,
-		type : "post",
-		aynsc:false,
-		data : {
-			params:params,
-			token:token
-		},
-		success : function(data) {	
-			nui.unmask(document.body);
-			if (data.errCode == "S") {
-				showMsg("保存成功","S");
-				CloseWindow("cancel");
-			}else{
-				showMsg("保存失败","E");
-			}
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			console.log(jqXHR.responseText);
-		}
-	});
 	
 }
-function NoSave(){
-	onCancel();
+
+function getData(){
+    return resultData;
 }
+
 function showTab(str){
 	var list = str.split(",");
 	if(list.length >0){

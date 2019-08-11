@@ -98,7 +98,9 @@ $(document).ready(function(v)
 
     var dictDefs ={"billTypeId":"DDT20130703000008", "settleTypeId":"DDT20130703000035"};
     
-    
+//    if(currIsCommission ==1){
+//    	nui.get('chooseMemBtn').setVisible(true);
+//    }
     initDicts(dictDefs, function(){
         getStorehouse(function(data)
         {
@@ -1963,8 +1965,8 @@ function selectSupplier(elId) {
         onload : function() {
             var iframe = this.getIFrameEl();
             var params = {
-                isClient: 1,
-                guestType:'01020202'
+                isClient: 1
+//                guestType:'01020202'
             };
             iframe.contentWindow.setGuestData(params);
         },
@@ -2249,3 +2251,39 @@ function setInitExportData(main, detail){
     var serviceId = main.serviceId?main.serviceId:"";
     method5('tableExcel',"预销售单"+serviceId,'tableExportA');
 }
+
+function chooseMember(){
+	  var row = leftGrid.getSelected();
+	    if(row){
+	    	if(row.auditSign ==1){
+	    		showMsg("单据已审核,不能修改");
+	    		return;
+	    	}
+	        if(row.id) {
+	            nui.open({
+	                // targetWindow: window,
+	                url: webBaseUrl+"com.hsweb.cloud.part.basic.selectMember.flow?token="+token,
+	                title: "选择提成成员", 
+	                width: 880, height: 650,
+	                showHeader:true,
+	                allowDrag:true,
+	                allowResize:true,
+	                onload: function ()
+	                {
+	                    var iframe = this.getIFrameEl();
+	                    iframe.contentWindow.setData(row.id);
+	                },
+	                ondestroy: function (action)
+	                {
+
+	                }
+	            });
+	        }else{
+	            showMsg("请先选择订单!","W");
+	            return;
+	        }
+	    }else{
+	        return;
+	    }
+}
+

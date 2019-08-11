@@ -613,7 +613,10 @@ function loadMainAndDetailInfo(row) {
 		basicInfoForm.setData(row);
 		var billStatusId=row.billStatusId;
 		$('#status').text(StatusHash[billStatusId]);
-		
+		//预售单
+		if(row.sourceType==5){
+			$('#sourceServiceId').text("往来单单号:"+row.code);
+		}
 		//bottomInfoForm.setData(row);
 		nui.get("guestId").setText(row.guestFullName);
 
@@ -1230,7 +1233,8 @@ var requiredField = {
 	orderMan : "采购员",
 	orderDate : "订货日期",
 	billTypeId : "票据类型",
-	settleTypeId : "结算方式"
+	settleTypeId : "结算方式",
+	orderType:"订单类型"
 };
 
 var savePriceUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveUpdatePrice.biz.ext";

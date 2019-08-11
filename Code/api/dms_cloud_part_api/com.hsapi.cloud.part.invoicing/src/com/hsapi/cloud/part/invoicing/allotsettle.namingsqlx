@@ -649,6 +649,9 @@
 		INNER JOIN wb_common.com_attribute d on d.id = a.part_id
 		WHERE 1=1
 		 <dynamic>
+		 	<isNotEmpty prepend="and" property="tenantId"> 
+                (c.tenant_id = #tenantId#)
+            </isNotEmpty>
         	<isNotEmpty prepend="and" property="orgid"> 
                 (b.orgid = #orgid#)
             </isNotEmpty>
@@ -803,6 +806,9 @@
 		INNER JOIN wb_common.com_attribute d on d.id = a.part_id
 		WHERE 1=1
 		 <dynamic>
+		 	<isNotEmpty prepend="and" property="tenantId"> 
+                (c.tenant_id = #tenantId#)
+            </isNotEmpty>
         	<isNotEmpty prepend="and" property="orgid"> 
                 (b.orgid = #orgid#)
             </isNotEmpty>

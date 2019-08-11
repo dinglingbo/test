@@ -72,7 +72,7 @@
                             </div>
                     <div class="nui-fit">
                             <div id="dgGrid" class="nui-datagrid" style="width:100%;height:100%;" dataField="data" sortMode="client"
-                                allowCellSelect="true" allowCellEdit="true" showModified="false"
+                                allowCellSelect="true" allowCellEdit="true" showModified="false" showPager="false"
                                 style="width: 80%; height: 40%; margin-left:10%;">
                                 <div property="columns">
                                     <div type="indexcolumn" headerAlign="center" >序号</div>

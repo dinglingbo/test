@@ -75,7 +75,7 @@ table#ybk td{
 	width:55%;
 	text-align:left;
 }
-#sumOrderQty{
+#sumApplyQty{
 	width:175px;
 	text-align:right;
 	padding-right:75px;
@@ -304,7 +304,7 @@ hr {
             <div>
             	<table id="" width="100%">
 				  <tr>
-				    <td id="sumOrderQty" >合计</td>
+				    <td id="sumApplyQty" >合计</td>
 				  </tr>
 				</table>
 				<table>

@@ -6,11 +6,13 @@ var rightUnifyGrid = null;
 var straGrid = null;
 
 var rightUnifyGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.query.queryStockLevelPart.biz.ext";
-var straGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.query.queryStockLevel.biz.ext";
+var straGridUrl =  apiPath +sysApi+"/"+"com.hsapi.system.dict.dictMgr.queryDict.biz.ext";
 
 var salesDeductTypeEl= null;
-
-
+var DICTID="10443";
+var statuList = [{id:"0",name:"编码"},{id:"1",name:"名称"}];
+var statusList = [{id:0,name:"启用"},{id:1,name:"禁用"}];
+var statusHash = { 0: "启用", 1: "禁用" };
 $(document).ready(function(v)
 {
     rightUnifyGrid = nui.get("rightUnifyGrid");
@@ -18,8 +20,7 @@ $(document).ready(function(v)
     advancedDecuetSetWin=nui.get('advancedDecuetSetWin');
     straGrid = nui.get("straGrid");
     straGrid.setUrl(straGridUrl);
-    straGrid.load({params:{},token:token});
-    
+    doSearch();
 
     $("#partNameSearch").bind("keydown", function (e) {
 
@@ -28,7 +29,20 @@ $(document).ready(function(v)
         }
         
     });
-    
+    straGrid.on("drawcell",function(e){
+        switch (e.field) {
+            case "isDisabled":
+                if (statusHash[e.value]) {
+                    e.cellHtml = statusHash[e.value] || "";
+                } else {
+                    e.cellHtml = "";
+                }
+				break;
+			
+            default:
+                break;
+        }
+    });
     
     rightUnifyGrid.on("drawcell",function(e){
     	switch(e.field){
@@ -54,44 +68,108 @@ function onAddNode()
     straGrid.addRow(newRow);
 }
 
-var saveStraUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveStockLevel.biz.ext";
+var saveStraUrl =apiPath +sysApi+"/" + "com.hsapi.system.dict.dictMgr.saveDictList.biz.ext";
 function onSaveNode(){
-    var data = straGrid.getChanges();
-    if(data.length<=0) return;
     var addList = straGrid.getChanges("added");
     var updateList = straGrid.getChanges("modified");
-
-    nui.mask({
-        el : document.body,
-        cls : 'mini-mask-loading',
-        html : '保存中...'
-    });
-
-    nui.ajax({
-        url : saveStraUrl,
-        type : "post",
-        data : JSON.stringify({
-            addList : addList,
-            updateList : updateList,
-            token: token
-        }),
-        success : function(data) {
-            nui.unmask(document.body);
-            data = data || {};
-            if (data.errCode == "S") {
-                showMsg("保存成功!","S");
-                straGrid.reload();
-                
-            } else {
-                showMsg(data.errMsg || "保存失败!","E");
-            }
-        },
-        error : function(jqXHR, textStatus, errorThrown) {
-            // nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
+    for (var k = 0; k < updateList.length; k++) {
+        var uptemp = updateList[k];
+        if (uptemp.name == null || uptemp.name == "" || uptemp.name == undefined) {
+            parent.showMsg('修改行的'+nullMsg,"W");
+            return;
         }
-    });
+    }
+    var addArr = [];
+    for (var i = 0; i < addList.length; i++) {
+        var temp = addList[i];
+        if (temp.name) {
+            addArr.push(temp)
+        }
+    }
+    nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : '保存中...'
+	});
+
+	nui.ajax({
+		url : saveStraUrl,
+		type : "post",
+		data : JSON.stringify({
+			addList : addArr,
+			updateList : updateList,
+			dictid : DICTID,
+			token: token
+		}),
+		success : function(data) {
+			nui.unmask(document.body);
+			data = data || {};
+			if (data.errCode == "S") {
+				showMsg("保存成功!","S");
+				doSearch();
+			} else {
+				showMsg(data.errMsg || "保存失败!","E");
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+
 }
+
+function doSearch(){
+	straGrid.load({
+    	params:{
+			sortField:"record_date",
+			sortOrder:"asc"
+		},
+		tenantId:currTenantId,
+		dictid:DICTID,
+		fromDb:true,
+		token:token
+		});
+    
+}
+//var saveStraUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveStockLevel.biz.ext";
+//function onSaveNode(){
+//    var data = straGrid.getChanges();
+//    if(data.length<=0) return;
+//    var addList = straGrid.getChanges("added");
+//    var updateList = straGrid.getChanges("modified");
+//
+//    nui.mask({
+//        el : document.body,
+//        cls : 'mini-mask-loading',
+//        html : '保存中...'
+//    });
+//
+//    nui.ajax({
+//        url : saveStraUrl,
+//        type : "post",
+//        data : JSON.stringify({
+//            addList : addList,
+//            updateList : updateList,
+//            token: token
+//        }),
+//        success : function(data) {
+//            nui.unmask(document.body);
+//            data = data || {};
+//            if (data.errCode == "S") {
+//                showMsg("保存成功!","S");
+//                straGrid.reload();
+//                
+//            } else {
+//                showMsg(data.errMsg || "保存失败!","E");
+//            }
+//        },
+//        error : function(jqXHR, textStatus, errorThrown) {
+//            // nui.alert(jqXHR.responseText);
+//            console.log(jqXHR.responseText);
+//        }
+//    });
+//}
 //删除策略价格节点
 var delNodeUrl=baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.deleteStockLevel.biz.ext";
 function onDeleteNode(){

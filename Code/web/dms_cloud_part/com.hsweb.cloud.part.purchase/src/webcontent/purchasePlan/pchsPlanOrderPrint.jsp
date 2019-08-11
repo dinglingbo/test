@@ -80,8 +80,8 @@ table#ybk td{
 	text-align:right;
 }
 #sumOrderAmt{
-	padding-left:65px;
-	width:31%;
+	padding-left:110px;
+	width:20%;
 }
  #currOrgName{
 /* 	padding-left:80px; */
@@ -394,7 +394,6 @@ hr {
         }
     	function SetData(params,detailParms){
     		brandHash=params.brandHash;
-			storeHash=params.storeHash;
 			
     		$('#currOrgName').text(params.currRepairSettorderPrintShow||params.currOrgName);
     		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
@@ -409,11 +408,11 @@ hr {
 	   		$.ajaxSettings.async = false;
 	   		if(params.id){	
 		   		$.post(MainUrl+"?params/id="+params.id+"&params/auditSign="+params.auditSign+"&token="+token,{},function(text){
-		   			var formParms =text.pjPchsOrderMainList[0];
+		   			var formParms =text.pjPchsPlanMainList[0];
 		       		$('#guestFullName').text("供应商:"+formParms.guestFullName);
 		       		$('#createDate').text("计划采购日期:"+format(formParms.createDate,"yyyy-MM-dd HH:mm"));
 		       		$('#serviceId').text(formParms.serviceId);
-		     		$('#mainRemark').text("备注:"+formParms.remark);
+		     		$('#mainRemark').text("备注:"+formParms.remark?null:"");
 	    		});
     		}
     		if(params.guestId){
@@ -434,7 +433,7 @@ hr {
     		if(detailParms.mainId){
     			
 	    		$.post(DetailUrl+"?params/mainId="+detailParms.mainId+"&params/auditSign="+detailParms.auditSign+"&token="+token,{},function(text){
-					var data= text.pjPchsOrderDetailList;
+					var data= text.pjPchsPlanDetailList;
 					var tBody = $("#tbodyId");
 					tBody.empty();
 					var tds='<td align="center">[index]</td>'+

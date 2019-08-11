@@ -353,8 +353,11 @@ function setData(data)
     });
     qualityTypeId.setData(qualityTypeIdList);
     //unit.setData(unitList);
-    nui.get("customClassId").setText(data.partData.customClassName);
-    setHotWord(data.partData.customClassId);
+    if(data.partData.customClassId){
+    	nui.get("customClassId").setText(data.partData.customClassName);
+        setHotWord(data.partData.customClassId);
+    }
+    
     
     if(data.comPartCode){
     	nui.get("code").setValue(data.comPartCode);

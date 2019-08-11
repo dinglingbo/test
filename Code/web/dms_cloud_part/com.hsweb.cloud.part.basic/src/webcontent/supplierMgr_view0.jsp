@@ -75,8 +75,8 @@
          onrowclick="onGridRowClick"
          sortMode="client"
          allowCellWrap = true
-         frozenStartColumn="0"
-         frozenEndColumn="11">
+         frozenStartColumn=""
+         frozenEndColumn="">
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <!--<div type="checkcolumn" ></div>-->
@@ -87,9 +87,7 @@
                     <div allowSort="true" field="shortName" width="140" headerAlign="center" header="供应商简称"></div>
                     <div allowSort="true" field="fullName" width="240" headerAlign="center" header="供应商全称"></div>
                     <div allowSort="true" field="isInternal" width="100" headerAlign="center" header="是否内部供应商"></div>
-                    <div allowSort="true" field="tel" width="140" headerAlign="center" header="电话"></div>
-                    <div allowSort="true" field="supplierType" width="100" headerAlign="center" header="供应商类型"></div>
-                    <div allowSort="true" field="advantageCarbrandId" width="100" headerAlign="center" header="优势品牌/产品"></div>
+                   
                 </div>
             </div>
             <div header="联系人信息" headerAlign="center">
@@ -113,6 +111,9 @@
                 <div property="columns">
                     <div allowSort="true" field="provinceId" width="80" headerAlign="center">省份 </div>
                     <div allowSort="true" field="cityId" width="100" headerAlign="center">城市</div>
+                    <div allowSort="true" field="tel" width="140" headerAlign="center" header="电话"></div>
+                    <div allowSort="true" field="supplierType" width="100" headerAlign="center" header="供应商类型"></div>
+                    <div allowSort="true" field="advantageCarbrandId" width="100" headerAlign="center" header="优势品牌/产品"></div>
                     <div allowSort="true" field="fax" width="100" headerAlign="center">传真</div>
                     <div allowSort="true" field="remark" width="200" headerAlign="center">备注</div>
                 </div>

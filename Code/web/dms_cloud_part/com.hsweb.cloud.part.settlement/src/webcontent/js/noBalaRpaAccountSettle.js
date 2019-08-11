@@ -11,6 +11,10 @@ var searchEndDate = null;
 var leftGrid = null;
 var rightGrid =null;
 var mainTabs =null;
+var allotPayGrid = null;
+var allotReceiveGrid = null;
+var allotPayGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryAllotApplyDetails.biz.ext";
+var allotReceiveGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.allotsettle.queryAllotAcceptDetails.biz.ext";
 
 var storehouseHash = {};
 var billTypeIdHash = {};
@@ -34,6 +38,12 @@ $(document).ready(function(v) {
     rightGrid = nui.get("rightGrid");
     leftGrid.setUrl(leftGridUrl);
     rightGrid.setUrl(rightGridUrl);
+    
+    allotReceiveGrid =nui.get("allotReceiveGrid");
+    allotPayGrid = nui.get("allotPayGrid");
+    allotReceiveGrid.setUrl(allotReceiveGridUrl);
+    allotPayGrid.setUrl(allotPayGridUrl);
+    
     mainTabs =nui.get("mainTabs");
     mainTabs.on("activechanged",function(e){
     	var tab = mainTabs.getActiveTab();
@@ -41,8 +51,15 @@ $(document).ready(function(v) {
         var url = tab.url;
         if(name == 'receiveTab'){
         	loadLeftGridData();
-        }else{
+        }
+        else if(name== 'payTab'){
         	loadRightGridData();
+        }
+        else if(name== 'allotReceiveTab'){
+        	loadAllotReceiveGridData();
+        }
+        else if(name== 'allotPayTab'){
+        	loadAllotPayGridData();
         }
     });
     
@@ -157,6 +174,7 @@ function getSearchParam(){
     }
     params.isState = 0;
     params.settleTypeId='020502';
+	params.auditSign=1;
     return params;
 }
 var currType = 2;
@@ -241,8 +259,15 @@ function doSearch(params)
     var url = tab.url;
     if(name == 'receiveTab'){
     	loadLeftGridData();
-    }else{
+    }
+    else if(name== 'payTab'){
     	loadRightGridData();
+    }
+    else if(name== 'allotReceiveTab'){
+    	loadAllotReceiveGridData();
+    }
+    else if(name== 'allotPayTab'){
+    	loadAllotPayGridData();
     }
 }
 
@@ -266,6 +291,26 @@ function loadLeftGridData(){
     });
 }
 
+function loadAllotReceiveGridData(){
+	var params = getSearchParam();
+    params.isDiffOrder = 1;
+	params.sortField = "audit_date";
+	params.sortOrder = "desc";
+	allotReceiveGrid.load({
+        params:params,
+        token:token
+    });
+}
+function loadAllotPayGridData(){
+	var params = getSearchParam();
+    params.isDiffOrder = 1;
+	params.sortField = "audit_date";
+	params.sortOrder = "desc"
+    allotPayGrid.load({
+        params:params,
+        token:token
+    });
+}
 
 function onDrawCell(e){
 	switch (e.field)
@@ -355,4 +400,20 @@ function onMainDrawCell(e){
         default:
             break;
     }
+}
+var sumPAmt ="";
+var sumRAmt = "";
+function onDrawSummaryCell(e) {
+	var rows = e.data;// rightGrid.getData();
+	
+	if (e.field == "rAmt") {
+		sumRAmt=e.value;
+	}
+	if (e.field == "pAmt") {
+		sumPAmt =e.value;
+	}
+	if (e.field == "billAmt") {
+		e.value= sumRAmt + sumPAmt;
+		e.cellHtml=e.value;  
+	}
 }

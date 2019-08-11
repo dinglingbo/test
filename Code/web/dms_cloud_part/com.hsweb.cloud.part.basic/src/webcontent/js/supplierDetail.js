@@ -166,6 +166,14 @@ function onOk()
         data.modifyDate = format(data.modifyDate, 'yyyy-MM-dd HH:mm:ss');
     }
 
+    if(!data.contactor){
+    	data.contactor=data.manager 
+    }
+
+    if(!data.contactorTel){
+    	data.contactorTel=data.mobile
+    }
+    
     nui.mask({
         el : document.body,
         cls : 'mini-mask-loading',

@@ -682,7 +682,13 @@ function onOk()
     {
         data.guestType = '01020102';
     }*/
+    if(!data.contactor){
+    	data.contactor=data.manager 
+    }
 
+    if(!data.contactorTel){
+    	data.contactorTel=data.mobile
+    }
     nui.mask({
         el : document.body,
     	cls : 'mini-mask-loading',

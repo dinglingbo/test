@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%=webPath + contextPath%>/basic/js/supplierDetail.js?v=1.1.13"></script>
+<script src="<%=webPath + contextPath%>/basic/js/supplierDetail.js?v=1.1.14"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -105,7 +105,7 @@
                   <div class="vpanel_body vpanel_bodyww">
                       <input id="id" name="id" width="100%" class="nui-hidden" >
                       <input id="recordDate" name="recordDate" width="100%" class="nui-hidden" >
-                      <input id="recorder" name="recorder" width="100%" class="nui-hidden" > -->
+                      <input id="recorder" name="recorder" width="100%" class="nui-hidden" > 
                       <input id="modifier" name="modifier" width="100%" class="nui-hidden" >
                       <input id="modifyDate" name="modifyDate" width="100%" class="nui-hidden" >
                       <table class="tmargin">

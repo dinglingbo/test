@@ -52,10 +52,6 @@
       <process:from type="literal" pattern="value">true</process:from>
       <process:to type="query">page/isCount</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">params/orgid</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="247" y="136"/>
@@ -66,6 +62,7 @@
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="link4" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
     <location x="410" y="100"/>

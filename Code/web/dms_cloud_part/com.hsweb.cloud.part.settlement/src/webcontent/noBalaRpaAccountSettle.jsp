@@ -13,7 +13,7 @@
 <head>
 <title>未对账业务单</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/settlement/js/noBalaRpaAccountSettle.js?v=1.0.74"></script>
+    <script src="<%=webPath + contextPath%>/settlement/js/noBalaRpaAccountSettle.js?v=1.0.95"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -69,13 +69,15 @@
 		         multiSelect="false"				
 				 totalField="page.count"
 		         pageSize="50"
+		         showSummaryRow="true"
+		         ondrawsummarycell="onDrawSummaryCell(e)"
 		         sizeList="[50,100,200]">
 		        <div property="columns">
 		            <div type="indexcolumn">序号</div>
 		            <div field="fullName" width="120" headerAlign="center" header="往来单位"></div>
-		            <div field="rAmt" width="55px" headerAlign="center" allowSort="true" header="应收金额"></div>
-		            <div field="pAmt" width="55px" headerAlign="center" allowSort="true" header="应付金额"></div>
-		            <div field="billAmt" width="55px" headerAlign="center" allowSort="true" header="未对账金额"></div>
+		            <div field="rAmt" width="55px" headerAlign="center" allowSort="true" header="应收金额"summaryType="sum"datatype="float"></div>
+		            <div field="pAmt" width="55px" headerAlign="center" allowSort="true" header="应付金额" summaryType="sum" datatype="float"></div>
+		            <div field="billAmt" width="55px" headerAlign="center" allowSort="true" header="未对账金额" summaryType="sum" datatype="float"></div>
 		        </div>
 		     </div>
 			
@@ -101,7 +103,7 @@
 				         totalField="page.count"
 						 pageSize="100"
 						 sizeList=[100,200,500,1000]
-				         showSummaryRow="false">
+				         showSummaryRow="true">
 				        <div property="columns">
 				            <div type="indexcolumn">序号</div>
 				            <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="销售单号"></div>
@@ -126,7 +128,7 @@
                 	
                 	
                 </div>
-                <div title="应付" id="payTab" name=""receiveTab"" url="" >
+                <div title="应付" id="payTab" name="payTab"receiveTab"" url="" >
                 
                 	<div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
 				         showPager="true"
@@ -138,12 +140,12 @@
 				         totalField="page.count"
 						 pageSize="100"
 						 sizeList=[100,200,500,1000]
-				         showSummaryRow="false">
+				         showSummaryRow="true">
 				        <div property="columns">
 				            <div type="indexcolumn">序号</div>
-				            <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="采购单号"></div>
+				            <div allowSort="true" field="serviceId" width="180" summaryType="count" headerAlign="center" header="采购单号"></div>
 				            <div field="guestFullName" width="150" headerAlign="center" header="供应商"></div>
-				            <div allowSort="true" field="enterDate" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+				            <div allowSort="true" width="150"field="enterDate" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
 				            <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div> 
 				            <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>-->
 				            <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
@@ -160,15 +162,83 @@
 				            <div allowSort="true" field="taxRate" width="40" headerAlign="center" header="税点"></div>
 				            <div field="taxPrice" width="60" headerAlign="center" header="含税单价"></div>
 				            <div field="taxAmt" width="60" headerAlign="center" summaryType="sum" header="含税金额"></div>
-				            <div field="noTaxPrice" width="60" headerAlign="center" header="不含税单价"></div>
-				            <div field="noTaxAmt" width="60" headerAlign="center" summaryType="sum" header="不含税金额"></div>
-				            <div allowSort="true" field="manualCode" width="150" headerAlign="center" header="手工单号"></div>
-				            <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
-				            <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+				            <div field="noTaxPrice" width="80" headerAlign="center" header="不含税单价"></div>
+				            <div field="noTaxAmt" width="80" headerAlign="center" summaryType="sum" header="不含税金额"></div>
+				            <div allowSort="true" field="manualCode" width="180" headerAlign="center" header="手工单号"></div>
+				            <div field="auditor" width="80" headerAlign="center" header="审核人"></div>
+				            <div allowSort="true" width="120"field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
 				        </div>
 				    </div>
                       
                 </div>
+                
+                <div title="调拨应收" id="allotReceiveTab" name="allotReceiveTab" url="" >
+               	                	
+                      <div id="allotReceiveGrid" class="nui-datagrid" style="width:100%;height:100%;"
+				         showPager="true"
+				         dataField="pjAllotAcceptMainList"
+				         idField="detailId"
+				         ondrawcell="onDrawCell"
+				         sortMode="client"
+				         url=""
+				         totalField="page.count"
+						 pageSize="100"
+						 sizeList=[100,200,500,1000]
+				         showSummaryRow="true">
+				        <div property="columns">
+				            <div type="indexcolumn">序号</div>
+				            <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="订单单号"></div>
+				            <div field="orgName" width="150" headerAlign="center" header="调入方"></div>
+				            <div allowSort="true" field="finishDate" headerAlign="center" header="出库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+				            <div allowSort="true" field="systemUnitId" width="40" headerAlign="center" header="单位"></div>
+				            <div allowSort="true" datatype="float" summaryType="sum" field="hasOutQty" width="60" headerAlign="center" header="已出库数量" visible="true"></div>
+                			<div allowSort="true" datatype="float" summaryType="sum" field="orderPrice" width="60" headerAlign="center" header="单价" visible="true"></div>
+                			<div allowSort="true" datatype="float" summaryType="sum" field="orderAmt" width="60" headerAlign="center" header="金额" visible="true"></div>
+				            <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
+				            <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
+				            <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
+				            <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+				            
+				        </div>
+				    </div>
+                	
+                	
+                </div>
+                
+                <div title="调拨应付" id="allotPayTab" name="allotPayTab" url="" >
+               	                	
+                      <div id="allotPayGrid" class="nui-datagrid" style="width:100%;height:100%;"
+				         showPager="true"
+				         dataField="pjAllotApplyDetails"
+				         idField="detailId"
+				         ondrawcell="onDrawCell"
+				         sortMode="client"
+				         url=""
+				         totalField="page.count"
+						 pageSize="100"
+						 sizeList=[100,200,500,1000]
+				         showSummaryRow="true">
+				        <div property="columns">
+				            <div type="indexcolumn">序号</div>
+				            <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="订单单号"></div>
+				            <div field="orgName" width="150" headerAlign="center" header="调出方"></div>
+				            <div allowSort="true" field="finishDate" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+				            <div allowSort="true" field="systemUnitId" width="40" headerAlign="center" header="单位"></div>		
+		                	<div allowSort="true" datatype="float" summaryType="sum" field="hasInQty" width="60" headerAlign="center" header="已入库数量"  visible="true"></div>
+		                	<div allowSort="true" datatype="float" summaryType="sum" field="orderPrice" width="60" headerAlign="center" header="单价" visible="true"></div>
+		                	<div allowSort="true" datatype="float" summaryType="sum" field="orderAmt" width="60" headerAlign="center" header="金额" visible="true"></div>
+				            <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
+				            <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
+				            <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
+				            <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+				            
+				        </div>
+				    </div>
+                	
+                	
+                </div>
+                
+                
                 
              </div>
            </div>

@@ -200,7 +200,7 @@
       <sourceNode>loopstart0</sourceNode>
       <targetNode>assign18</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="LE">
+        <process:simpleCondition operator="NULLOREMPTY">
           <process:leftOperand type="query">tmp/storeId</process:leftOperand>
           <process:rightOperand type="literal">0</process:rightOperand>
         </process:simpleCondition>

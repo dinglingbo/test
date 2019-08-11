@@ -134,7 +134,7 @@
         </dynamic>  
       	
         
-        ORDER BY A.operate_date DESC
+        ORDER BY A.operate_date asc
     </select>
     
     <select id="queryPjGuestOrderDetailList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">   	
@@ -181,7 +181,7 @@
             <isNotEmpty prepend="and" property="mainIds">  
                     (A.MAIN_ID in ($mainIds$))
             </isNotEmpty>
-           
+    
         
         ORDER BY a.id asc
     </select>
@@ -293,7 +293,7 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="auditSign">  
                 <!--审核状态-->
-                    (A.AUDIT_SIGN = #auditSign#)
+                    (c.AUDIT_SIGN = #auditSign#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
                     (c.service_id in ($serviceIdList$))

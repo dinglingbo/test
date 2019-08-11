@@ -1230,7 +1230,8 @@ var requiredField = {
 	orderMan : "采购员",
 	orderDate : "订货日期",
 	billTypeId : "票据类型",
-	settleTypeId : "结算方式"
+	settleTypeId : "结算方式",
+	orderType:"订单类型"
 };
 
 var savePriceUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveUpdatePrice.biz.ext";

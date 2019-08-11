@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%=webPath + contextPath%>/basic/js/customerAdd.js?v=1.0.129"></script>
+<script src="<%=webPath + contextPath%>/basic/js/customerAdd.js?v=1.0.132"></script>
 <script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
 <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
 <script src="<%= request.getContextPath() %>/common/qiniu/qiniu1.0.14.js" type="text/javascript"></script>
@@ -100,10 +100,6 @@
                   <!-- <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>基本信息</span></div> -->
                   <div class="vpanel_body vpanel_bodyww">
                       <input id="id" name="id" width="100%" class="nui-hidden" >
-                      <input id="orgid" name="orgid" width="100%" class="nui-hidden" ><!-- 
-                      <input id="recordDate" name="recordDate" width="100%" class="nui-hidden" >
-                      <input id="recorder" name="recorder" width="100%" class="nui-hidden" > -->
-                       <input id="tenantId" name="tenantId" width="100%" class="nui-hidden" >
                       <input id="guestType" name="guestType" width="100%" class="nui-hidden" >
                       <input id="modifier" name="modifier" width="100%" class="nui-hidden" >
                       <input id="modifyDate" name="modifyDate" width="100%" class="nui-hidden" >

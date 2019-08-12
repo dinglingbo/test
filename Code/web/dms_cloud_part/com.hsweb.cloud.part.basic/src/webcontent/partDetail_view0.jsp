@@ -227,7 +227,7 @@
                     <td colspan="3"><input name="fullName" class="nui-textbox" width="375px" enabled="false"/></td>
                 </tr>
                 <tr class="htr">
-                    <td class=""  colspan="3">配件全称 = 配件名称 + 配件品牌 +编码</td>
+                    <td class=""  colspan="3">配件全称=名称+规格+车型+品牌</td>
                    
                 </tr>
                 <tr class="htr">

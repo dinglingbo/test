@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销售记录</title>
-<script src="<%=webPath + contextPath%>/common/js/embed/containSellOrderRecord.js?v=1.0.25"></script>
+<script src="<%=webPath + contextPath%>/common/js/embed/containSellOrderRecord.js?v=1.0.29"></script>
 <style type="text/css">
 .title {
   width: 90px;
@@ -29,7 +29,7 @@
 <div class="nui-fit">
 	<div  class="nui-splitter" style="width:100%;height:100%;" style="border:0;" handlerSize="0">
         <div size="130px" showCollapseButton="false">
-        	<input class="nui-checkbox"  id="nowStoreGuest" trueValue="1" falseValue="0" text="本地当前客户" value="1" oncheckedchanged="nowStoreGuestChange()"/>
+        	<input class="nui-checkbox"  id="nowStoreGuest" trueValue="1" falseValue="0" text="本店当前客户" value="1" oncheckedchanged="nowStoreGuestChange()"/>
         	<br>
         	<input class="nui-checkbox"  id="storeGuest" trueValue="1" falseValue="0" text="本店所有客户" oncheckedchanged="storeChange()"/>
         	<br>

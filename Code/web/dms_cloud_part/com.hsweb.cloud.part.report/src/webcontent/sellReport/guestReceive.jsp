@@ -13,7 +13,7 @@
 <head>
 <title>客户回款报表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/report/js/guestReceive.js?v=1.0.62"></script>
+    <script src="<%=webPath + contextPath%>/report/js/guestReceive.js?v=1.0.63"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -25,11 +25,9 @@
 			        <tr>
 			            <td style="white-space:nowrap;">
 			             	<label style="font-family:Verdana;">快速查询：</label>
-			            	<input class="nui-combobox" id ="orgids" name="orgids" value="" allowInput="true" showNullItem="false" 
-			            		 valueFromSelect="true" nullitemtext="请选择..." emptyText="选择公司" data="" width="200px"
-			            		 textField="name" valueField="orgid" onEnter="onSearch()" />
+			            	
 			               
-			                <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">全部</a>
+			                <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本周</a>
 			
 			                <ul id="popupMenuDate" class="nui-menu" style="display:none;">
 			                    <li iconCls="" onclick="quickSearch(0)" id="type0">全部</li>
@@ -50,8 +48,10 @@
 			                <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
 			               
 			                <span class="separator"></span> 
- 		                    <input id="guestName" width="120px" emptyText="客户" onEnter="onSearch()" class="nui-textbox"/> 
-	
+ 		                    <input id="guestName" width="120px" emptyText="客户" onEnter="onSearch()" class="nui-textbox" visible="false"/> 
+							<input class="nui-combobox" id ="orgids" name="orgids" value="" allowInput="true" showNullItem="false" 
+			            		 valueFromSelect="true" nullitemtext="请选择..." emptyText="选择公司" data="" width="200px"
+			            		 textField="name" valueField="orgid" onEnter="onSearch()" />
 			                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 			                
 			            </td>
@@ -59,7 +59,7 @@
 			    </table>
 			</div>
 			
-			 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:92%;"
+			 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:90%;"
 		         showPager="true"
 		         dataField="list"
 		         sortMode="client"

@@ -399,7 +399,7 @@ body .mini-grid-row-selected{
     <div id="advancedSearchForm" class="form">
         <table style="width:100%;">
           <tr>
-                <td class="title">退货日期:</td>
+                <td class="title">订单日期:</td>
                 <td>
                     <input id="sOrderDate"
                            name="sCreateDate"
@@ -440,7 +440,7 @@ body .mini-grid-row-selected{
             </tr>
             <tr>
                 <td class="title">
-                    <span style="letter-spacing: 6px;">供应</span>商:
+                    <span style="letter-spacing: 6px;">客户</span>:
                 </td>
                 <td colspan="3">
                     <input id="advanceGuestId"
@@ -453,7 +453,7 @@ body .mini-grid-row-selected{
                 </td>
             </tr>
             <tr>
-                <td class="title">退货单号:</td>
+                <td class="title">预售单号:</td>
                 <td colspan="3">
                     <textarea class="nui-textarea" emptyText="" width="100%" style="height: 60px;" id="serviceIdList" name="serviceIdList"></textarea>
                 </td>

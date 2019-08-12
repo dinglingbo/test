@@ -309,11 +309,11 @@ $(document).ready(function(v)
         }
         if((keyCode==13))  { 
         	if(partShow==1){
-        		if(partIn==true){
-                	addSelectPart2();
+//        		if(partIn==true){
+//                	addSelectPart2();
                 	
-                }
-        		partIn=true;
+//                }
+//        		partIn=true;
         	}
             
             

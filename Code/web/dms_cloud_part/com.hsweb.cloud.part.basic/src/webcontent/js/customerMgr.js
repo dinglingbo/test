@@ -87,6 +87,8 @@ $(document).ready(function(v)
         settType:SETT_TYPE,//结算方式
         guestType:GUEST_TYPE //对象类型
     },function(){});
+    
+    onSearch();
 });
 function onSearch(){
     search();

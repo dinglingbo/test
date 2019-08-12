@@ -309,11 +309,11 @@ $(document).ready(function(v)
         }
         if((keyCode==13))  { 
         	if(partShow==1){
-        		if(partIn==true){
-                	addSelectPart2();
+//        		if(partIn==true){
+//                	addSelectPart2();
                 	
-                }
-        		partIn=true;
+//                }
+//        		partIn=true;
         	}
             
             
@@ -360,6 +360,10 @@ $(document).ready(function(v)
   	  nui.get('unAuditBtn').setVisible(false);
   	  getStoreLocation();
 //  	  getPart();
+    }
+    
+    if(currIsOpenApp !=1){
+    	nui.get('auditToOutBtn').setVisible(true);
     }
     
     rightGrid.on("preload",function(e){
@@ -3058,7 +3062,9 @@ function onMoreTabChanged(e){
     }
     
 }
-var auditToOutUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditSellOrderToOutTran.biz.ext";
+
+//直接出库，生成isDifferOrder =1数据
+var auditToOutUrl = baseUrl+"com.hsapi.cloud.part.invoicing.crud.auditPjPchsOrderRtn.biz.ext";
 function auditToOut()
 {
 
@@ -3079,6 +3085,10 @@ function auditToOut()
     var data = basicInfoForm.getData();
     var mainId = data.id;
 
+    var main = getMainData();
+
+    var sellOrderDetailList = rightGrid.getData();
+    
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
@@ -3090,6 +3100,8 @@ function auditToOut()
         type : "post",
         data : JSON.stringify({
             mainId : mainId,
+            main : main,
+            detail :sellOrderDetailList,
             token : token
         }),
         success : function(data) {
@@ -3097,7 +3109,7 @@ function auditToOut()
             data = data || {};
             if (data.errCode == "S") {
                 showMsg("出库成功!","S");
-                var newRow = {isOut: 1};
+                var newRow = {isOut: 1,billStatusId :2};
                 leftGrid.updateRow(row, newRow);
 
                 setBtnable(false);

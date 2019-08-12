@@ -87,11 +87,11 @@ pageEncoding="UTF-8" session="false"%>
                 <div property="columns">
                    <div type="checkcolumn" width="40" class="mini-radiobutton" header="选择"></div> 
                    <div type="indexcolumn" width="40" headerAlign="center">序号</div>
-                   <div allowSort="true" field="serviceId" name="serviceId" width="150" headerAlign="center" header="计划单号" summaryType="count"></div>
+                   <div allowSort="true" field="serviceId" name="serviceId" width="170" headerAlign="center" header="计划单号" summaryType="count"></div>
                    <div allowSort="true" field="guestFullName" name="guestFullName" width="160" headerAlign="center" header="供应商名称"></div>
                    <div allowSort="true" field="status" name="status" width="60" headerAlign="center" header="订单状态"></div>
                    <div allowSort="true" field="orderDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="120px" header="计划采购日期" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
-                   <div allowSort="true" field="auditor" name="auditor" width="90" headerAlign="center" header="计划员"></div>
+                   <div allowSort="true" field="auditor" name="auditor" width="70" headerAlign="center" header="计划员"></div>
                    <div allowSort="true" field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="120px" header="提交日期" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
                    <div allowSort="true" field="remark" visible="true"  name="remark" width="150" headerAlign="center" header="备注">
                    </div>
@@ -110,7 +110,7 @@ pageEncoding="UTF-8" session="false"%>
          sortMode="client" showPager="false"
         totalField="page.count" allowSortColumn="true"   allowCellSelect="true" 
         allowCellEdit="true"  multiSelect="false" allowCellWrap = true showSummaryRow="true"
-        frozenStartColumn="0" frozenEndColumn="0">
+        frozenStartColumn="" frozenEndColumn="">
         <div property="columns">
             <div allowSort="true" type="indexcolumn" headerAlign="center" width="30">序号</div> 
             

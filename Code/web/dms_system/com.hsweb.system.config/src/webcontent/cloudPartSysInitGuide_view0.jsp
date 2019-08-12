@@ -10,7 +10,7 @@
 -->
 <head>
     <title>用户导航</title>
-    <script src="<%= request.getContextPath() %>/config/js/cloudPartsysInitGuide.js?v=1.1.4"></script>
+    <script src="<%= request.getContextPath() %>/config/js/cloudPartsysInitGuide.js?v=1.1.7"></script>
     <style>
         .container {
             padding: 10px;
@@ -35,21 +35,76 @@
                     </div>
                 </td>
                 <td>
-                    <div class="mini-panel mini-panel-primary" title="配件分类" width="350px" showCollapseButton="false" showCloseButton="false">
-                        <br />建立配件存货的分类，便于以后按分类查找、统计
+                    <div class="mini-panel mini-panel-info" title="公司属性" width="350px" showCollapseButton="false" showCloseButton="false">
+                        <br />管理和维护门店信息
                         <br /><br />
-                        <div align="center"><a class="mini-button mini-button-success" onclick="toComPartTypeSet()" >设置配件分类</a></div>
+                        <div align="center"><a class="mini-button mini-button-success" onclick="toOrgSetSet()" >门店管理</a></div>
                     </div>
                 </td>
                 <td>
                     <div class="mini-panel mini-panel-success" title="配件资料" width="350px"showCollapseButton="false" showCloseButton="false">
                         <br />存货在商贸企业一般叫商品，是库存商品、在产品、原材料等生产经营资料的统称
                         <br /><br />
-                        <div align="center"><a class="mini-button mini-button-success" onclick="toComAttributeSet()">设置配件资料</a></div>
+                        <div align="center"><a class="mini-button mini-button-success" onclick="toComAttributeSet()">配件资料设置</a></div>
+                    </div>
+                </td>
+            </tr>
+           
+            <tr>
+            	 <td>	
+                    <div class="mini-panel mini-panel-info" title="销售提成设置" width="350px" showCollapseButton="false" showCloseButton="false">
+                        <br />设置提成角色，提成角色对应成员，提成成员对应的提成方式
+                        <br /><br />
+                        <div align="center"><a class="mini-button mini-button-success" onclick="toSellDeductSet()" >销售提成设置</a></div>
+                    </div>
+                </td>
+            	 <td>
+                    <div class="mini-panel mini-panel-danger" title="销价设置" width="350px" showCollapseButton="false" showCloseButton="false">
+                        <br />设置配件销售价格，指导开单销售价格
+                        <br /><br/>
+                        <div align="center"><a class="mini-button mini-button-success" onclick="toPartPriceSet()" >销价设置</a></div>
+                    </div>
+                </td>
+            	 <td>	
+                    <div class="mini-panel mini-panel-warning" title="配件提成" width="350px" showCollapseButton="false" showCloseButton="false">
+                        <br />设置配件提成，用于计算配件提成数据
+                        <br /><br />
+                        <div align="center"><a class="mini-button mini-button-success" onclick="toPartDeductSet()" >配件提成设置</a></div>
+                    </div>
+                </td>
+            </tr>
+           
+            <tr>
+                <td>
+                    <div class="mini-panel mini-panel-warning" title="配件品牌" width="350px" showCollapseButton="false" showCloseButton="false">
+                        <br />建立配件存货的品牌，便于以后按分类查找、统计
+                        <br /><br />
+                        <div align="center"><a class="mini-button mini-button-success" onclick="toPartBrandSet()" >配件品牌</a></div>
+                    </div>
+                </td>
+                <td>
+                    <div class="mini-panel mini-panel-primary" title="配件分类" width="350px" showCollapseButton="false" showCloseButton="false">
+                        <br />建立配件存货的分类，便于以后按分类查找、统计
+                        <br /><br />
+                        <div align="center"><a class="mini-button mini-button-success" onclick="toComPartTypeSet()" >配件分类设置</a></div>
+                    </div>
+                </td>
+                <td>
+                    <div class="mini-panel mini-panel-success" title="自定义分类设置" width="350px" showCollapseButton="false" showCloseButton="false">
+                        <br />自定义配件分类，用于配件属性扩展，便于数据查询及多维修报表分析
+                        <br /><br />
+                        <div align="center"><a class="mini-button mini-button-success" onclick="toFreeTypeSet()" >自定义分类设置</a></div>
                     </div>
                 </td>
             </tr>
             <tr>
+                <td>
+                    <div class="mini-panel mini-panel-info" title="备货级别设置" width="350px" showCollapseButton="false" showCloseButton="false">
+                        <br />设置备货级别，用于采购配件信息参考
+                        <br /><br />
+                        <div align="center"><a class="mini-button mini-button-success" onclick="toPartStockTypeSet()" >备货级别设置</a></div>
+                    </div>
+                </td>
                 <td>
                     <div class="mini-panel mini-panel-info" title="仓库设置" width="350px" showCollapseButton="false" showCloseButton="false">
                         <br />设置保管商品存货的实体仓库信息，也可以是零售门店或者废品虚拟仓库等
@@ -58,26 +113,21 @@
                     </div>
                 </td>
                 <td>
-                    <div class="mini-panel mini-panel-info" title="往来单位" width="350px" showCollapseButton="false" showCloseButton="false">
-                        <br />管理登记供应商与客户的资料，包括基本信息、联系人信息及其它信息，可导入
+                    <div class="mini-panel mini-panel-danger" title="结算账户" width="350px" showCollapseButton="false" showCloseButton="false">
+                        <br />设置经营活动中的各种结算账户，如现金、工行、建行、支付宝、微信等
                         <br /><br />
-                        <div align="center"><a class="mini-button mini-button-success" onclick="toComGuestSet()">设置往来单位</a></div>
+                        <div align="center"><a class="mini-button mini-button-success" onclick="toFiSettleAccountSet()">设置结算账户</a></div>
                     </div>
                 </td>
+                
+                
+            </tr>
+            <tr>
                 <td>
                     <div class="mini-panel mini-panel-warning" title="期初库存" width="350px" showCollapseButton="false" showCloseButton="false">
                         <br />设置系统启用之前各仓库商品存货的结存数量和成本
                         <br /><br />
                         <div align="center"><a class="mini-button mini-button-success" onclick="toPartStockSet()">设置期初库存</a></div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="mini-panel mini-panel-danger" title="结算账户" width="350px" showCollapseButton="false" showCloseButton="false">
-                        <br />设置经营活动中的各种结算账户，如现金、工行、建行、支付宝、微信等
-                        <br /><br />
-                        <div align="center"><a class="mini-button mini-button-success" onclick="toFiSettleAccountSet()">设置结算账户</a></div>
                     </div>
                 </td>
                 <td>
@@ -92,23 +142,6 @@
                         <br />设置系统启用之前供应商和客户的应收应付欠款余额
                         <br /><br />
                         <div align="center"><a class="mini-button mini-button-success" onclick="toRPBillSet()">设置期初应收应付</a></div>
-                    </div>
-                </td>
-            </tr>
-           
-            <tr>
-            	 <td>
-                    <div class="mini-panel mini-panel-info" title="配件提成" width="350px" showCollapseButton="false" showCloseButton="false">
-                        <br />设置配件提成，用于计算配件提成数据
-                        <br /><br />
-                        <div align="center"><a class="mini-button mini-button-success" onclick="toPartDeductSet()" >设置配件提成</a></div>
-                    </div>
-                </td>
-                <td>
-                    <div class="mini-panel mini-panel-info" title="公司属性" width="350px" showCollapseButton="false" showCloseButton="false">
-                        <br />设置系统公司属性
-                        <br /><br />
-                        <div align="center"><a class="mini-button mini-button-success" onclick="toOrgSetSet()" >设置公司属性</a></div>
                     </div>
                 </td>
             </tr>

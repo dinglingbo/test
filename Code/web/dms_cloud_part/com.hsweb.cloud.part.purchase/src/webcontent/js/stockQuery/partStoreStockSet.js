@@ -93,6 +93,7 @@ $(document).ready(function(v)
             onSearch();
         }
     });
+    onSearch();
 });
 function getSearchParam(){
 	var date =new Date();

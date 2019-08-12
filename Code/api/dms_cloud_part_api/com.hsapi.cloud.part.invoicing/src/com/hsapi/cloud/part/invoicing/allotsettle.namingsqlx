@@ -1677,8 +1677,8 @@
 		set is_allot_finished = case when has_cancel_qty + #adjQty# + has_accept_qty >= apply_qty then 1 else 0 end,
 		    allot_finished_date = case when has_cancel_qty + #adjQty# + has_accept_qty >= apply_qty then sysdate() else null end,
 		    has_cancel_qty = has_cancel_qty + #adjQty#,
-		    b.is_finished = case when has_in_qty + has_cancel_qty = apply_qty then 1 else 0 end,
-		    b.finish_date = case when has_in_qty + has_cancel_qty = apply_qty then SYSDATE() else NULL end
+		    is_finished = case when has_in_qty + has_cancel_qty = apply_qty then 1 else 0 end,
+		    finish_date = case when has_in_qty + has_cancel_qty = apply_qty then SYSDATE() else NULL end
 		where main_id = #mainId# and id = #detailId#
 	</update>
 

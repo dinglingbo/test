@@ -263,11 +263,11 @@ $(document).ready(function(v)
         }
         if((keyCode==13))  { 
         	if(partShow==1){
-        		if(partIn==true){
-                	addSelectPart2();
-                	
-                }
-        		partIn=true;
+//        		if(partIn==true){
+//                	addSelectPart2();
+//                	
+//                }
+//        		partIn=true;
         	}
             
             
@@ -304,6 +304,13 @@ $(document).ready(function(v)
 
                 nui.unmask();
             });
+            
+            if(currIsCommission ==1){
+            	nui.get('chooseMemBtn').setVisible(true);
+            }
+            
+           
+            
         });
     });
     
@@ -3135,3 +3142,39 @@ function partChange(){
 	}
 	
 }
+
+function chooseMember(){
+	  var row = leftGrid.getSelected();
+	    if(row){
+	    	if(row.auditSign ==1){
+	    		showMsg("单据已审核,不能修改");
+	    		return;
+	    	}
+	        if(row.id) {
+	            nui.open({
+	                // targetWindow: window,
+	                url: webBaseUrl+"com.hsweb.cloud.part.basic.selectMember.flow?token="+token,
+	                title: "选择提成成员", 
+	                width: 880, height: 650,
+	                showHeader:true,
+	                allowDrag:true,
+	                allowResize:true,
+	                onload: function ()
+	                {
+	                    var iframe = this.getIFrameEl();
+	                    iframe.contentWindow.setData(row.id);
+	                },
+	                ondestroy: function (action)
+	                {
+
+	                }
+	            });
+	        }else{
+	            showMsg("请先选择订单!","W");
+	            return;
+	        }
+	    }else{
+	        return;
+	    }
+}
+

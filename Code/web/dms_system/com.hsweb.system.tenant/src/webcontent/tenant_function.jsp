@@ -14,7 +14,7 @@
 <script>
 	(function(){
 		nui.context='<%=contextPath %>'
-	})();
+	})(); 
 	
 	var data={};
 	nui.DataTree.prototype.dataField='data';//兼容改造
@@ -59,7 +59,8 @@
 	</div>
 	<div showcollapsebutton="true">
 		<div class="nui-toolbar"  >
-			<input class="nui-textbox" id="tenantId" name="tenantId" width="50" emptyText="租户ID">
+			<input class="nui-textbox" id="tenantId" name="tenantId" width="100" emptyText="租户ID">
+			<input class="nui-textbox" id="resId" name="resId" width="150" emptyText="资源ID">
 			<a class="nui-button" plain="true" onclick="refresh()"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
 			<a class="nui-button" plain="true" onclick="deleteMenu()"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
 			<a class="nui-button" plain="true" onclick="saveMenu()"><i class="fa fa-save"></i>&nbsp;保存</a>
@@ -71,12 +72,14 @@
 				 idField="roleId" allowResize="true"
 				 showPager="false" 
 				 dataField="list"
+				 multiSelect="true"
 				 allowCellSelect="true"
 				 allowCellEdit="true"
 				 showSummaryRow="true"
 				 showPagerButtonIcon="true" >
 				
 				<div property="columns">
+                    <div type="checkcolumn" width="40" ></div> 
 					<div type="indexcolumn" name="index" width="30px" headeralign="center" >  <strong>序号</strong></div>
 					<div field="id" width="50" headeralign="left" summaryType="count"><strong>id</strong><input property="editor" class="nui-textbox" /></div>
 					<div field="tenantId" width="50" headeralign="left" ><strong>tenant_id</strong><input property="editor" class="nui-textbox" /></div>
@@ -109,13 +112,14 @@
 
 	function refresh(){
 		var tenantId = nui.get("tenantId").getValue()||0;
-		rightGrid.load({tenantId:tenantId,token:token});
+		var resId = nui.get("resId").getValue()||"";
+		rightGrid.load({tenantId:tenantId,resId:resId,token:token});
 	}
 
 	function deleteMenu(){
-		var row = rightGrid.getSelected();
-		if(row){
-			rightGrid.removeRow(row);
+		var rows = rightGrid.getSelecteds();
+		if(rows){
+			rightGrid.removeRows(rows);
 		}
 	}
 

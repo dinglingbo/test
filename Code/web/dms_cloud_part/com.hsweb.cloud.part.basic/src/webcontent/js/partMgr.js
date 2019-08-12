@@ -318,13 +318,13 @@ function editPart(){
 	var row = {};
 	if(index==0){
 		row = partLoalGrid.getSelected();
+		//本地可修改
+		addOrEditPart(row);
 	}else {
+		//云配件不可修改
 		row = partGrid.getSelected();
+		return;
 	}
-    if(row && row.orgid == currOrgid)
-    {
-        addOrEditPart(row);
-    }
 
 }
 function onPartGridRowDblClick(){

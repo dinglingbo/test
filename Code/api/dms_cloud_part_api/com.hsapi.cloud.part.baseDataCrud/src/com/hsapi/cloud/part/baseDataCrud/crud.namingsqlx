@@ -557,6 +557,7 @@
 		       a.is_disabled isDisabled,
 		       a.is_host isHost,
 		       a.orgid orgid,
+		       a.tenant_id tenantId,
 		       a.common_id as commonId,
 		       a.remark as remark,
 		       a.cang_part_id as cangPartId,
@@ -570,7 +571,7 @@
                 (a.orgid = #orgid#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="tenantId">  
-                (a.tenant_id = #tenantId#  or a.orgid = 0)
+                (a.tenant_id = #tenantId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="orgids">  
                 (a.orgid = #orgids# or a.orgid = 0)

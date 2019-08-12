@@ -213,7 +213,7 @@ function doSearch(params)
         params:params,
         token: token
     });
-	
+	rightGrid.clearRows();
     
 }
 

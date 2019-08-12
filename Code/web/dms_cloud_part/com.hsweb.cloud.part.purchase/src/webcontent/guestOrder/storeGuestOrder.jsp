@@ -13,7 +13,7 @@
 <head>
 <title>预销售单受理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchase/js/guestOrder/storeGuestOrder.js?v=1.0.109"></script>
+    <script src="<%=webPath + contextPath%>/purchase/js/guestOrder/storeGuestOrder.js?v=1.0.0"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -76,6 +76,7 @@
 		         multiSelect="false"				
 				 totalField="page.count"
 		         pageSize="50"
+		         selectOnLoad="true"
 		         onselectionchanged="onMainGridSelectionChanged"
 		         sizeList="[50,100,200]">
 		        <div property="columns">

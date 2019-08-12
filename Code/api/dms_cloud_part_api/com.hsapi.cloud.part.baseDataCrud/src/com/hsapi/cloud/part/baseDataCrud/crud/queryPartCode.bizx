@@ -200,6 +200,7 @@
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>subprocess2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
     <location x="180" y="240"/>
@@ -232,8 +233,8 @@
       <sourceNode>assign4</sourceNode>
       <targetNode>assign3</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
-          <process:leftOperand type="query">agencyId</process:leftOperand>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">isOpenApp</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -245,6 +246,10 @@
     <process:copy>
       <process:from type="query" pattern="value">m:userObject/attributes/agencyId</process:from>
       <process:to type="query">agencyId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/attributes/isOpenApp</process:from>
+      <process:to type="query">isOpenApp</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">

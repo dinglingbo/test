@@ -98,7 +98,9 @@ $(document).ready(function(v)
 
     var dictDefs ={"billTypeId":"DDT20130703000008", "settleTypeId":"DDT20130703000035"};
     
-    
+//    if(currIsCommission ==1){
+//    	nui.get('chooseMemBtn').setVisible(true);
+//    }
     initDicts(dictDefs, function(){
         getStorehouse(function(data)
         {
@@ -215,6 +217,12 @@ function loadMainAndDetailInfo(row)
             setBtnable(true);
             document.getElementById("basicInfoForm").disabled=false;
             setEditable(true);
+       }
+       
+       if(row.status == 2) {
+    	   nui.get('finishSellBtn').enable();
+       } else {
+    	   nui.get('finishSellBtn').disable();
        }
         
        //序列化入库主表信息，保存时判断主表信息有没有修改，没有修改则不需要保存
@@ -421,7 +429,7 @@ function setBtnable(flag)
 {
     if(flag)
     {
-        //nui.get("unAuditBtn").disable();
+        nui.get("importPartBtn").disable();
         nui.get("auditBtn").enable();
         nui.get("saveBtn").enable();
         //nui.get("auditToOutBtn").disable();
@@ -429,18 +437,19 @@ function setBtnable(flag)
     }
     else
     {
-        //nui.get("unAuditBtn").enable();
+        nui.get("importPartBtn").enable();
         nui.get("auditBtn").disable();
         //nui.get("auditToOutBtn").enable();
         nui.get("saveBtn").disable();
     }
 }
 var requiredField = {
-    guestId : "供应商",
+    guestId : "客户",
     orderMan : "业务员",
     orderDate : "订单日期",
     billTypeId : "票据类型",
-    settleTypeId : "结算方式"
+    settleTypeId : "结算方式",
+    storeId : "仓库"
 };
 var saveUrl = baseUrl + "com.hsapi.cloud.part.invoicing.guestOrder.saveGuestOrder.biz.ext";
 function save() {
@@ -1472,7 +1481,7 @@ function addInsertRow(value, row) {
 	value=value.replace(/\s+/g, "");
     var guestId = nui.get("guestId").getValue();
     if(!guestId) {
-        showMsg("请先选择供应商再添加配件!","W");
+        showMsg("请先选择客户再添加配件!","W");
         return;
     }
     var params = {partCode:value};
@@ -1698,7 +1707,7 @@ function setGuestInfo(params)
 function addSelectPart(){
     var guestId = nui.get("guestId").getValue();
     if(!guestId) {
-        showMsg("请先选择供应商再添加配件!","W");
+        showMsg("请先选择客户再添加配件!","W");
         return;
     }
     var row = morePartGrid.getSelected();
@@ -1874,7 +1883,7 @@ function addPart() {
 
     var guestId = nui.get("guestId").getValue();
     if(!guestId) {
-        showMsg("请选择供应商!","W");
+        showMsg("请选择客户!","W");
         return;
     }
 
@@ -1948,7 +1957,7 @@ function selectSupplier(elId) {
     nui.open({
         // targetWindow: window,,
         url : webPath+contextPath+"/com.hsweb.cloud.part.common.guestSelect.flow?token="+token,
-        title : "供应商资料",
+        title : "往来单位资料",
         width : 980,
         height : 560,
         allowDrag : true,
@@ -1956,8 +1965,8 @@ function selectSupplier(elId) {
         onload : function() {
             var iframe = this.getIFrameEl();
             var params = {
-                isSupplier: 1,
-                guestType:'01020202'
+                isClient: 1
+//                guestType:'01020202'
             };
             iframe.contentWindow.setGuestData(params);
         },
@@ -2242,3 +2251,39 @@ function setInitExportData(main, detail){
     var serviceId = main.serviceId?main.serviceId:"";
     method5('tableExcel',"预销售单"+serviceId,'tableExportA');
 }
+
+function chooseMember(){
+	  var row = leftGrid.getSelected();
+	    if(row){
+	    	if(row.auditSign ==1){
+	    		showMsg("单据已审核,不能修改");
+	    		return;
+	    	}
+	        if(row.id) {
+	            nui.open({
+	                // targetWindow: window,
+	                url: webBaseUrl+"com.hsweb.cloud.part.basic.selectMember.flow?token="+token,
+	                title: "选择提成成员", 
+	                width: 880, height: 650,
+	                showHeader:true,
+	                allowDrag:true,
+	                allowResize:true,
+	                onload: function ()
+	                {
+	                    var iframe = this.getIFrameEl();
+	                    iframe.contentWindow.setData(row.id);
+	                },
+	                ondestroy: function (action)
+	                {
+
+	                }
+	            });
+	        }else{
+	            showMsg("请先选择订单!","W");
+	            return;
+	        }
+	    }else{
+	        return;
+	    }
+}
+

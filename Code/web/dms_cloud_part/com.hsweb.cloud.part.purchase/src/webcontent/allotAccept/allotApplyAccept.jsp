@@ -132,8 +132,8 @@
                             <div field="fullName"  width="200" headerAlign="center" header="配件全称"></div>
                             <div field="systemUnitId" name="comUnit" width="40" headerAlign="center" header="单位"></div>
 				            <div field="applyQty" name="applyQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="申请数量"></div>
-                            <div field="hasAcceptQty" name="hasAcceptQty" numberFormat="0.0000" width="50" headerAlign="center" header="已受理数量"></div>
-                            <div field="hasCancelQty" summaryType="sum" numberFormat="0.0000" width="50" headerAlign="center" header="已拒绝数量"> </div>
+                            <div field="hasAcceptQty" summaryType="sum" name="hasAcceptQty" numberFormat="0.0000" width="50" headerAlign="center" header="已受理数量"></div>
+                            <div field="hasCancelQty" summaryType="sum" numberFormat="0.0000" width="50" headerAlign="center" header="已取消数量"> </div>
                             <div field="remark" width="200" headerAlign="center" allowSort="true" header="备注"></div>
 				            
 				        </div>

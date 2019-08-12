@@ -123,9 +123,8 @@ function onOk()
     data.isClient = nui.get("isClient").getValue();
     data.isSupplier = nui.get("isSupplier").getValue();
     data.isDisabled = nui.get("isDisabled").getValue();
-    data.isInternal = nui.get("isInternal").getValue();
     data.mobile=nui.get('mobile').getValue().replace(/\s+/g, "");
-    
+  
     
     if(data.isInternal == 1)
     {
@@ -167,6 +166,14 @@ function onOk()
         data.modifyDate = format(data.modifyDate, 'yyyy-MM-dd HH:mm:ss');
     }
 
+    if(!data.contactor){
+    	data.contactor=data.manager 
+    }
+
+    if(!data.contactorTel){
+    	data.contactorTel=data.mobile
+    }
+    
     nui.mask({
         el : document.body,
         cls : 'mini-mask-loading',

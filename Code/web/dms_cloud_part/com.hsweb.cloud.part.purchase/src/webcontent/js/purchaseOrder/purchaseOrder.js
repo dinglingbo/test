@@ -613,7 +613,10 @@ function loadMainAndDetailInfo(row) {
 		basicInfoForm.setData(row);
 		var billStatusId=row.billStatusId;
 		$('#status').text(StatusHash[billStatusId]);
-		
+		//预售单
+		if(row.sourceType==5){
+			$('#sourceServiceId').text("往来单单号:"+row.code);
+		}
 		//bottomInfoForm.setData(row);
 		nui.get("guestId").setText(row.guestFullName);
 
@@ -629,17 +632,21 @@ function loadMainAndDetailInfo(row) {
 		}
 		//预售单转的单
 		if(row.sourceType ==5){
-			nui.get("guestId").disable();
+			//nui.get("guestId").disable();
 			nui.get("directOrgid").disable();
+			//nui.get("selectSupplierBtn").disable();
 		}else{
-			nui.get("guestId").enable();
+			//nui.get("guestId").enable();
 			nui.get("directOrgid").enable();
+			//nui.get("selectSupplierBtn").enable();
 		}		
 		//计划采购单转的单
 		if(row.sourceType ==6){
 			nui.get("guestId").disable();
+			nui.get("selectSupplierBtn").disable();
 		}else{
 			nui.get("guestId").enable();
+			nui.get("selectSupplierBtn").enable();
 		}
 		// 序列化入库主表信息，保存时判断主表信息有没有修改，没有修改则不需要保存
 		var data = basicInfoForm.getData();
@@ -1092,6 +1099,7 @@ function add() {
 	
 	nui.get("guestId").enable();
 	nui.get("directOrgid").enable();
+	nui.get("selectSupplierBtn").enable();
 	
 	var formJsonThis = nui.encode(basicInfoForm.getData());
 	var len = rightGrid.getData().length;
@@ -1225,7 +1233,8 @@ var requiredField = {
 	orderMan : "采购员",
 	orderDate : "订货日期",
 	billTypeId : "票据类型",
-	settleTypeId : "结算方式"
+	settleTypeId : "结算方式",
+	orderType:"订单类型"
 };
 
 var savePriceUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveUpdatePrice.biz.ext";
@@ -1388,6 +1397,12 @@ function save() {
 }
 var supplier = null;
 function selectSupplier(elId) {
+	var data =basicInfoForm.getData();
+	if(data.sourceType == 6) {
+		showMsg("不能修改供应商","W");
+		return;
+	}
+	
 	supplier = null;
 	nui.open({
 		// targetWindow: window,,
@@ -2021,10 +2036,10 @@ function deletePart() {
 	    }
 	    
 	  //计划采购单
-	    if(row.sourceType == 6){
+	    /*if(row.sourceType == 6){
 	        showMsg("计划采购单生成的采购订单不能删除明细！","W");
 	        return;
-	    }
+	    }*/
 	}
 
 	var part = rightGrid.getSelected();

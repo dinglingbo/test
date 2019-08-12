@@ -68,7 +68,7 @@ function onCancel() {
 
  function setHotWord(){
 	var hotUrl = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryDict.biz.ext";
-	var dictids = ["10181"];
+	var dictids = ["10441","10442"];
 	nui.ajax({
 		url : hotUrl,
 		type : "post",

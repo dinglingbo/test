@@ -165,6 +165,14 @@ function loadMainAndDetailInfo(row)
         //grid_details.clearRows();
    }
 }
+function onLeftGridBeforeDeselect(e)
+{
+    var row = leftGrid.getSelected(); 
+    if(row.serviceId == '新调拨申请'){
+
+        leftGrid.removeRow(row);
+    }
+}
 function onLeftGridSelectionChanged(){    
    var row = leftGrid.getSelected(); 
    

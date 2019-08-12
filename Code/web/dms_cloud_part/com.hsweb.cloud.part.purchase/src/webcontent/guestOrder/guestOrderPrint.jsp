@@ -80,7 +80,7 @@ table#ybk td{
 	text-align:right;
 }
 #sumOrderAmt{
-	padding-left:65px;
+	padding-left:95px;
 	width:20%;
 }
  #currOrgName{
@@ -499,13 +499,13 @@ hr {
 									.replace("[comPartCode]",data[i].comPartCode ||"")
 									.replace("[comOemCode]",data[i].comOemCode ||"")
 									.replace("[comPartName]",data[i].comPartName ||"")
-									.replace("[comPartBrindId]",data[i].comPartName || "")
+									.replace("[comPartBrindId]",data[i].comPartBrandId?brandHash[data[i].comPartBrandId].name :"")
 									.replace("[comApplyCarModel]",data[i].comApplyCarModel ||"")
 									.replace("[comSpec]",data[i].comSpec ||"")
 									.replace("[comUnit]",data[i].comUnit ||"")
 									.replace("[orderQty]",data[i].orderQty ||"")
 									.replace("[orderPrice]",data[i].orderPrice ||"")
-									.replace("[orderAmt]",data[i].showAmt ||"")
+									.replace("[orderAmt]",data[i].orderAmt ||"")
 									.replace("[remark]",data[i].remark ||""));
 							tBody.append(tr);
 							sumOrderQty +=parseFloat(data[i].orderQty);

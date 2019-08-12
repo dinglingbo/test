@@ -9,7 +9,7 @@
 -->
 <head>
     <title>配件管理</title>
-    <script src="<%=webPath + contextPath%>/basic/js/partMgr.js?v=1.0.55"></script>
+    <script src="<%=webPath + contextPath%>/basic/js/partMgr.js?v=1.0.69"></script>
     <style type="text/css">
     </style>
 </head>
@@ -98,7 +98,7 @@
                                                 <div allowSort="true" field="name" name="name" width="120" headerAlign="center" allowSort="true">名称</div>
                                                 <div allowSort="true" field="fullName" name="fullName" width="280" headerAlign="center" allowSort="true">全称</div>
                                                 <div allowSort="true" field="oemCode" name="oemCode" width="100" headerAlign="center" allowSort="true">OE码</div>
-                                                <div allowSort="true" field="origin" name="origin" width="100" headerAlign="center" allowSort="true">规格</div>
+                                                <div allowSort="true" field="origin" name="origin" width="100" headerAlign="center" allowSort="true">产地</div>
                                                 <div allowSort="true" field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
                                             </div>
                                         </div>

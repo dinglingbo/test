@@ -191,6 +191,14 @@ function loadMainAndDetailInfo(row)
         //grid_details.clearRows();
    }
 }
+function onLeftGridBeforeDeselect(e)
+{
+    var row = leftGrid.getSelected(); 
+    if(row.serviceId == '新调入退回'){
+
+        leftGrid.removeRow(row);
+    }
+}
 function onLeftGridSelectionChanged(){    
    var row = leftGrid.getSelected(); 
    

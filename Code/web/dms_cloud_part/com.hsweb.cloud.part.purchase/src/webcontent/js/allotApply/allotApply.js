@@ -187,6 +187,14 @@ function loadMainAndDetailInfo(row)
         //grid_details.clearRows();
    }
 }
+function onLeftGridBeforeDeselect(e)
+{
+    var row = leftGrid.getSelected(); 
+    if(row.serviceId == '新调拨申请'){
+
+        leftGrid.removeRow(row);
+    }
+}
 function onLeftGridSelectionChanged(){    
    var row = leftGrid.getSelected(); 
    
@@ -831,7 +839,7 @@ function onPrint(){
             mainId :from.id,
             auditSign:from.auditSign
     };
-    var openUrl = webPath + contextPath+"/purchase/allotApply/allotApplyPrint.jsp";
+    var openUrl = webPath + contextPath+"/purchase/allotPrint/allotApplyPrint.jsp";
 
     nui.open({
        url: openUrl,
@@ -1627,8 +1635,8 @@ function adjustPart(){
             showMsg("此单未提交,不能调整!","W");
             return;
         } 
-        if(row.status == 2) {
-            showMsg("此单已全部转订单,不能调整!","W");
+        if(row.status == 3) {
+            showMsg("此单已全部受理,不能调整!","W");
             return; 
         }
 

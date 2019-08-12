@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%=webPath + contextPath%>/basic/js/supplierDetail.js?v=1.1.9"></script>
+<script src="<%=webPath + contextPath%>/basic/js/supplierDetail.js?v=1.1.14"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -104,9 +104,8 @@
                   <!-- <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>基本信息</span></div> -->
                   <div class="vpanel_body vpanel_bodyww">
                       <input id="id" name="id" width="100%" class="nui-hidden" >
-                      <input id="orgid" name="orgid" width="100%" class="nui-hidden" ><!-- 
                       <input id="recordDate" name="recordDate" width="100%" class="nui-hidden" >
-                      <input id="recorder" name="recorder" width="100%" class="nui-hidden" > -->
+                      <input id="recorder" name="recorder" width="100%" class="nui-hidden" > 
                       <input id="modifier" name="modifier" width="100%" class="nui-hidden" >
                       <input id="modifyDate" name="modifyDate" width="100%" class="nui-hidden" >
                       <table class="tmargin">
@@ -122,11 +121,11 @@
                                   <input name="fullName"
                                  id="fullName"
                                  class="nui-textbox" width="100%"/>
-                                  <input name="fullName1" class="nui-buttonedit width3" width="100%"
+                                  <input name="fullName1" class="nui-textbox width3" width="100%"
                                          id="fullName1"
                                          emptyText="请选择公司..."
-                                         allowInput="false"
-                                         onbuttonclick="selectOrg('fullName1','code')" selectOnFocus="true"
+                                         allowInput="true"
+                                         selectOnFocus="true"
                                          visible="false"/>
                               </td>
                           </tr>
@@ -164,7 +163,7 @@
                               <td class=" right fwidthb required">联系人:</td>
                               <td ><input id="manager" name="manager" width="100%" class="nui-textbox" ></td>
                               <td class=" right fwidthb required">选择手机/固定电话:</td>
-                              <td ><input id="mobile" name="mobile" width="100%" vtype="int" class="nui-textbox" ></td>
+                              <td ><input id="mobile" name="mobile" width="100%" vtype="" class="nui-textbox" ></td>
                           </tr>
                           <tr class="htr">
                               <td class=" right fwidtha required">省份:</td>
@@ -187,7 +186,7 @@
                               <td class=" right fwidthb">业务员:</td>
                               <td ><input id="contactor" name="contactor" width="100%" class="nui-textbox" ></td>
                               <td class=" right fwidtha">业务员手机:</td>
-                              <td ><input id="contactorTel" name="contactorTel" width="100%" class="nui-textbox" vtype="int" ></td>
+                              <td ><input id="contactorTel" name="contactorTel" width="100%" class="nui-textbox" vtype="" ></td>
                           </tr>
                          
                           <tr class="htr">

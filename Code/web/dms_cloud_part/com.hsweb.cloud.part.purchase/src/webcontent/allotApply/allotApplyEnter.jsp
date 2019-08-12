@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调拨入库</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotApplyEnter.js?v=1.0.3"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotApplyEnter.js?v=1.0.4"></script>
 <style type="text/css">
 .title {
   width: 70px;
@@ -113,7 +113,7 @@ body .mini-grid-row-selected{
                      ondrawcell="onLeftGridDrawCell"
                      onrowdblclick=""
                      onselectionchanged="onLeftGridSelectionChanged"
-                     onbeforedeselect=""
+                     onbeforedeselect="onLeftGridBeforeDeselect"
                      dataField="pjAllotApplyMainList"
                      url="">
                     <div property="columns">

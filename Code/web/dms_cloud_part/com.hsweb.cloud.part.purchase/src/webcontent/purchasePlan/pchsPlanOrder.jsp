@@ -9,7 +9,7 @@
 -->
 <head>
 <title>计划采购</title>
-<script src="<%=webPath + contextPath%>/purchase/js/purchasePlan/pchsPlanOrder.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/purchasePlan/pchsPlanOrder.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
 	width: 70px;

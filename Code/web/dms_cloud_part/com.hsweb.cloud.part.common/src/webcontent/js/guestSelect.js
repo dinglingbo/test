@@ -170,6 +170,9 @@ function setGuestData(data){
         if(data.isInternal) {
         	isInternal = data.isInternal;
         }
+        if(data.isInternal===0) {
+        	isInternal = data.isInternal;
+        }
 
     }
 

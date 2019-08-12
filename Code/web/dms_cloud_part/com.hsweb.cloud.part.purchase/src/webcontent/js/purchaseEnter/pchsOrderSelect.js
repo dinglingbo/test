@@ -50,7 +50,6 @@ var accountSignHash = {
     "1":"已审核"
 };
 var billStatusIdList = [
-    {id:0,name:"草稿"},
     {id:1,name:"待发货"},
     {id:2,name:"待收货"},
     {id:3,name:"部分入库"},
@@ -134,7 +133,7 @@ $(document).ready(function(v)
 
 });
 function setInitData(params){
-    billStatusIdEl.setValue(2);
+    billStatusIdEl.setValue(1);
     comSearchGuestId.setValue(params.guestId);
     comSearchGuestId.setText(params.guestName);
     var tabs = mainTabs.getTabs();
@@ -187,7 +186,7 @@ function doSearch(params)
     if(tab.name == "pchsOrderTab"){
         params.sortField = "a.audit_date";
         params.sortOrder = "desc";
-        params.notFinished = 0;
+//        params.notFinished = 0;
         params.orderTypeId = 1;
         rightGrid.load({
             params:params,
@@ -355,7 +354,6 @@ function ontopTabChanged(e){
             "6":"已关闭"
         };
         billStatusIdList = [
-            {id:0,name:"草稿"},
             {id:1,name:"待发货"},
             {id:2,name:"待收货"},
             {id:3,name:"部分入库"},
@@ -426,6 +424,14 @@ function onOk()
 
     if(name == "pchsOrderTab"){
         var node = rightGrid.getSelected();
+        if(!node){
+        	showMsg("请选择一条单据","W");
+        	return;
+        }
+        if(node.billStatusId ==4){
+        	showMsg("此单已入库,不能选入","W");
+        	return;
+        }
         if(node)
         {
         

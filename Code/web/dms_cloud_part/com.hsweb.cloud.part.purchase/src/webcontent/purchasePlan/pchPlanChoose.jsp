@@ -118,8 +118,8 @@ pageEncoding="UTF-8" session="false"%>
             <div field="partName" name="fullName" headerAlign="center" allowSort="true" visible="true" width="150" header="配件全称"></div>
             <div field="orderQty" headerAlign="center" allowSort="true" visible="true" width="50" summaryType="sum" header="计划采购数量"></div>
             <div field="adjustQty" headerAlign="center" allowSort="true" visible="true" width="50" summaryType="sum" header="调整数量"></div>
-            <div field="trueEnterQty" headerAlign="center" allowSort="true" visible="true" width="50" summaryType="sum" header="已入库数量"></div>
-            <div field="notEnterQty" headerAlign="center" allowSort="true" visible="true" width="50" summaryType="sum" header="未入库数量"></div>
+            <div field="trueEnterQty" headerAlign="center" allowSort="true" visible="true" width="50" summaryType="sum" header="已转订单数量"></div>
+            <div field="notEnterQty" headerAlign="center" allowSort="true" visible="true" width="50" summaryType="sum" header="未转订单数量"></div>
             <div field="remark" id="remark" name="remark" headerAlign="center" allowSort="true" visible="true" width="200" header="备注"></div>
            
        </div>

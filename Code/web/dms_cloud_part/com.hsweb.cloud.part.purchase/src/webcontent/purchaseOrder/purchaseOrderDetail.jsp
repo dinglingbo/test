@@ -86,6 +86,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="adjustOrderQty()" id="exportBtn"><span class="fa fa-adjust fa-lg"></span>&nbsp;订单数量调整</a>
 <!--                 <a class="nui-button" iconCls="" plain="true" onclick="loadPartPrice()" id="exportBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;设置价格</a> -->
                 <span id="status"></span>
+                <span id="sourceServiceId"></span>
             </td>
         </tr>
     </table>
@@ -147,6 +148,7 @@
                           <input class="nui-hidden" name="orderAmt" id="orderAmt"/>
                           <input class="nui-hidden" name="auditSign" id="auditSign"/>
                           <input class="nui-hidden" name="billStatusId" id="billStatusId"/>
+                          <input class="nui-hidden" name="sourceType" id="sourceType"/>
                           <input class="nui-textbox" visible="false" width="100%" id="isInner" name="isInner"/>
                           <input class="nui-hidden" name="sourceType" id="sourceType"/>
                           <table style="width: 100%;">
@@ -170,7 +172,7 @@
                                              width="80%"
                                              placeholder="请选择供应商"
                                              selectOnFocus="true" />
-                                      <a class="nui-button" iconCls="" plain="false" onclick="selectSupplier('guestId')" id="addBtn"><span class="fa fa-check fa-lg"></span></a>
+                                      <a class="nui-button" iconCls="" plain="false" onclick="selectSupplier('guestId')" id="selectSupplierBtn"><span class="fa fa-check fa-lg"></span></a>
 <!--                                       <input id="btnEdit1" width="8.2%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/> -->
                                        <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn"><span class="fa fa-plus fa-lg"></span></a>
                                   </td>

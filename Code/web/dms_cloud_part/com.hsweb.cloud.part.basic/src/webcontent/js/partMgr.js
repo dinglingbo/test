@@ -300,7 +300,7 @@ function doSearch(params)
             params:params
         });  
     }else if(tab.name == "local"){
-        params.orgid = currOrgId;
+        params.tenantId = currTenantId;
         partLoalGrid.load({
             params:params,
             token:token
@@ -336,7 +336,7 @@ function addOrEditPart(row)
         // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.cloud.part.basic.partDetail.flow?token=" + token,
         title: "配件资料",
-        width: 470, height: 370,
+        width: 470, height: 420,
         allowDrag:true,
         allowResize:false,
         onload: function ()
@@ -402,7 +402,7 @@ function disablePart()
         showMsg("请选择要禁用的配件","W");
         return;
     }
-    if(currAgencyId>0 || currIsOpenApp ==1){
+    if(currAgencyId>0 && currIsOpenApp ==1){
     	cangHash.agency_id = currAgencyId;
     	cangHash.part_id = row.cangPartId;
     	cangHash.status =0;
@@ -424,7 +424,7 @@ function enablePart()
         showMsg("请选择要启用的配件","W");
         return;
     }
-    if(currAgencyId>0 || currIsOpenApp ==1){
+    if(currAgencyId>0 && currIsOpenApp ==1){
     	cangHash.agency_id = currAgencyId;
     	cangHash.part_id = row.cangPartId;
     	cangHash.status =1;

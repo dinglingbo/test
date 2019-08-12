@@ -446,6 +446,7 @@
     
     <select id="queryGuestList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.com.ComGuest">
     	SELECT a.orgid,
+    	     a.tenant_id tenantId,
 			 a.short_name shortName,
 			 a.full_name fullName,
 			 a.code      code,
@@ -501,6 +502,10 @@
     		<isNotEmpty prepend="and" property="guestId">  
                 (id = #guestId#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="isInternal">  
+                (is_internal = #isInternal#)
+            </isNotEmpty>
+            
     		<isNotEmpty prepend="and" property="code">  
                 (code like '%$code$%')
             </isNotEmpty>

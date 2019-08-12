@@ -9,7 +9,7 @@
 -->
 <head>
 <title>总部应收应付结算</title>
-<script src="<%=webPath + contextPath%>/settlement/js/hqRpAccountSettle.js?v=2.3.112"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/hqRpAccountSettle.js?v=1.0.2"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -334,7 +334,7 @@
 
 <!-- <div id="editFormPchsEnterDetail" style="display:none;"> -->
 <div id="pchsEnterWin" class="nui-window"
-     title="入库明细" style="width:900px;height:500px;"
+     title="采购入库明细" style="width:900px;height:500px;"
      showModal="true"
      allowResize="true"
      allowDrag="true">
@@ -395,7 +395,7 @@
 
 <!-- <div id="editFormPchsRtnDetail" style="display:none;"> -->
 <div id="pchsRtnWin" class="nui-window"
-     title="采购入库明细" style="width:900px;height:500px;"
+     title="采购出库明细" style="width:900px;height:500px;"
      showModal="true"
      allowResize="false"
      allowDrag="true">
@@ -426,13 +426,13 @@
 
 <!-- <div id="editFormSellOutDetail" style="display:none;"> -->
 <div id="sellOutWin" class="nui-window"
-     title="采购入库明细" style="width:900px;height:500px;"
+     title="销售库明细" style="width:900px;height:500px;"
      showModal="true"
      allowResize="false"
      allowDrag="true">
     <div id="innerSellOutGrid" class="nui-datagrid" style="width:100%;height:100%;"
          showPager="false"
-         dataField="pjSellOutDetailList"
+         dataField="pjSellOrderDetailList"
          idField="detailId"
          ondrawcell="onDrawCell"
          sortMode="client"
@@ -447,9 +447,9 @@
             <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
             <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
             <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
-            <div allowSort="true" datatype="float" field="sellQty" summaryType="sum" width="60" headerAlign="center" header="销售数量"></div>
-            <div allowSort="true" datatype="float" field="sellPrice" width="60" headerAlign="center" header="销售单价"></div>
-            <div allowSort="true" datatype="float" field="sellAmt" summaryType="sum" width="60" headerAlign="center" header="销售金额"></div>
+            <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="销售数量"></div>
+            <div allowSort="true" datatype="float" field="showPrice" width="60" headerAlign="center" header="销售单价"></div>
+            <div allowSort="true" datatype="float" field="showAmt" summaryType="sum" width="60" headerAlign="center" header="销售金额"></div>
             <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
             
         </div>
@@ -458,7 +458,7 @@
 
 <!-- <div id="editFormSellRtnDetail" style="display:none;"> -->
 <div id="sellRtnWin" class="nui-window"
-     title="采购入库明细" style="width:900px;height:500px;"
+     title="销售退货明细" style="width:900px;height:500px;"
      showModal="true"
      allowResize="false"
      allowDrag="true">

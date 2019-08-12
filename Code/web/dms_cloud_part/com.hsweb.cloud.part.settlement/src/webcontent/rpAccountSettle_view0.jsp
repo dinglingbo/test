@@ -9,7 +9,7 @@
 -->
 <head>
 <title>应收应付结算</title>
-<script src="<%=webPath + contextPath%>/settlement/js/rpAccountSettle.js?v=2.3.23"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/rpAccountSettle.js?v=2.3.30"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -429,7 +429,7 @@
      allowDrag="true">
     <div id="innerSellOutGrid" class="nui-datagrid" style="width:100%;height:100%;"
          showPager="false"
-         dataField="pjSellOutDetailList"
+         dataField="pjSellOrderDetailList"
          idField="detailId"
          ondrawcell="onDrawCell"
          sortMode="client"
@@ -444,9 +444,9 @@
             <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
             <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
             <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
-            <div allowSort="true" datatype="float" field="sellQty" summaryType="sum" width="60" headerAlign="center" header="销售数量"></div>
-            <div allowSort="true" datatype="float" field="sellPrice" width="60" headerAlign="center" header="销售单价"></div>
-            <div allowSort="true" datatype="float" field="sellAmt" summaryType="sum" width="60" headerAlign="center" header="销售金额"></div>
+            <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="销售数量"></div>
+            <div allowSort="true" datatype="float" field="showPrice" width="60" headerAlign="center" header="销售单价"></div>
+            <div allowSort="true" datatype="float" field="showAmt" summaryType="sum" width="60" headerAlign="center" header="销售金额"></div>
             <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
             
         </div>

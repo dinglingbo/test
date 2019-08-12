@@ -67,6 +67,7 @@ var balanceList = [
     {id:2,text:"全部"}
 ];
 var settleStatusList = [
+    {id:4,text:"全部"},
     {id:0,text:"未结算"},
     {id:1,text:"部分结算"},
     {id:2,text:"已结算"}
@@ -218,6 +219,10 @@ function getSearchParam(){
     params.sCreateDate = searchBeginDate.getFormValue();
     params.eCreateDate = searchEndDate.getFormValue();
     params.settleStatus = nui.get("settleStatus").getValue();
+    if(params.settleStatus ==4){
+    	params.settleStatus =null;
+    }
+
     return params;
 }
 var currType = 2;
@@ -684,8 +689,8 @@ function onStatementDbClick(e){
     var row = e.record;
     var mainId = row.billMainId;
     var rpDc = row.rpDc;
-    switch (rpDc)
-    {
+    /*switch (rpDc)
+  	{
         case -1:
             pchsEnterWin.show();
 
@@ -708,11 +713,11 @@ function onStatementDbClick(e){
             break;
         default:
             break;
-    }
-    /*var billTypeCode = row.typeCode;
-    switch (billTypeCode)
+    }**/
+    var typeCode = row.typeCode;
+    switch (typeCode)
     {
-        case "050101":
+        case "1":
             pchsEnterWin.show();
 
             var params = {};
@@ -722,7 +727,7 @@ function onStatementDbClick(e){
                 token: token
             });
             break;
-        case "050102"://"050102"
+        case "4"://"050102"
             sellRtnWin.show();
             
             var params = {};
@@ -733,7 +738,7 @@ function onStatementDbClick(e){
             });
 
             break;
-        case "050201"://"050201"
+        case "3"://"050201"
             pchsRtnWin.show();
             
             var params = {};
@@ -743,7 +748,7 @@ function onStatementDbClick(e){
                 token: token
             });
             break;
-        case "050202"://"050202"
+        case "2"://"050202"
             sellOutWin.show();
             
             var params = {};
@@ -756,7 +761,7 @@ function onStatementDbClick(e){
             break;
         default:
             break;
-    }*/
+    }
 }
 function doBalance(){
     var rightGrid = null;

@@ -20,7 +20,7 @@ function setData(params){
 		return;
 	}
 	var params = {
-			id:concator.contactorId
+			id:concator.contactorId,
 	};
 	nui.mask({
 		el : document.body,
@@ -68,7 +68,7 @@ function onCancel() {
 
  function setHotWord(){
 	var hotUrl = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryDict.biz.ext";
-	var dictids = ["10441","10442"];
+	var dictids = ["10181"];
 	nui.ajax({
 		url : hotUrl,
 		type : "post",
@@ -132,7 +132,8 @@ function save(){
 	var params = {
 			nature:nature,
 			natureId:natureId,
-			id:concator.contactorId
+			id:concator.contactorId,
+			type:"update"
 	};
 	nui.mask({
 		el : document.body,

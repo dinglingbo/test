@@ -84,8 +84,8 @@ function toRPBillSet(){
 function toOrgSetSet(){
 	var item={};
 	item.id = "sysSet";
-	item.text = "公司属性";
-	item.url = webPath + contextPath + "/com.hsweb.cloud.part.basic.sysSet.flow";
+	item.text = "门店管理";
+	item.url = webPath + contextPath + "/com.hs.common.orgExtend.flow";
 	item.iconCls = "fa fa-cog";
 	window.parent.activeTab(item);
 }
@@ -106,3 +106,68 @@ function toPartDeductSet(){
 	item.iconCls = "fa fa-cog";
 	window.parent.activeTab(item);
 }
+
+function toPartBrandSet(){
+	var item={};
+	item.id = "partBrandSet";
+	item.text = "配件品牌";
+	item.url = webPath + contextPath + "/com.hsweb.cloud.part.basic.partBrandMgr.flow";
+	item.iconCls = "fa fa-cog";
+	window.parent.activeTab(item);
+}
+
+
+function toPartPriceSet(){
+	var item={};
+	item.id = "partPriceSet";
+	item.text = "销价设置";
+	item.url = webPath + contextPath + "/com.hsweb.cloud.part.basic.sellStrategySet.flow";
+	item.iconCls = "fa fa-cog";
+	window.parent.activeTab(item);
+}
+
+function toPartStockTypeSet(){
+	var item={};
+	item.id = "partStockTypeSet";
+	item.text = "备货级别设置";
+	item.url = webPath + contextPath + "/com.hsweb.cloud.part.basic.stockLevelSet.flow";
+	item.iconCls = "fa fa-cog";
+	window.parent.activeTab(item);
+}
+
+function toFreeTypeSet(){
+	var item={};
+	item.id = "freeTypeSet";
+	item.text = "自定义分类设置";
+	item.url = webPath + contextPath + "/com.hsweb.cloud.part.basic.baseParamSet.flow";
+	item.iconCls = "fa fa-cog";
+	window.parent.activeTab(item);
+}
+
+function toSellDeductSet(){
+	var item={};
+	item.id = "sellDeductSet";
+	item.text = "销售提成设置";
+	item.url = webPath + contextPath + "/com.hsweb.cloud.part.basic.deductParamsMgr.flow";
+	item.iconCls = "fa fa-cog";
+	window.parent.activeTab(item);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

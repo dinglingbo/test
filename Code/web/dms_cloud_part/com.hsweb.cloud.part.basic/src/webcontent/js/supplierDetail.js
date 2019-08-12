@@ -126,20 +126,20 @@ function onOk()
     data.mobile=nui.get('mobile').getValue().replace(/\s+/g, "");
   
     
-    if(data.isInternal == 1)
-    {
-        if(!data.fullName1)
-        {
-            parent.showMsg("请选择公司","W");
-            return;
-        }
-        data.isInternalId = data.fullName1;
-        data.fullName = nui.get("fullName1").getText();
-    }
-    else{
-        data.isInternalId = "";
-    }
-    
+//    if(data.isInternal == 1)
+//    {
+//        if(!data.fullName1)
+//        {
+//            parent.showMsg("请选择公司","W");
+//            return;
+//        }
+//        data.isInternalId = data.fullName1;
+//        data.fullName = nui.get("fullName1").getText();
+//    }
+//    else{
+//        data.isInternalId = "";
+//    }
+//    
     for(var key in requiredField)
     {
         if(!data[key] || data[key].trim().length==0)

@@ -617,20 +617,20 @@ function onOk()
     data.isDisabled = nui.get("isDisabled").getValue();
     data.isInternal = nui.get("isInternal").getValue();
   
-
-    if(data.isInternal == 1)
-    {
-    	if(!data.fullName1)
-        {
-            parent.showMsg("请选择公司","W");
-            return;
-        }
-        data.isInternalId = data.fullName1;
-        data.fullName = nui.get("fullName1").getText();
-    }
-    else{
-        data.isInternalId = "";
-    }
+//
+//    if(data.isInternal == 1)
+//    {
+//    	if(!data.fullName1)
+//        {
+//            parent.showMsg("请选择公司","W");
+//            return;
+//        }
+//        data.isInternalId = data.fullName1;
+//        data.fullName = nui.get("fullName1").getText();
+//    }
+//    else{
+//        data.isInternalId = "";
+//    }
     var settleId = nui.get('settTypeId').value;
     var guestProperty=nui.get("guestProperty").getValue();
     //现结

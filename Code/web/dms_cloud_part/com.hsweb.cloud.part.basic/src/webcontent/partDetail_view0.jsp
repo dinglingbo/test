@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件资料</title>
-<script src="<%=webPath + contextPath%>/basic/js/partDetail.js?v=1.0.72"></script>
+<script src="<%=webPath + contextPath%>/basic/js/partDetail.js?v=1.0.75"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -227,7 +227,7 @@
                     <td colspan="3"><input name="fullName" class="nui-textbox" width="375px" enabled="false"/></td>
                 </tr>
                 <tr class="htr">
-                    <td class=""  colspan="3">配件全称=名称+规格+车型+品牌</td>
+                    <td style="padding-left: 18px;"class=""  colspan="3">配件全称 = 名称+规格+车型+品牌</td>
                    
                 </tr>
                 <tr class="htr">

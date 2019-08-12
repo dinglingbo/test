@@ -331,7 +331,7 @@
 
 <!-- <div id="editFormPchsEnterDetail" style="display:none;"> -->
 <div id="pchsEnterWin" class="nui-window"
-     title="入库明细" style="width:900px;height:500px;"
+     title="采购入库明细" style="width:900px;height:500px;"
      showModal="true"
      allowResize="true"
      allowDrag="true">
@@ -375,7 +375,7 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
+            <div allowSort="true" field="comPartCode" width="80" headerAlign="center" header="配件编码"></div>
             <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
             <div allowSort="true" field="comOemCode" headerAlign="center" header="OE码"></div>
             <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
@@ -392,7 +392,7 @@
 
 <!-- <div id="editFormPchsRtnDetail" style="display:none;"> -->
 <div id="pchsRtnWin" class="nui-window"
-     title="采购入库明细" style="width:900px;height:500px;"
+     title="采购退货明细" style="width:900px;height:500px;"
      showModal="true"
      allowResize="false"
      allowDrag="true">
@@ -406,7 +406,7 @@
            showSummaryRow="true">
           <div property="columns">
               <div type="indexcolumn">序号</div>
-              <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
+              <div allowSort="true" field="comPartCode" width="80" headerAlign="center" header="配件编码"></div>
               <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
               <div allowSort="true" field="comOemCode" headerAlign="center" header="OE码"></div>
               <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
@@ -423,7 +423,7 @@
 
 <!-- <div id="editFormSellOutDetail" style="display:none;"> -->
 <div id="sellOutWin" class="nui-window"
-     title="采购入库明细" style="width:900px;height:500px;"
+     title="销售出库明细" style="width:900px;height:500px;"
      showModal="true"
      allowResize="false"
      allowDrag="true">
@@ -437,7 +437,7 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
+            <div allowSort="true" field="comPartCode" width="80" headerAlign="center" header="配件编码"></div>
             <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
             <div allowSort="true" field="comOemCode" headerAlign="center" header="OE码"></div>
             <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
@@ -455,7 +455,7 @@
 
 <!-- <div id="editFormSellRtnDetail" style="display:none;"> -->
 <div id="sellRtnWin" class="nui-window"
-     title="采购入库明细" style="width:900px;height:500px;"
+     title="销售退货明细" style="width:900px;height:500px;"
      showModal="true"
      allowResize="false"
      allowDrag="true">
@@ -469,7 +469,7 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
+            <div allowSort="true" field="comPartCode" width="80" headerAlign="center" header="配件编码"></div>
             <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
             <div allowSort="true" field="comOemCode" headerAlign="center" header="OE码"></div>
             <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>

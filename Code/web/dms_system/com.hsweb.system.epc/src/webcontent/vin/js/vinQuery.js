@@ -247,7 +247,7 @@ function queryVin(){
 */
 function setGridCfg(data, json){
 	//添加历史记录
-	vin=json.vin;
+	vin=data.vin;
 	//缓存
 	var key=new Date().getTime();
 	localStorage.setItem(key, vin);
@@ -264,8 +264,8 @@ function setGridCfg(data, json){
 //	    availableTags.push(vin);
 //    }
 //    
-    data = json.mains;
-    brand = json.brand;
+    data = data.mains;
+    brand = data.brandCode;
     gridCfg.setData([]);
     showRightGrid(gridCfg);
     if(data){

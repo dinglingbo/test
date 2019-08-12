@@ -21,11 +21,11 @@
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">returnResult/msg</process:from>
+      <process:from type="query" pattern="reference">result/msg</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">returnResult/code</process:from>
+      <process:from type="query" pattern="reference">result/code</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>
   </nodes>
@@ -177,6 +177,7 @@
     <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="link9" isDefault="true" type="transition">
       <sourceNode>invokePojo7</sourceNode>
       <targetNode>assign6</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
     <location x="530" y="292"/>
@@ -233,7 +234,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="maintenanceUrl" type="query" value="String" valueType="Primitive">maintenanceUrl</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">value</process:outputVariable>
-        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -259,8 +260,8 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="maintenanceMap" type="query" value="java.util.HashMap" valueType="Java">maintenanceMap</process:outputVariable>
-        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

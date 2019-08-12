@@ -635,6 +635,18 @@
         </dynamic>
     </select>
     
+    <!--
+    	20190811  去掉 guestType 查询条件
+    	<isNotEmpty prepend="and" property="supplierType">  
+                (supplier_type = #supplierType#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestTypeList">  
+                (guest_type in ($guestTypeList$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestType">  
+                (guest_type = #guestType#)
+            </isNotEmpty>
+    -->
      <select id="queryGuestList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT a.orgid,
     		 a.tenant_id as tenantId,
@@ -702,15 +714,7 @@
     		<isNotEmpty prepend="and" property="code">  
                 (code like '%$code$%')
             </isNotEmpty>
-    		<isNotEmpty prepend="and" property="supplierType">  
-                (supplier_type = #supplierType#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="guestTypeList">  
-                (guest_type in ($guestTypeList$))
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="guestType">  
-                (guest_type = #guestType#)
-            </isNotEmpty>
+    		
     		<isNotEmpty prepend="and" property="isInternal">  
                 (a.is_internal = #isInternal#)
             </isNotEmpty>

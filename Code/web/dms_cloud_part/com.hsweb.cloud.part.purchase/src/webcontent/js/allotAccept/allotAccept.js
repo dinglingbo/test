@@ -971,6 +971,7 @@ function add()
                     setEditable(true);
 
                     nui.get("guestId").enable();
+                    nui.get("selectSupplierBtn").enable();
 
                     basicInfoForm.reset();
                     rightGrid.clearRows();
@@ -1000,6 +1001,7 @@ function add()
         setEditable(true);
 
         nui.get("guestId").enable();
+        nui.get("selectSupplierBtn").enable();
 
         basicInfoForm.reset();
         rightGrid.clearRows();

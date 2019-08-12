@@ -256,8 +256,7 @@ body .mini-grid-row-selected{
                            showPager="false"
                            dataField="pjAllotAcceptDetailList"
                            idField="id"
-                           frozenStartColumn="0"
-                           frozenEndColumn="3"
+                   
                            showSummaryRow="true"
                            ondrawcell="onRightGridDraw"
                            allowCellSelect="true"
@@ -451,8 +450,7 @@ body .mini-grid-row-selected{
                selectOnLoad="true"
                showPager="false"
                dataField=""
-               frozenStartColumn="0"
-               frozenEndColumn="1"
+             
                onrowdblclick="addSelectPart"
                allowCellSelect="true"
                editNextOnEnterKey="true"

@@ -97,7 +97,7 @@
        idField="id"
        showSummaryRow="true"
        frozenStartColumn="0"
-       frozenEndColumn="10"
+       frozenEndColumn="0"
        ondrawcell="onStateDrawCell"
        oncellbeginedit=""
        showModified="false"

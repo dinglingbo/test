@@ -13,7 +13,7 @@
 <head>
 <title>未对账业务单</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/settlement/js/noBalaRpaAccountSettle.js?v=1.0.95"></script>
+    <script src="<%=webPath + contextPath%>/settlement/js/noBalaRpaAccountSettle.js?v=1.0.96"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -25,11 +25,9 @@
 			        <tr>
 			            <td style="white-space:nowrap;">
 			             	<label style="font-family:Verdana;">快速查询：</label>
-			            	<input class="nui-combobox" id ="orgids" name="orgids" value="" allowInput="true" showNullItem="false" 
-			            		 valueFromSelect="true" nullitemtext="请选择..." emptyText="选择公司" data="" width="200px"
-			            		 textField="name" valueField="orgid" onEnter="onSearch()" />
+			            	
 			               
-			                <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">全部</a>
+			                <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本周</a>
 			
 			                <ul id="popupMenuDate" class="nui-menu" style="display:none;">
 			                    <li iconCls="" onclick="quickSearch(0)" id="type0">全部</li>
@@ -51,7 +49,10 @@
 			               
 			                <span class="separator"></span> 
  		                    <input id="guestName" width="120px" emptyText="客户" onEnter="onSearch()" class="nui-textbox"/> 
-	
+							<input class="nui-combobox" id ="orgids" name="orgids" value="" allowInput="true" showNullItem="false" 
+			            		 valueFromSelect="true" nullitemtext="请选择..." emptyText="选择公司" data="" width="200px"
+			            		 textField="name" valueField="orgid" onEnter="onSearch()" />
+			            		 
 			                <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 			                
 			            </td>
@@ -59,7 +60,7 @@
 			    </table>
 			</div>
 			
-			 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:92%;"
+			 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:90%;"
 		         showPager="true"
 		         dataField="detailList"
 		         sortMode="client"
@@ -67,13 +68,13 @@
 		         showReloadButton="false"
 		         pageSize="50" 
 		         multiSelect="false"				
-				 totalField="page.count"
+				 totalField="total"
 		         pageSize="50"
 		         showSummaryRow="true"
 		         ondrawsummarycell="onDrawSummaryCell(e)"
 		         sizeList="[50,100,200]">
 		        <div property="columns">
-		            <div type="indexcolumn">序号</div>
+		            <div type="indexcolumn"  width="10">序号</div>
 		            <div field="fullName" width="120" headerAlign="center" header="往来单位"></div>
 		            <div field="rAmt" width="55px" headerAlign="center" allowSort="true" header="应收金额"summaryType="sum"datatype="float"></div>
 		            <div field="pAmt" width="55px" headerAlign="center" allowSort="true" header="应付金额" summaryType="sum" datatype="float"></div>

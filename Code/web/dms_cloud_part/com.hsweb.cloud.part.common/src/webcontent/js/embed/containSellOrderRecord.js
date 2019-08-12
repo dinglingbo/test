@@ -9,6 +9,7 @@ var settTypeIdList = [];
 var brandHash = {};
 var brandList = null;
 var guestId =null;
+
 $(document).ready(function(v){
     sellOrderRecordGrid = nui.get("sellOrderRecordGrid");
     sellOrderRecordGrid.setUrl(sellOrderRecordUrl);
@@ -52,7 +53,8 @@ $(document).ready(function(v){
 	// 	});
     // });
     
-    if(partId){
+    if(partId){ 
+   
         var params = {partId: partId};
         doSearch(params);
     }
@@ -101,6 +103,7 @@ function nowStoreGuestChange(){
 		nui.get("nowGuest").setValue(0);
 		nui.get("chainGuest").setValue(0);
 	}
+
 }
 function storeChange(){
 	var storeGuest = nui.get("storeGuest").getValue();
@@ -109,6 +112,7 @@ function storeChange(){
 		nui.get("nowGuest").setValue(0);
 		nui.get("chainGuest").setValue(0);
 	}
+	
 }
 function chainChange(){
 	var chainGuest = nui.get("chainGuest").getValue();
@@ -117,6 +121,7 @@ function chainChange(){
 		nui.get("storeGuest").setValue(0);
 		nui.get("nowGuest").setValue(0);
 	}
+	
 }
 
 function nowGuestChange(){
@@ -126,6 +131,7 @@ function nowGuestChange(){
 		nui.get("storeGuest").setValue(0);
 		nui.get("chainGuest").setValue(0);
 	}
+
 }
 
 function doSearch(params)

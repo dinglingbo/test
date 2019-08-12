@@ -1922,12 +1922,18 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 				var pchsOrderDetailUpdate = getModifyData(detailData, pchsOrderDetailAdd, pchsOrderDetailDelete);
 	
 	
-				nui.mask({
-					el : document.body,
-					cls : 'mini-mask-loading',
-					html : flagStr
-				});
+//				nui.mask({
+//					el : document.body,
+//					cls : 'mini-mask-loading',
+//					html : flagStr
+//				});
 	
+				nui.mask({
+			        el : document.body,
+			        cls : 'mini-mask-loading',
+			        html : '入库中...'
+			    });
+				
 				nui.ajax({
 					url : auditUrl,
 					type : "post",
@@ -1997,12 +2003,18 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 				var pchsOrderDetailUpdate = getModifyData(detailData, pchsOrderDetailAdd, pchsOrderDetailDelete);
 	
 	
-				nui.mask({
-					el : document.body,
-					cls : 'mini-mask-loading',
-					html : flagStr
-				});
+//				nui.mask({
+//					el : document.body,
+//					cls : 'mini-mask-loading',
+//					html : flagStr
+//				});
 	
+				nui.mask({
+			        el : document.body,
+			        cls : 'mini-mask-loading',
+			        html : '入库中...'
+			    });
+				
 				nui.ajax({
 					url : auditUrl,
 					type : "post",

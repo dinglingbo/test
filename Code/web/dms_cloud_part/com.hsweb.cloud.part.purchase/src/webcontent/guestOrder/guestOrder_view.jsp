@@ -9,7 +9,7 @@
 -->
 <head>
 <title>预售单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/guestOrder/guestOrder.js?v=1.0.5"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/guestOrder/guestOrder.js?v=1.0.6"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -327,8 +327,7 @@ body .mini-grid-row-selected{
                            dataField="guestOrderDetailList"
                            idField="id"
                            showSummaryRow="true"
-                           frozenStartColumn="0"
-                           frozenEndColumn="10"
+                        
                            ondrawcell="onRightGridDraw"
                            allowCellSelect="true"
                            allowCellEdit="true"
@@ -502,8 +501,6 @@ body .mini-grid-row-selected{
                selectOnLoad="true"
                showPager="false"
                dataField=""
-               frozenStartColumn="0"
-               frozenEndColumn="1"
                onrowdblclick="addSelectPart"
                allowCellSelect="true"
                editNextOnEnterKey="true"

@@ -63,8 +63,7 @@
          onrowdblclick="onRowDblClick"
          sortMode="client"
          onrowclick="onGridRowClick"
-         frozenStartColumn="0"
-         frozenEndColumn="4">
+     	>
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <!--<div type="checkcolumn" ></div>-->

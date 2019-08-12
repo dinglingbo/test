@@ -1013,7 +1013,7 @@ function finish()
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                showMsg("成功!","S");
+                showMsg("完成销售，请到销售出库明细表中查看销售记录!","S");
 
                 var row = leftGrid.getSelected();
                 var newRow =nui.clone(row);

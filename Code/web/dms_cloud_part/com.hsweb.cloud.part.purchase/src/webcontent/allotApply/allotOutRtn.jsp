@@ -9,7 +9,7 @@
 -->
 <head>
 <title>调出退回</title>
-<script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotOutRtn.js?v=1.0.2"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/allotApply/allotOutRtn.js?v=1.0.4"></script>
 <style type="text/css">
 .title {
   width: 70px;
@@ -202,7 +202,7 @@ body .mini-grid-row-selected{
                                       <td class="title">
                                           <label>备注：</label>
                                       </td>
-                                      <td colspan="3">
+                                      <td colspan="1">
                                           <input class="nui-textbox" selectOnFocus="true" width="100%" id="remark" name="remark" enabled="true"/>
                                       </td>
                                       <td class="title">
@@ -211,6 +211,12 @@ body .mini-grid-row-selected{
                                       <td colspan="1" style="width:120px">
                                           <input class="nui-textbox" selectOnFocus="true" width="100%" id="orderMan" name="orderMan" enabled="true"/>
                                       </td>  
+                                      <td class="title">
+                                          <label>申请单号：</label>
+                                      </td>
+                                      <td style="width:180px">
+                                          <input class="nui-textbox" width="100%" id="code" name="code" enabled="false" placeholder=""/>
+                                      </td>
                                       <td class="title">
                                           <label>退回单号：</label>
                                       </td>

@@ -15,8 +15,28 @@ var settTypeId = null;
 var supplierType = null;
 var managerDuty = null;
 var tgrade = null;
+// 信誉等级
+var tgradeList = [ {
+	"customid" : 0,
+	"name" : "高"
+}, {
+	"customid" : 1,
+	"name" : "中"
+}, {
+	"customid" : 2,
+	"name" : "低"
+} ];
 function initComboBox()
 {
+	initDicts({
+		billTypeId : BILL_TYPE,// 票据类型
+		managerDuty : MANAGER_DUTY,// 供应商负责人职务
+		supplierType : SUPPLIER_TYPE
+	// 对象类型
+	}, function() {
+	
+	});
+	
     provinceEl = nui.get("provinceId");
     billTypeId = nui.get("billTypeId");
     settTypeId = nui.get("settTypeId");
@@ -206,7 +226,6 @@ function onOk()
     });
 }
 
-var tgradeList = [];
 var tgradeHash = {};
 var billTypeIdList = [];
 var billTypeIdHash = {};
@@ -248,7 +267,7 @@ function setData(data)
             cityHash[v.code] = v;
         });
     }
-    tgradeList = data.tgrade||[];
+
     tgradeList.forEach(function(v){
         tgradeHash[v.customid] = v;
     });

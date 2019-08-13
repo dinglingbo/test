@@ -129,7 +129,7 @@
 
 <!--                                                 <div allowSort="true" field="isUniform" width="70" headerAlign="center" header="是否统一售价" allowSort="true"></div> -->
 
-                                                <div allowSort="true" field="abcType" width="80" headerAlign="center" allowSort="true">ABC类型</div>
+<!--                                                 <div allowSort="true" field="abcType" width="80" headerAlign="center" allowSort="true">ABC类型</div> -->
                                                 <div allowSort="true" field="produceFactory" width="80" headerAlign="center" allowSort="true">生产厂家</div>
 <!--                                                 <div allowSort="true" field="nameEn" width="120" headerAlign="center" allowSort="true">英文名称</div> -->
                                             </div>
@@ -156,7 +156,7 @@
                                                 <div allowSort="true" field="name" name="name" width="120" headerAlign="center" allowSort="true">名称</div>
                                                 <div allowSort="true" field="fullName" name="fullName" width="280" headerAlign="center" allowSort="true">全称</div>
                                                 <div allowSort="true" field="oemCode" name="oemCode" width="100" headerAlign="center" allowSort="true">OE码</div>
-                                                <div allowSort="true" field="origin" name="origin" width="100" headerAlign="center" allowSort="true">规格</div>
+                                                <div allowSort="true" field="origin" name="origin" width="100" headerAlign="center" allowSort="true">产地</div>
                                                 <div allowSort="true" field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
                                             </div>
                                         </div>
@@ -189,7 +189,7 @@
 
 <!--                                                 <div allowSort="true" field="isUniform" width="70" headerAlign="center" header="是否统一售价" allowSort="true"></div> -->
 
-                                                <div allowSort="true" field="abcType" width="80" headerAlign="center" allowSort="true">ABC类型</div>
+<!--                                                 <div allowSort="true" field="abcType" width="80" headerAlign="center" allowSort="true">ABC类型</div> -->
                                                 <div allowSort="true" field="produceFactory" width="80" headerAlign="center" allowSort="true">生产厂家</div>
 <!--                                                 <div allowSort="true" field="nameEn" width="120" headerAlign="center" allowSort="true">英文名称</div> -->
                                             </div>

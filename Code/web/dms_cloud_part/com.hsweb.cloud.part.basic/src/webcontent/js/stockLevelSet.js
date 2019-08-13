@@ -210,6 +210,8 @@ function onDeleteNode(){
 
 function onUnifySearch() {
     var params = {};
+    var data = straGrid.getSelected();
+	var id=data.id;
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){
@@ -217,6 +219,7 @@ function onUnifySearch() {
     }else if(type==1){
     	params.partName = typeValue;
     }
+    params.levelId =id;
     rightUnifyGrid.load({params:params,token:token});
 }
 
@@ -288,6 +291,10 @@ function addUnifyPart() {
 }
 function addUnifyDetail(row){
 	var strRow = straGrid.getSelected();
+	if(!strRow){
+		showMsg("请选择备货级别","W");
+		return;
+	}
 	var data =rightUnifyGrid.getData();
 	for(var i=0;i<data.length;i++){
 		if(row.id==data[i].partId){
@@ -300,7 +307,8 @@ function addUnifyDetail(row){
         partId: row.id,
         partCode: row.code,
         partName: row.name,
-        fullName: row.fullName
+        fullName: row.fullName,
+        operator: currUserName 
     };
     rightUnifyGrid.addRow(newRow);
 }

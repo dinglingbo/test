@@ -1309,7 +1309,6 @@
 		inner join pj_guest_order_detail e
 		on c.source_detail_id = e.pchs_detail_id and c.source_main_id = e.pchs_main_id
      
-        source_type 0普通单据；1来源于采购订单；2来源于销售出库;3来源于WMS;4来源于直发；5来源于预销售
       -->
     <update id="updatePjGuestOrderDetailAcceptId" parameterClass="java.util.HashMap" >
 		update pj_allot_accept_detail a
@@ -1322,7 +1321,7 @@
 		inner join pj_guest_order_detail e
 		on c.source_detail_id = e.pchs_detail_id and c.source_main_id = e.pchs_main_id
 		set e.accept_main_id = b.id, e.accept_detail_id = a.id
-		where b.id = #acceptMainId# and d.source_type = 4
+		where b.service_id = #acceptServiceId# 
 	</update>
 	
 	<!--

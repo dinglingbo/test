@@ -140,7 +140,29 @@ $(document).ready(function(v)
     });
 });
 function setGuestData(data){
+	$.ajaxSettings.async = false;
 	if(data) {
+		
+	  initDicts({
+	        billTypeId:BILL_TYPE,//票据类型
+	        settType:SETT_TYPE //结算方式
+	    },function(){
+	        //grid.load();
+	    	billTypeIdList = billTypeIdEl.getData();
+	    	settTypeIdList = settleTypeIdEl.getData();
+	    	billTypeIdList.filter(function(v)
+	        {
+	            billTypeIdHash[v.customid] = v;
+	            return true;
+	        });
+
+	        settTypeIdList.filter(function(v)
+	        {
+	            settTypeIdHash[v.customid] = v;
+	            return true;
+	        });
+	    });
+
         if(data.isSupplier){
             isSupplier = data.isSupplier;
             if(isSupplier == 1){

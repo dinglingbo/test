@@ -12,7 +12,7 @@
 <title>完工</title>
 	<script src="<%=request.getContextPath()%>/coframe/imjs/message.js"></script>
 	<script src="<%=request.getContextPath()%>/coframe/imjs/messagebody.js"></script>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/checkFinish.js?v=1.1.5"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/checkFinish.js?v=1.1.6"></script>
 <style type="text/css">
 
 .title {
@@ -74,7 +74,7 @@
             <div headerAlign="center" type="indexcolumn" width="20">序号</div>
             <div field="itemName" headerAlign="center" allowSort="true" visible="true" width="60">项目名称</div>
             <div field="workers" headerAlign="center" allowSort="true" visible="true" width="60" datatype="int" align="center">施工员</div>
-            <div field="status" headerAlign="center" allowSort="true" visible="true" width="40" datatype="int" align="center">是否完工</div>
+            <div field="status" headerAlign="center" allowSort="true" visible="true" width="60" datatype="int" align="center">是否完工</div>
             <!-- <div field="unitPrice" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">是否合格</div>
             <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">备注</div> -->
         </div>

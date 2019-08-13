@@ -13,7 +13,7 @@
     <title>车间调度</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/workDispatch/js/workShopMain.js?v=1.0.3" type="text/javascript"></script>  
+    <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/workDispatch/js/workShopMain.js?v=1.0.5" type="text/javascript"></script>  
 
 </head>
 <style type="text/css">
@@ -35,16 +35,18 @@
 .zhongduan ul li a:hover{ background-color:#ebf2f5;}
 </style>
     <body>
-        <div class="nui-fit" style="padding-top:10px," >
-            <div class="mini-tabs" activeIndex="0" style="width:100%;height:100%;"  id="mainTabs" name="mainTabs" onactivechanged="activechangedmain()">
+        <div class="nui-fit"  >
+        
+            <div class="mini-tabs" activeIndex="0" style="width:100%;height:99%;"  id="mainTabs" name="mainTabs" onactivechanged="activechangedmain()">
+               
                <div title="维修派工" id="repairWork" name="repairWork">
-               <div class="nui-fit" style="padding-top:0px">
+               <div class="nui-fit" >
                 <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
 			    <table class="table" id="table1">
 			     <tr>
 		            <td>
 		                <label>车牌号：</label>
-		                <input class="nui-textbox" id="carNo-search" emptyText="" width="120"  onenter="doSearch()"/>
+		                <input class="nui-textbox" id="carNo" emptyText="" width="120"  onenter="doSearch()"/>
 		                <label>服务顾问：</label>
 	                    <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
 	                        emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="120" valueFromSelect="true"  onenter="doSearch()"/>
@@ -55,7 +57,8 @@
 		        </tr>
 			    </table>
 				</div>
-				 <div class="nui-splitter" style="width: 100%; height: 96%;">
+				<div class="nui-fit" >
+				 <div class="nui-splitter" style="width: 100%; height: 100%;">
 		         <div size="430" showcollapsebutton="true">
 		           <div class="nui-fit" >
 		            <div id="mainGrid" class="nui-datagrid" dataField="list" style="width: 100%; height: 100%;" 
@@ -78,8 +81,7 @@
 		         </div>
 		         </div>
 		         <div showcollapsebutton="true">
-		         
-                 <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+                 <!-- <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
 			     <table class="table" id="table1">
 			     <tr>
 		            <td>
@@ -94,10 +96,10 @@
 		            </td>
 		         </tr>
 			     </table>
-				 </div>
+				 </div> -->
 				 
 		         <div class="nui-splitter" style="width: 100%; height: 100%;" vertical="true">
-		         <div size="430" showcollapsebutton="true">
+		         <div size="60%" showcollapsebutton="true">
 		         <div class="nui-fit" >
 		            <div id="rightGrid" class="nui-datagrid" dataField="itemList" style="width: 100%; height: 100%;" 
 		             idField="id" 
@@ -111,9 +113,11 @@
 		                    <div field="id" width="70" headeralign="left" visible="false"><strong>项目ID</strong></div>
 		                    <div field="itemName" width="70" headeralign="left" visible="true"><strong>项目</strong></div>
 		                   <!--  <div field="beginDate" width="70" headeralign="left" visible="true"><strong>派工时间</strong></div> -->
-		                    <div field="workers" width="70" headeralign="left" visible="true"><strong>施工员</strong></div>
-		                    <div field="planFinishDate" width="70" headeralign="left" visible="true" dateFormat="  yyyy-MM-dd HH:mm"><strong>预计完工时间</strong></div>
-		                    <div field="beginDate" width="70" headeralign="left" visible="true" dateFormat="  yyyy-MM-dd HH:mm"><strong>开始施工</strong></div>
+		                    <div field="workers" width="70" headeralign="left" visible="true"><strong>施工员
+		                     <a href="javascript:setItemWorkers()" title="批量设置施工员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
+		                    </strong></div>
+		                    <div field="planFinishDate" width="70" headeralign="left" visible="true" dateFormat="  yyyy-MM-dd HH"><strong>预计完工时间</strong></div>
+		                    <div field="beginDate" width="70" headeralign="left" visible="true" dateFormat="  yyyy-MM-dd HH"><strong>开始施工</strong></div>
 		                    <div field="workTime" width="70" headeralign="left" visible="true"><strong>施工耗时</strong></div>
 		                    <div field="stopTime" width="70" headeralign="left" visible="true"><strong>中断耗时</strong></div>
 		                    <div field="finishDate" width="70" headeralign="left" visible="true" dateFormat="  yyyy-MM-dd HH:mm"><strong>实际完工时间</strong></div>
@@ -157,6 +161,7 @@
 		         </div>
 		         </div>
 		     </div>
+		     </div>
             </div> 
                <div title="车检派工" id="checkWork" name="checkWork">
                   <div class="nui-fit">
@@ -176,7 +181,8 @@
 		        </tr>
 			    </table>
 				</div>
-				  <div id="mainGrid2" class="nui-datagrid" style="width:100%;height:96%;" selectOnLoad="true" showPager="true" pageSize="50"
+				<div class="nui-fit" >
+				  <div id="mainGrid2" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"
 				  totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true"
 				  onshowrowdetail="onShowRowDetail" url="" allowCellWrap=true>
 				  <div property="columns">
@@ -195,6 +201,7 @@
 				 </div>
 				 </div>
 				 </div>
+              </div>
               </div>
         </div>
      </div>

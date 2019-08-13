@@ -9,7 +9,7 @@
 -->
 <head>
 <title>总部应收应付结算</title>
-<script src="<%=webPath + contextPath%>/settlement/js/hqRpAccountSettle.js?v=1.0.2"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/hqRpAccountSettle.js?v=1.0.5"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -756,14 +756,18 @@
                         <td style="text-align:center" width="60px">应收金额:</td>
                         <td id="rRPAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
 
-                        <td style="text-align:center" width="60px">实收金额:</td>
+						<td style="text-align:center" width="60px">已结金额:</td>
+                        <td id="rCharOffAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+                        
+						<td style="text-align:center" width="60px">未结金额:</td>
+                        <td id="rNoCharOffAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+                        
+                        <td style="text-align:center" width="80px">本次实收金额:</td>
                         <td id="rTrueAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
 
                         <td style="text-align:center;display:none;" width="60px">优惠金额:</td>
                         <td id="rVoidAmt" style="text-align:center;color:blue;text-decoration:underline;display:none;" width="60px"></td>
-
-                        <td style="text-align:center" width="60px">未结金额:</td>
-                        <td id="rNoCharOffAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+                        
                     </tr>
                 </table>
 
@@ -775,17 +779,21 @@
             <div class="vpanel_body">
                 <table class="tmargin">
                     <tr id="pcTr">
-                        <td style="text-align:center" width="60px">应付金额:</td>
+                         <td style="text-align:center" width="60px">应付金额:</td>
                         <td id="pRPAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+                        
+                        <td style="text-align:center" width="60px">已结金额:</td>
+                        <td id="pCharOffAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+                        
+                        <td style="text-align:center" width="60px">未结金额:</td>
+                        <td id="pNoCharOffAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
 
-                        <td style="text-align:center" width="60px">实付金额:</td>
+                        <td style="text-align:center" width="80px">本次实付金额:</td>
                         <td id="pTrueAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
 
                         <td style="text-align:center;display:none;" width="60px">免付金额:</td>
                         <td id="pVoidAmt" style="text-align:center;color:blue;text-decoration:underline;display:none;" width="60px"></td>
-
-                        <td style="text-align:center" width="60px">未结金额:</td>
-                        <td id="pNoCharOffAmt" style="text-align:center;color:blue;text-decoration:underline" width="60px"></td>
+                        
                     </tr>
                 </table>
 

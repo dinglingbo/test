@@ -13,7 +13,7 @@
 <head>
 <title>预销售单受理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchase/js/guestOrder/storeGuestOrder.js?v=1.0.0"></script>
+    <script src="<%=webPath + contextPath%>/purchase/js/guestOrder/storeGuestOrder.js?v=1.0.2"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -77,6 +77,7 @@
 				 totalField="page.count"
 		         pageSize="50"
 		         selectOnLoad="true"
+		       
 		         onselectionchanged="onMainGridSelectionChanged"
 		         sizeList="[50,100,200]">
 		        <div property="columns">
@@ -107,18 +108,19 @@
         	<div class="nui-fit">
                	                	
                       <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
-				         showPager="true"
+				         showPager="false"
 				         dataField="guestOrderDetailList"
 				         idField="detailId"
 				         ondrawcell="onDrawCell"
 				         sortMode="client"
 				         url=""
 				         totalField="page.count"
+				         showSummaryRow="true"
 						 pageSize="100"
 						 sizeList=[100,200,500,1000]
 				         showSummaryRow="false">
 				        <div property="columns">
-				            <div type="indexcolumn">序号</div>
+				            <div type="indexcolumn" summaryType="count">序号</div>
 				            <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
                             <div field="comPartName" visible="false" headerAlign="center" header="配件名称"></div>
                             <div field="fullName"  width="200" headerAlign="center" header="配件全称"></div>

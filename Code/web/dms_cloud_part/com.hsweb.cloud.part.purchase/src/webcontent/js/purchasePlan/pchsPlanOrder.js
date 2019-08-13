@@ -43,6 +43,9 @@ var storeLimitMap={};
 var storeShelfList=[];
 var storeShelfHash={}
 var partHash={};
+//备货级别
+var DICTID="10443";
+var stockLevelList=[];
 $(document).ready(function(v)
 {
     nui.mask({
@@ -90,7 +93,9 @@ $(document).ready(function(v)
 
     sOrderDate = nui.get("sOrderDate");
     eOrderDate = nui.get("eOrderDate");
-
+    
+    //获取备货级别
+    getStockLevel();
     var dictDefs ={"billTypeId":"DDT20130703000008", "settleTypeId":"DDT20130703000035"};
     initDicts(dictDefs, function(){
         getAllPartBrand(function(data) {
@@ -174,6 +179,15 @@ function onLeftGridSelectionChanged(){
    
    loadMainAndDetailInfo(row);
 } 
+
+function onLeftGridBeforeDeselect(e)
+{
+    var row = leftGrid.getSelected(); 
+    if(row.serviceId == '新计划采购'){
+
+        leftGrid.removeRow(row);
+    }
+}
 function loadRightGridData(mainId)
 {
     editPartHash={};
@@ -1102,6 +1116,47 @@ function genePart() {
         showMsg("请填写销量排名数据!","W");
         return;
     }
+    var stockLevel =nui.get("stockLevel").getText();
+    var levelId =nui.get("stockLevel").getValue();
+    //取备货级别
+    if(limitCount == 0 && stockLevel){
+        nui.confirm("是否确定取"+stockLevelt+"的配件数据?", "友情提示",
+                function (action) { 
+                    if (action == "ok") {
+                    	var params={};
+                    	params.levelId = levelId;
+                        nui.ajax({
+                            url : geneInfoUrl,
+                            type : "post",
+                            async: false,
+                            data : {
+                                params :params,
+                                token: token
+                            },
+                            success : function(data) {
+                                if(data.errCode && data.errCode == 'S'){
+                                    var data =data.list;
+                                    rightGrid.add(data);
+                                    
+                                }else{
+                                    //清空行数据
+                                    showMsg("获取配件信息失败!","W");
+                                }
+
+                            },
+                            error : function(jqXHR, textStatus, errorThrown) {
+                                // nui.alert(jqXHR.responseText);
+                                console.log(jqXHR.responseText);
+                            }
+                        });
+
+                    }else {
+                        return;
+                    }
+                }
+            );
+    }
+    
     nui.confirm("是否确定取"+partBrand+"销量排名前"+limitCount+"的配件数据?", "友情提示",
         function (action) { 
             if (action == "ok") {
@@ -1823,4 +1878,26 @@ function adjustPart(){
     }else{
         return;
     }
+}
+
+var stockLevelUrl= apiPath +sysApi+"/"+"com.hsapi.system.dict.dictMgr.queryDict.biz.ext";
+function getStockLevel(){
+	 nui.ajax({
+        url : stockLevelUrl,
+        type : "post",
+        data : JSON.stringify({
+        	tenantId:currTenantId,
+    		dictid:DICTID,
+    		fromDb:true,
+    		token:token
+        }),
+        success : function(data) {
+           stockLevelList =data.data;
+           nui.get('stockLevel').setData(stockLevelList);
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
 }

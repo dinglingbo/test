@@ -14,7 +14,7 @@ var billTypeIdHash = {};
 var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
-var statusList=[{"id":1,"name":"已提交"},{"id":2,"name":"已受理"},{"id":3,"name":"已完成"}];
+var statusList=[{"id":0,"name":"全部"},{"id":1,"name":"已提交"},{"id":2,"name":"已受理"},{"id":3,"name":"已完成"}];
 var statusHash={"1":"已提交","2":"已受理","3":"已完成"};
 var FStoreId = null;
 
@@ -133,6 +133,10 @@ function getSearchParam(){
     params.guestName =nui.get('guestName').getValue().replace(/\s+/g, "");
     params.orgid =nui.get('orgids').getValue();
     params.status = nui.get("status").getValue();
+    //全部
+    if(params.status == 0){
+    	params.status = null;
+    }
     params.auditSign=1;
     params.tenantId =currTenantId;
     return params;
@@ -209,6 +213,10 @@ function onSearch(){
 }
 function doSearch(params)
 {
+	if(currIsMaster !=1){
+		showMsg("总部才可以查看此界面","W");
+		return;
+	}
 	mainGrid.load({
         params:params,
         token: token
